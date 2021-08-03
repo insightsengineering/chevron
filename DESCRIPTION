@@ -1,0 +1,26 @@
+Package: chevron
+Type: Package
+Title: Standard TLGs For Clinical Trials Reporting
+Version: 0.1.0
+Authors@R: c(
+  person("NEST", email = "nestcicd@roche.com", role = c("aut", "cre")),
+  person("Roche", role = c("cph", "fnd")),
+  person("Adrian", "Waddell", email = "adrian.waddell@roche.com", role = "aut"),
+  person("Gabriel", "Becker", email = "gabembecker@gmail.com", role = "ctb"),
+  person("Tim", "Barnett", email = "timothy.barnett@roche.com", role = "ctb")
+  )
+Description: Standard Table, Listings, and Graphs (TLG) library used in clinical trials. 
+Roxygen: list(markdown = TRUE)
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Depends:
+  tern
+Imports:
+  rtables,
+  assertthat,
+  magrittr
+Suggests:
+  scda.2021,
+  scda

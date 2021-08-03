@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^temp$
+^.github$
+^staged_dependencies.yaml$
