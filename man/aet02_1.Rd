@@ -8,8 +8,9 @@ aet02_1(
   adsl,
   adae,
   armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ aet02_1(
 
 \item{armvar}{variable used for column splitting}
 
+\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
@@ -26,15 +29,25 @@ aet02_1(
 \description{
 Adverse Events by System Organ Class and Preferred Term Table
 }
+\details{
+\itemize{
+\item No total column in the standards
+\item sort \code{AEDECOD}  by highest overall frequencies
+}
+}
 \examples{
 
 library(scda)
+library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adae <- sd$adae
+adae <- sd$adae \%>\%
+ mutate(ANL01FL = 'Y')
 
 aet02_1(adsl, adae)
+aet02_1(adsl, adae, lbl_overall = "All Patients")
 
 adae <- adae \%>\% var_relabel(AEBODSYS = "Medra System Organ Class")
 aet02_1(adsl, adae)
+
 }

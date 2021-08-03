@@ -1,15 +1,15 @@
+#' AET01 Table
 #'
-#'
-#'
-#'
+#' @inheritParams gen_args
 #'
 #' @export
 #'
 #' @examples
-#'
+#' # TODO: add examples
 aet01_1 <- function(
-
-
+  adsl, adae,
+  armvar = .study$armvar,
+  deco = std_deco("AET01"),
   .study = list(
     armvar = "ACTARM"
   )

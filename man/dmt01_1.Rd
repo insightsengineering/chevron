@@ -22,7 +22,7 @@ dmt01_1(
 
 \item{summaryvars}{variables summarized in demographic table}
 
-\item{lbl_overall}{label used for overall column}
+\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{remove 0 count rows}
 

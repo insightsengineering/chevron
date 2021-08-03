@@ -35,7 +35,7 @@ gen_args(
 \arguments{
 \item{armvar}{variable used for column splitting}
 
-\item{lbl_overall}{label used for overall column}
+\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{remove 0 count rows}
 

@@ -6,22 +6,27 @@
 #'
 #' @details
 #'  * No total column in the standards
-#'  * sort AEDECOD  by highest overall frequencies
+#'  * sort `AEDECOD`  by highest overall frequencies
+#'
+#' @importFrom dplyr filter
 #'
 #' @export
 #'
 #' @examples
 #'
 #' library(scda)
+#' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae
+#' adae <- sd$adae %>%
+#'  mutate(ANL01FL = 'Y')
 #'
 #' aet02_1(adsl, adae)
 #' aet02_1(adsl, adae, lbl_overall = "All Patients")
 #'
 #' adae <- adae %>% var_relabel(AEBODSYS = "Medra System Organ Class")
 #' aet02_1(adsl, adae)
+#'
 aet02_1 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,

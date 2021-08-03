@@ -20,7 +20,8 @@ Depends:
 Imports:
   rtables,
   assertthat,
-  magrittr
+  magrittr,
+  dplyr
 Suggests:
   scda.2021,
   scda
