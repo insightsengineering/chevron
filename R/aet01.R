@@ -9,9 +9,12 @@
 aet01_1 <- function(
   adsl, adae,
   armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
   deco = std_deco("AET01"),
   .study = list(
-    armvar = "ACTARM"
+    armvar = "ACTARM",
+    totals_for = c("DTHFL", "DCSREAS", ),
+    lbl_overall = NULL
   )
 ) {
 
@@ -20,7 +23,7 @@ aet01_1 <- function(
   # Layout for variables from adsl dataset.
   lyt_adsl <- basic_table() %>%
     split_cols_by(armvar) %>%
-    add_colcounts() %>%
+    add_colcounts() %>% # todo
     count_values(
       "DTHFL",
       values = "Y",
@@ -38,7 +41,7 @@ aet01_1 <- function(
 
   # Layout for variables from adae dataset.
   lyt_adae <- basic_table() %>%
-    split_cols_by("ACTARM") %>%
+    split_cols_by(armvar) %>%
     add_colcounts() %>%
     count_patients_with_event(
       vars = "USUBJID",

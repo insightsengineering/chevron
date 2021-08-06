@@ -8,8 +8,10 @@ aet01_1(
   adsl,
   adae,
   armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
   deco = std_deco("AET01"),
-  .study = list(armvar = "ACTARM")
+  .study = list(armvar = "ACTARM", totals_for = c("DTHFL", "DCSREAS", ), lbl_overall =
+    NULL)
 )
 }
 \arguments{
@@ -18,6 +20,8 @@ aet01_1(
 \item{adae}{Adverse Events Analysis Dataset}
 
 \item{armvar}{variable used for column splitting}
+
+\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
