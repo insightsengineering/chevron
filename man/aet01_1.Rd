@@ -10,7 +10,7 @@ aet01_1(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET01"),
-  .study = list(armvar = "ACTARM", totals_for = c("DTHFL", "DCSREAS", ), lbl_overall =
+  .study = list(armvar = "ACTARM", totals_for = c("DTHFL", "DCSREAS"), lbl_overall =
     NULL)
 )
 }
