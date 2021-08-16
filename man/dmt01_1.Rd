@@ -33,13 +33,47 @@ dmt01_1(
 \description{
 For each variable, summary statistics are by default based on the number of patients in the corresponding \code{n} row.
 }
+\details{
+Questions for a standard:
+\enumerate{
+\item is the data ever different than adsl
+\itemize{
+\item generally no, as adsub variables need to be merged in
+\item still want to stay specific, this is a special case > ad_bl1a. get the standard variables
+\item c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI")
+}
+\item only split on one variable
+\itemize{
+\item no in the column
+\item theoretically yes in row space but we can either treat it as a non-standard
+(if it not in the lopo) or as a standard variant
+}
+\item always total column
+\itemize{
+\item yes - can be a different label
+}
+\item numeric variables
+\itemize{
+\item only n, Mean (SD), Median, Min - Max >> yes - precision on a study level
+}
+\item categorical variables
+\itemize{
+\item remove zero counts
+yes by default, if no then it's a non-standard or dmt01_2
+\item prop. = c/n or c/N > c/N
+\item sorting
+\itemize{
+\item factor levels (default)
+\item frequency counts (freq) (req total column)
+}
+}
+}
+}
 \examples{
 library(scda)
 adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
 
-dmt01_1(ad_bl = adsl,
- summaryvars = c("AGE", "RACE", "SEX"),
-)
+dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"))
 
 dmt01_1(
  ad_bl = adsl,

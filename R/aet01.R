@@ -13,7 +13,7 @@ aet01_1 <- function(
   deco = std_deco("AET01"),
   .study = list(
     armvar = "ACTARM",
-    totals_for = c("DTHFL", "DCSREAS", ),
+    totals_for = c("DTHFL", "DCSREAS"),
     lbl_overall = NULL
   )
 ) {
