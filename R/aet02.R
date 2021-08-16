@@ -83,7 +83,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = NULL
+                          lbl_overall = ""
                         )) {
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
