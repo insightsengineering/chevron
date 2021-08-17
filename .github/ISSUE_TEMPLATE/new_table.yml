@@ -1,0 +1,100 @@
+name: New table
+description: Request a new table
+title: "[Table]: "
+assignees:
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the characteristics of the required table
+
+  - type: input
+    id: table_name
+    attributes:
+      label: Table Name
+      description: Standard name of the table
+      placeholder: ex. AET02
+    validations:
+      required: false
+
+  - type: textarea
+    id: table_pupose
+    attributes:
+      label: Description
+      description: Details on the generic pupose of the table (optional)
+      value: ex. an adverse event table
+    validations:
+      required: true
+
+#######
+  - type: textarea
+    id: analysis_dataset
+    attribute:
+      label: Analysis dataset
+      description: Name of the standard dataset input
+      value: ex. ADAE
+
+  - type: textarea
+    id: analysis_filtering
+    attribute:
+      label: Analysis filtering
+      description: Filtering criteria of the input
+      value: ex. ANL01FL="Y"
+
+  - type: textarea
+    id: analysis_population
+    attribute:
+      label: Analysis population
+      description: 
+      value: ex. SE
+
+  - type: textarea
+    id: column_variables
+    attribute:
+      label: Column Variable
+      description: Names of the columns in the input dataset used to split the table 
+      value: ex. ACTARM
+    validations:
+      required: true
+
+ - type: textarea
+    id: column_total
+    attribute:
+      label: Column Totals
+      description: 
+      value: ex. None / All Active
+    validations:
+      required: true
+
+
+ - type: textarea
+    id: analysis_variables
+    attribute:
+      label: Analysis variables
+      description: The name of the spliting variables in hierarchical order.
+      value: ex. AEBODSYS, AEDECOD, ASEV
+    validations:
+      required: true
+
+ - type: textarea
+    id: statistics
+    attribute:
+      label: Statistics
+      description: A Description of the statistical procedure 
+      value: ex. Frequency count and % (based on N)
+    validations:
+      required: true
+
+
+ - type: dropdown
+    id: remove_0
+    attributes:
+      label: 0 values
+      description: Remove the rows with zero count.
+      options:
+        - YES
+        - NO
+        - Undef
+    validations:
+      required: true
