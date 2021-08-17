@@ -27,7 +27,6 @@ body:
     validations:
       required: true
 
-#######
   - type: textarea
     id: analysis_dataset
     attribute:
@@ -46,14 +45,14 @@ body:
     id: analysis_population
     attribute:
       label: Analysis population
-      description: 
+      description:
       value: ex. SE
 
   - type: textarea
     id: column_variables
     attribute:
       label: Column Variable
-      description: Names of the columns in the input dataset used to split the table 
+      description: Names of the columns in the input dataset used to split the table
       value: ex. ACTARM
     validations:
       required: true
@@ -62,11 +61,10 @@ body:
     id: column_total
     attribute:
       label: Column Totals
-      description: 
+      description:
       value: ex. None / All Active
     validations:
       required: true
-
 
  - type: textarea
     id: analysis_variables
@@ -81,11 +79,10 @@ body:
     id: statistics
     attribute:
       label: Statistics
-      description: A Description of the statistical procedure 
+      description: A Description of the statistical procedure
       value: ex. Frequency count and % (based on N)
     validations:
       required: true
-
 
  - type: dropdown
     id: remove_0
@@ -98,3 +95,20 @@ body:
         - Undef
     validations:
       required: true
+
+ - type: textarea
+    id: url_description
+    attribute:
+      label: Link to TLG catalogue
+      description: The url of the page describing the required table
+      value: ex. https://...
+    validations:
+      required: false
+
+  - type: textarea
+    id: add_info
+    attribute:
+      label: Additional information
+      value: More details and requirments
+    validations:
+      required: false
