@@ -19,7 +19,7 @@ body:
   id: table_pupose
   attributes:
     label: "Description"
-    description: "Details on the generic pupose of the table (optional)"
+    description: "Details on the generic purpose of the table"
     placeholder: "ex. an adverse event table"
 
 - type: input
@@ -40,7 +40,7 @@ body:
   id: analysis_population
   attributes:
     label: "Analysis population"
-    description:
+    description: "The selected population, typically SE, AP or IT"
     value: "ex. SE"
 
 - type: textarea
@@ -55,13 +55,14 @@ body:
   attributes:
     label: "Analysis variables"
     description: "The name of the spliting variables in hierarchical order"
-    value: "ex. AEBODSYS, AEDECOD, ASEV"
+    value: "ex. AEBODSYS, AEDECOD, ASEV \n
+            ex. 1. AEBODSYS 2. AEDECOD 3. ASEV"
 
 - type: textarea
   id: analysis_concept
   attributes:
     label: "Analysis concept"
-    description: "An alternative description "
+    description: "An alternative description for summary tables similar to AET01"
     value: "ex. \n - Serious AE
                 \n - Related AE
                 \n - Total number of AEs"
