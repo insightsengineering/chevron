@@ -1,7 +1,7 @@
-# Chevron: an R package for creating standard TLGs
+# Chevron: Standard TLGs for clinical trials reporting
 
 
-*chevron* is a collection of function to create standard table based on predetermined layouts.
+*chevron* is a collection of function to create standard tables, listings, and graphs for clinical trials reporting based on predetermined layouts.
 
 # Installation
 
@@ -35,8 +35,11 @@
    ```
    Here is an example of a real command (with name_of_the_archive substituted by the output of the build command):
    ```
-   $ Rscript -e 'install.packages("chevron_0.9.5.9000.tar.gz")'
+   $ Rscript -e 'install.packages("chevron_0.1.0.tar.gz")'
    ```
+
+# Usage
+
 
 # Acknowledgment
 
