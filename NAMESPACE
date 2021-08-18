@@ -3,6 +3,7 @@
 export(aet01_1)
 export(aet02_1)
 export(dmt01_1)
+export(dst01_1)
 import(rtables)
 import(tern)
 importFrom(assertthat,assert_that)
