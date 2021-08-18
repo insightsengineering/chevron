@@ -23,5 +23,8 @@ Imports:
   magrittr,
   dplyr
 Suggests:
-  scda.2021,
-  scda
+    scda.2021,
+    scda,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
