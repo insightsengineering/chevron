@@ -35,7 +35,7 @@ dst01_1 <- function(adsl, adae,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = NULL
+                      lbl_overall = ""
                     )) {
 
   # TODO: discuss if this is truly in the function body
@@ -47,13 +47,14 @@ dst01_1 <- function(adsl, adae,
   lyt <- dst01_1_lyt(
     armvar = armvar,
     lbl_EOSSTT = lbl_EOSSTT,
+    lbl_overall = lbl_overall,
     deco = deco
   )
 
   tbl <- build_table(
     lyt,
-    df = adae,
-    alt_counts_df = adsl
+    df = adae
+   # alt_counts_df = adsl # this part is a mystery
   )
 
 
@@ -68,7 +69,7 @@ dst01_1 <- function(adsl, adae,
     #   scorefun = score_occurrences
     # )
 
-  if (is.null(lbl_overall))
+  if (lbl_overall == "")
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -79,17 +80,18 @@ dst01_1 <- function(adsl, adae,
 dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_EOSSTT = "EOSSTT",
-                        #lbl_AEDECOD = "AEDECOD",
                         deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = "All Patients"
+                          lbl_overall = ""
                         )) {
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = armvar,
+                  split_fun = add_overall_level(lbl_overall, first = FALSE)
+    ) %>%
     add_colcounts() %>%
-    add_overall_col(label = lbl_overall) %>%
+    #add_overall_col(label = lbl_overall) %>%
     count_values(
       var = "EOSSTT",
       values = "COMPLETED",
@@ -104,6 +106,5 @@ dst01_1_lyt <- function(armvar = .study$armvar,
       "DCSREAS",
       .stats = "count_fraction",
       denom = "N_col"
-    ) %>%
-    append_topleft(paste0("  ", lbl_EOSSTT))
+    )
 }

@@ -10,7 +10,7 @@ dst01_1(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(armvar = "ACTARM", lbl_overall = "")
 )
 }
 \arguments{
