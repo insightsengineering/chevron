@@ -1,9 +1,15 @@
 
 ## New Table Request
 
+----
+
 ### Table Name
 Standard name of the table. [see TLG catalog]  
 _ex. AET02_
+
+### URL
+Link to an external file describing the table  
+_ex. https://docs.google.com/spreadsheets/d/1jk8AnYLNXdqiJ1YF42316R9yVaGIDfJKX0BCsBjz6fg/edit#gid=1910060856 _
 
 ### Description
 Details on the generic purpose of the table  
@@ -15,18 +21,18 @@ _ex. ADAE_
 
 ### Analysis filtering
 Filtering criteria of the input  
-_ex. ANL01FL = Y_
+_ex. ANL01FL = "Y"_
 
 ### Analysis population
 The selected population, typically SE, AP or IT  
 _ex. SE_
 
 ### Column Variable
-Names of the columns in the input dataset used to split the table  
+Names of the columns splitting variables in hierarchical order  
 _ex. ACTARM_
 
 ### Analysis variables
-The name of the splitting variables in hierarchical order  
+Names of the rows splitting variables in hierarchical order  
 _ex. AEBODSYS, AEDECOD, ASEV_  
 _ex._  
     _1. AEBODSYS_  
@@ -34,14 +40,14 @@ _ex._
     _3. ASEV_  
 
 ### Analysis concept
-An alternative description for summary tables similar to AET01  
+Alternative table description for summary tables similar to AET01  
 _ex._  
 - _Serious AE_  
 - _Related AE_  
 - _Total number of AEs_  
 
 ### Statistics
-A Description of the statistical procedure  
+Description of the statistical procedure  
 _ex. Frequency count and % (based on N)_
 
 ### Default treatment of zero count rows
@@ -50,6 +56,7 @@ Choose one option:
 - [ ] "Keep zero count rows by default"  
 - [x] "Always ask for user input"  
 - [ ] "Not applicable / Other"  
+
 
 ### Comments
 _ex. Some additional details_

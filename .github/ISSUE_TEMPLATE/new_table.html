@@ -169,10 +169,16 @@ pre code {
 
 <div id="new-table-request" class="section level2">
 <h2>New Table Request</h2>
+<hr />
 <div id="table-name" class="section level3">
 <h3>Table Name</h3>
 <p>Standard name of the table. <a href="https://docs.nest.roche.com/">see TLG catalog</a><br />
 <em>ex. AET02</em></p>
+</div>
+<div id="url" class="section level3">
+<h3>URL</h3>
+<p>Link to an external file describing the table<br />
+<em>ex. <a href="https://docs.google.com/spreadsheets/d/1jk8AnYLNXdqiJ1YF42316R9yVaGIDfJKX0BCsBjz6fg/edit#gid=1910060856" class="uri">https://docs.google.com/spreadsheets/d/1jk8AnYLNXdqiJ1YF42316R9yVaGIDfJKX0BCsBjz6fg/edit#gid=1910060856</a> </em></p>
 </div>
 <div id="description" class="section level3">
 <h3>Description</h3>
@@ -187,7 +193,7 @@ pre code {
 <div id="analysis-filtering" class="section level3">
 <h3>Analysis filtering</h3>
 <p>Filtering criteria of the input<br />
-<em>ex. ANL01FL = Y</em></p>
+<em>ex. ANL01FL = “Y”</em></p>
 </div>
 <div id="analysis-population" class="section level3">
 <h3>Analysis population</h3>
@@ -196,12 +202,12 @@ pre code {
 </div>
 <div id="column-variable" class="section level3">
 <h3>Column Variable</h3>
-<p>Names of the columns in the input dataset used to split the table<br />
+<p>Names of the columns splitting variables in hierarchical order<br />
 <em>ex. ACTARM</em></p>
 </div>
 <div id="analysis-variables" class="section level3">
 <h3>Analysis variables</h3>
-<p>The name of the splitting variables in hierarchical order<br />
+<p>Names of the rows splitting variables in hierarchical order<br />
 <em>ex. AEBODSYS, AEDECOD, ASEV</em><br />
 <em>ex.</em><br />
 <em>1. AEBODSYS</em><br />
@@ -210,7 +216,7 @@ pre code {
 </div>
 <div id="analysis-concept" class="section level3">
 <h3>Analysis concept</h3>
-<p>An alternative description for summary tables similar to AET01<br />
+<p>Alternative table description for summary tables similar to AET01<br />
 <em>ex.</em><br />
 - <em>Serious AE</em><br />
 - <em>Related AE</em><br />
@@ -218,7 +224,7 @@ pre code {
 </div>
 <div id="statistics" class="section level3">
 <h3>Statistics</h3>
-<p>A Description of the statistical procedure<br />
+<p>Description of the statistical procedure<br />
 <em>ex. Frequency count and % (based on N)</em></p>
 </div>
 <div id="default-treatment-of-zero-count-rows" class="section level3">
