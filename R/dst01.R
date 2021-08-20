@@ -5,6 +5,20 @@
 #'
 #'
 #' @details
+#'  * dst01_1 == default
+#'  * is the dataset always adsl? => YES
+#'  * are the summary vars ever different from Completed Study and Discontinued Study
+#'  (e.g include Ongoing?) => should be an option
+#'  * Always split by ARM ? => should also be possible to be TRT01P/TREATsecp: decision is made outside of the template (above the template)
+#'  * Always a "total" column? => YES as a standard (should be optional)
+#'  * numeric variables are always count & fraction => YES
+#'  * are fractions always x/N? => N
+#'  * is the grouping into safety/non-safety fixed ? => safety is fixed (rest in non-safety or missing)
+#'  * should 0 counts rows be removed? => YES
+#'  * Should factor level be sorted ? => abc
+#'  * What is the alternative count ? => ?
+#'  *
+#'
 #'  * A disposition table summarizing the reasons for patient withdrawal
 #'  * Split column by ARM
 #'  * Include a total column
@@ -25,6 +39,8 @@
 #'
 #' dst01_1(adsl, adae)
 #' dst01_1(adsl, adae, lbl_overall = "All Patients")
+#'
+#' dst01_2(adsl,adae)
 #'
 #' adae <- adae %>% var_relabel(AEBODSYS = "Medra System Organ Class")
 #' dst01_1(adsl, adae)
@@ -108,3 +124,228 @@ dst01_1_lyt <- function(armvar = .study$armvar,
       denom = "N_col"
     )
 }
+
+
+
+
+#' Title
+#'
+#' @inheritParams gen_args
+#'
+#' @return
+#' @export
+#'
+#' @examples
+dst01_2 <- function(adsl, adae,
+                    armvar = .study$armvar,
+                    lbl_overall = .study$lbl_overall,
+                    deco = std_deco("DST01"),
+                    .study = list(
+                      armvar = "ACTARM",
+                      lbl_overall = ""
+                    )) {
+
+  # TODO: discuss if this is truly in the function body
+  adae <- adae %>%
+    filter(bol_YN(ANL01FL))
+
+  lbl_EOSSTT <- var_labels_for(adae, "EOSSTT")
+
+  lyt <- dst01_2_lyt(
+    armvar = armvar,
+    lbl_EOSSTT = lbl_EOSSTT,
+    lbl_overall = lbl_overall,
+    deco = deco
+  )
+
+  adae_gp <- adae %>%
+    mutate(DCSREASGP = case_when(
+      DCSREAS %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      DCSREAS == "<Missing>" ~ "<Missing>",
+      TRUE ~ "Non-Safety"
+      )
+    )
+
+
+  tbl <- build_table(
+    lyt,
+    df = adae_gp
+    # alt_counts_df = adsl # this part is a mystery
+  )
+
+
+  tbl_sorted <- tbl  %>%
+  prune_table() # %>%
+  # sort_at_path(
+  #   path =  c("AEBODSYS"),
+  #   scorefun = cont_n_onecol(ncol(tbl))
+  # ) %>%
+  # sort_at_path(
+  #   path = c("AEBODSYS", "*", "AEDECOD"),
+  #   scorefun = score_occurrences
+  # )
+
+  if (lbl_overall == "")
+    tbl_sorted[, -ncol(tbl_sorted)]
+  else
+    tbl_sorted
+
+}
+
+
+dst01_2_lyt <- function(armvar = .study$armvar,
+                        lbl_overall = .study$lbl_overall,
+                        lbl_EOSSTT = "EOSSTT",
+                        deco = std_deco("DST01"),
+                        .study = list(
+                          armvar = "ACTARM",
+                          lbl_overall = ""
+                        )) {
+
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(var = armvar,
+                  split_fun = add_overall_level(lbl_overall, first = FALSE)
+    ) %>%
+    add_colcounts() %>%
+    #add_overall_col(label = lbl_overall) %>%
+    count_values(
+      var = "EOSSTT",
+      values = "COMPLETED",
+      .labels = c(count_fraction = "Completed Study")
+    ) %>%
+    split_rows_by(
+      "EOSSTT",
+      split_fun = keep_split_levels("DISCONTINUED")
+    ) %>%
+    summarize_row_groups(label_fstr = "Discontinued Study") %>%
+    split_rows_by(
+      "DCSREASGP",
+      split_fun = reorder_split_levels(neworder = c("Safety", "Non-Safety"))
+    ) %>%
+    summarize_row_groups() %>%
+    summarize_vars(
+      "DCSREAS",
+      .stats = "count_fraction",
+      denom = "N_col"
+    )
+}
+
+
+
+
+#' Title
+#'
+#' @inheritParams gen_args
+#'
+#' @details
+#' * Is there a difference between completed treatment/study ? If yes, which variable can tell us that?
+#'
+#' @return
+#' @export
+#'
+#' @examples
+dst01_3 <- function(adsl, adae,
+                    armvar = .study$armvar,
+                    lbl_overall = .study$lbl_overall,
+                    deco = std_deco("DST01"),
+                    .study = list(
+                      armvar = "ACTARM",
+                      lbl_overall = ""
+                    )) {
+
+  # TODO: discuss if this is truly in the function body
+  adae <- adae %>%
+    filter(bol_YN(ANL01FL))
+
+  lbl_EOSSTT <- var_labels_for(adae, "EOSSTT")
+
+  lyt <- dst01_3_lyt(
+    armvar = armvar,
+    lbl_EOSSTT = lbl_EOSSTT,
+    lbl_overall = lbl_overall,
+    deco = deco
+  )
+
+  adae_gp <- adae %>%
+    mutate(DCSREASGP = case_when(
+      DCSREAS %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      DCSREAS == "<Missing>" ~ "<Missing>",
+      TRUE ~ "Non-Safety"
+    )
+    )
+
+
+  tbl <- build_table(
+    lyt,
+    df = adae_gp
+    # alt_counts_df = adsl # this part is a mystery
+  )
+
+
+  tbl_sorted <- tbl  %>%
+    prune_table() # %>%
+  # sort_at_path(
+  #   path =  c("AEBODSYS"),
+  #   scorefun = cont_n_onecol(ncol(tbl))
+  # ) %>%
+  # sort_at_path(
+  #   path = c("AEBODSYS", "*", "AEDECOD"),
+  #   scorefun = score_occurrences
+  # )
+
+  if (lbl_overall == "")
+    tbl_sorted[, -ncol(tbl_sorted)]
+  else
+    tbl_sorted
+
+}
+
+
+dst01_3_lyt <- function(armvar = .study$armvar,
+                        lbl_overall = .study$lbl_overall,
+                        lbl_EOSSTT = "EOSSTT",
+                        deco = std_deco("DST01"),
+                        .study = list(
+                          armvar = "ACTARM",
+                          lbl_overall = ""
+                        )) {
+
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(var = armvar,
+                  split_fun = add_overall_level(lbl_overall, first = FALSE)
+    ) %>%
+    add_colcounts() %>%
+    #add_overall_col(label = lbl_overall) %>%
+    count_values(
+      var = "EOSSTT",
+      values = "COMPLETED",
+      .labels = c(count_fraction = "Completed Study")
+    ) %>%
+    count_values(
+      var = "EOSSTT",
+      values = "ONGOING",
+      .labels = c(count_fraction = "Ongoing Treatment")
+    ) %>%
+    count_values(
+      var = "EOSSTT",
+      values = "DISCONTINUATED",
+      .labels = c(count_fraction = "Discontinued Treatment")
+    ) %>%
+    split_rows_by(
+      "EOSSTT",
+      split_fun = keep_split_levels("DISCONTINUED")
+    ) %>%
+    summarize_row_groups(label_fstr = "Discontinued Study") %>%
+    split_rows_by(
+      "DCSREASGP",
+      split_fun = reorder_split_levels(neworder = c("Safety", "Non-Safety"))
+    ) %>%
+    summarize_row_groups() %>%
+    summarize_vars(
+      "DCSREAS",
+      .stats = "count_fraction",
+      denom = "N_col"
+    )
+}
+
+

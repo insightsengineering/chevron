@@ -31,6 +31,19 @@ Adverse Events by System Organ Class and Preferred Term Table
 }
 \details{
 \itemize{
+\item dst01_1 == default
+\item is the dataset always adsl? => YES
+\item are the summary vars ever different from Completed Study and Discontinued Study
+(e.g include Ongoing?) => should be an option
+\item Always split by ARM ? => should also be possible to be TRT01P/TREATsecp: decision is made outside of the template (above the template)
+\item Always a "total" column? => YES as a standard (should be optional)
+\item numeric variables are always count & fraction => YES
+\item are fractions always x/N? => N
+\item is the grouping into safety/non-safety fixed ? => safety is fixed (rest in non-safety or missing)
+\item should 0 counts rows be removed? => YES
+\item Should factor level be sorted ? => abc
+\item What is the alternative count ? => ?
+\item 
 \item A disposition table summarizing the reasons for patient withdrawal
 \item Split column by ARM
 \item Include a total column
@@ -48,6 +61,8 @@ adae <- sd$adae \%>\%
 
 dst01_1(adsl, adae)
 dst01_1(adsl, adae, lbl_overall = "All Patients")
+
+dst01_2(adsl,adae)
 
 adae <- adae \%>\% var_relabel(AEBODSYS = "Medra System Organ Class")
 dst01_1(adsl, adae)
