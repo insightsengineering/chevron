@@ -10,7 +10,7 @@ dst01_2(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = "All patients")
 )
 }
 \arguments{
@@ -26,11 +26,13 @@ dst01_2(
 
 \item{.study}{a list with default values for the arguments of the function}
 }
-\value{
-
-}
 \description{
 Title
+}
+\details{
+\itemize{
+\item Non-standard
+}
 }
 \examples{
 

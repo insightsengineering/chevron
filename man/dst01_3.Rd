@@ -10,7 +10,7 @@ dst01_3(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = "All patients")
 )
 }
 \arguments{
@@ -26,9 +26,6 @@ dst01_3(
 
 \item{.study}{a list with default values for the arguments of the function}
 }
-\value{
-
-}
 \description{
 Title
 }
@@ -43,7 +40,10 @@ library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
 adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
+ mutate(ANL01FL = 'Y',
+        EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUATED"),
+                        nrow(adae),
+                        replace = TRUE))
 
 dst01_3(adsl, adae)
 dst01_3(adsl, adae, lbl_overall = "All patients")

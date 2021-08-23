@@ -10,7 +10,7 @@ dst01_1(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = "All patients")
 )
 }
 \arguments{
@@ -33,10 +33,9 @@ Adverse Events by System Organ Class and Preferred Term Table
 \itemize{
 \item dst01_1 == default
 \item is the dataset always adsl? => YES
-\item are the summary vars ever different from Completed Study and Discontinued Study
-(e.g include Ongoing?) => should be an option
+\item are the summary vars ever different from Completed Study and Discontinued Study (e.g include Ongoing?) => should be an option
 \item Always split by ARM ? => should also be possible to be TRT01P/TREATsecp: decision is made outside of the template (above the template)
-\item Always a "total" column? => YES as a standard (should be optional)
+\item Always a total column? => YES as a standard (should be optional)
 \item numeric variables are always count & fraction => YES
 \item are fractions always x/N? => N
 \item is the grouping into safety/non-safety fixed ? => safety is fixed (rest in non-safety or missing)
@@ -60,7 +59,7 @@ adae <- sd$adae \%>\%
  mutate(ANL01FL = 'Y')
 
 dst01_1(adsl, adae)
-dst01_1(adsl, adae, lbl_overall = "All Patients")
+dst01_1(adsl, adae, lbl_overall = "")
 
 dst01_2(adsl,adae)
 
