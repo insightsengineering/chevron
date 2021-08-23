@@ -136,6 +136,16 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' @export
 #'
 #' @examples
+#'
+#' library(scda)
+#' library(dplyr)
+#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
+#' adsl <- sd$adsl
+#' adae <- sd$adae %>%
+#'  mutate(ANL01FL = 'Y')
+#'
+#' dst01_2(adsl, adae)
+#' dst01_2(adsl, adae, lbl_overall = "All patients")
 dst01_2 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -244,6 +254,16 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' @export
 #'
 #' @examples
+#' library(scda)
+#' library(dplyr)
+#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
+#' adsl <- sd$adsl
+#' adae <- sd$adae %>%
+#'  mutate(ANL01FL = 'Y')
+#'
+#' dst01_3(adsl, adae)
+#' dst01_3(adsl, adae, lbl_overall = "All patients")
+#'
 dst01_3 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,

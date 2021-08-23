@@ -32,3 +32,20 @@ dst01_3(
 \description{
 Title
 }
+\details{
+\itemize{
+\item Is there a difference between completed treatment/study ? If yes, which variable can tell us that?
+}
+}
+\examples{
+library(scda)
+library(dplyr)
+sd <- synthetic_cdisc_data("rcd_2021_03_22")
+adsl <- sd$adsl
+adae <- sd$adae \%>\%
+ mutate(ANL01FL = 'Y')
+
+dst01_3(adsl, adae)
+dst01_3(adsl, adae, lbl_overall = "All patients")
+
+}

@@ -32,3 +32,15 @@ dst01_2(
 \description{
 Title
 }
+\examples{
+
+library(scda)
+library(dplyr)
+sd <- synthetic_cdisc_data("rcd_2021_03_22")
+adsl <- sd$adsl
+adae <- sd$adae \%>\%
+ mutate(ANL01FL = 'Y')
+
+dst01_2(adsl, adae)
+dst01_2(adsl, adae, lbl_overall = "All patients")
+}
