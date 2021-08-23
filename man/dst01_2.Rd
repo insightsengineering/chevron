@@ -2,7 +2,7 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_2}
 \alias{dst01_2}
-\title{Title}
+\title{Patient Disposition Table 2}
 \usage{
 dst01_2(
   adsl,
@@ -27,11 +27,18 @@ dst01_2(
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Title
+Patient Disposition Table 2
 }
 \details{
 \itemize{
-\item Non-standard
+\item Non-standard disposition table summarizing the reasons for patient withdrawal
+\item Withdrawal reasons are grouped into Safety and Non-Safety issues
+\item Safety issues include Death and Adverse event
+\item Numbers represent absolute number and fraction of N
+\item Remove zero-count rows
+\item Split columns by ACTARM
+\item Include a total column by default
+\item Sort withdrawal reasons by alphabetic order
 }
 }
 \examples{

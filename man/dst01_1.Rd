@@ -2,7 +2,7 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_1}
 \alias{dst01_1}
-\title{Adverse Events by System Organ Class and Preferred Term Table}
+\title{Patient Disposition Table}
 \usage{
 dst01_1(
   adsl,
@@ -27,26 +27,16 @@ dst01_1(
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Adverse Events by System Organ Class and Preferred Term Table
+Patient Disposition Table
 }
 \details{
 \itemize{
-\item dst01_1 == default
-\item is the dataset always adsl? => YES
-\item are the summary vars ever different from Completed Study and Discontinued Study (e.g include Ongoing?) => should be an option
-\item Always split by ARM ? => should also be possible to be TRT01P/TREATsecp: decision is made outside of the template (above the template)
-\item Always a total column? => YES as a standard (should be optional)
-\item numeric variables are always count & fraction => YES
-\item are fractions always x/N? => N
-\item is the grouping into safety/non-safety fixed ? => safety is fixed (rest in non-safety or missing)
-\item should 0 counts rows be removed? => YES
-\item Should factor level be sorted ? => abc
-\item What is the alternative count ? => ?
-\item 
-\item A disposition table summarizing the reasons for patient withdrawal
-\item Split column by ARM
-\item Include a total column
-\item sort withdrawal reasons by alphabetic order
+\item Default patient disposition table summarizing the reasons for patients withdrawal
+\item Numbers represent absolute number and fraction of N
+\item Remove zero-count rows
+\item Split columns by ACTARM
+\item Include a total column by default
+\item Sort withdrawal reasons by alphabetic order
 }
 }
 \examples{

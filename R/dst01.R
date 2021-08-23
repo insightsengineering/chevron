@@ -1,26 +1,16 @@
 
-#' Adverse Events by System Organ Class and Preferred Term Table
+#' Patient Disposition Table
 #'
 #' @inheritParams gen_args
 #'
 #'
 #' @details
-#'  * dst01_1 == default
-#'  * is the dataset always adsl? => YES
-#'  * are the summary vars ever different from Completed Study and Discontinued Study (e.g include Ongoing?) => should be an option
-#'  * Always split by ARM ? => should also be possible to be TRT01P/TREATsecp: decision is made outside of the template (above the template)
-#'  * Always a total column? => YES as a standard (should be optional)
-#'  * numeric variables are always count & fraction => YES
-#'  * are fractions always x/N? => N
-#'  * is the grouping into safety/non-safety fixed ? => safety is fixed (rest in non-safety or missing)
-#'  * should 0 counts rows be removed? => YES
-#'  * Should factor level be sorted ? => abc
-#'  * What is the alternative count ? => ?
-#'  *
-#'  * A disposition table summarizing the reasons for patient withdrawal
-#'  * Split column by ARM
-#'  * Include a total column
-#'  * sort withdrawal reasons by alphabetic order
+#'  * Default patient disposition table summarizing the reasons for patients withdrawal
+#'  * Numbers represent absolute number and fraction of N
+#'  * Remove zero-count rows
+#'  * Split columns by ACTARM
+#'  * Include a total column by default
+#'  * Sort withdrawal reasons by alphabetic order
 #'
 #' @importFrom dplyr filter
 #'
@@ -126,12 +116,19 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 
 
 
-#' Title
+#' Patient Disposition Table 2
 #'
 #' @inheritParams gen_args
 #'
 #' @details
-#'   * Non-standard
+#'  * Non-standard disposition table summarizing the reasons for patient withdrawal
+#'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
+#'  * Safety issues include Death and Adverse event
+#'  * Numbers represent absolute number and fraction of N
+#'  * Remove zero-count rows
+#'  * Split columns by ACTARM
+#'  * Include a total column by default
+#'  * Sort withdrawal reasons by alphabetic order
 #'
 #' @importFrom dplyr filter
 #'
@@ -244,12 +241,19 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 
 
 
-#' Title
+#' Patient Disposition Table 3
 #'
 #' @inheritParams gen_args
 #'
 #' @details
-#' * Is there a difference between completed treatment/study ? If yes, which variable can tell us that?
+#'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
+#'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
+#'  * Safety issues include Death and Adverse Event
+#'  * Numbers represent absolute number and fraction of N
+#'  * Remove zero-count rows
+#'  * Split columns by ACTARM
+#'  * Include a total column by default
+#'  * Sort withdrawal reasons by alphabetic order
 #'
 #' @importFrom dplyr filter
 #'
@@ -260,10 +264,11 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
+#'
 #' adae <- sd$adae %>%
 #'  mutate(ANL01FL = 'Y',
 #'         EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUATED"),
-#'                         nrow(adae),
+#'                         nrow(sd$adae),
 #'                         replace = TRUE))
 #'
 #' dst01_3(adsl, adae)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_3}
 \alias{dst01_3}
-\title{Title}
+\title{Patient Disposition Table 3}
 \usage{
 dst01_3(
   adsl,
@@ -27,11 +27,18 @@ dst01_3(
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Title
+Patient Disposition Table 3
 }
 \details{
 \itemize{
-\item Is there a difference between completed treatment/study ? If yes, which variable can tell us that?
+\item Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
+\item Withdrawal reasons are grouped into Safety and Non-Safety issues
+\item Safety issues include Death and Adverse Event
+\item Numbers represent absolute number and fraction of N
+\item Remove zero-count rows
+\item Split columns by ACTARM
+\item Include a total column by default
+\item Sort withdrawal reasons by alphabetic order
 }
 }
 \examples{
@@ -39,10 +46,11 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
+
 adae <- sd$adae \%>\%
  mutate(ANL01FL = 'Y',
         EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUATED"),
-                        nrow(adae),
+                        nrow(sd$adae),
                         replace = TRUE))
 
 dst01_3(adsl, adae)
