@@ -54,6 +54,6 @@ adae <- sd$adae \%>\%
                         replace = TRUE))
 
 dst01_3(adsl, adae)
-dst01_3(adsl, adae, lbl_overall = "All patients")
+dst01_3(adsl, adae, lbl_overall = "")
 
 }

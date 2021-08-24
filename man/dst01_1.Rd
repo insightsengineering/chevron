@@ -51,9 +51,4 @@ adae <- sd$adae \%>\%
 dst01_1(adsl, adae)
 dst01_1(adsl, adae, lbl_overall = "")
 
-dst01_2(adsl,adae)
-
-adae <- adae \%>\% var_relabel(AEBODSYS = "Medra System Organ Class")
-dst01_1(adsl, adae)
-
 }

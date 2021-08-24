@@ -28,11 +28,6 @@
 #' dst01_1(adsl, adae)
 #' dst01_1(adsl, adae, lbl_overall = "")
 #'
-#' dst01_2(adsl,adae)
-#'
-#' adae <- adae %>% var_relabel(AEBODSYS = "Medra System Organ Class")
-#' dst01_1(adsl, adae)
-#'
 dst01_1 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -130,7 +125,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter case_when mutate
 #'
 #' @export
 #'
@@ -144,7 +139,8 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'  mutate(ANL01FL = 'Y')
 #'
 #' dst01_2(adsl, adae)
-#' dst01_2(adsl, adae, lbl_overall = "All patients")
+#' dst01_2(adsl, adae, lbl_overall = "")
+#'
 dst01_2 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -255,7 +251,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter case_when mutate
 #'
 #' @export
 #'
@@ -272,7 +268,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'                         replace = TRUE))
 #'
 #' dst01_3(adsl, adae)
-#' dst01_3(adsl, adae, lbl_overall = "All patients")
+#' dst01_3(adsl, adae, lbl_overall = "")
 #'
 dst01_3 <- function(adsl, adae,
                     armvar = .study$armvar,

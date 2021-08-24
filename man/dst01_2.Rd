@@ -51,5 +51,6 @@ adae <- sd$adae \%>\%
  mutate(ANL01FL = 'Y')
 
 dst01_2(adsl, adae)
-dst01_2(adsl, adae, lbl_overall = "All patients")
+dst01_2(adsl, adae, lbl_overall = "")
+
 }
