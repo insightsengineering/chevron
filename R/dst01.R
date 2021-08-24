@@ -57,16 +57,8 @@ dst01_1 <- function(adsl, adae,
   )
 
 
-  tbl_sorted <- tbl # %>%
-    # prune_table() %>%
-    # sort_at_path(
-    #   path =  c("AEBODSYS"),
-    #   scorefun = cont_n_onecol(ncol(tbl))
-    # ) %>%
-    # sort_at_path(
-    #   path = c("AEBODSYS", "*", "AEDECOD"),
-    #   scorefun = score_occurrences
-    # )
+  tbl_sorted <- tbl %>%
+    prune_table()
 
   if (lbl_overall == "")
     tbl_sorted[, -ncol(tbl_sorted)]
@@ -150,7 +142,6 @@ dst01_2 <- function(adsl, adae,
                       lbl_overall = "All patients"
                     )) {
 
-  # TODO: discuss if this is truly in the function body
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
@@ -179,15 +170,7 @@ dst01_2 <- function(adsl, adae,
 
 
   tbl_sorted <- tbl  %>%
-  prune_table() # %>%
-  # sort_at_path(
-  #   path =  c("AEBODSYS"),
-  #   scorefun = cont_n_onecol(ncol(tbl))
-  # ) %>%
-  # sort_at_path(
-  #   path = c("AEBODSYS", "*", "AEDECOD"),
-  #   scorefun = score_occurrences
-  # )
+    prune_table()
 
   if (lbl_overall == "")
     tbl_sorted[, -ncol(tbl_sorted)]
@@ -279,7 +262,6 @@ dst01_3 <- function(adsl, adae,
                       lbl_overall = "All patients"
                     )) {
 
-  # TODO: discuss if this is truly in the function body
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
