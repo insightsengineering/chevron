@@ -4,7 +4,6 @@
 #' @inheritParams gen_args
 #' @param status variable used to define patient status
 #' @param reason variable used to define reason for patient withdrawal
-#' @param status_treatment variable used to define patient treatment status
 #'
 #'
 #' @details
@@ -118,7 +117,6 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' @inheritParams gen_args
 #' @param status variable used to define patient status
 #' @param reason variable used to define reason for patient withdrawal
-#' @param status_treatment variable used to define patient treatment status
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal

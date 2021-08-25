@@ -6,28 +6,11 @@
 #' @param summaryvars variables summarized in demographic table
 #'
 #' @details
-#' Questions for a standard:
-#'
-#' 1. is the data ever different than adsl
-#'    - generally no, as adsub variables need to be merged in
-#'    - > still want to stay specific, this is a special case > ad_bl
-#' 1a. get the standard variables
-#'    - c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI")
-#' 2. only split on one variable
-#'     - no in the column
-#'     - theoretically yes in row space but we can either treat it as a non-standard
-#'       (if it not in the lopo) or as a standard variant
-#' 3. always total column
-#'     - yes - can be a different label
-#' 4. numeric variables
-#'     - only n, Mean (SD), Median, Min - Max >> yes - precision on a study level
-#' 5. categorical variables
-#'    - remove zero counts
-#'          yes by default, if no then it's a non-standard or dmt01_2
-#'    - prop. = c/n or c/N > c/N
-#'    - sorting
-#'       - factor levels (default)
-#'       - frequency counts (freq) (req total column)
+#'  * Default demographic and characteristics table
+#'  * If not specified otherwise, numbers represent absolute numbers of patients and fraction of N
+#'  * Remove zero-count rows
+#'  * Split columns by arm (planned or actual / code or description)
+#'  * Include a total column by default
 #'
 #' @export
 #'
