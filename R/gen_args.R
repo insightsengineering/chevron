@@ -26,9 +26,6 @@
 #' @param adqlqc EORTC QLQ-C30 V3 Analysis Dataset
 #' @param acg Concomitant Med. Grouping Defs Dataset
 #' @param adic Interval Censoring Analysis Dataset
-#' @param status variable used to define patient status
-#' @param reason variable used to define reason for patient withdrawal
-#' @param status_treatment variable used to define patient treatment status
 #'
 gen_args <- function(
   armvar, lbl_overall, prune_0, deco, .study,

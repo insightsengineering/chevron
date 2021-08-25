@@ -32,6 +32,8 @@ dst01_2(
 \item{reason}{variable used to define reason for patient withdrawal}
 
 \item{.study}{a list with default values for the arguments of the function}
+
+\item{status_treatment}{variable used to define patient treatment status}
 }
 \description{
 Patient Disposition Table 2

@@ -82,12 +82,6 @@ gen_args(
 \item{acg}{Concomitant Med. Grouping Defs Dataset}
 
 \item{adic}{Interval Censoring Analysis Dataset}
-
-\item{status}{variable used to define patient status}
-
-\item{reason}{variable used to define reason for patient withdrawal}
-
-\item{status_treatment}{variable used to define patient treatment status}
 }
 \description{
 General Argument Name Convention
