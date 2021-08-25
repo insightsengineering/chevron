@@ -10,7 +10,10 @@ dst01_2(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "All patients")
+  status = .study$status,
+  reason = .study$reason,
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
+    = "DCSREAS")
 )
 }
 \arguments{
@@ -24,6 +27,10 @@ dst01_2(
 
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{status}{variable used to define patient status}
+
+\item{reason}{variable used to define reason for patient withdrawal}
+
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
@@ -34,7 +41,7 @@ Patient Disposition Table 2
 \item Non-standard disposition table summarizing the reasons for patient withdrawal
 \item Withdrawal reasons are grouped into Safety and Non-Safety issues
 \item Safety issues include Death and Adverse event
-\item Numbers represent absolute number and fraction of N
+\item Numbers represent absolute numbers of patients and fraction of N
 \item Remove zero-count rows
 \item Split columns by ACTARM
 \item Include a total column by default

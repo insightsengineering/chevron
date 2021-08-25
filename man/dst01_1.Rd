@@ -10,7 +10,10 @@ dst01_1(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "All patients")
+  status = .study$status,
+  reason = .study$reason,
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
+    = "DCSREAS")
 )
 }
 \arguments{
@@ -24,6 +27,10 @@ dst01_1(
 
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{status}{variable used to define patient status}
+
+\item{reason}{variable used to define reason for patient withdrawal}
+
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
@@ -32,9 +39,9 @@ Patient Disposition Table
 \details{
 \itemize{
 \item Default patient disposition table summarizing the reasons for patients withdrawal
-\item Numbers represent absolute number and fraction of N
+\item Numbers represent absolute numbers of patients and fraction of N
 \item Remove zero-count rows
-\item Split columns by ACTARM
+\item Split columns by ARM
 \item Include a total column by default
 \item Sort withdrawal reasons by alphabetic order
 }

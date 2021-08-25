@@ -6,9 +6,9 @@
 #'
 #' @details
 #'  * Default patient disposition table summarizing the reasons for patients withdrawal
-#'  * Numbers represent absolute number and fraction of N
+#'  * Numbers represent absolute numbers of patients and fraction of N
 #'  * Remove zero-count rows
-#'  * Split columns by ACTARM
+#'  * Split columns by ARM
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
@@ -32,20 +32,25 @@ dst01_1 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     deco = std_deco("DST01"),
+                    status = .study$status,
+                    reason = .study$reason,
                     .study = list(
-                      armvar = "ACTARM",
-                      lbl_overall = "All patients"
+                      armvar = "ARM",
+                      lbl_overall = "All patients",
+                      status = "EOSSTT",
+                      reason = "DCSREAS"
                     )) {
 
-  # TODO: discuss if this is truly in the function body
+  match.arg(status, c("EOSSTT","EOPxxSTT"))
+  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
+  match.arg(reason, c("DCSREAS","DCPxxRS"))
+
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
-  lbl_EOSSTT <- var_labels_for(adae, "EOSSTT")
-
   lyt <- dst01_1_lyt(
     armvar = armvar,
-    lbl_EOSSTT = lbl_EOSSTT,
+    status = status,
     lbl_overall = lbl_overall,
     deco = deco
   )
@@ -55,7 +60,6 @@ dst01_1 <- function(adsl, adae,
     df = adae
    # alt_counts_df = adsl # this part is a mystery
   )
-
 
   tbl_sorted <- tbl %>%
     prune_table()
@@ -70,11 +74,14 @@ dst01_1 <- function(adsl, adae,
 
 dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_EOSSTT = "EOSSTT",
+                        status = .study$status,
+                        reason = .study$reason,
                         deco = std_deco("DST01"),
                         .study = list(
-                          armvar = "ACTARM",
-                          lbl_overall = "All patients"
+                          armvar = "ARM",
+                          lbl_overall = "All patients",
+                          status = "EOSSTT",
+                          reason = "DCSREAS"
                         )) {
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
@@ -84,17 +91,17 @@ dst01_1_lyt <- function(armvar = .study$armvar,
     add_colcounts() %>%
     #add_overall_col(label = lbl_overall) %>%
     count_values(
-      var = "EOSSTT",
+      vars = status,
       values = "COMPLETED",
       .labels = c(count_fraction = "Completed Study")
     ) %>%
     split_rows_by(
-      "EOSSTT",
-      split_fun = keep_split_levels("DISCONTINUED")
+      status,
+      split_fun = keep_split_levels("DISCONTINUED"),
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study") %>%
     summarize_vars(
-      "DCSREAS",
+      reason,
       .stats = "count_fraction",
       denom = "N_col"
     )
@@ -111,13 +118,14 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal
 #'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
 #'  * Safety issues include Death and Adverse event
-#'  * Numbers represent absolute number and fraction of N
+#'  * Numbers represent absolute numbers of patients and fraction of N
 #'  * Remove zero-count rows
 #'  * Split columns by ACTARM
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
 #' @importFrom dplyr filter case_when mutate
+#' @importFrom rlang sym
 #'
 #' @export
 #'
@@ -137,34 +145,43 @@ dst01_2 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     deco = std_deco("DST01"),
+                    status = .study$status,
+                    reason = .study$reason,
                     .study = list(
-                      armvar = "ACTARM",
-                      lbl_overall = "All patients"
+                      armvar = "ARM",
+                      lbl_overall = "All patients",
+                      status = "EOSSTT",
+                      reason = "DCSREAS"
                     )) {
+
+  match.arg(status, c("EOSSTT","EOPxxSTT"))
+  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
+  match.arg(reason, c("DCSREAS","DCPxxRS"))
 
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
-  lbl_EOSSTT <- var_labels_for(adae, "EOSSTT")
-
   lyt <- dst01_2_lyt(
     armvar = armvar,
-    lbl_EOSSTT = lbl_EOSSTT,
+    status = status,
     lbl_overall = lbl_overall,
     deco = deco
   )
 
+  sym_reason = sym(reason)
+
   adae_gp <- adae %>%
-    mutate(DCSREASGP = case_when(
-      DCSREAS %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
-      DCSREAS == "<Missing>" ~ "<Missing>",
+    mutate(reasonGP = case_when(
+      !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      !!sym_reason == "<Missing>" ~ "<Missing>",
       TRUE ~ "Non Safety"
-      )
     )
+  )
 
   tbl <- build_table(
     lyt,
-    df = adae_gp
+    df = adae_gp,
+    status = status
     # alt_counts_df = adsl # this part is a mystery
   )
 
@@ -182,11 +199,14 @@ dst01_2 <- function(adsl, adae,
 
 dst01_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_EOSSTT = "EOSSTT",
                         deco = std_deco("DST01"),
+                        status = .study$status,
+                        reason = .study$reason,
                         .study = list(
-                          armvar = "ACTARM",
-                          lbl_overall = "All patients"
+                          armvar = "ARM",
+                          lbl_overall = "All patients",
+                          status = "EOSSTT",
+                          reason = "DCSREAS"
                         )) {
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
@@ -196,22 +216,22 @@ dst01_2_lyt <- function(armvar = .study$armvar,
     add_colcounts() %>%
     #add_overall_col(label = lbl_overall) %>%
     count_values(
-      var = "EOSSTT",
+      vars = status,
       values = "COMPLETED",
       .labels = c(count_fraction = "Completed Study")
     ) %>%
     split_rows_by(
-      "EOSSTT",
+      var = status,
       split_fun = keep_split_levels("DISCONTINUED")
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study") %>%
     split_rows_by(
-      "DCSREASGP",
+      "reasonGP",
       split_fun = reorder_split_levels(neworder = c("Safety", "Non Safety"))
     ) %>%
     summarize_row_groups() %>%
     summarize_vars(
-      "DCSREAS",
+      reason,
       .stats = "count_fraction",
       denom = "N_col"
     )
@@ -228,13 +248,14 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
 #'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
 #'  * Safety issues include Death and Adverse Event
-#'  * Numbers represent absolute number and fraction of N
+#'  * Numbers represent absolute numbers of patients and fraction of N
 #'  * Remove zero-count rows
 #'  * Split columns by ACTARM
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
 #' @importFrom dplyr filter case_when mutate
+#' @importFrom rlang sym
 #'
 #' @export
 #'
@@ -246,7 +267,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'
 #' adae <- sd$adae %>%
 #'  mutate(ANL01FL = 'Y',
-#'         EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUATED"),
+#'         EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUED"),
 #'                         nrow(sd$adae),
 #'                         replace = TRUE))
 #'
@@ -257,50 +278,52 @@ dst01_3 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     deco = std_deco("DST01"),
+                    status = .study$status,
+                    reason = .study$reason,
+                    status_treatment = .study$status_treatment,
                     .study = list(
-                      armvar = "ACTARM",
-                      lbl_overall = "All patients"
+                      armvar = "ARM",
+                      lbl_overall = "All patients",
+                      status = "EOSSTT",
+                      reason = "DCSREAS",
+                      status_treatment = "EOTSTT"
                     )) {
 
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
+  sym_reason = sym(reason)
+
   adae_gp <- adae %>%
-    mutate(DCSREASGP = case_when(
-      DCSREAS %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
-      DCSREAS == "<Missing>" ~ "<Missing>",
+    mutate(reasonGP = case_when(
+      !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      !!sym_reason == "<Missing>" ~ "<Missing>",
       TRUE ~ "Non Safety"
     )
   )
 
-  lbl_EOSSTT <- var_labels_for(adae, "EOSSTT")
-
   lyt <- dst01_3_lyt(
     armvar = armvar,
-    lbl_EOSSTT = lbl_EOSSTT,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    status_treatment = status_treatment,
   )
 
   tbl <- build_table(
     lyt,
     df = adae_gp
     # alt_counts_df = adsl # this part is a mystery
-
   )
 
   tbl_sorted <- tbl  %>%
     prune_table()
 
-  #2nd table
-
-  lbl_EOSSTT <- var_labels_for(adae, "EOSSTT")
-
   lyt <- dst01_2_lyt(
     armvar = armvar,
-    lbl_EOSSTT = lbl_EOSSTT,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    status = status,
+    reason = reason
   )
 
   tbl2 <- build_table(
@@ -327,11 +350,12 @@ dst01_3 <- function(adsl, adae,
 
 dst01_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_EOSSTT = "EOSSTT",
                         deco = std_deco("DST01"),
+                        status_treatment = .study$status,
                         .study = list(
-                          armvar = "ACTARM",
-                          lbl_overall = "All patients"
+                          armvar = "ARM",
+                          lbl_overall = "All patients",
+                          status_treatment = "EOTSTT"
                         )) {
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
@@ -341,19 +365,22 @@ dst01_3_lyt <- function(armvar = .study$armvar,
     add_colcounts() %>%
     #add_overall_col(label = lbl_overall) %>%
     count_values(
-      var = "EOTSTT",
+      vars = status_treatment,
       values = "COMPLETED",
-      .labels = c(count_fraction = "Completed Treatment")
+      .labels = c(count_fraction = "Completed Treatment"),
+      table_names = c("COMPLETED")
     ) %>%
     count_values(
-      var = "EOTSTT",
+      vars = status_treatment,
       values = "ONGOING",
-      .labels = c(count_fraction = "Ongoing Treatment")
+      .labels = c(count_fraction = "Ongoing Treatment"),
+      table_names = c("ONGOING")
     ) %>%
     count_values(
-      var = "EOTSTT",
-      values = "DISCONTINUATED",
-      .labels = c(count_fraction = "Discontinued Treatment")
+      vars = status_treatment,
+      values = "DISCONTINUED",
+      .labels = c(count_fraction = "Discontinued Treatment"),
+      table_names = c("DISCONTINUED")
     )
 }
 
