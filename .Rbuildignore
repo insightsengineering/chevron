@@ -3,3 +3,6 @@
 ^temp$
 ^.github$
 ^staged_dependencies.yaml$
+_pkgdown.yaml
+docs
+
