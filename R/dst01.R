@@ -4,14 +4,13 @@
 #' @inheritParams gen_args
 #' @param status variable used to define patient status
 #' @param reason variable used to define reason for patient withdrawal
-#' @param status_treatment variable used to define patient treatment status
 #'
 #'
 #' @details
 #'  * Default patient disposition table summarizing the reasons for patients withdrawal
 #'  * Numbers represent absolute numbers of patients and fraction of N
 #'  * Remove zero-count rows
-#'  * Split columns by ARM
+#'  * Split columns by arm
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
@@ -44,8 +43,8 @@ dst01_1 <- function(adsl, adae,
                       reason = "DCSREAS"
                     )) {
 
-  match.arg(status, c("EOSSTT","EOPxxSTT"))
   match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
+  match.arg(status, c("EOSSTT","EOPxxSTT"))
   match.arg(reason, c("DCSREAS","DCPxxRS"))
 
   adae <- adae %>%
@@ -53,9 +52,10 @@ dst01_1 <- function(adsl, adae,
 
   lyt <- dst01_1_lyt(
     armvar = armvar,
-    status = status,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    status = status,
+    reason = reason
   )
 
   tbl <- build_table(
@@ -77,9 +77,9 @@ dst01_1 <- function(adsl, adae,
 
 dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
+                        deco = std_deco("DST01"),
                         status = .study$status,
                         reason = .study$reason,
-                        deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -92,7 +92,6 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                   split_fun = add_overall_level(lbl_overall, first = FALSE)
     ) %>%
     add_colcounts() %>%
-    #add_overall_col(label = lbl_overall) %>%
     count_values(
       vars = status,
       values = "COMPLETED",
@@ -118,7 +117,6 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' @inheritParams gen_args
 #' @param status variable used to define patient status
 #' @param reason variable used to define reason for patient withdrawal
-#' @param status_treatment variable used to define patient treatment status
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal
@@ -126,7 +124,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'  * Safety issues include Death and Adverse event
 #'  * Numbers represent absolute numbers of patients and fraction of N
 #'  * Remove zero-count rows
-#'  * Split columns by ACTARM
+#'  * Split columns by arm
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
@@ -160,8 +158,8 @@ dst01_2 <- function(adsl, adae,
                       reason = "DCSREAS"
                     )) {
 
-  match.arg(status, c("EOSSTT","EOPxxSTT"))
   match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
+  match.arg(status, c("EOSSTT","EOPxxSTT"))
   match.arg(reason, c("DCSREAS","DCPxxRS"))
 
   adae <- adae %>%
@@ -170,6 +168,7 @@ dst01_2 <- function(adsl, adae,
   lyt <- dst01_2_lyt(
     armvar = armvar,
     status = status,
+    reason = reason,
     lbl_overall = lbl_overall,
     deco = deco
   )
@@ -187,7 +186,6 @@ dst01_2 <- function(adsl, adae,
   tbl <- build_table(
     lyt,
     df = adae_gp,
-    status = status
     # alt_counts_df = adsl # this part is a mystery
   )
 
@@ -220,7 +218,6 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                   split_fun = add_overall_level(lbl_overall, first = FALSE)
     ) %>%
     add_colcounts() %>%
-    #add_overall_col(label = lbl_overall) %>%
     count_values(
       vars = status,
       values = "COMPLETED",
@@ -259,7 +256,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'  * Safety issues include Death and Adverse Event
 #'  * Numbers represent absolute numbers of patients and fraction of N
 #'  * Remove zero-count rows
-#'  * Split columns by ACTARM
+#'  * Split columns by arm
 #'  * Include a total column by default
 #'  * Sort withdrawal reasons by alphabetic order
 #'
@@ -297,6 +294,11 @@ dst01_3 <- function(adsl, adae,
                       reason = "DCSREAS",
                       status_treatment = "EOTSTT"
                     )) {
+
+  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
+  match.arg(status, c("EOSSTT","EOPxxSTT"))
+  match.arg(reason, c("DCSREAS","DCPxxRS"))
+  match.arg(status_treatment, c("EOTSTT","EOTxxSTT"))
 
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
@@ -372,7 +374,6 @@ dst01_3_lyt <- function(armvar = .study$armvar,
                   split_fun = add_overall_level(lbl_overall, first = FALSE)
     ) %>%
     add_colcounts() %>%
-    #add_overall_col(label = lbl_overall) %>%
     count_values(
       vars = status_treatment,
       values = "COMPLETED",

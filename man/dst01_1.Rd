@@ -32,8 +32,6 @@ dst01_1(
 \item{reason}{variable used to define reason for patient withdrawal}
 
 \item{.study}{a list with default values for the arguments of the function}
-
-\item{status_treatment}{variable used to define patient treatment status}
 }
 \description{
 Patient Disposition Table
@@ -43,7 +41,7 @@ Patient Disposition Table
 \item Default patient disposition table summarizing the reasons for patients withdrawal
 \item Numbers represent absolute numbers of patients and fraction of N
 \item Remove zero-count rows
-\item Split columns by ARM
+\item Split columns by arm
 \item Include a total column by default
 \item Sort withdrawal reasons by alphabetic order
 }

@@ -34,39 +34,12 @@ dmt01_1(
 For each variable, summary statistics are by default based on the number of patients in the corresponding \code{n} row.
 }
 \details{
-Questions for a standard:
-\enumerate{
-\item is the data ever different than adsl
 \itemize{
-\item generally no, as adsub variables need to be merged in
-\item still want to stay specific, this is a special case > ad_bl1a. get the standard variables
-\item c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI")
-}
-\item only split on one variable
-\itemize{
-\item no in the column
-\item theoretically yes in row space but we can either treat it as a non-standard
-(if it not in the lopo) or as a standard variant
-}
-\item always total column
-\itemize{
-\item yes - can be a different label
-}
-\item numeric variables
-\itemize{
-\item only n, Mean (SD), Median, Min - Max >> yes - precision on a study level
-}
-\item categorical variables
-\itemize{
-\item remove zero counts
-yes by default, if no then it's a non-standard or dmt01_2
-\item prop. = c/n or c/N > c/N
-\item sorting
-\itemize{
-\item factor levels (default)
-\item frequency counts (freq) (req total column)
-}
-}
+\item Default demographic and characteristics table
+\item If not specified otherwise, numbers represent absolute numbers of patients and fraction of N
+\item Remove zero-count rows
+\item Split columns by arm (planned or actual / code or description)
+\item Include a total column by default
 }
 }
 \examples{
