@@ -43,7 +43,7 @@ Patient Disposition Table 2
 \item Safety issues include Death and Adverse event
 \item Numbers represent absolute numbers of patients and fraction of N
 \item Remove zero-count rows
-\item Split columns by ACTARM
+\item Split columns by arm
 \item Include a total column by default
 \item Sort withdrawal reasons by alphabetic order
 }

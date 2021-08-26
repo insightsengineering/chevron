@@ -41,7 +41,7 @@ Patient Disposition Table
 \item Default patient disposition table summarizing the reasons for patients withdrawal
 \item Numbers represent absolute numbers of patients and fraction of N
 \item Remove zero-count rows
-\item Split columns by ARM
+\item Split columns by arm
 \item Include a total column by default
 \item Sort withdrawal reasons by alphabetic order
 }
