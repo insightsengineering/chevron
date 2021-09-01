@@ -79,7 +79,7 @@ aet03_1 <- function(adsl, adae,
       decreasing = TRUE
     )
 
-  # remove the column of all observations if lbl_overall is NULL
+  # remove the column of all observations if lbl_overall is an empty string
   if (identical(lbl_overall,""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
@@ -90,9 +90,9 @@ aet03_1 <- function(adsl, adae,
 
 aet03_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_AEBODSYS = "AEBODSYS",
-                        lbl_AEDECOD = "AEDECOD",
-                        lbl_AESEV = "AESEV",
+                        lbl_AEBODSYS = "",
+                        lbl_AEDECOD = "",
+                        lbl_AESEV = "",
                         gradation = .study$gradation,
 
                         deco = std_deco("AET03"),
