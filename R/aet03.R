@@ -5,12 +5,12 @@
 #'
 #'
 #' @details
-#'  * Default Adverse Events by Greatest intensity table
+#'  * Default Adverse Events by Greatest Intensity table
 #'  * Numbers represent absolute numbers of patients and fraction of N
 #'  * Remove zero-count rows
 #'  * Split columns by arm
 #'  * Does not include a total column by default
-#'  * Sort severity category by .... SOC and PT ?
+#'  * Sort severity categories by SOC and PT
 #'
 #' @importFrom dplyr filter
 #'
