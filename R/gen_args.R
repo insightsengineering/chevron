@@ -32,7 +32,5 @@ gen_args <- function(
   ad_bl, adsl, adeg, adae, adcm, admh, aag, advs, adlb, adex, adsub, adrs, adtte,
   adhy, adsaftte, addv, adcssrs, adqlqc, acg, adic
 ) {
-
-
-
+  NULL
 }

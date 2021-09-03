@@ -6,6 +6,7 @@ Authors@R: c(
   person("NEST", email = "nestcicd@roche.com", role = c("aut", "cre")),
   person("Roche", role = c("cph", "fnd")),
   person("Adrian", "Waddell", email = "adrian.waddell@roche.com", role = "aut"),
+  person("Benoit", "Falquet", email = "benoit.falquet@roche.com", role = "aut"),
   person("Gabriel", "Becker", email = "gabembecker@gmail.com", role = "ctb"),
   person("Tim", "Barnett", email = "timothy.barnett@roche.com", role = "ctb")
   )
@@ -16,6 +17,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Depends:
+  R (>= 4.0.0),
   tern
 Imports:
   rtables,

@@ -1,7 +1,7 @@
 # Chevron: Standard TLGs for clinical trials reporting
 
 
-*chevron* is a collection of function to create standard tables, listings, and graphs for clinical trials reporting based on predetermined layouts.
+*chevron* is a collection of function to create standard tables, listings, and graphs for clinical trials reporting.
 
 # Installation
 
