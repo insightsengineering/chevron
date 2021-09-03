@@ -14,6 +14,7 @@ Standard Table, Listings, and Graphs (TLG) library used in clinical trials.
 Authors:
 \itemize{
   \item Adrian Waddell \email{adrian.waddell@roche.com}
+  \item Benoit Falquet \email{benoit.falquet@roche.com}
 }
 
 Other contributors:

@@ -24,7 +24,7 @@
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae %>%
+#' adae <- sd$adae |>
 #'  mutate(ANL01FL = 'Y')
 #'
 #' dst01_1(adsl, adae)
@@ -47,7 +47,7 @@ dst01_1 <- function(adsl, adae,
   match.arg(status, c("EOSSTT","EOPxxSTT"))
   match.arg(reason, c("DCSREAS","DCPxxRS"))
 
-  adae <- adae %>%
+  adae <- adae |>
     filter(bol_YN(ANL01FL))
 
   lyt <- dst01_1_lyt(
@@ -64,7 +64,7 @@ dst01_1 <- function(adsl, adae,
    # alt_counts_df = adsl # this part is a mystery
   )
 
-  tbl_sorted <- tbl %>%
+  tbl_sorted <- tbl |>
     prune_table()
 
   if (lbl_overall == "")
@@ -87,21 +87,21 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                           reason = "DCSREAS"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
     split_cols_by(var = armvar,
                   split_fun = add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
-    add_colcounts() %>%
+    ) |>
+    add_colcounts() |>
     count_values(
       vars = status,
       values = "COMPLETED",
       .labels = c(count_fraction = "Completed Study")
-    ) %>%
+    ) |>
     split_rows_by(
       status,
       split_fun = keep_split_levels("DISCONTINUED"),
-    ) %>%
-    summarize_row_groups(label_fstr = "Discontinued Study") %>%
+    ) |>
+    summarize_row_groups(label_fstr = "Discontinued Study") |>
     summarize_vars(
       reason,
       .stats = "count_fraction",
@@ -139,7 +139,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae %>%
+#' adae <- sd$adae |>
 #'  mutate(ANL01FL = 'Y')
 #'
 #' dst01_2(adsl, adae)
@@ -162,7 +162,7 @@ dst01_2 <- function(adsl, adae,
   match.arg(status, c("EOSSTT","EOPxxSTT"))
   match.arg(reason, c("DCSREAS","DCPxxRS"))
 
-  adae <- adae %>%
+  adae <- adae |>
     filter(bol_YN(ANL01FL))
 
   lyt <- dst01_2_lyt(
@@ -175,7 +175,7 @@ dst01_2 <- function(adsl, adae,
 
   sym_reason = sym(reason)
 
-  adae_gp <- adae %>%
+  adae_gp <- adae |>
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
@@ -190,7 +190,7 @@ dst01_2 <- function(adsl, adae,
   )
 
 
-  tbl_sorted <- tbl  %>%
+  tbl_sorted <- tbl  |>
     prune_table()
 
   if (lbl_overall == "")
@@ -213,26 +213,26 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                           reason = "DCSREAS"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
     split_cols_by(var = armvar,
                   split_fun = add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
-    add_colcounts() %>%
+    ) |>
+    add_colcounts() |>
     count_values(
       vars = status,
       values = "COMPLETED",
       .labels = c(count_fraction = "Completed Study")
-    ) %>%
+    ) |>
     split_rows_by(
       var = status,
       split_fun = keep_split_levels("DISCONTINUED")
-    ) %>%
-    summarize_row_groups(label_fstr = "Discontinued Study") %>%
+    ) |>
+    summarize_row_groups(label_fstr = "Discontinued Study") |>
     split_rows_by(
       "reasonGP",
       split_fun = reorder_split_levels(neworder = c("Safety", "Non Safety"))
-    ) %>%
-    summarize_row_groups() %>%
+    ) |>
+    summarize_row_groups() |>
     summarize_vars(
       reason,
       .stats = "count_fraction",
@@ -271,7 +271,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
 #'
-#' adae <- sd$adae %>%
+#' adae <- sd$adae |>
 #'  mutate(ANL01FL = 'Y',
 #'         EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUED"),
 #'                         nrow(sd$adae),
@@ -300,12 +300,12 @@ dst01_3 <- function(adsl, adae,
   match.arg(reason, c("DCSREAS","DCPxxRS"))
   match.arg(status_treatment, c("EOTSTT","EOTxxSTT"))
 
-  adae <- adae %>%
+  adae <- adae |>
     filter(bol_YN(ANL01FL))
 
   sym_reason = sym(reason)
 
-  adae_gp <- adae %>%
+  adae_gp <- adae |>
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
@@ -326,7 +326,7 @@ dst01_3 <- function(adsl, adae,
     # alt_counts_df = adsl # this part is a mystery
   )
 
-  tbl_sorted <- tbl  %>%
+  tbl_sorted <- tbl  |>
     prune_table()
 
   lyt <- dst01_2_lyt(
@@ -343,7 +343,7 @@ dst01_3 <- function(adsl, adae,
     # alt_counts_df = adsl # this part is a mystery
   )
 
-  tbl_sorted2 <- tbl2  %>%
+  tbl_sorted2 <- tbl2  |>
     prune_table()
 
   col_info(tbl_sorted2) <- col_info(tbl_sorted)
@@ -369,23 +369,23 @@ dst01_3_lyt <- function(armvar = .study$armvar,
                           status_treatment = "EOTSTT"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
     split_cols_by(var = armvar,
                   split_fun = add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
-    add_colcounts() %>%
+    ) |>
+    add_colcounts() |>
     count_values(
       vars = status_treatment,
       values = "COMPLETED",
       .labels = c(count_fraction = "Completed Treatment"),
       table_names = c("COMPLETED")
-    ) %>%
+    ) |>
     count_values(
       vars = status_treatment,
       values = "ONGOING",
       .labels = c(count_fraction = "Ongoing Treatment"),
       table_names = c("ONGOING")
-    ) %>%
+    ) |>
     count_values(
       vars = status_treatment,
       values = "DISCONTINUED",

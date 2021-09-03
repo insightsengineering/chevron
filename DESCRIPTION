@@ -22,7 +22,6 @@ Depends:
 Imports:
   rtables,
   assertthat,
-  magrittr,
   dplyr,
   rlang
 Suggests:

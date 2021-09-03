@@ -21,15 +21,15 @@ aet01_1 <- function(
   aesi_vars <- c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35")
 
   # Layout for variables from adsl dataset.
-  lyt_adsl <- basic_table() %>%
-    split_cols_by(armvar) %>%
-    add_colcounts() %>% # todo
+  lyt_adsl <- basic_table() |>
+    split_cols_by(armvar) |>
+    add_colcounts() |> # todo
     count_values(
       "DTHFL",
       values = "Y",
       .labels = c(count_fraction = "Total number of deaths"),
       denom = "N_col"
-    ) %>%
+    ) |>
     count_values(
       "DCSREAS",
       values = "ADVERSE EVENT",
@@ -40,22 +40,22 @@ aet01_1 <- function(
   result_adsl <- build_table(lyt_adsl, df = adsl, alt_counts_df = adsl)
 
   # Layout for variables from adae dataset.
-  lyt_adae <- basic_table() %>%
-    split_cols_by(armvar) %>%
-    add_colcounts() %>%
+  lyt_adae <- basic_table() |>
+    split_cols_by(armvar) |>
+    add_colcounts() |>
     count_patients_with_event(
       vars = "USUBJID",
       filters = c("STUDYID" = as.character(unique(adae$STUDYID))),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of patients with at least one adverse event")
-    ) %>%
+    ) |>
     count_values(
       "STUDYID",
       values = as.character(unique(adae$STUDYID)),
       .stats = "count",
       .labels = c(count = "Total AEs"),
       table_names = "total_aes"
-    ) %>%
+    ) |>
     count_patients_with_flags(
       "USUBJID",
       flag_variables = var_labels(adae[, aesi_vars]),
