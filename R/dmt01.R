@@ -23,7 +23,7 @@
 #' dmt01_1(
 #'  ad_bl = adsl,
 #'  armvar = "ARMCD",
-#'  summaryvars = c("AGE", "RACE", "SEX")
+#'  summaryvars = c("AGE", "RACE")
 #' )
 #'
 dmt01_1 <- function(ad_bl,
@@ -37,6 +37,17 @@ dmt01_1 <- function(ad_bl,
                       summaryvars =  c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
                       lbl_overall = "All Patients"
                     )) {
+
+    # provide a clearer error message in the case of missing variable
+    missing_var = setdiff(summaryvars,colnames(ad_bl))
+    if(length(missing_var) > 0){
+
+      stop(paste0("\nVariable(s) missing in the dataset: \n",
+                  paste(missing_var, "\n", collapse = "")
+                  )
+           )
+
+    }
 
 
   lyt <- dmt01_1_lyt(
