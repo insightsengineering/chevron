@@ -17,7 +17,7 @@
    
 3. Install the `chevron` package dependencies with (make sure the working directory is set to the root of `chevron`)
    ```r
-   staged.dependencies::install_deps(verbose = TRUE, install_external_deps = TRUE)
+   staged.dependencies::install_deps(verbose = TRUE, direction = "upstream", install_external_deps = TRUE, verbose = 1)
    ```
 
 

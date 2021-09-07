@@ -51,7 +51,7 @@ dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_1(
  ad_bl = adsl,
  armvar = "ARMCD",
- summaryvars = c("AGE", "RACE", "SEX")
+ summaryvars = c("AGE", "RACE")
 )
 
 }
