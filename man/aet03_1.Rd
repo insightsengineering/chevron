@@ -31,7 +31,12 @@ Adverse Events by Greatest intensity
 }
 \details{
 \itemize{
-\item No total column in the standards
+\item Default Adverse Events by Greatest Intensity table
+\item Numbers represent absolute numbers of patients and fraction of N
+\item Remove zero-count rows
+\item Split columns by arm
+\item Does not include a total column by default
+\item Sort severity categories by SOC and PT
 }
 }
 \examples{
@@ -40,7 +45,7 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adae <- sd$adae \%>\%
+adae <- sd$adae |>
  mutate(ANL01FL = 'Y')
 
 aet03_1(adsl, adae)

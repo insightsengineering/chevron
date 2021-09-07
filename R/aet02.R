@@ -18,13 +18,13 @@
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae %>%
+#' adae <- sd$adae |>
 #'  mutate(ANL01FL = 'Y')
 #'
 #' aet02_1(adsl, adae)
 #' aet02_1(adsl, adae, lbl_overall = "All Patients")
 #'
-#' adae <- adae %>% var_relabel(AEBODSYS = "Medra System Organ Class")
+#' adae <- adae |> var_relabel(AEBODSYS = "Medra System Organ Class")
 #' aet02_1(adsl, adae)
 #'
 aet02_1 <- function(adsl, adae,
@@ -37,7 +37,7 @@ aet02_1 <- function(adsl, adae,
                     )) {
 
   # TODO: discuss if this is truly in the function body
-  adae <- adae %>%
+  adae <- adae |>
     filter(bol_YN(ANL01FL))
 
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
@@ -57,12 +57,12 @@ aet02_1 <- function(adsl, adae,
   )
 
 
-  tbl_sorted <- tbl %>%
-    prune_table() %>%
+  tbl_sorted <- tbl |>
+    prune_table() |>
     sort_at_path(
       path =  c("AEBODSYS"),
       scorefun = cont_n_onecol(ncol(tbl))
-    ) %>%
+    ) |>
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
       scorefun = score_occurrences
@@ -86,10 +86,10 @@ aet02_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
-    split_cols_by(var = armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(label = lbl_overall) %>%
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
+    split_cols_by(var = armvar) |>
+    add_colcounts() |>
+    add_overall_col(label = lbl_overall) |>
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -97,7 +97,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
         unique = "Total number of patients with at least one adverse event",
         nonunique = "Overall total number of events"
       )
-    ) %>%
+    ) |>
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
@@ -106,7 +106,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_AEBODSYS
-    ) %>%
+    ) |>
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -114,7 +114,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
         unique = "Total number of patients with at least one adverse event",
         nonunique = "Total number of events"
       )
-    ) %>%
+    ) |>
     count_occurrences(
       vars = "AEDECOD",
       .indent_mods = -1L

@@ -7,6 +7,12 @@ var_labels_for <- function(df, vars) {
 }
 
 
+#' Standard Documentation Lookup
+#'
+#' @param id standard id of output
+#' @param ... not used at the moment
+#'
+#' @export
 std_deco <- function(id, ...) {
   list(
     title = "Main Title",
@@ -15,6 +21,18 @@ std_deco <- function(id, ...) {
   )
 }
 
+#' Convert Y N values used in CDISC to R boolean object
+#'
+#' Empty strings are mapped to `NA`
+#'
+#' @param x character vector with Y and N
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' chevron:::bol_YN(c("Y", "Y", "N", "", NA))
+#' }
 bol_YN <- function(x) {
   if (is.logical(x)) {
     x
