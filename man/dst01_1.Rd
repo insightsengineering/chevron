@@ -9,9 +9,9 @@ dst01_1(
   adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  deco = std_deco("DST01"),
   status = .study$status,
   reason = .study$reason,
+  deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
 )
@@ -25,21 +25,26 @@ dst01_1(
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{status}{variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable name with
+the pattern \code{EOPxxSTT} where \code{xx} must be substituted referring to the analysis period.}
+
+\item{reason}{variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can also be a
+variable with name \code{DCPxxRS} where \code{xx} must be substituted and refers to the analysis period.}
+
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{status}{variable used to define patient status}
-
-\item{reason}{variable used to define reason for patient withdrawal}
-
 \item{.study}{a list with default values for the arguments of the function}
+
+\item{arm}{variable. Often \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A} are used.}
 }
 \description{
-Patient Disposition Table
+The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
+study an reason is provided.
 }
 \details{
 \itemize{
 \item Default patient disposition table summarizing the reasons for patients withdrawal
-\item Numbers represent absolute numbers of patients and fraction of N
+\item Numbers represent absolute numbers of patients and fraction of \code{N}
 \item Remove zero-count rows
 \item Split columns by arm
 \item Include a total column by default
@@ -50,6 +55,7 @@ Patient Disposition Table
 
 library(scda)
 library(dplyr)
+
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
 adae <- sd$adae |>
@@ -57,5 +63,7 @@ adae <- sd$adae |>
 
 dst01_1(adsl, adae)
 dst01_1(adsl, adae, lbl_overall = "")
+
+
 
 }

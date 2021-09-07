@@ -9,10 +9,10 @@ dst01_3(
   adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  deco = std_deco("DST01"),
   status = .study$status,
   reason = .study$reason,
   status_treatment = .study$status_treatment,
+  deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS", status_treatment = "EOTSTT")
 )
@@ -26,13 +26,13 @@ dst01_3(
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
-
 \item{status}{variable used to define patient status}
 
 \item{reason}{variable used to define reason for patient withdrawal}
 
 \item{status_treatment}{variable used to define patient treatment status}
+
+\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
 }

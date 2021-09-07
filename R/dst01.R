@@ -1,14 +1,32 @@
 
+# TODO ask tim regardin armvar
+check_dst01_1_args <- function(reason, status) {
+
+  if (!missing(reason))
+    stopifnot(reason != "EOSSTT" || grepl("^EOP[[:digit:]]{2}STT$", reason))
+
+  if (!missing(status))
+    stopifnot(status != "DCSREAS" || grepl("^DCP[[:digit:]]{2}RS$", status))
+
+}
+
+
 #' Patient Disposition Table
 #'
+#' The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
+#' study an reason is provided.
+#'
 #' @inheritParams gen_args
-#' @param status variable used to define patient status
-#' @param reason variable used to define reason for patient withdrawal
+#' @param arm variable. Often `ARM`, `ACTARM`, `TRT01A`, or `TRT01A` are used.
+#' @param status variable used to define patient status. Default is `EOSSTT`, however can also be a variable name with
+#'   the pattern `EOPxxSTT` where `xx` must be substituted referring to the analysis period.
+#' @param reason variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can also be a
+#'   variable with name `DCPxxRS` where `xx` must be substituted and refers to the analysis period.
 #'
 #'
 #' @details
 #'  * Default patient disposition table summarizing the reasons for patients withdrawal
-#'  * Numbers represent absolute numbers of patients and fraction of N
+#'  * Numbers represent absolute numbers of patients and fraction of `N`
 #'  * Remove zero-count rows
 #'  * Split columns by arm
 #'  * Include a total column by default
@@ -22,6 +40,7 @@
 #'
 #' library(scda)
 #' library(dplyr)
+#'
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
 #' adae <- sd$adae |>
@@ -33,9 +52,9 @@
 dst01_1 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    deco = std_deco("DST01"),
                     status = .study$status,
                     reason = .study$reason,
+                    deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
                       lbl_overall = "All patients",
@@ -43,9 +62,7 @@ dst01_1 <- function(adsl, adae,
                       reason = "DCSREAS"
                     )) {
 
-  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
-  match.arg(status, c("EOSSTT","EOPxxSTT"))
-  match.arg(reason, c("DCSREAS","DCPxxRS"))
+  check_dst01_1_args(armvar, status, reason)
 
   adae <- adae |>
     filter(bol_YN(ANL01FL))
@@ -77,9 +94,9 @@ dst01_1 <- function(adsl, adae,
 
 dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        deco = std_deco("DST01"),
                         status = .study$status,
                         reason = .study$reason,
+                        deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -114,9 +131,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 
 #' Patient Disposition Table 2
 #'
-#' @inheritParams gen_args
-#' @param status variable used to define patient status
-#' @param reason variable used to define reason for patient withdrawal
+#' @inheritParams dst01_1
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal
@@ -133,7 +148,8 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @export
 #'
-#' @examples
+#' @examples  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
+match.arg(status, c("EOSSTT","EOPxxSTT"))
 #'
 #' library(scda)
 #' library(dplyr)
@@ -148,9 +164,9 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 dst01_2 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    deco = std_deco("DST01"),
                     status = .study$status,
                     reason = .study$reason,
+                    deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
                       lbl_overall = "All patients",
@@ -203,9 +219,9 @@ dst01_2 <- function(adsl, adae,
 
 dst01_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        deco = std_deco("DST01"),
                         status = .study$status,
                         reason = .study$reason,
+                        deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -250,7 +266,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' @param reason variable used to define reason for patient withdrawal
 #' @param status_treatment variable used to define patient treatment status
 #'
-#' @details
+#' @detailsn
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
 #'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
 #'  * Safety issues include Death and Adverse Event
@@ -283,10 +299,10 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 dst01_3 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    deco = std_deco("DST01"),
                     status = .study$status,
                     reason = .study$reason,
                     status_treatment = .study$status_treatment,
+                    deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
                       lbl_overall = "All patients",
@@ -361,8 +377,8 @@ dst01_3 <- function(adsl, adae,
 
 dst01_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        deco = std_deco("DST01"),
                         status_treatment = .study$status,
+                        deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -393,5 +409,3 @@ dst01_3_lyt <- function(armvar = .study$armvar,
       table_names = c("DISCONTINUED")
     )
 }
-
-
