@@ -38,8 +38,8 @@ events categorized by Body System and Dictionary-Derived terms
 \item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
-\item No total column in the standards.
-\item Sort Dictionary-Derived Code (\code{AEDECOD})  by highest overall frequencies.
+\item Does not include a total column by default
+\item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
 }
 }
 \examples{

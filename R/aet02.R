@@ -9,8 +9,8 @@
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
-#'  * No total column in the standards.
-#'  * Sort Dictionary-Derived Code (`AEDECOD`)  by highest overall frequencies.
+#'  * Does not include a total column by default
+#'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
 #'
 #' @importFrom dplyr filter
 #'

@@ -2,13 +2,14 @@
 % Please edit documentation in R/aet03.R
 \name{aet03_1}
 \alias{aet03_1}
-\title{Adverse Events by Greatest intensity}
+\title{Advert Events by Greatest Intensity}
 \usage{
 aet03_1(
   adsl,
   adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
+  prune_0 = TRUE,
   deco = std_deco("AET03"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
 )
@@ -22,21 +23,23 @@ aet03_1(
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{prune_0}{remove 0 count rows}
+
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Adverse Events by Greatest intensity
+An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity
 }
 \details{
 \itemize{
 \item Default Adverse Events by Greatest Intensity table
-\item Numbers represent absolute numbers of patients and fraction of N
-\item Remove zero-count rows
+\item Numbers represent absolute numbers of patients and fraction of \code{N}
+\item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm
 \item Does not include a total column by default
-\item Sort severity categories by SOC and PT
+\item Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)
 }
 }
 \examples{
