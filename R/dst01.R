@@ -1,15 +1,19 @@
 
-# TODO ask tim regardin armvar
-check_dst01_1_args <- function(reason, status) {
-
-  if (!missing(reason))
-    stopifnot(reason != "EOSSTT" || grepl("^EOP[[:digit:]]{2}STT$", reason))
+#' @description
+#' Avoid non-standard argument values for `status`, `reason` and `status_treatment`
+#' In `EOPxxSTT`, `DCPxxRS` amd `EOTxxSTT` the analysis period `xx` is substituted by 2 digits
+check_dst01_1_args <- function(reason, status, status_treatment) {
 
   if (!missing(status))
-    stopifnot(status != "DCSREAS" || grepl("^DCP[[:digit:]]{2}RS$", status))
+    stopifnot(status == "EOSSTT" || grepl("^EOP[[:digit:]]{2}STT$", status))
+
+  if (!missing(reason))
+    stopifnot(reason == "DCSREAS" || grepl("^DCP[[:digit:]]{2}RS$", reason))
+
+  if (!missing(status_treatment))
+    stopifnot(status_treatment == "EOTSTT" || grepl("^EOT[[:digit:]]{2}STT$", status_treatment))
 
 }
-
 
 #' Patient Disposition Table
 #'
@@ -17,11 +21,11 @@ check_dst01_1_args <- function(reason, status) {
 #' study an reason is provided.
 #'
 #' @inheritParams gen_args
-#' @param arm variable. Often `ARM`, `ACTARM`, `TRT01A`, or `TRT01A` are used.
+#' @param arm variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
 #' @param status variable used to define patient status. Default is `EOSSTT`, however can also be a variable name with
-#'   the pattern `EOPxxSTT` where `xx` must be substituted referring to the analysis period.
+#'   the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
 #' @param reason variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can also be a
-#'   variable with name `DCPxxRS` where `xx` must be substituted and refers to the analysis period.
+#'   variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis period.
 #'
 #'
 #' @details
@@ -62,7 +66,8 @@ dst01_1 <- function(adsl, adae,
                       reason = "DCSREAS"
                     )) {
 
-  check_dst01_1_args(armvar, status, reason)
+  check_dst01_1_args(reason = reason,
+                     status = status)
 
   adae <- adae |>
     filter(bol_YN(ANL01FL))
@@ -136,8 +141,8 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal
 #'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
-#'  * Safety issues include Death and Adverse event
-#'  * Numbers represent absolute numbers of patients and fraction of N
+#'  * Safety issues include Death and Adverse events
+#'  * Numbers represent absolute numbers of patients and fraction of `N`
 #'  * Remove zero-count rows
 #'  * Split columns by arm
 #'  * Include a total column by default
@@ -148,9 +153,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @export
 #'
-#' @examples  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
-match.arg(status, c("EOSSTT","EOPxxSTT"))
-#'
+#' @examples
 #' library(scda)
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
@@ -174,9 +177,8 @@ dst01_2 <- function(adsl, adae,
                       reason = "DCSREAS"
                     )) {
 
-  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
-  match.arg(status, c("EOSSTT","EOPxxSTT"))
-  match.arg(reason, c("DCSREAS","DCPxxRS"))
+  check_dst01_1_args(reason = reason,
+                     status = status)
 
   adae <- adae |>
     filter(bol_YN(ANL01FL))
@@ -261,16 +263,15 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 
 #' Patient Disposition Table 3
 #'
-#' @inheritParams gen_args
-#' @param status variable used to define patient status
-#' @param reason variable used to define reason for patient withdrawal
-#' @param status_treatment variable used to define patient treatment status
+#' @inheritParams dst01_1
+#' @param status_treatment variable used to define the treatment status of the patients. Default is `EOTSTT`, however can also be a
+#'   variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
 #'
-#' @detailsn
+#' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
 #'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
-#'  * Safety issues include Death and Adverse Event
-#'  * Numbers represent absolute numbers of patients and fraction of N
+#'  * Safety issues include Death and Adverse Events
+#'  * Numbers represent absolute numbers of patients and fraction of `N`
 #'  * Remove zero-count rows
 #'  * Split columns by arm
 #'  * Include a total column by default
@@ -311,10 +312,9 @@ dst01_3 <- function(adsl, adae,
                       status_treatment = "EOTSTT"
                     )) {
 
-  match.arg(armvar, c("ARM","ACTARM","TRT01A","TRT01A"))
-  match.arg(status, c("EOSSTT","EOPxxSTT"))
-  match.arg(reason, c("DCSREAS","DCPxxRS"))
-  match.arg(status_treatment, c("EOTSTT","EOTxxSTT"))
+  check_dst01_1_args(reason = reason,
+                     status = status,
+                     status_treatment = status_treatment)
 
   adae <- adae |>
     filter(bol_YN(ANL01FL))

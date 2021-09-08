@@ -25,9 +25,11 @@ dst01_2(
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{status}{variable used to define patient status}
+\item{status}{variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable name with
+the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
-\item{reason}{variable used to define reason for patient withdrawal}
+\item{reason}{variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can also be a
+variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -40,8 +42,8 @@ Patient Disposition Table 2
 \itemize{
 \item Non-standard disposition table summarizing the reasons for patient withdrawal
 \item Withdrawal reasons are grouped into Safety and Non-Safety issues
-\item Safety issues include Death and Adverse event
-\item Numbers represent absolute numbers of patients and fraction of N
+\item Safety issues include Death and Adverse events
+\item Numbers represent absolute numbers of patients and fraction of \code{N}
 \item Remove zero-count rows
 \item Split columns by arm
 \item Include a total column by default
@@ -49,7 +51,6 @@ Patient Disposition Table 2
 }
 }
 \examples{
-
 library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
