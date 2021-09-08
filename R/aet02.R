@@ -1,19 +1,22 @@
-
 #' Adverse Events by System Organ Class and Preferred Term Table
+#'
+#' The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
+#' events categorized by Body System and Dictionary-Derived terms
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @details
-#'  * No total column in the standards
-#'  * sort `AEDECOD`  by highest overall frequencies
+#'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
+#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
+#'  * Split columns by arm.
+#'  * No total column in the standards.
+#'  * Sort Dictionary-Derived Code (`AEDECOD`)  by highest overall frequencies.
 #'
 #' @importFrom dplyr filter
 #'
 #' @export
 #'
 #' @examples
-#'
 #' library(scda)
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
@@ -30,6 +33,7 @@
 aet02_1 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
+                    prune_0 = TRUE,
                     deco = std_deco("AET02"),
                     .study = list(
                       armvar = "ACTARM",
@@ -56,9 +60,9 @@ aet02_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
+  if(prune_0) tbl <- tbl |> prune_table()
 
   tbl_sorted <- tbl |>
-    prune_table() |>
     sort_at_path(
       path =  c("AEBODSYS"),
       scorefun = cont_n_onecol(ncol(tbl))
@@ -118,5 +122,6 @@ aet02_1_lyt <- function(armvar = .study$armvar,
     count_occurrences(
       vars = "AEDECOD",
       .indent_mods = -1L
-    )
+    ) |>
+    append_topleft(paste0(" ", lbl_AEDECOD))
 }
