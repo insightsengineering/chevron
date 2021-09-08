@@ -25,21 +25,22 @@ dst01_1(
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{status}{variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable name with
-the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
+\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
+name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
-\item{reason}{variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can also be a
-variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
+\item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
+also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
+period.}
 
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
 
-\item{arm}{variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
+\item{arm}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 }
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
-study an reason is provided.
+study a reason is provided.
 }
 \details{
 \itemize{
