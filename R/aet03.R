@@ -1,16 +1,18 @@
 
-#' Adverse Events by Greatest intensity
+#' Advert Events by Greatest Intensity
+#'
+#' An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity
 #'
 #' @inheritParams gen_args
 #'
 #'
 #' @details
 #'  * Default Adverse Events by Greatest Intensity table
-#'  * Numbers represent absolute numbers of patients and fraction of N
-#'  * Remove zero-count rows
+#'  * Numbers represent absolute numbers of patients and fraction of `N`
+#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm
 #'  * Does not include a total column by default
-#'  * Sort severity categories by SOC and PT
+#'  * Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)
 #'
 #' @importFrom dplyr filter
 #'
@@ -31,6 +33,7 @@
 aet03_1 <- function(adsl, adae,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
+                    prune_0 = TRUE,
                     deco = std_deco("AET03"),
                     .study = list(
                       armvar = "ACTARM",
@@ -65,9 +68,11 @@ aet03_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
+  if(prune_0) tbl <- tbl |> trim_rows()
+
 
   tbl_sorted <- tbl |>
-    trim_rows() |>
+    # trim_rows() |>
     sort_at_path(
       path = "AEBODSYS",
       scorefun = cont_n_allcols,

@@ -3,11 +3,13 @@
 #' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row.
 #'
 #' @inheritParams gen_args
-#' @param summaryvars variables summarized in demographic table
+#' @param summaryvars (`vector` of `string`) variables summarized in demographic table.
+#' Usually a vector containing the following one or more of the following:
+#' `AAGE`, `AGEGR1`, `SEX`, `ETHNIC`, `RACE`, `BWGHTSI` and by default all of them.
 #'
 #' @details
 #'  * Default demographic and characteristics table
-#'  * If not specified otherwise, numbers represent absolute numbers of patients and fraction of N
+#'  * If not specified otherwise, numbers represent absolute numbers of patients and fraction of `N`
 #'  * Remove zero-count rows
 #'  * Split columns by arm (planned or actual / code or description)
 #'  * Include a total column by default
@@ -42,11 +44,10 @@ dmt01_1 <- function(ad_bl,
     missing_var = setdiff(summaryvars,colnames(ad_bl))
     if(length(missing_var) > 0){
 
-      stop(paste0("\nVariable(s) missing in the dataset: \n",
+      stop(paste0("\nVariable(s) does not exist in the dataset: \n",
                   paste(missing_var, "\n", collapse = "")
                   )
            )
-
     }
 
 

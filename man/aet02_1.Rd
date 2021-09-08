@@ -9,6 +9,7 @@ aet02_1(
   adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
+  prune_0 = TRUE,
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
@@ -22,21 +23,26 @@ aet02_1(
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{prune_0}{remove 0 count rows}
+
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Adverse Events by System Organ Class and Preferred Term Table
+The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
+events categorized by Body System and Dictionary-Derived terms
 }
 \details{
 \itemize{
-\item No total column in the standards
-\item sort \code{AEDECOD}  by highest overall frequencies
+\item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
+\item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
+\item Split columns by arm.
+\item Does not include a total column by default
+\item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
 }
 }
 \examples{
-
 library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")

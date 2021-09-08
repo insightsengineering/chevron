@@ -1,6 +1,7 @@
 
 #' @importFrom assertthat assert_that
 #' @importFrom rtables var_labels
+#' @export
 var_labels_for <- function(df, vars) {
   assert_that(all(vars %in% names(df)))
   unname(var_labels(df, fill = TRUE)[vars])

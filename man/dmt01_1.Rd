@@ -20,7 +20,9 @@ dmt01_1(
 
 \item{armvar}{variable used for column splitting}
 
-\item{summaryvars}{variables summarized in demographic table}
+\item{summaryvars}{(\code{vector} of \code{string}) variables summarized in demographic table.
+Usually a vector containing the following one or more of the following:
+\code{AAGE}, \code{AGEGR1}, \code{SEX}, \code{ETHNIC}, \code{RACE}, \code{BWGHTSI} and by default all of them.}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -36,7 +38,7 @@ For each variable, summary statistics are by default based on the number of pati
 \details{
 \itemize{
 \item Default demographic and characteristics table
-\item If not specified otherwise, numbers represent absolute numbers of patients and fraction of N
+\item If not specified otherwise, numbers represent absolute numbers of patients and fraction of \code{N}
 \item Remove zero-count rows
 \item Split columns by arm (planned or actual / code or description)
 \item Include a total column by default

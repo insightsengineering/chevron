@@ -26,25 +26,31 @@ dst01_3(
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{status}{variable used to define patient status}
+\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
+name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
-\item{reason}{variable used to define reason for patient withdrawal}
+\item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
+also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
+period.}
 
-\item{status_treatment}{variable used to define patient treatment status}
+\item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
+however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to
+the analysis period.}
 
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Patient Disposition Table 3
+The DST01_3 Disposition Table provides an overview of patients study completion and of the treatment completion.
+For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }
 \details{
 \itemize{
 \item Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
 \item Withdrawal reasons are grouped into Safety and Non-Safety issues
-\item Safety issues include Death and Adverse Event
-\item Numbers represent absolute numbers of patients and fraction of N
+\item Safety issues include Death and Adverse Events
+\item Numbers represent absolute numbers of patients and fraction of \code{N}
 \item Remove zero-count rows
 \item Split columns by arm
 \item Include a total column by default
