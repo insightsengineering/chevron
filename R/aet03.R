@@ -54,6 +54,7 @@ aet03_1 <- function(adsl, adae,
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
+    lbl_overall = lbl_overall,
     lbl_AEBODSYS = lbl_AEBODSYS,
     lbl_AEDECOD = lbl_AEDECOD,
     lbl_AESEV = lbl_AESEV,
