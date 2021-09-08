@@ -55,7 +55,7 @@ adae <- sd$adae |>
  mutate(ANL01FL = 'Y')
 
 aet04_1(adsl, adae)
-aet04_1(adsl, adae, prune0 = FALSE)
+aet04_1(adsl, adae, prune_0 = FALSE)
 aet04_1(adsl, adae, lbl_overall = "All Patients")
 
 }
