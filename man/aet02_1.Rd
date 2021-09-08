@@ -11,7 +11,7 @@ aet02_1(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(armvar = "ACTARM", lbl_overall = "")
 )
 }
 \arguments{
@@ -31,14 +31,14 @@ aet02_1(
 }
 \description{
 The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
-events categorized by Body System and Dictionary-Derived terms
+events categorized by Body System and Dictionary-Derived Term.
 }
 \details{
 \itemize{
 \item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
-\item Does not include a total column by default
+\item Does not include a total column by default.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
 }
 }

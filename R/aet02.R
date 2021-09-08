@@ -1,7 +1,7 @@
 #' Adverse Events by System Organ Class and Preferred Term Table
 #'
 #' The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
-#' events categorized by Body System and Dictionary-Derived terms
+#' events categorized by Body System and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -9,7 +9,7 @@
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
-#'  * Does not include a total column by default
+#'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
 #'
 #' @importFrom dplyr filter
@@ -130,10 +130,10 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 
 # Version2 ----
 
-#' Adverse Events by System Organ Class and Preferred Term Table
+#' Adverse Events by System Organ Class and Dictionary-Derived Term Table
 #'
 #' The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
-#' events categorized by Body System, High Level terms and Dictionary-Derived terms
+#' events categorized by Body System, High Level Term and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -141,8 +141,8 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
-#'  * Does not include a total column by default
-#'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
+#'  * Does not include a total column by default.
+#'  * Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall frequencies.
 #'
 #' @importFrom dplyr filter
 #'
@@ -285,5 +285,106 @@ aet02_2_lyt <- function(armvar = .study$armvar,
     append_topleft(paste0(" ", lbl_AEDECOD))
 }
 
+
+# Version 3 ----
+
+#' Adverse Events by Dictionary-Derived Term
+#'
+#' The AET02_3 table provides an overview of the number of patients experiencing advert events and the number of advert
+#' events categorized by Dictionary-Derived Term.
+#'
+#' @inheritParams gen_args
+#'
+#' @details
+#'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
+#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
+#'  * Split columns by arm.
+#'  * Does not include a total column by default.
+#'  * Sort Dictionary-Derived Code by highest overall frequencies.
+#'
+#' @importFrom dplyr filter
+#'
+#' @export
+#'
+#' @examples
+#' library(scda)
+#' library(dplyr)
+#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
+#' adsl <- sd$adsl
+#' adae <- sd$adae |>
+#'  mutate(ANL01FL = 'Y')
+#'
+#' aet02_3(adsl, adae)
+#' aet02_3(adsl, adae, lbl_overall = "All Patients")
+#'
+aet02_3 <- function(adsl, adae,
+                    armvar = .study$armvar,
+                    lbl_overall = .study$lbl_overall,
+                    prune_0 = TRUE,
+                    deco = std_deco("AET02"),
+                    .study = list(
+                      armvar = "ACTARM",
+                      lbl_overall = ""
+                    )) {
+
+  # TODO: discuss if this is truly in the function body
+  adae <- adae |>
+    filter(bol_YN(ANL01FL))
+
+  lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
+
+  lyt <- aet02_3_lyt(
+    armvar = armvar,
+    lbl_overall = lbl_overall,
+    lbl_AEDECOD = lbl_AEDECOD,
+    deco = deco
+  )
+
+  tbl <- build_table(
+    lyt,
+    df = adae,
+    alt_counts_df = adsl
+  )
+
+  if(prune_0) tbl <- tbl |> prune_table()
+
+  tbl_sorted <- tbl |>
+    sort_at_path(
+      "AEDECOD",
+      scorefun = score_occurrences
+    )
+
+  if (identical(lbl_overall,""))
+    tbl_sorted[, -ncol(tbl_sorted)]
+  else
+    tbl_sorted
+
+}
+
+
+aet02_3_lyt <- function(armvar = .study$armvar,
+                        lbl_overall = .study$lbl_overall,
+                        lbl_AEDECOD = "AEDECOD",
+                        deco = std_deco("AET02"),
+                        .study = list(
+                          armvar = "ACTARM",
+                          lbl_overall = ""
+                        )) {
+
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
+    split_cols_by(var = armvar) |>
+    add_colcounts() |>
+    add_overall_col(label = lbl_overall) |>
+    summarize_num_patients(
+      var = "USUBJID",
+      .stats = c("unique", "nonunique"),
+      .labels = c(
+        unique = "Total number of patients with at least one adverse event",
+        nonunique = "Overall total number of events"
+      )
+    ) |>
+    count_occurrences(vars = "AEDECOD", .indent_mods = c(count_fraction = -1L)) |>
+    append_varlabels(adae, "AEDECOD")
+}
 
 
