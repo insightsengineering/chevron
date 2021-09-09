@@ -47,13 +47,13 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adae <- sd$adae |>
+adae <- sd$adae \%>\%
  mutate(ANL01FL = 'Y')
 
 aet02_2(adsl, adae)
 aet02_2(adsl, adae, lbl_overall = "All Patients")
 
-adae <- adae |> var_relabel(AEBODSYS = "Medra System Organ Class")
+adae <- adae \%>\% var_relabel(AEBODSYS = "Medra System Organ Class")
 aet02_2(adsl, adae)
 
 }

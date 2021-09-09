@@ -48,7 +48,7 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adae <- sd$adae |>
+adae <- sd$adae \%>\%
  mutate(ANL01FL = 'Y')
 
 aet03_1(adsl, adae)
