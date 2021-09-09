@@ -35,7 +35,7 @@ aet04_1 <- function(adsl, adae,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     standard_gradation = TRUE,
-                    deco = std_deco("AET02"),
+                    deco = std_deco("AET04"),
                     .study = list(
                       armvar = "ACTARM",
                       lbl_overall = ""
@@ -104,7 +104,7 @@ aet04_1_lyt <- function(armvar = .study$armvar,
                         lbl_AEBODSYS = "AEBODSYS",
                         lbl_AEDECOD = "AEDECOD",
                         gr_grp = .study$gr_grp,
-                        deco = std_deco("AET02"),
+                        deco = std_deco("AET04"),
                         .study = list(
                           armvar = "ACTARM",
                           lbl_overall = "",

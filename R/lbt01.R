@@ -1,0 +1,113 @@
+#' Laboratory Test Results and Change from Baseline by Visit
+#'
+#' The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over
+#' the course of the trial.
+#'
+#' @inheritParams gen_args
+#'
+#' @details
+#'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
+#'  the analysis value for each visit.
+#'  * The `Absolute Change from Baseline` column, displays the number of patient and the mean, standard deviation,
+#'  median and range of changes relative to the baseline.
+#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
+#'  * Split columns by arm, typically `ACTARM`.
+#'  * Does not include a total column by default.
+#'
+#' @importFrom dplyr filter
+#'
+#' @export
+#'
+#' @examples
+#' library(scda)
+#' library(dplyr)
+#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
+#' adsl <- sd$adsl
+#' adlb <- sd$adlb |>
+#'  mutate(ANL01FL = 'Y')
+#'
+#' lbt01_1(adsl, adlb)
+#'
+#'
+lbt01_1 <- function(adsl, adlb,
+                    armvar = .study$armvar,
+                    summaryvars = c("AVAL", "CHG"),
+                    lbl_overall = .study$lbl_overall,
+                    prune_0 = TRUE,
+                    deco = std_deco("LBT01"),
+                    .study = list(
+                      armvar = "ACTARM",
+                      lbl_overall = ""
+                    )) {
+
+  adlb <- adlb |>
+    filter(bol_YN(ANL01FL))
+
+  lbl_AVISIT <- var_labels_for(adlb, "AVISIT")
+  lbl_PARAM <- var_labels_for(adlb, "PARAM")
+
+  lyt <- lbt01_1_lyt(
+    armvar = armvar,
+    summaryvars = summaryvars,
+    lbl_overall = lbl_overall,
+    lbl_AVISIT = lbl_AVISIT,
+    lbl_PARAM = lbl_PARAM,
+    deco = deco
+  )
+
+  tbl <- build_table(
+    lyt,
+    df = adlb,
+    alt_counts_df = adsl
+  )
+
+  if(prune_0) tbl <- tbl |> trim_rows()
+
+  tbl_sorted <- tbl
+
+  # if (identical(lbl_overall,""))
+  #   tbl_sorted[, -ncol(tbl_sorted)]
+  # else
+    tbl_sorted
+
+}
+
+
+lbt01_1_lyt <- function(armvar = .study$armvar,
+                        summaryvars = .study$summaryvars,
+                        summaryvars_lbls = var_labels_for(adlb, summaryvars),
+                        lbl_overall = .study$lbl_overall,
+                        lbl_AVISIT = "",
+                        lbl_PARAM = "",
+                        gr_grp = .study$gr_grp,
+                        deco = std_deco("LBT01"),
+                        .study = list(
+                          armvar = "ACTARM",
+                          lbl_overall = "",
+                        )
+) {
+
+
+  # TODO solve the problem of the header (maybe \n)
+  # TODE solve the problem of the overall column
+
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
+    split_cols_by(armvar) |>
+    split_rows_by(
+      "PARAM",
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_PARAM
+    ) |>
+    split_rows_by(
+      "AVISIT",
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_AVISIT
+    ) |>
+    split_cols_by_multivar(
+      vars = c("AVAL", "CHG"),
+      varlabels = c("Analysis \nValue", "Change from \nBaseline"),
+    ) |>
+    summarize_colvars()
+}
