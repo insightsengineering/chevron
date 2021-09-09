@@ -14,6 +14,8 @@
 #'  * Split columns by arm (planned or actual / code or description)
 #'  * Include a total column by default
 #'
+#' @importFrom magrittr %>%
+#'
 #' @export
 #'
 #' @examples
@@ -79,9 +81,9 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                           overall_col = "All Patients"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) |>
-    split_cols_by(var = armvar) |>
-    add_overall_col(lbl_overall) |>
-    add_colcounts() |>
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
+    split_cols_by(var = armvar) %>%
+    add_overall_col(lbl_overall) %>%
+    add_colcounts() %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }

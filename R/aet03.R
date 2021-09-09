@@ -15,6 +15,7 @@
 #'  * Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)
 #'
 #' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 #'
 #' @export
 #'
@@ -24,7 +25,7 @@
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae |>
+#' adae <- sd$adae %>%
 #'  mutate(ANL01FL = 'Y')
 #'
 #' aet03_1(adsl, adae)
@@ -40,7 +41,7 @@ aet03_1 <- function(adsl, adae,
                       lbl_overall = ""
                     )){
 
-  adae <- adae |>
+  adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
 
@@ -69,16 +70,16 @@ aet03_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl |> trim_rows()
+  if(prune_0) tbl <- tbl %>% trim_rows()
 
 
-  tbl_sorted <- tbl |>
-    # trim_rows() |>
+  tbl_sorted <- tbl %>%
+    # trim_rows() %>%
     sort_at_path(
       path = "AEBODSYS",
       scorefun = cont_n_allcols,
       decreasing = TRUE
-    ) |>
+    ) %>%
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
       scorefun = cont_n_allcols,
@@ -110,16 +111,16 @@ aet03_1_lyt <- function(armvar = .study$armvar,
 
 
   # create a Pre-data Table Layout
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
-    split_cols_by(var = armvar) |>
-    add_colcounts() |>
-    add_overall_col(label = lbl_overall) |>
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    add_overall_col(label = lbl_overall) %>%
 
     summarize_occurrences_by_grade(
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = gradation
       )
-    ) |>
+    ) %>%
 
     split_rows_by(
       "AEBODSYS",
@@ -129,13 +130,13 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_AEBODSYS
-    ) |>
+    ) %>%
 
     summarize_occurrences_by_grade(
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = gradation
       )
-    ) |>
+    ) %>%
 
     split_rows_by(
       "AEDECOD",
@@ -145,18 +146,18 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_AEDECOD
-    ) |>
+    ) %>%
 
     summarize_occurrences_by_grade(
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = gradation
       )
-    ) |>
+    ) %>%
 
     # count_occurrences_by_grade(
     #   var = "AESEV",
     #   .indent_mods = -1L
-    # ) |>
+    # ) %>%
     append_topleft(paste0("  ", lbl_AESEV))
 
 }

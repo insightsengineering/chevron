@@ -15,6 +15,7 @@
 #'  Grade is sorted by severity.
 #'
 #' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 #'
 #' @export
 #'
@@ -23,7 +24,7 @@
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae |>
+#' adae <- sd$adae %>%
 #'  mutate(ANL01FL = 'Y')
 #'
 #' aet04_1(adsl, adae)
@@ -41,7 +42,7 @@ aet04_1 <- function(adsl, adae,
                       lbl_overall = ""
                     )) {
 
-  adae <- adae |>
+  adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
@@ -79,13 +80,13 @@ aet04_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl |> trim_rows()
+  if(prune_0) tbl <- tbl %>% trim_rows()
 
-  tbl_sorted <- tbl |>
+  tbl_sorted <- tbl %>%
     sort_at_path(
       path =  c("AEBODSYS"),
       scorefun = cont_n_allcols
-    ) |>
+    ) %>%
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
       scorefun = cont_n_allcols
@@ -117,14 +118,14 @@ aet04_1_lyt <- function(armvar = .study$armvar,
                         )
                         ) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  |>
-    split_cols_by(var = armvar) |>
-    add_colcounts() |>
-    add_overall_col(label = lbl_overall) |>
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    add_overall_col(label = lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "AETOXGR",
       grade_groups = gr_grp
-    ) |>
+    ) %>%
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
@@ -133,12 +134,12 @@ aet04_1_lyt <- function(armvar = .study$armvar,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_AEBODSYS
-    ) |>
+    ) %>%
     summarize_occurrences_by_grade(
       var = "AETOXGR",
       grade_groups = gr_grp,
       .indent_mods = 0L
-    ) |>
+    ) %>%
     split_rows_by(
       "AEDECOD",
       child_labels = "visible",
@@ -147,16 +148,16 @@ aet04_1_lyt <- function(armvar = .study$armvar,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_AEDECOD
-    ) |>
+    ) %>%
     summarize_num_patients(
     var = "USUBJID",
     .stats = "unique",
     .labels = "- Any Grade -"
-    ) |>
+    ) %>%
     count_occurrences_by_grade(
     var = "AETOXGR",
     grade_groups = gr_grp[-1],
     .indent_mods = -1L
-    ) |>
+    ) %>%
     append_varlabels(adae, "AETOXGR", indent = 2L)
 }
