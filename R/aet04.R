@@ -15,6 +15,7 @@
 #'  Grade is sorted by severity.
 #'
 #' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 #'
 #' @export
 #'

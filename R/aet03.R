@@ -15,6 +15,7 @@
 #'  * Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)
 #'
 #' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 #'
 #' @export
 #'

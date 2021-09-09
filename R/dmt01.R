@@ -14,6 +14,8 @@
 #'  * Split columns by arm (planned or actual / code or description)
 #'  * Include a total column by default
 #'
+#' @importFrom magrittr %>%
+#'
 #' @export
 #'
 #' @examples

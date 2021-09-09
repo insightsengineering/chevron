@@ -13,6 +13,7 @@
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
 #'
 #' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 #'
 #' @export
 #'

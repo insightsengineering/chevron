@@ -37,6 +37,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'  * Sort withdrawal reasons by alphabetic order
 #'
 #' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 #'
 #' @export
 #'

@@ -2,6 +2,8 @@
 #'
 #' @inheritParams gen_args
 #'
+#' @importFrom magrittr %>%
+#'
 #' @export
 #'
 #' @examples
