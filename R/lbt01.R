@@ -57,8 +57,7 @@ lbt01_1 <- function(adsl, adlb,
 
   tbl <- build_table(
     lyt,
-    df = adlb,
-    alt_counts_df = adsl
+    df = adlb
   )
 
   if(prune_0) tbl <- tbl %>% trim_rows()
@@ -90,24 +89,28 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
 
   # TODO solve the problem of the header (maybe \n)
   # TODE solve the problem of the overall column
+  # remove change from baseline in BASELINE
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
     split_cols_by(armvar) %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_PARAM
+      label_pos = "hidden",
+      split_label = paste(lbl_PARAM)
     ) %>%
     split_rows_by(
       "AVISIT",
       split_fun = drop_split_levels,
-      label_pos = "topleft",
+      label_pos = "hidden",
       split_label = lbl_AVISIT
     ) %>%
     split_cols_by_multivar(
       vars = c("AVAL", "CHG"),
       varlabels = c("Analysis \nValue", "Change from \nBaseline"),
     ) %>%
-    summarize_colvars()
+    summarize_colvars() %>%
+    append_topleft(lbl_PARAM) %>%
+    append_topleft(c(paste(" ",lbl_AVISIT)," "))
+
 }
