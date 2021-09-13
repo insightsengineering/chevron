@@ -4,11 +4,13 @@
 #' the course of the trial.
 #'
 #' @inheritParams gen_args
+#' @param visits `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to be
+#'   displayed
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
 #'  the analysis value for each visit.
-#'  * The `Absolute Change from Baseline` column, displays the number of patient and the mean, standard deviation,
+#'  * The `Change from Baseline` column, displays the number of patient and the mean, standard deviation,
 #'  median and range of changes relative to the baseline.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm, typically `ACTARM`.
@@ -32,6 +34,7 @@
 lbt01_1 <- function(adsl, adlb,
                     armvar = .study$armvar,
                     summaryvars = c("AVAL", "CHG"),
+                    visits = "AVISIT", # or ATPTN
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("LBT01"),
@@ -43,12 +46,13 @@ lbt01_1 <- function(adsl, adlb,
   adlb <- adlb %>%
     filter(bol_YN(ANL01FL))
 
-  lbl_AVISIT <- var_labels_for(adlb, "AVISIT")
+  lbl_AVISIT <- var_labels_for(adlb, visits)
   lbl_PARAM <- var_labels_for(adlb, "PARAM")
 
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
+    visits = visits,
     lbl_overall = lbl_overall,
     lbl_AVISIT = lbl_AVISIT,
     lbl_PARAM = lbl_PARAM,
@@ -75,6 +79,7 @@ lbt01_1 <- function(adsl, adlb,
 lbt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$summaryvars,
                         summaryvars_lbls = var_labels_for(adlb, summaryvars),
+                        visits = "AVISIT",
                         lbl_overall = .study$lbl_overall,
                         lbl_AVISIT = "",
                         lbl_PARAM = "",
@@ -82,7 +87,7 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("LBT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = "",
+                          lbl_overall = ""
                         )
 ) {
 
@@ -100,7 +105,7 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
       split_label = paste(lbl_PARAM)
     ) %>%
     split_rows_by(
-      "AVISIT",
+      visits,
       split_fun = drop_split_levels,
       label_pos = "hidden",
       split_label = lbl_AVISIT
