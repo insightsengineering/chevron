@@ -6,6 +6,7 @@
 \usage{
 ext01_1(
   adex,
+  adsl,
   armvar = .study$armvar,
   summaryvars = "AVAL",
   lbl_overall = .study$lbl_overall,
@@ -16,6 +17,8 @@ ext01_1(
 }
 \arguments{
 \item{adex}{Exposure Analysis Dataset}
+
+\item{adsl}{Subject Level Analysis Dataset}
 
 \item{armvar}{variable used for column splitting}
 
@@ -30,12 +33,17 @@ ext01_1(
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Exposure Summary Table
+The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
+missed, and treatment duration.
 }
 \details{
 \itemize{
 \item Default Exposure table
+\item The \code{n} row provides the number of non-missing values. The percentages for categorical variables is based on \code{n}.
+The percentages for \verb{Total number of patients with at least one dose modification} are based on the number of
+patients in the corresponding analysis population given by \code{N}.
 \item Split columns by arm, typically \code{ACTARM}.
+\item Does not include a total column by default.
 }
 }
 \examples{
@@ -46,6 +54,7 @@ adsl <- sd$adsl
 adex <- sd$adex |>
  mutate(ANL01FL = 'Y')
 
-ext01_1(adex)
+ext01_1(adex, adsl)
+ext01_1(adex, lbl_overall = "haha")
 
 }

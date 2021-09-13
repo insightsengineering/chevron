@@ -1,5 +1,7 @@
 #' Exposure Summary Table
 #'
+#'The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
+#'missed, and treatment duration.
 #'
 #'
 #' @inheritParams gen_args
@@ -7,8 +9,11 @@
 #'
 #' @details
 #'  * Default Exposure table
+#'  * The `n` row provides the number of non-missing values. The percentages for categorical variables is based on `n`.
+#'  The percentages for `Total number of patients with at least one dose modification` are based on the number of
+#'  patients in the corresponding analysis population given by `N`.
 #'  * Split columns by arm, typically `ACTARM`.
-
+#'  * Does not include a total column by default.
 #'
 #' @export
 #'
@@ -20,10 +25,11 @@
 #' adex <- sd$adex |>
 #'  mutate(ANL01FL = 'Y')
 #'
-#' ext01_1(adex)
+#' ext01_1(adex, adsl)
 #' ext01_1(adex, lbl_overall = "haha")
 #'
 ext01_1 <- function(adex,
+                    adsl,
                     armvar = .study$armvar,
                     summaryvars = "AVAL",
                     lbl_overall = .study$lbl_overall,
@@ -53,7 +59,7 @@ ext01_1 <- function(adex,
     deco = deco
   )
 
-  tbl <- build_table(lyt, adex)
+  tbl <- build_table(lyt, adex, adsl)
 
 
   if(prune_0) tbl <- tbl %>% prune_table()
@@ -97,7 +103,11 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #' @param summaryvars
-#' @param group
+#' @param group `(nested list)` providing for each parameter value that should be analyzed in a categorical way: the
+#'   name of the parameter `(string)`, a series of breakpoints `(vector)` where the first breakpoints is typically `-Inf`
+#'   and the last `Inf`, and a series of name which will describe each category `(vector)`
+#'@param paramvar `(vector)` providing the name of the parameters whose statistical summary should be presented. To
+#'  analyze all, provide `paramvar = "ALL"`, to analyze none, provide `paramvar = ""`
 #'
 #' @details
 #'  * Default Exposure table
@@ -114,11 +124,13 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' adex <- sd$adex |>
 #'  mutate(ANL01FL = 'Y')
 #'
-#' ext01_2(adex)
+#' ext01_2(adex,adsl)
 #'
 ext01_2 <- function(adex,
+                    adsl,
                     armvar = .study$armvar,
                     group = .study$group,
+                    paramvar = .study$paramvar,
                     summaryvars = "AVAL",
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
@@ -134,6 +146,7 @@ ext01_2 <- function(adex,
                                           c("<5000","5000-7000","7000-9000",">9000")
                                             )
                                         ),
+                      paramvar = c(""),
                       lbl_overall = ""
                     )) {
 
@@ -162,6 +175,19 @@ ext01_2 <- function(adex,
     }
   }
 
+
+  # Set to NA the AVAL value of the parameters for which a statistical summary should not be presented
+  if(paramvar != "ALL"){
+
+    adex <- adex %>%
+    mutate(AVAL = ifelse(PARAM %in% paramvar, AVAL, NA))
+
+  }
+
+
+  adex$AVAL_gp = factor(adex$AVAL_gp, exclude = NULL)
+
+
   lyt <- ext01_2_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
@@ -170,7 +196,7 @@ ext01_2 <- function(adex,
     deco = deco
   )
 
-  tbl <- build_table(lyt, adex)
+  tbl <- build_table(lyt, adex, adsl)
 
   if(prune_0) tbl <- tbl %>% prune_table()
 
@@ -202,14 +228,6 @@ ext01_2_lyt <- function(armvar = .study$armvar,
       "PARAM",
       split_fun = NULL
     ) %>%
-    summarize_vars(vars = c("AVAL","AVAL_gp"))
+    summarize_vars(vars = c("AVAL","AVAL_gp"), show_labels = "hidden", var_labels = c("Summary","Categories"))
 
 }
-
-
-
-
-
-
-
-

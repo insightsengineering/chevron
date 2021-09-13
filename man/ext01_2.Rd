@@ -6,25 +6,34 @@
 \usage{
 ext01_2(
   adex,
+  adsl,
   armvar = .study$armvar,
   group = .study$group,
+  paramvar = .study$paramvar,
   summaryvars = "AVAL",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
   .study = list(armvar = "ACTARM", group =
-    list(list("Dose administered during constant dosing interval", c(-Inf, 100, 200, 500,
-    Inf), c("A", "B", "C", "D")),
-    list("Number of doses administered during constant dosing interval", c(-Inf, 100,
-    200, 500, Inf), c("a", "b", "c", "d"))), lbl_overall = "")
+    list(list("Dose administered during constant dosing interval", c(-Inf, 700, 900,
+    1200, Inf), c("<700", "700-900", "900-1200", ">1200")),
+    list("Total dose administered", c(-Inf, 5000, 7000, 9000, Inf), c("<5000",
+    "5000-7000", "7000-9000", ">9000"))), paramvar = c(""), lbl_overall = "")
 )
 }
 \arguments{
 \item{adex}{Exposure Analysis Dataset}
 
+\item{adsl}{Subject Level Analysis Dataset}
+
 \item{armvar}{variable used for column splitting}
 
-\item{group}{}
+\item{group}{\verb{(nested list)} providing for each parameter value that should be analyzed in a categorical way: the
+name of the parameter \code{(string)}, a series of breakpoints \code{(vector)} where the first breakpoints is typically \code{-Inf}
+and the last \code{Inf}, and a series of name which will describe each category \code{(vector)}}
+
+\item{paramvar}{\code{(vector)} providing the name of the parameters whose statistical summary should be presented. To
+analyze all, provide \code{paramvar = "ALL"}, to analyze none, provide \code{paramvar = ""}}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -51,6 +60,6 @@ adsl <- sd$adsl
 adex <- sd$adex |>
  mutate(ANL01FL = 'Y')
 
-ext01_1(adex)
+ext01_2(adex,adsl)
 
 }
