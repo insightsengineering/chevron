@@ -92,7 +92,6 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
 ) {
 
 
-  # TODO solve the problem of the header (maybe \n)
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
 
