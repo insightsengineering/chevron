@@ -162,7 +162,7 @@ ext01_2 <- function(adex,
 
 
 
-  adex$AVAL_gp = NA
+  adex$AVAL_gp = NA #NA
 
   for(g in group){
 
@@ -183,10 +183,6 @@ ext01_2 <- function(adex,
     mutate(AVAL = ifelse(PARAM %in% paramvar, AVAL, NA))
 
   }
-
-
-  adex$AVAL_gp = factor(adex$AVAL_gp, exclude = NULL)
-
 
   lyt <- ext01_2_lyt(
     armvar = armvar,
