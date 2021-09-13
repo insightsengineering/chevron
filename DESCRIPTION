@@ -23,7 +23,8 @@ Imports:
   rtables,
   assertthat,
   dplyr,
-  rlang
+  rlang,
+  magrittr
 Suggests:
     scda.2021,
     scda,

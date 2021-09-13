@@ -22,7 +22,7 @@ ext01_1(
 
 \item{armvar}{variable used for column splitting}
 
-\item{summaryvars}{}
+\item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -55,6 +55,5 @@ adex <- sd$adex |>
  mutate(ANL01FL = 'Y')
 
 ext01_1(adex, adsl)
-ext01_1(adex, lbl_overall = "haha")
 
 }

@@ -30,10 +30,12 @@ ext01_2(
 
 \item{group}{\verb{(nested list)} providing for each parameter value that should be analyzed in a categorical way: the
 name of the parameter \code{(string)}, a series of breakpoints \code{(vector)} where the first breakpoints is typically \code{-Inf}
-and the last \code{Inf}, and a series of name which will describe each category \code{(vector)}}
+and the last \code{Inf}, and a series of name which will describe each category \code{(vector)}.}
 
 \item{paramvar}{\code{(vector)} providing the name of the parameters whose statistical summary should be presented. To
-analyze all, provide \code{paramvar = "ALL"}, to analyze none, provide \code{paramvar = ""}}
+analyze all, provide \code{paramvar = "ALL"}, to analyze none, provide \code{paramvar = ""}.}
+
+\item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -48,8 +50,12 @@ Exposure Summary Table with grouping options
 }
 \details{
 \itemize{
-\item Default Exposure table
+\item Supplementary Exposure table with binning of desired analysis values.
+\item The \code{n} row provides the number of non-missing values. The percentages for categorical variables is based on \code{n}.
+The percentages for \verb{Total number of patients with at least one dose modification} are based on the number of
+patients in the corresponding analysis population given by \code{N}.
 \item Split columns by arm, typically \code{ACTARM}.
+\item Does not include a total column by default.
 }
 }
 \examples{

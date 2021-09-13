@@ -5,7 +5,7 @@
 #'
 #'
 #' @inheritParams gen_args
-#' @param summaryvars
+#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
 #'
 #' @details
 #'  * Default Exposure table
@@ -26,7 +26,6 @@
 #'  mutate(ANL01FL = 'Y')
 #'
 #' ext01_1(adex, adsl)
-#' ext01_1(adex, lbl_overall = "haha")
 #'
 ext01_1 <- function(adex,
                     adsl,
@@ -102,16 +101,20 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' Exposure Summary Table with grouping options
 #'
 #' @inheritParams gen_args
-#' @param summaryvars
+#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param group `(nested list)` providing for each parameter value that should be analyzed in a categorical way: the
 #'   name of the parameter `(string)`, a series of breakpoints `(vector)` where the first breakpoints is typically `-Inf`
-#'   and the last `Inf`, and a series of name which will describe each category `(vector)`
+#'   and the last `Inf`, and a series of name which will describe each category `(vector)`.
 #'@param paramvar `(vector)` providing the name of the parameters whose statistical summary should be presented. To
-#'  analyze all, provide `paramvar = "ALL"`, to analyze none, provide `paramvar = ""`
+#'  analyze all, provide `paramvar = "ALL"`, to analyze none, provide `paramvar = ""`.
 #'
 #' @details
-#'  * Default Exposure table
+#'  * Supplementary Exposure table with binning of desired analysis values.
+#'  * The `n` row provides the number of non-missing values. The percentages for categorical variables is based on `n`.
+#'  The percentages for `Total number of patients with at least one dose modification` are based on the number of
+#'  patients in the corresponding analysis population given by `N`.
 #'  * Split columns by arm, typically `ACTARM`.
+#'  * Does not include a total column by default.
 
 #'
 #' @export
