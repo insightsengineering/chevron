@@ -8,6 +8,8 @@ lbt01_1(
   adsl,
   adlb,
   armvar = .study$armvar,
+  summaryvars = c("AVAL", "CHG"),
+  visits = "AVISIT",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
@@ -21,6 +23,9 @@ lbt01_1(
 
 \item{armvar}{variable used for column splitting}
 
+\item{visits}{\code{(string)} typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to be
+displayed}
+
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{remove 0 count rows}
@@ -30,16 +35,18 @@ lbt01_1(
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-The LBT01 table provides an overview ...
+The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over
+the course of the trial.
 }
 \details{
 \itemize{
-\item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
+\item The \verb{Analysis Value} column, displays the number of patients, the mean, standard deviation, median and range of
+the analysis value for each visit.
+\item The \verb{Change from Baseline} column, displays the number of patient and the mean, standard deviation,
+median and range of changes relative to the baseline.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
-\item Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
-Grade is sorted by severity.
 }
 }
 \examples{
@@ -47,10 +54,10 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adlb <- sd$adlb |>
+adlb <- sd$adlb \%>\%
  mutate(ANL01FL = 'Y')
 
-lbt01_1(adsl,adlb)
+lbt01_1(adsl, adlb)
 
 
 }
