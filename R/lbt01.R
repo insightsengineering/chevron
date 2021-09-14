@@ -115,6 +115,6 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
     ) %>%
     summarize_colvars() %>%
     append_topleft(lbl_PARAM) %>%
-    append_topleft(c(paste(" ",lbl_AVISIT)," "))
+    append_topleft(c(paste(" ", lbl_AVISIT), " "))
 
 }
