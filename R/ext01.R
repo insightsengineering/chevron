@@ -40,8 +40,8 @@ ext01_1 <- function(adex,
                     )) {
 
     # provide a clearer error message in the case of missing variable
-    missing_var = setdiff(summaryvars,colnames(adex))
-    if(length(missing_var) > 0){
+    missing_var = setdiff(summaryvars, colnames(adex))
+    if(length(missing_var) > 0) {
 
       stop(paste0("\nVariable(s) does not exist in the dataset: \n",
                   paste(missing_var, "\n", collapse = "")
@@ -66,7 +66,7 @@ ext01_1 <- function(adex,
   #TDOD: sort
   tbl_sorted <- tbl
 
-  if (identical(lbl_overall,""))
+  if (identical(lbl_overall, ""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -141,12 +141,12 @@ ext01_2 <- function(adex,
                     .study = list(
                       armvar = "ACTARM",
                       group = list(list("Dose administered during constant dosing interval",
-                                          c(-Inf,700,900,1200,Inf),
-                                          c("<700","700-900","900-1200",">1200")
+                                          c(-Inf, 700, 900, 1200, Inf),
+                                          c("<700", "700-900", "900-1200", ">1200")
                                            ),
                                        list("Total dose administered",
-                                          c(-Inf,5000,7000,9000,Inf),
-                                          c("<5000","5000-7000","7000-9000",">9000")
+                                          c(-Inf, 5000, 7000, 9000, Inf),
+                                          c("<5000", "5000-7000", "7000-9000", ">9000")
                                             )
                                         ),
                       paramvar = c(""),
@@ -154,8 +154,8 @@ ext01_2 <- function(adex,
                     )) {
 
     # provide a clearer error message in the case of missing variable
-    missing_var = setdiff(summaryvars,colnames(adex))
-    if(length(missing_var) > 0){
+    missing_var = setdiff(summaryvars, colnames(adex))
+    if(length(missing_var) > 0) {
 
       stop(paste0("\nVariable(s) does not exist in the dataset: \n",
                   paste(missing_var, "\n", collapse = "")
@@ -163,24 +163,19 @@ ext01_2 <- function(adex,
            )
     }
 
+  adex$AVAL_gp <- NA #NA
+
+  for(g in group) {
 
 
-  adex$AVAL_gp = NA #NA
+    selected_row <- adex$PARAM == g[[1]]
 
-  for(g in group){
+    adex[selected_row, "AVAL_gp"] <- as.character(cut(adex$AVAL[selected_row], breaks = g[[2]], labels = g[[3]]))
 
-    for(i in 1:nrow(adex)){
-
-      if(adex$PARAM[i] == g[[1]]){
-
-        adex$AVAL_gp[i] = as.character(cut(adex$AVAL[i], breaks = g[[2]], labels = g[[3]]))
-      }
-    }
   }
 
-
   # Set to NA the AVAL value of the parameters for which a statistical summary should not be presented
-  if(paramvar != "ALL"){
+  if(paramvar != "ALL") {
 
     adex <- adex %>%
     mutate(AVAL = ifelse(PARAM %in% paramvar, AVAL, NA))
@@ -202,7 +197,7 @@ ext01_2 <- function(adex,
   #TDOD: sort
   tbl_sorted <- tbl
 
-  if (identical(lbl_overall,""))
+  if (identical(lbl_overall, ""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -227,6 +222,6 @@ ext01_2_lyt <- function(armvar = .study$armvar,
       "PARAM",
       split_fun = NULL
     ) %>%
-    summarize_vars(vars = c("AVAL","AVAL_gp"), show_labels = "hidden", var_labels = c("Summary","Categories"))
+    summarize_vars(vars = c("AVAL", "AVAL_gp"), show_labels = "hidden", var_labels = c("Summary", "Categories"))
 
 }

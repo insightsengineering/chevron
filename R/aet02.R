@@ -48,6 +48,7 @@ aet02_1 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
+
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -62,7 +63,10 @@ aet02_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0)
+    tbl <- prune_table(tbl)
+  else
+    tbl
 
   tbl_sorted <- tbl %>%
     sort_at_path(
