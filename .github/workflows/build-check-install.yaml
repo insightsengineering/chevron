@@ -16,7 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {image: waddella/rocker_rstudio_4.1.0_deps, tag: 'latest'}
           - {image: ghcr.io/insightsengineering/rstudio_4.1.0_bioc_3.13, tag: 'latest'}
 
     steps:
