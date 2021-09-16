@@ -13,7 +13,7 @@ jobs:
     name: Generate
     runs-on: ubuntu-latest
     container:
-      image: rocker/tidyverse:3.6.3
+      image: rocker/tidyverse:4.1.0
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
