@@ -22,7 +22,7 @@ dst01_3(
 
 \item{adae}{Adverse Events Analysis Dataset}
 
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 

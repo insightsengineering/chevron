@@ -20,7 +20,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' study a reason is provided.
 #'
 #' @inheritParams gen_args
-#' @param arm (`string`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
+#' @param armvar (`string`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
 #' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
