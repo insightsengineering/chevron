@@ -19,20 +19,16 @@ jobs:
           - {image: ghcr.io/insightsengineering/rstudio_4.1.0_bioc_3.13, tag: 'latest'}
 
     steps:
-
-# TODO: add qpdf
-      - name: Check if Docker Image meets Requirements
+      - name: Check if Docker image meets requirements
         run: |
           lsb=$(lsb_release -d)
           [[ ! $lsb =~ "Ubuntu" ]] && exit 1
 
-          for PKG in r-base curl git
-          do
-             dpkg -l $PKG
-             if [[ ! $? ]]; then
-               echo "System package $PGK is not available"
-               exit 1
-             fi
+          required_pkgs="r-base curl git"
+          for PKG in $required_pkgs
+          do {
+            DPKG_PAGER=cat dpkg -l $PKG
+          }
           done
         shell: bash
 
@@ -64,7 +60,6 @@ jobs:
         shell: Rscript {0}
         env:
           GITHUB_PAT: ${{ secrets.REPO_GITHUB_TOKEN }} # or ${{ secrets.GITHUB_TOKEN }}
-
 
       - name: Checkout repo during PR
         uses: actions/checkout@v2
@@ -138,13 +133,13 @@ jobs:
         shell: bash
 
 # TODO: if configurable then --as-cran optionally
-# TODO: TESTING_DEPTH
       - name: Run R CMD CHECK
         run: R CMD check --no-manual ${{ env.PKGBUILD }}
         shell: bash
         continue-on-error: true
         env:
           TESTING_DEPTH: 1
+          _R_CHECK_TESTS_NLINES_: 0
 
       - name: Catch warnings in R CMD check output
         id: catch-errors

@@ -21,7 +21,7 @@ dst01_1(
 
 \item{adae}{Adverse Events Analysis Dataset}
 
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -35,8 +35,6 @@ period.}
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
-
-\item{arm}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 }
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
