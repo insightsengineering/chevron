@@ -16,24 +16,19 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {image: waddella/rocker_rstudio_4.1.0_deps, tag: 'latest'}
           - {image: ghcr.io/insightsengineering/rstudio_4.1.0_bioc_3.13, tag: 'latest'}
 
     steps:
-
-# TODO: add qpdf
-      - name: Check if Docker Image meets Requirements
+      - name: Check if Docker image meets requirements
         run: |
           lsb=$(lsb_release -d)
           [[ ! $lsb =~ "Ubuntu" ]] && exit 1
 
-          for PKG in r-base curl git
-          do
-             dpkg -l $PKG
-             if [[ ! $? ]]; then
-               echo "System package $PGK is not available"
-               exit 1
-             fi
+          required_pkgs="r-base curl git"
+          for PKG in $required_pkgs
+          do {
+            DPKG_PAGER=cat dpkg -l $PKG
+          }
           done
         shell: bash
 
@@ -65,7 +60,6 @@ jobs:
         shell: Rscript {0}
         env:
           GITHUB_PAT: ${{ secrets.REPO_GITHUB_TOKEN }} # or ${{ secrets.GITHUB_TOKEN }}
-
 
       - name: Checkout repo during PR
         uses: actions/checkout@v2
@@ -106,7 +100,6 @@ jobs:
           }
         shell: Rscript {0}
 
-
       - name: Install R package dependencies
         run: |
           setwd("${{ github.event.repository.name }}")
@@ -121,11 +114,14 @@ jobs:
 
           if (file.exists("staged_dependencies.yaml")) {
             cat("\nInstall Staged Dependencies\n\n\n")
-            if (!require("staged.dependencies")) remotes::install_github("openpharma/staged.dependencies", ref = "main", Ncpus = ncores)
+            if (!require("staged.dependencies")) {
+              remotes::install_github("openpharma/staged.dependencies", ref = "v0.2", Ncpus = ncores, upgrade = "never")
+            }
             cat("\nCalculating Staged Dependency Table...\n\n")
-            print(staged.dependencies::dependency_table(), width = 120)
+            x <- staged.dependencies::dependency_table()
+            print(x, width = 120)
             cat("\n\n")
-            staged.dependencies::install_deps(install_project = FALSE, verbose = TRUE)
+            staged.dependencies::install_deps(dep_structure = x, install_project = FALSE, verbose = TRUE)
           }
         shell: Rscript {0}
         env:
@@ -138,13 +134,13 @@ jobs:
         shell: bash
 
 # TODO: if configurable then --as-cran optionally
-# TODO: TESTING_DEPTH
       - name: Run R CMD CHECK
         run: R CMD check --no-manual ${{ env.PKGBUILD }}
         shell: bash
         continue-on-error: true
         env:
           TESTING_DEPTH: 1
+          _R_CHECK_TESTS_NLINES_: 0
 
       - name: Catch warnings in R CMD check output
         id: catch-errors
