@@ -4,6 +4,7 @@
 #' the course of the trial.
 #'
 #' @inheritParams gen_args
+#' @param summaryvars `(vector of string)` the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
 #' @param visits `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to be
 #'   displayed
 #'

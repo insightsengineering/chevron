@@ -23,6 +23,8 @@ lbt01_1(
 
 \item{armvar}{variable used for column splitting}
 
+\item{summaryvars}{\verb{(vector of string)} the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+
 \item{visits}{\code{(string)} typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to be
 displayed}
 
