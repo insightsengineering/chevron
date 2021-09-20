@@ -3,7 +3,7 @@
 #' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row.
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`vector` of `string`) variables summarized in demographic table.
+#' @param summaryvars (`vector of strings`) variables summarized in demographic table.
 #' Usually a vector containing the following one or more of the following:
 #' `AAGE`, `AGEGR1`, `SEX`, `ETHNIC`, `RACE`, `BWGHTSI` and by default all of them.
 #'
@@ -70,6 +70,18 @@ dmt01_1 <- function(ad_bl,
 }
 
 
+#' DMT01 Layout 1 (Default)
+#'
+#' @param summaryvars (`vector of strings`) variables summarized in demographic table.
+#' @param summaryvars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dmt01_1_lyt(armvar = "ACTARM",
+#' summaryvars =  c("AAGE", "SEX", "ETHNIC"),
+#' summaryvars_lbls = c("AGE", "SEX", "ETHNICITY"))
 dmt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$summaryvars,
                         summaryvars_lbls = summaryvars,

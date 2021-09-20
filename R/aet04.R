@@ -100,6 +100,17 @@ aet04_1 <- function(adsl, adae,
 }
 
 
+#' AET04 Layout 1 (Default)
+#'
+#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
+#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param gr_grp (`list`) putting in correspondence severity levels and labels.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' aet04_1_lyt(armvar = "ACTARM")
 aet04_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",

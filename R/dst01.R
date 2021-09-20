@@ -98,6 +98,23 @@ dst01_1 <- function(adsl, adae,
 }
 
 
+#' DST01 Layout (Default)
+#'
+#' @inheritParams gen_args
+#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
+#'
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dst01_1_lyt(armvar = "ACTARM",
+#' status = "EOP01STT",
+#' reason = "DCP01RS")
 dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status = .study$status,
@@ -222,7 +239,23 @@ dst01_2 <- function(adsl, adae,
 
 }
 
-
+#' DST02 Layout (Supplementary)
+#'
+#' @inheritParams gen_args
+#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
+#'
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dst01_2_lyt(armvar = "ACTARM",
+#' status = "EOP01STT",
+#' reason = "DCP01RS")
 dst01_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status = .study$status,
@@ -382,7 +415,20 @@ dst01_3 <- function(adsl, adae,
 
 }
 
-
+#' DST03 Layout (Supplementary)
+#'
+#' @inheritParams gen_args
+#'
+#' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
+#'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dst01_3_lyt(armvar = "ACTARM",
+#' status_treatment = "EOTxx01")
 dst01_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status_treatment = .study$status,

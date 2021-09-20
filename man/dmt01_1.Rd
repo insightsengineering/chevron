@@ -20,7 +20,7 @@ dmt01_1(
 
 \item{armvar}{variable used for column splitting}
 
-\item{summaryvars}{(\code{vector} of \code{string}) variables summarized in demographic table.
+\item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.
 Usually a vector containing the following one or more of the following:
 \code{AAGE}, \code{AGEGR1}, \code{SEX}, \code{ETHNIC}, \code{RACE}, \code{BWGHTSI} and by default all of them.}
 

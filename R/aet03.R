@@ -95,6 +95,23 @@ aet03_1 <- function(adsl, adae,
 }
 
 
+#' AET03 Layout 1 (Default)
+#'
+#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
+#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param lbl_AESEV (`string`) text label for AESEV.
+#' @param gradation (`vector of strings`) describing the severity levels present in the dataset.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' aet03_1_lyt(armvar = "ACTARM",
+#'  lbl_overall = "",
+#'  lbl_AEBODSYS = "Body System or Organ Class",
+#'  lbl_AESEV = "Severity/Intensity",
+#'  lbl_AEDECOD = "Dictionary-Derived Term",
+#'  deco = std_deco("AET03"))
 aet03_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "",

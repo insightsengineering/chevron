@@ -82,6 +82,21 @@ aet02_1 <- function(adsl, adae,
 }
 
 
+#' AET01 Layout 1 (Default)
+#'
+#' @inheritParams gen_args
+#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
+#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' aet02_1_lyt(armvar = "ACTARM",
+#'  lbl_overall = "",
+#'  lbl_AEBODSYS = "Body System or Organ Class",
+#'  lbl_AEDECOD = "Dictionary-Derived Term",
+#'  deco = std_deco("AET02"))
 aet02_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",
@@ -181,7 +196,6 @@ aet02_2 <- function(adsl, adae,
   lbl_AEHLT <-  var_labels_for(adae, "AEHLT")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
-
   lyt <- aet02_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -223,6 +237,24 @@ aet02_2 <- function(adsl, adae,
 }
 
 
+#' AET01 Layout 2 (Supplementary)
+#'
+#' @inheritParams gen_args
+#'
+#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
+#' @param lbl_AEHLT (`string`) text label for AEHLT.
+#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' aet02_2_lyt(armvar = "ACTARM",
+#'  lbl_overall = "",
+#'  lbl_AEBODSYS = "Body System or Organ Class",
+#'  lbl_AEHLT = "High Level Term",
+#'  lbl_AEDECOD = "Dictionary-Derived Term",
+#'  deco = std_deco("AET02"))
 aet02_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",
@@ -363,6 +395,20 @@ aet02_3 <- function(adsl, adae,
 }
 
 
+#' AET01 Layout 3 (Supplementary)
+#'
+#' @inheritParams gen_args
+#'
+#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' aet02_3_lyt(armvar = "ACTARM",
+#'  lbl_overall = "",
+#'  lbl_AEDECOD = "Dictionary-Derived Term",
+#'  deco = std_deco("AET02"))
 aet02_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEDECOD = "AEDECOD",
