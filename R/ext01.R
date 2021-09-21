@@ -1,7 +1,7 @@
 #' Exposure Summary Table
 #'
-#'The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
-#'missed, and treatment duration.
+#' The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
+#' missed, and treatment duration.
 #'
 #'
 #' @inheritParams gen_args
