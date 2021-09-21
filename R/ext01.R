@@ -39,6 +39,7 @@ ext01_1 <- function(adex,
                       lbl_overall = ""
                     )) {
 
+
     # provide a clearer error message in the case of missing variable
     missing_var = setdiff(summaryvars, colnames(adex))
     if(length(missing_var) > 0) {
@@ -102,11 +103,8 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
-#' @param group `(nested list)` providing for each parameter value that should be analyzed in a categorical way: the
-#'   name of the parameter `(string)`, a series of breakpoints `(vector)` where the first breakpoints is typically `-Inf`
-#'   and the last `Inf`, and a series of name which will describe each category `(vector)`.
 #'@param paramvar `(vector)` providing the name of the parameters whose statistical summary should be presented. To
-#'  analyze all, provide `paramvar = "ALL"`, to analyze none, provide `paramvar = ""`.
+#'  analyze all, provide `paramvar = "ALL"` (Default), to analyze none, provide `paramvar = ""`.
 #'
 #' @details
 #'  * Supplementary Exposure table with binning of desired analysis values.
@@ -124,8 +122,20 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adex <- sd$adex |>
+#' adex <- sd$adex %>%
 #'  mutate(ANL01FL = 'Y')
+#'
+#' group <- list(list("Dose administered during constant dosing interval",
+#'                                          c(-Inf, 700, 900, 1200, Inf),
+#'                                          c("<700", "700-900", "900-1200", ">1200")
+#'                                           ),
+#'                                       list("Total dose administered",
+#'                                          c(-Inf, 5000, 7000, 9000, Inf),
+#'                                          c("<5000", "5000-7000", "7000-9000", ">9000")
+#'                                            )
+#'                                        )
+#'
+#'adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 #'
 #' ext01_2(adex,adsl)
 #'
@@ -140,16 +150,7 @@ ext01_2 <- function(adex,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      group = list(list("Dose administered during constant dosing interval",
-                                          c(-Inf, 700, 900, 1200, Inf),
-                                          c("<700", "700-900", "900-1200", ">1200")
-                                           ),
-                                       list("Total dose administered",
-                                          c(-Inf, 5000, 7000, 9000, Inf),
-                                          c("<5000", "5000-7000", "7000-9000", ">9000")
-                                            )
-                                        ),
-                      paramvar = c(""),
+                      paramvar = c("ALL"),
                       lbl_overall = ""
                     )) {
 
@@ -162,17 +163,6 @@ ext01_2 <- function(adex,
                   )
            )
     }
-
-  adex$AVAL_gp <- NA #NA
-
-  for(g in group) {
-
-
-    selected_row <- adex$PARAM == g[[1]]
-
-    adex[selected_row, "AVAL_gp"] <- as.character(cut(adex$AVAL[selected_row], breaks = g[[2]], labels = g[[3]]))
-
-  }
 
   # Set to NA the AVAL value of the parameters for which a statistical summary should not be presented
   if(paramvar != "ALL") {
@@ -222,6 +212,6 @@ ext01_2_lyt <- function(armvar = .study$armvar,
       "PARAM",
       split_fun = NULL
     ) %>%
-    summarize_vars(vars = c("AVAL", "AVAL_gp"), show_labels = "hidden", var_labels = c("Summary", "Categories"))
+    summarize_vars(vars = c("AVAL", "AVALCAT1"), show_labels = "hidden", var_labels = c("Summary", "Categories"))
 
 }

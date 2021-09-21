@@ -14,11 +14,7 @@ ext01_2(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", group =
-    list(list("Dose administered during constant dosing interval", c(-Inf, 700, 900,
-    1200, Inf), c("<700", "700-900", "900-1200", ">1200")),
-    list("Total dose administered", c(-Inf, 5000, 7000, 9000, Inf), c("<5000",
-    "5000-7000", "7000-9000", ">9000"))), paramvar = c(""), lbl_overall = "")
+  .study = list(armvar = "ACTARM", paramvar = c("ALL"), lbl_overall = "")
 )
 }
 \arguments{
@@ -28,12 +24,8 @@ ext01_2(
 
 \item{armvar}{variable used for column splitting}
 
-\item{group}{\verb{(nested list)} providing for each parameter value that should be analyzed in a categorical way: the
-name of the parameter \code{(string)}, a series of breakpoints \code{(vector)} where the first breakpoints is typically \code{-Inf}
-and the last \code{Inf}, and a series of name which will describe each category \code{(vector)}.}
-
 \item{paramvar}{\code{(vector)} providing the name of the parameters whose statistical summary should be presented. To
-analyze all, provide \code{paramvar = "ALL"}, to analyze none, provide \code{paramvar = ""}.}
+analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide \code{paramvar = ""}.}
 
 \item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
@@ -63,8 +55,20 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adex <- sd$adex |>
+adex <- sd$adex \%>\%
  mutate(ANL01FL = 'Y')
+
+group <- list(list("Dose administered during constant dosing interval",
+                                         c(-Inf, 700, 900, 1200, Inf),
+                                         c("<700", "700-900", "900-1200", ">1200")
+                                          ),
+                                      list("Total dose administered",
+                                         c(-Inf, 5000, 7000, 9000, Inf),
+                                         c("<5000", "5000-7000", "7000-9000", ">9000")
+                                           )
+                                       )
+
+adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 
 ext01_2(adex,adsl)
 
