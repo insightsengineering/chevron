@@ -52,7 +52,7 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adex <- sd$adex |>
+adex <- sd$adex \%>\%
  mutate(ANL01FL = 'Y')
 
 ext01_1(adex, adsl)

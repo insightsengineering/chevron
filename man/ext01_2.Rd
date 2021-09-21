@@ -24,6 +24,8 @@ ext01_2(
 
 \item{armvar}{variable used for column splitting}
 
+\item{group}{nest list for group-dependent data binning}
+
 \item{paramvar}{\code{(vector)} providing the name of the parameters whose statistical summary should be presented. To
 analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide \code{paramvar = ""}.}
 
@@ -71,7 +73,7 @@ group <- list(list("Dose administered during constant dosing interval",
 
 adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 
-adex$PARAM <- factor(adex$PARAM,
+adex[,"PARAM"] <- factor(adex[["PARAM"]],
                    c("Total number of doses administered",
                      "Total dose administered",
                      "Dose administered during constant dosing interval",

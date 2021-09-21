@@ -23,7 +23,7 @@
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adex <- sd$adex |>
+#' adex <- sd$adex %>%
 #'  mutate(ANL01FL = 'Y')
 #'
 #' ext01_1(adex, adsl)
@@ -94,7 +94,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
-#'@param paramvar `(vector)` providing the name of the parameters whose statistical summary should be presented. To
+#' @param paramvar `(vector)` providing the name of the parameters whose statistical summary should be presented. To
 #'  analyze all, provide `paramvar = "ALL"` (Default), to analyze none, provide `paramvar = ""`.
 #'
 #' @details
@@ -128,7 +128,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 #'
-#' adex$PARAM <- factor(adex$PARAM,
+#' adex[,"PARAM"] <- factor(adex[["PARAM"]],
 #'                    c("Total number of doses administered",
 #'                      "Total dose administered",
 #'                      "Dose administered during constant dosing interval",

@@ -7,15 +7,16 @@
 cut_by_group(df, col_data, col_group, group, new_col, as_factor = FALSE)
 }
 \arguments{
-\item{df}{\code{(dataframe)}}
+\item{df}{\code{(dataframe)} with a column of data to be cut and a column specifying the group of each observation.}
 
 \item{col_data}{\code{(string)} the column containing the data to be cut.}
 
-\item{col_group}{\code{(string)} the column containing the names of the groups accoring to which the data should be split.}
+\item{col_group}{\code{(string)} the column containing the names of the groups according to which the data should be
+split.}
 
 \item{group}{\verb{(nested list)} providing for each parameter value that should be analyzed in a categorical way: the
-name of the parameter \code{(string)}, a series of breakpoints \code{(vector)} where the first breakpoints is typically \code{-Inf}
-and the last \code{Inf}, and a series of name which will describe each category \code{(vector)}.}
+name of the parameter \code{(string)}, a series of breakpoints \code{(vector)} where the first breakpoints is typically
+\code{-Inf} and the last \code{Inf}, and a series of name which will describe each category \code{(vector)}.}
 
 \item{new_col}{\code{(string)} the name of the new column in which the cut label should he stored.}
 
@@ -28,7 +29,7 @@ and the last \code{Inf}, and a series of name which will describe each category 
 Cut by group
 }
 \examples{
-group = list(list("Dose administered during constant dosing interval",
+group <- list(list("Dose administered during constant dosing interval",
                                          c(-Inf, 700, 900, 1200, Inf),
                                          c("<700", "700-900", "900-1200", ">1200")
                                           ),
@@ -42,10 +43,10 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adex <- sd$adex |>
+adex <- sd$adex \%>\%
  mutate(ANL01FL = 'Y')
 
-adex_gp = cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
+adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
 
 head(adex_gp[,c("PARAM","AVAL","AVAL_gp")])
 

@@ -53,12 +53,13 @@ bol_YN <- function(x) {
 
 #' Cut by group
 #'
-#' @param df `(dataframe)`
+#' @param df `(dataframe)` with a column of data to be cut and a column specifying the group of each observation.
 #' @param col_data `(string)` the column containing the data to be cut.
-#' @param col_group `(string)` the column containing the names of the groups accoring to which the data should be split.
+#' @param col_group `(string)` the column containing the names of the groups according to which the data should be
+#'   split.
 #' @param group  `(nested list)` providing for each parameter value that should be analyzed in a categorical way: the
-#'   name of the parameter `(string)`, a series of breakpoints `(vector)` where the first breakpoints is typically `-Inf`
-#'   and the last `Inf`, and a series of name which will describe each category `(vector)`.
+#'   name of the parameter `(string)`, a series of breakpoints `(vector)` where the first breakpoints is typically
+#'   `-Inf` and the last `Inf`, and a series of name which will describe each category `(vector)`.
 #' @param new_col `(string)` the name of the new column in which the cut label should he stored.
 #' @param as_factor `(logical)` if TRUE, the new column is of type `factor` else `character`.
 #'
@@ -66,7 +67,7 @@ bol_YN <- function(x) {
 #' @export
 #'
 #' @examples
-#' group = list(list("Dose administered during constant dosing interval",
+#' group <- list(list("Dose administered during constant dosing interval",
 #'                                          c(-Inf, 700, 900, 1200, Inf),
 #'                                          c("<700", "700-900", "900-1200", ">1200")
 #'                                           ),
@@ -80,10 +81,10 @@ bol_YN <- function(x) {
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adex <- sd$adex |>
+#' adex <- sd$adex %>%
 #'  mutate(ANL01FL = 'Y')
 #'
-#' adex_gp = cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
+#' adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
 #'
 #' head(adex_gp[,c("PARAM","AVAL","AVAL_gp")])
 #'

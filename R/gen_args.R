@@ -27,10 +27,12 @@
 #' @param acg Concomitant Med. Grouping Defs Dataset
 #' @param adic Interval Censoring Analysis Dataset
 #'
+#' @param group nest list for group-dependent data binning
+#'
 gen_args <- function(
   armvar, lbl_overall, prune_0, deco, .study,
   ad_bl, adsl, adeg, adae, adcm, admh, aag, advs, adlb, adex, adsub, adrs, adtte,
-  adhy, adsaftte, addv, adcssrs, adqlqc, acg, adic
+  adhy, adsaftte, addv, adcssrs, adqlqc, acg, adic, group
 ) {
   NULL
 }
