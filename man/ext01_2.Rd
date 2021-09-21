@@ -2,7 +2,7 @@
 % Please edit documentation in R/ext01.R
 \name{ext01_2}
 \alias{ext01_2}
-\title{Exposure Summary Table with grouping options}
+\title{EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options}
 \usage{
 ext01_2(
   adex,
@@ -38,7 +38,7 @@ analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide
 \item{.study}{a list with default values for the arguments of the function}
 }
 \description{
-Exposure Summary Table with grouping options
+EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 }
 \details{
 \itemize{
@@ -48,6 +48,7 @@ The percentages for \verb{Total number of patients with at least one dose modifi
 patients in the corresponding analysis population given by \code{N}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
+\item Sorted by alphabetic order of the \code{PARAM} value. Transform to factor and re-level for custom order.
 }
 }
 \examples{
@@ -56,7 +57,7 @@ library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
 adex <- sd$adex \%>\%
- mutate(ANL01FL = 'Y')
+  mutate(ANL01FL = 'Y')
 
 group <- list(list("Dose administered during constant dosing interval",
                                          c(-Inf, 700, 900, 1200, Inf),
@@ -70,6 +71,12 @@ group <- list(list("Dose administered during constant dosing interval",
 
 adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 
-ext01_2(adex,adsl)
+adex$PARAM <- factor(adex$PARAM,
+                   c("Total number of doses administered",
+                     "Total dose administered",
+                     "Dose administered during constant dosing interval",
+                     "Number of doses administered during constant dosing interval"))
+
+ext01_2(adex, adsl)
 
 }

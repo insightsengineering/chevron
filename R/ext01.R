@@ -1,4 +1,4 @@
-#' Exposure Summary Table
+#' EXT01 Table 1 (Default) Exposure Summary Table
 #'
 #' The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
 #' missed, and treatment duration.
@@ -14,6 +14,7 @@
 #'  patients in the corresponding analysis population given by `N`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
+#'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
 #'
 #' @export
 #'
@@ -41,15 +42,7 @@ ext01_1 <- function(adex,
 
 
     # provide a clearer error message in the case of missing variable
-    missing_var = setdiff(summaryvars, colnames(adex))
-    if(length(missing_var) > 0) {
-
-      stop(paste0("\nVariable(s) does not exist in the dataset: \n",
-                  paste(missing_var, "\n", collapse = "")
-                  )
-           )
-    }
-
+  assert_colnames(adex, summaryvars)
 
   lyt <- ext01_1_lyt(
     armvar = armvar,
@@ -62,15 +55,13 @@ ext01_1 <- function(adex,
   tbl <- build_table(lyt, adex, adsl)
 
 
-  if(prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- tbl %>% prune_table()
 
-  #TDOD: sort
-  tbl_sorted <- tbl
 
   if (identical(lbl_overall, ""))
-    tbl_sorted[, -ncol(tbl_sorted)]
+    tbl[, -ncol(tbl)]
   else
-    tbl_sorted
+    tbl
 
 }
 
@@ -99,7 +90,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 
 # Version 2 ----
 
-#' Exposure Summary Table with grouping options
+#' EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 #'
 #' @inheritParams gen_args
 #' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
@@ -113,7 +104,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'  patients in the corresponding analysis population given by `N`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
-
+#'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
 #'
 #' @export
 #'
@@ -123,7 +114,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
 #' adex <- sd$adex %>%
-#'  mutate(ANL01FL = 'Y')
+#'   mutate(ANL01FL = 'Y')
 #'
 #' group <- list(list("Dose administered during constant dosing interval",
 #'                                          c(-Inf, 700, 900, 1200, Inf),
@@ -135,9 +126,15 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'                                            )
 #'                                        )
 #'
-#'adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
+#' adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 #'
-#' ext01_2(adex,adsl)
+#' adex$PARAM <- factor(adex$PARAM,
+#'                    c("Total number of doses administered",
+#'                      "Total dose administered",
+#'                      "Dose administered during constant dosing interval",
+#'                      "Number of doses administered during constant dosing interval"))
+#'
+#' ext01_2(adex, adsl)
 #'
 ext01_2 <- function(adex,
                     adsl,
@@ -154,18 +151,11 @@ ext01_2 <- function(adex,
                       lbl_overall = ""
                     )) {
 
-    # provide a clearer error message in the case of missing variable
-    missing_var = setdiff(summaryvars, colnames(adex))
-    if(length(missing_var) > 0) {
-
-      stop(paste0("\nVariable(s) does not exist in the dataset: \n",
-                  paste(missing_var, "\n", collapse = "")
-                  )
-           )
-    }
+  # provide a clearer error message in the case of missing variable
+  assert_colnames(adex, summaryvars)
 
   # Set to NA the AVAL value of the parameters for which a statistical summary should not be presented
-  if(paramvar != "ALL") {
+  if (paramvar != "ALL") {
 
     adex <- adex %>%
     mutate(AVAL = ifelse(PARAM %in% paramvar, AVAL, NA))
@@ -182,15 +172,12 @@ ext01_2 <- function(adex,
 
   tbl <- build_table(lyt, adex, adsl)
 
-  if(prune_0) tbl <- tbl %>% prune_table()
-
-  #TDOD: sort
-  tbl_sorted <- tbl
+  if (prune_0) tbl <- tbl %>% prune_table()
 
   if (identical(lbl_overall, ""))
-    tbl_sorted[, -ncol(tbl_sorted)]
+    tbl[, -ncol(tbl)]
   else
-    tbl_sorted
+    tbl
 }
 
 

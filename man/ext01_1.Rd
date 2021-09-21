@@ -2,7 +2,7 @@
 % Please edit documentation in R/ext01.R
 \name{ext01_1}
 \alias{ext01_1}
-\title{Exposure Summary Table}
+\title{EXT01 Table 1 (Default) Exposure Summary Table}
 \usage{
 ext01_1(
   adex,
@@ -44,6 +44,7 @@ The percentages for \verb{Total number of patients with at least one dose modifi
 patients in the corresponding analysis population given by \code{N}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
+\item Sorted by alphabetic order of the \code{PARAM} value. Transform to factor and re-level for custom order.
 }
 }
 \examples{

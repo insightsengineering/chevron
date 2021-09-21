@@ -51,10 +51,6 @@ bol_YN <- function(x) {
   }
 }
 
-
-
-
-
 #' Cut by group
 #'
 #' @param df `(dataframe)`
@@ -104,7 +100,7 @@ cut_by_group <- function(df,
 
   df[new_col] <- "<Missing>"
 
-  for(g in group) {
+  for (g in group) {
 
     selected_row <- df[[col_group]] == g[[1]]
 
@@ -116,7 +112,7 @@ cut_by_group <- function(df,
 
       cut_levels <- c(unlist(lapply(group, "[[", 3)), "<Missing>")
 
-      df[,new_col] = factor(df[[new_col]], levels = cut_levels)
+      df[, new_col] <- factor(df[[new_col]], levels = cut_levels)
 
   }
 
@@ -125,3 +121,34 @@ cut_by_group <- function(df,
 }
 
 
+#' Check if strings are column names of a data frame
+#'
+#' @param df `(data frame)`
+#' @param x `(vector of strings)`
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' assert_colnames(mtcars, c("mpg","cyl"))
+#'
+assert_colnames <- function(df,
+                            x) {
+  # provide a clearer error message in the case of missing variable
+  missing_var <- setdiff(x, colnames(df))
+  if (length(missing_var) > 0) {
+    stop(paste(
+      "Variable(s) not a column name in",
+      deparse(substitute(df)),
+      ":\n",
+      paste(missing_var, "\n", collapse = "")
+    ))
+
+  } else{
+
+    invisible(TRUE)
+
+  }
+
+}
