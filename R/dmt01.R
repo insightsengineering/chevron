@@ -72,7 +72,7 @@ dmt01_1 <- function(ad_bl,
 
 dmt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$summaryvars,
-                        summaryvars_lbls = summaryvars,
+                        summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("DMT01"),
                         .study = list(
