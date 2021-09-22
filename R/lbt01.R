@@ -1,12 +1,12 @@
-#' Laboratory Test Results and Change from Baseline by Visit
+#' LBT01 Table (Default) Laboratory Test Results and Change from Baseline by Visit
 #'
 #' The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over
 #' the course of the trial.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars `(vector of string)` the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param visits `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to be
-#'   displayed
+#' @param visitvar `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
+#'   be displayed
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -16,6 +16,8 @@
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
+#'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
+#'  by `AVISIT`. Re-level to customize order
 #'
 #' @importFrom dplyr filter
 #'
@@ -35,7 +37,7 @@
 lbt01_1 <- function(adsl, adlb,
                     armvar = .study$armvar,
                     summaryvars = c("AVAL", "CHG"),
-                    visits = "AVISIT", # or ATPTN
+                    visitvar = "AVISIT", # or ATPTN
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("LBT01"),
@@ -47,13 +49,13 @@ lbt01_1 <- function(adsl, adlb,
   adlb <- adlb %>%
     filter(bol_YN(ANL01FL))
 
-  lbl_AVISIT <- var_labels_for(adlb, visits)
+  lbl_AVISIT <- var_labels_for(adlb, visitvar)
   lbl_PARAM <- var_labels_for(adlb, "PARAM")
 
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
-    visits = visits,
+    visitvar = visitvar,
     lbl_overall = lbl_overall,
     lbl_AVISIT = lbl_AVISIT,
     lbl_PARAM = lbl_PARAM,
@@ -65,22 +67,16 @@ lbt01_1 <- function(adsl, adlb,
     df = adlb
   )
 
-  if(prune_0) tbl <- tbl %>% trim_rows()
+  if (prune_0) tbl <- tbl %>% trim_rows()
 
-  tbl_sorted <- tbl
-
-  # if (identical(lbl_overall,""))
-  #   tbl_sorted[, -ncol(tbl_sorted)]
-  # else
-    tbl_sorted
+  tbl
 
 }
-
 
 lbt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$summaryvars,
                         summaryvars_lbls = var_labels_for(adlb, summaryvars),
-                        visits = "AVISIT",
+                        visitvar = "AVISIT",
                         lbl_overall = .study$lbl_overall,
                         lbl_AVISIT = "",
                         lbl_PARAM = "",
@@ -105,7 +101,7 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
       split_label = paste(lbl_PARAM)
     ) %>%
     split_rows_by(
-      visits,
+      visitvar,
       split_fun = drop_split_levels,
       label_pos = "hidden",
       split_label = lbl_AVISIT

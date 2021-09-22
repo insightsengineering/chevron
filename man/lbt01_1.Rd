@@ -2,14 +2,14 @@
 % Please edit documentation in R/lbt01.R
 \name{lbt01_1}
 \alias{lbt01_1}
-\title{Laboratory Test Results and Change from Baseline by Visit}
+\title{LBT01 Table (Default) Laboratory Test Results and Change from Baseline by Visit}
 \usage{
 lbt01_1(
   adsl,
   adlb,
   armvar = .study$armvar,
   summaryvars = c("AVAL", "CHG"),
-  visits = "AVISIT",
+  visitvar = "AVISIT",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
@@ -25,8 +25,8 @@ lbt01_1(
 
 \item{summaryvars}{\verb{(vector of string)} the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
-\item{visits}{\code{(string)} typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to be
-displayed}
+\item{visitvar}{\code{(string)} typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
+be displayed}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -49,6 +49,8 @@ median and range of changes relative to the baseline.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
+\item Sorted  based on factor level; first by \code{PARAM} labels in alphabetic order then by chronological time point given
+by \code{AVISIT}. Re-level to customize order
 }
 }
 \examples{
