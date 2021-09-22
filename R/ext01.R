@@ -31,13 +31,14 @@
 ext01_1 <- function(adex,
                     adsl,
                     armvar = .study$armvar,
-                    summaryvars = "AVAL",
+                    summaryvars = .study$analysis_var,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = "",
+                      analysis_var = "AVAL"
                     )) {
 
 
@@ -66,14 +67,28 @@ ext01_1 <- function(adex,
 }
 
 
+#' ET01 Layout 1 (Default)
+#'
+#' @describeIn ext01_1
+#'
+#' @inheritParams gen_args
+#'
+#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
+#' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
+#'
+#' @return
+#' @export
+#'
 ext01_1_lyt <- function(armvar = .study$armvar,
-                        summaryvars = summaryvars,
-                        summaryvars_lbls = summaryvars_lbls,
+                        summaryvars = .study$analysis_var,
+                        summaryvars_lbls = .study$lbl_analysis_var,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("EXT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          overall_col = ""
+                          overall_col = "",
+                          analysis_var = "AVAL",
+                          lbl_analysis_var = "Analysis Value"
                         )) {
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
@@ -93,8 +108,8 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 #'
 #' @inheritParams gen_args
-#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
-#' @param paramvar `(vector)` providing the name of the parameters whose statistical summary should be presented. To
+#'
+#' @param show_stats `(vector of strings)` providing the name of the parameters whose statistical summary should be presented. To
 #'  analyze all, provide `paramvar = "ALL"` (Default), to analyze none, provide `paramvar = ""`.
 #'
 #' @details
@@ -134,31 +149,31 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'                      "Dose administered during constant dosing interval",
 #'                      "Number of doses administered during constant dosing interval"))
 #'
-#' ext01_2(adex, adsl)
+#' ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
 #'
 ext01_2 <- function(adex,
                     adsl,
                     armvar = .study$armvar,
-                    group = .study$group,
-                    paramvar = .study$paramvar,
-                    summaryvars = "AVAL",
+                    show_stats = .study$show_stats,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      paramvar = c("ALL"),
+                      show_stats = c("ALL"),
                       lbl_overall = ""
                     )) {
 
-  # provide a clearer error message in the case of missing variable
+  summaryvars = c("AVAL","AVALCAT1")
+
+  # Provide a clearer error message in the case of missing variable.
   assert_colnames(adex, summaryvars)
 
-  # Set to NA the AVAL value of the parameters for which a statistical summary should not be presented
-  if (paramvar != "ALL") {
+  # Set to NA the AVAL value with the PARAM value for which a statistical summary should not be presented.
+  if (show_stats != "ALL") {
 
     adex <- adex %>%
-    mutate(AVAL = ifelse(PARAM %in% paramvar, AVAL, NA))
+    mutate(AVAL = ifelse(PARAM %in% show_stats, AVAL, NA))
 
   }
 
@@ -181,14 +196,26 @@ ext01_2 <- function(adex,
 }
 
 
+#' EXT01 Layout 2 (Supplementary)
+#'
+#' @describeIn ext01_2
+#'
+#' @inheritParams gen_args
+#'
+#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
+#' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
+#'
+#' @return
+#' @export
+#'
 ext01_2_lyt <- function(armvar = .study$armvar,
-                        summaryvars = summaryvars,
-                        summaryvars_lbls = summaryvars_lbls,
+                        summaryvars = c("AVAL", "AVALCAT1"),
+                        summaryvars_lbls = c("Summary", "Categories"),
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("EXT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          overall_col = ""
+                          lbl_overall = ""
                         )) {
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
@@ -199,6 +226,6 @@ ext01_2_lyt <- function(armvar = .study$armvar,
       "PARAM",
       split_fun = NULL
     ) %>%
-    summarize_vars(vars = c("AVAL", "AVALCAT1"), show_labels = "hidden", var_labels = c("Summary", "Categories"))
+    summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
 
 }

@@ -2,19 +2,27 @@
 % Please edit documentation in R/ext01.R
 \name{ext01_2}
 \alias{ext01_2}
+\alias{ext01_2_lyt}
 \title{EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options}
 \usage{
 ext01_2(
   adex,
   adsl,
   armvar = .study$armvar,
-  group = .study$group,
-  paramvar = .study$paramvar,
-  summaryvars = "AVAL",
+  show_stats = .study$show_stats,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", paramvar = c("ALL"), lbl_overall = "")
+  .study = list(armvar = "ACTARM", show_stats = c("ALL"), lbl_overall = "")
+)
+
+ext01_2_lyt(
+  armvar = .study$armvar,
+  summaryvars = c("AVAL", "AVALCAT1"),
+  summaryvars_lbls = c("Summary", "Categories"),
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("EXT01"),
+  .study = list(armvar = "ACTARM", lbl_overall = "")
 )
 }
 \arguments{
@@ -24,12 +32,8 @@ ext01_2(
 
 \item{armvar}{variable used for column splitting}
 
-\item{group}{nest list for group-dependent data binning}
-
-\item{paramvar}{\code{(vector)} providing the name of the parameters whose statistical summary should be presented. To
+\item{show_stats}{\verb{(vector of strings)} providing the name of the parameters whose statistical summary should be presented. To
 analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide \code{paramvar = ""}.}
-
-\item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -38,9 +42,18 @@ analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
+
+\item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
+
+\item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
+}
+\value{
+
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
+
+EXT01 Layout 2 (Supplementary)
 }
 \details{
 \itemize{
@@ -53,6 +66,11 @@ patients in the corresponding analysis population given by \code{N}.
 \item Sorted by alphabetic order of the \code{PARAM} value. Transform to factor and re-level for custom order.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{ext01_2_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -79,6 +97,6 @@ adex[,"PARAM"] <- factor(adex[["PARAM"]],
                      "Dose administered during constant dosing interval",
                      "Number of doses administered during constant dosing interval"))
 
-ext01_2(adex, adsl)
+ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
 
 }

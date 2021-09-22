@@ -2,17 +2,28 @@
 % Please edit documentation in R/ext01.R
 \name{ext01_1}
 \alias{ext01_1}
+\alias{ext01_1_lyt}
 \title{EXT01 Table 1 (Default) Exposure Summary Table}
 \usage{
 ext01_1(
   adex,
   adsl,
   armvar = .study$armvar,
-  summaryvars = "AVAL",
+  summaryvars = .study$analysis_var,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = "", analysis_var = "AVAL")
+)
+
+ext01_1_lyt(
+  armvar = .study$armvar,
+  summaryvars = .study$analysis_var,
+  summaryvars_lbls = .study$lbl_analysis_var,
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("EXT01"),
+  .study = list(armvar = "ACTARM", overall_col = "", analysis_var = "AVAL",
+    lbl_analysis_var = "Analysis Value")
 )
 }
 \arguments{
@@ -31,6 +42,11 @@ ext01_1(
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
+
+\item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
+}
+\value{
+
 }
 \description{
 The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
@@ -47,6 +63,11 @@ patients in the corresponding analysis population given by \code{N}.
 \item Sorted by alphabetic order of the \code{PARAM} value. Transform to factor and re-level for custom order.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{ext01_1_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
