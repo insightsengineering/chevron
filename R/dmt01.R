@@ -81,11 +81,6 @@ dmt01_1 <- function(ad_bl,
 #'
 #' @return
 #' @export
-#'
-#' @examples
-#' dmt01_1_lyt(armvar = "ACTARM",
-#' summaryvars =  c("AAGE", "SEX", "ETHNIC"),
-#' summaryvars_lbls = c("AGE", "SEX", "ETHNICITY"))
 dmt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$summaryvars,
                         summaryvars_lbls = var_labels_for(ad_bl, summaryvars),

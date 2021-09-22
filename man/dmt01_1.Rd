@@ -75,7 +75,4 @@ dmt01_1(
  summaryvars = c("AGE", "RACE")
 )
 
-dmt01_1_lyt(armvar = "ACTARM",
-summaryvars =  c("AAGE", "SEX", "ETHNIC"),
-summaryvars_lbls = c("AGE", "SEX", "ETHNICITY"))
 }
