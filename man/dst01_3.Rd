@@ -2,7 +2,8 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_3}
 \alias{dst01_3}
-\title{Patient Disposition Table 3}
+\alias{dst01_3_lyt}
+\title{DST01 Table 3 (Supplementary) Patient Disposition Table 3}
 \usage{
 dst01_3(
   adsl,
@@ -15,6 +16,15 @@ dst01_3(
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS", status_treatment = "EOTSTT")
+)
+
+dst01_3_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  status_treatment = .study$status,
+  deco = std_deco("DST01"),
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status_treatment =
+    "EOTSTT")
 )
 }
 \arguments{
@@ -41,6 +51,9 @@ the analysis period.}
 
 \item{.study}{a list with default values for the arguments of the function}
 }
+\value{
+
+}
 \description{
 The DST01_3 Disposition Table provides an overview of patients study completion and of the treatment completion.
 For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
@@ -57,6 +70,11 @@ For patients who discontinued the study, the reason provided is categorized as "
 \item Sort withdrawal reasons by alphabetic order
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{dst01_3_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -72,4 +90,6 @@ adae <- sd$adae \%>\%
 dst01_3(adsl, adae)
 dst01_3(adsl, adae, lbl_overall = "")
 
+dst01_3_lyt(armvar = "ACTARM",
+status_treatment = "EOTxx01")
 }

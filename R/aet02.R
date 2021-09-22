@@ -1,4 +1,4 @@
-#' Adverse Events by System Organ Class and Preferred Term Table
+#' AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table
 #'
 #' The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
 #' events categorized by Body System and Dictionary-Derived Term.
@@ -62,7 +62,7 @@ aet02_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -74,7 +74,7 @@ aet02_1 <- function(adsl, adae,
       scorefun = score_occurrences
     )
 
-  if (identical(lbl_overall,""))
+  if (identical(lbl_overall, ""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -83,6 +83,8 @@ aet02_1 <- function(adsl, adae,
 
 
 #' AET01 Layout 1 (Default)
+#'
+#' @describeIn aet02_1
 #'
 #' @inheritParams gen_args
 #' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
@@ -146,7 +148,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 
 # Version2 ----
 
-#' Adverse Events by System Organ Class and Dictionary-Derived Term Table
+#' AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table
 #'
 #' The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
 #' events categorized by Body System, High Level Term and Dictionary-Derived Term.
@@ -211,7 +213,7 @@ aet02_2 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -229,7 +231,7 @@ aet02_2 <- function(adsl, adae,
 
 
 
-  if (identical(lbl_overall,""))
+  if (identical(lbl_overall, ""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -237,7 +239,9 @@ aet02_2 <- function(adsl, adae,
 }
 
 
-#' AET01 Layout 2 (Supplementary)
+#' AET02 Layout 2 (Supplementary)
+#'
+#' @describeIn aet02_2
 #'
 #' @inheritParams gen_args
 #'
@@ -321,7 +325,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
 
 # Version 3 ----
 
-#' Adverse Events by Dictionary-Derived Term
+#' AET02 Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term
 #'
 #' The AET02_3 table provides an overview of the number of patients experiencing advert events and the number of advert
 #' events categorized by Dictionary-Derived Term.
@@ -379,7 +383,7 @@ aet02_3 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -387,7 +391,7 @@ aet02_3 <- function(adsl, adae,
       scorefun = score_occurrences
     )
 
-  if (identical(lbl_overall,""))
+  if (identical(lbl_overall, ""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -396,6 +400,8 @@ aet02_3 <- function(adsl, adae,
 
 
 #' AET01 Layout 3 (Supplementary)
+#'
+#' @describeIn aet02_3
 #'
 #' @inheritParams gen_args
 #'
@@ -433,5 +439,3 @@ aet02_3_lyt <- function(armvar = .study$armvar,
     count_occurrences(vars = "AEDECOD", .indent_mods = c(count_fraction = -1L)) %>%
     append_varlabels(adae, "AEDECOD")
 }
-
-

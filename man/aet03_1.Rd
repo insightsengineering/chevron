@@ -2,7 +2,8 @@
 % Please edit documentation in R/aet03.R
 \name{aet03_1}
 \alias{aet03_1}
-\title{Advert Events by Greatest Intensity}
+\alias{aet03_1_lyt}
+\title{AET03 Table 1 (Default) Advert Events by Greatest Intensity}
 \usage{
 aet03_1(
   adsl,
@@ -12,6 +13,18 @@ aet03_1(
   prune_0 = TRUE,
   deco = std_deco("AET03"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
+)
+
+aet03_1_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  lbl_AEBODSYS = "",
+  lbl_AEDECOD = "",
+  lbl_AESEV = "",
+  gradation = .study$gradation,
+  deco = std_deco("AET03"),
+  .study = list(armvar = "ACTARM", lbl_overall = "", gradation = c("MILD", "MODERATE",
+    "SEVERE", "LIFE THREATENING"))
 )
 }
 \arguments{
@@ -28,6 +41,17 @@ aet03_1(
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
+
+\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+
+\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+
+\item{lbl_AESEV}{(\code{string}) text label for AESEV.}
+
+\item{gradation}{(\verb{vector of strings}) describing the severity levels present in the dataset.}
+}
+\value{
+
 }
 \description{
 An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity
@@ -42,6 +66,11 @@ An adverse events table categorized by System Organ Class, Dictionary-Derived Te
 \item Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{aet03_1_lyt}: 
+}}
+
 \examples{
 
 library(scda)
@@ -54,4 +83,10 @@ adae <- sd$adae \%>\%
 aet03_1(adsl, adae)
 aet02_1(adsl, adae, lbl_overall = "All Patients")
 
+aet03_1_lyt(armvar = "ACTARM",
+ lbl_overall = "",
+ lbl_AEBODSYS = "Body System or Organ Class",
+ lbl_AESEV = "Severity/Intensity",
+ lbl_AEDECOD = "Dictionary-Derived Term",
+ deco = std_deco("AET03"))
 }

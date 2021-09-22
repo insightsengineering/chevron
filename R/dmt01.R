@@ -1,4 +1,4 @@
-#' Demographics and Baseline Characteristics Table
+#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table
 #'
 #' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row.
 #'
@@ -43,8 +43,8 @@ dmt01_1 <- function(ad_bl,
                     )) {
 
     # provide a clearer error message in the case of missing variable
-    missing_var = setdiff(summaryvars,colnames(ad_bl))
-    if(length(missing_var) > 0){
+    missing_var <- setdiff(summaryvars, colnames(ad_bl))
+    if (length(missing_var) > 0) {
 
       stop(paste0("\nVariable(s) does not exist in the dataset: \n",
                   paste(missing_var, "\n", collapse = "")
@@ -71,6 +71,10 @@ dmt01_1 <- function(ad_bl,
 
 
 #' DMT01 Layout 1 (Default)
+#'
+#' @describeIn dmt01_1
+#'
+#' @inheritParams gen_args
 #'
 #' @param summaryvars (`vector of strings`) variables summarized in demographic table.
 #' @param summaryvars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
