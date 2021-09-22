@@ -11,7 +11,7 @@ aet04_1(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   standard_gradation = TRUE,
-  deco = std_deco("AET02"),
+  deco = std_deco("AET04"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
 )
 }
