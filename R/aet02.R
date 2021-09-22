@@ -48,6 +48,7 @@ aet02_1 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
+
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,

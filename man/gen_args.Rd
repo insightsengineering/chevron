@@ -29,7 +29,8 @@ gen_args(
   adcssrs,
   adqlqc,
   acg,
-  adic
+  adic,
+  group
 )
 }
 \arguments{
@@ -82,6 +83,8 @@ gen_args(
 \item{acg}{Concomitant Med. Grouping Defs Dataset}
 
 \item{adic}{Interval Censoring Analysis Dataset}
+
+\item{group}{nest list for group-dependent data binning}
 }
 \description{
 General Argument Name Convention
