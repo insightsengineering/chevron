@@ -85,6 +85,7 @@ gen_args(
 \item{adic}{(\code{data.frame}) Interval Censoring Analysis Dataset}
 
 \item{group}{(\verb{list of lists}) for group-dependent data binning}
+
 }
 \description{
 General Argument Name Convention

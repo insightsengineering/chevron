@@ -29,6 +29,8 @@
 #'
 #' @param group (`list of lists`) for group-dependent data binning
 #'
+#' @param group nest list for group-dependent data binning
+#'
 gen_args <- function(
   armvar, lbl_overall, prune_0, deco, .study,
   ad_bl, adsl, adeg, adae, adcm, admh, aag, advs, adlb, adex, adsub, adrs, adtte,

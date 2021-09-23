@@ -28,6 +28,10 @@
 #'
 #' ext01_1(adex, adsl)
 #'
+#' adex2 <- adex %>%
+#'    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+#'
+#' ext01_1(adex2, adsl)
 ext01_1 <- function(adex,
                     adsl,
                     armvar = .study$armvar,
@@ -38,7 +42,7 @@ ext01_1 <- function(adex,
                     .study = list(
                       armvar = "ACTARM",
                       lbl_overall = "",
-                      analysis_var = "AVAL"
+                      analysis_var = "AVAL" ## hardcode
                     )) {
 
 

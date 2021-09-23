@@ -7,6 +7,7 @@
 cut_by_group(df, col_data, col_group, group, new_col, as_factor = FALSE)
 }
 \arguments{
+
 \item{df}{(\code{dataframe}) with a column of data to be cut and a column specifying the group of each observation.}
 
 \item{col_data}{(\code{string}) the column containing the data to be cut.}
@@ -21,6 +22,7 @@ name of the parameter (\code{string}), a series of breakpoints (\code{vector}) w
 \item{new_col}{(\code{string}) the name of the new column in which the cut label should he stored.}
 
 \item{as_factor}{(\code{logical}) if TRUE, the new column is of type \code{factor} else \code{character}.}
+
 }
 \value{
 

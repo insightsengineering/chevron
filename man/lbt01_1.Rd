@@ -44,6 +44,7 @@ lbt01_1_lyt(
 \item{summaryvars_lbls}{(\verb{vector of string}) the label of the variables to be analyzed.}
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
+
 be displayed}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}

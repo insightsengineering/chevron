@@ -50,6 +50,9 @@ period.}
 \value{
 
 }
+\value{
+
+}
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 study a reason is provided.
