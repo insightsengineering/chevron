@@ -3,7 +3,7 @@
 \name{aet02_1}
 \alias{aet02_1}
 \alias{aet02_1_lyt}
-\title{AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table}
+\title{AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \usage{
 aet02_1(
   adsl,

@@ -3,7 +3,7 @@
 \name{aet04_1}
 \alias{aet04_1}
 \alias{aet04_1_lyt}
-\title{AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade}
+\title{AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1}
 \usage{
 aet04_1(
   adsl,

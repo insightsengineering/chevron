@@ -3,7 +3,7 @@
 \name{aet02_3}
 \alias{aet02_3}
 \alias{aet02_3_lyt}
-\title{AET02 Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term}
+\title{AET02 Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3}
 \usage{
 aet02_3(
   adsl,

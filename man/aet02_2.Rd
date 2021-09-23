@@ -3,7 +3,7 @@
 \name{aet02_2}
 \alias{aet02_2}
 \alias{aet02_2_lyt}
-\title{AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table}
+\title{AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table 2}
 \usage{
 aet02_2(
   adsl,
@@ -59,7 +59,8 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
 \item Does not include a total column by default.
-\item Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall frequencies.
+\item Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
+frequencies.
 }
 }
 \section{Functions}{
