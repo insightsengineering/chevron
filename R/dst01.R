@@ -14,7 +14,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 
 }
 
-#' DST01 Table 1 (Default) Patient Disposition Table
+#' DST01 Table 1 (Default) Patient Disposition Table 1
 #'
 #' The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 #' study a reason is provided.
@@ -310,7 +310,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 
 #' DST01 Table 3 (Supplementary) Patient Disposition Table 3
 #'
-#' The DST01_3 Disposition Table provides an overview of patients study completion and of the treatment completion.
+#' The DST01_3 Disposition Table provides an overview of patients study treatment status.
 #' For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 #'
 #' @inheritParams gen_args
