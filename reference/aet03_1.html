@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Advert Events by Greatest Intensity — aet03_1 • chevron</title>
+<title>AET03 Table 1 (Default) Advert Events by Greatest Intensity — aet03_1 • chevron</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Advert Events by Greatest Intensity — aet03_1" />
+<meta property="og:title" content="AET03 Table 1 (Default) Advert Events by Greatest Intensity — aet03_1" />
 <meta property="og:description" content="An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity" />
 
 
@@ -114,7 +114,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Advert Events by Greatest Intensity</h1>
+    <h1>AET03 Table 1 (Default) Advert Events by Greatest Intensity</h1>
     
     <div class="hidden name"><code>aet03_1.Rd</code></div>
     </div>
@@ -131,6 +131,18 @@
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET03"</span><span class='op'>)</span>,
   .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='fu'>aet03_1_lyt</span><span class='op'>(</span>
+  armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
+  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
+  lbl_AEBODSYS <span class='op'>=</span> <span class='st'>""</span>,
+  lbl_AEDECOD <span class='op'>=</span> <span class='st'>""</span>,
+  lbl_AESEV <span class='op'>=</span> <span class='st'>""</span>,
+  gradation <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>gradation</span>,
+  deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET03"</span><span class='op'>)</span>,
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span>, gradation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"MILD"</span>, <span class='st'>"MODERATE"</span>,
+    <span class='st'>"SEVERE"</span>, <span class='st'>"LIFE THREATENING"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -164,7 +176,28 @@
       <th>.study</th>
       <td><p>a list with default values for the arguments of the function</p></td>
     </tr>
+    <tr>
+      <th>lbl_AEBODSYS</th>
+      <td><p>(<code>string</code>) text label for AEBODSYS.</p></td>
+    </tr>
+    <tr>
+      <th>lbl_AEDECOD</th>
+      <td><p>(<code>string</code>) text label for AEDECOD.</p></td>
+    </tr>
+    <tr>
+      <th>lbl_AESEV</th>
+      <td><p>(<code>string</code>) text label for AESEV.</p></td>
+    </tr>
+    <tr>
+      <th>gradation</th>
+      <td><p>(<code>vector of strings</code>) describing the severity levels present in the dataset.</p></td>
+    </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -178,6 +211,12 @@
 <li><p>Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>aet03_1_lyt</code>:</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -297,7 +336,21 @@
 #&gt; ---------------------------------------------------------------------------------------------------------------------
 #&gt; 
 #&gt; Footnotes go here</div><div class='input'>
-</div></pre>
+<span class='fu'>aet03_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
+ lbl_overall <span class='op'>=</span> <span class='st'>""</span>,
+ lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,
+ lbl_AESEV <span class='op'>=</span> <span class='st'>"Severity/Intensity"</span>,
+ lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,
+ deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET03"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A Pre-data Table Layout
+#&gt; 
+#&gt; Column-Split Structure:
+#&gt; ACTARM (lvls) 
+#&gt;  (all obs) 
+#&gt; 
+#&gt; Row-Split Structure:
+#&gt; AEBODSYS (lvls) -&gt; AEDECOD (lvls) 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

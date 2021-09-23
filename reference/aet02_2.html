@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adverse Events by System Organ Class and Dictionary-Derived Term Table — aet02_2 • chevron</title>
+<title>AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table — aet02_2 • chevron</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Adverse Events by System Organ Class and Dictionary-Derived Term Table — aet02_2" />
+<meta property="og:title" content="AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table — aet02_2" />
 <meta property="og:description" content="The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
 events categorized by Body System, High Level Term and Dictionary-Derived Term." />
 
@@ -115,7 +115,7 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term."
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Adverse Events by System Organ Class and Dictionary-Derived Term Table</h1>
+    <h1>AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table</h1>
     
     <div class="hidden name"><code>aet02_2.Rd</code></div>
     </div>
@@ -131,6 +131,16 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term.<
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span>,
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='fu'>aet02_2_lyt</span><span class='op'>(</span>
+  armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
+  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
+  lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"AEBODSYS"</span>,
+  lbl_AEHLT <span class='op'>=</span> <span class='st'>"AEHLT"</span>,
+  lbl_AEDECOD <span class='op'>=</span> <span class='st'>"AEDECOD"</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span>,
   .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
@@ -166,7 +176,24 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term.<
       <th>.study</th>
       <td><p>a list with default values for the arguments of the function</p></td>
     </tr>
+    <tr>
+      <th>lbl_AEBODSYS</th>
+      <td><p>(<code>string</code>) text label for AEBODSYS.</p></td>
+    </tr>
+    <tr>
+      <th>lbl_AEHLT</th>
+      <td><p>(<code>string</code>) text label for AEHLT.</p></td>
+    </tr>
+    <tr>
+      <th>lbl_AEDECOD</th>
+      <td><p>(<code>string</code>) text label for AEDECOD.</p></td>
+    </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -179,6 +206,12 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term.<
 <li><p>Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall frequencies.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>aet02_2_lyt</code>:</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
@@ -396,7 +429,21 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term.<
 #&gt; --------------------------------------------------------------------------------------------------------
 #&gt; 
 #&gt; Footnotes go here</div><div class='input'>
-</div></pre>
+<span class='fu'>aet02_2_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
+ lbl_overall <span class='op'>=</span> <span class='st'>""</span>,
+ lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,
+ lbl_AEHLT <span class='op'>=</span> <span class='st'>"High Level Term"</span>,
+ lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,
+ deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A Pre-data Table Layout
+#&gt; 
+#&gt; Column-Split Structure:
+#&gt; ACTARM (lvls) 
+#&gt;  (all obs) 
+#&gt; 
+#&gt; Row-Split Structure:
+#&gt; AEBODSYS (lvls) -&gt; AEHLT (lvls) -&gt; AEDECOD (** analysis **) 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

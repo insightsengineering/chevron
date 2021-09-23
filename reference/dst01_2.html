@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Patient Disposition Table 2 — dst01_2 • chevron</title>
+<title>DST01 Table 2 (Supplementary) Patient Disposition Table 2 — dst01_2 • chevron</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Patient Disposition Table 2 — dst01_2" />
+<meta property="og:title" content="DST01 Table 2 (Supplementary) Patient Disposition Table 2 — dst01_2" />
 <meta property="og:description" content="The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 study, the reason provided is categorized as &quot;Safety&quot; or &quot;Non-Safety&quot; issue." />
 
@@ -115,7 +115,7 @@ study, the reason provided is categorized as &quot;Safety&quot; or &quot;Non-Saf
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Patient Disposition Table 2</h1>
+    <h1>DST01 Table 2 (Supplementary) Patient Disposition Table 2</h1>
     
     <div class="hidden name"><code>dst01_2.Rd</code></div>
     </div>
@@ -128,6 +128,16 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.</p>
     <pre class="usage"><span class='fu'>dst01_2</span><span class='op'>(</span>
   <span class='va'>adsl</span>,
   <span class='va'>adae</span>,
+  armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
+  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
+  status <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>status</span>,
+  reason <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>reason</span>,
+  deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"DST01"</span><span class='op'>)</span>,
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All patients"</span>, status <span class='op'>=</span> <span class='st'>"EOSSTT"</span>, reason
+    <span class='op'>=</span> <span class='st'>"DCSREAS"</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='fu'>dst01_2_lyt</span><span class='op'>(</span>
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   status <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>status</span>,
@@ -177,6 +187,11 @@ period.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
@@ -191,6 +206,12 @@ period.</p></td>
 <li><p>Sort withdrawal reasons by alphabetic order</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>dst01_2_lyt</code>:</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
@@ -239,7 +260,18 @@ period.</p></td>
 #&gt; -------------------------------------------------------------------------------
 #&gt; 
 #&gt; Footnotes go here</div><div class='input'>
-</div></pre>
+<span class='fu'>dst01_2_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
+status <span class='op'>=</span> <span class='st'>"EOP01STT"</span>,
+reason <span class='op'>=</span> <span class='st'>"DCP01RS"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A Pre-data Table Layout
+#&gt; 
+#&gt; Column-Split Structure:
+#&gt; ACTARM (lvls) 
+#&gt; 
+#&gt; Row-Split Structure:
+#&gt; EOP01STT (** analysis **) 
+#&gt; EOP01STT (lvls) -&gt; reasonGP (lvls) -&gt; DCP01RS (** analysis **) 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

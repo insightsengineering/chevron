@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Demographics and Baseline Characteristics Table — dmt01_1 • chevron</title>
+<title>DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table — dmt01_1 • chevron</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Demographics and Baseline Characteristics Table — dmt01_1" />
+<meta property="og:title" content="DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table — dmt01_1" />
 <meta property="og:description" content="For each variable, summary statistics are by default based on the number of patients in the corresponding n row." />
 
 
@@ -114,7 +114,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Demographics and Baseline Characteristics Table</h1>
+    <h1>DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table</h1>
     
     <div class="hidden name"><code>dmt01_1.Rd</code></div>
     </div>
@@ -132,6 +132,16 @@
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"DMT01"</span><span class='op'>)</span>,
   .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ARM"</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AAGE"</span>, <span class='st'>"AGEGR1"</span>, <span class='st'>"SEX"</span>, <span class='st'>"ETHNIC"</span>,
     <span class='st'>"RACE"</span>, <span class='st'>"BWGHTSI"</span><span class='op'>)</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='fu'>dmt01_1_lyt</span><span class='op'>(</span>
+  armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
+  summaryvars <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>summaryvars</span>,
+  summaryvars_lbls <span class='op'>=</span> <span class='fu'><a href='var_labels_for.html'>var_labels_for</a></span><span class='op'>(</span><span class='va'>ad_bl</span>, <span class='va'>summaryvars</span><span class='op'>)</span>,
+  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
+  deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"DMT01"</span><span class='op'>)</span>,
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ARM"</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AAGE"</span>, <span class='st'>"AGEGR1"</span>, <span class='st'>"SEX"</span>, <span class='st'>"ETHNIC"</span>,
+    <span class='st'>"RACE"</span>, <span class='st'>"BWGHTSI"</span><span class='op'>)</span>, overall_col <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -147,9 +157,7 @@
     </tr>
     <tr>
       <th>summaryvars</th>
-      <td><p>(<code>vector</code> of <code>string</code>) variables summarized in demographic table.
-Usually a vector containing the following one or more of the following:
-<code>AAGE</code>, <code>AGEGR1</code>, <code>SEX</code>, <code>ETHNIC</code>, <code>RACE</code>, <code>BWGHTSI</code> and by default all of them.</p></td>
+      <td><p>(<code>vector of strings</code>) variables summarized in demographic table.</p></td>
     </tr>
     <tr>
       <th>lbl_overall</th>
@@ -167,7 +175,16 @@ Usually a vector containing the following one or more of the following:
       <th>.study</th>
       <td><p>a list with default values for the arguments of the function</p></td>
     </tr>
+    <tr>
+      <th>summaryvars_lbls</th>
+      <td><p>(<code>vector of strings</code>) labels corresponding to the analyzed variables.</p></td>
+    </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -180,6 +197,12 @@ Usually a vector containing the following one or more of the following:
 <li><p>Include a total column by default</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>dmt01_1_lyt</code>:</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
