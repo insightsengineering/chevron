@@ -33,30 +33,30 @@ lbt01_1_lyt(
 )
 }
 \arguments{
-\item{adsl}{Subject Level Analysis Dataset}
+\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
 
-\item{adlb}{Laboratory Analysis Dataset}
+\item{adlb}{(\code{data.frame}) Laboratory Analysis Dataset}
 
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{\verb{(vector of string)} the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+\item{summaryvars}{(\verb{vector of string}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
-\item{summaryvars_lbls}{\verb{(vector of string)} the label of the variables to be analyzed.}
+\item{summaryvars_lbls}{(\verb{vector of string}) the label of the variables to be analyzed.}
 
-\item{visitvar}{\code{(string)} typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
 be displayed}
 
-\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{remove 0 count rows}
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{a list with default values for the arguments of the function}
+\item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AVISIT}{\code{(string)} label of the \code{visitvar} variable.}
+\item{lbl_AVISIT}{(\code{string}) label of the \code{visitvar} variable.}
 
-\item{lbl_PARAM}{\code{(string)} label of the \code{PARAM} variable.}
+\item{lbl_PARAM}{(\code{string}) label of the \code{PARAM} variable.}
 }
 \value{
 
