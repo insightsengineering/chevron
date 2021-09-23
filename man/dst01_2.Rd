@@ -2,11 +2,22 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_2}
 \alias{dst01_2}
-\title{Patient Disposition Table 2}
+\alias{dst01_2_lyt}
+\title{DST01 Table 2 (Supplementary) Patient Disposition Table 2}
 \usage{
 dst01_2(
   adsl,
   adae,
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  status = .study$status,
+  reason = .study$reason,
+  deco = std_deco("DST01"),
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
+    = "DCSREAS")
+)
+
+dst01_2_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
@@ -36,6 +47,9 @@ period.}
 
 \item{.study}{a list with default values for the arguments of the function}
 }
+\value{
+
+}
 \description{
 The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
@@ -52,6 +66,11 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 \item Sort withdrawal reasons by alphabetic order
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{dst01_2_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -63,4 +82,7 @@ adae <- sd$adae \%>\%
 dst01_2(adsl, adae)
 dst01_2(adsl, adae, lbl_overall = "")
 
+dst01_2_lyt(armvar = "ACTARM",
+status = "EOP01STT",
+reason = "DCP01RS")
 }

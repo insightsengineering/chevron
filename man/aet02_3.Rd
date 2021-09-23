@@ -2,7 +2,8 @@
 % Please edit documentation in R/aet02.R
 \name{aet02_3}
 \alias{aet02_3}
-\title{Adverse Events by Dictionary-Derived Term}
+\alias{aet02_3_lyt}
+\title{AET02 Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term}
 \usage{
 aet02_3(
   adsl,
@@ -10,6 +11,14 @@ aet02_3(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
+  deco = std_deco("AET02"),
+  .study = list(armvar = "ACTARM", lbl_overall = "")
+)
+
+aet02_3_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  lbl_AEDECOD = "AEDECOD",
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
 )
@@ -28,6 +37,11 @@ aet02_3(
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
+
+\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+}
+\value{
+
 }
 \description{
 The AET02_3 table provides an overview of the number of patients experiencing advert events and the number of advert
@@ -42,6 +56,11 @@ events categorized by Dictionary-Derived Term.
 \item Sort Dictionary-Derived Code by highest overall frequencies.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{aet02_3_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -53,4 +72,8 @@ adae <- sd$adae \%>\%
 aet02_3(adsl, adae)
 aet02_3(adsl, adae, lbl_overall = "All Patients")
 
+aet02_3_lyt(armvar = "ACTARM",
+ lbl_overall = "",
+ lbl_AEDECOD = "Dictionary-Derived Term",
+ deco = std_deco("AET02"))
 }

@@ -2,11 +2,22 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_1}
 \alias{dst01_1}
-\title{Patient Disposition Table}
+\alias{dst01_1_lyt}
+\title{DST01 Table 1 (Default) Patient Disposition Table}
 \usage{
 dst01_1(
   adsl,
   adae,
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  status = .study$status,
+  reason = .study$reason,
+  deco = std_deco("DST01"),
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
+    = "DCSREAS")
+)
+
+dst01_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
@@ -36,6 +47,9 @@ period.}
 
 \item{.study}{a list with default values for the arguments of the function}
 }
+\value{
+
+}
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 study a reason is provided.
@@ -50,6 +64,11 @@ study a reason is provided.
 \item Sort withdrawal reasons by alphabetic order
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{dst01_1_lyt}: 
+}}
+
 \examples{
 
 library(scda)
@@ -63,4 +82,7 @@ adae <- sd$adae \%>\%
 dst01_1(adsl, adae)
 dst01_1(adsl, adae, lbl_overall = "")
 
+dst01_1_lyt(armvar = "ACTARM",
+status = "EOP01STT",
+reason = "DCP01RS")
 }

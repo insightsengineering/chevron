@@ -2,7 +2,8 @@
 % Please edit documentation in R/aet04.R
 \name{aet04_1}
 \alias{aet04_1}
-\title{Adverse Events by Highest NCI CTACAE AE Grade}
+\alias{aet04_1_lyt}
+\title{AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade}
 \usage{
 aet04_1(
   adsl,
@@ -13,6 +14,18 @@ aet04_1(
   standard_gradation = TRUE,
   deco = std_deco("AET04"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
+)
+
+aet04_1_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  lbl_AEBODSYS = "AEBODSYS",
+  lbl_AEDECOD = "AEDECOD",
+  gr_grp = .study$gr_grp,
+  deco = std_deco("AET04"),
+  .study = list(armvar = "ACTARM", lbl_overall = "", gr_grp = list(`- Any Grade -` =
+    c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", "4"),
+    `Grade 5` = c("5")))
 )
 }
 \arguments{
@@ -32,6 +45,15 @@ aet04_1(
 \item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{a list with default values for the arguments of the function}
+
+\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+
+\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+
+\item{gr_grp}{(\code{list}) putting in correspondence severity levels and labels.}
+}
+\value{
+
 }
 \description{
 The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
@@ -46,6 +68,11 @@ The AET04 table provides an overview of adverse event with the highest NCI CTCAE
 Grade is sorted by severity.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{aet04_1_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -58,4 +85,5 @@ aet04_1(adsl, adae)
 aet04_1(adsl, adae, prune_0 = FALSE)
 aet04_1(adsl, adae, lbl_overall = "All Patients")
 
+aet04_1_lyt(armvar = "ACTARM")
 }

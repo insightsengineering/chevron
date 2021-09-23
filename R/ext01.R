@@ -28,7 +28,6 @@
 #'
 #' ext01_1(adex, adsl)
 #'
-#'
 #' adex2 <- adex %>%
 #'    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
 #'

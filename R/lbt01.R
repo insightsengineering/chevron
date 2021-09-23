@@ -1,10 +1,11 @@
-#' LBT01 Table (Default) Laboratory Test Results and Change from Baseline by Visit
+#' LBT01 Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit
 #'
 #' The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over
 #' the course of the trial.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars `(vector of string)` the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls `(vector of string)` the label of the variables to be analyzed.
 #' @param visitvar `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
 #'   be displayed
 #'
@@ -33,17 +34,20 @@
 #'
 #' lbt01_1(adsl, adlb)
 #'
+#' lbt01_1(adsl, adlb, summaryvars_lbls = c("Analysis", "Change"))
 #'
 lbt01_1 <- function(adsl, adlb,
                     armvar = .study$armvar,
-                    summaryvars = c("AVAL", "CHG"),
+                    summaryvars = .study$evo_vars,
+                    summaryvars_lbls = var_labels_for(adlb, summaryvars),
                     visitvar = "AVISIT", # or ATPTN
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("LBT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = "",
+                      evo_vars = c("AVAL", "CHG")
                     )) {
 
   adlb <- adlb %>%
@@ -55,6 +59,7 @@ lbt01_1 <- function(adsl, adlb,
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
+    summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
     lbl_overall = lbl_overall,
     lbl_AVISIT = lbl_AVISIT,
@@ -73,18 +78,36 @@ lbt01_1 <- function(adsl, adlb,
 
 }
 
+#' LBT01 Layout 1 (Default)
+#'
+#' @describeIn lbt01_1
+#'
+#' @inheritParams gen_args
+#'
+#' @param summaryvars `(vector of string)` the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls `(vector of string)` the label of the variables to be analyzed.
+#' @param visitvar `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
+#'   be displayed
+#'
+#' @param lbl_AVISIT `(string)` label of the `visitvar` variable.
+#' @param lbl_PARAM `(string)` label of the `PARAM` variable.
+#'
+#' @return
+#' @export
 lbt01_1_lyt <- function(armvar = .study$armvar,
-                        summaryvars = .study$summaryvars,
-                        summaryvars_lbls = var_labels_for(adlb, summaryvars),
-                        visitvar = "AVISIT",
+                        summaryvars = .study$evo_vars,
+                        summaryvars_lbls = .study$evo_vars_lbls,
+                        visitvar = .study$visitvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AVISIT = "",
                         lbl_PARAM = "",
-                        gr_grp = .study$gr_grp,
                         deco = std_deco("LBT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = "",
+                          evo_vars = c("AVAL", "CHG"),
+                          evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
+                          visitvar = "AVISIT"
                         )
 ) {
 
@@ -107,8 +130,8 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
       split_label = lbl_AVISIT
     ) %>%
     split_cols_by_multivar(
-      vars = c("AVAL", "CHG"),
-      varlabels = c("Analysis \nValue", "Change from \nBaseline"),
+      vars = summaryvars,
+      varlabels = summaryvars_lbls,
     ) %>%
     summarize_colvars() %>%
     append_topleft(lbl_PARAM) %>%

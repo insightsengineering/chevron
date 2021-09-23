@@ -153,7 +153,6 @@ assert_colnames <- function(df, x) {
 
 }
 
-
 #' Reorder PARAM and PARAMCD Levels Simultaneously
 #'
 #' @param df data.frame with PARAM and PARAMCD variables
