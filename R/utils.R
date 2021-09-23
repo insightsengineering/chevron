@@ -53,15 +53,15 @@ bol_YN <- function(x) {
 
 #' Cut by group
 #'
-#' @param df `(dataframe)` with a column of data to be cut and a column specifying the group of each observation.
-#' @param col_data `(string)` the column containing the data to be cut.
-#' @param col_group `(string)` the column containing the names of the groups according to which the data should be
+#' @param df (`dataframe`) with a column of data to be cut and a column specifying the group of each observation.
+#' @param col_data (`string`) the column containing the data to be cut.
+#' @param col_group (`string`) the column containing the names of the groups according to which the data should be
 #'   split.
-#' @param group  `(nested list)` providing for each parameter value that should be analyzed in a categorical way: the
-#'   name of the parameter `(string)`, a series of breakpoints `(vector)` where the first breakpoints is typically
-#'   `-Inf` and the last `Inf`, and a series of name which will describe each category `(vector)`.
-#' @param new_col `(string)` the name of the new column in which the cut label should he stored.
-#' @param as_factor `(logical)` if TRUE, the new column is of type `factor` else `character`.
+#' @param group  (`nested list`) providing for each parameter value that should be analyzed in a categorical way: the
+#'   name of the parameter (`string`), a series of breakpoints (`vector`) where the first breakpoints is typically
+#'   `-Inf` and the last `Inf`, and a series of name which will describe each category (`vector`).
+#' @param new_col (`string`) the name of the new column in which the cut label should he stored.
+#' @param as_factor (`logical`) if TRUE, the new column is of type `factor` else `character`.
 #'
 #' @return
 #' @export
@@ -124,8 +124,8 @@ cut_by_group <- function(df,
 
 #' Check if strings are column names of a data frame
 #'
-#' @param df `(data frame)`
-#' @param x `(vector of strings)`
+#' @param df (`data frame`)
+#' @param x (`vector of strings`)
 #'
 #' @return
 #' @export

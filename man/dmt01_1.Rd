@@ -27,19 +27,19 @@ dmt01_1_lyt(
 )
 }
 \arguments{
-\item{ad_bl}{subject baseline dataset with one row per patient}
+\item{ad_bl}{(\code{data.frame}) subject baseline dataset with one row per patient}
 
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.}
 
-\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{remove 0 count rows}
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{a list with default values for the arguments of the function}
+\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{summaryvars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
 }

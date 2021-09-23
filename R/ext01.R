@@ -5,7 +5,7 @@
 #'
 #'
 #' @inheritParams gen_args
-#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
+#' @param summaryvars (`string`) the name of the variable to be analyzed. By default `"AVAL"`.
 #'
 #' @details
 #'  * Default Exposure table
@@ -113,7 +113,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param show_stats `(vector of strings)` providing the name of the parameters whose statistical summary should be presented. To
+#' @param show_stats (`vector of strings`) providing the name of the parameters whose statistical summary should be presented. To
 #'  analyze all, provide `paramvar = "ALL"` (Default), to analyze none, provide `paramvar = ""`.
 #'
 #' @details
@@ -206,8 +206,8 @@ ext01_2 <- function(adex,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
-#' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
+#' @param summaryvars (`string`) the name of the variable to be analyzed. By default `"AVAL"`.
+#' @param summaryvars_lbls (`string`) the label associated with the analyzed variable.
 #'
 #' @return
 #' @export

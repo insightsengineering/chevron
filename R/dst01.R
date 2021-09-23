@@ -159,7 +159,13 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 #' study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 #'
-#' @inheritParams dst01_1
+#' @inheritParams gen_args
+#'
+#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal
@@ -307,8 +313,13 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' The DST01_3 Disposition Table provides an overview of patients study completion and of the treatment completion.
 #' For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 #'
-#' @inheritParams dst01_1
+#' @inheritParams gen_args
 #'
+#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
 #'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.

@@ -7,9 +7,9 @@
 assert_colnames(df, x)
 }
 \arguments{
-\item{df}{\verb{(data frame)}}
+\item{df}{(\verb{data frame})}
 
-\item{x}{\verb{(vector of strings)}}
+\item{x}{(\verb{vector of strings})}
 }
 \value{
 

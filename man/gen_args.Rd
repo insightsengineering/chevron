@@ -34,55 +34,55 @@ gen_args(
 )
 }
 \arguments{
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{remove 0 count rows}
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{a list with default values for the arguments of the function}
+\item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{ad_bl}{subject baseline dataset with one row per patient}
+\item{ad_bl}{(\code{data.frame}) subject baseline dataset with one row per patient}
 
-\item{adsl}{Subject Level Analysis Dataset}
+\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
 
-\item{adeg}{ECG Analysis Dataset}
+\item{adeg}{(\code{data.frame}) ECG Analysis Dataset}
 
-\item{adae}{Adverse Events Analysis Dataset}
+\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
-\item{adcm}{Concomitant Medications Analysis Dataset}
+\item{adcm}{(\code{data.frame}) Concomitant Medications Analysis Dataset}
 
-\item{admh}{Medical History Analysis Dataset}
+\item{admh}{(\code{data.frame}) Medical History Analysis Dataset}
 
-\item{aag}{Adverse Event Grouping Defs Dataset}
+\item{aag}{(\code{data.frame}) Adverse Event Grouping Defs Dataset}
 
-\item{advs}{Vital Signs Analysis Dataset}
+\item{advs}{(\code{data.frame}) Vital Signs Analysis Dataset}
 
-\item{adlb}{Laboratory Analysis Dataset}
+\item{adlb}{(\code{data.frame}) Laboratory Analysis Dataset}
 
-\item{adex}{Exposure Analysis Dataset}
+\item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
 
-\item{adsub}{Subcategory Analysis Dataset}
+\item{adsub}{(\code{data.frame}) Subcategory Analysis Dataset}
 
-\item{adrs}{Response Analysis Dataset}
+\item{adrs}{(\code{data.frame}) Response Analysis Dataset}
 
-\item{adtte}{Time to Event Analysis Dataset}
+\item{adtte}{(\code{data.frame}) Time to Event Analysis Dataset}
 
-\item{adhy}{Hys Law Analysis Dataset}
+\item{adhy}{(\code{data.frame}) Hys Law Analysis Dataset}
 
-\item{adsaftte}{Safety Time to Event Analysis Dataset}
+\item{adsaftte}{(\code{data.frame}) Safety Time to Event Analysis Dataset}
 
-\item{addv}{Protocol Deviations Analysis Dataset}
+\item{addv}{(\code{data.frame}) Protocol Deviations Analysis Dataset}
 
-\item{adcssrs}{C-SSRS Analysis Dataset}
+\item{adcssrs}{(\code{data.frame}) C-SSRS Analysis Dataset}
 
-\item{adqlqc}{EORTC QLQ-C30 V3 Analysis Dataset}
+\item{adqlqc}{(\code{data.frame}) EORTC QLQ-C30 V3 Analysis Dataset}
 
-\item{acg}{Concomitant Med. Grouping Defs Dataset}
+\item{acg}{(\code{data.frame}) Concomitant Med. Grouping Defs Dataset}
 
-\item{adic}{Interval Censoring Analysis Dataset}
+\item{adic}{(\code{data.frame}) Interval Censoring Analysis Dataset}
 
 \item{group}{nest list for group-dependent data binning}
 }
