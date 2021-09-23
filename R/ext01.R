@@ -28,6 +28,24 @@
 #'
 #' ext01_1(adex, adsl)
 #'
+#'
+#' levels(adex$PARAM)
+#' levels(adex$PARAMCD)
+#'
+#' relevel_params <- function(df, paramcd_levels) {
+#'   stopifnot(
+#'      all(c("PARAM", "PARAMCD") %in% df),
+#'      all(df$PARMCD %in% paramcd_levels)
+#'  )
+#'  x <- setNames()
+#'  fct_relevel(...)
+#'  fct_relevel(...)
+#' }
+#'
+#' adex2 <- adex %>%
+#'    relevel_params(paramcd_leves = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+#'
+#' ext01_1(adex2, adsl)
 ext01_1 <- function(adex,
                     adsl,
                     armvar = .study$armvar,
