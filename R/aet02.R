@@ -65,6 +65,7 @@ aet02_1 <- function(adsl, adae,
 
   if (prune_0) tbl <- tbl %>% prune_table()
 
+
   tbl_sorted <- tbl %>%
     sort_at_path(
       path =  c("AEBODSYS"),
