@@ -2,7 +2,8 @@
 % Please edit documentation in R/dmt01.R
 \name{dmt01_1}
 \alias{dmt01_1}
-\title{Demographics and Baseline Characteristics Table}
+\alias{dmt01_1_lyt}
+\title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table}
 \usage{
 dmt01_1(
   ad_bl,
@@ -14,23 +15,36 @@ dmt01_1(
   .study = list(armvar = "ARM", summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
     "RACE", "BWGHTSI"), lbl_overall = "All Patients")
 )
+
+dmt01_1_lyt(
+  armvar = .study$armvar,
+  summaryvars = .study$summaryvars,
+  summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("DMT01"),
+  .study = list(armvar = "ARM", summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
+    "RACE", "BWGHTSI"), overall_col = "All Patients")
+)
 }
 \arguments{
-\item{ad_bl}{subject baseline dataset with one row per patient}
+\item{ad_bl}{(\code{data.frame}) subject baseline dataset with one row per patient}
 
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{vector} of \code{string}) variables summarized in demographic table.
-Usually a vector containing the following one or more of the following:
-\code{AAGE}, \code{AGEGR1}, \code{SEX}, \code{ETHNIC}, \code{RACE}, \code{BWGHTSI} and by default all of them.}
+\item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.}
 
-\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{remove 0 count rows}
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{a list with default values for the arguments of the function}
+\item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{summaryvars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
+}
+\value{
+
 }
 \description{
 For each variable, summary statistics are by default based on the number of patients in the corresponding \code{n} row.
@@ -44,6 +58,11 @@ For each variable, summary statistics are by default based on the number of pati
 \item Include a total column by default
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{dmt01_1_lyt}: 
+}}
+
 \examples{
 library(scda)
 adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl

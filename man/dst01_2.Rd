@@ -2,7 +2,8 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_2}
 \alias{dst01_2}
-\title{Patient Disposition Table 2}
+\alias{dst01_2_lyt}
+\title{DST01 Table 2 (Supplementary) Patient Disposition Table 2}
 \usage{
 dst01_2(
   adsl,
@@ -15,15 +16,25 @@ dst01_2(
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
 )
+
+dst01_2_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  status = .study$status,
+  reason = .study$reason,
+  deco = std_deco("DST01"),
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
+    = "DCSREAS")
+)
 }
 \arguments{
-\item{adsl}{Subject Level Analysis Dataset}
+\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
 
-\item{adae}{Adverse Events Analysis Dataset}
+\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
-\item{armvar}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
+\item{armvar}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
 name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
@@ -32,9 +43,12 @@ name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 d
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{a list with default values for the arguments of the function}
+\item{.study}{(\code{list})  with default values for the arguments of the function}
+}
+\value{
+
 }
 \description{
 The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
@@ -52,6 +66,11 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 \item Sort withdrawal reasons by alphabetic order
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{dst01_2_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -63,4 +82,7 @@ adae <- sd$adae \%>\%
 dst01_2(adsl, adae)
 dst01_2(adsl, adae, lbl_overall = "")
 
+dst01_2_lyt(armvar = "ACTARM",
+status = "EOP01STT",
+reason = "DCP01RS")
 }

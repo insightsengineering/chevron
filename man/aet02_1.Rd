@@ -2,7 +2,8 @@
 % Please edit documentation in R/aet02.R
 \name{aet02_1}
 \alias{aet02_1}
-\title{Adverse Events by System Organ Class and Preferred Term Table}
+\alias{aet02_1_lyt}
+\title{AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table}
 \usage{
 aet02_1(
   adsl,
@@ -13,21 +14,37 @@ aet02_1(
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
 )
+
+aet02_1_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  lbl_AEBODSYS = "AEBODSYS",
+  lbl_AEDECOD = "AEDECOD",
+  deco = std_deco("AET02"),
+  .study = list(armvar = "ACTARM", lbl_overall = "")
+)
 }
 \arguments{
-\item{adsl}{Subject Level Analysis Dataset}
+\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
 
-\item{adae}{Adverse Events Analysis Dataset}
+\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{remove 0 count rows}
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{a list with default values for the arguments of the function}
+\item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+
+\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+}
+\value{
+
 }
 \description{
 The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
@@ -42,6 +59,11 @@ events categorized by Body System and Dictionary-Derived Term.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{aet02_1_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -56,4 +78,9 @@ aet02_1(adsl, adae, lbl_overall = "All Patients")
 adae <- adae \%>\% var_relabel(AEBODSYS = "Medra System Organ Class")
 aet02_1(adsl, adae)
 
+aet02_1_lyt(armvar = "ACTARM",
+ lbl_overall = "",
+ lbl_AEBODSYS = "Body System or Organ Class",
+ lbl_AEDECOD = "Dictionary-Derived Term",
+ deco = std_deco("AET02"))
 }

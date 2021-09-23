@@ -2,7 +2,8 @@
 % Please edit documentation in R/aet04.R
 \name{aet04_1}
 \alias{aet04_1}
-\title{Adverse Events by Highest NCI CTACAE AE Grade}
+\alias{aet04_1_lyt}
+\title{AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade}
 \usage{
 aet04_1(
   adsl,
@@ -14,24 +15,45 @@ aet04_1(
   deco = std_deco("AET04"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
 )
+
+aet04_1_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  lbl_AEBODSYS = "AEBODSYS",
+  lbl_AEDECOD = "AEDECOD",
+  gr_grp = .study$gr_grp,
+  deco = std_deco("AET04"),
+  .study = list(armvar = "ACTARM", lbl_overall = "", gr_grp = list(`- Any Grade -` =
+    c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", "4"),
+    `Grade 5` = c("5")))
+)
 }
 \arguments{
-\item{adsl}{Subject Level Analysis Dataset}
+\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
 
-\item{adae}{Adverse Events Analysis Dataset}
+\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
-\item{armvar}{variable used for column splitting}
+\item{armvar}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{remove 0 count rows}
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{standard_gradation}{(\code{logical}) Whether the standard toxicity groups should be used (\verb{Grade 1-2}, \verb{Grade 3-4},
 \verb{Grade 5}) or the alternative ones (\verb{Grade 1-2}, \verb{Grade 3-5}).}
 
-\item{deco}{decoration list with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{a list with default values for the arguments of the function}
+\item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+
+\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+
+\item{gr_grp}{(\code{list}) putting in correspondence severity levels and labels.}
+}
+\value{
+
 }
 \description{
 The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
@@ -46,6 +68,11 @@ The AET04 table provides an overview of adverse event with the highest NCI CTCAE
 Grade is sorted by severity.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{aet04_1_lyt}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
@@ -58,4 +85,5 @@ aet04_1(adsl, adae)
 aet04_1(adsl, adae, prune_0 = FALSE)
 aet04_1(adsl, adae, lbl_overall = "All Patients")
 
+aet04_1_lyt(armvar = "ACTARM")
 }
