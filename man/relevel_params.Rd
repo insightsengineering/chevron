@@ -18,10 +18,8 @@ Reorder PARAM and PARAMCD Levels Simultaneously
 
 df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))
 
-str(fct_relevel_params(df, paramcd_levels = c("B", "A", "C")))
-str(fct_relevel_params(df, paramcd_levels = c("B", "A")))
+str(relevel_params(df, paramcd_levels = c("B", "A", "C")))
+str(relevel_params(df, paramcd_levels = c("B", "A")))
 
-fct_relevel_params(df, paramcd_levels = c("letter B", "letter A", "LETTER C"))
-fct_relevel_params(df, paramcd_levels = c("B", "A"))
 
 }

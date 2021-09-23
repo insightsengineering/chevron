@@ -167,11 +167,9 @@ assert_colnames <- function(df, x) {
 #'
 #' df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))
 #'
-#' str(fct_relevel_params(df, paramcd_levels = c("B", "A", "C")))
-#' str(fct_relevel_params(df, paramcd_levels = c("B", "A")))
+#' str(relevel_params(df, paramcd_levels = c("B", "A", "C")))
+#' str(relevel_params(df, paramcd_levels = c("B", "A")))
 #'
-#' fct_relevel_params(df, paramcd_levels = c("letter B", "letter A", "LETTER C"))
-#' fct_relevel_params(df, paramcd_levels = c("B", "A"))
 #'
 relevel_params <- function(df, paramcd_levels) {
 
@@ -181,9 +179,9 @@ relevel_params <- function(df, paramcd_levels) {
   )
 
   dfs <- df[, c("PARAMCD", "PARAM")]
-  dfsd <- dfs[!duplicated(df),]
+  dfsd <- dfs[!duplicated(dfs),]
 
-  if (any(duplicated(dfsd$PARAMCD) || duplicated(dfsd$PARAM)))
+  if (any(duplicated(dfsd[,"PARAM"])) || any(duplicated(dfsd[,"PARAMCD"])))
     stop(".... are not unique") ## assuming 1:1 mapping
 
   x <- setNames(as.character(dfsd$PARAM), dfsd$PARAMCD)
