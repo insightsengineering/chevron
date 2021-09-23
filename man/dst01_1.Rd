@@ -3,7 +3,7 @@
 \name{dst01_1}
 \alias{dst01_1}
 \alias{dst01_1_lyt}
-\title{DST01 Table 1 (Default) Patient Disposition Table}
+\title{DST01 Table 1 (Default) Patient Disposition Table 1}
 \usage{
 dst01_1(
   adsl,
