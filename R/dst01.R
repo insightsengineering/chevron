@@ -14,7 +14,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 
 }
 
-#' Patient Disposition Table
+#' DST01 Table 1 (Default) Patient Disposition Table
 #'
 #' The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 #' study a reason is provided.
@@ -84,7 +84,6 @@ dst01_1 <- function(adsl, adae,
   tbl <- build_table(
     lyt,
     df = adae
-   # alt_counts_df = adsl # this part is a mystery
   )
 
   tbl_sorted <- tbl %>%
@@ -98,6 +97,26 @@ dst01_1 <- function(adsl, adae,
 }
 
 
+#' DST01 Layout 1 (Default)
+#'
+#' @describeIn dst01_1
+#'
+#' @inheritParams gen_args
+#'
+#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
+#'
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dst01_1_lyt(armvar = "ACTARM",
+#' status = "EOP01STT",
+#' reason = "DCP01RS")
 dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status = .study$status,
@@ -135,7 +154,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 
 
 
-#' Patient Disposition Table 2
+#' DST01 Table 2 (Supplementary) Patient Disposition Table 2
 #'
 #' The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 #' study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
@@ -195,7 +214,7 @@ dst01_2 <- function(adsl, adae,
     deco = deco
   )
 
-  sym_reason = sym(reason)
+  sym_reason <- sym(reason)
 
   adae_gp <- adae %>%
     mutate(reasonGP = case_when(
@@ -208,7 +227,6 @@ dst01_2 <- function(adsl, adae,
   tbl <- build_table(
     lyt,
     df = adae_gp,
-    # alt_counts_df = adsl # this part is a mystery
   )
 
 
@@ -222,7 +240,26 @@ dst01_2 <- function(adsl, adae,
 
 }
 
-
+#' DST01 Layout 2 (Supplementary)
+#'
+#' @describeIn dst01_2
+#'
+#' @inheritParams gen_args
+#'
+#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
+#'
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dst01_2_lyt(armvar = "ACTARM",
+#' status = "EOP01STT",
+#' reason = "DCP01RS")
 dst01_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status = .study$status,
@@ -265,12 +302,13 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 
 
 
-#' Patient Disposition Table 3
+#' DST01 Table 3 (Supplementary) Patient Disposition Table 3
 #'
 #' The DST01_3 Disposition Table provides an overview of patients study completion and of the treatment completion.
 #' For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 #'
 #' @inheritParams dst01_1
+#'
 #' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
 #'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
@@ -347,7 +385,6 @@ dst01_3 <- function(adsl, adae,
   tbl <- build_table(
     lyt,
     df = adae_gp
-    # alt_counts_df = adsl # this part is a mystery
   )
 
   tbl_sorted <- tbl  %>%
@@ -364,7 +401,6 @@ dst01_3 <- function(adsl, adae,
   tbl2 <- build_table(
     lyt,
     df = adae_gp
-    # alt_counts_df = adsl # this part is a mystery
   )
 
   tbl_sorted2 <- tbl2  %>%
@@ -372,7 +408,7 @@ dst01_3 <- function(adsl, adae,
 
   col_info(tbl_sorted2) <- col_info(tbl_sorted)
 
-  tbl_sorted = rbind(tbl_sorted2, tbl_sorted)
+  tbl_sorted <- rbind(tbl_sorted2, tbl_sorted)
 
 
   if (lbl_overall == "")
@@ -382,7 +418,22 @@ dst01_3 <- function(adsl, adae,
 
 }
 
-
+#' DST01 Layout 3 (Supplementary)
+#'
+#' @describeIn dst01_3
+#'
+#' @inheritParams gen_args
+#'
+#' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
+#'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dst01_3_lyt(armvar = "ACTARM",
+#' status_treatment = "EOTxx01")
 dst01_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status_treatment = .study$status,

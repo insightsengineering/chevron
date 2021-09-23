@@ -1,10 +1,9 @@
 
-#' Advert Events by Greatest Intensity
+#' AET03 Table 1 (Default) Advert Events by Greatest Intensity
 #'
 #' An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity
 #'
 #' @inheritParams gen_args
-#'
 #'
 #' @details
 #'  * Default Adverse Events by Greatest Intensity table
@@ -39,7 +38,7 @@ aet03_1 <- function(adsl, adae,
                     .study = list(
                       armvar = "ACTARM",
                       lbl_overall = ""
-                    )){
+                    )) {
 
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
@@ -51,7 +50,7 @@ aet03_1 <- function(adsl, adae,
   lbl_AESEV <-  var_labels_for(adae, "AESEV")
 
   # specific to AET03: avoid error if some severity levels are not present
-  gradation_severity = as.character(unique(adae$AESEV))
+  gradation_severity <- as.character(unique(adae$AESEV))
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
@@ -70,7 +69,7 @@ aet03_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl %>% trim_rows()
+  if (prune_0) tbl <- tbl %>% trim_rows()
 
 
   tbl_sorted <- tbl %>%
@@ -87,7 +86,7 @@ aet03_1 <- function(adsl, adae,
     )
 
   # remove the column of all observations if lbl_overall is an empty string
-  if (identical(lbl_overall,""))
+  if (identical(lbl_overall, ""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -95,6 +94,27 @@ aet03_1 <- function(adsl, adae,
 }
 
 
+#' AET03 Layout 1 (Default)
+#'
+#' @describeIn aet03_1
+#'
+#' @inheritParams gen_args
+#'
+#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
+#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param lbl_AESEV (`string`) text label for AESEV.
+#' @param gradation (`vector of strings`) describing the severity levels present in the dataset.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' aet03_1_lyt(armvar = "ACTARM",
+#'  lbl_overall = "",
+#'  lbl_AEBODSYS = "Body System or Organ Class",
+#'  lbl_AESEV = "Severity/Intensity",
+#'  lbl_AEDECOD = "Dictionary-Derived Term",
+#'  deco = std_deco("AET03"))
 aet03_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "",
@@ -153,15 +173,6 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       grade_groups = list("- Any Intensity -" = gradation
       )
     ) %>%
-
-    # count_occurrences_by_grade(
-    #   var = "AESEV",
-    #   .indent_mods = -1L
-    # ) %>%
     append_topleft(paste0("  ", lbl_AESEV))
 
 }
-
-
-
-

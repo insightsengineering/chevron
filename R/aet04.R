@@ -1,4 +1,4 @@
-#' Adverse Events by Highest NCI CTACAE AE Grade
+#' AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade
 #'
 #' The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
 #'
@@ -48,9 +48,9 @@ aet04_1 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
-  if(standard_gradation == TRUE){
+  if (standard_gradation == TRUE) {
 
-    gr_grp = list(
+    gr_grp <- list(
       "- Any Grade -" = c("1", "2", "3", "4", "5"),
       "Grade 1-2" = c("1", "2"),
       "Grade 3-4" = c("3", "4"),
@@ -58,7 +58,7 @@ aet04_1 <- function(adsl, adae,
     )
   } else {
 
-    gr_grp = list(
+    gr_grp <- list(
       "- Any Grade -" = c("1", "2", "3", "4", "5"),
       "Grade 1-2" = c("1", "2"),
       "Grade 3-5" = c("3", "4", "5")
@@ -80,7 +80,7 @@ aet04_1 <- function(adsl, adae,
     alt_counts_df = adsl
   )
 
-  if(prune_0) tbl <- tbl %>% trim_rows()
+  if (prune_0) tbl <- tbl %>% trim_rows()
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -92,7 +92,7 @@ aet04_1 <- function(adsl, adae,
       scorefun = cont_n_allcols
     )
 
-  if (identical(lbl_overall,""))
+  if (identical(lbl_overall, ""))
     tbl_sorted[, -ncol(tbl_sorted)]
   else
     tbl_sorted
@@ -100,6 +100,21 @@ aet04_1 <- function(adsl, adae,
 }
 
 
+#' AET04 Layout 1 (Default)
+#'
+#' @describeIn aet04_1
+#'
+#' @inheritParams gen_args
+#'
+#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
+#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param gr_grp (`list`) putting in correspondence severity levels and labels.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' aet04_1_lyt(armvar = "ACTARM")
 aet04_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",

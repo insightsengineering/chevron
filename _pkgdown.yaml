@@ -16,13 +16,19 @@ reference:
 
   - title: Standard Tables
     contents:
-      - dmt01_1
       - aet01_1
       - aet02_1
+      - aet02_2
+      - aet02_3
       - aet03_1
+      - aet04_1
+      - dmt01_1
       - dst01_1
       - dst01_2
       - dst01_3
+      - ext01_1
+      - ext01_2
+      - lbt01_1
 
   - title: Utility Functions
     contents:
@@ -32,3 +38,5 @@ reference:
     contents:
       - bol_YN
       - gen_args
+      - cut_by_group
+      - assert_colnames
