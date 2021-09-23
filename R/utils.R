@@ -134,8 +134,7 @@ cut_by_group <- function(df,
 #'
 #' assert_colnames(mtcars, c("mpg","cyl"))
 #'
-assert_colnames <- function(df,
-                            x) {
+assert_colnames <- function(df, x) {
   # provide a clearer error message in the case of missing variable
   missing_var <- setdiff(x, colnames(df))
   if (length(missing_var) > 0) {
@@ -174,7 +173,7 @@ assert_colnames <- function(df,
 #' fct_relevel_params(df, paramcd_levels = c("letter B", "letter A", "LETTER C"))
 #' fct_relevel_params(df, paramcd_levels = c("B", "A"))
 #'
-fct_relevel_params <- function(df, paramcd_levels) {
+relevel_params <- function(df, paramcd_levels) {
 
   # todo throw errors
   stopifnot(
