@@ -4,9 +4,9 @@
 #' the course of the trial.
 #'
 #' @inheritParams gen_args
-#' @param summaryvars `(vector of string)` the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls `(vector of string)` the label of the variables to be analyzed.
-#' @param visitvar `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
+#' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls (`vector of string`) the label of the variables to be analyzed.
+#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
 #'   be displayed
 #'
 #' @details
@@ -84,13 +84,13 @@ lbt01_1 <- function(adsl, adlb,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars `(vector of string)` the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls `(vector of string)` the label of the variables to be analyzed.
-#' @param visitvar `(string)` typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
+#' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls (`vector of string`) the label of the variables to be analyzed.
+#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
 #'   be displayed
 #'
-#' @param lbl_AVISIT `(string)` label of the `visitvar` variable.
-#' @param lbl_PARAM `(string)` label of the `PARAM` variable.
+#' @param lbl_AVISIT (`string`) label of the `visitvar` variable.
+#' @param lbl_PARAM (`string`) label of the `PARAM` variable.
 #'
 #' @return
 #' @export
