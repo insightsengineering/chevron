@@ -54,9 +54,6 @@ the analysis period.}
 \value{
 
 }
-\value{
-
-}
 \description{
 The DST01_3 Disposition Table provides an overview of patients study completion and of the treatment completion.
 For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.

@@ -50,9 +50,6 @@ period.}
 \value{
 
 }
-\value{
-
-}
 \description{
 The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 study, the reason provided is categorized as "Safety" or "Non-Safety" issue.

@@ -26,7 +26,6 @@ ext01_2_lyt(
 )
 }
 \arguments{
-
 \item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
 
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
@@ -47,7 +46,6 @@ analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide
 \item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
-
 }
 \value{
 

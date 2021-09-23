@@ -27,7 +27,6 @@ ext01_1_lyt(
 )
 }
 \arguments{
-
 \item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
 
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
@@ -79,4 +78,8 @@ adex <- sd$adex \%>\%
 
 ext01_1(adex, adsl)
 
+adex2 <- adex \%>\%
+   relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+
+ext01_1(adex2, adsl)
 }

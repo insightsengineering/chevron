@@ -37,7 +37,6 @@ dmt01_1_lyt(
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
-
 \item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
