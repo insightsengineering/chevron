@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>General Argument Name Convention — gen_args • chevron</title>
+<title>Check if strings are column names of a data frame — assert_colnames • chevron</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="General Argument Name Convention — gen_args" />
-<meta property="og:description" content="General Argument Name Convention" />
+<meta property="og:title" content="Check if strings are column names of a data frame — assert_colnames" />
+<meta property="og:description" content="Check if strings are column names of a data frame" />
 
 
 
@@ -114,154 +114,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>General Argument Name Convention</h1>
+    <h1>Check if strings are column names of a data frame</h1>
     
-    <div class="hidden name"><code>gen_args.Rd</code></div>
+    <div class="hidden name"><code>assert_colnames.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>General Argument Name Convention</p>
+    <p>Check if strings are column names of a data frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gen_args</span><span class='op'>(</span>
-  <span class='va'>armvar</span>,
-  <span class='va'>lbl_overall</span>,
-  <span class='va'>prune_0</span>,
-  <span class='va'>deco</span>,
-  <span class='va'>.study</span>,
-  <span class='va'>ad_bl</span>,
-  <span class='va'>adsl</span>,
-  <span class='va'>adeg</span>,
-  <span class='va'>adae</span>,
-  <span class='va'>adcm</span>,
-  <span class='va'>admh</span>,
-  <span class='va'>aag</span>,
-  <span class='va'>advs</span>,
-  <span class='va'>adlb</span>,
-  <span class='va'>adex</span>,
-  <span class='va'>adsub</span>,
-  <span class='va'>adrs</span>,
-  <span class='va'>adtte</span>,
-  <span class='va'>adhy</span>,
-  <span class='va'>adsaftte</span>,
-  <span class='va'>addv</span>,
-  <span class='va'>adcssrs</span>,
-  <span class='va'>adqlqc</span>,
-  <span class='va'>acg</span>,
-  <span class='va'>adic</span>,
-  <span class='va'>group</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>assert_colnames</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>armvar</th>
-      <td><p>variable used for column splitting</p></td>
+      <th>df</th>
+      <td><p><code>(data frame)</code></p></td>
     </tr>
     <tr>
-      <th>lbl_overall</th>
-      <td><p>label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
-    </tr>
-    <tr>
-      <th>prune_0</th>
-      <td><p>remove 0 count rows</p></td>
-    </tr>
-    <tr>
-      <th>deco</th>
-      <td><p>decoration list with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
-    </tr>
-    <tr>
-      <th>.study</th>
-      <td><p>a list with default values for the arguments of the function</p></td>
-    </tr>
-    <tr>
-      <th>ad_bl</th>
-      <td><p>subject baseline dataset with one row per patient</p></td>
-    </tr>
-    <tr>
-      <th>adsl</th>
-      <td><p>Subject Level Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adeg</th>
-      <td><p>ECG Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adae</th>
-      <td><p>Adverse Events Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adcm</th>
-      <td><p>Concomitant Medications Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>admh</th>
-      <td><p>Medical History Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>aag</th>
-      <td><p>Adverse Event Grouping Defs Dataset</p></td>
-    </tr>
-    <tr>
-      <th>advs</th>
-      <td><p>Vital Signs Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adlb</th>
-      <td><p>Laboratory Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adex</th>
-      <td><p>Exposure Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adsub</th>
-      <td><p>Subcategory Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adrs</th>
-      <td><p>Response Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adtte</th>
-      <td><p>Time to Event Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adhy</th>
-      <td><p>Hys Law Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adsaftte</th>
-      <td><p>Safety Time to Event Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>addv</th>
-      <td><p>Protocol Deviations Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adcssrs</th>
-      <td><p>C-SSRS Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adqlqc</th>
-      <td><p>EORTC QLQ-C30 V3 Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>acg</th>
-      <td><p>Concomitant Med. Grouping Defs Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adic</th>
-      <td><p>Interval Censoring Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>group</th>
-      <td><p>nest list for group-dependent data binning</p></td>
+      <th>x</th>
+      <td><p><code>(vector of strings)</code></p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    
+
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'>assert_colnames</span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>,<span class='st'>"cyl"</span><span class='op'>)</span><span class='op'>)</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
