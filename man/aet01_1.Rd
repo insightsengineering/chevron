@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet01.R
 \name{aet01_1}
 \alias{aet01_1}
-\title{AET01 Table}
+\title{AET01 Table 1 (Default) Safety Summary Table 1}
 \usage{
 aet01_1(
   adsl,
@@ -28,8 +28,72 @@ aet01_1(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
-AET01 Table
+AET01 Table 1 (Default) Safety Summary Table 1
 }
 \examples{
-# TODO: add examples
+library(scda)
+library(dplyr)
+sd <- synthetic_cdisc_data("rcd_2021_03_22")
+adsl <- sd$adsl
+adae <- sd$adae \%>\%
+ mutate(ANL01FL = 'Y')
+
+adsl <- df_explicit_na(adsl)
+adae <- df_explicit_na(
+ adae,
+  omit_columns = c("SMQ01NAM", "SMQ01SC", "SMQ02NAM", "SMQ02SC", "CQ01NAM", "STUDYID", "USUBJID")
+)
+
+set.seed(99)
+
+adae <- adae \%>\%
+  mutate(
+    AEDECOD = as.character(AEDECOD),
+    AESDTH = sample(c("N", "Y"), size = nrow(adae), replace = TRUE, prob = c(0.99, 0.01)),
+    AEACN = sample(
+      c("DOSE NOT CHANGED", "DOSE INCREASED", "DRUG INTERRUPTED", "DRUG WITHDRAWN"),
+      size = nrow(adae),
+      replace = TRUE, prob = c(0.68, 0.02, 0.25, 0.05)
+    ),
+    FATAL = AESDTH == "Y",
+    SER = AESER == "Y",
+    SERWD = AESER == "Y" & AEACN == "DRUG WITHDRAWN",
+    SERDSM = AESER == "Y" & AEACN \%in\% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+    RELSER = AESER == "Y" & AEREL == "Y",
+    WD = AEACN == "DRUG WITHDRAWN",
+    DSM = AEACN \%in\% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+    REL = AEREL == "Y",
+    RELWD = AEREL == "Y" & AEACN == "DRUG WITHDRAWN",
+    RELDSM = AEREL == "Y" & AEACN \%in\% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+    CTC35 = AETOXGR \%in\% c("3", "4", "5"),
+    CTC45 = AETOXGR \%in\% c("4", "5"),
+    SMQ01 = SMQ01NAM != "",
+    SMQ02 = SMQ02NAM != "",
+    CQ01 = CQ01NAM != "",
+    USUBJID_AESEQ = paste(USUBJID, AESEQ, sep = "@") # Create unique ID per AE in dataset.
+  ) \%>\%
+  var_relabel(
+    AEDECOD = "Dictionary-Derived Term",
+    AESDTH = "Results in Death",
+    AEACN = "Action Taken with Study Treatment",
+    FATAL = "AE with fatal outcome",
+    SER = "Serious AE",
+    SERWD = "Serious AE leading to withdrawal from treatment",
+    SERDSM = "Serious AE leading to dose modification/interruption",
+    RELSER = "Related Serious AE",
+    WD = "AE leading to withdrawal from treatment",
+    DSM = "AE leading to dose modification/interruption",
+    REL = "Related AE",
+    RELWD = "Related AE leading to withdrawal from treatment",
+    RELDSM = "Related AE leading to dose modification/interruption",
+    CTC35 = "Grade 3-5 AE",
+    CTC45 = "Grade 4/5 AE",
+    SMQ01 =  aesi_label(adae$SMQ01NAM, adae$SMQ01SC),
+    SMQ02 = aesi_label(adae$SMQ02NAM, adae$SMQ02SC),
+    CQ01 = aesi_label(adae$CQ01NAM)
+  )
+
+
+aet01_1(adsl, adae)
+
 }
