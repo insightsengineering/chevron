@@ -86,13 +86,9 @@ dst01_1 <- function(adsl, adae,
     df = adae
   )
 
-  tbl_sorted <- tbl %>%
-    prune_table()
+  tbl <- tbl %>% prune_table()
 
-  if (lbl_overall == "")
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
-    tbl_sorted
+  tbl
 
 }
 
@@ -129,11 +125,14 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                           reason = "DCSREAS"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
-    split_cols_by(var = armvar,
-                  split_fun = add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
-    add_colcounts() %>%
+  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(armvar) %>%
+    add_colcounts()
+
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
+
+  layout_table %>%
     count_values(
       vars = status,
       values = "COMPLETED",
@@ -236,13 +235,9 @@ dst01_2 <- function(adsl, adae,
   )
 
 
-  tbl_sorted <- tbl  %>%
-    prune_table()
+  tbl <- tbl  %>%  prune_table()
 
-  if (lbl_overall == "")
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
-    tbl_sorted
+  tbl
 
 }
 
@@ -278,11 +273,14 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                           reason = "DCSREAS"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
-    split_cols_by(var = armvar,
-                  split_fun = add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
-    add_colcounts() %>%
+  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(armvar) %>%
+    add_colcounts()
+
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
+
+  layout_table %>%
     count_values(
       vars = status,
       values = "COMPLETED",
@@ -398,8 +396,7 @@ dst01_3 <- function(adsl, adae,
     df = adae_gp
   )
 
-  tbl_sorted <- tbl  %>%
-    prune_table()
+  tbl_sorted <- tbl  %>% prune_table()
 
   lyt <- dst01_2_lyt(
     armvar = armvar,
@@ -414,18 +411,13 @@ dst01_3 <- function(adsl, adae,
     df = adae_gp
   )
 
-  tbl_sorted2 <- tbl2  %>%
-    prune_table()
+  tbl_sorted2 <- tbl2  %>% prune_table()
 
-  col_info(tbl_sorted2) <- col_info(tbl_sorted)
+  col_info(tbl_sorted) <- col_info(tbl_sorted2)
 
   tbl_sorted <- rbind(tbl_sorted2, tbl_sorted)
 
-
-  if (lbl_overall == "")
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
-    tbl_sorted
+  tbl_sorted
 
 }
 
@@ -455,11 +447,14 @@ dst01_3_lyt <- function(armvar = .study$armvar,
                           status_treatment = "EOTSTT"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
-    split_cols_by(var = armvar,
-                  split_fun = add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
-    add_colcounts() %>%
+  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(armvar) %>%
+    add_colcounts()
+
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
+
+  layout_table %>%
     count_values(
       vars = status_treatment,
       values = "COMPLETED",
