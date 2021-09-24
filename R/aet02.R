@@ -75,10 +75,7 @@ aet02_1 <- function(adsl, adae,
       scorefun = score_occurrences
     )
 
-  if (identical(lbl_overall, ""))
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
-    tbl_sorted
+  tbl_sorted
 
 }
 
@@ -110,10 +107,13 @@ aet02_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
-    split_cols_by(var = armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(label = lbl_overall) %>%
+  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+    split_cols_by(var = armvar)  %>%
+    add_colcounts()
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
+
+  layout_table %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -231,11 +231,6 @@ aet02_2 <- function(adsl, adae,
       scorefun = score_occurrences
     )
 
-
-
-  if (identical(lbl_overall, ""))
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
     tbl_sorted
 
 }
@@ -272,10 +267,13 @@ aet02_2_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(label = lbl_overall) %>%
+    add_colcounts()
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
+
+  layout_table %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -393,10 +391,7 @@ aet02_3 <- function(adsl, adae,
       scorefun = score_occurrences
     )
 
-  if (identical(lbl_overall, ""))
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
-    tbl_sorted
+  tbl_sorted
 
 }
 
@@ -426,10 +421,14 @@ aet02_3_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+
+  layout_table <-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(label = lbl_overall) %>%
+    add_colcounts()
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
+
+  layout_table %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
