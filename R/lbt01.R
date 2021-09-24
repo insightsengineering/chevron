@@ -41,12 +41,10 @@ lbt01_1 <- function(adsl, adlb,
                     summaryvars = .study$evo_vars,
                     summaryvars_lbls = var_labels_for(adlb, summaryvars),
                     visitvar = "AVISIT", # or ATPTN
-                    lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("LBT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = "",
                       evo_vars = c("AVAL", "CHG")
                     )) {
 
@@ -61,7 +59,6 @@ lbt01_1 <- function(adsl, adlb,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
-    lbl_overall = lbl_overall,
     lbl_AVISIT = lbl_AVISIT,
     lbl_PARAM = lbl_PARAM,
     deco = deco
@@ -87,8 +84,7 @@ lbt01_1 <- function(adsl, adlb,
 #' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
 #' @param summaryvars_lbls (`vector of string`) the label of the variables to be analyzed.
 #' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
-#'   be displayed
-#'
+#'   be displayed.
 #' @param lbl_AVISIT (`string`) label of the `visitvar` variable.
 #' @param lbl_PARAM (`string`) label of the `PARAM` variable.
 #'
@@ -98,13 +94,11 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$evo_vars,
                         summaryvars_lbls = .study$evo_vars_lbls,
                         visitvar = .study$visitvar,
-                        lbl_overall = .study$lbl_overall,
                         lbl_AVISIT = "",
                         lbl_PARAM = "",
                         deco = std_deco("LBT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = "",
                           evo_vars = c("AVAL", "CHG"),
                           evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                           visitvar = "AVISIT"
@@ -132,9 +126,10 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
     split_cols_by_multivar(
       vars = summaryvars,
       varlabels = summaryvars_lbls,
+      nested = TRUE
     ) %>%
     summarize_colvars() %>%
-    append_topleft(lbl_PARAM) %>%
+    append_topleft(paste(lbl_PARAM)) %>%
     append_topleft(c(paste(" ", lbl_AVISIT), " "))
 
 }
