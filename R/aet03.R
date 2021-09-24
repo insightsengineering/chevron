@@ -1,7 +1,7 @@
 
-#' AET03 Table 1 (Default) Advert Events by Greatest Intensity
+#' AET03 Table 1 (Default) Advert Events by Greatest Intensity Table 1
 #'
-#' An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity
+#' An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity.
 #'
 #' @inheritParams gen_args
 #'
