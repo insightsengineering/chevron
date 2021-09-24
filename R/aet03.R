@@ -28,7 +28,7 @@
 #'  mutate(ANL01FL = 'Y')
 #'
 #' aet03_1(adsl, adae)
-#' aet02_1(adsl, adae, lbl_overall = "All Patients")
+#' aet03_1(adsl, adae, lbl_overall = "All Patients")
 #'
 aet03_1 <- function(adsl, adae,
                     armvar = .study$armvar,
@@ -85,10 +85,6 @@ aet03_1 <- function(adsl, adae,
       decreasing = TRUE
     )
 
-  # remove the column of all observations if lbl_overall is an empty string
-  if (identical(lbl_overall, ""))
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
     tbl_sorted
 
 }
@@ -129,13 +125,13 @@ aet03_1_lyt <- function(armvar = .study$armvar,
                           gradation = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
                         )) {
 
-
-  # create a Pre-data Table Layout
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  layout_table  <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(label = lbl_overall) %>%
+    add_colcounts()
 
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
+
+  layout_table %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = gradation
