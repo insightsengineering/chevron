@@ -1,6 +1,6 @@
 #' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table
 #'
-#' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row.
+#' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row. xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of strings`) variables summarized in demographic table.
