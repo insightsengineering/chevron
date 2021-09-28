@@ -83,4 +83,5 @@ adex2 <- adex \%>\%
 
 ext01_1(adex2, adsl)
 ext01_1(adex2, adsl, lbl_overall = "All Patients")
+
 }
