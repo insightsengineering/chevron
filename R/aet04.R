@@ -92,9 +92,6 @@ aet04_1 <- function(adsl, adae,
       scorefun = cont_n_allcols
     )
 
-  if (identical(lbl_overall, ""))
-    tbl_sorted[, -ncol(tbl_sorted)]
-  else
     tbl_sorted
 
 }
@@ -133,10 +130,15 @@ aet04_1_lyt <- function(armvar = .study$armvar,
                         )
                         ) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+
+
+  layout_table  <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(label = lbl_overall) %>%
+    add_colcounts()
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
+
+  layout_table %>%
     summarize_occurrences_by_grade(
       var = "AETOXGR",
       grade_groups = gr_grp

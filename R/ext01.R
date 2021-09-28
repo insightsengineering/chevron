@@ -32,6 +32,7 @@
 #'    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
 #'
 #' ext01_1(adex2, adsl)
+#' ext01_1(adex2, adsl, lbl_overall = "All Patients")
 ext01_1 <- function(adex,
                     adsl,
                     armvar = .study$armvar,
@@ -59,14 +60,9 @@ ext01_1 <- function(adex,
 
   tbl <- build_table(lyt, adex, adsl)
 
-
   if (prune_0) tbl <- tbl %>% prune_table()
 
-
-  if (identical(lbl_overall, ""))
-    tbl[, -ncol(tbl)]
-  else
-    tbl
+  tbl
 
 }
 
@@ -95,15 +91,19 @@ ext01_1_lyt <- function(armvar = .study$armvar,
                           lbl_analysis_var = "Analysis Value"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
+  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
     split_cols_by(var = armvar) %>%
-    add_overall_col(lbl_overall) %>%
-    add_colcounts() %>%
+    add_colcounts()
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
+
+  layout_table %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels
     ) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+
 }
 
 
@@ -154,6 +154,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'                      "Number of doses administered during constant dosing interval"))
 #'
 #' ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
+#' ext01_2(adex, adsl, lbl_overall = "All Patients", show_stats = "ALL")
 #'
 ext01_2 <- function(adex,
                     adsl,
@@ -193,10 +194,8 @@ ext01_2 <- function(adex,
 
   if (prune_0) tbl <- tbl %>% prune_table()
 
-  if (identical(lbl_overall, ""))
-    tbl[, -ncol(tbl)]
-  else
-    tbl
+  tbl
+
 }
 
 
@@ -222,10 +221,13 @@ ext01_2_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
     split_cols_by(var = armvar)  %>%
-    add_overall_col(lbl_overall) %>%
-    add_colcounts()  %>%
+    add_colcounts()
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
+
+  layout_table %>%
     split_rows_by(
       "PARAM",
       split_fun = NULL

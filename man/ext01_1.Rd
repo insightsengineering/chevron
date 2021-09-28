@@ -82,4 +82,6 @@ adex2 <- adex \%>\%
    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
 
 ext01_1(adex2, adsl)
+ext01_1(adex2, adsl, lbl_overall = "All Patients")
+
 }

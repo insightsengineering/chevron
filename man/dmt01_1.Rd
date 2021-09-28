@@ -23,7 +23,7 @@ dmt01_1_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DMT01"),
   .study = list(armvar = "ARM", summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
-    "RACE", "BWGHTSI"), overall_col = "All Patients")
+    "RACE", "BWGHTSI"), lbl_overall = "All Patients")
 )
 }
 \arguments{
@@ -68,6 +68,7 @@ library(scda)
 adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
 
 dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"))
+dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
 
 dmt01_1(
  ad_bl = adsl,

@@ -12,10 +12,9 @@ lbt01_1(
   summaryvars = .study$evo_vars,
   summaryvars_lbls = var_labels_for(adlb, summaryvars),
   visitvar = "AVISIT",
-  lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "", evo_vars = c("AVAL", "CHG"))
+  .study = list(armvar = "ACTARM", evo_vars = c("AVAL", "CHG"))
 )
 
 lbt01_1_lyt(
@@ -23,13 +22,11 @@ lbt01_1_lyt(
   summaryvars = .study$evo_vars,
   summaryvars_lbls = .study$evo_vars_lbls,
   visitvar = .study$visitvar,
-  lbl_overall = .study$lbl_overall,
   lbl_AVISIT = "",
   lbl_PARAM = "",
   deco = std_deco("LBT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "", evo_vars = c("AVAL", "CHG"),
-    evo_vars_lbls = c("Analysis \\nValue", "Change from \\nBaseline"), visitvar =
-    "AVISIT")
+  .study = list(armvar = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
+    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
 }
 \arguments{
@@ -44,9 +41,7 @@ lbt01_1_lyt(
 \item{summaryvars_lbls}{(\verb{vector of string}) the label of the variables to be analyzed.}
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
-be displayed}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+be displayed.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 

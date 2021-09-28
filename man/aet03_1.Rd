@@ -81,7 +81,7 @@ adae <- sd$adae \%>\%
  mutate(ANL01FL = 'Y')
 
 aet03_1(adsl, adae)
-aet02_1(adsl, adae, lbl_overall = "All Patients")
+aet03_1(adsl, adae, lbl_overall = "All Patients")
 
 aet03_1_lyt(armvar = "ACTARM",
  lbl_overall = "",

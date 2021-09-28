@@ -23,6 +23,8 @@
 #' adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
 #'
 #' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"))
+#' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
+
 #'
 #' dmt01_1(
 #'  ad_bl = adsl,
@@ -89,12 +91,16 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                         .study = list(
                           armvar = "ARM",
                           summaryvars =  c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
-                          overall_col = "All Patients"
+                          lbl_overall = "All Patients"
                         )) {
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
+  layout_table <-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
     split_cols_by(var = armvar) %>%
-    add_overall_col(lbl_overall) %>%
-    add_colcounts() %>%
+    add_colcounts()
+
+  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
+
+  layout_table %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+
 }
