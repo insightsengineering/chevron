@@ -132,10 +132,9 @@ the course of the trial.</p>
   summaryvars <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>evo_vars</span>,
   summaryvars_lbls <span class='op'>=</span> <span class='fu'><a href='var_labels_for.html'>var_labels_for</a></span><span class='op'>(</span><span class='va'>adlb</span>, <span class='va'>summaryvars</span><span class='op'>)</span>,
   visitvar <span class='op'>=</span> <span class='st'>"AVISIT"</span>,
-  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"LBT01"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span>, evo_vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AVAL"</span>, <span class='st'>"CHG"</span><span class='op'>)</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, evo_vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AVAL"</span>, <span class='st'>"CHG"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>lbt01_1_lyt</span><span class='op'>(</span>
@@ -143,13 +142,11 @@ the course of the trial.</p>
   summaryvars <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>evo_vars</span>,
   summaryvars_lbls <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>evo_vars_lbls</span>,
   visitvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>visitvar</span>,
-  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   lbl_AVISIT <span class='op'>=</span> <span class='st'>""</span>,
   lbl_PARAM <span class='op'>=</span> <span class='st'>""</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"LBT01"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span>, evo_vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AVAL"</span>, <span class='st'>"CHG"</span><span class='op'>)</span>,
-    evo_vars_lbls <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Analysis \nValue"</span>, <span class='st'>"Change from \nBaseline"</span><span class='op'>)</span>, visitvar <span class='op'>=</span>
-    <span class='st'>"AVISIT"</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, evo_vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AVAL"</span>, <span class='st'>"CHG"</span><span class='op'>)</span>, evo_vars_lbls <span class='op'>=</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Analysis \nValue"</span>, <span class='st'>"Change from \nBaseline"</span><span class='op'>)</span>, visitvar <span class='op'>=</span> <span class='st'>"AVISIT"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -178,11 +175,7 @@ the course of the trial.</p>
     <tr>
       <th>visitvar</th>
       <td><p>(<code>string</code>) typically one of <code>"AVISIT"</code> (Default) or <code>"ATPTN"</code> depending on the type of time point to
-be displayed</p></td>
-    </tr>
-    <tr>
-      <th>lbl_overall</th>
-      <td><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
+be displayed.</p></td>
     </tr>
     <tr>
       <th>prune_0</th>

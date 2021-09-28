@@ -217,7 +217,11 @@ events categorized by Body System and Dictionary-Derived Term.</p>
  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ANL01FL <span class='op'>=</span> <span class='st'>'Y'</span><span class='op'>)</span>
 
 <span class='fu'>aet02_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination
+</div><div class='output co'>#&gt; Main Title
+#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
+#&gt; 
+#&gt; ------------------------------------------------------------------------------------------------------
+#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination
 #&gt;  Dictionary-Derived Term                                      (N=134)       (N=134)        (N=132)    
 #&gt; ------------------------------------------------------------------------------------------------------
 #&gt; Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  
@@ -241,14 +245,14 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 #&gt;   Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  
 #&gt;   Total number of events                                         62           72              74      
 #&gt;   dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt; cl B.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt;   Total number of events                                         56           60              62      
-#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
 #&gt; cl C.2                                                                                                
 #&gt;   Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  
 #&gt;   Total number of events                                         48           53              65      
 #&gt;   dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
+#&gt; cl B.1                                                                                                
+#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
+#&gt;   Total number of events                                         56           60              62      
+#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
 #&gt; cl C.1                                                                                                
 #&gt;   Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  
 #&gt;   Total number of events                                         55           63              64      
@@ -301,7 +305,11 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 #&gt; Footnotes go here</div><div class='input'>
 <span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>adae</span> <span class='op'>%&gt;%</span> <span class='fu'>var_relabel</span><span class='op'>(</span>AEBODSYS <span class='op'>=</span> <span class='st'>"Medra System Organ Class"</span><span class='op'>)</span>
 <span class='fu'>aet02_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Medra System Organ Class                                     A: Drug X    B: Placebo    C: Combination
+</div><div class='output co'>#&gt; Main Title
+#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
+#&gt; 
+#&gt; ------------------------------------------------------------------------------------------------------
+#&gt; Medra System Organ Class                                     A: Drug X    B: Placebo    C: Combination
 #&gt;  Dictionary-Derived Term                                      (N=134)       (N=134)        (N=132)    
 #&gt; ------------------------------------------------------------------------------------------------------
 #&gt; Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  
@@ -325,14 +333,14 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 #&gt;   Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  
 #&gt;   Total number of events                                         62           72              74      
 #&gt;   dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt; cl B.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt;   Total number of events                                         56           60              62      
-#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
 #&gt; cl C.2                                                                                                
 #&gt;   Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  
 #&gt;   Total number of events                                         48           53              65      
 #&gt;   dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
+#&gt; cl B.1                                                                                                
+#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
+#&gt;   Total number of events                                         56           60              62      
+#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
 #&gt; cl C.1                                                                                                
 #&gt;   Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  
 #&gt;   Total number of events                                         55           63              64      
@@ -349,7 +357,6 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 #&gt; 
 #&gt; Column-Split Structure:
 #&gt; ACTARM (lvls) 
-#&gt;  (all obs) 
 #&gt; 
 #&gt; Row-Split Structure:
 #&gt; AEBODSYS (lvls) -&gt; AEDECOD (** analysis **) 
