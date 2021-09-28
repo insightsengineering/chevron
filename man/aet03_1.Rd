@@ -3,7 +3,7 @@
 \name{aet03_1}
 \alias{aet03_1}
 \alias{aet03_1_lyt}
-\title{AET03 Table 1 (Default) Advert Events by Greatest Intensity}
+\title{AET03 Table 1 (Default) Advert Events by Greatest Intensity Table 1}
 \usage{
 aet03_1(
   adsl,
@@ -54,7 +54,7 @@ aet03_1_lyt(
 
 }
 \description{
-An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity
+An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }
 \details{
 \itemize{

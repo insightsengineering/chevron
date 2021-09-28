@@ -1,4 +1,4 @@
-#' AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade
+#' AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1
 #'
 #' The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
 #'
