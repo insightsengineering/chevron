@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AET01 Table — aet01_1 • chevron</title>
+<title>AET01 Table 1 (Default) Safety Summary Table 1 — aet01_1 • chevron</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="AET01 Table — aet01_1" />
-<meta property="og:description" content="AET01 Table" />
+<meta property="og:title" content="AET01 Table 1 (Default) Safety Summary Table 1 — aet01_1" />
+<meta property="og:description" content="AET01 Table 1 (Default) Safety Summary Table 1" />
 
 
 
@@ -114,13 +114,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>AET01 Table</h1>
+    <h1>AET01 Table 1 (Default) Safety Summary Table 1</h1>
     
     <div class="hidden name"><code>aet01_1.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>AET01 Table</p>
+    <p>AET01 Table 1 (Default) Safety Summary Table 1</p>
     </div>
 
     <pre class="usage"><span class='fu'>aet01_1</span><span class='op'>(</span>
@@ -164,7 +164,94 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># TODO: add examples</span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='va'>sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span>
+<span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adsl</span>
+<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adae</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ANL01FL <span class='op'>=</span> <span class='st'>'Y'</span><span class='op'>)</span>
+
+<span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='fu'>df_explicit_na</span><span class='op'>(</span><span class='va'>adsl</span><span class='op'>)</span>
+<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='fu'>df_explicit_na</span><span class='op'>(</span>
+ <span class='va'>adae</span>,
+  omit_columns <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"SMQ01NAM"</span>, <span class='st'>"SMQ01SC"</span>, <span class='st'>"SMQ02NAM"</span>, <span class='st'>"SMQ02SC"</span>, <span class='st'>"CQ01NAM"</span>, <span class='st'>"STUDYID"</span>, <span class='st'>"USUBJID"</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>99</span><span class='op'>)</span>
+
+<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>adae</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+    AEDECOD <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>AEDECOD</span><span class='op'>)</span>,
+    AESDTH <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"N"</span>, <span class='st'>"Y"</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>adae</span><span class='op'>)</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span>, prob <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.99</span>, <span class='fl'>0.01</span><span class='op'>)</span><span class='op'>)</span>,
+    AEACN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DOSE NOT CHANGED"</span>, <span class='st'>"DOSE INCREASED"</span>, <span class='st'>"DRUG INTERRUPTED"</span>, <span class='st'>"DRUG WITHDRAWN"</span><span class='op'>)</span>,
+      size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>adae</span><span class='op'>)</span>,
+      replace <span class='op'>=</span> <span class='cn'>TRUE</span>, prob <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.68</span>, <span class='fl'>0.02</span>, <span class='fl'>0.25</span>, <span class='fl'>0.05</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    FATAL <span class='op'>=</span> <span class='va'>AESDTH</span> <span class='op'>==</span> <span class='st'>"Y"</span>,
+    SER <span class='op'>=</span> <span class='va'>AESER</span> <span class='op'>==</span> <span class='st'>"Y"</span>,
+    SERWD <span class='op'>=</span> <span class='va'>AESER</span> <span class='op'>==</span> <span class='st'>"Y"</span> <span class='op'>&amp;</span> <span class='va'>AEACN</span> <span class='op'>==</span> <span class='st'>"DRUG WITHDRAWN"</span>,
+    SERDSM <span class='op'>=</span> <span class='va'>AESER</span> <span class='op'>==</span> <span class='st'>"Y"</span> <span class='op'>&amp;</span> <span class='va'>AEACN</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DRUG INTERRUPTED"</span>, <span class='st'>"DOSE INCREASED"</span>, <span class='st'>"DOSE REDUCED"</span><span class='op'>)</span>,
+    RELSER <span class='op'>=</span> <span class='va'>AESER</span> <span class='op'>==</span> <span class='st'>"Y"</span> <span class='op'>&amp;</span> <span class='va'>AEREL</span> <span class='op'>==</span> <span class='st'>"Y"</span>,
+    WD <span class='op'>=</span> <span class='va'>AEACN</span> <span class='op'>==</span> <span class='st'>"DRUG WITHDRAWN"</span>,
+    DSM <span class='op'>=</span> <span class='va'>AEACN</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DRUG INTERRUPTED"</span>, <span class='st'>"DOSE INCREASED"</span>, <span class='st'>"DOSE REDUCED"</span><span class='op'>)</span>,
+    REL <span class='op'>=</span> <span class='va'>AEREL</span> <span class='op'>==</span> <span class='st'>"Y"</span>,
+    RELWD <span class='op'>=</span> <span class='va'>AEREL</span> <span class='op'>==</span> <span class='st'>"Y"</span> <span class='op'>&amp;</span> <span class='va'>AEACN</span> <span class='op'>==</span> <span class='st'>"DRUG WITHDRAWN"</span>,
+    RELDSM <span class='op'>=</span> <span class='va'>AEREL</span> <span class='op'>==</span> <span class='st'>"Y"</span> <span class='op'>&amp;</span> <span class='va'>AEACN</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DRUG INTERRUPTED"</span>, <span class='st'>"DOSE INCREASED"</span>, <span class='st'>"DOSE REDUCED"</span><span class='op'>)</span>,
+    CTC35 <span class='op'>=</span> <span class='va'>AETOXGR</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span>,
+    CTC45 <span class='op'>=</span> <span class='va'>AETOXGR</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span>,
+    SMQ01 <span class='op'>=</span> <span class='va'>SMQ01NAM</span> <span class='op'>!=</span> <span class='st'>""</span>,
+    SMQ02 <span class='op'>=</span> <span class='va'>SMQ02NAM</span> <span class='op'>!=</span> <span class='st'>""</span>,
+    CQ01 <span class='op'>=</span> <span class='va'>CQ01NAM</span> <span class='op'>!=</span> <span class='st'>""</span>,
+    USUBJID_AESEQ <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>USUBJID</span>, <span class='va'>AESEQ</span>, sep <span class='op'>=</span> <span class='st'>"@"</span><span class='op'>)</span> <span class='co'># Create unique ID per AE in dataset.</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>var_relabel</span><span class='op'>(</span>
+    AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,
+    AESDTH <span class='op'>=</span> <span class='st'>"Results in Death"</span>,
+    AEACN <span class='op'>=</span> <span class='st'>"Action Taken with Study Treatment"</span>,
+    FATAL <span class='op'>=</span> <span class='st'>"AE with fatal outcome"</span>,
+    SER <span class='op'>=</span> <span class='st'>"Serious AE"</span>,
+    SERWD <span class='op'>=</span> <span class='st'>"Serious AE leading to withdrawal from treatment"</span>,
+    SERDSM <span class='op'>=</span> <span class='st'>"Serious AE leading to dose modification/interruption"</span>,
+    RELSER <span class='op'>=</span> <span class='st'>"Related Serious AE"</span>,
+    WD <span class='op'>=</span> <span class='st'>"AE leading to withdrawal from treatment"</span>,
+    DSM <span class='op'>=</span> <span class='st'>"AE leading to dose modification/interruption"</span>,
+    REL <span class='op'>=</span> <span class='st'>"Related AE"</span>,
+    RELWD <span class='op'>=</span> <span class='st'>"Related AE leading to withdrawal from treatment"</span>,
+    RELDSM <span class='op'>=</span> <span class='st'>"Related AE leading to dose modification/interruption"</span>,
+    CTC35 <span class='op'>=</span> <span class='st'>"Grade 3-5 AE"</span>,
+    CTC45 <span class='op'>=</span> <span class='st'>"Grade 4/5 AE"</span>,
+    SMQ01 <span class='op'>=</span>  <span class='fu'>aesi_label</span><span class='op'>(</span><span class='va'>adae</span><span class='op'>$</span><span class='va'>SMQ01NAM</span>, <span class='va'>adae</span><span class='op'>$</span><span class='va'>SMQ01SC</span><span class='op'>)</span>,
+    SMQ02 <span class='op'>=</span> <span class='fu'>aesi_label</span><span class='op'>(</span><span class='va'>adae</span><span class='op'>$</span><span class='va'>SMQ02NAM</span>, <span class='va'>adae</span><span class='op'>$</span><span class='va'>SMQ02SC</span><span class='op'>)</span>,
+    CQ01 <span class='op'>=</span> <span class='fu'>aesi_label</span><span class='op'>(</span><span class='va'>adae</span><span class='op'>$</span><span class='va'>CQ01NAM</span><span class='op'>)</span>
+  <span class='op'>)</span>
+
+
+<span class='fu'>aet01_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                                                               A: Drug X    B: Placebo    C: Combination
+#&gt;                                                                (N=134)       (N=134)        (N=132)    
+#&gt; -------------------------------------------------------------------------------------------------------
+#&gt; Total number of patients with at least one adverse event      122 (91%)    123 (91.8%)    120 (90.9%)  
+#&gt; Total AEs                                                        609           622            703      
+#&gt; Total number of deaths                                       22 (16.42%)   26 (19.4%)     19 (14.39%)  
+#&gt; Total number of patients withdrawn from study due to an AE    6 (4.48%)     1 (0.75%)      2 (1.52%)   
+#&gt; Total number of patients with at least one                                                             
+#&gt;     AE with fatal outcome                                     6 (4.9%)      9 (7.3%)         6 (5%)    
+#&gt;     Serious AE                                               104 (85.2%)   101 (82.1%)     99 (82.5%)  
+#&gt;     Serious AE leading to withdrawal from treatment           6 (4.9%)      16 (13%)       11 (9.2%)   
+#&gt;     Serious AE leading to dose modification/interruption     43 (35.2%)     48 (39%)       52 (43.3%)  
+#&gt;     Related Serious AE                                       76 (62.3%)    70 (56.9%)      75 (62.5%)  
+#&gt;     AE leading to withdrawal from treatment                  25 (20.5%)    31 (25.2%)      31 (25.8%)  
+#&gt;     AE leading to dose modification/interruption             79 (64.8%)    89 (72.4%)       90 (75%)   
+#&gt;     Related AE                                               105 (86.1%)   108 (87.8%)    109 (90.8%)  
+#&gt;     Related AE leading to withdrawal from treatment          14 (11.5%)    14 (11.4%)      15 (12.5%)  
+#&gt;     Related AE leading to dose modification/interruption     56 (45.9%)    56 (45.5%)       60 (50%)   
+#&gt;     Grade 3-5 AE                                             109 (89.3%)   104 (84.6%)    109 (90.8%)  </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
