@@ -24,7 +24,7 @@ var_labels_for <- function(df, vars) {
 std_deco <- function(id, ...) {
   list(
     title = "Main Title",
-    subtitles = "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}",
+    subtitles = "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}", # nolint
     main_footer = "Footnotes go here"
   )
 }
@@ -178,9 +178,9 @@ relevel_params <- function(df, paramcd_levels) {
   )
 
   dfs <- df[, c("PARAMCD", "PARAM")]
-  dfsd <- dfs[!duplicated(dfs),]
+  dfsd <- dfs[!duplicated(dfs), ]
 
-  if (any(duplicated(dfsd[,"PARAM"])) || any(duplicated(dfsd[,"PARAMCD"])))
+  if (any(duplicated(dfsd[, "PARAM"])) || any(duplicated(dfsd[, "PARAMCD"])))
     stop(".... are not unique") ## assuming 1:1 mapping
 
   x <- setNames(as.character(dfsd$PARAM), dfsd$PARAMCD)

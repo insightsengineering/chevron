@@ -374,7 +374,7 @@ dst01_3 <- function(adsl, adae,
   adae <- adae %>%
     filter(bol_YN(ANL01FL))
 
-  sym_reason = sym(reason)
+  sym_reason <- sym(reason)
 
   adae_gp <- adae %>%
     mutate(reasonGP = case_when(

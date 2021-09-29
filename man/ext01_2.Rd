@@ -32,8 +32,8 @@ ext01_2_lyt(
 
 \item{armvar}{(\code{string}) variable used for column splitting}
 
-\item{show_stats}{(\verb{vector of strings}) providing the name of the parameters whose statistical summary should be presented. To
-analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide \code{paramvar = ""}.}
+\item{show_stats}{(\verb{vector of strings}) providing the name of the parameters whose statistical summary should be
+presented. To analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide \code{paramvar = ""}.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
