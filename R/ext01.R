@@ -113,8 +113,8 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param show_stats (`vector of strings`) providing the name of the parameters whose statistical summary should be presented. To
-#'  analyze all, provide `paramvar = "ALL"` (Default), to analyze none, provide `paramvar = ""`.
+#' @param show_stats (`vector of strings`) providing the name of the parameters whose statistical summary should be
+#'   presented. To analyze all, provide `paramvar = "ALL"` (Default), to analyze none, provide `paramvar = ""`.
 #'
 #' @details
 #'  * Supplementary Exposure table with binning of desired analysis values.
@@ -169,7 +169,7 @@ ext01_2 <- function(adex,
                       lbl_overall = ""
                     )) {
 
-  summaryvars = c("AVAL","AVALCAT1")
+  summaryvars <- c("AVAL", "AVALCAT1")
 
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adex, summaryvars)

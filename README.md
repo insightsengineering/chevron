@@ -3,27 +3,27 @@
 
 *chevron* is a collection of function to create standard tables, listings, and graphs for clinical trials reporting.
 
-# Installation
+## Installation
 
-## Clone and install manually
+### Clone and install manually
 
 1. Clone the repository
 
 2. Install `staged.dependencies` with
-   ```r
-   devtools::install_github("openpharma/staged.dependencies")
-   ```
-   and setup your GitHub tokens following the instructions on the `staged.dependencies` [website](https://github.com/openpharma/staged.dependencies).
-   
+  ```r
+  devtools::install_github("openpharma/staged.dependencies")
+  ```
+  and setup your GitHub tokens following the instructions on the `staged.dependencies` [website](https://github.com/openpharma/staged.dependencies).  
+  
 3. Install the `chevron` package dependencies with (make sure the working directory is set to the root of `chevron`)
-   ```r
-   staged.dependencies::install_deps(verbose = TRUE, direction = "upstream", install_external_deps = TRUE, verbose = 1)
-   ```
+  ```r
+  staged.dependencies::install_deps(verbose = TRUE, direction = "upstream", install_external_deps = TRUE, verbose = 1)
+  ```
 
 
-# Usage
+## Usage
 
-```
+```r
 library(chevron)
 
 
@@ -77,9 +77,9 @@ aet02_1(adsl, adae)
 ```
 
 
-# Acknowledgment
+## Acknowledgment
 
 
-# Notes for Developers
+## Notes for Developers
 
-## Conventions
+### Conventions
