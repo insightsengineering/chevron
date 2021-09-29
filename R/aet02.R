@@ -48,6 +48,7 @@ aet02_1 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
+  adae$AEBODSYSn <- paste0("\n", adae$AEBODSYS)
 
   lyt <- aet02_1_lyt(
     armvar = armvar,
@@ -125,6 +126,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
+      labels_var = "AEBODSYSn",
       nested = FALSE,
       indent_mod = -1L,
       split_fun = drop_split_levels,
@@ -199,6 +201,8 @@ aet02_2 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEHLT <-  var_labels_for(adae, "AEHLT")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
+
+  adae$AEBODSYSn <- paste0("\n", adae$AEBODSYS)
 
   lyt <- aet02_2_lyt(
     armvar = armvar,
@@ -285,6 +289,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
+      labels_var = "AEBODSYSn",
       nested = FALSE,
       indent_mod = -1L,
       split_fun = drop_split_levels,

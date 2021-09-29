@@ -21,6 +21,10 @@
 #' @examples
 #' library(scda)
 #' adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
+#' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
+#'
+#' # merge on usubjid take AVAL for baseline param and give paramcd name
+#'
 #'
 #' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"))
 #' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
