@@ -11,13 +11,13 @@
 
 2. Install `staged.dependencies` with
   ```r
-   devtools::install_github("openpharma/staged.dependencies")
+  devtools::install_github("openpharma/staged.dependencies")
   ```
-   and setup your GitHub tokens following the instructions on the `staged.dependencies` [website](https://github.com/openpharma/staged.dependencies).
-   
+  and setup your GitHub tokens following the instructions on the `staged.dependencies` [website](https://github.com/openpharma/staged.dependencies).  
+  
 3. Install the `chevron` package dependencies with (make sure the working directory is set to the root of `chevron`)
   ```r
-   staged.dependencies::install_deps(verbose = TRUE, direction = "upstream", install_external_deps = TRUE, verbose = 1)
+  staged.dependencies::install_deps(verbose = TRUE, direction = "upstream", install_external_deps = TRUE, verbose = 1)
   ```
 
 
