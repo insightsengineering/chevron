@@ -1,5 +1,5 @@
 
-## New Table Request
+# New Table Request
 
 ----
 
@@ -9,7 +9,7 @@ _ex. AET02_
 
 ### URL
 Link to an external file describing the table  
-_ex. https://docs.google.com/spreadsheets/d/1jk8AnYLNXdqiJ1YF42316R9yVaGIDfJKX0BCsBjz6fg/edit#gid=1910060856 _
+_ex. <https://docs.google.com/spreadsheets/d/1jk8AnYLNXdqiJ1YF42316R9yVaGIDfJKX0BCsBjz6fg/edit#gid=1910060856>_
 
 ### Description
 Details on the generic purpose of the table  
