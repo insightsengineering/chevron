@@ -111,8 +111,8 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = "All Patients"
                         )) {
 
-  summaryvars_lbls = paste0(
-    c("",rep("\n", length(summaryvars_lbls)-1)),
+  summaryvars_lbls <- paste0(
+    c("", rep("\n", length(summaryvars_lbls) - 1)),
     summaryvars_lbls)
 
 

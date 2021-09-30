@@ -220,9 +220,9 @@ pivot_wider_labels <- function(df,
                                names_from = "PARAMCD",
                                labels_from = "PARAM",
                                values_from = "AVAL",
-                               keep = "USUBJID"){
+                               keep = "USUBJID") {
 
-  key_val <- df[!duplicated(df[,c(labels_from, names_from)]), c(labels_from, names_from)]
+  key_val <- df[!duplicated(df[, c(labels_from, names_from)]), c(labels_from, names_from)]
 
   assert_that(all(!duplicated(key_val[[1]])), msg = "Non-unique relationship between names_from and labels_from.")
   assert_that(all(!duplicated(key_val[[2]])), msg = "Non-unique relationship between names_from and labels_from.")
@@ -231,7 +231,7 @@ pivot_wider_labels <- function(df,
     select(keep, names_from, values_from) %>%
     pivot_wider(names_from = names_from, values_from = values_from)
 
-  var_labels(df_wide[,key_val[[2]]]) <- as.character(key_val[[1]])
+  var_labels(df_wide[, key_val[[2]]]) <- as.character(key_val[[1]])
 
   df_wide
 
