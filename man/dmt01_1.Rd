@@ -67,25 +67,18 @@ For each variable, summary statistics are by default based on the number of pati
 }}
 
 \examples{
+
+library(dplyr)
 library(scda)
 adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
 adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 
-# merge on usubjid take AVAL for baseline param and give paramcd name
+adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
 
-adsub
+adsl <- adsl \%>\% left_join(adsub_wide)
 
-
-
-
-dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"))
+dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
 dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
-
-dmt01_1(
- ad_bl = adsl,
- armvar = "ARMCD",
- summaryvars = c("AGE", "RACE")
-)
 
 }

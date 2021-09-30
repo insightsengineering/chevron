@@ -27,8 +27,6 @@
 #' adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
 #' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 #'
-#' # merge on usubjid take AVAL for baseline param and give paramcd name
-#'
 #' adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
 #'
 #' adsl <- adsl %>% left_join(adsub_wide)
