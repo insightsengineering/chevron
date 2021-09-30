@@ -1,4 +1,4 @@
-#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table
+#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1
 #'
 #' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row.
 #'
@@ -92,6 +92,10 @@ dmt01_1 <- function(ad_bl,
 #'
 #' @return
 #' @export
+#'
+#' @examples
+#' dmt01_1_lyt(armvar = "ACTARM")
+#'
 dmt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$summary_demo,
                         summaryvars_lbls = .study$summary_demo_lbl,

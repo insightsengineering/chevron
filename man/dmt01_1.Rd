@@ -3,7 +3,7 @@
 \name{dmt01_1}
 \alias{dmt01_1}
 \alias{dmt01_1_lyt}
-\title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table}
+\title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1}
 \usage{
 dmt01_1(
   ad_bl,
@@ -83,5 +83,7 @@ dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
 dmt01_1(ad_bl = adsl,
         summaryvars = c("AGE", "RACE", "SEX"),
         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
+
+dmt01_1_lyt(armvar = "ACTARM")
 
 }
