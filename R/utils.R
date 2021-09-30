@@ -192,3 +192,47 @@ relevel_params <- function(df, paramcd_levels) {
 
   df
 }
+
+#' Pivot wider a data frame while preserving labels.
+#'
+#' @param df (`data.frame`) to pivot.
+#' @param names_from (`string`) the name of a column in `df` that will be used to name the columns of the pivoted data
+#'   frame.
+#' @param labels_from (`string`) the name of a column in `df` that will be used to label the columns of the pivoted
+#'   data frame.
+#' @param values_from (`string`) the name of a column in `df`containing the values to be pivoted.
+#' @param keep  (`vector of strings`) containing the name of the columns to be conserved in the pivoted data frame.
+#'   Typically a unique identifier for the pivoted observations, such as `USUBJID`.
+#'
+#' @importFrom dplyr select
+#' @importFrom tidyr pivot_wider
+#'
+#' @return (`data.frame`)
+#' @export
+#'
+#' @examples
+#'
+#' library(scda)
+#' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
+#' pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID", "SUBJID"))
+#'
+pivot_wider_labels <- function(df,
+                               names_from = "PARAMCD",
+                               labels_from = "PARAM",
+                               values_from = "AVAL",
+                               keep = "USUBJID"){
+
+  key_val <- df[!duplicated(df[,c(labels_from, names_from)]), c(labels_from, names_from)]
+
+  assert_that(all(!duplicated(key_val[[1]])), msg = "Non-unique relationship between names_from and labels_from.")
+  assert_that(all(!duplicated(key_val[[2]])), msg = "Non-unique relationship between names_from and labels_from.")
+
+  df_wide <- df %>%
+    select(keep, names_from, values_from) %>%
+    pivot_wider(names_from = names_from, values_from = values_from)
+
+  var_labels(df_wide[,key_val[[2]]]) <- as.character(key_val[[1]])
+
+  df_wide
+
+}

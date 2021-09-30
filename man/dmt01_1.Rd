@@ -9,6 +9,7 @@ dmt01_1(
   ad_bl,
   armvar = .study$armvar,
   summaryvars = .study$summaryvars,
+  summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
@@ -18,12 +19,13 @@ dmt01_1(
 
 dmt01_1_lyt(
   armvar = .study$armvar,
-  summaryvars = .study$summaryvars,
-  summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
+  summaryvars = .study$summary_demo,
+  summaryvars_lbls = .study$summary_demo_lbl,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DMT01"),
-  .study = list(armvar = "ARM", summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
-    "RACE", "BWGHTSI"), lbl_overall = "All Patients")
+  .study = list(armvar = "ARM", summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
+    "RACE", "BWGHTSI"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)",
+    "SEX", "ETHNIC", "RACE", "Baseline Weight (kg)"), lbl_overall = "All Patients")
 )
 }
 \arguments{
@@ -33,6 +35,8 @@ dmt01_1_lyt(
 
 \item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.}
 
+\item{summaryvars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
+
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
@@ -40,8 +44,6 @@ dmt01_1_lyt(
 \item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
-
-\item{summaryvars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
 }
 \value{
 
@@ -51,6 +53,7 @@ For each variable, summary statistics are by default based on the number of pati
 }
 \details{
 \itemize{
+\item Information from ADSUB are generally included into ADSL before analysis.
 \item Default demographic and characteristics table
 \item If not specified otherwise, numbers represent absolute numbers of patients and fraction of \code{N}
 \item Remove zero-count rows
@@ -70,8 +73,13 @@ adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 
 # merge on usubjid take AVAL for baseline param and give paramcd name
 
+adsub
+
+
+
 
 dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"))
+dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
 
 dmt01_1(
