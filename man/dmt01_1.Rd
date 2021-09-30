@@ -78,7 +78,10 @@ adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID")
 adsl <- adsl \%>\% left_join(adsub_wide)
 
 dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
-dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
+
+dmt01_1(ad_bl = adsl,
+        summaryvars = c("AGE", "RACE", "SEX"),
+        summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 
 }
