@@ -7,7 +7,6 @@
 \usage{
 dst01_2(
   adsl,
-  adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
@@ -29,8 +28,6 @@ dst01_2_lyt(
 }
 \arguments{
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
 \item{armvar}{(\code{string}) variable used for column splitting}
 
@@ -56,14 +53,14 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }
 \details{
 \itemize{
-\item Non-standard disposition table summarizing the reasons for patient withdrawal
-\item Withdrawal reasons are grouped into Safety and Non-Safety issues
-\item Safety issues include Death and Adverse events
-\item Numbers represent absolute numbers of patients and fraction of \code{N}
-\item Remove zero-count rows
-\item Split columns by arm
-\item Include a total column by default
-\item Sort withdrawal reasons by alphabetic order
+\item Non-standard disposition table summarizing the reasons for patient withdrawal.
+\item Withdrawal reasons are grouped into Safety and Non-Safety issues.
+\item Safety issues include Death and Adverse events.
+\item Numbers represent absolute numbers of patients and fraction of \code{N}.
+\item Remove zero-count rows.
+\item Split columns by arm.
+\item Include a total column by default.
+\item Sort withdrawal reasons by alphabetic order.
 }
 }
 \section{Functions}{
@@ -76,10 +73,8 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
 
-dst01_2(adsl, adae)
+dst01_2(adsl)
 dst01_2(adsl, adae, lbl_overall = "")
 
 dst01_2_lyt(armvar = "ACTARM",

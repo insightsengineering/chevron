@@ -29,12 +29,12 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #'
 #' @details
-#'  * Default patient disposition table summarizing the reasons for patients withdrawal
-#'  * Numbers represent absolute numbers of patients and fraction of `N`
-#'  * Remove zero-count rows
-#'  * Split columns by arm
-#'  * Include a total column by default
-#'  * Sort withdrawal reasons by alphabetic order
+#'  * Default patient disposition table summarizing the reasons for patients withdrawal.
+#'  * Numbers represent absolute numbers of patients and fraction of `N`.
+#'  * Remove zero-count rows.
+#'  * Split columns by arm.
+#'  * Include a total column by default.
+#'  * Sort withdrawal reasons by alphabetic order.
 #'
 #' @importFrom dplyr filter
 #' @importFrom magrittr %>%
@@ -48,13 +48,12 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae %>%
-#'  mutate(ANL01FL = 'Y')
+
 #'
-#' dst01_1(adsl, adae)
-#' dst01_1(adsl, adae, lbl_overall = "")
+#' dst01_1(adsl)
+#' dst01_1(adsl, lbl_overall = "")
 #'
-dst01_1 <- function(adsl, adae,
+dst01_1 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
@@ -70,9 +69,6 @@ dst01_1 <- function(adsl, adae,
   check_dst01_1_args(reason = reason,
                      status = status)
 
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
-
   lyt <- dst01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -83,7 +79,7 @@ dst01_1 <- function(adsl, adae,
 
   tbl <- build_table(
     lyt,
-    df = adae
+    df = adsl
   )
 
   tbl <- tbl %>% prune_table()
@@ -167,14 +163,14 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'   period.
 #'
 #' @details
-#'  * Non-standard disposition table summarizing the reasons for patient withdrawal
-#'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
-#'  * Safety issues include Death and Adverse events
-#'  * Numbers represent absolute numbers of patients and fraction of `N`
-#'  * Remove zero-count rows
-#'  * Split columns by arm
-#'  * Include a total column by default
-#'  * Sort withdrawal reasons by alphabetic order
+#'  * Non-standard disposition table summarizing the reasons for patient withdrawal.
+#'  * Withdrawal reasons are grouped into Safety and Non-Safety issues.
+#'  * Safety issues include Death and Adverse events.
+#'  * Numbers represent absolute numbers of patients and fraction of `N`.
+#'  * Remove zero-count rows.
+#'  * Split columns by arm.
+#'  * Include a total column by default.
+#'  * Sort withdrawal reasons by alphabetic order.
 #'
 #' @importFrom dplyr filter case_when mutate
 #' @importFrom rlang sym
@@ -186,13 +182,11 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adae <- sd$adae %>%
-#'  mutate(ANL01FL = 'Y')
 #'
-#' dst01_2(adsl, adae)
+#' dst01_2(adsl)
 #' dst01_2(adsl, adae, lbl_overall = "")
 #'
-dst01_2 <- function(adsl, adae,
+dst01_2 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
@@ -208,9 +202,6 @@ dst01_2 <- function(adsl, adae,
   check_dst01_1_args(reason = reason,
                      status = status)
 
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
-
   lyt <- dst01_2_lyt(
     armvar = armvar,
     status = status,
@@ -221,7 +212,7 @@ dst01_2 <- function(adsl, adae,
 
   sym_reason <- sym(reason)
 
-  adae_gp <- adae %>%
+  adsl_gp <- adsl %>%
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
@@ -231,7 +222,7 @@ dst01_2 <- function(adsl, adae,
 
   tbl <- build_table(
     lyt,
-    df = adae_gp,
+    df = adsl_gp,
   )
 
 
@@ -323,14 +314,14 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'   the analysis period.
 #'
 #' @details
-#'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
-#'  * Withdrawal reasons are grouped into Safety and Non-Safety issues
-#'  * Safety issues include Death and Adverse Events
-#'  * Numbers represent absolute numbers of patients and fraction of `N`
-#'  * Remove zero-count rows
-#'  * Split columns by arm
-#'  * Include a total column by default
-#'  * Sort withdrawal reasons by alphabetic order
+#'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status.
+#'  * Withdrawal reasons are grouped into Safety and Non-Safety issues.
+#'  * Safety issues include Death and Adverse Events.
+#'  * Numbers represent absolute numbers of patients and fraction of `N`.
+#'  * Remove zero-count rows.
+#'  * Split columns by arm.
+#'  * Include a total column by default.
+#'  * Sort withdrawal reasons by alphabetic order.
 #'
 #' @importFrom dplyr filter case_when mutate
 #' @importFrom rlang sym
@@ -341,18 +332,17 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' library(scda)
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
 #'
-#' adae <- sd$adae %>%
+#' adsl <- sd$adsl %>%
 #'  mutate(ANL01FL = 'Y',
 #'         EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUED"),
-#'                         nrow(sd$adae),
+#'                         nrow(sd$adsl),
 #'                         replace = TRUE))
 #'
-#' dst01_3(adsl, adae)
-#' dst01_3(adsl, adae, lbl_overall = "")
+#' dst01_3(adsl)
+#' dst01_3(adsl, lbl_overall = "")
 #'
-dst01_3 <- function(adsl, adae,
+dst01_3 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
@@ -371,12 +361,9 @@ dst01_3 <- function(adsl, adae,
                      status = status,
                      status_treatment = status_treatment)
 
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
-
   sym_reason <- sym(reason)
 
-  adae_gp <- adae %>%
+  adsl_gp <- adsl %>%
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
@@ -393,7 +380,7 @@ dst01_3 <- function(adsl, adae,
 
   tbl <- build_table(
     lyt,
-    df = adae_gp
+    df = adsl_gp
   )
 
   tbl_sorted <- tbl  %>% prune_table()
@@ -408,7 +395,7 @@ dst01_3 <- function(adsl, adae,
 
   tbl2 <- build_table(
     lyt,
-    df = adae_gp
+    df = adsl_gp
   )
 
   tbl_sorted2 <- tbl2  %>% prune_table()

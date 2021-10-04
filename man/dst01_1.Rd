@@ -7,7 +7,6 @@
 \usage{
 dst01_1(
   adsl,
-  adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
@@ -29,8 +28,6 @@ dst01_1_lyt(
 }
 \arguments{
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
 \item{armvar}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
@@ -56,12 +53,12 @@ study a reason is provided.
 }
 \details{
 \itemize{
-\item Default patient disposition table summarizing the reasons for patients withdrawal
-\item Numbers represent absolute numbers of patients and fraction of \code{N}
-\item Remove zero-count rows
-\item Split columns by arm
-\item Include a total column by default
-\item Sort withdrawal reasons by alphabetic order
+\item Default patient disposition table summarizing the reasons for patients withdrawal.
+\item Numbers represent absolute numbers of patients and fraction of \code{N}.
+\item Remove zero-count rows.
+\item Split columns by arm.
+\item Include a total column by default.
+\item Sort withdrawal reasons by alphabetic order.
 }
 }
 \section{Functions}{
@@ -76,11 +73,9 @@ library(dplyr)
 
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
 
-dst01_1(adsl, adae)
-dst01_1(adsl, adae, lbl_overall = "")
+dst01_1(adsl)
+dst01_1(adsl, lbl_overall = "")
 
 dst01_1_lyt(armvar = "ACTARM",
 status = "EOP01STT",
