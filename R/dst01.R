@@ -184,7 +184,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' adsl <- sd$adsl
 #'
 #' dst01_2(adsl)
-#' dst01_2(adsl, adae, lbl_overall = "")
+#' dst01_2(adsl, lbl_overall = "")
 #'
 dst01_2 <- function(adsl,
                     armvar = .study$armvar,

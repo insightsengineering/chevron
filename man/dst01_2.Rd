@@ -75,7 +75,7 @@ sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
 
 dst01_2(adsl)
-dst01_2(adsl, adae, lbl_overall = "")
+dst01_2(adsl, lbl_overall = "")
 
 dst01_2_lyt(armvar = "ACTARM",
 status = "EOP01STT",
