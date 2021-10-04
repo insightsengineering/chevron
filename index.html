@@ -72,101 +72,98 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
 <div id="chevron-standard-tlgs-for-clinical-trials-reporting" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#chevron-standard-tlgs-for-clinical-trials-reporting" class="anchor"></a>Chevron: Standard TLGs for clinical trials reporting</h1></div>
 <p><em>chevron</em> is a collection of function to create standard tables, listings, and graphs for clinical trials reporting.</p>
-</div>
-<div id="installation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
-<div id="clone-and-install-manually" class="section level2">
+<div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#clone-and-install-manually" class="anchor"></a>Clone and install manually</h2>
+<a href="#installation" class="anchor"></a>Installation</h2>
+<div id="clone-and-install-manually" class="section level3">
+<h3 class="hasAnchor">
+<a href="#clone-and-install-manually" class="anchor"></a>Clone and install manually</h3>
 <ol>
 <li><p>Clone the repository</p></li>
-<li>
-<p>Install <code>staged.dependencies</code> with</p>
+<li><p>Install <code>staged.dependencies</code> with</p></li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"openpharma/staged.dependencies"</span><span class="op">)</span></code></pre></div>
 <p>and setup your GitHub tokens following the instructions on the <code>staged.dependencies</code> <a href="https://github.com/openpharma/staged.dependencies">website</a>.</p>
-</li>
-<li>
-<p>Install the <code>chevron</code> package dependencies with (make sure the working directory is set to the root of <code>chevron</code>)</p>
+<ol>
+<li>Install the <code>chevron</code> package dependencies with (make sure the working directory is set to the root of <code>chevron</code>)</li>
+</ol>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">staged.dependencies</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/staged.dependencies/man/install_deps.html">install_deps</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">TRUE</span>, direction <span class="op">=</span> <span class="st">"upstream"</span>, install_external_deps <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-</li>
-</ol>
 </div>
 </div>
-<div id="usage" class="section level1">
-<h1 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h1>
-<pre><code><a href="https://rdrr.io/r/base/library.html">library(chevron)
-
-
-library(scda)
-sd &lt;- synthetic_cdisc_data("rcd_2021_03_22")
-adsl &lt;- sd$adsl
-adae &lt;- sd$adae |&gt; 
-  mutate(ANL01FL = 'Y')
-
-aet02_1(adsl, adae)
-
-#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination
-#&gt;   Dictionary-Derived Term                                     (N=134)       (N=134)        (N=132)    
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  
-#&gt; Overall total number of events                                  609           622            703      
-#&gt; cl A.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  
-#&gt;   Total number of events                                        132           130            160      
-#&gt;   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  
-#&gt;   dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  
-#&gt; cl B.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event    79 (59%)    74 (55.2%)      85 (64.4%)  
-#&gt;   Total number of events                                        129           138            143      
-#&gt;   dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  
-#&gt;   dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  
-#&gt; cl D.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event    79 (59%)     67 (50%)       80 (60.6%)  
-#&gt;   Total number of events                                        127           106            135      
-#&gt;   dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
-#&gt;   dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
-#&gt; cl D.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt;   Total number of events                                         62           72              74      
-#&gt;   dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt; cl B.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt;   Total number of events                                         56           60              62      
-#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt; cl C.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  
-#&gt;   Total number of events                                         48           53              65      
-#&gt;   dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
-#&gt; cl C.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  
-#&gt;   Total number of events                                         55           63              64      
-#&gt;   dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Footnotes go here</a></code></pre>
-</div>
-<div id="acknowledgment" class="section level1">
-<h1 class="hasAnchor">
-<a href="#acknowledgment" class="anchor"></a>Acknowledgment</h1>
-</div>
-<div id="notes-for-developers" class="section level1">
-<h1 class="hasAnchor">
-<a href="#notes-for-developers" class="anchor"></a>Notes for Developers</h1>
-<div id="conventions" class="section level2">
+<div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#conventions" class="anchor"></a>Conventions</h2>
-</div>
-</div>
+<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
 
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scda</span><span class="op">)</span>
+<span class="va">sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html">synthetic_cdisc_data</a></span><span class="op">(</span><span class="st">"rcd_2021_03_22"</span><span class="op">)</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">sd</span><span class="op">$</span><span class="va">adsl</span>
+<span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">sd</span><span class="op">$</span><span class="va">adae</span> |&gt; 
+  <span class="fu">mutate</span><span class="op">(</span>ANL01FL <span class="op">=</span> <span class="st">'Y'</span><span class="op">)</span>
+
+<span class="fu"><a href="reference/aet02_1.html">aet02_1</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">adae</span><span class="op">)</span>
+
+<span class="co">#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination</span>
+<span class="co">#&gt;   Dictionary-Derived Term                                     (N=134)       (N=134)        (N=132)    </span>
+<span class="co">#&gt; ------------------------------------------------------------------------------------------------------</span>
+<span class="co">#&gt; Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  </span>
+<span class="co">#&gt; Overall total number of events                                  609           622            703      </span>
+<span class="co">#&gt; cl A.1                                                                                                </span>
+<span class="co">#&gt;   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  </span>
+<span class="co">#&gt;   Total number of events                                        132           130            160      </span>
+<span class="co">#&gt;   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  </span>
+<span class="co">#&gt;   dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  </span>
+<span class="co">#&gt; cl B.2                                                                                                </span>
+<span class="co">#&gt;   Total number of patients with at least one adverse event    79 (59%)    74 (55.2%)      85 (64.4%)  </span>
+<span class="co">#&gt;   Total number of events                                        129           138            143      </span>
+<span class="co">#&gt;   dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  </span>
+<span class="co">#&gt;   dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  </span>
+<span class="co">#&gt; cl D.1                                                                                                </span>
+<span class="co">#&gt;   Total number of patients with at least one adverse event    79 (59%)     67 (50%)       80 (60.6%)  </span>
+<span class="co">#&gt;   Total number of events                                        127           106            135      </span>
+<span class="co">#&gt;   dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  </span>
+<span class="co">#&gt;   dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  </span>
+<span class="co">#&gt; cl D.2                                                                                                </span>
+<span class="co">#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  </span>
+<span class="co">#&gt;   Total number of events                                         62           72              74      </span>
+<span class="co">#&gt;   dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  </span>
+<span class="co">#&gt; cl B.1                                                                                                </span>
+<span class="co">#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  </span>
+<span class="co">#&gt;   Total number of events                                         56           60              62      </span>
+<span class="co">#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  </span>
+<span class="co">#&gt; cl C.2                                                                                                </span>
+<span class="co">#&gt;   Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  </span>
+<span class="co">#&gt;   Total number of events                                         48           53              65      </span>
+<span class="co">#&gt;   dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  </span>
+<span class="co">#&gt; cl C.1                                                                                                </span>
+<span class="co">#&gt;   Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  </span>
+<span class="co">#&gt;   Total number of events                                         55           63              64      </span>
+<span class="co">#&gt;   dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  </span>
+<span class="co">#&gt; ------------------------------------------------------------------------------------------------------</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Footnotes go here</span></code></pre></div>
+</div>
+<div id="acknowledgment" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acknowledgment" class="anchor"></a>Acknowledgment</h2>
+</div>
+<div id="notes-for-developers" class="section level2">
+<h2 class="hasAnchor">
+<a href="#notes-for-developers" class="anchor"></a>Notes for Developers</h2>
+<div id="conventions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#conventions" class="anchor"></a>Conventions</h3>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
