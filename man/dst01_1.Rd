@@ -22,8 +22,8 @@ dst01_1_lyt(
   status = .study$status,
   reason = .study$reason,
   deco = std_deco("DST01"),
-  completed_lbl = completed_lbl,
-  discontinued_lbl = discontinued_lbl,
+  completed_lbl = "COMPLETED",
+  discontinued_lbl = "DISCONTINUED",
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
 )
