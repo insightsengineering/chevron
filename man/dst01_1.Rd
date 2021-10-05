@@ -85,6 +85,8 @@ adsl <- sd$adsl
 dst01_1(adsl)
 dst01_1(adsl, lbl_overall = "")
 
+adsl$EOSSTT <- as.factor(toupper(adsl$EOSSTT))
+dst01_1(adsl)
 dst01_1_lyt(armvar = "ACTARM",
 status = "EOP01STT",
 reason = "DCP01RS")

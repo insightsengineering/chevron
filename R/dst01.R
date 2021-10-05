@@ -48,11 +48,12 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-
 #'
 #' dst01_1(adsl)
 #' dst01_1(adsl, lbl_overall = "")
 #'
+#' adsl$EOSSTT <- as.factor(toupper(adsl$EOSSTT))
+#' dst01_1(adsl)
 dst01_1 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -246,7 +247,6 @@ dst01_2 <- function(adsl,
     lyt,
     df = adsl_gp
   )
-
 
   tbl <- tbl  %>%  prune_table()
 
