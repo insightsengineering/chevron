@@ -22,6 +22,9 @@ dst01_3_lyt(
   lbl_overall = .study$lbl_overall,
   status_treatment = .study$status,
   deco = std_deco("DST01"),
+  completed_lbl = "COMPLETED",
+  discontinued_lbl = "DISCONTINUED",
+  ongoing_lbl = "ONGOING",
   .study = list(armvar = "ARM", lbl_overall = "All patients", status_treatment =
     "EOTSTT")
 )
@@ -47,6 +50,15 @@ the analysis period.}
 \item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{completed_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
+\code{status_treatment}. By Default \code{COMPLETED}.}
+
+\item{discontinued_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
+\code{status_treatment}. By Default \code{DISCONTINUED}.}
+
+\item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
+By Default `ONGOING.}
 }
 \value{
 

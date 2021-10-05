@@ -22,6 +22,8 @@ dst01_2_lyt(
   status = .study$status,
   reason = .study$reason,
   deco = std_deco("DST01"),
+  completed_lbl = "COMPLETED",
+  discontinued_lbl = "DISCONTINUED",
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
 )
@@ -43,6 +45,12 @@ period.}
 \item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
+Default \code{COMPLETED}.}
+
+\item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
+Default \code{DISCONTINUED}.}
 }
 \value{
 

@@ -69,12 +69,20 @@ dst01_1 <- function(adsl,
   check_dst01_1_args(reason = reason,
                      status = status)
 
+  status_lvl <- levels(adsl[[status]])
+
+  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
+  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
+
+
   lyt <- dst01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
     status = status,
-    reason = reason
+    reason = reason,
+    completed_lbl = completed_lbl,
+    discontinued_lbl = discontinued_lbl
   )
 
   tbl <- build_table(
@@ -100,6 +108,11 @@ dst01_1 <- function(adsl,
 #' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
+#' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
+#'   Default `COMPLETED`.
+#' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
+#'   Default `DISCONTINUED`.
+#'
 #'
 #'
 #' @return
@@ -114,6 +127,8 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                         status = .study$status,
                         reason = .study$reason,
                         deco = std_deco("DST01"),
+                        completed_lbl = completed_lbl,
+                        discontinued_lbl = discontinued_lbl,
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -131,12 +146,12 @@ dst01_1_lyt <- function(armvar = .study$armvar,
   layout_table %>%
     count_values(
       vars = status,
-      values = "COMPLETED",
+      values = completed_lbl,
       .labels = c(count_fraction = "Completed Study")
     ) %>%
     split_rows_by(
       status,
-      split_fun = keep_split_levels("DISCONTINUED"),
+      split_fun = keep_split_levels(discontinued_lbl),
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study") %>%
     summarize_vars(
@@ -202,10 +217,17 @@ dst01_2 <- function(adsl,
   check_dst01_1_args(reason = reason,
                      status = status)
 
+  status_lvl <- levels(adsl[[status]])
+
+  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
+  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
+
   lyt <- dst01_2_lyt(
     armvar = armvar,
     status = status,
     reason = reason,
+    completed_lbl = completed_lbl,
+    discontinued_lbl = discontinued_lbl,
     lbl_overall = lbl_overall,
     deco = deco
   )
@@ -222,7 +244,7 @@ dst01_2 <- function(adsl,
 
   tbl <- build_table(
     lyt,
-    df = adsl_gp,
+    df = adsl_gp
   )
 
 
@@ -243,6 +265,10 @@ dst01_2 <- function(adsl,
 #' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
+#' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
+#'   Default `COMPLETED`.
+#' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
+#'   Default `DISCONTINUED`.
 #'
 #'
 #' @return
@@ -257,6 +283,8 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                         status = .study$status,
                         reason = .study$reason,
                         deco = std_deco("DST01"),
+                        completed_lbl = "COMPLETED",
+                        discontinued_lbl = "DISCONTINUED",
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -274,12 +302,12 @@ dst01_2_lyt <- function(armvar = .study$armvar,
   layout_table %>%
     count_values(
       vars = status,
-      values = "COMPLETED",
+      values = completed_lbl,
       .labels = c(count_fraction = "Completed Study")
     ) %>%
     split_rows_by(
       var = status,
-      split_fun = keep_split_levels("DISCONTINUED")
+      split_fun = keep_split_levels(discontinued_lbl)
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study") %>%
     split_rows_by(
@@ -361,6 +389,11 @@ dst01_3 <- function(adsl,
                      status = status,
                      status_treatment = status_treatment)
 
+  status_lvl <- levels(adsl[[status_treatment]])
+  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
+  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
+  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
+
   sym_reason <- sym(reason)
 
   adsl_gp <- adsl %>%
@@ -375,6 +408,8 @@ dst01_3 <- function(adsl,
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
+    completed_lbl = completed_lbl,
+    discontinued_lbl = discontinued_lbl,
     status_treatment = status_treatment,
   )
 
@@ -385,10 +420,18 @@ dst01_3 <- function(adsl,
 
   tbl_sorted <- tbl  %>% prune_table()
 
+  # re-extract the labels associated with status in case they changed.
+  status_lvl <- levels(adsl[[status]])
+  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
+  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
+  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
+
   lyt <- dst01_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
+    completed_lbl = completed_lbl,
+    discontinued_lbl = discontinued_lbl,
     status = status,
     reason = reason
   )
@@ -417,6 +460,12 @@ dst01_3 <- function(adsl,
 #' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
 #'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
+#' @param completed_lbl (`string`) associated with completed treatment and found in the columns given by
+#'   `status_treatment`. By Default `COMPLETED`.
+#' @param discontinued_lbl (`string`) associated with discontinued treatment and found in the columns given by
+#'   `status_treatment`. By Default `DISCONTINUED`.
+#' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
+#'   By Default `ONGOING.
 #'
 #' @return
 #' @export
@@ -428,6 +477,9 @@ dst01_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status_treatment = .study$status,
                         deco = std_deco("DST01"),
+                        completed_lbl = "COMPLETED",
+                        discontinued_lbl = "DISCONTINUED",
+                        ongoing_lbl = "ONGOING",
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -444,7 +496,7 @@ dst01_3_lyt <- function(armvar = .study$armvar,
   layout_table %>%
     count_values(
       vars = status_treatment,
-      values = "COMPLETED",
+      values = completed_lbl,
       .labels = c(count_fraction = "Completed Treatment"),
       table_names = c("COMPLETED")
     ) %>%
@@ -456,7 +508,7 @@ dst01_3_lyt <- function(armvar = .study$armvar,
     ) %>%
     count_values(
       vars = status_treatment,
-      values = "DISCONTINUED",
+      values = discontinued_lbl,
       .labels = c(count_fraction = "Discontinued Treatment"),
       table_names = c("DISCONTINUED")
     )
