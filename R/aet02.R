@@ -399,10 +399,11 @@ aet02_3 <- function(adsl, adae,
     )
 
   #identify first data row to include a blank row before.
-  my_path <- row_paths_summary(tbl_sorted)[4][3, ] %>% as.vector()
+  #my_path <- row_paths_summary(tbl_sorted)[4][3, ] %>% as.vector()
 
   tbl_sorted <- tbl_sorted %>%
-    insert_row_at_path(my_path[[1]], rrow(" ", " "))
+    #insert_row_at_path(my_path[[1]], rrow(" ", " "))
+    insert_rrow(rrow(" "), at = 5)
 
   tbl_sorted
 
@@ -450,6 +451,6 @@ aet02_3_lyt <- function(armvar = .study$armvar,
         nonunique = "Overall total number of events"
       )
     ) %>%
-    count_occurrences(vars = "AEDECOD", .indent_mods = c(count_fraction = -1L)) %>%
+    count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
     append_varlabels(adae, "AEDECOD")
 }
