@@ -19,6 +19,7 @@ aet02_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   lbl_AEBODSYS = "AEBODSYS",
+  lbl_AEBODSYSn = "AEBODSYSn",
   lbl_AEDECOD = "AEDECOD",
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
@@ -40,6 +41,8 @@ aet02_1_lyt(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+
+\item{lbl_AEBODSYSn}{(\code{string})}
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
 }

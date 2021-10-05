@@ -398,6 +398,12 @@ aet02_3 <- function(adsl, adae,
       scorefun = score_occurrences
     )
 
+  #identify first data row to include a blank space before.
+  my_path <- row_paths_summary(tbl_sorted)[4][3,] %>% as.vector()
+
+  tbl_sorted <- tbl_sorted %>%
+    insert_row_at_path(my_path[[1]], rrow(" ", " "))
+
   tbl_sorted
 
 }
