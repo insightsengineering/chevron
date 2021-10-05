@@ -88,6 +88,7 @@ aet02_1 <- function(adsl, adae,
 #' @inheritParams gen_args
 #' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param lbl_AEBODSYSn (`string`)
 #'
 #' @return
 #' @export
@@ -101,6 +102,7 @@ aet02_1 <- function(adsl, adae,
 aet02_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",
+                        lbl_AEBODSYSn = "AEBODSYSn",
                         lbl_AEDECOD = "AEDECOD",
                         deco = std_deco("AET02"),
                         .study = list(
@@ -145,13 +147,13 @@ aet02_1_lyt <- function(armvar = .study$armvar,
       vars = "AEDECOD",
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0(" ", lbl_AEDECOD))
+    append_topleft(paste0("  ", lbl_AEDECOD))
 }
 
 
 # Version2 ----
 
-#' AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table 2
+#' AET02 Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2
 #'
 #' The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
 #' events categorized by Body System, High Level Term and Dictionary-Derived Term.
@@ -324,7 +326,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
       vars = "AEDECOD",
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0(" ", lbl_AEDECOD))
+    append_topleft(paste0("    ", lbl_AEDECOD))
 }
 
 
