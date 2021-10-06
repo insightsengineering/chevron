@@ -11,6 +11,7 @@ dst01_3(
   lbl_overall = .study$lbl_overall,
   status = .study$status,
   reason = .study$reason,
+  prune_0 = FALSE,
   status_treatment = .study$status_treatment,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
@@ -42,6 +43,8 @@ name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 d
 \item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
 however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to
@@ -91,12 +94,15 @@ sd <- synthetic_cdisc_data("rcd_2021_03_22")
 
 adsl <- sd$adsl \%>\%
  mutate(ANL01FL = 'Y',
-        EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUED"),
+        EOTSTT = as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"),
                         nrow(sd$adsl),
-                        replace = TRUE))
+                        replace = TRUE)))
 
 dst01_3(adsl)
 dst01_3(adsl, lbl_overall = "")
+
+adsl <- adsl \%>\% filter(EOSSTT != "COMPLETED")
+dst01_3(adsl)
 
 dst01_3_lyt(armvar = "ACTARM",
 status_treatment = "EOTxx01")

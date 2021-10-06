@@ -59,6 +59,7 @@ dst01_1 <- function(adsl,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
                     reason = .study$reason,
+                    prune_0 = FALSE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
@@ -74,7 +75,7 @@ dst01_1 <- function(adsl,
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
-
+  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
   lyt <- dst01_1_lyt(
     armvar = armvar,
@@ -83,6 +84,7 @@ dst01_1 <- function(adsl,
     status = status,
     reason = reason,
     completed_lbl = completed_lbl,
+    ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl
   )
 
@@ -91,7 +93,7 @@ dst01_1 <- function(adsl,
     df = adsl
   )
 
-  tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl
 
@@ -129,6 +131,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                         reason = .study$reason,
                         deco = std_deco("DST01"),
                         completed_lbl = "COMPLETED",
+                        ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
                         .study = list(
                           armvar = "ARM",
@@ -149,6 +152,11 @@ dst01_1_lyt <- function(armvar = .study$armvar,
       vars = status,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study")
+    ) %>%
+    count_values(
+      vars = status,
+      values = ongoing_lbl,
+      .labels = c(count_fraction = "Ongoing Study")
     ) %>%
     split_rows_by(
       status,
@@ -207,6 +215,7 @@ dst01_2 <- function(adsl,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
                     reason = .study$reason,
+                    prune_0 = FALSE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
@@ -222,6 +231,7 @@ dst01_2 <- function(adsl,
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
+  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
   lyt <- dst01_2_lyt(
     armvar = armvar,
@@ -230,6 +240,7 @@ dst01_2 <- function(adsl,
     completed_lbl = completed_lbl,
     discontinued_lbl = discontinued_lbl,
     lbl_overall = lbl_overall,
+    ongoing_lbl = ongoing_lbl,
     deco = deco
   )
 
@@ -248,7 +259,7 @@ dst01_2 <- function(adsl,
     df = adsl_gp
   )
 
-  tbl <- tbl  %>%  prune_table()
+  if (prune_0) tbl <- tbl  %>%  prune_table()
 
   tbl
 
@@ -284,6 +295,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                         reason = .study$reason,
                         deco = std_deco("DST01"),
                         completed_lbl = "COMPLETED",
+                        ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
                         .study = list(
                           armvar = "ARM",
@@ -304,6 +316,11 @@ dst01_2_lyt <- function(armvar = .study$armvar,
       vars = status,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study")
+    ) %>%
+    count_values(
+      vars = status,
+      values = ongoing_lbl,
+      .labels = c(count_fraction = "Ongoing Study")
     ) %>%
     split_rows_by(
       var = status,
@@ -363,18 +380,22 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'
 #' adsl <- sd$adsl %>%
 #'  mutate(ANL01FL = 'Y',
-#'         EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUED"),
+#'         EOTSTT = as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"),
 #'                         nrow(sd$adsl),
-#'                         replace = TRUE))
+#'                         replace = TRUE)))
 #'
 #' dst01_3(adsl)
 #' dst01_3(adsl, lbl_overall = "")
+#'
+#' adsl <- adsl %>% filter(EOSSTT != "COMPLETED")
+#' dst01_3(adsl)
 #'
 dst01_3 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
                     reason = .study$reason,
+                    prune_0 = FALSE,
                     status_treatment = .study$status_treatment,
                     deco = std_deco("DST01"),
                     .study = list(
@@ -409,6 +430,7 @@ dst01_3 <- function(adsl,
     lbl_overall = lbl_overall,
     deco = deco,
     completed_lbl = completed_lbl,
+    ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl,
     status_treatment = status_treatment,
   )
@@ -417,8 +439,6 @@ dst01_3 <- function(adsl,
     lyt,
     df = adsl_gp
   )
-
-  tbl_sorted <- tbl  %>% prune_table()
 
   # re-extract the labels associated with status in case they changed.
   status_lvl <- levels(adsl[[status]])
@@ -431,6 +451,7 @@ dst01_3 <- function(adsl,
     lbl_overall = lbl_overall,
     deco = deco,
     completed_lbl = completed_lbl,
+    ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl,
     status = status,
     reason = reason
@@ -441,13 +462,13 @@ dst01_3 <- function(adsl,
     df = adsl_gp
   )
 
-  tbl_sorted2 <- tbl2  %>% prune_table()
+  col_info(tbl) <- col_info(tbl2)
 
-  col_info(tbl_sorted) <- col_info(tbl_sorted2)
+  tbl <- rbind(tbl2, tbl)
 
-  tbl_sorted <- rbind(tbl_sorted2, tbl_sorted)
+  if (prune_0) tbl <- tbl %>% prune_table()
 
-  tbl_sorted
+  tbl
 
 }
 
@@ -502,7 +523,7 @@ dst01_3_lyt <- function(armvar = .study$armvar,
     ) %>%
     count_values(
       vars = status_treatment,
-      values = "ONGOING",
+      values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing Treatment"),
       table_names = c("ONGOING")
     ) %>%

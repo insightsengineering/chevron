@@ -11,6 +11,7 @@ dst01_1(
   lbl_overall = .study$lbl_overall,
   status = .study$status,
   reason = .study$reason,
+  prune_0 = FALSE,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
@@ -23,6 +24,7 @@ dst01_1_lyt(
   reason = .study$reason,
   deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
+  ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
@@ -41,6 +43,8 @@ name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 d
 \item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
