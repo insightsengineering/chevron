@@ -11,7 +11,7 @@ dst01_2(
   lbl_overall = .study$lbl_overall,
   status = .study$status,
   reason = .study$reason,
-  prune_0 = FALSE,
+  prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")

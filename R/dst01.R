@@ -59,7 +59,7 @@ dst01_1 <- function(adsl,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
                     reason = .study$reason,
-                    prune_0 = FALSE,
+                    prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
@@ -88,15 +88,23 @@ dst01_1 <- function(adsl,
     discontinued_lbl = discontinued_lbl
   )
 
-  tbl <- build_table(
-    lyt,
+  tbl_completed <- build_table(
+    lyt[[1]],
     df = adsl
   )
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  tbl_other <- build_table(
+    lyt[[2]],
+    df = adsl
+  )
+
+  if (prune_0) tbl_other <- tbl_other %>% prune_table()
+
+  col_info(tbl_other) <- col_info(tbl_completed)
+
+  tbl <- rbind(tbl_completed, tbl_other)
 
   tbl
-
 }
 
 
@@ -147,12 +155,16 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 
   if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
 
+  layout_table_completed <-
   layout_table %>%
     count_values(
       vars = status,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study")
-    ) %>%
+    )
+
+  layout_table_other <-
+  layout_table %>%
     count_values(
       vars = status,
       values = ongoing_lbl,
@@ -168,6 +180,10 @@ dst01_1_lyt <- function(armvar = .study$armvar,
       .stats = "count_fraction",
       denom = "N_col"
     )
+
+  list(layout_table_completed, layout_table_other)
+
+
 }
 
 
@@ -215,7 +231,7 @@ dst01_2 <- function(adsl,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
                     reason = .study$reason,
-                    prune_0 = FALSE,
+                    prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
@@ -254,12 +270,21 @@ dst01_2 <- function(adsl,
     )
   )
 
-  tbl <- build_table(
-    lyt,
+  tbl_completed <- build_table(
+    lyt[[1]],
     df = adsl_gp
   )
 
-  if (prune_0) tbl <- tbl  %>%  prune_table()
+  tbl_other <- build_table(
+    lyt[[2]],
+    df = adsl_gp
+  )
+
+  if (prune_0) tbl_other <- tbl_other %>% prune_table()
+
+  col_info(tbl_other) <- col_info(tbl_completed)
+
+  tbl <- rbind(tbl_completed, tbl_other)
 
   tbl
 
@@ -311,12 +336,16 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 
   if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
 
+  layout_table_completed <-
   layout_table %>%
     count_values(
       vars = status,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study")
-    ) %>%
+    )
+
+  layout_table_other <-
+  layout_table %>%
     count_values(
       vars = status,
       values = ongoing_lbl,
@@ -337,6 +366,8 @@ dst01_2_lyt <- function(armvar = .study$armvar,
       .stats = "count_fraction",
       denom = "N_col"
     )
+
+  list(layout_table_completed, layout_table_other)
 }
 
 
@@ -395,7 +426,7 @@ dst01_3 <- function(adsl,
                     lbl_overall = .study$lbl_overall,
                     status = .study$status,
                     reason = .study$reason,
-                    prune_0 = FALSE,
+                    prune_0 = TRUE,
                     status_treatment = .study$status_treatment,
                     deco = std_deco("DST01"),
                     .study = list(
@@ -457,19 +488,30 @@ dst01_3 <- function(adsl,
     reason = reason
   )
 
-  tbl2 <- build_table(
-    lyt,
+
+  tbl_completed <- build_table(
+    lyt[[1]],
     df = adsl_gp
   )
 
-  col_info(tbl) <- col_info(tbl2)
+  tbl_other <- build_table(
+    lyt[[2]],
+    df = adsl_gp
+  )
 
-  tbl <- rbind(tbl2, tbl)
+  if (prune_0) tbl_other <- tbl_other %>% prune_table()
+
+  col_info(tbl_other) <- col_info(tbl_completed)
+
+  tbl2 <- rbind(tbl_completed, tbl_other)
+
+  col_info(tbl) <- col_info(tbl2)
 
   if (prune_0) tbl <- tbl %>% prune_table()
 
-  tbl
+  tbl <- rbind(tbl2, tbl)
 
+  tbl
 }
 
 #' DST01 Layout 3 (Supplementary)
