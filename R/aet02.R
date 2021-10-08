@@ -48,7 +48,6 @@ aet02_1 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
-
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -125,6 +124,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
+      labels_var = "AEBODSYS",
       nested = FALSE,
       indent_mod = -1L,
       split_fun = drop_split_levels,
@@ -143,13 +143,13 @@ aet02_1_lyt <- function(armvar = .study$armvar,
       vars = "AEDECOD",
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0(" ", lbl_AEDECOD))
+    append_topleft(paste0("  ", lbl_AEDECOD))
 }
 
 
 # Version2 ----
 
-#' AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table 2
+#' AET02 Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2
 #'
 #' The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
 #' events categorized by Body System, High Level Term and Dictionary-Derived Term.
@@ -285,6 +285,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
+      labels_var = "AEBODSYS",
       nested = FALSE,
       indent_mod = -1L,
       split_fun = drop_split_levels,
@@ -319,7 +320,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
       vars = "AEDECOD",
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0(" ", lbl_AEDECOD))
+    append_topleft(paste0("    ", lbl_AEDECOD))
 }
 
 
@@ -392,7 +393,6 @@ aet02_3 <- function(adsl, adae,
     )
 
   tbl_sorted
-
 }
 
 
@@ -437,6 +437,6 @@ aet02_3_lyt <- function(armvar = .study$armvar,
         nonunique = "Overall total number of events"
       )
     ) %>%
-    count_occurrences(vars = "AEDECOD", .indent_mods = c(count_fraction = -1L)) %>%
+    count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
     append_varlabels(adae, "AEDECOD")
 }
