@@ -53,6 +53,9 @@ period.}
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}
 
+\item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
+By Default `ONGOING.}
+
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
 }

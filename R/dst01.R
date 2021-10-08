@@ -121,6 +121,8 @@ dst01_1 <- function(adsl,
 #'   period.
 #' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
 #'   Default `COMPLETED`.
+#' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
+#'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
 #'
@@ -303,6 +305,8 @@ dst01_2 <- function(adsl,
 #'   period.
 #' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
 #'   Default `COMPLETED`.
+#' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
+#'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
 #'
