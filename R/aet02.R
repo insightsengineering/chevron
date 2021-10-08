@@ -48,8 +48,6 @@ aet02_1 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
-  adae$AEBODSYSn <- paste0("\n", adae$AEBODSYS)
-
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -88,7 +86,6 @@ aet02_1 <- function(adsl, adae,
 #' @inheritParams gen_args
 #' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
-#' @param lbl_AEBODSYSn (`string`)
 #'
 #' @return
 #' @export
@@ -102,7 +99,6 @@ aet02_1 <- function(adsl, adae,
 aet02_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",
-                        lbl_AEBODSYSn = "AEBODSYSn",
                         lbl_AEDECOD = "AEDECOD",
                         deco = std_deco("AET02"),
                         .study = list(
@@ -128,7 +124,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
-      labels_var = "AEBODSYSn",
+      labels_var = "AEBODSYS",
       nested = FALSE,
       indent_mod = -1L,
       split_fun = drop_split_levels,
@@ -203,8 +199,6 @@ aet02_2 <- function(adsl, adae,
   lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
   lbl_AEHLT <-  var_labels_for(adae, "AEHLT")
   lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
-
-  adae$AEBODSYSn <- paste0("\n", adae$AEBODSYS)
 
   lyt <- aet02_2_lyt(
     armvar = armvar,
@@ -291,7 +285,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
-      labels_var = "AEBODSYSn",
+      labels_var = "AEBODSYS",
       nested = FALSE,
       indent_mod = -1L,
       split_fun = drop_split_levels,
@@ -398,12 +392,7 @@ aet02_3 <- function(adsl, adae,
       scorefun = score_occurrences
     )
 
-  # insert blank row.
-  tbl_sorted <- tbl_sorted %>%
-    insert_rrow(rrow(" "), at = 5)
-
   tbl_sorted
-
 }
 
 
