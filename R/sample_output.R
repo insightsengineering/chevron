@@ -19,7 +19,7 @@ sample_output <- function(sd) {
 
   adsl <- sd$adsl
   adae <- sd$adae %>%
-    mutate(ANL01FL = 'Y')
+    mutate(ANL01FL = "Y")
 
   tbls <- list(
     DMT01 = dmt01_1(
