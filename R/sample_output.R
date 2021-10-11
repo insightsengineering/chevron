@@ -1,16 +1,19 @@
-#' Sample function of Chevron
+#' Sample function for Chevron
 #'
-#' Returns a list of predefined table output.
+#' Returns a list of predefined tables.
 #'
-#' @param sd (`list`) cdisc_data
+#' @param sd (`list`) cdisc data
 #'
 #' @importFrom magrittr %>%
+#' @importFrom dplyr mutate
+#' @import chevron
 #'
-#' @return (`list`) of tables
+#' @return (`list`) of tables.
 #' @export
 #'
 #' @examples
 #' library(scda)
+#' library(dplyr)
 #'
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' sample_output(sd)
