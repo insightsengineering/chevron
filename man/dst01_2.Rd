@@ -7,11 +7,11 @@
 \usage{
 dst01_2(
   adsl,
-  adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
   reason = .study$reason,
+  prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
@@ -23,14 +23,15 @@ dst01_2_lyt(
   status = .study$status,
   reason = .study$reason,
   deco = std_deco("DST01"),
+  completed_lbl = "COMPLETED",
+  ongoing_lbl = "ONGOING",
+  discontinued_lbl = "DISCONTINUED",
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
 )
 }
 \arguments{
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
 \item{armvar}{(\code{string}) variable used for column splitting}
 
@@ -43,9 +44,20 @@ name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 d
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
+\item{prune_0}{(\code{logical}) remove 0 count rows}
+
 \item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
+Default \code{COMPLETED}.}
+
+\item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
+By Default `ONGOING.}
+
+\item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
+Default \code{DISCONTINUED}.}
 }
 \value{
 
@@ -56,14 +68,14 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }
 \details{
 \itemize{
-\item Non-standard disposition table summarizing the reasons for patient withdrawal
-\item Withdrawal reasons are grouped into Safety and Non-Safety issues
-\item Safety issues include Death and Adverse events
-\item Numbers represent absolute numbers of patients and fraction of \code{N}
-\item Remove zero-count rows
-\item Split columns by arm
-\item Include a total column by default
-\item Sort withdrawal reasons by alphabetic order
+\item Non-standard disposition table summarizing the reasons for patient withdrawal.
+\item Withdrawal reasons are grouped into Safety and Non-Safety issues.
+\item Safety issues include Death and Adverse events.
+\item Numbers represent absolute numbers of patients and fraction of \code{N}.
+\item Remove zero-count rows.
+\item Split columns by arm.
+\item Include a total column by default.
+\item Sort withdrawal reasons by alphabetic order.
 }
 }
 \section{Functions}{
@@ -76,11 +88,9 @@ library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
-adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
 
-dst01_2(adsl, adae)
-dst01_2(adsl, adae, lbl_overall = "")
+dst01_2(adsl)
+dst01_2(adsl, lbl_overall = "")
 
 dst01_2_lyt(armvar = "ACTARM",
 status = "EOP01STT",

@@ -24,7 +24,8 @@ Imports:
   assertthat,
   dplyr,
   rlang,
-  magrittr
+  magrittr,
+  tidyr
 Suggests:
     scda.2021,
     scda,
