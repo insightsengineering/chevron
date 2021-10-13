@@ -214,36 +214,44 @@
 <span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>adsl</span>
 <span class='va'>adsub</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>adsub</span>
 
-<span class='co'># merge on usubjid take AVAL for baseline param and give paramcd name</span>
+<span class='va'>adsub_wide</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pivot_wider_labels.html'>pivot_wider_labels</a></span><span class='op'>(</span><span class='va'>adsub</span>, <span class='st'>"PARAMCD"</span>, <span class='st'>"PARAM"</span>, <span class='st'>"AVAL"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"USUBJID"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>dmt01_1</span><span class='op'>(</span>ad_bl <span class='op'>=</span> <span class='va'>adsl</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='va'>adsl</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>adsub_wide</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Joining, by = "USUBJID"</span></div><div class='input'>
+<span class='fu'>dmt01_1</span><span class='op'>(</span>ad_bl <span class='op'>=</span> <span class='va'>adsl</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span>, <span class='st'>"BWGHTSI"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Main Title
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
-#&gt; -----------------------------------------------------------------------------------------------------
-#&gt;                                               A: Drug X    B: Placebo   C: Combination   All Patients
-#&gt;                                                (N=134)      (N=134)        (N=132)         (N=400)   
-#&gt; -----------------------------------------------------------------------------------------------------
-#&gt; Age                                                                                                  
-#&gt;   n                                              134          134            132             400     
-#&gt;   Mean (SD)                                   33.8 (6.6)   35.4 (7.9)     35.4 (7.7)      34.9 (7.4) 
-#&gt;   Median                                          33           35             35              34     
-#&gt;   Min - Max                                    21 - 50      21 - 62        20 - 69         20 - 69   
-#&gt;                                                                                                      
-#&gt; Race                                                                                                 
-#&gt;   n                                              134          134            132             400     
-#&gt;   ASIAN                                       68 (50.7%)    67 (50%)      73 (55.3%)      208 (52%)  
-#&gt;   BLACK OR AFRICAN AMERICAN                   31 (23.1%)   28 (20.9%)     32 (24.2%)      91 (22.8%) 
-#&gt;   WHITE                                       27 (20.1%)   26 (19.4%)     21 (15.9%)      74 (18.5%) 
-#&gt;   AMERICAN INDIAN OR ALASKA NATIVE              8 (6%)     11 (8.2%)       6 (4.5%)       25 (6.2%)  
-#&gt;   MULTIPLE                                        0         1 (0.7%)          0            1 (0.2%)  
-#&gt;   NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER       0         1 (0.7%)          0            1 (0.2%)  
-#&gt;                                                                                                      
-#&gt; Sex                                                                                                  
-#&gt;   n                                              134          134            132             400     
-#&gt;   F                                            79 (59%)    82 (61.2%)      70 (53%)      231 (57.8%) 
-#&gt;   M                                            55 (41%)    52 (38.8%)      62 (47%)      169 (42.2%) 
-#&gt; -----------------------------------------------------------------------------------------------------
+#&gt; ------------------------------------------------------------------------------------------------------------
+#&gt;                                                 A: Drug X      B: Placebo     C: Combination   All Patients 
+#&gt;                                                  (N=134)         (N=134)         (N=132)          (N=400)   
+#&gt; ------------------------------------------------------------------------------------------------------------
+#&gt; Age                                                                                                         
+#&gt;   n                                                134             134             132              400     
+#&gt;   Mean (SD)                                    33.8 (6.6)      35.4 (7.9)       35.4 (7.7)      34.9 (7.4)  
+#&gt;   Median                                           33              35               35              34      
+#&gt;   Min - Max                                      21 - 50         21 - 62         20 - 69          20 - 69   
+#&gt;                                                                                                             
+#&gt; Race                                                                                                        
+#&gt;   n                                                134             134             132              400     
+#&gt;   ASIAN                                        68 (50.7%)       67 (50%)        73 (55.3%)       208 (52%)  
+#&gt;   BLACK OR AFRICAN AMERICAN                    31 (23.1%)      28 (20.9%)       32 (24.2%)      91 (22.8%)  
+#&gt;   WHITE                                        27 (20.1%)      26 (19.4%)       21 (15.9%)      74 (18.5%)  
+#&gt;   AMERICAN INDIAN OR ALASKA NATIVE               8 (6%)         11 (8.2%)        6 (4.5%)        25 (6.2%)  
+#&gt;   MULTIPLE                                          0           1 (0.7%)            0            1 (0.2%)   
+#&gt;   NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER         0           1 (0.7%)            0            1 (0.2%)   
+#&gt;                                                                                                             
+#&gt; Sex                                                                                                         
+#&gt;   n                                                134             134             132              400     
+#&gt;   F                                             79 (59%)       82 (61.2%)        70 (53%)       231 (57.8%) 
+#&gt;   M                                             55 (41%)       52 (38.8%)        62 (47%)       169 (42.2%) 
+#&gt;                                                                                                             
+#&gt; Baseline Weight                                                                                             
+#&gt;   n                                                134             134             132              400     
+#&gt;   Mean (SD)                                     81.2 (44)      85.2 (53.5)     85.8 (47.2)      84.1 (48.3) 
+#&gt;   Median                                          77.2             88               88             85.6     
+#&gt;   Min - Max                                   -16.4 - 190.5   -58.3 - 253.5   -42.4 - 194.2    -58.3 - 253.5
+#&gt; ------------------------------------------------------------------------------------------------------------
 #&gt; 
 #&gt; Footnotes go here</div><div class='input'><span class='fu'>dmt01_1</span><span class='op'>(</span>ad_bl <span class='op'>=</span> <span class='va'>adsl</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span><span class='op'>)</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Main Title
