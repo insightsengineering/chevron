@@ -7,11 +7,11 @@
 \usage{
 dst01_3(
   adsl,
-  adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
   reason = .study$reason,
+  prune_0 = TRUE,
   status_treatment = .study$status_treatment,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
@@ -23,14 +23,15 @@ dst01_3_lyt(
   lbl_overall = .study$lbl_overall,
   status_treatment = .study$status,
   deco = std_deco("DST01"),
+  completed_lbl = "COMPLETED",
+  discontinued_lbl = "DISCONTINUED",
+  ongoing_lbl = "ONGOING",
   .study = list(armvar = "ARM", lbl_overall = "All patients", status_treatment =
     "EOTSTT")
 )
 }
 \arguments{
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
 \item{armvar}{(\code{string}) variable used for column splitting}
 
@@ -43,6 +44,8 @@ name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 d
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
+\item{prune_0}{(\code{logical}) remove 0 count rows}
+
 \item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
 however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
@@ -50,6 +53,15 @@ the analysis period.}
 \item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{completed_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
+\code{status_treatment}. By Default \code{COMPLETED}.}
+
+\item{discontinued_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
+\code{status_treatment}. By Default \code{DISCONTINUED}.}
+
+\item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
+By Default `ONGOING.}
 }
 \value{
 
@@ -60,14 +72,14 @@ For patients who discontinued the study, the reason provided is categorized as "
 }
 \details{
 \itemize{
-\item Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status
-\item Withdrawal reasons are grouped into Safety and Non-Safety issues
-\item Safety issues include Death and Adverse Events
-\item Numbers represent absolute numbers of patients and fraction of \code{N}
-\item Remove zero-count rows
-\item Split columns by arm
-\item Include a total column by default
-\item Sort withdrawal reasons by alphabetic order
+\item Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status.
+\item Withdrawal reasons are grouped into Safety and Non-Safety issues.
+\item Safety issues include Death and Adverse Events.
+\item Numbers represent absolute numbers of patients and fraction of \code{N}.
+\item Remove zero-count rows.
+\item Split columns by arm.
+\item Include a total column by default.
+\item Sort withdrawal reasons by alphabetic order.
 }
 }
 \section{Functions}{
@@ -79,16 +91,18 @@ For patients who discontinued the study, the reason provided is categorized as "
 library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
 
-adae <- sd$adae \%>\%
+adsl <- sd$adsl \%>\%
  mutate(ANL01FL = 'Y',
-        EOTSTT = sample(c("ONGOING","COMPLETED","DISCONTINUED"),
-                        nrow(sd$adae),
-                        replace = TRUE))
+        EOTSTT = as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"),
+                        nrow(sd$adsl),
+                        replace = TRUE)))
 
-dst01_3(adsl, adae)
-dst01_3(adsl, adae, lbl_overall = "")
+dst01_3(adsl)
+dst01_3(adsl, lbl_overall = "")
+
+adsl <- adsl \%>\% filter(EOSSTT != "COMPLETED")
+dst01_3(adsl)
 
 dst01_3_lyt(armvar = "ACTARM",
 status_treatment = "EOTxx01")

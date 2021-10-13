@@ -3,7 +3,7 @@
 \name{aet02_2}
 \alias{aet02_2}
 \alias{aet02_2_lyt}
-\title{AET02 Table 2 (Supplementary) Adverse Events by System Organ Class and Dictionary-Derived Term Table 2}
+\title{AET02 Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2}
 \usage{
 aet02_2(
   adsl,
