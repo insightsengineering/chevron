@@ -132,7 +132,7 @@ aet01_1 <- function(
     )
 
   result_adae <- build_table(lyt_adae, df = adae, alt_counts_df = adsl)
-  result_adae <- insert_rrow(result_adae, rrow("Total number of patients with at least one"), at = 3)
+  #result_adae <- insert_rrow(result_adae, rrow("Total number of patients with at least one"), at = 3)
 
   # Combine tables.
   col_info(result_adsl) <- col_info(result_adae)
