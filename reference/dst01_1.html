@@ -127,11 +127,11 @@ study a reason is provided.</p>
 
     <pre class="usage"><span class='fu'>dst01_1</span><span class='op'>(</span>
   <span class='va'>adsl</span>,
-  <span class='va'>adae</span>,
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   status <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>status</span>,
   reason <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>reason</span>,
+  prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"DST01"</span><span class='op'>)</span>,
   .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All patients"</span>, status <span class='op'>=</span> <span class='st'>"EOSSTT"</span>, reason
     <span class='op'>=</span> <span class='st'>"DCSREAS"</span><span class='op'>)</span>
@@ -143,6 +143,9 @@ study a reason is provided.</p>
   status <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>status</span>,
   reason <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>reason</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"DST01"</span><span class='op'>)</span>,
+  completed_lbl <span class='op'>=</span> <span class='st'>"COMPLETED"</span>,
+  ongoing_lbl <span class='op'>=</span> <span class='st'>"ONGOING"</span>,
+  discontinued_lbl <span class='op'>=</span> <span class='st'>"DISCONTINUED"</span>,
   .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All patients"</span>, status <span class='op'>=</span> <span class='st'>"EOSSTT"</span>, reason
     <span class='op'>=</span> <span class='st'>"DCSREAS"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
@@ -153,10 +156,6 @@ study a reason is provided.</p>
     <tr>
       <th>adsl</th>
       <td><p>(<code>data.frame</code>) Subject Level Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adae</th>
-      <td><p>(<code>data.frame</code>) Adverse Events Analysis Dataset</p></td>
     </tr>
     <tr>
       <th>armvar</th>
@@ -178,12 +177,31 @@ also be a variable with the pattern <code>DCPxxRS</code> where <code>xx</code> m
 period.</p></td>
     </tr>
     <tr>
+      <th>prune_0</th>
+      <td><p>(<code>logical</code>) remove 0 count rows</p></td>
+    </tr>
+    <tr>
       <th>deco</th>
       <td><p>(<code>list</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
     </tr>
     <tr>
       <th>.study</th>
       <td><p>(<code>list</code>)  with default values for the arguments of the function</p></td>
+    </tr>
+    <tr>
+      <th>completed_lbl</th>
+      <td><p>(<code>string</code>) associated with completed study and found in the columns given by <code>status</code>. By
+Default <code>COMPLETED</code>.</p></td>
+    </tr>
+    <tr>
+      <th>ongoing_lbl</th>
+      <td><p>(<code>string</code>) associated with ongoing treatment and found in the columns given by <code>status_treatment</code>.
+By Default `ONGOING.</p></td>
+    </tr>
+    <tr>
+      <th>discontinued_lbl</th>
+      <td><p>(<code>string</code>) associated with discontinued study and found in the columns given by <code>status</code>. By
+Default <code>DISCONTINUED</code>.</p></td>
     </tr>
     </table>
 
@@ -196,12 +214,12 @@ period.</p></td>
 
     
 <ul>
-<li><p>Default patient disposition table summarizing the reasons for patients withdrawal</p></li>
-<li><p>Numbers represent absolute numbers of patients and fraction of <code>N</code></p></li>
-<li><p>Remove zero-count rows</p></li>
-<li><p>Split columns by arm</p></li>
-<li><p>Include a total column by default</p></li>
-<li><p>Sort withdrawal reasons by alphabetic order</p></li>
+<li><p>Default patient disposition table summarizing the reasons for patients withdrawal.</p></li>
+<li><p>Numbers represent absolute numbers of patients and fraction of <code>N</code>.</p></li>
+<li><p>Remove zero-count rows.</p></li>
+<li><p>Split columns by arm.</p></li>
+<li><p>Include a total column by default.</p></li>
+<li><p>Sort withdrawal reasons by alphabetic order.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
@@ -218,52 +236,64 @@ period.</p></td>
 
 <span class='va'>sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span>
 <span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adsl</span>
-<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adae</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ANL01FL <span class='op'>=</span> <span class='st'>'Y'</span><span class='op'>)</span>
 
-<span class='fu'>dst01_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
-#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
-#&gt; 
-#&gt; ---------------------------------------------------------------------------------------------
-#&gt;                                    A: Drug X     B: Placebo    C: Combination   All patients 
-#&gt;                                     (N=609)        (N=622)        (N=703)         (N=1934)   
-#&gt; ---------------------------------------------------------------------------------------------
-#&gt; Completed Study                   306 (50.25%)   306 (49.2%)    421 (59.89%)    1033 (53.41%)
-#&gt; Discontinued Study                166 (27.3%)    207 (33.3%)    179 (25.5%)      552 (28.5%) 
-#&gt;   ADVERSE EVENT                    21 (3.4%)      8 (1.3%)       13 (1.8%)        42 (2.2%)  
-#&gt;   DEATH                           106 (17.4%)     118 (19%)      94 (13.4%)      318 (16.4%) 
-#&gt;   LACK OF EFFICACY                  12 (2%)       3 (0.5%)        4 (0.6%)         19 (1%)   
-#&gt;   PHYSICIAN DECISION                   0          10 (1.6%)      38 (5.4%)        48 (2.5%)  
-#&gt;   PROTOCOL VIOLATION               16 (2.6%)      35 (5.6%)      19 (2.7%)        70 (3.6%)  
-#&gt;   WITHDRAWAL BY PARENT/GUARDIAN     9 (1.5%)      23 (3.7%)      11 (1.6%)        43 (2.2%)  
-#&gt;   WITHDRAWAL BY SUBJECT             2 (0.3%)      10 (1.6%)          0            12 (0.6%)  
-#&gt; ---------------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Footnotes go here</div><div class='input'><span class='fu'>dst01_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
-#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
-#&gt; 
-#&gt; -----------------------------------------------------------------------------
-#&gt;                                    A: Drug X     B: Placebo    C: Combination
-#&gt;                                     (N=609)        (N=622)        (N=703)    
-#&gt; -----------------------------------------------------------------------------
-#&gt; Completed Study                   306 (50.25%)   306 (49.2%)    421 (59.89%) 
-#&gt; Discontinued Study                166 (27.3%)    207 (33.3%)    179 (25.5%)  
-#&gt;   ADVERSE EVENT                    21 (3.4%)      8 (1.3%)       13 (1.8%)   
-#&gt;   DEATH                           106 (17.4%)     118 (19%)      94 (13.4%)  
-#&gt;   LACK OF EFFICACY                  12 (2%)       3 (0.5%)        4 (0.6%)   
-#&gt;   PHYSICIAN DECISION                   0          10 (1.6%)      38 (5.4%)   
-#&gt;   PROTOCOL VIOLATION               16 (2.6%)      35 (5.6%)      19 (2.7%)   
-#&gt;   WITHDRAWAL BY PARENT/GUARDIAN     9 (1.5%)      23 (3.7%)      11 (1.6%)   
-#&gt;   WITHDRAWAL BY SUBJECT             2 (0.3%)      10 (1.6%)          0       
-#&gt; -----------------------------------------------------------------------------
-#&gt; 
-#&gt; Footnotes go here</div><div class='input'>
-<span class='fu'>dst01_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
+<span class='fu'>dst01_1</span><span class='op'>(</span><span class='va'>adsl</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                                    A: Drug X    B: Placebo    C: Combination   All patients
+#&gt;                                     (N=134)       (N=134)        (N=132)         (N=400)   
+#&gt; -------------------------------------------------------------------------------------------
+#&gt; Completed Study                   69 (51.49%)   69 (51.49%)    72 (54.55%)     210 (52.5%) 
+#&gt; Ongoing Study                     27 (20.15%)   22 (16.42%)    21 (15.91%)      70 (17.5%) 
+#&gt; Discontinued Study                38 (28.4%)    43 (32.1%)      39 (29.5%)      120 (30%)  
+#&gt;   ADVERSE EVENT                    6 (4.5%)      1 (0.7%)        2 (1.5%)        9 (2.2%)  
+#&gt;   DEATH                           22 (16.4%)    26 (19.4%)      19 (14.4%)      67 (16.8%) 
+#&gt;   LACK OF EFFICACY                 2 (1.5%)      1 (0.7%)        2 (1.5%)        5 (1.2%)  
+#&gt;   PHYSICIAN DECISION                   0         1 (0.7%)        7 (5.3%)         8 (2%)   
+#&gt;   PROTOCOL VIOLATION                4 (3%)       7 (5.2%)        6 (4.5%)       17 (4.2%)  
+#&gt;   WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)      5 (3.7%)        3 (2.3%)       10 (2.5%)  
+#&gt;   WITHDRAWAL BY SUBJECT            2 (1.5%)      2 (1.5%)           0             4 (1%)   </div><div class='input'><span class='fu'>dst01_1</span><span class='op'>(</span><span class='va'>adsl</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                                    A: Drug X    B: Placebo    C: Combination
+#&gt;                                     (N=134)       (N=134)        (N=132)    
+#&gt; ----------------------------------------------------------------------------
+#&gt; Completed Study                   69 (51.49%)   69 (51.49%)    72 (54.55%)  
+#&gt; Ongoing Study                     27 (20.15%)   22 (16.42%)    21 (15.91%)  
+#&gt; Discontinued Study                38 (28.4%)    43 (32.1%)      39 (29.5%)  
+#&gt;   ADVERSE EVENT                    6 (4.5%)      1 (0.7%)        2 (1.5%)   
+#&gt;   DEATH                           22 (16.4%)    26 (19.4%)      19 (14.4%)  
+#&gt;   LACK OF EFFICACY                 2 (1.5%)      1 (0.7%)        2 (1.5%)   
+#&gt;   PHYSICIAN DECISION                   0         1 (0.7%)        7 (5.3%)   
+#&gt;   PROTOCOL VIOLATION                4 (3%)       7 (5.2%)        6 (4.5%)   
+#&gt;   WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)      5 (3.7%)        3 (2.3%)   
+#&gt;   WITHDRAWAL BY SUBJECT            2 (1.5%)      2 (1.5%)           0       </div><div class='input'>
+<span class='va'>adsl</span><span class='op'>$</span><span class='va'>EOSSTT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>adsl</span><span class='op'>$</span><span class='va'>EOSSTT</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>dst01_1</span><span class='op'>(</span><span class='va'>adsl</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                                    A: Drug X    B: Placebo    C: Combination   All patients
+#&gt;                                     (N=134)       (N=134)        (N=132)         (N=400)   
+#&gt; -------------------------------------------------------------------------------------------
+#&gt; Completed Study                   69 (51.49%)   69 (51.49%)    72 (54.55%)     210 (52.5%) 
+#&gt; Ongoing Study                     27 (20.15%)   22 (16.42%)    21 (15.91%)      70 (17.5%) 
+#&gt; Discontinued Study                38 (28.4%)    43 (32.1%)      39 (29.5%)      120 (30%)  
+#&gt;   ADVERSE EVENT                    6 (4.5%)      1 (0.7%)        2 (1.5%)        9 (2.2%)  
+#&gt;   DEATH                           22 (16.4%)    26 (19.4%)      19 (14.4%)      67 (16.8%) 
+#&gt;   LACK OF EFFICACY                 2 (1.5%)      1 (0.7%)        2 (1.5%)        5 (1.2%)  
+#&gt;   PHYSICIAN DECISION                   0         1 (0.7%)        7 (5.3%)         8 (2%)   
+#&gt;   PROTOCOL VIOLATION                4 (3%)       7 (5.2%)        6 (4.5%)       17 (4.2%)  
+#&gt;   WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)      5 (3.7%)        3 (2.3%)       10 (2.5%)  
+#&gt;   WITHDRAWAL BY SUBJECT            2 (1.5%)      2 (1.5%)           0             4 (1%)   </div><div class='input'><span class='fu'>dst01_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
 status <span class='op'>=</span> <span class='st'>"EOP01STT"</span>,
 reason <span class='op'>=</span> <span class='st'>"DCP01RS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; A Pre-data Table Layout
+</div><div class='output co'>#&gt; [[1]]
+#&gt; A Pre-data Table Layout
+#&gt; 
+#&gt; Column-Split Structure:
+#&gt; ACTARM (lvls) 
+#&gt;  (all obs) 
+#&gt; 
+#&gt; Row-Split Structure:
+#&gt; EOP01STT (** analysis **) 
+#&gt; 
+#&gt; 
+#&gt; [[2]]
+#&gt; A Pre-data Table Layout
 #&gt; 
 #&gt; Column-Split Structure:
 #&gt; ACTARM (lvls) 
@@ -272,6 +302,7 @@ reason <span class='op'>=</span> <span class='st'>"DCP01RS"</span><span class='o
 #&gt; Row-Split Structure:
 #&gt; EOP01STT (** analysis **) 
 #&gt; EOP01STT (lvls) -&gt; DCP01RS (** analysis **) 
+#&gt; 
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
