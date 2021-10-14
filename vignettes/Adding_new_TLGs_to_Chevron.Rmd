@@ -1,0 +1,113 @@
+---
+title: "Adding new TLGs to Chevron"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Adding_new_TLGs_to_Chevron}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Acknowledgments
+
+## Introduction 
+The `chevron` package is a collection of function to create standard tables, listings, and graphs for clinical trials
+reporting. Here we present the logic to request new tables for the end users and how to construct new table functions
+for the programmers. The list of the already available functions is available
+[here](https://glowing-giggle-c0c5190c.pages.github.io/reference/index.html). The naming convention for table functions
+is `<table name>_<version>`. ex: `aet02_2`. The default version is by convention the number 1. Layouts are internal
+functions that determine the underlying structure of a table. One table function is generally associated with one layout
+function. The naming convention for layout is  `<table name>_<version>_lyt`. ex: `aet02_2_lyt`.
+
+### How to request a table
+In order to request a function that will generate a new table, please create an issue in the "TLG (ordered priority)" of
+the [chevron backlog](https://github.com/orgs/insightsengineering/projects/34). Private repositories on github do not
+support yaml issue templates but you can use the format below to accurately describe your requirements. Adding images of
+the required table (without confidential information) is also very useful. Several versions of the same table can be
+(should be) requested in a same issue.
+
+
+
+># ex: AET02
+>
+>## Table Name
+>Standard name of the table. [see TLG catalog]  
+>_ex. AET02_
+>
+>## URL
+>Link to an external file describing the table  
+>
+>## Description
+>Details on the generic purpose of the table  
+>_ex. This is an adverse event table_
+>
+>## Analysis dataset
+>Name of the standard dataset input  
+>_ex. ADAE_
+>
+>## Analysis filtering
+>Filtering criteria of the input  
+>_ex. ANL01FL = "Y"_
+>
+>## Analysis population
+>The selected population, typically SE, AP or IT  
+>_ex. SE_
+>
+>## Column Variable
+>Names of the columns splitting variables in hierarchical order  
+>_ex. ACTARM_
+>
+>## Analysis variables
+>Names of the rows splitting variables in hierarchical order  
+>_ex. AEBODSYS, AEDECOD, ASEV_  
+>_ex._  
+>    _1. AEBODSYS_  
+>    _2. AEDECOD_  
+>    _3. ASEV_  
+>
+>## Analysis concept
+>Alternative table description for summary tables similar to AET01  
+>_ex._  
+>- _Serious AE_  
+>- _Related AE_  
+>- _Total number of AEs_  
+>
+>## Statistics
+>Description of the statistical procedure  
+>_ex. Frequency count and % (based on N)_
+>
+>## Default treatment of zero count rows
+>Choose one option:  
+>- "Remove zero count rows by default"  
+>- "Keep zero count rows by default"  
+>- "Always ask for user input"  
+>- "Not applicable / Other"  
+>
+>## Comments
+>_ex. Some additional details_
+
+
+
+### How to create a new table function for developpers
+The current practice is to use the body of the table-creating function to isolate the labels and variable names that are
+used as title, subtitles, parameters names etc in the table layout. The function then calls the corresponding layout
+function to create the structure of the table. It then builds the table by combining the clinical data and the layout.
+Finally, it modifies the table based on the aggregated results, for instance removing the rows with no counts, and
+returns the table.
+
+Data processing and standardization should be performed before feeding the data to `chevron`. Table function
+
+The [TLG catalog](https://docs.nest.roche.com/releases/2021_07_07/user-guide/) provides examples on how to construct
+table layouts. 
+
+
+
