@@ -93,14 +93,11 @@ the required table (without confidential information) is also very useful. Sever
 >## Comments
 >_ex. Some additional details_
 
-
-
 ## How to create a new table function for developpers
 The current practice is to use the body of the table-creating function to isolate the variable names that are used to
 construct the table layout. The function then calls the corresponding layout function to create the structure of the
 table. It then builds the table by combining the clinical data and the layout. Finally, it modifies the table based on
 the aggregated results, for instance removing the rows with no counts, and returns the table.
-
 
 ### Data preprocessing
 Data processing and standardization should be performed before feeding the data to `chevron`. Beware of levels that are
@@ -115,18 +112,16 @@ Other arguments are more specific to a particular table (e.g Should zero count r
 
 ### The `.study` object
 The `.study` object contains information relative to the way the study is analyzed.
+
 TODO
 
 - `armvar`: ...... options: `ARM`, `ACTARM`,....
-- `evo_vars` ...used in lbt01
+- `evo_vars` (used in lbt01):  ...
 - `gradation`: ...... options: `c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")`, .... used in aet03
-- `lbl_overall`.....options:
-- `reason`.....options: .... used in dst01
-- `status`.....options: .... used in dst01
-- `summaryvars`: .... used in dmt01
-
-
-
+- `lbl_overall` (used everywhere) options:
+- `reason` (used in dst01): options: .... 
+- `status` (used in dst01): options: .... 
+- `summaryvars` (used in dmt01): .... 
 
 ### Tests
 TODO
