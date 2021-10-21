@@ -206,17 +206,17 @@ gds_data <- list(
 1.	Treatment duration = date of the last study drug administration minus the date of the first study drug administration +1
 2.	Total cumulative dose
 The following variables are optional:
-3.	Dose intensity – the statistician must specify which definition to use:
+3.	Dose intensity - the statistician must specify which definition to use:
 a)	Dose intensity = number of doses actually received / expected number of doses during the protocol-specified treatment period (to be displayed as a percentage)
 b)	Dose intensity = total dose actually received / planned total dose during the protocol-specified treatment period (to be displayed as a percentage)
 4.	Number of doses/cycles = number of doses/cycles actually administered
 5.	Missed doses = number of doses missed during the protocol-specified treatment period (e.g., 1 missed dose over 6 cycles planned)
-6.	Dose modification – The complete block (shaded in grey) is optional as is each reason for dose modification individually.
+6.	Dose modification - The complete block (shaded in grey) is optional as is each reason for dose modification individually.
 In cases where treatment period (expected number of cycles) is variable (e.g., treatment should continue until disease progression), the statistician must specify the expected number of doses and the duration of the treatment period.
 ",
     "Statistics and Calculation Methods" = c(
       "The \"n\" row provides the number of non missing values.  For a categorical variable, each percentage is based on the number of patients in the \"n\" row.",
-      "Percentages for “Total number of patients with at least one dose modification” are based on the number of patients in the analysis population as given in the column heading. Percentages for the individual reasons for dose modification are based on \"nnn\", where \"nnn\" equals the \"Total number of patients with at least one dose modification\"."
+      "Percentages for \"Total number of patients with at least one dose modification\" are based on the number of patients in the analysis population as given in the column heading. Percentages for the individual reasons for dose modification are based on \"nnn\", where \"nnn\" equals the \"Total number of patients with at least one dose modification\"."
     ),
     "Numeric Precision and Formatting of Statistics"  = "Use standard display in the mockup.",
     "Formatting Options" = "Allow the option for portrait or landscape output orientation.",
@@ -234,7 +234,7 @@ In cases where treatment period (expected number of cycles) is variable (e.g., t
   LBT01 = list(
     "description" = "Laboratory Tests Table",
     "Standard titles" = "Laboratory Test Results and Change from Baseline by Visit, <Specific Lab Test>:  <Specify Population>",
-    "Standard footnotes" = "Baseline is the patient’s last observation prior to initiation of study drug.  Any values collected more than <specify time interval> after
+    "Standard footnotes" = "Baseline is the patient\'s last observation prior to initiation of study drug.  Any values collected more than <specify time interval> after
 the last dose of study drug are not included.  The minimum and maximum values are, respectively, the smallest and largest values obtained
 after baseline through <specify time interval> after the last dose of study drug, including repeat and unscheduled tests.
 ",
