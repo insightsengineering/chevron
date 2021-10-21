@@ -232,7 +232,26 @@ In cases where treatment period (expected number of cycles) is variable (e.g., t
 
   ),
   LBT01 = list(
-
+    "description" = "Laboratory Tests Table",
+    "Standard titles" = "Laboratory Test Results and Change from Baseline by Visit, <Specific Lab Test>:  <Specify Population>",
+    "Standard footnotes" = "Baseline is the patient’s last observation prior to initiation of study drug.  Any values collected more than <specify time interval> after
+the last dose of study drug are not included.  The minimum and maximum values are, respectively, the smallest and largest values obtained
+after baseline through <specify time interval> after the last dose of study drug, including repeat and unscheduled tests.
+",
+    "Analysis Population" = "Specify the analysis population.  Typically this is All Patients.",
+    "Column Variables" = "See mockup",
+    "Column Totals" = "None",
+    "Analysis Variables" = "This table will be used to fulfill EudraCT disclosure requirements.  On the first row, provide the number of patients with at least 1 serious adverse event (SAE).  This row will be populated in the first column only-- \"Patients (All)\".
+In addition, summarize, by treatment group, by SOC and by preferred term the following counts, in order from left to right in the table:
+1.	Number of patients with serious adverse events (SAEs)
+2.	Number of SAEs
+3.	Number of SAEs related to study medication
+4.	Number of SAEs resulting in death (fatal)
+5.	Number of SAEs related to study medication and resulting in death
+Number of patients and number of events at the SOC level are not displayed.",
+    "Statistics and Calculation Methods" = "For each preferred term, multiple occurrences of the same AE (that meet the relevant filter) in an individual are counted only once for the number of patients, and counted separately for the number of events.",
+    "Numeric Precision and Formatting of Statistics" = "Use standard display in the mockup.",
+    "Optional Subsetting" = "None"
   ),
   LBT06 = list(
 
@@ -266,6 +285,19 @@ In cases where treatment period (expected number of cycles) is variable (e.g., t
   ),
   CFBT01 = list(
 
+  ),
+  Empty_table = list(
+    "description" = NULL,
+    "Standard titles" = NULL,
+    "Standard footnotes" = NULL,
+    "Analysis Population" = NULL,
+    "Column Variables" = NULL,
+    "Column Totals" = NULL,
+    "Analysis Variables" = NULL,
+    "Statistics and Calculation Methods" = NULL,
+    "Numeric Precision and Formatting of Statistics" = NULL,
+    "Formatting Options" = NULL,
+    "Optional Subsetting" = NULL
   )
 )
 # nolint end
