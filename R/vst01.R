@@ -1,7 +1,7 @@
 #' VST01 Table 1 (Default) Vital Sign Results and change from Baseline By Visit Tble 1
 #'
-#' The VST01 table provides an overview of the Vital Sign values and its change from baseline of each respective arm over
-#' the course of the trial.
+#' The VST01 table provides an overview of the Vital Sign values and its change from baseline of each respective arm
+#' over the course of the trial.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.

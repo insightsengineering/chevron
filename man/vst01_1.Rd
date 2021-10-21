@@ -57,8 +57,8 @@ be displayed.}
 
 }
 \description{
-The VST01 table provides an overview of the Vital Sign values and its change from baseline of each respective arm over
-the course of the trial.
+The VST01 table provides an overview of the Vital Sign values and its change from baseline of each respective arm
+over the course of the trial.
 }
 \details{
 \itemize{
