@@ -24,21 +24,21 @@ The `chevron` package is a collection of function to create standard tables, lis
 reporting. Here we present the logic to request new tables for the end users and how to construct new table functions
 for the programmers. The list of the already available functions is available
 [here](https://glowing-giggle-c0c5190c.pages.github.io/reference/index.html). The naming convention for table functions
-is `<table name>_<version>`. ex: `aet02_2`. The default version is by convention the number 1. Layouts are internal
+is `<table name>_<design number>`. ex: `aet02_2`. The default design number is by convention the number 1. Layouts are internal
 functions that determine the underlying structure of a table. One table function is generally associated with one layout
-function. The naming convention for layout is  `<table name>_<version>_lyt`. ex: `aet02_2_lyt`.
+function. The naming convention for layout is  `<table name>_<design number>_lyt`. ex: `aet02_2_lyt`.
 
 ## How to request a table
 In order to request a function that will generate a new table, please create an issue in the "TLG (ordered priority)" of
 the [chevron backlog](https://github.com/orgs/insightsengineering/projects/34). Private repositories on github do not
 support yaml issue templates but you can use the format below to accurately describe your requirements. Adding images of
-the required table (without confidential information) is also very useful. Several versions of the same table can be
+the required table (without confidential information) is also very useful. Several designs of the same table can be
 (should be) requested in a same issue.
 
 ># ex: AET02
 >
 >## Table Name
->Standard name of the table. [see TLG catalog]  
+>Standard name of the table. [see GDSR template]  
 >_ex. AET02_
 >
 >## URL
@@ -93,7 +93,7 @@ the required table (without confidential information) is also very useful. Sever
 >## Comments
 >_ex. Some additional details_
 
-## How to create a new table function for developpers
+## How to create a new table function for developers
 The current practice is to use the body of the table-creating function to isolate the variable names that are used to
 construct the table layout. The function then calls the corresponding layout function to create the structure of the
 table. It then builds the table by combining the clinical data and the layout. Finally, it modifies the table based on
