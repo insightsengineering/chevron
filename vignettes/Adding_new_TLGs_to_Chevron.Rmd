@@ -3,7 +3,7 @@ title: "Adding new TLGs to Chevron"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Adding_new_TLGs_to_Chevron}
+  %\VignetteIndexEntry{Adding new TLGs to Chevron}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
