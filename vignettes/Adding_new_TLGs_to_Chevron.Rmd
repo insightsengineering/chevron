@@ -111,23 +111,23 @@ which is then passed to the function. The list of argument accepted by the study
 Other arguments are more specific to a particular table (e.g Should zero count rows be removed?) and should be accessible to the end-user insofar as it cannot compromise the accuracy of the report. Appropriate default values should be provided.
 
 ### The `.study` object
+
+The following variables are best hard coded in the table-genrating functions (with the possibility fo the user to
+override some of these choices.):
+- `evo_vars` (used in lbt01, which variables capture status and the evolution of the analysis): generally `c("AVAL",
+"CNG")`
+- `gradation` (internal, used in aet03, capture the levels of severity of adverse events): generally corresponds to the
+levels of `AESEV`in `adae`.
+- `lbl_overall` (used everywhere, the label associated with the overall column)
+- `reason` (used in dst01, the name of the column specifying study withdrawal): generally `DCSREAS`.
+- `status` (used in dst01, the name of the column specifying study status): generally: `EOSSTT`. 
+- `summaryvars` (used in dmt01,  the list of variables to be summarized):  
+
 The `.study` object contains information relative to the way the study is analyzed.
-
-TODO
-
-- `armvar`: ...... options: `ARM`, `ACTARM`,....
-- `evo_vars` (used in lbt01):  ...
-- `gradation` (used in aet03): ...... options: `c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")`, .... 
-- `lbl_overall` (used everywhere) options:
-- `reason` (used in dst01): options: .... 
-- `status` (used in dst01): options: .... 
-- `summaryvars` (used in dmt01): .... 
-
-Generally defined at the study level
-- "Patient" or "Subject"
-- Randomized arm variable
+- "Patient" or "Subject" (the designation of the personne depends on the study)
+- `armvar` (Randomized arm variable): generally: `ARM`or `ACTARM`.
 - Actually received variable
-- Format of percentages etc...
+- `format`: of percentages etc...
 
 
 ### Tests
