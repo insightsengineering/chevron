@@ -7,9 +7,9 @@
 gds_data <- list(
   CMT02_PT = list(
     "description" = "Concomitant Medications by Preferred Name",
-    "Standard titles" = "Concomitant Medications by Preferred Name: <Specify Population>",
+    "Standard titles" = "Concomitant Medications by Preferred Name: {Specify Population}",
     "Standard footnotes" = c(
-      "Treatments are coded from the WHODrug Global B3 Format dictionary <version>.",
+      "Treatments are coded from the WHODrug Global B3 Format dictionary {version}.",
       "Multiple uses of a specific medication for a patient were counted once in the frequency for the medication. For frequency counts in \"Total number of treatments\", multiple uses of the same medication for a patient were counted separately.",
       "Standard footnote defining medications included in table (e.g., includes concomitant medications used at any time from first dose of study drug through 7 days after last dose of study drug)."
     ),
@@ -24,7 +24,7 @@ gds_data <- list(
   ),
   DST01 = list(
     "description" = "Patient Disposition Table",
-    "Standard titles" = "Patient Disposition: <Analysis Population>",
+    "Standard titles" = "Patient Disposition: {Analysis Population}",
     "Standard footnotes" = NULL,
     "Analysis Population" = "Specify the patient population.  Typically, this is Randomized Patients for a randomized study or Enrolled and Treated Patients for a non-randomized study.",
     "Column Variables" = "By treatment group.  Specify if this is treatment group assigned or treatment received.",
@@ -40,7 +40,7 @@ gds_data <- list(
   ),
   DMT01 = list(
     "description" = "Demographics and Baseline Characteristics Table",
-    "Standard titles" = "Demographics and Baseline Characteristics: <Specify Population>",
+    "Standard titles" = "Demographics and Baseline Characteristics: {Specify Population}",
     "Standard footnotes" = NULL,
     "Analysis Population" = "Specify the patient population.  Typically, this is Randomized Patients or modified intent-to-treat population.",
     "Column Variables" = "By treatment group.",
@@ -56,7 +56,7 @@ gds_data <- list(
   ),
   AEL01_NOLLT = list(
     "description" = "Adverse Event Preferred Terms and Investigator-Specified Terms Glossary Programming Notes",
-    "Standard titles" = "Glossary of Adverse Event Preferred Terms and Investigator-Specified Terms: <Analysis Population>",
+    "Standard titles" = "Glossary of Adverse Event Preferred Terms and Investigator-Specified Terms: {Analysis Population}",
     "Analysis Population" = "Patients with AEs. Specify patient population.  Typically, this is the safety evaluable population. Listing includes patients in specified population who have at least one AE reported.",
     "Column Variables" = "None",
     "Column Totals" = "None",
@@ -67,7 +67,7 @@ gds_data <- list(
   ),
   AET02 = list(
     description = "Adverse Events by System Organ Class and Preferred Term Table",
-    "Standard titles" = "Adverse Events: <Specify Population>",
+    "Standard titles" = "Adverse Events: {Specify Population}",
     "Standard footnotes" = c(
       "Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings.",
       "For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of \"Total number of events\" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug)."
@@ -92,13 +92,13 @@ gds_data <- list(
       " 3) Display SOC names but do not display total rows within each SOC; display only those SOC's with at least 1 PT meeting the specified threshold in any treatment group",
       " 4) Within each SOC, display only PT's meeting the specified threshold in any treatment group; include both counts and %'s with denominators as usual (treatment group N's)",
       " 5) If it is important to include HLT's in the display, do not display the total rows within each HLT",
-      "For subsetting based on differences in relative frequencies between treatment groups, the user must specify a single control group and a difference threshold (<delta>%). PT and SOC frequencies are then tabulated as usual based on the subset of events for which the absolute value of the difference in relative frequencies between control group and at least one active treatment groups is >= <delta>%.",
+      "For subsetting based on differences in relative frequencies between treatment groups, the user must specify a single control group and a difference threshold ({delta}%). PT and SOC frequencies are then tabulated as usual based on the subset of events for which the absolute value of the difference in relative frequencies between control group and at least one active treatment groups is >= {delta}%.",
       "Multiple subsetting criteria can be specified (e.g., serious AEs occurring in >= 2 patients). "
     )
   ),
   AET03 = list(
     "description" = "Adverse Events by Greatest Intensity Table",
-    "Standard titles" = "Adverse Events by Greatest Intensity: <Specify Population>",
+    "Standard titles" = "Adverse Events by Greatest Intensity: {Specify Population}",
     "Standard footnotes" = c(
       "Investigator text for AEs encoded using MedDRA version xx.x.  All counts represent patients. Multiple occurrences of the same AE in one individual are counted once at the greatest intensity for this preferred term.",
       "To the SOC Overall row counts, a patient contributes only with the AE occuring with the greatest intensity within the SOC.",
@@ -131,7 +131,7 @@ gds_data <- list(
       "The item numbers in the following table refers to the superscripts in the mock-up",
       "If patient or AE subsetting is applied, additional restrictions have to be added in the derivations. In case of AE subsetting the variables AOCCIFL, AOCCSIFL, and AOCCPIFL, which flags the observation with highest grade per patient, per SOC and patient, and per preferred term and patient, may need to be re-derived.",
       "Do not display rows with all counts equals zero.",
-      " <item nr> -- <derivation>",
+      " {item nr} -- {derivation}",
       " 1 -- Number of patients in Group 1:count patients in ASL where (ARM = 'Group 1' and SAFFL = 'Y')",
       " 2 -- Number of patients in Group 1 with at least one AE with non-missing grade: count patients in AAE where (ARM = 'Group 1' and SAFFL = 'Y' and ANLFL = 'Y' and not missing(AETOXGR))",
       " 3 -- Percentage of patients in Group 1 with at least one AE with non-missing grade out of patients in Group 1: divide item 2 by item 1 and multiply by 100",
@@ -143,8 +143,8 @@ gds_data <- list(
     )
   ),
   AET04 = list(
-    "description" = "Adverse Events by Highest <Toxicity Scale> Grade Table",
-    "Standard titles" = "Adverse Events by Highest NCI CTCAE Grade: <Specify Population>",
+    "description" = "Adverse Events by Highest {Toxicity Scale} Grade Table",
+    "Standard titles" = "Adverse Events by Highest NCI CTCAE Grade: {Specify Population}",
     "Standard footnotes" = c(
       "Investigator text for AEs encoded using MedDRA version xx.x.  All counts represent patients. Multiple occurrences of the same AE in one individual are counted once at the highest grade for this patient.",
       "To the SOC Overall row counts, a patient contributes only with the AE occuring with the highest grade within the SOC.",
@@ -197,8 +197,8 @@ gds_data <- list(
   ),
   EXT01 = list(
     "description" = "Study Drug Exposure Table",
-    "Standard titles" = "Study Drug Exposure:  <Specify Population>",
-    "Standard footnotes" = "Treatment duration is the date of the last study drug administration minus the date of the first study drug administration plus one day.  Dose intensity is <definition>. <Percentages for reasons for dose modification are based on total number of patients with at least one dose modification.>",
+    "Standard titles" = "Study Drug Exposure:  {Specify Population}",
+    "Standard footnotes" = "Treatment duration is the date of the last study drug administration minus the date of the first study drug administration plus one day.  Dose intensity is {definition}. <Percentages for reasons for dose modification are based on total number of patients with at least one dose modification.>",
     "Analysis Population" = "Specify analysis population, typically Safety-Evaluable Population.",
     "Column Variables" = "By treatment group",
     "Column Totals" = "See mockup and allow for an All Patients column.",
@@ -233,10 +233,10 @@ In cases where treatment period (expected number of cycles) is variable (e.g., t
   ),
   LBT01 = list(
     "description" = "Laboratory Tests Table",
-    "Standard titles" = "Laboratory Test Results and Change from Baseline by Visit, <Specific Lab Test>:  <Specify Population>",
-    "Standard footnotes" = "Baseline is the patient\'s last observation prior to initiation of study drug.  Any values collected more than <specify time interval> after
+    "Standard titles" = "Laboratory Test Results and Change from Baseline by Visit, {Specific Lab Test}:  {Specify Population}",
+    "Standard footnotes" = "Baseline is the patient\'s last observation prior to initiation of study drug.  Any values collected more than {specify time interval} after
 the last dose of study drug are not included.  The minimum and maximum values are, respectively, the smallest and largest values obtained
-after baseline through <specify time interval> after the last dose of study drug, including repeat and unscheduled tests.
+after baseline through {specify time interval} after the last dose of study drug, including repeat and unscheduled tests.
 ",
     "Analysis Population" = "Specify the analysis population.  Typically this is All Patients.",
     "Column Variables" = "See mockup",
