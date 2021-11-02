@@ -81,8 +81,8 @@ lbt01_1 <- function(adsl, adlb,
 #'
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
 #' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
-#' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
-#'   be displayed.
+#' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
+#'   to be displayed.
 #' @param lbl_AVISIT (`character`) label of the `visitvar` variable.
 #' @param lbl_PARAM (`character`) label of the `PARAM` variable.
 #'

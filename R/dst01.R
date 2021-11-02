@@ -21,8 +21,9 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' @inheritParams gen_args
 #' @param armvar (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
-#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
-#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
@@ -196,8 +197,9 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
-#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
@@ -380,14 +382,15 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
-#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param status_treatment (`character`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
-#'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
-#'   the analysis period.
+#' @param status_treatment (`character`) variable used to define the treatment status of the patients. Default is
+#'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
+#'   referring to the analysis period.
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status.
