@@ -4,10 +4,9 @@
 #' the course of the trial.
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`vector of string`) the label of the variables to be analyzed.
-#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
-#'   be displayed
+#' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
+#' @param visitvar (`character`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -38,14 +37,13 @@
 #'
 lbt01_1 <- function(adsl, adlb,
                     armvar = .study$armvar,
-                    summaryvars = .study$evo_vars,
+                    summaryvars = c("AVAL", "CHG"),
                     summaryvars_lbls = var_labels_for(adlb, summaryvars),
                     visitvar = "AVISIT", # or ATPTN
                     prune_0 = TRUE,
                     deco = std_deco("LBT01"),
                     .study = list(
-                      armvar = "ACTARM",
-                      evo_vars = c("AVAL", "CHG")
+                      armvar = "ACTARM"
                     )) {
 
   adlb <- adlb %>%
@@ -81,26 +79,24 @@ lbt01_1 <- function(adsl, adlb,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`vector of string`) the label of the variables to be analyzed.
-#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
+#' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
+#' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
 #'   be displayed.
-#' @param lbl_AVISIT (`string`) label of the `visitvar` variable.
-#' @param lbl_PARAM (`string`) label of the `PARAM` variable.
+#' @param lbl_AVISIT (`character`) label of the `visitvar` variable.
+#' @param lbl_PARAM (`character`) label of the `PARAM` variable.
 #'
 #' @return
 #' @export
 lbt01_1_lyt <- function(armvar = .study$armvar,
-                        summaryvars = .study$evo_vars,
-                        summaryvars_lbls = .study$evo_vars_lbls,
+                        summaryvars = c("AVAL", "CHG"),
+                        summaryvars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                         visitvar = .study$visitvar,
                         lbl_AVISIT = "",
                         lbl_PARAM = "",
                         deco = std_deco("LBT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          evo_vars = c("AVAL", "CHG"),
-                          evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                           visitvar = "AVISIT"
                         )
 ) {

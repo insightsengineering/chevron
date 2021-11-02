@@ -20,10 +20,10 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' study a reason is provided.
 #'
 #' @inheritParams gen_args
-#' @param armvar (`string`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
-#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#' @param armvar (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
+#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #'
@@ -57,15 +57,13 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 dst01_1 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    status = .study$status,
-                    reason = .study$reason,
+                    status = "EOSSTT",
+                    reason = "DCSREAS",
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients",
-                      status = "EOSSTT",
-                      reason = "DCSREAS"
+                      lbl_overall = "All patients"
                     )) {
 
   check_dst01_1_args(reason = reason,
@@ -198,9 +196,9 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #'
@@ -231,15 +229,13 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 dst01_2 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    status = .study$status,
-                    reason = .study$reason,
+                    status = "EOSSTT",
+                    reason = "DCSREAS",
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients",
-                      status = "EOSSTT",
-                      reason = "DCSREAS"
+                      lbl_overall = "All patients"
                     )) {
 
   check_dst01_1_args(reason = reason,
@@ -384,12 +380,12 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
+#' @param status_treatment (`character`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
 #'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
 #'
@@ -428,17 +424,14 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 dst01_3 <- function(adsl,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    status = .study$status,
-                    reason = .study$reason,
+                    status = "EOSSTT",
+                    reason = "DCSREAS",
                     prune_0 = TRUE,
-                    status_treatment = .study$status_treatment,
+                    status_treatment = "EOTSTT",
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients",
-                      status = "EOSSTT",
-                      reason = "DCSREAS",
-                      status_treatment = "EOTSTT"
+                      lbl_overall = "All patients"
                     )) {
 
   check_dst01_1_args(reason = reason,
