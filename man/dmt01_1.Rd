@@ -8,13 +8,12 @@
 dmt01_1(
   ad_bl,
   armvar = .study$armvar,
-  summaryvars = .study$summaryvars,
+  summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
   summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
-  .study = list(armvar = "ARM", summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
-    "RACE", "BWGHTSI"), lbl_overall = "All Patients")
+  .study = list(armvar = "ARM", lbl_overall = "All Patients")
 )
 
 dmt01_1_lyt(
@@ -29,19 +28,19 @@ dmt01_1_lyt(
 )
 }
 \arguments{
-\item{ad_bl}{(\code{data.frame}) subject baseline dataset with one row per patient}
+\item{ad_bl}{(\code{data.frame}) subject baseline Dataset with one row per patient}
 
-\item{armvar}{(\code{string}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.}
 
 \item{summaryvars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
