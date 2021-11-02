@@ -90,6 +90,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -219,7 +231,7 @@
 <span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='va'>adsl</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>adsub_wide</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Joining, by = "USUBJID"</span></div><div class='input'>
 <span class='fu'>dmt01_1</span><span class='op'>(</span>ad_bl <span class='op'>=</span> <span class='va'>adsl</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span>, <span class='st'>"BWGHTSI"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+</div><div class='output co'>#&gt; Demographics and Baseline Characteristics: {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; ------------------------------------------------------------------------------------------------------------
@@ -250,11 +262,8 @@
 #&gt;   n                                                134             134             132              400     
 #&gt;   Mean (SD)                                     81.2 (44)      85.2 (53.5)     85.8 (47.2)      84.1 (48.3) 
 #&gt;   Median                                          77.2             88               88             85.6     
-#&gt;   Min - Max                                   -16.4 - 190.5   -58.3 - 253.5   -42.4 - 194.2    -58.3 - 253.5
-#&gt; ------------------------------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Footnotes go here</div><div class='input'><span class='fu'>dmt01_1</span><span class='op'>(</span>ad_bl <span class='op'>=</span> <span class='va'>adsl</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span><span class='op'>)</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+#&gt;   Min - Max                                   -16.4 - 190.5   -58.3 - 253.5   -42.4 - 194.2    -58.3 - 253.5</div><div class='input'><span class='fu'>dmt01_1</span><span class='op'>(</span>ad_bl <span class='op'>=</span> <span class='va'>adsl</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span><span class='op'>)</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Demographics and Baseline Characteristics: {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; --------------------------------------------------------------------------------------
@@ -279,14 +288,11 @@
 #&gt; Sex                                                                                   
 #&gt;   n                                              134          134            132      
 #&gt;   F                                            79 (59%)    82 (61.2%)      70 (53%)   
-#&gt;   M                                            55 (41%)    52 (38.8%)      62 (47%)   
-#&gt; --------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Footnotes go here</div><div class='input'>
+#&gt;   M                                            55 (41%)    52 (38.8%)      62 (47%)   </div><div class='input'>
 <span class='fu'>dmt01_1</span><span class='op'>(</span>ad_bl <span class='op'>=</span> <span class='va'>adsl</span>,
         summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span><span class='op'>)</span>,
         summaryvars_lbls <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Age (yr)"</span>, <span class='st'>"Race"</span>, <span class='st'>"Sex"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+</div><div class='output co'>#&gt; Demographics and Baseline Characteristics: {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------------------------
@@ -311,10 +317,7 @@
 #&gt; Sex                                                                                                  
 #&gt;   n                                              134          134            132             400     
 #&gt;   F                                            79 (59%)    82 (61.2%)      70 (53%)      231 (57.8%) 
-#&gt;   M                                            55 (41%)    52 (38.8%)      62 (47%)      169 (42.2%) 
-#&gt; -----------------------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Footnotes go here</div><div class='input'>
+#&gt;   M                                            55 (41%)    52 (38.8%)      62 (47%)      169 (42.2%) </div><div class='input'>
 <span class='fu'>dmt01_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; A Pre-data Table Layout
 #&gt; 

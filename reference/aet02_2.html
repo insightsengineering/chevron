@@ -91,6 +91,18 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term."
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -223,7 +235,7 @@ frequencies.</p></li>
  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ANL01FL <span class='op'>=</span> <span class='st'>'Y'</span><span class='op'>)</span>
 
 <span class='fu'>aet02_2</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+</div><div class='output co'>#&gt; Adverse Events: {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; --------------------------------------------------------------------------------------------------------
@@ -293,8 +305,8 @@ frequencies.</p></li>
 #&gt;     dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
 #&gt; --------------------------------------------------------------------------------------------------------
 #&gt; 
-#&gt; Footnotes go here</div><div class='input'><span class='fu'>aet02_2</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</div><div class='input'><span class='fu'>aet02_2</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Adverse Events: {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; -----------------------------------------------------------------------------------------------------------------------
@@ -364,10 +376,10 @@ frequencies.</p></li>
 #&gt;     dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)      132 (33%)  
 #&gt; -----------------------------------------------------------------------------------------------------------------------
 #&gt; 
-#&gt; Footnotes go here</div><div class='input'>
+#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</div><div class='input'>
 <span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>adae</span> <span class='op'>%&gt;%</span> <span class='fu'>var_relabel</span><span class='op'>(</span>AEBODSYS <span class='op'>=</span> <span class='st'>"Medra System Organ Class"</span><span class='op'>)</span>
 <span class='fu'>aet02_2</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+</div><div class='output co'>#&gt; Adverse Events: {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; --------------------------------------------------------------------------------------------------------
@@ -437,7 +449,7 @@ frequencies.</p></li>
 #&gt;     dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
 #&gt; --------------------------------------------------------------------------------------------------------
 #&gt; 
-#&gt; Footnotes go here</div><div class='input'>
+#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</div><div class='input'>
 <span class='fu'>aet02_2_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
  lbl_overall <span class='op'>=</span> <span class='st'>""</span>,
  lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,

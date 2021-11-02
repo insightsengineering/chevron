@@ -91,6 +91,18 @@ EXT01 Layout 2 (Supplementary)" />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -243,7 +255,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
                      <span class='st'>"Number of doses administered during constant dosing interval"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>ext01_2</span><span class='op'>(</span><span class='va'>adex</span>, <span class='va'>adsl</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span>, show_stats <span class='op'>=</span> <span class='st'>"ALL"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+</div><div class='output co'>#&gt; Study Drug Exposure:  {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; ------------------------------------------------------------------------------------------------------------------
@@ -282,8 +294,8 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 #&gt;   Min - Max                                                         1 - 1             1 - 1             1 - 1     
 #&gt; ------------------------------------------------------------------------------------------------------------------
 #&gt; 
-#&gt; Footnotes go here</div><div class='input'><span class='fu'>ext01_2</span><span class='op'>(</span><span class='va'>adex</span>, <span class='va'>adsl</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span>, show_stats <span class='op'>=</span> <span class='st'>"ALL"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Main Title
+#&gt; Treatment duration is the date of the last study drug administration minus the date of the first study drug administration plus one day.  Dose intensity is {definition}. &lt;Percentages for reasons for dose modification are based on total number of patients with at least one dose modification.&gt;</div><div class='input'><span class='fu'>ext01_2</span><span class='op'>(</span><span class='va'>adex</span>, <span class='va'>adsl</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span>, show_stats <span class='op'>=</span> <span class='st'>"ALL"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Study Drug Exposure:  {Specify Population}
 #&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 #&gt; 
 #&gt; ------------------------------------------------------------------------------------------------------------------------------------
@@ -322,7 +334,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 #&gt;   Min - Max                                                         1 - 1             1 - 1             1 - 1             1 - 1     
 #&gt; ------------------------------------------------------------------------------------------------------------------------------------
 #&gt; 
-#&gt; Footnotes go here</div><div class='input'>
+#&gt; Treatment duration is the date of the last study drug administration minus the date of the first study drug administration plus one day.  Dose intensity is {definition}. &lt;Percentages for reasons for dose modification are based on total number of patients with at least one dose modification.&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
