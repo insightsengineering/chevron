@@ -2,6 +2,7 @@
 % Please edit documentation in R/aet01.R
 \name{aet01_1}
 \alias{aet01_1}
+\alias{aet01_1_header}
 \title{AET01 Table 1 (Default) Safety Summary Table 1}
 \usage{
 aet01_1(
@@ -12,6 +13,13 @@ aet01_1(
   deco = std_deco("AET01"),
   .study = list(armvar = "ACTARM", totals_for = c("DTHFL", "DCSREAS"), lbl_overall =
     NULL)
+)
+
+aet01_1_header(
+  armvar = .study$armvar,
+  deco,
+  lbl_overall = .study$lbl_overall,
+  .study = list(armvar = "ARM", lbl_overall = "")
 )
 }
 \arguments{
@@ -27,9 +35,19 @@ aet01_1(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
+\value{
+
+}
 \description{
 AET01 Table 1 (Default) Safety Summary Table 1
+
+Header for \code{AET01}
 }
+\section{Functions}{
+\itemize{
+\item \code{aet01_1_header}: 
+}}
+
 \examples{
 library(scda)
 library(dplyr)
