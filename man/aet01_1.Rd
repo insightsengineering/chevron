@@ -27,11 +27,11 @@ aet01_1_header(
 
 \item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
 
-\item{armvar}{(\code{string}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }

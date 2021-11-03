@@ -9,24 +9,23 @@ lbt01_1(
   adsl,
   adlb,
   armvar = .study$armvar,
-  summaryvars = .study$evo_vars,
+  summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = var_labels_for(adlb, summaryvars),
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
-  .study = list(armvar = "ACTARM", evo_vars = c("AVAL", "CHG"))
+  .study = list(armvar = "ACTARM")
 )
 
 lbt01_1_lyt(
   armvar = .study$armvar,
-  summaryvars = .study$evo_vars,
-  summaryvars_lbls = .study$evo_vars_lbls,
+  summaryvars = c("AVAL", "CHG"),
+  summaryvars_lbls = c("Analysis \\nValue", "Change from \\nBaseline"),
   visitvar = .study$visitvar,
   lbl_AVISIT = "",
   lbl_PARAM = "",
   deco = std_deco("LBT01"),
-  .study = list(armvar = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
+  .study = list(armvar = "ACTARM", visitvar = "AVISIT")
 )
 }
 \arguments{
@@ -34,24 +33,24 @@ lbt01_1_lyt(
 
 \item{adlb}{(\code{data.frame}) Laboratory Analysis Dataset}
 
-\item{armvar}{(\code{string}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of string}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+\item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
-\item{summaryvars_lbls}{(\verb{vector of string}) the label of the variables to be analyzed.}
+\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
-be displayed.}
+\item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
+to be displayed.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AVISIT}{(\code{string}) label of the \code{visitvar} variable.}
+\item{lbl_AVISIT}{(\code{character}) label of the \code{visitvar} variable.}
 
-\item{lbl_PARAM}{(\code{string}) label of the \code{PARAM} variable.}
+\item{lbl_PARAM}{(\code{character}) label of the \code{PARAM} variable.}
 }
 \value{
 

@@ -5,7 +5,7 @@
 #'
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`string`) the name of the variable to be analyzed. By default `"AVAL"`.
+#' @param summaryvars (`character`) the name of the variable to be analyzed. By default `"AVAL"`.
 #'
 #' @details
 #'  * Default Exposure table
@@ -36,16 +36,14 @@
 ext01_1 <- function(adex,
                     adsl,
                     armvar = .study$armvar,
-                    summaryvars = .study$analysis_var,
+                    summaryvars = "AVAL",
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = "",
-                      analysis_var = "AVAL" ## hardcode
+                      lbl_overall = ""
                     )) {
-
 
     # provide a clearer error message in the case of missing variable
   assert_colnames(adex, summaryvars)
@@ -159,13 +157,12 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 ext01_2 <- function(adex,
                     adsl,
                     armvar = .study$armvar,
-                    show_stats = .study$show_stats,
+                    show_stats = c("ALL"),
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      show_stats = c("ALL"),
                       lbl_overall = ""
                     )) {
 
