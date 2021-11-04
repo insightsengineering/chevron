@@ -169,11 +169,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>armvar</th>
-      <td><p>(<code>string</code>) variable used for column splitting</p></td>
+      <td><p>(<code>character</code>) variable used for column splitting</p></td>
     </tr>
     <tr>
       <th>lbl_overall</th>
-      <td><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
+      <td><p>(<code>character</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
     </tr>
     <tr>
       <th>prune_0</th>
@@ -181,7 +181,7 @@
     </tr>
     <tr>
       <th>deco</th>
-      <td><p>(<code>list</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
+      <td><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
     </tr>
     <tr>
       <th>.study</th>
@@ -189,7 +189,7 @@
     </tr>
     <tr>
       <th>ad_bl</th>
-      <td><p>(<code>data.frame</code>) subject baseline dataset with one row per patient</p></td>
+      <td><p>(<code>data.frame</code>) subject baseline Dataset with one row per patient</p></td>
     </tr>
     <tr>
       <th>adsl</th>
@@ -272,6 +272,13 @@
       <td><p>nest list for group-dependent data binning</p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>the following arguments are better provided through the study object:</p><ul>
+<li><p>lbl_overall</p></li>
+<li><p>armvar</p></li>
+</ul>
 
 
   </div>

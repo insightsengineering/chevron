@@ -141,11 +141,11 @@ EXT01 Layout 2 (Supplementary)" />
   <span class='va'>adex</span>,
   <span class='va'>adsl</span>,
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
-  show_stats <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>show_stats</span>,
+  show_stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ALL"</span><span class='op'>)</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"EXT01"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, show_stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ALL"</span><span class='op'>)</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>ext01_2_lyt</span><span class='op'>(</span>
@@ -170,7 +170,7 @@ EXT01 Layout 2 (Supplementary)" />
     </tr>
     <tr>
       <th>armvar</th>
-      <td><p>(<code>string</code>) variable used for column splitting</p></td>
+      <td><p>(<code>character</code>) variable used for column splitting</p></td>
     </tr>
     <tr>
       <th>show_stats</th>
@@ -179,7 +179,7 @@ presented. To analyze all, provide <code>paramvar = "ALL"</code> (Default), to a
     </tr>
     <tr>
       <th>lbl_overall</th>
-      <td><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
+      <td><p>(<code>character</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
     </tr>
     <tr>
       <th>prune_0</th>
@@ -187,7 +187,7 @@ presented. To analyze all, provide <code>paramvar = "ALL"</code> (Default), to a
     </tr>
     <tr>
       <th>deco</th>
-      <td><p>(<code>list</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
+      <td><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
     </tr>
     <tr>
       <th>.study</th>

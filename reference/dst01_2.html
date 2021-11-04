@@ -141,12 +141,11 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.</p>
   <span class='va'>adsl</span>,
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
-  status <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>status</span>,
-  reason <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>reason</span>,
+  status <span class='op'>=</span> <span class='st'>"EOSSTT"</span>,
+  reason <span class='op'>=</span> <span class='st'>"DCSREAS"</span>,
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"DST01"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All patients"</span>, status <span class='op'>=</span> <span class='st'>"EOSSTT"</span>, reason
-    <span class='op'>=</span> <span class='st'>"DCSREAS"</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All patients"</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>dst01_2_lyt</span><span class='op'>(</span>
@@ -171,11 +170,11 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.</p>
     </tr>
     <tr>
       <th>armvar</th>
-      <td><p>(<code>string</code>) variable used for column splitting</p></td>
+      <td><p>(<code>character</code>) variable used for column splitting</p></td>
     </tr>
     <tr>
       <th>lbl_overall</th>
-      <td><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
+      <td><p>(<code>character</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
     </tr>
     <tr>
       <th>status</th>
@@ -194,7 +193,7 @@ period.</p></td>
     </tr>
     <tr>
       <th>deco</th>
-      <td><p>(<code>list</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
+      <td><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
     </tr>
     <tr>
       <th>.study</th>
