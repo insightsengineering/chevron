@@ -103,11 +103,7 @@ dst01_1 <- function(adsl,
 
   tbl <- rbind(tbl_completed, tbl_other)
 
-  header <- dst01_header(armvar = armvar,
-                         deco = deco,
-                         lbl_overall = lbl_overall)
-
-  tbl <- header %>%  add_existing_table(tbl) %>%  build_table(adsl)
+  tbl <- set_decoration(tbl, deco)
 
   tbl
 }
@@ -288,11 +284,7 @@ dst01_2 <- function(adsl,
 
   tbl <- rbind(tbl_completed, tbl_other)
 
-  header <- dst01_header(armvar = armvar,
-                         deco = deco,
-                         lbl_overall = lbl_overall)
-
-  tbl <- header %>%  add_existing_table(tbl) %>%  build_table(adsl)
+  tbl <- set_decoration(tbl, deco)
 
   tbl
 }
@@ -515,11 +507,7 @@ dst01_3 <- function(adsl,
 
   tbl <- rbind(tbl2, tbl)
 
-  header <- dst01_header(armvar = armvar,
-                         deco = deco,
-                         lbl_overall = lbl_overall)
-
-  tbl <- header %>%  add_existing_table(tbl) %>%  build_table(adsl)
+  tbl <- set_decoration(tbl, deco)
 
   tbl
 }
@@ -585,23 +573,4 @@ dst01_3_lyt <- function(armvar = .study$armvar,
       .labels = c(count_fraction = "Discontinued Treatment"),
       table_names = c("DISCONTINUED")
     )
-}
-
-#' Header for `DST01`
-#'
-#' @inheritParams gen_args
-#' @describeIn dst01_1
-#'
-#' @return
-dst01_header <- function(armvar = .study$armvar,
-                         deco,
-                         lbl_overall = .study$lbl_overall,
-                         .study = list(armvar = "ARM",
-                                       lbl_overall = ""
-                         )) {
-
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
-    split_cols_by(armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(lbl_overall)
 }

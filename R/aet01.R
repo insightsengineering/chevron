@@ -142,32 +142,8 @@ aet01_1 <- function(
     result_adae[3:nrow(result_adae), ]
   )
 
-  header <- aet01_1_header(armvar = armvar,
-                           deco = std_deco("AET01"))
-
-  result <- header %>% add_existing_table(result) %>% build_table(adae, adsl)
+  result <- set_decoration(result, deco)
 
   result
 
-}
-
-
-#' Header for `AET01`
-#'
-#' @inheritParams gen_args
-#' @describeIn aet01_1
-#'
-#' @return
-aet01_1_header <- function(armvar = .study$armvar,
-                           deco,
-                           lbl_overall = .study$lbl_overall,
-                           .study = list(
-                             armvar = "ARM",
-                              lbl_overall = ""
-                           )) {
-
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
-    split_cols_by(armvar) %>%
-    add_colcounts() %>%
-    add_overall_col(lbl_overall)
 }

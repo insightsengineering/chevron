@@ -3,7 +3,6 @@
 \name{dst01_1}
 \alias{dst01_1}
 \alias{dst01_1_lyt}
-\alias{dst01_header}
 \title{DST01 Table 1 (Default) Patient Disposition Table 1}
 \usage{
 dst01_1(
@@ -28,13 +27,6 @@ dst01_1_lyt(
   discontinued_lbl = "DISCONTINUED",
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
     = "DCSREAS")
-)
-
-dst01_header(
-  armvar = .study$armvar,
-  deco,
-  lbl_overall = .study$lbl_overall,
-  .study = list(armvar = "ARM", lbl_overall = "")
 )
 }
 \arguments{
@@ -68,8 +60,6 @@ Default \code{DISCONTINUED}.}
 }
 \value{
 
-
-
 }
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
@@ -88,8 +78,6 @@ study a reason is provided.
 \section{Functions}{
 \itemize{
 \item \code{dst01_1_lyt}: 
-
-\item \code{dst01_header}: 
 }}
 
 \examples{

@@ -245,3 +245,20 @@ pivot_wider_labels <- function(df,
   df_wide
 
 }
+
+
+#' Temporary function to add decorator to a table
+#'
+#' @param x (`rtables`)
+#' @param deco (`list`) typically generated with `std_deco()`
+#'
+#' @return
+#'
+set_decoration <- function(x, deco) {
+  x@main_title <- deco$title
+  x@subtitles <- deco$subtitles
+  x@main_footer  <- deco$main_footer
+  x
+}
+
+
