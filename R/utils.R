@@ -252,7 +252,7 @@ pivot_wider_labels <- function(df,
 #' @param x (`rtables`)
 #' @param deco (`list`) typically generated with `std_deco()`
 #'
-#' @return
+#' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 #'
 set_decoration <- function(x, deco) {
   x@main_title <- deco$title

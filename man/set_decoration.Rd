@@ -12,7 +12,7 @@ set_decoration(x, deco)
 \item{deco}{(\code{list}) typically generated with \code{std_deco()}}
 }
 \value{
-
+\code{rtables} with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 }
 \description{
 Temporary function to add decorator to a table
