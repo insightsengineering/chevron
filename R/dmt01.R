@@ -3,10 +3,10 @@
 #' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row.
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`vector of strings`) variables summarized in demographic table.
+#' @param summaryvars (`vector of character`) variables summarized in demographic table.
 #' Usually a vector containing the following one or more of the following:
 #' `AAGE`, `AGEGR1`, `SEX`, `ETHNIC`, `RACE`, `BWGHTSI` and by default all of them.
-#' @param summaryvars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
+#' @param summaryvars_lbls (`vector of character`) labels corresponding to the analyzed variables.
 #'
 #' @details
 #'  * Information from ADSUB are generally included into ADSL before analysis.
@@ -40,14 +40,13 @@
 #'
 dmt01_1 <- function(ad_bl,
                     armvar = .study$armvar,
-                    summaryvars = .study$summaryvars,
+                    summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
                     summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("DMT01"),
                     .study = list(
                       armvar = "ARM",
-                      summaryvars =  c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
                       lbl_overall = "All Patients"
                     )) {
 

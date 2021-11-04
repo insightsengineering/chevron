@@ -9,12 +9,11 @@ dst01_1(
   adsl,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  status = .study$status,
-  reason = .study$reason,
+  status = "EOSSTT",
+  reason = "DCSREAS",
   prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
-    = "DCSREAS")
+  .study = list(armvar = "ARM", lbl_overall = "All patients")
 )
 
 dst01_1_lyt(
@@ -33,9 +32,9 @@ dst01_1_lyt(
 \arguments{
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
 
-\item{armvar}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
+\item{armvar}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
 name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
@@ -46,7 +45,7 @@ period.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 

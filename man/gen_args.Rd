@@ -34,17 +34,17 @@ gen_args(
 )
 }
 \arguments{
-\item{armvar}{(\code{string}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{deco}{(\code{list}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{ad_bl}{(\code{data.frame}) subject baseline dataset with one row per patient}
+\item{ad_bl}{(\code{data.frame}) subject baseline Dataset with one row per patient}
 
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
 
@@ -88,4 +88,11 @@ gen_args(
 }
 \description{
 General Argument Name Convention
+}
+\details{
+the following arguments are better provided through the study object:
+\itemize{
+\item lbl_overall
+\item armvar
+}
 }
