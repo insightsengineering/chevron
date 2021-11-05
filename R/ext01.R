@@ -33,8 +33,8 @@
 #'
 #' ext01_1(adex2, adsl)
 #' ext01_1(adex2, adsl, lbl_overall = "All Patients")
-ext01_1 <- function(adex,
-                    adsl,
+ext01_1 <- function(adsl,
+                    adex,
                     armvar = .study$armvar,
                     summaryvars = "AVAL",
                     lbl_overall = .study$lbl_overall,
@@ -154,8 +154,8 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
 #' ext01_2(adex, adsl, lbl_overall = "All Patients", show_stats = "ALL")
 #'
-ext01_2 <- function(adex,
-                    adsl,
+ext01_2 <- function(adsl,
+                    adex,
                     armvar = .study$armvar,
                     show_stats = c("ALL"),
                     lbl_overall = .study$lbl_overall,
