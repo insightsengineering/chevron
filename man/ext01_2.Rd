@@ -6,8 +6,8 @@
 \title{EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options}
 \usage{
 ext01_2(
-  adex,
   adsl,
+  adex,
   armvar = .study$armvar,
   show_stats = c("ALL"),
   lbl_overall = .study$lbl_overall,
@@ -26,9 +26,9 @@ ext01_2_lyt(
 )
 }
 \arguments{
-\item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
-
 \item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
+
+\item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
