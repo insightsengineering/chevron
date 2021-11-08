@@ -76,11 +76,11 @@ adsl <- sd$adsl
 adex <- sd$adex \%>\%
  mutate(ANL01FL = 'Y')
 
-ext01_1(adex, adsl)
+ext01_1(adsl, adex)
 
 adex2 <- adex \%>\%
    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
 
-ext01_1(adex2, adsl)
-ext01_1(adex2, adsl, lbl_overall = "All Patients")
+ext01_1(adsl, adex2)
+ext01_1(adsl, adex2, lbl_overall = "All Patients")
 }

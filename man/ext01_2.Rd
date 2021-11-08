@@ -97,7 +97,7 @@ adex[,"PARAM"] <- factor(adex[["PARAM"]],
                      "Dose administered during constant dosing interval",
                      "Number of doses administered during constant dosing interval"))
 
-ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
-ext01_2(adex, adsl, lbl_overall = "All Patients", show_stats = "ALL")
+ext01_2(adsl, adex, lbl_overall = "", show_stats = "ALL")
+ext01_2(adsl, adex, lbl_overall = "All Patients", show_stats = "ALL")
 
 }

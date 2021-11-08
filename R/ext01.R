@@ -26,13 +26,13 @@
 #' adex <- sd$adex %>%
 #'  mutate(ANL01FL = 'Y')
 #'
-#' ext01_1(adex, adsl)
+#' ext01_1(adsl, adex)
 #'
 #' adex2 <- adex %>%
 #'    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
 #'
-#' ext01_1(adex2, adsl)
-#' ext01_1(adex2, adsl, lbl_overall = "All Patients")
+#' ext01_1(adsl, adex2)
+#' ext01_1(adsl, adex2, lbl_overall = "All Patients")
 ext01_1 <- function(adsl,
                     adex,
                     armvar = .study$armvar,
@@ -151,8 +151,8 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'                      "Dose administered during constant dosing interval",
 #'                      "Number of doses administered during constant dosing interval"))
 #'
-#' ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
-#' ext01_2(adex, adsl, lbl_overall = "All Patients", show_stats = "ALL")
+#' ext01_2(adsl, adex, lbl_overall = "", show_stats = "ALL")
+#' ext01_2(adsl, adex, lbl_overall = "All Patients", show_stats = "ALL")
 #'
 ext01_2 <- function(adsl,
                     adex,
