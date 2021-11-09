@@ -3,7 +3,7 @@ globalVariables(c("ANL01FL", "adae", "ANL01FL"))
 
 #' Retrieve Variables for Certain variables
 #'
-#' @param df data froma
+#' @param df data frame
 #' @param vars variable names in data frame `df`
 #'
 #' @importFrom assertthat assert_that
