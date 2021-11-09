@@ -7,7 +7,7 @@
 var_labels_for(df, vars)
 }
 \arguments{
-\item{df}{data froma}
+\item{df}{data frame}
 
 \item{vars}{variable names in data frame \code{df}}
 }

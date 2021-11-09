@@ -30,7 +30,7 @@ function. The naming convention for layout is  `<table name>_<design number>_lyt
 
 ## How to request a table
 In order to request a function that will generate a new table, please create an issue in the "TLG (ordered priority)" of
-the [chevron backlog](https://github.com/orgs/insightsengineering/projects/34). Private repositories on Github do not
+the [chevron backlog](https://github.com/orgs/insightsengineering/projects/34). Private repositories on GitHub do not
 support yaml issue templates but you can use the format below to accurately describe your requirements. Adding images of
 the required table (without confidential information) is also very useful. Several designs of the same table can be
 (should be) requested in a same issue.
@@ -112,7 +112,7 @@ Other arguments are more specific to a particular table (e.g Should zero count r
 
 ### The `.study` object
 
-The following variables are best hard coded in the table-genrating functions (with the possibility to the user to
+The following variables are best hard coded in the table-generating functions (with the possibility to the user to
 override some of these choices.):
 - `evo_vars` (used in LBT01, which variables capture status and the evolution of the analysis): generally `c("AVAL",
 "CNG")`
