@@ -70,7 +70,7 @@ gen_args(
 
 \item{adtte}{(\code{data.frame}) Time to Event Analysis Dataset}
 
-\item{adhy}{(\code{data.frame}) Hy''s Law Analysis Dataset}
+\item{adhy}{(\code{data.frame}) Hy's Law Analysis Dataset}
 
 \item{adsaftte}{(\code{data.frame}) Safety Time to Event Analysis Dataset}
 
