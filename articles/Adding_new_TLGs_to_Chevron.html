@@ -87,7 +87,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Adding new TLGs to Chevron</h1>
             
-            <h4 class="date">2021-11-04</h4>
+            <h4 class="date">2021-11-10</h4>
       
       
       <div class="hidden name"><code>Adding_new_TLGs_to_Chevron.Rmd</code></div>
@@ -108,7 +108,7 @@
 <div id="how-to-request-a-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#how-to-request-a-table" class="anchor"></a>How to request a table</h2>
-<p>In order to request a function that will generate a new table, please create an issue in the “TLG (ordered priority)” of the <a href="https://github.com/orgs/insightsengineering/projects/34">chevron backlog</a>. Private repositories on github do not support yaml issue templates but you can use the format below to accurately describe your requirements. Adding images of the required table (without confidential information) is also very useful. Several designs of the same table can be (should be) requested in a same issue.</p>
+<p>In order to request a function that will generate a new table, please create an issue in the “TLG (ordered priority)” of the <a href="https://github.com/orgs/insightsengineering/projects/34">chevron backlog</a>. Private repositories on GitHub do not support yaml issue templates but you can use the format below to accurately describe your requirements. Adding images of the required table (without confidential information) is also very useful. Several designs of the same table can be (should be) requested in a same issue.</p>
 <blockquote>
 <h1 id="ex-aet02">ex: AET02</h1>
 <h2 id="table-name">Table Name</h2>
@@ -161,8 +161,8 @@
 <div id="the--study-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the--study-object" class="anchor"></a>The <code>.study</code> object</h3>
-<p>The following variables are best hard coded in the table-genrating functions (with the possibility fo the user to override some of these choices.): - <code>evo_vars</code> (used in lbt01, which variables capture status and the evolution of the analysis): generally <code><a href="https://rdrr.io/r/base/c.html">c("AVAL", "CNG")</a></code> - <code>gradation</code> (internal, used in aet03, capture the levels of severity of adverse events): generally corresponds to the levels of <code>AESEV</code>in <code>adae</code>. - <code>lbl_overall</code> (used everywhere, the label associated with the overall column) - <code>reason</code> (used in dst01, the name of the column specifying study withdrawal): generally <code>DCSREAS</code>. - <code>status</code> (used in dst01, the name of the column specifying study status): generally: <code>EOSSTT</code>. - <code>summaryvars</code> (used in dmt01, the list of variables to be summarized):</p>
-<p>The <code>.study</code> object contains information relative to the way the study is analyzed. - “Patient” or “Subject” (the designation of the personne depends on the study) - <code>armvar</code> (Randomized arm variable): generally: <code>ARM</code>or <code>ACTARM</code>. - Actually received variable - <code>format</code>: of percentages etc…</p>
+<p>The following variables are best hard coded in the table-generating functions (with the possibility to the user to override some of these choices.): - <code>evo_vars</code> (used in LBT01, which variables capture status and the evolution of the analysis): generally <code><a href="https://rdrr.io/r/base/c.html">c("AVAL", "CNG")</a></code> - <code>gradation</code> (internal, used in AET03, capture the levels of severity of adverse events): generally corresponds to the levels of <code>AESEV</code>in <code>adae</code>. - <code>lbl_overall</code> (used everywhere, the label associated with the overall column) - <code>reason</code> (used in DST01, the name of the column specifying study withdrawal): generally <code>DCSREAS</code>. - <code>status</code> (used in DST01, the name of the column specifying study status): generally: <code>EOSSTT</code>. - <code>summaryvars</code> (used in DMT01, the list of variables to be summarized):</p>
+<p>The <code>.study</code> object contains information relative to the way the study is analyzed. - “Patient” or “Subject” (the designation of the person depends on the study) - <code>armvar</code> (Randomized arm variable): generally: <code>ARM</code>or <code>ACTARM</code>. - Actually received variable - <code>format</code>: of percentages etc…</p>
 </div>
 <div id="tests" class="section level3">
 <h3 class="hasAnchor">
