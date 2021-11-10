@@ -5,4 +5,5 @@
 ^staged_dependencies.yaml$
 _pkgdown.yaml
 docs
-
+^.lintr
+^.gitlab-ci.yml

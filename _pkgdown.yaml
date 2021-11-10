@@ -33,6 +33,9 @@ reference:
   - title: Utility Functions
     contents:
       - std_deco
+      - pivot_wider_labels
+      - relevel_params
+      - var_labels_for
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

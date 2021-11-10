@@ -19,7 +19,7 @@
 #' @param adsub (`data.frame`) Subcategory Analysis Dataset
 #' @param adrs (`data.frame`) Response Analysis Dataset
 #' @param adtte (`data.frame`) Time to Event Analysis Dataset
-#' @param adhy (`data.frame`) Hys Law Analysis Dataset
+#' @param adhy (`data.frame`) Hy's Law Analysis Dataset
 #' @param adsaftte (`data.frame`) Safety Time to Event Analysis Dataset
 #' @param addv (`data.frame`) Protocol Deviations Analysis Dataset
 #' @param adcssrs (`data.frame`) C-SSRS Analysis Dataset
