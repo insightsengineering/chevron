@@ -1,34 +1,36 @@
-Package: chevron
 Type: Package
+Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(
-  person("NEST", email = "nestcicd@roche.com", role = c("aut", "cre")),
-  person("Roche", role = c("cph", "fnd")),
-  person("Adrian", "Waddell", email = "adrian.waddell@roche.com", role = "aut"),
-  person("Benoit", "Falquet", email = "benoit.falquet@roche.com", role = "aut"),
-  person("Gabriel", "Becker", email = "gabembecker@gmail.com", role = "ctb"),
-  person("Tim", "Barnett", email = "timothy.barnett@roche.com", role = "ctb")
+    person("NEST", , , "nestcicd@roche.com", role = c("aut", "cre")),
+    person("Roche", role = c("cph", "fnd")),
+    person("Adrian", "Waddell", , "adrian.waddell@roche.com", role = "aut"),
+    person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
+    person("Gabriel", "Becker", , "gabembecker@gmail.com", role = "ctb"),
+    person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb")
   )
-Description: Standard Table, Listings, and Graphs (TLG) library used in clinical trials. 
-Roxygen: list(markdown = TRUE)
+Description: Standard Table, Listings, and Graphs (TLG) library used in
+    clinical trials.
 License: file LICENSE
+Depends:
+    R (>= 4.0.0),
+    tern
+Imports:
+    assertthat,
+    dplyr,
+    magrittr,
+    rlang,
+    rtables,
+    tidyr
+Suggests:
+    knitr,
+    rmarkdown,
+    scda,
+    scda.2021
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Depends:
-  R (>= 4.0.0),
-  tern
-Imports:
-  rtables,
-  assertthat,
-  dplyr,
-  rlang,
-  magrittr,
-  tidyr
-Suggests:
-    scda.2021,
-    scda,
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr
