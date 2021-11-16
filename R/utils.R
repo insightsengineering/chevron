@@ -245,3 +245,31 @@ pivot_wider_labels <- function(df,
   df_wide
 
 }
+
+
+basic_table_deco <- function(deco, ...) {
+  assert_that(setequal(names(deco), c("title", "subtitles", "main_footer")))
+
+  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer, ...)
+}
+
+ifelse_layout <- function(lyt, test, fun_lyt_yes  = identity, fun_lyt_no = identity) {
+
+  assert_that(length(test) == 1, is.logical(test))
+
+  if (test)
+    fun_lyt_yes(lyt)
+  else
+    fun_lyt_no(lyt)
+}
+
+lyt_fun <- function(fun, ...) {
+  function(lyt) {
+    fun(lyt, ...)
+  }
+}
+
+has_overall_col <- function(lbl_overall) {
+  !is.null(lbl_overall) && !identical(lbl_overall, "")
+}
+

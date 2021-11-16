@@ -132,7 +132,7 @@ aet04_1_lyt <- function(armvar = .study$armvar,
 
 
 
-  layout_table  <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  layout_table  <- basic_table_deco(deco)  %>%
     split_cols_by(var = armvar) %>%
     add_colcounts()
 

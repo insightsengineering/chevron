@@ -106,11 +106,13 @@ aet02_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  layout_table <- basic_table_deco(deco)  %>%
     split_cols_by(var = armvar)  %>%
     add_colcounts()
 
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
+
+  if (!identical(lbl_overall, ""))
+    layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
 
   layout_table %>%
     summarize_num_patients(
@@ -269,7 +271,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  layout_table <- basic_table_deco(deco)  %>%
     split_cols_by(var = armvar) %>%
     add_colcounts()
 
@@ -424,13 +426,10 @@ aet02_3_lyt <- function(armvar = .study$armvar,
                         )) {
 
 
-  layout_table <-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifelse_layout(has_overall_col(lbl_overall), lyt_fun(add_overall_col, label = lbl_overall)) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -441,4 +440,5 @@ aet02_3_lyt <- function(armvar = .study$armvar,
     ) %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
     append_varlabels(adae, "AEDECOD")
+
 }

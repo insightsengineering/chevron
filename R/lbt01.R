@@ -105,7 +105,7 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
 
-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table_deco(deco)  %>%
     split_cols_by(armvar) %>%
     split_rows_by(
       "PARAM",
