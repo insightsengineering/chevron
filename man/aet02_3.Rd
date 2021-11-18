@@ -6,8 +6,7 @@
 \title{AET02 Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3}
 \usage{
 aet02_3(
-  adsl,
-  adae,
+  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
@@ -24,10 +23,6 @@ aet02_3_lyt(
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -62,18 +57,23 @@ events categorized by Dictionary-Derived Term.
 }}
 
 \examples{
-library(scda)
-library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
+library(dm)
 
-aet02_3(adsl, adae)
-aet02_3(adsl, adae, lbl_overall = "All Patients")
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adae)
 
-aet02_3_lyt(armvar = "ACTARM",
+db <- db \%>\%
+  (std_filter("aet02_3"))() \%>\%
+  (std_mutate("aet02_3"))()
+
+aet02_3(adam_db = db) \%>\% head()
+
+aet02_3(db, lbl_overall = "All Patients") \%>\% head()
+
+aet02_3_lyt(
+ armvar = "ACTARM",
  lbl_overall = "",
  lbl_AEDECOD = "Dictionary-Derived Term",
- deco = std_deco("AET02"))
+ deco = std_deco("AET02")
+)
 }

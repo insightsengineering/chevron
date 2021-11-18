@@ -273,3 +273,66 @@ has_overall_col <- function(lbl_overall) {
   !is.null(lbl_overall) && !identical(lbl_overall, "")
 }
 
+ifneeded_add_overall_col <- function(lyt, lbl_overall) {
+  if (has_overall_col(lbl_overall))
+    add_overall_col(lyt, label = lbl_overall)
+  else
+    lyt
+}
+
+#' Get Data from a DB
+#'
+#' @param db a named list or a `dm` object
+#'
+#' @return named list of datasets
+#'
+#' @examples
+#' \donttest{
+#'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
+#'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
+#'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")
+#'
+#'   db <- dm::dm_nycflights13() %>%
+#'     dm_filter(airports, name == "John F Kennedy Intl")
+#'
+#'   get_db_data(db, "airports")
+#' }
+#'
+get_db_data <- function(db, ...) {
+  datasets <- c(...)
+
+  if (length(datasets) == 0) return(list())
+
+  assert_that(is.character(datasets), all(datasets %in% names(db)))
+
+  if (is(db, "dm")) {
+    db <- db %>%
+      dm_apply_filters() # TODO this might be computationally expensive
+  }
+
+  db[datasets]
+}
+
+
+#' Retrieve Synthetic Test Data Used For Examples
+#'
+#' @export
+#'
+#'
+syn_test_data <- function() {
+
+  sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
+
+  db <- new_dm(sd) %>%
+     dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
+     dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+     dm_add_pk(adae, "AESEQ")
+
+  db_m <- db %>%
+    dm_zoom_to(adae) %>%
+    mutate(ANL01FL = 'Y') %>%
+    dm_update_zoomed()
+
+  db_m
+
+}

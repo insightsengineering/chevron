@@ -6,8 +6,7 @@
 \title{AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \usage{
 aet02_1(
-  adsl,
-  adae,
+  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
@@ -18,17 +17,13 @@ aet02_1(
 aet02_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  lbl_AEBODSYS = "AEBODSYS",
-  lbl_AEDECOD = "AEDECOD",
+  lbl_AEBODSYS = "Body System or Organ Class",
+  lbl_AEDECOD = "Dictionary-Derived Term",
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = "")
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -65,22 +60,39 @@ events categorized by Body System and Dictionary-Derived Term.
 }}
 
 \examples{
-library(scda)
-library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
+library(dm)
+library(rtables)
 
-aet02_1(adsl, adae)
-aet02_1(adsl, adae, lbl_overall = "All Patients")
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adae)
 
-adae <- adae \%>\% var_relabel(AEBODSYS = "Medra System Organ Class")
-aet02_1(adsl, adae)
+db <- db \%>\%
+  (std_filter("aet02_1"))() \%>\%
+  (std_mutate("aet02_1"))()
 
-aet02_1_lyt(armvar = "ACTARM",
+aet02_1(adam_db = db) \%>\% head(15)
+
+# Additional Examples
+db_s <- db \%>\%
+  dm_filter(adsl, SEX == "F")
+
+aet02_1(adam_db = db_s) \%>\% head()
+
+# alternatively adam_db also accepts a names list
+aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
+
+aet02_1(db, lbl_overall = "All Patients") \%>\% head()
+
+db_m <- db \%>\%
+  dm_zoom_to(adae) \%>\%
+  mutate(AEBODSYS = with_label(AEBODSYS, "Medra System Organ Class")) \%>\%
+  dm_update_zoomed()
+
+aet02_1(db_m) \%>\% head()
+
+aet02_1_lyt(
+ armvar = "ACTARM",
  lbl_overall = "",
- lbl_AEBODSYS = "Body System or Organ Class",
- lbl_AEDECOD = "Dictionary-Derived Term",
- deco = std_deco("AET02"))
+ deco = std_deco("AET02")
+)
 }

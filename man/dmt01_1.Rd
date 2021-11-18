@@ -6,7 +6,8 @@
 \title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1}
 \usage{
 dmt01_1(
-  ad_bl,
+  data,
+  dataname = "adsl",
   armvar = .study$armvar,
   summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
   summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
@@ -28,8 +29,6 @@ dmt01_1_lyt(
 )
 }
 \arguments{
-\item{ad_bl}{(\code{data.frame}) subject baseline Dataset with one row per patient}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.}
@@ -67,10 +66,15 @@ For each variable, summary statistics are by default based on the number of pati
 
 \examples{
 
+library(dm)
 library(dplyr)
 library(scda)
 adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
 adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
+
+ddm <- dm(adsl = adsl)
+dmt01_1(ddm)
+
 
 adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
 

@@ -6,8 +6,7 @@
 \title{AET02 Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2}
 \usage{
 aet02_2(
-  adsl,
-  adae,
+  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
@@ -26,10 +25,6 @@ aet02_2_lyt(
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -69,23 +64,35 @@ frequencies.
 }}
 
 \examples{
-library(scda)
-library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
 
-aet02_2(adsl, adae)
-aet02_2(adsl, adae, lbl_overall = "All Patients")
+library(dm)
+library(rtables)
 
-adae <- adae \%>\% var_relabel(AEBODSYS = "Medra System Organ Class")
-aet02_2(adsl, adae)
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adae)
 
-aet02_2_lyt(armvar = "ACTARM",
+db <- db \%>\%
+  (std_filter("aet02_2"))() \%>\%
+  (std_mutate("aet02_2"))()
+
+aet02_2(db) \%>\% head(15)
+
+# Additional Examples
+aet02_2(db, lbl_overall = "All Patients") \%>\% head()
+
+db_m <- db \%>\%
+  dm_zoom_to(adae) \%>\%
+  mutate(AEBODSYS = with_label(AEBODSYS, "Medra System Organ Class")) \%>\%
+  dm_update_zoomed()
+
+aet02_2(db_m) \%>\% head()
+
+aet02_2_lyt(
+ armvar = "ACTARM",
  lbl_overall = "",
  lbl_AEBODSYS = "Body System or Organ Class",
  lbl_AEHLT = "High Level Term",
  lbl_AEDECOD = "Dictionary-Derived Term",
- deco = std_deco("AET02"))
+ deco = std_deco("AET02")
+)
 }

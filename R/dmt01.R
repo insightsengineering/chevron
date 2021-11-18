@@ -22,10 +22,15 @@
 #'
 #' @examples
 #'
+#' library(dm)
 #' library(dplyr)
 #' library(scda)
 #' adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
 #' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
+#'
+#' ddm <- dm(adsl = adsl)
+#' dmt01_1(ddm)
+#'
 #'
 #' adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
 #'
@@ -38,7 +43,7 @@
 #'         summaryvars = c("AGE", "RACE", "SEX"),
 #'         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 #'
-dmt01_1 <- function(ad_bl,
+dmt01_1 <- function(data, dataname = "adsl",
                     armvar = .study$armvar,
                     summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
                     summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
@@ -50,18 +55,13 @@ dmt01_1 <- function(ad_bl,
                       lbl_overall = "All Patients"
                     )) {
 
-    # provide a clearer error message in the case of missing variable
-    missing_var <- setdiff(summaryvars, colnames(ad_bl))
-    if (length(missing_var) > 0) {
+  ad_bl <- data %>%
+    dm_apply_filters_to_tbl(!dataname)
 
-      stop(paste0("\nVariable(s) does not exist in the dataset: \n",
-                  paste(missing_var, "\n", collapse = "")
-                  )
-           )
-    }
-
-
-  assert_that(length(summaryvars) == length(summaryvars_lbls))
+  assert_that(
+    df_has_vars(ad_bl, summaryvars),
+    length(summaryvars) == length(summaryvars_lbls)
+  )
 
   lyt <- dmt01_1_lyt(
     armvar = armvar,
