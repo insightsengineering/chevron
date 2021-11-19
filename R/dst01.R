@@ -103,9 +103,10 @@ dst01_1 <- function(adsl,
 
   tbl <- rbind(tbl_completed, tbl_other)
 
+  tbl <- set_decoration(tbl, deco)
+
   tbl
 }
-
 
 #' DST01 Layout 1 (Default)
 #'
@@ -186,9 +187,6 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 
 
 }
-
-
-
 
 #' DST01 Table 2 (Supplementary) Patient Disposition Table 2
 #'
@@ -286,8 +284,9 @@ dst01_2 <- function(adsl,
 
   tbl <- rbind(tbl_completed, tbl_other)
 
-  tbl
+  tbl <- set_decoration(tbl, deco)
 
+  tbl
 }
 
 #' DST01 Layout 2 (Supplementary)
@@ -371,9 +370,6 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 
   list(layout_table_completed, layout_table_other)
 }
-
-
-
 
 #' DST01 Table 3 (Supplementary) Patient Disposition Table 3
 #'
@@ -510,6 +506,8 @@ dst01_3 <- function(adsl,
   if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl <- rbind(tbl2, tbl)
+
+  tbl <- set_decoration(tbl, deco)
 
   tbl
 }

@@ -142,6 +142,8 @@ aet01_1 <- function(
     result_adae[3:nrow(result_adae), ]
   )
 
+  result <- set_decoration(result, deco)
+
   result
 
 }

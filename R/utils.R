@@ -336,3 +336,18 @@ syn_test_data <- function() {
   db_m
 
 }
+
+
+#' Temporary function to add decorator to a table
+#'
+#' @param x (`rtables`)
+#' @param deco (`list`) typically generated with `std_deco()`
+#'
+#' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
+#'
+set_decoration <- function(x, deco) {
+  x@main_title <- deco$title
+  x@subtitles <- deco$subtitles
+  x@main_footer  <- deco$main_footer
+  x
+}
