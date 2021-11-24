@@ -82,5 +82,6 @@ contain modifications that do not belong to the ADaM model. For example, here
    std_filter("aet02_1")
    ```
 
+* the functions returned by `std_mutate` and `std_filter` has always the first argument `adam_db` and might have optional arguments, including possibly the `.study` object.
 * the `tlg-function` in `chevron` also return the standard titles and footnotes
 

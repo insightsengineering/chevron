@@ -20,3 +20,37 @@ knitr::opts_chunk$set(
 
 ## Introduction 
 
+
+```{r}
+library(chevron)
+syn_data <- syn_test_data()[c("adsl", "adae", "adlb")]
+
+drop_adsl_vars <- function(adsl, adam) {
+  adam[ c("USUBJID", "STUDYID", setdiff(names(adam), names(adsl)))]
+}
+
+
+adsl <- syn_data$adsl
+adae <- syn_data$adae
+adlb <- syn_data$adlb
+
+adam_study_data <- dm(adsl = adsl, adae = drop_adsl_vars(adsl, adae), adlb = drop_adsl_vars(adsl, adlb)) %>%
+  dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
+  dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adae, c("USUBJID", "STUDYID", "ASTDTM", "AETERM", "AESEQ")) %>%
+  dm_add_fk(adlb, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adlb, c("STUDYID", "USUBJID", "PARAMCD", "BASETYPE", "AVISITN", "ATPTN", "DTYPE", "ADTM", "LBSEQ", "ASPID"))
+
+adam_study_data
+
+adam_db %>%
+  dm_get_table_with_additional_vars(adae, "ARM", "ARMCD")
+
+
+markup_funs <- tribble(
+  ~dataname, ~varname, ~mapper,
+  "adsl",    "ARM",    c("PLACEBO" = "Placebo", ...)
+)
+dm_get_tabl_all_vars(adae )
+
+```

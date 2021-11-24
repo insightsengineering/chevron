@@ -50,51 +50,102 @@ spreadsheet with one row per output. We will use the following LoPO store in the
 the vignette:
 
 ```{r, echo = FALSE}
-lopo_entry <- function(tlgfunc, type = c("table", "listing", "graph"), main_title, subtitles, filters, 
-                       filename = NULL) {
+lopo_entry <- function(tlgfunc, type = c("table", "listing", "graph"), extra_args = NULL,
+                       output_id = NULL, main_title, subtitles = NULL, footnotes = NULL,
+                       filters = NULL, filename = NULL) {
     type <- match.arg(type)
     
+    if (is.null(output_id))
+      output_id <- paste0(substr(type, 1, 1), "_", tolower(substr(tlgfunc, 1, 2)))
+    
     if (is.null(filename)) {
-      ext <- if (type == "grapg") ".pdf" else ".txt"
-      filename <- paste0(tlgfunc, "__", paste(filters, collapse = "_"), ext)  
+      ext <- if (type == "graph") ".pdf" else ".txt"
+      filename <- paste0(output_id, "__", paste(filters, collapse = "_"), ext)  
     }
     stopifnot(tools::file_ext(filename) %in% c("txt", "pdf"))
     
-    tibble(tlgfunc, type, main_title, subtitles = list(subtitles), filters = list(filters), filename)
+    tibble(tlgfunc, type, extra_args = list(extra_args), output_id, main_title, subtitles = list(subtitles), 
+           footnotes = list(footnotes), filters = list(filters), filename)
 }
 
 lopo <- rbind(
   lopo_entry(
-    tlgfunc = "dmt01_1", type = "table", main_title = "Demographics and Baseline Characteristics", subtitles = NULL,
-    filters = NULL
+    tlgfunc = "dmt01_1", type = "table",
+    main_title = "Demographics and Baseline Characteristics", filters = "IT"
   ),
   lopo_entry(
-    tlgfunc = "dst01_1", type = "table", main_title = "Patient Status at Time of Clinical Cut Off", subtitles = NULL,
-    filters = "ITT"
+    tlgfunc = "aet02_1", type = "table",
+    main_title = "Adverse Events Resulting in Death",
+    footnotes = "Investigator text for AEs is coded using MedDRA version {{medra-version}}.",
+    filters = c("FATAL", "SE")
   ),
   lopo_entry(
-    tlgfunc = "aet02_1", type = "table", main_title = "Adverse Events", subtitles = NULL,
-    filters = NULL
-  ),
-  lopo_entry(
-    tlgfunc = "aet02_1", type = "table", main_title = "Adverse Events", subtitles = NULL,
+    tlgfunc = "aet02_1", type = "table",
+    main_title = "Adverse Events",
+    footnotes = c(
+      "Investigator text for AEs encoded using MedDRA version {{medra-version}}. Percentages are based on N in the column headings.",
+      "Only treatment emergent AEs are displayed. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately."),
     filters = "SE"
   ),
   lopo_entry(
-    tlgfunc = "aet02_1", type = "table", main_title = "Grade 3-5 Adverse Events", subtitles = NULL,
-    filters = c("CTC35", "SE")
+    tlgfunc = "aet02_1", type = "table",
+    main_title = "Adverse Events Leading to Study Treatment Discontinuation",
+    footnotes = c(
+      "Investigator text for AEs encoded using MedDRA version {{medra-version}}. Percentages are based on N in the column headings.",
+      "Only treatment emergent AEs are displayed where the  study medication adjustment CRF question is answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately."),
+    filters = "SE"
   ),
   lopo_entry(
-    tlgfunc = "lbt01_1", type = "table", main_title = "Lab Table", subtitles = NULL,
-    filters = NULL
+    tlgfunc = "dst01_1", type = "table",
+    main_title = "Patient Disposition",
+    filters = "IT"
+  ),
+  lopo_entry(
+    tlgfunc = "dst01_1", type = "table",
+    main_title = "Patients Discontinued from  Study Treatment",
+    filters = c("TX", "IT")
+  ),
+  lopo_entry(
+    tlgfunc = "lbt01_1", type = "table", 
+    main_title = "Listing of Laboratory Data and Change from Baseline by Visit (including CTC grade)",
+    footnotes = c(
+      "Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}. NCI CTCAE is the National Cancer Institute Common Terminology Criteria for Adverse Events.",
+      "NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed by the grade where relevant",
+      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
+    ),
+    filters = "SE",
+    output_id = "l_lb_ctc"
+  ),
+  lopo_entry(
+    tlgfunc = "lbt01_1", type = "table", 
+    main_title = "Listing of Laboratory Data and Change from Baseline by Visit",
+    footnotes = c(
+      "Abnormalities displayed as high (H) or low (L) from collected range",
+      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
+    ),
+    filters = "SE"
+  ),
+  lopo_entry(
+    tlgfunc = "lbt01_1", type = "table", 
+    main_title = "Listing of Laboratory Data and Change from Baseline by Visit (Standardised parameters)",
+    footnotes = c(
+      "Includes values standardised using Roche Safety Lab Standardisation",
+      "Abnormalities displayed as high (H) or low (L) for outside normal range, or high high (HH) or low low (LL) for outside the marked abnormality range with a significant change from baseline", 
+      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug." 
+    ),
+    filters = "SE",
+    output_id = "l_lb_ls"
   )
 )
 ```
 
 
 ```{r}
-knitr::kable(lopo)
+excerpt <- function(x) lapply(x, function(xi) if (length(xi) > 0)paste(substr(xi[1], 1, 8), "...") else "")
+knitr::kable(lopo %>% mutate(main_title = excerpt(main_title), footnotes = excerpt(footnotes)))
 ```
+
+Note that the first three columns are not needed for stakeholder interactions and planning/project management. However, the GDS template which is currently encoded in the `tlgfunc` is needed.
 
 ## Data
 
@@ -131,7 +182,7 @@ adam_study_data
 The `lopo` contains the following filter labels:
 
 ```{r}
-lopo$filters %>% unlist()
+lopo$filters %>% unlist() %>% unique()
 ```
 
 Each label corresponds to a particular subsetting operation of a dataset. As there is currently no R package available
@@ -151,7 +202,9 @@ new_filter_func <- function(dataname, expr) {
 flf <- list(
  ITT = new_filter_func("adsl", ITTFL == "Y"),
  SE = new_filter_func("adsl", SAFFL == "Y"),
- CTC35 = new_filter_func("adae", AETOXGR %in% c("3", "4", "5"))
+ CTC35 = new_filter_func("adae", AETOXGR %in% c("3", "4", "5")),
+ FATAL = new_filter_func("adae", AESDTH == "Y"),
+ TX = identity
 )
 ```
 
