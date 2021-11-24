@@ -6,10 +6,8 @@
 \title{EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options}
 \usage{
 ext01_2(
-  adex,
-  adsl,
+  adam_db,
   armvar = .study$armvar,
-  show_stats = c("ALL"),
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
@@ -26,14 +24,7 @@ ext01_2_lyt(
 )
 }
 \arguments{
-\item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
-
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
-
-\item{show_stats}{(\verb{vector of strings}) providing the name of the parameters whose statistical summary should be
-presented. To analyze all, provide \code{paramvar = "ALL"} (Default), to analyze none, provide \code{paramvar = ""}.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -72,41 +63,16 @@ patients in the corresponding analysis population given by \code{N}.
 }}
 
 \examples{
-library(scda)
+library(dm)
 library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adex <- sd$adex \%>\%
-  mutate(ANL01FL = 'Y')
 
-group <- list(list("Dose administered during constant dosing interval",
-                                         c(-Inf, 700, 900, 1200, Inf),
-                                         c("<700", "700-900", "900-1200", ">1200")
-                                          ),
-                                      list("Total dose administered",
-                                         c(-Inf, 5000, 7000, 9000, Inf),
-                                         c("<5000", "5000-7000", "7000-9000", ">9000")
-                                           )
-                                       )
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adex)
 
-adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
+db <- db \%>\%
+  (std_filter("ext01_2"))() \%>\%
+  (std_mutate("ext01_2"))()
 
-adex[,"PARAM"] <- factor(adex[["PARAM"]],
-                   c("Total number of doses administered",
-                     "Total dose administered",
-                     "Dose administered during constant dosing interval",
-                     "Number of doses administered during constant dosing interval"))
-
-ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
-ext01_2(adex, adsl, lbl_overall = "All Patients", show_stats = "ALL")
-
-
-
-
-
-
-
-
-
+ext01_2(db)
 
 }

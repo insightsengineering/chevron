@@ -10,11 +10,12 @@ dst01_3(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = "EOSSTT",
-  reason = "DCSREAS",
+  reason = .study$disc_reason_var,
   prune_0 = TRUE,
   status_treatment = "EOTSTT",
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients")
+  .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
+    "DCSREAS")
 )
 
 dst01_3_lyt(

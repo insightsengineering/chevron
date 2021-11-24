@@ -24,33 +24,31 @@
 #' @export
 #'
 #' @examples
-#' library(scda)
+#' library(dm)
 #' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adlb <- sd$adlb %>%
-#'  mutate(ANL01FL = 'Y')
 #'
-#' lbt01_1(adsl, adlb)
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adlb)
 #'
-#' lbt01_1(adsl, adlb, summaryvars_lbls = c("Analysis", "Change"))
+#' db <- db %>%
+#'   (std_filter("lbt01_1"))() %>%
+#'   (std_mutate("lbt01_1"))()
 #'
-lbt01_1 <- function(adsl, adlb,
+#' lbt01_1(db)
+#'
+lbt01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = c("AVAL", "CHG"),
-                    summaryvars_lbls = var_labels_for(adlb, summaryvars),
-                    visitvar = "AVISIT", # or ATPTN
+                    summaryvars_lbls = var_labels_for(adam_db$adlb, summaryvars),
+                    visitvar = "AVISIT",
                     prune_0 = TRUE,
                     deco = std_deco("LBT01"),
                     .study = list(
                       armvar = "ACTARM"
                     )) {
 
-  adlb <- adlb %>%
-    filter(bol_YN(ANL01FL))
-
-  lbl_AVISIT <- var_labels_for(adlb, visitvar)
-  lbl_PARAM <- var_labels_for(adlb, "PARAM")
+  lbl_AVISIT <- var_labels_for(adam_db$adlb, visitvar)
+  lbl_PARAM <- var_labels_for(adam_db$adlb, "PARAM")
 
   lyt <- lbt01_1_lyt(
     armvar = armvar,
@@ -64,7 +62,7 @@ lbt01_1 <- function(adsl, adlb,
 
   tbl <- build_table(
     lyt,
-    df = adlb
+    df = adam_db$adlb
   )
 
   if (prune_0) tbl <- tbl %>% trim_rows()

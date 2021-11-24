@@ -21,10 +21,10 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' @inheritParams gen_args
 #' @param armvar (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
-#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#' @param reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #'
@@ -60,19 +60,20 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 dst01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    status = "EOSSTT",
-                    reason = "DCSREAS",
+                    status_var = "EOSSTT",
+                    reason_var = .study$disc_reason_var,
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients"
+                      lbl_overall = "All patients",
+                      disc_reason_var = "DCSREAS"
                     )) {
 
-  check_dst01_1_args(reason = reason,
-                     status = status)
+  check_dst01_1_args(reason = reason_var,
+                     status = status_var)
 
-  status_lvl <- levels(adam_db$adsl[[status]])
+  status_lvl <- levels(adam_db$adsl[[status_var]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
@@ -82,8 +83,8 @@ dst01_1 <- function(adam_db,
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    status = status,
-    reason = reason,
+    status = status_var,
+    reason = reason_var,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl
@@ -140,7 +141,7 @@ dst01_1 <- function(adam_db,
 dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         status = .study$status,
-                        reason = .study$reason,
+                        reason = .study$disc_reason_var,
                         deco = std_deco("DST01"),
                         completed_lbl = "COMPLETED",
                         ongoing_lbl = "ONGOING",
@@ -149,7 +150,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                           armvar = "ARM",
                           lbl_overall = "All patients",
                           status = "EOSSTT",
-                          reason = "DCSREAS"
+                          disc_reason_var = "DCSREAS"
                         )) {
 
   layout_table <- basic_table_deco(deco)  %>%
@@ -197,12 +198,12 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param reason (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#' @param reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#'   period. Usually stored as `disc_reason_var` in the `.study` object.
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal.
@@ -236,19 +237,20 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 dst01_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    status = "EOSSTT",
-                    reason = "DCSREAS",
+                    status_var = "EOSSTT",
+                    reason_var = .study$disc_reason_var,
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients"
+                      lbl_overall = "All patients",
+                      disc_reason_var = "DCSREAS"
                     )) {
 
-  check_dst01_1_args(reason = reason,
-                     status = status)
+  check_dst01_1_args(reason = reason_var,
+                     status = status_var)
 
-  status_lvl <- levels(adam_db$adsl[[status]])
+  status_lvl <- levels(adam_db$adsl[[status_var]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
@@ -256,8 +258,8 @@ dst01_2 <- function(adam_db,
 
   lyt <- dst01_2_lyt(
     armvar = armvar,
-    status = status,
-    reason = reason,
+    status = status_var,
+    reason = reason_var,
     completed_lbl = completed_lbl,
     discontinued_lbl = discontinued_lbl,
     lbl_overall = lbl_overall,
@@ -265,24 +267,24 @@ dst01_2 <- function(adam_db,
     deco = deco
   )
 
-  sym_reason <- sym(reason)
-
-  adsl_gp <- adam_db$adsl %>%
-    mutate(reasonGP = case_when(
-      !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
-      !!sym_reason == "<Missing>" ~ "<Missing>",
-      TRUE ~ "Non Safety"
-    )
-  )
+  # sym_reason <- sym(reason_var)
+  #
+  # adsl_gp <- adam_db$adsl %>%
+  #   mutate(reasonGP = case_when(
+  #     !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+  #     !!sym_reason == "<Missing>" ~ "<Missing>",
+  #     TRUE ~ "Non Safety"
+  #   )
+  # )
 
   tbl_completed <- build_table(
     lyt[[1]],
-    df = adsl_gp
+    df = adam_db$adsl
   )
 
   tbl_other <- build_table(
     lyt[[2]],
-    df = adsl_gp
+    df = adam_db$adsl
   )
 
   if (prune_0) tbl_other <- tbl_other %>% prune_table()
@@ -428,13 +430,15 @@ dst01_3 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = "EOSSTT",
-                    reason = "DCSREAS",
+                    reason = .study$disc_reason_var,
                     prune_0 = TRUE,
                     status_treatment = "EOTSTT",
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients"
+                      lbl_overall = "All patients",
+                      disc_reason_var = "DCSREAS"
+
                     )) {
 
   check_dst01_1_args(reason = reason,
@@ -446,15 +450,15 @@ dst01_3 <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  sym_reason <- sym(reason)
-
-  adsl_gp <- adam_db$adsl %>%
-    mutate(reasonGP = case_when(
-      !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
-      !!sym_reason == "<Missing>" ~ "<Missing>",
-      TRUE ~ "Non Safety"
-    )
-  )
+  # sym_reason <- sym(reason)
+  #
+  # adsl_gp <- adam_db$adsl %>%
+  #   mutate(reasonGP = case_when(
+  #     !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+  #     !!sym_reason == "<Missing>" ~ "<Missing>",
+  #     TRUE ~ "Non Safety"
+  #   )
+  # )
 
   lyt <- dst01_3_lyt(
     armvar = armvar,
@@ -468,7 +472,7 @@ dst01_3 <- function(adam_db,
 
   tbl <- build_table(
     lyt,
-    df = adsl_gp
+    df = adam_db$adsl
   )
 
   # re-extract the labels associated with status in case they changed.
@@ -491,12 +495,12 @@ dst01_3 <- function(adam_db,
 
   tbl_completed <- build_table(
     lyt[[1]],
-    df = adsl_gp
+    df = adam_db$adsl
   )
 
   tbl_other <- build_table(
     lyt[[2]],
-    df = adsl_gp
+    df = adam_db$adsl
   )
 
   if (prune_0) tbl_other <- tbl_other %>% prune_table()

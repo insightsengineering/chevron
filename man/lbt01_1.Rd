@@ -6,11 +6,10 @@
 \title{LBT01 Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit}
 \usage{
 lbt01_1(
-  adsl,
-  adlb,
+  adam_db,
   armvar = .study$armvar,
   summaryvars = c("AVAL", "CHG"),
-  summaryvars_lbls = var_labels_for(adlb, summaryvars),
+  summaryvars_lbls = var_labels_for(adam_db$adlb, summaryvars),
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
@@ -29,10 +28,6 @@ lbt01_1_lyt(
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adlb}{(\code{data.frame}) Laboratory Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
@@ -88,5 +83,17 @@ adlb <- sd$adlb \%>\%
 lbt01_1(adsl, adlb)
 
 lbt01_1(adsl, adlb, summaryvars_lbls = c("Analysis", "Change"))
+
+library(dm)
+library(dplyr)
+
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adlb)
+
+db <- db \%>\%
+  (std_filter("lbt01_1"))() \%>\%
+  (std_mutate("lbt01_1"))()
+
+lbt01_1(db)
 
 }

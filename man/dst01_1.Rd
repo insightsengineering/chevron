@@ -9,24 +9,25 @@ dst01_1(
   adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  status = "EOSSTT",
-  reason = "DCSREAS",
+  status_var = "EOSSTT",
+  reason_var = .study$disc_reason_var,
   prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients")
+  .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
+    "DCSREAS")
 )
 
 dst01_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
-  reason = .study$reason,
+  reason = .study$disc_reason_var,
   deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
   ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
-  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
-    = "DCSREAS")
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT",
+    disc_reason_var = "DCSREAS")
 )
 }
 \arguments{
@@ -34,10 +35,11 @@ dst01_1_lyt(
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
-name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
+\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
+period.}
 
-\item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
+\item{reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
@@ -46,6 +48,13 @@ period.}
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
+name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
+
+\item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
+also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
+period.}
 
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}

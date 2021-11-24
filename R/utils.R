@@ -175,11 +175,11 @@ assert_colnames <- function(df, x) {
 #'
 #' df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))
 #'
-#' str(relevel_params(df, paramcd_levels = c("B", "A", "C")))
-#' str(relevel_params(df, paramcd_levels = c("B", "A")))
+#' str(reorder_levels_params(df, paramcd_levels = c("B", "A", "C")))
+#' str(reorder_levels_params(df, paramcd_levels = c("B", "A")))
 #'
 #'
-relevel_params <- function(df, paramcd_levels) {
+reorder_levels_params <- function(df, paramcd_levels) {
 
   # todo throw errors
   stopifnot(
@@ -323,6 +323,18 @@ syn_test_data <- function() {
   sd$adae <- sd$adae %>%
     var_relabel(AEBODSYS = "MedDRA System Organ Class") %>%
     var_relabel(AEDECOD = "MedDRA Preferred Term")
+
+  # useful for ext01
+  group <- list(list("Dose administered during constant dosing interval",
+                                          c(-Inf, 700, 900, 1200, Inf),
+                                          c("<700", "700-900", "900-1200", ">1200")
+                                           ),
+                                       list("Total dose administered",
+                                          c(-Inf, 5000, 7000, 9000, Inf),
+                                          c("<5000", "5000-7000", "7000-9000", ">9000")
+                                            )
+                                        )
+  sd$adex <- cut_by_group(sd$adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 
   # useful for dmt01
   adsub <- sd$adsub
