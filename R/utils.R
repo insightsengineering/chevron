@@ -320,9 +320,6 @@ get_db_data <- function(db, ...) {
 syn_test_data <- function() {
 
   sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
-  sd$adae <- sd$adae %>%
-    var_relabel(AEBODSYS = "MedDRA System Organ Class") %>%
-    var_relabel(AEDECOD = "MedDRA Preferred Term")
 
   # useful for ext01
   group <- list(list("Dose administered during constant dosing interval",

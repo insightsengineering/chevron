@@ -61,7 +61,7 @@ dst01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status_var = "EOSSTT",
-                    reason_var = .study$disc_reason_var,
+                    disc_reason_var = .study$disc_reason_var,
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
@@ -70,7 +70,7 @@ dst01_1 <- function(adam_db,
                       disc_reason_var = "DCSREAS"
                     )) {
 
-  check_dst01_1_args(reason = reason_var,
+  check_dst01_1_args(reason = disc_reason_var,
                      status = status_var)
 
   status_lvl <- levels(adam_db$adsl[[status_var]])
@@ -84,7 +84,7 @@ dst01_1 <- function(adam_db,
     lbl_overall = lbl_overall,
     deco = deco,
     status = status_var,
-    reason = reason_var,
+    reason = disc_reason_var,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl

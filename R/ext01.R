@@ -32,7 +32,6 @@
 #'
 #' ext01_1(db)
 #'
-#'
 ext01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = "AVAL",
@@ -44,7 +43,6 @@ ext01_1 <- function(adam_db,
                       lbl_overall = ""
                     )) {
 
-    # provide a clearer error message in the case of missing variable
   assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(

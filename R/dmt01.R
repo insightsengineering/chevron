@@ -51,9 +51,6 @@ dmt01_1 <- function(adam_db,
                       lbl_overall = "All Patients"
                     )) {
 
-  # ad_bl <- data %>%
-  #   dm_apply_filters_to_tbl(!dataname)
-
   assert_that(
     df_has_vars(adam_db$adsl, summaryvars),
     length(summaryvars) == length(summaryvars_lbls)
@@ -113,18 +110,10 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = "All Patients"
                         )) {
 
-  # summaryvars_lbls <- paste0(
-  #   c("", rep("\n", length(summaryvars_lbls) - 1)),
-  #   summaryvars_lbls)
-
-
   layout_table <-  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 
 }

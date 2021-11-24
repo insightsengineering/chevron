@@ -60,10 +60,7 @@ lbt01_1 <- function(adam_db,
     deco = deco
   )
 
-  tbl <- build_table(
-    lyt,
-    df = adam_db$adlb
-  )
+  tbl <- build_table(lyt, adam_db$adlb)
 
   if (prune_0) tbl <- tbl %>% trim_rows()
 
@@ -90,8 +87,8 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = c("AVAL", "CHG"),
                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                         visitvar = .study$visitvar,
-                        lbl_AVISIT = "",
-                        lbl_PARAM = "",
+                        lbl_AVISIT = "Analysis Visit",
+                        lbl_PARAM = "Parameter",
                         deco = std_deco("LBT01"),
                         .study = list(
                           armvar = "ACTARM",

@@ -34,43 +34,39 @@
 #' aet04_1(db, prune_0 = FALSE)
 #' aet04_1(db, lbl_overall = "All Patients")
 #'
+#' aet04_1(db, group_grades = list(
+#'   "- Any Grade -" = c("1", "2", "3", "4", "5"),
+#'   "Grade 1-2" = c("1", "2"),
+#'   "Grade 3-5" = c("3", "4", "5")
+#' ))
+#'
+#'
 aet04_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
-                    standard_gradation = TRUE,
+                    group_grades = .study$group_grades,
                     deco = std_deco("AET04"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = "",
+                      group_grades = list(
+                        "- Any Grade -" = c("1", "2", "3", "4", "5"),
+                        "Grade 1-2" = c("1", "2"),
+                        "Grade 3-4" = c("3", "4"),
+                        "Grade 5" = c("5")
+                      )
                     )) {
 
   lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adam_db$adae, "AEDECOD")
-
-  if (standard_gradation == TRUE) {
-
-    gr_grp <- list(
-      "- Any Grade -" = c("1", "2", "3", "4", "5"),
-      "Grade 1-2" = c("1", "2"),
-      "Grade 3-4" = c("3", "4"),
-      "Grade 5" = c("5")
-    )
-  } else {
-
-    gr_grp <- list(
-      "- Any Grade -" = c("1", "2", "3", "4", "5"),
-      "Grade 1-2" = c("1", "2"),
-      "Grade 3-5" = c("3", "4", "5")
-    )
-  }
 
   lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_AEBODSYS = lbl_AEBODSYS,
     lbl_AEDECOD = lbl_AEDECOD,
-    gr_grp = gr_grp,
+    group_grades = group_grades,
     deco = deco
   )
 
@@ -92,7 +88,7 @@ aet04_1 <- function(adam_db,
       scorefun = cont_n_allcols
     )
 
-    tbl_sorted
+  tbl_sorted
 
 }
 
@@ -116,12 +112,12 @@ aet04_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",
                         lbl_AEDECOD = "AEDECOD",
-                        gr_grp = .study$gr_grp,
+                        group_grades = .study$group_grades,
                         deco = std_deco("AET04"),
                         .study = list(
                           armvar = "ACTARM",
                           lbl_overall = "",
-                          gr_grp = list(
+                          group_grades = list(
                             "- Any Grade -" = c("1", "2", "3", "4", "5"),
                             "Grade 1-2" = c("1", "2"),
                             "Grade 3-4" = c("3", "4"),
@@ -130,18 +126,13 @@ aet04_1_lyt <- function(armvar = .study$armvar,
                         )
                         ) {
 
-
-
   layout_table  <- basic_table_deco(deco)  %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "AETOXGR",
-      grade_groups = gr_grp
+      grade_groups = group_grades
     ) %>%
     split_rows_by(
       "AEBODSYS",
@@ -154,7 +145,7 @@ aet04_1_lyt <- function(armvar = .study$armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "AETOXGR",
-      grade_groups = gr_grp,
+      grade_groups = group_grades,
       .indent_mods = 0L
     ) %>%
     split_rows_by(
@@ -167,13 +158,13 @@ aet04_1_lyt <- function(armvar = .study$armvar,
       split_label = lbl_AEDECOD
     ) %>%
     summarize_num_patients(
-    var = "USUBJID",
-    .stats = "unique",
-    .labels = "- Any Grade -"
+      var = "USUBJID",
+      .stats = "unique",
+      .labels = "- Any Grade -"
     ) %>%
     count_occurrences_by_grade(
-    var = "AETOXGR",
-    grade_groups = gr_grp[-1],
-    .indent_mods = -1L
+      var = "AETOXGR",
+      grade_groups = group_grades[-1],
+      .indent_mods = -1L
     )
 }
