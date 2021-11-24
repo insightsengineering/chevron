@@ -2,18 +2,23 @@
 % Please edit documentation in R/standard_data_manipulation.R
 \name{remove_adex_aval}
 \alias{remove_adex_aval}
-\title{Remove specific \code{AVAL} data from \code{adex}}
+\title{Remove specific \code{AVAL} and \code{AVALCAT1} data from \code{adex}}
 \usage{
 remove_adex_aval(
   adam_db,
   show_stats = .study$show_cont_stats,
-  .study = list(show_cont_stats = c("ALL"))
+  show_bins = .study$show_cat_stats,
+  .study = list(show_cont_stats = c("ALL"), show_cat_stats = c("ALL"))
 )
 }
 \arguments{
-\item{show_stats}{(\verb{vector of strings}) providing the name of the parameters whose statistical summary should be
-presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{paramvar = ""}.}
+\item{show_stats}{(\verb{vector of character}) providing the name of the parameters whose statistical summary should be
+presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{show_stats = ""}.}
+
+\item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
+presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
 }
 \description{
-Useful if some continuous \code{AVAL} data corresponding to specific \code{PARAM} should not be displayed.
+Useful if some continuous \code{AVAL} data, or categorical \code{AVALCAT1} data corresponding to specific \code{PARAM} should not be
+displayed.
 }

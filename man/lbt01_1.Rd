@@ -9,7 +9,7 @@ lbt01_1(
   adam_db,
   armvar = .study$armvar,
   summaryvars = c("AVAL", "CHG"),
-  summaryvars_lbls = var_labels_for(adam_db$adlb, summaryvars),
+  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
@@ -19,7 +19,7 @@ lbt01_1(
 lbt01_1_lyt(
   armvar = .study$armvar,
   summaryvars = c("AVAL", "CHG"),
-  summaryvars_lbls = c("Analysis \\nValue", "Change from \\nBaseline"),
+  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = .study$visitvar,
   lbl_AVISIT = "",
   lbl_PARAM = "",
@@ -73,17 +73,6 @@ by \code{AVISIT}. Re-level to customize order
 }}
 
 \examples{
-library(scda)
-library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adlb <- sd$adlb \%>\%
- mutate(ANL01FL = 'Y')
-
-lbt01_1(adsl, adlb)
-
-lbt01_1(adsl, adlb, summaryvars_lbls = c("Analysis", "Change"))
-
 library(dm)
 library(dplyr)
 
