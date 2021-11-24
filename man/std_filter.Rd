@@ -4,7 +4,10 @@
 \alias{std_filter}
 \title{Retrieve Standard Subsetting for Templates}
 \usage{
-std_filter(id)
+std_filter(idt)
+}
+\arguments{
+\item{idt}{(\code{character}) the id of the table.}
 }
 \description{
 Retrieve Standard Subsetting for Templates

@@ -6,11 +6,10 @@
 \title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1}
 \usage{
 dmt01_1(
-  data,
-  dataname = "adsl",
+  adam_db,
   armvar = .study$armvar,
   summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
-  summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
+  summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
@@ -68,22 +67,18 @@ For each variable, summary statistics are by default based on the number of pati
 
 library(dm)
 library(dplyr)
-library(scda)
-adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
-adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 
-ddm <- dm(adsl = adsl)
-dmt01_1(ddm)
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl)
+
+db <- db \%>\%
+  (std_filter("dmt01_1"))() \%>\%
+  (std_mutate("dmt01_1"))()
 
 
-adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
-
-adsl <- adsl \%>\% left_join(adsub_wide)
-
-dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
-dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
-
-dmt01_1(ad_bl = adsl,
+dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
+dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
+dmt01_1(db,
         summaryvars = c("AGE", "RACE", "SEX"),
         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 

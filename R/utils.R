@@ -186,7 +186,7 @@ relevel_params <- function(df, paramcd_levels) {
     all(c("PARAM", "PARAMCD") %in% names(df))
   )
 
-  dfs <- df[, c("PARAMCD", "PARAM")]
+  dfs <- df[c("PARAMCD", "PARAM")]
   dfsd <- dfs[!duplicated(dfs), ]
 
   if (any(duplicated(dfsd[, "PARAM"])) || any(duplicated(dfsd[, "PARAMCD"])))
@@ -317,11 +317,27 @@ get_db_data <- function(db, ...) {
 #' Retrieve Synthetic Test Data Used For Examples
 #'
 #' @export
-#'
-#'
 syn_test_data <- function() {
 
   sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
+  sd$adae <- sd$adae %>%
+    var_relabel(AEBODSYS = "MedDRA System Organ Class") %>%
+    var_relabel(AEDECOD = "MedDRA Preferred Term")
+
+  # useful for dmt01
+  adsub <- sd$adsub
+  adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
+  sd$adsl <- sd$adsl %>% left_join(adsub_wide)
+
+  # useful for dst01
+  sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
+
+  sd$adsl <- sd$adsl %>%
+    mutate(EOTSTT = as.factor(sample(
+      c("ONGOING", "COMPLETED", "DISCONTINUED"),
+      nrow(sd$adsl),
+      replace = TRUE
+    )))
 
   db <- new_dm(sd) %>%
      dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%

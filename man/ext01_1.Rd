@@ -6,8 +6,7 @@
 \title{EXT01 Table 1 (Default) Exposure Summary Table}
 \usage{
 ext01_1(
-  adex,
-  adsl,
+  adam_db,
   armvar = .study$armvar,
   summaryvars = "AVAL",
   lbl_overall = .study$lbl_overall,
@@ -27,10 +26,6 @@ ext01_1_lyt(
 )
 }
 \arguments{
-\item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
-
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
@@ -69,18 +64,18 @@ patients in the corresponding analysis population given by \code{N}.
 }}
 
 \examples{
-library(scda)
+
+library(dm)
 library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adex <- sd$adex \%>\%
- mutate(ANL01FL = 'Y')
 
-ext01_1(adex, adsl)
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adex)
 
-adex2 <- adex \%>\%
-   relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+db <- db \%>\%
+  (std_filter("ext01_1"))() \%>\%
+  (std_mutate("ext01_1"))()
 
-ext01_1(adex2, adsl)
-ext01_1(adex2, adsl, lbl_overall = "All Patients")
+ext01_1(db)
+
+
 }

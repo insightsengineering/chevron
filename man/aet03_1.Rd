@@ -6,8 +6,7 @@
 \title{AET03 Table 1 (Default) Advert Events by Greatest Intensity Table 1}
 \usage{
 aet03_1(
-  adsl,
-  adae,
+  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
@@ -20,7 +19,6 @@ aet03_1_lyt(
   lbl_overall = .study$lbl_overall,
   lbl_AEBODSYS = "",
   lbl_AEDECOD = "",
-  lbl_AESEV = "",
   gradation = .study$gradation,
   deco = std_deco("AET03"),
   .study = list(armvar = "ACTARM", lbl_overall = "", gradation = c("MILD", "MODERATE",
@@ -28,10 +26,6 @@ aet03_1_lyt(
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -45,8 +39,6 @@ aet03_1_lyt(
 \item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
-
-\item{lbl_AESEV}{(\code{string}) text label for AESEV.}
 
 \item{gradation}{(\verb{vector of strings}) describing the severity levels present in the dataset.}
 }
@@ -73,15 +65,18 @@ An adverse events table categorized by System Organ Class, Dictionary-Derived Te
 
 \examples{
 
-library(scda)
-library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adae <- sd$adae \%>\%
- mutate(ANL01FL = 'Y')
+library(dm)
+library(rtables)
 
-aet03_1(adsl, adae)
-aet03_1(adsl, adae, lbl_overall = "All Patients")
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adae)
+
+db <- db \%>\%
+  (std_filter("aet03_1"))() \%>\%
+  (std_mutate("aet03_1"))()
+
+aet03_1(db)
+aet03_1(db, lbl_overall = "All Patients")
 
 aet03_1_lyt(armvar = "ACTARM",
  lbl_overall = "",

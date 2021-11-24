@@ -20,18 +20,21 @@
 #' @export
 #'
 #' @examples
-#' library(scda)
-#' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adae <- sd$adae %>%
-#'  mutate(ANL01FL = 'Y')
+#' library(dm)
+#' library(rtables)
 #'
-#' aet04_1(adsl, adae)
-#' aet04_1(adsl, adae, prune_0 = FALSE)
-#' aet04_1(adsl, adae, lbl_overall = "All Patients")
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adae)
 #'
-aet04_1 <- function(adsl, adae,
+#' db <- db %>%
+#'   (std_filter("aet03_1"))() %>%
+#'   (std_mutate("aet03_1"))()
+#'
+#' aet04_1(db)
+#' aet04_1(db, prune_0 = FALSE)
+#' aet04_1(db, lbl_overall = "All Patients")
+#'
+aet04_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
@@ -42,11 +45,8 @@ aet04_1 <- function(adsl, adae,
                       lbl_overall = ""
                     )) {
 
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
-
-  lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
-  lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
+  lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
+  lbl_AEDECOD <-  var_labels_for(adam_db$adae, "AEDECOD")
 
   if (standard_gradation == TRUE) {
 
@@ -76,8 +76,8 @@ aet04_1 <- function(adsl, adae,
 
   tbl <- build_table(
     lyt,
-    df = adae,
-    alt_counts_df = adsl
+    df = adam_db$adae,
+    alt_counts_df = adam_db$adsl
   )
 
   if (prune_0) tbl <- tbl %>% trim_rows()
@@ -175,6 +175,5 @@ aet04_1_lyt <- function(armvar = .study$armvar,
     var = "AETOXGR",
     grade_groups = gr_grp[-1],
     .indent_mods = -1L
-    ) %>%
-    append_varlabels(adae, "AETOXGR", indent = 2L)
+    )
 }

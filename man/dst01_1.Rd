@@ -6,7 +6,7 @@
 \title{DST01 Table 1 (Default) Patient Disposition Table 1}
 \usage{
 dst01_1(
-  adsl,
+  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = "EOSSTT",
@@ -30,8 +30,6 @@ dst01_1_lyt(
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -82,17 +80,19 @@ study a reason is provided.
 
 \examples{
 
-library(scda)
+library(dm)
 library(dplyr)
 
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl)
 
-dst01_1(adsl)
-dst01_1(adsl, lbl_overall = "")
+db <- db \%>\%
+  (std_filter("dst01_1"))() \%>\%
+  (std_mutate("dst01_1"))()
 
-adsl$EOSSTT <- as.factor(toupper(adsl$EOSSTT))
-dst01_1(adsl)
+dst01_1(db)
+
+
 dst01_1_lyt(armvar = "ACTARM",
 status = "EOP01STT",
 reason = "DCP01RS")

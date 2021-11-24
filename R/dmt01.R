@@ -24,29 +24,25 @@
 #'
 #' library(dm)
 #' library(dplyr)
-#' library(scda)
-#' adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
-#' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 #'
-#' ddm <- dm(adsl = adsl)
-#' dmt01_1(ddm)
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl)
+#'
+#' db <- db %>%
+#'   (std_filter("dmt01_1"))() %>%
+#'   (std_mutate("dmt01_1"))()
 #'
 #'
-#' adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
-#'
-#' adsl <- adsl %>% left_join(adsub_wide)
-#'
-#' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
-#' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
-#'
-#' dmt01_1(ad_bl = adsl,
+#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
+#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
+#' dmt01_1(db,
 #'         summaryvars = c("AGE", "RACE", "SEX"),
 #'         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 #'
-dmt01_1 <- function(data, dataname = "adsl",
+dmt01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
-                    summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
+                    summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("DMT01"),
@@ -55,11 +51,11 @@ dmt01_1 <- function(data, dataname = "adsl",
                       lbl_overall = "All Patients"
                     )) {
 
-  ad_bl <- data %>%
-    dm_apply_filters_to_tbl(!dataname)
+  # ad_bl <- data %>%
+  #   dm_apply_filters_to_tbl(!dataname)
 
   assert_that(
-    df_has_vars(ad_bl, summaryvars),
+    df_has_vars(adam_db$adsl, summaryvars),
     length(summaryvars) == length(summaryvars_lbls)
   )
 
@@ -71,7 +67,7 @@ dmt01_1 <- function(data, dataname = "adsl",
     deco = deco
   )
 
-  tbl <- build_table(lyt, ad_bl)
+  tbl <- build_table(lyt, adam_db$adsl)
 
   if (prune_0)
     prune_table(tbl)
@@ -117,9 +113,9 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = "All Patients"
                         )) {
 
-  summaryvars_lbls <- paste0(
-    c("", rep("\n", length(summaryvars_lbls) - 1)),
-    summaryvars_lbls)
+  # summaryvars_lbls <- paste0(
+  #   c("", rep("\n", length(summaryvars_lbls) - 1)),
+  #   summaryvars_lbls)
 
 
   layout_table <-  basic_table_deco(deco) %>%

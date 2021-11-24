@@ -440,6 +440,5 @@ aet02_3_lyt <- function(armvar = .study$armvar,
       )
     ) %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
-    append_varlabels(adae, "AEDECOD")
-
+    append_topleft(lbl_AEDECOD)
 }

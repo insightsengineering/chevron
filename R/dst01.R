@@ -44,18 +44,20 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' @examples
 #'
-#' library(scda)
+#' library(dm)
 #' library(dplyr)
 #'
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl)
 #'
-#' dst01_1(adsl)
-#' dst01_1(adsl, lbl_overall = "")
+#' db <- db %>%
+#'   (std_filter("dst01_1"))() %>%
+#'   (std_mutate("dst01_1"))()
 #'
-#' adsl$EOSSTT <- as.factor(toupper(adsl$EOSSTT))
-#' dst01_1(adsl)
-dst01_1 <- function(adsl,
+#' dst01_1(db)
+#'
+#'
+dst01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = "EOSSTT",
@@ -70,7 +72,7 @@ dst01_1 <- function(adsl,
   check_dst01_1_args(reason = reason,
                      status = status)
 
-  status_lvl <- levels(adsl[[status]])
+  status_lvl <- levels(adam_db$adsl[[status]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
@@ -89,12 +91,12 @@ dst01_1 <- function(adsl,
 
   tbl_completed <- build_table(
     lyt[[1]],
-    df = adsl
+    df = adam_db$adsl
   )
 
   tbl_other <- build_table(
     lyt[[2]],
-    df = adsl
+    df = adam_db$adsl
   )
 
   if (prune_0) tbl_other <- tbl_other %>% prune_table()
@@ -218,15 +220,20 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' @export
 #'
 #' @examples
-#' library(scda)
+#' library(dm)
 #' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
 #'
-#' dst01_2(adsl)
-#' dst01_2(adsl, lbl_overall = "")
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl)
 #'
-dst01_2 <- function(adsl,
+#' db <- db %>%
+#'   (std_filter("dst01_2"))() %>%
+#'   (std_mutate("dst01_2"))()
+#'
+#' dst01_2(db)
+#' dst01_2(db, lbl_overall = "")
+#'
+dst01_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = "EOSSTT",
@@ -241,7 +248,7 @@ dst01_2 <- function(adsl,
   check_dst01_1_args(reason = reason,
                      status = status)
 
-  status_lvl <- levels(adsl[[status]])
+  status_lvl <- levels(adam_db$adsl[[status]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
@@ -260,7 +267,7 @@ dst01_2 <- function(adsl,
 
   sym_reason <- sym(reason)
 
-  adsl_gp <- adsl %>%
+  adsl_gp <- adam_db$adsl %>%
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
@@ -404,23 +411,20 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' @export
 #'
 #' @examples
-#' library(scda)
+#' library(dm)
 #' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #'
-#' adsl <- sd$adsl %>%
-#'  mutate(ANL01FL = 'Y',
-#'         EOTSTT = as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"),
-#'                         nrow(sd$adsl),
-#'                         replace = TRUE)))
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl)
 #'
-#' dst01_3(adsl)
-#' dst01_3(adsl, lbl_overall = "")
+#' db <- db %>%
+#'   (std_filter("dst01_3"))() %>%
+#'   (std_mutate("dst01_3"))()
 #'
-#' adsl <- adsl %>% filter(EOSSTT != "COMPLETED")
-#' dst01_3(adsl)
+#' dst01_3(db)
+#' dst01_3(db, lbl_overall = "")
 #'
-dst01_3 <- function(adsl,
+dst01_3 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     status = "EOSSTT",
@@ -437,14 +441,14 @@ dst01_3 <- function(adsl,
                      status = status,
                      status_treatment = status_treatment)
 
-  status_lvl <- levels(adsl[[status_treatment]])
+  status_lvl <- levels(adam_db$adsl[[status_treatment]])
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
   sym_reason <- sym(reason)
 
-  adsl_gp <- adsl %>%
+  adsl_gp <- adam_db$adsl %>%
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
@@ -468,7 +472,7 @@ dst01_3 <- function(adsl,
   )
 
   # re-extract the labels associated with status in case they changed.
-  status_lvl <- levels(adsl[[status]])
+  status_lvl <- levels(adam_db$adsl[[status]])
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]

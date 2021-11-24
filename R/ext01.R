@@ -19,22 +19,21 @@
 #' @export
 #'
 #' @examples
-#' library(scda)
+#'
+#' library(dm)
 #' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adex <- sd$adex %>%
-#'  mutate(ANL01FL = 'Y')
 #'
-#' ext01_1(adex, adsl)
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adex)
 #'
-#' adex2 <- adex %>%
-#'    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+#' db <- db %>%
+#'   (std_filter("ext01_1"))() %>%
+#'   (std_mutate("ext01_1"))()
 #'
-#' ext01_1(adex2, adsl)
-#' ext01_1(adex2, adsl, lbl_overall = "All Patients")
-ext01_1 <- function(adex,
-                    adsl,
+#' ext01_1(db)
+#'
+#'
+ext01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = "AVAL",
                     lbl_overall = .study$lbl_overall,
@@ -46,26 +45,24 @@ ext01_1 <- function(adex,
                     )) {
 
     # provide a clearer error message in the case of missing variable
-  assert_colnames(adex, summaryvars)
+  assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
-    summaryvars_lbls = var_labels_for(adex, summaryvars),
+    summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
     lbl_overall = lbl_overall,
     deco = deco
   )
 
-  tbl <- build_table(lyt, adex, adsl)
+  tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
   if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl
-
 }
 
-
-#' ET01 Layout 1 (Default)
+#' EXT01 Layout 1 (Default)
 #'
 #' @describeIn ext01_1
 #'
@@ -153,6 +150,15 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
 #' ext01_2(adex, adsl, lbl_overall = "All Patients", show_stats = "ALL")
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 ext01_2 <- function(adex,
                     adsl,

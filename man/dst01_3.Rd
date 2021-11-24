@@ -6,7 +6,7 @@
 \title{DST01 Table 3 (Supplementary) Patient Disposition Table 3}
 \usage{
 dst01_3(
-  adsl,
+  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = "EOSSTT",
@@ -30,8 +30,6 @@ dst01_3_lyt(
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -88,21 +86,18 @@ For patients who discontinued the study, the reason provided is categorized as "
 }}
 
 \examples{
-library(scda)
+library(dm)
 library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
 
-adsl <- sd$adsl \%>\%
- mutate(ANL01FL = 'Y',
-        EOTSTT = as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"),
-                        nrow(sd$adsl),
-                        replace = TRUE)))
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl)
 
-dst01_3(adsl)
-dst01_3(adsl, lbl_overall = "")
+db <- db \%>\%
+  (std_filter("dst01_3"))() \%>\%
+  (std_mutate("dst01_3"))()
 
-adsl <- adsl \%>\% filter(EOSSTT != "COMPLETED")
-dst01_3(adsl)
+dst01_3(db)
+dst01_3(db, lbl_overall = "")
 
 dst01_3_lyt(armvar = "ACTARM",
 status_treatment = "EOTxx01")

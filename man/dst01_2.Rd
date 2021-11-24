@@ -6,7 +6,7 @@
 \title{DST01 Table 2 (Supplementary) Patient Disposition Table 2}
 \usage{
 dst01_2(
-  adsl,
+  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = "EOSSTT",
@@ -30,8 +30,6 @@ dst01_2_lyt(
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -83,13 +81,18 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }}
 
 \examples{
-library(scda)
+library(dm)
 library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
 
-dst01_2(adsl)
-dst01_2(adsl, lbl_overall = "")
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl)
+
+db <- db \%>\%
+  (std_filter("dst01_2"))() \%>\%
+  (std_mutate("dst01_2"))()
+
+dst01_2(db)
+dst01_2(db, lbl_overall = "")
 
 dst01_2_lyt(armvar = "ACTARM",
 status = "EOP01STT",

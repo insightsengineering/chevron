@@ -4,7 +4,7 @@
 \alias{std_mutate}
 \title{Retrieve Standard Mutation for Templates}
 \usage{
-std_mutate(id)
+std_mutate(idt)
 }
 \description{
 Retrieve Standard Mutation for Templates

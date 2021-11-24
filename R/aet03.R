@@ -20,17 +20,20 @@
 #'
 #' @examples
 #'
-#' library(scda)
-#' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adae <- sd$adae %>%
-#'  mutate(ANL01FL = 'Y')
+#' library(dm)
+#' library(rtables)
 #'
-#' aet03_1(adsl, adae)
-#' aet03_1(adsl, adae, lbl_overall = "All Patients")
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adae)
 #'
-aet03_1 <- function(adsl, adae,
+#' db <- db %>%
+#'   (std_filter("aet03_1"))() %>%
+#'   (std_mutate("aet03_1"))()
+#'
+#' aet03_1(db)
+#' aet03_1(db, lbl_overall = "All Patients")
+#'
+aet03_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
@@ -40,24 +43,19 @@ aet03_1 <- function(adsl, adae,
                       lbl_overall = ""
                     )) {
 
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
-
 
   # specific to AET03: enable top-left table labeling
-  lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
-  lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
-  lbl_AESEV <-  var_labels_for(adae, "AESEV")
+  lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
+  lbl_AEDECOD <-  var_labels_for(adam_db$adae, "AEDECOD")
 
   # specific to AET03: avoid error if some severity levels are not present
-  gradation_severity <- as.character(unique(adae$AESEV))
+  gradation_severity <- levels(adam_db$adae[["AESEV"]])
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_AEBODSYS = lbl_AEBODSYS,
     lbl_AEDECOD = lbl_AEDECOD,
-    lbl_AESEV = lbl_AESEV,
     gradation = gradation_severity,
     deco = deco
   )
@@ -65,8 +63,8 @@ aet03_1 <- function(adsl, adae,
   # build table
   tbl <- build_table(
     lyt,
-    df = adae,
-    alt_counts_df = adsl
+    df = adam_db$adae,
+    alt_counts_df = adam_db$adsl
   )
 
   if (prune_0) tbl <- tbl %>% trim_rows()
@@ -98,7 +96,6 @@ aet03_1 <- function(adsl, adae,
 #'
 #' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
-#' @param lbl_AESEV (`string`) text label for AESEV.
 #' @param gradation (`vector of strings`) describing the severity levels present in the dataset.
 #'
 #' @return
@@ -115,7 +112,6 @@ aet03_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "",
                         lbl_AEDECOD = "",
-                        lbl_AESEV = "",
                         gradation = .study$gradation,
 
                         deco = std_deco("AET03"),
@@ -166,9 +162,7 @@ aet03_1_lyt <- function(armvar = .study$armvar,
 
     summarize_occurrences_by_grade(
       var = "AESEV",
-      grade_groups = list("- Any Intensity -" = gradation
-      )
-    ) %>%
-    append_topleft(paste0("  ", lbl_AESEV))
+      grade_groups = list("- Any Intensity -" = gradation)
+    )
 
 }
