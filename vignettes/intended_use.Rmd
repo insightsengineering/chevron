@@ -257,7 +257,7 @@ adam__CTC35_SE %>%
 The title and footnotes in the `lopo` are not ready for the final output. The final titles usually have the form:
 
 ```
-{{main_title from lopo}} -- {{population title}}
+{{main_title_lopo}} -- {{population title}}
 Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 {{subtitles from lopo}}
 ```
@@ -267,17 +267,20 @@ our own functionality:
 
 ```{r}
 render_whiskers <- function(templates, dict = character(0)) {
+  if (is.null(templates)) return(NULL)
+  
   stopifnot(
-    is_character_vector(templates)
+    is.character(templates)
   )
-
   setNames(vapply(templates, render_whiskers_string, character(1), dict = dict), names(templates))
 }
 
 render_whiskers_string <- function(template, dict = character(0)) {
   stopifnot(
-    is_character_single(template),
-    is_fully_named_list(as.list(dict))
+    is.character(template),
+    length(template) == 1,
+    isFALSE(is.null(as.list(dict))),
+    isFALSE(any(duplicated(names(as.list(dict)))))
   )
 
   if (length(dict) == 0) return(template)
@@ -292,37 +295,84 @@ render_whiskers_string <- function(template, dict = character(0)) {
 ```
 
 
+The two functions can be used as follows:
+
 ```{r}
-titles_template <- list(
-  main_title = "{{main_title}} -- {{population title}}", 
-  subtitles = c(
-    "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}",
-    "{{subtitles}}"
+render_whiskers(
+  c(
+    "{{main_title_lopo}} -- {{population_title}}",
+    "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}"
+  ),
+  dict = c(
+    main_title_lopo = "Adverse Events", population_title = "All Patients",
+    protocol = "abc123", snapshot = "abc123.ib", "snapshot-date" = "12 March 2020", "cutoff-date" = "1 February 2020"
   )
 )
-titles_template
+```
 
-dict <- list(
-  
-)
+## Population Titles
 
+Lets make a simple population title creation function
+
+```{r}
+population_title <- function(filter_labels) {
+  case_when(
+    "ALL" %in% filter_labels ~ "All Patients",
+    "SE" %in% filter_labels ~ "Safety Evaluable Population",
+    "IT" %in% filter_labels ~ "Intention To Treat Population",
+    TRUE ~ "<Population Label not known>"
+  )
+}
 ```
 
 ## Outputs
 
-We now create functions that create the final outputs
+We now create functions that create the final outputs:
 
 ```{r}
-lopo %>% 
-  filter(tlgfunc == "aet02_1")
+study_dict <- c(
+  protocol = "abc123", snapshot = "abc123.ib", "snapshot-date" = "12 March 2020", "cutoff-date" = "1 February 2020",
+  "medra-version" = "MEDRA v1"
+)
 
+lopo_sel <- lopo %>% 
+  filter(tlgfunc == "aet02_1") 
+
+null_as_empty_string <- function(x) {
+  lapply(x, function(xi) if (is.null(xi)) "" else xi)
+}
+
+
+library(purrr)
+tbls <- setNames(lapply(transpose(lopo_sel), function(lopoi) {
+  
+  db <- adam_study_data %>%
+    dm_filter_with_labels(lopoi$filters) %>%
+    (std_filter(lopoi$tlgfunc))() %>%
+    (std_mutate(lopoi$tlgfunc))()
+
+  tmpl <- null_as_empty_string(list(
+    title = c(
+      "{{main_title_lopo}} -- {{population_title}}",
+      "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}"
+    ),
+    subtitles = lopoi$subtitles,
+    main_footer = lopoi$footnotes
+  ))
+
+  dict_i <- c(
+    study_dict,
+    main_title_lopo = lopoi$main_title,
+    population_title = population_title(lopoi$filters)
+  )
+    
+  do.call(lopoi$tlgfunc, c(list(adam_db = db, deco = lapply(tmpl, render_whiskers, dict = dict_i))))
+  
+}), lopo_sel$filename)
+
+names(tbls)
+tbls[[1]] %>% head()
 ```
 
-
-
-
-
-
 ## Summary
-
 
