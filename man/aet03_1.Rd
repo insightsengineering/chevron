@@ -8,8 +8,8 @@
 aet03_1(
   adam_db,
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
+  lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
@@ -30,9 +30,9 @@ aet03_1_lyt(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{prune_0}{(\code{logical}) remove 0 count rows}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 

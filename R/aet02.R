@@ -112,7 +112,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
   basic_table_deco(deco)  %>%
@@ -375,8 +375,6 @@ aet02_3 <- function(adam_db,
                       armvar = "ACTARM",
                       lbl_overall = NULL
                     )) {
-
-  #dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_3_lyt(
     armvar = armvar,

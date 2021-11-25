@@ -14,8 +14,8 @@ dst01_3(
   prune_0 = TRUE,
   status_treatment = "EOTSTT",
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
-    "DCSREAS")
+  .study = list(armvar = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
+    "All patients")
 )
 
 dst01_3_lyt(

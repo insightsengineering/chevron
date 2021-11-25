@@ -19,13 +19,13 @@ dst01_2(
 
 dst01_2_lyt(
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status = .study$status,
   disc_reason_var = .study$disc_reason_var,
   deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
   ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
+  lbl_overall = .study$lbl_overall,
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT",
     disc_reason_var = "DCSREAS")
 )

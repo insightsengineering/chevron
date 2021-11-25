@@ -35,8 +35,8 @@
 #'
 aet03_1 <- function(adam_db,
                     armvar = .study$armvar,
-                    lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
+                    lbl_overall = .study$lbl_overall,
                     deco = std_deco("AET03"),
                     .study = list(
                       armvar = "ACTARM",
@@ -45,6 +45,7 @@ aet03_1 <- function(adam_db,
 
 
   # specific to AET03: avoid error if some severity levels are not present
+  # TODO: rename all gradation to grade or grading (depending on context)
   gradation_severity <- levels(adam_db$adae[["AESEV"]])
 
   lyt <- aet03_1_lyt(
@@ -64,7 +65,6 @@ aet03_1 <- function(adam_db,
   )
 
   if (prune_0) tbl <- tbl %>% trim_rows()
-
 
   tbl_sorted <- tbl %>%
     # trim_rows() %>%
@@ -136,13 +136,11 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       label_pos = "topleft",
       split_label = lbl_AEBODSYS
     ) %>%
-
     summarize_occurrences_by_grade(
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = gradation
       )
     ) %>%
-
     split_rows_by(
       "AEDECOD",
       child_labels = "visible",
@@ -152,7 +150,6 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       label_pos = "topleft",
       split_label = lbl_AEDECOD
     ) %>%
-
     summarize_occurrences_by_grade(
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = gradation)

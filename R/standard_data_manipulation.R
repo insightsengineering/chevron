@@ -1,5 +1,6 @@
 
 
+# TODO: standardize the names
 std_data_manipulation_map <- tibble::tribble(
   ~id,           ~filter_fun,                      ~mutate_fun,           ~req_data,
   "aet02_1",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
@@ -92,6 +93,7 @@ mutate_adsl_gp <- function(x, reason = .study$disc_reason_var, .study = list(dis
 
   assert_that(is(x, "dm"))
 
+  # TODO: revisit
   sym_reason <- sym(reason) # nolint
 
   x %>%

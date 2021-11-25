@@ -95,7 +95,7 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("DMT01"),
                         .study = list(
                           armvar = "ARM",
-                          summary_demo =  c("AAGE",
+                          summary_demo =  c("AAGE",  # TODO: revisit
                                             "AGEGR1",
                                             "SEX",
                                             "ETHNIC",

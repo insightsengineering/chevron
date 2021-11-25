@@ -20,7 +20,7 @@ aet02_1_lyt(
   lbl_AEBODSYS = "Body System or Organ Class",
   lbl_AEDECOD = "Dictionary-Derived Term",
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{

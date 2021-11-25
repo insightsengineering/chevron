@@ -298,7 +298,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #'   get_db_data(db, "airports")
 #' }
 #'
-get_db_data <- function(db, ...) {
+get_db_data <- function(db, ...) { # TODO: revisit
   datasets <- c(...)
 
   if (length(datasets) == 0) return(list())
@@ -377,32 +377,6 @@ set_decoration <- function(x, deco) {
   x
 }
 
-
-
-#' Get the label of an adam data set variable
-#'
-#' @param x (`character`) the name of a data set.
-#' @param var (`character`) the name of the variable.
-#'
-#' @import rgdsr
-#'
-#' @return the label associated with `var` for the desired adam dataset.
-#' @export
-#'
-#' @examples
-#' get_gdsr_lab("adlb", "AVAL")
-get_gdsr_lab <- function(x, var) {
-
-  assert_that(is.character(var))
-  assert_that(is.character(x))
-
-  ds <- toupper(x)
-
-  lab_df <- adamv_var_info(var)
-
-  lab_df[lab_df$dataset == ds, "label"]
-
-}
 
 
 

@@ -59,10 +59,10 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 dst01_1 <- function(adam_db,
                     armvar = .study$armvar,
-                    lbl_overall = .study$lbl_overall,
                     status_var = "EOSSTT",
                     disc_reason_var = .study$disc_reason_var,
                     prune_0 = TRUE,
+                    lbl_overall = .study$lbl_overall,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
@@ -73,6 +73,8 @@ dst01_1 <- function(adam_db,
   check_dst01_1_args(reason = disc_reason_var,
                      status = status_var)
 
+
+  # TODO: review later
   status_lvl <- levels(adam_db$adsl[[status_var]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
@@ -316,13 +318,13 @@ dst01_2 <- function(adam_db,
 #' status = "EOP01STT",
 #' disc_reason_var = "DCP01RS")
 dst01_2_lyt <- function(armvar = .study$armvar,
-                        lbl_overall = .study$lbl_overall,
                         status = .study$status,
                         disc_reason_var = .study$disc_reason_var,
                         deco = std_deco("DST01"),
                         completed_lbl = "COMPLETED",
                         ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
+                        lbl_overall = .study$lbl_overall,
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -335,16 +337,14 @@ dst01_2_lyt <- function(armvar = .study$armvar,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall)
 
-  layout_table_completed <-
-  layout_table %>%
+  layout_table_completed <- layout_table %>%
     count_values(
       vars = status,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study")
     )
 
-  layout_table_other <-
-  layout_table %>%
+  layout_table_other <- layout_table %>%
     count_values(
       vars = status,
       values = ongoing_lbl,
@@ -366,7 +366,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
       denom = "N_col"
     )
 
-  list(layout_table_completed, layout_table_other)
+  list(completed = layout_table_completed, other = layout_table_other)
 }
 
 #' DST01 Table 3 (Supplementary) Patient Disposition Table 3
@@ -425,15 +425,15 @@ dst01_3 <- function(adam_db,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients",
-                      disc_reason_var = "DCSREAS"
-
+                      disc_reason_var = "DCSREAS",
+                      lbl_overall = "All patients"
                     )) {
 
   check_dst01_1_args(reason = disc_reason_var,
                      status = status,
                      status_treatment = status_treatment)
 
+  # TODO: revisit
   status_lvl <- levels(adam_db$adsl[[status_treatment]])
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
@@ -454,6 +454,7 @@ dst01_3 <- function(adam_db,
     df = adam_db$adsl
   )
 
+  # TODO: revisit later
   # re-extract the labels associated with status in case they changed.
   status_lvl <- levels(adam_db$adsl[[status]])
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]

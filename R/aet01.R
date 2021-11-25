@@ -74,7 +74,7 @@
 #'
 #' aet01_1(adsl, adae)
 #'
-aet01_1 <- function(
+aet01_1 <- function( # TODO: revisit
   adsl, adae,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,

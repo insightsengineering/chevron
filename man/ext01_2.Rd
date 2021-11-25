@@ -20,7 +20,7 @@ ext01_2_lyt(
   summaryvars_lbls = c("Summary", "Categories"),
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{

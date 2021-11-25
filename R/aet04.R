@@ -60,6 +60,8 @@ aet04_1 <- function(adam_db,
   lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adam_db$adae, "AEDECOD")
 
+  # TODO: check that there are not grades in the data that are not defined in the `group_grades` map
+
   lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,

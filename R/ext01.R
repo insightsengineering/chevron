@@ -180,7 +180,7 @@ ext01_2_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("EXT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
   basic_table_deco(deco)  %>%

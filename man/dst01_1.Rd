@@ -8,10 +8,10 @@
 dst01_1(
   adam_db,
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status_var = "EOSSTT",
   disc_reason_var = .study$disc_reason_var,
   prune_0 = TRUE,
+  lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
     "DCSREAS")
@@ -35,8 +35,6 @@ dst01_1_lyt(
 
 \item{armvar}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
@@ -46,6 +44,8 @@ also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be subst
 period.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
