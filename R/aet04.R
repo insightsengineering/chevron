@@ -49,13 +49,9 @@ aet04_1 <- function(adam_db,
                     .study = list(
                       armvar = "ACTARM",
                       lbl_overall = NULL,
-                      group_grades = list(
-                        "- Any Grade -" = c("1", "2", "3", "4", "5"),
-                        "Grade 1-2" = c("1", "2"),
-                        "Grade 3-4" = c("3", "4"),
-                        "Grade 5" = c("5")
-                      )
-                    )) {
+                      group_grades = list("- Any Grade -" = c("1", "2", "3", "4", "5"), "Grade 1-2" = c("1", "2"), "Grade 3-4" = c("3", "4"), "Grade 5" = c("5"))
+                    )
+                    ) {
 
   lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_AEDECOD <-  var_labels_for(adam_db$adae, "AEDECOD")
@@ -110,20 +106,19 @@ aet04_1 <- function(adam_db,
 #' @examples
 #' aet04_1_lyt(armvar = "ACTARM")
 aet04_1_lyt <- function(armvar = .study$armvar,
-                        lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",
                         lbl_AEDECOD = "AEDECOD",
                         group_grades = .study$group_grades,
+                        lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET04"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = "",
+                          lbl_overall = NULL,
                           group_grades = list(
                             "- Any Grade -" = c("1", "2", "3", "4", "5"),
                             "Grade 1-2" = c("1", "2"),
                             "Grade 3-4" = c("3", "4"),
-                            "Grade 5" = c("5")
-                          )
+                            "Grade 5" = c("5"))
                         )
                         ) {
 

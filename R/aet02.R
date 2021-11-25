@@ -102,7 +102,7 @@ aet02_1 <- function(adam_db,
 #' @examples
 #' aet02_1_lyt(
 #'  armvar = "ACTARM",
-#'  lbl_overall = "",
+#'  lbl_overall = NULL,
 #'  deco = std_deco("AET02")
 #' )
 aet02_1_lyt <- function(armvar = .study$armvar,
@@ -261,7 +261,7 @@ aet02_2 <- function(adam_db,
 #' @examples
 #' aet02_2_lyt(
 #'  armvar = "ACTARM",
-#'  lbl_overall = "",
+#'  lbl_overall = NULL,
 #'  lbl_AEBODSYS = "Body System or Organ Class",
 #'  lbl_AEHLT = "High Level Term",
 #'  lbl_AEDECOD = "Dictionary-Derived Term",
@@ -275,7 +275,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
   basic_table_deco(deco)  %>%
@@ -412,7 +412,7 @@ aet02_3 <- function(adam_db,
 #' @examples
 #' aet02_3_lyt(
 #'  armvar = "ACTARM",
-#'  lbl_overall = "",
+#'  lbl_overall = NULL,
 #'  lbl_AEDECOD = "Dictionary-Derived Term",
 #'  deco = std_deco("AET02")
 #' )
@@ -422,7 +422,7 @@ aet02_3_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
   basic_table_deco(deco) %>%

@@ -46,14 +46,14 @@ aet03_1 <- function(adam_db,
 
   # specific to AET03: avoid error if some severity levels are not present
   # TODO: rename all gradation to grade or grading (depending on context)
-  gradation_severity <- levels(adam_db$adae[["AESEV"]])
+  severity_grade <- levels(adam_db$adae[["AESEV"]])
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_AEBODSYS = var_labels_for(adam_db$adae, "AEBODSYS"),
     lbl_AEDECOD = var_labels_for(adam_db$adae, "AEDECOD"),
-    gradation = gradation_severity,
+    severity_grade = severity_grade,
     deco = deco
   )
 
@@ -92,14 +92,14 @@ aet03_1 <- function(adam_db,
 #'
 #' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
-#' @param gradation (`vector of strings`) describing the severity levels present in the dataset.
+#' @param severity_grade (`vector of strings`) describing the severity levels present in the data set.
 #'
 #' @return
 #' @export
 #'
 #' @examples
 #' aet03_1_lyt(armvar = "ACTARM",
-#'  lbl_overall = "",
+#'  lbl_overall = NULL,
 #'  lbl_AEBODSYS = "Body System or Organ Class",
 #'  lbl_AESEV = "Severity/Intensity",
 #'  lbl_AEDECOD = "Dictionary-Derived Term",
@@ -108,13 +108,13 @@ aet03_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "",
                         lbl_AEDECOD = "",
-                        gradation = .study$gradation,
+                        severity_grade = .study$severity_grade,
 
                         deco = std_deco("AET03"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = "",
-                          gradation = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
+                          lbl_overall = NULL,
+                          severity_grade = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
                         )) {
 
   basic_table_deco(deco) %>%
@@ -123,7 +123,7 @@ aet03_1_lyt <- function(armvar = .study$armvar,
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
-      grade_groups = list("- Any Intensity -" = gradation
+      grade_groups = list("- Any Intensity -" = severity_grade
       )
     ) %>%
 
@@ -138,7 +138,7 @@ aet03_1_lyt <- function(armvar = .study$armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
-      grade_groups = list("- Any Intensity -" = gradation
+      grade_groups = list("- Any Intensity -" = severity_grade
       )
     ) %>%
     split_rows_by(
@@ -152,7 +152,7 @@ aet03_1_lyt <- function(armvar = .study$armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
-      grade_groups = list("- Any Intensity -" = gradation)
+      grade_groups = list("- Any Intensity -" = severity_grade)
     )
 
 }

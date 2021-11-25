@@ -94,7 +94,7 @@ aet02_1(db_m) \%>\% head()
 
 aet02_1_lyt(
  armvar = "ACTARM",
- lbl_overall = "",
+ lbl_overall = NULL,
  deco = std_deco("AET02")
 )
 }

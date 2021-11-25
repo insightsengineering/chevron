@@ -102,7 +102,7 @@ db <- db \%>\%
   (std_mutate("dst01_2"))()
 
 dst01_2(db)
-dst01_2(db, lbl_overall = "")
+dst01_2(db, lbl_overall = NULL)
 
 dst01_2_lyt(armvar = "ACTARM",
 status = "EOP01STT",

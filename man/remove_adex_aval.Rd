@@ -12,11 +12,15 @@ remove_adex_aval(
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{show_stats}{(\verb{vector of character}) providing the name of the parameters whose statistical summary should be
 presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{show_stats = ""}.}
 
 \item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
 presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
+
+\item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
 Useful if some continuous \code{AVAL} data, or categorical \code{AVALCAT1} data corresponding to specific \code{PARAM} should not be

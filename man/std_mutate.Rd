@@ -6,6 +6,9 @@
 \usage{
 std_mutate(idt)
 }
+\arguments{
+\item{idt}{(\code{character}) the id of the table.}
+}
 \description{
 Retrieve Standard Mutation for Templates
 }

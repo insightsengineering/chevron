@@ -19,7 +19,7 @@ aet02_3_lyt(
   lbl_overall = .study$lbl_overall,
   lbl_AEDECOD = "AEDECOD",
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{
@@ -74,7 +74,7 @@ aet02_3(db, lbl_overall = "All Patients") \%>\% head()
 
 aet02_3_lyt(
  armvar = "ACTARM",
- lbl_overall = "",
+ lbl_overall = NULL,
  lbl_AEDECOD = "Dictionary-Derived Term",
  deco = std_deco("AET02")
 )

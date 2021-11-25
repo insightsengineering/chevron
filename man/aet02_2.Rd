@@ -21,7 +21,7 @@ aet02_2_lyt(
   lbl_AEHLT = "AEHLT",
   lbl_AEDECOD = "AEDECOD",
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{
@@ -91,7 +91,7 @@ aet02_2(db_m) \%>\% head()
 
 aet02_2_lyt(
  armvar = "ACTARM",
- lbl_overall = "",
+ lbl_overall = NULL,
  lbl_AEBODSYS = "Body System or Organ Class",
  lbl_AEHLT = "High Level Term",
  lbl_AEDECOD = "Dictionary-Derived Term",

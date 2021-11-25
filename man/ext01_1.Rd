@@ -22,7 +22,7 @@ ext01_1_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL, analysis_var = "AVAL",
-    lbl_analysis_var = "Analysis Value", )
+    lbl_analysis_var = "Analysis Value")
 )
 }
 \arguments{

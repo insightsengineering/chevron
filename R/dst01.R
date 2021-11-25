@@ -121,7 +121,7 @@ dst01_1 <- function(adam_db,
 #'
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param reason (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
 #'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
@@ -233,7 +233,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'   (std_mutate("dst01_2"))()
 #'
 #' dst01_2(db)
-#' dst01_2(db, lbl_overall = "")
+#' dst01_2(db, lbl_overall = NULL)
 #'
 dst01_2 <- function(adam_db,
                     armvar = .study$armvar,

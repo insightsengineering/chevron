@@ -39,7 +39,7 @@ dst01_1_lyt(
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{disc_reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
+\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
@@ -62,10 +62,6 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
-
-\item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
-also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
-period.}
 }
 \value{
 

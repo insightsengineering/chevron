@@ -82,7 +82,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
                           armvar = "ACTARM",
                           lbl_overall = NULL,
                           analysis_var = "AVAL",
-                          lbl_analysis_var = "Analysis Value",
+                          lbl_analysis_var = "Analysis Value"
                         )) {
 
   basic_table_deco(deco) %>%

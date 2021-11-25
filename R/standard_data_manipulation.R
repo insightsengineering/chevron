@@ -43,6 +43,8 @@ std_filter <- function(idt) {
 
 #' Retrieve Standard Mutation for Templates
 #'
+#' @param idt (`character`) the id of the table.
+#'
 #' @export
 #'
 #' @examples
@@ -65,6 +67,13 @@ std_mutate <- function(idt) {
 
 
 ## manipulation functions ----
+
+#' Filter `adae` for `ANL01FL`
+#'
+#' @param x (`dm`)
+#'
+#' @return
+#'
 filter_adae_anl01fl <- function(x) {
   assert_that(is(x, "dm"))
 
@@ -73,6 +82,12 @@ filter_adae_anl01fl <- function(x) {
     dm_apply_filters()
 }
 
+#' Filter `adlb` for `ANL01FL`
+#'
+#' @param x (`dm`)
+#'
+#' @return
+#'
 filter_adlb_anl01fl <- function(x) {
   assert_that(is(x, "dm"))
 
@@ -81,6 +96,12 @@ filter_adlb_anl01fl <- function(x) {
     dm_apply_filters()
 }
 
+#' Filter `adex` for `PARCAT1`
+#'
+#' @param x (`dm`)
+#'
+#' @return
+#'
 filter_adex_drug <- function(x) {
   assert_that(is(x, "dm"))
 
@@ -89,7 +110,19 @@ filter_adex_drug <- function(x) {
     dm_apply_filters()
 }
 
-mutate_adsl_gp <- function(x, reason = .study$disc_reason_var, .study = list(disc_reason_var = "DCSREAS")) {
+#' Categorize Reason for Discontinuation from Study.
+#'
+#' @inheritParams gen_args
+#'
+#' @param x (`dm`) object.
+#' @param reason (`character`) the variable name containg the reason for discontinuation.
+#'
+#' @return
+#'
+mutate_adsl_gp <- function(x,
+                           reason = .study$disc_reason_var,
+                           .study = list(disc_reason_var = "DCSREAS")
+                           ) {
 
   assert_that(is(x, "dm"))
 
@@ -107,6 +140,14 @@ mutate_adsl_gp <- function(x, reason = .study$disc_reason_var, .study = list(dis
 
 }
 
+#' Reorder `PARAM` and `PARAMCD` levels
+#'
+#' @inheritParams gen_args
+#'
+#' @param paramcd_order (`vector of character`) providing the `PARAMCD` values in the desired order.
+#'
+#' @return a `dm` object
+#'
 reorder_adex_params <- function(adam_db,
                                 paramcd_order = .study$paramcd_order,
                                 .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
@@ -127,6 +168,8 @@ reorder_adex_params <- function(adam_db,
 #'
 #' Useful if some continuous `AVAL` data, or categorical `AVALCAT1` data corresponding to specific `PARAM` should not be
 #' displayed.
+#'
+#' @inheritParams gen_args
 #'
 #' @param show_stats (`vector of character`) providing the name of the parameters whose statistical summary should be
 #'   presented. To analyze all, provide `show_stats = "ALL"` (Default), to analyze none, provide `show_stats = ""`.

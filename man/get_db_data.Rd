@@ -7,7 +7,9 @@
 get_db_data(db, ...)
 }
 \arguments{
-\item{db}{a named list or a \code{dm} object}
+\item{db}{a named list or a \code{dm} object.}
+
+\item{...}{not used.}
 }
 \value{
 named list of datasets

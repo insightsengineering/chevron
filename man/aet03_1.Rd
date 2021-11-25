@@ -19,10 +19,10 @@ aet03_1_lyt(
   lbl_overall = .study$lbl_overall,
   lbl_AEBODSYS = "",
   lbl_AEDECOD = "",
-  gradation = .study$gradation,
+  severity_grade = .study$severity_grade,
   deco = std_deco("AET03"),
-  .study = list(armvar = "ACTARM", lbl_overall = "", gradation = c("MILD", "MODERATE",
-    "SEVERE", "LIFE THREATENING"))
+  .study = list(armvar = "ACTARM", lbl_overall = NULL, severity_grade = c("MILD",
+    "MODERATE", "SEVERE", "LIFE THREATENING"))
 )
 }
 \arguments{
@@ -42,7 +42,7 @@ aet03_1_lyt(
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
 
-\item{gradation}{(\verb{vector of strings}) describing the severity levels present in the dataset.}
+\item{severity_grade}{(\verb{vector of strings}) describing the severity levels present in the data set.}
 }
 \value{
 
@@ -81,7 +81,7 @@ aet03_1(db)
 aet03_1(db, lbl_overall = "All Patients")
 
 aet03_1_lyt(armvar = "ACTARM",
- lbl_overall = "",
+ lbl_overall = NULL,
  lbl_AEBODSYS = "Body System or Organ Class",
  lbl_AESEV = "Severity/Intensity",
  lbl_AEDECOD = "Dictionary-Derived Term",

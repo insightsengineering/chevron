@@ -282,7 +282,8 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 
 #' Get Data from a DB
 #'
-#' @param db a named list or a `dm` object
+#' @param db a named list or a `dm` object.
+#' @param ... not used.
 #'
 #' @return named list of datasets
 #'
