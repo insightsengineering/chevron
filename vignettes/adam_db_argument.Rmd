@@ -20,6 +20,13 @@ knitr::opts_chunk$set(
 
 ## Introduction 
 
+We have decided to use the `dm` package in `chevron` to model the data relations of the CDISC ADaM datasets. In this
+vignette we introduce how we intend to use
+
+
+The `dm` R package models relational dataset as found in relational databases. The CDISC standard is a relational data
+standard and w
+
 
 ```{r}
 library(chevron)
