@@ -21,6 +21,7 @@ Imports:
     assertthat,
     dplyr,
     magrittr,
+    rgdsr,
     rlang,
     rtables,
     tidyr,

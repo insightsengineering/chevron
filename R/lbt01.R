@@ -47,16 +47,13 @@ lbt01_1 <- function(adam_db,
                       armvar = "ACTARM"
                     )) {
 
-  lbl_AVISIT <- var_labels_for(adam_db$adlb, visitvar)
-  lbl_PARAM <- var_labels_for(adam_db$adlb, "PARAM")
-
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
-    lbl_AVISIT = lbl_AVISIT,
-    lbl_PARAM = lbl_PARAM,
+    lbl_AVISIT = var_labels_for(adam_db$adlb, visitvar),
+    lbl_PARAM = var_labels_for(adam_db$adlb, "PARAM"),
     deco = deco
   )
 
@@ -87,7 +84,7 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = c("AVAL", "CHG"),
                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                         visitvar = .study$visitvar,
-                        lbl_AVISIT = "Analysis Visit",
+                        lbl_AVISIT = "Visit",
                         lbl_PARAM = "Parameter",
                         deco = std_deco("LBT01"),
                         .study = list(
@@ -97,7 +94,7 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
 ) {
 
 
-  # TODE solve the problem of the overall column
+  # TODO solve the problem of the overall column
   # remove change from baseline in BASELINE
 
   basic_table_deco(deco)  %>%

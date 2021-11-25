@@ -1,6 +1,7 @@
 
 #' General Argument Name Convention
 #'
+#' @param adam_db (`dm`) object containing the adam Datasets.
 #' @param armvar (`character`) variable used for column splitting
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content
 #' @param lbl_overall (`character`) label used for overall column, if set to `NULL` the overall column is omitted
@@ -36,7 +37,7 @@
 #'   - armvar
 #'
 gen_args <- function(
-  armvar, lbl_overall, prune_0, deco, .study,
+  adam_db, armvar, lbl_overall, prune_0, deco, .study,
   ad_bl, adsl, adeg, adae, adcm, admh, aag, advs, adlb, adex, adsub, adrs, adtte,
   adhy, adsaftte, addv, adcssrs, adqlqc, acg, adic, group
 ) {

@@ -28,6 +28,8 @@ dmt01_1_lyt(
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.}
@@ -77,7 +79,7 @@ db <- db \%>\%
 
 
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
-dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
+dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
 dmt01_1(db,
         summaryvars = c("AGE", "RACE", "SEX"),
         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))

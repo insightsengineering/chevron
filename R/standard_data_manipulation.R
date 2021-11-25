@@ -13,7 +13,7 @@ std_data_manipulation_map <- tibble::tribble(
   "dst01_3",     NA,                               "mutate_adsl_gp",      c("adsl"),
   "ext01_1",     "filter_adex_drug",               "reorder_adex_params", c("adsl", "adex"),
   "ext01_2",     "filter_adex_drug",               "remove_adex_aval",    c("adsl", "adex"),
-  "lbt01_1",     NA,                               NA,                    c("adsl", "adlb")
+  "lbt01_1",     "filter_adlb_anl01fl",            NA,                    c("adsl", "adlb")
 )
 
 
@@ -72,6 +72,14 @@ filter_adae_anl01fl <- function(x) {
     dm_apply_filters()
 }
 
+filter_adlb_anl01fl <- function(x) {
+  assert_that(is(x, "dm"))
+
+  x %>%
+    dm_filter(adlb, bol_YN(ANL01FL)) %>%
+    dm_apply_filters()
+}
+
 filter_adex_drug <- function(x) {
   assert_that(is(x, "dm"))
 
@@ -80,15 +88,11 @@ filter_adex_drug <- function(x) {
     dm_apply_filters()
 }
 
-
-
-
-
 mutate_adsl_gp <- function(x, reason = .study$disc_reason_var, .study = list(disc_reason_var = "DCSREAS")) {
 
   assert_that(is(x, "dm"))
 
-  sym_reason <- sym(reason)
+  sym_reason <- sym(reason) # nolint
 
   x %>%
     dm_zoom_to("adsl") %>%
@@ -112,7 +116,7 @@ reorder_adex_params <- function(adam_db,
 
   adam_db %>%
     dm_zoom_to(adex) %>%
-    mutate(PARAM = param_vars$PARAM,PARAMCD = param_vars$PARAMCD) %>%
+    mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
     dm_update_zoomed()
 
 }
@@ -151,6 +155,3 @@ remove_adex_aval <- function(adam_db,
 
   adam_db
 }
-
-
-

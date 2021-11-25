@@ -11,7 +11,7 @@ aet02_3(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 
 aet02_3_lyt(
@@ -23,6 +23,8 @@ aet02_3_lyt(
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}

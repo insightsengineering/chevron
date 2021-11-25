@@ -10,9 +10,11 @@ aet04_1(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
-  standard_gradation = TRUE,
+  group_grades = .study$group_grades,
   deco = std_deco("AET04"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL, group_grades = list(`- Any Grade
+    -` = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3",
+    "4"), `Grade 5` = c("5")))
 )
 
 aet04_1_lyt(
@@ -20,22 +22,23 @@ aet04_1_lyt(
   lbl_overall = .study$lbl_overall,
   lbl_AEBODSYS = "AEBODSYS",
   lbl_AEDECOD = "AEDECOD",
-  gr_grp = .study$gr_grp,
+  group_grades = .study$group_grades,
   deco = std_deco("AET04"),
-  .study = list(armvar = "ACTARM", lbl_overall = "", gr_grp = list(`- Any Grade -` =
-    c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", "4"),
-    `Grade 5` = c("5")))
+  .study = list(armvar = "ACTARM", lbl_overall = "", group_grades = list(`- Any Grade
+    -` = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3",
+    "4"), `Grade 5` = c("5")))
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{standard_gradation}{(\code{logical}) Whether the standard toxicity groups should be used (\verb{Grade 1-2}, \verb{Grade 3-4},
-\verb{Grade 5}) or the alternative ones (\verb{Grade 1-2}, \verb{Grade 3-5}).}
+\item{group_grades}{(\code{list}) putting in correspondence severity levels and labels.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -44,8 +47,6 @@ aet04_1_lyt(
 \item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
-
-\item{gr_grp}{(\code{list}) putting in correspondence severity levels and labels.}
 }
 \value{
 
@@ -82,6 +83,13 @@ db <- db \%>\%
 aet04_1(db)
 aet04_1(db, prune_0 = FALSE)
 aet04_1(db, lbl_overall = "All Patients")
+
+aet04_1(db, group_grades = list(
+  "- Any Grade -" = c("1", "2", "3", "4", "5"),
+  "Grade 1-2" = c("1", "2"),
+  "Grade 3-5" = c("3", "4", "5")
+))
+
 
 aet04_1_lyt(armvar = "ACTARM")
 }

@@ -40,13 +40,9 @@ aet03_1 <- function(adam_db,
                     deco = std_deco("AET03"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
-
-  # specific to AET03: enable top-left table labeling
-  lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
-  lbl_AEDECOD <-  var_labels_for(adam_db$adae, "AEDECOD")
 
   # specific to AET03: avoid error if some severity levels are not present
   gradation_severity <- levels(adam_db$adae[["AESEV"]])
@@ -54,8 +50,8 @@ aet03_1 <- function(adam_db,
   lyt <- aet03_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEBODSYS = lbl_AEBODSYS,
-    lbl_AEDECOD = lbl_AEDECOD,
+    lbl_AEBODSYS = var_labels_for(adam_db$adae, "AEBODSYS"),
+    lbl_AEDECOD = var_labels_for(adam_db$adae, "AEDECOD"),
     gradation = gradation_severity,
     deco = deco
   )
@@ -121,13 +117,10 @@ aet03_1_lyt <- function(armvar = .study$armvar,
                           gradation = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
                         )) {
 
-  layout_table  <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = gradation

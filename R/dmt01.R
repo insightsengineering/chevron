@@ -34,7 +34,7 @@
 #'
 #'
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
-#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
+#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
 #' dmt01_1(db,
 #'         summaryvars = c("AGE", "RACE", "SEX"),
 #'         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
@@ -110,7 +110,7 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = "All Patients"
                         )) {
 
-  layout_table <-  basic_table_deco(deco) %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%

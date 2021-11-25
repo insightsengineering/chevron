@@ -10,7 +10,7 @@ dst01_2(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status_var = "EOSSTT",
-  reason_var = .study$disc_reason_var,
+  disc_reason_var = .study$disc_reason_var,
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
@@ -21,16 +21,18 @@ dst01_2_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = .study$status,
-  reason = .study$reason,
+  disc_reason_var = .study$disc_reason_var,
   deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
   ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
-  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
-    = "DCSREAS")
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT",
+    disc_reason_var = "DCSREAS")
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -39,9 +41,9 @@ dst01_2_lyt(
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
+\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
-period. Usually stored as \code{disc_reason_var} in the \code{.study} object.}
+period.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
@@ -51,10 +53,6 @@ period. Usually stored as \code{disc_reason_var} in the \code{.study} object.}
 
 \item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
 name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
-
-\item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
-also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
-period.}
 
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}
@@ -83,6 +81,9 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 \item Include a total column by default.
 \item Sort withdrawal reasons by alphabetic order.
 }
+
+Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
+which allows the tables to be constructed and pruned separately before binding.
 }
 \section{Functions}{
 \itemize{
@@ -105,5 +106,5 @@ dst01_2(db, lbl_overall = "")
 
 dst01_2_lyt(armvar = "ACTARM",
 status = "EOP01STT",
-reason = "DCP01RS")
+disc_reason_var = "DCP01RS")
 }

@@ -21,13 +21,15 @@ lbt01_1_lyt(
   summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = .study$visitvar,
-  lbl_AVISIT = "",
-  lbl_PARAM = "",
+  lbl_AVISIT = "Visit",
+  lbl_PARAM = "Parameter",
   deco = std_deco("LBT01"),
   .study = list(armvar = "ACTARM", visitvar = "AVISIT")
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}

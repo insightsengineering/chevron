@@ -5,6 +5,7 @@
 \title{General Argument Name Convention}
 \usage{
 gen_args(
+  adam_db,
   armvar,
   lbl_overall,
   prune_0,
@@ -34,6 +35,8 @@ gen_args(
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}

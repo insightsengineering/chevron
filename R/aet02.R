@@ -55,7 +55,7 @@ aet02_1 <- function(adam_db,
                     deco = std_deco("AET02"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -205,7 +205,7 @@ aet02_2 <- function(adam_db,
                     deco = std_deco("AET02"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
 
@@ -373,19 +373,19 @@ aet02_3 <- function(adam_db,
                     deco = std_deco("AET02"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
-  dbsel <- get_db_data(adam_db, "adsl", "adae")
+  #dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEDECOD = var_labels_for(dbsel$adae, "AEDECOD"),
+    lbl_AEDECOD = var_labels_for(adam_db$adae, "AEDECOD"),
     deco = deco
   )
 
-  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 
   if (prune_0)
     tbl <- tbl %>% prune_table()

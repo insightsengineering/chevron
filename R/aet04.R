@@ -3,8 +3,7 @@
 #' The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
 #'
 #' @inheritParams gen_args
-#' @param standard_gradation (`logical`) Whether the standard toxicity groups should be used (`Grade 1-2`, `Grade 3-4`,
-#'   `Grade 5`) or the alternative ones (`Grade 1-2`, `Grade 3-5`).
+#' @param group_grades (`list`) putting in correspondence severity levels and labels.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -49,7 +48,7 @@ aet04_1 <- function(adam_db,
                     deco = std_deco("AET04"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = "",
+                      lbl_overall = NULL,
                       group_grades = list(
                         "- Any Grade -" = c("1", "2", "3", "4", "5"),
                         "Grade 1-2" = c("1", "2"),
@@ -101,7 +100,7 @@ aet04_1 <- function(adam_db,
 #'
 #' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
-#' @param gr_grp (`list`) putting in correspondence severity levels and labels.
+#' @param group_grades (`list`) putting in correspondence severity levels and labels.
 #'
 #' @return
 #' @export
@@ -126,7 +125,7 @@ aet04_1_lyt <- function(armvar = .study$armvar,
                         )
                         ) {
 
-  layout_table  <- basic_table_deco(deco)  %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%

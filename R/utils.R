@@ -355,7 +355,7 @@ syn_test_data <- function() {
 
   db_m <- db %>%
     dm_zoom_to(adae) %>%
-    mutate(ANL01FL = 'Y') %>%
+    mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
   db_m
@@ -376,3 +376,33 @@ set_decoration <- function(x, deco) {
   x@main_footer  <- deco$main_footer
   x
 }
+
+
+
+#' Get the label of an adam data set variable
+#'
+#' @param x (`character`) the name of a data set.
+#' @param var (`character`) the name of the variable.
+#'
+#' @import rgdsr
+#'
+#' @return the label associated with `var` for the desired adam dataset.
+#' @export
+#'
+#' @examples
+#' get_gdsr_lab("adlb", "AVAL")
+get_gdsr_lab <- function(x, var) {
+
+  assert_that(is.character(var))
+  assert_that(is.character(x))
+
+  ds <- toupper(x)
+
+  lab_df <- adamv_var_info(var)
+
+  lab_df[lab_df$dataset == ds, "label"]
+
+}
+
+
+

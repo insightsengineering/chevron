@@ -15,6 +15,7 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
+#'  * `ANL01FL` is not relevant subset
 #'
 #' @export
 #'
@@ -40,7 +41,7 @@ ext01_1 <- function(adam_db,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
   assert_colnames(adam_db$adex, summaryvars)
@@ -79,24 +80,20 @@ ext01_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("EXT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          overall_col = "",
+                          lbl_overall = NULL,
                           analysis_var = "AVAL",
-                          lbl_analysis_var = "Analysis Value"
+                          lbl_analysis_var = "Analysis Value",
                         )) {
 
-  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels
     ) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
-
 }
 
 
@@ -115,6 +112,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
+#'  * `ANL01FL` is not relevant subset
 #'
 #' @export
 #'
@@ -138,7 +136,7 @@ ext01_2 <- function(adam_db,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
   summaryvars <- c("AVAL", "AVALCAT1")
@@ -185,13 +183,10 @@ ext01_2_lyt <- function(armvar = .study$armvar,
                           lbl_overall = ""
                         )) {
 
-  layout_table <- basic_table_deco(deco)  %>%
+  basic_table_deco(deco)  %>%
     split_cols_by(var = armvar)  %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       split_fun = NULL

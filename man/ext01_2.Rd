@@ -11,7 +11,7 @@ ext01_2(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 
 ext01_2_lyt(
@@ -24,6 +24,8 @@ ext01_2_lyt(
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -55,6 +57,7 @@ patients in the corresponding analysis population given by \code{N}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sorted by alphabetic order of the \code{PARAM} value. Transform to factor and re-level for custom order.
+\item \code{ANL01FL} is not relevant subset
 }
 }
 \section{Functions}{

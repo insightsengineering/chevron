@@ -10,7 +10,7 @@ dst01_3(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   status = "EOSSTT",
-  reason = .study$disc_reason_var,
+  disc_reason_var = .study$disc_reason_var,
   prune_0 = TRUE,
   status_treatment = "EOTSTT",
   deco = std_deco("DST01"),
@@ -31,6 +31,8 @@ dst01_3_lyt(
 )
 }
 \arguments{
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -39,7 +41,7 @@ dst01_3_lyt(
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{reason}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
+\item{disc_reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
@@ -98,7 +100,7 @@ db <- db \%>\%
   (std_mutate("dst01_3"))()
 
 dst01_3(db)
-dst01_3(db, lbl_overall = "")
+dst01_3(db, lbl_overall = NULL)
 
 dst01_3_lyt(armvar = "ACTARM",
 status_treatment = "EOTxx01")
