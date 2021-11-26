@@ -352,11 +352,11 @@ tbls <- setNames(lapply(transpose(lopo_sel), function(lopoi) {
     (std_mutate(lopoi$tlgfunc))()
 
   tmpl <- null_as_empty_string(list(
-    title = c(
-      "{{main_title_lopo}} -- {{population_title}}",
-      "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}"
+    title = "{{main_title_lopo}} -- {{population_title}}",
+    subtitles = c(
+      "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}",
+      lopoi$subtitles
     ),
-    subtitles = lopoi$subtitles,
     main_footer = lopoi$footnotes
   ))
 
@@ -365,8 +365,11 @@ tbls <- setNames(lapply(transpose(lopo_sel), function(lopoi) {
     main_title_lopo = lopoi$main_title,
     population_title = population_title(lopoi$filters)
   )
-    
-  do.call(lopoi$tlgfunc, c(list(adam_db = db, deco = lapply(tmpl, render_whiskers, dict = dict_i))))
+  
+  deco <- lapply(tmpl, render_whiskers, dict = dict_i)
+  
+  ## Create Output
+  do.call(lopoi$tlgfunc, c(list(adam_db = db, deco = deco)))
   
 }), lopo_sel$filename)
 
