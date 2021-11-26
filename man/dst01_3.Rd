@@ -8,11 +8,11 @@
 dst01_3(
   adam_db,
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status = "EOSSTT",
   disc_reason_var = .study$disc_reason_var,
-  prune_0 = TRUE,
   status_treatment = "EOTSTT",
+  lbl_overall = .study$lbl_overall,
+  prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
     "All patients")
@@ -20,12 +20,12 @@ dst01_3(
 
 dst01_3_lyt(
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status_treatment = .study$status,
-  deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
   discontinued_lbl = "DISCONTINUED",
   ongoing_lbl = "ONGOING",
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status_treatment =
     "EOTSTT")
 )
@@ -35,8 +35,6 @@ dst01_3_lyt(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{status}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
@@ -45,11 +43,13 @@ period.}
 also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
 however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
