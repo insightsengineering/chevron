@@ -24,9 +24,9 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #'
 #'
 #' @details
@@ -121,9 +121,9 @@ dst01_1 <- function(adam_db,
 #'
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
 #'   Default `COMPLETED`.
 #' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
@@ -202,9 +202,9 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal.
@@ -297,9 +297,9 @@ dst01_2 <- function(adam_db,
 #'
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
 #'   Default `COMPLETED`.
 #' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
@@ -379,9 +379,9 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #' @param status_treatment (`character`) variable used to define the treatment status of the patients. Default is
 #'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
 #'   referring to the analysis period.

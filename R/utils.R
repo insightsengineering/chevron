@@ -377,7 +377,3 @@ set_decoration <- function(x, deco) {
   x@main_footer  <- deco$main_footer
   x
 }
-
-
-
-

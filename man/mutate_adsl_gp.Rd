@@ -13,7 +13,7 @@ mutate_adsl_gp(
 \arguments{
 \item{x}{(\code{dm}) object.}
 
-\item{reason}{(\code{character}) the variable name containg the reason for discontinuation.}
+\item{reason}{(\code{character}) the variable name containing the reason for discontinuation.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }

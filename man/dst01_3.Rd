@@ -39,9 +39,9 @@ dst01_3_lyt(
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{disc_reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
-also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
-period.}
+\item{disc_reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
+however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
+the analysis period.}
 
 \item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
 however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to

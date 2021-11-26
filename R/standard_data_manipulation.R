@@ -115,7 +115,7 @@ filter_adex_drug <- function(x) {
 #' @inheritParams gen_args
 #'
 #' @param x (`dm`) object.
-#' @param reason (`character`) the variable name containg the reason for discontinuation.
+#' @param reason (`character`) the variable name containing the reason for discontinuation.
 #'
 #' @return
 #'
