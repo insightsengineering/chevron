@@ -6,49 +6,50 @@
 \title{DST01 Table 3 (Supplementary) Patient Disposition Table 3}
 \usage{
 dst01_3(
-  adsl,
+  adam_db,
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status = "EOSSTT",
-  reason = "DCSREAS",
-  prune_0 = TRUE,
+  disc_reason_var = .study$disc_reason_var,
   status_treatment = "EOTSTT",
+  lbl_overall = .study$lbl_overall,
+  prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients")
+  .study = list(armvar = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
+    "All patients")
 )
 
 dst01_3_lyt(
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status_treatment = .study$status,
-  deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
   discontinued_lbl = "DISCONTINUED",
   ongoing_lbl = "ONGOING",
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status_treatment =
     "EOTSTT")
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
-
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{status}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{reason}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
-also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
-period.}
-
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{disc_reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
+however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
+the analysis period.}
 
 \item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
 however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -88,21 +89,18 @@ For patients who discontinued the study, the reason provided is categorized as "
 }}
 
 \examples{
-library(scda)
+library(dm)
 library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
 
-adsl <- sd$adsl \%>\%
- mutate(ANL01FL = 'Y',
-        EOTSTT = as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"),
-                        nrow(sd$adsl),
-                        replace = TRUE)))
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl)
 
-dst01_3(adsl)
-dst01_3(adsl, lbl_overall = "")
+db <- db \%>\%
+  (std_filter("dst01_3"))() \%>\%
+  (std_mutate("dst01_3"))()
 
-adsl <- adsl \%>\% filter(EOSSTT != "COMPLETED")
-dst01_3(adsl)
+dst01_3(db)
+dst01_3(db, lbl_overall = NULL)
 
 dst01_3_lyt(armvar = "ACTARM",
 status_treatment = "EOTxx01")

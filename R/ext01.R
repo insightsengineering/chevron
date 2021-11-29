@@ -15,26 +15,25 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
+#'  * `ANL01FL` is not relevant subset
 #'
 #' @export
 #'
 #' @examples
-#' library(scda)
+#'
+#' library(dm)
 #' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adex <- sd$adex %>%
-#'  mutate(ANL01FL = 'Y')
 #'
-#' ext01_1(adex, adsl)
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adex)
 #'
-#' adex2 <- adex %>%
-#'    relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+#' db <- db %>%
+#'   (std_filter("ext01_1"))() %>%
+#'   (std_mutate("ext01_1"))()
 #'
-#' ext01_1(adex2, adsl)
-#' ext01_1(adex2, adsl, lbl_overall = "All Patients")
-ext01_1 <- function(adex,
-                    adsl,
+#' ext01_1(db)
+#'
+ext01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = "AVAL",
                     lbl_overall = .study$lbl_overall,
@@ -42,30 +41,27 @@ ext01_1 <- function(adex,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
-    # provide a clearer error message in the case of missing variable
-  assert_colnames(adex, summaryvars)
+  assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
-    summaryvars_lbls = var_labels_for(adex, summaryvars),
+    summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
     lbl_overall = lbl_overall,
     deco = deco
   )
 
-  tbl <- build_table(lyt, adex, adsl)
+  tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
   if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl
-
 }
 
-
-#' ET01 Layout 1 (Default)
+#' EXT01 Layout 1 (Default)
 #'
 #' @describeIn ext01_1
 #'
@@ -84,24 +80,20 @@ ext01_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("EXT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          overall_col = "",
+                          lbl_overall = NULL,
                           analysis_var = "AVAL",
                           lbl_analysis_var = "Analysis Value"
                         )) {
 
-  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels
     ) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
-
 }
 
 
@@ -111,8 +103,6 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #'
-#' @param show_stats (`vector of strings`) providing the name of the parameters whose statistical summary should be
-#'   presented. To analyze all, provide `paramvar = "ALL"` (Default), to analyze none, provide `paramvar = ""`.
 #'
 #' @details
 #'  * Supplementary Exposure table with binning of desired analysis values.
@@ -122,72 +112,47 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
+#'  * `ANL01FL` is not relevant subset
 #'
 #' @export
 #'
 #' @examples
-#' library(scda)
+#' library(dm)
 #' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adex <- sd$adex %>%
-#'   mutate(ANL01FL = 'Y')
 #'
-#' group <- list(list("Dose administered during constant dosing interval",
-#'                                          c(-Inf, 700, 900, 1200, Inf),
-#'                                          c("<700", "700-900", "900-1200", ">1200")
-#'                                           ),
-#'                                       list("Total dose administered",
-#'                                          c(-Inf, 5000, 7000, 9000, Inf),
-#'                                          c("<5000", "5000-7000", "7000-9000", ">9000")
-#'                                            )
-#'                                        )
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adex)
 #'
-#' adex <- cut_by_group(adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
+#' db <- db %>%
+#'   (std_filter("ext01_2"))() %>%
+#'   (std_mutate("ext01_2"))()
 #'
-#' adex[,"PARAM"] <- factor(adex[["PARAM"]],
-#'                    c("Total number of doses administered",
-#'                      "Total dose administered",
-#'                      "Dose administered during constant dosing interval",
-#'                      "Number of doses administered during constant dosing interval"))
+#' ext01_2(db)
 #'
-#' ext01_2(adex, adsl, lbl_overall = "", show_stats = "ALL")
-#' ext01_2(adex, adsl, lbl_overall = "All Patients", show_stats = "ALL")
-#'
-ext01_2 <- function(adex,
-                    adsl,
+ext01_2 <- function(adam_db,
                     armvar = .study$armvar,
-                    show_stats = c("ALL"),
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("EXT01"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
   summaryvars <- c("AVAL", "AVALCAT1")
 
   # Provide a clearer error message in the case of missing variable.
-  assert_colnames(adex, summaryvars)
-
-  # Set to NA the AVAL value with the PARAM value for which a statistical summary should not be presented.
-  if (show_stats != "ALL") {
-
-    adex <- adex %>%
-    mutate(AVAL = ifelse(PARAM %in% show_stats, AVAL, NA))
-
-  }
+  assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- ext01_2_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
-    summaryvars_lbls = var_labels_for(adex, summaryvars),
+    summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
     lbl_overall = lbl_overall,
     deco = deco
   )
 
-  tbl <- build_table(lyt, adex, adsl)
+  tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
   if (prune_0) tbl <- tbl %>% prune_table()
 
@@ -215,16 +180,13 @@ ext01_2_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("EXT01"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
-  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table_deco(deco)  %>%
     split_cols_by(var = armvar)  %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       split_fun = NULL

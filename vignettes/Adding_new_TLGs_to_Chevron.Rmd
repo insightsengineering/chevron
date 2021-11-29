@@ -116,8 +116,8 @@ The following variables are best hard coded in the table-generating functions (w
 override some of these choices.):
 - `evo_vars` (used in LBT01, which variables capture status and the evolution of the analysis): generally `c("AVAL",
 "CNG")`
-- `gradation` (internal, used in AET03, capture the levels of severity of adverse events): generally corresponds to the
-levels of `AESEV`in `adae`.
+- `severity_grade` (internal, used in AET03, capture the levels of severity of adverse events): generally corresponds to
+the levels of `AESEV`in `adae`.
 - `lbl_overall` (used everywhere, the label associated with the overall column)
 - `reason` (used in DST01, the name of the column specifying study withdrawal): generally `DCSREAS`.
 - `status` (used in DST01, the name of the column specifying study status): generally: `EOSSTT`. 

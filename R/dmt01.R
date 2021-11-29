@@ -22,26 +22,27 @@
 #'
 #' @examples
 #'
+#' library(dm)
 #' library(dplyr)
-#' library(scda)
-#' adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
-#' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 #'
-#' adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl)
 #'
-#' adsl <- adsl %>% left_join(adsub_wide)
+#' db <- db %>%
+#'   (std_filter("dmt01_1"))() %>%
+#'   (std_mutate("dmt01_1"))()
 #'
-#' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
-#' dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
 #'
-#' dmt01_1(ad_bl = adsl,
+#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
+#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
+#' dmt01_1(db,
 #'         summaryvars = c("AGE", "RACE", "SEX"),
 #'         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 #'
-dmt01_1 <- function(ad_bl,
+dmt01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
-                    summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
+                    summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("DMT01"),
@@ -50,18 +51,10 @@ dmt01_1 <- function(ad_bl,
                       lbl_overall = "All Patients"
                     )) {
 
-    # provide a clearer error message in the case of missing variable
-    missing_var <- setdiff(summaryvars, colnames(ad_bl))
-    if (length(missing_var) > 0) {
-
-      stop(paste0("\nVariable(s) does not exist in the dataset: \n",
-                  paste(missing_var, "\n", collapse = "")
-                  )
-           )
-    }
-
-
-  assert_that(length(summaryvars) == length(summaryvars_lbls))
+  assert_that(
+    df_has_vars(adam_db$adsl, summaryvars),
+    length(summaryvars) == length(summaryvars_lbls)
+  )
 
   lyt <- dmt01_1_lyt(
     armvar = armvar,
@@ -71,7 +64,7 @@ dmt01_1 <- function(ad_bl,
     deco = deco
   )
 
-  tbl <- build_table(lyt, ad_bl)
+  tbl <- build_table(lyt, adam_db$adsl)
 
   if (prune_0)
     prune_table(tbl)
@@ -102,7 +95,7 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("DMT01"),
                         .study = list(
                           armvar = "ARM",
-                          summary_demo =  c("AAGE",
+                          summary_demo =  c("AAGE",  # TODO: revisit
                                             "AGEGR1",
                                             "SEX",
                                             "ETHNIC",
@@ -117,18 +110,10 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = "All Patients"
                         )) {
 
-  summaryvars_lbls <- paste0(
-    c("", rep("\n", length(summaryvars_lbls) - 1)),
-    summaryvars_lbls)
-
-
-  layout_table <-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer) %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 
 }

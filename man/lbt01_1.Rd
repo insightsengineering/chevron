@@ -6,11 +6,10 @@
 \title{LBT01 Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit}
 \usage{
 lbt01_1(
-  adsl,
-  adlb,
+  adam_db,
   armvar = .study$armvar,
   summaryvars = c("AVAL", "CHG"),
-  summaryvars_lbls = var_labels_for(adlb, summaryvars),
+  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
@@ -20,18 +19,16 @@ lbt01_1(
 lbt01_1_lyt(
   armvar = .study$armvar,
   summaryvars = c("AVAL", "CHG"),
-  summaryvars_lbls = c("Analysis \\nValue", "Change from \\nBaseline"),
+  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = .study$visitvar,
-  lbl_AVISIT = "",
-  lbl_PARAM = "",
+  lbl_AVISIT = "Visit",
+  lbl_PARAM = "Parameter",
   deco = std_deco("LBT01"),
   .study = list(armvar = "ACTARM", visitvar = "AVISIT")
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
-
-\item{adlb}{(\code{data.frame}) Laboratory Analysis Dataset}
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -78,15 +75,16 @@ by \code{AVISIT}. Re-level to customize order
 }}
 
 \examples{
-library(scda)
+library(dm)
 library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adlb <- sd$adlb \%>\%
- mutate(ANL01FL = 'Y')
 
-lbt01_1(adsl, adlb)
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adlb)
 
-lbt01_1(adsl, adlb, summaryvars_lbls = c("Analysis", "Change"))
+db <- db \%>\%
+  (std_filter("lbt01_1"))() \%>\%
+  (std_mutate("lbt01_1"))()
+
+lbt01_1(db)
 
 }

@@ -6,48 +6,53 @@
 \title{DST01 Table 1 (Default) Patient Disposition Table 1}
 \usage{
 dst01_1(
-  adsl,
+  adam_db,
   armvar = .study$armvar,
+  status_var = "EOSSTT",
+  disc_reason_var = .study$disc_reason_var,
   lbl_overall = .study$lbl_overall,
-  status = "EOSSTT",
-  reason = "DCSREAS",
   prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients")
+  .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
+    "DCSREAS")
 )
 
 dst01_1_lyt(
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status = .study$status,
-  reason = .study$reason,
-  deco = std_deco("DST01"),
+  disc_reason_var = .study$disc_reason_var,
   completed_lbl = "COMPLETED",
   ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
-  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT", reason
-    = "DCSREAS")
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("DST01"),
+  .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT",
+    disc_reason_var = "DCSREAS")
 )
 }
 \arguments{
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
 
 \item{armvar}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
-name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
-
-\item{reason}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
-also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
+\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
+
+\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
+however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
+the analysis period.}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
+name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}
@@ -74,6 +79,9 @@ study a reason is provided.
 \item Include a total column by default.
 \item Sort withdrawal reasons by alphabetic order.
 }
+
+Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
+which allows the tables to be constructed and pruned separately before binding.
 }
 \section{Functions}{
 \itemize{
@@ -82,18 +90,20 @@ study a reason is provided.
 
 \examples{
 
-library(scda)
+library(dm)
 library(dplyr)
 
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl)
 
-dst01_1(adsl)
-dst01_1(adsl, lbl_overall = "")
+db <- db \%>\%
+  (std_filter("dst01_1"))() \%>\%
+  (std_mutate("dst01_1"))()
 
-adsl$EOSSTT <- as.factor(toupper(adsl$EOSSTT))
-dst01_1(adsl)
+dst01_1(db)
+
+
 dst01_1_lyt(armvar = "ACTARM",
 status = "EOP01STT",
-reason = "DCP01RS")
+disc_reason_var = "DCP01RS")
 }

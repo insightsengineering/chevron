@@ -18,51 +18,60 @@
 #' @export
 #'
 #' @examples
-#' library(scda)
-#' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adae <- sd$adae %>%
-#'  mutate(ANL01FL = 'Y')
+#' library(dm)
+#' library(rtables)
 #'
-#' aet02_1(adsl, adae)
-#' aet02_1(adsl, adae, lbl_overall = "All Patients")
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adae)
 #'
-#' adae <- adae %>% var_relabel(AEBODSYS = "Medra System Organ Class")
-#' aet02_1(adsl, adae)
+#' db <- db %>%
+#'   (std_filter("aet02_1"))() %>%
+#'   (std_mutate("aet02_1"))()
 #'
-aet02_1 <- function(adsl, adae,
+#' aet02_1(adam_db = db) %>% head(15)
+#'
+#' # Additional Examples
+#' db_s <- db %>%
+#'   dm_filter(adsl, SEX == "F")
+#'
+#' aet02_1(adam_db = db_s) %>% head()
+#'
+#' # alternatively adam_db also accepts a names list
+#' aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
+#'
+#' aet02_1(db, lbl_overall = "All Patients") %>% head()
+#'
+#' db_m <- db %>%
+#'   dm_zoom_to(adae) %>%
+#'   mutate(AEBODSYS = with_label(AEBODSYS, "Medra System Organ Class")) %>%
+#'   dm_update_zoomed()
+#'
+#' aet02_1(db_m) %>% head()
+#'
+aet02_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("AET02"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
-  # TODO: discuss if this is truly in the function body
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
-
-  lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
-  lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
+  dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEBODSYS = lbl_AEBODSYS,
-    lbl_AEDECOD = lbl_AEDECOD,
+    lbl_AEBODSYS = var_labels_for(dbsel$adae, "AEBODSYS"),
+    lbl_AEDECOD = var_labels_for(dbsel$adae, "AEDECOD"),
     deco = deco
   )
 
-  tbl <- build_table(
-    lyt,
-    df = adae,
-    alt_counts_df = adsl
-  )
+  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0)
+    tbl <- tbl %>% prune_table()
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -91,28 +100,25 @@ aet02_1 <- function(adsl, adae,
 #' @export
 #'
 #' @examples
-#' aet02_1_lyt(armvar = "ACTARM",
-#'  lbl_overall = "",
-#'  lbl_AEBODSYS = "Body System or Organ Class",
-#'  lbl_AEDECOD = "Dictionary-Derived Term",
-#'  deco = std_deco("AET02"))
+#' aet02_1_lyt(
+#'  armvar = "ACTARM",
+#'  lbl_overall = NULL,
+#'  deco = std_deco("AET02")
+#' )
 aet02_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_AEBODSYS = "AEBODSYS",
-                        lbl_AEDECOD = "AEDECOD",
+                        lbl_AEBODSYS = "Body System or Organ Class",
+                        lbl_AEDECOD = "Dictionary-Derived Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
-  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table_deco(deco)  %>%
     split_cols_by(var = armvar)  %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -169,55 +175,56 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 #' @export
 #'
 #' @examples
-#' library(scda)
-#' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adae <- sd$adae %>%
-#'  mutate(ANL01FL = 'Y')
 #'
-#' aet02_2(adsl, adae)
-#' aet02_2(adsl, adae, lbl_overall = "All Patients")
+#' library(dm)
+#' library(rtables)
 #'
-#' adae <- adae %>% var_relabel(AEBODSYS = "Medra System Organ Class")
-#' aet02_2(adsl, adae)
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adae)
 #'
-aet02_2 <- function(adsl, adae,
+#' db <- db %>%
+#'   (std_filter("aet02_2"))() %>%
+#'   (std_mutate("aet02_2"))()
+#'
+#' aet02_2(db) %>% head(15)
+#'
+#' # Additional Examples
+#' aet02_2(db, lbl_overall = "All Patients") %>% head()
+#'
+#' db_m <- db %>%
+#'   dm_zoom_to(adae) %>%
+#'   mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
+#'   dm_update_zoomed()
+#'
+#' aet02_2(db_m) %>% head()
+#'
+aet02_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("AET02"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
 
-  # TODO: discuss if this is truly in the function body
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
 
-  lbl_AEBODSYS <- var_labels_for(adae, "AEBODSYS")
-  lbl_AEHLT <-  var_labels_for(adae, "AEHLT")
-  lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
-
-  adae$AEBODSYSn <- paste0("\n", adae$AEBODSYS)
+  dbsel <- get_db_data(adam_db, "adsl", "adae")
+  adae <- dbsel$adae
 
   lyt <- aet02_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEBODSYS = lbl_AEBODSYS,
-    lbl_AEHLT = lbl_AEHLT,
-    lbl_AEDECOD = lbl_AEDECOD,
+    lbl_AEBODSYS = var_labels_for(adae, "AEBODSYS"),
+    lbl_AEHLT = var_labels_for(adae, "AEHLT"),
+    lbl_AEDECOD = var_labels_for(adae, "AEDECOD"),
     deco = deco
   )
 
-  tbl <- build_table(
-    lyt,
-    df = adae,
-    alt_counts_df = adsl
-  )
+  tbl <- build_table(lyt, adae, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0)
+    tbl <- tbl %>% prune_table()
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -252,12 +259,14 @@ aet02_2 <- function(adsl, adae,
 #' @export
 #'
 #' @examples
-#' aet02_2_lyt(armvar = "ACTARM",
-#'  lbl_overall = "",
+#' aet02_2_lyt(
+#'  armvar = "ACTARM",
+#'  lbl_overall = NULL,
 #'  lbl_AEBODSYS = "Body System or Organ Class",
 #'  lbl_AEHLT = "High Level Term",
 #'  lbl_AEDECOD = "Dictionary-Derived Term",
-#'  deco = std_deco("AET02"))
+#'  deco = std_deco("AET02")
+#' )
 aet02_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "AEBODSYS",
@@ -266,16 +275,13 @@ aet02_2_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
-  layout_table <- basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table_deco(deco)  %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -347,46 +353,40 @@ aet02_2_lyt <- function(armvar = .study$armvar,
 #' @export
 #'
 #' @examples
-#' library(scda)
-#' library(dplyr)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adae <- sd$adae %>%
-#'  mutate(ANL01FL = 'Y')
+#' library(dm)
 #'
-#' aet02_3(adsl, adae)
-#' aet02_3(adsl, adae, lbl_overall = "All Patients")
+#' db <- syn_test_data() %>%
+#'    dm_select_tbl(adsl, adae)
 #'
-aet02_3 <- function(adsl, adae,
+#' db <- db %>%
+#'   (std_filter("aet02_3"))() %>%
+#'   (std_mutate("aet02_3"))()
+#'
+#' aet02_3(adam_db = db) %>% head()
+#'
+#' aet02_3(db, lbl_overall = "All Patients") %>% head()
+#'
+aet02_3 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("AET02"),
                     .study = list(
                       armvar = "ACTARM",
-                      lbl_overall = ""
+                      lbl_overall = NULL
                     )) {
-
-  # TODO: discuss if this is truly in the function body
-  adae <- adae %>%
-    filter(bol_YN(ANL01FL))
-
-  lbl_AEDECOD <-  var_labels_for(adae, "AEDECOD")
 
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEDECOD = lbl_AEDECOD,
+    lbl_AEDECOD = var_labels_for(adam_db$adae, "AEDECOD"),
     deco = deco
   )
 
-  tbl <- build_table(
-    lyt,
-    df = adae,
-    alt_counts_df = adsl
-  )
+  tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0)
+    tbl <- tbl %>% prune_table()
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -410,27 +410,25 @@ aet02_3 <- function(adsl, adae,
 #' @export
 #'
 #' @examples
-#' aet02_3_lyt(armvar = "ACTARM",
-#'  lbl_overall = "",
+#' aet02_3_lyt(
+#'  armvar = "ACTARM",
+#'  lbl_overall = NULL,
 #'  lbl_AEDECOD = "Dictionary-Derived Term",
-#'  deco = std_deco("AET02"))
+#'  deco = std_deco("AET02")
+#' )
 aet02_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         lbl_AEDECOD = "AEDECOD",
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
-                          lbl_overall = ""
+                          lbl_overall = NULL
                         )) {
 
-
-  layout_table <-  basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer)  %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts()
-
-  if (!identical(lbl_overall, "")) layout_table <- layout_table %>% add_overall_col(label = lbl_overall)
-
-  layout_table %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -440,5 +438,5 @@ aet02_3_lyt <- function(armvar = .study$armvar,
       )
     ) %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
-    append_varlabels(adae, "AEDECOD")
+    append_topleft(lbl_AEDECOD)
 }

@@ -6,14 +6,13 @@
 \title{EXT01 Table 1 (Default) Exposure Summary Table}
 \usage{
 ext01_1(
-  adex,
-  adsl,
+  adam_db,
   armvar = .study$armvar,
   summaryvars = "AVAL",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = "")
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 
 ext01_1_lyt(
@@ -22,14 +21,12 @@ ext01_1_lyt(
   summaryvars_lbls = .study$lbl_analysis_var,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", overall_col = "", analysis_var = "AVAL",
+  .study = list(armvar = "ACTARM", lbl_overall = NULL, analysis_var = "AVAL",
     lbl_analysis_var = "Analysis Value")
 )
 }
 \arguments{
-\item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
-
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -61,6 +58,7 @@ patients in the corresponding analysis population given by \code{N}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sorted by alphabetic order of the \code{PARAM} value. Transform to factor and re-level for custom order.
+\item \code{ANL01FL} is not relevant subset
 }
 }
 \section{Functions}{
@@ -69,18 +67,17 @@ patients in the corresponding analysis population given by \code{N}.
 }}
 
 \examples{
-library(scda)
+
+library(dm)
 library(dplyr)
-sd <- synthetic_cdisc_data("rcd_2021_03_22")
-adsl <- sd$adsl
-adex <- sd$adex \%>\%
- mutate(ANL01FL = 'Y')
 
-ext01_1(adex, adsl)
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl, adex)
 
-adex2 <- adex \%>\%
-   relevel_params(paramcd_levels = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+db <- db \%>\%
+  (std_filter("ext01_1"))() \%>\%
+  (std_mutate("ext01_1"))()
 
-ext01_1(adex2, adsl)
-ext01_1(adex2, adsl, lbl_overall = "All Patients")
+ext01_1(db)
+
 }

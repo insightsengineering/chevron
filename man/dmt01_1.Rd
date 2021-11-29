@@ -6,10 +6,10 @@
 \title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1}
 \usage{
 dmt01_1(
-  ad_bl,
+  adam_db,
   armvar = .study$armvar,
   summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
-  summaryvars_lbls = var_labels_for(ad_bl, summaryvars),
+  summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
@@ -28,7 +28,7 @@ dmt01_1_lyt(
 )
 }
 \arguments{
-\item{ad_bl}{(\code{data.frame}) subject baseline Dataset with one row per patient}
+\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -67,19 +67,20 @@ For each variable, summary statistics are by default based on the number of pati
 
 \examples{
 
+library(dm)
 library(dplyr)
-library(scda)
-adsl <- synthetic_cdisc_data("rcd_2021_03_22")$adsl
-adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 
-adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
+db <- syn_test_data() \%>\%
+   dm_select_tbl(adsl)
 
-adsl <- adsl \%>\% left_join(adsub_wide)
+db <- db \%>\%
+  (std_filter("dmt01_1"))() \%>\%
+  (std_mutate("dmt01_1"))()
 
-dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
-dmt01_1(ad_bl = adsl, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = "")
 
-dmt01_1(ad_bl = adsl,
+dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
+dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
+dmt01_1(db,
         summaryvars = c("AGE", "RACE", "SEX"),
         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
 
