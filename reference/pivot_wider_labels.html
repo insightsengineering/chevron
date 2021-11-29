@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -176,25 +176,26 @@ Typically a unique identifier for the pivoted observations, such as <code>USUBJI
     <p>(<code>data.frame</code>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
-<span class='va'>adsub</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>adsub</span>
-<span class='fu'>pivot_wider_labels</span><span class='op'>(</span><span class='va'>adsub</span>, <span class='st'>"PARAMCD"</span>, <span class='st'>"PARAM"</span>, <span class='st'>"AVAL"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"USUBJID"</span>, <span class='st'>"SUBJID"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 400 × 7</span>
-#&gt;    USUBJID               SUBJID BWGHTSI BHGHTSI BBMISI BECOG BBMRKR1
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> AB12345-BRA-1-id-105  id-105    62.5     1.6   24.5     3       1
-#&gt; <span style='color: #BCBCBC;'> 2</span> AB12345-BRA-1-id-134  id-134    98.8     1.5   44.3     3       1
-#&gt; <span style='color: #BCBCBC;'> 3</span> AB12345-BRA-1-id-141  id-141    49.6     1.2   36.6     1       2
-#&gt; <span style='color: #BCBCBC;'> 4</span> AB12345-BRA-1-id-236  id-236   162.      1.7   53.1     3       2
-#&gt; <span style='color: #BCBCBC;'> 5</span> AB12345-BRA-1-id-265  id-265   105.      1.7   38       2       1
-#&gt; <span style='color: #BCBCBC;'> 6</span> AB12345-BRA-1-id-42   id-42     53.8     1.7   18.1     4       2
-#&gt; <span style='color: #BCBCBC;'> 7</span> AB12345-BRA-1-id-65   id-65     60.6     1.6   24.8     3       2
-#&gt; <span style='color: #BCBCBC;'> 8</span> AB12345-BRA-1-id-93   id-93     63.8     1.6   26.2     4       1
-#&gt; <span style='color: #BCBCBC;'> 9</span> AB12345-BRA-11-id-171 id-171   144.      1.8   45.3     3       2
-#&gt; <span style='color: #BCBCBC;'>10</span> AB12345-BRA-11-id-217 id-217    76.9     1.5   33.8     3       1
-#&gt; <span style='color: #949494;'># … with 390 more rows</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>adsub</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>adsub</span></span>
+<span class='r-in'><span class='fu'>pivot_wider_labels</span><span class='op'>(</span><span class='va'>adsub</span>, <span class='st'>"PARAMCD"</span>, <span class='st'>"PARAM"</span>, <span class='st'>"AVAL"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"USUBJID"</span>, <span class='st'>"SUBJID"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 400 × 7</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    USUBJID               SUBJID BWGHTSI BHGHTSI BBMISI BECOG BBMRKR1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> AB12345-BRA-1-id-105  id-105    62.5     1.6   24.5     3       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> AB12345-BRA-1-id-134  id-134    98.8     1.5   44.3     3       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> AB12345-BRA-1-id-141  id-141    49.6     1.2   36.6     1       2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> AB12345-BRA-1-id-236  id-236   162.      1.7   53.1     3       2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> AB12345-BRA-1-id-265  id-265   105.      1.7   38       2       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> AB12345-BRA-1-id-42   id-42     53.8     1.7   18.1     4       2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> AB12345-BRA-1-id-65   id-65     60.6     1.6   24.8     3       2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> AB12345-BRA-1-id-93   id-93     63.8     1.6   26.2     4       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> AB12345-BRA-11-id-171 id-171   144.      1.8   45.3     3       2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> AB12345-BRA-11-id-217 id-217    76.9     1.5   33.8     3       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 390 more rows</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

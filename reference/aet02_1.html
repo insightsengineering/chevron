@@ -73,7 +73,7 @@ events categorized by Body System and Dictionary-Derived Term." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -138,34 +138,29 @@ events categorized by Body System and Dictionary-Derived Term.</p>
     </div>
 
     <pre class="usage"><span class='fu'>aet02_1</span><span class='op'>(</span>
-  <span class='va'>adsl</span>,
-  <span class='va'>adae</span>,
+  <span class='va'>adam_db</span>,
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>aet02_1_lyt</span><span class='op'>(</span>
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
-  lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"AEBODSYS"</span>,
-  lbl_AEDECOD <span class='op'>=</span> <span class='st'>"AEDECOD"</span>,
+  lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,
+  lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>adsl</th>
-      <td><p>(<code>data.frame</code>) Subject Level Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adae</th>
-      <td><p>(<code>data.frame</code>) Adverse Events Analysis Dataset</p></td>
+      <th>adam_db</th>
+      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
     </tr>
     <tr>
       <th>armvar</th>
@@ -221,158 +216,146 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
-<span class='va'>sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span>
-<span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adsl</span>
-<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adae</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ANL01FL <span class='op'>=</span> <span class='st'>'Y'</span><span class='op'>)</span>
-
-<span class='fu'>aet02_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Adverse Events: {Specify Population}
-#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
-#&gt; 
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination
-#&gt;   Dictionary-Derived Term                                     (N=134)       (N=134)        (N=132)    
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  
-#&gt; Overall total number of events                                  609           622            703      
-#&gt; cl A.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  
-#&gt;   Total number of events                                        132           130            160      
-#&gt;   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  
-#&gt;   dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  
-#&gt; cl B.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event    79 (59%)    74 (55.2%)      85 (64.4%)  
-#&gt;   Total number of events                                        129           138            143      
-#&gt;   dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  
-#&gt;   dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  
-#&gt; cl D.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event    79 (59%)     67 (50%)       80 (60.6%)  
-#&gt;   Total number of events                                        127           106            135      
-#&gt;   dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
-#&gt;   dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
-#&gt; cl D.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt;   Total number of events                                         62           72              74      
-#&gt;   dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt; cl C.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  
-#&gt;   Total number of events                                         48           53              65      
-#&gt;   dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
-#&gt; cl B.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt;   Total number of events                                         56           60              62      
-#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt; cl C.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  
-#&gt;   Total number of events                                         55           63              64      
-#&gt;   dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</div><div class='input'><span class='fu'>aet02_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Adverse Events: {Specify Population}
-#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
-#&gt; 
-#&gt; ---------------------------------------------------------------------------------------------------------------------
-#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination   All Patients
-#&gt;   Dictionary-Derived Term                                     (N=134)       (N=134)        (N=132)         (N=400)   
-#&gt; ---------------------------------------------------------------------------------------------------------------------
-#&gt; Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)     365 (91.2%) 
-#&gt; Overall total number of events                                  609           622            703             1934    
-#&gt; cl A.1                                                                                                               
-#&gt;   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)     242 (60.5%) 
-#&gt;   Total number of events                                        132           130            160             422     
-#&gt;   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)     158 (39.5%) 
-#&gt;   dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)     146 (36.5%) 
-#&gt; cl B.2                                                                                                               
-#&gt;   Total number of patients with at least one adverse event    79 (59%)    74 (55.2%)      85 (64.4%)     238 (59.5%) 
-#&gt;   Total number of events                                        129           138            143             410     
-#&gt;   dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)     153 (38.2%) 
-#&gt;   dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)     145 (36.2%) 
-#&gt; cl D.1                                                                                                               
-#&gt;   Total number of patients with at least one adverse event    79 (59%)     67 (50%)       80 (60.6%)     226 (56.5%) 
-#&gt;   Total number of events                                        127           106            135             368     
-#&gt;   dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)     143 (35.8%) 
-#&gt;   dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)      140 (35%)  
-#&gt; cl D.2                                                                                                               
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)     162 (40.5%) 
-#&gt;   Total number of events                                         62           72              74             208     
-#&gt;   dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)     162 (40.5%) 
-#&gt; cl B.1                                                                                                               
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)     139 (34.8%) 
-#&gt;   Total number of events                                         56           60              62             178     
-#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)     139 (34.8%) 
-#&gt; cl C.2                                                                                                               
-#&gt;   Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)     138 (34.5%) 
-#&gt;   Total number of events                                         48           53              65             166     
-#&gt;   dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)     138 (34.5%) 
-#&gt; cl C.1                                                                                                               
-#&gt;   Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)      132 (33%)  
-#&gt;   Total number of events                                         55           63              64             182     
-#&gt;   dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)      132 (33%)  
-#&gt; ---------------------------------------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</div><div class='input'>
-<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>adae</span> <span class='op'>%&gt;%</span> <span class='fu'>var_relabel</span><span class='op'>(</span>AEBODSYS <span class='op'>=</span> <span class='st'>"Medra System Organ Class"</span><span class='op'>)</span>
-<span class='fu'>aet02_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Adverse Events: {Specify Population}
-#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
-#&gt; 
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; Medra System Organ Class                                     A: Drug X    B: Placebo    C: Combination
-#&gt;   Dictionary-Derived Term                                     (N=134)       (N=134)        (N=132)    
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  
-#&gt; Overall total number of events                                  609           622            703      
-#&gt; cl A.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  
-#&gt;   Total number of events                                        132           130            160      
-#&gt;   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  
-#&gt;   dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  
-#&gt; cl B.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event    79 (59%)    74 (55.2%)      85 (64.4%)  
-#&gt;   Total number of events                                        129           138            143      
-#&gt;   dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  
-#&gt;   dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  
-#&gt; cl D.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event    79 (59%)     67 (50%)       80 (60.6%)  
-#&gt;   Total number of events                                        127           106            135      
-#&gt;   dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
-#&gt;   dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
-#&gt; cl D.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt;   Total number of events                                         62           72              74      
-#&gt;   dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-#&gt; cl C.2                                                                                                
-#&gt;   Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  
-#&gt;   Total number of events                                         48           53              65      
-#&gt;   dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
-#&gt; cl B.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt;   Total number of events                                         56           60              62      
-#&gt;   dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
-#&gt; cl C.1                                                                                                
-#&gt;   Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  
-#&gt;   Total number of events                                         55           63              64      
-#&gt;   dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
-#&gt; ------------------------------------------------------------------------------------------------------
-#&gt; 
-#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</div><div class='input'>
-<span class='fu'>aet02_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
- lbl_overall <span class='op'>=</span> <span class='st'>""</span>,
- lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,
- lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,
- deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; A Pre-data Table Layout
-#&gt; 
-#&gt; Column-Split Structure:
-#&gt; ACTARM (lvls) 
-#&gt; 
-#&gt; Row-Split Structure:
-#&gt; AEBODSYS (lvls) -&gt; AEDECOD (** analysis **) 
-#&gt; </div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cynkra.github.io/dm/'>dm</a></span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: ‘dm’</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following object is masked from ‘package:stats’:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     filter</span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/roche/rtables'>rtables</a></span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: magrittr</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>   <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_select_tbl.html'>dm_select_tbl</a></span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='va'>db</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_filter.html'>std_filter</a></span><span class='op'>(</span><span class='st'>"aet02_1"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_mutate.html'>std_mutate</a></span><span class='op'>(</span><span class='st'>"aet02_1"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_1</span><span class='op'>(</span>adam_db <span class='op'>=</span> <span class='va'>db</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                              A: Drug X    B: Placebo   C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                               (N=122)      (N=123)        (N=120)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Total number of patients with at least one adverse event     122 (100%)   123 (100%)     120 (100%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Overall total number of events                                  609          622            703      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of patients with at least one adverse event   78 (63.9%)    75 (61%)      89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of events                                        132          130            160      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.2                                              48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.2                                                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of patients with at least one adverse event   79 (64.8%)   74 (60.2%)     85 (70.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of events                                        129          138            143      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.2.3.1                                              48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.1.2.1                                              49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.1                                                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of patients with at least one adverse event   79 (64.8%)   67 (54.5%)     80 (66.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of events                                        127          106            135      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Additional Examples</span></span>
+<span class='r-in'><span class='va'>db_s</span> <span class='op'>&lt;-</span> <span class='va'>db</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_filter.html'>dm_filter</a></span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>SEX</span> <span class='op'>==</span> <span class='st'>"F"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_1</span><span class='op'>(</span>adam_db <span class='op'>=</span> <span class='va'>db_s</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                              A: Drug X    B: Placebo   C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                (N=72)       (N=77)         (N=65)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Total number of patients with at least one adverse event     72 (100%)    77 (100%)      65 (100%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Overall total number of events                                  377          419            378      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.2                                                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of patients with at least one adverse event   46 (63.9%)   45 (58.4%)     44 (67.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of events                                         81           86             64      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.2.3.1                                              30 (41.7%)   32 (41.6%)      26 (40%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># alternatively adam_db also accepts a names list</span></span>
+<span class='r-in'><span class='fu'>aet02_1</span><span class='op'>(</span>adam_db <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>adsl <span class='op'>=</span> <span class='va'>db</span><span class='op'>$</span><span class='va'>adsl</span>, adae <span class='op'>=</span> <span class='va'>db</span><span class='op'>$</span><span class='va'>adae</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                              A: Drug X    B: Placebo   C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                               (N=122)      (N=123)        (N=120)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Total number of patients with at least one adverse event     122 (100%)   123 (100%)     120 (100%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Overall total number of events                                  609          622            703      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of patients with at least one adverse event   78 (63.9%)    75 (61%)      89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of events                                        132          130            160      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_1</span><span class='op'>(</span><span class='va'>db</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                              A: Drug X    B: Placebo   C: Combination   All Patients</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                               (N=122)      (N=123)        (N=120)         (N=365)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Total number of patients with at least one adverse event     122 (100%)   123 (100%)     120 (100%)      365 (100%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Overall total number of events                                  609          622            703             1934    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of patients with at least one adverse event   78 (63.9%)    75 (61%)      89 (74.2%)     242 (66.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of events                                        132          130            160             422     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)     158 (43.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>db_m</span> <span class='op'>&lt;-</span> <span class='va'>db</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_zoom_to.html'>dm_zoom_to</a></span><span class='op'>(</span><span class='va'>adae</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>AEBODSYS <span class='op'>=</span> <span class='fu'><a href='https://roche.github.io/rtables/reference/with_label.html'>with_label</a></span><span class='op'>(</span><span class='va'>AEBODSYS</span>, <span class='st'>"Medra System Organ Class"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_zoom_to.html'>dm_update_zoomed</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_1</span><span class='op'>(</span><span class='va'>db_m</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                              A: Drug X    B: Placebo   C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                               (N=122)      (N=123)        (N=120)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Total number of patients with at least one adverse event     122 (100%)   123 (100%)     120 (100%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Overall total number of events                                  609          622            703      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of patients with at least one adverse event   78 (63.9%)    75 (61%)      89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Total number of events                                        132          130            160      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_1_lyt</span><span class='op'>(</span></span>
+<span class='r-in'> armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
+<span class='r-in'> lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
+<span class='r-in'> deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> A Pre-data Table Layout</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Column-Split Structure:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ACTARM (lvls) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Row-Split Structure:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AEBODSYS (lvls) -&gt; AEDECOD (** analysis **) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

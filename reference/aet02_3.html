@@ -73,7 +73,7 @@ events categorized by Dictionary-Derived Term." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -138,13 +138,12 @@ events categorized by Dictionary-Derived Term.</p>
     </div>
 
     <pre class="usage"><span class='fu'>aet02_3</span><span class='op'>(</span>
-  <span class='va'>adsl</span>,
-  <span class='va'>adae</span>,
+  <span class='va'>adam_db</span>,
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>aet02_3_lyt</span><span class='op'>(</span>
@@ -152,19 +151,15 @@ events categorized by Dictionary-Derived Term.</p>
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   lbl_AEDECOD <span class='op'>=</span> <span class='st'>"AEDECOD"</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>adsl</th>
-      <td><p>(<code>data.frame</code>) Subject Level Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adae</th>
-      <td><p>(<code>data.frame</code>) Adverse Events Analysis Dataset</p></td>
+      <th>adam_db</th>
+      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
     </tr>
     <tr>
       <th>armvar</th>
@@ -216,21 +211,66 @@ events categorized by Dictionary-Derived Term.</p>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
-<span class='va'>sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span>
-<span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adsl</span>
-<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adae</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ANL01FL <span class='op'>=</span> <span class='st'>'Y'</span><span class='op'>)</span>
-
-<span class='fu'>aet02_3</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(df): object 'adae' not found</span></div><div class='input'><span class='fu'>aet02_3</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(df): object 'adae' not found</span></div><div class='input'>
-<span class='fu'>aet02_3_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,
- lbl_overall <span class='op'>=</span> <span class='st'>""</span>,
- lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,
- deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(df): object 'adae' not found</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cynkra.github.io/dm/'>dm</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>   <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_select_tbl.html'>dm_select_tbl</a></span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='va'>db</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_filter.html'>std_filter</a></span><span class='op'>(</span><span class='st'>"aet02_3"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_mutate.html'>std_mutate</a></span><span class='op'>(</span><span class='st'>"aet02_3"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_3</span><span class='op'>(</span>adam_db <span class='op'>=</span> <span class='va'>db</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                            A: Drug X    B: Placebo   C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                             (N=122)      (N=123)        (N=120)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Total number of patients with at least one adverse event   122 (100%)   123 (100%)     120 (100%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Overall total number of events                                609          622            703      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd D.2.1.5.3                                              47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd B.2.2.3.1                                              48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd A.1.1.1.2                                              48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_3</span><span class='op'>(</span><span class='va'>db</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                            A: Drug X    B: Placebo   C: Combination   All Patients</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                             (N=122)      (N=123)        (N=120)         (N=365)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Total number of patients with at least one adverse event   122 (100%)   123 (100%)     120 (100%)      365 (100%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Overall total number of events                                609          622            703             1934    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd D.2.1.5.3                                              47 (38.5%)   58 (47.2%)     57 (47.5%)     162 (44.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)     158 (43.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd B.2.2.3.1                                              48 (39.3%)   54 (43.9%)     51 (42.5%)     153 (41.9%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> dcd A.1.1.1.2                                              48 (39.3%)    48 (39%)      50 (41.7%)      146 (40%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet02_3_lyt</span><span class='op'>(</span></span>
+<span class='r-in'> armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
+<span class='r-in'> lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
+<span class='r-in'> lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,</span>
+<span class='r-in'> deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> A Pre-data Table Layout</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Column-Split Structure:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ACTARM (lvls) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Row-Split Structure:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AEDECOD (** analysis **) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

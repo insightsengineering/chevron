@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authors • chevron</title>
+<title>Remove specific AVAL and AVALCAT1 data from adex — remove_adex_aval • chevron</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,13 +33,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Authors" />
+<meta property="og:title" content="Remove specific AVAL and AVALCAT1 data from adex — remove_adex_aval" />
+<meta property="og:description" content="Useful if some continuous AVAL data, or categorical AVALCAT1 data corresponding to specific PARAM should not be
+displayed." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">chevron</a>
+        <a class="navbar-link" href="../index.html">chevron</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
@@ -78,16 +80,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="articles/chevron.html">Get started</a>
+  <a href="../articles/chevron.html">Get started</a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -97,12 +99,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
+      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -123,42 +125,56 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Authors</h1>
+    <h1>Remove specific <code>AVAL</code> and <code>AVALCAT1</code> data from <code>adex</code></h1>
+    
+    <div class="hidden name"><code>remove_adex_aval.Rd</code></div>
     </div>
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>NEST</strong>. Author, maintainer. 
-        </p>
-      </li>
-      <li>
-        <p><strong>Roche</strong>. Copyright holder, funder. 
-        </p>
-      </li>
-      <li>
-        <p><strong>Adrian Waddell</strong>. Author. 
-        </p>
-      </li>
-      <li>
-        <p><strong>Benoit Falquet</strong>. Author. 
-        </p>
-      </li>
-      <li>
-        <p><strong>Gabriel Becker</strong>. Contributor. 
-        </p>
-      </li>
-      <li>
-        <p><strong>Tim Barnett</strong>. Contributor. 
-        </p>
-      </li>
-    </ul>
+    <div class="ref-description">
+    <p>Useful if some continuous <code>AVAL</code> data, or categorical <code>AVALCAT1</code> data corresponding to specific <code>PARAM</code> should not be
+displayed.</p>
+    </div>
+
+    <pre class="usage"><span class='fu'>remove_adex_aval</span><span class='op'>(</span>
+  <span class='va'>adam_db</span>,
+  show_stats <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>show_cont_stats</span>,
+  show_bins <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>show_cat_stats</span>,
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>show_cont_stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ALL"</span><span class='op'>)</span>, show_cat_stats <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ALL"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>adam_db</th>
+      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
+    </tr>
+    <tr>
+      <th>show_stats</th>
+      <td><p>(<code>vector of character</code>) providing the name of the parameters whose statistical summary should be
+presented. To analyze all, provide <code>show_stats = "ALL"</code> (Default), to analyze none, provide <code>show_stats = ""</code>.</p></td>
+    </tr>
+    <tr>
+      <th>show_bins</th>
+      <td><p>(<code>vector of character</code>) providing the name of the parameters whose categorical summary should be
+presented. To analyze all, provide <code>show_bins = "ALL"</code> (Default), to analyze none, provide <code>show_bins = ""</code>.</p></td>
+    </tr>
+    <tr>
+      <th>.study</th>
+      <td><p>(<code>list</code>)  with default values for the arguments of the function</p></td>
+    </tr>
+    </table>
+
 
   </div>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
+  </div>
 </div>
-
 
 
       <footer>

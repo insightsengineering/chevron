@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -136,25 +136,26 @@
     </div>
 
     <pre class="usage"><span class='fu'>aet04_1</span><span class='op'>(</span>
-  <span class='va'>adsl</span>,
-  <span class='va'>adae</span>,
+  <span class='va'>adam_db</span>,
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
+  group_grades <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>group_grades</span>,
   lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   prune_0 <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  standard_gradation <span class='op'>=</span> <span class='cn'>TRUE</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET04"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>, group_grades <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>`Any Grade`
+    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span>, `Grade 1-2` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span><span class='op'>)</span>, `Grade 3-4` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"3"</span>, <span class='st'>"4"</span><span class='op'>)</span>,
+    `Grade 5` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"5"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>aet04_1_lyt</span><span class='op'>(</span>
   armvar <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>armvar</span>,
-  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"AEBODSYS"</span>,
   lbl_AEDECOD <span class='op'>=</span> <span class='st'>"AEDECOD"</span>,
-  gr_grp <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>gr_grp</span>,
+  group_grades <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>group_grades</span>,
+  lbl_overall <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>lbl_overall</span>,
   deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET04"</span><span class='op'>)</span>,
-  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='st'>""</span>, gr_grp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>`- Any Grade -` <span class='op'>=</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span>, `Grade 1-2` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span><span class='op'>)</span>, `Grade 3-4` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"3"</span>, <span class='st'>"4"</span><span class='op'>)</span>,
+  .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>, lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>, group_grades <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>`Any Grade`
+    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span>, `Grade 1-2` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span><span class='op'>)</span>, `Grade 3-4` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"3"</span>, <span class='st'>"4"</span><span class='op'>)</span>,
     `Grade 5` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"5"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -162,16 +163,16 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>adsl</th>
-      <td><p>(<code>data.frame</code>) Subject Level Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adae</th>
-      <td><p>(<code>data.frame</code>) Adverse Events Analysis Dataset</p></td>
+      <th>adam_db</th>
+      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
     </tr>
     <tr>
       <th>armvar</th>
       <td><p>(<code>character</code>) variable used for column splitting</p></td>
+    </tr>
+    <tr>
+      <th>group_grades</th>
+      <td><p>(<code>list</code>) putting in correspondence severity levels and labels.</p></td>
     </tr>
     <tr>
       <th>lbl_overall</th>
@@ -180,11 +181,6 @@
     <tr>
       <th>prune_0</th>
       <td><p>(<code>logical</code>) remove 0 count rows</p></td>
-    </tr>
-    <tr>
-      <th>standard_gradation</th>
-      <td><p>(<code>logical</code>) Whether the standard toxicity groups should be used (<code>Grade 1-2</code>, <code>Grade 3-4</code>,
-<code>Grade 5</code>) or the alternative ones (<code>Grade 1-2</code>, <code>Grade 3-5</code>).</p></td>
     </tr>
     <tr>
       <th>deco</th>
@@ -201,10 +197,6 @@
     <tr>
       <th>lbl_AEDECOD</th>
       <td><p>(<code>string</code>) text label for AEDECOD.</p></td>
-    </tr>
-    <tr>
-      <th>gr_grp</th>
-      <td><p>(<code>list</code>) putting in correspondence severity levels and labels.</p></td>
     </tr>
     </table>
 
@@ -233,19 +225,472 @@ Grade is sorted by severity.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>scda</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
-<span class='va'>sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html'>synthetic_cdisc_data</a></span><span class='op'>(</span><span class='st'>"rcd_2021_03_22"</span><span class='op'>)</span>
-<span class='va'>adsl</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adsl</span>
-<span class='va'>adae</span> <span class='op'>&lt;-</span> <span class='va'>sd</span><span class='op'>$</span><span class='va'>adae</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ANL01FL <span class='op'>=</span> <span class='st'>'Y'</span><span class='op'>)</span>
-
-<span class='fu'>aet04_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(df): object 'adae' not found</span></div><div class='input'><span class='fu'>aet04_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span>, prune_0 <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(df): object 'adae' not found</span></div><div class='input'><span class='fu'>aet04_1</span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(df): object 'adae' not found</span></div><div class='input'>
-<span class='fu'>aet04_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(df): object 'adae' not found</span></div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cynkra.github.io/dm/'>dm</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/roche/rtables'>rtables</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>   <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_select_tbl.html'>dm_select_tbl</a></span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='va'>db</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_filter.html'>std_filter</a></span><span class='op'>(</span><span class='st'>"aet03_1"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_mutate.html'>std_mutate</a></span><span class='op'>(</span><span class='st'>"aet03_1"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet04_1</span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events by Highest NCI CTCAE Grade: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> MedDRA System Organ Class   A: Drug X    B: Placebo   C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   MedDRA Preferred Term      (N=122)      (N=123)        (N=120)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Any Grade                   122 (100%)   123 (100%)     120 (100%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 1-2                   13 (10.7%)   19 (15.4%)     11 (9.2%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                            7 (5.7%)     9 (7.3%)       4 (3.3%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                            6 (4.9%)    10 (8.1%)       7 (5.8%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 3-4                    33 (27%)    34 (27.6%)     34 (28.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                           18 (14.8%)   14 (11.4%)     16 (13.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                           15 (12.3%)   20 (16.3%)      18 (15%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 5                     76 (62.3%)   70 (56.9%)     75 (62.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 78 (63.9%)    75 (61%)      89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 78 (63.9%)    75 (61%)      89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)    27 (22%)      39 (32.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                        50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.2                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.2                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)   74 (60.2%)     85 (70.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 30 (24.6%)   30 (24.4%)     33 (27.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)   30 (24.4%)     33 (27.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.2.3.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.1.2.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)   67 (54.5%)     80 (66.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 29 (23.8%)   25 (20.3%)     29 (24.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         29 (23.8%)   25 (20.3%)     29 (24.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                    50 (41%)    42 (34.1%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.1.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)    42 (34.1%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                  50 (41%)    42 (34.1%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.4.2                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)   42 (34.1%)     50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               48 (39.3%)   42 (34.1%)     50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       48 (39.3%)   42 (34.1%)     50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.2                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.2.1.5.3                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                   47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.1.1.1.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                 47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.2                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.2.1.2.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                         43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.1.1.1.3                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                       43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  All counts represent patients. Multiple occurrences of the same AE in one individual are counted once at the highest grade for this patient. To the SOC Overall row counts, a patient contributes only with the AE occuring with the highest grade within the SOC. Percentages are based on N in the column headings.  Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'><span class='fu'>aet04_1</span><span class='op'>(</span><span class='va'>db</span>, prune_0 <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events by Highest NCI CTCAE Grade: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> MedDRA System Organ Class   A: Drug X    B: Placebo   C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   MedDRA Preferred Term      (N=122)      (N=123)        (N=120)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Any Grade                   122 (100%)   123 (100%)     120 (100%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 1-2                   13 (10.7%)   19 (15.4%)     11 (9.2%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                            7 (5.7%)     9 (7.3%)       4 (3.3%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                            6 (4.9%)    10 (8.1%)       7 (5.8%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 3-4                    33 (27%)    34 (27.6%)     34 (28.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                           18 (14.8%)   14 (11.4%)     16 (13.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                           15 (12.3%)   20 (16.3%)      18 (15%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 5                     76 (62.3%)   70 (56.9%)     75 (62.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 78 (63.9%)    75 (61%)      89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 78 (63.9%)    75 (61%)      89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)    27 (22%)      39 (32.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                       0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                        50 (41%)    45 (36.6%)     63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.2                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       48 (39.3%)    48 (39%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.2                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)   74 (60.2%)     85 (70.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 30 (24.6%)   30 (24.4%)     33 (27.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)   30 (24.4%)     33 (27.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                       0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.2.3.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       48 (39.3%)   54 (43.9%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.1.2.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       49 (40.2%)   44 (35.8%)     52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)   67 (54.5%)     80 (66.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 29 (23.8%)   25 (20.3%)     29 (24.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         29 (23.8%)   25 (20.3%)     29 (24.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                    50 (41%)    42 (34.1%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.1.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)    42 (34.1%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                  50 (41%)    42 (34.1%)     51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.4.2                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)   42 (34.1%)     50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               48 (39.3%)   42 (34.1%)     50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       48 (39.3%)   42 (34.1%)     50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.2                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                       0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.2.1.5.3                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       47 (38.5%)   58 (47.2%)     57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                   47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.1.1.1.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                 47 (38.5%)   49 (39.8%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.2                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                       0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.2.1.2.1                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       35 (28.7%)    48 (39%)      55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.1                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                             0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                         43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                       0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.1.1.1.3                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                   0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                           0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                       43 (35.2%)   46 (37.4%)     43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                     0            0              0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  All counts represent patients. Multiple occurrences of the same AE in one individual are counted once at the highest grade for this patient. To the SOC Overall row counts, a patient contributes only with the AE occuring with the highest grade within the SOC. Percentages are based on N in the column headings.  Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'><span class='fu'>aet04_1</span><span class='op'>(</span><span class='va'>db</span>, lbl_overall <span class='op'>=</span> <span class='st'>"All Patients"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events by Highest NCI CTCAE Grade: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> MedDRA System Organ Class   A: Drug X    B: Placebo   C: Combination   All Patients</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   MedDRA Preferred Term      (N=122)      (N=123)        (N=120)         (N=365)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Any Grade                   122 (100%)   123 (100%)     120 (100%)      365 (100%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 1-2                   13 (10.7%)   19 (15.4%)     11 (9.2%)       43 (11.8%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                            7 (5.7%)     9 (7.3%)       4 (3.3%)       20 (5.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                            6 (4.9%)    10 (8.1%)       7 (5.8%)       23 (6.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 3-4                    33 (27%)    34 (27.6%)     34 (28.3%)     101 (27.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                           18 (14.8%)   14 (11.4%)     16 (13.3%)      48 (13.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                           15 (12.3%)   20 (16.3%)      18 (15%)       53 (14.5%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 5                     76 (62.3%)   70 (56.9%)     75 (62.5%)     221 (60.5%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 78 (63.9%)    75 (61%)      89 (74.2%)     242 (66.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 78 (63.9%)    75 (61%)      89 (74.2%)     242 (66.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)    27 (22%)      39 (32.5%)      96 (26.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         48 (39.3%)    48 (39%)      50 (41.7%)      146 (40%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)    45 (36.6%)     63 (52.5%)     158 (43.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                50 (41%)    45 (36.6%)     63 (52.5%)     158 (43.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                        50 (41%)    45 (36.6%)     63 (52.5%)     158 (43.3%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.2                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)    48 (39%)      50 (41.7%)      146 (40%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)    48 (39%)      50 (41.7%)      146 (40%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       48 (39.3%)    48 (39%)      50 (41.7%)      146 (40%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.2                                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)   74 (60.2%)     85 (70.8%)     238 (65.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 30 (24.6%)   30 (24.4%)     33 (27.5%)      93 (25.5%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)   30 (24.4%)     33 (27.5%)      93 (25.5%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 49 (40.2%)   44 (35.8%)     52 (43.3%)     145 (39.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         49 (40.2%)   44 (35.8%)     52 (43.3%)     145 (39.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.2.3.1                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)   54 (43.9%)     51 (42.5%)     153 (41.9%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)   54 (43.9%)     51 (42.5%)     153 (41.9%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       48 (39.3%)   54 (43.9%)     51 (42.5%)     153 (41.9%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.1.2.1                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               49 (40.2%)   44 (35.8%)     52 (43.3%)     145 (39.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               49 (40.2%)   44 (35.8%)     52 (43.3%)     145 (39.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       49 (40.2%)   44 (35.8%)     52 (43.3%)     145 (39.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.1                                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)   67 (54.5%)     80 (66.7%)     226 (61.9%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 29 (23.8%)   25 (20.3%)     29 (24.2%)      83 (22.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         29 (23.8%)   25 (20.3%)     29 (24.2%)      83 (22.7%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                    50 (41%)    42 (34.1%)     51 (42.5%)     143 (39.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.1.1                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)    42 (34.1%)     51 (42.5%)     143 (39.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                  50 (41%)    42 (34.1%)     51 (42.5%)     143 (39.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.4.2                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)   42 (34.1%)     50 (41.7%)     140 (38.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               48 (39.3%)   42 (34.1%)     50 (41.7%)     140 (38.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       48 (39.3%)   42 (34.1%)     50 (41.7%)     140 (38.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.2                                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)   58 (47.2%)     57 (47.5%)     162 (44.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 47 (38.5%)   58 (47.2%)     57 (47.5%)     162 (44.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         47 (38.5%)   58 (47.2%)     57 (47.5%)     162 (44.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.2.1.5.3                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)   58 (47.2%)     57 (47.5%)     162 (44.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               47 (38.5%)   58 (47.2%)     57 (47.5%)     162 (44.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       47 (38.5%)   58 (47.2%)     57 (47.5%)     162 (44.4%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.1                                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)   49 (39.8%)     43 (35.8%)     139 (38.1%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 5                   47 (38.5%)   49 (39.8%)     43 (35.8%)     139 (38.1%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.1.1.1.1                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)   49 (39.8%)     43 (35.8%)     139 (38.1%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 5                 47 (38.5%)   49 (39.8%)     43 (35.8%)     139 (38.1%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.2                                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 35 (28.7%)    48 (39%)      55 (45.8%)     138 (37.8%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 35 (28.7%)    48 (39%)      55 (45.8%)     138 (37.8%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         35 (28.7%)    48 (39%)      55 (45.8%)     138 (37.8%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.2.1.2.1                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               35 (28.7%)    48 (39%)      55 (45.8%)     138 (37.8%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               35 (28.7%)    48 (39%)      55 (45.8%)     138 (37.8%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       35 (28.7%)    48 (39%)      55 (45.8%)     138 (37.8%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.1                                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 43 (35.2%)   46 (37.4%)     43 (35.8%)     132 (36.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-4                 43 (35.2%)   46 (37.4%)     43 (35.8%)     132 (36.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                         43 (35.2%)   46 (37.4%)     43 (35.8%)     132 (36.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.1.1.1.3                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               43 (35.2%)   46 (37.4%)     43 (35.8%)     132 (36.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-4               43 (35.2%)   46 (37.4%)     43 (35.8%)     132 (36.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                       43 (35.2%)   46 (37.4%)     43 (35.8%)     132 (36.2%) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  All counts represent patients. Multiple occurrences of the same AE in one individual are counted once at the highest grade for this patient. To the SOC Overall row counts, a patient contributes only with the AE occuring with the highest grade within the SOC. Percentages are based on N in the column headings.  Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet04_1</span><span class='op'>(</span><span class='va'>db</span>, group_grades <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='st'>"Any Grade"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span>,</span>
+<span class='r-in'>  <span class='st'>"Grade 1-2"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"2"</span><span class='op'>)</span>,</span>
+<span class='r-in'>  <span class='st'>"Grade 3-5"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events by Highest NCI CTCAE Grade: {Specify Population}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ——————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   MedDRA Preferred Term       (N=122)       (N=123)        (N=120)    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ——————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Any Grade                   122 (100%)    123 (100%)      120 (100%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 1-2                   13 (10.7%)    19 (15.4%)      11 (9.2%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                            7 (5.7%)      9 (7.3%)        4 (3.3%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                            6 (4.9%)      10 (8.1%)       7 (5.8%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Grade 3-5                   109 (89.3%)   104 (84.6%)    109 (90.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                           18 (14.8%)    14 (11.4%)      16 (13.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                           15 (12.3%)    20 (16.3%)       18 (15%)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                           76 (62.3%)    70 (56.9%)      75 (62.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl A.1                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 78 (63.9%)     75 (61%)       89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 78 (63.9%)     75 (61%)       89 (74.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)     27 (22%)       39 (32.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         48 (39.3%)     48 (39%)       50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.1                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)     45 (36.6%)      63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2                50 (41%)     45 (36.6%)      63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                        50 (41%)     45 (36.6%)      63 (52.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd A.1.1.1.2                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)     48 (39%)       50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)     48 (39%)       50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       48 (39.3%)     48 (39%)       50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.2                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)    74 (60.2%)      85 (70.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 30 (24.6%)    30 (24.4%)      33 (27.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         30 (24.6%)    30 (24.4%)      33 (27.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-5                 49 (40.2%)    44 (35.8%)      52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         49 (40.2%)    44 (35.8%)      52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.2.3.1                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)    54 (43.9%)      51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               48 (39.3%)    54 (43.9%)      51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       48 (39.3%)    54 (43.9%)      51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.2.1.2.1                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               49 (40.2%)    44 (35.8%)      52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-5               49 (40.2%)    44 (35.8%)      52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       49 (40.2%)    44 (35.8%)      52 (43.3%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.1                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 79 (64.8%)    67 (54.5%)      80 (66.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-5                 79 (64.8%)    67 (54.5%)      80 (66.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                         29 (23.8%)    25 (20.3%)      29 (24.2%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   5                          50 (41%)     42 (34.1%)      51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.1.1                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade                50 (41%)     42 (34.1%)      51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-5                50 (41%)     42 (34.1%)      51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     5                        50 (41%)     42 (34.1%)      51 (42.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.1.1.4.2                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               48 (39.3%)    42 (34.1%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-5               48 (39.3%)    42 (34.1%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     3                       48 (39.3%)    42 (34.1%)      50 (41.7%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl D.2                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)    58 (47.2%)      57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 47 (38.5%)    58 (47.2%)      57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                         47 (38.5%)    58 (47.2%)      57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd D.2.1.5.3                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)    58 (47.2%)      57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               47 (38.5%)    58 (47.2%)      57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1                       47 (38.5%)    58 (47.2%)      57 (47.5%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl B.1                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 47 (38.5%)    49 (39.8%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-5                 47 (38.5%)    49 (39.8%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   5                         47 (38.5%)    49 (39.8%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd B.1.1.1.1                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               47 (38.5%)    49 (39.8%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-5               47 (38.5%)    49 (39.8%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     5                       47 (38.5%)    49 (39.8%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.2                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 35 (28.7%)     48 (39%)       55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 1-2                 35 (28.7%)     48 (39%)       55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                         35 (28.7%)     48 (39%)       55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.2.1.2.1                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               35 (28.7%)     48 (39%)       55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 1-2               35 (28.7%)     48 (39%)       55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2                       35 (28.7%)     48 (39%)       55 (45.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cl C.1                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Any Grade                 43 (35.2%)    46 (37.4%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Grade 3-5                 43 (35.2%)    46 (37.4%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                         43 (35.2%)    46 (37.4%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   dcd C.1.1.1.3                                                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Any Grade               43 (35.2%)    46 (37.4%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Grade 3-5               43 (35.2%)    46 (37.4%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     4                       43 (35.2%)    46 (37.4%)      43 (35.8%)  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ——————————————————————————————————————————————————————————————————————</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  All counts represent patients. Multiple occurrences of the same AE in one individual are counted once at the highest grade for this patient. To the SOC Overall row counts, a patient contributes only with the AE occuring with the highest grade within the SOC. Percentages are based on N in the column headings.  Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>aet04_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> A Pre-data Table Layout</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Column-Split Structure:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ACTARM (lvls) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Row-Split Structure:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> AEBODSYS (lvls) -&gt; AEDECOD (lvls) -&gt; AETOXGR (** analysis **) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

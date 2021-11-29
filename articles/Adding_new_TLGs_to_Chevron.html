@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Adding new TLGs to Chevron</h1>
             
-            <h4 class="date">2021-11-10</h4>
+            <h4 class="date">2021-11-29</h4>
       
       
       <div class="hidden name"><code>Adding_new_TLGs_to_Chevron.Rmd</code></div>
@@ -161,7 +161,7 @@
 <div id="the--study-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the--study-object" class="anchor"></a>The <code>.study</code> object</h3>
-<p>The following variables are best hard coded in the table-generating functions (with the possibility to the user to override some of these choices.): - <code>evo_vars</code> (used in LBT01, which variables capture status and the evolution of the analysis): generally <code><a href="https://rdrr.io/r/base/c.html">c("AVAL", "CNG")</a></code> - <code>gradation</code> (internal, used in AET03, capture the levels of severity of adverse events): generally corresponds to the levels of <code>AESEV</code>in <code>adae</code>. - <code>lbl_overall</code> (used everywhere, the label associated with the overall column) - <code>reason</code> (used in DST01, the name of the column specifying study withdrawal): generally <code>DCSREAS</code>. - <code>status</code> (used in DST01, the name of the column specifying study status): generally: <code>EOSSTT</code>. - <code>summaryvars</code> (used in DMT01, the list of variables to be summarized):</p>
+<p>The following variables are best hard coded in the table-generating functions (with the possibility to the user to override some of these choices.): - <code>evo_vars</code> (used in LBT01, which variables capture status and the evolution of the analysis): generally <code>c("AVAL", "CNG")</code> - <code>severity_grade</code> (internal, used in AET03, capture the levels of severity of adverse events): generally corresponds to the levels of <code>AESEV</code>in <code>adae</code>. - <code>lbl_overall</code> (used everywhere, the label associated with the overall column) - <code>reason</code> (used in DST01, the name of the column specifying study withdrawal): generally <code>DCSREAS</code>. - <code>status</code> (used in DST01, the name of the column specifying study status): generally: <code>EOSSTT</code>. - <code>summaryvars</code> (used in DMT01, the list of variables to be summarized):</p>
 <p>The <code>.study</code> object contains information relative to the way the study is analyzed. - “Patient” or “Subject” (the designation of the person depends on the study) - <code>armvar</code> (Randomized arm variable): generally: <code>ARM</code>or <code>ACTARM</code>. - Actually received variable - <code>format</code>: of percentages etc…</p>
 </div>
 <div id="tests" class="section level3">

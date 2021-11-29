@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>General Argument Name Convention — gen_args • chevron</title>
+<title>Get Data from a DB — get_db_data • chevron</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="General Argument Name Convention — gen_args" />
-<meta property="og:description" content="General Argument Name Convention" />
+<meta property="og:title" content="Get Data from a DB — get_db_data" />
+<meta property="og:description" content="Get Data from a DB" />
 
 
 
@@ -126,166 +126,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>General Argument Name Convention</h1>
+    <h1>Get Data from a DB</h1>
     
-    <div class="hidden name"><code>gen_args.Rd</code></div>
+    <div class="hidden name"><code>get_db_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>General Argument Name Convention</p>
+    <p>Get Data from a DB</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gen_args</span><span class='op'>(</span>
-  <span class='va'>adam_db</span>,
-  <span class='va'>armvar</span>,
-  <span class='va'>lbl_overall</span>,
-  <span class='va'>prune_0</span>,
-  <span class='va'>deco</span>,
-  <span class='va'>.study</span>,
-  <span class='va'>ad_bl</span>,
-  <span class='va'>adsl</span>,
-  <span class='va'>adeg</span>,
-  <span class='va'>adae</span>,
-  <span class='va'>adcm</span>,
-  <span class='va'>admh</span>,
-  <span class='va'>aag</span>,
-  <span class='va'>advs</span>,
-  <span class='va'>adlb</span>,
-  <span class='va'>adex</span>,
-  <span class='va'>adsub</span>,
-  <span class='va'>adrs</span>,
-  <span class='va'>adtte</span>,
-  <span class='va'>adhy</span>,
-  <span class='va'>adsaftte</span>,
-  <span class='va'>addv</span>,
-  <span class='va'>adcssrs</span>,
-  <span class='va'>adqlqc</span>,
-  <span class='va'>acg</span>,
-  <span class='va'>adic</span>,
-  <span class='va'>group</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_db_data</span><span class='op'>(</span><span class='va'>db</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>adam_db</th>
-      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
+      <th>db</th>
+      <td><p>a named list or a <code>dm</code> object.</p></td>
     </tr>
     <tr>
-      <th>armvar</th>
-      <td><p>(<code>character</code>) variable used for column splitting</p></td>
-    </tr>
-    <tr>
-      <th>lbl_overall</th>
-      <td><p>(<code>character</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></td>
-    </tr>
-    <tr>
-      <th>prune_0</th>
-      <td><p>(<code>logical</code>) remove 0 count rows</p></td>
-    </tr>
-    <tr>
-      <th>deco</th>
-      <td><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></td>
-    </tr>
-    <tr>
-      <th>.study</th>
-      <td><p>(<code>list</code>)  with default values for the arguments of the function</p></td>
-    </tr>
-    <tr>
-      <th>ad_bl</th>
-      <td><p>(<code>data.frame</code>) subject baseline Dataset with one row per patient</p></td>
-    </tr>
-    <tr>
-      <th>adsl</th>
-      <td><p>(<code>data.frame</code>) Subject Level Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adeg</th>
-      <td><p>(<code>data.frame</code>) ECG Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adae</th>
-      <td><p>(<code>data.frame</code>) Adverse Events Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adcm</th>
-      <td><p>(<code>data.frame</code>) Concomitant Medications Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>admh</th>
-      <td><p>(<code>data.frame</code>) Medical History Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>aag</th>
-      <td><p>(<code>data.frame</code>) Adverse Event Grouping Defs Dataset</p></td>
-    </tr>
-    <tr>
-      <th>advs</th>
-      <td><p>(<code>data.frame</code>) Vital Signs Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adlb</th>
-      <td><p>(<code>data.frame</code>) Laboratory Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adex</th>
-      <td><p>(<code>data.frame</code>) Exposure Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adsub</th>
-      <td><p>(<code>data.frame</code>) Subcategory Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adrs</th>
-      <td><p>(<code>data.frame</code>) Response Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adtte</th>
-      <td><p>(<code>data.frame</code>) Time to Event Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adhy</th>
-      <td><p>(<code>data.frame</code>) Hy's Law Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adsaftte</th>
-      <td><p>(<code>data.frame</code>) Safety Time to Event Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>addv</th>
-      <td><p>(<code>data.frame</code>) Protocol Deviations Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adcssrs</th>
-      <td><p>(<code>data.frame</code>) C-SSRS Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adqlqc</th>
-      <td><p>(<code>data.frame</code>) EORTC QLQ-C30 V3 Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>acg</th>
-      <td><p>(<code>data.frame</code>) Concomitant Med. Grouping Defs Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adic</th>
-      <td><p>(<code>data.frame</code>) Interval Censoring Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>group</th>
-      <td><p>nest list for group-dependent data binning</p></td>
+      <th>...</th>
+      <td><p>not used.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>the following arguments are better provided through the study object:</p><ul>
-<li><p>lbl_overall</p></li>
-<li><p>armvar</p></li>
-</ul>
+    <p>named list of datasets</p>
 
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'>  <span class='fu'>get_db_data</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>iris <span class='op'>=</span> <span class='va'>iris</span>, mtcars <span class='op'>=</span> <span class='va'>mtcars</span>, CO2 <span class='op'>=</span> <span class='va'>CO2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='fu'>get_db_data</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>iris <span class='op'>=</span> <span class='va'>iris</span>, mtcars <span class='op'>=</span> <span class='va'>mtcars</span>, CO2 <span class='op'>=</span> <span class='va'>CO2</span><span class='op'>)</span>, <span class='st'>"iris"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='fu'>get_db_data</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>iris <span class='op'>=</span> <span class='va'>iris</span>, mtcars <span class='op'>=</span> <span class='va'>mtcars</span>, CO2 <span class='op'>=</span> <span class='va'>CO2</span><span class='op'>)</span>, <span class='st'>"iris"</span>, <span class='st'>"CO2"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>  <span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'>dm</span><span class='fu'>::</span><span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_nycflights13.html'>dm_nycflights13</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>    <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_filter.html'>dm_filter</a></span><span class='op'>(</span><span class='va'>airports</span>, <span class='va'>name</span> <span class='op'>==</span> <span class='st'>"John F Kennedy Intl"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>  <span class='fu'>get_db_data</span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"airports"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -170,12 +170,6 @@
       <tr>
         
         <td>
-          <p><code><a href="aet01_1.html">aet01_1()</a></code> </p>
-        </td>
-        <td><p>AET01 Table 1 (Default) Safety Summary Table 1</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="aet02_1.html">aet02_1()</a></code> <code><a href="aet02_1.html">aet02_1_lyt()</a></code> </p>
         </td>
         <td><p>AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1</p></td>
@@ -249,6 +243,80 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-data-set-filter-functions" class="hasAnchor"><a href="#section-data-set-filter-functions" class="anchor"></a>Data Set Filter Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="std_filter.html">std_filter()</a></code> </p>
+        </td>
+        <td><p>Retrieve Standard Subsetting for Templates</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_adex_drug.html">filter_adex_drug()</a></code> </p>
+        </td>
+        <td><p>Filter <code>adex</code> for <code>PARCAT1</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_adae_anl01fl.html">filter_adae_anl01fl()</a></code> </p>
+        </td>
+        <td><p>Filter <code>adae</code> for <code>ANL01FL</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_adlb_anl01fl.html">filter_adlb_anl01fl()</a></code> </p>
+        </td>
+        <td><p>Filter <code>adlb</code> for <code>ANL01FL</code></p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-data-set-mutate-functions" class="hasAnchor"><a href="#section-data-set-mutate-functions" class="anchor"></a>Data Set Mutate Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="std_mutate.html">std_mutate()</a></code> </p>
+        </td>
+        <td><p>Retrieve Standard Mutation for Templates</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mutate_adsl_gp.html">mutate_adsl_gp()</a></code> </p>
+        </td>
+        <td><p>Categorize Reason for Discontinuation from Study.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="remove_adex_aval.html">remove_adex_aval()</a></code> </p>
+        </td>
+        <td><p>Remove specific <code>AVAL</code> and <code>AVALCAT1</code> data from <code>adex</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reorder_adex_params.html">reorder_adex_params()</a></code> </p>
+        </td>
+        <td><p>Reorder <code>PARAM</code> and <code>PARAMCD</code> levels</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-utility-functions" class="hasAnchor"><a href="#section-utility-functions" class="anchor"></a>Utility Functions</h2>
           <p class="section-desc"></p>
         </th>
@@ -261,9 +329,9 @@
       <tr>
         
         <td>
-          <p><code><a href="std_deco.html">std_deco()</a></code> </p>
+          <p><code><a href="get_db_data.html">get_db_data()</a></code> </p>
         </td>
-        <td><p>Standard Documentation Lookup</p></td>
+        <td><p>Get Data from a DB</p></td>
       </tr><tr>
         
         <td>
@@ -273,9 +341,27 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="relevel_params.html">relevel_params()</a></code> </p>
+          <p><code><a href="reorder_levels_params.html">reorder_levels_params()</a></code> </p>
         </td>
         <td><p>Reorder PARAM and PARAMCD Levels Simultaneously</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_decoration.html">set_decoration()</a></code> </p>
+        </td>
+        <td><p>Temporary function to add decorator to a table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="std_deco.html">std_deco()</a></code> </p>
+        </td>
+        <td><p>Standard Documentation Lookup</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="syn_test_data.html">syn_test_data()</a></code> </p>
+        </td>
+        <td><p>Retrieve Synthetic Test Data Used For Examples</p></td>
       </tr><tr>
         
         <td>
