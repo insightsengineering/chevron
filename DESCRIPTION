@@ -26,6 +26,8 @@ Imports:
     tidyr,
     tibble
 Suggests:
+    DiagrammeR,
+    DiagrammeRsvg,
     knitr,
     rmarkdown,
     scda,
