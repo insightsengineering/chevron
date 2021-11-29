@@ -357,7 +357,7 @@ syn_test_data <- function() {
   db <- db %>%
     dm_zoom_to(adae) %>%
     mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(AEBODSYS = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
+    mutate(AEDECOD = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
   db_m <- db %>%
