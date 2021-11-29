@@ -13,7 +13,7 @@
   ```r
   devtools::install_github("openpharma/staged.dependencies")
   ```
-  and setup your GitHub tokens following the instructions on the `staged.dependencies` [website](https://github.com/openpharma/staged.dependencies).  Make sure that you enable SSO for the token.
+  and setup your GitHub tokens following the instructions on the `staged.dependencies`.  Make sure that you enable SSO for the token.
   
 3. Install the `chevron` package dependencies with (make sure the working directory is set to the root of `chevron`)
   ```r

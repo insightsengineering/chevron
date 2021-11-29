@@ -337,7 +337,7 @@ syn_test_data <- function() {
   # useful for dmt01
   adsub <- sd$adsub
   adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
-  sd$adsl <- sd$adsl %>% left_join(adsub_wide)
+  sd$adsl <- sd$adsl %>% left_join(adsub_wide, by = "USUBJID")
 
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
@@ -353,6 +353,12 @@ syn_test_data <- function() {
      dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
      dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
      dm_add_pk(adae, "AESEQ")
+
+  db <- db %>%
+    dm_zoom_to(adae) %>%
+    mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(AEBODSYS = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
+    dm_update_zoomed()
 
   db_m <- db %>%
     dm_zoom_to(adae) %>%
