@@ -17,6 +17,11 @@ std_data_manipulation_map <- tibble::tribble(
   "lbt01_1",     "filter_adlb_anl01fl",            NA,                    c("adsl", "adlb")
 )
 
+#' @export
+std_preproc_map <- function() {
+  std_data_manipulation_map
+}
+
 
 #' Retrieve Standard Subsetting for Templates
 #'
