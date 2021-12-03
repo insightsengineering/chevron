@@ -48,6 +48,7 @@ reference:
       - get_db_data
       - pivot_wider_labels
       - reorder_levels_params
+      - sample_study_object
       - set_decoration
       - std_deco
       - syn_test_data
