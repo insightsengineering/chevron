@@ -8,9 +8,9 @@
 dst01_2(
   adam_db,
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status_var = "EOSSTT",
   disc_reason_var = .study$disc_reason_var,
+  lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
@@ -21,11 +21,11 @@ dst01_2_lyt(
   armvar = .study$armvar,
   status = .study$status,
   disc_reason_var = .study$disc_reason_var,
-  deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
   ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
   lbl_overall = .study$lbl_overall,
+  deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT",
     disc_reason_var = "DCSREAS")
 )
@@ -35,15 +35,15 @@ dst01_2_lyt(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
-also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
-period.}
+\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
+however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
+the analysis period.}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 

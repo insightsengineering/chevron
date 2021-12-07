@@ -24,9 +24,9 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #'
 #'
 #' @details
@@ -121,9 +121,9 @@ dst01_1 <- function(adam_db,
 #'
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
 #'   Default `COMPLETED`.
 #' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
@@ -140,15 +140,15 @@ dst01_1 <- function(adam_db,
 #' @examples
 #' dst01_1_lyt(armvar = "ACTARM",
 #' status = "EOP01STT",
-#' reason = "DCP01RS")
+#' disc_reason_var = "DCP01RS")
 dst01_1_lyt <- function(armvar = .study$armvar,
-                        lbl_overall = .study$lbl_overall,
                         status = .study$status,
                         disc_reason_var = .study$disc_reason_var,
-                        deco = std_deco("DST01"),
                         completed_lbl = "COMPLETED",
                         ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
+                        lbl_overall = .study$lbl_overall,
+                        deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -202,9 +202,9 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal.
@@ -237,9 +237,9 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'
 dst01_2 <- function(adam_db,
                     armvar = .study$armvar,
-                    lbl_overall = .study$lbl_overall,
                     status_var = "EOSSTT",
                     disc_reason_var = .study$disc_reason_var,
+                    lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
@@ -297,9 +297,9 @@ dst01_2 <- function(adam_db,
 #'
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
-#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #' @param completed_lbl (`string`) associated with completed study and found in the columns given by `status`. By
 #'   Default `COMPLETED`.
 #' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
@@ -320,11 +320,11 @@ dst01_2 <- function(adam_db,
 dst01_2_lyt <- function(armvar = .study$armvar,
                         status = .study$status,
                         disc_reason_var = .study$disc_reason_var,
-                        deco = std_deco("DST01"),
                         completed_lbl = "COMPLETED",
                         ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
                         lbl_overall = .study$lbl_overall,
+                        deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",
@@ -379,9 +379,9 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`, however can
-#'   also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to the analysis
-#'   period.
+#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
+#'   the analysis period.
 #' @param status_treatment (`character`) variable used to define the treatment status of the patients. Default is
 #'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
 #'   referring to the analysis period.
@@ -417,11 +417,11 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'
 dst01_3 <- function(adam_db,
                     armvar = .study$armvar,
-                    lbl_overall = .study$lbl_overall,
                     status = "EOSSTT",
                     disc_reason_var = .study$disc_reason_var,
-                    prune_0 = TRUE,
                     status_treatment = "EOTSTT",
+                    lbl_overall = .study$lbl_overall,
+                    prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
@@ -523,12 +523,12 @@ dst01_3 <- function(adam_db,
 #' dst01_3_lyt(armvar = "ACTARM",
 #' status_treatment = "EOTxx01")
 dst01_3_lyt <- function(armvar = .study$armvar,
-                        lbl_overall = .study$lbl_overall,
                         status_treatment = .study$status,
-                        deco = std_deco("DST01"),
                         completed_lbl = "COMPLETED",
                         discontinued_lbl = "DISCONTINUED",
                         ongoing_lbl = "ONGOING",
+                        lbl_overall = .study$lbl_overall,
+                        deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = "All patients",

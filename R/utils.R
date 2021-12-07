@@ -288,7 +288,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' @return named list of datasets
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
 #'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
 #'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")
@@ -337,7 +337,7 @@ syn_test_data <- function() {
   # useful for dmt01
   adsub <- sd$adsub
   adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
-  sd$adsl <- sd$adsl %>% left_join(adsub_wide)
+  sd$adsl <- sd$adsl %>% left_join(adsub_wide, by = "USUBJID")
 
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
@@ -353,6 +353,12 @@ syn_test_data <- function() {
      dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
      dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
      dm_add_pk(adae, "AESEQ")
+
+  db <- db %>%
+    dm_zoom_to(adae) %>%
+    mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(AEDECOD = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
+    dm_update_zoomed()
 
   db_m <- db %>%
     dm_zoom_to(adae) %>%
@@ -377,7 +383,3 @@ set_decoration <- function(x, deco) {
   x@main_footer  <- deco$main_footer
   x
 }
-
-
-
-

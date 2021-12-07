@@ -18,7 +18,7 @@ named list of datasets
 Get Data from a DB
 }
 \examples{
-\donttest{
+\dontrun{
   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")

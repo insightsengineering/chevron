@@ -99,17 +99,15 @@ aet03_1 <- function(adam_db,
 #'
 #' @examples
 #' aet03_1_lyt(armvar = "ACTARM",
-#'  lbl_overall = NULL,
 #'  lbl_AEBODSYS = "Body System or Organ Class",
-#'  lbl_AESEV = "Severity/Intensity",
 #'  lbl_AEDECOD = "Dictionary-Derived Term",
+#'  lbl_overall = NULL,
 #'  deco = std_deco("AET03"))
 aet03_1_lyt <- function(armvar = .study$armvar,
-                        lbl_overall = .study$lbl_overall,
                         lbl_AEBODSYS = "",
                         lbl_AEDECOD = "",
                         severity_grade = .study$severity_grade,
-
+                        lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET03"),
                         .study = list(
                           armvar = "ACTARM",

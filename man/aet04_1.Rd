@@ -8,13 +8,13 @@
 aet04_1(
   adam_db,
   armvar = .study$armvar,
+  group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
-  group_grades = .study$group_grades,
   deco = std_deco("AET04"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL, group_grades = list(`- Any Grade
-    -` = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3",
-    "4"), `Grade 5` = c("5")))
+  .study = list(armvar = "ACTARM", lbl_overall = NULL, group_grades = list(`Any Grade`
+    = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", "4"),
+    `Grade 5` = c("5")))
 )
 
 aet04_1_lyt(
@@ -24,9 +24,9 @@ aet04_1_lyt(
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET04"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL, group_grades = list(`- Any Grade
-    -` = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3",
-    "4"), `Grade 5` = c("5")))
+  .study = list(armvar = "ACTARM", lbl_overall = NULL, group_grades = list(`Any Grade`
+    = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", "4"),
+    `Grade 5` = c("5")))
 )
 }
 \arguments{
@@ -34,11 +34,11 @@ aet04_1_lyt(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
+\item{group_grades}{(\code{list}) putting in correspondence severity levels and labels.}
+
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
-
-\item{group_grades}{(\code{list}) putting in correspondence severity levels and labels.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -85,7 +85,7 @@ aet04_1(db, prune_0 = FALSE)
 aet04_1(db, lbl_overall = "All Patients")
 
 aet04_1(db, group_grades = list(
-  "- Any Grade -" = c("1", "2", "3", "4", "5"),
+  "Any Grade" = c("1", "2", "3", "4", "5"),
   "Grade 1-2" = c("1", "2"),
   "Grade 3-5" = c("3", "4", "5")
 ))

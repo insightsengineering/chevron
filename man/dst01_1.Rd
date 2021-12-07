@@ -19,13 +19,13 @@ dst01_1(
 
 dst01_1_lyt(
   armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
   status = .study$status,
   disc_reason_var = .study$disc_reason_var,
-  deco = std_deco("DST01"),
   completed_lbl = "COMPLETED",
   ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", status = "EOSSTT",
     disc_reason_var = "DCSREAS")
 )
@@ -39,9 +39,9 @@ dst01_1_lyt(
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS}, however can
-also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to the analysis
-period.}
+\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
+however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
+the analysis period.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
@@ -105,5 +105,5 @@ dst01_1(db)
 
 dst01_1_lyt(armvar = "ACTARM",
 status = "EOP01STT",
-reason = "DCP01RS")
+disc_reason_var = "DCP01RS")
 }
