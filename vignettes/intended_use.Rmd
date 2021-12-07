@@ -28,6 +28,7 @@ particular setting.
 For this vignette we load the following packages
 
 ```{r}
+library(rtables)
 library(chevron)
 library(dm)
 library(dplyr)
@@ -442,13 +443,13 @@ lopo_sel <- lopo_new %>%
   filter(tlgfname %in% c("aet02_1", "ns_dmtspecial")) 
 
 
-create_tlg_in_lopo(adam_db = adam_study_data, lopo_sel, pmap, dict = study_dict)
+tbls <- create_tlg_in_lopo(adam_db = adam_study_data, lopo_sel, pmap, dict = study_dict)
 
 
 names(tbls)
 
-lapply(tbls, rtables::paginate_table, lpp = 40 )
-tbls[[1]] %>% head()
+# lapply(tbls, rtables::paginate_table, lpp = 40 )
+# tbls[[1]] %>% head()
 ```
 
 ## Summary

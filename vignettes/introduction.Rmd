@@ -66,22 +66,22 @@ A the `aet02_1` output is then created as follows:
 ```{r}
 library(chevron)
 
-db <- adam_study_data %>%
-  (std_filter("aet02_1"))() %>%
-  (std_mutate("aet02_1"))() 
+db <- preprocess_data(adam_study_data, "aet02_1")
 
 aet02_1(adam_db = db)
 ```
 
 Note that
 
-* the `std_filter` and `std_mutate` are bundled with `aet02_1` and often return the `identity` function but sometimes
-contain modifications that do not belong to the ADaM model. For example, here
+* `preprocess_data` applies the returned function of `std_filter` and `std_mutate` to the data. These functions 
+   often return the `identity` function but sometimes contain modifications that do not belong to the ADaM model.
+   For example, here:
 
    ```{r}
    std_filter("aet02_1")
    ```
 
-* the functions returned by `std_mutate` and `std_filter` has always the first argument `adam_db` and might have optional arguments, including possibly the `.study` object.
+* the functions returned by `std_mutate` and `std_filter` has always the first argument `adam_db` and might have 
+  optional arguments, including possibly the `.study` object.
 * the `tlg-function` in `chevron` also return the standard titles and footnotes
 
