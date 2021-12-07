@@ -28,8 +28,8 @@
 #'    dm_select_tbl(adsl, adex)
 #'
 #' db <- db %>%
-#'   (std_filter("ext01_1"))() %>%
-#'   (std_mutate("ext01_1"))()
+#'   (std_filter_fun("ext01_1"))() %>%
+#'   (std_mutate_fun("ext01_1"))()
 #'
 #' ext01_1(db)
 #'
@@ -124,8 +124,8 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'    dm_select_tbl(adsl, adex)
 #'
 #' db <- db %>%
-#'   (std_filter("ext01_2"))() %>%
-#'   (std_mutate("ext01_2"))()
+#'   (std_filter_fun("ext01_2"))() %>%
+#'   (std_mutate_fun("ext01_2"))()
 #'
 #' ext01_2(db)
 #'

@@ -77,8 +77,8 @@ db <- syn_test_data() \%>\%
    dm_select_tbl(adsl, adae)
 
 db <- db \%>\%
-  (std_filter("aet03_1"))() \%>\%
-  (std_mutate("aet03_1"))()
+  (std_filter_fun("aet03_1"))() \%>\%
+  (std_mutate_fun("aet03_1"))()
 
 aet04_1(db)
 aet04_1(db, prune_0 = FALSE)

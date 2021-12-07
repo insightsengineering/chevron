@@ -66,22 +66,22 @@ A the `aet02_1` output is then created as follows:
 ```{r}
 library(chevron)
 
-db <- preprocess_data(adam_study_data, "aet02_1")
+db <- adam_study_data %>%
+  preprocess_data("aet02_1")
 
 aet02_1(adam_db = db)
 ```
 
-Note that
 
-* `preprocess_data` applies the returned function of `std_filter` and `std_mutate` to the data. These functions 
-   often return the `identity` function but sometimes contain modifications that do not belong to the ADaM model.
-   For example, here:
+# More on preprocess_data and processing map
 
-   ```{r}
-   std_filter("aet02_1")
-   ```
+The `preprocess_data` function determines the the preprocessing using a *processing map* which is
+referred to in `chevron` as `pmap`. 
 
-* the functions returned by `std_mutate` and `std_filter` has always the first argument `adam_db` and might have 
-  optional arguments, including possibly the `.study` object.
-* the `tlg-function` in `chevron` also return the standard titles and footnotes
+The standard preprocessing map that comes with the *tlg-functions* in `chevron` can be access via `std_pmap`
 
+```{r}
+std_pmap()
+```
+
+For example, 

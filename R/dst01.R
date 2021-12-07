@@ -51,8 +51,8 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'    dm_select_tbl(adsl)
 #'
 #' db <- db %>%
-#'   (std_filter("dst01_1"))() %>%
-#'   (std_mutate("dst01_1"))()
+#'   (std_filter_fun("dst01_1"))() %>%
+#'   (std_mutate_fun("dst01_1"))()
 #'
 #' dst01_1(db)
 #'
@@ -229,8 +229,8 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'    dm_select_tbl(adsl)
 #'
 #' db <- db %>%
-#'   (std_filter("dst01_2"))() %>%
-#'   (std_mutate("dst01_2"))()
+#'   (std_filter_fun("dst01_2"))() %>%
+#'   (std_mutate_fun("dst01_2"))()
 #'
 #' dst01_2(db)
 #' dst01_2(db, lbl_overall = NULL)
@@ -409,8 +409,8 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'    dm_select_tbl(adsl)
 #'
 #' db <- db %>%
-#'   (std_filter("dst01_3"))() %>%
-#'   (std_mutate("dst01_3"))()
+#'   (std_filter_fun("dst01_3"))() %>%
+#'   (std_mutate_fun("dst01_3"))()
 #'
 #' dst01_3(db)
 #' dst01_3(db, lbl_overall = NULL)

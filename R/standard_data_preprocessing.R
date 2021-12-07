@@ -1,8 +1,7 @@
 
 
-# TODO: standardize the names
-std_data_manipulation_map <- tibble::tribble(
-  ~id,           ~filter_fun,                      ~mutate_fun,           ~req_data,
+std_preprocessing_map <- tibble::tribble(
+  ~tlgfname,      ~filter_fname,                   ~mutate_fname,           ~req_data,
   "aet02_1",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
   "aet02_2",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
   "aet02_3",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
@@ -17,9 +16,130 @@ std_data_manipulation_map <- tibble::tribble(
   "lbt01_1",     "filter_adlb_anl01fl",            NA,                    c("adsl", "adlb")
 )
 
+
+#' Standard Preprocessing Map
+#'
+#' The preprocessing map contains information how the ADaM data needs to be preprocessed for each function.
+#'
+#'
 #' @export
-std_preproc_map <- function() {
-  std_data_manipulation_map
+#'
+#' @examples
+#' std_pmap()
+std_pmap <- function() {
+  std_preprocessing_map
+}
+
+#' Preprocessing Map Entry
+#'
+#' @param tlgfname (`character`) name of a function which creates a table, listing or graph
+#' @param filer_fname (`character`) name of function which filters the ADaM `dm` data object
+#' @param mutate_fname (`character`) name of function which mutates the ADaM `dm` data object
+#' @param req_data (`character`) vector of data names in the ADaM `dm` data objects that are reuquired to create the
+#'   output
+#'
+#' @export
+#'
+#' @examples
+#'
+#' pmap_entry("tabc", NA, "identity", c("adsl", "adae"))
+#'
+pmap_entry <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
+
+  fnames <- list(tlgname, filter_fname, mutate_fname)
+  is_char <- vapply(fnames, function(xi) is.na(xi) || is.character(xi), logical(1))
+  fname_len <- vapply(fnames, length, numeric(1))
+
+  assert_that(all(is_char), msg = "tlgfname, filter_fname, mutate_fname must either be NA or of type character")
+  assert_that(all(fname_len == 1), msg = "tlgfname, filter_fname, mutate_fname must be of length 1")
+  assert_that(is.character(req_data), msg = "req_data need to be a character string")
+
+  tibble(
+    tlgfname = tlgfname,
+    filter_fname = filter_fname,
+    mutate_fname = mutate_fname,
+    req_data = req_data
+  )
+
+}
+
+lookup_fun <- function(fname, what, pmap) {
+
+  assert_that(fname %in% pmap$tlgfname)
+
+  fstr <- pmap %>%
+    filter(tlgfname == fname) %>%
+    slice(1) %>%
+    pull(what)
+
+  if (is.na(fstr))
+    identity
+  else
+    get(fstr)
+}
+
+get_filter_fun <- function(id, pmap) {
+  lookup_fun(id, "filter_fname", pmap)
+}
+
+get_mutate_fun <- function(id, pmap) {
+  lookup_fun(id, "mutate_fname", pmap)
+}
+
+get_req_data <- function(id, pmap) {
+  assert_that(id %in% pmap$tlgfname)
+
+  fstr <- pmap %>%
+    filter(tlgfname == id) %>%
+    slice(1) %>%
+    pull(req_data)
+
+  fstr[[1]]
+
+}
+
+#' Preprocess ADaM Data for A TLG function
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#'
+#' @examples
+#' library(magrittr)
+#' db <- syn_test_data()
+#'
+#' db %>%
+#'   preprocess_data("aet02_2")
+#'
+#'
+preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
+
+
+  assert_that(
+    all(get_req_data(tlgfname, pmap) %in% names(adam_db)),
+    msg = paste("adam_db is missing the data:",
+                paste(setdiff(get_req_data(tlgfname, pmap), names(adam_db)), collapse = ", "))
+  )
+
+  ffun <- get_filter_fun(tlgfname, pmap)
+  mfun <- get_mutate_fun(tlgfname, pmap)
+
+  extra_args_ffun <- if (".study" %in% names(formals(ffun))) {
+    list(.study = .study)
+  } else {
+    list()
+  }
+
+  extra_args_mfun <- if (".study" %in% names(formals(mfun))) {
+    list(.study = .study)
+  } else {
+    list()
+  }
+
+  dbf <- do.call(ffun, c(list(adam_db), extra_args_ffun))
+  do.call(mfun, c(list(dbf), extra_args_mfun))
+
 }
 
 
@@ -30,15 +150,15 @@ std_preproc_map <- function() {
 #' @export
 #'
 #' @examples
-#' std_filter("aet02_1")
-std_filter <- function(idt) {
+#' std_filter_fun("aet02_1")
+std_filter_fun <- function(idt) {
 
   assert_that(idt %in% std_data_manipulation_map$id)
 
   fname <- std_data_manipulation_map %>%
-    filter(id == idt) %>%
+    filter(tlgfname == idt) %>%
     slice(1) %>%
-    pull("filter_fun")
+    pull("filter_fname")
 
   if (is.na(fname))
     identity
@@ -53,15 +173,15 @@ std_filter <- function(idt) {
 #' @export
 #'
 #' @examples
-#' std_mutate("aet02_1")
-std_mutate <- function(idt) {
+#' std_mutate_fun("aet02_1")
+std_mutate_fun <- function(idt) {
 
   assert_that(idt %in% std_data_manipulation_map$id)
 
   fname <- std_data_manipulation_map %>%
     filter(id == idt) %>%
     slice(1) %>%
-    pull("mutate_fun")
+    pull("mutate_fname")
 
   if (is.na(fname))
     identity
@@ -75,42 +195,37 @@ std_mutate <- function(idt) {
 
 #' Filter `adae` for `ANL01FL`
 #'
-#' @param x (`dm`)
+#' @inheritParams gen_args
 #'
-#' @return
 #'
-filter_adae_anl01fl <- function(x) {
-  assert_that(is(x, "dm"))
+filter_adae_anl01fl <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
 
-  x %>%
+  adam_db %>%
     dm_filter(adae, bol_YN(ANL01FL)) %>%
     dm_apply_filters()
 }
 
 #' Filter `adlb` for `ANL01FL`
 #'
-#' @param x (`dm`)
+#' @inheritParams gen_args
 #'
-#' @return
-#'
-filter_adlb_anl01fl <- function(x) {
-  assert_that(is(x, "dm"))
+filter_adlb_anl01fl <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
 
-  x %>%
+  adam_db %>%
     dm_filter(adlb, bol_YN(ANL01FL)) %>%
     dm_apply_filters()
 }
 
 #' Filter `adex` for `PARCAT1`
 #'
-#' @param x (`dm`)
+#' @inheritParams gen_args
 #'
-#' @return
-#'
-filter_adex_drug <- function(x) {
-  assert_that(is(x, "dm"))
+filter_adex_drug <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
 
-  x %>%
+  adam_db %>%
     dm_filter(adex, PARCAT1 == "OVERALL") %>%
     dm_apply_filters()
 }
@@ -119,22 +234,20 @@ filter_adex_drug <- function(x) {
 #'
 #' @inheritParams gen_args
 #'
-#' @param x (`dm`) object.
+#' @inheritParams gen_args
 #' @param reason (`character`) the variable name containg the reason for discontinuation.
 #'
-#' @return
-#'
-mutate_adsl_gp <- function(x,
+mutate_adsl_gp <- function(adam_db,
                            reason = .study$disc_reason_var,
                            .study = list(disc_reason_var = "DCSREAS")
                            ) {
 
-  assert_that(is(x, "dm"))
+  assert_that(is(adam_db, "dm"))
 
   # TODO: revisit
   sym_reason <- sym(reason) # nolint
 
-  x %>%
+  adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
@@ -148,7 +261,6 @@ mutate_adsl_gp <- function(x,
 #' Reorder `PARAM` and `PARAMCD` levels
 #'
 #' @inheritParams gen_args
-#'
 #' @param paramcd_order (`vector of character`) providing the `PARAMCD` values in the desired order.
 #'
 #' @return a `dm` object

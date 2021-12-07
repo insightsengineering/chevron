@@ -98,8 +98,8 @@ db <- syn_test_data() \%>\%
    dm_select_tbl(adsl)
 
 db <- db \%>\%
-  (std_filter("dst01_2"))() \%>\%
-  (std_mutate("dst01_2"))()
+  (std_filter_fun("dst01_2"))() \%>\%
+  (std_mutate_fun("dst01_2"))()
 
 dst01_2(db)
 dst01_2(db, lbl_overall = NULL)

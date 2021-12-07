@@ -74,8 +74,8 @@ db <- syn_test_data() \%>\%
    dm_select_tbl(adsl)
 
 db <- db \%>\%
-  (std_filter("dmt01_1"))() \%>\%
-  (std_mutate("dmt01_1"))()
+  (std_filter_fun("dmt01_1"))() \%>\%
+  (std_mutate_fun("dmt01_1"))()
 
 
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))

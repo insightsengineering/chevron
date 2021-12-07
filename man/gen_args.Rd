@@ -4,35 +4,7 @@
 \alias{gen_args}
 \title{General Argument Name Convention}
 \usage{
-gen_args(
-  adam_db,
-  armvar,
-  lbl_overall,
-  prune_0,
-  deco,
-  .study,
-  ad_bl,
-  adsl,
-  adeg,
-  adae,
-  adcm,
-  admh,
-  aag,
-  advs,
-  adlb,
-  adex,
-  adsub,
-  adrs,
-  adtte,
-  adhy,
-  adsaftte,
-  addv,
-  adcssrs,
-  adqlqc,
-  acg,
-  adic,
-  group
-)
+gen_args(adam_db, armvar, lbl_overall, prune_0, deco, .study, group, tlgfname)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the adam Datasets.}
@@ -47,47 +19,11 @@ gen_args(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{ad_bl}{(\code{data.frame}) subject baseline Dataset with one row per patient}
+\item{group}{(\verb{list of lists}) for group-dependent data binning}
 
-\item{adsl}{(\code{data.frame}) Subject Level Analysis Dataset}
+\item{tlgfname}{(\code{character}) function name of tlg-function}
 
-\item{adeg}{(\code{data.frame}) ECG Analysis Dataset}
-
-\item{adae}{(\code{data.frame}) Adverse Events Analysis Dataset}
-
-\item{adcm}{(\code{data.frame}) Concomitant Medications Analysis Dataset}
-
-\item{admh}{(\code{data.frame}) Medical History Analysis Dataset}
-
-\item{aag}{(\code{data.frame}) Adverse Event Grouping Defs Dataset}
-
-\item{advs}{(\code{data.frame}) Vital Signs Analysis Dataset}
-
-\item{adlb}{(\code{data.frame}) Laboratory Analysis Dataset}
-
-\item{adex}{(\code{data.frame}) Exposure Analysis Dataset}
-
-\item{adsub}{(\code{data.frame}) Subcategory Analysis Dataset}
-
-\item{adrs}{(\code{data.frame}) Response Analysis Dataset}
-
-\item{adtte}{(\code{data.frame}) Time to Event Analysis Dataset}
-
-\item{adhy}{(\code{data.frame}) Hy's Law Analysis Dataset}
-
-\item{adsaftte}{(\code{data.frame}) Safety Time to Event Analysis Dataset}
-
-\item{addv}{(\code{data.frame}) Protocol Deviations Analysis Dataset}
-
-\item{adcssrs}{(\code{data.frame}) C-SSRS Analysis Dataset}
-
-\item{adqlqc}{(\code{data.frame}) EORTC QLQ-C30 V3 Analysis Dataset}
-
-\item{acg}{(\code{data.frame}) Concomitant Med. Grouping Defs Dataset}
-
-\item{adic}{(\code{data.frame}) Interval Censoring Analysis Dataset}
-
-\item{group}{nest list for group-dependent data binning}
+\item{pmap}{('data frame') preprocessing map, see \code{std_pmap} for the required format}
 }
 \description{
 General Argument Name Convention

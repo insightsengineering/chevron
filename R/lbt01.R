@@ -31,8 +31,8 @@
 #'    dm_select_tbl(adsl, adlb)
 #'
 #' db <- db %>%
-#'   (std_filter("lbt01_1"))() %>%
-#'   (std_mutate("lbt01_1"))()
+#'   (std_filter_fun("lbt01_1"))() %>%
+#'   (std_mutate_fun("lbt01_1"))()
 #'
 #' lbt01_1(db)
 #'

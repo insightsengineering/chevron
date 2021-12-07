@@ -27,8 +27,8 @@
 #'    dm_select_tbl(adsl, adae)
 #'
 #' db <- db %>%
-#'   (std_filter("aet03_1"))() %>%
-#'   (std_mutate("aet03_1"))()
+#'   (std_filter_fun("aet03_1"))() %>%
+#'   (std_mutate_fun("aet03_1"))()
 #'
 #' aet03_1(db)
 #' aet03_1(db, lbl_overall = "All Patients")

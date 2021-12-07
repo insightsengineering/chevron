@@ -25,8 +25,8 @@
 #'    dm_select_tbl(adsl, adae)
 #'
 #' db <- db %>%
-#'   (std_filter("aet02_1"))() %>%
-#'   (std_mutate("aet02_1"))()
+#'   (std_filter_fun("aet02_1"))() %>%
+#'   (std_mutate_fun("aet02_1"))()
 #'
 #' aet02_1(adam_db = db) %>% head(15)
 #'
@@ -183,8 +183,8 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 #'    dm_select_tbl(adsl, adae)
 #'
 #' db <- db %>%
-#'   (std_filter("aet02_2"))() %>%
-#'   (std_mutate("aet02_2"))()
+#'   (std_filter_fun("aet02_2"))() %>%
+#'   (std_mutate_fun("aet02_2"))()
 #'
 #' aet02_2(db) %>% head(15)
 #'
@@ -359,8 +359,8 @@ aet02_2_lyt <- function(armvar = .study$armvar,
 #'    dm_select_tbl(adsl, adae)
 #'
 #' db <- db %>%
-#'   (std_filter("aet02_3"))() %>%
-#'   (std_mutate("aet02_3"))()
+#'   (std_filter_fun("aet02_3"))() %>%
+#'   (std_mutate_fun("aet02_3"))()
 #'
 #' aet02_3(adam_db = db) %>% head()
 #'
