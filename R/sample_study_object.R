@@ -7,38 +7,41 @@
 #' @export
 #'
 #' @examples
-#' sample_study_object()
+#' lst <- sample_study_object()
+#' dput(lst)
+#'
 sample_study_object <- function() {
 
-  ls_exported <- ls(asNamespace("chevron"))
+
+  df <- study_df()
+
+
+  # now check if
+  # throw warning if there is a conflict and say ... is used
+
+  # for now choose the first
+  list(
+    armvar = c("ARM", "ARMCD"),
+
+    ...
+  )
+
+}
+
+
+study_df <- function() {
+  lsf_exported <- as.vector(lsf.str("package:chevron"))
+  lsf_formals <- lapply(lsf_exported, formals)
+
+  has_study <- vapply(lsf_formals, function(xi) !is.null(xi[['.study']]), logical(1))
+
 
   # Get the arguments of each exported function.
   ls_args <- lapply(ls_exported, function(x) try(formals(x)))
 
-  # Extract .study expression.
-  ls_study <- lapply(ls_args, "[", ".study")
-  names(ls_study) <- ls_exported
 
-  # Clean and keep expression only for exported function with study object.
-  is_list <- sapply(ls_study, is.list)
-  ls_study_only <- ls_study[is_list]
-  ls_final_study <- unlist(ls_study_only)
-  names(ls_final_study) <- gsub("..study", "", names(ls_final_study))
-
-  # Extract the name and the default value stored in each study object.
-  nb_arg <- lapply(ls_final_study, function(x) setdiff(seq_along(x), 1))
-
-  ls_default_val <- mapply(function(x, i) as.character(x)[i], ls_final_study, nb_arg)
-  ls_default_arg <- mapply(function(x, i) names(x)[i], ls_final_study, nb_arg)
-
-  ls_rep_names <- rep(names(ls_default_arg), sapply(ls_default_arg, length))
-
-  # store in a data.frame
-  df <-
-  data.frame(
-  function_name = ls_rep_names,
-  arg_name = unlist(ls_default_arg),
-  arg_default = unlist(ls_default_val))
-
-  df
+  tibble(
+    tlgfname = lsf_exported[has_study],
+    dot_study_args = lapply(lsf_formals[has_study], function(xi) eval(xi$.study, envir = baseenv()))
+  )
 }
