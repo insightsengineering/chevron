@@ -4,7 +4,17 @@
 \alias{gen_args}
 \title{General Argument Name Convention}
 \usage{
-gen_args(adam_db, armvar, lbl_overall, prune_0, deco, .study, group, tlgfname)
+gen_args(
+  adam_db,
+  armvar,
+  lbl_overall,
+  prune_0,
+  deco,
+  .study,
+  group,
+  tlgfname,
+  pmap
+)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the adam Datasets.}

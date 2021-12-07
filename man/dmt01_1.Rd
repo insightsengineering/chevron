@@ -44,9 +44,6 @@ dmt01_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
-\value{
-
-}
 \description{
 For each variable, summary statistics are by default based on the number of patients in the corresponding \code{n} row.
 }
@@ -68,15 +65,9 @@ For each variable, summary statistics are by default based on the number of pati
 \examples{
 
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl)
-
-db <- db \%>\%
-  (std_filter_fun("dmt01_1"))() \%>\%
-  (std_mutate_fun("dmt01_1"))()
-
+   preprocess_data("dmt01_1")
 
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)

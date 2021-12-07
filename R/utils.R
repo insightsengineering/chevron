@@ -1,5 +1,7 @@
 # as we use NSE
-globalVariables(c("ANL01FL", "adae", "ANL01FL"))
+globalVariables(c("ANL01FL", "adae", "ANL01FL", "AEBODSYS", "AEDECOD", "AVAL",
+                  "AVALCAT1", "PARAM", "PARAMCD", "PARCAT1", "adex", "adlb", "adsl",
+                  "req_data", "tlgfname"))
 
 #' Retrieve Variables for Certain variables
 #'
@@ -72,7 +74,6 @@ bol_YN <- function(x) {
 #' @param new_col (`string`) the name of the new column in which the cut label should he stored.
 #' @param as_factor (`logical`) if TRUE, the new column is of type `factor` else `character`.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -136,7 +137,6 @@ cut_by_group <- function(df,
 #' @param df (`data frame`)
 #' @param x (`vector of strings`)
 #'
-#' @return
 #' @export
 #'
 #' @examples

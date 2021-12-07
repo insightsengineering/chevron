@@ -22,14 +22,9 @@
 #' @examples
 #'
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adex)
-#'
-#' db <- db %>%
-#'   (std_filter_fun("ext01_1"))() %>%
-#'   (std_mutate_fun("ext01_1"))()
+#'    preprocess_data("ext01_1")
 #'
 #' ext01_1(db)
 #'
@@ -70,7 +65,6 @@ ext01_1 <- function(adam_db,
 #' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
 #'
-#' @return
 #' @export
 #'
 ext01_1_lyt <- function(armvar = .study$armvar,
@@ -121,11 +115,7 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adex)
-#'
-#' db <- db %>%
-#'   (std_filter_fun("ext01_2"))() %>%
-#'   (std_mutate_fun("ext01_2"))()
+#'    preprocess_data("ext01_2")
 #'
 #' ext01_2(db)
 #'
@@ -170,7 +160,6 @@ ext01_2 <- function(adam_db,
 #' @param summaryvars (`string`) the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls (`string`) the label associated with the analyzed variable.
 #'
-#' @return
 #' @export
 #'
 ext01_2_lyt <- function(armvar = .study$armvar,

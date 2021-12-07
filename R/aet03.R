@@ -24,11 +24,7 @@
 #' library(rtables)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adae)
-#'
-#' db <- db %>%
-#'   (std_filter_fun("aet03_1"))() %>%
-#'   (std_mutate_fun("aet03_1"))()
+#'    preprocess_data("aet03_1")
 #'
 #' aet03_1(db)
 #' aet03_1(db, lbl_overall = "All Patients")
@@ -94,15 +90,16 @@ aet03_1 <- function(adam_db,
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
 #' @param severity_grade (`vector of strings`) describing the severity levels present in the data set.
 #'
-#' @return
 #' @export
 #'
 #' @examples
-#' aet03_1_lyt(armvar = "ACTARM",
-#'  lbl_AEBODSYS = "Body System or Organ Class",
-#'  lbl_AEDECOD = "Dictionary-Derived Term",
-#'  lbl_overall = NULL,
-#'  deco = std_deco("AET03"))
+#' aet03_1_lyt(
+#'   armvar = "ACTARM",
+#'   lbl_AEBODSYS = "Body System or Organ Class",
+#'   lbl_AEDECOD = "Dictionary-Derived Term",
+#'   lbl_overall = NULL,
+#'   deco = std_deco("AET03")
+#' )
 aet03_1_lyt <- function(armvar = .study$armvar,
                         lbl_AEBODSYS = "",
                         lbl_AEDECOD = "",

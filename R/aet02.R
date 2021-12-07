@@ -22,11 +22,7 @@
 #' library(rtables)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adae)
-#'
-#' db <- db %>%
-#'   (std_filter_fun("aet02_1"))() %>%
-#'   (std_mutate_fun("aet02_1"))()
+#'   preprocess_data("aet02_1")
 #'
 #' aet02_1(adam_db = db) %>% head(15)
 #'
@@ -96,7 +92,6 @@ aet02_1 <- function(adam_db,
 #' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -180,11 +175,8 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 #' library(rtables)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adae)
+#'    preprocess_data("aet02_2")
 #'
-#' db <- db %>%
-#'   (std_filter_fun("aet02_2"))() %>%
-#'   (std_mutate_fun("aet02_2"))()
 #'
 #' aet02_2(db) %>% head(15)
 #'
@@ -255,7 +247,6 @@ aet02_2 <- function(adam_db,
 #' @param lbl_AEHLT (`string`) text label for AEHLT.
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -356,11 +347,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adae)
-#'
-#' db <- db %>%
-#'   (std_filter_fun("aet02_3"))() %>%
-#'   (std_mutate_fun("aet02_3"))()
+#'    preprocess_data("aet02_3")
 #'
 #' aet02_3(adam_db = db) %>% head()
 #'
@@ -406,7 +393,6 @@ aet02_3 <- function(adam_db,
 #'
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
 #'
-#' @return
 #' @export
 #'
 #' @examples

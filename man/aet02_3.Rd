@@ -37,9 +37,6 @@ aet02_3_lyt(
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
 }
-\value{
-
-}
 \description{
 The AET02_3 table provides an overview of the number of patients experiencing advert events and the number of advert
 events categorized by Dictionary-Derived Term.
@@ -62,11 +59,7 @@ events categorized by Dictionary-Derived Term.
 library(dm)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adae)
-
-db <- db \%>\%
-  (std_filter_fun("aet02_3"))() \%>\%
-  (std_mutate_fun("aet02_3"))()
+   preprocess_data("aet02_3")
 
 aet02_3(adam_db = db) \%>\% head()
 

@@ -40,9 +40,6 @@ aet02_1_lyt(
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
 }
-\value{
-
-}
 \description{
 The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
 events categorized by Body System and Dictionary-Derived Term.
@@ -66,11 +63,7 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adae)
-
-db <- db \%>\%
-  (std_filter_fun("aet02_1"))() \%>\%
-  (std_mutate_fun("aet02_1"))()
+  preprocess_data("aet02_1")
 
 aet02_1(adam_db = db) \%>\% head(15)
 

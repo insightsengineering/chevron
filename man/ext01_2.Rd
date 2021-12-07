@@ -40,9 +40,6 @@ ext01_2_lyt(
 
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
 }
-\value{
-
-}
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 
@@ -70,11 +67,7 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adex)
-
-db <- db \%>\%
-  (std_filter_fun("ext01_2"))() \%>\%
-  (std_mutate_fun("ext01_2"))()
+   preprocess_data("ext01_2")
 
 ext01_2(db)
 

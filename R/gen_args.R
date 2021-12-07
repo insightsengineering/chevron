@@ -17,7 +17,7 @@
 #'
 gen_args <- function(
   adam_db, armvar, lbl_overall, prune_0, deco, .study, group,
-  tlgfname
+  tlgfname, pmap
 ) {
   NULL
 }

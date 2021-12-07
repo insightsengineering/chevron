@@ -64,9 +64,6 @@ the analysis period.}
 \item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
 By Default `ONGOING.}
 }
-\value{
-
-}
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status.
 For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
@@ -90,14 +87,9 @@ For patients who discontinued the study, the reason provided is categorized as "
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl)
-
-db <- db \%>\%
-  (std_filter_fun("dst01_3"))() \%>\%
-  (std_mutate_fun("dst01_3"))()
+   preprocess_data("dst01_3")
 
 dst01_3(db)
 dst01_3(db, lbl_overall = NULL)

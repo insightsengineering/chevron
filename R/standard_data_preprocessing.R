@@ -32,7 +32,7 @@ std_pmap <- function() {
 #' Row in Preprocessing Map
 #'
 #' @param tlgfname (`character`) name of a function which creates a table, listing or graph
-#' @param filer_fname (`character`) name of function which filters the ADaM `dm` data object
+#' @param filter_fname (`character`) name of function which filters the ADaM `dm` data object
 #' @param mutate_fname (`character`) name of function which mutates the ADaM `dm` data object
 #' @param req_data (`character`) vector of data names in the ADaM `dm` data objects that are reuquired to create the
 #'   output
@@ -71,9 +71,6 @@ pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
 #'
 #' @export
 #'
-#' @examples
-#'
-#'
 append_to_pmap <- function(x, y) {
   rbind(x, y)
 }
@@ -87,8 +84,7 @@ append_to_pmap <- function(x, y) {
 #'
 #' @examples
 #'
-#' std_pmap() %>%
-#'   remove_tlg_pmap("aet02_1")
+#' remove_tlg_pmap(std_pmap(), "aet02_1")
 #'
 remove_tlg_pmap <- function(pmap, tlgfname) {
   assert_that(tlgfname %in% pmap$tlgfname)
@@ -159,13 +155,13 @@ preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
   ffun <- get_filter_fun(tlgfname, pmap)
   mfun <- get_mutate_fun(tlgfname, pmap)
 
-  extra_args_ffun <- if (".study" %in% names(formals(ffun))) {
+  extra_args_ffun <- if (".study" %in% names(formals(ffun)) && !missing(.study)) {
     list(.study = .study)
   } else {
     list()
   }
 
-  extra_args_mfun <- if (".study" %in% names(formals(mfun))) {
+  extra_args_mfun <- if (".study" %in% names(formals(mfun)) && !missing(.study)) {
     list(.study = .study)
   } else {
     list()
@@ -179,7 +175,7 @@ preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
 
 #' Retrieve Standard Subsetting for Templates
 #'
-#' @param idt (`character`) the id of the table.
+#' @inheritParams gen_args
 #'
 #' @export
 #'
@@ -191,7 +187,7 @@ std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
 
 #' Retrieve Standard Mutation for Templates
 #'
-#' @param idt (`character`) the id of the table.
+#' @inheritParams gen_args
 #'
 #' @export
 #'

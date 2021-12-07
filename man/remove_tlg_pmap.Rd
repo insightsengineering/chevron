@@ -16,7 +16,6 @@ Remove Row For a tlgfunction from a perocessing map
 }
 \examples{
 
-std_pmap() \%>\%
-  remove_tlg_pmap("aet02_1")
+remove_tlg_pmap(std_pmap(), "aet02_1")
 
 }

@@ -63,9 +63,6 @@ By Default `ONGOING.}
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
 }
-\value{
-
-}
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
 study a reason is provided.
@@ -91,17 +88,11 @@ which allows the tables to be constructed and pruned separately before binding.
 \examples{
 
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl)
-
-db <- db \%>\%
-  (std_filter_fun("dst01_1"))() \%>\%
-  (std_mutate_fun("dst01_1"))()
+   preprocess_data("dst01_1")
 
 dst01_1(db)
-
 
 dst01_1_lyt(armvar = "ACTARM",
 status = "EOP01STT",

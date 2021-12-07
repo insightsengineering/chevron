@@ -24,14 +24,16 @@ Imports:
     rlang,
     rtables,
     tidyr,
-    tibble
+    tibble,
+    methods
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     knitr,
     rmarkdown,
     scda,
-    scda.2021
+    scda.2021,
+    purrr
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

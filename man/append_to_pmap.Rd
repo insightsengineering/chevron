@@ -14,7 +14,3 @@ append_to_pmap(x, y)
 \description{
 Append A Preprocessing Map Entry
 }
-\examples{
-
-
-}

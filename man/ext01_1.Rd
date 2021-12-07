@@ -42,9 +42,6 @@ ext01_1_lyt(
 
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
 }
-\value{
-
-}
 \description{
 The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
 missed, and treatment duration.
@@ -69,14 +66,9 @@ patients in the corresponding analysis population given by \code{N}.
 \examples{
 
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adex)
-
-db <- db \%>\%
-  (std_filter_fun("ext01_1"))() \%>\%
-  (std_mutate_fun("ext01_1"))()
+   preprocess_data("ext01_1")
 
 ext01_1(db)
 
