@@ -16,7 +16,6 @@ std_preprocessing_map <- tibble::tribble(
   "lbt01_1",     "filter_adlb_anl01fl",            NA,                    c("adsl", "adlb")
 )
 
-
 #' Standard Preprocessing Map
 #'
 #' The preprocessing map contains information how the ADaM data needs to be preprocessed for each function.
@@ -30,7 +29,7 @@ std_pmap <- function() {
   std_preprocessing_map
 }
 
-#' Preprocessing Map Entry
+#' Row in Preprocessing Map
 #'
 #' @param tlgfname (`character`) name of a function which creates a table, listing or graph
 #' @param filer_fname (`character`) name of function which filters the ADaM `dm` data object
@@ -42,11 +41,11 @@ std_pmap <- function() {
 #'
 #' @examples
 #'
-#' pmap_entry("tabc", NA, "identity", c("adsl", "adae"))
+#' pmap_row("tabc", NA, "identity", c("adsl", "adae"))
 #'
-pmap_entry <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
+pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
 
-  fnames <- list(tlgname, filter_fname, mutate_fname)
+  fnames <- list(tlgfname, filter_fname, mutate_fname)
   is_char <- vapply(fnames, function(xi) is.na(xi) || is.character(xi), logical(1))
   fname_len <- vapply(fnames, length, numeric(1))
 
@@ -58,10 +57,45 @@ pmap_entry <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data)
     tlgfname = tlgfname,
     filter_fname = filter_fname,
     mutate_fname = mutate_fname,
-    req_data = req_data
+    req_data = list(req_data)
   )
 
 }
+
+
+#' Append A Preprocessing Map Entry
+#'
+#'
+#' @param x (`data.frame`) in the structure returned from `std_pmap` or `pmap_entry`
+#' @param y (`data.frame`) in the structure returned from `std_pmap` or `pmap_entry`
+#'
+#' @export
+#'
+#' @examples
+#'
+#'
+append_to_pmap <- function(x, y) {
+  rbind(x, y)
+}
+
+#' Remove Row For a tlgfunction from a perocessing map
+#'
+#' @inheritParams gen_args
+#'
+#'
+#' @export
+#'
+#' @examples
+#'
+#' std_pmap() %>%
+#'   remove_tlg_pmap("aet02_1")
+#'
+remove_tlg_pmap <- function(pmap, tlgfname) {
+  assert_that(tlgfname %in% pmap$tlgfname)
+
+  pmap[pmap$tlgfname != tlgfname, ]
+}
+
 
 lookup_fun <- function(fname, what, pmap) {
 
@@ -151,19 +185,8 @@ preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
 #'
 #' @examples
 #' std_filter_fun("aet02_1")
-std_filter_fun <- function(idt) {
-
-  assert_that(idt %in% std_data_manipulation_map$id)
-
-  fname <- std_data_manipulation_map %>%
-    filter(tlgfname == idt) %>%
-    slice(1) %>%
-    pull("filter_fname")
-
-  if (is.na(fname))
-    identity
-  else
-    get(fname)
+std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
+  lookup_fun(tlgfname, "filter_fname", pmap)
 }
 
 #' Retrieve Standard Mutation for Templates
@@ -174,20 +197,8 @@ std_filter_fun <- function(idt) {
 #'
 #' @examples
 #' std_mutate_fun("aet02_1")
-std_mutate_fun <- function(idt) {
-
-  assert_that(idt %in% std_data_manipulation_map$id)
-
-  fname <- std_data_manipulation_map %>%
-    filter(id == idt) %>%
-    slice(1) %>%
-    pull("mutate_fname")
-
-  if (is.na(fname))
-    identity
-  else
-    get(fname)
-
+std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
+  lookup_fun(tlgfname, "filter_fname", pmap)
 }
 
 

@@ -25,7 +25,7 @@ In this vignette we explain how `chevron` can be used in a study setting to crea
 effort. The workflow described in this vignette is a basic one and can be adopted to be more streamlined for a
 particular setting.
 
-For this vignette we load the following packages
+For this vignette we load the following packages:
 
 ```{r}
 library(rtables)
@@ -163,7 +163,6 @@ req_data(c("dmt01", "aet02_1", "dst01_1", "lbt01_1"))
 ```
 
 So the `adam_db` object needs to contain the following datasets, we will use the `scda` data:
-
 
 ```{r}
 syn_data <- syn_test_data()[c("adsl", "adae", "adlb")]
@@ -326,30 +325,69 @@ population_title <- function(filter_labels) {
 }
 ```
 
-## Non Standard Output
 
+## Creating A Standard Output
+
+We now use all the concepts for introduced above to create an output. Let's extracting the data for an output from the 
+lopo:
 
 ```{r}
-preproc_map_rows <- function(tlgfname = character(), 
-                             filter_fun = rep(NA, length(tlgfname)),
-                             mutate_fun = rep(NA, length(tlgfname)),
-                             req_data =  rep(NA, length(tlgfname))) {
-  data.frame(id = tlgfname, filter_fun, mutate_fun, req_data, stringsAsFactors = FALSE)
+lopo_1 <- purrr::transpose(lopo[lopo$tlgfname == "aet02_1", ])[[1]]
+lopo_1
+```
+
+
+Now let's create the output
+
+```{r}
+## Decoration ---
+study_dict <- c(
+  protocol = "abc123",
+  snapshot = "abc123.ib", 
+  "snapshot-date" = "12 March 2020", 
+  "cutoff-date" = "1 February 2020",
+  "medra-version" = "MEDRA v1"
+)
+
+null_as_empty_string <- function(x) {
+  lapply(x, function(xi) if (is.null(xi)) "" else xi)
 }
 
-preproc_map <- function(tlgfname, filter_fun = rep(NA, length(tlgfname)),
-                        mutate_fun = rep(NA, length(tlgfname)),
-                        req_data = NA, include_std = TRUE) {
+deco_templ <- null_as_empty_string(list(
+  title = "{{main_title_lopo}} -- {{population_title}}",
+  subtitles = c(
+    "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}",
+    lopo_1$subtitles
+  ),
+  main_footer = lopo_1$footnotes
+))
+
+dict <- c(
+  study_dict,
+  main_title_lopo = lopo_1$main_title,
+  population_title = population_title(lopo_1$filters)
+)
   
-  new_rows <- preproc_map_rows(tlgfname, filter_fun, mutate_fun, req_data)
-  
-  if (include_std) 
-    rbind(std_preproc_map(), new_rows)
-  else
-    new_rows
-  
-}
+deco <- lapply(deco_templ, render_whiskers, dict = dict)
+
+## Data ---
+db <- adam_study_data %>%
+  dm_filter_with_labels(lopo_1$filters) %>%
+  preprocess_data(lopo_1$tlgfname)
+
+## Output ---
+tbl <- do.call(lopo_1$tlgfname, c(list(adam_db = db, deco = deco), lopo_1$extra_args))
+
+tbl
 ```
+
+
+This table can now be paginated and saved as a `.txt` file with `rtables::export_as_txt`.
+
+
+## Non Standard Output
+
+Let's create ad-hoc non-standard output and add it to the lopo and preprocessing map:
 
 ```{r}
 ns_dmtspecial <- function(adam_db, deco) {
@@ -370,21 +408,15 @@ lopo_new <- rbind(
   )
 )
 
-pmap <- preproc_map("ns_dmtspecial", req_data = "adsl")
+pmap_new <- append_to_pmap(std_pmap(), pmap_row("ns_dmtspecial", req_data = "adsl"))
 ```
 
-## Outputs
+## Creating Many Outputs
 
 We now create functions that create the final outputs:
 
 ```{r}
-pmap <- preproc_map("ns_dmtspecial", req_data = "adsl")
-
-null_as_empty_string <- function(x) {
-  lapply(x, function(xi) if (is.null(xi)) "" else xi)
-}
-
-std_deco_templ <-function(lopo_row) {
+std_deco_templ <- function(lopo_row) {
   tmpl <- null_as_empty_string(list(
     title = "{{main_title_lopo}} -- {{population_title}}",
     subtitles = c(
@@ -395,13 +427,12 @@ std_deco_templ <-function(lopo_row) {
   ))
 }
 
-
-create_one_tlg <- function(lopoi, adam_db, pmap = std_preproc_map(), deco_template_fun = std_deco_templ, 
+create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun = std_deco_templ, 
                            dict = character(), filter_label_def = get_std_filter_label_defn()) {
   
   db <- adam_db %>%
     dm_filter_with_labels(lopoi$filters) %>%
-    preprocess_data(lopoi$tlgfname, preproc_map = pmap)
+    preprocess_data(lopoi$tlgfname, pmap = pmap)
   
   tmpl <- deco_template_fun(lopoi)
   
@@ -418,7 +449,7 @@ create_one_tlg <- function(lopoi, adam_db, pmap = std_preproc_map(), deco_templa
   
 }
 
-create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_preproc_map(), deco_template_fun = std_deco_templ, 
+create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fun = std_deco_templ, 
                                dict = character(), filter_label_def = get_std_filter_label_defn()) {
   
   setNames(lapply(purrr::transpose(lopo), 
@@ -429,28 +460,25 @@ create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_preproc_map(), deco_tem
 
 ```
 
+And putting it all together
 
 ```{r}
-study_dict <- c(
-  protocol = "abc123",
-  snapshot = "abc123.ib", 
-  "snapshot-date" = "12 March 2020", 
-  "cutoff-date" = "1 February 2020",
-  "medra-version" = "MEDRA v1"
-)
-
 lopo_sel <- lopo_new %>% 
   filter(tlgfname %in% c("aet02_1", "ns_dmtspecial")) 
+```
 
 
-tbls <- create_tlg_in_lopo(adam_db = adam_study_data, lopo_sel, pmap, dict = study_dict)
-
-
+```{r}
+tbls <- create_tlg_in_lopo(adam_db = adam_study_data, lopo_sel, pmap_new, dict = study_dict)
 names(tbls)
-
-# lapply(tbls, rtables::paginate_table, lpp = 40 )
-# tbls[[1]] %>% head()
 ```
 
 ## Summary
 
+In this vignette we have introduced 
+
+* slighlty modified subset of a lopo
+* filter lables implentation on top of `dm`
+* title footnotes templating using whisker notation and dictionaries
+* functions to create the tlgs in the lopo
+* working with standard and non-standard TLGs using the preprocessing map `pmap`

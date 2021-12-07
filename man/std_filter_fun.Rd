@@ -4,7 +4,7 @@
 \alias{std_filter_fun}
 \title{Retrieve Standard Subsetting for Templates}
 \usage{
-std_filter_fun(idt)
+std_filter_fun(tlgfname, pmap = std_pmap())
 }
 \arguments{
 \item{idt}{(\code{character}) the id of the table.}

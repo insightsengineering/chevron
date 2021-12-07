@@ -4,12 +4,10 @@
 \alias{filter_adae_anl01fl}
 \title{Filter \code{adae} for \code{ANL01FL}}
 \usage{
-filter_adae_anl01fl(adam_db, .study)
+filter_adae_anl01fl(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the adam Datasets.}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
 Filter \code{adae} for \code{ANL01FL}

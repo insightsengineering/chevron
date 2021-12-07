@@ -4,7 +4,7 @@
 \alias{std_mutate_fun}
 \title{Retrieve Standard Mutation for Templates}
 \usage{
-std_mutate_fun(idt)
+std_mutate_fun(tlgfname, pmap = std_pmap())
 }
 \arguments{
 \item{idt}{(\code{character}) the id of the table.}

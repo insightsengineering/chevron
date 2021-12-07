@@ -81,7 +81,40 @@ referred to in `chevron` as `pmap`.
 The standard preprocessing map that comes with the *tlg-functions* in `chevron` can be access via `std_pmap`
 
 ```{r}
-std_pmap()
+std_pmap() %>%
+  head()
 ```
 
-For example, 
+For example, for `aet02_1`:
+
+1. the `adam_db` data gets filtered by the function `filter_adae_anl01fl`
+2. the `adam_db` does not get mutated (`NA` maps to `identity`)
+3. and the required data are in the `req_data` column accessible by
+
+```{r}
+pmap <- std_pmap()
+unlist(pmap[pmap$tlgfname == "aet02_1", "req_data", drop = TRUE])
+```
+
+Note that you can access the explicit functions with `std_filter_fun` and `std_mutate_fun`
+
+```{r}
+std_filter_fun("aet02_1")
+```
+
+and 
+
+
+```{r}
+std_mutate_fun("aet02_1")
+```
+
+so alternatively one can also create the output above with
+
+```{r}
+db <- adam_study_data %>%
+  (std_filter_fun("aet02_1"))() %>%
+  (std_mutate_fun("aet02_1"))()
+
+aet02_1(adam_db = db)
+```
