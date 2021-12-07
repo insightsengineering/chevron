@@ -15,7 +15,7 @@ articles:
   contents:
   - introduction
   - intended_use
-  - dot_adam_db_argument
+  - adam_db_argument
   - dot_study_argument
   - layouts
   - Adding_new_TLGs_to_Chevron
@@ -40,16 +40,19 @@ reference:
       - ext01_2
       - lbt01_1
 
-  - title: Data Set Filter Functions
+  - title: Data Preprocess Functions
     contents:
-      - std_filter
+      - preprocess_data
+      - std_pmap
+      - pmap_row
+      - remove_tlg_pmap
+      - append_to_pmap
+      - remove_tlg_pmap
+      - std_filter_fun
+      - std_mutate_fun
       - filter_adex_drug
       - filter_adae_anl01fl
       - filter_adlb_anl01fl
-
-  - title: Data Set Mutate Functions
-    contents:
-      - std_mutate
       - mutate_adsl_gp
       - remove_adex_aval
       - reorder_adex_params
