@@ -43,7 +43,7 @@ A list of planned outputs (LoPO) contains among other information:
 * `main_title`: main title
 * `subtitles`: additional titles
 * `filters`: patient subset definition
-* `filename`: file name where the output should be written to 
+* `filename`: file name where the output should be written to
 
 The information above can be stored in various data structures. For this example we assume the information comes from a
 spreadsheet with one row per output. We will use the following LoPO store in the variable `lopo` for the remainder of 
@@ -60,11 +60,11 @@ lopo_entry <- function(tlgfname, type = c("table", "listing", "graph"), extra_ar
     
     if (is.null(filename)) {
       ext <- if (type == "graph") ".pdf" else ".txt"
-      filename <- paste0(output_id, "__", paste(filters, collapse = "_"), ext)  
+      filename <- paste0(output_id, "__", paste(filters, collapse = "_"), ext)
     }
     stopifnot(tools::file_ext(filename) %in% c("txt", "pdf"))
     
-    tibble(tlgfname, type, extra_args = list(extra_args), output_id, main_title, subtitles = list(subtitles), 
+    tibble(tlgfname, type, extra_args = list(extra_args), output_id, main_title, subtitles = list(subtitles),
            footnotes = list(footnotes), filters = list(filters), filename)
 }
 
@@ -95,11 +95,11 @@ lopo <- rbind(
     tlgfname = "aet02_1", type = "table",
     main_title = "Adverse Events Leading to Study Treatment Discontinuation",
     footnotes = c(
-      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.", 
+      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
             "Percentages are based on N in the column headings."),
-      paste("Only treatment emergent AEs are displayed where the  study medication adjustment CRF question is", 
-            "answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the", 
-            "same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows,", 
+      paste("Only treatment emergent AEs are displayed where the  study medication adjustment CRF question is",
+            "answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the",
+            "same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows,",
             "multiple occurrences of the same AE in an individual are counted separately.")
     ),
     filters = "SE"
@@ -128,7 +128,7 @@ lopo <- rbind(
     output_id = "l_lb_ctc"
   ),
   lopo_entry(
-    tlgfname = "lbt01_1", type = "table", 
+    tlgfname = "lbt01_1", type = "table",
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit",
     footnotes = c(
       "Abnormalities displayed as high (H) or low (L) from collected range",
@@ -142,8 +142,8 @@ lopo <- rbind(
     footnotes = c(
       "Includes values standardised using Roche Safety Lab Standardisation",
       paste("Abnormalities displayed as high (H) or low (L) for outside normal range, or high high (HH) or",
-      "low low (LL) for outside the marked abnormality range with a significant change from baseline"), 
-      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug." 
+      "low low (LL) for outside the marked abnormality range with a significant change from baseline"),
+      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
     ),
     filters = "SE",
     output_id = "l_lb_ls"
@@ -253,7 +253,7 @@ adam_study_data %>%
   dm_filter_with_labels(c("CTC35", "SE"))
 ```
 
-so to get the filtered data 
+so to get the filtered data
 
 ```{r} 
 adam__CTC35_SE <- adam_study_data %>%
@@ -415,7 +415,7 @@ ns_dmtspecial <- function(adam_db, deco) {
 lopo_new <- rbind(
   lopo,
   lopo_entry(
-    tlgfname = "ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World", 
+    tlgfname = "ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World",
     subtitles = c("this", "is", "a test"),
     footnotes = "very important stuff", filters  = c("CTC35", "SE")
   )
@@ -440,7 +440,7 @@ std_deco_templ <- function(lopo_row) {
   ))
 }
 
-create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun = std_deco_templ, 
+create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun = std_deco_templ,
                            dict = character(), filter_label_def = get_std_filter_label_defn()) {
   
   db <- adam_db %>%
@@ -462,21 +462,21 @@ create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun =
   
 }
 
-create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fun = std_deco_templ, 
-                               dict = character(), filter_label_def = get_std_filter_label_defn()) {
+create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fun = std_deco_templ,
+                               dict = character(), filter_label_def = get_std_filter_label_defn()){
   
-  setNames(lapply(purrr::transpose(lopo), 
-                  create_one_tlg, adam_db, pmap = pmap, 
-                  deco_template_fun= deco_template_fun, 
+  setNames(lapply(purrr::transpose(lopo),
+                  create_one_tlg, adam_db, pmap = pmap,
+                  deco_template_fun= deco_template_fun,
                   dict = dict, filter_label_def = filter_label_def), lopo$filename)
-} 
+}
 ```
 
 And putting it all together
 
 ```{r}
-lopo_sel <- lopo_new %>% 
-  filter(tlgfname %in% c("aet02_1", "ns_dmtspecial")) 
+lopo_sel <- lopo_new %>%
+  filter(tlgfname %in% c("aet02_1", "ns_dmtspecial"))
 ```
 
 
