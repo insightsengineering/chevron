@@ -35,7 +35,7 @@ library(dm)
 syn_data <- syn_test_data()[c("adsl", "adae", "adlb", "adrs", "adsub")]
 
 drop_adsl_vars <- function(df, adsl) {
-  df[ c("USUBJID", "STUDYID", setdiff(names(df), names(adsl)))]
+  df[c("USUBJID", "STUDYID", setdiff(names(df), names(adsl)))]
 }
 
 dbl <- c(list(adsl = syn_data$adsl), lapply(syn_data[-1], drop_adsl_vars, adsl = syn_data$adsl))
