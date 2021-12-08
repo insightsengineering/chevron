@@ -40,7 +40,7 @@ drop_adsl_vars <- function(df, adsl) {
 
 dbl <- c(list(adsl = syn_data$adsl), lapply(syn_data[-1], drop_adsl_vars, adsl = syn_data$adsl))
 
-
+### Define primary and foreign keys 
 adam_study_data <- new_dm(dbl) %>%
   dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
   dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
