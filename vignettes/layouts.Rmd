@@ -74,4 +74,4 @@ aet02_1
 * `chevron` exports the layout functions for each table creating *tlg-function*
 * these layouts are useful to understand how table is created and what variables are required in the data to create a table using the layout
 * the table creation functions focus the main part of their code on building, sorting and pruning the table
-
+* Headers and footers are taken by default from the standards. They can be specified with the `deco` argument. Note that we currently do not have all of the data base for standard headers and footers imported in `chevron`.
