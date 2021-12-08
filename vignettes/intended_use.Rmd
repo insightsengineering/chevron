@@ -97,7 +97,7 @@ lopo <- rbind(
     footnotes = c(
       paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
             "Percentages are based on N in the column headings."),
-      paste("Only treatment emergent AEs are displayed where the  study medication adjustment CRF question is",
+      paste("Only treatment emergent AEs are displayed where the study medication adjustment CRF question is",
             "answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the",
             "same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows,",
             "multiple occurrences of the same AE in an individual are counted separately.")
@@ -111,7 +111,7 @@ lopo <- rbind(
   ),
   lopo_entry(
     tlgfname = "dst01_1", type = "table",
-    main_title = "Patients Discontinued from  Study Treatment",
+    main_title = "Patients Discontinued from Study Treatment",
     filters = c("TX", "IT")
   ),
   lopo_entry(
@@ -276,7 +276,7 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 {{subtitles from lopo}}
 ```
 
-We now introduce a simple templating framework based on `whiskers`.  Instead of using the `whiskers` R package we define
+We now introduce a simple templating framework based on `whiskers`. Instead of using the `whiskers` R package we define
 our own functionality:
 
 ```{r}
@@ -330,7 +330,7 @@ Lets make a simple population title creation function
 ```{r}
 population_title <- function(filter_labels) {
   case_when(
-    "ALL" %in% filter_labels  ~ "All Patients",
+    "ALL" %in% filter_labels ~ "All Patients",
     "SE" %in% filter_labels ~ "Safety Evaluable Population",
     "IT" %in% filter_labels ~ "Intention To Treat Population",
     TRUE ~ "<Population Label not known>"
@@ -414,7 +414,7 @@ lopo_new <- rbind(
   lopo_entry(
     tlgfname = "ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World",
     subtitles = c("this", "is", "a test"),
-    footnotes = "very important stuff", filters  = c("CTC35", "SE")
+    footnotes = "very important stuff", filters = c("CTC35", "SE")
   )
 )
 
