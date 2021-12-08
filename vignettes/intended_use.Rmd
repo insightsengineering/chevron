@@ -120,7 +120,7 @@ lopo <- rbind(
     footnotes = c(
       paste("Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}.",
       "NCI CTCAE is the National Cancer Institute Common Terminology Criteria for Adverse Events."),
-      paste("NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed", 
+      paste("NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed",
             "by the grade where relevant"),
       "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
     ),
@@ -307,7 +307,6 @@ render_whiskers_string <- function(template, dict = character(0)) {
   template
 }
 ```
-
 
 The two functions can be used as follows:
 
