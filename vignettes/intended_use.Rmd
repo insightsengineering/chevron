@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Introduction 
+## Introduction
 
 In this vignette we explain how `chevron` can be used in a study setting to create many TLGs with relatively little
 effort. The workflow described in this vignette is a basic one and can be adopted to be more streamlined for a
@@ -167,7 +167,9 @@ the outputs. `chevron` knows which datasets are required for the particular TLGs
 
 
 ```{r, echo = FALSE}
-req_data <- function(id) {c("adsl", "adae", "adlb")}
+req_data <- function(id) {
+  c("adsl", "adae", "adlb")
+}
 ```
 
 ```{r}
@@ -264,7 +266,7 @@ adam__CTC35_SE %>%
   dm_nrow()
 ```
 
-## Templating Title & Footnotes 
+## Templating Title & Footnotes
 
 The title and footnotes in the `lopo` are not ready for the final output. The final titles usually have the form:
 
@@ -463,11 +465,11 @@ create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun =
 }
 
 create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fun = std_deco_templ,
-                               dict = character(), filter_label_def = get_std_filter_label_defn()){
+                               dict = character(), filter_label_def = get_std_filter_label_defn()) {
   
   setNames(lapply(purrr::transpose(lopo),
                   create_one_tlg, adam_db, pmap = pmap,
-                  deco_template_fun= deco_template_fun,
+                  deco_template_fun = deco_template_fun,
                   dict = dict, filter_label_def = filter_label_def), lopo$filename)
 }
 ```
