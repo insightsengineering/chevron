@@ -46,7 +46,7 @@ A list of planned outputs (LoPO) contains among other information:
 * `filename`: file name where the output should be written to
 
 The information above can be stored in various data structures. For this example we assume the information comes from a
-spreadsheet with one row per output. We will use the following LoPO store in the variable `lopo` for the remainder of 
+spreadsheet with one row per output. We will use the following LoPO store in the variable `lopo` for the remainder of
 the vignette:
 
 ```{r, echo = FALSE}
@@ -115,7 +115,7 @@ lopo <- rbind(
     filters = c("TX", "IT")
   ),
   lopo_entry(
-    tlgfname = "lbt01_1", type = "table", 
+    tlgfname = "lbt01_1", type = "table",
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (including CTC grade)",
     footnotes = c(
       paste("Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}.",
@@ -137,7 +137,7 @@ lopo <- rbind(
     filters = "SE"
   ),
   lopo_entry(
-    tlgfname = "lbt01_1", type = "table", 
+    tlgfname = "lbt01_1", type = "table",
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (Standardised parameters)",
     footnotes = c(
       "Includes values standardised using Roche Safety Lab Standardisation",
@@ -341,7 +341,7 @@ population_title <- function(filter_labels) {
 
 ## Creating A Standard Output
 
-We now use all the concepts for introduced above to create an output. Let's extracting the data for an output from the 
+We now use all the concepts for introduced above to create an output. Let's extracting the data for an output from the
 lopo:
 
 ```{r}
@@ -355,8 +355,8 @@ Now let's create the output
 ## Decoration ---
 study_dict <- c(
   protocol = "abc123",
-  snapshot = "abc123.ib", 
-  "snapshot-date" = "12 March 2020", 
+  snapshot = "abc123.ib",
+  "snapshot-date" = "12 March 2020",
   "cutoff-date" = "1 February 2020",
   "medra-version" = "MEDRA v1"
 )
@@ -477,7 +477,6 @@ lopo_sel <- lopo_new %>%
   filter(tlgfname %in% c("aet02_1", "ns_dmtspecial"))
 ```
 
-
 ```{r}
 tbls <- create_tlg_in_lopo(adam_db = adam_study_data, lopo_sel, pmap_new, dict = study_dict)
 names(tbls)
@@ -485,7 +484,7 @@ names(tbls)
 
 ## Summary
 
-In this vignette we have introduced 
+In this vignette we have introduced
 
 * slightly modified subset of a LoPO
 * filter labels implementation on top of `dm`
