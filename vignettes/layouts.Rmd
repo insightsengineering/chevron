@@ -46,7 +46,7 @@ build_table(lyt, adsl)
 build_table(lyt, adsl[adsl$COUNTRY == "RUS", ])
 ```
 
-Hence these layouts define a table pre-data. Note that pruning and sorting are currently not performed in the layout space in `rtables` but rather on the actual table objects.
+Hence these layouts define a table pre-data. That is, the layout functions in `chevron` do never take any data as an argument. Note that pruning and sorting are currently not performed in the layout space in `rtables` but rather on the actual table objects.
 
 Also, layouts allow for certain queries such as which variables are required to build the table using the given layout:
 
