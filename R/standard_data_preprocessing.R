@@ -34,7 +34,7 @@ std_pmap <- function() {
 #' @param tlgfname (`character`) name of a function which creates a table, listing or graph
 #' @param filter_fname (`character`) name of function which filters the ADaM `dm` data object
 #' @param mutate_fname (`character`) name of function which mutates the ADaM `dm` data object
-#' @param req_data (`character`) vector of data names in the ADaM `dm` data objects that are reuquired to create the
+#' @param req_data (`character`) vector of data names in the ADaM `dm` data objects that are required to create the
 #'   output
 #'
 #' @export
@@ -75,7 +75,7 @@ append_to_pmap <- function(x, y) {
   rbind(x, y)
 }
 
-#' Remove Row For a tlgfunction from a perocessing map
+#' Remove Row For a tlgfunction from a pre-processing map
 #'
 #' @inheritParams gen_args
 #'
@@ -242,7 +242,7 @@ filter_adex_drug <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 #' @inheritParams gen_args
-#' @param reason (`character`) the variable name containg the reason for discontinuation.
+#' @param reason (`character`) the variable name for variable with the reason for discontinuation.
 #'
 mutate_adsl_gp <- function(adam_db,
                            reason = .study$disc_reason_var,

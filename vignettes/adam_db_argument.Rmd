@@ -46,7 +46,8 @@ adam_study_data <- new_dm(dbl) %>%
   dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
   dm_add_pk(adae, c("USUBJID", "STUDYID", "ASTDTM", "AETERM", "AESEQ")) %>%
   dm_add_fk(adlb, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
-  dm_add_pk(adlb, c("STUDYID", "USUBJID", "PARAMCD", "BASETYPE", "AVISITN", "ATPTN", "DTYPE", "ADTM", "LBSEQ", "ASPID")) %>%
+  dm_add_pk(adlb, c("STUDYID", "USUBJID", "PARAMCD", "BASETYPE", "AVISITN",
+                    "ATPTN", "DTYPE", "ADTM", "LBSEQ", "ASPID")) %>%
   dm_add_fk(adrs, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
   dm_add_pk(adrs, c("STUDYID", "USUBJID", "PARAMCD", "AVISITN", "ADTM", "RSSEQ")) %>%
   dm_add_fk(adsub, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
@@ -135,9 +136,11 @@ db$adsl$TEST[1:5]
 
 ## dm Objects in Chevron
 
-In `chevron` we use `dm` objects to combine all data into one object. The *tlg-functions* and the functions returned `std_filter` and `std_mutate` require a `dm` object to the `adam_db` argument.
+In `chevron` we use `dm` objects to combine all data into one object. The *tlg-functions* and the functions returned
+`std_filter` and `std_mutate` require a `dm` object to the `adam_db` argument.
 
-`dm` objects also are useful to filter the data. For example filtering for all females also subsets the other datasets as per relation specification:
+`dm` objects also are useful to filter the data. For example filtering for all females also subsets the other datasets
+as per relation specification:
 
 ```{r}
 adam_study_data %>%
@@ -150,7 +153,7 @@ adam_study_data %>%
 
 ## Get Analysis Data
 
-## Vertical Analysis Data
+### Vertical Analysis Data
 
 For standard outputs we do know which data and variables we need to create a TLG. 
 
@@ -160,7 +163,7 @@ adam_study_data %>%
   select(AESEQ, ARM, SEX)
 ```
 
-## Horizontal
+### Horizontal
 
 Add variables from `adsub` to `adsl`:
 

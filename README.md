@@ -10,13 +10,13 @@
 1. Clone the repository
 
 2. Install `staged.dependencies` with
-  ```r
+  ```
   devtools::install_github("openpharma/staged.dependencies")
   ```
   and setup your GitHub tokens following the instructions on the `staged.dependencies` [website](https://github.com/openpharma/staged.dependencies).  Make sure that you enable SSO for the token.
   
 3. Install the `chevron` package dependencies with (make sure the working directory is set to the root of `chevron`)
-  ```r
+  ```
   library(staged.dependencies)
      x <- dependency_table(
      project = "insightsengineering/chevron", 
@@ -31,7 +31,7 @@
 
 ## Usage
 
-```r
+```
 library(chevron)
 library(magrittr)
 
@@ -40,6 +40,8 @@ db <- syn_test_data() %>%
 
 aet02_1(adam_db = db)
 ```
+
+which returns 
 
 ```
 Adverse Events: {Specify Population}
@@ -86,7 +88,3 @@ cl C.1
 
 Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).                                         48 (39.3%)   54 (43.9%)     51 (42.5%)  
 ```
-
-## Acknowledgment
-
-

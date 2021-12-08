@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 ## Introduction 
 
 In this vignette we explain how `chevron` can be used in a study setting to create many TLGs with relatively little
@@ -35,7 +34,7 @@ library(dplyr)
 library(rlang)
 ```
 
-## List of Planned Ouputs (LoPO)
+## List of Planned Outputs (LoPO)
 
 A list of planned outputs (LoPO) contains among other information:
 
@@ -84,16 +83,25 @@ lopo <- rbind(
     tlgfname = "aet02_1", type = "table",
     main_title = "Adverse Events",
     footnotes = c(
-      "Investigator text for AEs encoded using MedDRA version {{medra-version}}. Percentages are based on N in the column headings.",
-      "Only treatment emergent AEs are displayed. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately."),
+      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
+      "Percentages are based on N in the column headings."),
+      paste("Only treatment emergent AEs are displayed. For frequency counts by preferred term, multiple",
+      "occurrences of the same AE in an individual are counted only once. For frequency counts of",
+      "'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately.")
+    ),
     filters = "SE"
   ),
   lopo_entry(
     tlgfname = "aet02_1", type = "table",
     main_title = "Adverse Events Leading to Study Treatment Discontinuation",
     footnotes = c(
-      "Investigator text for AEs encoded using MedDRA version {{medra-version}}. Percentages are based on N in the column headings.",
-      "Only treatment emergent AEs are displayed where the  study medication adjustment CRF question is answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately."),
+      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.", 
+            "Percentages are based on N in the column headings."),
+      paste("Only treatment emergent AEs are displayed where the  study medication adjustment CRF question is", 
+            "answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the", 
+            "same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows,", 
+            "multiple occurrences of the same AE in an individual are counted separately.")
+    ),
     filters = "SE"
   ),
   lopo_entry(
@@ -110,8 +118,10 @@ lopo <- rbind(
     tlgfname = "lbt01_1", type = "table", 
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (including CTC grade)",
     footnotes = c(
-      "Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}. NCI CTCAE is the National Cancer Institute Common Terminology Criteria for Adverse Events.",
-      "NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed by the grade where relevant",
+      paste("Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}.",
+      "NCI CTCAE is the National Cancer Institute Common Terminology Criteria for Adverse Events."),
+      paste("NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed", 
+            "by the grade where relevant"),
       "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
     ),
     filters = "SE",
@@ -131,7 +141,8 @@ lopo <- rbind(
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (Standardised parameters)",
     footnotes = c(
       "Includes values standardised using Roche Safety Lab Standardisation",
-      "Abnormalities displayed as high (H) or low (L) for outside normal range, or high high (HH) or low low (LL) for outside the marked abnormality range with a significant change from baseline", 
+      paste("Abnormalities displayed as high (H) or low (L) for outside normal range, or high high (HH) or",
+      "low low (LL) for outside the marked abnormality range with a significant change from baseline"), 
       "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug." 
     ),
     filters = "SE",
@@ -146,7 +157,8 @@ excerpt <- function(x) lapply(x, function(xi) if (length(xi) > 0)paste(substr(xi
 knitr::kable(lopo %>% mutate(main_title = excerpt(main_title), footnotes = excerpt(footnotes)))
 ```
 
-Note that the first three columns are not needed for stakeholder interactions and planning/project management. However, the GDS template which is currently encoded in the `tlgfname` is needed.
+Note that the first three columns are not needed for stakeholder interactions and planning/project management. However,
+the GDS template which is currently encoded in the `tlgfname` is needed.
 
 ## Data
 
@@ -403,7 +415,8 @@ ns_dmtspecial <- function(adam_db, deco) {
 lopo_new <- rbind(
   lopo,
   lopo_entry(
-    tlgfname = "ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World", subtitles = c("this", "is", "a test"),
+    tlgfname = "ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World", 
+    subtitles = c("this", "is", "a test"),
     footnotes = "very important stuff", filters  = c("CTC35", "SE")
   )
 )
@@ -457,7 +470,6 @@ create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fu
                   deco_template_fun= deco_template_fun, 
                   dict = dict, filter_label_def = filter_label_def), lopo$filename)
 } 
-
 ```
 
 And putting it all together
@@ -477,8 +489,8 @@ names(tbls)
 
 In this vignette we have introduced 
 
-* slighlty modified subset of a lopo
-* filter lables implentation on top of `dm`
+* slightly modified subset of a lopo
+* filter labels implementation on top of `dm`
 * title footnotes templating using whisker notation and dictionaries
-* functions to create the tlgs in the lopo
+* functions to create the tlgs in the LoPO
 * working with standard and non-standard TLGs using the preprocessing map `pmap`
