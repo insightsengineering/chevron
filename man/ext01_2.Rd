@@ -24,7 +24,7 @@ ext01_2_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

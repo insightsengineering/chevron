@@ -7,7 +7,7 @@
 filter_adae_anl01fl(adam_db)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 }
 \description{
 Filter \code{adae} for \code{ANL01FL}

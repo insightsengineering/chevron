@@ -31,7 +31,7 @@ dst01_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 

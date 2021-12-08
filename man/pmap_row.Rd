@@ -13,7 +13,7 @@ pmap_row(tlgfname, filter_fname = NA, mutate_fname = NA, req_data)
 
 \item{mutate_fname}{(\code{character}) name of function which mutates the ADaM \code{dm} data object}
 
-\item{req_data}{(\code{character}) vector of data names in the ADaM \code{dm} data objects that are reuquired to create the
+\item{req_data}{(\code{character}) vector of data names in the ADaM \code{dm} data objects that are required to create the
 output}
 }
 \description{

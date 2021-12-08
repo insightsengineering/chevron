@@ -7,7 +7,7 @@
 preprocess_data(adam_db, tlgfname, pmap = std_pmap(), .study)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{tlgfname}{(\code{character}) function name of tlg-function}
 

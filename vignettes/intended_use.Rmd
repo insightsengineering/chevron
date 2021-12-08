@@ -151,6 +151,7 @@ lopo <- rbind(
 )
 ```
 
+Which provides the following LoPO:
 
 ```{r}
 excerpt <- function(x) lapply(x, function(xi) if (length(xi) > 0)paste(substr(xi[1], 1, 8), "...") else "")
@@ -164,7 +165,6 @@ the GDS template which is currently encoded in the `tlgfname` is needed.
 
 From the `lopo` above we know that the *tlg-functions* `dmt01_1`, `aet02_1`, `dst01_1` and `lbt01_1` are used to create
 the outputs. `chevron` knows which datasets are required for the particular TLGs
-
 
 ```{r, echo = FALSE}
 req_data <- function(id) {
@@ -339,7 +339,6 @@ population_title <- function(filter_labels) {
 }
 ```
 
-
 ## Creating A Standard Output
 
 We now use all the concepts for introduced above to create an output. Let's extracting the data for an output from the 
@@ -349,7 +348,6 @@ lopo:
 lopo_1 <- purrr::transpose(lopo[lopo$tlgfname == "aet02_1", ])[[1]]
 lopo_1
 ```
-
 
 Now let's create the output
 
@@ -395,9 +393,7 @@ tbl <- do.call(lopo_1$tlgfname, c(list(adam_db = db, deco = deco), lopo_1$extra_
 tbl
 ```
 
-
 This table can now be paginated and saved as a `.txt` file with `rtables::export_as_txt`.
-
 
 ## Non Standard Output
 
@@ -491,7 +487,7 @@ names(tbls)
 
 In this vignette we have introduced 
 
-* slightly modified subset of a lopo
+* slightly modified subset of a LoPO
 * filter labels implementation on top of `dm`
 * title footnotes templating using whisker notation and dictionaries
 * functions to create the tlgs in the LoPO

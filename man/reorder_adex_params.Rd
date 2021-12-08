@@ -11,7 +11,7 @@ reorder_adex_params(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{paramcd_order}{(\verb{vector of character}) providing the \code{PARAMCD} values in the desired order.}
 

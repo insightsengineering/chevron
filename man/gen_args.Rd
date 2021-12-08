@@ -17,7 +17,7 @@ gen_args(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -39,9 +39,5 @@ gen_args(
 General Argument Name Convention
 }
 \details{
-the following arguments are better provided through the study object:
-\itemize{
-\item lbl_overall
-\item armvar
-}
+the following arguments are better provided through the study object: \code{lbl_overall}, \code{armvar}.
 }

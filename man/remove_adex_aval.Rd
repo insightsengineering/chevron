@@ -12,7 +12,7 @@ remove_adex_aval(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{show_stats}{(\verb{vector of character}) providing the name of the parameters whose statistical summary should be
 presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{show_stats = ""}.}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/standard_data_preprocessing.R
 \name{remove_tlg_pmap}
 \alias{remove_tlg_pmap}
-\title{Remove Row For a tlgfunction from a perocessing map}
+\title{Remove Row For a tlgfunction from a pre-processing map}
 \usage{
 remove_tlg_pmap(pmap, tlgfname)
 }
@@ -12,7 +12,7 @@ remove_tlg_pmap(pmap, tlgfname)
 \item{tlgfname}{(\code{character}) function name of tlg-function}
 }
 \description{
-Remove Row For a tlgfunction from a perocessing map
+Remove Row For a tlgfunction from a pre-processing map
 }
 \examples{
 

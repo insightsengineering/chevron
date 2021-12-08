@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 
-## Introduction 
+## Introduction
 
 We have decided to use the `dm` package in `chevron` to model the data relations of the CDISC ADaM datasets. In this
 vignette we introduce how we intend to use ADaM data in a relational model, in R with `dm`. Note that `dm` can be 
@@ -40,7 +40,7 @@ drop_adsl_vars <- function(df, adsl) {
 
 dbl <- c(list(adsl = syn_data$adsl), lapply(syn_data[-1], drop_adsl_vars, adsl = syn_data$adsl))
 
-### Define primary and foreign keys 
+### Define primary and foreign keys
 adam_study_data <- new_dm(dbl) %>%
   dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
   dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
@@ -155,7 +155,7 @@ adam_study_data %>%
 
 ### Vertical Analysis Data
 
-For standard outputs we do know which data and variables we need to create a TLG. 
+For standard outputs we do know which data and variables we need to create a TLG.
 
 ```{r}
 adam_study_data %>%
