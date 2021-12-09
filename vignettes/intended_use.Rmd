@@ -421,6 +421,17 @@ lopo_new <- rbind(
 pmap_new <- append_to_pmap(std_pmap(), pmap_row("ns_dmtspecial", req_data = "adsl"))
 ```
 
+### Modifying a Standard
+
+```{r}
+ns_aet02_1 <- function(...) {
+  tbl <- aet02_1(...)
+  
+  rbind(tbl, tbl)
+}
+pmap_new <- append_to_pmap(pmap_new, pmap_row("ns_aet02_1", req_data = c("adsl", "adae")))
+```
+
 ## Creating Many Outputs
 
 We now create functions that create the final outputs:
