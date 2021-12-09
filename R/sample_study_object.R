@@ -1,9 +1,8 @@
 #' Extraction of .study object default values
 #'
-#' Get the names and the values of the default arguments stored in the study object of each exported function of
-#' chevron.
+#' Sample the default value of the `.study` object defined in the `tlg-functions` and returns an existing default value.
 #'
-#' @return (`data.frame`)
+#' @return (`list`)
 #' @export
 #'
 #' @examples

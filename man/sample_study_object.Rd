@@ -7,11 +7,10 @@
 sample_study_object()
 }
 \value{
-(\code{data.frame})
+(\code{list})
 }
 \description{
-Get the names and the values of the default arguments stored in the study object of each exported function of
-chevron.
+Sample the default value of the \code{.study} object defined in the \code{tlg-functions} and returns an existing default value.
 }
 \examples{
 lst <- sample_study_object()
