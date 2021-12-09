@@ -12,36 +12,23 @@
 #'
 sample_study_object <- function() {
 
-
-  df <- study_df()
-
-
-  # now check if
-  # throw warning if there is a conflict and say ... is used
-
-  # for now choose the first
-  list(
-    armvar = c("ARM", "ARMCD"),
-
-    ...
-  )
-
-}
-
-
-study_df <- function() {
-  lsf_exported <- as.vector(lsf.str("package:chevron"))
-  lsf_formals <- lapply(lsf_exported, formals)
-
-  has_study <- vapply(lsf_formals, function(xi) !is.null(xi[['.study']]), logical(1))
-
+  # list functions
+  ls_exported <- as.vector(lsf.str("package:chevron"))
 
   # Get the arguments of each exported function.
-  ls_args <- lapply(ls_exported, function(x) try(formals(x)))
+  ls_args <- lapply(ls_exported, formals)
 
+  # Extract .study expression.
+  ls_study <- lapply(ls_args, "[", ".study")
 
-  tibble(
-    tlgfname = lsf_exported[has_study],
-    dot_study_args = lapply(lsf_formals[has_study], function(xi) eval(xi$.study, envir = baseenv()))
-  )
+  has_study <- vapply(ls_study, function(xi) !is.null(xi[['.study']]), logical(1))
+
+  lsf_default <- lapply(ls_study[has_study], function(xi) eval(xi$.study, envir = baseenv()))
+
+  ls_all_val <- unlist(lsf_default, recursive = FALSE)
+
+  tapply(ls_all_val, names(ls_all_val), "[", 1)
 }
+
+
+

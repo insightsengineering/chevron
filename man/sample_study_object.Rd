@@ -14,5 +14,7 @@ Get the names and the values of the default arguments stored in the study object
 chevron.
 }
 \examples{
-sample_study_object()
+lst <- sample_study_object()
+dput(lst)
+
 }
