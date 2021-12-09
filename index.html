@@ -45,35 +45,14 @@
   </a>
 </li>
 <li>
-  <a href="articles/chevron.html">Get started</a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
-    </li>
-  </ul>
+  <a href="articles/index.html">Articles</a>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="index.html">latest</a></li>
-   <li><a href="/index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -108,72 +87,76 @@ Other releases
 <li><p>Clone the repository</p></li>
 <li><p>Install <code>staged.dependencies</code> with</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"openpharma/staged.dependencies"</span><span class="op">)</span></code></pre></div>
+<pre><code>devtools::install_github("openpharma/staged.dependencies")</code></pre>
 <p>and setup your GitHub tokens following the instructions on the <code>staged.dependencies</code> <a href="https://github.com/openpharma/staged.dependencies">website</a>. Make sure that you enable SSO for the token.</p>
 <ol>
 <li>Install the <code>chevron</code> package dependencies with (make sure the working directory is set to the root of <code>chevron</code>)</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">staged.dependencies</span><span class="op">)</span>
-   <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/staged.dependencies/man/dependency_table.html">dependency_table</a></span><span class="op">(</span>
-   project <span class="op">=</span> <span class="st">"insightsengineering/chevron"</span>, 
-   project_type <span class="op">=</span> <span class="st">"repo@host"</span>, 
-   ref <span class="op">=</span> <span class="st">"main"</span>, 
-   verbose <span class="op">=</span> <span class="fl">1</span>
-<span class="op">)</span>
+<pre><code><a href="https://rdrr.io/r/base/library.html">library(staged.dependencies)
+   x &lt;- dependency_table(
+   project = "insightsengineering/chevron", 
+   project_type = "repo@host", 
+   ref = "main", 
+   verbose = 1
+)
 
-<span class="fu"><a href="https://rdrr.io/pkg/staged.dependencies/man/install_deps.html">install_deps</a></span><span class="op">(</span><span class="va">x</span>, install_direction <span class="op">=</span> <span class="st">"upstream"</span>, install_project <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+install_deps(x, install_direction = "upstream", install_project = TRUE)</a></code></pre>
 </div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/">dm</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/roche/rtables">rtables</a></span><span class="op">)</span>
+<pre><code><a href="https://rdrr.io/r/base/library.html">library(chevron)
+library(magrittr)
 
-<span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_select_tbl.html">dm_select_tbl</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">adae</span><span class="op">)</span>
+db &lt;- syn_test_data() %&gt;%
+  preprocess_data("aet02_1")
 
-<span class="va">db</span> <span class="op">&lt;-</span> <span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-   <span class="op">(</span><span class="fu"><a href="reference/std_filter.html">std_filter</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-   <span class="op">(</span><span class="fu"><a href="reference/std_mutate.html">std_mutate</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span>
+aet02_1(adam_db = db)</a></code></pre>
+<p>which returns</p>
+<pre><code>Adverse Events: {Specify Population}
+Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 
-<span class="fu"><a href="reference/aet02_1.html">aet02_1</a></span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span>
+—————————————————————————————————————————————————————————————————————————————————————————————————————
+MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
+  MedDRA Preferred Term                                       (N=122)      (N=123)        (N=120)    
+—————————————————————————————————————————————————————————————————————————————————————————————————————
+Total number of patients with at least one adverse event     122 (100%)   123 (100%)     120 (100%)  
+Overall total number of events                                  609          622            703      
+cl A.1                                                                                               
+  Total number of patients with at least one adverse event   78 (63.9%)    75 (61%)      89 (74.2%)  
+  Total number of events                                        132          130            160      
+  dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)  
+  dcd A.1.1.1.2                                              48 (39.3%)    48 (39%)      50 (41.7%)  
+cl B.2                                                                                               
+  Total number of patients with at least one adverse event   79 (64.8%)   74 (60.2%)     85 (70.8%)  
+  Total number of events                                        129          138            143      
+  dcd B.2.2.3.1                                              48 (39.3%)   54 (43.9%)     51 (42.5%)  
+  dcd B.2.1.2.1                                              49 (40.2%)   44 (35.8%)     52 (43.3%)  
+cl D.1                                                                                               
+  Total number of patients with at least one adverse event   79 (64.8%)   67 (54.5%)     80 (66.7%)  
+  Total number of events                                        127          106            135      
+  dcd D.1.1.1.1                                               50 (41%)    42 (34.1%)     51 (42.5%)  
+  dcd D.1.1.4.2                                              48 (39.3%)   42 (34.1%)     50 (41.7%)  
+cl D.2                                                                                               
+  Total number of patients with at least one adverse event   47 (38.5%)   58 (47.2%)     57 (47.5%)  
+  Total number of events                                         62           72             74      
+  dcd D.2.1.5.3                                              47 (38.5%)   58 (47.2%)     57 (47.5%)  
+cl C.2                                                                                               
+  Total number of patients with at least one adverse event   35 (28.7%)    48 (39%)      55 (45.8%)  
+  Total number of events                                         48           53             65      
+  dcd C.2.1.2.1                                              35 (28.7%)    48 (39%)      55 (45.8%)  
+cl B.1                                                                                               
+  Total number of patients with at least one adverse event   47 (38.5%)   49 (39.8%)     43 (35.8%)  
+  Total number of events                                         56           60             62      
+  dcd B.1.1.1.1                                              47 (38.5%)   49 (39.8%)     43 (35.8%)  
+cl C.1                                                                                               
+  Total number of patients with at least one adverse event   43 (35.2%)   46 (37.4%)     43 (35.8%)  
+  Total number of events                                         55           63             64      
+  dcd C.1.1.1.3                                              43 (35.2%)   46 (37.4%)     43 (35.8%)  
+—————————————————————————————————————————————————————————————————————————————————————————————————————
 
-<span class="co">#&gt; Adverse Events: {Specify Population}</span>
-<span class="co">#&gt; Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; -----------------------------------------------------------------------------------------------------</span>
-<span class="co">#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo   C: Combination</span>
-<span class="co">#&gt;   Dictionary-Derived Term                                     (N=122)      (N=123)        (N=120)    </span>
-<span class="co">#&gt; -----------------------------------------------------------------------------------------------------</span>
-<span class="co">#&gt; Total number of patients with at least one adverse event     122 (100%)   123 (100%)     120 (100%)  </span>
-<span class="co">#&gt; Overall total number of events                                  609          622            703      </span>
-<span class="co">#&gt; cl A.1                                                                                               </span>
-<span class="co">#&gt;   Total number of patients with at least one adverse event   78 (63.9%)    75 (61%)      89 (74.2%)  </span>
-<span class="co">#&gt;   Total number of events                                        132          130            160      </span>
-<span class="co">#&gt;   dcd A.1.1.1.1                                               50 (41%)    45 (36.6%)     63 (52.5%)  </span>
-<span class="co">#&gt;   dcd A.1.1.1.2                                              48 (39.3%)    48 (39%)      50 (41.7%)  </span>
-<span class="co">#&gt; cl B.2                                                                                               </span>
-<span class="co">#&gt;   Total number of patients with at least one adverse event   79 (64.8%)   74 (60.2%)     85 (70.8%)  </span>
-<span class="co">#&gt;   Total number of events                                        129          138            143      </span>
-<span class="co">#&gt;   dcd B.2.2.3.1                                              48 (39.3%)   54 (43.9%)     51 (42.5%)  </span></code></pre></div>
-<p>(Table truncated)</p>
-</div>
-<div id="acknowledgment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgment" class="anchor"></a>Acknowledgment</h2>
-</div>
-<div id="notes-for-developers" class="section level2">
-<h2 class="hasAnchor">
-<a href="#notes-for-developers" class="anchor"></a>Notes for Developers</h2>
-<div id="conventions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#conventions" class="anchor"></a>Conventions</h3>
-</div>
+Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).                                         48 (39.3%)   54 (43.9%)     51 (42.5%)</code></pre>
 </div>
 </div>
   </div>

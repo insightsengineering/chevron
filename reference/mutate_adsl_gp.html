@@ -85,35 +85,14 @@
   </a>
 </li>
 <li>
-  <a href="../articles/chevron.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
-    </li>
-  </ul>
+<li>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -145,7 +124,7 @@ Other releases
     </div>
 
     <pre class="usage"><span class='fu'>mutate_adsl_gp</span><span class='op'>(</span>
-  <span class='va'>x</span>,
+  <span class='va'>adam_db</span>,
   reason <span class='op'>=</span> <span class='va'>.study</span><span class='op'>$</span><span class='va'>disc_reason_var</span>,
   .study <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>disc_reason_var <span class='op'>=</span> <span class='st'>"DCSREAS"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
@@ -154,23 +133,18 @@ Other releases
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>(<code>dm</code>) object.</p></td>
+      <th>adam_db</th>
+      <td><p>(<code>dm</code>) object containing the ADaM datasets</p></td>
     </tr>
     <tr>
       <th>reason</th>
-      <td><p>(<code>character</code>) the variable name containing the reason for discontinuation.</p></td>
+      <td><p>(<code>character</code>) the variable name for variable with the reason for discontinuation.</p></td>
     </tr>
     <tr>
       <th>.study</th>
       <td><p>(<code>list</code>)  with default values for the arguments of the function</p></td>
     </tr>
     </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    
-
 
 
   </div>

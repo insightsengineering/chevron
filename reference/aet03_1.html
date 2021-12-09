@@ -85,35 +85,14 @@
   </a>
 </li>
 <li>
-  <a href="../articles/chevron.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
-    </li>
-  </ul>
+<li>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -169,7 +148,7 @@ Other releases
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>adam_db</th>
-      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
+      <td><p>(<code>dm</code>) object containing the ADaM datasets</p></td>
     </tr>
     <tr>
       <th>armvar</th>
@@ -205,11 +184,6 @@ Other releases
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    
-
-
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
@@ -235,11 +209,7 @@ Other releases
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/roche/rtables'>rtables</a></span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>   <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_select_tbl.html'>dm_select_tbl</a></span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='va'>db</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_filter.html'>std_filter</a></span><span class='op'>(</span><span class='st'>"aet03_1"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_mutate.html'>std_mutate</a></span><span class='op'>(</span><span class='st'>"aet03_1"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'>   <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"aet03_1"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='fu'>aet03_1</span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events by Greatest Intensity: {Specify Population}</span>
@@ -380,11 +350,13 @@ Other releases
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  All counts represent patients. Multiple occurrences of the same AE in one individual are counted once at the greatest intensity for this preferred term. To the SOC Overall row counts, a patient contributes only with the AE occuring with the greatest intensity within the SOC. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
 <span class='r-in'></span>
-<span class='r-in'><span class='fu'>aet03_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
-<span class='r-in'> lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,</span>
-<span class='r-in'> lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,</span>
-<span class='r-in'> lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
-<span class='r-in'> deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET03"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>aet03_1_lyt</span><span class='op'>(</span></span>
+<span class='r-in'>  armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
+<span class='r-in'>  lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,</span>
+<span class='r-in'>  lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,</span>
+<span class='r-in'>  lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
+<span class='r-in'>  deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET03"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> A Pre-data Table Layout</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Column-Split Structure:</span>

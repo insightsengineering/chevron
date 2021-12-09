@@ -85,35 +85,14 @@
   </a>
 </li>
 <li>
-  <a href="../articles/chevron.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
-    </li>
-  </ul>
+<li>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -151,27 +130,9 @@ Other releases
   <span class='va'>prune_0</span>,
   <span class='va'>deco</span>,
   <span class='va'>.study</span>,
-  <span class='va'>ad_bl</span>,
-  <span class='va'>adsl</span>,
-  <span class='va'>adeg</span>,
-  <span class='va'>adae</span>,
-  <span class='va'>adcm</span>,
-  <span class='va'>admh</span>,
-  <span class='va'>aag</span>,
-  <span class='va'>advs</span>,
-  <span class='va'>adlb</span>,
-  <span class='va'>adex</span>,
-  <span class='va'>adsub</span>,
-  <span class='va'>adrs</span>,
-  <span class='va'>adtte</span>,
-  <span class='va'>adhy</span>,
-  <span class='va'>adsaftte</span>,
-  <span class='va'>addv</span>,
-  <span class='va'>adcssrs</span>,
-  <span class='va'>adqlqc</span>,
-  <span class='va'>acg</span>,
-  <span class='va'>adic</span>,
-  <span class='va'>group</span>
+  <span class='va'>group</span>,
+  <span class='va'>tlgfname</span>,
+  <span class='va'>pmap</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -179,7 +140,7 @@ Other releases
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>adam_db</th>
-      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
+      <td><p>(<code>dm</code>) object containing the ADaM datasets</p></td>
     </tr>
     <tr>
       <th>armvar</th>
@@ -202,98 +163,22 @@ Other releases
       <td><p>(<code>list</code>)  with default values for the arguments of the function</p></td>
     </tr>
     <tr>
-      <th>ad_bl</th>
-      <td><p>(<code>data.frame</code>) subject baseline Dataset with one row per patient</p></td>
-    </tr>
-    <tr>
-      <th>adsl</th>
-      <td><p>(<code>data.frame</code>) Subject Level Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adeg</th>
-      <td><p>(<code>data.frame</code>) ECG Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adae</th>
-      <td><p>(<code>data.frame</code>) Adverse Events Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adcm</th>
-      <td><p>(<code>data.frame</code>) Concomitant Medications Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>admh</th>
-      <td><p>(<code>data.frame</code>) Medical History Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>aag</th>
-      <td><p>(<code>data.frame</code>) Adverse Event Grouping Defs Dataset</p></td>
-    </tr>
-    <tr>
-      <th>advs</th>
-      <td><p>(<code>data.frame</code>) Vital Signs Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adlb</th>
-      <td><p>(<code>data.frame</code>) Laboratory Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adex</th>
-      <td><p>(<code>data.frame</code>) Exposure Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adsub</th>
-      <td><p>(<code>data.frame</code>) Subcategory Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adrs</th>
-      <td><p>(<code>data.frame</code>) Response Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adtte</th>
-      <td><p>(<code>data.frame</code>) Time to Event Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adhy</th>
-      <td><p>(<code>data.frame</code>) Hy's Law Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adsaftte</th>
-      <td><p>(<code>data.frame</code>) Safety Time to Event Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>addv</th>
-      <td><p>(<code>data.frame</code>) Protocol Deviations Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adcssrs</th>
-      <td><p>(<code>data.frame</code>) C-SSRS Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adqlqc</th>
-      <td><p>(<code>data.frame</code>) EORTC QLQ-C30 V3 Analysis Dataset</p></td>
-    </tr>
-    <tr>
-      <th>acg</th>
-      <td><p>(<code>data.frame</code>) Concomitant Med. Grouping Defs Dataset</p></td>
-    </tr>
-    <tr>
-      <th>adic</th>
-      <td><p>(<code>data.frame</code>) Interval Censoring Analysis Dataset</p></td>
-    </tr>
-    <tr>
       <th>group</th>
-      <td><p>nest list for group-dependent data binning</p></td>
+      <td><p>(<code>list of lists</code>) for group-dependent data binning</p></td>
+    </tr>
+    <tr>
+      <th>tlgfname</th>
+      <td><p>(<code>character</code>) function name of tlg-function</p></td>
+    </tr>
+    <tr>
+      <th>pmap</th>
+      <td><p>('data frame') preprocessing map, see <code>std_pmap</code> for the required format</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>the following arguments are better provided through the study object:</p><ul>
-<li><p>lbl_overall</p></li>
-<li><p>armvar</p></li>
-</ul>
-
+    <p>the following arguments are better provided through the study object: <code>lbl_overall</code>, <code>armvar</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

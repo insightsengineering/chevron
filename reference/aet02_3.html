@@ -86,35 +86,14 @@ events categorized by Dictionary-Derived Term." />
   </a>
 </li>
 <li>
-  <a href="../articles/chevron.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Adding_new_TLGs_to_Chevron.html">Adding new TLGs to Chevron</a>
-    </li>
-  </ul>
+<li>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -168,7 +147,7 @@ events categorized by Dictionary-Derived Term.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>adam_db</th>
-      <td><p>(<code>dm</code>) object containing the adam Datasets.</p></td>
+      <td><p>(<code>dm</code>) object containing the ADaM datasets</p></td>
     </tr>
     <tr>
       <th>armvar</th>
@@ -196,11 +175,6 @@ events categorized by Dictionary-Derived Term.</p>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    
-
-
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
@@ -223,11 +197,7 @@ events categorized by Dictionary-Derived Term.</p>
     <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cynkra.github.io/dm/'>dm</a></span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>   <span class='fu'><a href='https://cynkra.github.io/dm/reference/dm_select_tbl.html'>dm_select_tbl</a></span><span class='op'>(</span><span class='va'>adsl</span>, <span class='va'>adae</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='va'>db</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_filter.html'>std_filter</a></span><span class='op'>(</span><span class='st'>"aet02_3"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>  <span class='op'>(</span><span class='fu'><a href='std_mutate.html'>std_mutate</a></span><span class='op'>(</span><span class='st'>"aet02_3"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'>   <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"aet02_3"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='fu'>aet02_3</span><span class='op'>(</span>adam_db <span class='op'>=</span> <span class='va'>db</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Adverse Events: {Specify Population}</span>
