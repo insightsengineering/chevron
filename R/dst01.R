@@ -45,24 +45,18 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' @examples
 #'
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl)
-#'
-#' db <- db %>%
-#'   (std_filter("dst01_1"))() %>%
-#'   (std_mutate("dst01_1"))()
+#'    preprocess_data("dst01_1")
 #'
 #' dst01_1(db)
-#'
 #'
 dst01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     status_var = "EOSSTT",
                     disc_reason_var = .study$disc_reason_var,
-                    lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
+                    lbl_overall = .study$lbl_overall,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
@@ -134,7 +128,6 @@ dst01_1 <- function(adam_db,
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -223,14 +216,9 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl)
-#'
-#' db <- db %>%
-#'   (std_filter("dst01_2"))() %>%
-#'   (std_mutate("dst01_2"))()
+#'    preprocess_data("dst01_2")
 #'
 #' dst01_2(db)
 #' dst01_2(db, lbl_overall = NULL)
@@ -310,7 +298,6 @@ dst01_2 <- function(adam_db,
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -403,14 +390,9 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl)
-#'
-#' db <- db %>%
-#'   (std_filter("dst01_3"))() %>%
-#'   (std_mutate("dst01_3"))()
+#'    preprocess_data("dst01_3")
 #'
 #' dst01_3(db)
 #' dst01_3(db, lbl_overall = NULL)
@@ -516,7 +498,6 @@ dst01_3 <- function(adam_db,
 #' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
 #'   By Default `ONGOING.
 #'
-#' @return
 #' @export
 #'
 #' @examples

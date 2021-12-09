@@ -24,7 +24,7 @@ aet02_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -39,9 +39,6 @@ aet02_1_lyt(
 \item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
-}
-\value{
-
 }
 \description{
 The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
@@ -66,11 +63,7 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adae)
-
-db <- db \%>\%
-  (std_filter("aet02_1"))() \%>\%
-  (std_mutate("aet02_1"))()
+  preprocess_data("aet02_1")
 
 aet02_1(adam_db = db) \%>\% head(15)
 

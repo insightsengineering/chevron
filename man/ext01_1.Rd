@@ -26,7 +26,7 @@ ext01_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -41,9 +41,6 @@ ext01_1_lyt(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
-}
-\value{
-
 }
 \description{
 The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
@@ -69,14 +66,9 @@ patients in the corresponding analysis population given by \code{N}.
 \examples{
 
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adex)
-
-db <- db \%>\%
-  (std_filter("ext01_1"))() \%>\%
-  (std_mutate("ext01_1"))()
+   preprocess_data("ext01_1")
 
 ext01_1(db)
 

@@ -22,9 +22,6 @@ name of the parameter (\code{string}), a series of breakpoints (\code{vector}) w
 
 \item{as_factor}{(\code{logical}) if TRUE, the new column is of type \code{factor} else \code{character}.}
 }
-\value{
-
-}
 \description{
 Cut by group
 }

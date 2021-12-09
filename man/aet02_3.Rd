@@ -23,7 +23,7 @@ aet02_3_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -36,9 +36,6 @@ aet02_3_lyt(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
-}
-\value{
-
 }
 \description{
 The AET02_3 table provides an overview of the number of patients experiencing advert events and the number of advert
@@ -62,11 +59,7 @@ events categorized by Dictionary-Derived Term.
 library(dm)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adae)
-
-db <- db \%>\%
-  (std_filter("aet02_3"))() \%>\%
-  (std_mutate("aet02_3"))()
+   preprocess_data("aet02_3")
 
 aet02_3(adam_db = db) \%>\% head()
 

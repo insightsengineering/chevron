@@ -28,7 +28,7 @@ dmt01_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -43,9 +43,6 @@ dmt01_1_lyt(
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
-}
-\value{
-
 }
 \description{
 For each variable, summary statistics are by default based on the number of patients in the corresponding \code{n} row.
@@ -68,15 +65,9 @@ For each variable, summary statistics are by default based on the number of pati
 \examples{
 
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl)
-
-db <- db \%>\%
-  (std_filter("dmt01_1"))() \%>\%
-  (std_mutate("dmt01_1"))()
-
+   preprocess_data("dmt01_1")
 
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)

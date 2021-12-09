@@ -1,0 +1,120 @@
+---
+title: "Introduction to Chevron"
+date: "`r Sys.Date()`"
+author: Adrian Waddell
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to Chevron}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Introduction 
+
+The `chevron` R package provides functions to produce standard tables, listings and graphs (TLGs) used to analyze and
+report clinical trials data. We refer to these functions as *tlg-functions*. The *tlg-functions* in `chevron` use other
+packages to produce the final outputs, for example `rtables` and `tern` are used to create listings and tables, and
+`ggplot2`, `lattice`, and `grid` are used to create graphs.
+
+
+*tlg-functions* in `chevron` such as `dmt01_1`, `aet02_1`, `aet02_2` have the following properties:
+
+1. they produce a narrow defined output (currently standards in Roche GDS). Note, that the naming convention 
+   `<gds template id>_<i>` indicates that a Roche GDS defined standard may have different implementations. Or,
+    alternatively, a GDS template id can be regarded as a *guideline* and the function name in `chevron` as a
+    *standard*.
+1. have very few arguments to modify the standard. Generally, arguments may change the structure of the table (arm
+variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).
+1. have always the first argument `adam_db` which is the collection of ADaM datasets (`ADSL`, `ADAE`,
+`ADRS`, etc.). Please read the *The adam_db Argument* vignette in this package for more details.
+1. have a `.study` argument, read the *The .study argument* vignette for more detail.
+
+## Example AET02
+
+For example, the GDS template `aet02` is implemented in `chevron` with *tlg-functions* that have the name `aet02_*`. The
+function documentation which is accessible with the `help` function, e.g. `help('aet02_1')` documents what is particular
+in the `_1` implementation.
+
+We first define the data and put it in a `dm` object, you can find more details about this in the *adam_db* vignette.
+
+```{r}
+library(dm)
+library(scda)
+
+syn_data <- synthetic_cdisc_data("latest")
+
+adam_study_data <- dm(adsl = syn_data$adsl, adae = syn_data$adae) %>%
+  dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
+  dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adae, c("USUBJID", "STUDYID", "ASTDTM", "AETERM", "AESEQ"))
+
+validate_dm(adam_study_data)
+```
+
+A the `aet02_1` output is then created as follows:
+
+```{r}
+library(chevron)
+
+db <- adam_study_data %>%
+  preprocess_data("aet02_1")
+
+aet02_1(adam_db = db)
+```
+
+
+# More on preprocess_data and processing map
+
+The `preprocess_data` function determines the the preprocessing using a *processing map* which is
+referred to in `chevron` as `pmap`. 
+
+The standard preprocessing map that comes with the *tlg-functions* in `chevron` can be access via `std_pmap`
+
+```{r}
+std_pmap() %>%
+  head()
+```
+
+For example, for `aet02_1`:
+
+1. the `adam_db` data gets filtered by the function `filter_adae_anl01fl`
+2. the `adam_db` does not get mutated (`NA` maps to `identity`)
+3. and the required data are in the `req_data` column accessible by
+
+```{r}
+pmap <- std_pmap()
+unlist(pmap[pmap$tlgfname == "aet02_1", "req_data", drop = TRUE])
+```
+
+Note that you can access the explicit functions with `std_filter_fun` and `std_mutate_fun`
+
+```{r}
+std_filter_fun("aet02_1")
+```
+
+and 
+
+
+```{r}
+std_mutate_fun("aet02_1")
+```
+
+so alternatively one can also create the output above with
+
+```{r}
+db <- adam_study_data %>%
+  (std_filter_fun("aet02_1"))() %>%
+  (std_mutate_fun("aet02_1"))()
+
+aet02_1(adam_db = db)
+```

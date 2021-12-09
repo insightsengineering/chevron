@@ -25,14 +25,9 @@
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adlb)
-#'
-#' db <- db %>%
-#'   (std_filter("lbt01_1"))() %>%
-#'   (std_mutate("lbt01_1"))()
+#'    preprocess_data("lbt01_1")
 #'
 #' lbt01_1(db)
 #'
@@ -78,7 +73,6 @@ lbt01_1 <- function(adam_db,
 #' @param lbl_AVISIT (`character`) label of the `visitvar` variable.
 #' @param lbl_PARAM (`character`) label of the `PARAM` variable.
 #'
-#' @return
 #' @export
 lbt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = c("AVAL", "CHG"),

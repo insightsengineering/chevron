@@ -1,0 +1,503 @@
+---
+title: "Intended Use of chevron"
+date: "`r Sys.Date()`"
+author: Adrian Waddell and Gabriel Becker
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intended Use of chevron}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+In this vignette we explain how `chevron` can be used in a study setting to create many TLGs with relatively little
+effort. The workflow described in this vignette is a basic one and can be adopted to be more streamlined for a
+particular setting.
+
+For this vignette we load the following packages:
+
+```{r}
+library(rtables)
+library(chevron)
+library(dm)
+library(dplyr)
+library(rlang)
+```
+
+## List of Planned Outputs (LoPO)
+
+A list of planned outputs (LoPO) contains among other information:
+
+* `tlgfname`: function that implements the output
+* `type`: one of `graph`, `listing`, `table`
+* `main_title`: main title
+* `subtitles`: additional titles
+* `filters`: patient subset definition
+* `filename`: file name where the output should be written to
+
+The information above can be stored in various data structures. For this example we assume the information comes from a
+spreadsheet with one row per output. We will use the following LoPO store in the variable `lopo` for the remainder of
+the vignette:
+
+```{r, echo = FALSE}
+lopo_entry <- function(tlgfname, type = c("table", "listing", "graph"), extra_args = NULL,
+                       output_id = NULL, main_title, subtitles = NULL, footnotes = NULL,
+                       filters = NULL, filename = NULL) {
+    type <- match.arg(type)
+    
+    if (is.null(output_id))
+      output_id <- paste0(substr(type, 1, 1), "_", tolower(substr(tlgfname, 1, 2)))
+    
+    if (is.null(filename)) {
+      ext <- if (type == "graph") ".pdf" else ".txt"
+      filename <- paste0(output_id, "__", paste(filters, collapse = "_"), ext)
+    }
+    stopifnot(tools::file_ext(filename) %in% c("txt", "pdf"))
+    
+    tibble(tlgfname, type, extra_args = list(extra_args), output_id, main_title, subtitles = list(subtitles),
+           footnotes = list(footnotes), filters = list(filters), filename)
+}
+
+lopo <- rbind(
+  lopo_entry(
+    tlgfname = "dmt01_1", type = "table",
+    main_title = "Demographics and Baseline Characteristics", filters = "IT"
+  ),
+  lopo_entry(
+    tlgfname = "aet02_1", type = "table",
+    main_title = "Adverse Events Resulting in Death",
+    footnotes = "Investigator text for AEs is coded using MedDRA version {{medra-version}}.",
+    filters = c("FATAL", "SE")
+  ),
+  lopo_entry(
+    tlgfname = "aet02_1", type = "table",
+    main_title = "Adverse Events",
+    footnotes = c(
+      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
+      "Percentages are based on N in the column headings."),
+      paste("Only treatment emergent AEs are displayed. For frequency counts by preferred term, multiple",
+      "occurrences of the same AE in an individual are counted only once. For frequency counts of",
+      "'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately.")
+    ),
+    filters = "SE"
+  ),
+  lopo_entry(
+    tlgfname = "aet02_1", type = "table",
+    main_title = "Adverse Events Leading to Study Treatment Discontinuation",
+    footnotes = c(
+      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
+            "Percentages are based on N in the column headings."),
+      paste("Only treatment emergent AEs are displayed where the study medication adjustment CRF question is",
+            "answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the",
+            "same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows,",
+            "multiple occurrences of the same AE in an individual are counted separately.")
+    ),
+    filters = "SE"
+  ),
+  lopo_entry(
+    tlgfname = "dst01_1", type = "table",
+    main_title = "Patient Disposition",
+    filters = "IT"
+  ),
+  lopo_entry(
+    tlgfname = "dst01_1", type = "table",
+    main_title = "Patients Discontinued from Study Treatment",
+    filters = c("TX", "IT")
+  ),
+  lopo_entry(
+    tlgfname = "lbt01_1", type = "table",
+    main_title = "Listing of Laboratory Data and Change from Baseline by Visit (including CTC grade)",
+    footnotes = c(
+      paste("Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}.",
+      "NCI CTCAE is the National Cancer Institute Common Terminology Criteria for Adverse Events."),
+      paste("NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed",
+            "by the grade where relevant"),
+      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
+    ),
+    filters = "SE",
+    output_id = "l_lb_ctc"
+  ),
+  lopo_entry(
+    tlgfname = "lbt01_1", type = "table",
+    main_title = "Listing of Laboratory Data and Change from Baseline by Visit",
+    footnotes = c(
+      "Abnormalities displayed as high (H) or low (L) from collected range",
+      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
+    ),
+    filters = "SE"
+  ),
+  lopo_entry(
+    tlgfname = "lbt01_1", type = "table",
+    main_title = "Listing of Laboratory Data and Change from Baseline by Visit (Standardised parameters)",
+    footnotes = c(
+      "Includes values standardised using Roche Safety Lab Standardisation",
+      paste("Abnormalities displayed as high (H) or low (L) for outside normal range, or high high (HH) or",
+      "low low (LL) for outside the marked abnormality range with a significant change from baseline"),
+      "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
+    ),
+    filters = "SE",
+    output_id = "l_lb_ls"
+  )
+)
+```
+
+Which provides the following LoPO:
+
+```{r}
+excerpt <- function(x) lapply(x, function(xi) if (length(xi) > 0)paste(substr(xi[1], 1, 8), "...") else "")
+knitr::kable(lopo %>% mutate(main_title = excerpt(main_title), footnotes = excerpt(footnotes)))
+```
+
+Note that the first three columns are not needed for stakeholder interactions and planning/project management. However,
+the GDS template which is currently encoded in the `tlgfname` is needed.
+
+## Data
+
+From the `lopo` above we know that the *tlg-functions* `dmt01_1`, `aet02_1`, `dst01_1` and `lbt01_1` are used to create
+the outputs. `chevron` knows which datasets are required for the particular TLGs
+
+```{r, echo = FALSE}
+req_data <- function(id) {
+  c("adsl", "adae", "adlb")
+}
+```
+
+```{r}
+req_data(c("dmt01", "aet02_1", "dst01_1", "lbt01_1"))
+```
+
+So the `adam_db` object needs to contain the following datasets, we will use the `scda` data:
+
+```{r}
+syn_data <- syn_test_data()[c("adsl", "adae", "adlb")]
+
+adam_study_data <- dm(adsl = syn_data$adsl, adae = syn_data$adae, adlb = syn_data$adlb) %>%
+  dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
+  dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adae, c("USUBJID", "STUDYID", "ASTDTM", "AETERM", "AESEQ")) %>%
+  dm_add_fk(adlb, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adlb, c("STUDYID", "USUBJID", "PARAMCD", "BASETYPE", "AVISITN", "ATPTN", "DTYPE", "ADTM", "LBSEQ", "ASPID"))
+
+adam_study_data
+```
+
+## Filters
+
+The `lopo` contains the following filter labels:
+
+```{r}
+lopo$filters %>% unlist() %>% unique()
+```
+
+Each label corresponds to a particular subsetting operation of a dataset. As there is currently no R package available
+that implements filter label based subsetting on `dm` objects we provide a basic approach here:
+
+```{r}
+new_filter_func <- function(dataname, expr) {
+  e <- enquo(expr)
+  d <- enquo(dataname)
+  function(x) {
+    stopifnot(is_dm(x))
+    dm_filter(x, !!d, !!e)
+  }
+}
+
+# filter label functions
+flf <- list(
+ ITT = new_filter_func("adsl", ITTFL == "Y"),
+ SE = new_filter_func("adsl", SAFFL == "Y"),
+ CTC35 = new_filter_func("adae", AETOXGR %in% c("3", "4", "5")),
+ FATAL = new_filter_func("adae", AESDTH == "Y"),
+ TX = identity
+)
+```
+
+These filter label based system can then be used as follows, assume we would like the data for `CTC35_SE`:
+
+```{r}
+adam__CTC35_SE <- adam_study_data %>%
+  flf$SE() %>%
+  flf$CTC35() %>%
+  dm_apply_filters()
+
+dm_nrow(adam_study_data)
+dm_nrow(adam__CTC35_SE)
+```
+
+We now introduce the function `dm_filter_with_labels`
+
+```{r}
+get_std_filter_label_defn <- function() flf
+
+dm_filter_with_labels <- function(dm, filter_labels, filter_label_def = get_std_filter_label_defn()) {
+  stopifnot(
+    is_dm(dm),
+    is.null(filter_labels) || all(filter_labels %in% names(filter_label_def))
+  )
+  
+  if (length(filter_labels) == 0)
+    return(dm)
+  
+  Reduce(function(f1, f2) f2(f1), filter_label_def[filter_labels], init = dm)
+}
+
+adam_study_data %>%
+  dm_filter_with_labels(c("CTC35", "SE"))
+```
+
+so to get the filtered data
+
+```{r} 
+adam__CTC35_SE <- adam_study_data %>%
+  dm_filter_with_labels(c("CTC35", "SE")) %>%
+  dm_apply_filters()
+
+adam__CTC35_SE %>%
+  dm_nrow()
+```
+
+## Templating Title & Footnotes
+
+The title and footnotes in the `lopo` are not ready for the final output. The final titles usually have the form:
+
+```
+{{main_title_lopo}} -- {{population title}}
+Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
+{{subtitles from lopo}}
+```
+
+We now introduce a simple templating framework based on `whiskers`. Instead of using the `whiskers` R package we define
+our own functionality:
+
+```{r}
+render_whiskers <- function(templates, dict = character(0)) {
+  if (is.null(templates)) return(NULL)
+  
+  stopifnot(
+    is.character(templates)
+  )
+  setNames(vapply(templates, render_whiskers_string, character(1), dict = dict), names(templates))
+}
+
+render_whiskers_string <- function(template, dict = character(0)) {
+  stopifnot(
+    is.character(template),
+    length(template) == 1,
+    isFALSE(is.null(as.list(dict))),
+    isFALSE(any(duplicated(names(as.list(dict)))))
+  )
+
+  if (length(dict) == 0) return(template)
+
+  ndata <- paste0("{{", names(dict), "}}")
+  for (i in seq_along(dict)) {
+    template <- gsub(ndata[i], dict[i], template, fixed = TRUE)
+  }
+
+  template
+}
+```
+
+The two functions can be used as follows:
+
+```{r}
+render_whiskers(
+  c(
+    "{{main_title_lopo}} -- {{population_title}}",
+    "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}"
+  ),
+  dict = c(
+    main_title_lopo = "Adverse Events", population_title = "All Patients",
+    protocol = "abc123", snapshot = "abc123.ib", "snapshot-date" = "12 March 2020", "cutoff-date" = "1 February 2020"
+  )
+)
+```
+
+## Population Titles
+
+Lets make a simple population title creation function
+
+```{r}
+population_title <- function(filter_labels) {
+  case_when(
+    "ALL" %in% filter_labels ~ "All Patients",
+    "SE" %in% filter_labels ~ "Safety Evaluable Population",
+    "IT" %in% filter_labels ~ "Intention To Treat Population",
+    TRUE ~ "<Population Label not known>"
+  )
+}
+```
+
+## Creating A Standard Output
+
+We now use all the concepts for introduced above to create an output. Let's extracting the data for an output from the
+lopo:
+
+```{r}
+lopo_1 <- purrr::transpose(lopo[lopo$tlgfname == "aet02_1", ])[[1]]
+lopo_1
+```
+
+Now let's create the output
+
+```{r}
+## Decoration ---
+study_dict <- c(
+  protocol = "abc123",
+  snapshot = "abc123.ib",
+  "snapshot-date" = "12 March 2020",
+  "cutoff-date" = "1 February 2020",
+  "medra-version" = "MEDRA v1"
+)
+
+null_as_empty_string <- function(x) {
+  lapply(x, function(xi) if (is.null(xi)) "" else xi)
+}
+
+deco_templ <- null_as_empty_string(list(
+  title = "{{main_title_lopo}} -- {{population_title}}",
+  subtitles = c(
+    "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}",
+    lopo_1$subtitles
+  ),
+  main_footer = lopo_1$footnotes
+))
+
+dict <- c(
+  study_dict,
+  main_title_lopo = lopo_1$main_title,
+  population_title = population_title(lopo_1$filters)
+)
+  
+deco <- lapply(deco_templ, render_whiskers, dict = dict)
+
+## Data ---
+db <- adam_study_data %>%
+  dm_filter_with_labels(lopo_1$filters) %>%
+  preprocess_data(lopo_1$tlgfname)
+
+## Output ---
+tbl <- do.call(lopo_1$tlgfname, c(list(adam_db = db, deco = deco), lopo_1$extra_args))
+
+tbl
+```
+
+This table can now be paginated and saved as a `.txt` file with `rtables::export_as_txt`.
+
+## Non Standard Output
+
+Let's create ad-hoc non-standard output and add it to the lopo and preprocessing map:
+
+```{r}
+ns_dmtspecial <- function(adam_db, deco) {
+  adsl <- adam_db$adsl
+  
+  lyt <- chevron:::basic_table_deco(deco) %>%
+    split_cols_by("ARM") %>%
+    analyze("AGE", mean)
+  
+  build_table(lyt, adsl)
+}
+
+lopo_new <- rbind(
+  lopo,
+  lopo_entry(
+    tlgfname = "ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World",
+    subtitles = c("this", "is", "a test"),
+    footnotes = "very important stuff", filters = c("CTC35", "SE")
+  )
+)
+
+pmap_new <- append_to_pmap(std_pmap(), pmap_row("ns_dmtspecial", req_data = "adsl"))
+```
+
+### Modifying a Standard
+
+```{r}
+ns_aet02_1 <- function(...) {
+  tbl <- aet02_1(...)
+  
+  rbind(tbl, tbl)
+}
+pmap_new <- append_to_pmap(pmap_new, pmap_row("ns_aet02_1", req_data = c("adsl", "adae")))
+```
+
+## Creating Many Outputs
+
+We now create functions that create the final outputs:
+
+```{r}
+std_deco_templ <- function(lopo_row) {
+  tmpl <- null_as_empty_string(list(
+    title = "{{main_title_lopo}} -- {{population_title}}",
+    subtitles = c(
+      "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}",
+      lopo_row$subtitles
+    ),
+    main_footer = lopo_row$footnotes
+  ))
+}
+
+create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun = std_deco_templ,
+                           dict = character(), filter_label_def = get_std_filter_label_defn()) {
+  
+  db <- adam_db %>%
+    dm_filter_with_labels(lopoi$filters) %>%
+    preprocess_data(lopoi$tlgfname, pmap = pmap)
+  
+  tmpl <- deco_template_fun(lopoi)
+  
+  dict_i <- c(
+    study_dict,
+    main_title_lopo = lopoi$main_title,
+    population_title = population_title(lopoi$filters)
+  )
+  
+  deco <- lapply(tmpl, render_whiskers, dict = dict_i)
+  
+  ## Create Output
+  do.call(lopoi$tlgfname, c(list(adam_db = db, deco = deco), lopoi$extra_args))
+  
+}
+
+create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fun = std_deco_templ,
+                               dict = character(), filter_label_def = get_std_filter_label_defn()) {
+  
+  setNames(lapply(purrr::transpose(lopo),
+                  create_one_tlg, adam_db, pmap = pmap,
+                  deco_template_fun = deco_template_fun,
+                  dict = dict, filter_label_def = filter_label_def), lopo$filename)
+}
+```
+
+And putting it all together
+
+```{r}
+lopo_sel <- lopo_new %>%
+  filter(tlgfname %in% c("aet02_1", "ns_dmtspecial"))
+```
+
+```{r}
+tbls <- create_tlg_in_lopo(adam_db = adam_study_data, lopo_sel, pmap_new, dict = study_dict)
+names(tbls)
+```
+
+## Summary
+
+In this vignette we have introduced
+
+* slightly modified subset of a LoPO
+* filter labels implementation on top of `dm`
+* title footnotes templating using whisker notation and dictionaries
+* functions to create the tlgs in the LoPO
+* working with standard and non-standard TLGs using the preprocessing map `pmap`

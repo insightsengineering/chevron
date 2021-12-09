@@ -30,7 +30,7 @@ aet04_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -47,9 +47,6 @@ aet04_1_lyt(
 \item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
-}
-\value{
-
 }
 \description{
 The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
@@ -74,11 +71,7 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adae)
-
-db <- db \%>\%
-  (std_filter("aet03_1"))() \%>\%
-  (std_mutate("aet03_1"))()
+   preprocess_data("aet03_1")
 
 aet04_1(db)
 aet04_1(db, prune_0 = FALSE)

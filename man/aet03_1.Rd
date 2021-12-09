@@ -26,7 +26,7 @@ aet03_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -43,9 +43,6 @@ aet03_1_lyt(
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
 
 \item{severity_grade}{(\verb{vector of strings}) describing the severity levels present in the data set.}
-}
-\value{
-
 }
 \description{
 An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity.
@@ -71,18 +68,16 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adae)
-
-db <- db \%>\%
-  (std_filter("aet03_1"))() \%>\%
-  (std_mutate("aet03_1"))()
+   preprocess_data("aet03_1")
 
 aet03_1(db)
 aet03_1(db, lbl_overall = "All Patients")
 
-aet03_1_lyt(armvar = "ACTARM",
- lbl_AEBODSYS = "Body System or Organ Class",
- lbl_AEDECOD = "Dictionary-Derived Term",
- lbl_overall = NULL,
- deco = std_deco("AET03"))
+aet03_1_lyt(
+  armvar = "ACTARM",
+  lbl_AEBODSYS = "Body System or Organ Class",
+  lbl_AEDECOD = "Dictionary-Derived Term",
+  lbl_overall = NULL,
+  deco = std_deco("AET03")
+)
 }

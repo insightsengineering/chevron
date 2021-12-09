@@ -28,7 +28,7 @@ lbt01_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -48,9 +48,6 @@ to be displayed.}
 \item{lbl_AVISIT}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_PARAM}{(\code{character}) label of the \code{PARAM} variable.}
-}
-\value{
-
 }
 \description{
 The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over
@@ -76,14 +73,9 @@ by \code{AVISIT}. Re-level to customize order
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adlb)
-
-db <- db \%>\%
-  (std_filter("lbt01_1"))() \%>\%
-  (std_mutate("lbt01_1"))()
+   preprocess_data("lbt01_1")
 
 lbt01_1(db)
 

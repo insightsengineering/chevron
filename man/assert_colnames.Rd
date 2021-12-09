@@ -11,9 +11,6 @@ assert_colnames(df, x)
 
 \item{x}{(\verb{vector of strings})}
 }
-\value{
-
-}
 \description{
 Check if strings are column names of a data frame
 }

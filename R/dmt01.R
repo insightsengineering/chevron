@@ -23,15 +23,9 @@
 #' @examples
 #'
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl)
-#'
-#' db <- db %>%
-#'   (std_filter("dmt01_1"))() %>%
-#'   (std_mutate("dmt01_1"))()
-#'
+#'    preprocess_data("dmt01_1")
 #'
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
@@ -82,7 +76,6 @@ dmt01_1 <- function(adam_db,
 #' @param summaryvars (`vector of strings`) variables summarized in demographic table.
 #' @param summaryvars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
 #'
-#' @return
 #' @export
 #'
 #' @examples

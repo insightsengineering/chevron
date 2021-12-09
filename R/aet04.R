@@ -23,11 +23,7 @@
 #' library(rtables)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adae)
-#'
-#' db <- db %>%
-#'   (std_filter("aet03_1"))() %>%
-#'   (std_mutate("aet03_1"))()
+#'    preprocess_data("aet03_1")
 #'
 #' aet04_1(db)
 #' aet04_1(db, prune_0 = FALSE)
@@ -103,7 +99,6 @@ aet04_1 <- function(adam_db,
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
 #'
-#' @return
 #' @export
 #'
 #' @examples

@@ -31,7 +31,7 @@ dst01_3_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -64,9 +64,6 @@ the analysis period.}
 \item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
 By Default `ONGOING.}
 }
-\value{
-
-}
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status.
 For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
@@ -90,14 +87,9 @@ For patients who discontinued the study, the reason provided is categorized as "
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl)
-
-db <- db \%>\%
-  (std_filter("dst01_3"))() \%>\%
-  (std_mutate("dst01_3"))()
+   preprocess_data("dst01_3")
 
 dst01_3(db)
 dst01_3(db, lbl_overall = NULL)
