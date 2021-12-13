@@ -93,15 +93,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -215,7 +206,7 @@ Other releases
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cynkra.github.io/dm/'>dm</a></span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>   <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"dmt01_1"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"dmt01_1"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='fu'>dmt01_1</span><span class='op'>(</span><span class='va'>db</span>, summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span>, <span class='st'>"BWGHTSI"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>NaNs produced</span>
@@ -281,8 +272,9 @@ Other releases
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   F                                            79 (59%)    82 (61.2%)      70 (53%)   </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   M                                            55 (41%)    52 (38.8%)      62 (47%)   </span>
 <span class='r-in'><span class='fu'>dmt01_1</span><span class='op'>(</span><span class='va'>db</span>,</span>
-<span class='r-in'>        summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span><span class='op'>)</span>,</span>
-<span class='r-in'>        summaryvars_lbls <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Age (yr)"</span>, <span class='st'>"Race"</span>, <span class='st'>"Sex"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'>  summaryvars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"RACE"</span>, <span class='st'>"SEX"</span><span class='op'>)</span>,</span>
+<span class='r-in'>  summaryvars_lbls <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Age (yr)"</span>, <span class='st'>"Race"</span>, <span class='st'>"Sex"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Demographics and Baseline Characteristics: {Specify Population}</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
@@ -307,7 +299,6 @@ Other releases
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   n                                              134          134            132             400     </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   F                                            79 (59%)    82 (61.2%)      70 (53%)      231 (57.8%) </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   M                                            55 (41%)    52 (38.8%)      62 (47%)      169 (42.2%) </span>
-<span class='r-in'></span>
 <span class='r-in'><span class='fu'>dmt01_1_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> A Pre-data Table Layout</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
@@ -318,7 +309,6 @@ Other releases
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Row-Split Structure:</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> ( (** multivar analysis **) -&gt; AAGE, AGEGR1, SEX, ETHNIC, RACE, BWGHTSI (** multivar analysis **) -&gt; ) (** multivar analysis **) </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -94,15 +94,6 @@ events categorized by Body System, High Level Term and Dictionary-Derived Term."
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -219,7 +210,7 @@ frequencies.</p></li>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/roche/rtables'>rtables</a></span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>   <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"aet02_2"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"aet02_2"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='fu'>aet02_2</span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>)</span></span>
@@ -290,14 +281,13 @@ frequencies.</p></li>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
-<span class='r-in'></span>
 <span class='r-in'><span class='fu'>aet02_2_lyt</span><span class='op'>(</span></span>
-<span class='r-in'> armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
-<span class='r-in'> lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
-<span class='r-in'> lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,</span>
-<span class='r-in'> lbl_AEHLT <span class='op'>=</span> <span class='st'>"High Level Term"</span>,</span>
-<span class='r-in'> lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,</span>
-<span class='r-in'> deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span></span>
+<span class='r-in'>  armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
+<span class='r-in'>  lbl_overall <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
+<span class='r-in'>  lbl_AEBODSYS <span class='op'>=</span> <span class='st'>"Body System or Organ Class"</span>,</span>
+<span class='r-in'>  lbl_AEHLT <span class='op'>=</span> <span class='st'>"High Level Term"</span>,</span>
+<span class='r-in'>  lbl_AEDECOD <span class='op'>=</span> <span class='st'>"Dictionary-Derived Term"</span>,</span>
+<span class='r-in'>  deco <span class='op'>=</span> <span class='fu'><a href='std_deco.html'>std_deco</a></span><span class='op'>(</span><span class='st'>"AET02"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> A Pre-data Table Layout</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>

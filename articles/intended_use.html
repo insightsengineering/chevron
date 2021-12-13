@@ -52,15 +52,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -85,7 +76,7 @@ Other releases
       <h1 data-toc-skip>Intended Use of chevron</h1>
                         <h4 class="author">Adrian Waddell and Gabriel Becker</h4>
             
-            <h4 class="date">2021-12-09</h4>
+            <h4 class="date">2021-12-13</h4>
       
       
       <div class="hidden name"><code>intended_use.Rmd</code></div>
@@ -353,10 +344,10 @@ Other releases
     <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html">is_dm</a></span><span class="op">(</span><span class="va">dm</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">filter_labels</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">filter_labels</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">filter_label_def</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>
-  
+
   <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">filter_labels</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>
     <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">dm</span><span class="op">)</span>
-  
+
   <span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">f1</span>, <span class="va">f2</span><span class="op">)</span> <span class="fu">f2</span><span class="op">(</span><span class="va">f1</span><span class="op">)</span>, <span class="va">filter_label_def</span><span class="op">[</span><span class="va">filter_labels</span><span class="op">]</span>, init <span class="op">=</span> <span class="va">dm</span><span class="op">)</span>
 <span class="op">}</span>
 
@@ -392,7 +383,7 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">render_whiskers</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">templates</span>, <span class="va">dict</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">templates</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span>
-  
+
   <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="va">templates</span><span class="op">)</span>
   <span class="op">)</span>
@@ -548,11 +539,11 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ns_dmtspecial</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">deco</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adam_db</span><span class="op">$</span><span class="va">adsl</span>
-  
+
   <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="fu">chevron</span><span class="fu">:::</span><span class="fu">basic_table_deco</span><span class="op">(</span><span class="va">deco</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://roche.github.io/rtables/reference/split_cols_by.html">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://roche.github.io/rtables/reference/analyze.html">analyze</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="va">mean</span><span class="op">)</span>
-  
+
   <span class="fu"><a href="https://roche.github.io/rtables/reference/build_table.html">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">)</span>
 <span class="op">}</span>
 
@@ -572,7 +563,7 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ns_aet02_1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aet02_1.html">aet02_1</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
-  
+
   <span class="fu"><a href="https://roche.github.io/rtables/reference/rbind.html">rbind</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="va">tbl</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="va">pmap_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/append_to_pmap.html">append_to_pmap</a></span><span class="op">(</span><span class="va">pmap_new</span>, <span class="fu"><a href="../reference/pmap_row.html">pmap_row</a></span><span class="op">(</span><span class="st">"ns_aet02_1"</span>, req_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -596,29 +587,29 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 
 <span class="va">create_one_tlg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lopoi</span>, <span class="va">adam_db</span>, <span class="va">pmap</span> <span class="op">=</span> <span class="fu">std_map</span><span class="op">(</span><span class="op">)</span>, <span class="va">deco_template_fun</span> <span class="op">=</span> <span class="va">std_deco_templ</span>,
                            <span class="va">dict</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">filter_label_def</span> <span class="op">=</span> <span class="fu">get_std_filter_label_defn</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  
+
   <span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">dm_filter_with_labels</span><span class="op">(</span><span class="va">lopoi</span><span class="op">$</span><span class="va">filters</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="../reference/preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="va">lopoi</span><span class="op">$</span><span class="va">tlgfname</span>, pmap <span class="op">=</span> <span class="va">pmap</span><span class="op">)</span>
-  
+
   <span class="va">tmpl</span> <span class="op">&lt;-</span> <span class="fu">deco_template_fun</span><span class="op">(</span><span class="va">lopoi</span><span class="op">)</span>
-  
+
   <span class="va">dict_i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="va">study_dict</span>,
     main_title_lopo <span class="op">=</span> <span class="va">lopoi</span><span class="op">$</span><span class="va">main_title</span>,
     population_title <span class="op">=</span> <span class="fu">population_title</span><span class="op">(</span><span class="va">lopoi</span><span class="op">$</span><span class="va">filters</span><span class="op">)</span>
   <span class="op">)</span>
-  
+
   <span class="va">deco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">tmpl</span>, <span class="va">render_whiskers</span>, dict <span class="op">=</span> <span class="va">dict_i</span><span class="op">)</span>
-  
+
   <span class="co">## Create Output</span>
   <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">lopoi</span><span class="op">$</span><span class="va">tlgfname</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span>, deco <span class="op">=</span> <span class="va">deco</span><span class="op">)</span>, <span class="va">lopoi</span><span class="op">$</span><span class="va">extra_args</span><span class="op">)</span><span class="op">)</span>
-  
+
 <span class="op">}</span>
 
 <span class="va">create_tlg_in_lopo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">lopo</span>, <span class="va">pmap</span> <span class="op">=</span> <span class="fu">std_map</span><span class="op">(</span><span class="op">)</span>, <span class="va">deco_template_fun</span> <span class="op">=</span> <span class="va">std_deco_templ</span>,
                                <span class="va">dict</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">filter_label_def</span> <span class="op">=</span> <span class="fu">get_std_filter_label_defn</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  
+
   <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span><span class="op">(</span><span class="va">lopo</span><span class="op">)</span>,
                   <span class="va">create_one_tlg</span>, <span class="va">adam_db</span>, pmap <span class="op">=</span> <span class="va">pmap</span>,
                   deco_template_fun <span class="op">=</span> <span class="va">deco_template_fun</span>,

@@ -94,15 +94,6 @@ For patients who discontinued the study, the reason provided is categorized as &
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -246,7 +237,7 @@ By Default `ONGOING.</p></td>
     <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://cynkra.github.io/dm/'>dm</a></span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='syn_test_data.html'>syn_test_data</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span class='r-in'>   <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"dst01_3"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='fu'><a href='preprocess_data.html'>preprocess_data</a></span><span class='op'>(</span><span class='st'>"dst01_3"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='fu'>dst01_3</span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Patient Disposition: {Analysis Population}</span>
@@ -294,9 +285,10 @@ By Default `ONGOING.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Completed Treatment                 48 (35.82%)   46 (34.33%)    43 (32.58%)  </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Ongoing Treatment                   47 (35.07%)   46 (34.33%)    41 (31.06%)  </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Discontinued Treatment              39 (29.1%)    42 (31.34%)    48 (36.36%)  </span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>dst01_3_lyt</span><span class='op'>(</span>armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
-<span class='r-in'>status_treatment <span class='op'>=</span> <span class='st'>"EOTxx01"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>dst01_3_lyt</span><span class='op'>(</span></span>
+<span class='r-in'>  armvar <span class='op'>=</span> <span class='st'>"ACTARM"</span>,</span>
+<span class='r-in'>  status_treatment <span class='op'>=</span> <span class='st'>"EOTxx01"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
