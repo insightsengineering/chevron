@@ -2,16 +2,17 @@
 # Avoid non-standard argument values for `status`, `reason` and `status_treatment` In `EOPxxSTT`, `DCPxxRS` amd
 # `EOTxxSTT` the analysis period `xx` is substituted by 2 digits
 check_dst01_1_args <- function(reason, status, status_treatment) {
-
-  if (!missing(status))
+  if (!missing(status)) {
     stopifnot(status == "EOSSTT" || grepl("^EOP[[:digit:]]{2}STT$", status))
+  }
 
-  if (!missing(reason))
+  if (!missing(reason)) {
     stopifnot(reason == "DCSREAS" || grepl("^DCP[[:digit:]]{2}RS$", reason))
+  }
 
-  if (!missing(status_treatment))
+  if (!missing(status_treatment)) {
     stopifnot(status_treatment == "EOTSTT" || grepl("^EOT[[:digit:]]{2}STT$", status_treatment))
-
+  }
 }
 
 #' DST01 Table 1 (Default) Patient Disposition Table 1
@@ -47,10 +48,9 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'    preprocess_data("dst01_1")
+#'   preprocess_data("dst01_1")
 #'
 #' dst01_1(db)
-#'
 dst01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     status_var = "EOSSTT",
@@ -63,9 +63,10 @@ dst01_1 <- function(adam_db,
                       lbl_overall = "All patients",
                       disc_reason_var = "DCSREAS"
                     )) {
-
-  check_dst01_1_args(reason = disc_reason_var,
-                     status = status_var)
+  check_dst01_1_args(
+    reason = disc_reason_var,
+    status = status_var
+  )
 
 
   # TODO: review later
@@ -131,9 +132,11 @@ dst01_1 <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' dst01_1_lyt(armvar = "ACTARM",
-#' status = "EOP01STT",
-#' disc_reason_var = "DCP01RS")
+#' dst01_1_lyt(
+#'   armvar = "ACTARM",
+#'   status = "EOP01STT",
+#'   disc_reason_var = "DCP01RS"
+#' )
 dst01_1_lyt <- function(armvar = .study$armvar,
                         status = .study$status,
                         disc_reason_var = .study$disc_reason_var,
@@ -148,14 +151,13 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
                         )) {
-
-  layout_table <- basic_table_deco(deco)  %>%
+  layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall)
 
   layout_table_completed <-
-  layout_table %>%
+    layout_table %>%
     count_values(
       vars = status,
       values = completed_lbl,
@@ -163,7 +165,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
     )
 
   layout_table_other <-
-  layout_table %>%
+    layout_table %>%
     count_values(
       vars = status,
       values = ongoing_lbl,
@@ -181,8 +183,6 @@ dst01_1_lyt <- function(armvar = .study$armvar,
     )
 
   list(layout_table_completed, layout_table_other)
-
-
 }
 
 #' DST01 Table 2 (Supplementary) Patient Disposition Table 2
@@ -218,11 +218,10 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'    preprocess_data("dst01_2")
+#'   preprocess_data("dst01_2")
 #'
 #' dst01_2(db)
 #' dst01_2(db, lbl_overall = NULL)
-#'
 dst01_2 <- function(adam_db,
                     armvar = .study$armvar,
                     status_var = "EOSSTT",
@@ -235,9 +234,10 @@ dst01_2 <- function(adam_db,
                       lbl_overall = "All patients",
                       disc_reason_var = "DCSREAS"
                     )) {
-
-  check_dst01_1_args(reason = disc_reason_var,
-                     status = status_var)
+  check_dst01_1_args(
+    reason = disc_reason_var,
+    status = status_var
+  )
 
   status_lvl <- levels(adam_db$adsl[[status_var]])
 
@@ -301,9 +301,11 @@ dst01_2 <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' dst01_2_lyt(armvar = "ACTARM",
-#' status = "EOP01STT",
-#' disc_reason_var = "DCP01RS")
+#' dst01_2_lyt(
+#'   armvar = "ACTARM",
+#'   status = "EOP01STT",
+#'   disc_reason_var = "DCP01RS"
+#' )
 dst01_2_lyt <- function(armvar = .study$armvar,
                         status = .study$status,
                         disc_reason_var = .study$disc_reason_var,
@@ -318,8 +320,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
                         )) {
-
-  layout_table <- basic_table_deco(deco)  %>%
+  layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall)
@@ -392,11 +393,10 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'    preprocess_data("dst01_3")
+#'   preprocess_data("dst01_3")
 #'
 #' dst01_3(db)
 #' dst01_3(db, lbl_overall = NULL)
-#'
 dst01_3 <- function(adam_db,
                     armvar = .study$armvar,
                     status = "EOSSTT",
@@ -410,10 +410,11 @@ dst01_3 <- function(adam_db,
                       disc_reason_var = "DCSREAS",
                       lbl_overall = "All patients"
                     )) {
-
-  check_dst01_1_args(reason = disc_reason_var,
-                     status = status,
-                     status_treatment = status_treatment)
+  check_dst01_1_args(
+    reason = disc_reason_var,
+    status = status,
+    status_treatment = status_treatment
+  )
 
   # TODO: revisit
   status_lvl <- levels(adam_db$adsl[[status_treatment]])
@@ -501,8 +502,10 @@ dst01_3 <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' dst01_3_lyt(armvar = "ACTARM",
-#' status_treatment = "EOTxx01")
+#' dst01_3_lyt(
+#'   armvar = "ACTARM",
+#'   status_treatment = "EOTxx01"
+#' )
 dst01_3_lyt <- function(armvar = .study$armvar,
                         status_treatment = .study$status,
                         completed_lbl = "COMPLETED",
@@ -515,8 +518,7 @@ dst01_3_lyt <- function(armvar = .study$armvar,
                           lbl_overall = "All patients",
                           status_treatment = "EOTSTT"
                         )) {
-
-  layout_table <- basic_table_deco(deco)  %>%
+  layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%

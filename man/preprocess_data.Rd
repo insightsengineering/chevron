@@ -24,6 +24,4 @@ db <- syn_test_data()
 
 db \%>\%
   preprocess_data("aet02_2")
-
-
 }

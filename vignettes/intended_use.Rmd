@@ -54,16 +54,16 @@ lopo_entry <- function(tlgfname, type = c("table", "listing", "graph"), extra_ar
                        output_id = NULL, main_title, subtitles = NULL, footnotes = NULL,
                        filters = NULL, filename = NULL) {
     type <- match.arg(type)
-    
+
     if (is.null(output_id))
       output_id <- paste0(substr(type, 1, 1), "_", tolower(substr(tlgfname, 1, 2)))
-    
+
     if (is.null(filename)) {
       ext <- if (type == "graph") ".pdf" else ".txt"
       filename <- paste0(output_id, "__", paste(filters, collapse = "_"), ext)
     }
     stopifnot(tools::file_ext(filename) %in% c("txt", "pdf"))
-    
+
     tibble(tlgfname, type, extra_args = list(extra_args), output_id, main_title, subtitles = list(subtitles),
            footnotes = list(footnotes), filters = list(filters), filename)
 }
@@ -244,10 +244,10 @@ dm_filter_with_labels <- function(dm, filter_labels, filter_label_def = get_std_
     is_dm(dm),
     is.null(filter_labels) || all(filter_labels %in% names(filter_label_def))
   )
-  
+
   if (length(filter_labels) == 0)
     return(dm)
-  
+
   Reduce(function(f1, f2) f2(f1), filter_label_def[filter_labels], init = dm)
 }
 
@@ -282,7 +282,7 @@ our own functionality:
 ```{r}
 render_whiskers <- function(templates, dict = character(0)) {
   if (is.null(templates)) return(NULL)
-  
+
   stopifnot(
     is.character(templates)
   )
@@ -401,11 +401,11 @@ Let's create ad-hoc non-standard output and add it to the lopo and preprocessing
 ```{r}
 ns_dmtspecial <- function(adam_db, deco) {
   adsl <- adam_db$adsl
-  
+
   lyt <- chevron:::basic_table_deco(deco) %>%
     split_cols_by("ARM") %>%
     analyze("AGE", mean)
-  
+
   build_table(lyt, adsl)
 }
 
@@ -426,7 +426,7 @@ pmap_new <- append_to_pmap(std_pmap(), pmap_row("ns_dmtspecial", req_data = "ads
 ```{r}
 ns_aet02_1 <- function(...) {
   tbl <- aet02_1(...)
-  
+
   rbind(tbl, tbl)
 }
 pmap_new <- append_to_pmap(pmap_new, pmap_row("ns_aet02_1", req_data = c("adsl", "adae")))
@@ -450,29 +450,29 @@ std_deco_templ <- function(lopo_row) {
 
 create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun = std_deco_templ,
                            dict = character(), filter_label_def = get_std_filter_label_defn()) {
-  
+
   db <- adam_db %>%
     dm_filter_with_labels(lopoi$filters) %>%
     preprocess_data(lopoi$tlgfname, pmap = pmap)
-  
+
   tmpl <- deco_template_fun(lopoi)
-  
+
   dict_i <- c(
     study_dict,
     main_title_lopo = lopoi$main_title,
     population_title = population_title(lopoi$filters)
   )
-  
+
   deco <- lapply(tmpl, render_whiskers, dict = dict_i)
-  
+
   ## Create Output
   do.call(lopoi$tlgfname, c(list(adam_db = db, deco = deco), lopoi$extra_args))
-  
+
 }
 
 create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fun = std_deco_templ,
                                dict = character(), filter_label_def = get_std_filter_label_defn()) {
-  
+
   setNames(lapply(purrr::transpose(lopo),
                   create_one_tlg, adam_db, pmap = pmap,
                   deco_template_fun = deco_template_fun,

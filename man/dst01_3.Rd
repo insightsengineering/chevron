@@ -89,11 +89,12 @@ For patients who discontinued the study, the reason provided is categorized as "
 library(dm)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("dst01_3")
+  preprocess_data("dst01_3")
 
 dst01_3(db)
 dst01_3(db, lbl_overall = NULL)
-
-dst01_3_lyt(armvar = "ACTARM",
-status_treatment = "EOTxx01")
+dst01_3_lyt(
+  armvar = "ACTARM",
+  status_treatment = "EOTxx01"
+)
 }

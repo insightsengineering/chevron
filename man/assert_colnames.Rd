@@ -16,6 +16,5 @@ Check if strings are column names of a data frame
 }
 \examples{
 
-assert_colnames(mtcars, c("mpg","cyl"))
-
+assert_colnames(mtcars, c("mpg", "cyl"))
 }

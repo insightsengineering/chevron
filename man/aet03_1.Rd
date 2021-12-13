@@ -68,11 +68,10 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("aet03_1")
+  preprocess_data("aet03_1")
 
 aet03_1(db)
 aet03_1(db, lbl_overall = "All Patients")
-
 aet03_1_lyt(
   armvar = "ACTARM",
   lbl_AEBODSYS = "Body System or Organ Class",

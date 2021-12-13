@@ -90,11 +90,12 @@ which allows the tables to be constructed and pruned separately before binding.
 library(dm)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("dst01_1")
+  preprocess_data("dst01_1")
 
 dst01_1(db)
-
-dst01_1_lyt(armvar = "ACTARM",
-status = "EOP01STT",
-disc_reason_var = "DCP01RS")
+dst01_1_lyt(
+  armvar = "ACTARM",
+  status = "EOP01STT",
+  disc_reason_var = "DCP01RS"
+)
 }

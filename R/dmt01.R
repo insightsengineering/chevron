@@ -25,14 +25,14 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'    preprocess_data("dmt01_1")
+#'   preprocess_data("dmt01_1")
 #'
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
 #' dmt01_1(db,
-#'         summaryvars = c("AGE", "RACE", "SEX"),
-#'         summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
-#'
+#'   summaryvars = c("AGE", "RACE", "SEX"),
+#'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
+#' )
 dmt01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
@@ -44,7 +44,6 @@ dmt01_1 <- function(adam_db,
                       armvar = "ARM",
                       lbl_overall = "All Patients"
                     )) {
-
   assert_that(
     df_has_vars(adam_db$adsl, summaryvars),
     length(summaryvars) == length(summaryvars_lbls)
@@ -60,10 +59,11 @@ dmt01_1 <- function(adam_db,
 
   tbl <- build_table(lyt, adam_db$adsl)
 
-  if (prune_0)
+  if (prune_0) {
     prune_table(tbl)
-  else
+  } else {
     tbl
+  }
 }
 
 
@@ -80,7 +80,6 @@ dmt01_1 <- function(adam_db,
 #'
 #' @examples
 #' dmt01_1_lyt(armvar = "ACTARM")
-#'
 dmt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$summary_demo,
                         summaryvars_lbls = .study$summary_demo_lbl,
@@ -88,25 +87,27 @@ dmt01_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("DMT01"),
                         .study = list(
                           armvar = "ARM",
-                          summary_demo =  c("AAGE",  # TODO: revisit
-                                            "AGEGR1",
-                                            "SEX",
-                                            "ETHNIC",
-                                            "RACE",
-                                            "BWGHTSI"),
-                          summary_demo_lbl = c("Age (yr)",
-                                               "Pooled Age Group 1 (yr)",
-                                               "SEX",
-                                               "ETHNIC",
-                                               "RACE",
-                                               "Baseline Weight (kg)"),
+                          summary_demo = c(
+                            "AAGE", # TODO: revisit
+                            "AGEGR1",
+                            "SEX",
+                            "ETHNIC",
+                            "RACE",
+                            "BWGHTSI"
+                          ),
+                          summary_demo_lbl = c(
+                            "Age (yr)",
+                            "Pooled Age Group 1 (yr)",
+                            "SEX",
+                            "ETHNIC",
+                            "RACE",
+                            "Baseline Weight (kg)"
+                          ),
                           lbl_overall = "All Patients"
                         )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
-
 }

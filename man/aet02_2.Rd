@@ -68,7 +68,7 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("aet02_2")
+  preprocess_data("aet02_2")
 
 
 aet02_2(db) \%>\% head(15)
@@ -82,13 +82,12 @@ db_m <- db \%>\%
   dm_update_zoomed()
 
 aet02_2(db_m) \%>\% head()
-
 aet02_2_lyt(
- armvar = "ACTARM",
- lbl_overall = NULL,
- lbl_AEBODSYS = "Body System or Organ Class",
- lbl_AEHLT = "High Level Term",
- lbl_AEDECOD = "Dictionary-Derived Term",
- deco = std_deco("AET02")
+  armvar = "ACTARM",
+  lbl_overall = NULL,
+  lbl_AEBODSYS = "Body System or Organ Class",
+  lbl_AEHLT = "High Level Term",
+  lbl_AEDECOD = "Dictionary-Derived Term",
+  deco = std_deco("AET02")
 )
 }

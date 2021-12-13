@@ -43,7 +43,6 @@
 #'   dm_update_zoomed()
 #'
 #' aet02_1(db_m) %>% head()
-#'
 aet02_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -53,7 +52,6 @@ aet02_1 <- function(adam_db,
                       armvar = "ACTARM",
                       lbl_overall = NULL
                     )) {
-
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_1_lyt(
@@ -66,12 +64,13 @@ aet02_1 <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
-  if (prune_0)
+  if (prune_0) {
     tbl <- tbl %>% prune_table()
+  }
 
   tbl_sorted <- tbl %>%
     sort_at_path(
-      path =  c("AEBODSYS"),
+      path = c("AEBODSYS"),
       scorefun = cont_n_onecol(ncol(tbl))
     ) %>%
     sort_at_path(
@@ -80,7 +79,6 @@ aet02_1 <- function(adam_db,
     )
 
   tbl_sorted
-
 }
 
 
@@ -96,9 +94,9 @@ aet02_1 <- function(adam_db,
 #'
 #' @examples
 #' aet02_1_lyt(
-#'  armvar = "ACTARM",
-#'  lbl_overall = NULL,
-#'  deco = std_deco("AET02")
+#'   armvar = "ACTARM",
+#'   lbl_overall = NULL,
+#'   deco = std_deco("AET02")
 #' )
 aet02_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
@@ -109,9 +107,8 @@ aet02_1_lyt <- function(armvar = .study$armvar,
                           armvar = "ACTARM",
                           lbl_overall = NULL
                         )) {
-
-  basic_table_deco(deco)  %>%
-    split_cols_by(var = armvar)  %>%
+  basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -175,7 +172,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 #' library(rtables)
 #'
 #' db <- syn_test_data() %>%
-#'    preprocess_data("aet02_2")
+#'   preprocess_data("aet02_2")
 #'
 #'
 #' aet02_2(db) %>% head(15)
@@ -189,7 +186,6 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 #'   dm_update_zoomed()
 #'
 #' aet02_2(db_m) %>% head()
-#'
 aet02_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -199,8 +195,6 @@ aet02_2 <- function(adam_db,
                       armvar = "ACTARM",
                       lbl_overall = NULL
                     )) {
-
-
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   adae <- dbsel$adae
 
@@ -215,25 +209,25 @@ aet02_2 <- function(adam_db,
 
   tbl <- build_table(lyt, adae, alt_counts_df = dbsel$adsl)
 
-  if (prune_0)
+  if (prune_0) {
     tbl <- tbl %>% prune_table()
+  }
 
   tbl_sorted <- tbl %>%
     sort_at_path(
-      path =  c("AEBODSYS"),
+      path = c("AEBODSYS"),
       scorefun = cont_n_allcols
     ) %>%
     sort_at_path(
-      path =  c("AEBODSYS", "*", "AEHLT"),
+      path = c("AEBODSYS", "*", "AEHLT"),
       scorefun = cont_n_allcols
     ) %>%
     sort_at_path(
-      path =  c("AEBODSYS", "*", "AEHLT", "*", "AEDECOD"),
+      path = c("AEBODSYS", "*", "AEHLT", "*", "AEDECOD"),
       scorefun = score_occurrences
     )
 
-    tbl_sorted
-
+  tbl_sorted
 }
 
 
@@ -251,12 +245,12 @@ aet02_2 <- function(adam_db,
 #'
 #' @examples
 #' aet02_2_lyt(
-#'  armvar = "ACTARM",
-#'  lbl_overall = NULL,
-#'  lbl_AEBODSYS = "Body System or Organ Class",
-#'  lbl_AEHLT = "High Level Term",
-#'  lbl_AEDECOD = "Dictionary-Derived Term",
-#'  deco = std_deco("AET02")
+#'   armvar = "ACTARM",
+#'   lbl_overall = NULL,
+#'   lbl_AEBODSYS = "Body System or Organ Class",
+#'   lbl_AEHLT = "High Level Term",
+#'   lbl_AEDECOD = "Dictionary-Derived Term",
+#'   deco = std_deco("AET02")
 #' )
 aet02_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
@@ -268,8 +262,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
                           armvar = "ACTARM",
                           lbl_overall = NULL
                         )) {
-
-  basic_table_deco(deco)  %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -347,12 +340,11 @@ aet02_2_lyt <- function(armvar = .study$armvar,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'    preprocess_data("aet02_3")
+#'   preprocess_data("aet02_3")
 #'
 #' aet02_3(adam_db = db) %>% head()
 #'
 #' aet02_3(db, lbl_overall = "All Patients") %>% head()
-#'
 aet02_3 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -362,7 +354,6 @@ aet02_3 <- function(adam_db,
                       armvar = "ACTARM",
                       lbl_overall = NULL
                     )) {
-
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -372,8 +363,9 @@ aet02_3 <- function(adam_db,
 
   tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 
-  if (prune_0)
+  if (prune_0) {
     tbl <- tbl %>% prune_table()
+  }
 
   tbl_sorted <- tbl %>%
     sort_at_path(
@@ -397,10 +389,10 @@ aet02_3 <- function(adam_db,
 #'
 #' @examples
 #' aet02_3_lyt(
-#'  armvar = "ACTARM",
-#'  lbl_overall = NULL,
-#'  lbl_AEDECOD = "Dictionary-Derived Term",
-#'  deco = std_deco("AET02")
+#'   armvar = "ACTARM",
+#'   lbl_overall = NULL,
+#'   lbl_AEDECOD = "Dictionary-Derived Term",
+#'   deco = std_deco("AET02")
 #' )
 aet02_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
@@ -410,7 +402,6 @@ aet02_3_lyt <- function(armvar = .study$armvar,
                           armvar = "ACTARM",
                           lbl_overall = NULL
                         )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

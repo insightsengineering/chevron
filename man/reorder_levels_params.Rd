@@ -20,6 +20,4 @@ df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("lette
 
 str(reorder_levels_params(df, paramcd_levels = c("B", "A", "C")))
 str(reorder_levels_params(df, paramcd_levels = c("B", "A")))
-
-
 }

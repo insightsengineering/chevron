@@ -1,19 +1,19 @@
 
 
 std_preprocessing_map <- tibble::tribble(
-  ~tlgfname,      ~filter_fname,                   ~mutate_fname,           ~req_data,
-  "aet02_1",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
-  "aet02_2",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
-  "aet02_3",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
-  "aet03_1",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
-  "aet04_1",     "filter_adae_anl01fl",            NA,                    c("adsl", "adae"),
-  "dmt01_1",     NA,                               NA,                    c("adsl"),
-  "dst01_1",     NA,                               NA,                    c("adsl"),
-  "dst01_2",     NA,                               "mutate_adsl_gp",      c("adsl"),
-  "dst01_3",     NA,                               "mutate_adsl_gp",      c("adsl"),
-  "ext01_1",     "filter_adex_drug",               "reorder_adex_params", c("adsl", "adex"),
-  "ext01_2",     "filter_adex_drug",               "remove_adex_aval",    c("adsl", "adex"),
-  "lbt01_1",     "filter_adlb_anl01fl",            NA,                    c("adsl", "adlb")
+  ~tlgfname, ~filter_fname, ~mutate_fname, ~req_data,
+  "aet02_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
+  "aet02_2", "filter_adae_anl01fl", NA, c("adsl", "adae"),
+  "aet02_3", "filter_adae_anl01fl", NA, c("adsl", "adae"),
+  "aet03_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
+  "aet04_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
+  "dmt01_1", NA, NA, c("adsl"),
+  "dst01_1", NA, NA, c("adsl"),
+  "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
+  "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
+  "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
+  "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
+  "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb")
 )
 
 #' Standard Preprocessing Map
@@ -42,9 +42,7 @@ std_pmap <- function() {
 #' @examples
 #'
 #' pmap_row("tabc", NA, "identity", c("adsl", "adae"))
-#'
 pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
-
   fnames <- list(tlgfname, filter_fname, mutate_fname)
   is_char <- vapply(fnames, function(xi) is.na(xi) || is.character(xi), logical(1))
   fname_len <- vapply(fnames, length, numeric(1))
@@ -59,7 +57,6 @@ pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
     mutate_fname = mutate_fname,
     req_data = list(req_data)
   )
-
 }
 
 
@@ -85,7 +82,6 @@ append_to_pmap <- function(x, y) {
 #' @examples
 #'
 #' remove_tlg_pmap(std_pmap(), "aet02_1")
-#'
 remove_tlg_pmap <- function(pmap, tlgfname) {
   assert_that(tlgfname %in% pmap$tlgfname)
 
@@ -94,7 +90,6 @@ remove_tlg_pmap <- function(pmap, tlgfname) {
 
 
 lookup_fun <- function(fname, what, pmap) {
-
   assert_that(fname %in% pmap$tlgfname)
 
   fstr <- pmap %>%
@@ -102,10 +97,11 @@ lookup_fun <- function(fname, what, pmap) {
     slice(1) %>%
     pull(what)
 
-  if (is.na(fstr))
+  if (is.na(fstr)) {
     identity
-  else
+  } else {
     get(fstr)
+  }
 }
 
 get_filter_fun <- function(id, pmap) {
@@ -125,7 +121,6 @@ get_req_data <- function(id, pmap) {
     pull(req_data)
 
   fstr[[1]]
-
 }
 
 #' Preprocess ADaM Data for A TLG function
@@ -141,15 +136,13 @@ get_req_data <- function(id, pmap) {
 #'
 #' db %>%
 #'   preprocess_data("aet02_2")
-#'
-#'
 preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
-
-
   assert_that(
     all(get_req_data(tlgfname, pmap) %in% names(adam_db)),
-    msg = paste("adam_db is missing the data:",
-                paste(setdiff(get_req_data(tlgfname, pmap), names(adam_db)), collapse = ", "))
+    msg = paste(
+      "adam_db is missing the data:",
+      paste(setdiff(get_req_data(tlgfname, pmap), names(adam_db)), collapse = ", ")
+    )
   )
 
   ffun <- get_filter_fun(tlgfname, pmap)
@@ -169,7 +162,6 @@ preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
 
   dbf <- do.call(ffun, c(list(adam_db), extra_args_ffun))
   do.call(mfun, c(list(dbf), extra_args_mfun))
-
 }
 
 
@@ -246,9 +238,7 @@ filter_adex_drug <- function(adam_db) {
 #'
 mutate_adsl_gp <- function(adam_db,
                            reason = .study$disc_reason_var,
-                           .study = list(disc_reason_var = "DCSREAS")
-                           ) {
-
+                           .study = list(disc_reason_var = "DCSREAS")) {
   assert_that(is(adam_db, "dm"))
 
   # TODO: revisit
@@ -262,7 +252,6 @@ mutate_adsl_gp <- function(adam_db,
       TRUE ~ "Non Safety"
     )) %>%
     dm_update_zoomed()
-
 }
 
 #' Reorder `PARAM` and `PARAMCD` levels
@@ -274,9 +263,7 @@ mutate_adsl_gp <- function(adam_db,
 #'
 reorder_adex_params <- function(adam_db,
                                 paramcd_order = .study$paramcd_order,
-                                .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
-                                ) {
-
+                                .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))) {
   param_vars <- adam_db$adex %>%
     select(PARAM, PARAMCD) %>%
     reorder_levels_params(paramcd_levels = paramcd_order)
@@ -285,7 +272,6 @@ reorder_adex_params <- function(adam_db,
     dm_zoom_to(adex) %>%
     mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
     dm_update_zoomed()
-
 }
 
 #' Remove specific `AVAL` and `AVALCAT1` data from `adex`
@@ -304,10 +290,10 @@ reorder_adex_params <- function(adam_db,
 remove_adex_aval <- function(adam_db,
                              show_stats = .study$show_cont_stats,
                              show_bins = .study$show_cat_stats,
-                             .study = list(show_cont_stats = c("ALL"),
-                                           show_cat_stats = c("ALL"))
-                             ) {
-
+                             .study = list(
+                               show_cont_stats = c("ALL"),
+                               show_cat_stats = c("ALL")
+                             )) {
   if (!"ALL" %in% show_stats) {
     adam_db <- adam_db %>%
       dm_zoom_to(adex) %>%

@@ -71,7 +71,7 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("aet03_1")
+  preprocess_data("aet03_1")
 
 aet04_1(db)
 aet04_1(db, prune_0 = FALSE)
@@ -82,7 +82,5 @@ aet04_1(db, group_grades = list(
   "Grade 1-2" = c("1", "2"),
   "Grade 3-5" = c("3", "4", "5")
 ))
-
-
 aet04_1_lyt(armvar = "ACTARM")
 }

@@ -84,10 +84,9 @@ db_m <- db \%>\%
   dm_update_zoomed()
 
 aet02_1(db_m) \%>\% head()
-
 aet02_1_lyt(
- armvar = "ACTARM",
- lbl_overall = NULL,
- deco = std_deco("AET02")
+  armvar = "ACTARM",
+  lbl_overall = NULL,
+  deco = std_deco("AET02")
 )
 }
