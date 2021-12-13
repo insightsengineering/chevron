@@ -13,9 +13,7 @@
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `armvar`.
 #'
-gen_args <- function(
-  adam_db, armvar, lbl_overall, prune_0, deco, .study, group,
-  tlgfname, pmap
-) {
+gen_args <- function(adam_db, armvar, lbl_overall, prune_0, deco, .study, group,
+                     tlgfname, pmap) {
   NULL
 }
