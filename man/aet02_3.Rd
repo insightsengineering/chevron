@@ -59,16 +59,15 @@ events categorized by Dictionary-Derived Term.
 library(dm)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("aet02_3")
+  preprocess_data("aet02_3")
 
 aet02_3(adam_db = db) \%>\% head()
 
 aet02_3(db, lbl_overall = "All Patients") \%>\% head()
-
 aet02_3_lyt(
- armvar = "ACTARM",
- lbl_overall = NULL,
- lbl_AEDECOD = "Dictionary-Derived Term",
- deco = std_deco("AET02")
+  armvar = "ACTARM",
+  lbl_overall = NULL,
+  lbl_AEDECOD = "Dictionary-Derived Term",
+  deco = std_deco("AET02")
 )
 }

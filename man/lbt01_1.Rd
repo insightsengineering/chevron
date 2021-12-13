@@ -75,8 +75,7 @@ by \code{AVISIT}. Re-level to customize order
 library(dm)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("lbt01_1")
+  preprocess_data("lbt01_1")
 
 lbt01_1(db)
-
 }

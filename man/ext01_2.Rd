@@ -67,8 +67,7 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("ext01_2")
+  preprocess_data("ext01_2")
 
 ext01_2(db)
-
 }

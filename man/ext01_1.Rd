@@ -68,8 +68,7 @@ patients in the corresponding analysis population given by \code{N}.
 library(dm)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("ext01_1")
+  preprocess_data("ext01_1")
 
 ext01_1(db)
-
 }

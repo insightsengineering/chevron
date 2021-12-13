@@ -67,14 +67,13 @@ For each variable, summary statistics are by default based on the number of pati
 library(dm)
 
 db <- syn_test_data() \%>\%
-   preprocess_data("dmt01_1")
+  preprocess_data("dmt01_1")
 
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
 dmt01_1(db,
-        summaryvars = c("AGE", "RACE", "SEX"),
-        summaryvars_lbls = c("Age (yr)", "Race", "Sex"))
-
+  summaryvars = c("AGE", "RACE", "SEX"),
+  summaryvars_lbls = c("Age (yr)", "Race", "Sex")
+)
 dmt01_1_lyt(armvar = "ACTARM")
-
 }
