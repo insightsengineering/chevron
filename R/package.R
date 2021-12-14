@@ -7,4 +7,6 @@
 #' @importFrom tibble tribble
 #' @import dplyr
 #' @import dm
+#' @importFrom methods is
+#' @importFrom stats setNames
 "_PACKAGE"

@@ -22,34 +22,31 @@ name of the parameter (\code{string}), a series of breakpoints (\code{vector}) w
 
 \item{as_factor}{(\code{logical}) if TRUE, the new column is of type \code{factor} else \code{character}.}
 }
-\value{
-
-}
 \description{
 Cut by group
 }
 \examples{
-group <- list(list("Dose administered during constant dosing interval",
-                                         c(-Inf, 700, 900, 1200, Inf),
-                                         c("<700", "700-900", "900-1200", ">1200")
-                                          ),
-                                      list("Total dose administered",
-                                         c(-Inf, 5000, 7000, 9000, Inf),
-                                         c("<5000", "5000-7000", "7000-9000", ">9000")
-                                           )
-                                       )
+group <- list(
+  list(
+    "Dose administered during constant dosing interval",
+    c(-Inf, 700, 900, 1200, Inf),
+    c("<700", "700-900", "900-1200", ">1200")
+  ),
+  list(
+    "Total dose administered",
+    c(-Inf, 5000, 7000, 9000, Inf),
+    c("<5000", "5000-7000", "7000-9000", ">9000")
+  )
+)
 
 library(scda)
 library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
 adex <- sd$adex \%>\%
- mutate(ANL01FL = 'Y')
+  mutate(ANL01FL = "Y")
 
 adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
 
-head(adex_gp[,c("PARAM","AVAL","AVAL_gp")])
-
-
-
+head(adex_gp[, c("PARAM", "AVAL", "AVAL_gp")])
 }

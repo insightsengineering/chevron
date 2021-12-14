@@ -22,17 +22,11 @@
 #' @examples
 #'
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adex)
-#'
-#' db <- db %>%
-#'   (std_filter("ext01_1"))() %>%
-#'   (std_mutate("ext01_1"))()
+#'   preprocess_data("ext01_1")
 #'
 #' ext01_1(db)
-#'
 ext01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = "AVAL",
@@ -43,7 +37,6 @@ ext01_1 <- function(adam_db,
                       armvar = "ACTARM",
                       lbl_overall = NULL
                     )) {
-
   assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(
@@ -70,7 +63,6 @@ ext01_1 <- function(adam_db,
 #' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
 #'
-#' @return
 #' @export
 #'
 ext01_1_lyt <- function(armvar = .study$armvar,
@@ -84,7 +76,6 @@ ext01_1_lyt <- function(armvar = .study$armvar,
                           analysis_var = "AVAL",
                           lbl_analysis_var = "Analysis Value"
                         )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -121,14 +112,9 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adex)
-#'
-#' db <- db %>%
-#'   (std_filter("ext01_2"))() %>%
-#'   (std_mutate("ext01_2"))()
+#'   preprocess_data("ext01_2")
 #'
 #' ext01_2(db)
-#'
 ext01_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -138,7 +124,6 @@ ext01_2 <- function(adam_db,
                       armvar = "ACTARM",
                       lbl_overall = NULL
                     )) {
-
   summaryvars <- c("AVAL", "AVALCAT1")
 
   # Provide a clearer error message in the case of missing variable.
@@ -157,7 +142,6 @@ ext01_2 <- function(adam_db,
   if (prune_0) tbl <- tbl %>% prune_table()
 
   tbl
-
 }
 
 
@@ -170,7 +154,6 @@ ext01_2 <- function(adam_db,
 #' @param summaryvars (`string`) the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls (`string`) the label associated with the analyzed variable.
 #'
-#' @return
 #' @export
 #'
 ext01_2_lyt <- function(armvar = .study$armvar,
@@ -182,9 +165,8 @@ ext01_2_lyt <- function(armvar = .study$armvar,
                           armvar = "ACTARM",
                           lbl_overall = NULL
                         )) {
-
-  basic_table_deco(deco)  %>%
-    split_cols_by(var = armvar)  %>%
+  basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
@@ -192,5 +174,4 @@ ext01_2_lyt <- function(armvar = .study$armvar,
       split_fun = NULL
     ) %>%
     summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
-
 }

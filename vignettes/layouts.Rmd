@@ -1,0 +1,77 @@
+---
+title: "Layouts in Chevron"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Layouts in Chevron}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Introduction 
+
+The `chevron` R package has a collection of functions that create standard tables, listings, and graphs (TLGs). These functions are referred in `chevron` as *tlg-functions*. A subset of these *tlg-functions* create tables. Tables are created using the `rtables` package. `rtables` has the context of table layouts, i.e. pre-data table cell-derivation instructions. For example:
+
+```{r}
+library(rtables)
+
+lyt <- basic_table() %>%
+  split_cols_by("ARM") %>%
+  analyze("AGE", mean)
+
+lyt
+```
+
+These layout contain all the cell-value derivation information and can be used and reused for different data
+
+```{r}
+adsl <- data.frame(
+  ARM = factor(sample(c("ARM A", "ARM B"), 100, TRUE)),
+  AGE = runif(100, 20, 90),
+  COUNTRY = factor(sample(c("CHN", "USA", "BRA", "RUS"), 100, TRUE))
+)
+
+build_table(lyt, adsl)
+
+build_table(lyt, adsl[adsl$COUNTRY == "RUS", ])
+```
+
+Hence these layouts define a table pre-data. That is, the layout functions in `chevron` do never take any data as an argument. Note that pruning and sorting are currently not performed in the layout space in `rtables` but rather on the actual table objects.
+
+Also, layouts allow for certain queries such as which variables are required to build the table using the given layout:
+
+```{r}
+rtables::vars_in_layout(lyt)
+```
+
+So in `chevron` when creating tables we always do the explicit layout creation in the `*_lyt` functions. For example for `aet02_1` we have the layout function:
+
+```{r}
+library(chevron)
+aet02_1_lyt
+```
+
+Note that the `aet02_1_lyt` function returns a concise description on how `tern` and `rtables` can be used to create the cell values of the tables. The table creation function then does then use the `*_lyt` function and builds the table using `build_table` and the data given in `adam_db` as shown next:
+
+```{r}
+aet02_1
+```
+
+
+## Summary
+
+* Layouts specify a tabulation an cell-values derivation pre-data
+* `chevron` exports the layout functions for each table creating *tlg-function*
+* these layouts are useful to understand how table is created and what variables are required in the data to create a table using the layout
+* the table creation functions focus the main part of their code on building, sorting and pruning the table
+* Headers and footers are taken by default from the standards. They can be specified with the `deco` argument. Note that we currently do not have all of the data base for standard headers and footers imported in `chevron`.

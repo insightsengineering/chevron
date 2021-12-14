@@ -1,5 +1,9 @@
 # as we use NSE
-globalVariables(c("ANL01FL", "adae", "ANL01FL"))
+globalVariables(c(
+  "ANL01FL", "adae", "ANL01FL", "AEBODSYS", "AEDECOD", "AVAL",
+  "AVALCAT1", "PARAM", "PARAMCD", "PARCAT1", "adex", "adlb", "adsl",
+  "req_data", "tlgfname"
+))
 
 #' Retrieve Variables for Certain variables
 #'
@@ -22,20 +26,19 @@ var_labels_for <- function(df, vars) {
 #'
 #' @export
 std_deco <- function(id, ...) {
-
-  if (!is.null(gds_data[[id]]))
+  if (!is.null(gds_data[[id]])) {
     list(
       title = gds_data[[id]]$`Standard titles`[1],
       subtitles = c("Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}", gds_data[[id]]$`Standard titles`[-1]), # nolint
       main_footer = paste(gds_data[[id]]$`Standard footnotes`, collapse = " ")
     )
-
-  else
+  } else {
     list(
       title = "Main Title",
       subtitles = "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}", # nolint
       main_footer = "Footnotes go here"
-  )
+    )
+  }
 }
 
 #' Convert Y N values used in CDISC to R boolean object
@@ -72,62 +75,53 @@ bol_YN <- function(x) {
 #' @param new_col (`string`) the name of the new column in which the cut label should he stored.
 #' @param as_factor (`logical`) if TRUE, the new column is of type `factor` else `character`.
 #'
-#' @return
 #' @export
 #'
 #' @examples
-#' group <- list(list("Dose administered during constant dosing interval",
-#'                                          c(-Inf, 700, 900, 1200, Inf),
-#'                                          c("<700", "700-900", "900-1200", ">1200")
-#'                                           ),
-#'                                       list("Total dose administered",
-#'                                          c(-Inf, 5000, 7000, 9000, Inf),
-#'                                          c("<5000", "5000-7000", "7000-9000", ">9000")
-#'                                            )
-#'                                        )
+#' group <- list(
+#'   list(
+#'     "Dose administered during constant dosing interval",
+#'     c(-Inf, 700, 900, 1200, Inf),
+#'     c("<700", "700-900", "900-1200", ">1200")
+#'   ),
+#'   list(
+#'     "Total dose administered",
+#'     c(-Inf, 5000, 7000, 9000, Inf),
+#'     c("<5000", "5000-7000", "7000-9000", ">9000")
+#'   )
+#' )
 #'
 #' library(scda)
 #' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
 #' adex <- sd$adex %>%
-#'  mutate(ANL01FL = 'Y')
+#'   mutate(ANL01FL = "Y")
 #'
 #' adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
 #'
-#' head(adex_gp[,c("PARAM","AVAL","AVAL_gp")])
-#'
-#'
-#'
+#' head(adex_gp[, c("PARAM", "AVAL", "AVAL_gp")])
 cut_by_group <- function(df,
                          col_data,
                          col_group,
                          group,
                          new_col,
-                         as_factor = FALSE
-) {
-
-
+                         as_factor = FALSE) {
   df[new_col] <- "<Missing>"
 
   for (g in group) {
-
     selected_row <- df[[col_group]] == g[[1]]
 
     df[selected_row, new_col] <- as.character(cut(df[[col_data]][selected_row], breaks = g[[2]], labels = g[[3]]))
-
   }
 
   if (as_factor) {
+    cut_levels <- c(unlist(lapply(group, "[[", 3)), "<Missing>")
 
-      cut_levels <- c(unlist(lapply(group, "[[", 3)), "<Missing>")
-
-      df[, new_col] <- factor(df[[new_col]], levels = cut_levels)
-
+    df[, new_col] <- factor(df[[new_col]], levels = cut_levels)
   }
 
   df
-
 }
 
 
@@ -136,13 +130,11 @@ cut_by_group <- function(df,
 #' @param df (`data frame`)
 #' @param x (`vector of strings`)
 #'
-#' @return
 #' @export
 #'
 #' @examples
 #'
-#' assert_colnames(mtcars, c("mpg","cyl"))
-#'
+#' assert_colnames(mtcars, c("mpg", "cyl"))
 assert_colnames <- function(df, x) {
   # provide a clearer error message in the case of missing variable
   missing_var <- setdiff(x, colnames(df))
@@ -153,13 +145,9 @@ assert_colnames <- function(df, x) {
       ":\n",
       paste(missing_var, "\n", collapse = "")
     ))
-
-  } else{
-
+  } else {
     invisible(TRUE)
-
   }
-
 }
 
 #' Reorder PARAM and PARAMCD Levels Simultaneously
@@ -177,8 +165,6 @@ assert_colnames <- function(df, x) {
 #'
 #' str(reorder_levels_params(df, paramcd_levels = c("B", "A", "C")))
 #' str(reorder_levels_params(df, paramcd_levels = c("B", "A")))
-#'
-#'
 reorder_levels_params <- function(df, paramcd_levels) {
 
   # todo throw errors
@@ -189,8 +175,9 @@ reorder_levels_params <- function(df, paramcd_levels) {
   dfs <- df[c("PARAMCD", "PARAM")]
   dfsd <- dfs[!duplicated(dfs), ]
 
-  if (any(duplicated(dfsd[, "PARAM"])) || any(duplicated(dfsd[, "PARAMCD"])))
-    stop(".... are not unique") ## assuming 1:1 mapping
+  if (any(duplicated(dfsd[, "PARAM"])) || any(duplicated(dfsd[, "PARAMCD"]))) {
+    stop(".... are not unique")
+  } ## assuming 1:1 mapping
 
   x <- setNames(as.character(dfsd$PARAM), dfsd$PARAMCD)
 
@@ -224,13 +211,11 @@ reorder_levels_params <- function(df, paramcd_levels) {
 #' library(scda)
 #' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 #' pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID", "SUBJID"))
-#'
 pivot_wider_labels <- function(df,
                                names_from = "PARAMCD",
                                labels_from = "PARAM",
                                values_from = "AVAL",
                                keep = "USUBJID") {
-
   key_val <- df[!duplicated(df[, c(labels_from, names_from)]), c(labels_from, names_from)]
 
   assert_that(all(!duplicated(key_val[[1]])), msg = "Non-unique relationship between names_from and labels_from.")
@@ -243,7 +228,6 @@ pivot_wider_labels <- function(df,
   var_labels(df_wide[, key_val[[2]]]) <- as.character(key_val[[1]])
 
   df_wide
-
 }
 
 
@@ -253,14 +237,14 @@ basic_table_deco <- function(deco, ...) {
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer, ...)
 }
 
-ifelse_layout <- function(lyt, test, fun_lyt_yes  = identity, fun_lyt_no = identity) {
-
+ifelse_layout <- function(lyt, test, fun_lyt_yes = identity, fun_lyt_no = identity) {
   assert_that(length(test) == 1, is.logical(test))
 
-  if (test)
+  if (test) {
     fun_lyt_yes(lyt)
-  else
+  } else {
     fun_lyt_no(lyt)
+  }
 }
 
 lyt_fun <- function(fun, ...) {
@@ -274,10 +258,11 @@ has_overall_col <- function(lbl_overall) {
 }
 
 ifneeded_add_overall_col <- function(lyt, lbl_overall) {
-  if (has_overall_col(lbl_overall))
+  if (has_overall_col(lbl_overall)) {
     add_overall_col(lyt, label = lbl_overall)
-  else
+  } else {
     lyt
+  }
 }
 
 #' Get Data from a DB
@@ -289,20 +274,22 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #'
 #' @examples
 #' \dontrun{
-#'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
-#'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
-#'   get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")
+#' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
+#' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
+#' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")
 #'
-#'   db <- dm::dm_nycflights13() %>%
-#'     dm_filter(airports, name == "John F Kennedy Intl")
+#' db <- dm::dm_nycflights13() %>%
+#'   dm_filter(airports, name == "John F Kennedy Intl")
 #'
-#'   get_db_data(db, "airports")
+#' get_db_data(db, "airports")
 #' }
 #'
 get_db_data <- function(db, ...) { # TODO: revisit
   datasets <- c(...)
 
-  if (length(datasets) == 0) return(list())
+  if (length(datasets) == 0) {
+    return(list())
+  }
 
   assert_that(is.character(datasets), all(datasets %in% names(db)))
 
@@ -319,22 +306,24 @@ get_db_data <- function(db, ...) { # TODO: revisit
 #'
 #' @export
 syn_test_data <- function() {
-
   sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
 
   # to avoid bug
   attr(sd, "data_from") <- NULL
 
   # useful for ext01
-  group <- list(list("Dose administered during constant dosing interval",
-                                          c(-Inf, 700, 900, 1200, Inf),
-                                          c("<700", "700-900", "900-1200", ">1200")
-                                           ),
-                                       list("Total dose administered",
-                                          c(-Inf, 5000, 7000, 9000, Inf),
-                                          c("<5000", "5000-7000", "7000-9000", ">9000")
-                                            )
-                                        )
+  group <- list(
+    list(
+      "Dose administered during constant dosing interval",
+      c(-Inf, 700, 900, 1200, Inf),
+      c("<700", "700-900", "900-1200", ">1200")
+    ),
+    list(
+      "Total dose administered",
+      c(-Inf, 5000, 7000, 9000, Inf),
+      c("<5000", "5000-7000", "7000-9000", ">9000")
+    )
+  )
   sd$adex <- cut_by_group(sd$adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
 
   # useful for dmt01
@@ -353,9 +342,9 @@ syn_test_data <- function() {
     )))
 
   db <- new_dm(sd) %>%
-     dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
-     dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
-     dm_add_pk(adae, "AESEQ")
+    dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
+    dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+    dm_add_pk(adae, "AESEQ")
 
   db <- db %>%
     dm_zoom_to(adae) %>%
@@ -369,7 +358,6 @@ syn_test_data <- function() {
     dm_update_zoomed()
 
   db_m
-
 }
 
 
@@ -383,6 +371,6 @@ syn_test_data <- function() {
 set_decoration <- function(x, deco) {
   x@main_title <- deco$title
   x@subtitles <- deco$subtitles
-  x@main_footer  <- deco$main_footer
+  x@main_footer <- deco$main_footer
   x
 }

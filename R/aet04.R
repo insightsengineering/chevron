@@ -23,11 +23,7 @@
 #' library(rtables)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adae)
-#'
-#' db <- db %>%
-#'   (std_filter("aet03_1"))() %>%
-#'   (std_mutate("aet03_1"))()
+#'   preprocess_data("aet03_1")
 #'
 #' aet04_1(db)
 #' aet04_1(db, prune_0 = FALSE)
@@ -38,8 +34,6 @@
 #'   "Grade 1-2" = c("1", "2"),
 #'   "Grade 3-5" = c("3", "4", "5")
 #' ))
-#'
-#'
 aet04_1 <- function(adam_db,
                     armvar = .study$armvar,
                     group_grades = .study$group_grades,
@@ -49,15 +43,15 @@ aet04_1 <- function(adam_db,
                     .study = list(
                       armvar = "ACTARM",
                       lbl_overall = NULL,
-                      group_grades = list("Any Grade" = c("1", "2", "3", "4", "5"),
-                                          "Grade 1-2" = c("1", "2"),
-                                          "Grade 3-4" = c("3", "4"),
-                                          "Grade 5" = c("5"))
-                    )
-                    ) {
-
+                      group_grades = list(
+                        "Any Grade" = c("1", "2", "3", "4", "5"),
+                        "Grade 1-2" = c("1", "2"),
+                        "Grade 3-4" = c("3", "4"),
+                        "Grade 5" = c("5")
+                      )
+                    )) {
   lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
-  lbl_AEDECOD <-  var_labels_for(adam_db$adae, "AEDECOD")
+  lbl_AEDECOD <- var_labels_for(adam_db$adae, "AEDECOD")
 
   # TODO: check that there are not grades in the data that are not defined in the `group_grades` map
 
@@ -80,7 +74,7 @@ aet04_1 <- function(adam_db,
 
   tbl_sorted <- tbl %>%
     sort_at_path(
-      path =  c("AEBODSYS"),
+      path = c("AEBODSYS"),
       scorefun = cont_n_allcols
     ) %>%
     sort_at_path(
@@ -89,7 +83,6 @@ aet04_1 <- function(adam_db,
     )
 
   tbl_sorted
-
 }
 
 
@@ -103,7 +96,6 @@ aet04_1 <- function(adam_db,
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -121,10 +113,9 @@ aet04_1_lyt <- function(armvar = .study$armvar,
                             "Any Grade" = c("1", "2", "3", "4", "5"),
                             "Grade 1-2" = c("1", "2"),
                             "Grade 3-4" = c("3", "4"),
-                            "Grade 5" = c("5"))
-                        )
-                        ) {
-
+                            "Grade 5" = c("5")
+                          )
+                        )) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

@@ -1,0 +1,182 @@
+---
+title: "The adam_db Argument"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The adam_db Argument}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Introduction
+
+We have decided to use the `dm` package in `chevron` to model the data relations of the CDISC ADaM datasets. In this
+vignette we introduce how we intend to use ADaM data in a relational model, in R with `dm`. Note that `dm` can be 
+connected to a database.
+
+## Sample Data
+
+We remove the ADSL variables in the database of the non-adsl datasets and merge the adsl variables back as needed.
+
+```{r}
+library(chevron)
+library(dm)
+
+syn_data <- syn_test_data()[c("adsl", "adae", "adlb", "adrs", "adsub")]
+
+drop_adsl_vars <- function(df, adsl) {
+  df[c("USUBJID", "STUDYID", setdiff(names(df), names(adsl)))]
+}
+
+dbl <- c(list(adsl = syn_data$adsl), lapply(syn_data[-1], drop_adsl_vars, adsl = syn_data$adsl))
+
+### Define primary and foreign keys
+adam_study_data <- new_dm(dbl) %>%
+  dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
+  dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adae, c("USUBJID", "STUDYID", "ASTDTM", "AETERM", "AESEQ")) %>%
+  dm_add_fk(adlb, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adlb, c("STUDYID", "USUBJID", "PARAMCD", "BASETYPE", "AVISITN",
+                    "ATPTN", "DTYPE", "ADTM", "LBSEQ", "ASPID")) %>%
+  dm_add_fk(adrs, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adrs, c("STUDYID", "USUBJID", "PARAMCD", "AVISITN", "ADTM", "RSSEQ")) %>%
+  dm_add_fk(adsub, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adsub, c("USUBJID", "STUDYID", "PARAMCD"))
+
+validate_dm(adam_study_data)
+```
+
+Note that the keys are defined in the data analysis plan at Roche.
+
+## Work With dm Object
+
+List the keys
+```{r}
+dm::dm_get_all_fks(adam_study_data)
+dm::dm_get_all_pks(adam_study_data)
+```
+
+```{r}
+adam_study_data %>%
+  dm_draw()
+```
+
+### Subset the data
+
+Further we can subset the data:
+
+```{r}
+db <- adam_study_data %>%
+  dm_filter(adsl, SEX == "F")
+```
+
+which adds the filter information to the `dm` object but does not apply the filtering
+
+```{r}
+db %>%
+  pull_tbl(adsl) %>%
+  select(USUBJID, STUDYID, SEX) %>%
+  head()
+```
+
+In order to get the filtered data one has to use the `dm_apply_filters()` function
+
+```{r}
+db %>%
+  dm_apply_filters() %>%
+  pull_tbl(adsl) %>%
+  select(USUBJID, STUDYID, SEX) %>%
+  head()
+```
+
+or 
+
+```{r}
+db %>%
+  dm_apply_filters_to_tbl(adsl) %>%
+  select(USUBJID, STUDYID, SEX) %>%
+  head()
+```
+
+If one does not need the lazy filtering feature then one can also zoom to the desired table and use `filter`
+
+```{r}
+adam_study_data %>%
+  dm_zoom_to(adsl) %>%
+  filter(SEX == "F") %>%
+  dm_update_zoomed() %>%
+  pull_tbl(adsl) %>%
+  select(USUBJID, STUDYID, SEX) %>%
+  head()
+```
+
+
+### Mutate Data
+
+`dm` supports most of the `dplyr` verbs, for example `mutate`
+
+```{r}
+db <- adam_study_data %>%
+  dm_zoom_to(adsl) %>%
+  mutate(TEST = paste(SEX, "-", BWGHTSI)) %>%
+  dm_update_zoomed()
+
+db$adsl$TEST[1:5]
+```
+
+## dm Objects in Chevron
+
+In `chevron` we use `dm` objects to combine all data into one object. The *tlg-functions* and the functions returned
+`std_filter` and `std_mutate` require a `dm` object to the `adam_db` argument.
+
+`dm` objects also are useful to filter the data. For example filtering for all females also subsets the other datasets
+as per relation specification:
+
+```{r}
+adam_study_data %>%
+  dm_filter(adsl, SEX == "F") %>%
+  dm_apply_filters() %>%
+  dm_join_to_tbl(adae, adsl) %>%
+  select(USUBJID, SEX, AESEQ, AETERM, AESEQ) %>%
+  head()
+```
+
+## Get Analysis Data
+
+### Vertical Analysis Data
+
+For standard outputs we do know which data and variables we need to create a TLG.
+
+```{r}
+adam_study_data %>%
+  dm_join_to_tbl(adae, adsl) %>%
+  select(AESEQ, ARM, SEX)
+```
+
+### Horizontal
+
+Add variables from `adsub` to `adsl`:
+
+```{r}
+library(tidyr)
+
+adsub_wide <- adam_study_data$adsub %>%
+  filter(PARAMCD %in% c("BWGHTSI", "BECOG")) %>%
+  select(USUBJID, STUDYID, PARAMCD, AVAL, AVALU) %>%
+  pivot_wider(names_from = PARAMCD, values_from = c(AVAL, AVALU))
+
+dm_add_tbl(adam_study_data, adsub_wide) %>%
+  dm_add_fk(adsub_wide, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+  dm_add_pk(adsub_wide, c("USUBJID", "STUDYID")) %>%
+  dm_join_to_tbl(adsl, adsub_wide)
+```

@@ -10,8 +10,8 @@ dst01_1(
   armvar = .study$armvar,
   status_var = "EOSSTT",
   disc_reason_var = .study$disc_reason_var,
-  lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
+  lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", lbl_overall = "All patients", disc_reason_var =
     "DCSREAS")
@@ -31,7 +31,7 @@ dst01_1_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
@@ -43,9 +43,9 @@ period.}
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{prune_0}{(\code{logical}) remove 0 count rows}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -62,9 +62,6 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
-}
-\value{
-
 }
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
@@ -91,19 +88,14 @@ which allows the tables to be constructed and pruned separately before binding.
 \examples{
 
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl)
-
-db <- db \%>\%
-  (std_filter("dst01_1"))() \%>\%
-  (std_mutate("dst01_1"))()
+  preprocess_data("dst01_1")
 
 dst01_1(db)
-
-
-dst01_1_lyt(armvar = "ACTARM",
-status = "EOP01STT",
-disc_reason_var = "DCP01RS")
+dst01_1_lyt(
+  armvar = "ACTARM",
+  status = "EOP01STT",
+  disc_reason_var = "DCP01RS"
+)
 }

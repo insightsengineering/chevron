@@ -189,12 +189,8 @@ gds_data <- list(
       " 8 -- Number of patients in Group 1 with at least one AE with preferred term 'NEUTROPENIAS' and highest grade equals 1: count patients in AAE where (ARM = 'GROUP 1' and SAFFL = 'Y' and ANLFL = 'Y' and AEDECOD = 'NEUTROPENIAS' and AOCCPIFL = 'Y' and AETOXGR = '1')"
     )
   ),
-  AET06 = list(
-
-  ),
-  AET05VAD = list(
-
-  ),
+  AET06 = list(),
+  AET05VAD = list(),
   EXT01 = list(
     "description" = "Study Drug Exposure Table",
     "Standard titles" = "Study Drug Exposure:  {Specify Population}",
@@ -218,19 +214,13 @@ In cases where treatment period (expected number of cycles) is variable (e.g., t
       "The \"n\" row provides the number of non missing values.  For a categorical variable, each percentage is based on the number of patients in the \"n\" row.",
       "Percentages for \"Total number of patients with at least one dose modification\" are based on the number of patients in the analysis population as given in the column heading. Percentages for the individual reasons for dose modification are based on \"nnn\", where \"nnn\" equals the \"Total number of patients with at least one dose modification\"."
     ),
-    "Numeric Precision and Formatting of Statistics"  = "Use standard display in the mockup.",
+    "Numeric Precision and Formatting of Statistics" = "Use standard display in the mockup.",
     "Formatting Options" = "Allow the option for portrait or landscape output orientation.",
     "Optional Subsetting" = "None"
   ),
-  TTET01 = list(
-
-  ),
-  KMG01 = list(
-
-  ),
-  LBL02A = list(
-
-  ),
+  TTET01 = list(),
+  KMG01 = list(),
+  LBL02A = list(),
   LBT01 = list(
     "description" = "Laboratory Tests Table",
     "Standard titles" = "Laboratory Test Results and Change from Baseline by Visit, {Specific Lab Test}:  {Specify Population}",
@@ -253,39 +243,17 @@ Number of patients and number of events at the SOC level are not displayed.",
     "Numeric Precision and Formatting of Statistics" = "Use standard display in the mockup.",
     "Optional Subsetting" = "None"
   ),
-  LBT06 = list(
-
-  ),
-  ONCT01 = list(
-
-  ),
-  ONCT04 = list(
-
-  ),
-  KMT01 = list(
-
-  ),
-  IRCT01 = list(
-
-  ),
-  IRCT02 = list(
-
-  ),
-  RSPT01 = list(
-
-  ),
-  FSTG02 = list(
-
-  ),
-  COXT02 = list(
-
-  ),
-  COXT01 = list(
-
-  ),
-  CFBT01 = list(
-
-  ),
+  LBT06 = list(),
+  ONCT01 = list(),
+  ONCT04 = list(),
+  KMT01 = list(),
+  IRCT01 = list(),
+  IRCT02 = list(),
+  RSPT01 = list(),
+  FSTG02 = list(),
+  COXT02 = list(),
+  COXT01 = list(),
+  CFBT01 = list(),
   Empty_table = list(
     "description" = NULL,
     "Standard titles" = NULL,

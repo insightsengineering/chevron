@@ -24,15 +24,10 @@
 #' library(rtables)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adae)
-#'
-#' db <- db %>%
-#'   (std_filter("aet03_1"))() %>%
-#'   (std_mutate("aet03_1"))()
+#'   preprocess_data("aet03_1")
 #'
 #' aet03_1(db)
 #' aet03_1(db, lbl_overall = "All Patients")
-#'
 aet03_1 <- function(adam_db,
                     armvar = .study$armvar,
                     prune_0 = TRUE,
@@ -79,8 +74,7 @@ aet03_1 <- function(adam_db,
       decreasing = TRUE
     )
 
-    tbl_sorted
-
+  tbl_sorted
 }
 
 
@@ -94,15 +88,16 @@ aet03_1 <- function(adam_db,
 #' @param lbl_AEDECOD (`string`) text label for AEDECOD.
 #' @param severity_grade (`vector of strings`) describing the severity levels present in the data set.
 #'
-#' @return
 #' @export
 #'
 #' @examples
-#' aet03_1_lyt(armvar = "ACTARM",
-#'  lbl_AEBODSYS = "Body System or Organ Class",
-#'  lbl_AEDECOD = "Dictionary-Derived Term",
-#'  lbl_overall = NULL,
-#'  deco = std_deco("AET03"))
+#' aet03_1_lyt(
+#'   armvar = "ACTARM",
+#'   lbl_AEBODSYS = "Body System or Organ Class",
+#'   lbl_AEDECOD = "Dictionary-Derived Term",
+#'   lbl_overall = NULL,
+#'   deco = std_deco("AET03")
+#' )
 aet03_1_lyt <- function(armvar = .study$armvar,
                         lbl_AEBODSYS = "",
                         lbl_AEDECOD = "",
@@ -114,17 +109,14 @@ aet03_1_lyt <- function(armvar = .study$armvar,
                           lbl_overall = NULL,
                           severity_grade = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
                         )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade
-      )
+      grade_groups = list("- Any Intensity -" = severity_grade)
     ) %>%
-
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
@@ -136,8 +128,7 @@ aet03_1_lyt <- function(armvar = .study$armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade
-      )
+      grade_groups = list("- Any Intensity -" = severity_grade)
     ) %>%
     split_rows_by(
       "AEDECOD",
@@ -152,5 +143,4 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = severity_grade)
     )
-
 }

@@ -25,7 +25,7 @@ aet02_2_lyt(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the adam Datasets.}
+\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -42,9 +42,6 @@ aet02_2_lyt(
 \item{lbl_AEHLT}{(\code{string}) text label for AEHLT.}
 
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
-}
-\value{
-
 }
 \description{
 The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
@@ -71,11 +68,8 @@ library(dm)
 library(rtables)
 
 db <- syn_test_data() \%>\%
-   dm_select_tbl(adsl, adae)
+  preprocess_data("aet02_2")
 
-db <- db \%>\%
-  (std_filter("aet02_2"))() \%>\%
-  (std_mutate("aet02_2"))()
 
 aet02_2(db) \%>\% head(15)
 
@@ -88,13 +82,12 @@ db_m <- db \%>\%
   dm_update_zoomed()
 
 aet02_2(db_m) \%>\% head()
-
 aet02_2_lyt(
- armvar = "ACTARM",
- lbl_overall = NULL,
- lbl_AEBODSYS = "Body System or Organ Class",
- lbl_AEHLT = "High Level Term",
- lbl_AEDECOD = "Dictionary-Derived Term",
- deco = std_deco("AET02")
+  armvar = "ACTARM",
+  lbl_overall = NULL,
+  lbl_AEBODSYS = "Body System or Organ Class",
+  lbl_AEHLT = "High Level Term",
+  lbl_AEDECOD = "Dictionary-Derived Term",
+  deco = std_deco("AET02")
 )
 }

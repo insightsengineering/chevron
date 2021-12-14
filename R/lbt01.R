@@ -25,17 +25,11 @@
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'    dm_select_tbl(adsl, adlb)
-#'
-#' db <- db %>%
-#'   (std_filter("lbt01_1"))() %>%
-#'   (std_mutate("lbt01_1"))()
+#'   preprocess_data("lbt01_1")
 #'
 #' lbt01_1(db)
-#'
 lbt01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = c("AVAL", "CHG"),
@@ -46,7 +40,6 @@ lbt01_1 <- function(adam_db,
                     .study = list(
                       armvar = "ACTARM"
                     )) {
-
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
@@ -62,7 +55,6 @@ lbt01_1 <- function(adam_db,
   if (prune_0) tbl <- tbl %>% trim_rows()
 
   tbl
-
 }
 
 #' LBT01 Layout 1 (Default)
@@ -78,7 +70,6 @@ lbt01_1 <- function(adam_db,
 #' @param lbl_AVISIT (`character`) label of the `visitvar` variable.
 #' @param lbl_PARAM (`character`) label of the `PARAM` variable.
 #'
-#' @return
 #' @export
 lbt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = c("AVAL", "CHG"),
@@ -90,14 +81,13 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
                         .study = list(
                           armvar = "ACTARM",
                           visitvar = "AVISIT"
-                        )
-) {
+                        )) {
 
 
   # TODO solve the problem of the overall column
   # remove change from baseline in BASELINE
 
-  basic_table_deco(deco)  %>%
+  basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     split_rows_by(
       "PARAM",
@@ -119,5 +109,4 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
     summarize_colvars() %>%
     append_topleft(paste(lbl_PARAM)) %>%
     append_topleft(c(paste(" ", lbl_AVISIT), " "))
-
 }
