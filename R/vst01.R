@@ -1,6 +1,6 @@
-#' VST01 Table 1 (Default) Vital Sign Results and change from Baseline By Visit Tble 1
+#' VST01 Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1
 #'
-#' The VST01 table provides an overview of the Vital Sign values and its change from baseline of each respective arm
+#' The `VST01` table provides an overview of the Vital Sign values and its change from baseline of each respective arm
 #' over the course of the trial.
 #'
 #' @inheritParams gen_args

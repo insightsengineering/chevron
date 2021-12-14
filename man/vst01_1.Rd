@@ -3,7 +3,7 @@
 \name{vst01_1}
 \alias{vst01_1}
 \alias{vst01_1_lyt}
-\title{VST01 Table 1 (Default) Vital Sign Results and change from Baseline By Visit Tble 1}
+\title{VST01 Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1}
 \usage{
 vst01_1(
   adam_db,
@@ -54,7 +54,7 @@ be displayed.}
 
 }
 \description{
-The VST01 table provides an overview of the Vital Sign values and its change from baseline of each respective arm
+The \code{VST01} table provides an overview of the Vital Sign values and its change from baseline of each respective arm
 over the course of the trial.
 }
 \details{

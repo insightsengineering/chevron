@@ -1,6 +1,6 @@
 #' EGT01 Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1
 #'
-#' The EGT01 table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.
+#' The `EGT01` table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.

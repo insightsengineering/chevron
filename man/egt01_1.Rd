@@ -54,7 +54,7 @@ be displayed.}
 
 }
 \description{
-The EGT01 table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.
+The \code{EGT01} table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.
 }
 \details{
 \itemize{
