@@ -20,9 +20,9 @@ sample_study_object <- function() {
   # Extract .study expression.
   ls_study <- lapply(ls_args, "[", ".study")
 
-  has_study <- vapply(ls_study, function(xi) !is.null(xi[[".study"]]), logical(1))
+  has_study <- vapply(ls_study, function(xi) !is.null(xi[[".study"]]) & !identical("", as.character(xi[[".study"]])), logical(1))
 
-  lsf_default <- lapply(ls_study[has_study], function(xi) eval(xi$.study, envir = baseenv()))
+  lsf_default <- lapply(ls_study[has_study], function(xi) eval(xi$.study, baseenv()))
 
   ls_all_val <- unlist(lsf_default, recursive = FALSE)
 
