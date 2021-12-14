@@ -11,9 +11,11 @@ std_preprocessing_map <- tibble::tribble(
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
+  "egt01_1", "filter_adeg_anl01fl", NA, c("adsl", "adeg"),
   "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
-  "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb")
+  "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb"),
+  "vst01_1", "filter_advs_anl01fl", NA, c("adsl", "advs")
 )
 
 #' Standard Preprocessing Map
@@ -214,6 +216,30 @@ filter_adlb_anl01fl <- function(adam_db) {
 
   adam_db %>%
     dm_filter(adlb, bol_YN(ANL01FL)) %>%
+    dm_apply_filters()
+}
+
+#' Filter `adeg` for `ANL01FL`
+#'
+#' @inheritParams gen_args
+#'
+filter_adeg_anl01fl <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+
+  adam_db %>%
+    dm_filter(adeg, bol_YN(ANL01FL)) %>%
+    dm_apply_filters()
+}
+
+#' Filter `advs` for `ANL01FL`
+#'
+#' @inheritParams gen_args
+#'
+filter_advs_anl01fl <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+
+  adam_db %>%
+    dm_filter(advs, bol_YN(ANL01FL)) %>%
     dm_apply_filters()
 }
 
