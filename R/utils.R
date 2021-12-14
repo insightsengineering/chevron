@@ -322,6 +322,9 @@ syn_test_data <- function() {
 
   sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
 
+  # to avoid bug
+  attr(sd, "data_from") <- NULL
+
   # useful for ext01
   group <- list(list("Dose administered during constant dosing interval",
                                           c(-Inf, 700, 900, 1200, Inf),
