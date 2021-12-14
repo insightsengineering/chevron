@@ -354,6 +354,11 @@ syn_test_data <- function() {
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
+  db_m <- db %>%
+    dm_zoom_to(advs) %>%
+    mutate(ANL01FL = "Y") %>%
+    dm_update_zoomed()
+
   db_m
 }
 
