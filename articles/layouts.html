@@ -52,15 +52,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -84,7 +75,7 @@ Other releases
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Layouts in Chevron</h1>
             
-            <h4 class="date">2021-12-13</h4>
+            <h4 class="date">2021-12-15</h4>
       
       
       <div class="hidden name"><code>layouts.Rmd</code></div>
@@ -124,12 +115,12 @@ Other releases
 <span class="fu"><a href="https://roche.github.io/rtables/reference/build_table.html">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">)</span>
 <span class="co">#&gt;             ARM A              ARM B      </span>
 <span class="co">#&gt; ——————————————————————————————————————————</span>
-<span class="co">#&gt; mean   57.3824607152188   57.5334606882771</span>
+<span class="co">#&gt; mean   56.7562153547742   57.4015130388975</span>
 
 <span class="fu"><a href="https://roche.github.io/rtables/reference/build_table.html">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">[</span><span class="va">adsl</span><span class="op">$</span><span class="va">COUNTRY</span> <span class="op">==</span> <span class="st">"RUS"</span>, <span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt;             ARM A              ARM B      </span>
 <span class="co">#&gt; ——————————————————————————————————————————</span>
-<span class="co">#&gt; mean   60.1246195666205   46.6493059192888</span></code></pre></div>
+<span class="co">#&gt; mean   43.7887628875776   53.7723942603916</span></code></pre></div>
 <p>Hence these layouts define a table pre-data. That is, the layout functions in <code>chevron</code> do never take any data as an argument. Note that pruning and sorting are currently not performed in the layout space in <code>rtables</code> but rather on the actual table objects.</p>
 <p>Also, layouts allow for certain queries such as which variables are required to build the table using the given layout:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -160,7 +151,7 @@ Other releases
 <span class="co">#&gt;             nonunique = "Total number of events")) %&gt;% count_occurrences(vars = "AEDECOD", </span>
 <span class="co">#&gt;         .indent_mods = -1L) %&gt;% append_topleft(paste0("  ", lbl_AEDECOD))</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x56485e169060&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55c205473848&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>Note that the <code>aet02_1_lyt</code> function returns a concise description on how <code>tern</code> and <code>rtables</code> can be used to create the cell values of the tables. The table creation function then does then use the <code>*_lyt</code> function and builds the table using <code>build_table</code> and the data given in <code>adam_db</code> as shown next:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -183,7 +174,7 @@ Other releases
 <span class="co">#&gt;         "*", "AEDECOD"), scorefun = score_occurrences)</span>
 <span class="co">#&gt;     tbl_sorted</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x56485e2d7000&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55c2055e91d8&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 </div>
 <div id="summary" class="section level2">
