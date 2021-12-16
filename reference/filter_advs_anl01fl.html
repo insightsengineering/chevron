@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extraction of .study object default values — sample_study_object • chevron</title>
+<title>Filter advs for ANL01FL — filter_advs_anl01fl • chevron</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Extraction of .study object default values — sample_study_object" />
-<meta property="og:description" content="Sample the default value of the .study object defined in the tlg-functions and returns an existing default value." />
+<meta property="og:title" content="Filter advs for ANL01FL — filter_advs_anl01fl" />
+<meta property="og:description" content="Filter advs for ANL01FL" />
 
 
 
@@ -114,37 +114,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extraction of .study object default values</h1>
+    <h1>Filter <code>advs</code> for <code>ANL01FL</code></h1>
     
-    <div class="hidden name"><code>sample_study_object.Rd</code></div>
+    <div class="hidden name"><code>filter_advs_anl01fl.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Sample the default value of the <code>.study</code> object defined in the <code>tlg-functions</code> and returns an existing default value.</p>
+    <p>Filter <code>advs</code> for <code>ANL01FL</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>sample_study_object</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>filter_advs_anl01fl</span><span class='op'>(</span><span class='va'>adam_db</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>adam_db</th>
+      <td><p>(<code>dm</code>) object containing the ADaM datasets</p></td>
+    </tr>
+    </table>
 
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>(<code>list</code>)</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='va'>lst</span> <span class='op'>&lt;-</span> <span class='fu'>sample_study_object</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/dput.html'>dput</a></span><span class='op'>(</span><span class='va'>lst</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> list(analysis_var = "AVAL", armvar = "ACTARM", disc_reason_var = "DCSREAS", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     evo_vars = c("AVAL", "CHG"), evo_vars_lbls = c("Analysis \nValue", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     "Change from \nBaseline"), group_grades = list(`Any Grade` = c("1", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     "4"), `Grade 5` = "5"), lbl_analysis_var = "Analysis Value", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     lbl_overall = NULL, severity_grade = c("MILD", "MODERATE", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     "SEVERE", "LIFE THREATENING"), status = "EOSSTT", status_treatment = "EOTSTT", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     "BWGHTSI"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     "SEX", "ETHNIC", "RACE", "Baseline Weight (kg)"), visitvar = "AVISIT")</span>
-<span class='r-in'></span>
-</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
