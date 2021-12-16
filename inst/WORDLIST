@@ -16,6 +16,7 @@ CTACAE
 CTCAE
 DMT
 EORTC
+EGT
 GDSR
 LBT
 NCI
@@ -45,3 +46,4 @@ templating
 tlg
 tlgfunction
 tlgs
+VST
