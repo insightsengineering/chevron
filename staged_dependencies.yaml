@@ -14,3 +14,5 @@ upstream_repos:
 downstream_repos:
 - repo: insightsengineering/citril
   host: https://github.com
+- repo: insightsengineering/chevron.sample.study
+  host: https://github.com
