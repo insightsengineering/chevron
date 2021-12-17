@@ -12,3 +12,5 @@ upstream_repos:
 - repo: insightsengineering/scda.2021
   host: https://github.com
 downstream_repos:
+- repo: insightsengineering/citril
+  host: https://github.com
