@@ -3,7 +3,7 @@ Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
 Version: 0.1.0.9000
 Authors@R: c(
-    person("NEST", , , "basel.basel.nestcicd@roche.com", role = c("aut", "cre")),
+    person("NEST", , , "basel.nestcicd@roche.com", role = c("aut", "cre")),
     person("Roche", role = c("cph", "fnd")),
     person("Adrian", "Waddell", , "adrian.waddell@roche.com", role = "aut"),
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
