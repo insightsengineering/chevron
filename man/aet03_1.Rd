@@ -3,7 +3,7 @@
 \name{aet03_1}
 \alias{aet03_1}
 \alias{aet03_1_lyt}
-\title{AET03 Table 1 (Default) Advert Events by Greatest Intensity Table 1}
+\title{\code{AET03} Table 1 (Default) Advert Events by Greatest Intensity Table 1}
 \usage{
 aet03_1(
   adam_db,
@@ -16,8 +16,8 @@ aet03_1(
 
 aet03_1_lyt(
   armvar = .study$armvar,
-  lbl_AEBODSYS = "",
-  lbl_AEDECOD = "",
+  lbl_aebodsys = "",
+  lbl_aedecod = "",
   severity_grade = .study$severity_grade,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
@@ -38,23 +38,23 @@ aet03_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+\item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
-\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
-\item{severity_grade}{(\verb{vector of strings}) describing the severity levels present in the data set.}
+\item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the data set.}
 }
 \description{
 An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }
 \details{
 \itemize{
-\item Default Adverse Events by Greatest Intensity table
-\item Numbers represent absolute numbers of patients and fraction of \code{N}
+\item Default Adverse Events by Greatest Intensity table.
+\item Numbers represent absolute numbers of patients and fraction of \code{N}.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
-\item Split columns by arm
-\item Does not include a total column by default
-\item Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)
+\item Split columns by arm.
+\item Does not include a total column by default.
+\item Sort by Body System or Organ Class (\code{SOC}) and Dictionary-Derived Term (\code{PT}).
 }
 }
 \section{Functions}{
@@ -74,8 +74,8 @@ aet03_1(db)
 aet03_1(db, lbl_overall = "All Patients")
 aet03_1_lyt(
   armvar = "ACTARM",
-  lbl_AEBODSYS = "Body System or Organ Class",
-  lbl_AEDECOD = "Dictionary-Derived Term",
+  lbl_aebodsys = "Body System or Organ Class",
+  lbl_aedecod = "Dictionary-Derived Term",
   lbl_overall = NULL,
   deco = std_deco("AET03")
 )

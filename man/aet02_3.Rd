@@ -3,7 +3,7 @@
 \name{aet02_3}
 \alias{aet02_3}
 \alias{aet02_3_lyt}
-\title{AET02 Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3}
+\title{\code{AET02} Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3}
 \usage{
 aet02_3(
   adam_db,
@@ -17,7 +17,7 @@ aet02_3(
 aet02_3_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  lbl_AEDECOD = "AEDECOD",
+  lbl_aedecod = "AEDECOD",
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
@@ -35,11 +35,11 @@ aet02_3_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-The AET02_3 table provides an overview of the number of patients experiencing advert events and the number of advert
-events categorized by Dictionary-Derived Term.
+The \code{AET02_3} table provides an overview of the number of patients experiencing advert events and the number of
+advert events categorized by Dictionary-Derived Term.
 }
 \details{
 \itemize{
@@ -67,7 +67,7 @@ aet02_3(db, lbl_overall = "All Patients") \%>\% head()
 aet02_3_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
-  lbl_AEDECOD = "Dictionary-Derived Term",
+  lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02")
 )
 }

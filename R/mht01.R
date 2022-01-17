@@ -40,8 +40,8 @@ mht01_1 <- function(adam_db,
   lyt <- mht01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_MHBODSYS = var_labels_for(dbsel$admh, "MHBODSYS"),
-    lbl_MHDECOD = var_labels_for(dbsel$admh, "MHDECOD"),
+    lbl_mhbodsys = var_labels_for(dbsel$admh, "MHBODSYS"),
+    lbl_mhdecod = var_labels_for(dbsel$admh, "MHDECOD"),
     deco = deco
   )
 
@@ -65,8 +65,8 @@ mht01_1 <- function(adam_db,
 #' @describeIn mht01_1
 #'
 #' @inheritParams gen_args
-#' @param lbl_MHBODSYS (`character`) text label for `MHBODSYS`.
-#' @param lbl_MHDECOD (`character`) text label for `MHDECOD`.
+#' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
+#' @param lbl_mhdecod (`character`) text label for `MHDECOD`.
 #'
 #' @export
 #'
@@ -78,8 +78,8 @@ mht01_1 <- function(adam_db,
 #' )
 mht01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_MHBODSYS = "Body System or Organ Class",
-                        lbl_MHDECOD = "MedDRA preferred Term",
+                        lbl_mhbodsys = "Body System or Organ Class",
+                        lbl_mhdecod = "MedDRA preferred Term",
                         deco = std_deco("MHT01"),
                         .study = list(
                           armvar = "ARM",
@@ -105,7 +105,7 @@ mht01_1_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_MHBODSYS
+      split_label = lbl_mhbodsys
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
@@ -119,5 +119,5 @@ mht01_1_lyt <- function(armvar = .study$armvar,
       vars = "MHDECOD",
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0("  ", lbl_MHDECOD))
+    append_topleft(paste0("  ", lbl_mhdecod))
 }

@@ -1,17 +1,17 @@
 
-#' AET03 Table 1 (Default) Advert Events by Greatest Intensity Table 1
+#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1
 #'
 #' An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity.
 #'
 #' @inheritParams gen_args
 #'
 #' @details
-#'  * Default Adverse Events by Greatest Intensity table
-#'  * Numbers represent absolute numbers of patients and fraction of `N`
+#'  * Default Adverse Events by Greatest Intensity table.
+#'  * Numbers represent absolute numbers of patients and fraction of `N`.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
-#'  * Split columns by arm
-#'  * Does not include a total column by default
-#'  * Sort by Body System or Organ Class (SOC) and Dictionary-Derived Term (PT)
+#'  * Split columns by arm.
+#'  * Does not include a total column by default.
+#'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
 #'
 #' @importFrom dplyr filter
 #' @importFrom magrittr %>%
@@ -46,8 +46,8 @@ aet03_1 <- function(adam_db,
   lyt <- aet03_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEBODSYS = var_labels_for(adam_db$adae, "AEBODSYS"),
-    lbl_AEDECOD = var_labels_for(adam_db$adae, "AEDECOD"),
+    lbl_aebodsys = var_labels_for(adam_db$adae, "AEBODSYS"),
+    lbl_aedecod = var_labels_for(adam_db$adae, "AEDECOD"),
     severity_grade = severity_grade,
     deco = deco
   )
@@ -78,29 +78,29 @@ aet03_1 <- function(adam_db,
 }
 
 
-#' AET03 Layout 1 (Default)
+#' `AET03` Layout 1 (Default)
 #'
 #' @describeIn aet03_1
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
-#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
-#' @param severity_grade (`vector of strings`) describing the severity levels present in the data set.
+#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param severity_grade (`vector of character`) describing the severity levels present in the data set.
 #'
 #' @export
 #'
 #' @examples
 #' aet03_1_lyt(
 #'   armvar = "ACTARM",
-#'   lbl_AEBODSYS = "Body System or Organ Class",
-#'   lbl_AEDECOD = "Dictionary-Derived Term",
+#'   lbl_aebodsys = "Body System or Organ Class",
+#'   lbl_aedecod = "Dictionary-Derived Term",
 #'   lbl_overall = NULL,
 #'   deco = std_deco("AET03")
 #' )
 aet03_1_lyt <- function(armvar = .study$armvar,
-                        lbl_AEBODSYS = "",
-                        lbl_AEDECOD = "",
+                        lbl_aebodsys = "",
+                        lbl_aedecod = "",
                         severity_grade = .study$severity_grade,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET03"),
@@ -124,7 +124,7 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_AEBODSYS
+      split_label = lbl_aebodsys
     ) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",
@@ -137,7 +137,7 @@ aet03_1_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_AEDECOD
+      split_label = lbl_aedecod
     ) %>%
     summarize_occurrences_by_grade(
       var = "AESEV",

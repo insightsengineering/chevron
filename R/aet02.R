@@ -1,6 +1,6 @@
-#' AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
+#' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
-#' The AET02 table provides an overview of the number of subjects experiencing advert events and the number of advert
+#' The `AET02` table provides an overview of the number of subjects experiencing advert events and the number of advert
 #' events categorized by Body System and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
@@ -57,8 +57,8 @@ aet02_1 <- function(adam_db,
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEBODSYS = var_labels_for(dbsel$adae, "AEBODSYS"),
-    lbl_AEDECOD = var_labels_for(dbsel$adae, "AEDECOD"),
+    lbl_aebodsys = var_labels_for(dbsel$adae, "AEBODSYS"),
+    lbl_aedecod = var_labels_for(dbsel$adae, "AEDECOD"),
     deco = deco
   )
 
@@ -82,13 +82,13 @@ aet02_1 <- function(adam_db,
 }
 
 
-#' AET01 Layout 1 (Default)
+#' `AET02` Layout 1 (Default)
 #'
 #' @describeIn aet02_1
 #'
 #' @inheritParams gen_args
-#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
-#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #'
 #' @export
 #'
@@ -100,8 +100,8 @@ aet02_1 <- function(adam_db,
 #' )
 aet02_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_AEBODSYS = "Body System or Organ Class",
-                        lbl_AEDECOD = "Dictionary-Derived Term",
+                        lbl_aebodsys = "Body System or Organ Class",
+                        lbl_aedecod = "Dictionary-Derived Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
@@ -127,7 +127,7 @@ aet02_1_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_AEBODSYS
+      split_label = lbl_aebodsys
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
@@ -141,16 +141,16 @@ aet02_1_lyt <- function(armvar = .study$armvar,
       vars = "AEDECOD",
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0("  ", lbl_AEDECOD))
+    append_topleft(paste0("  ", lbl_aedecod))
 }
 
 
 # Version2 ----
 
-#' AET02 Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2
+#' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2
 #'
-#' The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
-#' events categorized by Body System, High Level Term and Dictionary-Derived Term.
+#' The `AET02_2` table provides an overview of the number of patients experiencing advert events and the number of
+#' advert events categorized by Body System, High Level Term and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -201,9 +201,9 @@ aet02_2 <- function(adam_db,
   lyt <- aet02_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEBODSYS = var_labels_for(adae, "AEBODSYS"),
-    lbl_AEHLT = var_labels_for(adae, "AEHLT"),
-    lbl_AEDECOD = var_labels_for(adae, "AEDECOD"),
+    lbl_aebodsys = var_labels_for(adae, "AEBODSYS"),
+    lbl_aehlt = var_labels_for(adae, "AEHLT"),
+    lbl_aedecod = var_labels_for(adae, "AEDECOD"),
     deco = deco
   )
 
@@ -231,15 +231,15 @@ aet02_2 <- function(adam_db,
 }
 
 
-#' AET02 Layout 2 (Supplementary)
+#' `AET02` Layout 2 (Supplementary)
 #'
 #' @describeIn aet02_2
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
-#' @param lbl_AEHLT (`string`) text label for AEHLT.
-#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
+#' @param lbl_aehlt (`character`) text label for `AEHLT`.
+#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #'
 #' @export
 #'
@@ -247,16 +247,16 @@ aet02_2 <- function(adam_db,
 #' aet02_2_lyt(
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL,
-#'   lbl_AEBODSYS = "Body System or Organ Class",
-#'   lbl_AEHLT = "High Level Term",
-#'   lbl_AEDECOD = "Dictionary-Derived Term",
+#'   lbl_aebodsys = "Body System or Organ Class",
+#'   lbl_aehlt = "High Level Term",
+#'   lbl_aedecod = "Dictionary-Derived Term",
 #'   deco = std_deco("AET02")
 #' )
 aet02_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_AEBODSYS = "AEBODSYS",
-                        lbl_AEHLT = "AEHLT",
-                        lbl_AEDECOD = "AEDECOD",
+                        lbl_aebodsys = "AEBODSYS",
+                        lbl_aehlt = "AEHLT",
+                        lbl_aedecod = "AEDECOD",
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
@@ -282,7 +282,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_AEBODSYS
+      split_label = lbl_aebodsys
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
@@ -298,7 +298,7 @@ aet02_2_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_AEHLT
+      split_label = lbl_aehlt
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
@@ -312,16 +312,16 @@ aet02_2_lyt <- function(armvar = .study$armvar,
       vars = "AEDECOD",
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0("    ", lbl_AEDECOD))
+    append_topleft(paste0("    ", lbl_aedecod))
 }
 
 
 # Version 3 ----
 
-#' AET02 Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3
+#' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3
 #'
-#' The AET02_3 table provides an overview of the number of patients experiencing advert events and the number of advert
-#' events categorized by Dictionary-Derived Term.
+#' The `AET02_3` table provides an overview of the number of patients experiencing advert events and the number of
+#' advert events categorized by Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -357,7 +357,7 @@ aet02_3 <- function(adam_db,
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEDECOD = var_labels_for(adam_db$adae, "AEDECOD"),
+    lbl_aedecod = var_labels_for(adam_db$adae, "AEDECOD"),
     deco = deco
   )
 
@@ -377,13 +377,13 @@ aet02_3 <- function(adam_db,
 }
 
 
-#' AET01 Layout 3 (Supplementary)
+#' `AET02` Layout 3 (Supplementary)
 #'
 #' @describeIn aet02_3
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #'
 #' @export
 #'
@@ -391,12 +391,12 @@ aet02_3 <- function(adam_db,
 #' aet02_3_lyt(
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL,
-#'   lbl_AEDECOD = "Dictionary-Derived Term",
+#'   lbl_aedecod = "Dictionary-Derived Term",
 #'   deco = std_deco("AET02")
 #' )
 aet02_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_AEDECOD = "AEDECOD",
+                        lbl_aedecod = "AEDECOD",
                         deco = std_deco("AET02"),
                         .study = list(
                           armvar = "ACTARM",
@@ -415,5 +415,5 @@ aet02_3_lyt <- function(armvar = .study$armvar,
       )
     ) %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
-    append_topleft(lbl_AEDECOD)
+    append_topleft(lbl_aedecod)
 }

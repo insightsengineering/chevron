@@ -17,8 +17,8 @@ mht01_1(
 mht01_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  lbl_MHBODSYS = "Body System or Organ Class",
-  lbl_MHDECOD = "MedDRA preferred Term",
+  lbl_mhbodsys = "Body System or Organ Class",
+  lbl_mhdecod = "MedDRA preferred Term",
   deco = std_deco("MHT01"),
   .study = list(armvar = "ARM", lbl_overall = NULL)
 )
@@ -36,9 +36,9 @@ mht01_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_MHBODSYS}{(\code{character}) text label for \code{MHBODSYS}.}
+\item{lbl_mhbodsys}{(\code{character}) text label for \code{MHBODSYS}.}
 
-\item{lbl_MHDECOD}{(\code{character}) text label for \code{MHDECOD}.}
+\item{lbl_mhdecod}{(\code{character}) text label for \code{MHDECOD}.}
 }
 \description{
 The \code{MHT01} table provides an overview of the subjects medical history by SOC and Preferred Term.

@@ -3,7 +3,7 @@
 \name{aet02_1}
 \alias{aet02_1}
 \alias{aet02_1_lyt}
-\title{AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
+\title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \usage{
 aet02_1(
   adam_db,
@@ -17,8 +17,8 @@ aet02_1(
 aet02_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  lbl_AEBODSYS = "Body System or Organ Class",
-  lbl_AEDECOD = "Dictionary-Derived Term",
+  lbl_aebodsys = "Body System or Organ Class",
+  lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
@@ -36,12 +36,12 @@ aet02_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+\item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
-\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-The AET02 table provides an overview of the number of subjects experiencing advert events and the number of advert
+The \code{AET02} table provides an overview of the number of subjects experiencing advert events and the number of advert
 events categorized by Body System and Dictionary-Derived Term.
 }
 \details{
