@@ -1,6 +1,6 @@
 #' MHT01 Table 1 (Default) Medical History Table 1
 #'
-#' The MHT01 table provides an overview of the subjects medical history by SOC and Preferred Term.
+#' The `MHT01` table provides an overview of the subjects medical history by SOC and Preferred Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -60,13 +60,13 @@ mht01_1 <- function(adam_db,
   tbl_sorted
 }
 
-#' MHT01 Layout 1 (Default)
+#' `MHT01` Layout 1 (Default)
 #'
 #' @describeIn mht01_1
 #'
 #' @inheritParams gen_args
-#' @param lbl_MHBODSYS (`character`) text label for MHBODSYS.
-#' @param lbl_MHDECOD (`character`) text label for MHDECOD.
+#' @param lbl_MHBODSYS (`character`) text label for `MHBODSYS`.
+#' @param lbl_MHDECOD (`character`) text label for `MHDECOD`.
 #'
 #' @export
 #'

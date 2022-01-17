@@ -41,12 +41,12 @@ aet02_1_lyt(
 \item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
 }
 \description{
-The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
+The AET02 table provides an overview of the number of subjects experiencing advert events and the number of advert
 events categorized by Body System and Dictionary-Derived Term.
 }
 \details{
 \itemize{
-\item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
+\item Numbers represent absolute numbers of subject and fraction of \code{N}, or absolute number of event when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
 \item Does not include a total column by default.

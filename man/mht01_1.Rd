@@ -36,12 +36,12 @@ mht01_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_MHBODSYS}{(\code{character}) text label for MHBODSYS.}
+\item{lbl_MHBODSYS}{(\code{character}) text label for \code{MHBODSYS}.}
 
-\item{lbl_MHDECOD}{(\code{character}) text label for MHDECOD.}
+\item{lbl_MHDECOD}{(\code{character}) text label for \code{MHDECOD}.}
 }
 \description{
-The MHT01 Table (Medical History table by SOC and Preferred Term)
+The \code{MHT01} table provides an overview of the subjects medical history by SOC and Preferred Term.
 }
 \details{
 \itemize{
