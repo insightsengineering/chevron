@@ -3,7 +3,7 @@
 \name{mht01_1}
 \alias{mht01_1}
 \alias{mht01_1_lyt}
-\title{MHT01 Table 1 (Default) Medical History Table 1}
+\title{\code{MHT01} Table 1 (Default) Medical History Table 1}
 \usage{
 mht01_1(
   adam_db,

@@ -1,4 +1,4 @@
-#' MHT01 Table 1 (Default) Medical History Table 1
+#' `MHT01` Table 1 (Default) Medical History Table 1
 #'
 #' The `MHT01` table provides an overview of the subjects medical history by SOC and Preferred Term.
 #'
