@@ -1,12 +1,12 @@
 #' AET02 Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
-#' The AET02 table provides an overview of the number of patients experiencing advert events and the number of advert
+#' The AET02 table provides an overview of the number of subjects experiencing advert events and the number of advert
 #' events categorized by Body System and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
 #' @details
-#'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
+#'  * Numbers represent absolute numbers of subject and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.

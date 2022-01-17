@@ -1,0 +1,123 @@
+#' MHT01 Table 1 (Default) Medical History Table 1
+#'
+#' The MHT01 table provides an overview of the subjects medical history by SOC and Preferred Term.
+#'
+#' @inheritParams gen_args
+#'
+#' @details
+#'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
+#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
+#'  * Split columns by arm.
+#'  * Does not include a total column by default.
+#'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
+#'  patients with the specific condition.
+#'
+#' @importFrom dplyr filter
+#' @importFrom magrittr %>%
+#'
+#' @export
+#'
+#' @examples
+#' library(dm)
+#' library(rtables)
+#'
+#' db <- syn_test_data() %>%
+#'   preprocess_data("mht01_1")
+#'
+#' mht01_1(adam_db = db) %>% head(15)
+#'
+mht01_1 <- function(adam_db,
+                    armvar = .study$armvar,
+                    lbl_overall = .study$lbl_overall,
+                    prune_0 = TRUE,
+                    deco = std_deco("MHT01"),
+                    .study = list(
+                      armvar = "ACTARM",
+                      lbl_overall = NULL
+                    )) {
+  dbsel <- get_db_data(adam_db, "adsl", "admh")
+
+  lyt <- mht01_1_lyt(
+    armvar = armvar,
+    lbl_overall = lbl_overall,
+    lbl_MHBODSYS = var_labels_for(dbsel$admh, "MHBODSYS"),
+    lbl_MHDECOD = var_labels_for(dbsel$admh, "MHDECOD"),
+    deco = deco
+  )
+
+  tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
+
+  if (prune_0) {
+    tbl <- tbl %>% prune_table()
+  }
+
+  tbl_sorted <- tbl %>%
+    sort_at_path(
+      path = c("MHBODSYS", "*", "MHDECOD"),
+      scorefun = score_occurrences
+    )
+
+  tbl_sorted
+}
+
+#' MHT01 Layout 1 (Default)
+#'
+#' @describeIn mht01_1
+#'
+#' @inheritParams gen_args
+#' @param lbl_MHBODSYS (`character`) text label for MHBODSYS.
+#' @param lbl_MHDECOD (`character`) text label for MHDECOD.
+#'
+#' @export
+#'
+#' @examples
+#' mht01_1_lyt(
+#'   armvar = "ACTARM",
+#'   lbl_overall = NULL,
+#'   deco = std_deco("MHT01")
+#' )
+mht01_1_lyt <- function(armvar = .study$armvar,
+                        lbl_overall = .study$lbl_overall,
+                        lbl_MHBODSYS = "Body System or Organ Class",
+                        lbl_MHDECOD = "MedDRA preferred Term",
+                        deco = std_deco("MHT01"),
+                        .study = list(
+                          armvar = "ARM",
+                          lbl_overall = NULL
+                        )) {
+  basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
+    summarize_num_patients(
+      var = "USUBJID",
+      .stats = c("unique", "nonunique"),
+      .labels = c(
+        unique = "Total number of patients with at least one condition",
+        nonunique = "Total number of conditions"
+      )
+    ) %>%
+    split_rows_by(
+      "MHBODSYS",
+      child_labels = "visible",
+      labels_var = "MHBODSYS",
+      nested = FALSE,
+      indent_mod = -1L,
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_MHBODSYS
+    ) %>%
+    summarize_num_patients(
+      var = "USUBJID",
+      .stats = c("unique", "nonunique"),
+      .labels = c(
+        unique = "Total number of patients with at least one condition",
+        nonunique = "Total number of conditions"
+      )
+    ) %>%
+    count_occurrences(
+      vars = "MHDECOD",
+      .indent_mods = -1L
+    ) %>%
+    append_topleft(paste0("  ", lbl_MHDECOD))
+}
