@@ -44,7 +44,9 @@ cmt01a_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_cmdecod}{(\code{character}) text label for \code{CMDECOD}.}
+\item{lbl_medcat_var}{(\code{character}) the label for the medication category.}
+
+\item{lbl_medname_var}{(\code{character}) the label for the medication name.}
 }
 \description{
 A concomitant medication table with the number of subjects and the total number of treatments by medication class

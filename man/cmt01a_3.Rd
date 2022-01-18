@@ -2,7 +2,7 @@
 % Please edit documentation in R/cmt01a.R
 \name{cmt01a_3}
 \alias{cmt01a_3}
-\alias{cmt01a_1_lyt}
+\alias{cmt01a_3_lyt}
 \title{\code{CMT01A} Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
 treatments per medication class suppressed).}
 \usage{
@@ -17,7 +17,7 @@ cmt01a_3(
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 
-cmt01a_1_lyt(
+cmt01a_3_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   medcat_var = "ATC2",
@@ -45,7 +45,9 @@ cmt01a_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_cmdecod}{(\code{character}) text label for \code{CMDECOD}.}
+\item{lbl_medcat_var}{(\code{character}) the label for the medication category.}
+
+\item{lbl_medname_var}{(\code{character}) the label for the medication name.}
 }
 \description{
 A concomitant medication table with the number of subjects and the total number of treatments by medication class
@@ -64,7 +66,7 @@ the specific medication.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt01a_1_lyt}: 
+\item \code{cmt01a_3_lyt}: 
 }}
 
 \examples{
@@ -72,7 +74,7 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("cmt01a_1")
+  preprocess_data("cmt01a_3")
 
 cmt01a_3(adam_db = db)
 

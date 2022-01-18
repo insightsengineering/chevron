@@ -73,7 +73,10 @@ cmt01a_1 <- function(adam_db,
 #' @describeIn cmt01a_1
 #'
 #' @inheritParams gen_args
-#' @param lbl_cmdecod (`character`) text label for `CMDECOD`.
+#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
+#' @param lbl_medcat_var (`character`) the label for the medication category.
+#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
+#' @param lbl_medname_var (`character`) the label for the medication name.
 #'
 #' @export
 #'
@@ -162,7 +165,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("cmt01a_1")
+#'   preprocess_data("cmt01a_2")
 #'
 #' cmt01a_2(adam_db = db)
 #'
@@ -239,7 +242,7 @@ cmt01a_2 <- function(adam_db,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("cmt01a_1")
+#'   preprocess_data("cmt01a_3")
 #'
 #' cmt01a_3(adam_db = db)
 #'
@@ -256,7 +259,7 @@ cmt01a_3 <- function(adam_db,
                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- cmt01a_1_lyt(
+  lyt <- cmt01a_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -285,7 +288,10 @@ cmt01a_3 <- function(adam_db,
 #' @describeIn cmt01a_3
 #'
 #' @inheritParams gen_args
-#' @param lbl_cmdecod (`character`) text label for `CMDECOD`.
+#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
+#' @param lbl_medcat_var (`character`) the label for the medication category.
+#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
+#' @param lbl_medname_var (`character`) the label for the medication name.
 #'
 #' @export
 #'
@@ -295,7 +301,7 @@ cmt01a_3 <- function(adam_db,
 #'   lbl_overall = NULL,
 #'   deco = std_deco("CMT01A")
 #' )
-cmt01a_1_lyt <- function(armvar = .study$armvar,
+cmt01a_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         medcat_var = "ATC2",
                         lbl_medcat_var = "ATC Level 2 Text",
