@@ -7,6 +7,9 @@ std_preprocessing_map <- tibble::tribble(
   "aet02_3", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet03_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet04_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
+  "cmt01a_1", "filter_adcm_cmt01", NA, c("adsl", "adcm"),
+  "cmt01a_2", "filter_adcm_cmt01", NA, c("adsl", "adcm"),
+  "cmt01a_3", "filter_adcm_cmt01", NA, c("adsl", "adcm"),
   "dmt01_1", NA, NA, c("adsl"),
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
@@ -252,6 +255,19 @@ filter_adex_drug <- function(adam_db) {
 
   adam_db %>%
     dm_filter(adex, PARCAT1 == "OVERALL") %>%
+    dm_apply_filters()
+}
+
+#' Filter `adcm` for `ATIREL` and  `ANL01FL`
+#'
+#' @inheritParams gen_args
+#'
+filter_adcm_cmt01 <- function(adam_db) {
+    assert_that(is(adam_db, "dm"))
+
+    adam_db %>%
+    dm_filter(adcm, bol_YN(SAFFL)) %>%
+    dm_filter(adcm, ATIREL == "CONCOMITANT") %>%
     dm_apply_filters()
 }
 
