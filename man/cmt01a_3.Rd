@@ -48,7 +48,9 @@ cmt01a_1_lyt(
 \item{lbl_cmdecod}{(\code{character}) text label for \code{CMDECOD}.}
 }
 \description{
-The \code{CMT01A}
+A concomitant medication table with the number of subjects and the total number of treatments by medication class
+sorted alphabetically and medication name sorted by frequencies presented without the total number of treatments per
+medication.
 }
 \details{
 \itemize{

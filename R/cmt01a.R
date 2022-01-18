@@ -2,7 +2,8 @@
 
 #' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
 #'
-#' The `CMT01A`
+#' A concomitant medication table with the number of subjects and the total number of treatments by medication class
+#' sorted alphabetically and medication name sorted by frequencies.
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -133,9 +134,11 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 
 # CMT01A_2 ----
 
-#' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by frequency).
+#' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
+#' frequency).
 #'
-#' The `CMT01A`
+#' A concomitant medication table with the number of subjects and the total number of treatments by medication class and
+#' medication name sorted by frequencies.
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -210,7 +213,9 @@ cmt01a_2 <- function(adam_db,
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
 #' treatments per medication class suppressed).
 #'
-#' The `CMT01A`
+#' A concomitant medication table with the number of subjects and the total number of treatments by medication class
+#' sorted alphabetically and medication name sorted by frequencies presented without the total number of treatments per
+#' medication.
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -337,4 +342,3 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
     ) %>%
     append_topleft(paste0("  ", lbl_medname_var))
 }
-

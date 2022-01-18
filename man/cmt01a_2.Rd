@@ -2,7 +2,8 @@
 % Please edit documentation in R/cmt01a.R
 \name{cmt01a_2}
 \alias{cmt01a_2}
-\title{\code{CMT01A} Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by frequency).}
+\title{\code{CMT01A} Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
+frequency).}
 \usage{
 cmt01a_2(
   adam_db,
@@ -33,7 +34,8 @@ cmt01a_2(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
-The \code{CMT01A}
+A concomitant medication table with the number of subjects and the total number of treatments by medication class and
+medication name sorted by frequencies.
 }
 \details{
 \itemize{
