@@ -7,9 +7,9 @@
 set_decoration(x, deco)
 }
 \arguments{
-\item{x}{(\code{rtables})}
+\item{x}{(\code{rtables}) object.}
 
-\item{deco}{(\code{list}) typically generated with \code{std_deco()}}
+\item{deco}{(\code{list}) typically generated with \code{std_deco()}.}
 }
 \value{
 \code{rtables} with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.

@@ -2,6 +2,7 @@
 
 std_preprocessing_map <- tibble::tribble(
   ~tlgfname, ~filter_fname, ~mutate_fname, ~req_data,
+  "aet01_1", "filter_adae_anl01fl", "mutate_for_aet01", c("adsl", "adae"),
   "aet02_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet02_2", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet02_3", "filter_adae_anl01fl", NA, c("adsl", "adae"),
@@ -198,13 +199,16 @@ std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
 #'
 #' @inheritParams gen_args
 #'
+#' @importFrom dplyr filter
+#'
 #'
 filter_adae_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adae, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(adae) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `adlb` for `ANL01FL`
@@ -215,8 +219,9 @@ filter_adlb_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adlb, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(adlb) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `adeg` for `ANL01FL`
@@ -227,8 +232,9 @@ filter_adeg_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adeg, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(adeg) %>%
+    dm_filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `advs` for `ANL01FL`
@@ -239,8 +245,9 @@ filter_advs_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(advs, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(advs) %>%
+    dm_filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `adex` for `PARCAT1`
@@ -251,9 +258,69 @@ filter_adex_drug <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adex, PARCAT1 == "OVERALL") %>%
-    dm_apply_filters()
+    dm_zoom_to(adex) %>%
+    dm_filter(PARCAT1 == "OVERALL") %>%
+    dm_update_zoomed()
 }
+
+
+#' Creating Necessary Columns for `aet01`
+#'
+#' @inheritParams gen_args
+#'
+mutate_for_aet01 <- function(adam_db,
+                             actarm = .study$armvar,
+                             .study = list(armvar = "ARM")) {
+
+  arm_sym <- sym(actarm)
+
+  db <- adam_db %>%
+    dm_zoom_to(adae) %>%
+    mutate(
+    # USUBJID = USUBJID,
+    # "{actarm}" := !!arm_sym, # This is so ugly
+    FATAL = AESDTH == "Y",
+    SER = AESER == "Y",
+    SERWD = (AESER == "Y" & AEACN == "DRUG WITHDRAWN"),
+    SERDSM = (AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+    RELSER = (AESER == "Y" & AEREL == "Y"),
+    WD = AEACN == "DRUG WITHDRAWN",
+    DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+    REL = AEREL == "Y",
+    RELWD = (AEREL == "Y" & AEACN == "DRUG WITHDRAWN"),
+    RELDSM = (AEREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+    CTC35 = AETOXGR %in% c("3", "4", "5"),
+    CTC45 = AETOXGR %in% c("4", "5"),
+    SEV = AESEV == "SEVERE",
+    SMQ01 = SMQ01NAM != "",
+    SMQ02 = SMQ02NAM != "",
+    CQ01 = CQ01NAM != ""
+    ) %>%
+    mutate(
+    AEDECOD = h_relabel(AEDECOD, "Dictionary-Derived Term"),
+    AESDTH = h_relabel(AESDTH, "Results in Death"),
+    AEACN = h_relabel(AEACN, "Action Taken with Study Treatment"),
+    FATAL = h_relabel(FATAL, "AE with fatal outcome"),
+    SER = h_relabel(SER, "Serious AE"),
+    SERWD = h_relabel(SERWD, "Serious AE leading to withdrawal from treatment"),
+    SERDSM = h_relabel(SERDSM, "Serious AE leading to dose modification/interruption"),
+    RELSER = h_relabel(RELSER, "Related Serious AE"),
+    WD = h_relabel(WD, "AE leading to withdrawal from treatment"),
+    DSM = h_relabel(DSM, "AE leading to dose modification/interruption"),
+    REL = h_relabel(REL, "Related AE"),
+    RELWD = h_relabel(RELWD, "Related AE leading to withdrawal from treatment"),
+    RELDSM = h_relabel(RELDSM, "Related AE leading to dose modification/interruption"),
+    CTC35 = h_relabel(CTC35, "Grade 3-5 AE"),
+    CTC45 = h_relabel(CTC45, "Grade 4/5 AE"),
+    SMQ01 =  h_relabel(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
+    SMQ02 = h_relabel(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
+    CQ01 = h_relabel(CQ01, aesi_label(CQ01NAM))
+    ) %>%
+    dm_update_zoomed()
+
+  db
+}
+
 
 #' Categorize Reason for Discontinuation from Study.
 #'

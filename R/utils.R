@@ -368,8 +368,8 @@ syn_test_data <- function() {
 
 #' Temporary function to add decorator to a table
 #'
-#' @param x (`rtables`)
-#' @param deco (`list`) typically generated with `std_deco()`
+#' @param x (`rtables`) object.
+#' @param deco (`list`) typically generated with `std_deco()`.
 #'
 #' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 #'
@@ -378,4 +378,25 @@ set_decoration <- function(x, deco) {
   x@subtitles <- deco$subtitles
   x@main_footer <- deco$main_footer
   x
+}
+
+#' h_relabel
+#'
+#' Utility function to relabel column in `dplyr` context.
+#'
+#' @param data any object that can take a label attribute.
+#' @param lab (`character`) to be used as label.
+#'
+#' @importFrom checkmate assert_character
+#'
+#' @return
+#' @export
+#'
+h_relabel <- function(data, lab) {
+
+  assert_character(lab)
+
+  attr(data, "label") <- lab
+
+  data
 }
