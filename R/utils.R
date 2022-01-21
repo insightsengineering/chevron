@@ -53,7 +53,7 @@ std_deco <- function(id, ...) {
 #' \dontrun{
 #' chevron:::bol_YN(c("Y", "Y", "N", "", NA))
 #' }
-bol_YN <- function(x) {
+bol_YN <- function(x) { # nolint
   if (is.logical(x)) {
     x
   } else {
