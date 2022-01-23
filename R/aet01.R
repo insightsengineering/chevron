@@ -158,6 +158,8 @@ aet01_2 <- function(adam_db,
 #' @describeIn aet01_2
 #'
 #' @inheritParams gen_args
+#' @param safety_var (`character`) the safety variables to be summarized.
+#' @param safety_var (`character`) the labels of the safety variables to be summarized.
 #'
 #' @return
 #' @export

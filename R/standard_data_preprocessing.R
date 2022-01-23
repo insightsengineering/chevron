@@ -247,7 +247,7 @@ filter_advs_anl01fl <- function(adam_db) {
 
   adam_db %>%
     dm_zoom_to(advs) %>%
-    dm_filter(ANL01FL == "Y") %>%
+    filter(ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -260,7 +260,7 @@ filter_adex_drug <- function(adam_db) {
 
   adam_db %>%
     dm_zoom_to(adex) %>%
-    dm_filter(PARCAT1 == "OVERALL") %>%
+    filter(PARCAT1 == "OVERALL") %>%
     dm_update_zoomed()
 }
 
