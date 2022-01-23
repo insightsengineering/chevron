@@ -2,6 +2,7 @@
 % Please edit documentation in R/aet01.R
 \name{aet01_1}
 \alias{aet01_1}
+\alias{aet01_1_lyt}
 \title{\code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.}
 \usage{
 aet01_1(
@@ -9,6 +10,13 @@ aet01_1(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
+  deco = std_deco("AET01"),
+  .study = list(armvar = "ARM", lbl_overall = NULL)
+)
+
+aet01_1_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
   deco = std_deco("AET01"),
   .study = list(armvar = "ARM", lbl_overall = NULL)
 )
@@ -28,10 +36,17 @@ aet01_1(
 }
 \value{
 
+
+
 }
 \description{
 Overview of death and summary of adverse events.
 }
+\section{Functions}{
+\itemize{
+\item \code{aet01_1_lyt}: 
+}}
+
 \examples{
 library(dm)
 
@@ -40,4 +55,9 @@ db <- syn_test_data() \%>\%
 
 aet01_1(db, armvar = "ARM")
 
+aet01_2_lyt(
+  armvar = "ACTARM",
+  lbl_overall = NULL,
+  deco = std_deco("AET01")
+)
 }

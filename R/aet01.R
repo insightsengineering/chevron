@@ -47,7 +47,7 @@ aet01_1 <- function(adam_db,
 
 #' `AET01` Layout 2 (Default)
 #'
-#' @describeIn aet01_2
+#' @describeIn aet01_1
 #'
 #' @inheritParams gen_args
 #'
@@ -105,7 +105,7 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #'
 #' @importFrom magrittr %>%
 #'
@@ -159,7 +159,7 @@ aet01_2 <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #'
 #' @return
 #' @export
