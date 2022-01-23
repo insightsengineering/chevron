@@ -4,16 +4,10 @@
 \alias{mutate_for_aet01}
 \title{Creating Necessary Columns for \code{aet01}}
 \usage{
-mutate_for_aet01(
-  adam_db,
-  actarm = .study$armvar,
-  .study = list(armvar = "ARM")
-)
+mutate_for_aet01(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
 Creating Necessary Columns for \code{aet01}

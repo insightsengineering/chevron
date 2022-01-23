@@ -3,6 +3,7 @@
 std_preprocessing_map <- tibble::tribble(
   ~tlgfname, ~filter_fname, ~mutate_fname, ~req_data,
   "aet01_1", "filter_adae_anl01fl", "mutate_for_aet01", c("adsl", "adae"),
+  "aet01_2", "filter_adae_anl01fl", "mutate_for_aet01", c("adsl", "adae"),
   "aet02_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet02_2", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet02_3", "filter_adae_anl01fl", NA, c("adsl", "adae"),
@@ -233,7 +234,7 @@ filter_adeg_anl01fl <- function(adam_db) {
 
   adam_db %>%
     dm_zoom_to(adeg) %>%
-    dm_filter(ANL01FL == "Y") %>%
+    filter(ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -268,17 +269,11 @@ filter_adex_drug <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 #'
-mutate_for_aet01 <- function(adam_db,
-                             actarm = .study$armvar,
-                             .study = list(armvar = "ARM")) {
-
-  arm_sym <- sym(actarm)
+mutate_for_aet01 <- function(adam_db) {
 
   db <- adam_db %>%
     dm_zoom_to(adae) %>%
     mutate(
-    # USUBJID = USUBJID,
-    # "{actarm}" := !!arm_sym, # This is so ugly
     FATAL = AESDTH == "Y",
     SER = AESER == "Y",
     SERWD = (AESER == "Y" & AEACN == "DRUG WITHDRAWN"),

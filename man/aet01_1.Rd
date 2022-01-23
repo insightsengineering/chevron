@@ -2,8 +2,7 @@
 % Please edit documentation in R/aet01.R
 \name{aet01_1}
 \alias{aet01_1}
-\alias{aet01_1_lyt}
-\title{\code{AET01} Table 1 (Default)}
+\title{\code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.}
 \usage{
 aet01_1(
   adam_db,
@@ -11,23 +10,7 @@ aet01_1(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET01"),
-  safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
-  .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35"))
-)
-
-aet01_1_lyt(
-  armvar = .study$armvar,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("AET01"),
-  safety_var = .study$safety_var,
-  lbl_safety_var = .study$lbl_safety_var,
-  .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
-    "SEV", "SMQ01", "SMQ02", "CQ01"), lbl_safety_var = c("FATAL", "SER", "SERWD",
-    "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV",
-    "SMQ01", "SMQ02", "CQ01"))
+  .study = list(armvar = "ARM", lbl_overall = NULL)
 )
 }
 \arguments{
@@ -45,19 +28,10 @@ aet01_1_lyt(
 }
 \value{
 
-
-
 }
 \description{
-\code{AET01} Table 1 (Default)
-
-\code{AET01} Layout 1 (Default)
+Overview of death and summary of adverse events.
 }
-\section{Functions}{
-\itemize{
-\item \code{aet01_1_lyt}: 
-}}
-
 \examples{
 library(dm)
 
@@ -66,9 +40,4 @@ db <- syn_test_data() \%>\%
 
 aet01_1(db, armvar = "ARM")
 
-aet01_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("AET01")
-)
 }
