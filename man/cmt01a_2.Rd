@@ -27,7 +27,9 @@ cmt01a_2(
 
 \item{lbl_medcat_var}{(\code{character}) label for the variable defining the medication category.}
 
-\item{medname_var}{(\code{character}) label for the variable defining the medication name.}
+\item{medname_var}{(\code{character}) the variable defining the medication name. By default \code{CMDECOD}.}
+
+\item{lbl_medname_var}{(\code{character}) label for the variable defining the medication name.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

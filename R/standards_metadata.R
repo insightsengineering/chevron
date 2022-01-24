@@ -192,9 +192,9 @@ gds_data <- list(
   AET06 = list(),
   AET05VAD = list(),
   CMT01A = list(
-    "description" = "Concomitant Medications by Medication Class and Preferred Name – Recommended Layout", "Standard
-titles" = "Concomitant Medications by Medication Class and Preferred Name: {Specify Population}", "Standard footnotes"
-= "Treatments are coded using the WHODrug Global B3 Format dictionary {version}.  Treatments can appear under multiple
+    "description" = "Concomitant Medications by Medication Class and Preferred Name - Recommended Layout",
+    "Standard titles" = "Concomitant Medications by Medication Class and Preferred Name: {Specify Population}",
+     "Standard footnotes" = "Treatments are coded using the WHODrug Global B3 Format dictionary {version}.  Treatments can appear under multiple
 classes. Multiple uses of a specific medication for a patient were counted once in the frequency for the medication.
 Likewise, multiple uses within a specific medication class for a patient were counted once in the frequency for the
 medication class. For frequency counts in “Total number of treatments”, multiple uses of the same medication for a

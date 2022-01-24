@@ -9,7 +9,7 @@
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
 #' @param lbl_medcat_var (`character`) label for the variable defining the medication category.
 #' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param medname_var (`character`) label for the variable defining the medication name.
+#' @param lbl_medname_var (`character`) label for the variable defining the medication name.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
@@ -153,7 +153,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
 #' @param lbl_medcat_var (`character`) label for the variable defining the medication category.
 #' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param medname_var (`character`) label for the variable defining the medication name.
+#' @param lbl_medname_var (`character`) label for the variable defining the medication name.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
@@ -234,7 +234,9 @@ cmt01a_2 <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
+#' @param lbl_medcat_var (`character`) the label for the medication category.
 #' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
+#' @param lbl_medname_var (`character`) the label for the medication name.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
@@ -261,7 +263,9 @@ cmt01a_2 <- function(adam_db,
 cmt01a_3 <- function(adam_db,
                     armvar = .study$armvar,
                     medcat_var = "ATC2", #Anatomical therapeutic category
+                    lbl_medcat_var = "ATC Class Level 2",
                     medname_var = "CMDECOD",
+                    lbl_medname_var = "Other Treatment",
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("CMT01A"),
@@ -275,7 +279,9 @@ cmt01a_3 <- function(adam_db,
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
-    lbl_medcat_var = var_labels_for(dbsel$adcm, medcat_var),
+    lbl_medcat_var = lbl_medcat_var,
+    medname_var = medname_var,
+    lbl_medname_var = lbl_medname_var,
     deco = deco
   )
 
