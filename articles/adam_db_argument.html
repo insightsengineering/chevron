@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -52,19 +48,10 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/insightsengineering/chevron">
+  <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -79,13 +66,13 @@ Other releases
 
       
 
-      </header><script src="adam_db_argument_files/header-attrs-2.11/header-attrs.js"></script><script src="adam_db_argument_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="adam_db_argument_files/viz-1.8.2/viz.js"></script><link href="adam_db_argument_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="adam_db_argument_files/grViz-binding-1.0.6.1/grViz.js"></script><div class="row">
+      </header><script src="adam_db_argument_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="adam_db_argument_files/viz-1.8.2/viz.js"></script><link href="adam_db_argument_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="adam_db_argument_files/grViz-binding-1.0.7/grViz.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The adam_db Argument</h1>
             
-            <h4 class="date">2021-12-21</h4>
+            <h4 data-toc-skip class="date">2022-01-24</h4>
       
       
       <div class="hidden name"><code>adam_db_argument.Rmd</code></div>
@@ -94,248 +81,248 @@ Other releases
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>We have decided to use the <code>dm</code> package in <code>chevron</code> to model the data relations of the CDISC ADaM datasets. In this vignette we introduce how we intend to use ADaM data in a relational model, in R with <code>dm</code>. Note that <code>dm</code> can be connected to a database.</p>
 </div>
-<div id="sample-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sample-data" class="anchor"></a>Sample Data</h2>
+<div class="section level2">
+<h2 id="sample-data">Sample Data<a class="anchor" aria-label="anchor" href="#sample-data"></a>
+</h2>
 <p>We remove the ADSL variables in the database of the non-adsl datasets and merge the adsl variables back as needed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'tern':</span>
 <span class="co">#&gt;   method   from </span>
 <span class="co">#&gt;   tidy.glm broom</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/">dm</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dm'</span>
 <span class="co">#&gt; The following object is masked from 'package:stats':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     filter</span>
 
-<span class="va">syn_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span>, <span class="st">"adlb"</span>, <span class="st">"adrs"</span>, <span class="st">"adsub"</span><span class="op">)</span><span class="op">]</span>
+<span class="va">syn_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span>, <span class="st">"adlb"</span>, <span class="st">"adrs"</span>, <span class="st">"adsub"</span><span class="op">)</span><span class="op">]</span>
 <span class="co">#&gt; </span>
 
 <span class="va">drop_adsl_vars</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">adsl</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+  <span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
 <span class="op">}</span>
 
-<span class="va">dbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">syn_data</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="va">drop_adsl_vars</span>, adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">syn_data</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="va">drop_adsl_vars</span>, adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">### Define primary and foreign keys</span>
-<span class="va">adam_study_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html">new_dm</a></span><span class="op">(</span><span class="va">dbl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html">dm_add_fk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"ASTDTM"</span>, <span class="st">"AETERM"</span>, <span class="st">"AESEQ"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html">dm_add_fk</a></span><span class="op">(</span><span class="va">adlb</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adlb</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"BASETYPE"</span>, <span class="st">"AVISITN"</span>,
-                    <span class="st">"ATPTN"</span>, <span class="st">"DTYPE"</span>, <span class="st">"ADTM"</span>, <span class="st">"LBSEQ"</span>, <span class="st">"ASPID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html">dm_add_fk</a></span><span class="op">(</span><span class="va">adrs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adrs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISITN"</span>, <span class="st">"ADTM"</span>, <span class="st">"RSSEQ"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html">dm_add_fk</a></span><span class="op">(</span><span class="va">adsub</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adsub</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"PARAMCD"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">adam_study_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">new_dm</a></span><span class="op">(</span><span class="va">dbl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"ASTDTM"</span>, <span class="st">"AETERM"</span>, <span class="st">"AESEQ"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adlb</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adlb</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"BASETYPE"</span>, <span class="st">"AVISITN"</span>,
+                    <span class="st">"ATPTN"</span>, <span class="st">"DTYPE"</span>, <span class="st">"ADTM"</span>, <span class="st">"LBSEQ"</span>, <span class="st">"ASPID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adrs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adrs</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISITN"</span>, <span class="st">"ADTM"</span>, <span class="st">"RSSEQ"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adsub</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsub</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"PARAMCD"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></code></pre></div>
 <p>Note that the keys are defined in the data analysis plan at Roche.</p>
 </div>
-<div id="work-with-dm-object" class="section level2">
-<h2 class="hasAnchor">
-<a href="#work-with-dm-object" class="anchor"></a>Work With dm Object</h2>
+<div class="section level2">
+<h2 id="work-with-dm-object">Work With dm Object<a class="anchor" aria-label="anchor" href="#work-with-dm-object"></a>
+</h2>
 <p>List the keys</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dm</span><span class="fu">::</span><span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_get_all_fks.html">dm_get_all_fks</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 4 × 5</span>
+<code class="sourceCode R"><span class="fu">dm</span><span class="fu">::</span><span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_get_all_fks.html" class="external-link">dm_get_all_fks</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 5</span></span>
 <span class="co">#&gt;   child_table child_fk_cols    parent_table parent_key_cols  on_delete</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;keys&gt;           &lt;chr&gt;        &lt;keys&gt;           &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 adae        USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
-<span class="co">#&gt; 2 adlb        USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
-<span class="co">#&gt; 3 adrs        USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
-<span class="co">#&gt; 4 adsub       USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
-<span class="fu">dm</span><span class="fu">::</span><span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_get_all_pks.html">dm_get_all_pks</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 5 × 2</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;keys&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;keys&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> adae        USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> adlb        USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> adrs        USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> adsub       USUBJID, STUDYID adsl         USUBJID, STUDYID no_action</span>
+<span class="fu">dm</span><span class="fu">::</span><span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_get_all_pks.html" class="external-link">dm_get_all_pks</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 2</span></span>
 <span class="co">#&gt;   table pk_col                        </span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;keys&gt;                        </span>
-<span class="co">#&gt; 1 adsl  USUBJID, STUDYID              </span>
-<span class="co">#&gt; 2 adae  USUBJID, STUDYID, … (5 total) </span>
-<span class="co">#&gt; 3 adlb  STUDYID, USUBJID, … (10 total)</span>
-<span class="co">#&gt; 4 adrs  STUDYID, USUBJID, … (6 total) </span>
-<span class="co">#&gt; 5 adsub USUBJID, STUDYID, PARAMCD</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;keys&gt;</span>                        </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> adsl  USUBJID, STUDYID              </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> adae  USUBJID, STUDYID, … (5 total) </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> adlb  STUDYID, USUBJID, … (10 total)</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> adrs  STUDYID, USUBJID, … (6 total) </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> adsub USUBJID, STUDYID, PARAMCD</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_draw.html">dm_draw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-1adfcf4a29f0a541af57" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1adfcf4a29f0a541af57">{"x":{"diagram":"#data_model\ndigraph {\ngraph [rankdir=LR tooltip=\"Data Model\" ]\n\nnode [margin=0 fontcolor = \"#444444\" ]\n\nedge [color = \"#555555\", arrowsize = 1, ]\n\npack=true\npackmode= \"node\"\n\n  \"adae\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adae<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, ASTDTM, AETERM, AESEQ\"><U>USUBJID, STUDYID, ASTDTM, AETERM, AESEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adlb\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adlb<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID\"><U>STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adrs\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adrs<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ\"><U>STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsl\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsl<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\"><U>USUBJID, STUDYID<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsub\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsub<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, PARAMCD\"><U>USUBJID, STUDYID, PARAMCD<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n\"adae\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adlb\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adrs\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adsub\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n}","config":{"engine":null,"options":null}},"evals":[],"jsHooks":[]}</script><div id="subset-the-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#subset-the-data" class="anchor"></a>Subset the data</h3>
+<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_draw.html" class="external-link">dm_draw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-3a270f348cae50cc82b0" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3a270f348cae50cc82b0">{"x":{"diagram":"#data_model\ndigraph {\ngraph [rankdir=LR tooltip=\"Data Model\" ]\n\nnode [margin=0 fontcolor = \"#444444\" ]\n\nedge [color = \"#555555\", arrowsize = 1, ]\n\npack=true\npackmode= \"node\"\n\n  \"adae\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adae<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, ASTDTM, AETERM, AESEQ\"><U>USUBJID, STUDYID, ASTDTM, AETERM, AESEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adlb\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adlb<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID\"><U>STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adrs\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adrs<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ\"><U>STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsl\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsl<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\"><U>USUBJID, STUDYID<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsub\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsub<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, PARAMCD\"><U>USUBJID, STUDYID, PARAMCD<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n\"adae\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adlb\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adrs\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adsub\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n}","config":{"engine":null,"options":null}},"evals":[],"jsHooks":[]}</script><div class="section level3">
+<h3 id="subset-the-data">Subset the data<a class="anchor" aria-label="anchor" href="#subset-the-data"></a>
+</h3>
 <p>Further we can subset the data:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html">dm_filter</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_filter</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span></code></pre></div>
 <p>which adds the filter information to the <code>dm</code> object but does not apply the filtering</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/pull_tbl.html">pull_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 3</span>
+<code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/pull_tbl.html" class="external-link">pull_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span>
 <span class="co">#&gt;   USUBJID               STUDYID SEX  </span>
-<span class="co">#&gt;   &lt;chr&gt;                 &lt;chr&gt;   &lt;fct&gt;</span>
-<span class="co">#&gt; 1 AB12345-RUS-3-id-378  AB12345 F    </span>
-<span class="co">#&gt; 2 AB12345-CHN-11-id-220 AB12345 F    </span>
-<span class="co">#&gt; 3 AB12345-USA-1-id-45   AB12345 F    </span>
-<span class="co">#&gt; 4 AB12345-USA-1-id-261  AB12345 F    </span>
-<span class="co">#&gt; 5 AB12345-NGA-11-id-173 AB12345 F    </span>
-<span class="co">#&gt; 6 AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
-<p>In order to get the filtered data one has to use the <code><a href="https://cynkra.github.io/dm/reference/dm_filter.html">dm_apply_filters()</a></code> function</p>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> AB12345-RUS-3-id-378  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AB12345-CHN-11-id-220 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> AB12345-USA-1-id-45   AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> AB12345-USA-1-id-261  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> AB12345-NGA-11-id-173 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
+<p>In order to get the filtered data one has to use the <code><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_apply_filters()</a></code> function</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html">dm_apply_filters</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/pull_tbl.html">pull_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 3</span>
+<code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_apply_filters</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/pull_tbl.html" class="external-link">pull_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span>
 <span class="co">#&gt;   USUBJID               STUDYID SEX  </span>
-<span class="co">#&gt;   &lt;chr&gt;                 &lt;chr&gt;   &lt;fct&gt;</span>
-<span class="co">#&gt; 1 AB12345-RUS-3-id-378  AB12345 F    </span>
-<span class="co">#&gt; 2 AB12345-CHN-11-id-220 AB12345 F    </span>
-<span class="co">#&gt; 3 AB12345-USA-1-id-45   AB12345 F    </span>
-<span class="co">#&gt; 4 AB12345-USA-1-id-261  AB12345 F    </span>
-<span class="co">#&gt; 5 AB12345-NGA-11-id-173 AB12345 F    </span>
-<span class="co">#&gt; 6 AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> AB12345-RUS-3-id-378  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AB12345-CHN-11-id-220 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> AB12345-USA-1-id-45   AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> AB12345-USA-1-id-261  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> AB12345-NGA-11-id-173 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html">dm_apply_filters_to_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 3</span>
+<code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_apply_filters_to_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span>
 <span class="co">#&gt;   USUBJID               STUDYID SEX  </span>
-<span class="co">#&gt;   &lt;chr&gt;                 &lt;chr&gt;   &lt;fct&gt;</span>
-<span class="co">#&gt; 1 AB12345-RUS-3-id-378  AB12345 F    </span>
-<span class="co">#&gt; 2 AB12345-CHN-11-id-220 AB12345 F    </span>
-<span class="co">#&gt; 3 AB12345-USA-1-id-45   AB12345 F    </span>
-<span class="co">#&gt; 4 AB12345-USA-1-id-261  AB12345 F    </span>
-<span class="co">#&gt; 5 AB12345-NGA-11-id-173 AB12345 F    </span>
-<span class="co">#&gt; 6 AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> AB12345-RUS-3-id-378  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AB12345-CHN-11-id-220 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> AB12345-USA-1-id-45   AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> AB12345-USA-1-id-261  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> AB12345-NGA-11-id-173 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
 <p>If one does not need the lazy filtering feature then one can also zoom to the desired table and use <code>filter</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html">dm_zoom_to</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/pull_tbl.html">pull_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 3</span>
+<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/pull_tbl.html" class="external-link">pull_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span>
 <span class="co">#&gt;   USUBJID               STUDYID SEX  </span>
-<span class="co">#&gt;   &lt;chr&gt;                 &lt;chr&gt;   &lt;fct&gt;</span>
-<span class="co">#&gt; 1 AB12345-RUS-3-id-378  AB12345 F    </span>
-<span class="co">#&gt; 2 AB12345-CHN-11-id-220 AB12345 F    </span>
-<span class="co">#&gt; 3 AB12345-USA-1-id-45   AB12345 F    </span>
-<span class="co">#&gt; 4 AB12345-USA-1-id-261  AB12345 F    </span>
-<span class="co">#&gt; 5 AB12345-NGA-11-id-173 AB12345 F    </span>
-<span class="co">#&gt; 6 AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> AB12345-RUS-3-id-378  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AB12345-CHN-11-id-220 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> AB12345-USA-1-id-45   AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> AB12345-USA-1-id-261  AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> AB12345-NGA-11-id-173 AB12345 F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
 </div>
-<div id="mutate-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mutate-data" class="anchor"></a>Mutate Data</h3>
+<div class="section level3">
+<h3 id="mutate-data">Mutate Data<a class="anchor" aria-label="anchor" href="#mutate-data"></a>
+</h3>
 <p><code>dm</code> supports most of the <code>dplyr</code> verbs, for example <code>mutate</code></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html">dm_zoom_to</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>TEST <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">SEX</span>, <span class="st">"-"</span>, <span class="va">BWGHTSI</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>TEST <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">SEX</span>, <span class="st">"-"</span>, <span class="va">BWGHTSI</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">db</span><span class="op">$</span><span class="va">adsl</span><span class="op">$</span><span class="va">TEST</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>
 <span class="co">#&gt; [1] "M - 109.5" "M - 111.1" "F - 108.3" "F - 131.1" "M - 83.1"</span></code></pre></div>
 </div>
 </div>
-<div id="dm-objects-in-chevron" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dm-objects-in-chevron" class="anchor"></a>dm Objects in Chevron</h2>
+<div class="section level2">
+<h2 id="dm-objects-in-chevron">dm Objects in Chevron<a class="anchor" aria-label="anchor" href="#dm-objects-in-chevron"></a>
+</h2>
 <p>In <code>chevron</code> we use <code>dm</code> objects to combine all data into one object. The <em>tlg-functions</em> and the functions returned <code>std_filter</code> and <code>std_mutate</code> require a <code>dm</code> object to the <code>adam_db</code> argument.</p>
 <p><code>dm</code> objects also are useful to filter the data. For example filtering for all females also subsets the other datasets as per relation specification:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html">dm_filter</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html">dm_apply_filters</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_join_to_tbl.html">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">SEX</span>, <span class="va">AESEQ</span>, <span class="va">AETERM</span>, <span class="va">AESEQ</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 4</span>
+<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_filter</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_apply_filters</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_join_to_tbl.html" class="external-link">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">SEX</span>, <span class="va">AESEQ</span>, <span class="va">AETERM</span>, <span class="va">AESEQ</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span>
 <span class="co">#&gt;   USUBJID              SEX   AESEQ AETERM       </span>
-<span class="co">#&gt;   &lt;chr&gt;                &lt;fct&gt; &lt;int&gt; &lt;fct&gt;        </span>
-<span class="co">#&gt; 1 AB12345-BRA-1-id-141 F         1 trm B.2.1.2.1</span>
-<span class="co">#&gt; 2 AB12345-BRA-1-id-141 F         2 trm D.2.1.5.3</span>
-<span class="co">#&gt; 3 AB12345-BRA-1-id-141 F         3 trm A.1.1.1.1</span>
-<span class="co">#&gt; 4 AB12345-BRA-1-id-141 F         4 trm A.1.1.1.2</span>
-<span class="co">#&gt; 5 AB12345-BRA-1-id-141 F         5 trm A.1.1.1.1</span>
-<span class="co">#&gt; 6 AB12345-BRA-1-id-141 F         6 trm D.1.1.1.1</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> AB12345-BRA-1-id-141 F         1 trm B.2.1.2.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AB12345-BRA-1-id-141 F         2 trm D.2.1.5.3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> AB12345-BRA-1-id-141 F         3 trm A.1.1.1.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> AB12345-BRA-1-id-141 F         4 trm A.1.1.1.2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> AB12345-BRA-1-id-141 F         5 trm A.1.1.1.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AB12345-BRA-1-id-141 F         6 trm D.1.1.1.1</span></code></pre></div>
 </div>
-<div id="get-analysis-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-analysis-data" class="anchor"></a>Get Analysis Data</h2>
-<div id="vertical-analysis-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#vertical-analysis-data" class="anchor"></a>Vertical Analysis Data</h3>
+<div class="section level2">
+<h2 id="get-analysis-data">Get Analysis Data<a class="anchor" aria-label="anchor" href="#get-analysis-data"></a>
+</h2>
+<div class="section level3">
+<h3 id="vertical-analysis-data">Vertical Analysis Data<a class="anchor" aria-label="anchor" href="#vertical-analysis-data"></a>
+</h3>
 <p>For standard outputs we do know which data and variables we need to create a TLG.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_join_to_tbl.html">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">AESEQ</span>, <span class="va">ARM</span>, <span class="va">SEX</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1,934 × 3</span>
+<code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_join_to_tbl.html" class="external-link">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">AESEQ</span>, <span class="va">ARM</span>, <span class="va">SEX</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,934 × 3</span></span>
 <span class="co">#&gt;    AESEQ ARM            SEX  </span>
-<span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;          &lt;fct&gt;</span>
-<span class="co">#&gt;  1     1 A: Drug X      M    </span>
-<span class="co">#&gt;  2     2 A: Drug X      M    </span>
-<span class="co">#&gt;  3     3 A: Drug X      M    </span>
-<span class="co">#&gt;  4     4 A: Drug X      M    </span>
-<span class="co">#&gt;  5     1 C: Combination F    </span>
-<span class="co">#&gt;  6     2 C: Combination F    </span>
-<span class="co">#&gt;  7     3 C: Combination F    </span>
-<span class="co">#&gt;  8     4 C: Combination F    </span>
-<span class="co">#&gt;  9     5 C: Combination F    </span>
-<span class="co">#&gt; 10     6 C: Combination F    </span>
-<span class="co">#&gt; # … with 1,924 more rows</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 A: Drug X      M    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 A: Drug X      M    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 A: Drug X      M    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 A: Drug X      M    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     1 C: Combination F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     2 C: Combination F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     3 C: Combination F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     4 C: Combination F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     5 C: Combination F    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     6 C: Combination F    </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 1,924 more rows</span></span></code></pre></div>
 </div>
-<div id="horizontal" class="section level3">
-<h3 class="hasAnchor">
-<a href="#horizontal" class="anchor"></a>Horizontal</h3>
+<div class="section level3">
+<h3 id="horizontal">Horizontal<a class="anchor" aria-label="anchor" href="#horizontal"></a>
+</h3>
 <p>Add variables from <code>adsub</code> to <code>adsl</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span>
 
-<span class="va">adsub_wide</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span><span class="op">$</span><span class="va">adsub</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">PARAMCD</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BWGHTSI"</span>, <span class="st">"BECOG"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">PARAMCD</span>, <span class="va">AVAL</span>, <span class="va">AVALU</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">PARAMCD</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">AVAL</span>, <span class="va">AVALU</span><span class="op">)</span><span class="op">)</span>
+<span class="va">adsub_wide</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span><span class="op">$</span><span class="va">adsub</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">PARAMCD</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BWGHTSI"</span>, <span class="st">"BECOG"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">STUDYID</span>, <span class="va">PARAMCD</span>, <span class="va">AVAL</span>, <span class="va">AVALU</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">PARAMCD</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">AVAL</span>, <span class="va">AVALU</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_tbl.html">dm_add_tbl</a></span><span class="op">(</span><span class="va">adam_study_data</span>, <span class="va">adsub_wide</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html">dm_add_fk</a></span><span class="op">(</span><span class="va">adsub_wide</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adsub_wide</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_join_to_tbl.html">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">adsub_wide</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 400 × 48</span>
+<span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_tbl.html" class="external-link">dm_add_tbl</a></span><span class="op">(</span><span class="va">adam_study_data</span>, <span class="va">adsub_wide</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adsub_wide</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsub_wide</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_join_to_tbl.html" class="external-link">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">adsub_wide</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 400 × 48</span></span>
 <span class="co">#&gt;    USUBJID      STUDYID AVAL_BWGHTSI AVAL_BECOG AVALU_BWGHTSI AVALU_BECOG SUBJID</span>
-<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt; &lt;fct&gt;         &lt;fct&gt;       &lt;chr&gt; </span>
-<span class="co">#&gt;  1 AB12345-BRA… AB12345         62.5          3 kg            ""          id-105</span>
-<span class="co">#&gt;  2 AB12345-BRA… AB12345         98.8          3 kg            ""          id-134</span>
-<span class="co">#&gt;  3 AB12345-BRA… AB12345         49.6          1 kg            ""          id-141</span>
-<span class="co">#&gt;  4 AB12345-BRA… AB12345        162.           3 kg            ""          id-236</span>
-<span class="co">#&gt;  5 AB12345-BRA… AB12345        105.           2 kg            ""          id-265</span>
-<span class="co">#&gt;  6 AB12345-BRA… AB12345         53.8          4 kg            ""          id-42 </span>
-<span class="co">#&gt;  7 AB12345-BRA… AB12345         60.6          3 kg            ""          id-65 </span>
-<span class="co">#&gt;  8 AB12345-BRA… AB12345         63.8          4 kg            ""          id-93 </span>
-<span class="co">#&gt;  9 AB12345-BRA… AB12345        144.           3 kg            ""          id-171</span>
-<span class="co">#&gt; 10 AB12345-BRA… AB12345         76.9          3 kg            ""          id-217</span>
-<span class="co">#&gt; # … with 390 more rows, and 41 more variables: SITEID &lt;chr&gt;, AGE &lt;int&gt;,</span>
-<span class="co">#&gt; #   SEX &lt;fct&gt;, RACE &lt;fct&gt;, COUNTRY &lt;fct&gt;, DTHFL &lt;fct&gt;, INVID &lt;chr&gt;,</span>
-<span class="co">#&gt; #   INVNAM &lt;chr&gt;, ARM &lt;fct&gt;, ARMCD &lt;fct&gt;, ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;,</span>
-<span class="co">#&gt; #   REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;, STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;, BMRKR2 &lt;fct&gt;,</span>
-<span class="co">#&gt; #   ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;, BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;, RANDDT &lt;date&gt;,</span>
-<span class="co">#&gt; #   TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;, EOSSTT &lt;fct&gt;, EOSDT &lt;date&gt;, EOSDY &lt;int&gt;,</span>
-<span class="co">#&gt; #   DCSREAS &lt;fct&gt;, DTHDT &lt;date&gt;, DTHCAUS &lt;fct&gt;, DTHCAT &lt;fct&gt;, LDDTHELD &lt;int&gt;, …</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> AB12345-BRA… AB12345         62.5          3 kg            <span style="color: #949494;">""</span>          id-105</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AB12345-BRA… AB12345         98.8          3 kg            <span style="color: #949494;">""</span>          id-134</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> AB12345-BRA… AB12345         49.6          1 kg            <span style="color: #949494;">""</span>          id-141</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> AB12345-BRA… AB12345        162.           3 kg            <span style="color: #949494;">""</span>          id-236</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> AB12345-BRA… AB12345        105.           2 kg            <span style="color: #949494;">""</span>          id-265</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> AB12345-BRA… AB12345         53.8          4 kg            <span style="color: #949494;">""</span>          id-42 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> AB12345-BRA… AB12345         60.6          3 kg            <span style="color: #949494;">""</span>          id-65 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> AB12345-BRA… AB12345         63.8          4 kg            <span style="color: #949494;">""</span>          id-93 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> AB12345-BRA… AB12345        144.           3 kg            <span style="color: #949494;">""</span>          id-171</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> AB12345-BRA… AB12345         76.9          3 kg            <span style="color: #949494;">""</span>          id-217</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 390 more rows, and 41 more variables: SITEID &lt;chr&gt;, AGE &lt;int&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   SEX &lt;fct&gt;, RACE &lt;fct&gt;, COUNTRY &lt;fct&gt;, DTHFL &lt;fct&gt;, INVID &lt;chr&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   INVNAM &lt;chr&gt;, ARM &lt;fct&gt;, ARMCD &lt;fct&gt;, ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;, STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;, BMRKR2 &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;, BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;, RANDDT &lt;date&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;, EOSSTT &lt;fct&gt;, EOSDT &lt;date&gt;, EOSDY &lt;int&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   DCSREAS &lt;fct&gt;, DTHDT &lt;date&gt;, DTHCAUS &lt;fct&gt;, DTHCAT &lt;fct&gt;, LDDTHELD &lt;int&gt;, …</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -351,11 +338,13 @@ Other releases
 
 
       <footer><div class="copyright">
-  <p>Developed by NEST, Roche, Adrian Waddell, Benoit Falquet.</p>
+  <p></p>
+<p>Developed by NEST, Roche, Adrian Waddell, Benoit Falquet.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -363,6 +352,8 @@ Other releases
 
   
 
+
+  
 
   </body>
 </html>

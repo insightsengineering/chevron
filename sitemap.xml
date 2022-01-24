@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/404.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/Adding_new_TLGs_to_Chevron.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/adam_db_argument.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/dot_study_argument.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/intended_use.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/layouts.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/authors.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/index.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/news/index.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/aet02_1.html</loc>
@@ -67,6 +100,9 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/filter_adlb_anl01fl.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/filter_admh_anl01fl.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/filter_advs_anl01fl.html</loc>
   </url>
   <url>
@@ -76,7 +112,13 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/get_db_data.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/lbt01_1.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/mht01_1.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/mutate_adsl_gp.html</loc>
@@ -128,23 +170,5 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/vst01_1.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/Adding_new_TLGs_to_Chevron.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/adam_db_argument.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/dot_study_argument.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/intended_use.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/introduction.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles/layouts.html</loc>
   </url>
 </urlset>

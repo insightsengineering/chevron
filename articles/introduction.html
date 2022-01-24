@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -52,19 +48,10 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/insightsengineering/chevron">
+  <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -79,13 +66,13 @@ Other releases
 
       
 
-      </header><script src="introduction_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to Chevron</h1>
-                        <h4 class="author">Adrian Waddell</h4>
+                        <h4 data-toc-skip class="author">Adrian Waddell</h4>
             
-            <h4 class="date">2021-12-21</h4>
+            <h4 data-toc-skip class="date">2022-01-24</h4>
       
       
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -94,9 +81,9 @@ Other releases
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<div class="section level3">
+<h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h3>
 <p>The <code>chevron</code> R package provides functions to produce standard tables, listings and graphs (TLGs) used to analyze and report clinical trials data. We refer to these functions as <em>tlg-functions</em>. The <em>tlg-functions</em> in <code>chevron</code> use other packages to produce the final outputs, for example <code>rtables</code> and <code>tern</code> are used to create listings and tables, and <code>ggplot2</code>, <code>lattice</code>, and <code>grid</code> are used to create graphs.</p>
 <p><em>tlg-functions</em> in <code>chevron</code> such as <code>dmt01_1</code>, <code>aet02_1</code>, <code>aet02_2</code> have the following properties:</p>
 <ol style="list-style-type: decimal">
@@ -106,37 +93,37 @@ Other releases
 <li>have a <code>.study</code> argument, read the <em>The .study argument</em> vignette for more detail.</li>
 </ol>
 </div>
-<div id="example-aet02" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example-aet02" class="anchor"></a>Example AET02</h2>
+<div class="section level3">
+<h3 id="example-aet02">Example AET02<a class="anchor" aria-label="anchor" href="#example-aet02"></a>
+</h3>
 <p>For example, the GDS template <code>aet02</code> is implemented in <code>chevron</code> with <em>tlg-functions</em> that have the name <code>aet02_*</code>. The function documentation which is accessible with the <code>help</code> function, e.g. <code><a href="../reference/aet02_1.html">help('aet02_1')</a></code> documents what is particular in the <code>_1</code> implementation.</p>
 <p>We first define the data and put it in a <code>dm</code> object, you can find more details about this in the <em>adam_db</em> vignette.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/">dm</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dm'</span>
 <span class="co">#&gt; The following object is masked from 'package:stats':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     filter</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scda</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scda</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 
-<span class="va">syn_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html">synthetic_cdisc_data</a></span><span class="op">(</span><span class="st">"latest"</span><span class="op">)</span>
+<span class="va">syn_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html" class="external-link">synthetic_cdisc_data</a></span><span class="op">(</span><span class="st">"latest"</span><span class="op">)</span>
 
-<span class="va">adam_study_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html">dm</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span>, adae <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adae</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html">dm_add_fk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html">dm_add_pk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"ASTDTM"</span>, <span class="st">"AETERM"</span>, <span class="st">"AESEQ"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">adam_study_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">dm</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span>, adae <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adae</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"ASTDTM"</span>, <span class="st">"AETERM"</span>, <span class="st">"AESEQ"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></code></pre></div>
 <p>A the <code>aet02_1</code> output is then created as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'tern':</span>
 <span class="co">#&gt;   method   from </span>
 <span class="co">#&gt;   tidy.glm broom</span>
 
-<span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/aet02_1.html">aet02_1</a></span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span>
@@ -184,23 +171,23 @@ Other releases
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span></code></pre></div>
 </div>
-<div id="more-on-preprocess_data-and-processing-map" class="section level1">
-<h1 class="hasAnchor">
-<a href="#more-on-preprocess_data-and-processing-map" class="anchor"></a>More on preprocess_data and processing map</h1>
+<div class="section level2">
+<h2 id="more-on-preprocess_data-and-processing-map">More on preprocess_data and processing map<a class="anchor" aria-label="anchor" href="#more-on-preprocess_data-and-processing-map"></a>
+</h2>
 <p>The <code>preprocess_data</code> function determines the the preprocessing using a <em>processing map</em> which is referred to in <code>chevron</code> as <code>pmap</code>.</p>
 <p>The standard preprocessing map that comes with the <em>tlg-functions</em> in <code>chevron</code> can be access via <code>std_pmap</code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 4</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span>
 <span class="co">#&gt;   tlgfname filter_fname        mutate_fname req_data </span>
-<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;               &lt;chr&gt;        &lt;list&gt;   </span>
-<span class="co">#&gt; 1 aet02_1  filter_adae_anl01fl &lt;NA&gt;         &lt;chr [2]&gt;</span>
-<span class="co">#&gt; 2 aet02_2  filter_adae_anl01fl &lt;NA&gt;         &lt;chr [2]&gt;</span>
-<span class="co">#&gt; 3 aet02_3  filter_adae_anl01fl &lt;NA&gt;         &lt;chr [2]&gt;</span>
-<span class="co">#&gt; 4 aet03_1  filter_adae_anl01fl &lt;NA&gt;         &lt;chr [2]&gt;</span>
-<span class="co">#&gt; 5 aet04_1  filter_adae_anl01fl &lt;NA&gt;         &lt;chr [2]&gt;</span>
-<span class="co">#&gt; 6 dmt01_1  &lt;NA&gt;                &lt;NA&gt;         &lt;chr [1]&gt;</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> aet02_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> aet02_2  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> aet02_3  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> aet03_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> aet04_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> dmt01_1  <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [1]&gt;</span></span></code></pre></div>
 <p>For example, for <code>aet02_1</code>:</p>
 <ol style="list-style-type: decimal">
 <li>the <code>adam_db</code> data gets filtered by the function <code>filter_adae_anl01fl</code>
@@ -210,7 +197,7 @@ Other releases
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pmap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">pmap</span><span class="op">[</span><span class="va">pmap</span><span class="op">$</span><span class="va">tlgfname</span> <span class="op">==</span> <span class="st">"aet02_1"</span>, <span class="st">"req_data"</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">pmap</span><span class="op">[</span><span class="va">pmap</span><span class="op">$</span><span class="va">tlgfname</span> <span class="op">==</span> <span class="st">"aet02_1"</span>, <span class="st">"req_data"</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "adsl" "adae"</span></code></pre></div>
 <p>Note that you can access the explicit functions with <code>std_filter_fun</code> and <code>std_mutate_fun</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -220,7 +207,7 @@ Other releases
 <span class="co">#&gt;     assert_that(is(adam_db, "dm"))</span>
 <span class="co">#&gt;     adam_db %&gt;% dm_filter(adae, bol_YN(ANL01FL)) %&gt;% dm_apply_filters()</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55ff7eec4690&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55de0ca49188&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>and</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -230,12 +217,12 @@ Other releases
 <span class="co">#&gt;     assert_that(is(adam_db, "dm"))</span>
 <span class="co">#&gt;     adam_db %&gt;% dm_filter(adae, bol_YN(ANL01FL)) %&gt;% dm_apply_filters()</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55ff7eec4690&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55de0ca49188&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>so alternatively one can also create the output above with</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="op">(</span><span class="fu"><a href="../reference/std_filter_fun.html">std_filter_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="op">(</span><span class="fu"><a href="../reference/std_filter_fun.html">std_filter_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="op">(</span><span class="fu"><a href="../reference/std_mutate_fun.html">std_mutate_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/aet02_1.html">aet02_1</a></span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span>
@@ -296,11 +283,13 @@ Other releases
 
 
       <footer><div class="copyright">
-  <p>Developed by NEST, Roche, Adrian Waddell, Benoit Falquet.</p>
+  <p></p>
+<p>Developed by NEST, Roche, Adrian Waddell, Benoit Falquet.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -308,6 +297,8 @@ Other releases
 
   
 
+
+  
 
   </body>
 </html>
