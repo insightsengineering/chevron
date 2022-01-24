@@ -3,7 +3,7 @@
 \name{lbt01_1}
 \alias{lbt01_1}
 \alias{lbt01_1_lyt}
-\title{LBT01 Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit}
+\title{\code{LBT01} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit}
 \usage{
 lbt01_1(
   adam_db,
@@ -21,8 +21,8 @@ lbt01_1_lyt(
   summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = .study$visitvar,
-  lbl_AVISIT = "Visit",
-  lbl_PARAM = "Parameter",
+  lbl_avisit = "Visit",
+  lbl_param = "Parameter",
   deco = std_deco("LBT01"),
   .study = list(armvar = "ACTARM", visitvar = "AVISIT")
 )
@@ -45,9 +45,9 @@ to be displayed.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AVISIT}{(\code{character}) label of the \code{visitvar} variable.}
+\item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
-\item{lbl_PARAM}{(\code{character}) label of the \code{PARAM} variable.}
+\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 }
 \description{
 The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over

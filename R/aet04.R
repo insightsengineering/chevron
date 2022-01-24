@@ -1,6 +1,6 @@
-#' AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1
+#' `AET04` Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1
 #'
-#' The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
+#' The `AET04` table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
 #'
 #' @inheritParams gen_args
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
@@ -50,16 +50,16 @@ aet04_1 <- function(adam_db,
                         "Grade 5" = c("5")
                       )
                     )) {
-  lbl_AEBODSYS <- var_labels_for(adam_db$adae, "AEBODSYS")
-  lbl_AEDECOD <- var_labels_for(adam_db$adae, "AEDECOD")
+  lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
+  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
   # TODO: check that there are not grades in the data that are not defined in the `group_grades` map
 
   lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_AEBODSYS = lbl_AEBODSYS,
-    lbl_AEDECOD = lbl_AEDECOD,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     group_grades = group_grades,
     deco = deco
   )
@@ -86,14 +86,14 @@ aet04_1 <- function(adam_db,
 }
 
 
-#' AET04 Layout 1 (Default)
+#' `AET04` Layout 1 (Default)
 #'
 #' @describeIn aet04_1
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_AEBODSYS (`string`) text label for AEBODSYS.
-#' @param lbl_AEDECOD (`string`) text label for AEDECOD.
+#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
 #'
 #' @export
@@ -101,8 +101,8 @@ aet04_1 <- function(adam_db,
 #' @examples
 #' aet04_1_lyt(armvar = "ACTARM")
 aet04_1_lyt <- function(armvar = .study$armvar,
-                        lbl_AEBODSYS = "AEBODSYS",
-                        lbl_AEDECOD = "AEDECOD",
+                        lbl_aebodsys = "AEBODSYS",
+                        lbl_aedecod = "AEDECOD",
                         group_grades = .study$group_grades,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET04"),
@@ -131,7 +131,7 @@ aet04_1_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_AEBODSYS
+      split_label = lbl_aebodsys
     ) %>%
     summarize_occurrences_by_grade(
       var = "AETOXGR",
@@ -145,7 +145,7 @@ aet04_1_lyt <- function(armvar = .study$armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_AEDECOD
+      split_label = lbl_aedecod
     ) %>%
     summarize_num_patients(
       var = "USUBJID",

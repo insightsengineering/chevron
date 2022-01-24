@@ -17,6 +17,7 @@ std_preprocessing_map <- tibble::tribble(
   "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
   "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb"),
+  "mht01_1", "filter_admh_anl01fl", NA, c("adsl", "admh"),
   "vst01_1", "filter_advs_anl01fl", NA, c("adsl", "advs")
 )
 
@@ -249,6 +250,18 @@ filter_advs_anl01fl <- function(adam_db) {
     dm_zoom_to(advs) %>%
     filter(ANL01FL == "Y") %>%
     dm_update_zoomed()
+}
+
+#' Filter `admh` for `ANL01FL`
+#'
+#' @inheritParams gen_args
+#'
+filter_admh_anl01fl <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+
+  adam_db %>%
+    dm_filter(admh, bol_YN(ANL01FL)) %>%
+    dm_apply_filters()
 }
 
 #' Filter `adex` for `PARCAT1`

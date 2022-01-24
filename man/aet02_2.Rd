@@ -3,7 +3,7 @@
 \name{aet02_2}
 \alias{aet02_2}
 \alias{aet02_2_lyt}
-\title{AET02 Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2}
+\title{\code{AET02} Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2}
 \usage{
 aet02_2(
   adam_db,
@@ -17,9 +17,9 @@ aet02_2(
 aet02_2_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  lbl_AEBODSYS = "AEBODSYS",
-  lbl_AEHLT = "AEHLT",
-  lbl_AEDECOD = "AEDECOD",
+  lbl_aebodsys = "AEBODSYS",
+  lbl_aehlt = "AEHLT",
+  lbl_aedecod = "AEDECOD",
   deco = std_deco("AET02"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
@@ -37,15 +37,15 @@ aet02_2_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+\item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
-\item{lbl_AEHLT}{(\code{string}) text label for AEHLT.}
+\item{lbl_aehlt}{(\code{character}) text label for \code{AEHLT}.}
 
-\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-The AET02_2 table provides an overview of the number of patients experiencing advert events and the number of advert
-events categorized by Body System, High Level Term and Dictionary-Derived Term.
+The \code{AET02_2} table provides an overview of the number of patients experiencing adverse events and the number of
+adverse events categorized by Body System, High Level Term and Dictionary-Derived Term.
 }
 \details{
 \itemize{
@@ -85,9 +85,9 @@ aet02_2(db_m) \%>\% head()
 aet02_2_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
-  lbl_AEBODSYS = "Body System or Organ Class",
-  lbl_AEHLT = "High Level Term",
-  lbl_AEDECOD = "Dictionary-Derived Term",
+  lbl_aebodsys = "Body System or Organ Class",
+  lbl_aehlt = "High Level Term",
+  lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02")
 )
 }
