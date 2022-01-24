@@ -1,4 +1,4 @@
-#' EGT01 Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1
+#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1
 #'
 #' The `EGT01` table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.
 #'
@@ -44,16 +44,16 @@ egt01_1 <- function(adam_db,
                       evo_vars = c("AVAL", "CHG")
                     )) {
 
-  lbl_AVISIT <- var_labels_for(adam_db$adeg, visitvar)
-  lbl_PARAM <- var_labels_for(adam_db$adeg, "PARAM")
+  lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
+  lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
   lyt <- egt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
-    lbl_AVISIT = lbl_AVISIT,
-    lbl_PARAM = lbl_PARAM,
+    lbl_avisit = lbl_avisit,
+    lbl_param = lbl_param,
     deco = deco
   )
 
@@ -68,18 +68,18 @@ egt01_1 <- function(adam_db,
 
 }
 
-#' EGT01 Layout 1 (Default)
+#' `EGT01` Layout 1 (Default)
 #'
 #' @describeIn egt01_1
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`vector of string`) the label of the variables to be analyzed.
-#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
-#'   be displayed.
-#' @param lbl_AVISIT (`string`) label of the `visitvar` variable.
-#' @param lbl_PARAM (`string`) label of the `PARAM` variable.
+#' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
+#' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
+#'   to be displayed.
+#' @param lbl_avisit (`character`) label of the `visitvar` variable.
+#' @param lbl_param (`character`) label of the `PARAM` variable.
 #'
 #' @return
 #' @export
@@ -87,8 +87,8 @@ egt01_1_lyt <- function(armvar = .study$armvar,
                         summaryvars = .study$evo_vars,
                         summaryvars_lbls = .study$evo_vars_lbls,
                         visitvar = .study$visitvar,
-                        lbl_AVISIT = "",
-                        lbl_PARAM = "",
+                        lbl_avisit = "",
+                        lbl_param = "",
                         deco = std_deco("EGT01"),
                         .study = list(
                           armvar = "ACTARM",
@@ -108,13 +108,13 @@ egt01_1_lyt <- function(armvar = .study$armvar,
       "PARAM",
       split_fun = drop_split_levels,
       label_pos = "hidden",
-      split_label = paste(lbl_PARAM)
+      split_label = paste(lbl_param)
     ) %>%
     split_rows_by(
       visitvar,
       split_fun = drop_split_levels,
       label_pos = "hidden",
-      split_label = lbl_AVISIT
+      split_label = lbl_avisit
     ) %>%
     split_cols_by_multivar(
       vars = summaryvars,
@@ -122,6 +122,6 @@ egt01_1_lyt <- function(armvar = .study$armvar,
       nested = TRUE
     ) %>%
     summarize_colvars() %>%
-    append_topleft(paste(lbl_PARAM)) %>%
-    append_topleft(c(paste(" ", lbl_AVISIT), " "))
+    append_topleft(paste(lbl_param)) %>%
+    append_topleft(c(paste(" ", lbl_avisit), " "))
 }

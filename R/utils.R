@@ -53,7 +53,7 @@ std_deco <- function(id, ...) {
 #' \dontrun{
 #' chevron:::bol_YN(c("Y", "Y", "N", "", NA))
 #' }
-bol_YN <- function(x) {
+bol_YN <- function(x) { #nolint
   if (is.logical(x)) {
     x
   } else {
@@ -346,19 +346,30 @@ syn_test_data <- function() {
     dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
     dm_add_pk(adae, "AESEQ")
 
-  db <- db %>%
+  db_m <- db %>%
     dm_zoom_to(adae) %>%
     mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
     mutate(AEDECOD = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
-  db_m <- db %>%
+  db_m <- db_m %>%
+    dm_zoom_to(admh) %>%
+    mutate(MHBODSYS = with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = with_label(MHDECOD, "MedDRA Preferred Term")) %>%
+    dm_update_zoomed()
+
+  db_m <- db_m %>%
     dm_zoom_to(adae) %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
-  db_m <- db %>%
+  db_m <- db_m %>%
     dm_zoom_to(advs) %>%
+    mutate(ANL01FL = "Y") %>%
+    dm_update_zoomed()
+
+  db_m <- db_m %>%
+    dm_zoom_to(admh) %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 

@@ -3,7 +3,7 @@
 \name{aet04_1}
 \alias{aet04_1}
 \alias{aet04_1_lyt}
-\title{AET04 Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1}
+\title{\code{AET04} Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1}
 \usage{
 aet04_1(
   adam_db,
@@ -19,8 +19,8 @@ aet04_1(
 
 aet04_1_lyt(
   armvar = .study$armvar,
-  lbl_AEBODSYS = "AEBODSYS",
-  lbl_AEDECOD = "AEDECOD",
+  lbl_aebodsys = "AEBODSYS",
+  lbl_aedecod = "AEDECOD",
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET04"),
@@ -44,12 +44,12 @@ aet04_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AEBODSYS}{(\code{string}) text label for AEBODSYS.}
+\item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
-\item{lbl_AEDECOD}{(\code{string}) text label for AEDECOD.}
+\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-The AET04 table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
+The \code{AET04} table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
 }
 \details{
 \itemize{
