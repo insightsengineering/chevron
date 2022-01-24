@@ -139,7 +139,7 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
-#' @param medconcept_var (`character`) the label of the medical concept variables to be summarized.
+#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
 #'
 #' @importFrom magrittr %>%
 #'
@@ -200,7 +200,7 @@ aet01_2 <- function(adam_db,
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
-#' @param medconcept_var (`character`) the label of the medical concept variables to be summarized.
+#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
 #'
 #' @return
 #' @export

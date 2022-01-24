@@ -51,7 +51,9 @@ aet01_2_lyt(
 
 \item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
 
-\item{medconcept_var}{(\code{character}) the label of the medical concept variables to be summarized.}
+\item{medconcept_var}{(\code{character}) the medical concept variables to be summarized.}
+
+\item{lbl_medconcept_var}{(\code{character}) the label of the medical concept variables to be summarized.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
