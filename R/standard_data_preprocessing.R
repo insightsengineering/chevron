@@ -292,24 +292,24 @@ mutate_for_aet01 <- function(adam_db) {
     CQ01 = CQ01NAM != ""
     ) %>%
     mutate(
-    AEDECOD = h_relabel(AEDECOD, "Dictionary-Derived Term"),
-    AESDTH = h_relabel(AESDTH, "Results in Death"),
-    AEACN = h_relabel(AEACN, "Action Taken with Study Treatment"),
-    FATAL = h_relabel(FATAL, "AE with fatal outcome"),
-    SER = h_relabel(SER, "Serious AE"),
-    SERWD = h_relabel(SERWD, "Serious AE leading to withdrawal from treatment"),
-    SERDSM = h_relabel(SERDSM, "Serious AE leading to dose modification/interruption"),
-    RELSER = h_relabel(RELSER, "Related Serious AE"),
-    WD = h_relabel(WD, "AE leading to withdrawal from treatment"),
-    DSM = h_relabel(DSM, "AE leading to dose modification/interruption"),
-    REL = h_relabel(REL, "Related AE"),
-    RELWD = h_relabel(RELWD, "Related AE leading to withdrawal from treatment"),
-    RELDSM = h_relabel(RELDSM, "Related AE leading to dose modification/interruption"),
-    CTC35 = h_relabel(CTC35, "Grade 3-5 AE"),
-    CTC45 = h_relabel(CTC45, "Grade 4/5 AE"),
-    SMQ01 =  h_relabel(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
-    SMQ02 = h_relabel(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
-    CQ01 = h_relabel(CQ01, aesi_label(CQ01NAM))
+    AEDECOD = with_label(AEDECOD, "Dictionary-Derived Term"),
+    AESDTH = with_label(AESDTH, "Results in Death"),
+    AEACN = with_label(AEACN, "Action Taken with Study Treatment"),
+    FATAL = with_label(FATAL, "AE with fatal outcome"),
+    SER = with_label(SER, "Serious AE"),
+    SERWD = with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
+    SERDSM = with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
+    RELSER = with_label(RELSER, "Related Serious AE"),
+    WD = with_label(WD, "AE leading to withdrawal from treatment"),
+    DSM = with_label(DSM, "AE leading to dose modification/interruption"),
+    REL = with_label(REL, "Related AE"),
+    RELWD = with_label(RELWD, "Related AE leading to withdrawal from treatment"),
+    RELDSM = with_label(RELDSM, "Related AE leading to dose modification/interruption"),
+    CTC35 = with_label(CTC35, "Grade 3-5 AE"),
+    CTC45 = with_label(CTC45, "Grade 4/5 AE"),
+    SMQ01 =  with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
+    SMQ02 = with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
+    CQ01 = with_label(CQ01, aesi_label(CQ01NAM))
     ) %>%
     dm_update_zoomed()
 

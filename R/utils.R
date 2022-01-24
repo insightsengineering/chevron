@@ -365,7 +365,6 @@ syn_test_data <- function() {
   db_m
 }
 
-
 #' Temporary function to add decorator to a table
 #'
 #' @param x (`rtables`) object.
@@ -378,25 +377,4 @@ set_decoration <- function(x, deco) {
   x@subtitles <- deco$subtitles
   x@main_footer <- deco$main_footer
   x
-}
-
-#' h_relabel
-#'
-#' Utility function to relabel column in `dplyr` context.
-#'
-#' @param data any object that can take a label attribute.
-#' @param lab (`character`) to be used as label.
-#'
-#' @importFrom checkmate assert_character
-#'
-#' @return
-#' @export
-#'
-h_relabel <- function(data, lab) {
-
-  assert_character(lab)
-
-  attr(data, "label") <- lab
-
-  data
 }
