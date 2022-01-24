@@ -21,9 +21,9 @@ cmt01a_3_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   medcat_var = "ATC2",
-  lbl_medcat_var = "ATC Level 2 Text",
+  lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
-  lbl_medname_var = "Standardized Medication Name",
+  lbl_medname_var = "Other Treatment",
   deco = std_deco("CMT01A"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )

@@ -9,7 +9,9 @@ cmt01a_2(
   adam_db,
   armvar = .study$armvar,
   medcat_var = "ATC2",
+  lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
+  lbl_medname_var = "Other Treatment",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("CMT01A"),
@@ -23,7 +25,9 @@ cmt01a_2(
 
 \item{medcat_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
-\item{medname_var}{(\code{character}) the variable defining the medication name. By default \code{CMDECOD}.}
+\item{lbl_medcat_var}{(\code{character}) label for the variable defining the medication category.}
+
+\item{medname_var}{(\code{character}) label for the variable defining the medication name.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

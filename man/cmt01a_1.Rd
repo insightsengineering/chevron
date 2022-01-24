@@ -9,7 +9,9 @@ cmt01a_1(
   adam_db,
   armvar = .study$armvar,
   medcat_var = "ATC2",
+  lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
+  lbl_medname_var = "Other Treatment",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("CMT01A"),
@@ -20,9 +22,9 @@ cmt01a_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   medcat_var = "ATC2",
-  lbl_medcat_var = "ATC Level 2 Text",
+  lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
-  lbl_medname_var = "Standardized Medication Name",
+  lbl_medname_var = "Other Treatment",
   deco = std_deco("CMT01A"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
@@ -34,7 +36,11 @@ cmt01a_1_lyt(
 
 \item{medcat_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
+\item{lbl_medcat_var}{(\code{character}) the label for the medication category.}
+
 \item{medname_var}{(\code{character}) the variable defining the medication name. By default \code{CMDECOD}.}
+
+\item{lbl_medname_var}{(\code{character}) the label for the medication name.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -43,10 +49,6 @@ cmt01a_1_lyt(
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
-
-\item{lbl_medcat_var}{(\code{character}) the label for the medication category.}
-
-\item{lbl_medname_var}{(\code{character}) the label for the medication name.}
 }
 \description{
 A concomitant medication table with the number of subjects and the total number of treatments by medication class
