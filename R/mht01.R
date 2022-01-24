@@ -3,6 +3,8 @@
 #' The `MHT01` table provides an overview of the subjects medical history by SOC and Preferred Term.
 #'
 #' @inheritParams gen_args
+#' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
+#' @param lbl_mhdecod (`character`) text label for `MHDECOD`.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -29,6 +31,8 @@
 mht01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
+                    lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
+                    lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
                     prune_0 = TRUE,
                     deco = std_deco("MHT01"),
                     .study = list(
@@ -40,8 +44,8 @@ mht01_1 <- function(adam_db,
   lyt <- mht01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_mhbodsys = var_labels_for(dbsel$admh, "MHBODSYS"),
-    lbl_mhdecod = var_labels_for(dbsel$admh, "MHDECOD"),
+    lbl_mhbodsys = lbl_mhbodsys,
+    lbl_mhdecod = lbl_mhdecod,
     deco = deco
   )
 
@@ -78,7 +82,7 @@ mht01_1 <- function(adam_db,
 #' )
 mht01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
-                        lbl_mhbodsys = "Body System or Organ Class",
+                        lbl_mhbodsys = "MedDRA System Organ Class",
                         lbl_mhdecod = "MedDRA preferred Term",
                         deco = std_deco("MHT01"),
                         .study = list(

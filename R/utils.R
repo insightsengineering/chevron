@@ -353,6 +353,12 @@ syn_test_data <- function() {
     dm_update_zoomed()
 
   db_m <- db_m %>%
+    dm_zoom_to(admh) %>%
+    mutate(MHBODSYS = with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = with_label(MHDECOD, "MedDRA Preferred Term")) %>%
+    dm_update_zoomed()
+
+  db_m <- db_m %>%
     dm_zoom_to(adae) %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()

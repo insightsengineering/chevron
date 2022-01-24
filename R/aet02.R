@@ -1,6 +1,6 @@
 #' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
-#' The `AET02` table provides an overview of the number of subjects experiencing advert events and the number of advert
+#' The `AET02` table provides an overview of the number of subjects experiencing adverse events and the number of advert
 #' events categorized by Body System and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
@@ -149,8 +149,8 @@ aet02_1_lyt <- function(armvar = .study$armvar,
 
 #' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2
 #'
-#' The `AET02_2` table provides an overview of the number of patients experiencing advert events and the number of
-#' advert events categorized by Body System, High Level Term and Dictionary-Derived Term.
+#' The `AET02_2` table provides an overview of the number of patients experiencing adverse events and the number of
+#' adverse events categorized by Body System, High Level Term and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -320,8 +320,8 @@ aet02_2_lyt <- function(armvar = .study$armvar,
 
 #' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3
 #'
-#' The `AET02_3` table provides an overview of the number of patients experiencing advert events and the number of
-#' advert events categorized by Dictionary-Derived Term.
+#' The `AET02_3` table provides an overview of the number of patients experiencing adverse events and the number of
+#' adverse events categorized by Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'

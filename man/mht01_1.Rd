@@ -9,6 +9,8 @@ mht01_1(
   adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
+  lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
+  lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
   prune_0 = TRUE,
   deco = std_deco("MHT01"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
@@ -17,7 +19,7 @@ mht01_1(
 mht01_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  lbl_mhbodsys = "Body System or Organ Class",
+  lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA preferred Term",
   deco = std_deco("MHT01"),
   .study = list(armvar = "ARM", lbl_overall = NULL)
@@ -30,15 +32,15 @@ mht01_1_lyt(
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{lbl_mhbodsys}{(\code{character}) text label for \code{MHBODSYS}.}
+
+\item{lbl_mhdecod}{(\code{character}) text label for \code{MHDECOD}.}
+
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
-
-\item{lbl_mhbodsys}{(\code{character}) text label for \code{MHBODSYS}.}
-
-\item{lbl_mhdecod}{(\code{character}) text label for \code{MHDECOD}.}
 }
 \description{
 The \code{MHT01} table provides an overview of the subjects medical history by SOC and Preferred Term.

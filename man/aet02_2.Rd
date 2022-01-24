@@ -44,8 +44,8 @@ aet02_2_lyt(
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-The \code{AET02_2} table provides an overview of the number of patients experiencing advert events and the number of
-advert events categorized by Body System, High Level Term and Dictionary-Derived Term.
+The \code{AET02_2} table provides an overview of the number of patients experiencing adverse events and the number of
+adverse events categorized by Body System, High Level Term and Dictionary-Derived Term.
 }
 \details{
 \itemize{

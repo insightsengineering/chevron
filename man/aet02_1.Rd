@@ -41,7 +41,7 @@ aet02_1_lyt(
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-The \code{AET02} table provides an overview of the number of subjects experiencing advert events and the number of advert
+The \code{AET02} table provides an overview of the number of subjects experiencing adverse events and the number of advert
 events categorized by Body System and Dictionary-Derived Term.
 }
 \details{
