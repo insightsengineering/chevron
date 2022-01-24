@@ -152,7 +152,7 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 #' db <- syn_test_data() %>%
 #'   preprocess_data("aet01_2")
 #'
-#' aet01_2(db, armvar = "ARM")
+#' aet01_2(db, armvar = "ARM", prune_0 = FALSE)
 #'
 aet01_2 <- function(adam_db,
                     armvar = .study$armvar,
