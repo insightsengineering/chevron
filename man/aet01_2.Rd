@@ -13,8 +13,11 @@ aet01_2(
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
   lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
+  medconcept_var = .study$medconcept_var,
+  lbl_medconcept_var = var_labels_for(adam_db$adae, .study$medconcept_var),
   .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35"))
+    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35"),
+    medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
 )
 
 aet01_2_lyt(
@@ -23,11 +26,14 @@ aet01_2_lyt(
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
   lbl_safety_var = .study$lbl_safety_var,
+  medconcept_var = .study$medconcept_var,
+  lbl_medconcept_var = .study$lbl_medconcept_var,
   .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
     "SEV", "SMQ01", "SMQ02", "CQ01"), lbl_safety_var = c("FATAL", "SER", "SERWD",
     "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV",
-    "SMQ01", "SMQ02", "CQ01"))
+    "SMQ01", "SMQ02", "CQ01"), medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
+    lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
 )
 }
 \arguments{
@@ -45,6 +51,8 @@ aet01_2_lyt(
 
 \item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
 
+\item{medconcept_var}{(\code{character}) the label of the medical concept variables to be summarized.}
+
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \value{
@@ -53,7 +61,7 @@ aet01_2_lyt(
 
 }
 \description{
-Overview of death and details of adverse events.
+Overview of death and summary of adverse events with medical concepts.
 }
 \section{Functions}{
 \itemize{
@@ -68,7 +76,7 @@ db <- syn_test_data() \%>\%
 
 aet01_2(db, armvar = "ARM")
 
-aet01_2_lyt(
+aet01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("AET01")

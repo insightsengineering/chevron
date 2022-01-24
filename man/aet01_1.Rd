@@ -11,14 +11,23 @@ aet01_1(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET01"),
-  .study = list(armvar = "ARM", lbl_overall = NULL)
+  safety_var = .study$safety_var,
+  lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
+  .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
+    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35"))
 )
 
 aet01_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET01"),
-  .study = list(armvar = "ARM", lbl_overall = NULL)
+  safety_var = .study$safety_var,
+  lbl_safety_var = .study$lbl_safety_var,
+  .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
+    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
+    "SEV", "SMQ01", "SMQ02", "CQ01"), lbl_safety_var = c("FATAL", "SER", "SERWD",
+    "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV",
+    "SMQ01", "SMQ02", "CQ01"))
 )
 }
 \arguments{
@@ -31,6 +40,10 @@ aet01_1_lyt(
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{safety_var}{(\code{character}) the safety variables to be summarized.}
+
+\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
@@ -55,7 +68,7 @@ db <- syn_test_data() \%>\%
 
 aet01_1(db, armvar = "ARM")
 
-aet01_2_lyt(
+aet01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("AET01")
