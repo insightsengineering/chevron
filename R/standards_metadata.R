@@ -197,7 +197,7 @@ gds_data <- list(
      "Standard footnotes" = "Treatments are coded using the WHODrug Global B3 Format dictionary {version}.  Treatments can appear under multiple
 classes. Multiple uses of a specific medication for a patient were counted once in the frequency for the medication.
 Likewise, multiple uses within a specific medication class for a patient were counted once in the frequency for the
-medication class. For frequency counts in “Total number of treatments”, multiple uses of the same medication for a
+medication class. For frequency counts in \"Total number of treatments\", multiple uses of the same medication for a
 patient were counted separately. Standard footnote defining medications included in table (e.g., includes concomitant
 medications used at any time from first dose of study drug through 7 days after last dose of study drug).",
 "Analysis Population" = "Specify analysis population, typically Safety-Evaluable  Population.",
