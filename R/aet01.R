@@ -4,6 +4,9 @@
 #'
 #' Overview of death and summary of adverse events.
 #'
+#' @details
+#'  * Does not remove rows with zero counts by default.
+#'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
@@ -24,7 +27,7 @@
 aet01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
+                    prune_0 = FALSE,
                     deco = std_deco("AET01"),
                     safety_var = .study$safety_var,
                     lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
@@ -32,7 +35,7 @@ aet01_1 <- function(adam_db,
                       armvar = "ARM",
                       lbl_overall = NULL,
                       safety_var = c("FATAL", "SER", "SERWD", "SERDSM",
-                                     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35")
+                                     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")
                     )) {
 
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -82,9 +85,9 @@ aet01_1_lyt <- function(armvar = .study$armvar,
                           armvar = "ARM",
                           lbl_overall = NULL,
                           safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                         "RELWD", "RELDSM", "CTC35", "CTC45", "SEV", "SMQ01", "SMQ02", "CQ01"),
+                                         "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"),
                           lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV", "SMQ01", "SMQ02", "CQ01")
+                                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV")
                         )) {
 
   names(lbl_safety_var) <- safety_var
@@ -97,8 +100,8 @@ aet01_1_lyt <- function(armvar = .study$armvar,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "  Total number of patients with at least one adverse event",
-        nonunique = "  Total number of events"
+        unique = "  Total number of patients with at least one AE",
+        nonunique = "  Total number of AEs"
       )
     ) %>%
     count_patients_with_event(
@@ -135,6 +138,9 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' Overview of death and summary of adverse events with medical concepts.
 #'
+#' @details
+#'  * Does not remove rows with zero counts by default.
+#'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
@@ -157,7 +163,7 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 aet01_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
+                    prune_0 = FALSE,
                     deco = std_deco("AET01"),
                     safety_var = .study$safety_var,
                     lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
@@ -167,7 +173,7 @@ aet01_2 <- function(adam_db,
                       armvar = "ARM",
                       lbl_overall = NULL,
                       safety_var = c("FATAL", "SER", "SERWD", "SERDSM",
-                                     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35"),
+                                     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
                       medconcept_var = c("SMQ01", "SMQ02", "CQ01")
                     )) {
 
@@ -222,9 +228,9 @@ aet01_2_lyt <- function(armvar = .study$armvar,
                           armvar = "ARM",
                           lbl_overall = NULL,
                           safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                         "RELWD", "RELDSM", "CTC35", "CTC45", "SEV", "SMQ01", "SMQ02", "CQ01"),
+                                         "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"),
                           lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV", "SMQ01", "SMQ02", "CQ01"),
+                                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"),
                           medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
                           lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")
                         )) {
@@ -240,8 +246,8 @@ aet01_2_lyt <- function(armvar = .study$armvar,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "  Total number of patients with at least one adverse event",
-        nonunique = "  Total number of events"
+        unique = "  Total number of patients with at least one AE",
+        nonunique = "  Total number of AEs"
       )
     ) %>%
     count_patients_with_event(

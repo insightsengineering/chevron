@@ -362,6 +362,9 @@ syn_test_data <- function() {
   db_m <- db_m %>%
     dm_zoom_to(adae) %>%
     mutate(ANL01FL = "Y") %>%
+    mutate(ASEV = AESEV) %>%
+    mutate(AREL = AEREL) %>%
+    mutate(ATOXGR = AETOXGR) %>%
     dm_update_zoomed()
 
   db_m <- db_m %>%

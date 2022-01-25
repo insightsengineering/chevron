@@ -9,12 +9,12 @@ aet01_1(
   adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
-  prune_0 = TRUE,
+  prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
   lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
   .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35"))
+    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))
 )
 
 aet01_1_lyt(
@@ -25,9 +25,8 @@ aet01_1_lyt(
   lbl_safety_var = .study$lbl_safety_var,
   .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
-    "SEV", "SMQ01", "SMQ02", "CQ01"), lbl_safety_var = c("FATAL", "SER", "SERWD",
-    "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV",
-    "SMQ01", "SMQ02", "CQ01"))
+    "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
+    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
 )
 }
 \arguments{
@@ -54,6 +53,11 @@ aet01_1_lyt(
 }
 \description{
 Overview of death and summary of adverse events.
+}
+\details{
+\itemize{
+\item Does not remove rows with zero counts by default.
+}
 }
 \section{Functions}{
 \itemize{
