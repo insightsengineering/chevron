@@ -64,6 +64,7 @@ reference:
       - mutate_adsl_gp
       - remove_adex_aval
       - reorder_adex_params
+      - mutate_cmt01a
 
   - title: Utility Functions
     contents:

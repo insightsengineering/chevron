@@ -109,7 +109,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",
-      #count_by = "CMSEQ",
+      count_by = "CMSEQ",
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one treatment",
@@ -127,7 +127,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
-      #count_by = "CMSEQ",
+      count_by = "CMSEQ",
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one treatment",
@@ -336,7 +336,7 @@ cmt01a_3_lyt <- function(armvar = .study$armvar,
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",
-      #count_by = "CMSEQ",
+      count_by = "CMSEQ",
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one treatment",
@@ -354,7 +354,7 @@ cmt01a_3_lyt <- function(armvar = .study$armvar,
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
-      #count_by = "CMSEQ",
+      count_by = "CMSEQ",
       .stats = c("unique"),
       .labels = c(
         unique = "Total number of patients with at least one treatment"
