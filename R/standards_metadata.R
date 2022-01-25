@@ -194,13 +194,13 @@ gds_data <- list(
   CMT01A = list(
     "description" = "Concomitant Medications by Medication Class and Preferred Name - Recommended Layout",
     "Standard titles" = "Concomitant Medications by Medication Class and Preferred Name: {Specify Population}",
-     "Standard footnotes" = "Treatments are coded using the WHODrug Global B3 Format dictionary {version}.  Treatments can appear under multiple
+    "Standard footnotes" = "Treatments are coded using the WHODrug Global B3 Format dictionary {version}.  Treatments can appear under multiple
 classes. Multiple uses of a specific medication for a patient were counted once in the frequency for the medication.
 Likewise, multiple uses within a specific medication class for a patient were counted once in the frequency for the
 medication class. For frequency counts in \"Total number of treatments\", multiple uses of the same medication for a
 patient were counted separately. Standard footnote defining medications included in table (e.g., includes concomitant
 medications used at any time from first dose of study drug through 7 days after last dose of study drug).",
-"Analysis Population" = "Specify analysis population, typically Safety-Evaluable  Population.",
+    "Analysis Population" = "Specify analysis population, typically Safety-Evaluable  Population.",
     "Column Variables" = "By treatment group.",
     "Column Totals" = "See mockup and allow for an All Patients column.",
     "Analysis Variables" = "See mockup. Data are to be summarized using the WHODrug Global B3 Format Dictionary.  Recommended layout (CMT01A_WHO) is to display medications by ATC Class Level 2, however the user has the option to summarize by a different ATC Class Level (Level 1, 3, or 4).  An alternative layout is provided where the user can summarize by multiple ATC Class Levels for more granularity (CMT01B_WHO).  For this layout, the user can choose two or more ATC Class Levels to display (highlighted in grey in mockup).  The statistician to specify exactly what medications are to be included, e.g., includes concomitant medications used at any time from the first dose of study drug through 7 days after the last dose of study drug, or includes medications used at any time up to the start of study medication.  The medications included in the summary table should be defined in a table footnote.

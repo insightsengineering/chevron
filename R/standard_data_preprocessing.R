@@ -258,7 +258,7 @@ filter_adex_drug <- function(adam_db) {
     dm_apply_filters()
 }
 
-#' Filter `adcm` for `ATIREL` and  `ANL01FL`
+#' Filter `adcm` for `ATIREL` and  `SAFFL`
 #'
 #' @inheritParams gen_args
 #'
@@ -266,9 +266,11 @@ filter_adcm_cmt01 <- function(adam_db) {
     assert_that(is(adam_db, "dm"))
 
     adam_db %>%
-    dm_filter(adcm, bol_YN(SAFFL)) %>%
-    dm_filter(adcm, ATIREL == "CONCOMITANT") %>%
-    dm_apply_filters()
+      dm_filter(adsl, SAFFL == "Y") %>%
+      dm_apply_filters() %>%
+      dm_zoom_to(adcm) %>%
+      filter(ATIREL == "CONCOMITANT") %>%
+      dm_update_zoomed()
 }
 
 #' Categorize Reason for Discontinuation from Study.
