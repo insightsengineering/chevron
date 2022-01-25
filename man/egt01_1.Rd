@@ -3,7 +3,7 @@
 \name{egt01_1}
 \alias{egt01_1}
 \alias{egt01_1_lyt}
-\title{EGT01 Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1}
+\title{\code{EGT01} Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1}
 \usage{
 egt01_1(
   adam_db,
@@ -21,8 +21,8 @@ egt01_1_lyt(
   summaryvars = .study$evo_vars,
   summaryvars_lbls = .study$evo_vars_lbls,
   visitvar = .study$visitvar,
-  lbl_AVISIT = "",
-  lbl_PARAM = "",
+  lbl_avisit = "",
+  lbl_param = "",
   deco = std_deco("EGT01"),
   .study = list(armvar = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
@@ -33,12 +33,12 @@ egt01_1_lyt(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of string}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+\item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
-\item{summaryvars_lbls}{(\verb{vector of string}) the label of the variables to be analyzed.}
+\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
-be displayed.}
+\item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
+to be displayed.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
@@ -46,9 +46,9 @@ be displayed.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{lbl_AVISIT}{(\code{string}) label of the \code{visitvar} variable.}
+\item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
-\item{lbl_PARAM}{(\code{string}) label of the \code{PARAM} variable.}
+\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 }
 \value{
 

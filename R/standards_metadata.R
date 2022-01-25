@@ -264,6 +264,21 @@ Number of patients and number of events at the SOC level are not displayed.",
     "Optional Subsetting" = "None"
   ),
   LBT06 = list(),
+  MHT01 = list(
+    "description" = "Medical History Table",
+    "Standard titles" = "Medical History: {Specify Population}",
+    "Standard footnotes" = "Investigator text for medical history conditions coded using MedDRA version xx.x.  Percentages are based on N in the column headings.
+Provide study specific footnote that describes exactly what the diseases and conditions are included (e.g., includes diseases and conditions present within 6 months of screening, as reported by the patient).
+",
+    "Analysis Population" = "Specify the analysis population, typically Safety-Evaluable Population",
+    "Column Variables" = "By treatment group",
+    "Column Totals" = "See mockup and allow for an All Patients column.",
+    "Analysis Variables" = "Body system and disease.  This is a summary of medical history-diseases and conditions patients had prior to or on entering trial.  Provide an option to summarize all medical conditions prior to or on entering the study or only those conditions that were ongoing at entry into the study.  Sort by body system alphabetically and within body system and medical condition by decreasing total number of patients with the specific condition. For each SOC include a row summarizing total number of conditions in that SOC with option to present this row before (default) or after the summary of patients with conditions by MedDRA preferred term.",
+    "Statistics and Calculation Methods" = "The percentages are of the number of safety-evaluable patients, as given in the column headings.  The Total Number of Conditions row is optional.",
+    "Numeric Precision and Formatting of Statistics" = "Use standard display in the mockup.",
+    "Formatting Options" = NULL,
+    "Optional Subsetting" = "None"
+  ),
   ONCT01 = list(),
   ONCT04 = list(),
   KMT01 = list(),

@@ -43,6 +43,7 @@ reference:
       - ext01_1
       - ext01_2
       - lbt01_1
+      - mht01_1
       - vst01_1
 
   - title: Data Preprocess Functions
@@ -60,6 +61,7 @@ reference:
       - filter_adcm_cmt01
       - filter_adeg_anl01fl
       - filter_adlb_anl01fl
+      - filter_admh_anl01fl
       - filter_advs_anl01fl
       - mutate_adsl_gp
       - remove_adex_aval
