@@ -42,6 +42,8 @@ reference:
       - lbt01_1
       - mht01_1
       - vst01_1
+      - vst02_1
+      - vst02_2
 
   - title: Data Preprocess Functions
     contents:
@@ -59,9 +61,11 @@ reference:
       - filter_adlb_anl01fl
       - filter_admh_anl01fl
       - filter_advs_anl01fl
+      - filter_vst02
       - mutate_adsl_gp
       - remove_adex_aval
       - reorder_adex_params
+      - mutate_vst02
 
   - title: Utility Functions
     contents:

@@ -16,7 +16,9 @@ std_preprocessing_map <- tibble::tribble(
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
   "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb"),
   "mht01_1", "filter_admh_anl01fl", NA, c("adsl", "admh"),
-  "vst01_1", "filter_advs_anl01fl", NA, c("adsl", "advs")
+  "vst01_1", "filter_advs_anl01fl", NA, c("adsl", "advs"),
+  "vst02_1", "mutate_vst02", "filter_vst02", c("adsl", "advs"),
+  "vst02_2", "mutate_vst02", "filter_vst02", c("adsl", "advs")
 )
 
 #' Standard Preprocessing Map
@@ -268,9 +270,22 @@ filter_adex_drug <- function(adam_db) {
     dm_apply_filters()
 }
 
-#' Categorize Reason for Discontinuation from Study.
+
+#' Filter post-baseline values in `advs`
 #'
 #' @inheritParams gen_args
+#'
+filter_vst02 <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+
+  adam_db %>%
+    dm_zoom_to(advs) %>%
+    filter(!AVISIT %in% c("SCREENING", "BASELINE")) %>%
+    dm_update_zoomed()
+}
+
+
+#' Categorize Reason for Discontinuation from Study.
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
@@ -348,4 +363,32 @@ remove_adex_aval <- function(adam_db,
   }
 
   adam_db
+}
+
+
+#' Categorize `advs` values
+#'
+#' @inheritParams gen_args
+#'
+mutate_vst02 <- function(adam_db) {
+
+  db <- adam_db %>%
+    dm_zoom_to(advs) %>%
+    mutate(
+      ANRIND = case_when(
+        ANRIND == "HIGH HIGH" ~ "HIGH",
+        ANRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(ANRIND)
+      ),
+      BNRIND = case_when(
+        BNRIND == "HIGH HIGH" ~ "HIGH",
+        BNRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(BNRIND)
+    )) %>%
+    mutate(ANRIND = as.factor(ANRIND),
+           BNRIND = as.factor(BNRIND)
+    ) %>%
+    dm_update_zoomed()
+
+  db
 }
