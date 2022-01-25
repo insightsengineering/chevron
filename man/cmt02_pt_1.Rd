@@ -34,8 +34,8 @@ cmt02_pt_1(
 }
 \details{
 \itemize{
-\item 
-\item 
+\item Order by decreasing total number of patients with the specific medication.
+\item Does not include a total column by default.
 }
 }
 \examples{

@@ -7,8 +7,8 @@
 #' @inheritParams gen_args
 #'
 #' @details
-#'   *
-#'   *
+#'   * Order by decreasing total number of patients with the specific medication.
+#'   * Does not include a total column by default.
 #'
 #' @return
 #' @export
