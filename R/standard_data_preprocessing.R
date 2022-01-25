@@ -376,7 +376,7 @@ remove_adex_aval <- function(adam_db,
 #'
 mutate_cmt02_pt_1 <- function(adam_db) {
 
-  db <-adam_db %>%
+  db <- adam_db %>%
     dm_zoom_to(adcm) %>%
     mutate(CMDECOD = as.factor(CMDECOD)) %>%
     mutate(CMSEQ = as.factor(CMSEQ)) %>%
@@ -384,5 +384,3 @@ mutate_cmt02_pt_1 <- function(adam_db) {
 
   db
 }
-
-
