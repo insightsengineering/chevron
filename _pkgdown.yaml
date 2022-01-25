@@ -32,6 +32,7 @@ reference:
       - aet02_3
       - aet03_1
       - aet04_1
+      - cmt02_pt_1
       - dmt01_1
       - dst01_1
       - dst01_2
@@ -59,7 +60,9 @@ reference:
       - filter_adlb_anl01fl
       - filter_admh_anl01fl
       - filter_advs_anl01fl
+      - filter_adcm_concomitant
       - mutate_adsl_gp
+      - mutate_cmt02_pt_1
       - remove_adex_aval
       - reorder_adex_params
 
