@@ -352,17 +352,22 @@ syn_test_data <- function() {
     mutate(AEDECOD = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
-  db_m <- db %>%
+  db <- db %>%
     dm_zoom_to(adae) %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
-  db_m <- db %>%
+  db <- db %>%
     dm_zoom_to(advs) %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
-  db_m
+  db <- db %>%
+    dm_zoom_to(adcm) %>%
+    mutate(ANL01FL = "Y") %>%
+    dm_update_zoomed()
+
+  db
 }
 
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/standard_data_preprocessing.R
 \name{filter_adcm_cmt01}
 \alias{filter_adcm_cmt01}
-\title{Filter \code{adcm} for \code{ATIREL} and  \code{SAFFL}}
+\title{Filter \code{adcm} for \code{ANL01FL} and  \code{SAFFL}}
 \usage{
 filter_adcm_cmt01(adam_db)
 }
@@ -10,5 +10,8 @@ filter_adcm_cmt01(adam_db)
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 }
 \description{
-Filter \code{adcm} for \code{ATIREL} and  \code{SAFFL}
+Filter \code{adcm} for \code{ANL01FL} and  \code{SAFFL}
+}
+\details{
+filter with \code{ANL01FL} instead of \code{SAFFL } which is external to \code{chevron}.
 }

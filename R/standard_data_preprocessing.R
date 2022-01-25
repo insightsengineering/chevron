@@ -258,7 +258,10 @@ filter_adex_drug <- function(adam_db) {
     dm_apply_filters()
 }
 
-#' Filter `adcm` for `ATIREL` and  `SAFFL`
+#' Filter `adcm` for `ANL01FL` and  `SAFFL`
+#'
+#' @details filter with `ANL01FL` instead of `SAFFL ` which is external to `chevron`.
+#'
 #'
 #' @inheritParams gen_args
 #'
@@ -266,9 +269,8 @@ filter_adcm_cmt01 <- function(adam_db) {
     assert_that(is(adam_db, "dm"))
 
     adam_db %>%
-      dm_filter(adsl, SAFFL == "Y") %>%
-      dm_apply_filters() %>%
       dm_zoom_to(adcm) %>%
+      filter(ANL01FL == "Y") %>%
       filter(ATIREL == "CONCOMITANT") %>%
       dm_update_zoomed()
 }
