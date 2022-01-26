@@ -14,6 +14,7 @@ std_preprocessing_map <- tibble::tribble(
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
+  "dtht01_1", "filter_adsl_anl01fl", NA, c("adsl"),
   "egt01_1", "filter_adeg_anl01fl", NA, c("adsl", "adeg"),
   "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
@@ -197,6 +198,21 @@ std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
 
 
 ## manipulation functions ----
+
+#' Filter `adsl` for `ANL01FL`
+#'
+#' @inheritParams gen_args
+#'
+#'
+filter_adsl_anl01fl <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+
+  adam_db %>%
+    dm_zoom_to(adsl) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
+}
+
 
 #' Filter `adae` for `ANL01FL`
 #'

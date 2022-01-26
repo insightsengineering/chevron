@@ -347,6 +347,11 @@ syn_test_data <- function() {
     dm_add_pk(adae, "AESEQ")
 
   db <- db %>%
+    dm_zoom_to(adsl) %>%
+    mutate(ANL01FL = "Y") %>%
+    dm_update_zoomed()
+
+  db <- db %>%
     dm_zoom_to(adae) %>%
     mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
     mutate(AEDECOD = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
