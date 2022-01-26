@@ -2,7 +2,7 @@
 % Please edit documentation in R/cmt01a.R
 \name{cmt01a_2}
 \alias{cmt01a_2}
-\title{\code{CMT01A} Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
+\title{\code{CMT01A} Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
 frequency).}
 \usage{
 cmt01a_2(

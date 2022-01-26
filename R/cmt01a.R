@@ -143,7 +143,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 
 # CMT01A_2 ----
 
-#' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
+#' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
 #' frequency).
 #'
 #' A concomitant medication table with the number of subjects and the total number of treatments by medication class and
