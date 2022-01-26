@@ -11,7 +11,7 @@
 #' @param logical_as_factor (`logical`) should logical columns be transformed into factor.
 #' @param na_level (`character`) the label to encode missing levels.
 #'
-#' @import checkmate
+#' @importFrom checkmate assert_class assert_character assert_logical
 #' @importFrom dm dm_zoom_to dm_update_zoomed
 #' @importFrom dplyr mutate across
 #' @importFrom magrittr %>%
@@ -104,7 +104,7 @@ dm_explicit_na <- function(data,
 #' @param x (`character` or `logical`) input to be turned into factor with explicit missing level.
 #' @param na_label (`character`) the label to encode missing levels.
 #'
-#' @import checkmate
+#' @importFrom checkmate assert_true
 #' @importFrom tern explicit_na sas_na
 #'
 #' @return
