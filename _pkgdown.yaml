@@ -32,6 +32,9 @@ reference:
       - aet02_3
       - aet03_1
       - aet04_1
+      - cmt01a_1
+      - cmt01a_2
+      - cmt01a_3
       - dmt01_1
       - dst01_1
       - dst01_2
@@ -55,6 +58,7 @@ reference:
       - std_mutate_fun
       - filter_adex_drug
       - filter_adae_anl01fl
+      - filter_adcm_cmt01
       - filter_adeg_anl01fl
       - filter_adlb_anl01fl
       - filter_admh_anl01fl
@@ -62,6 +66,7 @@ reference:
       - mutate_adsl_gp
       - remove_adex_aval
       - reorder_adex_params
+      - mutate_cmt01a
 
   - title: Utility Functions
     contents:

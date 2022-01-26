@@ -65,6 +65,7 @@ For each variable, summary statistics are by default based on the number of pati
 \examples{
 
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   preprocess_data("dmt01_1")
