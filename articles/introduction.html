@@ -72,7 +72,7 @@
       <h1 data-toc-skip>Introduction to Chevron</h1>
                         <h4 data-toc-skip class="author">Adrian Waddell</h4>
             
-            <h4 data-toc-skip class="date">2022-01-24</h4>
+            <h4 data-toc-skip class="date">2022-01-26</h4>
       
       
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -180,14 +180,14 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span>
-<span class="co">#&gt;   tlgfname filter_fname        mutate_fname req_data </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> aet02_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> aet02_2  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> aet02_3  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> aet03_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> aet04_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> dmt01_1  <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>           <span style="color: #949494;">&lt;chr [1]&gt;</span></span></code></pre></div>
+<span class="co">#&gt;   tlgfname filter_fname        mutate_fname  req_data </span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> aet02_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>            <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> aet02_2  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>            <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> aet02_3  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>            <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> aet03_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>            <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> aet04_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>            <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> cmt01a_1 filter_adcm_cmt01   mutate_cmt01a <span style="color: #949494;">&lt;chr [2]&gt;</span></span></code></pre></div>
 <p>For example, for <code>aet02_1</code>:</p>
 <ol style="list-style-type: decimal">
 <li>the <code>adam_db</code> data gets filtered by the function <code>filter_adae_anl01fl</code>
@@ -207,7 +207,7 @@
 <span class="co">#&gt;     assert_that(is(adam_db, "dm"))</span>
 <span class="co">#&gt;     adam_db %&gt;% dm_filter(adae, bol_YN(ANL01FL)) %&gt;% dm_apply_filters()</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55de0ca49188&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x559218f44f00&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>and</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -217,7 +217,7 @@
 <span class="co">#&gt;     assert_that(is(adam_db, "dm"))</span>
 <span class="co">#&gt;     adam_db %&gt;% dm_filter(adae, bol_YN(ANL01FL)) %&gt;% dm_apply_filters()</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55de0ca49188&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x559218f44f00&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>so alternatively one can also create the output above with</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">

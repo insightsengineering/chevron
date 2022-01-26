@@ -82,6 +82,20 @@
         </td>
         <td><p><code>AET04</code> Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1</p></td>
       </tr><tr><td>
+          <p><code><a href="cmt01a_1.html">cmt01a_1()</a></code> <code><a href="cmt01a_1.html">cmt01a_1_lyt()</a></code> </p>
+        </td>
+        <td><p><code>CMT01A</code> Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.</p></td>
+      </tr><tr><td>
+          <p><code><a href="cmt01a_2.html">cmt01a_2()</a></code> </p>
+        </td>
+        <td><p><code>CMT01A</code> Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
+frequency).</p></td>
+      </tr><tr><td>
+          <p><code><a href="cmt01a_3.html">cmt01a_3()</a></code> <code><a href="cmt01a_3.html">cmt01a_3_lyt()</a></code> </p>
+        </td>
+        <td><p><code>CMT01A</code> Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
+treatments per medication class suppressed).</p></td>
+      </tr><tr><td>
           <p><code><a href="dmt01_1.html">dmt01_1()</a></code> <code><a href="dmt01_1.html">dmt01_1_lyt()</a></code> </p>
         </td>
         <td><p>DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1</p></td>
@@ -162,6 +176,10 @@
         </td>
         <td><p>Filter <code>adae</code> for <code>ANL01FL</code></p></td>
       </tr><tr><td>
+          <p><code><a href="filter_adcm_cmt01.html">filter_adcm_cmt01()</a></code> </p>
+        </td>
+        <td><p>Filter <code>adcm</code> for <code>ANL01FL</code> and  <code>SAFFL</code></p></td>
+      </tr><tr><td>
           <p><code><a href="filter_adeg_anl01fl.html">filter_adeg_anl01fl()</a></code> </p>
         </td>
         <td><p>Filter <code>adeg</code> for <code>ANL01FL</code></p></td>
@@ -189,6 +207,10 @@
           <p><code><a href="reorder_adex_params.html">reorder_adex_params()</a></code> </p>
         </td>
         <td><p>Reorder <code>PARAM</code> and <code>PARAMCD</code> levels</p></td>
+      </tr><tr><td>
+          <p><code><a href="mutate_cmt01a.html">mutate_cmt01a()</a></code> </p>
+        </td>
+        <td><p>Coerce <code>CMSEQ</code> to factor in <code>adcm</code></p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="utility-functions">Utility Functions <a href="#utility-functions" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
