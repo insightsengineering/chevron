@@ -2,7 +2,7 @@
 % Please edit documentation in R/dm_explicit_na.R
 \name{dm_explicit_na}
 \alias{dm_explicit_na}
-\title{Encode Categorical Missing Values in a \code{DM} object}
+\title{Encode Categorical Missing Values in a \code{DM} Object}
 \usage{
 dm_explicit_na(
   data,
@@ -30,7 +30,7 @@ dm_explicit_na(
 \code{dm} object with explicit missing levels
 }
 \description{
-Encode Categorical Missing Values in a \code{DM} object
+Encode Categorical Missing Values in a \code{DM} Object
 }
 \details{
 This is a helper function to encode missing entries across groups of categorical variables in potentially

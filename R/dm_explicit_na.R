@@ -1,5 +1,5 @@
 
-#' Encode Categorical Missing Values in a `DM` object
+#' Encode Categorical Missing Values in a `DM` Object
 #'
 #' @details This is a helper function to encode missing entries across groups of categorical variables in potentially
 #'   all tables of a `dm` object.
@@ -12,6 +12,10 @@
 #' @param na_level (`character`) the label to encode missing levels.
 #'
 #' @import checkmate
+#' @importFrom dm dm_zoom_to dm_update_zoomed
+#' @importFrom dplyr mutate across
+#' @importFrom magrittr %>%
+#' @importFrom tern explicit_na sas_na
 #'
 #' @return `dm` object with explicit missing levels
 #' @export
@@ -32,12 +36,12 @@
 #' dm_fact$df1
 #' dm_fact$df2
 #'
-dm_explicit_na <- function (data,
-                             omit_tables = NULL,
-                             omit_columns = NULL,
-                             char_as_factor = TRUE,
-                             logical_as_factor = FALSE,
-                             na_level = "<Missing>") {
+dm_explicit_na <- function(data,
+                           omit_tables = NULL,
+                           omit_columns = NULL,
+                           char_as_factor = TRUE,
+                           logical_as_factor = FALSE,
+                           na_level = "<Missing>") {
 
   assert_class(data, "dm")
   assert_character(omit_tables, null.ok = TRUE)
@@ -52,15 +56,15 @@ dm_explicit_na <- function (data,
     return(data)
   }
 
-  for (tab in target_tables){
+  for (tab in target_tables) {
 
     tab_sym <- sym(tab)
 
     current_tab <- db[[tab]]
     names_current_tab <- colnames(current_tab)
 
-    char_col <- mapply(function(x,y) is.character(x) & y, current_tab, list(char_as_factor))
-    logi_col <- mapply(function(x,y) is.logical(x) & y, current_tab, list(logical_as_factor))
+    char_col <- mapply(function(x, y) is.character(x) & y, current_tab, list(char_as_factor))
+    logi_col <- mapply(function(x, y) is.logical(x) & y, current_tab, list(logical_as_factor))
     fact_col <- unlist(lapply(current_tab, is.factor))
 
     names_char_col <- setdiff(names(which(char_col)), omit_columns)
@@ -100,6 +104,9 @@ dm_explicit_na <- function (data,
 #' @param x (`character` or `logical`) input to be turned into factor with explicit missing level.
 #' @param na_label (`character`) the label to encode missing levels.
 #'
+#' @import checkmate
+#' @importFrom tern explicit_na sas_na
+#'
 #' @return
 #'
 h_as_factor <- function(x, na_label) {
@@ -119,4 +126,3 @@ h_as_factor <- function(x, na_label) {
 
   factor(res, levels = lvl_x)
 }
-
