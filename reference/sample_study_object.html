@@ -31,15 +31,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -77,12 +68,17 @@ Other releases
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">lst</span> <span class="op">&lt;-</span> <span class="fu">sample_study_object</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dput.html" class="external-link">dput</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> list(analysis_var = "AVAL", armvar = "ACTARM", disc_reason_var = "DCSREAS", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(analysis_var = "AVAL", armvar = "ARM", disc_reason_var = "DCSREAS", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     evo_vars = c("AVAL", "CHG"), evo_vars_lbls = c("Analysis \nValue", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "Change from \nBaseline"), group_grades = list(`Any Grade` = c("1", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "4"), `Grade 5` = "5"), lbl_analysis_var = "Analysis Value", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     lbl_overall = NULL, severity_grade = c("MILD", "MODERATE", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"), lbl_overall = NULL, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "SEV"), medconcept_var = c("SMQ01", "SMQ02", "CQ01"), safety_var = c("FATAL", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "RELDSM", "SEV"), severity_grade = c("MILD", "MODERATE", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "SEVERE", "LIFE THREATENING"), status = "EOSSTT", status_treatment = "EOTSTT", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "BWGHTSI"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", </span>

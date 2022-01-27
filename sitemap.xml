@@ -37,6 +37,12 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/news/index.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/aet01_1.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/aet01_2.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/aet02_1.html</loc>
   </url>
   <url>
@@ -137,6 +143,9 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/mutate_cmt01a.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/mutate_for_aet01.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/pivot_wider_labels.html</loc>
