@@ -61,7 +61,6 @@ reference:
       - std_mutate_fun
       - filter_adex_drug
       - filter_adae_anl01fl
-      - filter_adcm_cmt01
       - filter_adeg_anl01fl
       - filter_adlb_anl01fl
       - filter_admh_anl01fl

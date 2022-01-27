@@ -2,7 +2,8 @@
 % Please edit documentation in R/cmt02_pt.R
 \name{cmt02_pt_1}
 \alias{cmt02_pt_1}
-\title{\code{CMT02_PT} Table 1 (Default)}
+\alias{cmt02_pt_1_lyt}
+\title{\code{CMT02_PT} Table 1 (Default) Concomitant Medications by Preferred Name}
 \usage{
 cmt02_pt_1(
   adam_db,
@@ -11,6 +12,13 @@ cmt02_pt_1(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("CMT02_PT"),
   .study = list(armvar = "ARM", lbl_overall = "All patients")
+)
+
+cmt02_pt_1_lyt(
+  armvar = .study$armvar,
+  lbl_overall = .study$lbl_overall,
+  deco = std_deco("CMT02_PT"),
+  .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{
@@ -30,7 +38,8 @@ cmt02_pt_1(
 
 }
 \description{
-\code{CMT02_PT} Table 1 (Default)
+A concomitant medication table with the number of subjects and the total number of treatments by medication name
+sorted by frequencies.
 }
 \details{
 \itemize{
@@ -38,13 +47,22 @@ cmt02_pt_1(
 \item Does not include a total column by default.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{cmt02_pt_1_lyt}: 
+}}
+
 \examples{
 library(dm)
-library(rtables)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   preprocess_data("cmt02_pt_1")
 
 cmt02_pt_1(adam_db = db)
+
+cmt02_pt_1_lyt(
+  armvar = "ACTARM",
+  lbl_overall = NULL)
 
 }

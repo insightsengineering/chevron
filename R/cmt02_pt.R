@@ -1,8 +1,7 @@
-
-
-
-
-#' `CMT02_PT` Table 1 (Default)
+#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name
+#'
+#' A concomitant medication table with the number of subjects and the total number of treatments by medication name
+#' sorted by frequencies.
 #'
 #' @inheritParams gen_args
 #'
@@ -15,7 +14,7 @@
 #'
 #' @examples
 #' library(dm)
-#' library(rtables)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("cmt02_pt_1")
@@ -54,6 +53,19 @@ cmt02_pt_1 <- function(adam_db,
 }
 
 
+#' `CMT02_PT` Layout 1 (Default)
+#'
+#' @describeIn cmt02_pt_1
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' cmt02_pt_1_lyt(
+#'   armvar = "ACTARM",
+#'   lbl_overall = NULL)
+#'
 cmt02_pt_1_lyt <- function(armvar = .study$armvar,
                            lbl_overall = .study$lbl_overall,
                            deco = std_deco("CMT02_PT"),
