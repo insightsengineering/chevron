@@ -1,3 +1,4 @@
+---
 url: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron
 
 template:
@@ -12,12 +13,12 @@ navbar:
 articles:
   - title: All vignettes
     contents:
-    - introduction
-    - intended_use
-    - adam_db_argument
-    - dot_study_argument
-    - layouts
-    - Adding_new_TLGs_to_Chevron
+      - introduction
+      - intended_use
+      - adam_db_argument
+      - dot_study_argument
+      - layouts
+      - Adding_new_TLGs_to_Chevron
 
 reference:
   - title: Package Overview
