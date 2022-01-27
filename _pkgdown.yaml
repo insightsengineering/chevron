@@ -1,3 +1,4 @@
+---
 url: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron
 
 template:
@@ -9,16 +10,15 @@ navbar:
     - icon: fa-github
       href: https://github.com/insightsengineering/chevron
 
-
 articles:
-- title: All vignettes
-  contents:
-  - introduction
-  - intended_use
-  - adam_db_argument
-  - dot_study_argument
-  - layouts
-  - Adding_new_TLGs_to_Chevron
+  - title: All vignettes
+    contents:
+      - introduction
+      - intended_use
+      - adam_db_argument
+      - dot_study_argument
+      - layouts
+      - Adding_new_TLGs_to_Chevron
 
 reference:
   - title: Package Overview
@@ -27,6 +27,8 @@ reference:
 
   - title: Standard Tables
     contents:
+      - aet01_1
+      - aet01_2
       - aet02_1
       - aet02_2
       - aet02_3
@@ -63,6 +65,7 @@ reference:
       - filter_adlb_anl01fl
       - filter_admh_anl01fl
       - filter_advs_anl01fl
+      - mutate_for_aet01
       - mutate_adsl_gp
       - remove_adex_aval
       - reorder_adex_params
