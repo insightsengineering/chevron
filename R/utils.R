@@ -53,7 +53,8 @@ std_deco <- function(id, ...) {
 #' \dontrun{
 #' chevron:::bol_YN(c("Y", "Y", "N", "", NA))
 #' }
-bol_YN <- function(x) { #nolint
+bol_YN <- function(x) { # nolint
+
   if (is.logical(x)) {
     x
   } else {
@@ -346,41 +347,48 @@ syn_test_data <- function() {
     dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
     dm_add_pk(adae, "AESEQ")
 
-  db_m <- db %>%
+  db <- db %>%
     dm_zoom_to(adae) %>%
     mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
     mutate(AEDECOD = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
-  db_m <- db_m %>%
+  db <- db %>%
     dm_zoom_to(admh) %>%
     mutate(MHBODSYS = with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
     mutate(MHDECOD = with_label(MHDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
-  db_m <- db_m %>%
+  db <- db %>%
     dm_zoom_to(adae) %>%
     mutate(ANL01FL = "Y") %>%
+    mutate(ASEV = AESEV) %>%
+    mutate(AREL = AEREL) %>%
+    mutate(ATOXGR = AETOXGR) %>%
     dm_update_zoomed()
 
-  db_m <- db_m %>%
+  db <- db %>%
     dm_zoom_to(advs) %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
-  db_m <- db_m %>%
+  db <- db %>%
+    dm_zoom_to(adcm) %>%
+    mutate(ANL01FL = "Y") %>%
+    dm_update_zoomed()
+
+  db <- db %>%
     dm_zoom_to(admh) %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
-  db_m
+  db
 }
-
 
 #' Temporary function to add decorator to a table
 #'
-#' @param x (`rtables`)
-#' @param deco (`list`) typically generated with `std_deco()`
+#' @param x (`rtables`) object.
+#' @param deco (`list`) typically generated with `std_deco()`.
 #'
 #' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 #'

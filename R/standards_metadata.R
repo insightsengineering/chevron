@@ -65,8 +65,24 @@ gds_data <- list(
     "Numeric Precision and Formatting of Statistics" = "None",
     "Optional Subgrouping" = "None"
   ),
+  # AET01 ----
+  AET01 = list(
+    "description" = "Overview of Deaths and Adverse Events Summary Table",
+    "Standard titles" = "Overview of Deaths and Adverse Events: {Specify Population}",
+    "Standard footnotes" = "Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings.
+Multiple occurrences of the same AE in one individual are counted only once except for \"Total number of AEs\" row in which multiple occurrences of the same AE are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).",
+    "Analysis Population" = "Specify patient population.  Typically, this is Safety Evaluable Population for summarizing safety outcomes.",
+    "Column Variables" = "By treatment received.",
+    "Column Totals" = "See mockup and allow for an All Patients column.",
+    "Analysis Variables" = "The Statistician is to specify which summary rows are to be included for a particular study.  \"Total number of deaths\" refers to all deaths from all causes in the analysis population.  The Medical Concepts section at the end is project specific.  All rows specified will be displayed including rows with zero counts. The Statistician is to specify which events are to be included in table (e.g., include AEs at any time from the first dose of study drug through 7 days after the last dose of study drug).  The AEs included in a summary table should be defined in the table footnote.",
+    "Statistics and Calculation Methods" = "Percentages are of the number of patients in the analysis population, as given in the column headings.  IMPORTANT: Percentages in this table must use the same denominator within each column.  If the appropriate denominator for certain events is different from the number of patients in the analysis population (e.g., \"patients treated\" instead of \"patients in the safety-evaluable population\"), then those events need to be summarized in a separate table.",
+    "Optional Row" = "For studies where the concept of AE leading to withdrawal from study is valid (and captured on the AE eCRF in addition to action taken on study drug), include the row \"AE leading to withdrawal from study\" next to the row \"AE leading to withdrawal from treatment.\"",
+    "Numeric Precision and Formatting of Statistics" = "Use standard display in the mockup.",
+    "Formatting Options" = NULL,
+    "Optional Subsetting" = "The Statistician can specify subsetting criteria for patients for the overall AE profile summary.  When a table is based on a subset of patients, the table title should be modified to clearly define the analysis population."
+  ),
   AET02 = list(
-    description = "Adverse Events by System Organ Class and Preferred Term Table",
+    "description" = "Adverse Events by System Organ Class and Preferred Term Table",
     "Standard titles" = "Adverse Events: {Specify Population}",
     "Standard footnotes" = c(
       "Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings.",
@@ -191,6 +207,26 @@ gds_data <- list(
   ),
   AET06 = list(),
   AET05VAD = list(),
+  CMT01A = list(
+    "description" = "Concomitant Medications by Medication Class and Preferred Name - Recommended Layout",
+    "Standard titles" = "Concomitant Medications by Medication Class and Preferred Name: {Specify Population}",
+    "Standard footnotes" = "Treatments are coded using the WHODrug Global B3 Format dictionary {version}.  Treatments can appear under multiple
+classes. Multiple uses of a specific medication for a patient were counted once in the frequency for the medication.
+Likewise, multiple uses within a specific medication class for a patient were counted once in the frequency for the
+medication class. For frequency counts in \"Total number of treatments\", multiple uses of the same medication for a
+patient were counted separately. Standard footnote defining medications included in table (e.g., includes concomitant
+medications used at any time from first dose of study drug through 7 days after last dose of study drug).",
+    "Analysis Population" = "Specify analysis population, typically Safety-Evaluable  Population.",
+    "Column Variables" = "By treatment group.",
+    "Column Totals" = "See mockup and allow for an All Patients column.",
+    "Analysis Variables" = "See mockup. Data are to be summarized using the WHODrug Global B3 Format Dictionary.  Recommended layout (CMT01A_WHO) is to display medications by ATC Class Level 2, however the user has the option to summarize by a different ATC Class Level (Level 1, 3, or 4).  An alternative layout is provided where the user can summarize by multiple ATC Class Levels for more granularity (CMT01B_WHO).  For this layout, the user can choose two or more ATC Class Levels to display (highlighted in grey in mockup).  The statistician to specify exactly what medications are to be included, e.g., includes concomitant medications used at any time from the first dose of study drug through 7 days after the last dose of study drug, or includes medications used at any time up to the start of study medication.  The medications included in the summary table should be defined in a table footnote.
+-	By default, for each medication class, a row summarizing the total number of treatments is displayed.  There is an option to suppress this row (highlighted in grey in mockup).
+",
+    "Statistics and Calculation Methods" = ":  The percentages are the number of safety-evaluable patients, as given in the column headings.  Count multiple occurrences of the same medication once.",
+    "Numeric Precision and Formatting of Statistics" = "Use standard display in the mockup.",
+    "Formatting Options" = NULL,
+    "Optional Subsetting" = "The user could choose specific classes of medications using selected values of ATC Class Levels 1, 2, 3 or 4 to present for more granular review to support special topic analysis."
+  ),
   EXT01 = list(
     "description" = "Study Drug Exposure Table",
     "Standard titles" = "Study Drug Exposure:  {Specify Population}",
