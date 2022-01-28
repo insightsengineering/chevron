@@ -42,6 +42,8 @@ reference:
       - dst01_2
       - dst01_3
       - egt01_1
+      - egt02_1
+      - egt02_2
       - ext01_1
       - ext01_2
       - lbt01_1
@@ -68,12 +70,14 @@ reference:
       - filter_admh_anl01fl
       - filter_advs_anl01fl
       - filter_vst02
+      - filter_egt02
       - mutate_adsl_gp
-      - mutate_vst02
       - mutate_for_aet01
       - remove_adex_aval
       - reorder_adex_params
       - mutate_cmt01a
+      - mutate_vst02
+      - mutate_egt02
 
   - title: Utility Functions
     contents:
