@@ -17,7 +17,6 @@ dtht01_1(
 )
 
 dtht01_1_lyt(
-  adam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DTHT01"),
@@ -25,7 +24,6 @@ dtht01_1_lyt(
 )
 
 dtht01_1_opt_lyt(
-  dam_db,
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DTHT01"),

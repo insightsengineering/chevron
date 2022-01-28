@@ -14,6 +14,7 @@
 #'
 #' @importFrom dplyr filter
 #' @importFrom magrittr %>%
+#' @importFrom checkmate assert_factor
 #'
 #' @export
 #'
@@ -97,16 +98,15 @@ dtht01_1 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-dtht01_1_lyt <- function(adam_db,
-                     armvar = .study$armvar,
-                     lbl_overall = .study$lbl_overall,
-                     deco = std_deco("DTHT01"),
-                     .study = list(
-                       armvar = "ACTARM",
-                       lbl_overall = NULL
-                     )) {
+dtht01_1_lyt <- function(armvar = .study$armvar,
+                         lbl_overall = .study$lbl_overall,
+                         deco = std_deco("DTHT01"),
+                         .study = list(
+                           armvar = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
 
-    basic_table_deco(deco) %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -132,28 +132,27 @@ dtht01_1_lyt <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-dtht01_1_opt_lyt <- function(dam_db,
-                     armvar = .study$armvar,
-                     lbl_overall = .study$lbl_overall,
-                     deco = std_deco("DTHT01"),
-                     .study = list(
-                       armvar = "ACTARM",
-                       lbl_overall = NULL
-                     )) {
+dtht01_1_opt_lyt <- function(armvar = .study$armvar,
+                             lbl_overall = .study$lbl_overall,
+                             deco = std_deco("DTHT01"),
+                             .study = list(
+                               armvar = "ACTARM",
+                               lbl_overall = NULL
+                             )) {
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(
-    vars = "LDDTHGR1",
-    var_labels = "Days from last drug administration",
-    show_labels = "visible") %>%
+      vars = "LDDTHGR1",
+      var_labels = "Days from last drug administration",
+      show_labels = "visible") %>%
     split_rows_by(
-    "LDDTHGR1",
-    split_fun = remove_split_levels("<Missing>"),
-    split_label = "Primary cause by days from last study drug administration",
-    label_pos = "visible") %>%
+      "LDDTHGR1",
+      split_fun = remove_split_levels("<Missing>"),
+      split_label = "Primary cause by days from last study drug administration",
+      label_pos = "visible") %>%
     summarize_vars("DTHCAT")
 }
 
@@ -175,6 +174,7 @@ dtht01_1_opt_lyt <- function(dam_db,
 #'
 #' @importFrom dplyr filter
 #' @importFrom magrittr %>%
+#' @importFrom checkmate assert_factor
 #'
 #' @export
 #'
