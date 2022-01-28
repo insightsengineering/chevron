@@ -6,8 +6,9 @@
 #' @inheritParams gen_args
 #'
 #' @details
-#'   * Order by decreasing total number of patients with the specific medication.
-#'   * Does not include a total column by default.
+#'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
+#'  * Order by decreasing total number of patients with the specific medication.
+#'  * Does not include a total column by default.
 #'
 #' @return
 #' @export
@@ -17,6 +18,9 @@
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
+#'   dm_zoom_to(adcm) %>%
+#'   filter(ATIREL == "CONCOMITANT") %>%
+#'   dm_update_zoomed() %>%
 #'   preprocess_data("cmt02_pt_1")
 #'
 #' cmt02_pt_1(adam_db = db)
@@ -28,7 +32,7 @@ cmt02_pt_1 <- function(adam_db,
                        deco = std_deco("CMT02_PT"),
                        .study = list(
                          armvar = "ARM",
-                         lbl_overall = "All patients"
+                         lbl_overall = NULL
                        )) {
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")

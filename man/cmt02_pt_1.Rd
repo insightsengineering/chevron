@@ -11,7 +11,7 @@ cmt02_pt_1(
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("CMT02_PT"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients")
+  .study = list(armvar = "ARM", lbl_overall = NULL)
 )
 
 cmt02_pt_1_lyt(
@@ -43,6 +43,7 @@ sorted by frequencies.
 }
 \details{
 \itemize{
+\item Data should be filtered for concomitant medication. \code{(ATIREL == "CONCOMITANT")}.
 \item Order by decreasing total number of patients with the specific medication.
 \item Does not include a total column by default.
 }
@@ -57,6 +58,9 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
+  dm_zoom_to(adcm) \%>\%
+  filter(ATIREL == "CONCOMITANT") \%>\%
+  dm_update_zoomed() \%>\%
   preprocess_data("cmt02_pt_1")
 
 cmt02_pt_1(adam_db = db)
