@@ -101,6 +101,8 @@ dm_explicit_na <- function(data,
 
 #' Helper Coercion Function to Factor with explicit missing levels
 #'
+#' @details This function preserves labels.
+#'
 #' @param x (`character` or `logical`) input to be turned into factor with explicit missing level.
 #' @param na_label (`character`) the label to encode missing levels.
 #'
@@ -113,6 +115,8 @@ h_as_factor <- function(x, na_label) {
 
   assert_true(is.character(x) || is.logical(x))
 
+  init_lab <- attr(x, "label")
+
   x_chr <- as.character(x)
   res <-  explicit_na(sas_na(x_chr), label = na_label)
 
@@ -124,5 +128,7 @@ h_as_factor <- function(x, na_label) {
     lvl_x <- c(lvl_x, na_label)
   }
 
-  factor(res, levels = lvl_x)
+  res <- factor(res, levels = lvl_x)
+
+  with_label(res, init_lab)
 }

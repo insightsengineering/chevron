@@ -17,3 +17,6 @@ h_as_factor(x, na_label)
 \description{
 Helper Coercion Function to Factor with explicit missing levels
 }
+\details{
+This function preserves labels.
+}
