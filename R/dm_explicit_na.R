@@ -60,7 +60,7 @@ dm_explicit_na <- function(data,
 
     tab_sym <- sym(tab)
 
-    current_tab <- db[[tab]]
+    current_tab <- data[[tab]]
     names_current_tab <- colnames(current_tab)
 
     char_col <- mapply(function(x, y) is.character(x) & y, current_tab, list(char_as_factor))
