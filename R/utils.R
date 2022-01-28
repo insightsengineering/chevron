@@ -53,7 +53,8 @@ std_deco <- function(id, ...) {
 #' \dontrun{
 #' chevron:::bol_YN(c("Y", "Y", "N", "", NA))
 #' }
-bol_YN <- function(x) { #nolint
+bol_YN <- function(x) { # nolint
+
   if (is.logical(x)) {
     x
   } else {
@@ -366,6 +367,9 @@ syn_test_data <- function() {
   db <- db %>%
     dm_zoom_to(adae) %>%
     mutate(ANL01FL = "Y") %>%
+    mutate(ASEV = AESEV) %>%
+    mutate(AREL = AEREL) %>%
+    mutate(ATOXGR = AETOXGR) %>%
     dm_update_zoomed()
 
   db <- db %>%
@@ -386,11 +390,10 @@ syn_test_data <- function() {
   db
 }
 
-
 #' Temporary function to add decorator to a table
 #'
-#' @param x (`rtables`)
-#' @param deco (`list`) typically generated with `std_deco()`
+#' @param x (`rtables`) object.
+#' @param deco (`list`) typically generated with `std_deco()`.
 #'
 #' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 #'

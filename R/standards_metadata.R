@@ -65,8 +65,24 @@ gds_data <- list(
     "Numeric Precision and Formatting of Statistics" = "None",
     "Optional Subgrouping" = "None"
   ),
+  # AET01 ----
+  AET01 = list(
+    "description" = "Overview of Deaths and Adverse Events Summary Table",
+    "Standard titles" = "Overview of Deaths and Adverse Events: {Specify Population}",
+    "Standard footnotes" = "Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings.
+Multiple occurrences of the same AE in one individual are counted only once except for \"Total number of AEs\" row in which multiple occurrences of the same AE are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).",
+    "Analysis Population" = "Specify patient population.  Typically, this is Safety Evaluable Population for summarizing safety outcomes.",
+    "Column Variables" = "By treatment received.",
+    "Column Totals" = "See mockup and allow for an All Patients column.",
+    "Analysis Variables" = "The Statistician is to specify which summary rows are to be included for a particular study.  \"Total number of deaths\" refers to all deaths from all causes in the analysis population.  The Medical Concepts section at the end is project specific.  All rows specified will be displayed including rows with zero counts. The Statistician is to specify which events are to be included in table (e.g., include AEs at any time from the first dose of study drug through 7 days after the last dose of study drug).  The AEs included in a summary table should be defined in the table footnote.",
+    "Statistics and Calculation Methods" = "Percentages are of the number of patients in the analysis population, as given in the column headings.  IMPORTANT: Percentages in this table must use the same denominator within each column.  If the appropriate denominator for certain events is different from the number of patients in the analysis population (e.g., \"patients treated\" instead of \"patients in the safety-evaluable population\"), then those events need to be summarized in a separate table.",
+    "Optional Row" = "For studies where the concept of AE leading to withdrawal from study is valid (and captured on the AE eCRF in addition to action taken on study drug), include the row \"AE leading to withdrawal from study\" next to the row \"AE leading to withdrawal from treatment.\"",
+    "Numeric Precision and Formatting of Statistics" = "Use standard display in the mockup.",
+    "Formatting Options" = NULL,
+    "Optional Subsetting" = "The Statistician can specify subsetting criteria for patients for the overall AE profile summary.  When a table is based on a subset of patients, the table title should be modified to clearly define the analysis population."
+  ),
   AET02 = list(
-    description = "Adverse Events by System Organ Class and Preferred Term Table",
+    "description" = "Adverse Events by System Organ Class and Preferred Term Table",
     "Standard titles" = "Adverse Events: {Specify Population}",
     "Standard footnotes" = c(
       "Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings.",

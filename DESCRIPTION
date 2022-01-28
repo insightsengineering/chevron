@@ -19,6 +19,7 @@ Imports:
     tern,
     dm,
     assertthat,
+    checkmate,
     dplyr,
     magrittr,
     rlang,

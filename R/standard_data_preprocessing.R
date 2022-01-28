@@ -2,6 +2,8 @@
 
 std_preprocessing_map <- tibble::tribble(
   ~tlgfname, ~filter_fname, ~mutate_fname, ~req_data,
+  "aet01_1", "filter_adae_anl01fl", "mutate_for_aet01", c("adsl", "adae"),
+  "aet01_2", "filter_adae_anl01fl", "mutate_for_aet01", c("adsl", "adae"),
   "aet02_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet02_2", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet02_3", "filter_adae_anl01fl", NA, c("adsl", "adae"),
@@ -219,13 +221,16 @@ filter_adsl_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 #'
+#' @importFrom dplyr filter
+#'
 #'
 filter_adae_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adae, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(adae) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `adlb` for `ANL01FL`
@@ -236,8 +241,9 @@ filter_adlb_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adlb, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(adlb) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `adeg` for `ANL01FL`
@@ -248,8 +254,9 @@ filter_adeg_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adeg, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(adeg) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `advs` for `ANL01FL`
@@ -260,8 +267,9 @@ filter_advs_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(advs, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(advs) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `admh` for `ANL01FL`
@@ -284,14 +292,67 @@ filter_adex_drug <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(adex, PARCAT1 == "OVERALL") %>%
-    dm_apply_filters()
+    dm_zoom_to(adex) %>%
+    filter(PARCAT1 == "OVERALL") %>%
+    dm_update_zoomed()
+}
+
+
+#' Creating Necessary Columns for `aet01`
+#'
+#' @inheritParams gen_args
+#'
+mutate_for_aet01 <- function(adam_db) {
+
+  db <- adam_db %>%
+    dm_zoom_to(adae) %>%
+    mutate(
+    FATAL = AESDTH == "Y",
+    SER = AESER == "Y",
+    SERWD = (AESER == "Y" & AEACN == "DRUG WITHDRAWN"),
+    SERDSM = (AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+    RELSER = (AESER == "Y" & AREL == "Y"),
+    WD = AEACN == "DRUG WITHDRAWN",
+    DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+    REL = AREL == "Y",
+    RELWD = (AREL == "Y" & AEACN == "DRUG WITHDRAWN"),
+    RELDSM = (AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+    CTC35 = ATOXGR %in% c("3", "4", "5"),
+    CTC45 = ATOXGR %in% c("4", "5"),
+    SEV = ASEV == "SEVERE",
+    SMQ01 = SMQ01NAM != "",
+    SMQ02 = SMQ02NAM != "",
+    CQ01 = CQ01NAM != ""
+    ) %>%
+    mutate(
+    AEDECOD = with_label(AEDECOD, "Dictionary-Derived Term"),
+    AESDTH = with_label(AESDTH, "Results in Death"),
+    AEACN = with_label(AEACN, "Action Taken with Study Treatment"),
+    FATAL = with_label(FATAL, "AE with fatal outcome"),
+    SER = with_label(SER, "Serious AE"),
+    SEV = with_label(SEV, "Severe AE (at greatest intensity)"),
+    SERWD = with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
+    SERDSM = with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
+    RELSER = with_label(RELSER, "Related Serious AE"),
+    WD = with_label(WD, "AE leading to withdrawal from treatment"),
+    DSM = with_label(DSM, "AE leading to dose modification/interruption"),
+    REL = with_label(REL, "Related AE"),
+    RELWD = with_label(RELWD, "Related AE leading to withdrawal from treatment"),
+    RELDSM = with_label(RELDSM, "Related AE leading to dose modification/interruption"),
+    CTC35 = with_label(CTC35, "Grade 3-5 AE"),
+    CTC45 = with_label(CTC45, "Grade 4/5 AE"),
+    SMQ01 =  with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
+    SMQ02 = with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
+    CQ01 = with_label(CQ01, aesi_label(CQ01NAM))
+    ) %>%
+    dm_update_zoomed()
+
+  db
 }
 
 #' Filter `adcm` for `ANL01FL` and  `SAFFL`
 #'
 #' @details filter with `ANL01FL` instead of `SAFFL ` which is external to `chevron`.
-#'
 #'
 #' @inheritParams gen_args
 #'
