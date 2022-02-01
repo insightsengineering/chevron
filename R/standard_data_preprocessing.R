@@ -34,7 +34,8 @@ std_preprocessing_map <- tibble::tribble(
 #' @examples
 #' std_pmap()
 std_pmap <- function() {
-  std_preprocessing_map
+  std_preprocessing_map %>%
+    mutate(tlgfname = paste0("chevron::", tlgfname))
 }
 
 #' Row in Preprocessing Map
