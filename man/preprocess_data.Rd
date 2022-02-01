@@ -23,5 +23,5 @@ library(magrittr)
 db <- syn_test_data()
 
 db \%>\%
-  preprocess_data("aet02_2")
+  preprocess_data("chevron::aet02_2")
 }

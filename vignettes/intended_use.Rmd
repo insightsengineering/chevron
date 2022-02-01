@@ -70,17 +70,17 @@ lopo_entry <- function(tlgfname, type = c("table", "listing", "graph"), extra_ar
 
 lopo <- rbind(
   lopo_entry(
-    tlgfname = "dmt01_1", type = "table",
+    tlgfname = "chevron::dmt01_1", type = "table",
     main_title = "Demographics and Baseline Characteristics", filters = "IT"
   ),
   lopo_entry(
-    tlgfname = "aet02_1", type = "table",
+    tlgfname = "chevron::aet02_1", type = "table",
     main_title = "Adverse Events Resulting in Death",
     footnotes = "Investigator text for AEs is coded using MedDRA version {{medra-version}}.",
     filters = c("FATAL", "SE")
   ),
   lopo_entry(
-    tlgfname = "aet02_1", type = "table",
+    tlgfname = "chevron::aet02_1", type = "table",
     main_title = "Adverse Events",
     footnotes = c(
       paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
@@ -92,7 +92,7 @@ lopo <- rbind(
     filters = "SE"
   ),
   lopo_entry(
-    tlgfname = "aet02_1", type = "table",
+    tlgfname = "chevron::aet02_1", type = "table",
     main_title = "Adverse Events Leading to Study Treatment Discontinuation",
     footnotes = c(
       paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
@@ -105,17 +105,17 @@ lopo <- rbind(
     filters = "SE"
   ),
   lopo_entry(
-    tlgfname = "dst01_1", type = "table",
+    tlgfname = "chevron::dst01_1", type = "table",
     main_title = "Patient Disposition",
     filters = "IT"
   ),
   lopo_entry(
-    tlgfname = "dst01_1", type = "table",
+    tlgfname = "chevron::dst01_1", type = "table",
     main_title = "Patients Discontinued from Study Treatment",
     filters = c("TX", "IT")
   ),
   lopo_entry(
-    tlgfname = "lbt01_1", type = "table",
+    tlgfname = "chevron::lbt01_1", type = "table",
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (including CTC grade)",
     footnotes = c(
       paste("Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}.",
@@ -128,7 +128,7 @@ lopo <- rbind(
     output_id = "l_lb_ctc"
   ),
   lopo_entry(
-    tlgfname = "lbt01_1", type = "table",
+    tlgfname = "chevron::lbt01_1", type = "table",
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit",
     footnotes = c(
       "Abnormalities displayed as high (H) or low (L) from collected range",
@@ -137,7 +137,7 @@ lopo <- rbind(
     filters = "SE"
   ),
   lopo_entry(
-    tlgfname = "lbt01_1", type = "table",
+    tlgfname = "chevron::lbt01_1", type = "table",
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (Standardised parameters)",
     footnotes = c(
       "Includes values standardised using Roche Safety Lab Standardisation",
@@ -344,7 +344,7 @@ We now use all the concepts for introduced above to create an output. Let's extr
 lopo:
 
 ```{r}
-lopo_1 <- purrr::transpose(lopo[lopo$tlgfname == "aet02_1", ])[[1]]
+lopo_1 <- purrr::transpose(lopo[lopo$tlgfname == "chevron::aet02_1", ])[[1]]
 lopo_1
 ```
 
@@ -386,8 +386,17 @@ db <- adam_study_data %>%
   dm_filter_with_labels(lopo_1$filters) %>%
   preprocess_data(lopo_1$tlgfname)
 
+get_fun <- function(x) {
+  if (grepl("::", x, fixed = TRUE)) {
+    y <- strsplit(x, "::", fixed = TRUE)[[1]]
+    getFromNamespace(y[2], y[1])
+  } else {
+    get(x)
+  }
+}
+
 ## Output ---
-tbl <- do.call(lopo_1$tlgfname, c(list(adam_db = db, deco = deco), lopo_1$extra_args))
+tbl <- do.call(get_fun(lopo_1$tlgfname), c(list(adam_db = db, deco = deco), lopo_1$extra_args))
 
 tbl
 ```
@@ -412,7 +421,7 @@ ns_dmtspecial <- function(adam_db, deco) {
 lopo_new <- rbind(
   lopo,
   lopo_entry(
-    tlgfname = "ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World",
+    tlgfname = "chevron::ns_dmtspecial", type = "table", output_id = "t_aaa", main_title = "Hello World",
     subtitles = c("this", "is", "a test"),
     footnotes = "very important stuff", filters = c("CTC35", "SE")
   )
