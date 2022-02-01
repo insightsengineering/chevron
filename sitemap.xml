@@ -82,6 +82,9 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/cut_by_group.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/dm_explicit_na.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/dmt01_1.html</loc>
   </url>
   <url>
@@ -128,6 +131,9 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/get_db_data.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/h_as_factor.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/index.html</loc>

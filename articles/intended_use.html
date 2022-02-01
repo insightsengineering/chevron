@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -81,7 +72,7 @@ Other releases
       <h1 data-toc-skip>Intended Use of chevron</h1>
                         <h4 data-toc-skip class="author">Adrian Waddell and Gabriel Becker</h4>
             
-            <h4 data-toc-skip class="date">2022-01-27</h4>
+            <h4 data-toc-skip class="date">2022-02-01</h4>
       
       
       <div class="hidden name"><code>intended_use.Rmd</code></div>
@@ -285,7 +276,6 @@ Other releases
 <p>So the <code>adam_db</code> object needs to contain the following datasets, we will use the <code>scda</code> data:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">syn_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span>, <span class="st">"adlb"</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; </span>
 
 <span class="va">adam_study_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">dm</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span>, adae <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adae</span>, adlb <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adlb</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
