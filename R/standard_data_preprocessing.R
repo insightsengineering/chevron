@@ -34,8 +34,7 @@ std_preprocessing_map <- tibble::tribble(
 #' @examples
 #' std_pmap()
 std_pmap <- function() {
-  std_preprocessing_map %>%
-    mutate(tlgfname = paste0("chevron::", tlgfname))
+  std_preprocessing_map
 }
 
 #' Row in Preprocessing Map
@@ -144,7 +143,7 @@ get_req_data <- function(id, pmap) {
 #' db <- syn_test_data()
 #'
 #' db %>%
-#'   preprocess_data("chevron::aet02_2")
+#'   preprocess_data("aet02_2")
 preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
   assert_that(
     all(get_req_data(tlgfname, pmap) %in% names(adam_db)),
@@ -181,7 +180,7 @@ preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
 #' @export
 #'
 #' @examples
-#' std_filter_fun("chevron::aet02_1")
+#' std_filter_fun("aet02_1")
 std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
   lookup_fun(tlgfname, "filter_fname", pmap)
 }
@@ -193,7 +192,7 @@ std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
 #' @export
 #'
 #' @examples
-#' std_mutate_fun("chevron::aet02_1")
+#' std_mutate_fun("aet02_1")
 std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
   lookup_fun(tlgfname, "filter_fname", pmap)
 }

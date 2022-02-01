@@ -15,5 +15,5 @@ std_filter_fun(tlgfname, pmap = std_pmap())
 Retrieve Standard Subsetting for Templates
 }
 \examples{
-std_filter_fun("chevron::aet02_1")
+std_filter_fun("aet02_1")
 }

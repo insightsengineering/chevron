@@ -15,5 +15,5 @@ std_mutate_fun(tlgfname, pmap = std_pmap())
 Retrieve Standard Mutation for Templates
 }
 \examples{
-std_mutate_fun("chevron::aet02_1")
+std_mutate_fun("aet02_1")
 }
