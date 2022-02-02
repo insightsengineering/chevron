@@ -75,6 +75,7 @@ reference:
 
   - title: Utility Functions
     contents:
+      - dm_explicit_na
       - get_db_data
       - pivot_wider_labels
       - reorder_levels_params
@@ -90,3 +91,4 @@ reference:
       - gen_args
       - cut_by_group
       - assert_colnames
+      - h_as_factor
