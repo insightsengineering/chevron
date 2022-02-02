@@ -31,15 +31,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -112,6 +103,10 @@ frequency).</p></td>
         </td>
         <td><p><code>CMT01A</code> Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
 treatments per medication class suppressed).</p></td>
+      </tr><tr><td>
+          <p><code><a href="cmt02_pt_1.html">cmt02_pt_1()</a></code> <code><a href="cmt02_pt_1.html">cmt02_pt_1_lyt()</a></code> </p>
+        </td>
+        <td><p><code>CMT02_PT</code> Table 1 (Default) Concomitant Medications by Preferred Name</p></td>
       </tr><tr><td>
           <p><code><a href="dmt01_1.html">dmt01_1()</a></code> <code><a href="dmt01_1.html">dmt01_1_lyt()</a></code> </p>
         </td>
@@ -193,10 +188,6 @@ treatments per medication class suppressed).</p></td>
         </td>
         <td><p>Filter <code>adae</code> for <code>ANL01FL</code></p></td>
       </tr><tr><td>
-          <p><code><a href="filter_adcm_cmt01.html">filter_adcm_cmt01()</a></code> </p>
-        </td>
-        <td><p>Filter <code>adcm</code> for <code>ANL01FL</code> and  <code>SAFFL</code></p></td>
-      </tr><tr><td>
           <p><code><a href="filter_adeg_anl01fl.html">filter_adeg_anl01fl()</a></code> </p>
         </td>
         <td><p>Filter <code>adeg</code> for <code>ANL01FL</code></p></td>
@@ -213,6 +204,10 @@ treatments per medication class suppressed).</p></td>
         </td>
         <td><p>Filter <code>advs</code> for <code>ANL01FL</code></p></td>
       </tr><tr><td>
+          <p><code><a href="filter_adcm_anl01fl.html">filter_adcm_anl01fl()</a></code> </p>
+        </td>
+        <td><p>Filter <code>adcm</code> for <code>ANL01FL</code> and  <code>ATIREL</code></p></td>
+      </tr><tr><td>
           <p><code><a href="mutate_for_aet01.html">mutate_for_aet01()</a></code> </p>
         </td>
         <td><p>Creating Necessary Columns for <code>aet01</code></p></td>
@@ -220,6 +215,10 @@ treatments per medication class suppressed).</p></td>
           <p><code><a href="mutate_adsl_gp.html">mutate_adsl_gp()</a></code> </p>
         </td>
         <td><p>Categorize Reason for Discontinuation from Study.</p></td>
+      </tr><tr><td>
+          <p><code><a href="mutate_cmt02_pt_1.html">mutate_cmt02_pt_1()</a></code> </p>
+        </td>
+        <td><p>Mutate Function for <code>CMT02_PT_1</code></p></td>
       </tr><tr><td>
           <p><code><a href="remove_adex_aval.html">remove_adex_aval()</a></code> </p>
         </td>
