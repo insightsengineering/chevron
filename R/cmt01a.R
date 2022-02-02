@@ -12,6 +12,7 @@
 #' @param lbl_medname_var (`character`) label for the variable defining the medication name.
 #'
 #' @details
+#'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
@@ -29,6 +30,9 @@
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
+#'   dm_zoom_to(adcm) %>%
+#'   filter(ATIREL == "CONCOMITANT") %>%
+#'   dm_update_zoomed() %>%
 #'   preprocess_data("cmt01a_1")
 #'
 #' cmt01a_1(adam_db = db)
@@ -156,6 +160,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 #' @param lbl_medname_var (`character`) label for the variable defining the medication name.
 #'
 #' @details
+#'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
@@ -173,6 +178,9 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
+#'   dm_zoom_to(adcm) %>%
+#'   filter(ATIREL == "CONCOMITANT") %>%
+#'   dm_update_zoomed() %>%
 #'   preprocess_data("cmt01a_2")
 #'
 #' cmt01a_2(adam_db = db)
@@ -239,6 +247,7 @@ cmt01a_2 <- function(adam_db,
 #' @param lbl_medname_var (`character`) the label for the medication name.
 #'
 #' @details
+#'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
@@ -256,6 +265,9 @@ cmt01a_2 <- function(adam_db,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
+#'   dm_zoom_to(adcm) %>%
+#'   filter(ATIREL == "CONCOMITANT") %>%
+#'   dm_update_zoomed() %>%
 #'   preprocess_data("cmt01a_3")
 #'
 #' cmt01a_3(adam_db = db)

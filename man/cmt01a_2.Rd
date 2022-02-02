@@ -45,6 +45,7 @@ medication name sorted by frequencies.
 }
 \details{
 \itemize{
+\item Data should be filtered for concomitant medication. \code{(ATIREL == "CONCOMITANT")}.
 \item Numbers represent absolute numbers of subjects and fraction of \code{N}, or absolute numbers when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
@@ -58,6 +59,9 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
+  dm_zoom_to(adcm) \%>\%
+  filter(ATIREL == "CONCOMITANT") \%>\%
+  dm_update_zoomed() \%>\%
   preprocess_data("cmt01a_2")
 
 cmt01a_2(adam_db = db)

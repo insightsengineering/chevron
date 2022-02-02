@@ -9,9 +9,10 @@ std_preprocessing_map <- tibble::tribble(
   "aet02_3", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet03_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet04_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
-  "cmt01a_1", "filter_adcm_cmt01", "mutate_cmt01a", c("adsl", "adcm"),
-  "cmt01a_2", "filter_adcm_cmt01", "mutate_cmt01a", c("adsl", "adcm"),
-  "cmt01a_3", "filter_adcm_cmt01", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt01a_1", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt01a_2", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt01a_3", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt02_pt_1", "filter_adcm_anl01fl", "mutate_cmt02_pt_1", c("adsl", "adcm"),
   "dmt01_1", NA, NA, c("adsl"),
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
@@ -280,6 +281,20 @@ filter_adex_drug <- function(adam_db) {
     dm_update_zoomed()
 }
 
+#' Filter `adcm` for `ANL01FL` and  `ATIREL`
+#'
+#' @details filter with `ANL01FL` (instead of `SAFFL ` which is external to `chevron`).
+#'
+#' @inheritParams gen_args
+#'
+filter_adcm_anl01fl <- function(adam_db) {
+    assert_that(is(adam_db, "dm"))
+
+    adam_db %>%
+      dm_zoom_to(adcm) %>%
+      filter(ANL01FL == "Y") %>%
+      dm_update_zoomed()
+}
 
 #' Creating Necessary Columns for `aet01`
 #'
@@ -331,22 +346,6 @@ mutate_for_aet01 <- function(adam_db) {
     dm_update_zoomed()
 
   db
-}
-
-#' Filter `adcm` for `ANL01FL` and  `SAFFL`
-#'
-#' @details filter with `ANL01FL` instead of `SAFFL ` which is external to `chevron`.
-#'
-#' @inheritParams gen_args
-#'
-filter_adcm_cmt01 <- function(adam_db) {
-    assert_that(is(adam_db, "dm"))
-
-    adam_db %>%
-      dm_zoom_to(adcm) %>%
-      filter(ANL01FL == "Y") %>%
-      filter(ATIREL == "CONCOMITANT") %>%
-      dm_update_zoomed()
 }
 
 #' Categorize Reason for Discontinuation from Study.
@@ -441,4 +440,20 @@ remove_adex_aval <- function(adam_db,
   }
 
   adam_db
+}
+
+#' Mutate Function for `CMT02_PT_1`
+#'
+#' @inheritParams gen_args
+#'
+#' @return
+#'
+mutate_cmt02_pt_1 <- function(adam_db) {
+
+  db <- adam_db %>%
+    dm_zoom_to(adcm) %>%
+    mutate(CMSEQ = as.factor(CMSEQ)) %>%
+    dm_update_zoomed()
+
+  db
 }
