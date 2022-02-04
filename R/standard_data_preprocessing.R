@@ -366,7 +366,7 @@ mutate_adsl_gp <- function(adam_db,
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
-      TRUE ~ "Non Safety"
+      TRUE ~ "Non-safety"
     )) %>%
     dm_update_zoomed()
 }

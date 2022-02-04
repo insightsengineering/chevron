@@ -15,7 +15,7 @@ dst01_3(
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(armvar = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
-    "All patients")
+    "All Patients")
 )
 
 dst01_3_lyt(
@@ -26,7 +26,7 @@ dst01_3_lyt(
   ongoing_lbl = "ONGOING",
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All patients", status_treatment =
+  .study = list(armvar = "ARM", lbl_overall = "All Patients", status_treatment =
     "EOTSTT")
 )
 }
