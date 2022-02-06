@@ -62,7 +62,4 @@ jobs:
     if: github.event_name == 'pull_request'
     name: Style Check 👗
     uses: insightsengineering/r.pkg.template/.github/workflows/style.yaml@main
-  style:
-    if: github.event_name == 'pull_request'
-    name: Style Check 👗
-    uses: insightsengineering/r.pkg.template/.github/workflows/style.yaml@main
+
