@@ -32,7 +32,6 @@
 #'
 #' vst01_1(db)
 #' vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-#'
 vst01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     summaryvars = .study$evo_vars,
@@ -44,7 +43,6 @@ vst01_1 <- function(adam_db,
                       armvar = "ACTARM",
                       evo_vars = c("AVAL", "CHG")
                     )) {
-
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 
@@ -96,8 +94,7 @@ vst01_1_lyt <- function(armvar = .study$armvar,
                           evo_vars = c("AVAL", "CHG"),
                           evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                           visitvar = "AVISIT"
-                        )
-) {
+                        )) {
 
 
   # TODE solve the problem of the overall column

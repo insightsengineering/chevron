@@ -8,7 +8,6 @@
 #' @examples
 #' lst <- sample_study_object()
 #' dput(lst)
-#'
 sample_study_object <- function() {
 
   # list functions
@@ -21,9 +20,11 @@ sample_study_object <- function() {
   ls_study <- lapply(ls_args, "[", ".study")
 
   has_study <-
-    vapply(ls_study, function(xi)
-      ! is.null(xi[[".study"]]) &
-      !identical("", as.character(xi[[".study"]])),
+    vapply(
+      ls_study, function(xi) {
+        !is.null(xi[[".study"]]) &
+          !identical("", as.character(xi[[".study"]]))
+      },
       logical(1)
     )
 
