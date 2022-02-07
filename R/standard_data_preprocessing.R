@@ -200,24 +200,6 @@ std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
   lookup_fun(tlgfname, "filter_fname", pmap)
 }
 
-
-## manipulation functions ----
-
-#' Filter `adsl` for `ANL01FL`
-#'
-#' @inheritParams gen_args
-#'
-#'
-filter_adsl_anl01fl <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
-
-  adam_db %>%
-    dm_zoom_to(adsl) %>%
-    filter(ANL01FL == "Y") %>%
-    dm_update_zoomed()
-}
-
-
 #' Filter `adae` for `ANL01FL`
 #'
 #' @inheritParams gen_args
