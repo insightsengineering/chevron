@@ -37,6 +37,7 @@ reference:
       - cmt01a_1
       - cmt01a_2
       - cmt01a_3
+      - cmt02_pt_1
       - dmt01_1
       - dst01_1
       - dst01_2
@@ -62,14 +63,14 @@ reference:
       - std_mutate_fun
       - filter_adex_drug
       - filter_adae_anl01fl
-      - filter_adcm_cmt01
       - filter_adeg_anl01fl
       - filter_adlb_anl01fl
       - filter_admh_anl01fl
       - filter_advs_anl01fl
-      - filter_adsl_anl01fl
+      - filter_adcm_anl01fl
       - mutate_for_aet01
       - mutate_adsl_gp
+      - mutate_cmt02_pt_1
       - remove_adex_aval
       - reorder_adex_params
       - mutate_cmt01a
@@ -77,6 +78,7 @@ reference:
 
   - title: Utility Functions
     contents:
+      - dm_explicit_na
       - get_db_data
       - pivot_wider_labels
       - reorder_levels_params
@@ -92,3 +94,4 @@ reference:
       - gen_args
       - cut_by_group
       - assert_colnames
+      - h_as_factor
