@@ -21,6 +21,7 @@ Imports:
     assertthat,
     checkmate,
     dplyr,
+    forcats,
     magrittr,
     rlang,
     rtables,
