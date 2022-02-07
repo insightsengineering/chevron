@@ -5,7 +5,7 @@
 #' A description of the causes of death.
 #'
 #' @inheritParams gen_args
-#' @param add_time_to_event (`logical`) should the time to event information be displayed.
+#' @param time_since_last_dose (`logical`) should the time to event information be displayed.
 
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
@@ -31,11 +31,11 @@
 #'  preprocess_data("dtht01_1")
 #'
 #' dtht01_1(adam_db = db)
-#' dtht01_1(adam_db = db, add_time_to_event = FALSE)
+#' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
 #'
 dtht01_1 <- function(adam_db,
                      armvar = .study$armvar,
-                     add_time_to_event = TRUE,
+                     time_since_last_dose = FALSE,
                      lbl_overall = .study$lbl_overall,
                      prune_0 = TRUE,
                      deco = std_deco("DTHT01"),
@@ -57,7 +57,7 @@ dtht01_1 <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adsl)
 
-  if (add_time_to_event) {
+  if (time_since_last_dose) {
 
     assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
@@ -165,7 +165,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$armvar,
 #' A description of the causes of death with post-study reporting of death.
 #'
 #' @inheritParams gen_args
-#' @param add_time_to_event (`logical`) should the time to event information be displayed.
+#' @param time_since_last_dose (`logical`) should the time to event information be displayed.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
@@ -192,10 +192,11 @@ dtht01_1_opt_lyt <- function(armvar = .study$armvar,
 #'  preprocess_data("dtht01_2")
 #'
 #' dtht01_2(adam_db = db)
+#' dtht01_2(adam_db = db, time_since_last_dose = TRUE)
 #'
 dtht01_2 <- function(adam_db,
                      armvar = .study$armvar,
-                     add_time_to_event = TRUE,
+                     time_since_last_dose = FALSE,
                      lbl_overall = .study$lbl_overall,
                      prune_0 = TRUE,
                      deco = std_deco("DTHT01"),
@@ -218,7 +219,7 @@ dtht01_2 <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adsl)
 
-  if (add_time_to_event) {
+  if (time_since_last_dose) {
 
     assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 

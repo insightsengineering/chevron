@@ -9,7 +9,7 @@
 dtht01_1(
   adam_db,
   armvar = .study$armvar,
-  add_time_to_event = TRUE,
+  time_since_last_dose = FALSE,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DTHT01"),
@@ -35,7 +35,7 @@ dtht01_1_opt_lyt(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{add_time_to_event}{(\code{logical}) should the time to event information be displayed.}
+\item{time_since_last_dose}{(\code{logical}) should the time to event information be displayed.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -75,7 +75,7 @@ db <- syn_test_data() \%>\%
  preprocess_data("dtht01_1")
 
 dtht01_1(adam_db = db)
-dtht01_1(adam_db = db, add_time_to_event = FALSE)
+dtht01_1(adam_db = db, time_since_last_dose = TRUE)
 
 dtht01_1_lyt(
   armvar = "ACTARM",

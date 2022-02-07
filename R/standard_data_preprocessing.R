@@ -16,8 +16,8 @@ std_preprocessing_map <- tibble::tribble(
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
-  "dtht01_1", "filter_adsl_anl01fl", NA, c("adsl"),
-  "dtht01_2", "filter_adsl_anl01fl", NA, c("adsl"),
+  "dtht01_1", NA, "reorder_dtht01", c("adsl"),
+  "dtht01_2", NA, "reorder_dtht01", c("adsl"),
   "egt01_1", "filter_adeg_anl01fl", NA, c("adsl", "adeg"),
   "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
@@ -456,6 +456,30 @@ remove_adex_aval <- function(adam_db,
       mutate(AVALCAT1 = ifelse(PARAM %in% show_bins, AVALCAT1, NA)) %>%
       dm_update_zoomed()
   }
+
+  adam_db
+}
+
+
+#' Reorder levels of `DTHCAT` in `adsl`
+#'
+#' The `OTHER` level is pushed last so that it appears last, and then the `DTHCAUS` related to `OTHER` appear underneath
+#' as intended.
+#'
+#' @inheritParams gen_args
+#'
+#' @importFrom forcats fct_relevel
+#'
+reorder_dtht01 <- function(adam_db) {
+
+  death_fact <- levels(adam_db$adae$DTHCAT)
+  death_fact <- setdiff(death_fact, "OTHER")
+  death_fact <- c(death_fact, "OTHER")
+
+  adam_db <- adam_db %>%
+    dm_zoom_to(adsl) %>%
+    mutate(DTHCAT = fct_relevel(DTHCAT, death_fact)) %>%
+    dm_update_zoomed()
 
   adam_db
 }
