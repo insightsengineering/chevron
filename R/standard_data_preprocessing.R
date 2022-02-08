@@ -195,7 +195,7 @@ std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
 #' @examples
 #' std_mutate_fun("aet02_1")
 std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
-  lookup_fun(tlgfname, "filter_fname", pmap)
+  lookup_fun(tlgfname, "mutate_fname", pmap)
 }
 
 

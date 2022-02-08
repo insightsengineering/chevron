@@ -31,7 +31,7 @@ aet01_1 <- function(adam_db,
                     prune_0 = FALSE,
                     deco = std_deco("AET01"),
                     safety_var = .study$safety_var,
-                    lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
+                    lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
                     .study = list(
                       armvar = "ARM",
                       lbl_overall = NULL,
@@ -40,6 +40,9 @@ aet01_1 <- function(adam_db,
                     )) {
 
   dbsel <- get_db_data(adam_db, "adsl", "adae")
+
+  assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
+  assert_colnames(dbsel$adae, safety_var)
 
   lyt <- aet01_1_lyt(
     armvar = armvar,
@@ -101,6 +104,7 @@ aet01_1_lyt <- function(armvar = .study$armvar,
                           lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
                                              "RELWD", "RELDSM", "CTC35", "CTC45", "SEV")
                         )) {
+
 
   names(lbl_safety_var) <- safety_var
 
@@ -185,9 +189,9 @@ aet01_2 <- function(adam_db,
                     prune_0 = FALSE,
                     deco = std_deco("AET01"),
                     safety_var = .study$safety_var,
-                    lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
+                    lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
                     medconcept_var = .study$medconcept_var,
-                    lbl_medconcept_var = var_labels_for(adam_db$adae, .study$medconcept_var),
+                    lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
                     .study = list(
                       armvar = "ARM",
                       lbl_overall = NULL,
@@ -197,6 +201,9 @@ aet01_2 <- function(adam_db,
                     )) {
 
   dbsel <- get_db_data(adam_db, "adsl", "adae")
+
+  assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
+  assert_colnames(dbsel$adae, c(safety_var, medconcept_var))
 
   lyt <- aet01_2_lyt(
     armvar = armvar,
