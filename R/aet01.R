@@ -18,6 +18,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("aet01_1")
@@ -48,7 +49,18 @@ aet01_1 <- function(adam_db,
     lbl_safety_var = lbl_safety_var
   )
 
-   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
+   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
+   tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
+
+   col_info(tbl_adsl) <- col_info(tbl_adae)
+
+   tbl <- rbind(
+     tbl_adae[1:2, ],
+     tbl_adsl,
+     tbl_adae[3:nrow(tbl_adae), ]
+   )
+
+   tbl <- set_decoration(tbl, deco)
 
    if (prune_0) {
     tbl <- tbl %>% prune_table()
@@ -92,7 +104,8 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 
   names(lbl_safety_var) <- safety_var
 
-  basic_table_deco(deco) %>%
+  lyt_adae <-
+    basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -100,35 +113,41 @@ aet01_1_lyt <- function(armvar = .study$armvar,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "  Total number of patients with at least one AE",
-        nonunique = "  Total number of AEs"
+        unique = "Total number of patients with at least one AE",
+        nonunique = "Total number of AEs"
       )
     ) %>%
+    count_patients_with_flags(
+      "USUBJID",
+      flag_variables = lbl_safety_var,
+      denom = "N_col",
+      var_labels = "Total number of patients with at least one",
+      show_labels = "visible",
+      table_names = "AllAE",
+      .indent_mods = 0L
+    )
+
+  lyt_adsl <-
+    basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("DTHFL" = "Y"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of deaths"),
-      table_names = "TotDeath",
-      .indent_mods = 0L
+      table_names = "TotDeath"
     ) %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("DCSREAS" = "ADVERSE EVENT"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of patients withdrawn from study due to an AE"),
-      table_names = "TotWithdrawal",
-      .indent_mods = 0L
-    ) %>%
-    count_patients_with_flags(
-    "USUBJID",
-    flag_variables = lbl_safety_var,
-    denom = "N_col",
-    var_labels = "Total number of patients with at least one",
-    show_labels = "visible",
-    table_names = "AllAE",
-    .indent_mods = 0L
-  )
+      table_names = "TotWithdrawal"
+    )
+
+  list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
 
@@ -189,7 +208,18 @@ aet01_2 <- function(adam_db,
     lbl_medconcept_var = lbl_medconcept_var
   )
 
-   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
+   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
+   tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
+
+   col_info(tbl_adsl) <- col_info(tbl_adae)
+
+   tbl <- rbind(
+     tbl_adae[1:2, ],
+     tbl_adsl,
+     tbl_adae[3:nrow(tbl_adae), ]
+   )
+
+   tbl <- set_decoration(tbl, deco)
 
    if (prune_0) {
     tbl <- tbl %>% prune_table()
@@ -238,7 +268,8 @@ aet01_2_lyt <- function(armvar = .study$armvar,
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
 
-  basic_table_deco(deco) %>%
+  lyt_adae <-
+    basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -246,42 +277,48 @@ aet01_2_lyt <- function(armvar = .study$armvar,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "  Total number of patients with at least one AE",
-        nonunique = "  Total number of AEs"
+        unique = "Total number of patients with at least one AE",
+        nonunique = "Total number of AEs"
       )
     ) %>%
+    count_patients_with_flags(
+      "USUBJID",
+      flag_variables = lbl_safety_var,
+      denom = "N_col",
+      var_labels = "Total number of patients with at least one",
+      show_labels = "visible",
+      table_names = "AllAE",
+      .indent_mods = 0L
+    ) %>%
+    count_patients_with_flags(
+      "USUBJID",
+      flag_variables = lbl_medconcept_var,
+      denom = "N_col",
+      var_labels = "Total number of patients with at least one",
+      show_labels = "visible",
+      table_names = "MedConcept",
+      .indent_mods = 0L
+    )
+
+  lyt_adsl <-
+    basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("DTHFL" = "Y"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of deaths"),
-      table_names = "TotDeath",
-      .indent_mods = 0L
+      table_names = "TotDeath"
     ) %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("DCSREAS" = "ADVERSE EVENT"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of patients withdrawn from study due to an AE"),
-      table_names = "TotWithdrawal",
-      .indent_mods = 0L
-    ) %>%
-    count_patients_with_flags(
-    "USUBJID",
-    flag_variables = lbl_safety_var,
-    denom = "N_col",
-    var_labels = "Total number of patients with at least one",
-    show_labels = "visible",
-    table_names = "AllAE",
-    .indent_mods = 0L
-  ) %>%
-      count_patients_with_flags(
-    "USUBJID",
-    flag_variables = lbl_medconcept_var,
-    denom = "N_col",
-    var_labels = "Total number of patients with at least one",
-    show_labels = "visible",
-    table_names = "MedConcept",
-    .indent_mods = 0L
-  )
+      table_names = "TotWithdrawal"
+    )
+
+  list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }

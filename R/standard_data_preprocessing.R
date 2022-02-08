@@ -300,8 +300,6 @@ filter_adcm_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 #'
-#' @importFrom dm left_join
-#'
 mutate_for_aet01 <- function(adam_db) {
 
   db <- adam_db %>%
@@ -346,17 +344,6 @@ mutate_for_aet01 <- function(adam_db) {
     CQ01 = if ("CQ01" %in% colnames(.)) with_label(CQ01, aesi_label(CQ01NAM))
     ) %>%
     dm_update_zoomed()
-
-
-  missing_col <- setdiff(c("DTHFL", "DCSREAS"), colnames(db$adae))
-
-  if (length(missing_col) > 0) {
-
-    db <- db %>%
-      dm_zoom_to(adae) %>%
-      left_join(adsl, select = c(missing_col)) %>%
-      dm_update_zoomed()
-  }
 
   db
 }
