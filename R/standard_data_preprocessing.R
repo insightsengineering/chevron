@@ -300,6 +300,8 @@ filter_adcm_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 #'
+#' @importFrom dm left_join
+#'
 mutate_for_aet01 <- function(adam_db) {
 
   db <- adam_db %>%
@@ -315,12 +317,12 @@ mutate_for_aet01 <- function(adam_db) {
     REL = AREL == "Y",
     RELWD = (AREL == "Y" & AEACN == "DRUG WITHDRAWN"),
     RELDSM = (AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-    CTC35 = ATOXGR %in% c("3", "4", "5"),
-    CTC45 = ATOXGR %in% c("4", "5"),
-    SEV = ASEV == "SEVERE",
-    SMQ01 = SMQ01NAM != "",
-    SMQ02 = SMQ02NAM != "",
-    CQ01 = CQ01NAM != ""
+    CTC35 = if ("ATOXGR" %in% colnames(.)) ATOXGR %in% c("3", "4", "5"),
+    CTC45 = if ("ATOXGR" %in% colnames(.)) ATOXGR %in% c("4", "5"),
+    SEV = if ("ASEV" %in% colnames(.)) ASEV == "SEVERE",
+    SMQ01 = if ("SMQ01NAM" %in% colnames(.)) SMQ01NAM != "",
+    SMQ02 = if ("SMQ02NAM" %in% colnames(.)) SMQ02NAM != "",
+    CQ01 = if ("CQ01NAM" %in% colnames(.)) CQ01NAM != ""
     ) %>%
     mutate(
     AEDECOD = with_label(AEDECOD, "Dictionary-Derived Term"),
@@ -328,7 +330,7 @@ mutate_for_aet01 <- function(adam_db) {
     AEACN = with_label(AEACN, "Action Taken with Study Treatment"),
     FATAL = with_label(FATAL, "AE with fatal outcome"),
     SER = with_label(SER, "Serious AE"),
-    SEV = with_label(SEV, "Severe AE (at greatest intensity)"),
+    SEV = if ("SEV" %in% colnames(.)) with_label(SEV, "Severe AE (at greatest intensity)"),
     SERWD = with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
     SERDSM = with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
     RELSER = with_label(RELSER, "Related Serious AE"),
@@ -337,13 +339,24 @@ mutate_for_aet01 <- function(adam_db) {
     REL = with_label(REL, "Related AE"),
     RELWD = with_label(RELWD, "Related AE leading to withdrawal from treatment"),
     RELDSM = with_label(RELDSM, "Related AE leading to dose modification/interruption"),
-    CTC35 = with_label(CTC35, "Grade 3-5 AE"),
-    CTC45 = with_label(CTC45, "Grade 4/5 AE"),
-    SMQ01 =  with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
-    SMQ02 = with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
-    CQ01 = with_label(CQ01, aesi_label(CQ01NAM))
+    CTC35 = if ("CTC35" %in% colnames(.)) with_label(CTC35, "Grade 3-5 AE"),
+    CTC45 = if ("CTC45" %in% colnames(.)) with_label(CTC45, "Grade 4/5 AE"),
+    SMQ01 = if ("SMQ01" %in% colnames(.)) with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
+    SMQ02 = if ("SMQ02" %in% colnames(.)) with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
+    CQ01 = if ("CQ01" %in% colnames(.)) with_label(CQ01, aesi_label(CQ01NAM))
     ) %>%
     dm_update_zoomed()
+
+
+  missing_col <- setdiff(c("DTHFL", "DCSREAS"), colnames(db$adae))
+
+  if (length(missing_col) > 0) {
+
+    db <- db %>%
+      dm_zoom_to(adae) %>%
+      left_join(adsl, select = c(missing_col)) %>%
+      dm_update_zoomed()
+  }
 
   db
 }
