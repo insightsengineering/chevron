@@ -4,24 +4,24 @@
 \alias{assert_colnames}
 \title{Check if strings are column names of a data frame}
 \usage{
-assert_colnames(df, x, null.ok = TRUE)
+assert_colnames(df, x, null_ok = TRUE)
 }
 \arguments{
 \item{df}{(\code{data.frame})}
 
 \item{x}{(vector of \code{character}) the names of the columns to be checked.}
 
-\item{null.ok}{(\code{logical}) can \code{x} be NULL.}
+\item{null_ok}{(\code{logical}) can \code{x} be NULL.}
 }
 \description{
 Provides a clearer error message in the case of missing variable.
 }
 \examples{
 \dontrun{
-assert_colnames(mtcars, c("speed", "seats"), null.ok = TRUE)
+assert_colnames(mtcars, c("speed", "seats"), null_ok = TRUE)
 
 my_colnames = NULL
-assert_colnames(mtcars, my_colnames, null.ok = FALSE)
+assert_colnames(mtcars, my_colnames, null_ok = FALSE)
 }
 
 }

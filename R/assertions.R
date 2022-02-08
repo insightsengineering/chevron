@@ -6,21 +6,21 @@
 #'
 #' @param df (`data.frame`)
 #' @param x (vector of `character`) the names of the columns to be checked.
-#' @param null.ok (`logical`) can `x` be NULL.
+#' @param null_ok (`logical`) can `x` be NULL.
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' assert_colnames(mtcars, c("speed", "seats"), null.ok = TRUE)
+#' assert_colnames(mtcars, c("speed", "seats"), null_ok = TRUE)
 #'
 #' my_colnames = NULL
-#' assert_colnames(mtcars, my_colnames, null.ok = FALSE)
+#' assert_colnames(mtcars, my_colnames, null_ok = FALSE)
 #' }
 #'
-assert_colnames <- function(df, x, null.ok = TRUE) {
+assert_colnames <- function(df, x, null_ok = TRUE) {
 
-  if (!null.ok && is.null(x)) {
+  if (!null_ok && is.null(x)) {
     stop(
       paste0(
         deparse(substitute(x)),
