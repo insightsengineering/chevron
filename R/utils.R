@@ -125,32 +125,6 @@ cut_by_group <- function(df,
   df
 }
 
-
-#' Check if strings are column names of a data frame
-#'
-#' @param df (`data frame`)
-#' @param x (`vector of strings`)
-#'
-#' @export
-#'
-#' @examples
-#'
-#' assert_colnames(mtcars, c("mpg", "cyl"))
-assert_colnames <- function(df, x) {
-  # provide a clearer error message in the case of missing variable
-  missing_var <- setdiff(x, colnames(df))
-  if (length(missing_var) > 0) {
-    stop(paste(
-      "Variable(s) not a column name in",
-      deparse(substitute(df)),
-      ":\n",
-      paste(missing_var, "\n", collapse = "")
-    ))
-  } else {
-    invisible(TRUE)
-  }
-}
-
 #' Reorder PARAM and PARAMCD Levels Simultaneously
 #'
 #' @param df data.frame with PARAM and PARAMCD variables
