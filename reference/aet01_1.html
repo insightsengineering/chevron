@@ -31,15 +31,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -72,7 +63,7 @@ Other releases
   prune_0 <span class="op">=</span> <span class="cn">FALSE</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"AET01"</span><span class="op">)</span>,
   safety_var <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">safety_var</span>,
-  lbl_safety_var <span class="op">=</span> <span class="fu"><a href="var_labels_for.html">var_labels_for</a></span><span class="op">(</span><span class="va">adam_db</span><span class="op">$</span><span class="va">adae</span>, <span class="va">.study</span><span class="op">$</span><span class="va">safety_var</span><span class="op">)</span>,
+  lbl_safety_var <span class="op">=</span> <span class="fu"><a href="var_labels_for.html">var_labels_for</a></span><span class="op">(</span><span class="va">adam_db</span><span class="op">$</span><span class="va">adae</span>, <span class="va">safety_var</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span>, safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>,
     <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"SEV"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
@@ -132,6 +123,15 @@ Other releases
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from ‘package:stats’:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     filter</span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘dplyr’</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     filter, lag</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:base’:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"aet01_1"</span><span class="op">)</span></span>
@@ -140,27 +140,27 @@ Other releases
 <span class="r-out co"><span class="r-pr">#&gt;</span> Overview of Deaths and Adverse Events: {Specify Population}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                 A: Drug X    B: Placebo    C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                  (N=134)       (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one AE                 122 (91%)    123 (91.8%)    120 (90.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of AEs                                              609           622            703      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of deaths                                       20 (14.9%)    25 (18.7%)      17 (12.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients withdrawn from study due to an AE     4 (3%)       1 (0.7%)        2 (1.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Serious AE                                                 104 (77.6%)   101 (75.4%)      99 (75%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Serious AE leading to withdrawal from treatment              8 (6%)        8 (6%)         7 (5.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Serious AE leading to dose modification/interruption       36 (26.9%)    31 (23.1%)      26 (19.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Related Serious AE                                         76 (56.7%)    70 (52.2%)      75 (56.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     AE leading to withdrawal from treatment                    23 (17.2%)    24 (17.9%)      27 (20.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     AE leading to dose modification/interruption               72 (53.7%)    65 (48.5%)      76 (57.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Related AE                                                 105 (78.4%)   108 (80.6%)    109 (82.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Related AE leading to withdrawal from treatment             6 (4.5%)      9 (6.7%)       13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Related AE leading to dose modification/interruption       31 (23.1%)    31 (23.1%)      32 (24.2%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               A: Drug X    B: Placebo    C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                (N=134)       (N=134)        (N=132)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of patients with at least one AE                 122 (91%)    123 (91.8%)    120 (90.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of AEs                                              609           622            703      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of deaths                                       22 (16.4%)    26 (19.4%)      19 (14.4%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of patients withdrawn from study due to an AE    6 (4.5%)      1 (0.7%)        2 (1.5%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of patients with at least one                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE                                                 104 (77.6%)   101 (75.4%)      99 (75%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE leading to withdrawal from treatment              8 (6%)        8 (6%)         7 (5.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE leading to dose modification/interruption       36 (26.9%)    31 (23.1%)      26 (19.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Related Serious AE                                         76 (56.7%)    70 (52.2%)      75 (56.8%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AE leading to withdrawal from treatment                    23 (17.2%)    24 (17.9%)      27 (20.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AE leading to dose modification/interruption               72 (53.7%)    65 (48.5%)      76 (57.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Related AE                                                 105 (78.4%)   108 (80.6%)    109 (82.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Related AE leading to withdrawal from treatment             6 (4.5%)      9 (6.7%)       13 (9.8%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Related AE leading to dose modification/interruption       31 (23.1%)    31 (23.1%)      32 (24.2%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Multiple occurrences of the same AE in one individual are counted only once except for "Total number of AEs" row in which multiple occurrences of the same AE are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
@@ -170,13 +170,25 @@ Other releases
 <span class="r-in">  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span class="r-in">  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"AET01"</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lyt_adae</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A Pre-data Table Layout</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Column-Split Structure:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ACTARM (lvls) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Row-Split Structure:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ( (** multivar analysis **) -&gt; USUBJID, USUBJID, USUBJID (** multivar analysis **) -&gt; ) (** multivar analysis **) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> USUBJID (** analysis **) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lyt_adsl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A Pre-data Table Layout</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Column-Split Structure:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ACTARM (lvls) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Row-Split Structure:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ( (** multivar analysis **) -&gt; USUBJID, USUBJID (** multivar analysis **) -&gt; ) (** multivar analysis **) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
