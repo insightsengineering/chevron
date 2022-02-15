@@ -264,8 +264,9 @@ filter_admh_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(admh, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(admh) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `adex` for `PARCAT1`
