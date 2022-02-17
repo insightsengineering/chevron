@@ -81,7 +81,6 @@ db <- syn_test_data() \%>\%
   preprocess_data("aet01_2")
 
 aet01_2(db, armvar = "ARM", prune_0 = FALSE)
-
 aet01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

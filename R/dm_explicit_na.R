@@ -23,26 +23,28 @@
 #' @examples
 #' library(dm)
 #'
-#' df1 <- data.frame("char" = c("a", "b", NA, "a", "k", "x"),
-#'                   "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
-#'                   "logi" = c(NA, FALSE, TRUE, NA, FALSE, NA))
-#' df2 <- data.frame("char" = c("a", "b", NA, "a", "k", "x"),
-#'                   "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
-#'                   "num" = 1:6)
+#' df1 <- data.frame(
+#'   "char" = c("a", "b", NA, "a", "k", "x"),
+#'   "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
+#'   "logi" = c(NA, FALSE, TRUE, NA, FALSE, NA)
+#' )
+#' df2 <- data.frame(
+#'   "char" = c("a", "b", NA, "a", "k", "x"),
+#'   "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
+#'   "num" = 1:6
+#' )
 #'
-#'  db <- dm(df1, df2)
+#' db <- dm(df1, df2)
 #'
 #' dm_fact <- dm_explicit_na(db)
 #' dm_fact$df1
 #' dm_fact$df2
-#'
 dm_explicit_na <- function(data,
                            omit_tables = NULL,
                            omit_columns = NULL,
                            char_as_factor = TRUE,
                            logical_as_factor = FALSE,
                            na_level = "<Missing>") {
-
   assert_class(data, "dm")
   assert_character(omit_tables, null.ok = TRUE)
   assert_character(omit_columns, null.ok = TRUE)
@@ -57,7 +59,6 @@ dm_explicit_na <- function(data,
   }
 
   for (tab in target_tables) {
-
     tab_sym <- sym(tab)
 
     current_tab <- data[[tab]]
@@ -72,7 +73,6 @@ dm_explicit_na <- function(data,
     names_fact_col <- setdiff(names(which(fact_col)), omit_columns)
 
     if (length(names_char_col) > 0L) {
-
       data <- data %>%
         dm_zoom_to(!!tab_sym) %>%
         mutate(across(names_char_col, function(x) h_as_factor(x, na_level))) %>%
@@ -80,7 +80,6 @@ dm_explicit_na <- function(data,
     }
 
     if (length(names_logi_col) > 0L) {
-
       data <- data %>%
         dm_zoom_to(!!tab_sym) %>%
         mutate(across(names_logi_col, function(x) h_as_factor(x, na_level))) %>%
@@ -88,7 +87,6 @@ dm_explicit_na <- function(data,
     }
 
     if (length(names_fact_col) > 0L) {
-
       data <- data %>%
         dm_zoom_to(!!tab_sym) %>%
         mutate(across(names_fact_col, function(x) explicit_na(sas_na(x), label = na_level))) %>%
@@ -112,19 +110,17 @@ dm_explicit_na <- function(data,
 #' @return
 #'
 h_as_factor <- function(x, na_label) {
-
   assert_true(is.character(x) || is.logical(x))
 
   init_lab <- attr(x, "label")
 
   x_chr <- as.character(x)
-  res <-  explicit_na(sas_na(x_chr), label = na_label)
+  res <- explicit_na(sas_na(x_chr), label = na_label)
 
   lvl_x <- setdiff(sort(unique(res)), na_label)
 
-  #is na_level in res
+  # is na_level in res
   if (na_label %in% unique(res)) {
-
     lvl_x <- c(lvl_x, na_label)
   }
 

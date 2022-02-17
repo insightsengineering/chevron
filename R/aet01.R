@@ -24,7 +24,6 @@
 #'   preprocess_data("aet01_1")
 #'
 #' aet01_1(db, armvar = "ARM")
-#'
 aet01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -35,10 +34,11 @@ aet01_1 <- function(adam_db,
                     .study = list(
                       armvar = "ARM",
                       lbl_overall = NULL,
-                      safety_var = c("FATAL", "SER", "SERWD", "SERDSM",
-                                     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")
+                      safety_var = c(
+                        "FATAL", "SER", "SERWD", "SERDSM",
+                        "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                      )
                     )) {
-
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -52,24 +52,24 @@ aet01_1 <- function(adam_db,
     lbl_safety_var = lbl_safety_var
   )
 
-   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
-   tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
+  tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
 
-   col_info(tbl_adsl) <- col_info(tbl_adae)
+  col_info(tbl_adsl) <- col_info(tbl_adae)
 
-   tbl <- rbind(
-     tbl_adae[1:2, ],
-     tbl_adsl,
-     tbl_adae[3:nrow(tbl_adae), ]
-   )
+  tbl <- rbind(
+    tbl_adae[1:2, ],
+    tbl_adsl,
+    tbl_adae[3:nrow(tbl_adae), ]
+  )
 
-   tbl <- set_decoration(tbl, deco)
+  tbl <- set_decoration(tbl, deco)
 
-   if (prune_0) {
+  if (prune_0) {
     tbl <- tbl %>% prune_table()
-   }
+  }
 
-   tbl
+  tbl
 }
 
 #' `AET01` Layout 1 (Default)
@@ -99,13 +99,15 @@ aet01_1_lyt <- function(armvar = .study$armvar,
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = NULL,
-                          safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                         "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"),
-                          lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV")
+                          safety_var = c(
+                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
+                          ),
+                          lbl_safety_var = c(
+                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
+                          )
                         )) {
-
-
   names(lbl_safety_var) <- safety_var
 
   lyt_adae <-
@@ -182,7 +184,6 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 #'   preprocess_data("aet01_2")
 #'
 #' aet01_2(db, armvar = "ARM", prune_0 = FALSE)
-#'
 aet01_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
@@ -195,11 +196,12 @@ aet01_2 <- function(adam_db,
                     .study = list(
                       armvar = "ARM",
                       lbl_overall = NULL,
-                      safety_var = c("FATAL", "SER", "SERWD", "SERDSM",
-                                     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
+                      safety_var = c(
+                        "FATAL", "SER", "SERWD", "SERDSM",
+                        "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                      ),
                       medconcept_var = c("SMQ01", "SMQ02", "CQ01")
                     )) {
-
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -215,24 +217,24 @@ aet01_2 <- function(adam_db,
     lbl_medconcept_var = lbl_medconcept_var
   )
 
-   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
-   tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
+  tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
 
-   col_info(tbl_adsl) <- col_info(tbl_adae)
+  col_info(tbl_adsl) <- col_info(tbl_adae)
 
-   tbl <- rbind(
-     tbl_adae[1:2, ],
-     tbl_adsl,
-     tbl_adae[3:nrow(tbl_adae), ]
-   )
+  tbl <- rbind(
+    tbl_adae[1:2, ],
+    tbl_adsl,
+    tbl_adae[3:nrow(tbl_adae), ]
+  )
 
-   tbl <- set_decoration(tbl, deco)
+  tbl <- set_decoration(tbl, deco)
 
-   if (prune_0) {
+  if (prune_0) {
     tbl <- tbl %>% prune_table()
-   }
+  }
 
-   tbl
+  tbl
 }
 
 #' `AET01` Layout 2 (Supplementary)
@@ -264,14 +266,17 @@ aet01_2_lyt <- function(armvar = .study$armvar,
                         .study = list(
                           armvar = "ARM",
                           lbl_overall = NULL,
-                          safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                         "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"),
-                          lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"),
+                          safety_var = c(
+                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
+                          ),
+                          lbl_safety_var = c(
+                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
+                          ),
                           medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
                           lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")
                         )) {
-
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
 

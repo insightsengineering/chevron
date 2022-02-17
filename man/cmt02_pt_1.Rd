@@ -64,9 +64,8 @@ db <- syn_test_data() \%>\%
   preprocess_data("cmt02_pt_1")
 
 cmt02_pt_1(adam_db = db)
-
 cmt02_pt_1_lyt(
   armvar = "ACTARM",
-  lbl_overall = NULL)
-
+  lbl_overall = NULL
+)
 }

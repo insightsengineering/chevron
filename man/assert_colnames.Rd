@@ -20,7 +20,7 @@ Provides a clearer error message in the case of missing variable.
 \dontrun{
 assert_colnames(mtcars, c("speed", "seats"), null_ok = TRUE)
 
-my_colnames = NULL
+my_colnames <- NULL
 assert_colnames(mtcars, my_colnames, null_ok = FALSE)
 }
 
