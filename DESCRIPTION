@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Authors@R: c(
     person("NEST", , , "basel.nestcicd@roche.com", role = c("aut", "cre")),
     person("Roche", role = c("cph", "fnd")),
@@ -16,25 +16,25 @@ License: file LICENSE
 Depends:
     R (>= 4.0.0)
 Imports:
-    tern,
-    dm,
     assertthat,
     checkmate,
+    dm,
     dplyr,
     magrittr,
+    methods,
     rlang,
     rtables,
-    tidyr,
+    tern,
     tibble,
-    methods
+    tidyr
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     knitr,
+    purrr,
     rmarkdown,
     scda,
-    scda.2021,
-    purrr
+    scda.2021
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
