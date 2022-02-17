@@ -31,15 +31,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -104,14 +95,18 @@ all tables of a <code>dm</code> object.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"char"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="cn">NA</span>, <span class="st">"a"</span>, <span class="st">"k"</span>, <span class="st">"x"</span><span class="op">)</span>,</span>
-<span class="r-in">                  <span class="st">"fact"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"f1"</span>, <span class="st">"f2"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"f1"</span>, <span class="st">"f1"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">                  <span class="st">"logi"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">NA</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"char"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="cn">NA</span>, <span class="st">"a"</span>, <span class="st">"k"</span>, <span class="st">"x"</span><span class="op">)</span>,</span>
-<span class="r-in">                  <span class="st">"fact"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"f1"</span>, <span class="st">"f2"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"f1"</span>, <span class="st">"f1"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">                  <span class="st">"num"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span class="r-in">  <span class="st">"char"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="cn">NA</span>, <span class="st">"a"</span>, <span class="st">"k"</span>, <span class="st">"x"</span><span class="op">)</span>,</span>
+<span class="r-in">  <span class="st">"fact"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"f1"</span>, <span class="st">"f2"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"f1"</span>, <span class="st">"f1"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span class="r-in">  <span class="st">"logi"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">NA</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span class="r-in">  <span class="st">"char"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="cn">NA</span>, <span class="st">"a"</span>, <span class="st">"k"</span>, <span class="st">"x"</span><span class="op">)</span>,</span>
+<span class="r-in">  <span class="st">"fact"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"f1"</span>, <span class="st">"f2"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"f1"</span>, <span class="st">"f1"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span class="r-in">  <span class="st">"num"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"> <span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">dm</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">dm</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">dm_fact</span> <span class="op">&lt;-</span> <span class="fu">dm_explicit_na</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">dm_fact</span><span class="op">$</span><span class="va">df1</span></span>
@@ -130,7 +125,6 @@ all tables of a <code>dm</code> object.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4         a &lt;Missing&gt;   4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5         k        f1   5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6         x        f1   6</span>
-<span class="r-in"></span>
 </code></pre></div>
     </div>
   </div>

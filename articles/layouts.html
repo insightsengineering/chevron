@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -80,7 +71,7 @@ Other releases
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Layouts in Chevron</h1>
             
-            <h4 data-toc-skip class="date">2022-02-09</h4>
+            <h4 data-toc-skip class="date">2022-02-17</h4>
       
       
       <div class="hidden name"><code>layouts.Rmd</code></div>
@@ -118,14 +109,14 @@ Other releases
 <span class="op">)</span>
 
 <span class="fu"><a href="https://roche.github.io/rtables/reference/build_table.html" class="external-link">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">)</span>
-<span class="co">#&gt;             ARM A             ARM B      </span>
-<span class="co">#&gt; —————————————————————————————————————————</span>
-<span class="co">#&gt; mean   54.695538916972   54.8929273716307</span>
+<span class="co">#&gt;             ARM A              ARM B      </span>
+<span class="co">#&gt; ——————————————————————————————————————————</span>
+<span class="co">#&gt; mean   51.6294465360429   53.8801802966433</span>
 
 <span class="fu"><a href="https://roche.github.io/rtables/reference/build_table.html" class="external-link">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">[</span><span class="va">adsl</span><span class="op">$</span><span class="va">COUNTRY</span> <span class="op">==</span> <span class="st">"RUS"</span>, <span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt;             ARM A              ARM B      </span>
 <span class="co">#&gt; ——————————————————————————————————————————</span>
-<span class="co">#&gt; mean   50.1310252036307   53.5746397031471</span></code></pre></div>
+<span class="co">#&gt; mean   38.0762371886522   53.4596208391304</span></code></pre></div>
 <p>Hence these layouts define a table pre-data. That is, the layout functions in <code>chevron</code> do never take any data as an argument. Note that pruning and sorting are currently not performed in the layout space in <code>rtables</code> but rather on the actual table objects.</p>
 <p>Also, layouts allow for certain queries such as which variables are required to build the table using the given layout:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -156,7 +147,7 @@ Other releases
 <span class="co">#&gt;             nonunique = "Total number of events")) %&gt;% count_occurrences(vars = "AEDECOD", </span>
 <span class="co">#&gt;         .indent_mods = -1L) %&gt;% append_topleft(paste0("  ", lbl_aedecod))</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55f0eba453b8&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55e247e4fff0&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>Note that the <code>aet02_1_lyt</code> function returns a concise description on how <code>tern</code> and <code>rtables</code> can be used to create the cell values of the tables. The table creation function then does then use the <code>*_lyt</code> function and builds the table using <code>build_table</code> and the data given in <code>adam_db</code> as shown next:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -179,7 +170,7 @@ Other releases
 <span class="co">#&gt;         "*", "AEDECOD"), scorefun = score_occurrences)</span>
 <span class="co">#&gt;     tbl_sorted</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55f0e025a1c8&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55e23c67ab50&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 </div>
 <div class="section level2">
