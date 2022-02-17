@@ -12,7 +12,7 @@ aet01_1(
   prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
+  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
   .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))
 )
@@ -66,6 +66,7 @@ Overview of death and summary of adverse events.
 
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   preprocess_data("aet01_1")

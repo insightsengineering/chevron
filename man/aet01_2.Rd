@@ -12,9 +12,9 @@ aet01_2(
   prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, .study$safety_var),
+  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
   medconcept_var = .study$medconcept_var,
-  lbl_medconcept_var = var_labels_for(adam_db$adae, .study$medconcept_var),
+  lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
   .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
     medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
