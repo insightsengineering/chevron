@@ -65,5 +65,4 @@ db <- syn_test_data() \%>\%
   preprocess_data("cmt01a_2")
 
 cmt01a_2(adam_db = db)
-
 }

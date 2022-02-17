@@ -52,18 +52,18 @@ aet01_1 <- function(adam_db,
     lbl_safety_var = lbl_safety_var
   )
 
-   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
-   tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
+  tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
 
-   col_info(tbl_adsl) <- col_info(tbl_adae)
+  col_info(tbl_adsl) <- col_info(tbl_adae)
 
-   tbl <- rbind(
-     tbl_adae[1:2, ],
-     tbl_adsl,
-     tbl_adae[3:nrow(tbl_adae), ]
-   )
+  tbl <- rbind(
+    tbl_adae[1:2, ],
+    tbl_adsl,
+    tbl_adae[3:nrow(tbl_adae), ]
+  )
 
-   tbl <- set_decoration(tbl, deco)
+  tbl <- set_decoration(tbl, deco)
 
   if (prune_0) {
     tbl <- tbl %>% prune_table()
@@ -108,8 +108,6 @@ aet01_1_lyt <- function(armvar = .study$armvar,
                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
                           )
                         )) {
-
-
   names(lbl_safety_var) <- safety_var
 
   lyt_adae <-
@@ -219,18 +217,18 @@ aet01_2 <- function(adam_db,
     lbl_medconcept_var = lbl_medconcept_var
   )
 
-   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
-   tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
+  tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl_adsl <- build_table(lyt$lyt_adsl, dbsel$adsl)
 
-   col_info(tbl_adsl) <- col_info(tbl_adae)
+  col_info(tbl_adsl) <- col_info(tbl_adae)
 
-   tbl <- rbind(
-     tbl_adae[1:2, ],
-     tbl_adsl,
-     tbl_adae[3:nrow(tbl_adae), ]
-   )
+  tbl <- rbind(
+    tbl_adae[1:2, ],
+    tbl_adsl,
+    tbl_adae[3:nrow(tbl_adae), ]
+  )
 
-   tbl <- set_decoration(tbl, deco)
+  tbl <- set_decoration(tbl, deco)
 
   if (prune_0) {
     tbl <- tbl %>% prune_table()

@@ -14,12 +14,11 @@
 #' \dontrun{
 #' assert_colnames(mtcars, c("speed", "seats"), null_ok = TRUE)
 #'
-#' my_colnames = NULL
+#' my_colnames <- NULL
 #' assert_colnames(mtcars, my_colnames, null_ok = FALSE)
 #' }
 #'
 assert_colnames <- function(df, x, null_ok = TRUE) {
-
   if (!null_ok && is.null(x)) {
     stop(
       paste0(
