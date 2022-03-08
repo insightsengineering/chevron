@@ -24,6 +24,7 @@ Imports:
     methods,
     rlang,
     rtables,
+    formatable,
     tern,
     tibble,
     tidyr
