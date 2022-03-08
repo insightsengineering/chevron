@@ -11,7 +11,7 @@ globalVariables(c(
 #' @param vars variable names in data frame `df`
 #'
 #' @importFrom assertthat assert_that
-#' @importFrom rtables var_labels
+#' @importFrom formatable var_labels
 #' @export
 var_labels_for <- function(df, vars) {
   assert_that(all(vars %in% names(df)))
