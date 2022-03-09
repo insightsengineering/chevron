@@ -11,7 +11,7 @@ globalVariables(c(
 #' @param vars variable names in data frame `df`
 #'
 #' @importFrom assertthat assert_that
-#' @importFrom formatable var_labels
+#' @importFrom tern var_labels
 #' @export
 var_labels_for <- function(df, vars) {
   assert_that(all(vars %in% names(df)))
@@ -177,7 +177,7 @@ reorder_levels_params <- function(df, paramcd_levels) {
 #'
 #' @importFrom dplyr select
 #' @importFrom tidyr pivot_wider
-#' @importFrom formatable `var_labels<-`
+#' @importFrom tern `var_labels<-`
 #'
 #' @return (`data.frame`)
 #' @export
@@ -279,7 +279,7 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
 
 #' Retrieve Synthetic Test Data Used For Examples
-#' @importFrom formatable with_label
+#' @importFrom tern with_label
 #' @export
 syn_test_data <- function() {
   sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
