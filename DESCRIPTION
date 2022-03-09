@@ -14,10 +14,10 @@ Description: Standard Table, Listings, and Graphs (TLG) library used in
     clinical trials.
 License: file LICENSE
 Depends:
-    R (>= 4.0.0),
-    rtables (>= 0.4.1),
-    tern
+    R (>= 4.0.0) 
 Imports:
+    rtables,
+    tern,
     assertthat,
     checkmate,
     dm,
