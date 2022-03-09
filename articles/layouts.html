@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
       </span>
     </div>
 
@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -80,7 +71,7 @@ Other releases
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Layouts in Chevron</h1>
             
-            <h4 data-toc-skip class="date">2022-02-17</h4>
+            <h4 data-toc-skip class="date">2022-03-09</h4>
       
       
       <div class="hidden name"><code>layouts.Rmd</code></div>
@@ -92,10 +83,17 @@ Other releases
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <code>chevron</code> R package has a collection of functions that create standard tables, listings, and graphs (TLGs). These functions are referred in <code>chevron</code> as <em>tlg-functions</em>. A subset of these <em>tlg-functions</em> create tables. Tables are created using the <code>rtables</code> package. <code>rtables</code> has the context of table layouts, i.e. pre-data table cell-derivation instructions. For example:</p>
+<p>The <code>chevron</code> R package has a collection of functions that
+create standard tables, listings, and graphs (TLGs). These functions are
+referred in <code>chevron</code> as <em>tlg-functions</em>. A subset of
+these <em>tlg-functions</em> create tables. Tables are created using the
+<code>rtables</code> package. <code>rtables</code> has the context of
+table layouts, i.e. pre-data table cell-derivation instructions. For
+example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/roche/rtables" class="external-link">rtables</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: magrittr</span>
+<span class="co">#&gt; Loading required package: formatable</span>
 
 <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://roche.github.io/rtables/reference/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://roche.github.io/rtables/reference/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -109,7 +107,8 @@ Other releases
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Row-Split Structure:</span>
 <span class="co">#&gt; AGE (** analysis **)</span></code></pre></div>
-<p>These layout contain all the cell-value derivation information and can be used and reused for different data</p>
+<p>These layout contain all the cell-value derivation information and
+can be used and reused for different data</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
   ARM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ARM A"</span>, <span class="st">"ARM B"</span><span class="op">)</span>, <span class="fl">100</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
@@ -120,18 +119,25 @@ Other releases
 <span class="fu"><a href="https://roche.github.io/rtables/reference/build_table.html" class="external-link">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">)</span>
 <span class="co">#&gt;             ARM A              ARM B      </span>
 <span class="co">#&gt; ——————————————————————————————————————————</span>
-<span class="co">#&gt; mean   51.6294465360429   53.8801802966433</span>
+<span class="co">#&gt; mean   53.0247482373014   60.6022111040407</span>
 
 <span class="fu"><a href="https://roche.github.io/rtables/reference/build_table.html" class="external-link">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">[</span><span class="va">adsl</span><span class="op">$</span><span class="va">COUNTRY</span> <span class="op">==</span> <span class="st">"RUS"</span>, <span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;             ARM A              ARM B      </span>
-<span class="co">#&gt; ——————————————————————————————————————————</span>
-<span class="co">#&gt; mean   38.0762371886522   53.4596208391304</span></code></pre></div>
-<p>Hence these layouts define a table pre-data. That is, the layout functions in <code>chevron</code> do never take any data as an argument. Note that pruning and sorting are currently not performed in the layout space in <code>rtables</code> but rather on the actual table objects.</p>
-<p>Also, layouts allow for certain queries such as which variables are required to build the table using the given layout:</p>
+<span class="co">#&gt;             ARM A             ARM B      </span>
+<span class="co">#&gt; —————————————————————————————————————————</span>
+<span class="co">#&gt; mean   45.992403710261   56.6566344505797</span></code></pre></div>
+<p>Hence these layouts define a table pre-data. That is, the layout
+functions in <code>chevron</code> do never take any data as an argument.
+Note that pruning and sorting are currently not performed in the layout
+space in <code>rtables</code> but rather on the actual table
+objects.</p>
+<p>Also, layouts allow for certain queries such as which variables are
+required to build the table using the given layout:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/vil.html" class="external-link">vars_in_layout</a></span><span class="op">(</span><span class="va">lyt</span><span class="op">)</span>
 <span class="co">#&gt; [1] "ARM" "AGE"</span></code></pre></div>
-<p>So in <code>chevron</code> when creating tables we always do the explicit layout creation in the <code>*_lyt</code> functions. For example for <code>aet02_1</code> we have the layout function:</p>
+<p>So in <code>chevron</code> when creating tables we always do the
+explicit layout creation in the <code>*_lyt</code> functions. For
+example for <code>aet02_1</code> we have the layout function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'tern':</span>
@@ -156,9 +162,14 @@ Other releases
 <span class="co">#&gt;             nonunique = "Total number of events")) %&gt;% count_occurrences(vars = "AEDECOD", </span>
 <span class="co">#&gt;         .indent_mods = -1L) %&gt;% append_topleft(paste0("  ", lbl_aedecod))</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55e247e4fff0&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x555b5cd67200&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
-<p>Note that the <code>aet02_1_lyt</code> function returns a concise description on how <code>tern</code> and <code>rtables</code> can be used to create the cell values of the tables. The table creation function then does then use the <code>*_lyt</code> function and builds the table using <code>build_table</code> and the data given in <code>adam_db</code> as shown next:</p>
+<p>Note that the <code>aet02_1_lyt</code> function returns a concise
+description on how <code>tern</code> and <code>rtables</code> can be
+used to create the cell values of the tables. The table creation
+function then does then use the <code>*_lyt</code> function and builds
+the table using <code>build_table</code> and the data given in
+<code>adam_db</code> as shown next:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">aet02_1</span>
 <span class="co">#&gt; function (adam_db, armvar = .study$armvar, lbl_overall = .study$lbl_overall, </span>
@@ -179,7 +190,7 @@ Other releases
 <span class="co">#&gt;         "*", "AEDECOD"), scorefun = score_occurrences)</span>
 <span class="co">#&gt;     tbl_sorted</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55e23c67ab50&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x555b5183dfc8&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 </div>
 <div class="section level2">
@@ -188,11 +199,18 @@ Other releases
 <ul>
 <li>Layouts specify a tabulation an cell-values derivation pre-data</li>
 <li>
-<code>chevron</code> exports the layout functions for each table creating <em>tlg-function</em>
+<code>chevron</code> exports the layout functions for each table
+creating <em>tlg-function</em>
 </li>
-<li>these layouts are useful to understand how table is created and what variables are required in the data to create a table using the layout</li>
-<li>the table creation functions focus the main part of their code on building, sorting and pruning the table</li>
-<li>Headers and footers are taken by default from the standards. They can be specified with the <code>deco</code> argument. Note that we currently do not have all of the data base for standard headers and footers imported in <code>chevron</code>.</li>
+<li>these layouts are useful to understand how table is created and what
+variables are required in the data to create a table using the
+layout</li>
+<li>the table creation functions focus the main part of their code on
+building, sorting and pruning the table</li>
+<li>Headers and footers are taken by default from the standards. They
+can be specified with the <code>deco</code> argument. Note that we
+currently do not have all of the data base for standard headers and
+footers imported in <code>chevron</code>.</li>
 </ul>
 </div>
   </div>
@@ -214,7 +232,8 @@ Other releases
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

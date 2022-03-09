@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
       </span>
     </div>
 
@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -79,9 +70,10 @@ Other releases
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to Chevron</h1>
-                        <h4 data-toc-skip class="author">Adrian Waddell</h4>
+                        <h4 data-toc-skip class="author">Adrian
+Waddell</h4>
             
-            <h4 data-toc-skip class="date">2022-02-17</h4>
+            <h4 data-toc-skip class="date">2022-03-09</h4>
       
       
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -93,20 +85,48 @@ Other releases
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>The <code>chevron</code> R package provides functions to produce standard tables, listings and graphs (TLGs) used to analyze and report clinical trials data. We refer to these functions as <em>tlg-functions</em>. The <em>tlg-functions</em> in <code>chevron</code> use other packages to produce the final outputs, for example <code>rtables</code> and <code>tern</code> are used to create listings and tables, and <code>ggplot2</code>, <code>lattice</code>, and <code>grid</code> are used to create graphs.</p>
-<p><em>tlg-functions</em> in <code>chevron</code> such as <code>dmt01_1</code>, <code>aet02_1</code>, <code>aet02_2</code> have the following properties:</p>
+<p>The <code>chevron</code> R package provides functions to produce
+standard tables, listings and graphs (TLGs) used to analyze and report
+clinical trials data. We refer to these functions as
+<em>tlg-functions</em>. The <em>tlg-functions</em> in
+<code>chevron</code> use other packages to produce the final outputs,
+for example <code>rtables</code> and <code>tern</code> are used to
+create listings and tables, and <code>ggplot2</code>,
+<code>lattice</code>, and <code>grid</code> are used to create
+graphs.</p>
+<p><em>tlg-functions</em> in <code>chevron</code> such as
+<code>dmt01_1</code>, <code>aet02_1</code>, <code>aet02_2</code> have
+the following properties:</p>
 <ol style="list-style-type: decimal">
-<li>they produce a narrow defined output (currently standards in Roche GDS). Note, that the naming convention <code>&lt;gds template id&gt;_&lt;i&gt;</code> indicates that a Roche GDS defined standard may have different implementations. Or, alternatively, a GDS template id can be regarded as a <em>guideline</em> and the function name in <code>chevron</code> as a <em>standard</em>.</li>
-<li>have very few arguments to modify the standard. Generally, arguments may change the structure of the table (arm variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).</li>
-<li>have always the first argument <code>adam_db</code> which is the collection of ADaM datasets (<code>ADSL</code>, <code>ADAE</code>, <code>ADRS</code>, etc.). Please read the <em>The adam_db Argument</em> vignette in this package for more details.</li>
-<li>have a <code>.study</code> argument, read the <em>The .study argument</em> vignette for more detail.</li>
+<li>they produce a narrow defined output (currently standards in Roche
+GDS). Note, that the naming convention
+<code>&lt;gds template id&gt;_&lt;i&gt;</code> indicates that a Roche
+GDS defined standard may have different implementations. Or,
+alternatively, a GDS template id can be regarded as a <em>guideline</em>
+and the function name in <code>chevron</code> as a
+<em>standard</em>.</li>
+<li>have very few arguments to modify the standard. Generally, arguments
+may change the structure of the table (arm variable, which variables are
+summarized) but not parameterize the cell content (i.e. alpha-level for
+p-value).</li>
+<li>have always the first argument <code>adam_db</code> which is the
+collection of ADaM datasets (<code>ADSL</code>, <code>ADAE</code>,
+<code>ADRS</code>, etc.). Please read the <em>The adam_db Argument</em>
+vignette in this package for more details.</li>
+<li>have a <code>.study</code> argument, read the <em>The .study
+argument</em> vignette for more detail.</li>
 </ol>
 </div>
 <div class="section level3">
 <h3 id="example-aet02">Example AET02<a class="anchor" aria-label="anchor" href="#example-aet02"></a>
 </h3>
-<p>For example, the GDS template <code>aet02</code> is implemented in <code>chevron</code> with <em>tlg-functions</em> that have the name <code>aet02_*</code>. The function documentation which is accessible with the <code>help</code> function, e.g. <code><a href="../reference/aet02_1.html">help('aet02_1')</a></code> documents what is particular in the <code>_1</code> implementation.</p>
-<p>We first define the data and put it in a <code>dm</code> object, you can find more details about this in the <em>adam_db</em> vignette.</p>
+<p>For example, the GDS template <code>aet02</code> is implemented in
+<code>chevron</code> with <em>tlg-functions</em> that have the name
+<code>aet02_*</code>. The function documentation which is accessible
+with the <code>help</code> function, e.g. <code><a href="../reference/aet02_1.html">help('aet02_1')</a></code>
+documents what is particular in the <code>_1</code> implementation.</p>
+<p>We first define the data and put it in a <code>dm</code> object, you
+can find more details about this in the <em>adam_db</em> vignette.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -175,16 +195,17 @@ Other releases
 <span class="co">#&gt; cl C.1                                                                                                </span>
 <span class="co">#&gt;   Total number of patients with at least one adverse event   32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
 <span class="co">#&gt;   Total number of events                                         43           55              53      </span>
-<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
-<span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span></code></pre></div>
+<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="more-on-preprocess_data-and-processing-map">More on preprocess_data and processing map<a class="anchor" aria-label="anchor" href="#more-on-preprocess_data-and-processing-map"></a>
 </h2>
-<p>The <code>preprocess_data</code> function determines the the preprocessing using a <em>processing map</em> which is referred to in <code>chevron</code> as <code>pmap</code>.</p>
-<p>The standard preprocessing map that comes with the <em>tlg-functions</em> in <code>chevron</code> can be access via <code>std_pmap</code></p>
+<p>The <code>preprocess_data</code> function determines the the
+preprocessing using a <em>processing map</em> which is referred to in
+<code>chevron</code> as <code>pmap</code>.</p>
+<p>The standard preprocessing map that comes with the
+<em>tlg-functions</em> in <code>chevron</code> can be access via
+<code>std_pmap</code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
@@ -199,16 +220,20 @@ Other releases
 <span class="co">#&gt; <span style="color: #BCBCBC;">6</span> aet03_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>               <span style="color: #949494;">&lt;chr [2]&gt;</span></span></code></pre></div>
 <p>For example, for <code>aet02_1</code>:</p>
 <ol style="list-style-type: decimal">
-<li>the <code>adam_db</code> data gets filtered by the function <code>filter_adae_anl01fl</code>
+<li>the <code>adam_db</code> data gets filtered by the function
+<code>filter_adae_anl01fl</code>
 </li>
-<li>the <code>adam_db</code> does not get mutated (<code>NA</code> maps to <code>identity</code>)</li>
-<li>and the required data are in the <code>req_data</code> column accessible by</li>
+<li>the <code>adam_db</code> does not get mutated (<code>NA</code> maps
+to <code>identity</code>)</li>
+<li>and the required data are in the <code>req_data</code> column
+accessible by</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pmap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">pmap</span><span class="op">[</span><span class="va">pmap</span><span class="op">$</span><span class="va">tlgfname</span> <span class="op">==</span> <span class="st">"aet02_1"</span>, <span class="st">"req_data"</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "adsl" "adae"</span></code></pre></div>
-<p>Note that you can access the explicit functions with <code>std_filter_fun</code> and <code>std_mutate_fun</code></p>
+<p>Note that you can access the explicit functions with
+<code>std_filter_fun</code> and <code>std_mutate_fun</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/std_filter_fun.html">std_filter_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span>
 <span class="co">#&gt; function (adam_db) </span>
@@ -217,14 +242,14 @@ Other releases
 <span class="co">#&gt;     adam_db %&gt;% dm_zoom_to(adae) %&gt;% filter(ANL01FL == "Y") %&gt;% </span>
 <span class="co">#&gt;         dm_update_zoomed()</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55e3f46cabc0&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55c3ff993940&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>and</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/std_mutate_fun.html">std_mutate_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; x</span>
-<span class="co">#&gt; &lt;bytecode: 0x55e3ea37abe8&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x55c3ee111f18&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:base&gt;</span></code></pre></div>
 <p>so alternatively one can also create the output above with</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -272,10 +297,7 @@ Other releases
 <span class="co">#&gt; cl C.1                                                                                                </span>
 <span class="co">#&gt;   Total number of patients with at least one adverse event   32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
 <span class="co">#&gt;   Total number of events                                         43           55              53      </span>
-<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
-<span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span></code></pre></div>
+<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)</span></code></pre></div>
 </div>
   </div>
 
@@ -296,7 +318,8 @@ Other releases
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

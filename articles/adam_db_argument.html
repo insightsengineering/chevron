@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
       </span>
     </div>
 
@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -76,12 +67,12 @@ Other releases
       
 
       </header><script src="adam_db_argument_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="adam_db_argument_files/viz-1.8.2/viz.js"></script><link href="adam_db_argument_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="adam_db_argument_files/grViz-binding-1.0.8/grViz.js"></script><div class="row">
+<script src="adam_db_argument_files/grViz-binding-1.0.9/grViz.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The adam_db Argument</h1>
             
-            <h4 data-toc-skip class="date">2022-02-17</h4>
+            <h4 data-toc-skip class="date">2022-03-09</h4>
       
       
       <div class="hidden name"><code>adam_db_argument.Rmd</code></div>
@@ -93,12 +84,17 @@ Other releases
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>We have decided to use the <code>dm</code> package in <code>chevron</code> to model the data relations of the CDISC ADaM datasets. In this vignette we introduce how we intend to use ADaM data in a relational model, in R with <code>dm</code>. Note that <code>dm</code> can be connected to a database.</p>
+<p>We have decided to use the <code>dm</code> package in
+<code>chevron</code> to model the data relations of the CDISC ADaM
+datasets. In this vignette we introduce how we intend to use ADaM data
+in a relational model, in R with <code>dm</code>. Note that
+<code>dm</code> can be connected to a database.</p>
 </div>
 <div class="section level2">
 <h2 id="sample-data">Sample Data<a class="anchor" aria-label="anchor" href="#sample-data"></a>
 </h2>
-<p>We remove the ADSL variables in the database of the non-adsl datasets and merge the adsl variables back as needed.</p>
+<p>We remove the ADSL variables in the database of the non-adsl datasets
+and merge the adsl variables back as needed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'tern':</span>
@@ -133,7 +129,8 @@ Other releases
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsub</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"PARAMCD"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></code></pre></div>
-<p>Note that the keys are defined in the data analysis plan at Roche.</p>
+<p>Note that the keys are defined in the data analysis plan at
+Roche.</p>
 </div>
 <div class="section level2">
 <h2 id="work-with-dm-object">Work With dm Object<a class="anchor" aria-label="anchor" href="#work-with-dm-object"></a>
@@ -160,15 +157,16 @@ Other releases
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_draw.html" class="external-link">dm_draw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-ae7efbb5b831cf367ff1" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ae7efbb5b831cf367ff1">{"x":{"diagram":"#data_model\ndigraph {\ngraph [rankdir=LR tooltip=\"Data Model\" ]\n\nnode [margin=0 fontcolor = \"#444444\" ]\n\nedge [color = \"#555555\", arrowsize = 1, ]\n\npack=true\npackmode= \"node\"\n\n  \"adae\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adae<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, ASTDTM, AETERM, AESEQ\"><U>USUBJID, STUDYID, ASTDTM, AETERM, AESEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adlb\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adlb<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID\"><U>STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adrs\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adrs<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ\"><U>STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsl\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsl<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\"><U>USUBJID, STUDYID<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsub\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsub<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, PARAMCD\"><U>USUBJID, STUDYID, PARAMCD<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n\"adae\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adlb\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adrs\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adsub\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n}","config":{"engine":null,"options":null}},"evals":[],"jsHooks":[]}</script><div class="section level3">
+<div id="htmlwidget-2526ac8a1e3c21cc5b42" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2526ac8a1e3c21cc5b42">{"x":{"diagram":"#data_model\ndigraph {\ngraph [rankdir=LR tooltip=\"Data Model\" ]\n\nnode [margin=0 fontcolor = \"#444444\" ]\n\nedge [color = \"#555555\", arrowsize = 1, ]\n\npack=true\npackmode= \"node\"\n\n  \"adae\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adae<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, ASTDTM, AETERM, AESEQ\"><U>USUBJID, STUDYID, ASTDTM, AETERM, AESEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adlb\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adlb<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID\"><U>STUDYID, USUBJID, PARAMCD, BASETYPE, AVISITN, ATPTN, DTYPE, ADTM, LBSEQ, ASPID<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adrs\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adrs<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ\"><U>STUDYID, USUBJID, PARAMCD, AVISITN, ADTM, RSSEQ<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsl\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsl<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\"><U>USUBJID, STUDYID<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"adsub\" [label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#555555\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#EFEBDD\" BORDER=\"0\"><FONT COLOR=\"#000000\">adsub<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID, PARAMCD\"><U>USUBJID, STUDYID, PARAMCD<\/U><\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FFFFFF\" PORT=\"USUBJID, STUDYID\">USUBJID, STUDYID<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n\"adae\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adlb\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adrs\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n\"adsub\":\"USUBJID, STUDYID\"->\"adsl\":\"USUBJID, STUDYID\"\n}","config":{"engine":null,"options":null}},"evals":[],"jsHooks":[]}</script><div class="section level3">
 <h3 id="subset-the-data">Subset the data<a class="anchor" aria-label="anchor" href="#subset-the-data"></a>
 </h3>
 <p>Further we can subset the data:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_filter</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span></code></pre></div>
-<p>which adds the filter information to the <code>dm</code> object but does not apply the filtering</p>
+<p>which adds the filter information to the <code>dm</code> object but
+does not apply the filtering</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/pull_tbl.html" class="external-link">pull_tbl</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -183,7 +181,8 @@ Other releases
 <span class="co">#&gt; <span style="color: #BCBCBC;">4</span> AB12345-USA-1-id-261  AB12345 F    </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">5</span> AB12345-NGA-11-id-173 AB12345 F    </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
-<p>In order to get the filtered data one has to use the <code><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_apply_filters()</a></code> function</p>
+<p>In order to get the filtered data one has to use the
+<code><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_apply_filters()</a></code> function</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_apply_filters</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -214,7 +213,8 @@ Other releases
 <span class="co">#&gt; <span style="color: #BCBCBC;">4</span> AB12345-USA-1-id-261  AB12345 F    </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">5</span> AB12345-NGA-11-id-173 AB12345 F    </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AB12345-CHN-4-id-73   AB12345 F</span></code></pre></div>
-<p>If one does not need the lazy filtering feature then one can also zoom to the desired table and use <code>filter</code></p>
+<p>If one does not need the lazy filtering feature then one can also
+zoom to the desired table and use <code>filter</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -236,7 +236,8 @@ Other releases
 <div class="section level3">
 <h3 id="mutate-data">Mutate Data<a class="anchor" aria-label="anchor" href="#mutate-data"></a>
 </h3>
-<p><code>dm</code> supports most of the <code>dplyr</code> verbs, for example <code>mutate</code></p>
+<p><code>dm</code> supports most of the <code>dplyr</code> verbs, for
+example <code>mutate</code></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -250,8 +251,13 @@ Other releases
 <div class="section level2">
 <h2 id="dm-objects-in-chevron">dm Objects in Chevron<a class="anchor" aria-label="anchor" href="#dm-objects-in-chevron"></a>
 </h2>
-<p>In <code>chevron</code> we use <code>dm</code> objects to combine all data into one object. The <em>tlg-functions</em> and the functions returned <code>std_filter</code> and <code>std_mutate</code> require a <code>dm</code> object to the <code>adam_db</code> argument.</p>
-<p><code>dm</code> objects also are useful to filter the data. For example filtering for all females also subsets the other datasets as per relation specification:</p>
+<p>In <code>chevron</code> we use <code>dm</code> objects to combine all
+data into one object. The <em>tlg-functions</em> and the functions
+returned <code>std_filter</code> and <code>std_mutate</code> require a
+<code>dm</code> object to the <code>adam_db</code> argument.</p>
+<p><code>dm</code> objects also are useful to filter the data. For
+example filtering for all females also subsets the other datasets as per
+relation specification:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_filter</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -275,7 +281,8 @@ Other releases
 <div class="section level3">
 <h3 id="vertical-analysis-data">Vertical Analysis Data<a class="anchor" aria-label="anchor" href="#vertical-analysis-data"></a>
 </h3>
-<p>For standard outputs we do know which data and variables we need to create a TLG.</p>
+<p>For standard outputs we do know which data and variables we need to
+create a TLG.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_join_to_tbl.html" class="external-link">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -352,7 +359,8 @@ Other releases
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

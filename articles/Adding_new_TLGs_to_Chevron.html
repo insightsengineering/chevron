@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
       </span>
     </div>
 
@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -80,7 +71,7 @@ Other releases
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Adding new TLGs to Chevron</h1>
             
-            <h4 data-toc-skip class="date">2022-02-17</h4>
+            <h4 data-toc-skip class="date">2022-03-09</h4>
       
       
       <div class="hidden name"><code>Adding_new_TLGs_to_Chevron.Rmd</code></div>
@@ -96,12 +87,30 @@ Other releases
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>The <code>chevron</code> package is a collection of function to create standard tables, listings, and graphs for clinical trials reporting. Here we present the logic to request new tables for the end users and how to construct new table functions for the programmers. The list of the already available functions is available <a href="https://glowing-giggle-c0c5190c.pages.github.io/reference/index.html" class="external-link">here</a>. The naming convention for table functions is <code>&lt;table name&gt;_&lt;design number&gt;</code>. ex: <code>aet02_2</code>. The default design number is by convention the number 1. Layouts are internal functions that determine the underlying structure of a table. One table function is generally associated with one layout function. The naming convention for layout is <code>&lt;table name&gt;_&lt;design number&gt;_lyt</code>. ex: <code>aet02_2_lyt</code>.</p>
+<p>The <code>chevron</code> package is a collection of function to
+create standard tables, listings, and graphs for clinical trials
+reporting. Here we present the logic to request new tables for the end
+users and how to construct new table functions for the programmers. The
+list of the already available functions is available <a href="https://glowing-giggle-c0c5190c.pages.github.io/reference/index.html" class="external-link">here</a>.
+The naming convention for table functions is
+<code>&lt;table name&gt;_&lt;design number&gt;</code>. ex:
+<code>aet02_2</code>. The default design number is by convention the
+number 1. Layouts are internal functions that determine the underlying
+structure of a table. One table function is generally associated with
+one layout function. The naming convention for layout is
+<code>&lt;table name&gt;_&lt;design number&gt;_lyt</code>. ex:
+<code>aet02_2_lyt</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="how-to-request-a-table">How to request a table<a class="anchor" aria-label="anchor" href="#how-to-request-a-table"></a>
 </h3>
-<p>In order to request a function that will generate a new table, please create an issue in the “TLG (ordered priority)” of the <a href="https://github.com/orgs/insightsengineering/projects/34" class="external-link">chevron backlog</a>. Private repositories on GitHub do not support yaml issue templates but you can use the format below to accurately describe your requirements. Adding images of the required table (without confidential information) is also very useful. Several designs of the same table can be (should be) requested in a same issue.</p>
+<p>In order to request a function that will generate a new table, please
+create an issue in the “TLG (ordered priority)” of the <a href="https://github.com/orgs/insightsengineering/projects/34" class="external-link">chevron
+backlog</a>. Private repositories on GitHub do not support yaml issue
+templates but you can use the format below to accurately describe your
+requirements. Adding images of the required table (without confidential
+information) is also very useful. Several designs of the same table can
+be (should be) requested in a same issue.</p>
 <blockquote>
 <h2 id="ex-aet02">ex: AET02</h2>
 <h3 id="table-name">Table Name</h3>
@@ -121,13 +130,15 @@ Other releases
 <h3 id="analysis-variables">Analysis variables</h3>
 <p>Names of the rows splitting variables in hierarchical order<br><em>ex. AEBODSYS, AEDECOD, ASEV</em><br><em>ex.</em><br><em>1. AEBODSYS</em><br><em>2. AEDECOD</em><br><em>3. ASEV</em></p>
 <h3 id="analysis-concept">Analysis concept</h3>
-<p>Alternative table description for summary tables similar to AET01<br><em>ex.</em><br>
+<p>Alternative table description for summary tables similar to
+AET01<br><em>ex.</em><br>
 - <em>Serious AE</em><br>
 - <em>Related AE</em><br>
 - <em>Total number of AEs</em></p>
 <h3 id="statistics">Statistics</h3>
 <p>Description of the statistical procedure<br><em>ex. Frequency count and % (based on N)</em></p>
-<h3 id="default-treatment-of-zero-count-rows">Default treatment of zero count rows</h3>
+<h3 id="default-treatment-of-zero-count-rows">Default treatment of zero
+count rows</h3>
 <p>Choose one option:<br>
 - “Remove zero count rows by default”<br>
 - “Keep zero count rows by default”<br>
@@ -140,22 +151,57 @@ Other releases
 <div class="section level3">
 <h3 id="how-to-create-a-new-table-function-for-developers">How to create a new table function for developers<a class="anchor" aria-label="anchor" href="#how-to-create-a-new-table-function-for-developers"></a>
 </h3>
-<p>The current practice is to use the body of the table-creating function to isolate the variable names that are used to construct the table layout. The function then calls the corresponding layout function to create the structure of the table. It then builds the table by combining the clinical data and the layout. Finally, it modifies the table based on the aggregated results, for instance removing the rows with no counts, and returns the table.</p>
+<p>The current practice is to use the body of the table-creating
+function to isolate the variable names that are used to construct the
+table layout. The function then calls the corresponding layout function
+to create the structure of the table. It then builds the table by
+combining the clinical data and the layout. Finally, it modifies the
+table based on the aggregated results, for instance removing the rows
+with no counts, and returns the table.</p>
 <div class="section level4">
 <h4 id="data-preprocessing">Data preprocessing<a class="anchor" aria-label="anchor" href="#data-preprocessing"></a>
 </h4>
-<p>Data processing and standardization should be performed before feeding the data to <code>chevron</code>. Beware of levels that are not present in the test data but could appear in real datasets.</p>
+<p>Data processing and standardization should be performed before
+feeding the data to <code>chevron</code>. Beware of levels that are not
+present in the test data but could appear in real datasets.</p>
 </div>
 <div class="section level4">
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a>
 </h4>
-<p>To enhance the reproducibility, it is advised to reduce the parametrization of the table-constructing function. Some arguments are specific to an entire study and used in multiple tables, for instance the choice of the variable used to specify the arm of the study (should it be <code>ARM</code> or <code>ACTARM</code>?). Such arguments should be defined in the <code>.study</code> object, which is then passed to the function. The list of argument accepted by the study object is defined below. Other arguments are more specific to a particular table (e.g Should zero count rows be removed?) and should be accessible to the end-user insofar as it cannot compromise the accuracy of the report. Appropriate default values should be provided.</p>
+<p>To enhance the reproducibility, it is advised to reduce the
+parametrization of the table-constructing function. Some arguments are
+specific to an entire study and used in multiple tables, for instance
+the choice of the variable used to specify the arm of the study (should
+it be <code>ARM</code> or <code>ACTARM</code>?). Such arguments should
+be defined in the <code>.study</code> object, which is then passed to
+the function. The list of argument accepted by the study object is
+defined below. Other arguments are more specific to a particular table
+(e.g Should zero count rows be removed?) and should be accessible to the
+end-user insofar as it cannot compromise the accuracy of the report.
+Appropriate default values should be provided.</p>
 </div>
 <div class="section level4">
 <h4 id="the--study-object">The <code>.study</code> object<a class="anchor" aria-label="anchor" href="#the--study-object"></a>
 </h4>
-<p>The following variables are best hard coded in the table-generating functions (with the possibility to the user to override some of these choices.): - <code>evo_vars</code> (used in LBT01, which variables capture status and the evolution of the analysis): generally <code>c("AVAL", "CNG")</code> - <code>severity_grade</code> (internal, used in AET03, capture the levels of severity of adverse events): generally corresponds to the levels of <code>AESEV</code>in <code>adae</code>. - <code>lbl_overall</code> (used everywhere, the label associated with the overall column) - <code>reason</code> (used in DST01, the name of the column specifying study withdrawal): generally <code>DCSREAS</code>. - <code>status</code> (used in DST01, the name of the column specifying study status): generally: <code>EOSSTT</code>. - <code>summaryvars</code> (used in DMT01, the list of variables to be summarized):</p>
-<p>The <code>.study</code> object contains information relative to the way the study is analyzed. - “Patient” or “Subject” (the designation of the person depends on the study) - <code>armvar</code> (Randomized arm variable): generally: <code>ARM</code>or <code>ACTARM</code>. - Actually received variable - <code>format</code>: of percentages etc…</p>
+<p>The following variables are best hard coded in the table-generating
+functions (with the possibility to the user to override some of these
+choices.): - <code>evo_vars</code> (used in LBT01, which variables
+capture status and the evolution of the analysis): generally
+<code>c("AVAL", "CNG")</code> - <code>severity_grade</code> (internal,
+used in AET03, capture the levels of severity of adverse events):
+generally corresponds to the levels of <code>AESEV</code>in
+<code>adae</code>. - <code>lbl_overall</code> (used everywhere, the
+label associated with the overall column) - <code>reason</code> (used in
+DST01, the name of the column specifying study withdrawal): generally
+<code>DCSREAS</code>. - <code>status</code> (used in DST01, the name of
+the column specifying study status): generally: <code>EOSSTT</code>. -
+<code>summaryvars</code> (used in DMT01, the list of variables to be
+summarized):</p>
+<p>The <code>.study</code> object contains information relative to the
+way the study is analyzed. - “Patient” or “Subject” (the designation of
+the person depends on the study) - <code>armvar</code> (Randomized arm
+variable): generally: <code>ARM</code>or <code>ACTARM</code>. - Actually
+received variable - <code>format</code>: of percentages etc…</p>
 </div>
 <div class="section level4">
 <h4 id="tests">Tests<a class="anchor" aria-label="anchor" href="#tests"></a>
@@ -182,7 +228,8 @@ Other releases
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
       </span>
     </div>
 
@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -79,9 +70,10 @@ Other releases
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Intended Use of chevron</h1>
-                        <h4 data-toc-skip class="author">Adrian Waddell and Gabriel Becker</h4>
+                        <h4 data-toc-skip class="author">Adrian Waddell
+and Gabriel Becker</h4>
             
-            <h4 data-toc-skip class="date">2022-02-17</h4>
+            <h4 data-toc-skip class="date">2022-03-09</h4>
       
       
       <div class="hidden name"><code>intended_use.Rmd</code></div>
@@ -93,11 +85,15 @@ Other releases
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>In this vignette we explain how <code>chevron</code> can be used in a study setting to create many TLGs with relatively little effort. The workflow described in this vignette is a basic one and can be adopted to be more streamlined for a particular setting.</p>
+<p>In this vignette we explain how <code>chevron</code> can be used in a
+study setting to create many TLGs with relatively little effort. The
+workflow described in this vignette is a basic one and can be adopted to
+be more streamlined for a particular setting.</p>
 <p>For this vignette we load the following packages:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/roche/rtables" class="external-link">rtables</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: magrittr</span>
+<span class="co">#&gt; Loading required package: formatable</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'tern':</span>
 <span class="co">#&gt;   method   from </span>
@@ -120,6 +116,9 @@ Other releases
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rlang.r-lib.org" class="external-link">rlang</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'rlang'</span>
+<span class="co">#&gt; The following object is masked from 'package:formatable':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     %||%</span>
 <span class="co">#&gt; The following object is masked from 'package:magrittr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     set_names</span></code></pre></div>
@@ -127,12 +126,14 @@ Other releases
 <div class="section level2">
 <h2 id="list-of-planned-outputs-lopo">List of Planned Outputs (LoPO)<a class="anchor" aria-label="anchor" href="#list-of-planned-outputs-lopo"></a>
 </h2>
-<p>A list of planned outputs (LoPO) contains among other information:</p>
+<p>A list of planned outputs (LoPO) contains among other
+information:</p>
 <ul>
 <li>
 <code>tlgfname</code>: function that implements the output</li>
 <li>
-<code>type</code>: one of <code>graph</code>, <code>listing</code>, <code>table</code>
+<code>type</code>: one of <code>graph</code>, <code>listing</code>,
+<code>table</code>
 </li>
 <li>
 <code>main_title</code>: main title</li>
@@ -141,9 +142,13 @@ Other releases
 <li>
 <code>filters</code>: patient subset definition</li>
 <li>
-<code>filename</code>: file name where the output should be written to</li>
+<code>filename</code>: file name where the output should be written
+to</li>
 </ul>
-<p>The information above can be stored in various data structures. For this example we assume the information comes from a spreadsheet with one row per output. We will use the following LoPO store in the variable <code>lopo</code> for the remainder of the vignette:</p>
+<p>The information above can be stored in various data structures. For
+this example we assume the information comes from a spreadsheet with one
+row per output. We will use the following LoPO store in the variable
+<code>lopo</code> for the remainder of the vignette:</p>
 <p>Which provides the following LoPO:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">excerpt</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">x</span>, <span class="kw">function</span><span class="op">(</span><span class="va">xi</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">xi</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">xi</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="fl">1</span>, <span class="fl">8</span><span class="op">)</span>, <span class="st">"..."</span><span class="op">)</span> <span class="kw">else</span> <span class="st">""</span><span class="op">)</span>
@@ -273,16 +278,23 @@ Other releases
 </tr>
 </tbody>
 </table>
-<p>Note that the first three columns are not needed for stakeholder interactions and planning/project management. However, the GDS template which is currently encoded in the <code>tlgfname</code> is needed.</p>
+<p>Note that the first three columns are not needed for stakeholder
+interactions and planning/project management. However, the GDS template
+which is currently encoded in the <code>tlgfname</code> is needed.</p>
 </div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
-<p>From the <code>lopo</code> above we know that the <em>tlg-functions</em> <code>dmt01_1</code>, <code>aet02_1</code>, <code>dst01_1</code> and <code>lbt01_1</code> are used to create the outputs. <code>chevron</code> knows which datasets are required for the particular TLGs</p>
+<p>From the <code>lopo</code> above we know that the
+<em>tlg-functions</em> <code>dmt01_1</code>, <code>aet02_1</code>,
+<code>dst01_1</code> and <code>lbt01_1</code> are used to create the
+outputs. <code>chevron</code> knows which datasets are required for the
+particular TLGs</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">req_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dmt01"</span>, <span class="st">"aet02_1"</span>, <span class="st">"dst01_1"</span>, <span class="st">"lbt01_1"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "adsl" "adae" "adlb"</span></code></pre></div>
-<p>So the <code>adam_db</code> object needs to contain the following datasets, we will use the <code>scda</code> data:</p>
+<p>So the <code>adam_db</code> object needs to contain the following
+datasets, we will use the <code>scda</code> data:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">syn_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span>, <span class="st">"adlb"</span><span class="op">)</span><span class="op">]</span>
 
@@ -307,7 +319,10 @@ Other releases
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lopo</span><span class="op">$</span><span class="va">filters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] "IT"    "FATAL" "SE"    "TX"</span></code></pre></div>
-<p>Each label corresponds to a particular subsetting operation of a dataset. As there is currently no R package available that implements filter label based subsetting on <code>dm</code> objects we provide a basic approach here:</p>
+<p>Each label corresponds to a particular subsetting operation of a
+dataset. As there is currently no R package available that implements
+filter label based subsetting on <code>dm</code> objects we provide a
+basic approach here:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_filter_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataname</span>, <span class="va">expr</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tidyeval-compat.html" class="external-link">enquo</a></span><span class="op">(</span><span class="va">expr</span><span class="op">)</span>
@@ -326,7 +341,8 @@ Other releases
  FATAL <span class="op">=</span> <span class="fu">new_filter_func</span><span class="op">(</span><span class="st">"adae"</span>, <span class="va">AESDTH</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span>,
  TX <span class="op">=</span> <span class="va">identity</span>
 <span class="op">)</span></code></pre></div>
-<p>These filter label based system can then be used as follows, assume we would like the data for <code>CTC35_SE</code>:</p>
+<p>These filter label based system can then be used as follows, assume
+we would like the data for <code>CTC35_SE</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">adam__CTC35_SE</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="va">flf</span><span class="op">$</span><span class="fu">SE</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -379,11 +395,14 @@ Other releases
 <div class="section level2">
 <h2 id="templating-title-footnotes">Templating Title &amp; Footnotes<a class="anchor" aria-label="anchor" href="#templating-title-footnotes"></a>
 </h2>
-<p>The title and footnotes in the <code>lopo</code> are not ready for the final output. The final titles usually have the form:</p>
+<p>The title and footnotes in the <code>lopo</code> are not ready for
+the final output. The final titles usually have the form:</p>
 <pre><code>{{main_title_lopo}} -- {{population title}}
 Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}
 {{subtitles from lopo}}</code></pre>
-<p>We now introduce a simple templating framework based on <code>whiskers</code>. Instead of using the <code>whiskers</code> R package we define our own functionality:</p>
+<p>We now introduce a simple templating framework based on
+<code>whiskers</code>. Instead of using the <code>whiskers</code> R
+package we define our own functionality:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">render_whiskers</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">templates</span>, <span class="va">dict</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">templates</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span>
@@ -443,7 +462,8 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 <div class="section level2">
 <h2 id="creating-a-standard-output">Creating A Standard Output<a class="anchor" aria-label="anchor" href="#creating-a-standard-output"></a>
 </h2>
-<p>We now use all the concepts for introduced above to create an output. Let’s extracting the data for an output from the lopo:</p>
+<p>We now use all the concepts for introduced above to create an output.
+Let’s extracting the data for an output from the lopo:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lopo_1</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html" class="external-link">transpose</a></span><span class="op">(</span><span class="va">lopo</span><span class="op">[</span><span class="va">lopo</span><span class="op">$</span><span class="va">tlgfname</span> <span class="op">==</span> <span class="st">"aet02_1"</span>, <span class="op">]</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 <span class="va">lopo_1</span>
@@ -530,16 +550,15 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 <span class="co">#&gt; cl B.1                                                                                               </span>
 <span class="co">#&gt;   Total number of patients with at least one adverse event   47 (61.8%)    49 (70%)      43 (57.3%)  </span>
 <span class="co">#&gt;   Total number of events                                         56           60             62      </span>
-<span class="co">#&gt;   dcd B.1.1.1.1                                              47 (61.8%)    49 (70%)      43 (57.3%)  </span>
-<span class="co">#&gt; —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Investigator text for AEs is coded using MedDRA version MEDRA v1.</span></code></pre></div>
-<p>This table can now be paginated and saved as a <code>.txt</code> file with <code><a href="https://roche.github.io/rtables/reference/export_as_txt.html" class="external-link">rtables::export_as_txt</a></code>.</p>
+<span class="co">#&gt;   dcd B.1.1.1.1                                              47 (61.8%)    49 (70%)      43 (57.3%)</span></code></pre></div>
+<p>This table can now be paginated and saved as a <code>.txt</code> file
+with <code><a href="https://roche.github.io/rtables/reference/export_as_txt.html" class="external-link">rtables::export_as_txt</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="non-standard-output">Non Standard Output<a class="anchor" aria-label="anchor" href="#non-standard-output"></a>
 </h2>
-<p>Let’s create ad-hoc non-standard output and add it to the lopo and preprocessing map:</p>
+<p>Let’s create ad-hoc non-standard output and add it to the lopo and
+preprocessing map:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ns_dmtspecial</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">deco</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adam_db</span><span class="op">$</span><span class="va">adsl</span>
@@ -637,9 +656,11 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 <li>slightly modified subset of a LoPO</li>
 <li>filter labels implementation on top of <code>dm</code>
 </li>
-<li>title footnotes templating using whisker notation and dictionaries</li>
+<li>title footnotes templating using whisker notation and
+dictionaries</li>
 <li>functions to create the tlgs in the LoPO</li>
-<li>working with standard and non-standard TLGs using the preprocessing map <code>pmap</code>
+<li>working with standard and non-standard TLGs using the preprocessing
+map <code>pmap</code>
 </li>
 </ul>
 </div>
@@ -662,7 +683,8 @@ Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
