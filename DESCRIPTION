@@ -25,7 +25,6 @@ Imports:
     magrittr,
     methods,
     rlang,
-    formatable,
     tibble,
     tidyr
 Suggests:
