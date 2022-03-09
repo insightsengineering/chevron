@@ -298,7 +298,7 @@ filter_adcm_anl01fl <- function(adam_db) {
 }
 
 #' Creating Necessary Columns for `aet01`
-#'
+#' @importFrom tern with_label
 #' @inheritParams gen_args
 #'
 mutate_for_aet01 <- function(adam_db) {
