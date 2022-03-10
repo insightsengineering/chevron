@@ -71,10 +71,8 @@ db <- syn_test_data() \%>\%
   preprocess_data("egt02_2")
 
 egt02_2(adam_db = db)
-
 egt02_2_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-
 }

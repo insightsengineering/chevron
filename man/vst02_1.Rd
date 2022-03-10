@@ -71,10 +71,8 @@ db <- syn_test_data() \%>\%
   preprocess_data("vst02_1")
 
 vst02_1(adam_db = db)
-
 vst02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-
 }

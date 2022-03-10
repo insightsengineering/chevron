@@ -27,7 +27,6 @@
 #'   preprocess_data("vst02_1")
 #'
 #' vst02_1(adam_db = db)
-#'
 vst02_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_vs_assessment = "Assessment",
@@ -39,7 +38,6 @@ vst02_1 <- function(adam_db,
                       armvar = "ARM",
                       lbl_overall = NULL
                     )) {
-
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_1_lyt(
@@ -73,7 +71,6 @@ vst02_1 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-#'
 vst02_1_lyt <- function(armvar = .study$armvar,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
@@ -83,7 +80,6 @@ vst02_1_lyt <- function(armvar = .study$armvar,
                           armvar = "ACTARM",
                           lbl_overall = NULL
                         )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -127,7 +123,6 @@ vst02_1_lyt <- function(armvar = .study$armvar,
 #'   preprocess_data("vst02_2")
 #'
 #' vst02_2(adam_db = db)
-#'
 vst02_2 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_vs_assessment = "Assessment",
@@ -139,7 +134,6 @@ vst02_2 <- function(adam_db,
                       armvar = "ARM",
                       lbl_overall = NULL
                     )) {
-
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_2_lyt(
@@ -172,7 +166,6 @@ vst02_2 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-#'
 vst02_2_lyt <- function(armvar = .study$armvar,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
@@ -182,7 +175,6 @@ vst02_2_lyt <- function(armvar = .study$armvar,
                           armvar = "ACTARM",
                           lbl_overall = NULL
                         )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

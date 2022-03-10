@@ -308,7 +308,7 @@ filter_vst02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
     dm_zoom_to(advs) %>%
-    filter(ONTRTFL=="Y") %>%
+    filter(ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -320,7 +320,7 @@ filter_egt02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
     dm_zoom_to(adeg) %>%
-    filter(ONTRTFL=="Y") %>%
+    filter(ONTRTFL == "Y") %>%
     filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
     dm_update_zoomed()
 }
@@ -475,7 +475,6 @@ remove_adex_aval <- function(adam_db,
 #' @inheritParams gen_args
 #'
 mutate_vst02 <- function(adam_db) {
-
   db <- adam_db %>%
     dm_zoom_to(advs) %>%
     mutate(
@@ -488,9 +487,11 @@ mutate_vst02 <- function(adam_db) {
         BNRIND == "HIGH HIGH" ~ "HIGH",
         BNRIND == "LOW LOW" ~ "LOW",
         TRUE ~ as.character(BNRIND)
-    )) %>%
-    mutate(ANRIND = as.factor(ANRIND),
-           BNRIND = as.factor(BNRIND)
+      )
+    ) %>%
+    mutate(
+      ANRIND = as.factor(ANRIND),
+      BNRIND = as.factor(BNRIND)
     ) %>%
     dm_update_zoomed()
 
@@ -502,7 +503,6 @@ mutate_vst02 <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 mutate_egt02 <- function(adam_db) {
-
   db <- adam_db %>%
     dm_zoom_to(adeg) %>%
     mutate(
@@ -515,9 +515,11 @@ mutate_egt02 <- function(adam_db) {
         BNRIND == "HIGH HIGH" ~ "HIGH",
         BNRIND == "LOW LOW" ~ "LOW",
         TRUE ~ as.character(BNRIND)
-    )) %>%
-    mutate(ANRIND = as.factor(ANRIND),
-           BNRIND = as.factor(BNRIND)
+      )
+    ) %>%
+    mutate(
+      ANRIND = as.factor(ANRIND),
+      BNRIND = as.factor(BNRIND)
     ) %>%
     dm_update_zoomed()
 
