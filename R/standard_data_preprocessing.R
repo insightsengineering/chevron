@@ -449,7 +449,6 @@ remove_adex_aval <- function(adam_db,
 #' @importFrom forcats fct_relevel
 #'
 reorder_dtht01 <- function(adam_db) {
-
   death_fact <- levels(adam_db$adsl$DTHCAT)
   death_fact <- setdiff(death_fact, "OTHER")
   death_fact <- c(death_fact, "OTHER")

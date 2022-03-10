@@ -25,15 +25,14 @@
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'  dm_zoom_to(adsl) %>%
-#'  mutate(DTHCAT = explicit_na(DTHCAT)) %>%
-#'  mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) %>%
-#'  dm_update_zoomed() %>%
-#'  preprocess_data("dtht01_1")
+#'   dm_zoom_to(adsl) %>%
+#'   mutate(DTHCAT = explicit_na(DTHCAT)) %>%
+#'   mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) %>%
+#'   dm_update_zoomed() %>%
+#'   preprocess_data("dtht01_1")
 #'
 #' dtht01_1(adam_db = db)
 #' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
-#'
 dtht01_1 <- function(adam_db,
                      armvar = .study$armvar,
                      time_since_last_dose = FALSE,
@@ -44,7 +43,6 @@ dtht01_1 <- function(adam_db,
                        armvar = "ACTARM",
                        lbl_overall = NULL
                      )) {
-
   dbsel <- get_db_data(adam_db, "adsl")
 
   assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
@@ -59,23 +57,21 @@ dtht01_1 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adsl)
 
   if (time_since_last_dose) {
-
     assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-  lyt2 <- dtht01_1_opt_lyt(
-    armvar = armvar,
-    lbl_overall = lbl_overall,
-    deco = deco
-  )
+    lyt2 <- dtht01_1_opt_lyt(
+      armvar = armvar,
+      lbl_overall = lbl_overall,
+      deco = deco
+    )
 
-  tbl_other <- build_table(lyt2, dbsel$adsl)
+    tbl_other <- build_table(lyt2, dbsel$adsl)
 
-  col_info(tbl_other) <- col_info(tbl)
+    col_info(tbl_other) <- col_info(tbl)
 
-  tbl <- rbind(tbl, tbl_other)
+    tbl <- rbind(tbl, tbl_other)
 
-  tbl <- set_decoration(tbl, deco)
-
+    tbl <- set_decoration(tbl, deco)
   }
 
   if (prune_0) {
@@ -105,7 +101,6 @@ dtht01_1_lyt <- function(armvar = .study$armvar,
                            armvar = "ACTARM",
                            lbl_overall = NULL
                          )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -114,7 +109,8 @@ dtht01_1_lyt <- function(armvar = .study$armvar,
       "DTHFL",
       values = "Y",
       .labels =  c(count_fraction = "Total number of deaths"),
-      .formats = c(count_fraction = "xx (xx.x%)"))  %>%
+      .formats = c(count_fraction = "xx (xx.x%)")
+    ) %>%
     summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
 }
 
@@ -139,7 +135,6 @@ dtht01_1_opt_lyt <- function(armvar = .study$armvar,
                                armvar = "ACTARM",
                                lbl_overall = NULL
                              )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -147,12 +142,14 @@ dtht01_1_opt_lyt <- function(armvar = .study$armvar,
     summarize_vars(
       vars = "LDDTHGR1",
       var_labels = "Days from last drug administration",
-      show_labels = "visible") %>%
+      show_labels = "visible"
+    ) %>%
     split_rows_by(
       "LDDTHGR1",
       split_fun = remove_split_levels("<Missing>"),
       split_label = "Primary cause by days from last study drug administration",
-      label_pos = "visible") %>%
+      label_pos = "visible"
+    ) %>%
     summarize_vars("DTHCAT")
 }
 
@@ -185,16 +182,15 @@ dtht01_1_opt_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
-#'  dm_zoom_to(adsl) %>%
-#'  mutate(DTHCAT = explicit_na(DTHCAT)) %>%
-#'  mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) %>%
-#'  mutate(DTHCAUS = explicit_na(DTHCAUS)) %>%
-#'  dm_update_zoomed() %>%
-#'  preprocess_data("dtht01_2")
+#'   dm_zoom_to(adsl) %>%
+#'   mutate(DTHCAT = explicit_na(DTHCAT)) %>%
+#'   mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) %>%
+#'   mutate(DTHCAUS = explicit_na(DTHCAUS)) %>%
+#'   dm_update_zoomed() %>%
+#'   preprocess_data("dtht01_2")
 #'
 #' dtht01_2(adam_db = db)
 #' dtht01_2(adam_db = db, time_since_last_dose = TRUE)
-#'
 dtht01_2 <- function(adam_db,
                      armvar = .study$armvar,
                      time_since_last_dose = FALSE,
@@ -205,7 +201,6 @@ dtht01_2 <- function(adam_db,
                        armvar = "ACTARM",
                        lbl_overall = NULL
                      )) {
-
   dbsel <- get_db_data(adam_db, "adsl")
 
   assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
@@ -221,23 +216,21 @@ dtht01_2 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adsl)
 
   if (time_since_last_dose) {
-
     assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-  lyt2 <- dtht01_1_opt_lyt(
-    armvar = armvar,
-    lbl_overall = lbl_overall,
-    deco = deco
-  )
+    lyt2 <- dtht01_1_opt_lyt(
+      armvar = armvar,
+      lbl_overall = lbl_overall,
+      deco = deco
+    )
 
-  tbl_other <- build_table(lyt2, dbsel$adsl)
+    tbl_other <- build_table(lyt2, dbsel$adsl)
 
-  col_info(tbl_other) <- col_info(tbl)
+    col_info(tbl_other) <- col_info(tbl)
 
-  tbl <- rbind(tbl, tbl_other)
+    tbl <- rbind(tbl, tbl_other)
 
-  tbl <- set_decoration(tbl, deco)
-
+    tbl <- set_decoration(tbl, deco)
   }
 
   if (prune_0) {
@@ -268,7 +261,6 @@ dtht01_2_lyt <- function(adam_db,
                            armvar = "ACTARM",
                            lbl_overall = NULL
                          )) {
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -277,12 +269,14 @@ dtht01_2_lyt <- function(adam_db,
       "DTHFL",
       values = "Y",
       .labels =  c(count_fraction = "Total number of deaths"),
-      .formats = c(count_fraction = "xx (xx.x%)"))  %>%
+      .formats = c(count_fraction = "xx (xx.x%)")
+    ) %>%
     summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death")) %>%
     split_rows_by("DTHCAT", split_fun = keep_split_levels("OTHER"), child_labels = "hidden") %>%
     summarize_vars(
       "DTHCAUS",
       nested = TRUE,
       .stats = "count_fraction",
-      .indent_mods = c("count_fraction" = 4L))
+      .indent_mods = c("count_fraction" = 4L)
+    )
 }
