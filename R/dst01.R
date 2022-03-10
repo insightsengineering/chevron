@@ -237,7 +237,6 @@ dst01_2 <- function(adam_db,
                       lbl_overall = "All Patients",
                       disc_reason_var = "DCSREAS"
                     )) {
-
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -535,13 +534,12 @@ dst01_3_lyt <- function(armvar = .study$armvar,
       .labels = c(count_fraction = "Completed Treatment"),
       .formats = "xx (xx.x%)",
       table_names = c("COMPLETED")
-
     ) %>%
     count_values(
       vars = status_treatment,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing Treatment"),
-       .formats = "xx (xx.x%)",
+      .formats = "xx (xx.x%)",
       table_names = c("ONGOING")
     ) %>%
     count_values(
