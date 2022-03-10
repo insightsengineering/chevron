@@ -91,7 +91,7 @@ vst02_1_lyt <- function(armvar = .study$armvar,
     split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
     count_abnormal(
       "ANRIND",
-      abnormal = list(low = "LOW", high = "HIGH"),
+      abnormal = list(Low = "LOW", High = "HIGH"),
       variables = list(id = "USUBJID", baseline = "BNRIND"),
       exclude_base_abn = FALSE
     ) %>%
@@ -190,7 +190,7 @@ vst02_2_lyt <- function(armvar = .study$armvar,
     split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
     count_abnormal(
       "ANRIND",
-      abnormal = list(low = "LOW", high = "HIGH"),
+      abnormal = list(Low = "LOW", High = "HIGH"),
       variables = list(id = "USUBJID", baseline = "BNRIND"),
       exclude_base_abn = TRUE
     ) %>%
