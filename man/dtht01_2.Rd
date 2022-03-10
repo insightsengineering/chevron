@@ -39,7 +39,8 @@ dtht01_2_lyt(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
-A description of the causes of death with post-study reporting of death.
+A description of the causes of death with the breakdown of the \code{OTHER} category and optionally post-study reporting
+of death.
 }
 \details{
 \itemize{

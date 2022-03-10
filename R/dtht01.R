@@ -2,11 +2,12 @@
 
 #' `DTHT01` Table 1 (Default) Death Table.
 #'
-#' A description of the causes of death.
+#' A description of the causes of death without the breakdown of the `OTHER` category and optionally post-study
+#' reporting of death.
 #'
 #' @inheritParams gen_args
 #' @param time_since_last_dose (`logical`) should the time to event information be displayed.
-
+#'
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
@@ -28,10 +29,7 @@
 #'  mutate(DTHCAT = explicit_na(DTHCAT)) %>%
 #'  mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) %>%
 #'  dm_update_zoomed() %>%
-#'  preprocess_data("dtht01_1") %>%
-#'  dm_zoom_to(adsl) %>%
-#'  mutate(DTHCAT = sapply(DTHCAT, function(x) if(x == "OTHER") factor("<Missing>") else x)) %>%
-#'  dm_update_zoomed()
+#'  preprocess_data("dtht01_1")
 #'
 #' dtht01_1(adam_db = db)
 #' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
@@ -49,8 +47,8 @@ dtht01_1 <- function(adam_db,
 
   dbsel <- get_db_data(adam_db, "adsl")
 
-  # assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
-  # assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
+  assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
+  assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
 
   lyt <- dtht01_1_lyt(
     armvar = armvar,
@@ -164,7 +162,8 @@ dtht01_1_opt_lyt <- function(armvar = .study$armvar,
 
 #' `DTHT01` Table 2 (Supplementary) Death Table.
 #'
-#' A description of the causes of death with post-study reporting of death.
+#' A description of the causes of death with the breakdown of the `OTHER` category and optionally post-study reporting
+#' of death.
 #'
 #' @inheritParams gen_args
 #' @param time_since_last_dose (`logical`) should the time to event information be displayed.
