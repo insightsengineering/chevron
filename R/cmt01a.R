@@ -36,20 +36,19 @@
 #'   preprocess_data("cmt01a_1")
 #'
 #' cmt01a_1(adam_db = db)
-#'
 cmt01a_1 <- function(adam_db,
-                    armvar = .study$armvar,
-                    medcat_var = "ATC2", #Anatomical therapeutic category
-                    lbl_medcat_var = "ATC Class Level 2",
-                    medname_var = "CMDECOD",
-                    lbl_medname_var = "Other Treatment",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("CMT01A"),
-                    .study = list(
-                      armvar = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+                     armvar = .study$armvar,
+                     medcat_var = "ATC2", # Anatomical therapeutic category
+                     lbl_medcat_var = "ATC Class Level 2",
+                     medname_var = "CMDECOD",
+                     lbl_medname_var = "Other Treatment",
+                     lbl_overall = .study$lbl_overall,
+                     prune_0 = TRUE,
+                     deco = std_deco("CMT01A"),
+                     .study = list(
+                       armvar = "ACTARM",
+                       lbl_overall = NULL
+                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_1_lyt(
@@ -97,16 +96,16 @@ cmt01a_1 <- function(adam_db,
 #'   deco = std_deco("CMT01A")
 #' )
 cmt01a_1_lyt <- function(armvar = .study$armvar,
-                        lbl_overall = .study$lbl_overall,
-                        medcat_var = "ATC2",
-                        lbl_medcat_var = "ATC Class Level 2",
-                        medname_var = "CMDECOD",
-                        lbl_medname_var = "Other Treatment",
-                        deco = std_deco("CMT01A"),
-                        .study = list(
-                          armvar = "ACTARM",
-                          lbl_overall = NULL
-                        )) {
+                         lbl_overall = .study$lbl_overall,
+                         medcat_var = "ATC2",
+                         lbl_medcat_var = "ATC Class Level 2",
+                         medname_var = "CMDECOD",
+                         lbl_medname_var = "Other Treatment",
+                         deco = std_deco("CMT01A"),
+                         .study = list(
+                           armvar = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -184,20 +183,19 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 #'   preprocess_data("cmt01a_2")
 #'
 #' cmt01a_2(adam_db = db)
-#'
 cmt01a_2 <- function(adam_db,
-                    armvar = .study$armvar,
-                    medcat_var = "ATC2", #Anatomical therapeutic category
-                    lbl_medcat_var = "ATC Class Level 2",
-                    medname_var = "CMDECOD",
-                    lbl_medname_var = "Other Treatment",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("CMT01A"),
-                    .study = list(
-                      armvar = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+                     armvar = .study$armvar,
+                     medcat_var = "ATC2", # Anatomical therapeutic category
+                     lbl_medcat_var = "ATC Class Level 2",
+                     medname_var = "CMDECOD",
+                     lbl_medname_var = "Other Treatment",
+                     lbl_overall = .study$lbl_overall,
+                     prune_0 = TRUE,
+                     deco = std_deco("CMT01A"),
+                     .study = list(
+                       armvar = "ACTARM",
+                       lbl_overall = NULL
+                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   # The same layout can be used.
@@ -218,14 +216,14 @@ cmt01a_2 <- function(adam_db,
   }
 
   tbl_sorted <- tbl %>%
-  sort_at_path(
-    medcat_var,
-    scorefun = cont_n_onecol(ncol(tbl))
-  ) %>%
-  sort_at_path(
-    path = c(medcat_var, "*", medname_var),
-    scorefun = score_occurrences
-  )
+    sort_at_path(
+      medcat_var,
+      scorefun = cont_n_onecol(ncol(tbl))
+    ) %>%
+    sort_at_path(
+      path = c(medcat_var, "*", medname_var),
+      scorefun = score_occurrences
+    )
 
 
   tbl_sorted
@@ -271,20 +269,19 @@ cmt01a_2 <- function(adam_db,
 #'   preprocess_data("cmt01a_3")
 #'
 #' cmt01a_3(adam_db = db)
-#'
 cmt01a_3 <- function(adam_db,
-                    armvar = .study$armvar,
-                    medcat_var = "ATC2", #Anatomical therapeutic category
-                    lbl_medcat_var = "ATC Class Level 2",
-                    medname_var = "CMDECOD",
-                    lbl_medname_var = "Other Treatment",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("CMT01A"),
-                    .study = list(
-                      armvar = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+                     armvar = .study$armvar,
+                     medcat_var = "ATC2", # Anatomical therapeutic category
+                     lbl_medcat_var = "ATC Class Level 2",
+                     medname_var = "CMDECOD",
+                     lbl_medname_var = "Other Treatment",
+                     lbl_overall = .study$lbl_overall,
+                     prune_0 = TRUE,
+                     deco = std_deco("CMT01A"),
+                     .study = list(
+                       armvar = "ACTARM",
+                       lbl_overall = NULL
+                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_3_lyt(
@@ -332,16 +329,16 @@ cmt01a_3 <- function(adam_db,
 #'   deco = std_deco("CMT01A")
 #' )
 cmt01a_3_lyt <- function(armvar = .study$armvar,
-                        lbl_overall = .study$lbl_overall,
-                        medcat_var = "ATC2",
-                        lbl_medcat_var = "ATC Class Level 2",
-                        medname_var = "CMDECOD",
-                        lbl_medname_var = "Other Treatment",
-                        deco = std_deco("CMT01A"),
-                        .study = list(
-                          armvar = "ACTARM",
-                          lbl_overall = NULL
-                        )) {
+                         lbl_overall = .study$lbl_overall,
+                         medcat_var = "ATC2",
+                         lbl_medcat_var = "ATC Class Level 2",
+                         medname_var = "CMDECOD",
+                         lbl_medname_var = "Other Treatment",
+                         deco = std_deco("CMT01A"),
+                         .study = list(
+                           armvar = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

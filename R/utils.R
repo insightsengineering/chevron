@@ -11,7 +11,7 @@ globalVariables(c(
 #' @param vars variable names in data frame `df`
 #'
 #' @importFrom assertthat assert_that
-#' @importFrom rtables var_labels
+#' @importFrom tern var_labels
 #' @export
 var_labels_for <- function(df, vars) {
   assert_that(all(vars %in% names(df)))
@@ -125,32 +125,6 @@ cut_by_group <- function(df,
   df
 }
 
-
-#' Check if strings are column names of a data frame
-#'
-#' @param df (`data frame`)
-#' @param x (`vector of strings`)
-#'
-#' @export
-#'
-#' @examples
-#'
-#' assert_colnames(mtcars, c("mpg", "cyl"))
-assert_colnames <- function(df, x) {
-  # provide a clearer error message in the case of missing variable
-  missing_var <- setdiff(x, colnames(df))
-  if (length(missing_var) > 0) {
-    stop(paste(
-      "Variable(s) not a column name in",
-      deparse(substitute(df)),
-      ":\n",
-      paste(missing_var, "\n", collapse = "")
-    ))
-  } else {
-    invisible(TRUE)
-  }
-}
-
 #' Reorder PARAM and PARAMCD Levels Simultaneously
 #'
 #' @param df data.frame with PARAM and PARAMCD variables
@@ -203,6 +177,7 @@ reorder_levels_params <- function(df, paramcd_levels) {
 #'
 #' @importFrom dplyr select
 #' @importFrom tidyr pivot_wider
+#' @importFrom tern `var_labels<-`
 #'
 #' @return (`data.frame`)
 #' @export
@@ -304,7 +279,7 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
 
 #' Retrieve Synthetic Test Data Used For Examples
-#'
+#' @importFrom tern with_label
 #' @export
 syn_test_data <- function() {
   sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")

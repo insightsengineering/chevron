@@ -82,5 +82,4 @@ db <- syn_test_data() \%>\%
 
 egt01_1(db)
 egt01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-
 }

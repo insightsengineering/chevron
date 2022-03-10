@@ -68,7 +68,6 @@ db <- syn_test_data() \%>\%
   preprocess_data("mht01_1")
 
 mht01_1(adam_db = db) \%>\% head(15)
-
 mht01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

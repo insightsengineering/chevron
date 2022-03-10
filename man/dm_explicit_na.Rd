@@ -39,17 +39,20 @@ all tables of a \code{dm} object.
 \examples{
 library(dm)
 
-df1 <- data.frame("char" = c("a", "b", NA, "a", "k", "x"),
-                  "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
-                  "logi" = c(NA, FALSE, TRUE, NA, FALSE, NA))
-df2 <- data.frame("char" = c("a", "b", NA, "a", "k", "x"),
-                  "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
-                  "num" = 1:6)
+df1 <- data.frame(
+  "char" = c("a", "b", NA, "a", "k", "x"),
+  "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
+  "logi" = c(NA, FALSE, TRUE, NA, FALSE, NA)
+)
+df2 <- data.frame(
+  "char" = c("a", "b", NA, "a", "k", "x"),
+  "fact" = factor(c("f1", "f2", NA, NA, "f1", "f1")),
+  "num" = 1:6
+)
 
- db <- dm(df1, df2)
+db <- dm(df1, df2)
 
 dm_fact <- dm_explicit_na(db)
 dm_fact$df1
 dm_fact$df2
-
 }
