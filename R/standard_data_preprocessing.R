@@ -9,9 +9,10 @@ std_preprocessing_map <- tibble::tribble(
   "aet02_3", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet03_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
   "aet04_1", "filter_adae_anl01fl", NA, c("adsl", "adae"),
-  "cmt01a_1", "filter_adcm_cmt01", "mutate_cmt01a", c("adsl", "adcm"),
-  "cmt01a_2", "filter_adcm_cmt01", "mutate_cmt01a", c("adsl", "adcm"),
-  "cmt01a_3", "filter_adcm_cmt01", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt01a_1", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt01a_2", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt01a_3", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
+  "cmt02_pt_1", "filter_adcm_anl01fl", "mutate_cmt02_pt_1", c("adsl", "adcm"),
   "dmt01_1", NA, NA, c("adsl"),
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
@@ -198,7 +199,7 @@ std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
 #' @examples
 #' std_mutate_fun("aet02_1")
 std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
-  lookup_fun(tlgfname, "filter_fname", pmap)
+  lookup_fun(tlgfname, "mutate_fname", pmap)
 }
 
 
@@ -267,8 +268,9 @@ filter_admh_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
   adam_db %>%
-    dm_filter(admh, bol_YN(ANL01FL)) %>%
-    dm_apply_filters()
+    dm_zoom_to(admh) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
 
 #' Filter `adex` for `PARCAT1`
@@ -284,13 +286,26 @@ filter_adex_drug <- function(adam_db) {
     dm_update_zoomed()
 }
 
+#' Filter `adcm` for `ANL01FL` and  `ATIREL`
+#'
+#' @details filter with `ANL01FL` (instead of `SAFFL ` which is external to `chevron`).
+#'
+#' @inheritParams gen_args
+#'
+filter_adcm_anl01fl <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+  adam_db %>%
+    dm_zoom_to(adcm) %>%
+    filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
+}
+
 #' Filter post-baseline values in `advs`
 #'
 #' @inheritParams gen_args
 #'
 filter_vst02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
-
   adam_db %>%
     dm_zoom_to(advs) %>%
     filter(!AVISIT %in% c("SCREENING", "BASELINE")) %>%
@@ -303,79 +318,62 @@ filter_vst02 <- function(adam_db) {
 #'
 filter_egt02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
-
   adam_db %>%
     dm_zoom_to(adeg) %>%
     filter(!AVISIT %in% c("SCREENING", "BASELINE")) %>%
     filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
     dm_update_zoomed()
 }
+
 #' Creating Necessary Columns for `aet01`
-#'
+#' @importFrom tern with_label
 #' @inheritParams gen_args
 #'
 mutate_for_aet01 <- function(adam_db) {
-
   db <- adam_db %>%
     dm_zoom_to(adae) %>%
     mutate(
-    FATAL = AESDTH == "Y",
-    SER = AESER == "Y",
-    SERWD = (AESER == "Y" & AEACN == "DRUG WITHDRAWN"),
-    SERDSM = (AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-    RELSER = (AESER == "Y" & AREL == "Y"),
-    WD = AEACN == "DRUG WITHDRAWN",
-    DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-    REL = AREL == "Y",
-    RELWD = (AREL == "Y" & AEACN == "DRUG WITHDRAWN"),
-    RELDSM = (AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-    CTC35 = ATOXGR %in% c("3", "4", "5"),
-    CTC45 = ATOXGR %in% c("4", "5"),
-    SEV = ASEV == "SEVERE",
-    SMQ01 = SMQ01NAM != "",
-    SMQ02 = SMQ02NAM != "",
-    CQ01 = CQ01NAM != ""
+      FATAL = AESDTH == "Y",
+      SER = AESER == "Y",
+      SERWD = (AESER == "Y" & AEACN == "DRUG WITHDRAWN"),
+      SERDSM = (AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+      RELSER = (AESER == "Y" & AREL == "Y"),
+      WD = AEACN == "DRUG WITHDRAWN",
+      DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      REL = AREL == "Y",
+      RELWD = (AREL == "Y" & AEACN == "DRUG WITHDRAWN"),
+      RELDSM = (AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+      CTC35 = if ("ATOXGR" %in% colnames(.)) ATOXGR %in% c("3", "4", "5"),
+      CTC45 = if ("ATOXGR" %in% colnames(.)) ATOXGR %in% c("4", "5"),
+      SEV = if ("ASEV" %in% colnames(.)) ASEV == "SEVERE",
+      SMQ01 = if ("SMQ01NAM" %in% colnames(.)) SMQ01NAM != "",
+      SMQ02 = if ("SMQ02NAM" %in% colnames(.)) SMQ02NAM != "",
+      CQ01 = if ("CQ01NAM" %in% colnames(.)) CQ01NAM != ""
     ) %>%
     mutate(
-    AEDECOD = with_label(AEDECOD, "Dictionary-Derived Term"),
-    AESDTH = with_label(AESDTH, "Results in Death"),
-    AEACN = with_label(AEACN, "Action Taken with Study Treatment"),
-    FATAL = with_label(FATAL, "AE with fatal outcome"),
-    SER = with_label(SER, "Serious AE"),
-    SEV = with_label(SEV, "Severe AE (at greatest intensity)"),
-    SERWD = with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
-    SERDSM = with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
-    RELSER = with_label(RELSER, "Related Serious AE"),
-    WD = with_label(WD, "AE leading to withdrawal from treatment"),
-    DSM = with_label(DSM, "AE leading to dose modification/interruption"),
-    REL = with_label(REL, "Related AE"),
-    RELWD = with_label(RELWD, "Related AE leading to withdrawal from treatment"),
-    RELDSM = with_label(RELDSM, "Related AE leading to dose modification/interruption"),
-    CTC35 = with_label(CTC35, "Grade 3-5 AE"),
-    CTC45 = with_label(CTC45, "Grade 4/5 AE"),
-    SMQ01 =  with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
-    SMQ02 = with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
-    CQ01 = with_label(CQ01, aesi_label(CQ01NAM))
+      AEDECOD = with_label(AEDECOD, "Dictionary-Derived Term"),
+      AESDTH = with_label(AESDTH, "Results in Death"),
+      AEACN = with_label(AEACN, "Action Taken with Study Treatment"),
+      FATAL = with_label(FATAL, "AE with fatal outcome"),
+      SER = with_label(SER, "Serious AE"),
+      SEV = if ("SEV" %in% colnames(.)) with_label(SEV, "Severe AE (at greatest intensity)"),
+      SERWD = with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
+      SERDSM = with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
+      RELSER = with_label(RELSER, "Related Serious AE"),
+      WD = with_label(WD, "AE leading to withdrawal from treatment"),
+      DSM = with_label(DSM, "AE leading to dose modification/interruption"),
+      REL = with_label(REL, "Related AE"),
+      RELWD = with_label(RELWD, "Related AE leading to withdrawal from treatment"),
+      RELDSM = with_label(RELDSM, "Related AE leading to dose modification/interruption"),
+      CTC35 = if ("CTC35" %in% colnames(.)) with_label(CTC35, "Grade 3-5 AE"),
+      CTC45 = if ("CTC45" %in% colnames(.)) with_label(CTC45, "Grade 4/5 AE"),
+      SMQ01 = if ("SMQ01" %in% colnames(.)) with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
+      SMQ02 = if ("SMQ02" %in% colnames(.)) with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
+      CQ01 = if ("CQ01" %in% colnames(.)) with_label(CQ01, aesi_label(CQ01NAM))
     ) %>%
     dm_update_zoomed()
 
   db
-}
-
-#' Filter `adcm` for `ANL01FL` and  `SAFFL`
-#'
-#' @details filter with `ANL01FL` instead of `SAFFL ` which is external to `chevron`.
-#'
-#' @inheritParams gen_args
-#'
-filter_adcm_cmt01 <- function(adam_db) {
-    assert_that(is(adam_db, "dm"))
-
-    adam_db %>%
-      dm_zoom_to(adcm) %>%
-      filter(ANL01FL == "Y") %>%
-      filter(ATIREL == "CONCOMITANT") %>%
-      dm_update_zoomed()
 }
 
 #' Categorize Reason for Discontinuation from Study.
@@ -406,7 +404,6 @@ mutate_adsl_gp <- function(adam_db,
 #' @inheritParams gen_args
 #'
 mutate_cmt01a <- function(adam_db) {
-
   adam_db %>%
     dm_zoom_to(adcm) %>%
     mutate(CMSEQ = as.factor(CMSEQ)) %>%
@@ -522,6 +519,21 @@ mutate_egt02 <- function(adam_db) {
     mutate(ANRIND = as.factor(ANRIND),
            BNRIND = as.factor(BNRIND)
     ) %>%
+    dm_update_zoomed()
+
+  db
+}
+
+#' Mutate Function for `CMT02_PT_1`
+#'
+#' @inheritParams gen_args
+#'
+#' @return
+#'
+mutate_cmt02_pt_1 <- function(adam_db) {
+  db <- adam_db %>%
+    dm_zoom_to(adcm) %>%
+    mutate(CMSEQ = as.factor(CMSEQ)) %>%
     dm_update_zoomed()
 
   db
