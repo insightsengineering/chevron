@@ -307,7 +307,7 @@ Provide study specific footnote that describes exactly what the diseases and con
   CFBT01 = list(),
   VST02 = list(
     "description" = "Vital Signs Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table",
-    "Standard titles" = "Vital Sign Abnormalities:  {Specify Population}",
+    "Standard titles" = "Vital Signs Assessments Outside Normal Limits Regardless of Abnormality at Baseline: {Specify Population}",
     "Standard footnotes" = "Abnormalities are based on the {specify range used} ranges.  Table entries provide the number of patients with a during-treatment assessment abnormality in the direction specified regardless of abnormality at baseline.  Abnormalities reported in patients with missing baseline values are included. Any values collected more than {specify time interval} after the last dose of study drug are not included.",
     "Analysis Population" = "Specify the patient population.  Typically, this will be Safety-Evaluable Population.",
     "Column Variables" = "By treatment group.  Specify any additional columns, e.g., All Active Treatments.",
@@ -321,7 +321,7 @@ If an abnormality is possible for a test but not observed in the database, inclu
   ),
   VST02_2 = list(
     "description" = "Vital Signs Assessments Outside Normal Limits Among Subjects Without Abnormality at Baseline Table",
-    "Standard titles" = "Vital Sign Abnormalities:  {Specify Population}",
+    "Standard titles" = "Vital Signs Assessments Outside Normal Limits Among Subjects Without Abnormality at Baseline: {Specify Population}",
     "Standard footnotes" = "Abnormalities are based on the {specify range used} ranges.  Table entries provide the number of patients with a during-treatment assessment abnormality in the direction specified among patients without abnormality at baseline.  Abnormalities reported in patients with missing baseline values are included. Any values collected more than {specify time interval} after the last dose of study drug are not included.",
     "Analysis Population" = "Specify the patient population.  Typically, this will be Safety-Evaluable Population.",
     "Column Variables" = "By treatment group.  Specify any additional columns, e.g., All Active Treatments.",
@@ -335,7 +335,7 @@ If an abnormality is possible for a test but not observed in the database, inclu
   ),
   EGT02 = list(
    "description" = "ECG Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table",
-   "Standard titles" = "ECG Abnormalities:  {Specify Population}",
+   "Standard titles" = "ECG Assessments Outside Normal Limits Regardless of Abnormality at Baseline: {Specify Population}",
    "Standard footnotes" = "Abnormalities are based on the {specify range used} ranges.  Table entries provide the number of patients with a during-treatment assessment abnormality in the direction specified regardless of abnormality at baseline.  Abnormalities reported in patients with missing baseline values are included. Any values collected more than {specify time interval} after the last dose of study drug are not included.",
    "Analysis Population" = "Specify the patient population.  Typically, this will be Safety-Evaluable Population.",
    "Column Variables" = "By treatment group.  Specify any additional columns, e.g., All Active Treatments.",
@@ -349,7 +349,7 @@ If an abnormality is possible for a test but not observed in the database, inclu
    ),
   EGT02_2 = list(
    "description" = "ECG Assessments Outside Normal Limits Among Subjects Without Abnormality at Baseline Table",
-   "Standard titles" = "ECG Abnormalities:  {Specify Population}",
+   "Standard titles" = "ECG Assessments Outside Normal Limits Among Subjects Without Abnormality at Baseline: {Specify Population}",
    "Standard footnotes" = "Abnormalities are based on the {specify range used} ranges.  Table entries provide the number of patients with a during-treatment assessment abnormality in the direction specified  among patient without abnormality at baseline.  Abnormalities reported in patients with missing baseline values are included. Any values collected more than {specify time interval} after the last dose of study drug are not included.",
    "Analysis Population" = "Specify the patient population.  Typically, this will be Safety-Evaluable Population.",
    "Column Variables" = "By treatment group.  Specify any additional columns, e.g., All Active Treatments.",

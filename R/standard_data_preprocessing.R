@@ -308,7 +308,7 @@ filter_vst02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
     dm_zoom_to(advs) %>%
-    filter(!AVISIT %in% c("SCREENING", "BASELINE")) %>%
+    filter(ONTRTFL=="Y") %>%
     dm_update_zoomed()
 }
 
@@ -320,7 +320,7 @@ filter_egt02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
     dm_zoom_to(adeg) %>%
-    filter(!AVISIT %in% c("SCREENING", "BASELINE")) %>%
+    filter(ONTRTFL=="Y") %>%
     filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
     dm_update_zoomed()
 }
