@@ -83,7 +83,6 @@ db <- syn_test_data() \%>\%
   preprocess_data("cmt01a_3")
 
 cmt01a_3(adam_db = db)
-
 cmt01a_3_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

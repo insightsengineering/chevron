@@ -83,5 +83,4 @@ db <- syn_test_data() \%>\%
 
 vst01_1(db)
 vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-
 }

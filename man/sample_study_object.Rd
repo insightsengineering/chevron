@@ -15,5 +15,4 @@ Sample the default value of the \code{.study} object defined in the \code{tlg-fu
 \examples{
 lst <- sample_study_object()
 dput(lst)
-
 }

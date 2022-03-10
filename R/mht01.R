@@ -27,7 +27,6 @@
 #'   preprocess_data("mht01_1")
 #'
 #' mht01_1(adam_db = db) %>% head(15)
-#'
 mht01_1 <- function(adam_db,
                     armvar = .study$armvar,
                     lbl_overall = .study$lbl_overall,
