@@ -75,7 +75,7 @@ reference:
       - reorder_adex_params
       - mutate_cmt01a
       - reorder_dtht01
-
+      - mutate_dmt01
   - title: Utility Functions
     contents:
       - dm_explicit_na
