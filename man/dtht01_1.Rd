@@ -69,15 +69,14 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
- dm_zoom_to(adsl) \%>\%
- mutate(DTHCAT = explicit_na(DTHCAT)) \%>\%
- mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) \%>\%
- dm_update_zoomed() \%>\%
- preprocess_data("dtht01_1")
+  dm_zoom_to(adsl) \%>\%
+  mutate(DTHCAT = explicit_na(DTHCAT)) \%>\%
+  mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) \%>\%
+  dm_update_zoomed() \%>\%
+  preprocess_data("dtht01_1")
 
 dtht01_1(adam_db = db)
 dtht01_1(adam_db = db, time_since_last_dose = TRUE)
-
 dtht01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
