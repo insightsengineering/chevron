@@ -72,6 +72,7 @@ reference:
       - remove_adex_aval
       - reorder_adex_params
       - mutate_cmt01a
+      - mutate_dmt01
 
   - title: Utility Functions
     contents:
