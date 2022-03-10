@@ -140,7 +140,6 @@ get_req_data <- function(id, pmap) {
 #'
 #' @export
 #'
-#'
 #' @examples
 #' library(magrittr)
 #' db <- syn_test_data()
@@ -388,7 +387,7 @@ mutate_cmt01a <- function(adam_db) {
 #' @inheritParams gen_args
 #' @param paramcd_order (`vector of character`) providing the `PARAMCD` values in the desired order.
 #'
-#' @return a `dm` object
+#' @return a `dm` object.
 #'
 reorder_adex_params <- function(adam_db,
                                 paramcd_order = .study$paramcd_order,

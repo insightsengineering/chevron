@@ -28,7 +28,10 @@
 #'  mutate(DTHCAT = explicit_na(DTHCAT)) %>%
 #'  mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) %>%
 #'  dm_update_zoomed() %>%
-#'  preprocess_data("dtht01_1")
+#'  preprocess_data("dtht01_1") %>%
+#'  dm_zoom_to(adsl) %>%
+#'  mutate(DTHCAT = sapply(DTHCAT, function(x) if(x == "OTHER") factor("<Missing>") else x)) %>%
+#'  dm_update_zoomed()
 #'
 #' dtht01_1(adam_db = db)
 #' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
@@ -46,8 +49,8 @@ dtht01_1 <- function(adam_db,
 
   dbsel <- get_db_data(adam_db, "adsl")
 
-  assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
-  assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
+  # assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
+  # assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
 
   lyt <- dtht01_1_lyt(
     armvar = armvar,
@@ -90,7 +93,6 @@ dtht01_1 <- function(adam_db,
 #' @describeIn dtht01_1
 #'
 #' @inheritParams gen_args
-
 #' @export
 #'
 #' @examples
