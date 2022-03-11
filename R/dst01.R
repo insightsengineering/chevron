@@ -60,7 +60,7 @@ dst01_1 <- function(adam_db,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients",
+                      lbl_overall = "All Patients",
                       disc_reason_var = "DCSREAS"
                     )) {
   check_dst01_1_args(
@@ -147,7 +147,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
-                          lbl_overall = "All patients",
+                          lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
                         )) {
@@ -161,7 +161,8 @@ dst01_1_lyt <- function(armvar = .study$armvar,
     count_values(
       vars = status,
       values = completed_lbl,
-      .labels = c(count_fraction = "Completed Study")
+      .labels = c(count_fraction = "Completed Study"),
+      .formats = "xx (xx.x%)"
     )
 
   layout_table_other <-
@@ -169,17 +170,19 @@ dst01_1_lyt <- function(armvar = .study$armvar,
     count_values(
       vars = status,
       values = ongoing_lbl,
-      .labels = c(count_fraction = "Ongoing Study")
+      .labels = c(count_fraction = "Ongoing"),
+      .formats = "xx (xx.x%)"
     ) %>%
     split_rows_by(
       status,
       split_fun = keep_split_levels(discontinued_lbl),
     ) %>%
-    summarize_row_groups(label_fstr = "Discontinued Study") %>%
+    summarize_row_groups(label_fstr = "Discontinued Study", format = "xx (xx.x%)") %>%
     summarize_vars(
       disc_reason_var,
       .stats = "count_fraction",
-      denom = "N_col"
+      denom = "N_col",
+      formats = "xx (xx.x%)"
     )
 
   list(layout_table_completed, layout_table_other)
@@ -231,7 +234,7 @@ dst01_2 <- function(adam_db,
                     deco = std_deco("DST01"),
                     .study = list(
                       armvar = "ARM",
-                      lbl_overall = "All patients",
+                      lbl_overall = "All Patients",
                       disc_reason_var = "DCSREAS"
                     )) {
   check_dst01_1_args(
@@ -316,7 +319,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
-                          lbl_overall = "All patients",
+                          lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
                         )) {
@@ -329,14 +332,16 @@ dst01_2_lyt <- function(armvar = .study$armvar,
     count_values(
       vars = status,
       values = completed_lbl,
-      .labels = c(count_fraction = "Completed Study")
+      .labels = c(count_fraction = "Completed Study"),
+      .formats = "xx (xx.x%)"
     )
 
   layout_table_other <- layout_table %>%
     count_values(
       vars = status,
       values = ongoing_lbl,
-      .labels = c(count_fraction = "Ongoing Study")
+      .labels = c(count_fraction = "Ongoing"),
+      .formats = "xx (xx.x%)"
     ) %>%
     split_rows_by(
       var = status,
@@ -345,13 +350,14 @@ dst01_2_lyt <- function(armvar = .study$armvar,
     summarize_row_groups(label_fstr = "Discontinued Study") %>%
     split_rows_by(
       "reasonGP",
-      split_fun = reorder_split_levels(neworder = c("Safety", "Non Safety"))
+      split_fun = reorder_split_levels(neworder = c("Safety", "Non-safety"))
     ) %>%
-    summarize_row_groups() %>%
+    summarize_row_groups(format = "xx (xx.x%)") %>%
     summarize_vars(
       disc_reason_var,
       .stats = "count_fraction",
-      denom = "N_col"
+      denom = "N_col",
+      formats = "xx (xx.x%)"
     )
 
   list(completed = layout_table_completed, other = layout_table_other)
@@ -408,7 +414,7 @@ dst01_3 <- function(adam_db,
                     .study = list(
                       armvar = "ARM",
                       disc_reason_var = "DCSREAS",
-                      lbl_overall = "All patients"
+                      lbl_overall = "All Patients"
                     )) {
   check_dst01_1_args(
     reason = disc_reason_var,
@@ -515,7 +521,7 @@ dst01_3_lyt <- function(armvar = .study$armvar,
                         deco = std_deco("DST01"),
                         .study = list(
                           armvar = "ARM",
-                          lbl_overall = "All patients",
+                          lbl_overall = "All Patients",
                           status_treatment = "EOTSTT"
                         )) {
   layout_table <- basic_table_deco(deco) %>%
@@ -526,18 +532,21 @@ dst01_3_lyt <- function(armvar = .study$armvar,
       vars = status_treatment,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Treatment"),
+      .formats = "xx (xx.x%)",
       table_names = c("COMPLETED")
     ) %>%
     count_values(
       vars = status_treatment,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing Treatment"),
+      .formats = "xx (xx.x%)",
       table_names = c("ONGOING")
     ) %>%
     count_values(
       vars = status_treatment,
       values = discontinued_lbl,
       .labels = c(count_fraction = "Discontinued Treatment"),
+      .formats = "xx (xx.x%)",
       table_names = c("DISCONTINUED")
     )
 }
