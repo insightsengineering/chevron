@@ -32,15 +32,6 @@ For patients who discontinued the study, the reason provided is categorized as "
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -77,7 +68,7 @@ For patients who discontinued the study, the reason provided is categorized as "
   prune_0 <span class="op">=</span> <span class="cn">TRUE</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DST01"</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ARM"</span>, disc_reason_var <span class="op">=</span> <span class="st">"DCSREAS"</span>, lbl_overall <span class="op">=</span>
-    <span class="st">"All patients"</span><span class="op">)</span>
+    <span class="st">"All Patients"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="fu">dst01_3_lyt</span><span class="op">(</span>
@@ -88,7 +79,7 @@ For patients who discontinued the study, the reason provided is categorized as "
   ongoing_lbl <span class="op">=</span> <span class="st">"ONGOING"</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DST01"</span><span class="op">)</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="st">"All patients"</span>, status_treatment <span class="op">=</span>
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="st">"All Patients"</span>, status_treatment <span class="op">=</span>
     <span class="st">"EOTSTT"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -158,48 +149,48 @@ By Default `ONGOING.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient Disposition: {Analysis Population}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                      A: Drug X    B: Placebo    C: Combination   All patients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                       (N=134)       (N=134)        (N=132)         (N=400)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Study                     69 (51.49%)   69 (51.49%)    72 (54.55%)     210 (52.50%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Study                       27 (20.15%)   22 (16.42%)    21 (15.91%)     70 (17.50%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Study                  38 (28.4%)    43 (32.1%)      39 (29.5%)     120 (30.0%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Safety                            28 (20.9%)    27 (20.1%)      21 (15.9%)      76 (19.0%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ADVERSE EVENT                    6 (4.5%)      1 (0.7%)        2 (1.5%)        9 (2.2%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     DEATH                           22 (16.4%)    26 (19.4%)      19 (14.4%)      67 (16.8%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Non Safety                         10 (7.5%)    16 (11.9%)      18 (13.6%)      44 (11.0%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     LACK OF EFFICACY                 2 (1.5%)      1 (0.7%)        2 (1.5%)        5 (1.2%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     PHYSICIAN DECISION                   0         1 (0.7%)        7 (5.3%)         8 (2%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     PROTOCOL VIOLATION                4 (3%)       7 (5.2%)        6 (4.5%)       17 (4.2%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)      5 (3.7%)        3 (2.3%)       10 (2.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            2 (1.5%)      2 (1.5%)           0             4 (1%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 44 (32.84%)   44 (32.84%)    40 (30.30%)     128 (32.00%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   40 (29.85%)   42 (31.34%)    44 (33.33%)     126 (31.50%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              50 (37.31%)   48 (35.82%)    48 (36.36%)     146 (36.50%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                     A: Drug X    B: Placebo   C: Combination   All Patients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                      (N=134)      (N=134)        (N=132)         (N=400)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Study                     69 (51.5%)   69 (51.5%)     72 (54.5%)     210 (52.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing                             27 (20.1%)   22 (16.4%)     21 (15.9%)      70 (17.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Study                  38 (28.4%)   43 (32.1%)     39 (29.5%)     120 (30.0%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Safety                            28 (20.9%)   27 (20.1%)     21 (15.9%)      76 (19.0%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ADVERSE EVENT                    6 (4.5%)     1 (0.7%)       2 (1.5%)        9 (2.2%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     DEATH                           22 (16.4%)   26 (19.4%)     19 (14.4%)      67 (16.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Non-safety                        10 (7.5%)    16 (11.9%)     18 (13.6%)      44 (11.0%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     LACK OF EFFICACY                 2 (1.5%)     1 (0.7%)       2 (1.5%)        5 (1.2%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     PHYSICIAN DECISION                  0         1 (0.7%)       7 (5.3%)         8 (2%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     PROTOCOL VIOLATION                4 (3%)      7 (5.2%)       6 (4.5%)       17 (4.2%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)     5 (3.7%)       3 (2.3%)       10 (2.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            2 (1.5%)     2 (1.5%)          0             4 (1%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 44 (32.8%)   49 (36.6%)     50 (37.9%)     143 (35.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   53 (39.6%)   41 (30.6%)     40 (30.3%)     134 (33.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              37 (27.6%)   44 (32.8%)     42 (31.8%)     123 (30.8%) </span>
 <span class="r-in"><span class="fu">dst01_3</span><span class="op">(</span><span class="va">db</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient Disposition: {Analysis Population}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ——————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                      A: Drug X    B: Placebo    C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                       (N=134)       (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ——————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Study                     69 (51.49%)   69 (51.49%)    72 (54.55%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Study                       27 (20.15%)   22 (16.42%)    21 (15.91%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Study                  38 (28.4%)    43 (32.1%)      39 (29.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Safety                            28 (20.9%)    27 (20.1%)      21 (15.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ADVERSE EVENT                    6 (4.5%)      1 (0.7%)        2 (1.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     DEATH                           22 (16.4%)    26 (19.4%)      19 (14.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Non Safety                         10 (7.5%)    16 (11.9%)      18 (13.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     LACK OF EFFICACY                 2 (1.5%)      1 (0.7%)        2 (1.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     PHYSICIAN DECISION                   0         1 (0.7%)        7 (5.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     PROTOCOL VIOLATION                4 (3%)       7 (5.2%)        6 (4.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)      5 (3.7%)        3 (2.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            2 (1.5%)      2 (1.5%)           0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 44 (32.84%)   44 (32.84%)    40 (30.30%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   40 (29.85%)   42 (31.34%)    44 (33.33%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              50 (37.31%)   48 (35.82%)    48 (36.36%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                     A: Drug X    B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                      (N=134)      (N=134)        (N=132)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Study                     69 (51.5%)   69 (51.5%)     72 (54.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing                             27 (20.1%)   22 (16.4%)     21 (15.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Study                  38 (28.4%)   43 (32.1%)     39 (29.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Safety                            28 (20.9%)   27 (20.1%)     21 (15.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ADVERSE EVENT                    6 (4.5%)     1 (0.7%)       2 (1.5%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     DEATH                           22 (16.4%)   26 (19.4%)     19 (14.4%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Non-safety                        10 (7.5%)    16 (11.9%)     18 (13.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     LACK OF EFFICACY                 2 (1.5%)     1 (0.7%)       2 (1.5%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     PHYSICIAN DECISION                  0         1 (0.7%)       7 (5.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     PROTOCOL VIOLATION                4 (3%)      7 (5.2%)       6 (4.5%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)     5 (3.7%)       3 (2.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            2 (1.5%)     2 (1.5%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 44 (32.8%)   49 (36.6%)     50 (37.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   53 (39.6%)   41 (30.6%)     40 (30.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              37 (27.6%)   44 (32.8%)     42 (31.8%)  </span>
 <span class="r-in"><span class="fu">dst01_3_lyt</span><span class="op">(</span></span>
 <span class="r-in">  armvar <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
 <span class="r-in">  status_treatment <span class="op">=</span> <span class="st">"EOTxx01"</span></span>
