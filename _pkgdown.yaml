@@ -81,7 +81,7 @@ reference:
       - mutate_cmt01a
       - mutate_vst02
       - mutate_egt02
-
+      - mutate_dmt01
   - title: Utility Functions
     contents:
       - dm_explicit_na

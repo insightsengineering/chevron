@@ -8,7 +8,7 @@
 dmt01_1(
   adam_db,
   armvar = .study$armvar,
-  summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BWGHTSI"),
+  summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
   summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
@@ -23,8 +23,8 @@ dmt01_1_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DMT01"),
   .study = list(armvar = "ARM", summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
-    "RACE", "BWGHTSI"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)",
-    "SEX", "ETHNIC", "RACE", "Baseline Weight (kg)"), lbl_overall = "All Patients")
+    "RACE"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
+    "RACE", "Baseline Weight (kg)"), lbl_overall = "All Patients")
 )
 }
 \arguments{
@@ -70,7 +70,7 @@ library(dplyr)
 db <- syn_test_data() \%>\%
   preprocess_data("dmt01_1")
 
-dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX", "BWGHTSI"))
+dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
 dmt01_1(db,
   summaryvars = c("AGE", "RACE", "SEX"),

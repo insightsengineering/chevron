@@ -13,7 +13,7 @@ std_preprocessing_map <- tibble::tribble(
   "cmt01a_2", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
   "cmt01a_3", "filter_adcm_anl01fl", "mutate_cmt01a", c("adsl", "adcm"),
   "cmt02_pt_1", "filter_adcm_anl01fl", "mutate_cmt02_pt_1", c("adsl", "adcm"),
-  "dmt01_1", NA, NA, c("adsl"),
+  "dmt01_1", NA, "mutate_dmt01", c("adsl"),
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
@@ -394,7 +394,7 @@ mutate_adsl_gp <- function(adam_db,
     mutate(reasonGP = case_when(
       !!sym_reason %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       !!sym_reason == "<Missing>" ~ "<Missing>",
-      TRUE ~ "Non Safety"
+      TRUE ~ "Non-safety"
     )) %>%
     dm_update_zoomed()
 }
@@ -538,5 +538,24 @@ mutate_cmt02_pt_1 <- function(adam_db) {
     mutate(CMSEQ = as.factor(CMSEQ)) %>%
     dm_update_zoomed()
 
+  db
+}
+
+#' Mutate Function for `DMT01_1`
+#'
+#' @inheritParams gen_args
+#'
+#' @return
+#'
+mutate_dmt01 <- function(adam_db) {
+  adsl_lbs <- var_labels(adam_db$adsl)
+  db <- adam_db %>%
+    dm_zoom_to(adsl) %>%
+    mutate(
+      SEX = case_when(SEX == "F" ~ "Female", SEX == "M" ~ "Male", TRUE ~ as.character(SEX)),
+      SEX = factor(SEX, levels = c("Female", "Male"))
+    ) %>%
+    mutate(SEX = with_label(SEX, adsl_lbs["SEX"])) %>%
+    dm_update_zoomed()
   db
 }
