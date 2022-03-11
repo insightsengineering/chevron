@@ -10,6 +10,7 @@ dtht01_1(
   adam_db,
   armvar = .study$armvar,
   time_since_last_dose = FALSE,
+  other_category = TRUE,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DTHT01"),
@@ -19,6 +20,7 @@ dtht01_1(
 dtht01_1_lyt(
   armvar = .study$armvar,
   lbl_overall = .study$lbl_overall,
+  other_category = TRUE,
   deco = std_deco("DTHT01"),
   .study = list(armvar = "ACTARM", lbl_overall = NULL)
 )
@@ -37,6 +39,8 @@ dtht01_1_opt_lyt(
 
 \item{time_since_last_dose}{(\code{logical}) should the time to event information be displayed.}
 
+\item{other_category}{(\code{logical}) should the breakdown of the \code{OTHER} category be displayed.}
+
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
@@ -46,7 +50,7 @@ dtht01_1_opt_lyt(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
-A description of the causes of death without the breakdown of the \code{OTHER} category and optionally post-study
+A description of the causes of death optionally with the breakdown of the \code{OTHER} category and/or post-study
 reporting of death.
 }
 \details{
@@ -76,7 +80,9 @@ db <- syn_test_data() \%>\%
   preprocess_data("dtht01_1")
 
 dtht01_1(adam_db = db)
+dtht01_1(adam_db = db, other_category = FALSE)
 dtht01_1(adam_db = db, time_since_last_dose = TRUE)
+dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
 dtht01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL

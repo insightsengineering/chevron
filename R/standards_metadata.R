@@ -305,6 +305,19 @@ Provide study specific footnote that describes exactly what the diseases and con
   COXT02 = list(),
   COXT01 = list(),
   CFBT01 = list(),
+  DTHT01 = list(
+    "description" = "Death Table",
+    "Standard titles" = "Deaths: {Specify Population}",
+    "Standard footnotes" = "If applicable, include the footnote highlighted in grey for post-study deaths collected from public records.",
+    "Analysis Population" = "Typically, this table is generated for the Safety Population",
+    "Column Variables" = NULL,
+    "Column Totals" = NULL,
+    "Analysis Variables" = NULL,
+    "Statistics and Calculation Methods" = NULL,
+    "Numeric Precision and Formatting of Statistics" = NULL,
+    "Formatting Options" = NULL,
+    "Optional Subsetting" = NULL
+  ),
   Empty_table = list(
     "description" = NULL,
     "Standard titles" = NULL,
