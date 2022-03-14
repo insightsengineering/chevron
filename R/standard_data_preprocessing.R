@@ -25,8 +25,8 @@ std_preprocessing_map <- tibble::tribble(
   "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb"),
   "mht01_1", "filter_admh_anl01fl", NA, c("adsl", "admh"),
   "vst01_1", "filter_advs_anl01fl", NA, c("adsl", "advs"),
-  "vst02_1", "mutate_vst02", "filter_vst02", c("adsl", "advs"),
-  "vst02_2", "mutate_vst02", "filter_vst02", c("adsl", "advs")
+  "vst02_1", "filter_vst02", "mutate_vst02", c("adsl", "advs"),
+  "vst02_2", "filter_vst02", "mutate_vst02", c("adsl", "advs")
 )
 
 #' Standard Preprocessing Map
@@ -321,7 +321,6 @@ filter_egt02 <- function(adam_db) {
   adam_db %>%
     dm_zoom_to(adeg) %>%
     filter(ONTRTFL == "Y") %>%
-    filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
     dm_update_zoomed()
 }
 

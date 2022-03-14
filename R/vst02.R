@@ -24,6 +24,7 @@
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
+#'   filter(PARAM %in% c("Temperature")) %>%
 #'   preprocess_data("vst02_1")
 #'
 #' vst02_1(adam_db = db)

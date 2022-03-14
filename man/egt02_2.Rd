@@ -68,6 +68,7 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
+  filter(PARAM \%in\% c("Heart Rate", "QT Duration", "RR Duration")) \%>\%
   preprocess_data("egt02_2")
 
 egt02_2(adam_db = db)
