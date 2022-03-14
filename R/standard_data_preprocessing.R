@@ -18,7 +18,6 @@ std_preprocessing_map <- tibble::tribble(
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
   "dtht01_1", NA, "reorder_dtht01", c("adsl"),
-  "dtht01_2", NA, "reorder_dtht01", c("adsl"),
   "egt01_1", "filter_adeg_anl01fl", NA, c("adsl", "adeg"),
   "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
