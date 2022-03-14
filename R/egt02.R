@@ -24,7 +24,9 @@
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
+#'   dm_zoom_to("adeg") %>%
 #'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
+#'   dm_update_zoomed() %>%
 #'   preprocess_data("egt02_1")
 #'
 #' egt02_1(adam_db = db)
@@ -121,7 +123,9 @@ egt02_1_lyt <- function(armvar = .study$armvar,
 #' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
+#'   dm_zoom_to("adeg") %>%
 #'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
+#'   dm_update_zoomed() %>%
 #'   preprocess_data("egt02_2")
 #'
 #' egt02_2(adam_db = db)

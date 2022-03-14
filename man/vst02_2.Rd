@@ -69,6 +69,9 @@ library(dm)
 library(dplyr)
 
 db <- syn_test_data() \%>\%
+  dm_zoom_to("advs") \%>\%
+  filter(PARAM \%in\% c("Temperature")) \%>\%
+  dm_update_zoomed() \%>\%
   preprocess_data("vst02_2")
 
 vst02_2(adam_db = db)
