@@ -38,7 +38,7 @@
 dtht01_1 <- function(adam_db,
                      armvar = .study$armvar,
                      time_since_last_dose = FALSE,
-                     other_category = TRUE,
+                     other_category = FALSE,
                      lbl_overall = .study$lbl_overall,
                      prune_0 = TRUE,
                      deco = std_deco("DTHT01"),
