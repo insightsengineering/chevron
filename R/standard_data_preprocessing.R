@@ -18,8 +18,8 @@ std_preprocessing_map <- tibble::tribble(
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
   "egt01_1", "filter_adeg_anl01fl", NA, c("adsl", "adeg"),
-  "egt02_1", "filter_egt02", "mutate_egt02", c("adsl", "adeg"),
-  "egt02_2", "filter_egt02", "mutate_egt02", c("adsl", "adeg"),
+  "egt02_1", "filter_egt02", NA, c("adsl", "adeg"),
+  "egt02_2", "filter_egt02", NA, c("adsl", "adeg"),
   "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
   "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb"),
@@ -308,6 +308,7 @@ filter_vst02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
     dm_zoom_to(advs) %>%
+    filter(ANRIND != "<Missing>") %>%
     filter(ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
@@ -320,6 +321,7 @@ filter_egt02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
     dm_zoom_to(adeg) %>%
+    filter(ANRIND != "<Missing>") %>%
     filter(ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
@@ -476,34 +478,6 @@ remove_adex_aval <- function(adam_db,
 mutate_vst02 <- function(adam_db) {
   db <- adam_db %>%
     dm_zoom_to(advs) %>%
-    mutate(
-      ANRIND = case_when(
-        ANRIND == "HIGH HIGH" ~ "HIGH",
-        ANRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(ANRIND)
-      ),
-      BNRIND = case_when(
-        BNRIND == "HIGH HIGH" ~ "HIGH",
-        BNRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(BNRIND)
-      )
-    ) %>%
-    mutate(
-      ANRIND = as.factor(ANRIND),
-      BNRIND = as.factor(BNRIND)
-    ) %>%
-    dm_update_zoomed()
-
-  db
-}
-
-#' Categorize `adeg` values
-#'
-#' @inheritParams gen_args
-#'
-mutate_egt02 <- function(adam_db) {
-  db <- adam_db %>%
-    dm_zoom_to(adeg) %>%
     mutate(
       ANRIND = case_when(
         ANRIND == "HIGH HIGH" ~ "HIGH",
