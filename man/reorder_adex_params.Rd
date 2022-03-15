@@ -18,7 +18,7 @@ reorder_adex_params(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \value{
-a \code{dm} object
+a \code{dm} object.
 }
 \description{
 Reorder \code{PARAM} and \code{PARAMCD} levels
