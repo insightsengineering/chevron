@@ -522,3 +522,31 @@ mutate_dmt01 <- function(adam_db) {
     dm_update_zoomed()
   db
 }
+
+#' Categorize `advs` values
+#'
+#' @inheritParams gen_args
+#'
+mutate_vst02 <- function(adam_db) {
+  db <- adam_db %>%
+    dm_zoom_to(advs) %>%
+    mutate(
+      ANRIND = case_when(
+        ANRIND == "HIGH HIGH" ~ "HIGH",
+        ANRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(ANRIND)
+      ),
+      BNRIND = case_when(
+        BNRIND == "HIGH HIGH" ~ "HIGH",
+        BNRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(BNRIND)
+      )
+    ) %>%
+    mutate(
+      ANRIND = as.factor(ANRIND),
+      BNRIND = as.factor(BNRIND)
+    ) %>%
+    dm_update_zoomed()
+
+  db
+}
