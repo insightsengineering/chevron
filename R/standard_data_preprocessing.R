@@ -17,6 +17,7 @@ std_preprocessing_map <- tibble::tribble(
   "dst01_1", NA, NA, c("adsl"),
   "dst01_2", NA, "mutate_adsl_gp", c("adsl"),
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
+  "dtht01_1", NA, "reorder_dtht01", c("adsl"),
   "egt01_1", "filter_adeg_anl01fl", NA, c("adsl", "adeg"),
   "egt02_1", "filter_egt02", NA, c("adsl", "adeg"),
   "egt02_2", "filter_egt02", NA, c("adsl", "adeg"),
@@ -142,7 +143,6 @@ get_req_data <- function(id, pmap) {
 #'
 #' @export
 #'
-#'
 #' @examples
 #' library(magrittr)
 #' db <- syn_test_data()
@@ -201,9 +201,6 @@ std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
 std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
   lookup_fun(tlgfname, "mutate_fname", pmap)
 }
-
-
-## manipulation functions ----
 
 #' Filter `adae` for `ANL01FL`
 #'
@@ -418,7 +415,7 @@ mutate_cmt01a <- function(adam_db) {
 #' @inheritParams gen_args
 #' @param paramcd_order (`vector of character`) providing the `PARAMCD` values in the desired order.
 #'
-#' @return a `dm` object
+#' @return a `dm` object.
 #'
 reorder_adex_params <- function(adam_db,
                                 paramcd_order = .study$paramcd_order,
@@ -470,30 +467,23 @@ remove_adex_aval <- function(adam_db,
   adam_db
 }
 
-
-#' Categorize `advs` values
+#' Reorder levels of `DTHCAT` in `adsl`
+#'
+#' The `OTHER` level is pushed last so that it appears last, and then the `DTHCAUS` related to `OTHER` appear underneath
+#' as intended.
 #'
 #' @inheritParams gen_args
 #'
-mutate_vst02 <- function(adam_db) {
+#' @importFrom forcats fct_relevel
+#'
+reorder_dtht01 <- function(adam_db) {
+  death_fact <- levels(adam_db$adsl$DTHCAT)
+  death_fact <- setdiff(death_fact, "OTHER")
+  death_fact <- c(death_fact, "OTHER")
+
   db <- adam_db %>%
-    dm_zoom_to(advs) %>%
-    mutate(
-      ANRIND = case_when(
-        ANRIND == "HIGH HIGH" ~ "HIGH",
-        ANRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(ANRIND)
-      ),
-      BNRIND = case_when(
-        BNRIND == "HIGH HIGH" ~ "HIGH",
-        BNRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(BNRIND)
-      )
-    ) %>%
-    mutate(
-      ANRIND = as.factor(ANRIND),
-      BNRIND = as.factor(BNRIND)
-    ) %>%
+    dm_zoom_to(adsl) %>%
+    mutate(DTHCAT = fct_relevel(DTHCAT, death_fact)) %>%
     dm_update_zoomed()
 
   db

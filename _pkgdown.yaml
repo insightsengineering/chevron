@@ -42,6 +42,7 @@ reference:
       - dst01_1
       - dst01_2
       - dst01_3
+      - dtht01_1
       - egt01_1
       - egt02_1
       - egt02_2
@@ -80,7 +81,7 @@ reference:
       - reorder_adex_params
       - mutate_cmt01a
       - mutate_vst02
-      - mutate_egt02
+      - reorder_dtht01
       - mutate_dmt01
   - title: Utility Functions
     contents:

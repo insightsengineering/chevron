@@ -361,6 +361,19 @@ If an abnormality is possible for a test but not observed in the database, inclu
     "Formatting Options" = "Allow the option for portrait or landscape output orientation",
     "Optional Subsetting" = "The Statistician can specify any patient subsetting criteria.  When a table is based on a subset of patients, the table title should be modified to clearly define the analysis population.  Patient subsetting limits the analysis to a subset of patients based on baseline characteristics (e.g., patients >= 65 years of age).  Such subsetting can also be used to generate separate tables for subsets of patients with different levels of a diagnostic test or biomarker.  The column header (N = nnn) should represent the number of patients in the specified patient subset for each treatment group."
   ),
+  DTHT01 = list(
+    "description" = "Death Table",
+    "Standard titles" = "Deaths: {Specify Population}",
+    "Standard footnotes" = "If applicable, include the footnote highlighted in grey for post-study deaths collected from public records.",
+    "Analysis Population" = "Typically, this table is generated for the Safety Population",
+    "Column Variables" = NULL,
+    "Column Totals" = NULL,
+    "Analysis Variables" = NULL,
+    "Statistics and Calculation Methods" = NULL,
+    "Numeric Precision and Formatting of Statistics" = NULL,
+    "Formatting Options" = NULL,
+    "Optional Subsetting" = NULL
+  ),
   Empty_table = list(
     "description" = NULL,
     "Standard titles" = NULL,
