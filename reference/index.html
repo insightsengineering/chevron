@@ -31,15 +31,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -141,6 +132,14 @@ treatments per medication class suppressed).</p></td>
         </td>
         <td><p><code>EGT01</code> Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1</p></td>
       </tr><tr><td>
+          <p><code><a href="egt02_1.html">egt02_1()</a></code> <code><a href="egt02_1.html">egt02_1_lyt()</a></code> </p>
+        </td>
+        <td><p><code>EGT02</code> Table 1 (Default) ECG Abnormalities Table 1</p></td>
+      </tr><tr><td>
+          <p><code><a href="egt02_2.html">egt02_2()</a></code> <code><a href="egt02_2.html">egt02_2_lyt()</a></code> </p>
+        </td>
+        <td><p><code>EGT02</code> Table 2 (Supplementary) ECG Abnormalities Table 2</p></td>
+      </tr><tr><td>
           <p><code><a href="ext01_1.html">ext01_1()</a></code> <code><a href="ext01_1.html">ext01_1_lyt()</a></code> </p>
         </td>
         <td><p>EXT01 Table 1 (Default) Exposure Summary Table</p></td>
@@ -160,6 +159,14 @@ treatments per medication class suppressed).</p></td>
           <p><code><a href="vst01_1.html">vst01_1()</a></code> <code><a href="vst01_1.html">vst01_1_lyt()</a></code> </p>
         </td>
         <td><p><code>VST01</code> Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1</p></td>
+      </tr><tr><td>
+          <p><code><a href="vst02_1.html">vst02_1()</a></code> <code><a href="vst02_1.html">vst02_1_lyt()</a></code> </p>
+        </td>
+        <td><p><code>VST02</code> Table 1 (Default) Vital Sign Abnormalities Table 1</p></td>
+      </tr><tr><td>
+          <p><code><a href="vst02_2.html">vst02_2()</a></code> <code><a href="vst02_2.html">vst02_2_lyt()</a></code> </p>
+        </td>
+        <td><p><code>VST02</code> Table 2 (Supplementary) Vital Sign Abnormalities Table 2</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="data-preprocess-functions">Data Preprocess Functions <a href="#data-preprocess-functions" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
@@ -217,6 +224,18 @@ treatments per medication class suppressed).</p></td>
         </td>
         <td><p>Filter <code>advs</code> for <code>ANL01FL</code></p></td>
       </tr><tr><td>
+          <p><code><a href="filter_vst02.html">filter_vst02()</a></code> </p>
+        </td>
+        <td><p>Filter post-baseline values in <code>advs</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="filter_egt02.html">filter_egt02()</a></code> </p>
+        </td>
+        <td><p>Filter post-baseline values in <code>adeg</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="mutate_adsl_gp.html">mutate_adsl_gp()</a></code> </p>
+        </td>
+        <td><p>Categorize Reason for Discontinuation from Study.</p></td>
+      </tr><tr><td>
           <p><code><a href="filter_adcm_anl01fl.html">filter_adcm_anl01fl()</a></code> </p>
         </td>
         <td><p>Filter <code>adcm</code> for <code>ANL01FL</code> and  <code>ATIREL</code></p></td>
@@ -224,10 +243,6 @@ treatments per medication class suppressed).</p></td>
           <p><code><a href="mutate_for_aet01.html">mutate_for_aet01()</a></code> </p>
         </td>
         <td><p>Creating Necessary Columns for <code>aet01</code></p></td>
-      </tr><tr><td>
-          <p><code><a href="mutate_adsl_gp.html">mutate_adsl_gp()</a></code> </p>
-        </td>
-        <td><p>Categorize Reason for Discontinuation from Study.</p></td>
       </tr><tr><td>
           <p><code><a href="mutate_cmt02_pt_1.html">mutate_cmt02_pt_1()</a></code> </p>
         </td>
@@ -244,6 +259,10 @@ treatments per medication class suppressed).</p></td>
           <p><code><a href="mutate_cmt01a.html">mutate_cmt01a()</a></code> </p>
         </td>
         <td><p>Coerce <code>CMSEQ</code> to factor in <code>adcm</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="mutate_vst02.html">mutate_vst02()</a></code> </p>
+        </td>
+        <td><p>Categorize <code>advs</code> values</p></td>
       </tr><tr><td>
           <p><code><a href="reorder_dtht01.html">reorder_dtht01()</a></code> </p>
         </td>
