@@ -44,11 +44,15 @@ reference:
       - dst01_3
       - dtht01_1
       - egt01_1
+      - egt02_1
+      - egt02_2
       - ext01_1
       - ext01_2
       - lbt01_1
       - mht01_1
       - vst01_1
+      - vst02_1
+      - vst02_2
 
   - title: Data Preprocess Functions
     contents:
@@ -66,6 +70,9 @@ reference:
       - filter_adlb_anl01fl
       - filter_admh_anl01fl
       - filter_advs_anl01fl
+      - filter_vst02
+      - filter_egt02
+      - mutate_adsl_gp
       - filter_adcm_anl01fl
       - mutate_for_aet01
       - mutate_adsl_gp
@@ -73,6 +80,7 @@ reference:
       - remove_adex_aval
       - reorder_adex_params
       - mutate_cmt01a
+      - mutate_vst02
       - reorder_dtht01
       - mutate_dmt01
   - title: Utility Functions

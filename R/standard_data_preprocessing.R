@@ -19,11 +19,15 @@ std_preprocessing_map <- tibble::tribble(
   "dst01_3", NA, "mutate_adsl_gp", c("adsl"),
   "dtht01_1", NA, "reorder_dtht01", c("adsl"),
   "egt01_1", "filter_adeg_anl01fl", NA, c("adsl", "adeg"),
+  "egt02_1", "filter_egt02", NA, c("adsl", "adeg"),
+  "egt02_2", "filter_egt02", NA, c("adsl", "adeg"),
   "ext01_1", "filter_adex_drug", "reorder_adex_params", c("adsl", "adex"),
   "ext01_2", "filter_adex_drug", "remove_adex_aval", c("adsl", "adex"),
   "lbt01_1", "filter_adlb_anl01fl", NA, c("adsl", "adlb"),
   "mht01_1", "filter_admh_anl01fl", NA, c("adsl", "admh"),
-  "vst01_1", "filter_advs_anl01fl", NA, c("adsl", "advs")
+  "vst01_1", "filter_advs_anl01fl", NA, c("adsl", "advs"),
+  "vst02_1", "filter_vst02", "mutate_vst02", c("adsl", "advs"),
+  "vst02_2", "filter_vst02", "mutate_vst02", c("adsl", "advs")
 )
 
 #' Standard Preprocessing Map
@@ -287,10 +291,35 @@ filter_adex_drug <- function(adam_db) {
 #'
 filter_adcm_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
-
   adam_db %>%
     dm_zoom_to(adcm) %>%
     filter(ANL01FL == "Y") %>%
+    dm_update_zoomed()
+}
+
+#' Filter post-baseline values in `advs`
+#'
+#' @inheritParams gen_args
+#'
+filter_vst02 <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+  adam_db %>%
+    dm_zoom_to(advs) %>%
+    filter(ANRIND != "<Missing>") %>%
+    filter(ONTRTFL == "Y") %>%
+    dm_update_zoomed()
+}
+
+#' Filter post-baseline values in `adeg`
+#'
+#' @inheritParams gen_args
+#'
+filter_egt02 <- function(adam_db) {
+  assert_that(is(adam_db, "dm"))
+  adam_db %>%
+    dm_zoom_to(adeg) %>%
+    filter(ANRIND != "<Missing>") %>%
+    filter(ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -491,5 +520,33 @@ mutate_dmt01 <- function(adam_db) {
     ) %>%
     mutate(SEX = with_label(SEX, adsl_lbs["SEX"])) %>%
     dm_update_zoomed()
+  db
+}
+
+#' Categorize `advs` values
+#'
+#' @inheritParams gen_args
+#'
+mutate_vst02 <- function(adam_db) {
+  db <- adam_db %>%
+    dm_zoom_to(advs) %>%
+    mutate(
+      ANRIND = case_when(
+        ANRIND == "HIGH HIGH" ~ "HIGH",
+        ANRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(ANRIND)
+      ),
+      BNRIND = case_when(
+        BNRIND == "HIGH HIGH" ~ "HIGH",
+        BNRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(BNRIND)
+      )
+    ) %>%
+    mutate(
+      ANRIND = as.factor(ANRIND),
+      BNRIND = as.factor(BNRIND)
+    ) %>%
+    dm_update_zoomed()
+
   db
 }
