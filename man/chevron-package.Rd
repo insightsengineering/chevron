@@ -6,7 +6,8 @@
 \alias{chevron-package}
 \title{Chevron Package}
 \description{
-Standard Table, Listings, and Graphs (TLG) library used in clinical trials.
+Standard Table, Listings, and Graphs (TLG) library used in
+    clinical trials.
 }
 \author{
 \strong{Maintainer}: NEST \email{basel.nestcicd@roche.com}
