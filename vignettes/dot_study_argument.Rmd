@@ -36,7 +36,7 @@ Used to specify the actual arm of the study. Typically `ACTARM`.
 Used in `LBT01` and `EGT01`, which variables capture status and the evolution of the analysis: generally `c("AVAL", "CNG")`
 
 ## `evo_vars_labs`
-The label associated with the variables selectes in `evo_vars`.
+The label associated with the variables selected in `evo_vars`.
 
 ## `disc_reason_var`
 Used in `DST01` to define reason for patient withdrawal. Default is `DCSREAS`
@@ -77,4 +77,4 @@ Used in `DMT01`,  the list of variables to be summarized.
 Used in `DMT01`,  the labels for the list of variables to be summarized.
 
 ## `visitvar`
-The variable used to define the visits. (Could this variable be different for ecah table, in which case it should be out of the `.study` object.)
+The variable used to define the visits. (Could this variable be different for each table, in which case it should be out of the `.study` object.)
