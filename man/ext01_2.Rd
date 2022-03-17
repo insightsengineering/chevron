@@ -7,20 +7,20 @@
 \usage{
 ext01_2(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$actarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(actarm = "ACTARM", lbl_overall = NULL)
 )
 
 ext01_2_lyt(
-  armvar = .study$armvar,
+  armvar = .study$actarm,
   summaryvars = c("AVAL", "AVALCAT1"),
   summaryvars_lbls = c("Summary", "Categories"),
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(actarm = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{

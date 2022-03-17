@@ -35,13 +35,13 @@
 #'   "Grade 3-5" = c("3", "4", "5")
 #' ))
 aet04_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actarm,
                     group_grades = .study$group_grades,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("AET04"),
                     .study = list(
-                      armvar = "ACTARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL,
                       group_grades = list(
                         "Any Grade" = c("1", "2", "3", "4", "5"),

@@ -28,13 +28,13 @@
 #'
 #' ext01_1(db)
 ext01_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actarm,
                     summaryvars = "AVAL",
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("EXT01"),
                     .study = list(
-                      armvar = "ACTARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
   assert_colnames(adam_db$adex, summaryvars)
@@ -65,13 +65,13 @@ ext01_1 <- function(adam_db,
 #'
 #' @export
 #'
-ext01_1_lyt <- function(armvar = .study$armvar,
+ext01_1_lyt <- function(armvar = .study$actarm,
                         summaryvars = .study$analysis_var,
                         summaryvars_lbls = .study$lbl_analysis_var,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("EXT01"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actarm = "ACTARM",
                           lbl_overall = NULL,
                           analysis_var = "AVAL",
                           lbl_analysis_var = "Analysis Value"
@@ -116,12 +116,12 @@ ext01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' ext01_2(db)
 ext01_2 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actarm,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("EXT01"),
                     .study = list(
-                      armvar = "ACTARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
   summaryvars <- c("AVAL", "AVALCAT1")
@@ -156,13 +156,13 @@ ext01_2 <- function(adam_db,
 #'
 #' @export
 #'
-ext01_2_lyt <- function(armvar = .study$armvar,
+ext01_2_lyt <- function(armvar = .study$actarm,
                         summaryvars = c("AVAL", "AVALCAT1"),
                         summaryvars_lbls = c("Summary", "Categories"),
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("EXT01"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actarm = "ACTARM",
                           lbl_overall = NULL
                         )) {
   basic_table_deco(deco) %>%

@@ -29,12 +29,12 @@
 #' aet03_1(db)
 #' aet03_1(db, lbl_overall = "All Patients")
 aet03_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actarm,
                     prune_0 = TRUE,
                     lbl_overall = .study$lbl_overall,
                     deco = std_deco("AET03"),
                     .study = list(
-                      armvar = "ACTARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
 
@@ -98,14 +98,14 @@ aet03_1 <- function(adam_db,
 #'   lbl_overall = NULL,
 #'   deco = std_deco("AET03")
 #' )
-aet03_1_lyt <- function(armvar = .study$armvar,
+aet03_1_lyt <- function(armvar = .study$actarm,
                         lbl_aebodsys = "",
                         lbl_aedecod = "",
                         severity_grade = .study$severity_grade,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET03"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actarm = "ACTARM",
                           lbl_overall = NULL,
                           severity_grade = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
                         )) {

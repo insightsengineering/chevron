@@ -7,22 +7,22 @@
 \usage{
 egt02_1(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$actarm,
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
   deco = std_deco("EGT02"),
-  .study = list(armvar = "ARM", lbl_overall = NULL)
+  .study = list(actarm = "ACTARM", lbl_overall = NULL)
 )
 
 egt02_1_lyt(
-  armvar = .study$armvar,
+  armvar = .study$actarm,
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EGT02"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(actarm = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{

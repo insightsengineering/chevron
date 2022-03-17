@@ -8,7 +8,7 @@ treatments per medication class suppressed).}
 \usage{
 cmt01a_3(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   medcat_var = "ATC2",
   lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
@@ -16,18 +16,18 @@ cmt01a_3(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("CMT01A"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 
 cmt01a_3_lyt(
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   medcat_var = "ATC2",
   lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
   lbl_medname_var = "Other Treatment",
   deco = std_deco("CMT01A"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 }
 \arguments{
@@ -84,7 +84,7 @@ db <- syn_test_data() \%>\%
 
 cmt01a_3(adam_db = db)
 cmt01a_3_lyt(
-  armvar = "ACTARM",
+  armvar = "ARM",
   lbl_overall = NULL,
   deco = std_deco("CMT01A")
 )

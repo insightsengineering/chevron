@@ -7,22 +7,22 @@
 \usage{
 mht01_1(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
   lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
   prune_0 = TRUE,
   deco = std_deco("MHT01"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 
 mht01_1_lyt(
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA preferred Term",
   deco = std_deco("MHT01"),
-  .study = list(armvar = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 }
 \arguments{

@@ -31,14 +31,14 @@
 #'
 #' egt02_1(adam_db = db)
 egt02_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actarm,
                     lbl_vs_assessment = "Assessment",
                     lbl_vs_abnormality = "Abnormality",
                     lbl_overall = .study$lbl_overall,
                     prune_0 = FALSE,
                     deco = std_deco("EGT02"),
                     .study = list(
-                      armvar = "ARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
@@ -74,13 +74,13 @@ egt02_1 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-egt02_1_lyt <- function(armvar = .study$armvar,
+egt02_1_lyt <- function(armvar = .study$actarm,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("EGT02"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actarm = "ACTARM",
                           lbl_overall = NULL
                         )) {
   basic_table_deco(deco) %>%
@@ -130,14 +130,14 @@ egt02_1_lyt <- function(armvar = .study$armvar,
 #'
 #' egt02_2(adam_db = db)
 egt02_2 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actarm,
                     lbl_vs_assessment = "Assessment",
                     lbl_vs_abnormality = "Abnormality",
                     lbl_overall = .study$lbl_overall,
                     prune_0 = FALSE,
                     deco = std_deco("EGT02_2"),
                     .study = list(
-                      armvar = "ARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
@@ -173,13 +173,13 @@ egt02_2 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-egt02_2_lyt <- function(armvar = .study$armvar,
+egt02_2_lyt <- function(armvar = .study$actarm,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("EGT02_2"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actarm = "ACTARM",
                           lbl_overall = NULL
                         )) {
   basic_table_deco(deco) %>%

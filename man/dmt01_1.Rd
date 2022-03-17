@@ -7,22 +7,22 @@
 \usage{
 dmt01_1(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
   summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
-  .study = list(armvar = "ARM", lbl_overall = "All Patients")
+  .study = list(planarm = "ARM", lbl_overall = "All Patients")
 )
 
 dmt01_1_lyt(
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   summaryvars = .study$summary_demo,
   summaryvars_lbls = .study$summary_demo_lbl,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DMT01"),
-  .study = list(armvar = "ARM", summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
+  .study = list(planarm = "ARM", summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
     "RACE"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
     "RACE", "Baseline Weight (kg)"), lbl_overall = "All Patients")
 )

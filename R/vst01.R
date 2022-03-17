@@ -33,14 +33,14 @@
 #' vst01_1(db)
 #' vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 vst01_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actarm,
                     summaryvars = .study$evo_vars,
                     summaryvars_lbls = var_labels_for(adam_db$advs, summaryvars),
                     visitvar = "AVISIT", # or ATPTN
                     prune_0 = TRUE,
                     deco = std_deco("VST01"),
                     .study = list(
-                      armvar = "ACTARM",
+                      actarm = "ACTARM",
                       evo_vars = c("AVAL", "CHG")
                     )) {
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
@@ -82,7 +82,7 @@ vst01_1 <- function(adam_db,
 #'
 #' @return
 #' @export
-vst01_1_lyt <- function(armvar = .study$armvar,
+vst01_1_lyt <- function(armvar = .study$actarm,
                         summaryvars = .study$evo_vars,
                         summaryvars_lbls = .study$evo_vars_lbls,
                         visitvar = .study$visitvar,
@@ -90,7 +90,7 @@ vst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_param = "",
                         deco = std_deco("VST01"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actarm = "ACTARM",
                           evo_vars = c("AVAL", "CHG"),
                           evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                           visitvar = "AVISIT"

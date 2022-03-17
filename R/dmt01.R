@@ -35,14 +35,14 @@
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 #' )
 dmt01_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$planarm,
                     summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
                     summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("DMT01"),
                     .study = list(
-                      armvar = "ARM",
+                      planarm = "ARM",
                       lbl_overall = "All Patients"
                     )) {
   assert_that(
@@ -81,13 +81,13 @@ dmt01_1 <- function(adam_db,
 #'
 #' @examples
 #' dmt01_1_lyt(armvar = "ACTARM")
-dmt01_1_lyt <- function(armvar = .study$armvar,
+dmt01_1_lyt <- function(armvar = .study$planarm,
                         summaryvars = .study$summary_demo,
                         summaryvars_lbls = .study$summary_demo_lbl,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("DMT01"),
                         .study = list(
-                          armvar = "ARM",
+                          planarm = "ARM",
                           summary_demo = c(
                             "AAGE", # TODO: revisit
                             "AGEGR1",

@@ -18,6 +18,63 @@ knitr::opts_chunk$set(
 ```
 
 
-## Introduction 
+# Introduction 
 
-We will explain the `.study` argument in *tlg-functions* at a later time point.
+The `.study` argument in *tlg-functions* is used to pass values that are used in several tables.
+
+
+
+# The `.study` object
+The following variables are best hard coded in the table-generating functions (with the possibility to the user to
+override some of these choices.):
+
+
+## `actarm`
+Used to specify the actual arm of the study. Typically `ACTARM`.
+
+## `evo_vars`
+Used in `LBT01` and `EGT01`, which variables capture status and the evolution of the analysis: generally `c("AVAL", "CNG")`
+
+## `evo_vars_labs`
+The label associated with the variables selectes in `evo_vars`.
+
+## `disc_reason_var`
+Used in `DST01` to define reason for patient withdrawal. Default is `DCSREAS`
+
+## `group_grade`
+Used in `AET04` to put in correspondence severity levels and labels.
+
+## `lbl_overall`
+used everywhere, the label associated with the overall column.
+
+## `medconcept_var`
+Used in `AET01`  the medical concept variables to be summarized. Typically `c("SMQ01", "SMQ02", "CQ01")`.
+
+## `planarm`
+Used to specify the planned arm of the study. Typically `ARM`.
+
+## `reason`
+used in `DST01`, the name of the column specifying study withdrawal): generally `DCSREAS`.
+
+## `safety_var` 
+Used in `AET01` the safety variables to be summarized. Typically 
+`c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")`.
+
+## `severity_grade`
+internal, used in `AET03`, capture the levels of severity of adverse events: generally corresponds to the levels of
+`AESEV`in `adae`.
+
+## `status`
+used in `DST01`, the name of the column specifying study status): generally: `EOSSTT`. 
+
+## `status_var` 
+Used in `DST01` to define patient status.
+
+## `summary_demo` 
+Used in `DMT01`,  the list of variables to be summarized.
+
+## `summary_demo_lbl`
+Used in `DMT01`,  the labels for the list of variables to be summarized.
+
+## `visitvar`
+The variable used to define the visits. (Could this variable be different for ecah table, in which case it should be out of the `.study` object.)

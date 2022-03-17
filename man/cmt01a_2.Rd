@@ -7,7 +7,7 @@ frequency).}
 \usage{
 cmt01a_2(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   medcat_var = "ATC2",
   lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
@@ -15,7 +15,7 @@ cmt01a_2(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("CMT01A"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 }
 \arguments{

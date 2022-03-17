@@ -7,12 +7,12 @@
 \usage{
 aet04_1(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$actarm,
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET04"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL, group_grades = list(`Any Grade`
+  .study = list(actarm = "ACTARM", lbl_overall = NULL, group_grades = list(`Any Grade`
     = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", "4"),
     `Grade 5` = c("5")))
 )

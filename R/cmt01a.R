@@ -37,7 +37,7 @@
 #'
 #' cmt01a_1(adam_db = db)
 cmt01a_1 <- function(adam_db,
-                     armvar = .study$armvar,
+                     armvar = .study$planarm,
                      medcat_var = "ATC2", # Anatomical therapeutic category
                      lbl_medcat_var = "ATC Class Level 2",
                      medname_var = "CMDECOD",
@@ -46,7 +46,7 @@ cmt01a_1 <- function(adam_db,
                      prune_0 = TRUE,
                      deco = std_deco("CMT01A"),
                      .study = list(
-                       armvar = "ACTARM",
+                       planarm = "ARM",
                        lbl_overall = NULL
                      )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -91,11 +91,11 @@ cmt01a_1 <- function(adam_db,
 #'
 #' @examples
 #' cmt01a_1_lyt(
-#'   armvar = "ACTARM",
+#'   armvar = "ARM",
 #'   lbl_overall = NULL,
 #'   deco = std_deco("CMT01A")
 #' )
-cmt01a_1_lyt <- function(armvar = .study$armvar,
+cmt01a_1_lyt <- function(armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
                          medcat_var = "ATC2",
                          lbl_medcat_var = "ATC Class Level 2",
@@ -103,7 +103,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
                          lbl_medname_var = "Other Treatment",
                          deco = std_deco("CMT01A"),
                          .study = list(
-                           armvar = "ACTARM",
+                           planarm = "ARM",
                            lbl_overall = NULL
                          )) {
   basic_table_deco(deco) %>%
@@ -184,7 +184,7 @@ cmt01a_1_lyt <- function(armvar = .study$armvar,
 #'
 #' cmt01a_2(adam_db = db)
 cmt01a_2 <- function(adam_db,
-                     armvar = .study$armvar,
+                     armvar = .study$planarm,
                      medcat_var = "ATC2", # Anatomical therapeutic category
                      lbl_medcat_var = "ATC Class Level 2",
                      medname_var = "CMDECOD",
@@ -193,7 +193,7 @@ cmt01a_2 <- function(adam_db,
                      prune_0 = TRUE,
                      deco = std_deco("CMT01A"),
                      .study = list(
-                       armvar = "ACTARM",
+                       planarm = "ARM",
                        lbl_overall = NULL
                      )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -270,7 +270,7 @@ cmt01a_2 <- function(adam_db,
 #'
 #' cmt01a_3(adam_db = db)
 cmt01a_3 <- function(adam_db,
-                     armvar = .study$armvar,
+                     armvar = .study$planarm,
                      medcat_var = "ATC2", # Anatomical therapeutic category
                      lbl_medcat_var = "ATC Class Level 2",
                      medname_var = "CMDECOD",
@@ -279,7 +279,7 @@ cmt01a_3 <- function(adam_db,
                      prune_0 = TRUE,
                      deco = std_deco("CMT01A"),
                      .study = list(
-                       armvar = "ACTARM",
+                       planarm = "ARM",
                        lbl_overall = NULL
                      )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -324,11 +324,11 @@ cmt01a_3 <- function(adam_db,
 #'
 #' @examples
 #' cmt01a_3_lyt(
-#'   armvar = "ACTARM",
+#'   armvar = "ARM",
 #'   lbl_overall = NULL,
 #'   deco = std_deco("CMT01A")
 #' )
-cmt01a_3_lyt <- function(armvar = .study$armvar,
+cmt01a_3_lyt <- function(armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
                          medcat_var = "ATC2",
                          lbl_medcat_var = "ATC Class Level 2",
@@ -336,7 +336,7 @@ cmt01a_3_lyt <- function(armvar = .study$armvar,
                          lbl_medname_var = "Other Treatment",
                          deco = std_deco("CMT01A"),
                          .study = list(
-                           armvar = "ACTARM",
+                           planarm = "ARM",
                            lbl_overall = NULL
                          )) {
   basic_table_deco(deco) %>%
