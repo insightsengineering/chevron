@@ -13,7 +13,7 @@ aet01_1(
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
   lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
-  .study = list(actarm = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
+  .study = list(actarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))
 )
 
@@ -23,7 +23,7 @@ aet01_1_lyt(
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
   lbl_safety_var = .study$lbl_safety_var,
-  .study = list(actarm = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
+  .study = list(actarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
     "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
     "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
