@@ -32,7 +32,7 @@ aet01_1 <- function(adam_db,
                     safety_var = .study$safety_var,
                     lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
                     .study = list(
-                      actarm = "ARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL,
                       safety_var = c(
                         "FATAL", "SER", "SERWD", "SERDSM",
@@ -97,7 +97,7 @@ aet01_1_lyt <- function(armvar = .study$actarm,
                         safety_var = .study$safety_var,
                         lbl_safety_var = .study$lbl_safety_var,
                         .study = list(
-                          actarm = "ARM",
+                          actarm = "ACTARM",
                           lbl_overall = NULL,
                           safety_var = c(
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
@@ -194,7 +194,7 @@ aet01_2 <- function(adam_db,
                     medconcept_var = .study$medconcept_var,
                     lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
                     .study = list(
-                      actarm = "ARM",
+                      actarm = "ACTARM",
                       lbl_overall = NULL,
                       safety_var = c(
                         "FATAL", "SER", "SERWD", "SERDSM",
@@ -264,7 +264,7 @@ aet01_2_lyt <- function(armvar = .study$actarm,
                         medconcept_var = .study$medconcept_var,
                         lbl_medconcept_var = .study$lbl_medconcept_var,
                         .study = list(
-                          actarm = "ARM",
+                          actarm = "ACTARM",
                           lbl_overall = NULL,
                           safety_var = c(
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
