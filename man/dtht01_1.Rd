@@ -8,28 +8,28 @@
 \usage{
 dtht01_1(
   adam_db,
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   time_since_last_dose = FALSE,
   other_category = FALSE,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DTHT01"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 dtht01_1_lyt(
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   other_category = TRUE,
   deco = std_deco("DTHT01"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 dtht01_1_opt_lyt(
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DTHT01"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{

@@ -7,24 +7,24 @@
 \usage{
 lbt01_1(
   adam_db,
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
-  .study = list(actarm = "ACTARM")
+  .study = list(actualarm = "ACTARM")
 )
 
 lbt01_1_lyt(
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = .study$visitvar,
   lbl_avisit = "Visit",
   lbl_param = "Parameter",
   deco = std_deco("LBT01"),
-  .study = list(actarm = "ACTARM", visitvar = "AVISIT")
+  .study = list(actualarm = "ACTARM", visitvar = "AVISIT")
 )
 }
 \arguments{

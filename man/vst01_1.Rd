@@ -7,24 +7,24 @@
 \usage{
 vst01_1(
   adam_db,
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   summaryvars = .study$evo_vars,
   summaryvars_lbls = var_labels_for(adam_db$advs, summaryvars),
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("VST01"),
-  .study = list(actarm = "ACTARM", evo_vars = c("AVAL", "CHG"))
+  .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"))
 )
 
 vst01_1_lyt(
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   summaryvars = .study$evo_vars,
   summaryvars_lbls = .study$evo_vars_lbls,
   visitvar = .study$visitvar,
   lbl_avisit = "",
   lbl_param = "",
   deco = std_deco("VST01"),
-  .study = list(actarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
+  .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
 }

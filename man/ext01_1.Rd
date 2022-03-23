@@ -7,21 +7,21 @@
 \usage{
 ext01_1(
   adam_db,
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   summaryvars = "AVAL",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 ext01_1_lyt(
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   summaryvars = .study$analysis_var,
   summaryvars_lbls = .study$lbl_analysis_var,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL, analysis_var = "AVAL",
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, analysis_var = "AVAL",
     lbl_analysis_var = "Analysis Value")
 )
 }

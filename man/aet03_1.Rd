@@ -7,21 +7,21 @@
 \usage{
 aet03_1(
   adam_db,
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 aet03_1_lyt(
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   lbl_aebodsys = "",
   lbl_aedecod = "",
   severity_grade = .study$severity_grade,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL, severity_grade = c("MILD",
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, severity_grade = c("MILD",
     "MODERATE", "SEVERE", "LIFE THREATENING"))
 )
 }

@@ -35,13 +35,13 @@
 #'   "Grade 3-5" = c("3", "4", "5")
 #' ))
 aet04_1 <- function(adam_db,
-                    armvar = .study$actarm,
+                    armvar = .study$actualarm,
                     group_grades = .study$group_grades,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("AET04"),
                     .study = list(
-                      actarm = "ACTARM",
+                      actualarm = "ACTARM",
                       lbl_overall = NULL,
                       group_grades = list(
                         "Any Grade" = c("1", "2", "3", "4", "5"),
@@ -100,14 +100,14 @@ aet04_1 <- function(adam_db,
 #'
 #' @examples
 #' aet04_1_lyt(armvar = "ACTARM")
-aet04_1_lyt <- function(armvar = .study$armvar,
+aet04_1_lyt <- function(armvar = .study$actualarm,
                         lbl_aebodsys = "AEBODSYS",
                         lbl_aedecod = "AEDECOD",
                         group_grades = .study$group_grades,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET04"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actualarm = "ACTARM",
                           lbl_overall = NULL,
                           group_grades = list(
                             "Any Grade" = c("1", "2", "3", "4", "5"),

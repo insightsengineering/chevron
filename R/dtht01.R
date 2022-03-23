@@ -36,14 +36,14 @@
 #' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
 #' dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
 dtht01_1 <- function(adam_db,
-                     armvar = .study$actarm,
+                     armvar = .study$actualarm,
                      time_since_last_dose = FALSE,
                      other_category = FALSE,
                      lbl_overall = .study$lbl_overall,
                      prune_0 = TRUE,
                      deco = std_deco("DTHT01"),
                      .study = list(
-                       actarm = "ACTARM",
+                       actualarm = "ACTARM",
                        lbl_overall = NULL
                      )) {
   dbsel <- get_db_data(adam_db, "adsl")
@@ -103,12 +103,12 @@ dtht01_1 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-dtht01_1_lyt <- function(armvar = .study$actarm,
+dtht01_1_lyt <- function(armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          other_category = TRUE,
                          deco = std_deco("DTHT01"),
                          .study = list(
-                           actarm = "ACTARM",
+                           actualarm = "ACTARM",
                            lbl_overall = NULL
                          )) {
   tab <-
@@ -155,11 +155,11 @@ dtht01_1_lyt <- function(armvar = .study$actarm,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-dtht01_1_opt_lyt <- function(armvar = .study$actarm,
+dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
                              lbl_overall = .study$lbl_overall,
                              deco = std_deco("DTHT01"),
                              .study = list(
-                               actarm = "ACTARM",
+                               actualarm = "ACTARM",
                                lbl_overall = NULL
                              )) {
   basic_table_deco(deco) %>%

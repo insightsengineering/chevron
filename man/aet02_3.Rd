@@ -7,19 +7,19 @@
 \usage{
 aet02_3(
   adam_db,
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 aet02_3_lyt(
-  armvar = .study$actarm,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   lbl_aedecod = "AEDECOD",
   deco = std_deco("AET02"),
-  .study = list(actarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{
