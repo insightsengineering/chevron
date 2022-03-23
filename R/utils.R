@@ -11,11 +11,10 @@ globalVariables(c(
 #' @param vars variable names in data frame `df`
 #'
 #' @importFrom assertthat assert_that
-#' @importFrom tern var_labels
 #' @export
 var_labels_for <- function(df, vars) {
   assert_that(all(vars %in% names(df)))
-  unname(var_labels(df, fill = TRUE)[vars])
+  unname(formatable::var_labels(df, fill = TRUE)[vars])
 }
 
 
@@ -177,7 +176,6 @@ reorder_levels_params <- function(df, paramcd_levels) {
 #'
 #' @importFrom dplyr select
 #' @importFrom tidyr pivot_wider
-#' @importFrom tern `var_labels<-`
 #'
 #' @return (`data.frame`)
 #' @export
@@ -201,7 +199,7 @@ pivot_wider_labels <- function(df,
     select(keep, names_from, values_from) %>%
     pivot_wider(names_from = names_from, values_from = values_from)
 
-  var_labels(df_wide[, key_val[[2]]]) <- as.character(key_val[[1]])
+  formatable::var_labels(df_wide[, key_val[[2]]]) <- as.character(key_val[[1]])
 
   df_wide
 }
@@ -279,7 +277,6 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
 
 #' Retrieve Synthetic Test Data Used For Examples
-#' @importFrom tern with_label
 #' @export
 syn_test_data <- function() {
   sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
@@ -329,14 +326,14 @@ syn_test_data <- function() {
 
   db <- db %>%
     dm_zoom_to(adae) %>%
-    mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(AEDECOD = with_label(AEDECOD, "MedDRA Preferred Term")) %>%
+    mutate(AEBODSYS = formatable::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(AEDECOD = formatable::with_label(AEDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
   db <- db %>%
     dm_zoom_to(admh) %>%
-    mutate(MHBODSYS = with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(MHDECOD = with_label(MHDECOD, "MedDRA Preferred Term")) %>%
+    mutate(MHBODSYS = formatable::with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = formatable::with_label(MHDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
   db <- db %>%
