@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9001
+Version: 0.1.0.9002
 Authors@R: c(
     person("NEST", , , "basel.nestcicd@roche.com", role = c("aut", "cre")),
     person("Roche", role = c("cph", "fnd")),
@@ -14,18 +14,19 @@ Description: Standard Table, Listings, and Graphs (TLG) library used in
     clinical trials.
 License: file LICENSE
 Depends:
-    R (>= 4.0.0) 
+    R (>= 4.0.0)
 Imports:
-    rtables,
-    tern,
     assertthat,
     checkmate,
     dm,
     dplyr,
     forcats,
+    formatable,
     magrittr,
     methods,
     rlang,
+    rtables,
+    tern,
     tibble,
     tidyr
 Suggests:
