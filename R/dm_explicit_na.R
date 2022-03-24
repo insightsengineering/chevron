@@ -126,5 +126,5 @@ h_as_factor <- function(x, na_label) {
 
   res <- factor(res, levels = lvl_x)
 
-  formatable::with_label(res, init_lab)
+  formatters::with_label(res, init_lab)
 }

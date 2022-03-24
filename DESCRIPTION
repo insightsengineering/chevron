@@ -21,7 +21,7 @@ Imports:
     dm,
     dplyr,
     forcats,
-    formatable,
+    formatters,
     magrittr,
     methods,
     rlang,
