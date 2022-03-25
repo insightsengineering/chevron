@@ -12,9 +12,7 @@ aet04_1(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = list(`Any
-    Grade` = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3",
-    "4"), `Grade 5` = c("5")))
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
 )
 
 aet04_1_lyt(
@@ -24,9 +22,7 @@ aet04_1_lyt(
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = list(`Any
-    Grade` = c("1", "2", "3", "4", "5"), `Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3",
-    "4"), `Grade 5` = c("5")))
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
 )
 }
 \arguments{
