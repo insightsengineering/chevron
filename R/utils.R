@@ -14,7 +14,7 @@ globalVariables(c(
 #' @export
 var_labels_for <- function(df, vars) {
   assert_that(all(vars %in% names(df)))
-  unname(formatable::var_labels(df, fill = TRUE)[vars])
+  unname(formatters::var_labels(df, fill = TRUE)[vars])
 }
 
 
@@ -199,7 +199,7 @@ pivot_wider_labels <- function(df,
     select(keep, names_from, values_from) %>%
     pivot_wider(names_from = names_from, values_from = values_from)
 
-  formatable::var_labels(df_wide[, key_val[[2]]]) <- as.character(key_val[[1]])
+  formatters::var_labels(df_wide[, key_val[[2]]]) <- as.character(key_val[[1]])
 
   df_wide
 }
@@ -326,14 +326,14 @@ syn_test_data <- function() {
 
   db <- db %>%
     dm_zoom_to(adae) %>%
-    mutate(AEBODSYS = formatable::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(AEDECOD = formatable::with_label(AEDECOD, "MedDRA Preferred Term")) %>%
+    mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(AEDECOD = formatters::with_label(AEDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
   db <- db %>%
     dm_zoom_to(admh) %>%
-    mutate(MHBODSYS = formatable::with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(MHDECOD = formatable::with_label(MHDECOD, "MedDRA Preferred Term")) %>%
+    mutate(MHBODSYS = formatters::with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = formatters::with_label(MHDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
   db <- db %>%

@@ -348,25 +348,25 @@ mutate_for_aet01 <- function(adam_db) {
       CQ01 = if ("CQ01NAM" %in% colnames(.)) CQ01NAM != ""
     ) %>%
     mutate(
-      AEDECOD = formatable::with_label(AEDECOD, "Dictionary-Derived Term"),
-      AESDTH = formatable::with_label(AESDTH, "Results in Death"),
-      AEACN = formatable::with_label(AEACN, "Action Taken with Study Treatment"),
-      FATAL = formatable::with_label(FATAL, "AE with fatal outcome"),
-      SER = formatable::with_label(SER, "Serious AE"),
-      SEV = if ("SEV" %in% colnames(.)) formatable::with_label(SEV, "Severe AE (at greatest intensity)"),
-      SERWD = formatable::with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
-      SERDSM = formatable::with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
-      RELSER = formatable::with_label(RELSER, "Related Serious AE"),
-      WD = formatable::with_label(WD, "AE leading to withdrawal from treatment"),
-      DSM = formatable::with_label(DSM, "AE leading to dose modification/interruption"),
-      REL = formatable::with_label(REL, "Related AE"),
-      RELWD = formatable::with_label(RELWD, "Related AE leading to withdrawal from treatment"),
-      RELDSM = formatable::with_label(RELDSM, "Related AE leading to dose modification/interruption"),
-      CTC35 = if ("CTC35" %in% colnames(.)) formatable::with_label(CTC35, "Grade 3-5 AE"),
-      CTC45 = if ("CTC45" %in% colnames(.)) formatable::with_label(CTC45, "Grade 4/5 AE"),
-      SMQ01 = if ("SMQ01" %in% colnames(.)) formatable::with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
-      SMQ02 = if ("SMQ02" %in% colnames(.)) formatable::with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
-      CQ01 = if ("CQ01" %in% colnames(.)) formatable::with_label(CQ01, aesi_label(CQ01NAM))
+      AEDECOD = formatters::with_label(AEDECOD, "Dictionary-Derived Term"),
+      AESDTH = formatters::with_label(AESDTH, "Results in Death"),
+      AEACN = formatters::with_label(AEACN, "Action Taken with Study Treatment"),
+      FATAL = formatters::with_label(FATAL, "AE with fatal outcome"),
+      SER = formatters::with_label(SER, "Serious AE"),
+      SEV = if ("SEV" %in% colnames(.)) formatters::with_label(SEV, "Severe AE (at greatest intensity)"),
+      SERWD = formatters::with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
+      SERDSM = formatters::with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
+      RELSER = formatters::with_label(RELSER, "Related Serious AE"),
+      WD = formatters::with_label(WD, "AE leading to withdrawal from treatment"),
+      DSM = formatters::with_label(DSM, "AE leading to dose modification/interruption"),
+      REL = formatters::with_label(REL, "Related AE"),
+      RELWD = formatters::with_label(RELWD, "Related AE leading to withdrawal from treatment"),
+      RELDSM = formatters::with_label(RELDSM, "Related AE leading to dose modification/interruption"),
+      CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(CTC35, "Grade 3-5 AE"),
+      CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(CTC45, "Grade 4/5 AE"),
+      SMQ01 = if ("SMQ01" %in% colnames(.)) formatters::with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
+      SMQ02 = if ("SMQ02" %in% colnames(.)) formatters::with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
+      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(CQ01, aesi_label(CQ01NAM))
     ) %>%
     dm_update_zoomed()
 
@@ -510,14 +510,14 @@ mutate_cmt02_pt_1 <- function(adam_db) {
 #' @return
 #'
 mutate_dmt01 <- function(adam_db) {
-  adsl_lbs <- formatable::var_labels(adam_db$adsl)
+  adsl_lbs <- formatters::var_labels(adam_db$adsl)
   db <- adam_db %>%
     dm_zoom_to(adsl) %>%
     mutate(
       SEX = case_when(SEX == "F" ~ "Female", SEX == "M" ~ "Male", TRUE ~ as.character(SEX)),
       SEX = factor(SEX, levels = c("Female", "Male"))
     ) %>%
-    mutate(SEX = formatable::with_label(SEX, adsl_lbs["SEX"])) %>%
+    mutate(SEX = formatters::with_label(SEX, adsl_lbs["SEX"])) %>%
     dm_update_zoomed()
   db
 }
