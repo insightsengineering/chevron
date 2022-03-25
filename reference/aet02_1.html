@@ -18,7 +18,7 @@ events categorized by Body System and Dictionary-Derived Term."><!-- mathjax -->
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9003</span>
       </span>
     </div>
 
@@ -32,15 +32,6 @@ events categorized by Body System and Dictionary-Derived Term."><!-- mathjax -->
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -69,20 +60,20 @@ events categorized by Body System and Dictionary-Derived Term.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">aet02_1</span><span class="op">(</span>
   <span class="va">adam_db</span>,
-  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">armvar</span>,
+  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   prune_0 <span class="op">=</span> <span class="cn">TRUE</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"AET02"</span><span class="op">)</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="fu">aet02_1_lyt</span><span class="op">(</span>
-  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">armvar</span>,
+  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   lbl_aebodsys <span class="op">=</span> <span class="st">"Body System or Organ Class"</span>,
   lbl_aedecod <span class="op">=</span> <span class="st">"Dictionary-Derived Term"</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"AET02"</span><span class="op">)</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -125,7 +116,7 @@ events categorized by Body System and Dictionary-Derived Term.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/roche/rtables" class="external-link">rtables</a></span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: magrittr</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: formatable</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: formatters</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span></span>
@@ -206,7 +197,7 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db_m</span> <span class="op">&lt;-</span> <span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="va">adae</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>AEBODSYS <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/formatable/man/with_label.html" class="external-link">with_label</a></span><span class="op">(</span><span class="va">AEBODSYS</span>, <span class="st">"Medra System Organ Class"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>AEBODSYS <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/formatters/man/with_label.html" class="external-link">with_label</a></span><span class="op">(</span><span class="va">AEBODSYS</span>, <span class="st">"Medra System Organ Class"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">aet02_1</span><span class="op">(</span><span class="va">db_m</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>

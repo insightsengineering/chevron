@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9003</span>
       </span>
     </div>
 
@@ -48,15 +48,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -80,7 +71,7 @@ Other releases
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The .study Argument</h1>
             
-            <h4 data-toc-skip class="date">2022-03-23</h4>
+            <h4 data-toc-skip class="date">2022-03-25</h4>
       
       
       <div class="hidden name"><code>dot_study_argument.Rmd</code></div>
@@ -92,8 +83,129 @@ Other releases
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>We will explain the <code>.study</code> argument in
-<em>tlg-functions</em> at a later time point.</p>
+<p>The <code>.study</code> argument in <em>tlg-functions</em> is used to
+pass values that are used in several tables.</p>
+</div>
+<div class="section level2">
+<h2 id="the--study-object">The <code>.study</code> object<a class="anchor" aria-label="anchor" href="#the--study-object"></a>
+</h2>
+<p>The following variables are best hard coded in the table-generating
+functions (with the possibility to the user to override some of these
+choices.):</p>
+<div class="section level3">
+<h3 id="actualarm">
+<code>actualarm</code><a class="anchor" aria-label="anchor" href="#actualarm"></a>
+</h3>
+<p>Used to specify the actual arm of the study. Typically
+<code>ACTARM</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="evo_vars">
+<code>evo_vars</code><a class="anchor" aria-label="anchor" href="#evo_vars"></a>
+</h3>
+<p>Used in <code>LBT01</code> and <code>EGT01</code>, which variables
+capture status and the evolution of the analysis: generally
+<code>c("AVAL", "CNG")</code></p>
+</div>
+<div class="section level3">
+<h3 id="evo_vars_labs">
+<code>evo_vars_labs</code><a class="anchor" aria-label="anchor" href="#evo_vars_labs"></a>
+</h3>
+<p>The label associated with the variables selected in
+<code>evo_vars</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="disc_reason_var">
+<code>disc_reason_var</code><a class="anchor" aria-label="anchor" href="#disc_reason_var"></a>
+</h3>
+<p>Used in <code>DST01</code> to define reason for patient withdrawal.
+Default is <code>DCSREAS</code></p>
+</div>
+<div class="section level3">
+<h3 id="group_grade">
+<code>group_grade</code><a class="anchor" aria-label="anchor" href="#group_grade"></a>
+</h3>
+<p>Used in <code>AET04</code> to put in correspondence severity levels
+and labels.</p>
+</div>
+<div class="section level3">
+<h3 id="lbl_overall">
+<code>lbl_overall</code><a class="anchor" aria-label="anchor" href="#lbl_overall"></a>
+</h3>
+<p>used everywhere, the label associated with the overall column.</p>
+</div>
+<div class="section level3">
+<h3 id="medconcept_var">
+<code>medconcept_var</code><a class="anchor" aria-label="anchor" href="#medconcept_var"></a>
+</h3>
+<p>Used in <code>AET01</code> the medical concept variables to be
+summarized. Typically <code>c("SMQ01", "SMQ02", "CQ01")</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="planarm">
+<code>planarm</code><a class="anchor" aria-label="anchor" href="#planarm"></a>
+</h3>
+<p>Used to specify the planned arm of the study. Typically
+<code>ARM</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="reason">
+<code>reason</code><a class="anchor" aria-label="anchor" href="#reason"></a>
+</h3>
+<p>used in <code>DST01</code>, the name of the column specifying study
+withdrawal): generally <code>DCSREAS</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="safety_var">
+<code>safety_var</code><a class="anchor" aria-label="anchor" href="#safety_var"></a>
+</h3>
+<p>Used in <code>AET01</code> the safety variables to be summarized.
+Typically
+<code>c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="severity_grade">
+<code>severity_grade</code><a class="anchor" aria-label="anchor" href="#severity_grade"></a>
+</h3>
+<p>internal, used in <code>AET03</code>, capture the levels of severity
+of adverse events: generally corresponds to the levels of
+<code>AESEV</code>in <code>adae</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="status">
+<code>status</code><a class="anchor" aria-label="anchor" href="#status"></a>
+</h3>
+<p>used in <code>DST01</code>, the name of the column specifying study
+status): generally: <code>EOSSTT</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="status_var">
+<code>status_var</code><a class="anchor" aria-label="anchor" href="#status_var"></a>
+</h3>
+<p>Used in <code>DST01</code> to define patient status.</p>
+</div>
+<div class="section level3">
+<h3 id="summary_demo">
+<code>summary_demo</code><a class="anchor" aria-label="anchor" href="#summary_demo"></a>
+</h3>
+<p>Used in <code>DMT01</code>, the list of variables to be
+summarized.</p>
+</div>
+<div class="section level3">
+<h3 id="summary_demo_lbl">
+<code>summary_demo_lbl</code><a class="anchor" aria-label="anchor" href="#summary_demo_lbl"></a>
+</h3>
+<p>Used in <code>DMT01</code>, the labels for the list of variables to
+be summarized.</p>
+</div>
+<div class="section level3">
+<h3 id="visitvar">
+<code>visitvar</code><a class="anchor" aria-label="anchor" href="#visitvar"></a>
+</h3>
+<p>The variable used to define the visits. (Could this variable be
+different for each table, in which case it should be out of the
+<code>.study</code> object.)</p>
+</div>
 </div>
   </div>
 

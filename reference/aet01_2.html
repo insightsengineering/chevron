@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9003</span>
       </span>
     </div>
 
@@ -31,15 +31,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -67,7 +58,7 @@ Other releases
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">aet01_2</span><span class="op">(</span>
   <span class="va">adam_db</span>,
-  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">armvar</span>,
+  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   prune_0 <span class="op">=</span> <span class="cn">FALSE</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"AET01"</span><span class="op">)</span>,
@@ -75,24 +66,24 @@ Other releases
   lbl_safety_var <span class="op">=</span> <span class="fu"><a href="var_labels_for.html">var_labels_for</a></span><span class="op">(</span><span class="va">adam_db</span><span class="op">$</span><span class="va">adae</span>, <span class="va">safety_var</span><span class="op">)</span>,
   medconcept_var <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">medconcept_var</span>,
   lbl_medconcept_var <span class="op">=</span> <span class="fu"><a href="var_labels_for.html">var_labels_for</a></span><span class="op">(</span><span class="va">adam_db</span><span class="op">$</span><span class="va">adae</span>, <span class="va">medconcept_var</span><span class="op">)</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span>, safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>,
-    <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"SEV"</span><span class="op">)</span>,
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span>, safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>,
+    <span class="st">"SER"</span>, <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"SEV"</span><span class="op">)</span>,
     medconcept_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SMQ01"</span>, <span class="st">"SMQ02"</span>, <span class="st">"CQ01"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="fu">aet01_2_lyt</span><span class="op">(</span>
-  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">armvar</span>,
+  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"AET01"</span><span class="op">)</span>,
   safety_var <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">safety_var</span>,
   lbl_safety_var <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_safety_var</span>,
   medconcept_var <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">medconcept_var</span>,
   lbl_medconcept_var <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_medconcept_var</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span>, safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>,
-    <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"CTC35"</span>, <span class="st">"CTC45"</span>,
-    <span class="st">"SEV"</span><span class="op">)</span>, lbl_safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>, <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>,
-    <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"CTC35"</span>, <span class="st">"CTC45"</span>, <span class="st">"SEV"</span><span class="op">)</span>, medconcept_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SMQ01"</span>,
-    <span class="st">"SMQ02"</span>, <span class="st">"CQ01"</span><span class="op">)</span>, lbl_medconcept_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SMQ01"</span>, <span class="st">"SMQ02"</span>, <span class="st">"CQ01"</span><span class="op">)</span><span class="op">)</span>
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span>, safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>,
+    <span class="st">"SER"</span>, <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"CTC35"</span>,
+    <span class="st">"CTC45"</span>, <span class="st">"SEV"</span><span class="op">)</span>, lbl_safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>, <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>,
+    <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"CTC35"</span>, <span class="st">"CTC45"</span>, <span class="st">"SEV"</span><span class="op">)</span>, medconcept_var <span class="op">=</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SMQ01"</span>, <span class="st">"SMQ02"</span>, <span class="st">"CQ01"</span><span class="op">)</span>, lbl_medconcept_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SMQ01"</span>, <span class="st">"SMQ02"</span>, <span class="st">"CQ01"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 

@@ -18,7 +18,7 @@ reporting of death."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9003</span>
       </span>
     </div>
 
@@ -32,15 +32,6 @@ reporting of death."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -69,28 +60,28 @@ reporting of death.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dtht01_1</span><span class="op">(</span>
   <span class="va">adam_db</span>,
-  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">armvar</span>,
+  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,
   time_since_last_dose <span class="op">=</span> <span class="cn">FALSE</span>,
   other_category <span class="op">=</span> <span class="cn">FALSE</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   prune_0 <span class="op">=</span> <span class="cn">TRUE</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DTHT01"</span><span class="op">)</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="fu">dtht01_1_lyt</span><span class="op">(</span>
-  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">armvar</span>,
+  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   other_category <span class="op">=</span> <span class="cn">TRUE</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DTHT01"</span><span class="op">)</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="fu">dtht01_1_opt_lyt</span><span class="op">(</span>
-  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">armvar</span>,
+  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DTHT01"</span><span class="op">)</span>,
-  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>armvar <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -130,11 +121,6 @@ reporting of death.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/insightsengineering/tern" class="external-link">tern</a></span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘tern’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:formatable’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     var_labels, var_labels&lt;-, with_label</span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
