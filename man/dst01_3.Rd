@@ -7,26 +7,26 @@
 \usage{
 dst01_3(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   status = "EOSSTT",
   disc_reason_var = .study$disc_reason_var,
   status_treatment = "EOTSTT",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
+  .study = list(planarm = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
     "All Patients")
 )
 
 dst01_3_lyt(
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   status_treatment = .study$status,
   completed_lbl = "COMPLETED",
   discontinued_lbl = "DISCONTINUED",
   ongoing_lbl = "ONGOING",
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(armvar = "ARM", lbl_overall = "All Patients", status_treatment =
+  .study = list(planarm = "ARM", lbl_overall = "All Patients", status_treatment =
     "EOTSTT")
 )
 }

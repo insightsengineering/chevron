@@ -31,14 +31,14 @@
 #'
 #' lbt01_1(db)
 lbt01_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actualarm,
                     summaryvars = c("AVAL", "CHG"),
                     summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                     visitvar = "AVISIT",
                     prune_0 = TRUE,
                     deco = std_deco("LBT01"),
                     .study = list(
-                      armvar = "ACTARM"
+                      actualarm = "ACTARM"
                     )) {
   lyt <- lbt01_1_lyt(
     armvar = armvar,
@@ -71,7 +71,7 @@ lbt01_1 <- function(adam_db,
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #'
 #' @export
-lbt01_1_lyt <- function(armvar = .study$armvar,
+lbt01_1_lyt <- function(armvar = .study$actualarm,
                         summaryvars = c("AVAL", "CHG"),
                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                         visitvar = .study$visitvar,
@@ -79,7 +79,7 @@ lbt01_1_lyt <- function(armvar = .study$armvar,
                         lbl_param = "Parameter",
                         deco = std_deco("LBT01"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actualarm = "ACTARM",
                           visitvar = "AVISIT"
                         )) {
 

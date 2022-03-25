@@ -25,12 +25,12 @@
 #'
 #' cmt02_pt_1(adam_db = db)
 cmt02_pt_1 <- function(adam_db,
-                       armvar = .study$armvar,
+                       armvar = .study$planarm,
                        prune_0 = TRUE,
                        lbl_overall = .study$lbl_overall,
                        deco = std_deco("CMT02_PT"),
                        .study = list(
-                         armvar = "ARM",
+                         planarm = "ARM",
                          lbl_overall = NULL
                        )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -68,11 +68,11 @@ cmt02_pt_1 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   lbl_overall = NULL
 #' )
-cmt02_pt_1_lyt <- function(armvar = .study$armvar,
+cmt02_pt_1_lyt <- function(armvar = .study$planarm,
                            lbl_overall = .study$lbl_overall,
                            deco = std_deco("CMT02_PT"),
                            .study = list(
-                             armvar = "ACTARM",
+                             planarm = "ARM",
                              lbl_overall = NULL
                            )) {
   basic_table_deco(deco) %>%

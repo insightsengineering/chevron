@@ -25,14 +25,14 @@
 #'
 #' aet01_1(db, armvar = "ARM")
 aet01_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = FALSE,
                     deco = std_deco("AET01"),
                     safety_var = .study$safety_var,
                     lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
                     .study = list(
-                      armvar = "ARM",
+                      actualarm = "ACTARM",
                       lbl_overall = NULL,
                       safety_var = c(
                         "FATAL", "SER", "SERWD", "SERDSM",
@@ -91,13 +91,13 @@ aet01_1 <- function(adam_db,
 #'   lbl_overall = NULL,
 #'   deco = std_deco("AET01")
 #' )
-aet01_1_lyt <- function(armvar = .study$armvar,
+aet01_1_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET01"),
                         safety_var = .study$safety_var,
                         lbl_safety_var = .study$lbl_safety_var,
                         .study = list(
-                          armvar = "ARM",
+                          actualarm = "ACTARM",
                           lbl_overall = NULL,
                           safety_var = c(
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
@@ -185,7 +185,7 @@ aet01_1_lyt <- function(armvar = .study$armvar,
 #'
 #' aet01_2(db, armvar = "ARM", prune_0 = FALSE)
 aet01_2 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = FALSE,
                     deco = std_deco("AET01"),
@@ -194,7 +194,7 @@ aet01_2 <- function(adam_db,
                     medconcept_var = .study$medconcept_var,
                     lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
                     .study = list(
-                      armvar = "ARM",
+                      actualarm = "ACTARM",
                       lbl_overall = NULL,
                       safety_var = c(
                         "FATAL", "SER", "SERWD", "SERDSM",
@@ -256,7 +256,7 @@ aet01_2 <- function(adam_db,
 #'   lbl_overall = NULL,
 #'   deco = std_deco("AET01")
 #' )
-aet01_2_lyt <- function(armvar = .study$armvar,
+aet01_2_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET01"),
                         safety_var = .study$safety_var,
@@ -264,7 +264,7 @@ aet01_2_lyt <- function(armvar = .study$armvar,
                         medconcept_var = .study$medconcept_var,
                         lbl_medconcept_var = .study$lbl_medconcept_var,
                         .study = list(
-                          armvar = "ARM",
+                          actualarm = "ACTARM",
                           lbl_overall = NULL,
                           safety_var = c(
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",

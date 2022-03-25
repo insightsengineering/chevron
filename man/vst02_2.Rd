@@ -7,22 +7,22 @@
 \usage{
 vst02_2(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$actualarm,
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
   deco = std_deco("VST02_2"),
-  .study = list(armvar = "ARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 vst02_2_lyt(
-  armvar = .study$armvar,
+  armvar = .study$actualarm,
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   deco = std_deco("VST02_2"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{

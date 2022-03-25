@@ -7,20 +7,20 @@
 \usage{
 aet02_1(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 aet02_1_lyt(
-  armvar = .study$armvar,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   lbl_aebodsys = "Body System or Organ Class",
   lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 }
 \arguments{

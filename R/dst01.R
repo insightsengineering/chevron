@@ -52,14 +52,14 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' dst01_1(db)
 dst01_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$planarm,
                     status_var = "EOSSTT",
                     disc_reason_var = .study$disc_reason_var,
                     prune_0 = TRUE,
                     lbl_overall = .study$lbl_overall,
                     deco = std_deco("DST01"),
                     .study = list(
-                      armvar = "ARM",
+                      planarm = "ARM",
                       lbl_overall = "All Patients",
                       disc_reason_var = "DCSREAS"
                     )) {
@@ -137,7 +137,7 @@ dst01_1 <- function(adam_db,
 #'   status = "EOP01STT",
 #'   disc_reason_var = "DCP01RS"
 #' )
-dst01_1_lyt <- function(armvar = .study$armvar,
+dst01_1_lyt <- function(armvar = .study$planarm,
                         status = .study$status,
                         disc_reason_var = .study$disc_reason_var,
                         completed_lbl = "COMPLETED",
@@ -146,7 +146,7 @@ dst01_1_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("DST01"),
                         .study = list(
-                          armvar = "ARM",
+                          planarm = "ARM",
                           lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
@@ -226,14 +226,14 @@ dst01_1_lyt <- function(armvar = .study$armvar,
 #' dst01_2(db)
 #' dst01_2(db, lbl_overall = NULL)
 dst01_2 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$planarm,
                     status_var = "EOSSTT",
                     disc_reason_var = .study$disc_reason_var,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
-                      armvar = "ARM",
+                      planarm = "ARM",
                       lbl_overall = "All Patients",
                       disc_reason_var = "DCSREAS"
                     )) {
@@ -309,7 +309,7 @@ dst01_2 <- function(adam_db,
 #'   status = "EOP01STT",
 #'   disc_reason_var = "DCP01RS"
 #' )
-dst01_2_lyt <- function(armvar = .study$armvar,
+dst01_2_lyt <- function(armvar = .study$planarm,
                         status = .study$status,
                         disc_reason_var = .study$disc_reason_var,
                         completed_lbl = "COMPLETED",
@@ -318,7 +318,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("DST01"),
                         .study = list(
-                          armvar = "ARM",
+                          planarm = "ARM",
                           lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
@@ -404,7 +404,7 @@ dst01_2_lyt <- function(armvar = .study$armvar,
 #' dst01_3(db)
 #' dst01_3(db, lbl_overall = NULL)
 dst01_3 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$planarm,
                     status = "EOSSTT",
                     disc_reason_var = .study$disc_reason_var,
                     status_treatment = "EOTSTT",
@@ -412,7 +412,7 @@ dst01_3 <- function(adam_db,
                     prune_0 = TRUE,
                     deco = std_deco("DST01"),
                     .study = list(
-                      armvar = "ARM",
+                      planarm = "ARM",
                       disc_reason_var = "DCSREAS",
                       lbl_overall = "All Patients"
                     )) {
@@ -512,7 +512,7 @@ dst01_3 <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   status_treatment = "EOTxx01"
 #' )
-dst01_3_lyt <- function(armvar = .study$armvar,
+dst01_3_lyt <- function(armvar = .study$planarm,
                         status_treatment = .study$status,
                         completed_lbl = "COMPLETED",
                         discontinued_lbl = "DISCONTINUED",
@@ -520,7 +520,7 @@ dst01_3_lyt <- function(armvar = .study$armvar,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("DST01"),
                         .study = list(
-                          armvar = "ARM",
+                          planarm = "ARM",
                           lbl_overall = "All Patients",
                           status_treatment = "EOTSTT"
                         )) {

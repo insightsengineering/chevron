@@ -7,18 +7,18 @@
 \usage{
 cmt02_pt_1(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("CMT02_PT"),
-  .study = list(armvar = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 
 cmt02_pt_1_lyt(
-  armvar = .study$armvar,
+  armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("CMT02_PT"),
-  .study = list(armvar = "ACTARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 }
 \arguments{

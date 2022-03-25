@@ -35,25 +35,28 @@
 #'   "Grade 3-5" = c("3", "4", "5")
 #' ))
 aet04_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$actualarm,
                     group_grades = .study$group_grades,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
                     deco = std_deco("AET04"),
                     .study = list(
-                      armvar = "ACTARM",
+                      actualarm = "ACTARM",
                       lbl_overall = NULL,
-                      group_grades = list(
-                        "Any Grade" = c("1", "2", "3", "4", "5"),
-                        "Grade 1-2" = c("1", "2"),
-                        "Grade 3-4" = c("3", "4"),
-                        "Grade 5" = c("5")
-                      )
+                      group_grades = NULL
                     )) {
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
   # TODO: check that there are not grades in the data that are not defined in the `group_grades` map
+  if (is.null(group_grades)) {
+    group_grades <- list(
+      "Any Grade" = c("1", "2", "3", "4", "5"),
+      "Grade 1-2" = c("1", "2"),
+      "Grade 3-4" = c("3", "4"),
+      "Grade 5" = c("5")
+    )
+  }
 
   lyt <- aet04_1_lyt(
     armvar = armvar,
@@ -100,22 +103,26 @@ aet04_1 <- function(adam_db,
 #'
 #' @examples
 #' aet04_1_lyt(armvar = "ACTARM")
-aet04_1_lyt <- function(armvar = .study$armvar,
+aet04_1_lyt <- function(armvar = .study$actualarm,
                         lbl_aebodsys = "AEBODSYS",
                         lbl_aedecod = "AEDECOD",
                         group_grades = .study$group_grades,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET04"),
                         .study = list(
-                          armvar = "ACTARM",
+                          actualarm = "ACTARM",
                           lbl_overall = NULL,
-                          group_grades = list(
-                            "Any Grade" = c("1", "2", "3", "4", "5"),
-                            "Grade 1-2" = c("1", "2"),
-                            "Grade 3-4" = c("3", "4"),
-                            "Grade 5" = c("5")
-                          )
+                          group_grades = NULL
                         )) {
+  if (is.null(group_grades)) {
+    group_grades <- list(
+      "Any Grade" = c("1", "2", "3", "4", "5"),
+      "Grade 1-2" = c("1", "2"),
+      "Grade 3-4" = c("3", "4"),
+      "Grade 5" = c("5")
+    )
+  }
+
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

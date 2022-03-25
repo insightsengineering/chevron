@@ -28,14 +28,14 @@
 #'
 #' mht01_1(adam_db = db) %>% head(15)
 mht01_1 <- function(adam_db,
-                    armvar = .study$armvar,
+                    armvar = .study$planarm,
                     lbl_overall = .study$lbl_overall,
                     lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
                     lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
                     prune_0 = TRUE,
                     deco = std_deco("MHT01"),
                     .study = list(
-                      armvar = "ACTARM",
+                      planarm = "ARM",
                       lbl_overall = NULL
                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
@@ -79,13 +79,13 @@ mht01_1 <- function(adam_db,
 #'   lbl_overall = NULL,
 #'   deco = std_deco("MHT01")
 #' )
-mht01_1_lyt <- function(armvar = .study$armvar,
+mht01_1_lyt <- function(armvar = .study$planarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_mhbodsys = "MedDRA System Organ Class",
                         lbl_mhdecod = "MedDRA preferred Term",
                         deco = std_deco("MHT01"),
                         .study = list(
-                          armvar = "ARM",
+                          planarm = "ARM",
                           lbl_overall = NULL
                         )) {
   basic_table_deco(deco) %>%

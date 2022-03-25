@@ -7,26 +7,26 @@
 \usage{
 aet01_1(
   adam_db,
-  armvar = .study$armvar,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
   lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
-  .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL",
+    "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))
 )
 
 aet01_1_lyt(
-  armvar = .study$armvar,
+  armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
   lbl_safety_var = .study$lbl_safety_var,
-  .study = list(armvar = "ARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
-    "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
-    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL",
+    "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35",
+    "CTC45", "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER",
+    "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
 )
 }
 \arguments{
