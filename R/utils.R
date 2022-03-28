@@ -94,8 +94,7 @@ bol_YN <- function(x) { # nolint
 #' library(scda)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
-#' adex <- sd$adex %>%
-#'   dplyr::mutate(ANL01FL = "Y")
+#' adex <- dplyr::mutate(sd$adex, ANL01FL = "Y")
 #'
 #' adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
 #'
