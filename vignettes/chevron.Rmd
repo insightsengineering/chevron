@@ -81,8 +81,7 @@ referred to in `chevron` as `pmap`.
 The standard preprocessing map that comes with the *tlg-functions* in `chevron` can be access via `std_pmap`
 
 ```{r}
-std_pmap() %>%
-  head()
+head(std_pmap)
 ```
 
 For example, for `aet02_1`:
@@ -92,8 +91,7 @@ For example, for `aet02_1`:
 3. and the required data are in the `req_data` column accessible by
 
 ```{r}
-pmap <- std_pmap()
-unlist(pmap[pmap$tlgfname == "aet02_1", "req_data", drop = TRUE])
+unlist(std_pmap[std_pmap$tlgfname == "aet02_1", "req_data", drop = TRUE])
 ```
 
 Note that you can access the explicit functions with `std_filter_fun` and `std_mutate_fun`

@@ -225,7 +225,7 @@ flf <- list(
 These filter label based system can then be used as follows, assume we would like the data for `CTC35_SE`:
 
 ```{r}
-adam__CTC35_SE <- adam_study_data %>%
+adam__CTC35_SE <- adam_study_data %>% # nolint
   flf$SE() %>%
   flf$CTC35() %>%
   dm_apply_filters()
@@ -258,7 +258,7 @@ adam_study_data %>%
 so to get the filtered data
 
 ```{r}
-adam__CTC35_SE <- adam_study_data %>%
+adam__CTC35_SE <- adam_study_data %>% # nolint
   dm_filter_with_labels(c("CTC35", "SE")) %>%
   dm_apply_filters()
 
