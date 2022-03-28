@@ -2,16 +2,13 @@
 % Please edit documentation in R/standard_data_preprocessing.R
 \name{mutate_dmt01}
 \alias{mutate_dmt01}
-\title{Mutate Function for \code{DMT01_1}}
+\title{Mutate function for \code{DMT01_1}}
 \usage{
 mutate_dmt01(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 }
-\value{
-
-}
 \description{
-Mutate Function for \code{DMT01_1}
+Mutate function for \code{DMT01_1}
 }

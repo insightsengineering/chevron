@@ -63,9 +63,7 @@ An adverse events table categorized by System Organ Class, Dictionary-Derived Te
 }}
 
 \examples{
-
 library(dm)
-library(rtables)
 
 db <- syn_test_data() \%>\%
   preprocess_data("aet03_1")

@@ -15,13 +15,11 @@
 #'  patients with the specific condition.
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr %>%
 #'
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(rtables)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("mht01_1")
@@ -51,7 +49,7 @@ mht01_1 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl_sorted <- tbl %>%

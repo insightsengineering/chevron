@@ -20,7 +20,6 @@
 #' @export
 #'
 #' @examples
-#'
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
@@ -49,7 +48,7 @@ ext01_1 <- function(adam_db,
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- prune_table(tbl)
 
   tbl
 }
@@ -109,7 +108,6 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("ext01_2")
@@ -139,7 +137,7 @@ ext01_2 <- function(adam_db,
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- prune_table(tbl)
 
   tbl
 }

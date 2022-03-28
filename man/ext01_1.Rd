@@ -64,7 +64,6 @@ patients in the corresponding analysis population given by \code{N}.
 }}
 
 \examples{
-
 library(dm)
 
 db <- syn_test_data() \%>\%

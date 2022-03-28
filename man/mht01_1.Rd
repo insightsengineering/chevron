@@ -62,7 +62,6 @@ patients with the specific condition.
 
 \examples{
 library(dm)
-library(rtables)
 
 db <- syn_test_data() \%>\%
   preprocess_data("mht01_1")

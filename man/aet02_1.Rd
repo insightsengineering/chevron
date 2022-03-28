@@ -60,7 +60,6 @@ events categorized by Body System and Dictionary-Derived Term.
 
 \examples{
 library(dm)
-library(rtables)
 
 db <- syn_test_data() \%>\%
   preprocess_data("aet02_1")
@@ -80,7 +79,7 @@ aet02_1(db, lbl_overall = "All Patients") \%>\% head()
 
 db_m <- db \%>\%
   dm_zoom_to(adae) \%>\%
-  mutate(AEBODSYS = with_label(AEBODSYS, "Medra System Organ Class")) \%>\%
+  mutate(AEBODSYS = formatters::with_label(AEBODSYS, "Medra System Organ Class")) \%>\%
   dm_update_zoomed()
 
 aet02_1(db_m) \%>\% head()

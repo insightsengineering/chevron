@@ -42,11 +42,6 @@ egt02_2_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
-\value{
-
-
-
-}
 \description{
 Assessments Outside Normal Limits Among Subject Without Abnormality at Baseline.
 }
@@ -65,7 +60,6 @@ Assessments Outside Normal Limits Among Subject Without Abnormality at Baseline.
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("adeg") \%>\%

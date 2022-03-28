@@ -72,7 +72,6 @@ the specific medication.
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to(adcm) \%>\%

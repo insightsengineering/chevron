@@ -4,7 +4,7 @@
 \alias{std_filter_fun}
 \title{Retrieve Standard Subsetting for Templates}
 \usage{
-std_filter_fun(tlgfname, pmap = std_pmap())
+std_filter_fun(tlgfname, pmap = std_pmap)
 }
 \arguments{
 \item{tlgfname}{(\code{character}) function name of tlg-function}

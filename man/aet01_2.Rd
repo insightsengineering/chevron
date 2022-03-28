@@ -56,11 +56,6 @@ aet01_2_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
-\value{
-
-
-
-}
 \description{
 Overview of death and summary of adverse events with medical concepts.
 }

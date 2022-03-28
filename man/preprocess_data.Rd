@@ -4,7 +4,7 @@
 \alias{preprocess_data}
 \title{Preprocess ADaM Data for A TLG function}
 \usage{
-preprocess_data(adam_db, tlgfname, pmap = std_pmap(), .study)
+preprocess_data(adam_db, tlgfname, pmap = std_pmap, .study)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}

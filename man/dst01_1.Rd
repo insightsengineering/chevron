@@ -86,7 +86,6 @@ which allows the tables to be constructed and pruned separately before binding.
 }}
 
 \examples{
-
 library(dm)
 
 db <- syn_test_data() \%>\%

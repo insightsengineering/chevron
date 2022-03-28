@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{std_deco}
 \alias{std_deco}
-\title{Standard Documentation Lookup}
+\title{Standard documentation lookup}
 \usage{
 std_deco(id, ...)
 }
@@ -12,5 +12,5 @@ std_deco(id, ...)
 \item{...}{not used at the moment}
 }
 \description{
-Standard Documentation Lookup
+Standard documentation lookup
 }

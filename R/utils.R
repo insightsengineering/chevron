@@ -5,7 +5,7 @@ globalVariables(c(
   "req_data", "tlgfname"
 ))
 
-#' Retrieve Variables for Certain variables
+#' Retrieve variables for certain variables
 #'
 #' @param df data frame
 #' @param vars variable names in data frame `df`
@@ -18,7 +18,7 @@ var_labels_for <- function(df, vars) {
 }
 
 
-#' Standard Documentation Lookup
+#' Standard documentation lookup
 #'
 #' @param id standard id of output
 #' @param ... not used at the moment
@@ -92,11 +92,10 @@ bol_YN <- function(x) { # nolint
 #' )
 #'
 #' library(scda)
-#' library(dplyr)
 #' sd <- synthetic_cdisc_data("rcd_2021_03_22")
 #' adsl <- sd$adsl
 #' adex <- sd$adex %>%
-#'   mutate(ANL01FL = "Y")
+#'   dplyr::mutate(ANL01FL = "Y")
 #'
 #' adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
 #'
@@ -134,7 +133,6 @@ cut_by_group <- function(df,
 #' @export
 #'
 #' @examples
-#'
 #' df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))
 #'
 #' str(reorder_levels_params(df, paramcd_levels = c("B", "A", "C")))
@@ -181,7 +179,6 @@ reorder_levels_params <- function(df, paramcd_levels) {
 #' @export
 #'
 #' @examples
-#'
 #' library(scda)
 #' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 #' pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID", "SUBJID"))
@@ -257,7 +254,6 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #'
 #' get_db_data(db, "airports")
 #' }
-#'
 get_db_data <- function(db, ...) { # TODO: revisit
   datasets <- c(...)
 
@@ -368,8 +364,11 @@ syn_test_data <- function() {
 #' @param deco (`list`) typically generated with `std_deco()`.
 #'
 #' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
-#'
 set_decoration <- function(x, deco) {
+  checkmate::assert_class(x, "TableTree")
+  checkmate::assert_list(deco, types = "character", max.len = 3, names = "unique")
+  checkmate::assert_subset(names(deco), c("title", "subtitles", "main_footer"))
+
   x@main_title <- deco$title
   x@subtitles <- deco$subtitles
   x@main_footer <- deco$main_footer

@@ -15,6 +15,5 @@ remove_tlg_pmap(pmap, tlgfname)
 Remove Row For a tlgfunction from a pre-processing map
 }
 \examples{
-
-remove_tlg_pmap(std_pmap(), "aet02_1")
+remove_tlg_pmap(std_pmap, "aet02_1")
 }

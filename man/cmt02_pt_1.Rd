@@ -34,9 +34,6 @@ cmt02_pt_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
-\value{
-
-}
 \description{
 A concomitant medication table with the number of subjects and the total number of treatments by medication name
 sorted by frequencies.
@@ -55,7 +52,6 @@ sorted by frequencies.
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to(adcm) \%>\%

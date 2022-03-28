@@ -80,7 +80,6 @@ vst01_1 <- function(adam_db,
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #'
-#' @return
 #' @export
 vst01_1_lyt <- function(armvar = .study$actualarm,
                         summaryvars = .study$evo_vars,

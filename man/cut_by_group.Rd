@@ -40,11 +40,10 @@ group <- list(
 )
 
 library(scda)
-library(dplyr)
 sd <- synthetic_cdisc_data("rcd_2021_03_22")
 adsl <- sd$adsl
 adex <- sd$adex \%>\%
-  mutate(ANL01FL = "Y")
+  dplyr::mutate(ANL01FL = "Y")
 
 adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
 

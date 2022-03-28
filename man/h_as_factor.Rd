@@ -11,9 +11,6 @@ h_as_factor(x, na_label)
 
 \item{na_label}{(\code{character}) the label to encode missing levels.}
 }
-\value{
-
-}
 \description{
 Helper Coercion Function to Factor with explicit missing levels
 }

@@ -17,7 +17,6 @@
 #' my_colnames <- NULL
 #' assert_colnames(mtcars, my_colnames, null_ok = FALSE)
 #' }
-#'
 assert_colnames <- function(df, x, null_ok = TRUE) {
   if (!null_ok && is.null(x)) {
     stop(

@@ -39,12 +39,10 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr %>%
 #'
 #' @export
 #'
 #' @examples
-#'
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
@@ -480,7 +478,7 @@ dst01_3 <- function(adam_db,
 
   col_info(tbl) <- col_info(tbl2)
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- prune_table(tbl)
 
   tbl <- rbind(tbl2, tbl)
 

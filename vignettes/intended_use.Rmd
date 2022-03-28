@@ -7,7 +7,7 @@ vignette: >
   %\VignetteIndexEntry{Intended Use of chevron}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -257,7 +257,7 @@ adam_study_data %>%
 
 so to get the filtered data
 
-```{r} 
+```{r}
 adam__CTC35_SE <- adam_study_data %>%
   dm_filter_with_labels(c("CTC35", "SE")) %>%
   dm_apply_filters()
@@ -378,7 +378,7 @@ dict <- c(
   main_title_lopo = lopo_1$main_title,
   population_title = population_title(lopo_1$filters)
 )
-  
+
 deco <- lapply(deco_templ, render_whiskers, dict = dict)
 
 ## Data ---
@@ -418,7 +418,7 @@ lopo_new <- rbind(
   )
 )
 
-pmap_new <- append_to_pmap(std_pmap(), pmap_row("ns_dmtspecial", req_data = "adsl"))
+pmap_new <- rbind(std_pmap, pmap_row("ns_dmtspecial", req_data = "adsl"))
 ```
 
 ### Modifying a Standard
@@ -429,7 +429,7 @@ ns_aet02_1 <- function(...) {
 
   rbind(tbl, tbl)
 }
-pmap_new <- append_to_pmap(pmap_new, pmap_row("ns_aet02_1", req_data = c("adsl", "adae")))
+pmap_new <- rbind(pmap_new, pmap_row("ns_aet02_1", req_data = c("adsl", "adae")))
 ```
 
 ## Creating Many Outputs

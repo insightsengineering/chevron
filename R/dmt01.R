@@ -16,14 +16,10 @@
 #'  * Split columns by arm (planned or actual / code or description)
 #'  * Include a total column by default
 #'
-#' @importFrom magrittr %>%
-#'
 #' @export
 #'
 #' @examples
-#'
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("dmt01_1")
