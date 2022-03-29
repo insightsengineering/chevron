@@ -50,9 +50,6 @@ to be displayed.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 }
-\value{
-
-}
 \description{
 The \code{VST01} table provides an overview of the Vital Sign values and its change from baseline of each respective arm
 over the course of the trial.

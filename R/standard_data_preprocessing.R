@@ -1,6 +1,12 @@
-
-
-std_preprocessing_map <- tibble::tribble(
+#' Standard Preprocessing Map
+#'
+#' The preprocessing map contains information how the ADaM data needs to be preprocessed for each function.
+#'
+#' @export
+#'
+#' @examples
+#' std_pmap
+std_pmap <- tibble::tribble(
   ~tlgfname, ~filter_fname, ~mutate_fname, ~req_data,
   "aet01_1", "filter_adae_anl01fl", "mutate_for_aet01", c("adsl", "adae"),
   "aet01_2", "filter_adae_anl01fl", "mutate_for_aet01", c("adsl", "adae"),
@@ -30,19 +36,6 @@ std_preprocessing_map <- tibble::tribble(
   "vst02_2", "filter_vst02", "mutate_vst02", c("adsl", "advs")
 )
 
-#' Standard Preprocessing Map
-#'
-#' The preprocessing map contains information how the ADaM data needs to be preprocessed for each function.
-#'
-#'
-#' @export
-#'
-#' @examples
-#' std_pmap()
-std_pmap <- function() {
-  std_preprocessing_map
-}
-
 #' Row in Preprocessing Map
 #'
 #' @param tlgfname (`character`) name of a function which creates a table, listing or graph
@@ -54,7 +47,6 @@ std_pmap <- function() {
 #' @export
 #'
 #' @examples
-#'
 #' pmap_row("tabc", NA, "identity", c("adsl", "adae"))
 pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
   fnames <- list(tlgfname, filter_fname, mutate_fname)
@@ -73,29 +65,14 @@ pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
   )
 }
 
-
-#' Append A Preprocessing Map Entry
-#'
-#'
-#' @param x (`data.frame`) in the structure returned from `std_pmap` or `pmap_entry`
-#' @param y (`data.frame`) in the structure returned from `std_pmap` or `pmap_entry`
-#'
-#' @export
-#'
-append_to_pmap <- function(x, y) {
-  rbind(x, y)
-}
-
 #' Remove Row For a tlgfunction from a pre-processing map
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
 #'
 #' @examples
-#'
-#' remove_tlg_pmap(std_pmap(), "aet02_1")
+#' remove_tlg_pmap(std_pmap, "aet02_1")
 remove_tlg_pmap <- function(pmap, tlgfname) {
   assert_that(tlgfname %in% pmap$tlgfname)
 
@@ -107,9 +84,9 @@ lookup_fun <- function(fname, what, pmap) {
   assert_that(fname %in% pmap$tlgfname)
 
   fstr <- pmap %>%
-    filter(tlgfname == fname) %>%
-    slice(1) %>%
-    pull(what)
+    dplyr::filter(tlgfname == fname) %>%
+    dplyr::slice(1) %>%
+    dplyr::pull(what)
 
   if (is.na(fstr)) {
     identity
@@ -130,9 +107,9 @@ get_req_data <- function(id, pmap) {
   assert_that(id %in% pmap$tlgfname)
 
   fstr <- pmap %>%
-    filter(tlgfname == id) %>%
-    slice(1) %>%
-    pull(req_data)
+    dplyr::filter(tlgfname == id) %>%
+    dplyr::slice(1) %>%
+    dplyr::pull(req_data)
 
   fstr[[1]]
 }
@@ -149,7 +126,7 @@ get_req_data <- function(id, pmap) {
 #'
 #' db %>%
 #'   preprocess_data("aet02_2")
-preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
+preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap, .study) {
   assert_that(
     all(get_req_data(tlgfname, pmap) %in% names(adam_db)),
     msg = paste(
@@ -186,7 +163,7 @@ preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap(), .study) {
 #'
 #' @examples
 #' std_filter_fun("aet02_1")
-std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
+std_filter_fun <- function(tlgfname, pmap = std_pmap) {
   lookup_fun(tlgfname, "filter_fname", pmap)
 }
 
@@ -198,7 +175,7 @@ std_filter_fun <- function(tlgfname, pmap = std_pmap()) {
 #'
 #' @examples
 #' std_mutate_fun("aet02_1")
-std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
+std_mutate_fun <- function(tlgfname, pmap = std_pmap) {
   lookup_fun(tlgfname, "mutate_fname", pmap)
 }
 
@@ -207,8 +184,6 @@ std_mutate_fun <- function(tlgfname, pmap = std_pmap()) {
 #' @inheritParams gen_args
 #'
 #' @importFrom dplyr filter
-#'
-#'
 filter_adae_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
@@ -221,7 +196,6 @@ filter_adae_anl01fl <- function(adam_db) {
 #' Filter `adlb` for `ANL01FL`
 #'
 #' @inheritParams gen_args
-#'
 filter_adlb_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
@@ -234,7 +208,6 @@ filter_adlb_anl01fl <- function(adam_db) {
 #' Filter `adeg` for `ANL01FL`
 #'
 #' @inheritParams gen_args
-#'
 filter_adeg_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
@@ -247,7 +220,6 @@ filter_adeg_anl01fl <- function(adam_db) {
 #' Filter `advs` for `ANL01FL`
 #'
 #' @inheritParams gen_args
-#'
 filter_advs_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
@@ -260,7 +232,6 @@ filter_advs_anl01fl <- function(adam_db) {
 #' Filter `admh` for `ANL01FL`
 #'
 #' @inheritParams gen_args
-#'
 filter_admh_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
@@ -273,7 +244,6 @@ filter_admh_anl01fl <- function(adam_db) {
 #' Filter `adex` for `PARCAT1`
 #'
 #' @inheritParams gen_args
-#'
 filter_adex_drug <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
 
@@ -288,7 +258,6 @@ filter_adex_drug <- function(adam_db) {
 #' @details filter with `ANL01FL` (instead of `SAFFL ` which is external to `chevron`).
 #'
 #' @inheritParams gen_args
-#'
 filter_adcm_anl01fl <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
@@ -300,7 +269,6 @@ filter_adcm_anl01fl <- function(adam_db) {
 #' Filter post-baseline values in `advs`
 #'
 #' @inheritParams gen_args
-#'
 filter_vst02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
@@ -313,7 +281,6 @@ filter_vst02 <- function(adam_db) {
 #' Filter post-baseline values in `adeg`
 #'
 #' @inheritParams gen_args
-#'
 filter_egt02 <- function(adam_db) {
   assert_that(is(adam_db, "dm"))
   adam_db %>%
@@ -324,8 +291,8 @@ filter_egt02 <- function(adam_db) {
 }
 
 #' Creating Necessary Columns for `aet01`
-#' @inheritParams gen_args
 #'
+#' @inheritParams gen_args
 mutate_for_aet01 <- function(adam_db) {
   db <- adam_db %>%
     dm_zoom_to(adae) %>%
@@ -377,7 +344,6 @@ mutate_for_aet01 <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
-#'
 mutate_adsl_gp <- function(adam_db,
                            reason = .study$disc_reason_var,
                            .study = list(disc_reason_var = "DCSREAS")) {
@@ -399,7 +365,6 @@ mutate_adsl_gp <- function(adam_db,
 #' Coerce `CMSEQ` to factor in `adcm`
 #'
 #' @inheritParams gen_args
-#'
 mutate_cmt01a <- function(adam_db) {
   adam_db %>%
     dm_zoom_to(adcm) %>%
@@ -415,7 +380,6 @@ mutate_cmt01a <- function(adam_db) {
 #' @param paramcd_order (`vector of character`) providing the `PARAMCD` values in the desired order.
 #'
 #' @return a `dm` object.
-#'
 reorder_adex_params <- function(adam_db,
                                 paramcd_order = .study$paramcd_order,
                                 .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))) {
@@ -441,7 +405,6 @@ reorder_adex_params <- function(adam_db,
 #'
 #' @param show_bins (`vector of character`) providing the name of the parameters whose categorical summary should be
 #'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
-#'
 remove_adex_aval <- function(adam_db,
                              show_stats = .study$show_cont_stats,
                              show_bins = .study$show_cat_stats,
@@ -474,7 +437,6 @@ remove_adex_aval <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @importFrom forcats fct_relevel
-#'
 reorder_dtht01 <- function(adam_db) {
   death_fact <- levels(adam_db$adsl$DTHCAT)
   death_fact <- setdiff(death_fact, "OTHER")
@@ -488,12 +450,9 @@ reorder_dtht01 <- function(adam_db) {
   db
 }
 
-#' Mutate Function for `CMT02_PT_1`
+#' Mutate function for `CMT02_PT_1`
 #'
 #' @inheritParams gen_args
-#'
-#' @return
-#'
 mutate_cmt02_pt_1 <- function(adam_db) {
   db <- adam_db %>%
     dm_zoom_to(adcm) %>%
@@ -503,12 +462,9 @@ mutate_cmt02_pt_1 <- function(adam_db) {
   db
 }
 
-#' Mutate Function for `DMT01_1`
+#' Mutate function for `DMT01_1`
 #'
 #' @inheritParams gen_args
-#'
-#' @return
-#'
 mutate_dmt01 <- function(adam_db) {
   adsl_lbs <- formatters::var_labels(adam_db$adsl)
   db <- adam_db %>%
@@ -525,7 +481,6 @@ mutate_dmt01 <- function(adam_db) {
 #' Categorize `advs` values
 #'
 #' @inheritParams gen_args
-#'
 mutate_vst02 <- function(adam_db) {
   db <- adam_db %>%
     dm_zoom_to(advs) %>%

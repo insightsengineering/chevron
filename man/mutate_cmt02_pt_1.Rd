@@ -2,16 +2,13 @@
 % Please edit documentation in R/standard_data_preprocessing.R
 \name{mutate_cmt02_pt_1}
 \alias{mutate_cmt02_pt_1}
-\title{Mutate Function for \code{CMT02_PT_1}}
+\title{Mutate function for \code{CMT02_PT_1}}
 \usage{
 mutate_cmt02_pt_1(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 }
-\value{
-
-}
 \description{
-Mutate Function for \code{CMT02_PT_1}
+Mutate function for \code{CMT02_PT_1}
 }

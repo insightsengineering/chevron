@@ -21,13 +21,11 @@
 #'  the specific medication.
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr %>%
 #'
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to(adcm) %>%
@@ -64,7 +62,7 @@ cmt01a_1 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -168,13 +166,11 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 #'  the specific medication.
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr %>%
 #'
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to(adcm) %>%
@@ -212,7 +208,7 @@ cmt01a_2 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -254,13 +250,11 @@ cmt01a_2 <- function(adam_db,
 #'  the specific medication.
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr %>%
 #'
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to(adcm) %>%
@@ -297,7 +291,7 @@ cmt01a_3 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl_sorted <- tbl %>%

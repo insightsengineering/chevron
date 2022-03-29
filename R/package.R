@@ -1,12 +1,13 @@
 
 #' Chevron Package
 #'
-#' @import tern
-#' @import rtables
-#' @importFrom assertthat assert_that on_failure<-
-#' @importFrom tibble tribble
-#' @import dplyr
 #' @import dm
+#' @import dplyr
+#' @import rtables
+#' @import tern
+#' @importFrom assertthat assert_that on_failure<-
+#' @importFrom magrittr %>%
 #' @importFrom methods is
 #' @importFrom stats setNames
+#' @importFrom tibble tribble
 "_PACKAGE"

@@ -15,7 +15,6 @@ reorder_levels_params(df, paramcd_levels)
 Reorder PARAM and PARAMCD Levels Simultaneously
 }
 \examples{
-
 df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))
 
 str(reorder_levels_params(df, paramcd_levels = c("B", "A", "C")))

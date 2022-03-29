@@ -33,7 +33,6 @@ Typically a unique identifier for the pivoted observations, such as \code{USUBJI
 Pivot wider a data frame while preserving labels.
 }
 \examples{
-
 library(scda)
 adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
 pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID", "SUBJID"))

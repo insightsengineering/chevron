@@ -42,11 +42,6 @@ vst02_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
-\value{
-
-
-
-}
 \description{
 Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
 }
@@ -65,7 +60,6 @@ Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("advs") \%>\%

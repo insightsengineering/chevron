@@ -46,11 +46,6 @@ aet01_1_lyt(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
-\value{
-
-
-
-}
 \description{
 Overview of death and summary of adverse events.
 }
@@ -66,7 +61,6 @@ Overview of death and summary of adverse events.
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   preprocess_data("aet01_1")

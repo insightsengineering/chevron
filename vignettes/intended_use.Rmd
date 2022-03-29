@@ -7,7 +7,7 @@ vignette: >
   %\VignetteIndexEntry{Intended Use of chevron}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -53,19 +53,22 @@ the vignette:
 lopo_entry <- function(tlgfname, type = c("table", "listing", "graph"), extra_args = NULL,
                        output_id = NULL, main_title, subtitles = NULL, footnotes = NULL,
                        filters = NULL, filename = NULL) {
-    type <- match.arg(type)
+  type <- match.arg(type)
 
-    if (is.null(output_id))
-      output_id <- paste0(substr(type, 1, 1), "_", tolower(substr(tlgfname, 1, 2)))
+  if (is.null(output_id)) {
+    output_id <- paste0(substr(type, 1, 1), "_", tolower(substr(tlgfname, 1, 2)))
+  }
 
-    if (is.null(filename)) {
-      ext <- if (type == "graph") ".pdf" else ".txt"
-      filename <- paste0(output_id, "__", paste(filters, collapse = "_"), ext)
-    }
-    stopifnot(tools::file_ext(filename) %in% c("txt", "pdf"))
+  if (is.null(filename)) {
+    ext <- if (type == "graph") ".pdf" else ".txt"
+    filename <- paste0(output_id, "__", paste(filters, collapse = "_"), ext)
+  }
+  stopifnot(tools::file_ext(filename) %in% c("txt", "pdf"))
 
-    tibble(tlgfname, type, extra_args = list(extra_args), output_id, main_title, subtitles = list(subtitles),
-           footnotes = list(footnotes), filters = list(filters), filename)
+  tibble(tlgfname, type,
+    extra_args = list(extra_args), output_id, main_title, subtitles = list(subtitles),
+    footnotes = list(footnotes), filters = list(filters), filename
+  )
 }
 
 lopo <- rbind(
@@ -83,11 +86,15 @@ lopo <- rbind(
     tlgfname = "aet02_1", type = "table",
     main_title = "Adverse Events",
     footnotes = c(
-      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
-      "Percentages are based on N in the column headings."),
-      paste("Only treatment emergent AEs are displayed. For frequency counts by preferred term, multiple",
-      "occurrences of the same AE in an individual are counted only once. For frequency counts of",
-      "'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately.")
+      paste(
+        "Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
+        "Percentages are based on N in the column headings."
+      ),
+      paste(
+        "Only treatment emergent AEs are displayed. For frequency counts by preferred term, multiple",
+        "occurrences of the same AE in an individual are counted only once. For frequency counts of",
+        "'Total number of events' rows, multiple occurrences of the same AE in an individual are counted separately."
+      )
     ),
     filters = "SE"
   ),
@@ -95,12 +102,16 @@ lopo <- rbind(
     tlgfname = "aet02_1", type = "table",
     main_title = "Adverse Events Leading to Study Treatment Discontinuation",
     footnotes = c(
-      paste("Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
-            "Percentages are based on N in the column headings."),
-      paste("Only treatment emergent AEs are displayed where the study medication adjustment CRF question is",
-            "answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the",
-            "same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows,",
-            "multiple occurrences of the same AE in an individual are counted separately.")
+      paste(
+        "Investigator text for AEs encoded using MedDRA version {{medra-version}}.",
+        "Percentages are based on N in the column headings."
+      ),
+      paste(
+        "Only treatment emergent AEs are displayed where the study medication adjustment CRF question is",
+        "answered as 'Drug withdrawn'. For frequency counts by preferred term, multiple occurrences of the",
+        "same AE in an individual are counted only once. For frequency counts of 'Total number of events' rows,",
+        "multiple occurrences of the same AE in an individual are counted separately."
+      )
     ),
     filters = "SE"
   ),
@@ -118,10 +129,14 @@ lopo <- rbind(
     tlgfname = "lbt01_1", type = "table",
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (including CTC grade)",
     footnotes = c(
-      paste("Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}.",
-      "NCI CTCAE is the National Cancer Institute Common Terminology Criteria for Adverse Events."),
-      paste("NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed",
-            "by the grade where relevant"),
+      paste(
+        "Grading displayed is based on numeric thresholds only in NCI CTCAE {{ctc-version}}.",
+        "NCI CTCAE is the National Cancer Institute Common Terminology Criteria for Adverse Events."
+      ),
+      paste(
+        "NCI CTCAE grade is displayed as abnormal high (H) or low (L) from collected range followed",
+        "by the grade where relevant"
+      ),
       "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
     ),
     filters = "SE",
@@ -141,8 +156,10 @@ lopo <- rbind(
     main_title = "Listing of Laboratory Data and Change from Baseline by Visit (Standardised parameters)",
     footnotes = c(
       "Includes values standardised using Roche Safety Lab Standardisation",
-      paste("Abnormalities displayed as high (H) or low (L) for outside normal range, or high high (HH) or",
-      "low low (LL) for outside the marked abnormality range with a significant change from baseline"),
+      paste(
+        "Abnormalities displayed as high (H) or low (L) for outside normal range, or high high (HH) or",
+        "low low (LL) for outside the marked abnormality range with a significant change from baseline"
+      ),
       "CfBL is Change from Baseline. Baseline is the patient’s last observation prior to initiation of study drug."
     ),
     filters = "SE",
@@ -154,7 +171,7 @@ lopo <- rbind(
 Which provides the following LoPO:
 
 ```{r}
-excerpt <- function(x) lapply(x, function(xi) if (length(xi) > 0)paste(substr(xi[1], 1, 8), "...") else "")
+excerpt <- function(x) lapply(x, function(xi) if (length(xi) > 0) paste(substr(xi[1], 1, 8), "...") else "")
 knitr::kable(lopo %>% mutate(main_title = excerpt(main_title), footnotes = excerpt(footnotes)))
 ```
 
@@ -196,7 +213,9 @@ adam_study_data
 The `lopo` contains the following filter labels:
 
 ```{r}
-lopo$filters %>% unlist() %>% unique()
+lopo$filters %>%
+  unlist() %>%
+  unique()
 ```
 
 Each label corresponds to a particular subsetting operation of a dataset. As there is currently no R package available
@@ -214,18 +233,18 @@ new_filter_func <- function(dataname, expr) {
 
 # filter label functions
 flf <- list(
- ITT = new_filter_func("adsl", ITTFL == "Y"),
- SE = new_filter_func("adsl", SAFFL == "Y"),
- CTC35 = new_filter_func("adae", AETOXGR %in% c("3", "4", "5")),
- FATAL = new_filter_func("adae", AESDTH == "Y"),
- TX = identity
+  ITT = new_filter_func("adsl", ITTFL == "Y"),
+  SE = new_filter_func("adsl", SAFFL == "Y"),
+  CTC35 = new_filter_func("adae", AETOXGR %in% c("3", "4", "5")),
+  FATAL = new_filter_func("adae", AESDTH == "Y"),
+  TX = identity
 )
 ```
 
 These filter label based system can then be used as follows, assume we would like the data for `CTC35_SE`:
 
 ```{r}
-adam__CTC35_SE <- adam_study_data %>%
+adam__CTC35_SE <- adam_study_data %>% # nolint
   flf$SE() %>%
   flf$CTC35() %>%
   dm_apply_filters()
@@ -245,8 +264,9 @@ dm_filter_with_labels <- function(dm, filter_labels, filter_label_def = get_std_
     is.null(filter_labels) || all(filter_labels %in% names(filter_label_def))
   )
 
-  if (length(filter_labels) == 0)
+  if (length(filter_labels) == 0) {
     return(dm)
+  }
 
   Reduce(function(f1, f2) f2(f1), filter_label_def[filter_labels], init = dm)
 }
@@ -257,8 +277,8 @@ adam_study_data %>%
 
 so to get the filtered data
 
-```{r} 
-adam__CTC35_SE <- adam_study_data %>%
+```{r}
+adam__CTC35_SE <- adam_study_data %>% # nolint
   dm_filter_with_labels(c("CTC35", "SE")) %>%
   dm_apply_filters()
 
@@ -281,7 +301,9 @@ our own functionality:
 
 ```{r}
 render_whiskers <- function(templates, dict = character(0)) {
-  if (is.null(templates)) return(NULL)
+  if (is.null(templates)) {
+    return(NULL)
+  }
 
   stopifnot(
     is.character(templates)
@@ -297,7 +319,9 @@ render_whiskers_string <- function(template, dict = character(0)) {
     isFALSE(any(duplicated(names(as.list(dict)))))
   )
 
-  if (length(dict) == 0) return(template)
+  if (length(dict) == 0) {
+    return(template)
+  }
 
   ndata <- paste0("{{", names(dict), "}}")
   for (i in seq_along(dict)) {
@@ -378,7 +402,7 @@ dict <- c(
   main_title_lopo = lopo_1$main_title,
   population_title = population_title(lopo_1$filters)
 )
-  
+
 deco <- lapply(deco_templ, render_whiskers, dict = dict)
 
 ## Data ---
@@ -418,7 +442,7 @@ lopo_new <- rbind(
   )
 )
 
-pmap_new <- append_to_pmap(std_pmap(), pmap_row("ns_dmtspecial", req_data = "adsl"))
+pmap_new <- rbind(std_pmap, pmap_row("ns_dmtspecial", req_data = "adsl"))
 ```
 
 ### Modifying a Standard
@@ -429,7 +453,7 @@ ns_aet02_1 <- function(...) {
 
   rbind(tbl, tbl)
 }
-pmap_new <- append_to_pmap(pmap_new, pmap_row("ns_aet02_1", req_data = c("adsl", "adae")))
+pmap_new <- rbind(pmap_new, pmap_row("ns_aet02_1", req_data = c("adsl", "adae")))
 ```
 
 ## Creating Many Outputs
@@ -450,7 +474,6 @@ std_deco_templ <- function(lopo_row) {
 
 create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun = std_deco_templ,
                            dict = character(), filter_label_def = get_std_filter_label_defn()) {
-
   db <- adam_db %>%
     dm_filter_with_labels(lopoi$filters) %>%
     preprocess_data(lopoi$tlgfname, pmap = pmap)
@@ -467,16 +490,16 @@ create_one_tlg <- function(lopoi, adam_db, pmap = std_map(), deco_template_fun =
 
   ## Create Output
   do.call(lopoi$tlgfname, c(list(adam_db = db, deco = deco), lopoi$extra_args))
-
 }
 
 create_tlg_in_lopo <- function(adam_db, lopo, pmap = std_map(), deco_template_fun = std_deco_templ,
                                dict = character(), filter_label_def = get_std_filter_label_defn()) {
-
   setNames(lapply(purrr::transpose(lopo),
-                  create_one_tlg, adam_db, pmap = pmap,
-                  deco_template_fun = deco_template_fun,
-                  dict = dict, filter_label_def = filter_label_def), lopo$filename)
+    create_one_tlg, adam_db,
+    pmap = pmap,
+    deco_template_fun = deco_template_fun,
+    dict = dict, filter_label_def = filter_label_def
+  ), lopo$filename)
 }
 ```
 

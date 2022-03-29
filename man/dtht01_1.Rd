@@ -68,14 +68,12 @@ reporting of death.
 }}
 
 \examples{
-library(tern)
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to(adsl) \%>\%
-  mutate(DTHCAT = explicit_na(DTHCAT)) \%>\%
-  mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) \%>\%
+  mutate(DTHCAT = tern::explicit_na(DTHCAT)) \%>\%
+  mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) \%>\%
   dm_update_zoomed() \%>\%
   preprocess_data("dtht01_1")
 

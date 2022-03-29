@@ -60,7 +60,7 @@ egt01_1 <- function(adam_db,
     df = adam_db$adeg
   )
 
-  if (prune_0) tbl <- tbl %>% prune_table()
+  if (prune_0) tbl <- prune_table(tbl)
 
   tbl
 }
@@ -78,7 +78,6 @@ egt01_1 <- function(adam_db,
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #'
-#' @return
 #' @export
 egt01_1_lyt <- function(armvar = .study$actualarm,
                         summaryvars = .study$evo_vars,

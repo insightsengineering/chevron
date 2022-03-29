@@ -64,7 +64,6 @@ patients in the corresponding analysis population given by \code{N}.
 
 \examples{
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   preprocess_data("ext01_2")

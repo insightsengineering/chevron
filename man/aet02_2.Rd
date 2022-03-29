@@ -63,13 +63,10 @@ frequencies.
 }}
 
 \examples{
-
 library(dm)
-library(rtables)
 
 db <- syn_test_data() \%>\%
   preprocess_data("aet02_2")
-
 
 aet02_2(db) \%>\% head(15)
 
@@ -78,7 +75,7 @@ aet02_2(db, lbl_overall = "All Patients") \%>\% head()
 
 db_m <- db \%>\%
   dm_zoom_to(adae) \%>\%
-  mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) \%>\%
+  mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) \%>\%
   dm_update_zoomed()
 
 aet02_2(db_m) \%>\% head()

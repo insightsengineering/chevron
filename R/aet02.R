@@ -13,13 +13,11 @@
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr %>%
 #'
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(rtables)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("aet02_1")
@@ -39,7 +37,7 @@
 #'
 #' db_m <- db %>%
 #'   dm_zoom_to(adae) %>%
-#'   mutate(AEBODSYS = with_label(AEBODSYS, "Medra System Organ Class")) %>%
+#'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "Medra System Organ Class")) %>%
 #'   dm_update_zoomed()
 #'
 #' aet02_1(db_m) %>% head()
@@ -65,7 +63,7 @@ aet02_1 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -167,13 +165,10 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#'
 #' library(dm)
-#' library(rtables)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("aet02_2")
-#'
 #'
 #' aet02_2(db) %>% head(15)
 #'
@@ -182,7 +177,7 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' db_m <- db %>%
 #'   dm_zoom_to(adae) %>%
-#'   mutate(AEBODSYS = with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
+#'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
 #'   dm_update_zoomed()
 #'
 #' aet02_2(db_m) %>% head()
@@ -210,7 +205,7 @@ aet02_2 <- function(adam_db,
   tbl <- build_table(lyt, adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -364,7 +359,7 @@ aet02_3 <- function(adam_db,
   tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl_sorted <- tbl %>%

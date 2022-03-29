@@ -50,9 +50,6 @@ to be displayed.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 }
-\value{
-
-}
 \description{
 The \code{EGT01} table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.
 }

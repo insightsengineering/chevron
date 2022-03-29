@@ -64,7 +64,6 @@ Grade is sorted by severity.
 
 \examples{
 library(dm)
-library(rtables)
 
 db <- syn_test_data() \%>\%
   preprocess_data("aet03_1")

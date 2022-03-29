@@ -20,6 +20,5 @@ output}
 Row in Preprocessing Map
 }
 \examples{
-
 pmap_row("tabc", NA, "identity", c("adsl", "adae"))
 }

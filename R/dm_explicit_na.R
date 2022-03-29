@@ -14,7 +14,6 @@
 #' @importFrom checkmate assert_class assert_character assert_logical
 #' @importFrom dm dm_zoom_to dm_update_zoomed
 #' @importFrom dplyr mutate across
-#' @importFrom magrittr %>%
 #' @importFrom tern explicit_na sas_na
 #'
 #' @return `dm` object with explicit missing levels
@@ -89,7 +88,7 @@ dm_explicit_na <- function(data,
     if (length(names_fact_col) > 0L) {
       data <- data %>%
         dm_zoom_to(!!tab_sym) %>%
-        mutate(across(names_fact_col, function(x) explicit_na(sas_na(x), label = na_level))) %>%
+        mutate(across(names_fact_col, function(x) tern::explicit_na(sas_na(x), label = na_level))) %>%
         dm_update_zoomed()
     }
   }
@@ -106,16 +105,13 @@ dm_explicit_na <- function(data,
 #'
 #' @importFrom checkmate assert_true
 #' @importFrom tern explicit_na sas_na
-#'
-#' @return
-#'
 h_as_factor <- function(x, na_label) {
   assert_true(is.character(x) || is.logical(x))
 
   init_lab <- attr(x, "label")
 
   x_chr <- as.character(x)
-  res <- explicit_na(sas_na(x_chr), label = na_label)
+  res <- tern::explicit_na(sas_na(x_chr), label = na_label)
 
   lvl_x <- setdiff(sort(unique(res)), na_label)
 

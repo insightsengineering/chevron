@@ -11,14 +11,10 @@
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #'
-#' @importFrom magrittr %>%
-#'
-#' @return
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("aet01_1")
@@ -66,7 +62,7 @@ aet01_1 <- function(adam_db,
   tbl <- set_decoration(tbl, deco)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl
@@ -80,9 +76,6 @@ aet01_1 <- function(adam_db,
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #'
-#' @importFrom magrittr %>%
-#'
-#' @return
 #' @export
 #'
 #' @examples
@@ -110,8 +103,7 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
                         )) {
   names(lbl_safety_var) <- safety_var
 
-  lyt_adae <-
-    basic_table_deco(deco) %>%
+  lyt_adae <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -133,8 +125,7 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
       .indent_mods = 0L
     )
 
-  lyt_adsl <-
-    basic_table_deco(deco) %>%
+  lyt_adsl <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -172,9 +163,6 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
 #'
-#' @importFrom magrittr %>%
-#'
-#' @return
 #' @export
 #'
 #' @examples
@@ -231,7 +219,7 @@ aet01_2 <- function(adam_db,
   tbl <- set_decoration(tbl, deco)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl
@@ -247,7 +235,6 @@ aet01_2 <- function(adam_db,
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -280,8 +267,7 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
 
-  lyt_adae <-
-    basic_table_deco(deco) %>%
+  lyt_adae <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -312,8 +298,7 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
       .indent_mods = 0L
     )
 
-  lyt_adsl <-
-    basic_table_deco(deco) %>%
+  lyt_adsl <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%

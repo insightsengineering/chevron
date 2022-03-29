@@ -16,12 +16,10 @@
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
 #'
-#' @return
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("advs") %>%
@@ -66,7 +64,6 @@ vst02_1 <- function(adam_db,
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -115,12 +112,10 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
 #'
-#' @return
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("advs") %>%
@@ -164,7 +159,6 @@ vst02_2 <- function(adam_db,
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
 #'
-#' @return
 #' @export
 #'
 #' @examples

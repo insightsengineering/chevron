@@ -10,12 +10,10 @@
 #'  * Order by decreasing total number of patients with the specific medication.
 #'  * Does not include a total column by default.
 #'
-#' @return
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to(adcm) %>%
@@ -44,7 +42,7 @@ cmt02_pt_1 <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl %>%

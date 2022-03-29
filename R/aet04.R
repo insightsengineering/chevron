@@ -14,13 +14,11 @@
 #'  Grade is sorted by severity.
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr %>%
 #'
 #' @export
 #'
 #' @examples
 #' library(dm)
-#' library(rtables)
 #'
 #' db <- syn_test_data() %>%
 #'   preprocess_data("aet03_1")

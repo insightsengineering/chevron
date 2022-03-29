@@ -11,7 +11,7 @@
 sample_study_object <- function() {
 
   # list functions
-  ls_exported <- as.vector(lsf.str("package:chevron"))
+  ls_exported <- as.vector(utils::lsf.str("package:chevron"))
 
   # Get the arguments of each exported function.
   ls_args <- lapply(ls_exported, formals)

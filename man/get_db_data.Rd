@@ -28,5 +28,4 @@ db <- dm::dm_nycflights13() \%>\%
 
 get_db_data(db, "airports")
 }
-
 }

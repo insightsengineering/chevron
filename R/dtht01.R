@@ -14,20 +14,17 @@
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Does not include a total column by default.
 #'
-#' @importFrom magrittr %>%
 #' @importFrom checkmate assert_factor assert_logical
 #'
 #' @export
 #'
 #' @examples
-#' library(tern)
 #' library(dm)
-#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to(adsl) %>%
-#'   mutate(DTHCAT = explicit_na(DTHCAT)) %>%
-#'   mutate(LDDTHGR1 = explicit_na(LDDTHGR1)) %>%
+#'   mutate(DTHCAT = tern::explicit_na(DTHCAT)) %>%
+#'   mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) %>%
 #'   dm_update_zoomed() %>%
 #'   preprocess_data("dtht01_1")
 #'
@@ -82,7 +79,7 @@ dtht01_1 <- function(adam_db,
   }
 
   if (prune_0) {
-    tbl <- tbl %>% prune_table()
+    tbl <- prune_table(tbl)
   }
 
   tbl
