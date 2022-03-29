@@ -33,12 +33,15 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9004</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../articles/chevron.html">Get started</a>
+</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -48,15 +51,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -82,10 +76,10 @@ Other releases
                         <h4 data-toc-skip class="author">Adrian
 Waddell</h4>
             
-            <h4 data-toc-skip class="date">2022-03-25</h4>
+            <h4 data-toc-skip class="date">2022-03-29</h4>
       
       
-      <div class="hidden name"><code>introduction.Rmd</code></div>
+      <div class="hidden name"><code>chevron.Rmd</code></div>
 
     </div>
 
@@ -216,8 +210,7 @@ preprocessing using a <em>processing map</em> which is referred to in
 <em>tlg-functions</em> in <code>chevron</code> can be access via
 <code>std_pmap</code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">std_pmap</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span>
 <span class="co">#&gt;   tlgfname filter_fname        mutate_fname     req_data </span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
@@ -238,8 +231,7 @@ to <code>identity</code>)</li>
 accessible by</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pmap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/std_pmap.html">std_pmap</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">pmap</span><span class="op">[</span><span class="va">pmap</span><span class="op">$</span><span class="va">tlgfname</span> <span class="op">==</span> <span class="st">"aet02_1"</span>, <span class="st">"req_data"</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">std_pmap</span><span class="op">[</span><span class="va">std_pmap</span><span class="op">$</span><span class="va">tlgfname</span> <span class="op">==</span> <span class="st">"aet02_1"</span>, <span class="st">"req_data"</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "adsl" "adae"</span></code></pre></div>
 <p>Note that you can access the explicit functions with
 <code>std_filter_fun</code> and <code>std_mutate_fun</code></p>
@@ -251,14 +243,14 @@ accessible by</li>
 <span class="co">#&gt;     adam_db %&gt;% dm_zoom_to(adae) %&gt;% filter(ANL01FL == "Y") %&gt;% </span>
 <span class="co">#&gt;         dm_update_zoomed()</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x55f92dd4f838&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x559083c808f8&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>and</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/std_mutate_fun.html">std_mutate_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; x</span>
-<span class="co">#&gt; &lt;bytecode: 0x55f91c0d9bf8&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x559071fecbf8&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:base&gt;</span></code></pre></div>
 <p>so alternatively one can also create the output above with</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
