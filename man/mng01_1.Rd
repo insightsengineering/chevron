@@ -65,7 +65,7 @@ db <- syn_test_data() \%>\%
   dm_update_zoomed()
 
 db \%>\% mng01_1(error_fun = "sd")
-db \%>\% mng01_1(error_fun = "se")
-db \%>\% mng01_1(error_fun = "ci95")
-db \%>\% mng01_1(error_fun = "IQR")
+db \%>\% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE)
+db \%>\% mng01_1(error_fun = "ci95", legend_pos = "right")
+db \%>\% mng01_1(center_fun = "median", error_fun = "IQR")
 }

@@ -36,9 +36,9 @@
 #'   dm_update_zoomed()
 #'
 #' db %>% mng01_1(error_fun = "sd")
-#' db %>% mng01_1(error_fun = "se")
-#' db %>% mng01_1(error_fun = "ci95")
-#' db %>% mng01_1(error_fun = "IQR")
+#' db %>% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE)
+#' db %>% mng01_1(error_fun = "ci95", legend_pos = "right")
+#' db %>% mng01_1(center_fun = "median", error_fun = "IQR")
 mng01_1 <- function(adam_db,
                     dataset = "adlb",
                     xval = "AVISIT",
@@ -73,8 +73,8 @@ mng01_1 <- function(adam_db,
   # some statisticians should look at it.
   ci95 <- function(x) {
     alpha <- 0.05
-    degrees.freedom <- length(x) - 1
-    t.score <- qt(p = alpha / 2, df = degrees.freedom, lower.tail = F)
+    degrees_freedom <- length(x) - 1
+    t.score <- qt(p = alpha / 2, df = degrees_freedom, lower.tail = F)
     t.score * se(x)
   }
 
@@ -123,14 +123,22 @@ mng01_1 <- function(adam_db,
     geom_line(position = position_dodge(width = 0.3)) +
     geom_errorbar(position = position_dodge(width = 0.3), width = 0.1) +
     theme_bw() +
-    labs(subtitle = analysis_var)
+    labs(
+      title = analysis_var,
+      subtitle = paste0(center_fun, "±", error_fun),
+      x = "",
+      y = ""
+    )
 
   if (!show_v_grid) {
     p1 <- p1 + theme(panel.grid.major.x = element_blank())
   }
 
   if (!show_h_grid) {
-    p1 <- p1 + theme(panel.grid.minor.y = element_blank())
+    p1 <- p1 + theme(
+      panel.grid.minor.y = element_blank(),
+      panel.grid.major.y = element_blank()
+      )
   }
 
   p1 <- p1 + theme(legend.position = legend_pos)
@@ -145,7 +153,7 @@ mng01_1 <- function(adam_db,
     geom_label(size = 3, fill = "white",  label.size = NA) +
     theme_minimal() +
     scale_y_discrete(limits = rev) +
-    labs(y = paste0(center_fun, "±", error_fun)) +
+    labs(y = "") +
     theme(legend.position = "none") +
     theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 
