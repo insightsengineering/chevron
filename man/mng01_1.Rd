@@ -12,6 +12,8 @@ mng01_1(
   armvar = .study$actualarm,
   center_fun = "mean",
   error_fun = "sd",
+  jitter = TRUE,
+  show_n = FALSE,
   show_h_grid = .study$show_h_grid,
   show_v_grid = .study$show_v_grid,
   legend_pos = .study$legend_pos,
@@ -34,6 +36,10 @@ mng01_1(
 
 \item{error_fun}{(\code{character}) the function defining the error range.}
 
+\item{jitter}{(\code{logical}) should data point be slightly spread on the x-axis.}
+
+\item{show_n}{(\code{logical}) should the number of observation be displayed.}
+
 \item{show_h_grid}{(\code{logical}) should horizontal grid be displayed.}
 
 \item{show_v_grid}{(\code{logical}) should vertical grid be displayed.}
@@ -48,7 +54,7 @@ mng01_1(
 
 }
 \description{
-Overview of the mean across BDS structure data set.
+Overview of a summary statistics across time and arm for a selected parameter and data set.
 }
 \details{
 \itemize{
@@ -64,8 +70,8 @@ db <- syn_test_data() \%>\%
   filter(PARAM == "Immunoglobulin A Measurement") \%>\%
   dm_update_zoomed()
 
-db \%>\% mng01_1(error_fun = "sd")
-db \%>\% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE)
+db \%>\% mng01_1(error_fun = "sd", show_n = FALSE)
+db \%>\% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE, jitter = FALSE, show_n = TRUE)
 db \%>\% mng01_1(error_fun = "ci95", legend_pos = "right")
 db \%>\% mng01_1(center_fun = "median", error_fun = "IQR")
 }

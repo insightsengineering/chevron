@@ -3,7 +3,7 @@
 
 #' `MNG01` Graph 1 (Default) Mean Plot 1.
 #'
-#' Overview of the mean across BDS structure data set.
+#' Overview of a summary statistics across time and arm for a selected parameter and data set.
 #'
 #' @details
 #'  * No overall value.
@@ -15,6 +15,8 @@
 #' @param yval (`character`) the name of the variable to be represented on the y-axis.
 #' @param center_fun (`character`) the function defining the value to be displayed.
 #' @param error_fun (`character`) the function defining the error range.
+#' @param show_n (`logical`) should the number of observation be displayed.
+#' @param jitter (`logical`) should data point be slightly spread on the x-axis.
 #' @param show_h_grid (`logical`) should horizontal grid be displayed.
 #' @param show_v_grid (`logical`) should vertical grid be displayed.
 #' @param legend_pos (`character`) the position of the legend. One of `top`, `bottom`, `right`, `left` or `none`.
@@ -35,8 +37,8 @@
 #'   filter(PARAM == "Immunoglobulin A Measurement") %>%
 #'   dm_update_zoomed()
 #'
-#' db %>% mng01_1(error_fun = "sd")
-#' db %>% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE)
+#' db %>% mng01_1(error_fun = "sd", show_n = FALSE)
+#' db %>% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE, jitter = FALSE, show_n = TRUE)
 #' db %>% mng01_1(error_fun = "ci95", legend_pos = "right")
 #' db %>% mng01_1(center_fun = "median", error_fun = "IQR")
 mng01_1 <- function(adam_db,
@@ -46,6 +48,8 @@ mng01_1 <- function(adam_db,
                     armvar = .study$actualarm,
                     center_fun = "mean",
                     error_fun = "sd",
+                    jitter = TRUE,
+                    show_n = FALSE,
                     show_h_grid = .study$show_h_grid,
                     show_v_grid = .study$show_v_grid,
                     legend_pos = .study$legend_pos,
@@ -58,6 +62,8 @@ mng01_1 <- function(adam_db,
   assert_subset(center_fun, c("mean", "median"))
   assert_subset(error_fun, c("sd", "se", "ci95", "IQR"))
   assert_vector(unique(adam_db[[dataset]]$PARAM), len = 1)
+  assert_flag(jitter)
+  assert_flag(show_n)
 
   # put in preprocess
   analysis_var <- unique(adam_db[[dataset]]$PARAM)
@@ -80,8 +86,7 @@ mng01_1 <- function(adam_db,
 
   center_func <- match.fun(center_fun)
 
-  error_func <- switch(
-    error_fun,
+  error_func <- switch(error_fun,
     sd = sd,
     se = se,
     ci95 = ci95,
@@ -109,6 +114,9 @@ mng01_1 <- function(adam_db,
       )
   }
 
+  dodge <- ifelse(jitter, 0.3, 0)
+  subtitle <- paste0(center_fun, "±", error_fun, ifelse(show_n, " (n)", ""))
+
   p1 <- data %>%
     ggplot(aes(
       x = !!xval_sym,
@@ -119,13 +127,13 @@ mng01_1 <- function(adam_db,
       colour = !!armvar_sym,
       lty = !!armvar_sym
     )) +
-    geom_point(position = position_dodge(width = 0.3)) +
-    geom_line(position = position_dodge(width = 0.3)) +
-    geom_errorbar(position = position_dodge(width = 0.3), width = 0.1) +
+    geom_point(position = position_dodge(width = dodge)) +
+    geom_line(position = position_dodge(width = dodge)) +
+    geom_errorbar(position = position_dodge(width = dodge), width = 0.1) +
     theme_bw() +
     labs(
       title = analysis_var,
-      subtitle = paste0(center_fun, "±", error_fun),
+      subtitle = subtitle,
       x = "",
       y = ""
     )
@@ -138,7 +146,7 @@ mng01_1 <- function(adam_db,
     p1 <- p1 + theme(
       panel.grid.minor.y = element_blank(),
       panel.grid.major.y = element_blank()
-      )
+    )
   }
 
   p1 <- p1 + theme(legend.position = legend_pos)
@@ -148,9 +156,14 @@ mng01_1 <- function(adam_db,
       x = !!xval_sym,
       y = !!armvar_sym,
       col = !!armvar_sym,
-      label = paste0(round(center, 1), "±", round(range, 2))
+      label = paste0(
+        round(center, 1),
+        "±",
+        round(range, 2),
+        ifelse(show_n, paste0("\n(n=", n, ")"), "")
+      )
     )) +
-    geom_label(size = 3, fill = "white",  label.size = NA) +
+    geom_label(size = 3, fill = "white", label.size = NA) +
     theme_minimal() +
     scale_y_discrete(limits = rev) +
     labs(y = "") +

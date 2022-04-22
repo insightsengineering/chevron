@@ -53,7 +53,9 @@ reference:
       - vst01_1
       - vst02_1
       - vst02_2
-
+  - title: Standard Graph
+    contents:
+      - mng01_1
   - title: Data Preprocess Functions
     contents:
       - preprocess_data
