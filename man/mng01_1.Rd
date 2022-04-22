@@ -47,8 +47,6 @@ mng01_1(
 \item{legend_pos}{(\code{character}) the position of the legend. One of \code{top}, \code{bottom}, \code{right}, \code{left} or \code{none}.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
-
-\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
 }
 \value{
 

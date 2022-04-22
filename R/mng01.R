@@ -10,7 +10,6 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`character`) the name of the data set to be analyzed.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param xval (`character`) the name of the variable to be represented on the x-axis.
 #' @param yval (`character`) the name of the variable to be represented on the y-axis.
 #' @param center_fun (`character`) the function defining the value to be displayed.
@@ -23,7 +22,7 @@
 #'
 #' @import ggplot2
 #' @import patchwork
-#' @importFrom checkmate assert_subset
+#' @importFrom checkmate assert_subset assert_vector assert_flag
 #'
 #' @return
 #' @export
@@ -115,7 +114,7 @@ mng01_1 <- function(adam_db,
   }
 
   dodge <- ifelse(jitter, 0.3, 0)
-  subtitle <- paste0(center_fun, "±", error_fun, ifelse(show_n, " (n)", ""))
+  subtitle <- paste0(center_fun, "+/-", error_fun, ifelse(show_n, " (n)", ""))
 
   p1 <- data %>%
     ggplot(aes(
@@ -158,7 +157,7 @@ mng01_1 <- function(adam_db,
       col = !!armvar_sym,
       label = paste0(
         round(center, 1),
-        "±",
+        "+/-",
         round(range, 2),
         ifelse(show_n, paste0("\n(n=", n, ")"), "")
       )
