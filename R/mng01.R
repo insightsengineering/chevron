@@ -12,9 +12,10 @@
 #' @param dataset (`character`) the name of the data set to be analyzed.
 #' @param xval (`character`) the name of the variable to be represented on the x-axis.
 #' @param yval (`character`) the name of the variable to be represented on the y-axis.
-#' @param center_fun (`character`) the function defining the value to be displayed.
-#' @param error_fun (`character`) the function defining the error range.
-#' @param show_n (`logical`) should the number of observation be displayed.
+#' @param center_fun (`character`) the function to compute the estimate value. One of `mean` or `median`.
+#' @param interval_fun (`character`) the function defining the crossbar range. One of `mean_ci`, `mean_sei`, `mean_sdi`,
+#'   `median_ci`, `quantiles` or `range`.
+#' @param show_n (`logical`) should the number of observation be displayed int the table.
 #' @param jitter (`logical`) should data point be slightly spread on the x-axis.
 #' @param show_h_grid (`logical`) should horizontal grid be displayed.
 #' @param show_v_grid (`logical`) should vertical grid be displayed.
@@ -31,22 +32,23 @@
 #' library(dm)
 #' library(dplyr)
 #'
-#' db <- syn_test_data() %>%
+#' db <- chevron::syn_test_data() %>%
 #'   dm_zoom_to("adlb") %>%
 #'   filter(PARAM == "Immunoglobulin A Measurement") %>%
 #'   dm_update_zoomed()
 #'
-#' db %>% mng01_1(error_fun = "sd", show_n = FALSE)
-#' db %>% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE, jitter = FALSE, show_n = TRUE)
-#' db %>% mng01_1(error_fun = "ci95", legend_pos = "right")
-#' db %>% mng01_1(center_fun = "median", error_fun = "IQR")
+#' db %>% mng01_1(center_fun = "mean",
+#'                interval_fun = "mean_sei",
+#'                legend_pos = "bottom",
+#'                show_n = TRUE,
+#'                jitter = FALSE)
 mng01_1 <- function(adam_db,
                     dataset = "adlb",
                     xval = "AVISIT",
                     yval = "AVAL",
                     armvar = .study$actualarm,
-                    center_fun = "mean",
-                    error_fun = "sd",
+                    center_fun = c("mean", "median"),
+                    interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
                     jitter = TRUE,
                     show_n = FALSE,
                     show_h_grid = .study$show_h_grid,
@@ -58,116 +60,90 @@ mng01_1 <- function(adam_db,
                       show_v_grid = FALSE,
                       legend_pos = "top"
                     )) {
-  assert_subset(center_fun, c("mean", "median"))
-  assert_subset(error_fun, c("sd", "se", "ci95", "IQR"))
+  center_fun <- match.arg(center_fun)
+  interval_fun <- match.arg(interval_fun)
+
   assert_vector(unique(adam_db[[dataset]]$PARAM), len = 1)
   assert_flag(jitter)
   assert_flag(show_n)
 
-  # put in preprocess
-  analysis_var <- unique(adam_db[[dataset]]$PARAM)
-
-  xval_sym <- sym(xval)
-  yval_sym <- sym(yval)
-  armvar_sym <- sym(armvar)
-
-  se <- function(x) {
-    sd(x) / length(x)
-  }
-
-  # some statisticians should look at it.
-  ci95 <- function(x) {
-    alpha <- 0.05
-    degrees_freedom <- length(x) - 1
-    t.score <- qt(p = alpha / 2, df = degrees_freedom, lower.tail = F)
-    t.score * se(x)
-  }
-
-  center_func <- match.fun(center_fun)
-
-  error_func <- switch(error_fun,
-    sd = sd,
-    se = se,
-    ci95 = ci95,
-    IQR = IQR
+  interval_title <- switch(interval_fun,
+    "mean_ci" = "95% Confidence Intervals",
+    "mean_sei" = "Standard Error",
+    "mean_sdi" = "Standard Deviation",
+    "median_ci" = "95% Confidence Intervals",
+    "quantiles" = "Interquatile Range",
+    "range" = "Min-Max Range"
   )
 
-  if (error_fun == "IQR") {
-    data <- adam_db[[dataset]] %>%
-      group_by(!!xval_sym, !!armvar_sym) %>%
-      summarize(
-        center = center_func(!!yval_sym),
-        upper = quantile(!!yval_sym, 0.75),
-        lower = quantile(!!yval_sym, 0.25),
-        range = abs(upper - lower)
-      )
-  } else {
-    data <- adam_db[[dataset]] %>%
-      group_by(!!xval_sym, !!armvar_sym) %>%
-      summarize(
-        center = center_func(!!yval_sym),
-        upper = center + error_func(!!yval_sym),
-        lower = center - error_func(!!yval_sym),
-        range = abs(upper - lower),
-        n = n()
-      )
-  }
+  title <- paste0(
+    "Plot of ",
+    center_fun,
+    " and ",
+    interval_title,
+    " by ",
+    var_labels_for(adam_db[[dataset]], xval)
+  )
 
-  dodge <- ifelse(jitter, 0.3, 0)
-  subtitle <- paste0(center_fun, "+/-", error_fun, ifelse(show_n, " (n)", ""))
+  whiskers_fun <- switch(interval_fun,
+    "mean_ci" = c("mean_ci_lwr", "mean_ci_upr"),
+    "mean_sei" = c("mean_sei_lwr", "mean_sei_upr"),
+    "mean_sdi" = c("mean_sdi_lwr", "mean_sdi_upr"),
+    "median_ci" = c("median_ci_lwr", "median_ci_upr"),
+    "quantiles" = c("quantiles_0.25", "quantile_0.75"),
+    "range" = c("min", "max")
+  )
 
-  p1 <- data %>%
-    ggplot(aes(
-      x = !!xval_sym,
-      y = center,
-      ymin = lower,
-      ymax = upper,
-      group = !!armvar_sym,
-      colour = !!armvar_sym,
-      lty = !!armvar_sym
-    )) +
-    geom_point(position = position_dodge(width = dodge)) +
-    geom_line(position = position_dodge(width = dodge)) +
-    geom_errorbar(position = position_dodge(width = dodge), width = 0.1) +
-    theme_bw() +
-    labs(
-      title = analysis_var,
-      subtitle = subtitle,
-      x = "",
-      y = ""
-    )
+  variables <- c(
+    x = xval,
+    y = yval,
+    strata = armvar,
+    paramcd = "PARAMCD",
+    y_unit = "AVALU"
+  )
+
+  n_func <- if (show_n) "n" else NULL
+
+  table <- c(
+    n_func,
+    center_fun,
+    interval_fun
+  )
+
+  ggtheme <- theme_bw() +
+    theme(legend.position = legend_pos) +
+    theme(axis.title.x = element_blank())
 
   if (!show_v_grid) {
-    p1 <- p1 + theme(panel.grid.major.x = element_blank())
+    ggtheme <- ggtheme + theme(panel.grid.major.x = element_blank())
+  } else {
+    ggtheme <- ggtheme + theme(panel.grid.major.x = element_line(size = 1))
   }
 
   if (!show_h_grid) {
-    p1 <- p1 + theme(
+    ggtheme <- ggtheme + theme(
       panel.grid.minor.y = element_blank(),
       panel.grid.major.y = element_blank()
     )
+  } else {
+    ggtheme <- ggtheme + theme(
+      panel.grid.minor.y = element_line(size = 1),
+      panel.grid.major.y = element_line(size = 1)
+    )
   }
 
-  p1 <- p1 + theme(legend.position = legend_pos)
+  p <- tern::g_lineplot(
+    df = adam_db[[dataset]],
+    alt_count = adam_db[["adsl"]],
+    variables = variables,
+    mid = center_fun,
+    interval = interval_fun,
+    whiskers = whiskers_fun,
+    position = position_dodge(width = ifelse(jitter, 0.3, 0)),
+    title = title,
+    table = table,
+    ggtheme = ggtheme
+  )
 
-  p2 <- data %>%
-    ggplot(aes(
-      x = !!xval_sym,
-      y = !!armvar_sym,
-      col = !!armvar_sym,
-      label = paste0(
-        round(center, 1),
-        "+/-",
-        round(range, 2),
-        ifelse(show_n, paste0("\n(n=", n, ")"), "")
-      )
-    )) +
-    geom_label(size = 3, fill = "white", label.size = NA) +
-    theme_minimal() +
-    scale_y_discrete(limits = rev) +
-    labs(y = "") +
-    theme(legend.position = "none") +
-    theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
-
-  p1 / p2 + plot_layout(heights = c(5, 2))
+  p
 }

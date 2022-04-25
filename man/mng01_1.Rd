@@ -10,8 +10,9 @@ mng01_1(
   xval = "AVISIT",
   yval = "AVAL",
   armvar = .study$actualarm,
-  center_fun = "mean",
-  error_fun = "sd",
+  center_fun = c("mean", "median"),
+  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles",
+    "range"),
   jitter = TRUE,
   show_n = FALSE,
   show_h_grid = .study$show_h_grid,
@@ -32,13 +33,14 @@ mng01_1(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{center_fun}{(\code{character}) the function defining the value to be displayed.}
+\item{center_fun}{(\code{character}) the function to compute the estimate value. One of \code{mean} or \code{median}.}
 
-\item{error_fun}{(\code{character}) the function defining the error range.}
+\item{interval_fun}{(\code{character}) the function defining the crossbar range. One of \code{mean_ci}, \code{mean_sei}, \code{mean_sdi},
+\code{median_ci}, \code{quantiles} or \code{range}.}
 
 \item{jitter}{(\code{logical}) should data point be slightly spread on the x-axis.}
 
-\item{show_n}{(\code{logical}) should the number of observation be displayed.}
+\item{show_n}{(\code{logical}) should the number of observation be displayed int the table.}
 
 \item{show_h_grid}{(\code{logical}) should horizontal grid be displayed.}
 
@@ -63,13 +65,14 @@ Overview of a summary statistics across time and arm for a selected parameter an
 library(dm)
 library(dplyr)
 
-db <- syn_test_data() \%>\%
+db <- chevron::syn_test_data() \%>\%
   dm_zoom_to("adlb") \%>\%
   filter(PARAM == "Immunoglobulin A Measurement") \%>\%
   dm_update_zoomed()
 
-db \%>\% mng01_1(error_fun = "sd", show_n = FALSE)
-db \%>\% mng01_1(error_fun = "se", show_h_grid = FALSE, show_v_grid = FALSE, jitter = FALSE, show_n = TRUE)
-db \%>\% mng01_1(error_fun = "ci95", legend_pos = "right")
-db \%>\% mng01_1(center_fun = "median", error_fun = "IQR")
+db \%>\% mng01_1(center_fun = "mean",
+               interval_fun = "mean_sei",
+               legend_pos = "bottom",
+               show_n = TRUE,
+               jitter = FALSE)
 }
