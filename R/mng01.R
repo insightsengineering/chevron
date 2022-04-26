@@ -37,11 +37,13 @@
 #'   filter(PARAM == "Immunoglobulin A Measurement") %>%
 #'   dm_update_zoomed()
 #'
-#' db %>% mng01_1(center_fun = "mean",
-#'                interval_fun = "mean_sei",
-#'                legend_pos = "bottom",
-#'                show_n = TRUE,
-#'                jitter = FALSE)
+#' db %>% mng01_1(
+#'   center_fun = "mean",
+#'   interval_fun = "mean_sei",
+#'   legend_pos = "bottom",
+#'   show_n = TRUE,
+#'   jitter = FALSE
+#' )
 mng01_1 <- function(adam_db,
                     dataset = "adlb",
                     xval = "AVISIT",
