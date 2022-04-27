@@ -25,7 +25,6 @@ Imports:
     ggplot2,
     magrittr,
     methods,
-    patchwork,
     rlang,
     rtables,
     tern,

@@ -22,7 +22,6 @@
 #' @param legend_pos (`character`) the position of the legend. One of `top`, `bottom`, `right`, `left` or `none`.
 #'
 #' @import ggplot2
-#' @import patchwork
 #' @importFrom checkmate assert_subset assert_vector assert_flag
 #'
 #' @return
