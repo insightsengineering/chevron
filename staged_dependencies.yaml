@@ -2,18 +2,25 @@ current_repo:
   repo: insightsengineering/chevron
   host: https://github.com
 upstream_repos:
-- repo: insightsengineering/tern
-  host: https://github.com
-- repo: Roche/rtables
-  host: https://github.com
-- repo: insightsengineering/formatters
-  host: https://github.com
-- repo: insightsengineering/scda
-  host: https://github.com
-- repo: insightsengineering/scda.2021
-  host: https://github.com
+  insightsengineering/tern:
+    repo: insightsengineering/tern
+    host: https://github.com
+  Roche/rtables:
+    repo: Roche/rtables
+    host: https://github.com
+  insightsengineering/formatters:
+    repo: insightsengineering/formatters
+    host: https://github.com
+  insightsengineering/scda:
+    repo: insightsengineering/scda
+    host: https://github.com
+  insightsengineering/scda.2021:
+    repo: insightsengineering/scda.2021
+    host: https://github.com
 downstream_repos:
-- repo: insightsengineering/citril
-  host: https://github.com
-- repo: insightsengineering/chevron.sample.study
-  host: https://github.com
+  insightsengineering/citril:
+    repo: insightsengineering/citril
+    host: https://github.com
+  insightsengineering/chevron.sample.study:
+    repo: insightsengineering/chevron.sample.study
+    host: https://github.com
