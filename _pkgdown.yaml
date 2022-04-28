@@ -83,6 +83,7 @@ reference:
       - mutate_vst02
       - reorder_dtht01
       - mutate_dmt01
+
   - title: Utility Functions
     contents:
       - dm_explicit_na
@@ -94,6 +95,7 @@ reference:
       - std_deco
       - syn_test_data
       - var_labels_for
+      - read_study_object
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
@@ -102,3 +104,11 @@ reference:
       - cut_by_group
       - assert_colnames
       - h_as_factor
+
+  - title: Data
+    contents:
+      - std_study_object
+
+  - title: Assertions
+    contents:
+      - assert_study_object

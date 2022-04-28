@@ -1,6 +1,7 @@
 
 #' Chevron Package
 #'
+#' @import checkmate
 #' @import dm
 #' @import dplyr
 #' @import rtables

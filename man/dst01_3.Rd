@@ -8,14 +8,14 @@
 dst01_3(
   adam_db,
   armvar = .study$planarm,
-  status = "EOSSTT",
+  status = .study$status_var,
   disc_reason_var = .study$disc_reason_var,
   status_treatment = "EOTSTT",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
-    "All Patients")
+    "All Patients", status_var = "EOSSTT")
 )
 
 dst01_3_lyt(
