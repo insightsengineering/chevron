@@ -28,7 +28,8 @@ Imports:
     rtables,
     tern,
     tibble,
-    tidyr
+    tidyr,
+    yaml
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,

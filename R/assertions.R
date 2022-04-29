@@ -58,9 +58,7 @@ assert_colnames <- function(df, x, null_ok = TRUE) {
 #'
 #' @examples
 #' assert_study_object(std_study_object)
-#'
 assert_study_object <- function(x) {
-
   assert_list(x)
   assert_string(x$actualarm)
   assert_character(x$evo_vars, unique = TRUE)

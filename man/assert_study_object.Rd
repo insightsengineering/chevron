@@ -17,5 +17,4 @@ Assertion on the Study Object
 }
 \examples{
 assert_study_object(std_study_object)
-
 }

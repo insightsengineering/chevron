@@ -15,3 +15,9 @@ list fitting the criteria of a \code{.study} object
 \description{
 Reading Study Object from \code{yaml} file
 }
+\examples{
+\dontrun{
+read_study_object(system.file("extdata", "std_study_object.yaml", package = "chevron"))
+}
+
+}

@@ -8,8 +8,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' read_study_object(system.file("extdata", "std_study_object.yaml", package = "chevron"))
+#' }
+#'
 read_study_object <- function(file) {
-
   res <- yaml::read_yaml(file)
   assert_study_object(res)
 
