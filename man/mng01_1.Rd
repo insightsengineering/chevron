@@ -18,8 +18,8 @@ mng01_1(
   show_h_grid = .study$show_h_grid,
   show_v_grid = .study$show_v_grid,
   legend_pos = .study$legend_pos,
-  .study = list(actualarm = "ARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top")
+  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE,
+    legend_pos = "top")
 )
 }
 \arguments{
