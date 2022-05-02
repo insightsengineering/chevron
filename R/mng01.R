@@ -56,7 +56,7 @@ mng01_1 <- function(adam_db,
                     show_v_grid = .study$show_v_grid,
                     legend_pos = .study$legend_pos,
                     .study = list(
-                      actualarm = "ARM",
+                      actualarm = "ACTARM",
                       show_h_grid = TRUE,
                       show_v_grid = FALSE,
                       legend_pos = "top"
