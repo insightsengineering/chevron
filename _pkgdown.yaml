@@ -13,7 +13,7 @@ navbar:
 articles:
   - title: All vignettes
     contents:
-      - introduction
+      - chevron
       - intended_use
       - adam_db_argument
       - dot_study_argument
@@ -61,8 +61,6 @@ reference:
       - preprocess_data
       - std_pmap
       - pmap_row
-      - remove_tlg_pmap
-      - append_to_pmap
       - remove_tlg_pmap
       - std_filter_fun
       - std_mutate_fun
