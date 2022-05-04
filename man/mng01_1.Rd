@@ -14,7 +14,7 @@ mng01_1(
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles",
     "range"),
   jitter = TRUE,
-  show_n = FALSE,
+  show_n = TRUE,
   show_h_grid = .study$show_h_grid,
   show_v_grid = .study$show_v_grid,
   legend_pos = .study$legend_pos,
