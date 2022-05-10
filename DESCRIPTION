@@ -12,7 +12,7 @@ Authors@R: c(
   )
 Description: Standard Table, Listings, and Graphs (TLG) library used in
     clinical trials.
-License: file LICENSE
+License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 4.0.0)
 Imports:
@@ -37,7 +37,7 @@ Suggests:
     rmarkdown,
     scda,
     scda.2021
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
