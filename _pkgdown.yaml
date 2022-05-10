@@ -13,7 +13,7 @@ navbar:
 articles:
   - title: All vignettes
     contents:
-      - introduction
+      - chevron
       - intended_use
       - adam_db_argument
       - dot_study_argument
@@ -60,8 +60,6 @@ reference:
       - std_pmap
       - pmap_row
       - remove_tlg_pmap
-      - append_to_pmap
-      - remove_tlg_pmap
       - std_filter_fun
       - std_mutate_fun
       - filter_adex_drug
@@ -95,7 +93,6 @@ reference:
       - std_deco
       - syn_test_data
       - var_labels_for
-      - read_study_object
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
@@ -104,11 +101,3 @@ reference:
       - cut_by_group
       - assert_colnames
       - h_as_factor
-
-  - title: Data
-    contents:
-      - std_study_object
-
-  - title: Assertions
-    contents:
-      - assert_study_object
