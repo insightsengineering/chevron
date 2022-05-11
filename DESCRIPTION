@@ -3,12 +3,10 @@ Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
 Version: 0.1.0.9005
 Authors@R: c(
-    person("NEST", , , "basel.nestcicd@roche.com", role = c("aut", "cre")),
-    person("Roche", role = c("cph", "fnd")),
+    person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@roche.com", role = "aut"),
-    person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
-    person("Gabriel", "Becker", , "gabembecker@gmail.com", role = "ctb"),
-    person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb")
+    person("Heng", "Wang", , "wang.heng@gene.com", role = "aut"),
+    person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
 Description: Standard Table, Listings, and Graphs (TLG) library used in
     clinical trials.
@@ -37,7 +35,7 @@ Suggests:
     rmarkdown,
     scda,
     scda.2021
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
