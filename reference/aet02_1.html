@@ -18,7 +18,7 @@ events categorized by Body System and Dictionary-Derived Term."><!-- mathjax -->
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9005</span>
       </span>
     </div>
 
@@ -35,15 +35,6 @@ events categorized by Body System and Dictionary-Derived Term."><!-- mathjax -->
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -153,6 +144,9 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cl D.1                                                                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one adverse event    79 (59%)     67 (50%)       80 (60.6%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of events                                        127           106            135      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ——————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Additional Examples</span></span>
 <span class="r-in"><span class="va">db_s</span> <span class="op">&lt;-</span> <span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -172,6 +166,9 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one adverse event   46 (58.2%)   45 (54.9%)     44 (62.9%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of events                                         81           86             64      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dcd B.2.2.3.1                                               30 (38%)     32 (39%)      26 (37.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># alternatively adam_db also accepts a names list</span></span>
 <span class="r-in"><span class="fu">aet02_1</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">db</span><span class="op">$</span><span class="va">adsl</span>, adae <span class="op">=</span> <span class="va">db</span><span class="op">$</span><span class="va">adae</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -188,6 +185,9 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of events                                        132           130            160      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ——————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">aet02_1</span><span class="op">(</span><span class="va">db</span>, lbl_overall <span class="op">=</span> <span class="st">"All Patients"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Adverse Events: {Specify Population}</span>
@@ -203,6 +203,9 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)     242 (60.5%) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of events                                        132           130            160             422     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)     158 (39.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db_m</span> <span class="op">&lt;-</span> <span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="va">adae</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -223,6 +226,9 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of events                                        132           130            160      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ——————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span>
 <span class="r-in"><span class="fu">aet02_1_lyt</span><span class="op">(</span></span>
 <span class="r-in">  armvar <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
 <span class="r-in">  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -250,8 +256,7 @@ events categorized by Body System and Dictionary-Derived Term.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

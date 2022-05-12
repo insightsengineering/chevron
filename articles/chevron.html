@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9005</span>
       </span>
     </div>
 
@@ -51,15 +51,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start_releases -->
-<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-Other releases
-<span class="caret"></span></a><ul class="dropdown-menu" role="menu">
-   <li><a href="../index.html">latest</a></li>
-   <li><a href="..//index.html"></a></li>
-</ul></li>
-<!-- end_releases -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -85,7 +76,7 @@ Other releases
                         <h4 data-toc-skip class="author">Adrian
 Waddell</h4>
             
-            <h4 data-toc-skip class="date">2022-03-29</h4>
+            <h4 data-toc-skip class="date">2022-05-12</h4>
       
       
       <div class="hidden name"><code>chevron.Rmd</code></div>
@@ -207,7 +198,10 @@ can find more details about this in the <em>adam_db</em> vignette.</p>
 <span class="co">#&gt; cl C.1                                                                                                </span>
 <span class="co">#&gt;   Total number of patients with at least one adverse event   32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
 <span class="co">#&gt;   Total number of events                                         43           55              53      </span>
-<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)</span></code></pre></div>
+<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
+<span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="more-on-preprocess_data-and-processing-map">More on preprocess_data and processing map<a class="anchor" aria-label="anchor" href="#more-on-preprocess_data-and-processing-map"></a>
@@ -252,14 +246,14 @@ accessible by</li>
 <span class="co">#&gt;     adam_db %&gt;% dm_zoom_to(adae) %&gt;% filter(ANL01FL == "Y") %&gt;% </span>
 <span class="co">#&gt;         dm_update_zoomed()</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x559083c808f8&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x560e10a8aab8&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></code></pre></div>
 <p>and</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/std_mutate_fun.html">std_mutate_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span>
 <span class="co">#&gt; function (x) </span>
 <span class="co">#&gt; x</span>
-<span class="co">#&gt; &lt;bytecode: 0x559071fecbf8&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x560dfec79488&gt;</span>
 <span class="co">#&gt; &lt;environment: namespace:base&gt;</span></code></pre></div>
 <p>so alternatively one can also create the output above with</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -307,7 +301,10 @@ accessible by</li>
 <span class="co">#&gt; cl C.1                                                                                                </span>
 <span class="co">#&gt;   Total number of patients with at least one adverse event   32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
 <span class="co">#&gt;   Total number of events                                         43           55              53      </span>
-<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)</span></code></pre></div>
+<span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)  </span>
+<span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span></code></pre></div>
 </div>
   </div>
 
@@ -328,8 +325,7 @@ accessible by</li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
