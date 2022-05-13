@@ -51,7 +51,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' dst01_1(db)
 dst01_1 <- function(adam_db,
                     armvar = .study$planarm,
-                    status_var = "EOSSTT",
+                    status_var = .study$status_var,
                     disc_reason_var = .study$disc_reason_var,
                     prune_0 = TRUE,
                     lbl_overall = .study$lbl_overall,
@@ -59,7 +59,8 @@ dst01_1 <- function(adam_db,
                     .study = list(
                       planarm = "ARM",
                       lbl_overall = "All Patients",
-                      disc_reason_var = "DCSREAS"
+                      disc_reason_var = "DCSREAS",
+                      status_var = "EOSSTT"
                     )) {
   check_dst01_1_args(
     reason = disc_reason_var,
@@ -225,7 +226,7 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 #' dst01_2(db, lbl_overall = NULL)
 dst01_2 <- function(adam_db,
                     armvar = .study$planarm,
-                    status_var = "EOSSTT",
+                    status_var = .study$status_var,
                     disc_reason_var = .study$disc_reason_var,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
@@ -233,7 +234,8 @@ dst01_2 <- function(adam_db,
                     .study = list(
                       planarm = "ARM",
                       lbl_overall = "All Patients",
-                      disc_reason_var = "DCSREAS"
+                      disc_reason_var = "DCSREAS",
+                      status_var = "EOSSTT"
                     )) {
   check_dst01_1_args(
     reason = disc_reason_var,
@@ -403,7 +405,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #' dst01_3(db, lbl_overall = NULL)
 dst01_3 <- function(adam_db,
                     armvar = .study$planarm,
-                    status = "EOSSTT",
+                    status = .study$status_var,
                     disc_reason_var = .study$disc_reason_var,
                     status_treatment = "EOTSTT",
                     lbl_overall = .study$lbl_overall,
@@ -412,7 +414,8 @@ dst01_3 <- function(adam_db,
                     .study = list(
                       planarm = "ARM",
                       disc_reason_var = "DCSREAS",
-                      lbl_overall = "All Patients"
+                      lbl_overall = "All Patients",
+                      status_var = "EOSSTT"
                     )) {
   check_dst01_1_args(
     reason = disc_reason_var,

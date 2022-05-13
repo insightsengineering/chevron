@@ -96,8 +96,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
                             "Pooled Age Group 1 (yr)",
                             "SEX",
                             "ETHNIC",
-                            "RACE",
-                            "Baseline Weight (kg)"
+                            "RACE"
                           ),
                           lbl_overall = "All Patients"
                         )) {

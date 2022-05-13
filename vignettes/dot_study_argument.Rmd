@@ -35,13 +35,13 @@ Used to specify the actual arm of the study. Typically `ACTARM`.
 ## `evo_vars`
 Used in `LBT01` and `EGT01`, which variables capture status and the evolution of the analysis: generally `c("AVAL", "CNG")`
 
-## `evo_vars_labs`
+## `evo_vars_lbls`
 The label associated with the variables selected in `evo_vars`.
 
 ## `disc_reason_var`
 Used in `DST01` to define reason for patient withdrawal. Default is `DCSREAS`
 
-## `group_grade`
+## `group_grades`
 Used in `AET04` to put in correspondence severity levels and labels.
 
 ## `lbl_overall`
@@ -63,9 +63,6 @@ Used in `AET01` the safety variables to be summarized. Typically
 ## `severity_grade`
 internal, used in `AET03`, capture the levels of severity of adverse events: generally corresponds to the levels of
 `AESEV`in `adae`.
-
-## `status`
-used in `DST01`, the name of the column specifying study status): generally: `EOSSTT`. 
 
 ## `status_var` 
 Used in `DST01` to define patient status.
