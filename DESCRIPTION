@@ -4,7 +4,7 @@ Title: Standard TLGs For Clinical Trials Reporting
 Version: 0.1.0.9005
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
-    person("Adrian", "Waddell", , "adrian.waddell@roche.com", role = "aut"),
+    person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
     person("Heng", "Wang", , "wang.heng@gene.com", role = "aut"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )

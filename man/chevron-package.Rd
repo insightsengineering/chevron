@@ -13,7 +13,7 @@ Standard Table, Listings, and Graphs (TLG) library used in clinical trials.
 
 Authors:
 \itemize{
-  \item Adrian Waddell \email{adrian.waddell@roche.com}
+  \item Adrian Waddell \email{adrian.waddell@gene.com}
   \item Heng Wang \email{wang.heng@gene.com}
 }
 
