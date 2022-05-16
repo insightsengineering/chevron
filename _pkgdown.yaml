@@ -13,7 +13,7 @@ navbar:
 articles:
   - title: All vignettes
     contents:
-      - introduction
+      - chevron
       - intended_use
       - adam_db_argument
       - dot_study_argument
@@ -60,8 +60,6 @@ reference:
       - std_pmap
       - pmap_row
       - remove_tlg_pmap
-      - append_to_pmap
-      - remove_tlg_pmap
       - std_filter_fun
       - std_mutate_fun
       - filter_adex_drug
@@ -83,6 +81,7 @@ reference:
       - mutate_vst02
       - reorder_dtht01
       - mutate_dmt01
+
   - title: Utility Functions
     contents:
       - dm_explicit_na

@@ -14,8 +14,6 @@
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Does not include a total column by default.
 #'
-#' @importFrom checkmate assert_factor assert_logical
-#'
 #' @export
 #'
 #' @examples

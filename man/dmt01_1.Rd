@@ -24,7 +24,7 @@ dmt01_1_lyt(
   deco = std_deco("DMT01"),
   .study = list(planarm = "ARM", summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
     "RACE"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
-    "RACE", "Baseline Weight (kg)"), lbl_overall = "All Patients")
+    "RACE"), lbl_overall = "All Patients")
 )
 }
 \arguments{
