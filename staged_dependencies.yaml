@@ -5,6 +5,9 @@ upstream_repos:
   insightsengineering/tern:
     repo: insightsengineering/tern
     host: https://github.com
+  insightsengineering/dunlin:
+    repo: insightsengineering/dunlin
+    host: https://github.com
   Roche/rtables:
     repo: Roche/rtables
     host: https://github.com

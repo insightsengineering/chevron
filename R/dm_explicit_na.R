@@ -43,12 +43,12 @@ dm_explicit_na <- function(data,
                            char_as_factor = TRUE,
                            logical_as_factor = FALSE,
                            na_level = "<Missing>") {
-  assert_class(data, "dm")
-  assert_character(omit_tables, null.ok = TRUE)
-  assert_character(omit_columns, null.ok = TRUE)
-  assert_logical(char_as_factor, len = 1)
-  assert_logical(logical_as_factor, len = 1)
-  assert_character(na_level, len = 1)
+  checkmate::assert_class(data, "dm")
+  checkmate::assert_character(omit_tables, null.ok = TRUE)
+  checkmate::assert_character(omit_columns, null.ok = TRUE)
+  checkmate::assert_logical(char_as_factor, len = 1)
+  checkmate::assert_logical(logical_as_factor, len = 1)
+  checkmate::assert_character(na_level, len = 1)
 
   target_tables <- setdiff(names(data), omit_tables)
 
@@ -104,7 +104,7 @@ dm_explicit_na <- function(data,
 #'
 #' @importFrom tern explicit_na sas_na
 h_as_factor <- function(x, na_label) {
-  assert_true(is.character(x) || is.logical(x))
+  checkmate::assert_multi_class(x, c("character", "logical"))
 
   init_lab <- attr(x, "label")
 

@@ -54,8 +54,8 @@ sorted by frequencies.
 library(dm)
 
 db <- syn_test_data() \%>\%
-  dm_zoom_to(adcm) \%>\%
-  filter(ATIREL == "CONCOMITANT") \%>\%
+  dm_zoom_to("adcm") \%>\%
+  filter(.data$ATIREL == "CONCOMITANT") \%>\%
   dm_update_zoomed() \%>\%
   preprocess_data("cmt02_pt_1")
 
