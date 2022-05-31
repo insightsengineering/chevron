@@ -291,9 +291,13 @@ syn_test_data <- function() {
 
   # useful for dmt01
   adsub <- sd$adsub
-  # adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
-
-  adsub_wide_ls <- dunlin::poly_pivot_wider(adsub, id = "USUBJID", param_from = "PARAMCD", value_from = "AVAL", labels_from = "PARAM")
+  adsub_wide_ls <- dunlin::poly_pivot_wider(
+    adsub,
+    id = "USUBJID",
+    param_from = "PARAMCD",
+    value_from = "AVAL",
+    labels_from = "PARAM"
+  )
   adsub_wide_aval <- adsub_wide_ls[["AVAL"]]
 
   sd$adsl <- sd$adsl %>% left_join(adsub_wide_aval, by = "USUBJID")

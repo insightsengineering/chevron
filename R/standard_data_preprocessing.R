@@ -324,8 +324,18 @@ mutate_for_aet01 <- function(adam_db) {
       RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"),
       CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(.data$CTC35, "Grade 3-5 AE"),
       CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(.data$CTC45, "Grade 4/5 AE"),
-      SMQ01 = if ("SMQ01" %in% colnames(.)) formatters::with_label(.data$SMQ01, aesi_label(.data$SMQ01NAM, .data$SMQ01SC)),
-      SMQ02 = if ("SMQ02" %in% colnames(.)) formatters::with_label(.data$SMQ02, aesi_label(.data$SMQ02NAM, .data$SMQ02SC)),
+      SMQ01 = if ("SMQ01" %in% colnames(.)) {
+        formatters::with_label(
+          .data$SMQ01,
+          aesi_label(.data$SMQ01NAM, .data$SMQ01SC)
+        )
+      },
+      SMQ02 = if ("SMQ02" %in% colnames(.)) {
+        formatters::with_label(
+          .data$SMQ02,
+          aesi_label(.data$SMQ02NAM, .data$SMQ02SC)
+        )
+      },
       CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
     ) %>%
     dm_update_zoomed()
