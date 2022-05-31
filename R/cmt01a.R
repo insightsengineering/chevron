@@ -28,8 +28,8 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adcm) %>%
-#'   filter(ATIREL == "CONCOMITANT") %>%
+#'   dm_zoom_to("adcm") %>%
+#'   filter(.data$ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed() %>%
 #'   preprocess_data("cmt01a_1")
 #'
@@ -173,7 +173,7 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adcm) %>%
+#'   dm_zoom_to("adcm") %>%
 #'   filter(ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed() %>%
 #'   preprocess_data("cmt01a_2")
@@ -257,7 +257,7 @@ cmt01a_2 <- function(adam_db,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adcm) %>%
+#'   dm_zoom_to("adcm") %>%
 #'   filter(ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed() %>%
 #'   preprocess_data("cmt01a_3")

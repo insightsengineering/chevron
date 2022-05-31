@@ -41,10 +41,8 @@ dmt01_1 <- function(adam_db,
                       planarm = "ARM",
                       lbl_overall = "All Patients"
                     )) {
-  assert_that(
-    df_has_vars(adam_db$adsl, summaryvars),
-    length(summaryvars) == length(summaryvars_lbls)
-  )
+  assert_colnames(adam_db$adsl, summaryvars)
+  checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
   lyt <- dmt01_1_lyt(
     armvar = armvar,

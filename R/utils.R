@@ -1,19 +1,14 @@
 # as we use NSE
-globalVariables(c(
-  "ANL01FL", "adae", "ANL01FL", "AEBODSYS", "AEDECOD", "AVAL",
-  "AVALCAT1", "PARAM", "PARAMCD", "PARCAT1", "adex", "adlb", "adsl",
-  "req_data", "tlgfname"
-))
+globalVariables(c("."))
 
 #' Retrieve variables for certain variables
 #'
 #' @param df data frame
 #' @param vars variable names in data frame `df`
 #'
-#' @importFrom assertthat assert_that
 #' @export
 var_labels_for <- function(df, vars) {
-  assert_that(all(vars %in% names(df)))
+  assert_colnames(df, vars)
   unname(formatters::var_labels(df, fill = TRUE)[vars])
 }
 
@@ -188,8 +183,8 @@ pivot_wider_labels <- function(df,
                                keep = "USUBJID") {
   key_val <- df[!duplicated(df[, c(labels_from, names_from)]), c(labels_from, names_from)]
 
-  assert_that(all(!duplicated(key_val[[1]])), msg = "Non-unique relationship between names_from and labels_from.")
-  assert_that(all(!duplicated(key_val[[2]])), msg = "Non-unique relationship between names_from and labels_from.")
+  checkmate::assert_true(all(!duplicated(key_val[[1]])))
+  checkmate::assert_true(all(!duplicated(key_val[[2]])))
 
   df_wide <- df %>%
     select(keep, names_from, values_from) %>%
@@ -202,13 +197,13 @@ pivot_wider_labels <- function(df,
 
 
 basic_table_deco <- function(deco, ...) {
-  assert_that(setequal(names(deco), c("title", "subtitles", "main_footer")))
+  checkmate::assert_set_equal(names(deco), c("title", "subtitles", "main_footer"))
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer, ...)
 }
 
 ifelse_layout <- function(lyt, test, fun_lyt_yes = identity, fun_lyt_no = identity) {
-  assert_that(length(test) == 1, is.logical(test))
+  checkmate::assert_flag(test)
 
   if (test) {
     fun_lyt_yes(lyt)
@@ -260,7 +255,7 @@ get_db_data <- function(db, ...) { # TODO: revisit
     return(list())
   }
 
-  assert_that(is.character(datasets), all(datasets %in% names(db)))
+  checkmate::assert_subset(datasets, names(db))
 
   if (is(db, "dm")) {
     db <- db %>%
@@ -296,8 +291,12 @@ syn_test_data <- function() {
 
   # useful for dmt01
   adsub <- sd$adsub
-  adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
-  sd$adsl <- sd$adsl %>% left_join(adsub_wide, by = "USUBJID")
+  # adsub_wide <- pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID"))
+
+  adsub_wide_ls <- dunlin::poly_pivot_wider(adsub, id = "USUBJID", param_from = "PARAMCD", value_from = "AVAL", labels_from = "PARAM")
+  adsub_wide_aval <- adsub_wide_ls[["AVAL"]]
+
+  sd$adsl <- sd$adsl %>% left_join(adsub_wide_aval, by = "USUBJID")
 
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
@@ -310,47 +309,47 @@ syn_test_data <- function() {
     )))
 
   db <- new_dm(sd) %>%
-    dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
-    dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
-    dm_add_pk(adae, "AESEQ")
+    dm_add_pk("adsl", c("USUBJID", "STUDYID")) %>%
+    dm_add_fk("adae", c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
+    dm_add_pk("adae", "AESEQ")
 
   db <- db %>%
-    dm_zoom_to(adsl) %>%
+    dm_zoom_to("adsl") %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
   db <- db %>%
-    dm_zoom_to(adae) %>%
-    mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(AEDECOD = formatters::with_label(AEDECOD, "MedDRA Preferred Term")) %>%
+    dm_zoom_to("adae") %>%
+    mutate(AEBODSYS = formatters::with_label(.data$AEBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(AEDECOD = formatters::with_label(.data$AEDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
   db <- db %>%
-    dm_zoom_to(admh) %>%
-    mutate(MHBODSYS = formatters::with_label(MHBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(MHDECOD = formatters::with_label(MHDECOD, "MedDRA Preferred Term")) %>%
+    dm_zoom_to("admh") %>%
+    mutate(MHBODSYS = formatters::with_label(.data$MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = formatters::with_label(.data$MHDECOD, "MedDRA Preferred Term")) %>%
     dm_update_zoomed()
 
   db <- db %>%
-    dm_zoom_to(adae) %>%
+    dm_zoom_to("adae") %>%
     mutate(ANL01FL = "Y") %>%
-    mutate(ASEV = AESEV) %>%
-    mutate(AREL = AEREL) %>%
-    mutate(ATOXGR = AETOXGR) %>%
+    mutate(ASEV = .data$AESEV) %>%
+    mutate(AREL = .data$AEREL) %>%
+    mutate(ATOXGR = .data$AETOXGR) %>%
     dm_update_zoomed()
 
   db <- db %>%
-    dm_zoom_to(advs) %>%
-    mutate(ANL01FL = "Y") %>%
-    dm_update_zoomed()
-
-  db <- db %>%
-    dm_zoom_to(adcm) %>%
+    dm_zoom_to("advs") %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 
   db <- db %>%
-    dm_zoom_to(admh) %>%
+    dm_zoom_to("adcm") %>%
+    mutate(ANL01FL = "Y") %>%
+    dm_update_zoomed()
+
+  db <- db %>%
+    dm_zoom_to("admh") %>%
     mutate(ANL01FL = "Y") %>%
     dm_update_zoomed()
 

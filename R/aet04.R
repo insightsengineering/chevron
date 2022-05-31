@@ -24,10 +24,12 @@
 #'   preprocess_data("aet03_1")
 #'
 #' aet04_1(db)
-#' aet04_1(db, prune_0 = FALSE)
-#' aet04_1(db, lbl_overall = "All Patients")
 #'
-#' aet04_1(db, group_grades = list(
+#' aet04_1(
+#'   db,
+#'   prune_0 = FALSE,
+#'  lbl_overall = "All Patients",
+#'   group_grades = list(
 #'   "Any Grade" = c("1", "2", "3", "4", "5"),
 #'   "Grade 1-2" = c("1", "2"),
 #'   "Grade 3-5" = c("3", "4", "5")

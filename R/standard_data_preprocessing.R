@@ -53,9 +53,8 @@ pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
   is_char <- vapply(fnames, function(xi) is.na(xi) || is.character(xi), logical(1))
   fname_len <- vapply(fnames, length, numeric(1))
 
-  assert_that(all(is_char), msg = "tlgfname, filter_fname, mutate_fname must either be NA or of type character")
-  assert_that(all(fname_len == 1), msg = "tlgfname, filter_fname, mutate_fname must be of length 1")
-  assert_that(is.character(req_data), msg = "req_data need to be a character string")
+  checkmate::assert_true(all(fname_len == 1))
+  checkmate::assert_character(req_data)
 
   tibble(
     tlgfname = tlgfname,
@@ -74,17 +73,17 @@ pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
 #' @examples
 #' remove_tlg_pmap(std_pmap, "aet02_1")
 remove_tlg_pmap <- function(pmap, tlgfname) {
-  assert_that(tlgfname %in% pmap$tlgfname)
+  checkmate::assert_subset(tlgfname, pmap$tlgfname)
 
   pmap[pmap$tlgfname != tlgfname, ]
 }
 
 
 lookup_fun <- function(fname, what, pmap) {
-  assert_that(fname %in% pmap$tlgfname)
+  checkmate::assert_subset(fname, pmap$tlgfname)
 
   fstr <- pmap %>%
-    dplyr::filter(tlgfname == fname) %>%
+    dplyr::filter(.data$tlgfname == fname) %>%
     dplyr::slice(1) %>%
     dplyr::pull(what)
 
@@ -104,12 +103,12 @@ get_mutate_fun <- function(id, pmap) {
 }
 
 get_req_data <- function(id, pmap) {
-  assert_that(id %in% pmap$tlgfname)
+  checkmate::assert_subset(id, pmap$tlgfname)
 
   fstr <- pmap %>%
-    dplyr::filter(tlgfname == id) %>%
+    dplyr::filter(.data$tlgfname == id) %>%
     dplyr::slice(1) %>%
-    dplyr::pull(req_data)
+    dplyr::pull(.data$req_data)
 
   fstr[[1]]
 }
@@ -127,13 +126,7 @@ get_req_data <- function(id, pmap) {
 #' db %>%
 #'   preprocess_data("aet02_2")
 preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap, .study) {
-  assert_that(
-    all(get_req_data(tlgfname, pmap) %in% names(adam_db)),
-    msg = paste(
-      "adam_db is missing the data:",
-      paste(setdiff(get_req_data(tlgfname, pmap), names(adam_db)), collapse = ", ")
-    )
-  )
+  checkmate::assert_subset(get_req_data(tlgfname, pmap), names(adam_db))
 
   ffun <- get_filter_fun(tlgfname, pmap)
   mfun <- get_mutate_fun(tlgfname, pmap)
@@ -185,11 +178,11 @@ std_mutate_fun <- function(tlgfname, pmap = std_pmap) {
 #'
 #' @importFrom dplyr filter
 filter_adae_anl01fl <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
-    dm_zoom_to(adae) %>%
-    filter(ANL01FL == "Y") %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -197,11 +190,11 @@ filter_adae_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adlb_anl01fl <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
-    dm_zoom_to(adlb) %>%
-    filter(ANL01FL == "Y") %>%
+    dm_zoom_to("adlb") %>%
+    filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -209,11 +202,11 @@ filter_adlb_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adeg_anl01fl <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
-    dm_zoom_to(adeg) %>%
-    filter(ANL01FL == "Y") %>%
+    dm_zoom_to("adeg") %>%
+    filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -221,11 +214,11 @@ filter_adeg_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_advs_anl01fl <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
-    dm_zoom_to(advs) %>%
-    filter(ANL01FL == "Y") %>%
+    dm_zoom_to("advs") %>%
+    filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -233,11 +226,11 @@ filter_advs_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_admh_anl01fl <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
-    dm_zoom_to(admh) %>%
-    filter(ANL01FL == "Y") %>%
+    dm_zoom_to("admh") %>%
+    filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -245,11 +238,11 @@ filter_admh_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adex_drug <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
-    dm_zoom_to(adex) %>%
-    filter(PARCAT1 == "OVERALL") %>%
+    dm_zoom_to("adex") %>%
+    filter(.data$PARCAT1 == "OVERALL") %>%
     dm_update_zoomed()
 }
 
@@ -259,10 +252,10 @@ filter_adex_drug <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adcm_anl01fl <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
   adam_db %>%
-    dm_zoom_to(adcm) %>%
-    filter(ANL01FL == "Y") %>%
+    dm_zoom_to("adcm") %>%
+    filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -270,11 +263,11 @@ filter_adcm_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_vst02 <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
   adam_db %>%
-    dm_zoom_to(advs) %>%
-    filter(ANRIND != "<Missing>") %>%
-    filter(ONTRTFL == "Y") %>%
+    dm_zoom_to("advs") %>%
+    filter(.data$ANRIND != "<Missing>") %>%
+    filter(.data$ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -282,11 +275,11 @@ filter_vst02 <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_egt02 <- function(adam_db) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
   adam_db %>%
-    dm_zoom_to(adeg) %>%
-    filter(ANRIND != "<Missing>") %>%
-    filter(ONTRTFL == "Y") %>%
+    dm_zoom_to("adeg") %>%
+    filter(.data$ANRIND != "<Missing>") %>%
+    filter(.data$ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
 
@@ -295,45 +288,45 @@ filter_egt02 <- function(adam_db) {
 #' @inheritParams gen_args
 mutate_for_aet01 <- function(adam_db) {
   db <- adam_db %>%
-    dm_zoom_to(adae) %>%
+    dm_zoom_to("adae") %>%
     mutate(
-      FATAL = AESDTH == "Y",
-      SER = AESER == "Y",
-      SERWD = (AESER == "Y" & AEACN == "DRUG WITHDRAWN"),
-      SERDSM = (AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-      RELSER = (AESER == "Y" & AREL == "Y"),
-      WD = AEACN == "DRUG WITHDRAWN",
-      DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      REL = AREL == "Y",
-      RELWD = (AREL == "Y" & AEACN == "DRUG WITHDRAWN"),
-      RELDSM = (AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-      CTC35 = if ("ATOXGR" %in% colnames(.)) ATOXGR %in% c("3", "4", "5"),
-      CTC45 = if ("ATOXGR" %in% colnames(.)) ATOXGR %in% c("4", "5"),
-      SEV = if ("ASEV" %in% colnames(.)) ASEV == "SEVERE",
-      SMQ01 = if ("SMQ01NAM" %in% colnames(.)) SMQ01NAM != "",
-      SMQ02 = if ("SMQ02NAM" %in% colnames(.)) SMQ02NAM != "",
-      CQ01 = if ("CQ01NAM" %in% colnames(.)) CQ01NAM != ""
+      FATAL = .data$AESDTH == "Y",
+      SER = .data$AESER == "Y",
+      SERWD = (.data$AESER == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
+      SERDSM = (.data$AESER == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+      RELSER = (.data$AESER == "Y" & .data$AREL == "Y"),
+      WD = .data$AEACN == "DRUG WITHDRAWN",
+      DSM = .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      REL = .data$AREL == "Y",
+      RELWD = (.data$AREL == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
+      RELDSM = (.data$AREL == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+      CTC35 = if ("ATOXGR" %in% colnames(.)) .data$ATOXGR %in% c("3", "4", "5"),
+      CTC45 = if ("ATOXGR" %in% colnames(.)) .data$ATOXGR %in% c("4", "5"),
+      SEV = if ("ASEV" %in% colnames(.)) .data$ASEV == "SEVERE",
+      SMQ01 = if ("SMQ01NAM" %in% colnames(.)) .data$SMQ01NAM != "",
+      SMQ02 = if ("SMQ02NAM" %in% colnames(.)) .data$SMQ02NAM != "",
+      CQ01 = if ("CQ01NAM" %in% colnames(.)) .data$CQ01NAM != ""
     ) %>%
     mutate(
-      AEDECOD = formatters::with_label(AEDECOD, "Dictionary-Derived Term"),
-      AESDTH = formatters::with_label(AESDTH, "Results in Death"),
-      AEACN = formatters::with_label(AEACN, "Action Taken with Study Treatment"),
-      FATAL = formatters::with_label(FATAL, "AE with fatal outcome"),
-      SER = formatters::with_label(SER, "Serious AE"),
-      SEV = if ("SEV" %in% colnames(.)) formatters::with_label(SEV, "Severe AE (at greatest intensity)"),
-      SERWD = formatters::with_label(SERWD, "Serious AE leading to withdrawal from treatment"),
-      SERDSM = formatters::with_label(SERDSM, "Serious AE leading to dose modification/interruption"),
-      RELSER = formatters::with_label(RELSER, "Related Serious AE"),
-      WD = formatters::with_label(WD, "AE leading to withdrawal from treatment"),
-      DSM = formatters::with_label(DSM, "AE leading to dose modification/interruption"),
-      REL = formatters::with_label(REL, "Related AE"),
-      RELWD = formatters::with_label(RELWD, "Related AE leading to withdrawal from treatment"),
-      RELDSM = formatters::with_label(RELDSM, "Related AE leading to dose modification/interruption"),
-      CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(CTC35, "Grade 3-5 AE"),
-      CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(CTC45, "Grade 4/5 AE"),
-      SMQ01 = if ("SMQ01" %in% colnames(.)) formatters::with_label(SMQ01, aesi_label(SMQ01NAM, SMQ01SC)),
-      SMQ02 = if ("SMQ02" %in% colnames(.)) formatters::with_label(SMQ02, aesi_label(SMQ02NAM, SMQ02SC)),
-      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(CQ01, aesi_label(CQ01NAM))
+      AEDECOD = formatters::with_label(.data$AEDECOD, "Dictionary-Derived Term"),
+      AESDTH = formatters::with_label(.data$AESDTH, "Results in Death"),
+      AEACN = formatters::with_label(.data$AEACN, "Action Taken with Study Treatment"),
+      FATAL = formatters::with_label(.data$FATAL, "AE with fatal outcome"),
+      SER = formatters::with_label(.data$SER, "Serious AE"),
+      SEV = if ("SEV" %in% colnames(.)) formatters::with_label(.data$SEV, "Severe AE (at greatest intensity)"),
+      SERWD = formatters::with_label(.data$SERWD, "Serious AE leading to withdrawal from treatment"),
+      SERDSM = formatters::with_label(.data$SERDSM, "Serious AE leading to dose modification/interruption"),
+      RELSER = formatters::with_label(.data$RELSER, "Related Serious AE"),
+      WD = formatters::with_label(.data$WD, "AE leading to withdrawal from treatment"),
+      DSM = formatters::with_label(.data$DSM, "AE leading to dose modification/interruption"),
+      REL = formatters::with_label(.data$REL, "Related AE"),
+      RELWD = formatters::with_label(.data$RELWD, "Related AE leading to withdrawal from treatment"),
+      RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"),
+      CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(.data$CTC35, "Grade 3-5 AE"),
+      CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(.data$CTC45, "Grade 4/5 AE"),
+      SMQ01 = if ("SMQ01" %in% colnames(.)) formatters::with_label(.data$SMQ01, aesi_label(.data$SMQ01NAM, .data$SMQ01SC)),
+      SMQ02 = if ("SMQ02" %in% colnames(.)) formatters::with_label(.data$SMQ02, aesi_label(.data$SMQ02NAM, .data$SMQ02SC)),
+      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
     ) %>%
     dm_update_zoomed()
 
@@ -347,7 +340,7 @@ mutate_for_aet01 <- function(adam_db) {
 mutate_adsl_gp <- function(adam_db,
                            reason = .study$disc_reason_var,
                            .study = list(disc_reason_var = "DCSREAS")) {
-  assert_that(is(adam_db, "dm"))
+  checkmate::assert_class(adam_db, "dm")
 
   # TODO: revisit
   sym_reason <- sym(reason) # nolint
@@ -367,8 +360,8 @@ mutate_adsl_gp <- function(adam_db,
 #' @inheritParams gen_args
 mutate_cmt01a <- function(adam_db) {
   adam_db %>%
-    dm_zoom_to(adcm) %>%
-    mutate(CMSEQ = as.factor(CMSEQ)) %>%
+    dm_zoom_to("adcm") %>%
+    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
 }
 
@@ -384,11 +377,11 @@ reorder_adex_params <- function(adam_db,
                                 paramcd_order = .study$paramcd_order,
                                 .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))) {
   param_vars <- adam_db$adex %>%
-    select(PARAM, PARAMCD) %>%
+    select(.data$PARAM, .data$PARAMCD) %>%
     reorder_levels_params(paramcd_levels = paramcd_order)
 
   adam_db %>%
-    dm_zoom_to(adex) %>%
+    dm_zoom_to("adex") %>%
     mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
     dm_update_zoomed()
 }
@@ -414,15 +407,15 @@ remove_adex_aval <- function(adam_db,
                              )) {
   if (!"ALL" %in% show_stats) {
     adam_db <- adam_db %>%
-      dm_zoom_to(adex) %>%
-      mutate(AVAL = ifelse(PARAM %in% show_stats, AVAL, NA)) %>%
+      dm_zoom_to("adex") %>%
+      mutate(AVAL = ifelse(.data$PARAM %in% show_stats, .data$AVAL, NA)) %>%
       dm_update_zoomed()
   }
 
   if (!"ALL" %in% show_bins) {
     adam_db <- adam_db %>%
-      dm_zoom_to(adex) %>%
-      mutate(AVALCAT1 = ifelse(PARAM %in% show_bins, AVALCAT1, NA)) %>%
+      dm_zoom_to("adex") %>%
+      mutate(AVALCAT1 = ifelse(.data$PARAM %in% show_bins, .data$AVALCAT1, NA)) %>%
       dm_update_zoomed()
   }
 
@@ -443,8 +436,8 @@ reorder_dtht01 <- function(adam_db) {
   death_fact <- c(death_fact, "OTHER")
 
   db <- adam_db %>%
-    dm_zoom_to(adsl) %>%
-    mutate(DTHCAT = fct_relevel(DTHCAT, death_fact)) %>%
+    dm_zoom_to("adsl") %>%
+    mutate(DTHCAT = fct_relevel(.data$DTHCAT, death_fact)) %>%
     dm_update_zoomed()
 
   db
@@ -455,8 +448,8 @@ reorder_dtht01 <- function(adam_db) {
 #' @inheritParams gen_args
 mutate_cmt02_pt_1 <- function(adam_db) {
   db <- adam_db %>%
-    dm_zoom_to(adcm) %>%
-    mutate(CMSEQ = as.factor(CMSEQ)) %>%
+    dm_zoom_to("adcm") %>%
+    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
 
   db
@@ -468,12 +461,12 @@ mutate_cmt02_pt_1 <- function(adam_db) {
 mutate_dmt01 <- function(adam_db) {
   adsl_lbs <- formatters::var_labels(adam_db$adsl)
   db <- adam_db %>%
-    dm_zoom_to(adsl) %>%
+    dm_zoom_to("adsl") %>%
     mutate(
-      SEX = case_when(SEX == "F" ~ "Female", SEX == "M" ~ "Male", TRUE ~ as.character(SEX)),
-      SEX = factor(SEX, levels = c("Female", "Male"))
+      SEX = case_when(.data$SEX == "F" ~ "Female", .data$SEX == "M" ~ "Male", TRUE ~ as.character(.data$SEX)),
+      SEX = factor(.data$SEX, levels = c("Female", "Male"))
     ) %>%
-    mutate(SEX = formatters::with_label(SEX, adsl_lbs["SEX"])) %>%
+    mutate(SEX = formatters::with_label(.data$SEX, adsl_lbs["SEX"])) %>%
     dm_update_zoomed()
   db
 }
@@ -483,22 +476,22 @@ mutate_dmt01 <- function(adam_db) {
 #' @inheritParams gen_args
 mutate_vst02 <- function(adam_db) {
   db <- adam_db %>%
-    dm_zoom_to(advs) %>%
+    dm_zoom_to("advs") %>%
     mutate(
       ANRIND = case_when(
-        ANRIND == "HIGH HIGH" ~ "HIGH",
-        ANRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(ANRIND)
+        .data$ANRIND == "HIGH HIGH" ~ "HIGH",
+        .data$ANRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(.data$ANRIND)
       ),
       BNRIND = case_when(
-        BNRIND == "HIGH HIGH" ~ "HIGH",
-        BNRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(BNRIND)
+        .data$BNRIND == "HIGH HIGH" ~ "HIGH",
+        .data$BNRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(.data$BNRIND)
       )
     ) %>%
     mutate(
-      ANRIND = as.factor(ANRIND),
-      BNRIND = as.factor(BNRIND)
+      ANRIND = as.factor(.data$ANRIND),
+      BNRIND = as.factor(.data$BNRIND)
     ) %>%
     dm_update_zoomed()
 

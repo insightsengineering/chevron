@@ -43,10 +43,10 @@ dtht01_1 <- function(adam_db,
                      )) {
   dbsel <- get_db_data(adam_db, "adsl")
 
-  assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
-  assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
-  assert_logical(time_since_last_dose, len = 1)
-  assert_logical(other_category, len = 1)
+  checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
+  checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
+  checkmate::assert_flag(time_since_last_dose)
+  checkmate::assert_flag(other_category)
 
 
   lyt <- dtht01_1_lyt(

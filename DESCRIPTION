@@ -14,10 +14,10 @@ License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 4.0.0)
 Imports:
-    assertthat,
     checkmate,
     dm,
     dplyr,
+    dunlin,
     forcats,
     formatters,
     magrittr,
