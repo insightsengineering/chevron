@@ -58,6 +58,7 @@ reporting of death.
 \item Numbers represent absolute numbers of subjects and fraction of \code{N}, or absolute numbers when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Does not include a total column by default.
+\item For the breakdown of \code{OTHER}, the percentages are based on \code{N}.
 }
 }
 \section{Functions}{
@@ -78,9 +79,9 @@ db <- syn_test_data() \%>\%
   preprocess_data("dtht01_1")
 
 dtht01_1(adam_db = db)
-dtht01_1(adam_db = db, other_category = FALSE)
+dtht01_1(adam_db = db, other_category = TRUE)
 dtht01_1(adam_db = db, time_since_last_dose = TRUE)
-dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
+dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = TRUE)
 dtht01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
