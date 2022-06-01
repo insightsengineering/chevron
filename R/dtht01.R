@@ -13,6 +13,7 @@
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Does not include a total column by default.
+#'  * For the breakdown of `OTHER`, the percentages are based on `N`.
 #'
 #' @export
 #'
@@ -27,9 +28,9 @@
 #'   preprocess_data("dtht01_1")
 #'
 #' dtht01_1(adam_db = db)
-#' dtht01_1(adam_db = db, other_category = FALSE)
+#' dtht01_1(adam_db = db, other_category = TRUE)
 #' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
-#' dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
+#' dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = TRUE)
 dtht01_1 <- function(adam_db,
                      armvar = .study$actualarm,
                      time_since_last_dose = FALSE,
@@ -117,7 +118,11 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
       .labels =  c(count_fraction = "Total number of deaths"),
       .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
-    summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
+    summarize_vars(
+      vars = c("DTHCAT"),
+      var_labels = c("Primary cause of death"),
+      denom = "N_col"
+    )
 
   if (other_category) {
     tab <-
@@ -131,7 +136,8 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
         "DTHCAUS",
         nested = TRUE,
         .stats = "count_fraction",
-        .indent_mods = c("count_fraction" = 4L)
+        .indent_mods = c("count_fraction" = 4L),
+        denom = "N_col"
       )
   }
   tab
@@ -164,7 +170,8 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
     summarize_vars(
       vars = "LDDTHGR1",
       var_labels = "Days from last drug administration",
-      show_labels = "visible"
+      show_labels = "visible",
+      denom = "N_col"
     ) %>%
     split_rows_by(
       "LDDTHGR1",
@@ -172,5 +179,5 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
       split_label = "Primary cause by days from last study drug administration",
       label_pos = "visible"
     ) %>%
-    summarize_vars("DTHCAT")
+    summarize_vars("DTHCAT", denom = "N_col")
 }
