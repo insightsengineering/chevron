@@ -8,3 +8,5 @@ _pkgdown.yaml
 docs
 ^.lintr
 ^.gitlab-ci.yml
+CODE_OF_CONDUCT.md
+SECURITY.md
