@@ -23,13 +23,13 @@ std_deco <- function(id, ...) {
   if (!is.null(gds_data[[id]])) {
     list(
       title = gds_data[[id]]$`Standard titles`[1],
-      subtitles = c("Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}", gds_data[[id]]$`Standard titles`[-1]), # nolint
+      subtitles = c("Protocol: {{protocol}}", gds_data[[id]]$`Standard titles`[-1]), # nolint
       main_footer = paste(gds_data[[id]]$`Standard footnotes`, collapse = " ")
     )
   } else {
     list(
       title = "Main Title",
-      subtitles = "Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}", # nolint
+      subtitles = "Protocol: {{protocol}}",
       main_footer = "Footnotes go here"
     )
   }
