@@ -60,27 +60,6 @@ reference:
       - std_pmap
       - pmap_row
       - remove_tlg_pmap
-      - std_filter_fun
-      - std_mutate_fun
-      - filter_adex_drug
-      - filter_adae_anl01fl
-      - filter_adeg_anl01fl
-      - filter_adlb_anl01fl
-      - filter_admh_anl01fl
-      - filter_advs_anl01fl
-      - filter_vst02
-      - filter_egt02
-      - mutate_adsl_gp
-      - filter_adcm_anl01fl
-      - mutate_for_aet01
-      - mutate_adsl_gp
-      - mutate_cmt02_pt_1
-      - remove_adex_aval
-      - reorder_adex_params
-      - mutate_cmt01a
-      - mutate_vst02
-      - reorder_dtht01
-      - mutate_dmt01
 
   - title: Utility Functions
     contents:
