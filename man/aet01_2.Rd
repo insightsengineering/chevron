@@ -3,6 +3,7 @@
 \name{aet01_2}
 \alias{aet01_2}
 \alias{aet01_2_lyt}
+\alias{aet01_2_pre}
 \title{\code{AET01} Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2.}
 \usage{
 aet01_2(
@@ -34,6 +35,8 @@ aet01_2_lyt(
     "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"), medconcept_var =
     c("SMQ01", "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
 )
+
+aet01_2_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -67,13 +70,15 @@ Overview of death and summary of adverse events with medical concepts.
 \section{Functions}{
 \itemize{
 \item \code{aet01_2_lyt}: 
+
+\item \code{aet01_2_pre}: 
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("aet01_2")
+  aet01_2_pre()
 
 aet01_2(db, armvar = "ARM", prune_0 = FALSE)
 aet01_1_lyt(
@@ -81,4 +86,6 @@ aet01_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("AET01")
 )
+syn_test_data() \%>\%
+  aet01_2_pre()
 }

@@ -3,6 +3,7 @@
 \name{cmt01a_1}
 \alias{cmt01a_1}
 \alias{cmt01a_1_lyt}
+\alias{cmt01a_1_pre}
 \title{\code{CMT01A} Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.}
 \usage{
 cmt01a_1(
@@ -28,6 +29,8 @@ cmt01a_1_lyt(
   deco = std_deco("CMT01A"),
   .study = list(planarm = "ARM", lbl_overall = NULL)
 )
+
+cmt01a_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -68,6 +71,8 @@ the specific medication.
 \section{Functions}{
 \itemize{
 \item \code{cmt01a_1_lyt}: 
+
+\item \code{cmt01a_1_pre}: 
 }}
 
 \examples{
@@ -77,7 +82,7 @@ db <- syn_test_data() \%>\%
   dm_zoom_to("adcm") \%>\%
   filter(.data$ATIREL == "CONCOMITANT") \%>\%
   dm_update_zoomed() \%>\%
-  preprocess_data("cmt01a_1")
+  cmt01a_1_pre()
 
 cmt01a_1(adam_db = db)
 cmt01a_1_lyt(
@@ -85,4 +90,6 @@ cmt01a_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("CMT01A")
 )
+syn_test_data() \%>\%
+  cmt01a_1_pre()
 }

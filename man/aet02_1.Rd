@@ -3,6 +3,7 @@
 \name{aet02_1}
 \alias{aet02_1}
 \alias{aet02_1_lyt}
+\alias{aet02_1_pre}
 \title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \usage{
 aet02_1(
@@ -22,6 +23,8 @@ aet02_1_lyt(
   deco = std_deco("AET02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
+
+aet02_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -56,13 +59,15 @@ events categorized by Body System and Dictionary-Derived Term.
 \section{Functions}{
 \itemize{
 \item \code{aet02_1_lyt}: 
+
+\item \code{aet02_1_pre}: 
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("aet02_1")
+  aet02_1_pre()
 
 aet02_1(adam_db = db) \%>\% head(15)
 
@@ -88,4 +93,6 @@ aet02_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("AET02")
 )
+syn_test_data() \%>\%
+  aet02_1_pre()
 }

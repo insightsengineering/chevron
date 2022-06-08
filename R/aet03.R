@@ -21,7 +21,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("aet03_1")
+#'   aet03_1_pre()
 #'
 #' aet03_1(db)
 #' aet03_1(db, lbl_overall = "All Patients")
@@ -140,4 +140,24 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
       var = "AESEV",
       grade_groups = list("- Any Intensity -" = severity_grade)
     )
+}
+
+#' `AET03` Preprocessing 1 (Default)
+#'
+#' @describeIn aet03_1
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   aet03_1_pre()
+aet03_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }

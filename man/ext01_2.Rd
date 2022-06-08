@@ -3,6 +3,7 @@
 \name{ext01_2}
 \alias{ext01_2}
 \alias{ext01_2_lyt}
+\alias{ext01_2_pre}
 \title{EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options}
 \usage{
 ext01_2(
@@ -22,6 +23,13 @@ ext01_2_lyt(
   deco = std_deco("EXT01"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
+
+ext01_2_pre(
+  adam_db,
+  show_stats = .study$show_cont_stats,
+  show_bins = .study$show_cat_stats,
+  .study = list(show_cont_stats = c("ALL"), show_cat_stats = c("ALL"))
+)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -39,11 +47,19 @@ ext01_2_lyt(
 \item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
+
+\item{show_stats}{(\verb{vector of character}) providing the name of the parameters whose statistical summary should be
+presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{show_stats = ""}.}
+
+\item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
+presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 
 EXT01 Layout 2 (Supplementary)
+
+\code{EXT01} Preprocessing 2 (Supplementary)
 }
 \details{
 \itemize{
@@ -60,13 +76,17 @@ patients in the corresponding analysis population given by \code{N}.
 \section{Functions}{
 \itemize{
 \item \code{ext01_2_lyt}: 
+
+\item \code{ext01_2_pre}: 
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("ext01_2")
+  ext01_2_pre()
 
 ext01_2(db)
+syn_test_data() \%>\%
+  ext01_2_pre()
 }

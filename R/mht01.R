@@ -22,7 +22,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("mht01_1")
+#'   mht01_1_pre()
 #'
 #' mht01_1(adam_db = db) %>% head(15)
 mht01_1 <- function(adam_db,
@@ -121,4 +121,24 @@ mht01_1_lyt <- function(armvar = .study$planarm,
       .indent_mods = -1L
     ) %>%
     append_topleft(paste0("  ", lbl_mhdecod))
+}
+
+#' `MHT01` Preprocessing 1 (Default)
+#'
+#' @describeIn mht01_1
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   mht01_1_pre()
+mht01_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("admh") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }

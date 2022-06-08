@@ -3,6 +3,7 @@
 \name{dst01_2}
 \alias{dst01_2}
 \alias{dst01_2_lyt}
+\alias{dst01_2_pre}
 \title{DST01 Table 2 (Supplementary) Patient Disposition Table 2}
 \usage{
 dst01_2(
@@ -28,6 +29,12 @@ dst01_2_lyt(
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", status = "EOSSTT",
     disc_reason_var = "DCSREAS")
+)
+
+dst01_2_pre(
+  adam_db,
+  reason = .study$disc_reason_var,
+  .study = list(disc_reason_var = "DCSREAS")
 )
 }
 \arguments{
@@ -62,6 +69,8 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
+
+\item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
@@ -85,13 +94,15 @@ which allows the tables to be constructed and pruned separately before binding.
 \section{Functions}{
 \itemize{
 \item \code{dst01_2_lyt}: 
+
+\item \code{dst01_2_pre}: 
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("dst01_2")
+  dst01_2_pre()
 
 dst01_2(db)
 dst01_2(db, lbl_overall = NULL)
@@ -100,4 +111,6 @@ dst01_2_lyt(
   status = "EOP01STT",
   disc_reason_var = "DCP01RS"
 )
+syn_test_data() \%>\%
+  dst01_2_pre()
 }

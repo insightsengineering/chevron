@@ -3,6 +3,7 @@
 \name{vst02_1}
 \alias{vst02_1}
 \alias{vst02_1_lyt}
+\alias{vst02_1_pre}
 \title{\code{VST02} Table 1 (Default) Vital Sign Abnormalities Table 1}
 \usage{
 vst02_1(
@@ -24,6 +25,8 @@ vst02_1_lyt(
   deco = std_deco("VST02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
+
+vst02_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -56,6 +59,8 @@ Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
 \section{Functions}{
 \itemize{
 \item \code{vst02_1_lyt}: 
+
+\item \code{vst02_1_pre}: 
 }}
 
 \examples{
@@ -65,11 +70,13 @@ db <- syn_test_data() \%>\%
   dm_zoom_to("advs") \%>\%
   filter(PARAM \%in\% c("Temperature")) \%>\%
   dm_update_zoomed() \%>\%
-  preprocess_data("vst02_1")
+  vst02_1_pre()
 
 vst02_1(adam_db = db)
 vst02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
+syn_test_data() \%>\%
+  vst02_1_pre()
 }

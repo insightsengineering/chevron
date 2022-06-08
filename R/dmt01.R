@@ -22,7 +22,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("dmt01_1")
+#'   dmt01_1_pre()
 #'
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"))
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
@@ -103,4 +103,29 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+}
+
+#' `DMT01` Preprocessing 1 (Default)
+#'
+#' @describeIn dmt01_1
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dmt01_1_pre()
+dmt01_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+  adsl_lbs <- formatters::var_labels(adam_db$adsl)
+  db <- adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(
+      SEX = case_when(.data$SEX == "F" ~ "Female", .data$SEX == "M" ~ "Male", TRUE ~ as.character(.data$SEX)),
+      SEX = factor(.data$SEX, levels = c("Female", "Male"))
+    ) %>%
+    mutate(SEX = formatters::with_label(.data$SEX, adsl_lbs["SEX"])) %>%
+    dm_update_zoomed()
+  db
 }

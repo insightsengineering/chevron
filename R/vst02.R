@@ -25,7 +25,7 @@
 #'   dm_zoom_to("advs") %>%
 #'   filter(PARAM %in% c("Temperature")) %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("vst02_1")
+#'   vst02_1_pre()
 #'
 #' vst02_1(adam_db = db)
 vst02_1 <- function(adam_db,
@@ -94,6 +94,44 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
+#' `VST02` Preprocessing 1 (Default)
+#'
+#' @describeIn vst02_1
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   vst02_1_pre()
+vst02_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+  adam_db %>%
+    dm_zoom_to("advs") %>%
+    filter(.data$ANRIND != "<Missing>") %>%
+    filter(.data$ONTRTFL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("advs") %>%
+    mutate(
+      ANRIND = case_when(
+        .data$ANRIND == "HIGH HIGH" ~ "HIGH",
+        .data$ANRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(.data$ANRIND)
+      ),
+      BNRIND = case_when(
+        .data$BNRIND == "HIGH HIGH" ~ "HIGH",
+        .data$BNRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(.data$BNRIND)
+      )
+    ) %>%
+    mutate(
+      ANRIND = as.factor(.data$ANRIND),
+      BNRIND = as.factor(.data$BNRIND)
+    ) %>%
+    dm_update_zoomed()
+}
+
 # vst02_2 ----
 
 #' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2
@@ -121,7 +159,7 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
 #'   dm_zoom_to("advs") %>%
 #'   filter(PARAM %in% c("Temperature")) %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("vst02_2")
+#'   vst02_2_pre()
 #'
 #' vst02_2(adam_db = db)
 vst02_2 <- function(adam_db,
@@ -187,4 +225,42 @@ vst02_2_lyt <- function(armvar = .study$actualarm,
       exclude_base_abn = TRUE
     ) %>%
     append_topleft(paste0("  ", lbl_vs_abnormality))
+}
+
+#' `VST02` Preprocessing 2 (Supplementary)
+#'
+#' @describeIn vst02_2
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   vst02_2_pre()
+vst02_2_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+  adam_db %>%
+    dm_zoom_to("advs") %>%
+    filter(.data$ANRIND != "<Missing>") %>%
+    filter(.data$ONTRTFL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("advs") %>%
+    mutate(
+      ANRIND = case_when(
+        .data$ANRIND == "HIGH HIGH" ~ "HIGH",
+        .data$ANRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(.data$ANRIND)
+      ),
+      BNRIND = case_when(
+        .data$BNRIND == "HIGH HIGH" ~ "HIGH",
+        .data$BNRIND == "LOW LOW" ~ "LOW",
+        TRUE ~ as.character(.data$BNRIND)
+      )
+    ) %>%
+    mutate(
+      ANRIND = as.factor(.data$ANRIND),
+      BNRIND = as.factor(.data$BNRIND)
+    ) %>%
+    dm_update_zoomed()
 }

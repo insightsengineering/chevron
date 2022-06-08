@@ -3,6 +3,7 @@
 \name{egt01_1}
 \alias{egt01_1}
 \alias{egt01_1_lyt}
+\alias{egt01_1_pre}
 \title{\code{EGT01} Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1}
 \usage{
 egt01_1(
@@ -27,6 +28,8 @@ egt01_1_lyt(
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
+
+egt01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -69,14 +72,18 @@ by \code{AVISIT}. Re-level to customize order
 \section{Functions}{
 \itemize{
 \item \code{egt01_1_lyt}: 
+
+\item \code{egt01_1_pre}: 
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("egt01_1")
+  egt01_1_pre()
 
 egt01_1(db)
 egt01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
+syn_test_data() \%>\%
+  egt01_1_pre()
 }

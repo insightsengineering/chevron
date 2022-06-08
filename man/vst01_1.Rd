@@ -3,6 +3,7 @@
 \name{vst01_1}
 \alias{vst01_1}
 \alias{vst01_1_lyt}
+\alias{vst01_1_pre}
 \title{\code{VST01} Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1}
 \usage{
 vst01_1(
@@ -27,6 +28,8 @@ vst01_1_lyt(
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
+
+vst01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -70,14 +73,18 @@ by \code{AVISIT}. Re-level to customize order
 \section{Functions}{
 \itemize{
 \item \code{vst01_1_lyt}: 
+
+\item \code{vst01_1_pre}: 
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("vst01_1")
+  vst01_1_pre()
 
 vst01_1(db)
 vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
+syn_test_data() \%>\%
+  vst01_1_pre()
 }

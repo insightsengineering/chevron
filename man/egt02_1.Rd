@@ -3,6 +3,7 @@
 \name{egt02_1}
 \alias{egt02_1}
 \alias{egt02_1_lyt}
+\alias{egt02_1_pre}
 \title{\code{EGT02} Table 1 (Default) ECG Abnormalities Table 1}
 \usage{
 egt02_1(
@@ -24,6 +25,8 @@ egt02_1_lyt(
   deco = std_deco("EGT02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
+
+egt02_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -56,6 +59,8 @@ Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
 \section{Functions}{
 \itemize{
 \item \code{egt02_1_lyt}: 
+
+\item \code{egt02_1_pre}: 
 }}
 
 \examples{
@@ -65,11 +70,13 @@ db <- syn_test_data() \%>\%
   dm_zoom_to("adeg") \%>\%
   filter(PARAM \%in\% c("Heart Rate", "QT Duration", "RR Duration")) \%>\%
   dm_update_zoomed() \%>\%
-  preprocess_data("egt02_1")
+  egt02_1_pre()
 
 egt02_1(adam_db = db)
 egt02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
+syn_test_data() \%>\%
+  egt02_1_pre()
 }

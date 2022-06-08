@@ -3,6 +3,7 @@
 \name{aet02_3}
 \alias{aet02_3}
 \alias{aet02_3_lyt}
+\alias{aet02_3_pre}
 \title{\code{AET02} Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3}
 \usage{
 aet02_3(
@@ -21,6 +22,8 @@ aet02_3_lyt(
   deco = std_deco("AET02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
+
+aet02_3_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -53,13 +56,15 @@ adverse events categorized by Dictionary-Derived Term.
 \section{Functions}{
 \itemize{
 \item \code{aet02_3_lyt}: 
+
+\item \code{aet02_3_pre}: 
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("aet02_3")
+  aet02_3_pre()
 
 aet02_3(adam_db = db) \%>\% head()
 
@@ -70,4 +75,6 @@ aet02_3_lyt(
   lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02")
 )
+syn_test_data() \%>\%
+  aet02_3_pre()
 }
