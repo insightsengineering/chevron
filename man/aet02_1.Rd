@@ -58,9 +58,9 @@ events categorized by Body System and Dictionary-Derived Term.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_1_lyt}: 
+\item \code{aet02_1_lyt}: \code{aet02_1} Layout
 
-\item \code{aet02_1_pre}: 
+\item \code{aet02_1_pre}: \code{aet02_1} Preprocessing
 }}
 
 \examples{

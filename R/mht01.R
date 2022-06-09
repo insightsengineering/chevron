@@ -61,9 +61,7 @@ mht01_1 <- function(adam_db,
   tbl_sorted
 }
 
-#' `MHT01` Layout 1 (Default)
-#'
-#' @describeIn mht01_1
+#' @describeIn mht01_1 `mht01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -123,9 +121,7 @@ mht01_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_mhdecod))
 }
 
-#' `MHT01` Preprocessing 1 (Default)
-#'
-#' @describeIn mht01_1
+#' @describeIn mht01_1 `mht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

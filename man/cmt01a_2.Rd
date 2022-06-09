@@ -59,7 +59,7 @@ the specific medication.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt01a_2_pre}: 
+\item \code{cmt01a_2_pre}: \code{cmt01a_2} Preprocessing
 }}
 
 \examples{

@@ -56,10 +56,6 @@ presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyz
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
-
-EXT01 Layout 2 (Supplementary)
-
-\code{EXT01} Preprocessing 2 (Supplementary)
 }
 \details{
 \itemize{
@@ -75,9 +71,9 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ext01_2_lyt}: 
+\item \code{ext01_2_lyt}: \code{ext01_2} Layout
 
-\item \code{ext01_2_pre}: 
+\item \code{ext01_2_pre}: \code{ext01_2} Preprocessing
 }}
 
 \examples{

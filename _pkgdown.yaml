@@ -80,3 +80,25 @@ reference:
       - cut_by_group
       - assert_colnames
       - h_as_factor
+
+  - title: TLG Preprocessing Functions
+    contents:
+      - filter_adae_anl01fl
+      - filter_adcm_anl01fl
+      - filter_adeg_anl01fl
+      - filter_adex_drug
+      - filter_adlb_anl01fl
+      - filter_admh_anl01fl
+      - filter_advs_anl01fl
+      - filter_egt02
+      - filter_vst02
+      - mutate_adsl_gp
+      - mutate_cmt01a
+      - mutate_cmt02_pt_1
+      - mutate_dmt01
+      - mutate_for_aet01
+      - mutate_vst02
+      - remove_adex_aval
+      - reorder_adex_params
+      - std_filter_fun
+      - std_mutate_fun

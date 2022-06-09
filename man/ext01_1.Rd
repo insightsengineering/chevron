@@ -69,9 +69,9 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ext01_1_lyt}: 
+\item \code{ext01_1_lyt}: \code{ext01_1} Layout
 
-\item \code{ext01_1_pre}: 
+\item \code{ext01_1_pre}: \code{ext01_1} Preprocessing
 }}
 
 \examples{

@@ -57,9 +57,7 @@ lbt01_1 <- function(adam_db,
   tbl
 }
 
-#' `LBT01` Layout 1 (Default)
-#'
-#' @describeIn lbt01_1
+#' @describeIn lbt01_1 `lbt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -111,9 +109,7 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-#' `LBT01` Preprocessing 1 (Default)
-#'
-#' @describeIn lbt01_1
+#' @describeIn lbt01_1 `lbt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

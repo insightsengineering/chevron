@@ -107,9 +107,7 @@ dst01_1 <- function(adam_db,
   tbl
 }
 
-#' DST01 Layout 1 (Default)
-#'
-#' @describeIn dst01_1
+#' @describeIn dst01_1 `dst01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -187,9 +185,7 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   list(layout_table_completed, layout_table_other)
 }
 
-#' `DST01` Preprocessing 1 (Default)
-#'
-#' @describeIn dst01_1
+#' @describeIn dst01_1 `dst01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -295,9 +291,7 @@ dst01_2 <- function(adam_db,
   tbl
 }
 
-#' DST01 Layout 2 (Supplementary)
-#'
-#' @describeIn dst01_2
+#' @describeIn dst01_2 `dst01_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -378,13 +372,11 @@ dst01_2_lyt <- function(armvar = .study$planarm,
   list(completed = layout_table_completed, other = layout_table_other)
 }
 
-#' `DST01` Preprocessing 2 (Supplementary)
-#'
-#' @describeIn dst01_2
+#' @describeIn dst01_2 `dst01_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
-
+#'
 #' @export
 #'
 #' @examples
@@ -532,9 +524,7 @@ dst01_3 <- function(adam_db,
   tbl
 }
 
-#' DST01 Layout 3 (Supplementary)
-#'
-#' @describeIn dst01_3
+#' @describeIn dst01_3 `dst01_3` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -594,13 +584,11 @@ dst01_3_lyt <- function(armvar = .study$planarm,
     )
 }
 
-#' `DST01` Preprocessing 3 (Supplementary)
-#'
-#' @describeIn dst01_3
+#' @describeIn dst01_3 `dst01_3` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
-
+#'
 #' @export
 #'
 #' @examples

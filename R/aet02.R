@@ -79,10 +79,7 @@ aet02_1 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET02` Layout 1 (Default)
-#'
-#' @describeIn aet02_1
+#' @describeIn aet02_1 `aet02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
@@ -142,9 +139,7 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("  ", lbl_aedecod))
 }
 
-#' `AET02` Preprocessing 1 (Default)
-#'
-#' @describeIn aet02_1
+#' @describeIn aet02_1 `aet02_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -244,10 +239,7 @@ aet02_2 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET02` Layout 2 (Supplementary)
-#'
-#' @describeIn aet02_2
+#' @describeIn aet02_2 `aet02_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -329,9 +321,7 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("    ", lbl_aedecod))
 }
 
-#' `AET02` Preprocessing 2 (Supplementary)
-#'
-#' @describeIn aet02_2
+#' @describeIn aet02_2 `aet02_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -409,10 +399,7 @@ aet02_3 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET02` Layout 3 (Supplementary)
-#'
-#' @describeIn aet02_3
+#' @describeIn aet02_3 `aet02_3` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -451,9 +438,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
     append_topleft(lbl_aedecod)
 }
 
-#' `AET02` Preprocessing 3 (Supplementary)
-#'
-#' @describeIn aet02_3
+#' @describeIn aet02_3 `aet02_3` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

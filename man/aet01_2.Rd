@@ -69,9 +69,9 @@ Overview of death and summary of adverse events with medical concepts.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet01_2_lyt}: 
+\item \code{aet01_2_lyt}: \code{aet01_2} Layout
 
-\item \code{aet01_2_pre}: 
+\item \code{aet01_2_pre}: \code{aet01_2} Preprocessing
 }}
 
 \examples{

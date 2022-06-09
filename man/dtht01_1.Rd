@@ -65,11 +65,11 @@ reporting of death.
 }
 \section{Functions}{
 \itemize{
-\item \code{dtht01_1_lyt}: 
+\item \code{dtht01_1_lyt}: \code{dtht01_1} Layout
 
-\item \code{dtht01_1_opt_lyt}: 
+\item \code{dtht01_1_opt_lyt}: \code{dtht01_1} Optional Layout
 
-\item \code{dtht01_1_pre}: 
+\item \code{dtht01_1_pre}: \code{dtht01_1} Preprocessing
 }}
 
 \examples{

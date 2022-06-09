@@ -89,10 +89,7 @@ aet04_1 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET04` Layout 1 (Default)
-#'
-#' @describeIn aet04_1
+#' @describeIn aet04_1 `aet04_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -167,9 +164,7 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-#' `AET04` Preprocessing 1 (Default)
-#'
-#' @describeIn aet04_1
+#' @describeIn aet04_1 `aet04_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

@@ -60,9 +60,9 @@ patients with the specific condition.
 }
 \section{Functions}{
 \itemize{
-\item \code{mht01_1_lyt}: 
+\item \code{mht01_1_lyt}: \code{mht01_1} Layout
 
-\item \code{mht01_1_pre}: 
+\item \code{mht01_1_pre}: \code{mht01_1} Preprocessing
 }}
 
 \examples{

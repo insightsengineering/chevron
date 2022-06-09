@@ -58,9 +58,9 @@ Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
 }
 \section{Functions}{
 \itemize{
-\item \code{vst02_1_lyt}: 
+\item \code{vst02_1_lyt}: \code{vst02_1} Layout
 
-\item \code{vst02_1_pre}: 
+\item \code{vst02_1_pre}: \code{vst02_1} Preprocessing
 }}
 
 \examples{

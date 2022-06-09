@@ -68,9 +68,7 @@ aet01_1 <- function(adam_db,
   tbl
 }
 
-#' `AET01` Layout 1 (Default)
-#'
-#' @describeIn aet01_1
+#' @describeIn aet01_1 `aet01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -147,9 +145,7 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-#' `AET01` Preprocessing 1 (Default)
-#'
-#' @describeIn aet01_1
+#' @describeIn aet01_1 `aet01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @export
@@ -296,9 +292,7 @@ aet01_2 <- function(adam_db,
   tbl
 }
 
-#' `AET01` Layout 2 (Supplementary)
-#'
-#' @describeIn aet01_2
+#' @describeIn aet01_2 `aet01_2` Layout
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -391,9 +385,7 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-#' `AET01` Preprocessing 2 (Supplementary)
-#'
-#' @describeIn aet01_2
+#' @describeIn aet01_2 `aet01_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @export

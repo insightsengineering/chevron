@@ -61,10 +61,7 @@ dmt01_1 <- function(adam_db,
   }
 }
 
-
-#' DMT01 Layout 1 (Default)
-#'
-#' @describeIn dmt01_1
+#' @describeIn dmt01_1 `dmt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -105,9 +102,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-#' `DMT01` Preprocessing 1 (Default)
-#'
-#' @describeIn dmt01_1
+#' @describeIn dmt01_1 `dmt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

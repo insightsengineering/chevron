@@ -71,9 +71,9 @@ by \code{AVISIT}. Re-level to customize order
 }
 \section{Functions}{
 \itemize{
-\item \code{lbt01_1_lyt}: 
+\item \code{lbt01_1_lyt}: \code{lbt01_1} Layout
 
-\item \code{lbt01_1_pre}: 
+\item \code{lbt01_1_pre}: \code{lbt01_1} Preprocessing
 }}
 
 \examples{

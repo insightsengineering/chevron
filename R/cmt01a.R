@@ -74,10 +74,7 @@ cmt01a_1 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `CMT01A` Layout 1 (Default)
-#'
-#' @describeIn cmt01a_1
+#' @describeIn cmt01a_1 `cmt01a_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -142,9 +139,7 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' `CMT01A` Preprocessing 1 (Default)
-#'
-#' @describeIn cmt01a_1
+#' @describeIn cmt01a_1 `cmt01a_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -248,9 +243,7 @@ cmt01a_2 <- function(adam_db,
   tbl_sorted
 }
 
-#' `CMT01A` Preprocessing 2 (Supplementary)
-#'
-#' @describeIn cmt01a_2
+#' @describeIn cmt01a_2 `cmt01a_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -349,10 +342,7 @@ cmt01a_3 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `CMT01A` Layout 3 (Supplementary)
-#'
-#' @describeIn cmt01a_3
+#' @describeIn cmt01a_3 `cmt01a_3` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -416,9 +406,7 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' `CMT01A` Preprocessing 3 (Supplementary)
-#'
-#' @describeIn cmt01a_3
+#' @describeIn cmt01a_3 `cmt01a_3` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

@@ -83,10 +83,7 @@ dtht01_1 <- function(adam_db,
   tbl
 }
 
-
-#' `DTHT01` Layout 1 (Default)
-#'
-#' @describeIn dtht01_1
+#' @describeIn dtht01_1 `dtht01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
@@ -137,9 +134,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
   tab
 }
 
-#' `DTHT01` Layout 1 Optional (Optional)
-#'
-#' @describeIn dtht01_1
+#' @describeIn dtht01_1 `dtht01_1` Optional Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -175,9 +170,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
     summarize_vars("DTHCAT")
 }
 
-#' `DTHT01` Preprocessing 1 (Default)
-#'
-#' @describeIn dtht01_1
+#' @describeIn dtht01_1 `dtht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

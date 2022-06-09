@@ -52,10 +52,7 @@ cmt02_pt_1 <- function(adam_db,
     )
 }
 
-
-#' `CMT02_PT` Layout 1 (Default)
-#'
-#' @describeIn cmt02_pt_1
+#' @describeIn cmt02_pt_1 `cmt02_pt_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -90,9 +87,7 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
     append_topleft("Other Treatment")
 }
 
-#' `CMT02_PT` Preprocessing 1 (Default)
-#'
-#' @describeIn cmt02_pt_1
+#' @describeIn cmt02_pt_1 `cmt02_pt_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

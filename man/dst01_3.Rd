@@ -91,9 +91,9 @@ For patients who discontinued the study, the reason provided is categorized as "
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_3_lyt}: 
+\item \code{dst01_3_lyt}: \code{dst01_3} Layout
 
-\item \code{dst01_3_pre}: 
+\item \code{dst01_3_pre}: \code{dst01_3} Preprocessing
 }}
 
 \examples{

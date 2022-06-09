@@ -67,9 +67,7 @@ vst01_1 <- function(adam_db,
   tbl
 }
 
-#' `VST01` Layout 1 (Default)
-#'
-#' @describeIn vst01_1
+#' @describeIn vst01_1 `vst01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -124,9 +122,7 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste(" ", lbl_avisit))
 }
 
-#' `VST01` Preprocessing 1 (Default)
-#'
-#' @describeIn vst01_1
+#' @describeIn vst01_1 `vst01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

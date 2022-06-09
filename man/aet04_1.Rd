@@ -62,9 +62,9 @@ Grade is sorted by severity.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet04_1_lyt}: 
+\item \code{aet04_1_lyt}: \code{aet04_1} Layout
 
-\item \code{aet04_1_pre}: 
+\item \code{aet04_1_pre}: \code{aet04_1} Preprocessing
 }}
 
 \examples{

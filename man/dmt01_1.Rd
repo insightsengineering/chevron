@@ -62,9 +62,9 @@ For each variable, summary statistics are by default based on the number of pati
 }
 \section{Functions}{
 \itemize{
-\item \code{dmt01_1_lyt}: 
+\item \code{dmt01_1_lyt}: \code{dmt01_1} Layout
 
-\item \code{dmt01_1_pre}: 
+\item \code{dmt01_1_pre}: \code{dmt01_1} Preprocessing
 }}
 
 \examples{

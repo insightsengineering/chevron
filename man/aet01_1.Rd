@@ -59,9 +59,9 @@ Overview of death and summary of adverse events.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet01_1_lyt}: 
+\item \code{aet01_1_lyt}: \code{aet01_1} Layout
 
-\item \code{aet01_1_pre}: 
+\item \code{aet01_1_pre}: \code{aet01_1} Preprocessing
 }}
 
 \examples{

@@ -62,9 +62,9 @@ An adverse events table categorized by System Organ Class, Dictionary-Derived Te
 }
 \section{Functions}{
 \itemize{
-\item \code{aet03_1_lyt}: 
+\item \code{aet03_1_lyt}: \code{aet03_1} Layout
 
-\item \code{aet03_1_pre}: 
+\item \code{aet03_1_pre}: \code{aet03_1} Preprocessing
 }}
 
 \examples{

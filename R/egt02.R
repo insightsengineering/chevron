@@ -54,11 +54,7 @@ egt02_1 <- function(adam_db,
   tbl
 }
 
-
-#' `EGT02` Layout 1 (Default)
-#'
-#' @describeIn egt02_1
-#'
+#' @describeIn egt02_1 `egt02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -94,9 +90,7 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' `EGT02` Preprocessing 1 (Default)
-#'
-#' @describeIn egt02_1
+#' @describeIn egt02_1 `egt02_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -170,11 +164,7 @@ egt02_2 <- function(adam_db,
   tbl
 }
 
-
-#' `EGT02` Layout 2 (Supplementary)
-#'
-#' @describeIn egt02_2
-#'
+#' @describeIn egt02_2 `egt02_2` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -210,9 +200,7 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' `EGT02` Preprocessing 2 (Supplementary)
-#'
-#' @describeIn egt02_2
+#' @describeIn egt02_2 `egt02_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #'

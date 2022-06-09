@@ -53,9 +53,7 @@ ext01_1 <- function(adam_db,
   tbl
 }
 
-#' EXT01 Layout 1 (Default)
-#'
-#' @describeIn ext01_1
+#' @describeIn ext01_1 `ext01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -86,9 +84,7 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-#' `EXT01` Preprocessing 1 (Default)
-#'
-#' @describeIn ext01_1
+#' @describeIn ext01_1 `ext01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
@@ -173,10 +169,7 @@ ext01_2 <- function(adam_db,
   tbl
 }
 
-
-#' EXT01 Layout 2 (Supplementary)
-#'
-#' @describeIn ext01_2
+#' @describeIn ext01_2 `ext01_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -205,9 +198,7 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
     summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
 }
 
-#' `EXT01` Preprocessing 2 (Supplementary)
-#'
-#' @describeIn ext01_2
+#' @describeIn ext01_2 `ext01_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param show_stats (`vector of character`) providing the name of the parameters whose statistical summary should be

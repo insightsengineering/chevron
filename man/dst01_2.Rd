@@ -93,9 +93,9 @@ which allows the tables to be constructed and pruned separately before binding.
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_2_lyt}: 
+\item \code{dst01_2_lyt}: \code{dst01_2} Layout
 
-\item \code{dst01_2_pre}: 
+\item \code{dst01_2_pre}: \code{dst01_2} Preprocessing
 }}
 
 \examples{

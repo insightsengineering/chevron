@@ -50,9 +50,9 @@ sorted by frequencies.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt02_pt_1_lyt}: 
+\item \code{cmt02_pt_1_lyt}: \code{cmt02_pt_1} Layout
 
-\item \code{cmt02_pt_1_pre}: 
+\item \code{cmt02_pt_1_pre}: \code{cmt02_pt_1} Preprocessing
 }}
 
 \examples{

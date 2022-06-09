@@ -62,9 +62,9 @@ frequencies.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_2_lyt}: 
+\item \code{aet02_2_lyt}: \code{aet02_2} Layout
 
-\item \code{aet02_2_pre}: 
+\item \code{aet02_2_pre}: \code{aet02_2} Preprocessing
 }}
 
 \examples{

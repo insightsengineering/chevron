@@ -65,9 +65,7 @@ egt01_1 <- function(adam_db,
   tbl
 }
 
-#' `EGT01` Layout 1 (Default)
-#'
-#' @describeIn egt01_1
+#' @describeIn egt01_1 `egt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -121,9 +119,7 @@ egt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-#' `EGT01` Preprocessing 1 (Default)
-#'
-#' @describeIn egt01_1
+#' @describeIn egt01_1 `egt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
