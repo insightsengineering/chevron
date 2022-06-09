@@ -18,7 +18,7 @@ For patients who discontinued the study, the reason provided is categorized as "
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9013</span>
       </span>
     </div>
 
@@ -84,6 +84,12 @@ For patients who discontinued the study, the reason provided is categorized as "
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DST01"</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>planarm <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="st">"All Patients"</span>, status_treatment <span class="op">=</span>
     <span class="st">"EOTSTT"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">dst01_3_pre</span><span class="op">(</span>
+  <span class="va">adam_db</span>,
+  reason <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">disc_reason_var</span>,
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>disc_reason_var <span class="op">=</span> <span class="st">"DCSREAS"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -122,6 +128,8 @@ the analysis period.</p></dd>
 <dt>ongoing_lbl</dt>
 <dd><p>(<code>string</code>) associated with ongoing treatment and found in the columns given by <code>status_treatment</code>.
 By Default `ONGOING.</p></dd>
+<dt>reason</dt>
+<dd><p>(<code>character</code>) the variable name for variable with the reason for discontinuation.</p></dd>
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -138,7 +146,8 @@ By Default `ONGOING.</p></dd>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>dst01_3_lyt</code>:</p></li>
+<ul><li><p><code>dst01_3_lyt</code>: <code>dst01_3</code> Layout</p></li>
+<li><p><code>dst01_3_pre</code>: <code>dst01_3</code> Preprocessing</p></li>
 </ul></div>
 
     <div id="ref-examples">
@@ -146,11 +155,11 @@ By Default `ONGOING.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"dst01_3"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">dst01_3_pre</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">dst01_3</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient Disposition: {Analysis Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     A: Drug X    B: Placebo   C: Combination   All Patients</span>
@@ -168,12 +177,12 @@ By Default `ONGOING.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     PROTOCOL VIOLATION                4 (3%)      7 (5.2%)       6 (4.5%)       17 (4.2%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)     5 (3.7%)       3 (2.3%)       10 (2.5%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            2 (1.5%)     2 (1.5%)          0             4 (1%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 51 (38.1%)   34 (25.4%)     46 (34.8%)     131 (32.8%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   51 (38.1%)   47 (35.1%)     46 (34.8%)     144 (36.0%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              32 (23.9%)   53 (39.6%)     40 (30.3%)     125 (31.2%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 53 (39.6%)   39 (29.1%)     48 (36.4%)     140 (35.0%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   44 (32.8%)   46 (34.3%)     40 (30.3%)     130 (32.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              37 (27.6%)   49 (36.6%)     44 (33.3%)     130 (32.5%) </span>
 <span class="r-in"><span class="fu">dst01_3</span><span class="op">(</span><span class="va">db</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient Disposition: {Analysis Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     A: Drug X    B: Placebo   C: Combination</span>
@@ -191,13 +200,20 @@ By Default `ONGOING.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     PROTOCOL VIOLATION                4 (3%)      7 (5.2%)       6 (4.5%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)     5 (3.7%)       3 (2.3%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            2 (1.5%)     2 (1.5%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 51 (38.1%)   34 (25.4%)     46 (34.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   51 (38.1%)   47 (35.1%)     46 (34.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              32 (23.9%)   53 (39.6%)     40 (30.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Completed Treatment                 53 (39.6%)   39 (29.1%)     48 (36.4%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ongoing Treatment                   44 (32.8%)   46 (34.3%)     40 (30.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Discontinued Treatment              37 (27.6%)   49 (36.6%)     44 (33.3%)  </span>
 <span class="r-in"><span class="fu">dst01_3_lyt</span><span class="op">(</span></span>
 <span class="r-in">  armvar <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
 <span class="r-in">  status_treatment <span class="op">=</span> <span class="st">"EOTxx01"</span></span>
 <span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu">dst01_3_pre</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 847</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
 </code></pre></div>
     </div>
   </div>

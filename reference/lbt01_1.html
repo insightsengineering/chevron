@@ -18,7 +18,7 @@ the course of the trial."><!-- mathjax --><script src="https://cdnjs.cloudflare.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9013</span>
       </span>
     </div>
 
@@ -81,7 +81,9 @@ the course of the trial.</p>
   lbl_param <span class="op">=</span> <span class="st">"Parameter"</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"LBT01"</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, visitvar <span class="op">=</span> <span class="st">"AVISIT"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<span class="op">)</span>
+
+<span class="fu">lbt01_1_pre</span><span class="op">(</span><span class="va">adam_db</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -124,7 +126,8 @@ by <code>AVISIT</code>. Re-level to customize order</p></li>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>lbt01_1_lyt</code>:</p></li>
+<ul><li><p><code>lbt01_1_lyt</code>: <code>lbt01_1</code> Layout</p></li>
+<li><p><code>lbt01_1_pre</code>: <code>lbt01_1</code> Preprocessing</p></li>
 </ul></div>
 
     <div id="ref-examples">
@@ -132,11 +135,11 @@ by <code>AVISIT</code>. Re-level to customize order</p></li>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"lbt01_1"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">lbt01_1_pre</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">lbt01_1</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Laboratory Test Results and Change from Baseline by Visit, {Specific Lab Test}:  {Specify Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameter                                                                                                                           </span>
@@ -243,6 +246,13 @@ by <code>AVISIT</code>. Re-level to customize order</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> the last dose of study drug are not included.  The minimum and maximum values are, respectively, the smallest and largest values obtained</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> after baseline through {specify time interval} after the last dose of study drug, including repeat and unscheduled tests.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu">lbt01_1_pre</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
 </code></pre></div>
     </div>
   </div>

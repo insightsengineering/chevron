@@ -18,7 +18,7 @@ sorted by frequencies."><!-- mathjax --><script src="https://cdnjs.cloudflare.co
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9013</span>
       </span>
     </div>
 
@@ -75,7 +75,9 @@ sorted by frequencies.</p>
   lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"CMT02_PT"</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>planarm <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<span class="op">)</span>
+
+<span class="fu">cmt02_pt_1_pre</span><span class="op">(</span><span class="va">adam_db</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -103,7 +105,8 @@ sorted by frequencies.</p>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>cmt02_pt_1_lyt</code>:</p></li>
+<ul><li><p><code>cmt02_pt_1_lyt</code>: <code>cmt02_pt_1</code> Layout</p></li>
+<li><p><code>cmt02_pt_1_pre</code>: <code>cmt02_pt_1</code> Preprocessing</p></li>
 </ul></div>
 
     <div id="ref-examples">
@@ -114,11 +117,11 @@ sorted by frequencies.</p>
 <span class="r-in">  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="st">"adcm"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">ATIREL</span> <span class="op">==</span> <span class="st">"CONCOMITANT"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"cmt02_pt_1"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">cmt02_pt_1_pre</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">cmt02_pt_1</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Concomitant Medications by Preferred Name: {Specify Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Other Treatment                                         A: Drug X    B: Placebo    C: Combination</span>
@@ -147,6 +150,13 @@ sorted by frequencies.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Row-Split Structure:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CMDECOD (** analysis **) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu">cmt02_pt_1_pre</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
 </code></pre></div>
     </div>
   </div>

@@ -18,7 +18,7 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.'><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9013</span>
       </span>
     </div>
 
@@ -84,6 +84,12 @@ study, the reason provided is categorized as "Safety" or "Non-Safety" issue.</p>
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DST01"</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>planarm <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="st">"All Patients"</span>, status <span class="op">=</span> <span class="st">"EOSSTT"</span>,
     disc_reason_var <span class="op">=</span> <span class="st">"DCSREAS"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">dst01_2_pre</span><span class="op">(</span>
+  <span class="va">adam_db</span>,
+  reason <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">disc_reason_var</span>,
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>disc_reason_var <span class="op">=</span> <span class="st">"DCSREAS"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -121,6 +127,8 @@ By Default `ONGOING.</p></dd>
 <dt>discontinued_lbl</dt>
 <dd><p>(<code>string</code>) associated with discontinued study and found in the columns given by <code>status</code>. By
 Default <code>DISCONTINUED</code>.</p></dd>
+<dt>reason</dt>
+<dd><p>(<code>character</code>) the variable name for variable with the reason for discontinuation.</p></dd>
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -139,7 +147,8 @@ which allows the tables to be constructed and pruned separately before binding.<
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>dst01_2_lyt</code>:</p></li>
+<ul><li><p><code>dst01_2_lyt</code>: <code>dst01_2</code> Layout</p></li>
+<li><p><code>dst01_2_pre</code>: <code>dst01_2</code> Preprocessing</p></li>
 </ul></div>
 
     <div id="ref-examples">
@@ -147,11 +156,11 @@ which allows the tables to be constructed and pruned separately before binding.<
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"dst01_2"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">dst01_2_pre</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">dst01_2</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient Disposition: {Analysis Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     A: Drug X    B: Placebo   C: Combination   All Patients</span>
@@ -171,7 +180,7 @@ which allows the tables to be constructed and pruned separately before binding.<
 <span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            2 (1.5%)     2 (1.5%)          0             4 (1%)   </span>
 <span class="r-in"><span class="fu">dst01_2</span><span class="op">(</span><span class="va">db</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient Disposition: {Analysis Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     A: Drug X    B: Placebo   C: Combination</span>
@@ -217,6 +226,13 @@ which allows the tables to be constructed and pruned separately before binding.<
 <span class="r-out co"><span class="r-pr">#&gt;</span> EOP01STT (lvls) -&gt; reasonGP (lvls) -&gt; DCP01RS (** analysis **) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu">dst01_2_pre</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 847</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
 </code></pre></div>
     </div>
   </div>

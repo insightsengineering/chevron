@@ -20,7 +20,7 @@ medication name sorted by frequencies."><!-- mathjax --><script src="https://cdn
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9013</span>
       </span>
     </div>
 
@@ -75,7 +75,9 @@ medication name sorted by frequencies.</p>
   prune_0 <span class="op">=</span> <span class="cn">TRUE</span>,
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"CMT01A"</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>planarm <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<span class="op">)</span>
+
+<span class="fu">cmt01a_2_pre</span><span class="op">(</span><span class="va">adam_db</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -112,6 +114,11 @@ medication name sorted by frequencies.</p>
 <li><p>Sort by medication class frequency and within medication class by decreasing total number of patients with
 the specific medication.</p></li>
 </ul></div>
+    <div id="functions">
+    <h2>Functions</h2>
+    
+<ul><li><p><code>cmt01a_2_pre</code>: <code>cmt01a_2</code> Preprocessing</p></li>
+</ul></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -121,11 +128,11 @@ the specific medication.</p></li>
 <span class="r-in">  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="st">"adcm"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ATIREL</span> <span class="op">==</span> <span class="st">"CONCOMITANT"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"cmt01a_2"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">cmt01a_2_pre</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">cmt01a_2</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Concomitant Medications by Medication Class and Preferred Name: {Specify Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination</span>
@@ -175,6 +182,13 @@ the specific medication.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> medication class. For frequency counts in "Total number of treatments", multiple uses of the same medication for a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> patient were counted separately. Standard footnote defining medications included in table (e.g., includes concomitant</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> medications used at any time from first dose of study drug through 7 days after last dose of study drug).</span>
+<span class="r-in"><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu">cmt01a_2_pre</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
 </code></pre></div>
     </div>
   </div>

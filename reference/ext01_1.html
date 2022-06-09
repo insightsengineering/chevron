@@ -18,7 +18,7 @@ missed, and treatment duration."><!-- mathjax --><script src="https://cdnjs.clou
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9013</span>
       </span>
     </div>
 
@@ -79,6 +79,12 @@ missed, and treatment duration.</p>
   deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"EXT01"</span><span class="op">)</span>,
   .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span>, analysis_var <span class="op">=</span> <span class="st">"AVAL"</span>,
     lbl_analysis_var <span class="op">=</span> <span class="st">"Analysis Value"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">ext01_1_pre</span><span class="op">(</span>
+  <span class="va">adam_db</span>,
+  paramcd_order <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">paramcd_order</span>,
+  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>paramcd_order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TNDOSE"</span>, <span class="st">"DOSE"</span>, <span class="st">"NDOSE"</span>, <span class="st">"TDOSE"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -100,6 +106,8 @@ missed, and treatment duration.</p>
 <dd><p>(<code>list</code>)  with default values for the arguments of the function</p></dd>
 <dt>summaryvars_lbls</dt>
 <dd><p><code>(string)</code> the label associated with the analyzed variable.</p></dd>
+<dt>paramcd_order</dt>
+<dd><p>(<code>character</code>) providing the <code>PARAMCD</code> values in the desired order.</p></dd>
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -116,7 +124,8 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>ext01_1_lyt</code>:</p></li>
+<ul><li><p><code>ext01_1_lyt</code>: <code>ext01_1</code> Layout</p></li>
+<li><p><code>ext01_1_pre</code>: <code>ext01_1</code> Preprocessing</p></li>
 </ul></div>
 
     <div id="ref-examples">
@@ -124,11 +133,11 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"ext01_1"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">ext01_1_pre</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">ext01_1</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Study Drug Exposure:  {Specify Population}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}, Snapshot: {{snapshot}}, Snapshot Date: {{snapshot-date}}, Cutoff Date: {{cutoff-date}}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Protocol: {{protocol}}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           A: Drug X   B: Placebo   C: Combination</span>
@@ -142,6 +151,13 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Treatment duration is the date of the last study drug administration minus the date of the first study drug administration plus one day.  Dose intensity is {definition}. &lt;Percentages for reasons for dose modification are based on total number of patients with at least one dose modification.&gt;</span>
+<span class="r-in"><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span class="r-in">  <span class="fu">ext01_1_pre</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
 </code></pre></div>
     </div>
   </div>
