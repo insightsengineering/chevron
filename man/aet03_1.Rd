@@ -3,6 +3,7 @@
 \name{aet03_1}
 \alias{aet03_1}
 \alias{aet03_1_lyt}
+\alias{aet03_1_pre}
 \title{\code{AET03} Table 1 (Default) Advert Events by Greatest Intensity Table 1}
 \usage{
 aet03_1(
@@ -24,6 +25,8 @@ aet03_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, severity_grade = c("MILD",
     "MODERATE", "SEVERE", "LIFE THREATENING"))
 )
+
+aet03_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -59,14 +62,16 @@ An adverse events table categorized by System Organ Class, Dictionary-Derived Te
 }
 \section{Functions}{
 \itemize{
-\item \code{aet03_1_lyt}: 
+\item \code{aet03_1_lyt}: \code{aet03_1} Layout
+
+\item \code{aet03_1_pre}: \code{aet03_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("aet03_1")
+  aet03_1_pre()
 
 aet03_1(db)
 aet03_1(db, lbl_overall = "All Patients")
@@ -77,4 +82,6 @@ aet03_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("AET03")
 )
+syn_test_data() \%>\%
+  aet03_1_pre()
 }

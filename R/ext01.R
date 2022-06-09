@@ -23,7 +23,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("ext01_1")
+#'   ext01_1_pre()
 #'
 #' ext01_1(db)
 ext01_1 <- function(adam_db,
@@ -53,9 +53,7 @@ ext01_1 <- function(adam_db,
   tbl
 }
 
-#' EXT01 Layout 1 (Default)
-#'
-#' @describeIn ext01_1
+#' @describeIn ext01_1 `ext01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -86,6 +84,35 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
+#' @describeIn ext01_1 `ext01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   ext01_1_pre()
+ext01_1_pre <- function(adam_db,
+                        paramcd_order = .study$paramcd_order,
+                        .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))) {
+  checkmate::assert_class(adam_db, "dm")
+
+  db <- adam_db %>%
+    dm_zoom_to("adex") %>%
+    filter(.data$PARCAT1 == "OVERALL") %>%
+    dm_update_zoomed()
+
+  param_vars <- db$adex %>%
+    select(.data$PARAM, .data$PARAMCD) %>%
+    reorder_levels_params(paramcd_levels = paramcd_order)
+
+  db %>%
+    dm_zoom_to("adex") %>%
+    mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
+    dm_update_zoomed()
+}
 
 # Version 2 ----
 
@@ -110,7 +137,7 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("ext01_2")
+#'   ext01_2_pre()
 #'
 #' ext01_2(db)
 ext01_2 <- function(adam_db,
@@ -142,10 +169,7 @@ ext01_2 <- function(adam_db,
   tbl
 }
 
-
-#' EXT01 Layout 2 (Supplementary)
-#'
-#' @describeIn ext01_2
+#' @describeIn ext01_2 `ext01_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -172,4 +196,49 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
       split_fun = NULL
     ) %>%
     summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
+}
+
+#' @describeIn ext01_2 `ext01_2` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param show_stats (`vector of character`) providing the name of the parameters whose statistical summary should be
+#'   presented. To analyze all, provide `show_stats = "ALL"` (Default), to analyze none, provide `show_stats = ""`.
+#'
+#' @param show_bins (`vector of character`) providing the name of the parameters whose categorical summary should be
+#'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   ext01_2_pre()
+ext01_2_pre <- function(adam_db,
+                        show_stats = .study$show_cont_stats,
+                        show_bins = .study$show_cat_stats,
+                        .study = list(
+                          show_cont_stats = c("ALL"),
+                          show_cat_stats = c("ALL")
+                        )) {
+  checkmate::assert_class(adam_db, "dm")
+
+  db <- adam_db %>%
+    dm_zoom_to("adex") %>%
+    filter(.data$PARCAT1 == "OVERALL") %>%
+    dm_update_zoomed()
+
+  if (!"ALL" %in% show_stats) {
+    db <- db %>%
+      dm_zoom_to("adex") %>%
+      mutate(AVAL = ifelse(.data$PARAM %in% show_stats, .data$AVAL, NA)) %>%
+      dm_update_zoomed()
+  }
+
+  if (!"ALL" %in% show_bins) {
+    db <- db %>%
+      dm_zoom_to("adex") %>%
+      mutate(AVALCAT1 = ifelse(.data$PARAM %in% show_bins, .data$AVALCAT1, NA)) %>%
+      dm_update_zoomed()
+  }
+
+  db
 }

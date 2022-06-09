@@ -25,7 +25,7 @@
 #'   dm_zoom_to("adeg") %>%
 #'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("egt02_1")
+#'   egt02_1_pre()
 #'
 #' egt02_1(adam_db = db)
 egt02_1 <- function(adam_db,
@@ -54,11 +54,7 @@ egt02_1 <- function(adam_db,
   tbl
 }
 
-
-#' `EGT02` Layout 1 (Default)
-#'
-#' @describeIn egt02_1
-#'
+#' @describeIn egt02_1 `egt02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -94,6 +90,24 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
+#' @describeIn egt02_1 `egt02_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   egt02_1_pre()
+egt02_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+  adam_db %>%
+    dm_zoom_to("adeg") %>%
+    filter(.data$ANRIND != "<Missing>") %>%
+    filter(.data$ONTRTFL == "Y") %>%
+    dm_update_zoomed()
+}
+
 # egt02_2 ----
 
 
@@ -121,7 +135,7 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
 #'   dm_zoom_to("adeg") %>%
 #'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("egt02_2")
+#'   egt02_2_pre()
 #'
 #' egt02_2(adam_db = db)
 egt02_2 <- function(adam_db,
@@ -150,11 +164,7 @@ egt02_2 <- function(adam_db,
   tbl
 }
 
-
-#' `EGT02` Layout 2 (Supplementary)
-#'
-#' @describeIn egt02_2
-#'
+#' @describeIn egt02_2 `egt02_2` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -188,4 +198,22 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
       exclude_base_abn = TRUE
     ) %>%
     append_topleft(paste0(" ", lbl_vs_abnormality))
+}
+
+#' @describeIn egt02_2 `egt02_2` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   egt02_2_pre()
+egt02_2_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+  adam_db %>%
+    dm_zoom_to("adeg") %>%
+    filter(.data$ANRIND != "<Missing>") %>%
+    filter(.data$ONTRTFL == "Y") %>%
+    dm_update_zoomed()
 }

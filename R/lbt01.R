@@ -27,7 +27,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("lbt01_1")
+#'   lbt01_1_pre()
 #'
 #' lbt01_1(db)
 lbt01_1 <- function(adam_db,
@@ -57,9 +57,7 @@ lbt01_1 <- function(adam_db,
   tbl
 }
 
-#' `LBT01` Layout 1 (Default)
-#'
-#' @describeIn lbt01_1
+#' @describeIn lbt01_1 `lbt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -109,4 +107,22 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
     summarize_colvars() %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(c(paste(" ", lbl_avisit), " "))
+}
+
+#' @describeIn lbt01_1 `lbt01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   lbt01_1_pre()
+lbt01_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adlb") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }
