@@ -3,6 +3,7 @@
 \name{aet04_1}
 \alias{aet04_1}
 \alias{aet04_1_lyt}
+\alias{aet04_1_pre}
 \title{\code{AET04} Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1}
 \usage{
 aet04_1(
@@ -24,6 +25,8 @@ aet04_1_lyt(
   deco = std_deco("AET04"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
 )
+
+aet04_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -59,14 +62,16 @@ Grade is sorted by severity.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet04_1_lyt}: 
+\item \code{aet04_1_lyt}: \code{aet04_1} Layout
+
+\item \code{aet04_1_pre}: \code{aet04_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("aet03_1")
+  aet04_1_pre()
 
 aet04_1(db)
 
@@ -81,4 +86,6 @@ aet04_1(
   )
 )
 aet04_1_lyt(armvar = "ACTARM")
+syn_test_data() \%>\%
+  aet04_1_pre()
 }

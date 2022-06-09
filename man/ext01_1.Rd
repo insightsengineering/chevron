@@ -3,6 +3,7 @@
 \name{ext01_1}
 \alias{ext01_1}
 \alias{ext01_1_lyt}
+\alias{ext01_1_pre}
 \title{EXT01 Table 1 (Default) Exposure Summary Table}
 \usage{
 ext01_1(
@@ -24,6 +25,12 @@ ext01_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, analysis_var = "AVAL",
     lbl_analysis_var = "Analysis Value")
 )
+
+ext01_1_pre(
+  adam_db,
+  paramcd_order = .study$paramcd_order,
+  .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -41,6 +48,8 @@ ext01_1_lyt(
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
+
+\item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
 }
 \description{
 The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
@@ -60,14 +69,18 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ext01_1_lyt}: 
+\item \code{ext01_1_lyt}: \code{ext01_1} Layout
+
+\item \code{ext01_1_pre}: \code{ext01_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("ext01_1")
+  ext01_1_pre()
 
 ext01_1(db)
+syn_test_data() \%>\%
+  ext01_1_pre()
 }

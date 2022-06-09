@@ -46,7 +46,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("dst01_1")
+#'   dst01_1_pre()
 #'
 #' dst01_1(db)
 dst01_1 <- function(adam_db,
@@ -107,9 +107,7 @@ dst01_1 <- function(adam_db,
   tbl
 }
 
-#' DST01 Layout 1 (Default)
-#'
-#' @describeIn dst01_1
+#' @describeIn dst01_1 `dst01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -187,6 +185,19 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   list(layout_table_completed, layout_table_other)
 }
 
+#' @describeIn dst01_1 `dst01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dst01_1_pre()
+dst01_1_pre <- function(adam_db) {
+  adam_db
+}
+
 #' DST01 Table 2 (Supplementary) Patient Disposition Table 2
 #'
 #' The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
@@ -220,7 +231,7 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("dst01_2")
+#'   dst01_2_pre()
 #'
 #' dst01_2(db)
 #' dst01_2(db, lbl_overall = NULL)
@@ -280,9 +291,7 @@ dst01_2 <- function(adam_db,
   tbl
 }
 
-#' DST01 Layout 2 (Supplementary)
-#'
-#' @describeIn dst01_2
+#' @describeIn dst01_2 `dst01_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -363,6 +372,31 @@ dst01_2_lyt <- function(armvar = .study$planarm,
   list(completed = layout_table_completed, other = layout_table_other)
 }
 
+#' @describeIn dst01_2 `dst01_2` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param reason (`character`) the variable name for variable with the reason for discontinuation.
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dst01_2_pre()
+dst01_2_pre <- function(adam_db,
+                        reason = .study$disc_reason_var,
+                        .study = list(disc_reason_var = "DCSREAS")) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(reasonGP = case_when(
+      .data[[reason]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      .data[[reason]] == "<Missing>" ~ "<Missing>",
+      TRUE ~ "Non-safety"
+    )) %>%
+    dm_update_zoomed()
+}
+
 #' DST01 Table 3 (Supplementary) Patient Disposition Table 3
 #'
 #' The DST01_3 Disposition Table provides an overview of patients study treatment status.
@@ -399,7 +433,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("dst01_3")
+#'   dst01_3_pre()
 #'
 #' dst01_3(db)
 #' dst01_3(db, lbl_overall = NULL)
@@ -490,9 +524,7 @@ dst01_3 <- function(adam_db,
   tbl
 }
 
-#' DST01 Layout 3 (Supplementary)
-#'
-#' @describeIn dst01_3
+#' @describeIn dst01_3 `dst01_3` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -550,4 +582,29 @@ dst01_3_lyt <- function(armvar = .study$planarm,
       .formats = "xx (xx.x%)",
       table_names = c("DISCONTINUED")
     )
+}
+
+#' @describeIn dst01_3 `dst01_3` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param reason (`character`) the variable name for variable with the reason for discontinuation.
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dst01_3_pre()
+dst01_3_pre <- function(adam_db,
+                        reason = .study$disc_reason_var,
+                        .study = list(disc_reason_var = "DCSREAS")) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(reasonGP = case_when(
+      .data[[reason]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      .data[[reason]] == "<Missing>" ~ "<Missing>",
+      TRUE ~ "Non-safety"
+    )) %>%
+    dm_update_zoomed()
 }

@@ -20,7 +20,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("aet02_1")
+#'   aet02_1_pre()
 #'
 #' aet02_1(adam_db = db) %>% head(15)
 #'
@@ -79,10 +79,7 @@ aet02_1 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET02` Layout 1 (Default)
-#'
-#' @describeIn aet02_1
+#' @describeIn aet02_1 `aet02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
@@ -142,6 +139,23 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("  ", lbl_aedecod))
 }
 
+#' @describeIn aet02_1 `aet02_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   aet02_1_pre()
+aet02_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
+}
 
 # Version2 ----
 
@@ -168,7 +182,7 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("aet02_2")
+#'   aet02_2_pre()
 #'
 #' aet02_2(db) %>% head(15)
 #'
@@ -225,10 +239,7 @@ aet02_2 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET02` Layout 2 (Supplementary)
-#'
-#' @describeIn aet02_2
+#' @describeIn aet02_2 `aet02_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -310,6 +321,23 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("    ", lbl_aedecod))
 }
 
+#' @describeIn aet02_2 `aet02_2` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   aet02_2_pre()
+aet02_2_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
+}
 
 # Version 3 ----
 
@@ -335,7 +363,7 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("aet02_3")
+#'   aet02_3_pre()
 #'
 #' aet02_3(adam_db = db) %>% head()
 #'
@@ -371,10 +399,7 @@ aet02_3 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET02` Layout 3 (Supplementary)
-#'
-#' @describeIn aet02_3
+#' @describeIn aet02_3 `aet02_3` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -411,4 +436,22 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
     ) %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
     append_topleft(lbl_aedecod)
+}
+
+#' @describeIn aet02_3 `aet02_3` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   aet02_3_pre()
+aet02_3_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }

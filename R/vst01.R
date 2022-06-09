@@ -28,7 +28,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("vst01_1")
+#'   vst01_1_pre()
 #'
 #' vst01_1(db)
 #' vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
@@ -67,9 +67,7 @@ vst01_1 <- function(adam_db,
   tbl
 }
 
-#' `VST01` Layout 1 (Default)
-#'
-#' @describeIn vst01_1
+#' @describeIn vst01_1 `vst01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -122,4 +120,22 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
     summarize_colvars() %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(paste(" ", lbl_avisit))
+}
+
+#' @describeIn vst01_1 `vst01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   vst01_1_pre()
+vst01_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("advs") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }

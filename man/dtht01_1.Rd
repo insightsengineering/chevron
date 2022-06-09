@@ -4,6 +4,7 @@
 \alias{dtht01_1}
 \alias{dtht01_1_lyt}
 \alias{dtht01_1_opt_lyt}
+\alias{dtht01_1_pre}
 \title{\code{DTHT01} Table 1 (Default) Death Table.}
 \usage{
 dtht01_1(
@@ -31,6 +32,8 @@ dtht01_1_opt_lyt(
   deco = std_deco("DTHT01"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
+
+dtht01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -63,9 +66,11 @@ reporting of death.
 }
 \section{Functions}{
 \itemize{
-\item \code{dtht01_1_lyt}: 
+\item \code{dtht01_1_lyt}: \code{dtht01_1} Layout
 
-\item \code{dtht01_1_opt_lyt}: 
+\item \code{dtht01_1_opt_lyt}: \code{dtht01_1} Optional Layout
+
+\item \code{dtht01_1_pre}: \code{dtht01_1} Preprocessing
 }}
 
 \examples{
@@ -76,7 +81,7 @@ db <- syn_test_data() \%>\%
   mutate(DTHCAT = tern::explicit_na(DTHCAT)) \%>\%
   mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) \%>\%
   dm_update_zoomed() \%>\%
-  preprocess_data("dtht01_1")
+  dtht01_1_pre()
 
 dtht01_1(adam_db = db)
 dtht01_1(adam_db = db, other_category = TRUE)
@@ -90,4 +95,6 @@ dtht01_1_opt_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
+syn_test_data() \%>\%
+  dtht01_1_pre()
 }

@@ -3,6 +3,7 @@
 \name{mht01_1}
 \alias{mht01_1}
 \alias{mht01_1_lyt}
+\alias{mht01_1_pre}
 \title{\code{MHT01} Table 1 (Default) Medical History Table 1}
 \usage{
 mht01_1(
@@ -24,6 +25,8 @@ mht01_1_lyt(
   deco = std_deco("MHT01"),
   .study = list(planarm = "ARM", lbl_overall = NULL)
 )
+
+mht01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -57,14 +60,16 @@ patients with the specific condition.
 }
 \section{Functions}{
 \itemize{
-\item \code{mht01_1_lyt}: 
+\item \code{mht01_1_lyt}: \code{mht01_1} Layout
+
+\item \code{mht01_1_pre}: \code{mht01_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("mht01_1")
+  mht01_1_pre()
 
 mht01_1(adam_db = db) \%>\% head(15)
 mht01_1_lyt(
@@ -72,4 +77,6 @@ mht01_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("MHT01")
 )
+syn_test_data() \%>\%
+  mht01_1_pre()
 }
