@@ -100,5 +100,6 @@ reference:
       - mutate_vst02
       - remove_adex_aval
       - reorder_adex_params
+      - reorder_dtht01
       - std_filter_fun
       - std_mutate_fun
