@@ -81,6 +81,7 @@ aet02_2(db, lbl_overall = "All Patients") \%>\% head()
 db_m <- db \%>\%
   dm_zoom_to(adae) \%>\%
   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) \%>\%
+  mutate(AEDECOD = formatters::with_label(AEDECOD, "MedDRA Preferred Term")) \%>\%
   dm_update_zoomed()
 
 aet02_2(db_m) \%>\% head()
