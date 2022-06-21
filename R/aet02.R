@@ -24,6 +24,12 @@
 #'
 #' aet02_1(adam_db = db) %>% head(15)
 #'
+#' # Label `NA` with general convention `No Coding Available`
+#' db_na <- db %>%
+#'  dm_explicit_na(na_level = "No Coding available")
+#'
+#' aet02_1(adam_db = db_na) %>% head()
+#'
 #' # Additional Examples
 #' db_s <- db %>%
 #'   dm_filter(adsl, SEX == "F")
@@ -69,7 +75,7 @@ aet02_1 <- function(adam_db,
   tbl_sorted <- tbl %>%
     sort_at_path(
       path = c("AEBODSYS"),
-      scorefun = cont_n_onecol(ncol(tbl))
+      scorefun = cont_n_allcols
     ) %>%
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
@@ -431,7 +437,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one adverse event",
-        nonunique = "Overall total number of events"
+        nonunique = "Total number of events"
       )
     ) %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%

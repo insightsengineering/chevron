@@ -71,6 +71,12 @@ db <- syn_test_data() \%>\%
 
 aet02_1(adam_db = db) \%>\% head(15)
 
+# Label `NA` with general convention `No Coding Available`
+db_na <- db \%>\%
+ dm_explicit_na(na_level = "No Coding available")
+
+aet02_1(adam_db = db_na) \%>\% head()
+
 # Additional Examples
 db_s <- db \%>\%
   dm_filter(adsl, SEX == "F")
