@@ -34,6 +34,8 @@ dtht01_1_opt_lyt(
 )
 
 dtht01_1_pre(adam_db)
+
+dtht01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -71,6 +73,8 @@ reporting of death.
 \item \code{dtht01_1_opt_lyt}: \code{dtht01_1} Optional Layout
 
 \item \code{dtht01_1_pre}: \code{dtht01_1} Preprocessing
+
+\item \code{dtht01_1_pre}: \code{dtht01_1} Preprocessing
 }}
 
 \examples{
@@ -95,6 +99,8 @@ dtht01_1_opt_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
+syn_test_data() \%>\%
+  dtht01_1_pre()
 syn_test_data() \%>\%
   dtht01_1_pre()
 }
