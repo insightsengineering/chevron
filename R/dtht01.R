@@ -198,3 +198,25 @@ dtht01_1_pre <- function(adam_db) {
     mutate(DTHCAT = fct_relevel(.data$DTHCAT, death_fact)) %>%
     dm_update_zoomed()
 }
+
+#' @describeIn dtht01_1 `dtht01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dtht01_1_pre()
+dtht01_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  death_fact <- levels(adam_db$adsl$DTHCAT)
+  death_fact <- setdiff(death_fact, "OTHER")
+  death_fact <- c(death_fact, "OTHER")
+
+  adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(DTHCAT = fct_relevel(.data$DTHCAT, death_fact)) %>%
+    dm_update_zoomed()
+}
