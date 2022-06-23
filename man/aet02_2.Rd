@@ -18,9 +18,9 @@ aet02_2(
 aet02_2_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
-  lbl_aebodsys = "AEBODSYS",
-  lbl_aehlt = "AEHLT",
-  lbl_aedecod = "AEDECOD",
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aehlt = "MedDRA High-Level Term",
+  lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
@@ -77,14 +77,6 @@ aet02_2(db) \%>\% head(15)
 
 # Additional Examples
 aet02_2(db, lbl_overall = "All Patients") \%>\% head()
-
-db_m <- db \%>\%
-  dm_zoom_to(adae) \%>\%
-  mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) \%>\%
-  mutate(AEDECOD = formatters::with_label(AEDECOD, "MedDRA Preferred Term")) \%>\%
-  dm_update_zoomed()
-
-aet02_2(db_m) \%>\% head()
 aet02_2_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

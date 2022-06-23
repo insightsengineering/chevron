@@ -24,12 +24,6 @@
 #'
 #' aet02_1(adam_db = db) %>% head(15)
 #'
-#' # Label `NA` with general convention `No Coding Available`
-#' db_na <- db %>%
-#'   dm_explicit_na(na_level = "No Coding available")
-#'
-#' aet02_1(adam_db = db_na) %>% head()
-#'
 #' # Additional Examples
 #' db_s <- db %>%
 #'   dm_filter(adsl, SEX == "F")
@@ -40,14 +34,6 @@
 #' aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
 #'
 #' aet02_1(db, lbl_overall = "All Patients") %>% head()
-#'
-#' db_m <- db %>%
-#'   dm_zoom_to(adae) %>%
-#'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
-#'   mutate(AEDECOD = formatters::with_label(AEDECOD, "MedDRA Preferred Term")) %>%
-#'   dm_update_zoomed()
-#'
-#' aet02_1(db_m) %>% head()
 aet02_1 <- function(adam_db,
                     armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
@@ -62,8 +48,6 @@ aet02_1 <- function(adam_db,
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = var_labels_for(dbsel$adae, "AEBODSYS"),
-    lbl_aedecod = var_labels_for(dbsel$adae, "AEDECOD"),
     deco = deco
   )
 
@@ -102,8 +86,8 @@ aet02_1 <- function(adam_db,
 #' )
 aet02_1_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
-                        lbl_aebodsys = "Body System or Organ Class",
-                        lbl_aedecod = "Dictionary-Derived Term",
+                        lbl_aebodsys = "MedDRA System Organ Class",
+                        lbl_aedecod = "MedDRA Preferred Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           actualarm = "ACTARM",
@@ -161,7 +145,8 @@ aet02_1_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+    dm_update_zoomed() %>%
+    dm_explicit_na(na_level = "No Coding available")
 }
 
 # Version2 ----
@@ -195,14 +180,6 @@ aet02_1_pre <- function(adam_db) {
 #'
 #' # Additional Examples
 #' aet02_2(db, lbl_overall = "All Patients") %>% head()
-#'
-#' db_m <- db %>%
-#'   dm_zoom_to(adae) %>%
-#'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
-#'   mutate(AEDECOD = formatters::with_label(AEDECOD, "MedDRA Preferred Term")) %>%
-#'   dm_update_zoomed()
-#'
-#' aet02_2(db_m) %>% head()
 aet02_2 <- function(adam_db,
                     armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
@@ -213,18 +190,14 @@ aet02_2 <- function(adam_db,
                       lbl_overall = NULL
                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-  adae <- dbsel$adae
 
   lyt <- aet02_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = var_labels_for(adae, "AEBODSYS"),
-    lbl_aehlt = var_labels_for(adae, "AEHLT"),
-    lbl_aedecod = var_labels_for(adae, "AEDECOD"),
     deco = deco
   )
 
-  tbl <- build_table(lyt, adae, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
     tbl <- prune_table(tbl)
@@ -268,9 +241,9 @@ aet02_2 <- function(adam_db,
 #' )
 aet02_2_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
-                        lbl_aebodsys = "AEBODSYS",
-                        lbl_aehlt = "AEHLT",
-                        lbl_aedecod = "AEDECOD",
+                        lbl_aebodsys = "MedDRA System Organ Class",
+                        lbl_aehlt = "MedDRA High-Level Term",
+                        lbl_aedecod = "MedDRA Preferred Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           actualarm = "ACTARM",
@@ -344,7 +317,8 @@ aet02_2_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+    dm_update_zoomed() %>%
+    dm_explicit_na(na_level = "No Coding available")
 }
 
 # Version 3 ----
@@ -388,7 +362,6 @@ aet02_3 <- function(adam_db,
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aedecod = var_labels_for(adam_db$adae, "AEDECOD"),
     deco = deco
   )
 
@@ -424,7 +397,7 @@ aet02_3 <- function(adam_db,
 #' )
 aet02_3_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
-                        lbl_aedecod = "AEDECOD",
+                        lbl_aedecod = "MedDRA Preferred Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           actualarm = "ACTARM",
@@ -461,5 +434,6 @@ aet02_3_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+    dm_update_zoomed() %>%
+    dm_explicit_na(na_level = "No Coding available")
 }

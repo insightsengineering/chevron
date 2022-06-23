@@ -18,8 +18,8 @@ aet02_1(
 aet02_1_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
-  lbl_aebodsys = "Body System or Organ Class",
-  lbl_aedecod = "Dictionary-Derived Term",
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
@@ -71,12 +71,6 @@ db <- syn_test_data() \%>\%
 
 aet02_1(adam_db = db) \%>\% head(15)
 
-# Label `NA` with general convention `No Coding Available`
-db_na <- db \%>\%
-  dm_explicit_na(na_level = "No Coding available")
-
-aet02_1(adam_db = db_na) \%>\% head()
-
 # Additional Examples
 db_s <- db \%>\%
   dm_filter(adsl, SEX == "F")
@@ -87,14 +81,6 @@ aet02_1(adam_db = db_s) \%>\% head()
 aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
 
 aet02_1(db, lbl_overall = "All Patients") \%>\% head()
-
-db_m <- db \%>\%
-  dm_zoom_to(adae) \%>\%
-  mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) \%>\%
-  mutate(AEDECOD = formatters::with_label(AEDECOD, "MedDRA Preferred Term")) \%>\%
-  dm_update_zoomed()
-
-aet02_1(db_m) \%>\% head()
 aet02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
