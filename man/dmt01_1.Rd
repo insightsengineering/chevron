@@ -28,7 +28,7 @@ dmt01_1_lyt(
     "RACE"), lbl_overall = "All Patients")
 )
 
-dmt01_1_pre(adam_db)
+dmt01_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -46,6 +46,8 @@ dmt01_1_pre(adam_db)
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{...}{not used.}
 }
 \description{
 For each variable, summary statistics are by default based on the number of patients in the corresponding \code{n} row.

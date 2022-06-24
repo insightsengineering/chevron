@@ -34,7 +34,8 @@ dst01_3_lyt(
 dst01_3_pre(
   adam_db,
   reason = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS")
+  .study = list(disc_reason_var = "DCSREAS"),
+  ...
 )
 }
 \arguments{
@@ -72,6 +73,8 @@ the analysis period.}
 By Default `ONGOING.}
 
 \item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
+
+\item{...}{not used.}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status.

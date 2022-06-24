@@ -30,7 +30,7 @@ aet01_1_lyt(
     "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
 )
 
-aet01_1_pre(adam_db)
+aet01_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -48,6 +48,8 @@ aet01_1_pre(adam_db)
 \item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{...}{not used.}
 }
 \description{
 Overview of death and summary of adverse events.

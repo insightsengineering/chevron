@@ -3,6 +3,7 @@
 #'
 #' @import dm
 #' @import dplyr
+#' @import R6
 #' @import rtables
 #' @import tern
 #' @importFrom checkmate assert_character assert_list assert_string assert_subset

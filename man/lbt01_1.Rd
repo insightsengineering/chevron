@@ -28,7 +28,7 @@ lbt01_1_lyt(
   .study = list(actualarm = "ACTARM", visitvar = "AVISIT")
 )
 
-lbt01_1_pre(adam_db)
+lbt01_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -51,6 +51,8 @@ to be displayed.}
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+
+\item{...}{not used.}
 }
 \description{
 The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over

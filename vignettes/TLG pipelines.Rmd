@@ -1,0 +1,77 @@
+---
+title: "TLG pipelines"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The .study Argument}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Introduction 
+
+The idea behind the `TLG pipeline` object is to offer the user a decentralized way to easily combine pre processing and `tlg` function with metadata information. The resulting object 
+
+# Usage
+
+## Predefined Pipeline
+
+Chevron stores predefined pipelines ready to use. To run the entire pipeline:
+
+```{r}
+
+# aet01_1$run(adam_data)
+
+# .study <- list(
+#   actualarm = "ACTARM",
+#   lbl_overall = NULL,
+#   safety_var = c(
+#     "FATAL", "SER", "SERWD", "SERDSM",
+#     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+#   )
+# )
+
+# aet01_1$run(adam_data, .study = .study, armvar = "ARM")
+
+
+```
+
+## Customize Pipeline
+
+Available slots
+
+```{r}
+
+
+
+
+# aet01_1$reset()
+
+```
+
+
+## Create Pipeline
+
+NULL original
+
+```{r}
+
+
+
+
+```
+
+
+
+
+

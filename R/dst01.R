@@ -188,13 +188,14 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 #' @describeIn dst01_1 `dst01_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   dst01_1_pre()
-dst01_1_pre <- function(adam_db) {
+dst01_1_pre <- function(adam_db, ...) {
   adam_db
 }
 
@@ -375,7 +376,8 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #' @describeIn dst01_2 `dst01_2` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param reason (`character`) the variable name for variable with the reason for discontinuation.
+#' @param reason (`string`) the variable name for variable with the reason for discontinuation.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -384,7 +386,8 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #'   dst01_2_pre()
 dst01_2_pre <- function(adam_db,
                         reason = .study$disc_reason_var,
-                        .study = list(disc_reason_var = "DCSREAS")) {
+                        .study = list(disc_reason_var = "DCSREAS"),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -588,6 +591,7 @@ dst01_3_lyt <- function(armvar = .study$planarm,
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -596,7 +600,8 @@ dst01_3_lyt <- function(armvar = .study$planarm,
 #'   dst01_3_pre()
 dst01_3_pre <- function(adam_db,
                         reason = .study$disc_reason_var,
-                        .study = list(disc_reason_var = "DCSREAS")) {
+                        .study = list(disc_reason_var = "DCSREAS"),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%

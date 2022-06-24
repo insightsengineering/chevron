@@ -29,7 +29,7 @@ egt01_1_lyt(
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
 
-egt01_1_pre(adam_db)
+egt01_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -52,6 +52,8 @@ to be displayed.}
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+
+\item{...}{not used.}
 }
 \description{
 The \code{EGT01} table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.

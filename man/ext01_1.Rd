@@ -29,7 +29,8 @@ ext01_1_lyt(
 ext01_1_pre(
   adam_db,
   paramcd_order = .study$paramcd_order,
-  .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
+  .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
+  ...
 )
 }
 \arguments{
@@ -50,6 +51,8 @@ ext01_1_pre(
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
 
 \item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
+
+\item{...}{not used.}
 }
 \description{
 The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or

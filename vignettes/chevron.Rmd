@@ -67,7 +67,7 @@ A the `aet02_1` output is then created as follows:
 library(chevron)
 
 db <- adam_study_data %>%
-  preprocess_data("aet02_1")
+  aet02_1_pre()
 
 aet02_1(adam_db = db)
 ```

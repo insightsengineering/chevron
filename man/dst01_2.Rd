@@ -34,7 +34,8 @@ dst01_2_lyt(
 dst01_2_pre(
   adam_db,
   reason = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS")
+  .study = list(disc_reason_var = "DCSREAS"),
+  ...
 )
 }
 \arguments{
@@ -70,7 +71,9 @@ By Default `ONGOING.}
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
 
-\item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
+\item{reason}{(\code{string}) the variable name for variable with the reason for discontinuation.}
+
+\item{...}{not used.}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
