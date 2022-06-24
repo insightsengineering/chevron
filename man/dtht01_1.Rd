@@ -34,8 +34,6 @@ dtht01_1_opt_lyt(
 )
 
 dtht01_1_pre(adam_db)
-
-dtht01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -73,18 +71,13 @@ reporting of death.
 \item \code{dtht01_1_opt_lyt}: \code{dtht01_1} Optional Layout
 
 \item \code{dtht01_1_pre}: \code{dtht01_1} Preprocessing
-
-\item \code{dtht01_1_pre}: \code{dtht01_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  dm_zoom_to(adsl) \%>\%
-  mutate(DTHCAT = tern::explicit_na(DTHCAT)) \%>\%
-  mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) \%>\%
-  dm_update_zoomed() \%>\%
+  dunlin::dm_explicit_na() \%>\%
   dtht01_1_pre()
 
 dtht01_1(adam_db = db)
@@ -99,8 +92,6 @@ dtht01_1_opt_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-syn_test_data() \%>\%
-  dtht01_1_pre()
 syn_test_data() \%>\%
   dtht01_1_pre()
 }
