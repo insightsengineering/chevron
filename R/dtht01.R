@@ -175,7 +175,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
       split_label = "Primary cause by days from last study drug administration",
       label_pos = "visible"
     ) %>%
-    summarize_vars("DTHCAT", denom = "N_col")
+    summarize_vars("DTHCAT", denom = "n")
 }
 
 #' @describeIn dtht01_1 `dtht01_1` Preprocessing
