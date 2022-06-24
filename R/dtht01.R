@@ -167,7 +167,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
       vars = "LDDTHGR1",
       var_labels = "Days from last drug administration",
       show_labels = "visible",
-      denom = "N_col"
+      denom = "n"
     ) %>%
     split_rows_by(
       "LDDTHGR1",
