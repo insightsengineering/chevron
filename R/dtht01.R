@@ -2,8 +2,8 @@
 
 #' `DTHT01` Table 1 (Default) Death Table.
 #'
-#' A description of the causes of death optionally with the breakdown of the `OTHER` category and/or post-study
-#' reporting of death.
+#' A description of the causes of death optionally with the breakdown of the
+#' `OTHER` category and/or post-study reporting of death.
 #'
 #' @inheritParams gen_args
 #' @param time_since_last_dose (`logical`) should the time to event information be displayed.
@@ -45,7 +45,6 @@ dtht01_1 <- function(adam_db,
   checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
   checkmate::assert_flag(time_since_last_dose)
   checkmate::assert_flag(other_category)
-
 
   lyt <- dtht01_1_lyt(
     armvar = armvar,
