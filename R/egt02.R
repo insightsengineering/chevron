@@ -93,13 +93,14 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn egt02_1 `egt02_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   egt02_1_pre()
-egt02_1_pre <- function(adam_db) {
+egt02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -203,13 +204,14 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
 #' @describeIn egt02_2 `egt02_2` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   egt02_2_pre()
-egt02_2_pre <- function(adam_db) {
+egt02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adeg") %>%

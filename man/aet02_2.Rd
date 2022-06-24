@@ -25,7 +25,7 @@ aet02_2_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
-aet02_2_pre(adam_db)
+aet02_2_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -45,6 +45,8 @@ aet02_2_pre(adam_db)
 \item{lbl_aehlt}{(\code{character}) text label for \code{AEHLT}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{...}{not used.}
 }
 \description{
 The \code{AET02_2} table provides an overview of the number of patients experiencing adverse events and the number of
