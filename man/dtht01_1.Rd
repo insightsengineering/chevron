@@ -53,8 +53,7 @@ dtht01_1_pre(adam_db)
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
-A description of the causes of death optionally with the breakdown of the
-\code{OTHER} category and/or post-study reporting of death.
+A description of the causes of death optionally with the breakdown of the \code{OTHER} category and/or post-study reporting of death.
 }
 \details{
 \itemize{
