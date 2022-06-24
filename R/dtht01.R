@@ -118,7 +118,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
     summarize_vars(
       vars = c("DTHCAT"),
       var_labels = c("Primary cause of death"),
-      denom = "N_col"
+      denom = "n"
     )
 
   if (other_category) {
