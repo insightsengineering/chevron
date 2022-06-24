@@ -134,7 +134,8 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
         nested = TRUE,
         .stats = "count_fraction",
         .indent_mods = c("count_fraction" = 4L),
-        denom = "N_col"
+        nested = FALSE,
+        denom = "n"
       )
   }
   tab
