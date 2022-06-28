@@ -29,7 +29,7 @@ vst01_1_lyt(
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
 
-vst01_1_pre(adam_db, ...)
+vst01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -52,8 +52,6 @@ to be displayed.}
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{VST01} table provides an overview of the Vital Sign values and its change from baseline of each respective arm

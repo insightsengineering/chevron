@@ -148,14 +148,12 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn aet01_1 `aet01_1` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
-#'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet01_1_pre()
-aet01_1_pre <- function(adam_db, ...) {
+aet01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -390,14 +388,12 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
 #' @describeIn aet01_2 `aet01_2` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
-#'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet01_2_pre()
-aet01_2_pre <- function(adam_db, ...) {
+aet01_2_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%

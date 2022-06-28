@@ -23,7 +23,6 @@ Imports:
     lifecycle,
     magrittr,
     methods,
-    R6,
     rlang,
     rtables,
     tern,

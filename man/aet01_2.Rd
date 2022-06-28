@@ -36,7 +36,7 @@ aet01_2_lyt(
     c("SMQ01", "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
 )
 
-aet01_2_pre(adam_db, ...)
+aet01_2_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -58,8 +58,6 @@ aet01_2_pre(adam_db, ...)
 \item{lbl_medconcept_var}{(\code{character}) the label of the medical concept variables to be summarized.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
-
-\item{...}{not used.}
 }
 \description{
 Overview of death and summary of adverse events with medical concepts.

@@ -173,14 +173,13 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
 #' @describeIn dtht01_1 `dtht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   dtht01_1_pre()
-dtht01_1_pre <- function(adam_db, ...) {
+dtht01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   death_fact <- levels(adam_db$adsl$DTHCAT)

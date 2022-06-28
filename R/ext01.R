@@ -88,7 +88,6 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @inheritParams gen_args
 #' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -97,8 +96,7 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #'   ext01_1_pre()
 ext01_1_pre <- function(adam_db,
                         paramcd_order = .study$paramcd_order,
-                        .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
-                        ...) {
+                        .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -208,7 +206,6 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @param show_bins (`vector of character`) providing the name of the parameters whose categorical summary should be
 #'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -221,8 +218,7 @@ ext01_2_pre <- function(adam_db,
                         .study = list(
                           show_cont_stats = c("ALL"),
                           show_cat_stats = c("ALL")
-                        ),
-                        ...) {
+                        )) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%

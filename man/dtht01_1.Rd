@@ -33,7 +33,7 @@ dtht01_1_opt_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
-dtht01_1_pre(adam_db, ...)
+dtht01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -51,8 +51,6 @@ dtht01_1_pre(adam_db, ...)
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
-
-\item{...}{not used.}
 }
 \description{
 A description of the causes of death optionally with the breakdown of the \code{OTHER} category and/or post-study

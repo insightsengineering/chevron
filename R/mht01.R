@@ -124,14 +124,13 @@ mht01_1_lyt <- function(armvar = .study$planarm,
 #' @describeIn mht01_1 `mht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   mht01_1_pre()
-mht01_1_pre <- function(adam_db, ...) {
+mht01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
