@@ -11,6 +11,7 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
+#'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
 #'
 #' @importFrom dplyr filter
 #'
@@ -145,6 +146,12 @@ aet02_1_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
     dm_update_zoomed()
 }
 
@@ -164,6 +171,7 @@ aet02_1_pre <- function(adam_db) {
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 #'  frequencies.
+#'  * Missing values of `AEBODSYS`, `AEHLT` and `AEDECOD` in `adae` are labeled by `No Coding available`.
 #'
 #' @importFrom dplyr filter
 #'
@@ -316,6 +324,13 @@ aet02_2_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
+      AEHLT = tern::explicit_na(tern::sas_na(.data$AEHLT), label = "No Coding available"),
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
     dm_update_zoomed()
 }
 
@@ -334,6 +349,7 @@ aet02_2_pre <- function(adam_db) {
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code by highest overall frequencies.
+#'  * Missing values of `AEDECOD` in `aead` are labeled by `No Coding available`.
 #'
 #' @importFrom dplyr filter
 #'
@@ -432,5 +448,10 @@ aet02_3_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
     dm_update_zoomed()
 }

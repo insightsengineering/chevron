@@ -54,6 +54,7 @@ events categorized by Body System and Dictionary-Derived Term.
 \item Split columns by arm.
 \item Does not include a total column by default.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
+\item Missing values in \code{AEBODSYS}, and \code{AEDECOD} are labeled by \verb{No Coding available}.
 }
 }
 \section{Functions}{

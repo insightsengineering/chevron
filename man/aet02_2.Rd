@@ -58,6 +58,7 @@ adverse events categorized by Body System, High Level Term and Dictionary-Derive
 \item Does not include a total column by default.
 \item Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 frequencies.
+\item Missing values of \code{AEBODSYS}, \code{AEHLT} and \code{AEDECOD} in \code{adae} are labeled by \verb{No Coding available}.
 }
 }
 \section{Functions}{
