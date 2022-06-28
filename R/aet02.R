@@ -142,14 +142,13 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn aet02_1 `aet02_1` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet02_1_pre()
-aet02_1_pre <- function(adam_db, ...) {
+aet02_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -325,14 +324,13 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
 #' @describeIn aet02_2 `aet02_2` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet02_2_pre()
-aet02_2_pre <- function(adam_db, ...) {
+aet02_2_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -406,7 +404,6 @@ aet02_3 <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -424,8 +421,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        ),
-                        ...) {
+                        )) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

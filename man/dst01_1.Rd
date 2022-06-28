@@ -31,7 +31,7 @@ dst01_1_lyt(
     disc_reason_var = "DCSREAS")
 )
 
-dst01_1_pre(adam_db, ...)
+dst01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -65,8 +65,6 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
-
-\item{...}{not used.}
 }
 \description{
 The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the

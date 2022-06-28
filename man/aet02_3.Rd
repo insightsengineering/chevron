@@ -20,8 +20,7 @@ aet02_3_lyt(
   lbl_overall = .study$lbl_overall,
   lbl_aedecod = "AEDECOD",
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
-  ...
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
 aet02_3_pre(adam_db)
@@ -40,8 +39,6 @@ aet02_3_pre(adam_db)
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{AET02_3} table provides an overview of the number of patients experiencing adverse events and the number of

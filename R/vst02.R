@@ -93,14 +93,13 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn vst02_1 `vst02_1` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   vst02_1_pre()
-vst02_1_pre <- function(adam_db, ...) {
+vst02_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("advs") %>%
@@ -222,14 +221,13 @@ vst02_2_lyt <- function(armvar = .study$actualarm,
 #' @describeIn vst02_2 `vst02_2` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   vst02_2_pre()
-vst02_2_pre <- function(adam_db, ...) {
+vst02_2_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("advs") %>%
