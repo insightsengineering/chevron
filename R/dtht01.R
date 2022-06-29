@@ -13,7 +13,6 @@
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Does not include a total column by default.
-#'  * For the breakdown of `OTHER`, the percentages are based on `N`.
 #'
 #' @export
 #'
@@ -21,13 +20,16 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dunlin::dm_explicit_na() %>%
+#'   dm_zoom_to(adsl) %>%
+#'   mutate(DTHCAT = tern::explicit_na(DTHCAT)) %>%
+#'   mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) %>%
+#'   dm_update_zoomed() %>%
 #'   dtht01_1_pre()
 #'
 #' dtht01_1(adam_db = db)
-#' dtht01_1(adam_db = db, other_category = TRUE)
+#' dtht01_1(adam_db = db, other_category = FALSE)
 #' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
-#' dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = TRUE)
+#' dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
 dtht01_1 <- function(adam_db,
                      armvar = .study$actualarm,
                      time_since_last_dose = FALSE,
@@ -45,6 +47,7 @@ dtht01_1 <- function(adam_db,
   checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
   checkmate::assert_flag(time_since_last_dose)
   checkmate::assert_flag(other_category)
+
 
   lyt <- dtht01_1_lyt(
     armvar = armvar,
@@ -111,11 +114,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
       .labels =  c(count_fraction = "Total number of deaths"),
       .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
-    summarize_vars(
-      vars = c("DTHCAT"),
-      var_labels = c("Primary cause of death"),
-      denom = "n"
-    )
+    summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
 
   if (other_category) {
     tab <-
@@ -127,10 +126,9 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
       ) %>%
       summarize_vars(
         "DTHCAUS",
+        nested = TRUE,
         .stats = "count_fraction",
-        .indent_mods = c("count_fraction" = 4L),
-        nested = FALSE,
-        denom = "n"
+        .indent_mods = c("count_fraction" = 4L)
       )
   }
   tab
@@ -161,8 +159,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
     summarize_vars(
       vars = "LDDTHGR1",
       var_labels = "Days from last drug administration",
-      show_labels = "visible",
-      denom = "n"
+      show_labels = "visible"
     ) %>%
     split_rows_by(
       "LDDTHGR1",
@@ -170,7 +167,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
       split_label = "Primary cause by days from last study drug administration",
       label_pos = "visible"
     ) %>%
-    summarize_vars("DTHCAT", denom = "n")
+    summarize_vars("DTHCAT")
 }
 
 #' @describeIn dtht01_1 `dtht01_1` Preprocessing
