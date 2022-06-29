@@ -1,17 +1,17 @@
 
-#' R6 Class representing a `tlg_pipeline`
+#' R6 Class representing a `tlg`pipeline
 #'
 #' An instance of `tlg_pipeline` possesses a `tlg` generating function, a pre processing function, a check function and
 #' is associated with one or more `adam` table names.
 #'
-#' A `tlg_pipeline` can be created empty or based on a `tlg` function name, in which case, the corresponding pre
+#' A `tlg_pipeline_R6` can be created empty or based on a `tlg` function name, in which case, the corresponding pre
 #' processing and check function will also be associated.
 #'
 #' Check, pre processing and `tlg` function of a `tlg_pipeline` can be manually assigned. If modified, the initial
 #' functions can be restored with the `reset` method.
 #'
 #' @examples
-#' aet01_1_pipeline <- tlg_pipeline$new("aet01_1", c("adsl", "adae"))
+#' aet01_1_pipeline <- tlg_pipeline_R6$new("aet01_1", c("adsl", "adae"))
 #' aet01_1_pipeline$run(syn_test_data())
 #'
 #' aet01_1_pipeline$preprocess <- function(x) x
@@ -19,8 +19,8 @@
 #'
 #' aet01_1_pipeline$reset()
 #' aet01_1_pipeline$run(syn_test_data())
-tlg_pipeline <- R6::R6Class(
-  "tlg_pipeline",
+tlg_pipeline_R6 <- R6::R6Class(
+  "tlg_pipeline_R6",
   private = list(
     # .tlg tlg generating function.
     .tlg = NULL,
@@ -56,9 +56,11 @@ tlg_pipeline <- R6::R6Class(
     initialize = function(fun_name, tables) {
       if (!missing(fun_name)) {
         assert_string(fun_name)
-        private$.tlg <- match.fun(fun_name)
+       # private$.tlg <- match.fun(fun_name)
+        private$.tlg <- get(fun_name, mode = "function")
         self$tlg <- private$.tlg
         private$.preprocess <- match.fun(paste0(fun_name, "_pre"))
+        private$.tlg <- get(paste0(fun_name, "_pre"), mode = "function")
         self$preprocess <- private$.preprocess
       }
 
@@ -77,7 +79,7 @@ tlg_pipeline <- R6::R6Class(
     #' @export
     #'
     #' @examples
-    #' dst01_1_pipeline <- tlg_pipeline$new("dst01_1", c("adsl"))
+    #' dst01_1_pipeline <- tlg_pipeline_R6$new("dst01_1", c("adsl"))
     #'
     #' .study <- list(
     #'  planarm = "ARM",
