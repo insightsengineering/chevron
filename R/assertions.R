@@ -94,7 +94,7 @@ assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 
   diff <- setdiff(tab, names(db))
 
-  common <- intersect(tab, names(df))
+  common <- intersect(tab, names(db))
 
   if (length(common) > 0) {
     invisible(NULL)
