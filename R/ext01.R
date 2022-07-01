@@ -109,7 +109,7 @@ ext01_1_pre <- function(adam_db,
 
   param_vars <- db$adex %>%
     select(.data$PARAM, .data$PARAMCD) %>%
-    reorder_levels_params(paramcd_levels = paramcd_order)
+    dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
   db %>%
     dm_zoom_to("adex") %>%

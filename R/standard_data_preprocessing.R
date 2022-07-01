@@ -405,7 +405,7 @@ reorder_adex_params <- function(adam_db,
   .Deprecated(msg = "`reorder_adex_params` is deprecated. \nUse the tlg specific preprocessing functions instead")
   param_vars <- adam_db$adex %>%
     select(.data$PARAM, .data$PARAMCD) %>%
-    reorder_levels_params(paramcd_levels = paramcd_order)
+    dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
   adam_db %>%
     dm_zoom_to("adex") %>%
