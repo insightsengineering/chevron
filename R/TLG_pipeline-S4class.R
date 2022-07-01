@@ -17,7 +17,7 @@
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post process.
 #'
 #' @exportClass tlg_pipeline_s4
-#' @aliases tlg_pipeline_s4-class
+#' @aliases tlg_pipeline_s4
 .tlg_pipeline_s4 <- setClass(
   "tlg_pipeline_s4",
   slots = c(
@@ -66,8 +66,6 @@ S4Vectors::setValidity2("tlg_pipeline_s4", function(object) {
 #' @param postprocess (`function`) returning a post processed `tlg`.
 #' @param adam_datasets (`character`) representing the name of the table from an `AdAM` data set required for `tlg`
 #'   creation.
-#'
-#' @rdname tlg_pipeline_s4
 #'
 #' @export
 #' @examples

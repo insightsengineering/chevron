@@ -4,6 +4,7 @@
 \name{tlg_pipeline_s4-class}
 \alias{tlg_pipeline_s4-class}
 \alias{.tlg_pipeline_s4}
+\alias{tlg_pipeline_s4}
 \title{\code{tlg_pipeline_s4} Class}
 \description{
 The \code{tlg_pipeline_s4} class associates a \code{preprocess} function, a main \code{tlg} function and \code{AdAM} tables names and
