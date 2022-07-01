@@ -1,6 +1,7 @@
-#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1
+#' @describeIn vst01_1 `vst01_1` main function
 #'
-#' The `VST01` table provides an overview of the Vital Sign values and its change from baseline of each respective arm
+#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1. The `VST01` table provides an
+#' overview of the Vital Sign values and its change from baseline of each respective arm
 #' over the course of the trial.
 #'
 #' @inheritParams gen_args
@@ -30,19 +31,19 @@
 #' db <- syn_test_data() %>%
 #'   vst01_1_pre()
 #'
-#' vst01_1(db)
-#' vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-vst01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    summaryvars = .study$evo_vars,
-                    summaryvars_lbls = var_labels_for(adam_db$advs, summaryvars),
-                    visitvar = "AVISIT", # or ATPTN
-                    prune_0 = TRUE,
-                    deco = std_deco("VST01"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      evo_vars = c("AVAL", "CHG")
-                    )) {
+#' vst01_1_main(db)
+#' vst01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
+vst01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         summaryvars = .study$evo_vars,
+                         summaryvars_lbls = var_labels_for(adam_db$advs, summaryvars),
+                         visitvar = "AVISIT", # or ATPTN
+                         prune_0 = TRUE,
+                         deco = std_deco("VST01"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           evo_vars = c("AVAL", "CHG")
+                         )) {
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 
@@ -140,3 +141,20 @@ vst01_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `VST01_1` Pipeline ----
+
+#' `VST01_1` Pipeline
+#'
+#' @description `VST01_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::vst01_1_main` function.
+#'   - `preprocess` the  `chevron::vst01_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"advs"`.
+#'
+#' @export
+#'
+vst01_1 <- tlg_pipeline_S4(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))

@@ -1,7 +1,7 @@
-#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name
+#' @describeIn cmt02_pt_1 `cmt02_pt_1` main function
 #'
-#' A concomitant medication table with the number of subjects and the total number of treatments by medication name
-#' sorted by frequencies.
+#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.  A concomitant medication table with the
+#' number of subjects and the total number of treatments by medication name sorted by frequencies.
 #'
 #' @inheritParams gen_args
 #'
@@ -21,16 +21,16 @@
 #'   dm_update_zoomed() %>%
 #'   cmt02_pt_1_pre()
 #'
-#' cmt02_pt_1(adam_db = db)
-cmt02_pt_1 <- function(adam_db,
-                       armvar = .study$planarm,
-                       prune_0 = TRUE,
-                       lbl_overall = .study$lbl_overall,
-                       deco = std_deco("CMT02_PT"),
-                       .study = list(
-                         planarm = "ARM",
-                         lbl_overall = NULL
-                       )) {
+#' cmt02_pt_1_main(adam_db = db)
+cmt02_pt_1_main <- function(adam_db,
+                            armvar = .study$planarm,
+                            prune_0 = TRUE,
+                            lbl_overall = .study$lbl_overall,
+                            deco = std_deco("CMT02_PT"),
+                            .study = list(
+                              planarm = "ARM",
+                              lbl_overall = NULL
+                            )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt02_pt_1_lyt(
@@ -107,3 +107,20 @@ cmt02_pt_1_pre <- function(adam_db) {
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
 }
+
+# `CMT02_PT_1` Pipeline ----
+
+#' `CMT02_PT_1` Pipeline
+#'
+#' @description `CMT02_PT_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::cmt02_pt_1_main` function.
+#'   - `preprocess` the  `chevron::cmt02_pt_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adcm"`.
+#'
+#' @export
+#'
+cmt02_pt_1 <- tlg_pipeline_S4(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

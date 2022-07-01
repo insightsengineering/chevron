@@ -1,7 +1,7 @@
-#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit
+#' @describeIn lbt01_1 `lbt01_1` main function
 #'
-#' The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over
-#' the course of the trial.
+#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit. The LBT01 table provides an
+#' overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
@@ -29,17 +29,17 @@
 #' db <- syn_test_data() %>%
 #'   lbt01_1_pre()
 #'
-#' lbt01_1(db)
-lbt01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    summaryvars = c("AVAL", "CHG"),
-                    summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
-                    visitvar = "AVISIT",
-                    prune_0 = TRUE,
-                    deco = std_deco("LBT01"),
-                    .study = list(
-                      actualarm = "ACTARM"
-                    )) {
+#' lbt01_1_main(db)
+lbt01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         summaryvars = c("AVAL", "CHG"),
+                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
+                         visitvar = "AVISIT",
+                         prune_0 = TRUE,
+                         deco = std_deco("LBT01"),
+                         .study = list(
+                           actualarm = "ACTARM"
+                         )) {
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
@@ -127,3 +127,20 @@ lbt01_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `LBT01_1` Pipeline ----
+
+#' `LBT01_1` Pipeline
+#'
+#' @description `LBT01_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::lbt01_1_main` function.
+#'   - `preprocess` the  `chevron::lbt01_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adlb"`.
+#'
+#' @export
+#'
+lbt01_1 <- tlg_pipeline_S4(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))

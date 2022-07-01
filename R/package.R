@@ -3,7 +3,7 @@
 #'
 #' @import dm
 #' @import dplyr
-#' @import R6
+#' @import methods
 #' @import rtables
 #' @import tern
 #' @importFrom checkmate assert_character assert_list assert_string assert_subset
@@ -12,6 +12,7 @@
 #' @importFrom checkmate assert_true assert_multi_class
 #' @importFrom magrittr %>%
 #' @importFrom methods is
+#' @importFrom S4Vectors setValidity2
 #' @importFrom stats setNames
 #' @importFrom tibble tribble
 #' @importFrom yaml read_yaml

@@ -1,6 +1,7 @@
-#' `MHT01` Table 1 (Default) Medical History Table 1
+#' @describeIn mht01_1 `mht01_1` main function
 #'
-#' The `MHT01` table provides an overview of the subjects medical history by SOC and Preferred Term.
+#' `MHT01` Table 1 (Default) Medical History Table 1.  The `MHT01` table provides an overview of the subjects medical
+#' history by SOC and Preferred Term.
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -24,18 +25,18 @@
 #' db <- syn_test_data() %>%
 #'   mht01_1_pre()
 #'
-#' mht01_1(adam_db = db) %>% head(15)
-mht01_1 <- function(adam_db,
-                    armvar = .study$planarm,
-                    lbl_overall = .study$lbl_overall,
-                    lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
-                    lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
-                    prune_0 = TRUE,
-                    deco = std_deco("MHT01"),
-                    .study = list(
-                      planarm = "ARM",
-                      lbl_overall = NULL
-                    )) {
+#' mht01_1_main(adam_db = db) %>% head(15)
+mht01_1_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         lbl_overall = .study$lbl_overall,
+                         lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
+                         lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
+                         prune_0 = TRUE,
+                         deco = std_deco("MHT01"),
+                         .study = list(
+                           planarm = "ARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   lyt <- mht01_1_lyt(
@@ -139,3 +140,20 @@ mht01_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `MHT01_1` Pipeline ----
+
+#' `MHT01_1` Pipeline
+#'
+#' @description `MHT01_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::mht01_1_main` function.
+#'   - `preprocess` the  `chevron::mht01_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"admh"`.
+#'
+#' @export
+#'
+mht01_1 <- tlg_pipeline_S4(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))

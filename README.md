@@ -42,7 +42,7 @@ library(magrittr)
 db <- syn_test_data() %>%
   preprocess_data("aet02_1")
 
-aet02_1(adam_db = db)
+aet02_1_main(adam_db = db)
 ```
 
 which returns

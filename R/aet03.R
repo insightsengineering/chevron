@@ -1,7 +1,8 @@
 
-#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1
+#' @describeIn aet03_1 `aet03_1` main table
 #'
-#' An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1. An adverse events table categorized by System
+#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
 #'
 #' @inheritParams gen_args
 #'
@@ -23,17 +24,17 @@
 #' db <- syn_test_data() %>%
 #'   aet03_1_pre()
 #'
-#' aet03_1(db)
-#' aet03_1(db, lbl_overall = "All Patients")
-aet03_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    prune_0 = TRUE,
-                    lbl_overall = .study$lbl_overall,
-                    deco = std_deco("AET03"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' aet03_1_main(db)
+#' aet03_1_main(db, lbl_overall = "All Patients")
+aet03_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         prune_0 = TRUE,
+                         lbl_overall = .study$lbl_overall,
+                         deco = std_deco("AET03"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
 
 
   # specific to AET03: avoid error if some severity levels are not present
@@ -156,3 +157,20 @@ aet03_1_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `AET03_1` Pipeline ----
+
+#' `AET03_1` Pipeline
+#'
+#' @description `AET03_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::aet03_1_main` function.
+#'   - `preprocess` the  `chevron::aet03_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adae"`.
+#'
+#' @export
+#'
+aet03_1 <- tlg_pipeline_S4(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))

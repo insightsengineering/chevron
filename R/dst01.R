@@ -15,10 +15,13 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
   }
 }
 
-#' DST01 Table 1 (Default) Patient Disposition Table 1
+
+# DST01_1 ----
+
+#' @describeIn dst01_1 `dst01` main function
 #'
-#' The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
-#' study a reason is provided.
+#' DST01 Table 1 (Default) Patient Disposition Table 1. The DST01 Disposition Table provides an overview of patients
+#' study completion. For patients who discontinued the study a reason is provided.
 #'
 #' @inheritParams gen_args
 #' @param armvar (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
@@ -48,20 +51,20 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' db <- syn_test_data() %>%
 #'   dst01_1_pre()
 #'
-#' dst01_1(db)
-dst01_1 <- function(adam_db,
-                    armvar = .study$planarm,
-                    status_var = .study$status_var,
-                    disc_reason_var = .study$disc_reason_var,
-                    prune_0 = TRUE,
-                    lbl_overall = .study$lbl_overall,
-                    deco = std_deco("DST01"),
-                    .study = list(
-                      planarm = "ARM",
-                      lbl_overall = "All Patients",
-                      disc_reason_var = "DCSREAS",
-                      status_var = "EOSSTT"
-                    )) {
+#' dst01_1_main(db)
+dst01_1_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         status_var = .study$status_var,
+                         disc_reason_var = .study$disc_reason_var,
+                         prune_0 = TRUE,
+                         lbl_overall = .study$lbl_overall,
+                         deco = std_deco("DST01"),
+                         .study = list(
+                           planarm = "ARM",
+                           lbl_overall = "All Patients",
+                           disc_reason_var = "DCSREAS",
+                           status_var = "EOSSTT"
+                         )) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -199,10 +202,31 @@ dst01_1_pre <- function(adam_db, ...) {
   adam_db
 }
 
-#' DST01 Table 2 (Supplementary) Patient Disposition Table 2
+# `DST01_1` Pipeline ----
+
+#' `DST01_1` Pipeline
 #'
-#' The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
-#' study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
+#' @description `DST01_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::dst01_1_main` function.
+#'   - `preprocess` the  `chevron::dst01_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"`.
+#'
+#' @export
+#'
+dst01_1 <- tlg_pipeline_S4(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
+
+
+# DST01_2 ----
+
+#' @describeIn dst01_2 `dst01_2` main function
+#'
+#' DST01 Table 2 (Supplementary) Patient Disposition Table 2. The DST01_2 Disposition Table provides an overview of
+#' patients study completion. For patients who discontinued the study, the reason provided is categorized as "Safety" or
+#' "Non-Safety" issue.
 #'
 #' @inheritParams gen_args
 #'
@@ -234,21 +258,21 @@ dst01_1_pre <- function(adam_db, ...) {
 #' db <- syn_test_data() %>%
 #'   dst01_2_pre()
 #'
-#' dst01_2(db)
-#' dst01_2(db, lbl_overall = NULL)
-dst01_2 <- function(adam_db,
-                    armvar = .study$planarm,
-                    status_var = .study$status_var,
-                    disc_reason_var = .study$disc_reason_var,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("DST01"),
-                    .study = list(
-                      planarm = "ARM",
-                      lbl_overall = "All Patients",
-                      disc_reason_var = "DCSREAS",
-                      status_var = "EOSSTT"
-                    )) {
+#' dst01_2_main(db)
+#' dst01_2_main(db, lbl_overall = NULL)
+dst01_2_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         status_var = .study$status_var,
+                         disc_reason_var = .study$disc_reason_var,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("DST01"),
+                         .study = list(
+                           planarm = "ARM",
+                           lbl_overall = "All Patients",
+                           disc_reason_var = "DCSREAS",
+                           status_var = "EOSSTT"
+                         )) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -400,10 +424,30 @@ dst01_2_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-#' DST01 Table 3 (Supplementary) Patient Disposition Table 3
+# `DST01_2` Pipeline ----
+
+#' `DST01_2` Pipeline
 #'
-#' The DST01_3 Disposition Table provides an overview of patients study treatment status.
-#' For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
+#' @description `DST01_2` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::dst01_2_main` function.
+#'   - `preprocess` the  `chevron::dst01_2_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"`.
+#'
+#' @export
+#'
+dst01_2 <- tlg_pipeline_S4(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
+
+# DST01_3 ----
+
+#' @describeIn dst01_3 `dst01_3` main function
+#'
+#' DST01 Table 3 (Supplementary) Patient Disposition Table 3. The DST01_3 Disposition Table provides an overview of
+#' patients study treatment status. For patients who discontinued the study, the reason provided is categorized as
+#' "Safety" or "Non-Safety" issue.
 #'
 #' @inheritParams gen_args
 #'
@@ -438,22 +482,22 @@ dst01_2_pre <- function(adam_db,
 #' db <- syn_test_data() %>%
 #'   dst01_3_pre()
 #'
-#' dst01_3(db)
-#' dst01_3(db, lbl_overall = NULL)
-dst01_3 <- function(adam_db,
-                    armvar = .study$planarm,
-                    status = .study$status_var,
-                    disc_reason_var = .study$disc_reason_var,
-                    status_treatment = "EOTSTT",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("DST01"),
-                    .study = list(
-                      planarm = "ARM",
-                      disc_reason_var = "DCSREAS",
-                      lbl_overall = "All Patients",
-                      status_var = "EOSSTT"
-                    )) {
+#' dst01_3_main(db)
+#' dst01_3_main(db, lbl_overall = NULL)
+dst01_3_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         status = .study$status_var,
+                         disc_reason_var = .study$disc_reason_var,
+                         status_treatment = "EOTSTT",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("DST01"),
+                         .study = list(
+                           planarm = "ARM",
+                           disc_reason_var = "DCSREAS",
+                           lbl_overall = "All Patients",
+                           status_var = "EOSSTT"
+                         )) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status,
@@ -613,3 +657,20 @@ dst01_3_pre <- function(adam_db,
     )) %>%
     dm_update_zoomed()
 }
+
+# `DST01_3` Pipeline ----
+
+#' `DST01_3` Pipeline
+#'
+#' @description `DST01_3` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::dst01_3_main` function.
+#'   - `preprocess` the  `chevron::dst01_3_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"`.
+#'
+#' @export
+#'
+dst01_3 <- tlg_pipeline_S4(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))

@@ -1,9 +1,9 @@
 # DTHT01_1 ----
 
-#' `DTHT01` Table 1 (Default) Death Table.
+#' @describeIn dtht01_1 `dtht01_1` main function
 #'
-#' A description of the causes of death optionally with the breakdown of the `OTHER` category and/or post-study
-#' reporting of death.
+#' `DTHT01` Table 1 (Default) Death Table. A description of the causes of death optionally with the breakdown of the
+#' `OTHER` category and/or post-study reporting of death.
 #'
 #' @inheritParams gen_args
 #' @param time_since_last_dose (`logical`) should the time to event information be displayed.
@@ -26,21 +26,21 @@
 #'   dm_update_zoomed() %>%
 #'   dtht01_1_pre()
 #'
-#' dtht01_1(adam_db = db)
-#' dtht01_1(adam_db = db, other_category = FALSE)
-#' dtht01_1(adam_db = db, time_since_last_dose = TRUE)
-#' dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
-dtht01_1 <- function(adam_db,
-                     armvar = .study$actualarm,
-                     time_since_last_dose = FALSE,
-                     other_category = FALSE,
-                     lbl_overall = .study$lbl_overall,
-                     prune_0 = TRUE,
-                     deco = std_deco("DTHT01"),
-                     .study = list(
-                       actualarm = "ACTARM",
-                       lbl_overall = NULL
-                     )) {
+#' dtht01_1_main(adam_db = db)
+#' dtht01_1_main(adam_db = db, other_category = FALSE)
+#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE)
+#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
+dtht01_1_main <- function(adam_db,
+                          armvar = .study$actualarm,
+                          time_since_last_dose = FALSE,
+                          other_category = FALSE,
+                          lbl_overall = .study$lbl_overall,
+                          prune_0 = TRUE,
+                          deco = std_deco("DTHT01"),
+                          .study = list(
+                            actualarm = "ACTARM",
+                            lbl_overall = NULL
+                          )) {
   dbsel <- get_db_data(adam_db, "adsl")
 
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
@@ -192,3 +192,20 @@ dtht01_1_pre <- function(adam_db, ...) {
     mutate(DTHCAT = fct_relevel(.data$DTHCAT, death_fact)) %>%
     dm_update_zoomed()
 }
+
+# `DTHT01_1` Pipeline ----
+
+#' `DTHT01_1` Pipeline
+#'
+#' @description `DTHT01_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::dtht01_1_main` function.
+#'   - `preprocess` the  `chevron::dtht01_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"`.
+#'
+#' @export
+#'
+dtht01_1 <- tlg_pipeline_S4(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))

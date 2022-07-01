@@ -1,8 +1,9 @@
-#' EXT01 Table 1 (Default) Exposure Summary Table
+# EXT01_1 ----
+
+#' @describeIn ext01_1 `ext01_1` main function
 #'
-#' The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
-#' missed, and treatment duration.
-#'
+#' EXT01 Table 1 (Default) Exposure Summary Table. The EXT01 table provides an overview of the of the exposure of the
+#' patients in terms of Total dose administered or missed, and treatment duration.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) the name of the variable to be analyzed. By default `"AVAL"`.
@@ -25,17 +26,17 @@
 #' db <- syn_test_data() %>%
 #'   ext01_1_pre()
 #'
-#' ext01_1(db)
-ext01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    summaryvars = "AVAL",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("EXT01"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' ext01_1_main(db)
+ext01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         summaryvars = "AVAL",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("EXT01"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(
@@ -116,12 +117,30 @@ ext01_1_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-# Version 2 ----
+# `EXT01_1` Pipeline ----
 
+#' `EXT01_1` Pipeline
+#'
+#' @description `EXT01_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::ext01_1_main` function.
+#'   - `preprocess` the  `chevron::ext01_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adex"`.
+#'
+#' @export
+#'
+ext01_1 <- tlg_pipeline_S4(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
+
+# EXT01_2 ----
+
+#' @describeIn ext01_2 `ext01_2` main function
+#'
 #' EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 #'
 #' @inheritParams gen_args
-#'
 #'
 #' @details
 #'  * Supplementary Exposure table with binning of desired analysis values.
@@ -141,16 +160,16 @@ ext01_1_pre <- function(adam_db,
 #' db <- syn_test_data() %>%
 #'   ext01_2_pre()
 #'
-#' ext01_2(db)
-ext01_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("EXT01"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' ext01_2_main(db)
+ext01_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("EXT01"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   summaryvars <- c("AVAL", "AVALCAT1")
 
   # Provide a clearer error message in the case of missing variable.
@@ -246,3 +265,20 @@ ext01_2_pre <- function(adam_db,
 
   db
 }
+
+# `EXT01_2` Pipeline ----
+
+#' `EXT01_2` Pipeline
+#'
+#' @description `EXT01_2` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::ext01_2_main` function.
+#'   - `preprocess` the  `chevron::ext01_2_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adex"`.
+#'
+#' @export
+#'
+ext01_2 <- tlg_pipeline_S4(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))

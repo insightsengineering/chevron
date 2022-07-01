@@ -1,9 +1,9 @@
 # egt02_1 ----
 
-
-#' `EGT02` Table 1 (Default) ECG Abnormalities Table 1
+#' @describeIn egt02_1 `egt02_1` main function
 #'
-#' Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
+#' `EGT02` Table 1 (Default) ECG Abnormalities Table 1. Assessments Outside Normal Limits Regardless of Abnormality at
+#' Baseline Table.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -27,18 +27,18 @@
 #'   dm_update_zoomed() %>%
 #'   egt02_1_pre()
 #'
-#' egt02_1(adam_db = db)
-egt02_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("EGT02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' egt02_1_main(adam_db = db)
+egt02_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("EGT02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
   lyt <- egt02_1_lyt(
@@ -109,12 +109,30 @@ egt02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+# `EGT02_1` Pipeline ----
+
+#' `EGT02_1` Pipeline
+#'
+#' @description `EGT02_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::egt02_1_main` function.
+#'   - `preprocess` the  `chevron::egt02_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adeg"`.
+#'
+#' @export
+#'
+egt02_1 <- tlg_pipeline_S4(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
+
 # egt02_2 ----
 
 
-#' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2
+#' @describeIn egt02_2 `egt02_2` main function
 #'
-#' Assessments Outside Normal Limits Among Subject Without Abnormality at Baseline.
+#' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2. Assessments Outside Normal Limits Among Subject Without
+#' Abnormality at Baseline.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -138,18 +156,18 @@ egt02_1_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed() %>%
 #'   egt02_2_pre()
 #'
-#' egt02_2(adam_db = db)
-egt02_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("EGT02_2"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' egt02_2_main(adam_db = db)
+egt02_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("EGT02_2"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
   lyt <- egt02_2_lyt(
@@ -219,3 +237,20 @@ egt02_2_pre <- function(adam_db, ...) {
     filter(.data$ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `EGT02_2` Pipeline ----
+
+#' `EGT02_2` Pipeline
+#'
+#' @description `EGT02_2` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::egt02_2_main` function.
+#'   - `preprocess` the  `chevron::egt02_2_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adeg"`.
+#'
+#' @export
+#'
+egt02_2 <- tlg_pipeline_S4(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))

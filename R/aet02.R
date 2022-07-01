@@ -1,3 +1,6 @@
+
+#' @describeIn aet02_1 `aet02_1` main table
+#'
 #' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
 #' The `AET02` table provides an overview of the number of subjects experiencing adverse events and the number of advert
@@ -22,34 +25,28 @@
 #' db <- syn_test_data() %>%
 #'   aet02_1_pre()
 #'
-#' aet02_1(adam_db = db) %>% head(15)
-#'
-#' # Additional Examples
-#' db_s <- db %>%
-#'   dm_filter(adsl, SEX == "F")
-#'
-#' aet02_1(adam_db = db_s) %>% head()
+#' aet02_1_main(adam_db = db) %>% head(15)
 #'
 #' # alternatively adam_db also accepts a names list
-#' aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
+#' aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
 #'
-#' aet02_1(db, lbl_overall = "All Patients") %>% head()
+#' aet02_1_main(db, lbl_overall = "All Patients") %>% head()
 #'
 #' db_m <- db %>%
 #'   dm_zoom_to(adae) %>%
 #'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "Medra System Organ Class")) %>%
 #'   dm_update_zoomed()
 #'
-#' aet02_1(db_m) %>% head()
-aet02_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("AET02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' aet02_1_main(db_m) %>% head()
+aet02_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_1_lyt(
@@ -152,18 +149,62 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 aet02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
+  aet02_1_check(adam_db, ...)
+
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
 
-# Version2 ----
-
-#' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2
+#' @describeIn aet02_1 `aet02_1` Checks
 #'
-#' The `AET02_2` table provides an overview of the number of patients experiencing adverse events and the number of
-#' adverse events categorized by Body System, High Level Term and Dictionary-Derived Term.
+#' @inheritParams gen_args
+#' @param req_tables (`character`) names of the required tables.
+#' @param ... not used.
+#'
+aet02_1_check <- function(adam_db,
+                          req_tables = c("adsl", "adae"),
+                          armvar = .study$actualarm,
+                          .study = list(
+                            actualarm = "ACTARM"
+                          ),
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
+
+  msg <- NULL
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(armvar, "USUBJID", "AEBODSYS", "AEDECOD")))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, "USUBJID")))
+
+  if (is.null(msg)) {
+    message("Test successful")
+  } else {
+    stop(paste(msg, collapse = "\n  "))
+  }
+}
+
+# `AET02_1` Pipeline ----
+
+#' `AET02_1` Pipeline
+#'
+#' @description `AET02_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::aet02_1_main` function.
+#'   - `preprocess` the  `chevron::aet02_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adae"`.
+#'
+#' @export
+#'
+aet02_1 <- tlg_pipeline_S4(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "adae"))
+
+#' @describeIn aet02_2 `aet02_2` main table
+#'
+#' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2. The
+#' `AET02_2` table provides an overview of the number of patients experiencing adverse events and the number of adverse
+#' events categorized by Body System, High Level Term and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -185,26 +226,26 @@ aet02_1_pre <- function(adam_db, ...) {
 #' db <- syn_test_data() %>%
 #'   aet02_2_pre()
 #'
-#' aet02_2(db) %>% head(15)
+#' aet02_2_main(db) %>% head(15)
 #'
 #' # Additional Examples
-#' aet02_2(db, lbl_overall = "All Patients") %>% head()
+#' aet02_2_main(db, lbl_overall = "All Patients") %>% head()
 #'
 #' db_m <- db %>%
 #'   dm_zoom_to(adae) %>%
 #'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
 #'   dm_update_zoomed()
 #'
-#' aet02_2(db_m) %>% head()
-aet02_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("AET02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' aet02_2_main(db_m) %>% head()
+aet02_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   adae <- dbsel$adae
 
@@ -341,12 +382,28 @@ aet02_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# Version 3 ----
+# `AET02_2` Pipeline ----
 
-#' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3
+#' `AET02_2` Pipeline
 #'
-#' The `AET02_3` table provides an overview of the number of patients experiencing adverse events and the number of
-#' adverse events categorized by Dictionary-Derived Term.
+#' @description `AET02_2` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::aet02_2_main` function.
+#'   - `preprocess` the  `chevron::aet02_2_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adae"`.
+#'
+#' @export
+#'
+aet02_2 <- tlg_pipeline_S4(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "adae"))
+
+#' @describeIn aet02_3 `aet02_3` main table
+#'
+#' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3. The `AET02_3`
+#'   table provides an overview of the number of patients experiencing adverse events and the number of adverse events
+#'   categorized by Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -367,18 +424,18 @@ aet02_2_pre <- function(adam_db, ...) {
 #' db <- syn_test_data() %>%
 #'   aet02_3_pre()
 #'
-#' aet02_3(adam_db = db) %>% head()
+#' aet02_3_main(adam_db = db) %>% head()
 #'
-#' aet02_3(db, lbl_overall = "All Patients") %>% head()
-aet02_3 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("AET02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' aet02_3_main(db, lbl_overall = "All Patients") %>% head()
+aet02_3_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -459,3 +516,20 @@ aet02_3_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `AET02_3` Pipeline ----
+
+#' `AET02_3` Pipeline
+#'
+#' @description `AET02_3` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::aet02_3_main` function.
+#'   - `preprocess` the  `chevron::aet02_3_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"adae"`.
+#'
+#' @export
+#'
+aet02_3 <- tlg_pipeline_S4(aet02_3_main, aet02_3_pre, adam_datasets = c("adsl", "adae"))

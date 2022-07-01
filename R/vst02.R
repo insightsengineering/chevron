@@ -1,16 +1,16 @@
 # vst02_1 ----
 
 
-#' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1
+#' @describeIn vst01_1 `vst01_1` main function
 #'
-#' Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
+#' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1. Assessments Outside Normal Limits Regardless of
+#' Abnormality at Baseline Table.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
 #'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
-#'
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -27,18 +27,18 @@
 #'   dm_update_zoomed() %>%
 #'   vst02_1_pre()
 #'
-#' vst02_1(adam_db = db)
-vst02_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("VST02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' vst02_1_main(adam_db = db)
+vst02_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("VST02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_1_lyt(
@@ -127,11 +127,29 @@ vst02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+# `VST02_1` Pipeline ----
+
+#' `VST02_1` Pipeline
+#'
+#' @description `VST02_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::vst02_1_main` function.
+#'   - `preprocess` the  `chevron::vst02_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"advs"`.
+#'
+#' @export
+#'
+vst02_1 <- tlg_pipeline_S4(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
+
 # vst02_2 ----
 
-#' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2
+#' @describeIn vst02_2 `vst02_2` main function.
 #'
-#' Assessments Outside Normal Limits Among Subject Without Abnormality at Baseline.
+#' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2. Assessments Outside Normal Limits Among Subject
+#' Without Abnormality at Baseline.
 #'
 #' @details
 #'   *
@@ -156,18 +174,18 @@ vst02_1_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed() %>%
 #'   vst02_2_pre()
 #'
-#' vst02_2(adam_db = db)
-vst02_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("VST02_2"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' vst02_2_main(adam_db = db)
+vst02_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("VST02_2"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_2_lyt(
@@ -255,3 +273,20 @@ vst02_2_pre <- function(adam_db, ...) {
     ) %>%
     dm_update_zoomed()
 }
+
+# `VST02_2` Pipeline ----
+
+#' `VST02_2` Pipeline
+#'
+#' @description `VST02_2` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::vst02_2_main` function.
+#'   - `preprocess` the  `chevron::vst02_2_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adsl"` and `"advs"`.
+#'
+#' @export
+#'
+vst02_2 <- tlg_pipeline_S4(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))

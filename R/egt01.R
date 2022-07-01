@@ -1,6 +1,7 @@
-#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1
+#' @describeIn egt01_1 `egt01_1` main function
 #'
-#' The `EGT01` table 1 summarizes several electrocardiogram parameters and their evolution throughout the study.
+#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.  The `EGT01` table 1 summarizes
+#' several electrocardiogram parameters and their evolution throughout the study.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
@@ -29,19 +30,19 @@
 #' db <- syn_test_data() %>%
 #'   egt01_1_pre()
 #'
-#' egt01_1(db)
-#' egt01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-egt01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    summaryvars = .study$evo_vars,
-                    summaryvars_lbls = var_labels_for(adam_db$adeg, summaryvars),
-                    visitvar = "AVISIT", # or ATPTN
-                    prune_0 = TRUE,
-                    deco = std_deco("EGT01"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      evo_vars = c("AVAL", "CHG")
-                    )) {
+#' egt01_1_main(db)
+#' egt01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
+egt01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         summaryvars = .study$evo_vars,
+                         summaryvars_lbls = var_labels_for(adam_db$adeg, summaryvars),
+                         visitvar = "AVISIT", # or ATPTN
+                         prune_0 = TRUE,
+                         deco = std_deco("EGT01"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           evo_vars = c("AVAL", "CHG")
+                         )) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
@@ -137,3 +138,20 @@ egt01_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `EGT01_1` Pipeline ----
+
+#' `EGT01_1` Pipeline
+#'
+#' @description `EGT01_1` Pipeline of the class `tlg_pipeline_S4`
+#'
+#' @format a `tlg_pipeline_S4` object with the following slots:
+#'   - `main` the `chevron::egt01_1_main` function.
+#'   - `preprocess` the  `chevron::egt01_1_pre` function.
+#'   - `postprocess` the identity function.
+#'   - `check` no checks.
+#'   - `adam_datasets` `"adeg"`.
+#'
+#' @export
+#'
+egt01_1 <- tlg_pipeline_S4(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))
