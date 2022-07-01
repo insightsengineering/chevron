@@ -8,7 +8,7 @@
 \alias{cmt02_pt_1}
 \title{\code{CMT02_PT_1} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::cmt02_pt_1_main} function.
 \item \code{preprocess} the  \code{chevron::cmt02_pt_1_pre} function.
@@ -52,7 +52,7 @@ cmt02_pt_1
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
-\code{CMT02_PT_1} Pipeline of the class \code{tlg_pipeline_S4}
+\code{CMT02_PT_1} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{

@@ -9,7 +9,7 @@
 \alias{vst02_1_main}
 \title{\code{VST01_1} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::vst01_1_main} function.
 \item \code{preprocess} the  \code{chevron::vst01_1_pre} function.
@@ -88,7 +88,7 @@ to be displayed.}
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
-\code{VST01_1} Pipeline of the class \code{tlg_pipeline_S4}
+\code{VST01_1} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{

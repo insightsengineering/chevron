@@ -7,7 +7,7 @@
 #' Run the pipeline including checks, pre processing and `tlg` generation on the provided data set.
 #'
 #' @inheritParams gen_args
-#' @param object (`tlg_pipeline_S4`) input.
+#' @param object (`tlg_pipeline_s4`) input.
 #' @param ... extra arguments to pass to the check, pre processing or `tlg` functions.
 #'
 #' @aliases run
@@ -20,7 +20,7 @@ setGeneric("run", function(object, adam_db, ...) standardGeneric("run"))
 #' @export
 setMethod(
   f = "run",
-  signature = "tlg_pipeline_S4",
+  signature = "tlg_pipeline_s4",
   definition = function(object, adam_db, ...) {
     data <- list(adam_db = adam_db)
     optional_arg <- if (!missing(...)) list(...) else NULL
@@ -37,7 +37,7 @@ setMethod(
 
 #' Retrieve Main Function
 #'
-#' @param object (`tlg_pipeline_S4`) input.
+#' @param object (`tlg_pipeline_s4`) input.
 #' @param ... not used.
 #'
 #' @aliases get_main
@@ -50,7 +50,7 @@ setGeneric("get_main", function(object, ...) standardGeneric("get_main"))
 #' @export
 setMethod(
   f = "get_main",
-  signature = "tlg_pipeline_S4",
+  signature = "tlg_pipeline_s4",
   definition = function(object) {
     object@main
   }
@@ -60,7 +60,7 @@ setMethod(
 
 #' Retrieve Pre Processing Function
 #'
-#' @param object (`tlg_pipeline_S4`) input.
+#' @param object (`tlg_pipeline_s4`) input.
 #' @param ... not used.
 #'
 #' @aliases get_preprocess
@@ -73,7 +73,7 @@ setGeneric("get_preprocess", function(object, ...) standardGeneric("get_preproce
 #' @export
 setMethod(
   f = "get_preprocess",
-  signature = "tlg_pipeline_S4",
+  signature = "tlg_pipeline_s4",
   definition = function(object) {
     object@preprocess
   }
@@ -81,9 +81,9 @@ setMethod(
 
 # get_postprocess ----
 
-#' Retrieve post Processing Function
+#' Retrieve Post Processing Function
 #'
-#' @param object (`tlg_pipeline_S4`) input.
+#' @param object (`tlg_pipeline_s4`) input.
 #' @param ... not used.
 #'
 #' @aliases get_postprocess
@@ -96,7 +96,7 @@ setGeneric("get_postprocess", function(object, ...) standardGeneric("get_postpro
 #' @export
 setMethod(
   f = "get_postprocess",
-  signature = "tlg_pipeline_S4",
+  signature = "tlg_pipeline_s4",
   definition = function(object) {
     object@postprocess
   }
@@ -106,7 +106,7 @@ setMethod(
 
 #' Retrieve Names of Data Sets Associated with the Pipeline
 #'
-#' @param object (`tlg_pipeline_S4`) input.
+#' @param object (`tlg_pipeline_s4`) input.
 #' @param ... not used.
 #'
 #' @aliases get_datasets
@@ -119,7 +119,7 @@ setGeneric("get_datasets", function(object, ...) standardGeneric("get_datasets")
 #' @export
 setMethod(
   f = "get_datasets",
-  signature = "tlg_pipeline_S4",
+  signature = "tlg_pipeline_s4",
   definition = function(object) {
     object@adam_datasets
   }

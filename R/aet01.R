@@ -282,9 +282,9 @@ aet01_1_check <- function(adam_db,
 
 #' `AET01_1` Pipeline
 #'
-#' @description `AET01_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `AET01_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::aet01_1_main` function.
 #'   - `preprocess` the  `chevron::aet01_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -292,7 +292,7 @@ aet01_1_check <- function(adam_db,
 #'
 #' @export
 #'
-aet01_1 <- tlg_pipeline_S4(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_1 <- tlg_pipeline_s4(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 # aet01_2 ----
 
@@ -603,13 +603,13 @@ aet01_2_check <- function(adam_db,
 
 #' `AET01_2` Pipeline
 #'
-#' @description `AET01_2` Pipeline of the class `tlg_pipeline_S4`
+#' @description `AET01_2` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::aet01_2_main` function.
 #'   - `preprocess` the  `chevron::aet01_2_pre` function.
 #'   - `postprocess` the identity function.
 #'   - `adam_datasets` `"adsl"` and `"adae"`.
 #'
 #' @export
-aet01_2 <- tlg_pipeline_S4(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_2 <- tlg_pipeline_s4(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))

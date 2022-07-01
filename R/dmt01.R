@@ -130,9 +130,9 @@ dmt01_1_pre <- function(adam_db, ...) {
 
 #' `DMT01_1` Pipeline
 #'
-#' @description `DMT01_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `DMT01_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::dmt01_1_main` function.
 #'   - `preprocess` the  `chevron::dmt01_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -141,4 +141,4 @@ dmt01_1_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-dmt01_1 <- tlg_pipeline_S4(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))
+dmt01_1 <- tlg_pipeline_s4(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))

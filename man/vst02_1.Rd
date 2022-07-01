@@ -7,7 +7,7 @@
 \alias{vst02_1}
 \title{\code{VST02_1} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::vst02_1_main} function.
 \item \code{preprocess} the  \code{chevron::vst02_1_pre} function.
@@ -48,7 +48,7 @@ vst02_1
 \item{...}{not used.}
 }
 \description{
-\code{VST02_1} Pipeline of the class \code{tlg_pipeline_S4}
+\code{VST02_1} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \section{Functions}{
 \itemize{
@@ -62,7 +62,6 @@ vst02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-syn_test_data() \%>\%
-  vst02_1_pre()
+vst02_1_pre(syn_test_data())
 }
 \keyword{datasets}

@@ -98,8 +98,7 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   vst02_1_pre()
+#' vst02_1_pre(syn_test_data())
 vst02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
@@ -131,9 +130,9 @@ vst02_1_pre <- function(adam_db, ...) {
 
 #' `VST02_1` Pipeline
 #'
-#' @description `VST02_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `VST02_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::vst02_1_main` function.
 #'   - `preprocess` the  `chevron::vst02_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -142,7 +141,7 @@ vst02_1_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-vst02_1 <- tlg_pipeline_S4(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
+vst02_1 <- tlg_pipeline_s4(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
 
 # vst02_2 ----
 
@@ -278,9 +277,9 @@ vst02_2_pre <- function(adam_db, ...) {
 
 #' `VST02_2` Pipeline
 #'
-#' @description `VST02_2` Pipeline of the class `tlg_pipeline_S4`
+#' @description `VST02_2` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::vst02_2_main` function.
 #'   - `preprocess` the  `chevron::vst02_2_pre` function.
 #'   - `postprocess` the identity function.
@@ -289,4 +288,4 @@ vst02_2_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-vst02_2 <- tlg_pipeline_S4(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))
+vst02_2 <- tlg_pipeline_s4(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))

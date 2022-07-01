@@ -26,11 +26,11 @@ reference:
 
   - title: Classes
     contents:
-      - tlg_pipeline_S4-class
+      - tlg_pipeline_s4-class
 
   - title: Constructors
     contents:
-      - tlg_pipeline_S4
+      - tlg_pipeline_s4
 
   - title: Methods
     contents:

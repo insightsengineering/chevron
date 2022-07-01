@@ -2,15 +2,15 @@
 % Please edit documentation in R/TLG_pipeline-S4methods.R
 \name{get_main}
 \alias{get_main}
-\alias{get_main,tlg_pipeline_S4-method}
+\alias{get_main,tlg_pipeline_s4-method}
 \title{Retrieve Main Function}
 \usage{
 get_main(object, ...)
 
-\S4method{get_main}{tlg_pipeline_S4}(object)
+\S4method{get_main}{tlg_pipeline_s4}(object)
 }
 \arguments{
-\item{object}{(\code{tlg_pipeline_S4}) input.}
+\item{object}{(\code{tlg_pipeline_s4}) input.}
 
 \item{...}{not used.}
 }

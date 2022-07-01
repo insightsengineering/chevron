@@ -8,7 +8,7 @@
 \alias{aet04_1}
 \title{\code{AET04_1} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::aet04_1_main} function.
 \item \code{preprocess} the  \code{chevron::aet04_1_pre} function.
@@ -62,7 +62,7 @@ aet04_1
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-\code{AET04_1} Pipeline of the class \code{tlg_pipeline_S4}
+\code{AET04_1} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{

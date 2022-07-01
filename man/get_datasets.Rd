@@ -2,15 +2,15 @@
 % Please edit documentation in R/TLG_pipeline-S4methods.R
 \name{get_datasets}
 \alias{get_datasets}
-\alias{get_datasets,tlg_pipeline_S4-method}
+\alias{get_datasets,tlg_pipeline_s4-method}
 \title{Retrieve Names of Data Sets Associated with the Pipeline}
 \usage{
 get_datasets(object, ...)
 
-\S4method{get_datasets}{tlg_pipeline_S4}(object)
+\S4method{get_datasets}{tlg_pipeline_s4}(object)
 }
 \arguments{
-\item{object}{(\code{tlg_pipeline_S4}) input.}
+\item{object}{(\code{tlg_pipeline_s4}) input.}
 
 \item{...}{not used.}
 }

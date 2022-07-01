@@ -112,9 +112,9 @@ cmt02_pt_1_pre <- function(adam_db) {
 
 #' `CMT02_PT_1` Pipeline
 #'
-#' @description `CMT02_PT_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `CMT02_PT_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::cmt02_pt_1_main` function.
 #'   - `preprocess` the  `chevron::cmt02_pt_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -123,4 +123,4 @@ cmt02_pt_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-cmt02_pt_1 <- tlg_pipeline_S4(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))
+cmt02_pt_1 <- tlg_pipeline_s4(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

@@ -206,9 +206,9 @@ dst01_1_pre <- function(adam_db, ...) {
 
 #' `DST01_1` Pipeline
 #'
-#' @description `DST01_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `DST01_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::dst01_1_main` function.
 #'   - `preprocess` the  `chevron::dst01_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -217,7 +217,7 @@ dst01_1_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-dst01_1 <- tlg_pipeline_S4(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
+dst01_1 <- tlg_pipeline_s4(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 
 
 # DST01_2 ----
@@ -428,9 +428,9 @@ dst01_2_pre <- function(adam_db,
 
 #' `DST01_2` Pipeline
 #'
-#' @description `DST01_2` Pipeline of the class `tlg_pipeline_S4`
+#' @description `DST01_2` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::dst01_2_main` function.
 #'   - `preprocess` the  `chevron::dst01_2_pre` function.
 #'   - `postprocess` the identity function.
@@ -439,7 +439,7 @@ dst01_2_pre <- function(adam_db,
 #'
 #' @export
 #'
-dst01_2 <- tlg_pipeline_S4(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
+dst01_2 <- tlg_pipeline_s4(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 
 # DST01_3 ----
 
@@ -662,9 +662,9 @@ dst01_3_pre <- function(adam_db,
 
 #' `DST01_3` Pipeline
 #'
-#' @description `DST01_3` Pipeline of the class `tlg_pipeline_S4`
+#' @description `DST01_3` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::dst01_3_main` function.
 #'   - `preprocess` the  `chevron::dst01_3_pre` function.
 #'   - `postprocess` the identity function.
@@ -673,4 +673,4 @@ dst01_3_pre <- function(adam_db,
 #'
 #' @export
 #'
-dst01_3 <- tlg_pipeline_S4(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))
+dst01_3 <- tlg_pipeline_s4(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))

@@ -121,9 +121,9 @@ ext01_1_pre <- function(adam_db,
 
 #' `EXT01_1` Pipeline
 #'
-#' @description `EXT01_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `EXT01_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::ext01_1_main` function.
 #'   - `preprocess` the  `chevron::ext01_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -132,7 +132,7 @@ ext01_1_pre <- function(adam_db,
 #'
 #' @export
 #'
-ext01_1 <- tlg_pipeline_S4(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
+ext01_1 <- tlg_pipeline_s4(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
 
 # EXT01_2 ----
 
@@ -270,9 +270,9 @@ ext01_2_pre <- function(adam_db,
 
 #' `EXT01_2` Pipeline
 #'
-#' @description `EXT01_2` Pipeline of the class `tlg_pipeline_S4`
+#' @description `EXT01_2` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::ext01_2_main` function.
 #'   - `preprocess` the  `chevron::ext01_2_pre` function.
 #'   - `postprocess` the identity function.
@@ -281,4 +281,4 @@ ext01_2_pre <- function(adam_db,
 #'
 #' @export
 #'
-ext01_2 <- tlg_pipeline_S4(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))
+ext01_2 <- tlg_pipeline_s4(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))

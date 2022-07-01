@@ -9,7 +9,7 @@
 \alias{aet01_2}
 \title{\code{AET01_2} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::aet01_2_main} function.
 \item \code{preprocess} the  \code{chevron::aet01_2_pre} function.
@@ -92,7 +92,7 @@ aet01_2
 \item{req_tables}{(\code{character}) names of the required tables.}
 }
 \description{
-\code{AET01_2} Pipeline of the class \code{tlg_pipeline_S4}
+\code{AET01_2} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{

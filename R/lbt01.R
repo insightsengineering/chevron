@@ -132,9 +132,9 @@ lbt01_1_pre <- function(adam_db, ...) {
 
 #' `LBT01_1` Pipeline
 #'
-#' @description `LBT01_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `LBT01_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::lbt01_1_main` function.
 #'   - `preprocess` the  `chevron::lbt01_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -143,4 +143,4 @@ lbt01_1_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-lbt01_1 <- tlg_pipeline_S4(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))
+lbt01_1 <- tlg_pipeline_s4(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))

@@ -8,7 +8,7 @@
 \alias{dmt01_1}
 \title{\code{DMT01_1} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::dmt01_1_main} function.
 \item \code{preprocess} the  \code{chevron::dmt01_1_pre} function.
@@ -64,7 +64,7 @@ dmt01_1
 \item{...}{not used.}
 }
 \description{
-\code{DMT01_1} Pipeline of the class \code{tlg_pipeline_S4}
+\code{DMT01_1} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{

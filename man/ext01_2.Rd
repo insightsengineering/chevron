@@ -8,7 +8,7 @@
 \alias{ext01_2}
 \title{\code{EXT01_2} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::ext01_2_main} function.
 \item \code{preprocess} the  \code{chevron::ext01_2_pre} function.
@@ -72,7 +72,7 @@ presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyz
 \item{...}{not used.}
 }
 \description{
-\code{EXT01_2} Pipeline of the class \code{tlg_pipeline_S4}
+\code{EXT01_2} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{

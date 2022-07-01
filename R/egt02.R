@@ -113,9 +113,9 @@ egt02_1_pre <- function(adam_db, ...) {
 
 #' `EGT02_1` Pipeline
 #'
-#' @description `EGT02_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `EGT02_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::egt02_1_main` function.
 #'   - `preprocess` the  `chevron::egt02_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -124,7 +124,7 @@ egt02_1_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-egt02_1 <- tlg_pipeline_S4(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
+egt02_1 <- tlg_pipeline_s4(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
 
 # egt02_2 ----
 
@@ -242,9 +242,9 @@ egt02_2_pre <- function(adam_db, ...) {
 
 #' `EGT02_2` Pipeline
 #'
-#' @description `EGT02_2` Pipeline of the class `tlg_pipeline_S4`
+#' @description `EGT02_2` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::egt02_2_main` function.
 #'   - `preprocess` the  `chevron::egt02_2_pre` function.
 #'   - `postprocess` the identity function.
@@ -253,4 +253,4 @@ egt02_2_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-egt02_2 <- tlg_pipeline_S4(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))
+egt02_2 <- tlg_pipeline_s4(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))

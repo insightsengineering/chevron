@@ -2,15 +2,15 @@
 % Please edit documentation in R/TLG_pipeline-S4methods.R
 \name{run}
 \alias{run}
-\alias{run,tlg_pipeline_S4-method}
+\alias{run,tlg_pipeline_s4-method}
 \title{run}
 \usage{
 run(object, adam_db, ...)
 
-\S4method{run}{tlg_pipeline_S4}(object, adam_db, ...)
+\S4method{run}{tlg_pipeline_s4}(object, adam_db, ...)
 }
 \arguments{
-\item{object}{(\code{tlg_pipeline_S4}) input.}
+\item{object}{(\code{tlg_pipeline_s4}) input.}
 
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 

@@ -55,7 +55,6 @@ Collate:
     'checks.R'
     'cmt01a.R'
     'cmt02_pt.R'
-    'data.R'
     'dmt01.R'
     'dst01.R'
     'dtht01.R'
@@ -72,4 +71,3 @@ Collate:
     'utils.R'
     'vst01.R'
     'vst02.R'
-    'zzz.R'

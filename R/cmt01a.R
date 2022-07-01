@@ -165,9 +165,9 @@ cmt01a_1_pre <- function(adam_db) {
 
 #' `CMT01A_1` Pipeline
 #'
-#' @description `CMT01A_1` Pipeline of the class `tlg_pipeline_S4`
+#' @description `CMT01A_1` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::cmt01a_1_main` function.
 #'   - `preprocess` the  `chevron::cmt01a_1_pre` function.
 #'   - `postprocess` the identity function.
@@ -176,7 +176,7 @@ cmt01a_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-cmt01a_1 <- tlg_pipeline_S4(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_1 <- tlg_pipeline_s4(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
 
 # CMT01A_2 ----
 
@@ -286,9 +286,9 @@ cmt01a_2_pre <- function(adam_db) {
 
 #' `CMT01A_2` Pipeline
 #'
-#' @description `CMT01A_2` Pipeline of the class `tlg_pipeline_S4`
+#' @description `CMT01A_2` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::cmt01a_2_main` function.
 #'   - `preprocess` the  `chevron::cmt01a_2_pre` function.
 #'   - `postprocess` the identity function.
@@ -297,7 +297,7 @@ cmt01a_2_pre <- function(adam_db) {
 #'
 #' @export
 #'
-cmt01a_2 <- tlg_pipeline_S4(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_2 <- tlg_pipeline_s4(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
 
 # CMT01A_3 ----
 
@@ -466,9 +466,9 @@ cmt01a_3_pre <- function(adam_db) {
 
 #' `CMT01A_3` Pipeline
 #'
-#' @description `CMT01A_3` Pipeline of the class `tlg_pipeline_S4`
+#' @description `CMT01A_3` Pipeline of the class `tlg_pipeline_s4`
 #'
-#' @format a `tlg_pipeline_S4` object with the following slots:
+#' @format a `tlg_pipeline_s4` object with the following slots:
 #'   - `main` the `chevron::cmt01a_3_main` function.
 #'   - `preprocess` the  `chevron::cmt01a_3_pre` function.
 #'   - `postprocess` the identity function.
@@ -477,4 +477,4 @@ cmt01a_3_pre <- function(adam_db) {
 #'
 #' @export
 #'
-cmt01a_3 <- tlg_pipeline_S4(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_3 <- tlg_pipeline_s4(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))

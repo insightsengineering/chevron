@@ -8,7 +8,7 @@
 \alias{aet03_1}
 \title{\code{AET03_1} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::aet03_1_main} function.
 \item \code{preprocess} the  \code{chevron::aet03_1_pre} function.
@@ -62,7 +62,7 @@ aet03_1
 \item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the data set.}
 }
 \description{
-\code{AET03_1} Pipeline of the class \code{tlg_pipeline_S4}
+\code{AET03_1} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{

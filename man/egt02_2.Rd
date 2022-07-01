@@ -8,7 +8,7 @@
 \alias{egt02_2}
 \title{\code{EGT02_2} Pipeline}
 \format{
-a \code{tlg_pipeline_S4} object with the following slots:
+a \code{tlg_pipeline_s4} object with the following slots:
 \itemize{
 \item \code{main} the \code{chevron::egt02_2_main} function.
 \item \code{preprocess} the  \code{chevron::egt02_2_pre} function.
@@ -62,7 +62,7 @@ egt02_2
 \item{...}{not used.}
 }
 \description{
-\code{EGT02_2} Pipeline of the class \code{tlg_pipeline_S4}
+\code{EGT02_2} Pipeline of the class \code{tlg_pipeline_s4}
 }
 \details{
 \itemize{
