@@ -120,11 +120,13 @@ get_req_data <- function(id, pmap) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(magrittr)
 #' db <- syn_test_data()
 #'
 #' db %>%
 #'   preprocess_data("aet02_2")
+#' }
 preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap, .study) {
   .Deprecated(msg = "`preprocess_data` is deprecated. \nUse the tlg specific preprocessing functions instead")
 

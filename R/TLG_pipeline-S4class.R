@@ -16,8 +16,8 @@
 #' * the first argument of the `preprocess` function must be `adam_db`, the input `dm` object to create `tlg` output.
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post process.
 #'
-#' @exportClass tlg_pipeline_s4
 #' @aliases tlg_pipeline_s4
+#' @exportClass tlg_pipeline_s4
 .tlg_pipeline_s4 <- setClass(
   "tlg_pipeline_s4",
   slots = c(
@@ -59,6 +59,8 @@ S4Vectors::setValidity2("tlg_pipeline_s4", function(object) {
 # Constructor ----
 
 #' `tlg_pipeline_s4` constructor
+#'
+#' @rdname tlg_pipeline_s4-class
 #'
 #' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
 #' @param preprocess (`function`) returning a pre processed `dm` object amenable to `tlg` creation. Typically one of the

@@ -19,9 +19,11 @@ preprocess_data(adam_db, tlgfname, pmap = std_pmap, .study)
 Preprocess ADaM Data for A TLG function
 }
 \examples{
+\dontrun{
 library(magrittr)
 db <- syn_test_data()
 
 db \%>\%
   preprocess_data("aet02_2")
+}
 }
