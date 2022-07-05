@@ -25,7 +25,6 @@ Imports:
     methods,
     rlang,
     rtables,
-    S4Vectors,
     tern,
     tibble,
     tidyr,

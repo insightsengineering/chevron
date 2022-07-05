@@ -1,6 +1,7 @@
-#' @describeIn lbt01_1 `lbt01_1` main function
+
+#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.
 #'
-#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit. The LBT01 table provides an
+#' The LBT01 table provides an
 #' overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
 #'
 #' @inheritParams gen_args
@@ -18,8 +19,6 @@
 #'  * Does not include a total column by default.
 #'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
 #'  by `AVISIT`. Re-level to customize order
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -57,7 +56,7 @@ lbt01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt01_1 `lbt01_1` Layout
+#' @describeIn lbt01_1_main `lbt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -109,7 +108,7 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-#' @describeIn lbt01_1 `lbt01_1` Preprocessing
+#' @describeIn lbt01_1_main `lbt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -130,17 +129,9 @@ lbt01_1_pre <- function(adam_db, ...) {
 
 # `LBT01_1` Pipeline ----
 
-#' `LBT01_1` Pipeline
+#' `LBT01_1`
 #'
-#' @description `LBT01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::lbt01_1_main` function.
-#'   - `preprocess` the  `chevron::lbt01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adlb"`.
-#'
+#' @seealso [lbt01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-lbt01_1 <- tlg_pipeline_s4(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))
+lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))

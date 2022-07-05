@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 The `chevron` R package provides functions to produce standard tables, listings and graphs (TLGs) used to analyze and
 report clinical trials data. The ensemble of function used to produce a particular output are stored in an
-`tlg_pipeline_s4` object of class `S4` also called *pipelines*.
+`chevron_tlg` object of class `S4` also called *pipelines*.
 Each standard output is associated with one  *pipeline*. They contain the following objects:
 * A `main` function also refereed to as *tlg_function*.
 * A `preprocess` function.
@@ -136,7 +136,7 @@ Note that this operation creates a local version of the pipeline. The package ve
 To create a pipeline from scratch, use the provided constructor:
 ```{r}
 
-my_pipeline <- tlg_pipeline_s4(
+my_pipeline <- chevron_tlg(
   main = aet02_1_main,
   preprocess = aet02_1_pre,
   postprocess = function(tlg, ...) {

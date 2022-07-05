@@ -1,6 +1,7 @@
-#' @describeIn vst01_1 `vst01_1` main function
+
+#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
 #'
-#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1. The `VST01` table provides an
+#' The `VST01` table provides an
 #' overview of the Vital Sign values and its change from baseline of each respective arm
 #' over the course of the trial.
 #'
@@ -20,8 +21,6 @@
 #'  * Does not include a total column by default.
 #'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
 #'  by `AVISIT`. Re-level to customize order
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -68,7 +67,7 @@ vst01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst01_1 `vst01_1` Layout
+#' @describeIn vst01_1_main `vst01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -123,7 +122,7 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste(" ", lbl_avisit))
 }
 
-#' @describeIn vst01_1 `vst01_1` Preprocessing
+#' @describeIn vst01_1_main `vst01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -144,17 +143,9 @@ vst01_1_pre <- function(adam_db, ...) {
 
 # `VST01_1` Pipeline ----
 
-#' `VST01_1` Pipeline
+#' `VST01_1`
 #'
-#' @description `VST01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::vst01_1_main` function.
-#'   - `preprocess` the  `chevron::vst01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"advs"`.
-#'
+#' @seealso [vst01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-vst01_1 <- tlg_pipeline_s4(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))
+vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))

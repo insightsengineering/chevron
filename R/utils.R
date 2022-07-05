@@ -65,8 +65,6 @@ bol_YN <- function(x) { # nolint
 #' @param df data.frame with PARAM and PARAMCD variables
 #' @param paramcd_levels ordered levels of PARAMCD
 #'
-#' @importFrom dplyr mutate
-#'
 #' @export
 #'
 #' @examples

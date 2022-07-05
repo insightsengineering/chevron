@@ -1,6 +1,7 @@
-#' @describeIn egt01_1 `egt01_1` main function
+
+#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.
 #'
-#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.  The `EGT01` table 1 summarizes
+#' The `EGT01` table 1 summarizes
 #' several electrocardiogram parameters and their evolution throughout the study.
 #'
 #' @inheritParams gen_args
@@ -19,8 +20,6 @@
 #'  * Does not include a total column by default.
 #'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
 #'  by `AVISIT`. Re-level to customize order
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -66,7 +65,7 @@ egt01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt01_1 `egt01_1` Layout
+#' @describeIn egt01_1_main `egt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -120,7 +119,7 @@ egt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-#' @describeIn egt01_1 `egt01_1` Preprocessing
+#' @describeIn egt01_1_main `egt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -141,17 +140,9 @@ egt01_1_pre <- function(adam_db, ...) {
 
 # `EGT01_1` Pipeline ----
 
-#' `EGT01_1` Pipeline
+#' `EGT01_1`
 #'
-#' @description `EGT01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::egt01_1_main` function.
-#'   - `preprocess` the  `chevron::egt01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adeg"`.
-#'
+#' @seealso [egt01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-egt01_1 <- tlg_pipeline_s4(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))
+egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))

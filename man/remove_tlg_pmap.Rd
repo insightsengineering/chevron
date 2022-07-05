@@ -7,7 +7,7 @@
 remove_tlg_pmap(pmap, tlgfname)
 }
 \arguments{
-\item{pmap}{('data frame') preprocessing map, see \code{std_pmap} for the required format}
+\item{pmap}{(\verb{data frame}) preprocessing map, see \code{std_pmap} for the required format}
 
 \item{tlgfname}{(\code{character}) function name of tlg-function}
 }

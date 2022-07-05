@@ -1,8 +1,8 @@
 # DTHT01_1 ----
 
-#' @describeIn dtht01_1 `dtht01_1` main function
+#' `DTHT01` Table 1 (Default) Death Table.
 #'
-#' `DTHT01` Table 1 (Default) Death Table. A description of the causes of death optionally with the breakdown of the
+#'  A description of the causes of death optionally with the breakdown of the
 #' `OTHER` category and/or post-study reporting of death.
 #'
 #' @inheritParams gen_args
@@ -83,7 +83,7 @@ dtht01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dtht01_1 `dtht01_1` Layout
+#' @describeIn dtht01_1_main `dtht01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
@@ -134,7 +134,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
   tab
 }
 
-#' @describeIn dtht01_1 `dtht01_1` Optional Layout
+#' @describeIn dtht01_1_main `dtht01_1` Optional Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -170,7 +170,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
     summarize_vars("DTHCAT")
 }
 
-#' @describeIn dtht01_1 `dtht01_1` Preprocessing
+#' @describeIn dtht01_1_main `dtht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -195,17 +195,9 @@ dtht01_1_pre <- function(adam_db, ...) {
 
 # `DTHT01_1` Pipeline ----
 
-#' `DTHT01_1` Pipeline
+#' `DTHT01_1`
 #'
-#' @description `DTHT01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::dtht01_1_main` function.
-#'   - `preprocess` the  `chevron::dtht01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"`.
-#'
+#' @seealso [dtht01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-dtht01_1 <- tlg_pipeline_s4(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))
+dtht01_1 <- chevron_tlg(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))

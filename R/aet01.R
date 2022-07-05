@@ -1,7 +1,5 @@
 # aet01_1 ----
 
-#' @describeIn aet01_1 `aet01_1` main table
-#'
 #' `AET01` Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.
 #'
 #' @details
@@ -70,7 +68,7 @@ aet01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet01_1 `aet01_1` Layout
+#' @describeIn aet01_1_main `aet01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -147,7 +145,7 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-#' @describeIn aet01_1 `aet01_1` Preprocessing
+#' @describeIn aet01_1_main `aet01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -220,10 +218,9 @@ aet01_1_pre <- function(adam_db, ...) {
   db
 }
 
-#' @describeIn aet01_1 `aet01_1` Checks
+#' @describeIn aet01_1_main `aet01_1` Checks
 #'
 #' @inheritParams gen_args
-#' @param req_tables (`character`) names of the required tables.
 #' @param ... not used.
 #'
 aet01_1_check <- function(adam_db,
@@ -272,7 +269,7 @@ aet01_1_check <- function(adam_db,
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, adsl_layout_col)))
 
   if (is.null(msg)) {
-    message("Test successful")
+    TRUE
   } else {
     stop(paste(msg, collapse = "\n  "))
   }
@@ -280,24 +277,13 @@ aet01_1_check <- function(adam_db,
 
 # `AET01_1` Pipeline ----
 
-#' `AET01_1` Pipeline
-#'
-#' @description `AET01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::aet01_1_main` function.
-#'   - `preprocess` the  `chevron::aet01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [aet01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-aet01_1 <- tlg_pipeline_s4(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 # aet01_2 ----
 
-#' @describeIn aet01_2 `aet01_2` main table
-#'
 #' `AET01` Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2. Overview of death and summary
 #' of adverse events with medical concepts.
 #'
@@ -372,7 +358,7 @@ aet01_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet01_2 `aet01_2` Layout
+#' @describeIn aet01_2_main `aet01_2` Layout
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -465,7 +451,7 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-#' @describeIn aet01_2 `aet01_2` Preprocessing
+#' @describeIn aet01_2_main `aet01_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -538,10 +524,9 @@ aet01_2_pre <- function(adam_db, ...) {
   db
 }
 
-#' @describeIn aet01_2 `aet01_2` Checks
+#' @describeIn aet01_2_main `aet01_2` Checks
 #'
 #' @inheritParams gen_args
-#' @param req_tables (`character`) names of the required tables.
 #' @param ... not used.
 #'
 aet01_2_check <- function(adam_db,
@@ -601,15 +586,7 @@ aet01_2_check <- function(adam_db,
 
 # `AET01_2` Pipeline ----
 
-#' `AET01_2` Pipeline
-#'
-#' @description `AET01_2` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::aet01_2_main` function.
-#'   - `preprocess` the  `chevron::aet01_2_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [aet01_2_main()]
+#' @rdname chevron_tlg-class
 #' @export
-aet01_2 <- tlg_pipeline_s4(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))

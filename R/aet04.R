@@ -1,6 +1,6 @@
-#' @describeIn aet04_1 `aet04` main function
-#'
-#' `AET04` Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1. The `AET04` table provides an
+
+#' `AET04` Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.
+#' The `AET04` table provides an
 #' overview of adverse event with the highest NCI CTCAE grade per individual.
 #'
 #' @inheritParams gen_args
@@ -13,8 +13,6 @@
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
 #'  Grade is sorted by severity.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -90,7 +88,7 @@ aet04_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet04_1 `aet04_1` Layout
+#' @describeIn aet04_1_main `aet04_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -165,7 +163,7 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-#' @describeIn aet04_1 `aet04_1` Preprocessing
+#' @describeIn aet04_1_main `aet04_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -185,17 +183,9 @@ aet04_1_pre <- function(adam_db) {
 
 # `AET04_1` Pipeline ----
 
-#' `AET04_1` Pipeline
+#' `AET04_1`
 #'
-#' @description `AET04_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::aet04_1_main` function.
-#'   - `preprocess` the  `chevron::aet04_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [aet04_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-aet04_1 <- tlg_pipeline_s4(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))
+aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))

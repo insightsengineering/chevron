@@ -9,7 +9,7 @@ std_filter_fun(tlgfname, pmap = std_pmap)
 \arguments{
 \item{tlgfname}{(\code{character}) function name of tlg-function}
 
-\item{pmap}{('data frame') preprocessing map, see \code{std_pmap} for the required format}
+\item{pmap}{(\verb{data frame}) preprocessing map, see \code{std_pmap} for the required format}
 }
 \description{
 Retrieve Standard Subsetting for Templates

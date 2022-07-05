@@ -18,9 +18,9 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 
 # DST01_1 ----
 
-#' @describeIn dst01_1 `dst01` main function
+#' DST01 Table 1 (Default) Patient Disposition Table 1.
 #'
-#' DST01 Table 1 (Default) Patient Disposition Table 1. The DST01 Disposition Table provides an overview of patients
+#' The DST01 Disposition Table provides an overview of patients
 #' study completion. For patients who discontinued the study a reason is provided.
 #'
 #' @inheritParams gen_args
@@ -40,8 +40,6 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'  * Split columns by arm.
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -110,7 +108,7 @@ dst01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dst01_1 `dst01_1` Layout
+#' @describeIn dst01_1_main `dst01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -188,7 +186,7 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   list(layout_table_completed, layout_table_other)
 }
 
-#' @describeIn dst01_1 `dst01_1` Preprocessing
+#' @describeIn dst01_1_main `dst01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -204,27 +202,19 @@ dst01_1_pre <- function(adam_db, ...) {
 
 # `DST01_1` Pipeline ----
 
-#' `DST01_1` Pipeline
+#' `DST01_1`
 #'
-#' @description `DST01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::dst01_1_main` function.
-#'   - `preprocess` the  `chevron::dst01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"`.
-#'
+#' @seealso [dst01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-dst01_1 <- tlg_pipeline_s4(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
+dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 
 
 # DST01_2 ----
 
-#' @describeIn dst01_2 `dst01_2` main function
+#' DST01 Table 2 (Supplementary) Patient Disposition Table 2.
 #'
-#' DST01 Table 2 (Supplementary) Patient Disposition Table 2. The DST01_2 Disposition Table provides an overview of
+#' The DST01_2 Disposition Table provides an overview of
 #' patients study completion. For patients who discontinued the study, the reason provided is categorized as "Safety" or
 #' "Non-Safety" issue.
 #'
@@ -246,9 +236,6 @@ dst01_1 <- tlg_pipeline_s4(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 #'  * Split columns by arm.
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
-#'
-#' @importFrom dplyr filter case_when mutate
-#' @importFrom rlang sym
 #'
 #' @export
 #'
@@ -316,7 +303,7 @@ dst01_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dst01_2 `dst01_2` Layout
+#' @describeIn dst01_2_main `dst01_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -397,7 +384,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
   list(completed = layout_table_completed, other = layout_table_other)
 }
 
-#' @describeIn dst01_2 `dst01_2` Preprocessing
+#' @describeIn dst01_2_main `dst01_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param reason (`string`) the variable name for variable with the reason for discontinuation.
@@ -426,28 +413,19 @@ dst01_2_pre <- function(adam_db,
 
 # `DST01_2` Pipeline ----
 
-#' `DST01_2` Pipeline
+#' `DST01_2`
 #'
-#' @description `DST01_2` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::dst01_2_main` function.
-#'   - `preprocess` the  `chevron::dst01_2_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"`.
-#'
+#' @seealso [dst01_2_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-dst01_2 <- tlg_pipeline_s4(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
+dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 
 # DST01_3 ----
 
-#' @describeIn dst01_3 `dst01_3` main function
+#' DST01 Table 3 (Supplementary) Patient Disposition Table 3.
 #'
-#' DST01 Table 3 (Supplementary) Patient Disposition Table 3. The DST01_3 Disposition Table provides an overview of
-#' patients study treatment status. For patients who discontinued the study, the reason provided is categorized as
-#' "Safety" or "Non-Safety" issue.
+#' The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
+#' the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 #'
 #' @inheritParams gen_args
 #'
@@ -470,9 +448,6 @@ dst01_2 <- tlg_pipeline_s4(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 #'  * Split columns by arm.
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
-#'
-#' @importFrom dplyr filter case_when mutate
-#' @importFrom rlang sym
 #'
 #' @export
 #'
@@ -571,7 +546,7 @@ dst01_3_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dst01_3 `dst01_3` Layout
+#' @describeIn dst01_3_main `dst01_3` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -631,7 +606,7 @@ dst01_3_lyt <- function(armvar = .study$planarm,
     )
 }
 
-#' @describeIn dst01_3 `dst01_3` Preprocessing
+#' @describeIn dst01_3_main `dst01_3` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
@@ -660,17 +635,9 @@ dst01_3_pre <- function(adam_db,
 
 # `DST01_3` Pipeline ----
 
-#' `DST01_3` Pipeline
+#' `DST01_3`
 #'
-#' @description `DST01_3` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::dst01_3_main` function.
-#'   - `preprocess` the  `chevron::dst01_3_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"`.
-#'
+#' @seealso [dst01_3_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-dst01_3 <- tlg_pipeline_s4(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))
+dst01_3 <- chevron_tlg(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))

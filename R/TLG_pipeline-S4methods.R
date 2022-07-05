@@ -7,7 +7,7 @@
 #' Run the pipeline including checks, pre processing and `tlg` generation on the provided data set.
 #'
 #' @inheritParams gen_args
-#' @param object (`tlg_pipeline_s4`) input.
+#' @param object (`chevron_tlg`) input.
 #' @param ... extra arguments to pass to the check, pre processing or `tlg` functions.
 #'
 #' @aliases run
@@ -18,18 +18,21 @@ setGeneric("run", function(object, adam_db, ...) standardGeneric("run"))
 #'
 #' @rdname run
 #' @export
+#' @examples
+#' run(aet01_1, syn_test_data())
+#'
 setMethod(
   f = "run",
-  signature = "tlg_pipeline_s4",
+  signature = "chevron_tlg",
   definition = function(object, adam_db, ...) {
-    data <- list(adam_db = adam_db)
+    checkmate::assert_class(adam_db, "dm")
+
     optional_arg <- if (!missing(...)) list(...) else NULL
 
-    proc_data <- list(adam_db = do.call(object@preprocess, c(data, optional_arg)))
-    res <- do.call(object@main, c(proc_data, optional_arg))
+    proc_data <- list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
+    res_tlg <- list(tlg = do.call(object@main, c(proc_data, optional_arg)))
 
-    res_data <- list(tlg = res)
-    do.call(object@postprocess, c(res_data, optional_arg))
+    do.call(object@postprocess, c(res_tlg, optional_arg))
   }
 )
 
@@ -37,7 +40,7 @@ setMethod(
 
 #' Retrieve Main Function
 #'
-#' @param object (`tlg_pipeline_s4`) input.
+#' @param object (`chevron_tlg`) input.
 #' @param ... not used.
 #'
 #' @aliases get_main
@@ -50,7 +53,7 @@ setGeneric("get_main", function(object, ...) standardGeneric("get_main"))
 #' @export
 setMethod(
   f = "get_main",
-  signature = "tlg_pipeline_s4",
+  signature = "chevron_tlg",
   definition = function(object) {
     object@main
   }
@@ -60,7 +63,7 @@ setMethod(
 
 #' Retrieve Pre Processing Function
 #'
-#' @param object (`tlg_pipeline_s4`) input.
+#' @param object (`chevron_tlg`) input.
 #' @param ... not used.
 #'
 #' @aliases get_preprocess
@@ -73,7 +76,7 @@ setGeneric("get_preprocess", function(object, ...) standardGeneric("get_preproce
 #' @export
 setMethod(
   f = "get_preprocess",
-  signature = "tlg_pipeline_s4",
+  signature = "chevron_tlg",
   definition = function(object) {
     object@preprocess
   }
@@ -83,7 +86,7 @@ setMethod(
 
 #' Retrieve Post Processing Function
 #'
-#' @param object (`tlg_pipeline_s4`) input.
+#' @param object (`chevron_tlg`) input.
 #' @param ... not used.
 #'
 #' @aliases get_postprocess
@@ -96,30 +99,30 @@ setGeneric("get_postprocess", function(object, ...) standardGeneric("get_postpro
 #' @export
 setMethod(
   f = "get_postprocess",
-  signature = "tlg_pipeline_s4",
+  signature = "chevron_tlg",
   definition = function(object) {
     object@postprocess
   }
 )
 
-# get_datasets ----
+# get_adam_datasets ----
 
 #' Retrieve Names of Data Sets Associated with the Pipeline
 #'
-#' @param object (`tlg_pipeline_s4`) input.
+#' @param object (`chevron_tlg`) input.
 #' @param ... not used.
 #'
-#' @aliases get_datasets
 #' @export
-setGeneric("get_datasets", function(object, ...) standardGeneric("get_datasets"))
+#' @aliases get_adam_datasets
+setGeneric("get_adam_datasets", function(object, ...) standardGeneric("get_adam_datasets"))
 
-#' get_datasets
+#' get_adam_datasets
 #'
-#' @rdname get_datasets
+#' @rdname get_adam_datasets
 #' @export
 setMethod(
-  f = "get_datasets",
-  signature = "tlg_pipeline_s4",
+  f = "get_adam_datasets",
+  signature = "chevron_tlg",
   definition = function(object) {
     object@adam_datasets
   }

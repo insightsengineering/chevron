@@ -1,8 +1,8 @@
 # EXT01_1 ----
 
-#' @describeIn ext01_1 `ext01_1` main function
+#' EXT01 Table 1 (Default) Exposure Summary Table.
 #'
-#' EXT01 Table 1 (Default) Exposure Summary Table. The EXT01 table provides an overview of the of the exposure of the
+#' The EXT01 table provides an overview of the of the exposure of the
 #' patients in terms of Total dose administered or missed, and treatment duration.
 #'
 #' @inheritParams gen_args
@@ -54,7 +54,7 @@ ext01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn ext01_1 `ext01_1` Layout
+#' @describeIn ext01_1_main `ext01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -85,7 +85,7 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-#' @describeIn ext01_1 `ext01_1` Preprocessing
+#' @describeIn ext01_1_main `ext01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
@@ -119,25 +119,15 @@ ext01_1_pre <- function(adam_db,
 
 # `EXT01_1` Pipeline ----
 
-#' `EXT01_1` Pipeline
+#' `EXT01_1`
 #'
-#' @description `EXT01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::ext01_1_main` function.
-#'   - `preprocess` the  `chevron::ext01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adex"`.
-#'
+#' @seealso [ext01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-ext01_1 <- tlg_pipeline_s4(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
+ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
 
 # EXT01_2 ----
 
-#' @describeIn ext01_2 `ext01_2` main function
-#'
 #' EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 #'
 #' @inheritParams gen_args
@@ -190,7 +180,7 @@ ext01_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn ext01_2 `ext01_2` Layout
+#' @describeIn ext01_2_main `ext01_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -219,7 +209,7 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
     summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
 }
 
-#' @describeIn ext01_2 `ext01_2` Preprocessing
+#' @describeIn ext01_2_main `ext01_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param show_stats (`vector of character`) providing the name of the parameters whose statistical summary should be
@@ -268,17 +258,9 @@ ext01_2_pre <- function(adam_db,
 
 # `EXT01_2` Pipeline ----
 
-#' `EXT01_2` Pipeline
+#' `EXT01_2`
 #'
-#' @description `EXT01_2` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::ext01_2_main` function.
-#'   - `preprocess` the  `chevron::ext01_2_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adex"`.
-#'
+#' @seealso [ext01_2_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-ext01_2 <- tlg_pipeline_s4(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))
+ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))

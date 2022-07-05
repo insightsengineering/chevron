@@ -1,6 +1,3 @@
-
-#' @describeIn aet02_1 `aet02_1` main table
-#'
 #' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
 #' The `AET02` table provides an overview of the number of subjects experiencing adverse events and the number of advert
@@ -14,8 +11,6 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -76,7 +71,7 @@ aet02_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet02_1 `aet02_1` Layout
+#' @describeIn aet02_1_main `aet02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
@@ -136,7 +131,7 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("  ", lbl_aedecod))
 }
 
-#' @describeIn aet02_1 `aet02_1` Preprocessing
+#' @describeIn aet02_1_main `aet02_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -157,10 +152,9 @@ aet02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-#' @describeIn aet02_1 `aet02_1` Checks
+#' @describeIn aet02_1_main `aet02_1` Checks
 #'
 #' @inheritParams gen_args
-#' @param req_tables (`character`) names of the required tables.
 #' @param ... not used.
 #'
 aet02_1_check <- function(adam_db,
@@ -177,7 +171,7 @@ aet02_1_check <- function(adam_db,
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, "USUBJID")))
 
   if (is.null(msg)) {
-    message("Test successful")
+    TRUE
   } else {
     stop(paste(msg, collapse = "\n  "))
   }
@@ -185,26 +179,16 @@ aet02_1_check <- function(adam_db,
 
 # `AET02_1` Pipeline ----
 
-#' `AET02_1` Pipeline
-#'
-#' @description `AET02_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::aet02_1_main` function.
-#'   - `preprocess` the  `chevron::aet02_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [aet02_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-aet02_1 <- tlg_pipeline_s4(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "adae"))
+aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "adae"))
 
-#' @describeIn aet02_2 `aet02_2` main table
+
+#' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.
 #'
-#' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2. The
-#' `AET02_2` table provides an overview of the number of patients experiencing adverse events and the number of adverse
-#' events categorized by Body System, High Level Term and Dictionary-Derived Term.
+#' The `AET02_2` table provides an overview of the number of patients experiencing adverse events and the number of
+#' adverse events categorized by Body System, High Level Term and Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -215,8 +199,6 @@ aet02_1 <- tlg_pipeline_s4(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", 
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 #'  frequencies.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -281,7 +263,7 @@ aet02_2_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet02_2 `aet02_2` Layout
+#' @describeIn aet02_2_main `aet02_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -363,7 +345,7 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("    ", lbl_aedecod))
 }
 
-#' @describeIn aet02_2 `aet02_2` Preprocessing
+#' @describeIn aet02_2_main `aet02_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -384,26 +366,17 @@ aet02_2_pre <- function(adam_db, ...) {
 
 # `AET02_2` Pipeline ----
 
-#' `AET02_2` Pipeline
+#' `AET02_2`
 #'
-#' @description `AET02_2` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::aet02_2_main` function.
-#'   - `preprocess` the  `chevron::aet02_2_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [aet02_2_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-aet02_2 <- tlg_pipeline_s4(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "adae"))
+aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "adae"))
 
-#' @describeIn aet02_3 `aet02_3` main table
+#' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.
 #'
-#' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3. The `AET02_3`
-#'   table provides an overview of the number of patients experiencing adverse events and the number of adverse events
-#'   categorized by Dictionary-Derived Term.
+#'  The `AET02_3` table provides an overview of the number of patients experiencing adverse events and the number of
+#'  adverse events categorized by Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -413,8 +386,6 @@ aet02_2 <- tlg_pipeline_s4(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", 
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code by highest overall frequencies.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -458,7 +429,7 @@ aet02_3_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet02_3 `aet02_3` Layout
+#' @describeIn aet02_3_main `aet02_3` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -499,7 +470,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
     append_topleft(lbl_aedecod)
 }
 
-#' @describeIn aet02_3 `aet02_3` Preprocessing
+#' @describeIn aet02_3_main `aet02_3` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -519,17 +490,9 @@ aet02_3_pre <- function(adam_db) {
 
 # `AET02_3` Pipeline ----
 
-#' `AET02_3` Pipeline
+#' `AET02_3`
 #'
-#' @description `AET02_3` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::aet02_3_main` function.
-#'   - `preprocess` the  `chevron::aet02_3_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [aet02_3_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-aet02_3 <- tlg_pipeline_s4(aet02_3_main, aet02_3_pre, adam_datasets = c("adsl", "adae"))
+aet02_3 <- chevron_tlg(aet02_3_main, aet02_3_pre, adam_datasets = c("adsl", "adae"))

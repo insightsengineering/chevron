@@ -2,15 +2,15 @@
 % Please edit documentation in R/TLG_pipeline-S4methods.R
 \name{get_preprocess}
 \alias{get_preprocess}
-\alias{get_preprocess,tlg_pipeline_s4-method}
+\alias{get_preprocess,chevron_tlg-method}
 \title{Retrieve Pre Processing Function}
 \usage{
 get_preprocess(object, ...)
 
-\S4method{get_preprocess}{tlg_pipeline_s4}(object)
+\S4method{get_preprocess}{chevron_tlg}(object)
 }
 \arguments{
-\item{object}{(\code{tlg_pipeline_s4}) input.}
+\item{object}{(\code{chevron_tlg}) input.}
 
 \item{...}{not used.}
 }

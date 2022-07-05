@@ -180,7 +180,6 @@ std_mutate_fun <- function(tlgfname, pmap = std_pmap) {
 #'
 #' @inheritParams gen_args
 #'
-#' @importFrom dplyr filter
 filter_adae_anl01fl <- function(adam_db) {
   .Deprecated(msg = "`filter_adae_anl01fl` is deprecated. \nUse the tlg specific preprocessing functions instead")
   checkmate::assert_class(adam_db, "dm")
@@ -460,7 +459,6 @@ remove_adex_aval <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @importFrom forcats fct_relevel
 reorder_dtht01 <- function(adam_db) {
   .Deprecated(msg = "`reorder_dtht01` is deprecated. \nUse the tlg specific preprocessing functions instead")
   death_fact <- levels(adam_db$adsl$DTHCAT)

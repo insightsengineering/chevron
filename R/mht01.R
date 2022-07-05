@@ -1,6 +1,7 @@
-#' @describeIn mht01_1 `mht01_1` main function
+
+#' `MHT01` Table 1 (Default) Medical History Table 1.
 #'
-#' `MHT01` Table 1 (Default) Medical History Table 1.  The `MHT01` table provides an overview of the subjects medical
+#' The `MHT01` table provides an overview of the subjects medical
 #' history by SOC and Preferred Term.
 #'
 #' @inheritParams gen_args
@@ -14,8 +15,6 @@
 #'  * Does not include a total column by default.
 #'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
 #'  patients with the specific condition.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -62,7 +61,7 @@ mht01_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn mht01_1 `mht01_1` Layout
+#' @describeIn mht01_1_main `mht01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -122,7 +121,7 @@ mht01_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_mhdecod))
 }
 
-#' @describeIn mht01_1 `mht01_1` Preprocessing
+#' @describeIn mht01_1_main `mht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -143,17 +142,9 @@ mht01_1_pre <- function(adam_db, ...) {
 
 # `MHT01_1` Pipeline ----
 
-#' `MHT01_1` Pipeline
+#' `MHT01_1`
 #'
-#' @description `MHT01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::mht01_1_main` function.
-#'   - `preprocess` the  `chevron::mht01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"admh"`.
-#'
+#' @seealso [mht01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-mht01_1 <- tlg_pipeline_s4(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))
+mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))

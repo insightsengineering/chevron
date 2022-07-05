@@ -40,7 +40,7 @@ library(chevron)
 library(magrittr)
 
 db <- syn_test_data() %>%
-  preprocess_data("aet02_1")
+  aet02_1_pre()
 
 aet02_1_main(adam_db = db)
 ```

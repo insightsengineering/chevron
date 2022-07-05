@@ -1,6 +1,7 @@
-#' @describeIn dmt01_1 `dmt01_1` main function
+
+#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1.
 #'
-#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1. For each variable, summary statistics are
+#' For each variable, summary statistics are
 #' by default based on the number of patients in the corresponding `n` row.
 #'
 #' @inheritParams gen_args
@@ -61,7 +62,7 @@ dmt01_1_main <- function(adam_db,
   }
 }
 
-#' @describeIn dmt01_1 `dmt01_1` Layout
+#' @describeIn dmt01_1_main `dmt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -102,7 +103,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-#' @describeIn dmt01_1 `dmt01_1` Preprocessing
+#' @describeIn dmt01_1_main `dmt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -128,17 +129,9 @@ dmt01_1_pre <- function(adam_db, ...) {
 
 # `DMT01_1` Pipeline ----
 
-#' `DMT01_1` Pipeline
+#' `DMT01_1`
 #'
-#' @description `DMT01_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::dmt01_1_main` function.
-#'   - `preprocess` the  `chevron::dmt01_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"`.
-#'
+#' @seealso [dmt01_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-dmt01_1 <- tlg_pipeline_s4(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))
+dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))

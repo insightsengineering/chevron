@@ -1,7 +1,7 @@
 
-#' @describeIn aet03_1 `aet03_1` main table
+#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
 #'
-#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1. An adverse events table categorized by System
+#' An adverse events table categorized by System
 #' Organ Class, Dictionary-Derived Term  and Greatest intensity.
 #'
 #' @inheritParams gen_args
@@ -13,8 +13,6 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -75,7 +73,7 @@ aet03_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet03_1 `aet03_1` Layout
+#' @describeIn aet03_1_main `aet03_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -140,7 +138,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-#' @describeIn aet03_1 `aet03_1` Preprocessing
+#' @describeIn aet03_1_main `aet03_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -160,17 +158,9 @@ aet03_1_pre <- function(adam_db) {
 
 # `AET03_1` Pipeline ----
 
-#' `AET03_1` Pipeline
+#' `AET03_1`
 #'
-#' @description `AET03_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::aet03_1_main` function.
-#'   - `preprocess` the  `chevron::aet03_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [aet03_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-aet03_1 <- tlg_pipeline_s4(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))
+aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))

@@ -1,9 +1,8 @@
 # vst02_1 ----
 
-
-#' @describeIn vst01_1 `vst01_1` main function
+#' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1.
 #'
-#' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1. Assessments Outside Normal Limits Regardless of
+#' Assessments Outside Normal Limits Regardless of
 #' Abnormality at Baseline Table.
 #'
 #' @details
@@ -54,7 +53,7 @@ vst02_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst02_1 `vst02_1` Layout
+#' @describeIn vst02_1_main `vst02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -90,7 +89,7 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn vst02_1 `vst02_1` Preprocessing
+#' @describeIn vst02_1_main `vst02_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -130,24 +129,16 @@ vst02_1_pre <- function(adam_db, ...) {
 
 #' `VST02_1` Pipeline
 #'
-#' @description `VST02_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::vst02_1_main` function.
-#'   - `preprocess` the  `chevron::vst02_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"advs"`.
-#'
+#' @seealso [vst02_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-vst02_1 <- tlg_pipeline_s4(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
+vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
 
 # vst02_2 ----
 
-#' @describeIn vst02_2 `vst02_2` main function.
+#' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2.
 #'
-#' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2. Assessments Outside Normal Limits Among Subject
+#' Assessments Outside Normal Limits Among Subject
 #' Without Abnormality at Baseline.
 #'
 #' @details
@@ -200,7 +191,7 @@ vst02_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst02_2 `vst02_2` Layout
+#' @describeIn vst02_2_main `vst02_2` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -236,7 +227,7 @@ vst02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("  ", lbl_vs_abnormality))
 }
 
-#' @describeIn vst02_2 `vst02_2` Preprocessing
+#' @describeIn vst02_2_main `vst02_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -275,17 +266,9 @@ vst02_2_pre <- function(adam_db, ...) {
 
 # `VST02_2` Pipeline ----
 
-#' `VST02_2` Pipeline
+#' `VST02_2`
 #'
-#' @description `VST02_2` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::vst02_2_main` function.
-#'   - `preprocess` the  `chevron::vst02_2_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"advs"`.
-#'
+#' @seealso [vst02_2_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-vst02_2 <- tlg_pipeline_s4(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))
+vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))

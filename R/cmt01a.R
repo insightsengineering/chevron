@@ -1,8 +1,8 @@
 # CMT01A_1 ----
 
-#' @describeIn cmt01a_1 `cmt01a_1` main function
+#' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
 #'
-#' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name. A concomitant medication
+#' A concomitant medication
 #' table with the number of subjects and the total number of treatments by medication class sorted alphabetically and
 #' medication name sorted by frequencies.
 #'
@@ -20,8 +20,6 @@
 #'  * Does not include a total column by default.
 #'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 #'  the specific medication.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -75,7 +73,7 @@ cmt01a_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_1 `cmt01a_1` Layout
+#' @describeIn cmt01a_1_main `cmt01a_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -140,7 +138,7 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' @describeIn cmt01a_1 `cmt01a_1` Preprocessing
+#' @describeIn cmt01a_1_main `cmt01a_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -163,27 +161,19 @@ cmt01a_1_pre <- function(adam_db) {
 
 # `CMT01A_1` Pipeline ----
 
-#' `CMT01A_1` Pipeline
+#' `CMT01A_1`
 #'
-#' @description `CMT01A_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::cmt01a_1_main` function.
-#'   - `preprocess` the  `chevron::cmt01a_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [cmt01a_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-cmt01a_1 <- tlg_pipeline_s4(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
 
 # CMT01A_2 ----
 
-#' @describeIn cmt01a_2 `cmt01a_2` main function
-#'
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
-#' frequency). A concomitant medication table with the number of subjects and the total number of treatments by
+#' frequency).
+#'
+#' A concomitant medication table with the number of subjects and the total number of treatments by
 #' medication class and medication name sorted by frequencies.
 #'
 #' @inheritParams gen_args
@@ -200,8 +190,6 @@ cmt01a_1 <- tlg_pipeline_s4(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl
 #'  * Does not include a total column by default.
 #'  * Sort by medication class frequency and within medication class by decreasing total number of patients with
 #'  the specific medication.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -261,7 +249,7 @@ cmt01a_2_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_2 `cmt01a_2` Preprocessing
+#' @describeIn cmt01a_2_main `cmt01a_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -284,27 +272,19 @@ cmt01a_2_pre <- function(adam_db) {
 
 # `CMT01A_2` Pipeline ----
 
-#' `CMT01A_2` Pipeline
+#' `CMT01A_2`
 #'
-#' @description `CMT01A_2` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::cmt01a_2_main` function.
-#'   - `preprocess` the  `chevron::cmt01a_2_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [cmt01a_2_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-cmt01a_2 <- tlg_pipeline_s4(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
 
 # CMT01A_3 ----
 
-#' @describeIn cmt01a_3 `cmt01a_3` main function
-#'
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
-#' treatments per medication class suppressed). A concomitant medication table with the number of subjects and the total
+#' treatments per medication class suppressed).
+#'
+#' A concomitant medication table with the number of subjects and the total
 #' number of treatments by medication class sorted alphabetically and medication name sorted by frequencies presented
 #' without the total number of treatments per medication.
 #'
@@ -322,8 +302,6 @@ cmt01a_2 <- tlg_pipeline_s4(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl
 #'  * Does not include a total column by default.
 #'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 #'  the specific medication.
-#'
-#' @importFrom dplyr filter
 #'
 #' @export
 #'
@@ -377,7 +355,7 @@ cmt01a_3_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_3 `cmt01a_3` Layout
+#' @describeIn cmt01a_3_main `cmt01a_3` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -441,7 +419,7 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' @describeIn cmt01a_3 `cmt01a_3` Preprocessing
+#' @describeIn cmt01a_3_main `cmt01a_3` Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -466,15 +444,7 @@ cmt01a_3_pre <- function(adam_db) {
 
 #' `CMT01A_3` Pipeline
 #'
-#' @description `CMT01A_3` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::cmt01a_3_main` function.
-#'   - `preprocess` the  `chevron::cmt01a_3_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adae"`.
-#'
+#' @seealso [cmt01a_3_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-cmt01a_3 <- tlg_pipeline_s4(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))

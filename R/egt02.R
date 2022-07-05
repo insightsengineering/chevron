@@ -1,8 +1,8 @@
 # egt02_1 ----
 
-#' @describeIn egt02_1 `egt02_1` main function
+#' `EGT02` Table 1 (Default) ECG Abnormalities Table 1.
 #'
-#' `EGT02` Table 1 (Default) ECG Abnormalities Table 1. Assessments Outside Normal Limits Regardless of Abnormality at
+#' Assessments Outside Normal Limits Regardless of Abnormality at
 #' Baseline Table.
 #'
 #' @details
@@ -54,7 +54,7 @@ egt02_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt02_1 `egt02_1` Layout
+#' @describeIn egt02_1_main `egt02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -90,7 +90,7 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn egt02_1 `egt02_1` Preprocessing
+#' @describeIn egt02_1_main `egt02_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -111,27 +111,18 @@ egt02_1_pre <- function(adam_db, ...) {
 
 # `EGT02_1` Pipeline ----
 
-#' `EGT02_1` Pipeline
+#' `EGT02_1`
 #'
-#' @description `EGT02_1` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::egt02_1_main` function.
-#'   - `preprocess` the  `chevron::egt02_1_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adeg"`.
-#'
+#' @seealso [egt02_1_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-egt02_1 <- tlg_pipeline_s4(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
+egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
 
 # egt02_2 ----
 
-
-#' @describeIn egt02_2 `egt02_2` main function
+#' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2.
 #'
-#' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2. Assessments Outside Normal Limits Among Subject Without
+#' Assessments Outside Normal Limits Among Subject Without
 #' Abnormality at Baseline.
 #'
 #' @details
@@ -183,7 +174,7 @@ egt02_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt02_2 `egt02_2` Layout
+#' @describeIn egt02_2_main `egt02_2` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -219,7 +210,7 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn egt02_2 `egt02_2` Preprocessing
+#' @describeIn egt02_2_main `egt02_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -240,17 +231,9 @@ egt02_2_pre <- function(adam_db, ...) {
 
 # `EGT02_2` Pipeline ----
 
-#' `EGT02_2` Pipeline
+#' `EGT02_2`
 #'
-#' @description `EGT02_2` Pipeline of the class `tlg_pipeline_s4`
-#'
-#' @format a `tlg_pipeline_s4` object with the following slots:
-#'   - `main` the `chevron::egt02_2_main` function.
-#'   - `preprocess` the  `chevron::egt02_2_pre` function.
-#'   - `postprocess` the identity function.
-#'   - `check` no checks.
-#'   - `adam_datasets` `"adsl"` and `"adeg"`.
-#'
+#' @seealso [egt02_2_main()]
+#' @rdname chevron_tlg-class
 #' @export
-#'
-egt02_2 <- tlg_pipeline_s4(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))
+egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))

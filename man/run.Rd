@@ -2,15 +2,15 @@
 % Please edit documentation in R/TLG_pipeline-S4methods.R
 \name{run}
 \alias{run}
-\alias{run,tlg_pipeline_s4-method}
+\alias{run,chevron_tlg-method}
 \title{run}
 \usage{
 run(object, adam_db, ...)
 
-\S4method{run}{tlg_pipeline_s4}(object, adam_db, ...)
+\S4method{run}{chevron_tlg}(object, adam_db, ...)
 }
 \arguments{
-\item{object}{(\code{tlg_pipeline_s4}) input.}
+\item{object}{(\code{chevron_tlg}) input.}
 
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
@@ -18,4 +18,8 @@ run(object, adam_db, ...)
 }
 \description{
 run
+}
+\examples{
+run(aet01_1, syn_test_data())
+
 }

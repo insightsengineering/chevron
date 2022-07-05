@@ -2,15 +2,15 @@
 % Please edit documentation in R/TLG_pipeline-S4methods.R
 \name{get_postprocess}
 \alias{get_postprocess}
-\alias{get_postprocess,tlg_pipeline_s4-method}
+\alias{get_postprocess,chevron_tlg-method}
 \title{Retrieve Post Processing Function}
 \usage{
 get_postprocess(object, ...)
 
-\S4method{get_postprocess}{tlg_pipeline_s4}(object)
+\S4method{get_postprocess}{chevron_tlg}(object)
 }
 \arguments{
-\item{object}{(\code{tlg_pipeline_s4}) input.}
+\item{object}{(\code{chevron_tlg}) input.}
 
 \item{...}{not used.}
 }
