@@ -20,12 +20,12 @@ var_labels_for <- function(df, vars) {
 #'
 #' @export
 std_deco <- function(id, ...) {
-    list(
-      title = "",
-      subtitles = "",
-      main_footer = ""
-    )
-  }
+  list(
+    title = "",
+    subtitles = "",
+    main_footer = ""
+  )
+}
 
 #' Convert Y N values used in CDISC to R boolean object
 #'
