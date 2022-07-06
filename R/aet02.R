@@ -11,6 +11,7 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
+#'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
 #'
 #' @importFrom dplyr filter
 #'
@@ -34,13 +35,6 @@
 #' aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
 #'
 #' aet02_1(db, lbl_overall = "All Patients") %>% head()
-#'
-#' db_m <- db %>%
-#'   dm_zoom_to(adae) %>%
-#'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "Medra System Organ Class")) %>%
-#'   dm_update_zoomed()
-#'
-#' aet02_1(db_m) %>% head()
 aet02_1 <- function(adam_db,
                     armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
@@ -55,8 +49,6 @@ aet02_1 <- function(adam_db,
   lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = var_labels_for(dbsel$adae, "AEBODSYS"),
-    lbl_aedecod = var_labels_for(dbsel$adae, "AEDECOD"),
     deco = deco
   )
 
@@ -69,7 +61,7 @@ aet02_1 <- function(adam_db,
   tbl_sorted <- tbl %>%
     sort_at_path(
       path = c("AEBODSYS"),
-      scorefun = cont_n_onecol(ncol(tbl))
+      scorefun = cont_n_allcols
     ) %>%
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
@@ -95,8 +87,8 @@ aet02_1 <- function(adam_db,
 #' )
 aet02_1_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
-                        lbl_aebodsys = "Body System or Organ Class",
-                        lbl_aedecod = "Dictionary-Derived Term",
+                        lbl_aebodsys = "MedDRA System Organ Class",
+                        lbl_aedecod = "MedDRA Preferred Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           actualarm = "ACTARM",
@@ -154,6 +146,12 @@ aet02_1_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
     dm_update_zoomed()
 }
 
@@ -173,6 +171,7 @@ aet02_1_pre <- function(adam_db) {
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 #'  frequencies.
+#'  * Missing values of `AEBODSYS`, `AEHLT` and `AEDECOD` in `adae` are labeled by `No Coding available`.
 #'
 #' @importFrom dplyr filter
 #'
@@ -188,13 +187,6 @@ aet02_1_pre <- function(adam_db) {
 #'
 #' # Additional Examples
 #' aet02_2(db, lbl_overall = "All Patients") %>% head()
-#'
-#' db_m <- db %>%
-#'   dm_zoom_to(adae) %>%
-#'   mutate(AEBODSYS = formatters::with_label(AEBODSYS, "MedDRA System Organ Class")) %>%
-#'   dm_update_zoomed()
-#'
-#' aet02_2(db_m) %>% head()
 aet02_2 <- function(adam_db,
                     armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
@@ -205,18 +197,14 @@ aet02_2 <- function(adam_db,
                       lbl_overall = NULL
                     )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-  adae <- dbsel$adae
 
   lyt <- aet02_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = var_labels_for(adae, "AEBODSYS"),
-    lbl_aehlt = var_labels_for(adae, "AEHLT"),
-    lbl_aedecod = var_labels_for(adae, "AEDECOD"),
     deco = deco
   )
 
-  tbl <- build_table(lyt, adae, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
     tbl <- prune_table(tbl)
@@ -260,9 +248,9 @@ aet02_2 <- function(adam_db,
 #' )
 aet02_2_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
-                        lbl_aebodsys = "AEBODSYS",
-                        lbl_aehlt = "AEHLT",
-                        lbl_aedecod = "AEDECOD",
+                        lbl_aebodsys = "MedDRA System Organ Class",
+                        lbl_aehlt = "MedDRA High-Level Term",
+                        lbl_aedecod = "MedDRA Preferred Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           actualarm = "ACTARM",
@@ -336,6 +324,13 @@ aet02_2_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
+      AEHLT = tern::explicit_na(tern::sas_na(.data$AEHLT), label = "No Coding available"),
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
     dm_update_zoomed()
 }
 
@@ -354,6 +349,7 @@ aet02_2_pre <- function(adam_db) {
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code by highest overall frequencies.
+#'  * Missing values of `AEDECOD` in `aead` are labeled by `No Coding available`.
 #'
 #' @importFrom dplyr filter
 #'
@@ -380,7 +376,6 @@ aet02_3 <- function(adam_db,
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aedecod = var_labels_for(adam_db$adae, "AEDECOD"),
     deco = deco
   )
 
@@ -416,7 +411,7 @@ aet02_3 <- function(adam_db,
 #' )
 aet02_3_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
-                        lbl_aedecod = "AEDECOD",
+                        lbl_aedecod = "MedDRA Preferred Term",
                         deco = std_deco("AET02"),
                         .study = list(
                           actualarm = "ACTARM",
@@ -431,7 +426,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one adverse event",
-        nonunique = "Overall total number of events"
+        nonunique = "Total number of events"
       )
     ) %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
@@ -453,5 +448,10 @@ aet02_3_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
     dm_update_zoomed()
 }

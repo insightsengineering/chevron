@@ -18,7 +18,7 @@ aet02_3(
 aet02_3_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
-  lbl_aedecod = "AEDECOD",
+  lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
@@ -51,6 +51,7 @@ adverse events categorized by Dictionary-Derived Term.
 \item Split columns by arm.
 \item Does not include a total column by default.
 \item Sort Dictionary-Derived Code by highest overall frequencies.
+\item Missing values of \code{AEDECOD} in \code{aead} are labeled by \verb{No Coding available}.
 }
 }
 \section{Functions}{
