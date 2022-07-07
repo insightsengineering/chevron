@@ -3,19 +3,20 @@
 \name{dst01_3}
 \alias{dst01_3}
 \alias{dst01_3_lyt}
+\alias{dst01_3_pre}
 \title{DST01 Table 3 (Supplementary) Patient Disposition Table 3}
 \usage{
 dst01_3(
   adam_db,
   armvar = .study$planarm,
-  status = "EOSSTT",
+  status = .study$status_var,
   disc_reason_var = .study$disc_reason_var,
   status_treatment = "EOTSTT",
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
-    "All Patients")
+    "All Patients", status_var = "EOSSTT")
 )
 
 dst01_3_lyt(
@@ -28,6 +29,12 @@ dst01_3_lyt(
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", status_treatment =
     "EOTSTT")
+)
+
+dst01_3_pre(
+  adam_db,
+  reason = .study$disc_reason_var,
+  .study = list(disc_reason_var = "DCSREAS")
 )
 }
 \arguments{
@@ -63,6 +70,8 @@ the analysis period.}
 
 \item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
 By Default `ONGOING.}
+
+\item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status.
@@ -82,14 +91,16 @@ For patients who discontinued the study, the reason provided is categorized as "
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_3_lyt}: 
+\item \code{dst01_3_lyt}: \code{dst01_3} Layout
+
+\item \code{dst01_3_pre}: \code{dst01_3} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("dst01_3")
+  dst01_3_pre()
 
 dst01_3(db)
 dst01_3(db, lbl_overall = NULL)
@@ -97,4 +108,6 @@ dst01_3_lyt(
   armvar = "ACTARM",
   status_treatment = "EOTxx01"
 )
+syn_test_data() \%>\%
+  dst01_3_pre()
 }

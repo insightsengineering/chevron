@@ -21,17 +21,20 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("aet03_1")
+#'   aet04_1_pre()
 #'
 #' aet04_1(db)
-#' aet04_1(db, prune_0 = FALSE)
-#' aet04_1(db, lbl_overall = "All Patients")
 #'
-#' aet04_1(db, group_grades = list(
-#'   "Any Grade" = c("1", "2", "3", "4", "5"),
-#'   "Grade 1-2" = c("1", "2"),
-#'   "Grade 3-5" = c("3", "4", "5")
-#' ))
+#' aet04_1(
+#'   db,
+#'   prune_0 = FALSE,
+#'   lbl_overall = "All Patients",
+#'   group_grades = list(
+#'     "Any Grade" = c("1", "2", "3", "4", "5"),
+#'     "Grade 1-2" = c("1", "2"),
+#'     "Grade 3-5" = c("3", "4", "5")
+#'   )
+#' )
 aet04_1 <- function(adam_db,
                     armvar = .study$actualarm,
                     group_grades = .study$group_grades,
@@ -86,10 +89,7 @@ aet04_1 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `AET04` Layout 1 (Default)
-#'
-#' @describeIn aet04_1
+#' @describeIn aet04_1 `aet04_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -162,4 +162,22 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
       grade_groups = group_grades[-1],
       .indent_mods = -1L
     )
+}
+
+#' @describeIn aet04_1 `aet04_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   aet04_1_pre()
+aet04_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
 }

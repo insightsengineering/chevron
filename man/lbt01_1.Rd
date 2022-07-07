@@ -3,6 +3,7 @@
 \name{lbt01_1}
 \alias{lbt01_1}
 \alias{lbt01_1_lyt}
+\alias{lbt01_1_pre}
 \title{\code{LBT01} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit}
 \usage{
 lbt01_1(
@@ -26,6 +27,8 @@ lbt01_1_lyt(
   deco = std_deco("LBT01"),
   .study = list(actualarm = "ACTARM", visitvar = "AVISIT")
 )
+
+lbt01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -68,14 +71,18 @@ by \code{AVISIT}. Re-level to customize order
 }
 \section{Functions}{
 \itemize{
-\item \code{lbt01_1_lyt}: 
+\item \code{lbt01_1_lyt}: \code{lbt01_1} Layout
+
+\item \code{lbt01_1_pre}: \code{lbt01_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("lbt01_1")
+  lbt01_1_pre()
 
 lbt01_1(db)
+syn_test_data() \%>\%
+  lbt01_1_pre()
 }

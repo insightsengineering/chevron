@@ -16,10 +16,10 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adcm) %>%
-#'   filter(ATIREL == "CONCOMITANT") %>%
+#'   dm_zoom_to("adcm") %>%
+#'   filter(.data$ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("cmt02_pt_1")
+#'   cmt02_pt_1_pre()
 #'
 #' cmt02_pt_1(adam_db = db)
 cmt02_pt_1 <- function(adam_db,
@@ -52,10 +52,7 @@ cmt02_pt_1 <- function(adam_db,
     )
 }
 
-
-#' `CMT02_PT` Layout 1 (Default)
-#'
-#' @describeIn cmt02_pt_1
+#' @describeIn cmt02_pt_1 `cmt02_pt_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -88,4 +85,25 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
     ) %>%
     count_occurrences(vars = "CMDECOD", .indent_mods = 0L) %>%
     append_topleft("Other Treatment")
+}
+
+#' @describeIn cmt02_pt_1 `cmt02_pt_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   cmt02_pt_1_pre()
+cmt02_pt_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adcm") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adcm") %>%
+    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    dm_update_zoomed()
 }

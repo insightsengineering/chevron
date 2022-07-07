@@ -3,6 +3,7 @@
 \name{aet02_1}
 \alias{aet02_1}
 \alias{aet02_1_lyt}
+\alias{aet02_1_pre}
 \title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \usage{
 aet02_1(
@@ -17,11 +18,13 @@ aet02_1(
 aet02_1_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
-  lbl_aebodsys = "Body System or Organ Class",
-  lbl_aedecod = "Dictionary-Derived Term",
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
+
+aet02_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -51,18 +54,21 @@ events categorized by Body System and Dictionary-Derived Term.
 \item Split columns by arm.
 \item Does not include a total column by default.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
+\item Missing values in \code{AEBODSYS}, and \code{AEDECOD} are labeled by \verb{No Coding available}.
 }
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_1_lyt}: 
+\item \code{aet02_1_lyt}: \code{aet02_1} Layout
+
+\item \code{aet02_1_pre}: \code{aet02_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("aet02_1")
+  aet02_1_pre()
 
 aet02_1(adam_db = db) \%>\% head(15)
 
@@ -76,16 +82,11 @@ aet02_1(adam_db = db_s) \%>\% head()
 aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
 
 aet02_1(db, lbl_overall = "All Patients") \%>\% head()
-
-db_m <- db \%>\%
-  dm_zoom_to(adae) \%>\%
-  mutate(AEBODSYS = formatters::with_label(AEBODSYS, "Medra System Organ Class")) \%>\%
-  dm_update_zoomed()
-
-aet02_1(db_m) \%>\% head()
 aet02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("AET02")
 )
+syn_test_data() \%>\%
+  aet02_1_pre()
 }

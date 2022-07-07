@@ -22,7 +22,7 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   preprocess_data("dmt01_1")
+#'   dmt01_1_pre()
 #'
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"))
 #' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
@@ -41,10 +41,8 @@ dmt01_1 <- function(adam_db,
                       planarm = "ARM",
                       lbl_overall = "All Patients"
                     )) {
-  assert_that(
-    df_has_vars(adam_db$adsl, summaryvars),
-    length(summaryvars) == length(summaryvars_lbls)
-  )
+  assert_colnames(adam_db$adsl, summaryvars)
+  checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
   lyt <- dmt01_1_lyt(
     armvar = armvar,
@@ -63,10 +61,7 @@ dmt01_1 <- function(adam_db,
   }
 }
 
-
-#' DMT01 Layout 1 (Default)
-#'
-#' @describeIn dmt01_1
+#' @describeIn dmt01_1 `dmt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -96,8 +91,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
                             "Pooled Age Group 1 (yr)",
                             "SEX",
                             "ETHNIC",
-                            "RACE",
-                            "Baseline Weight (kg)"
+                            "RACE"
                           ),
                           lbl_overall = "All Patients"
                         )) {
@@ -106,4 +100,27 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+}
+
+#' @describeIn dmt01_1 `dmt01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dmt01_1_pre()
+dmt01_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+  adsl_lbs <- formatters::var_labels(adam_db$adsl)
+  db <- adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(
+      SEX = case_when(.data$SEX == "F" ~ "Female", .data$SEX == "M" ~ "Male", TRUE ~ as.character(.data$SEX)),
+      SEX = factor(.data$SEX, levels = c("Female", "Male"))
+    ) %>%
+    mutate(SEX = formatters::with_label(.data$SEX, adsl_lbs["SEX"])) %>%
+    dm_update_zoomed()
+  db
 }

@@ -14,8 +14,6 @@
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Does not include a total column by default.
 #'
-#' @importFrom checkmate assert_factor assert_logical
-#'
 #' @export
 #'
 #' @examples
@@ -26,7 +24,7 @@
 #'   mutate(DTHCAT = tern::explicit_na(DTHCAT)) %>%
 #'   mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("dtht01_1")
+#'   dtht01_1_pre()
 #'
 #' dtht01_1(adam_db = db)
 #' dtht01_1(adam_db = db, other_category = FALSE)
@@ -45,10 +43,10 @@ dtht01_1 <- function(adam_db,
                      )) {
   dbsel <- get_db_data(adam_db, "adsl")
 
-  assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
-  assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
-  assert_logical(time_since_last_dose, len = 1)
-  assert_logical(other_category, len = 1)
+  checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
+  checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
+  checkmate::assert_flag(time_since_last_dose)
+  checkmate::assert_flag(other_category)
 
 
   lyt <- dtht01_1_lyt(
@@ -85,10 +83,7 @@ dtht01_1 <- function(adam_db,
   tbl
 }
 
-
-#' `DTHT01` Layout 1 (Default)
-#'
-#' @describeIn dtht01_1
+#' @describeIn dtht01_1 `dtht01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
@@ -139,9 +134,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
   tab
 }
 
-#' `DTHT01` Layout 1 Optional (Optional)
-#'
-#' @describeIn dtht01_1
+#' @describeIn dtht01_1 `dtht01_1` Optional Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -175,4 +168,26 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
       label_pos = "visible"
     ) %>%
     summarize_vars("DTHCAT")
+}
+
+#' @describeIn dtht01_1 `dtht01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dtht01_1_pre()
+dtht01_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  death_fact <- levels(adam_db$adsl$DTHCAT)
+  death_fact <- setdiff(death_fact, "OTHER")
+  death_fact <- c(death_fact, "OTHER")
+
+  adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(DTHCAT = fct_relevel(.data$DTHCAT, death_fact)) %>%
+    dm_update_zoomed()
 }

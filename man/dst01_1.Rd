@@ -3,18 +3,19 @@
 \name{dst01_1}
 \alias{dst01_1}
 \alias{dst01_1_lyt}
+\alias{dst01_1_pre}
 \title{DST01 Table 1 (Default) Patient Disposition Table 1}
 \usage{
 dst01_1(
   adam_db,
   armvar = .study$planarm,
-  status_var = "EOSSTT",
+  status_var = .study$status_var,
   disc_reason_var = .study$disc_reason_var,
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", disc_reason_var =
-    "DCSREAS")
+    "DCSREAS", status_var = "EOSSTT")
 )
 
 dst01_1_lyt(
@@ -29,6 +30,8 @@ dst01_1_lyt(
   .study = list(planarm = "ARM", lbl_overall = "All Patients", status = "EOSSTT",
     disc_reason_var = "DCSREAS")
 )
+
+dst01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -82,14 +85,16 @@ which allows the tables to be constructed and pruned separately before binding.
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_1_lyt}: 
+\item \code{dst01_1_lyt}: \code{dst01_1} Layout
+
+\item \code{dst01_1_pre}: \code{dst01_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("dst01_1")
+  dst01_1_pre()
 
 dst01_1(db)
 dst01_1_lyt(
@@ -97,4 +102,6 @@ dst01_1_lyt(
   status = "EOP01STT",
   disc_reason_var = "DCP01RS"
 )
+syn_test_data() \%>\%
+  dst01_1_pre()
 }

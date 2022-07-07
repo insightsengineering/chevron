@@ -1,27 +1,26 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9005
+Version: 0.1.0.9017
 Authors@R: c(
-    person("NEST", , , "basel.nestcicd@roche.com", role = c("aut", "cre")),
-    person("Roche", role = c("cph", "fnd")),
-    person("Adrian", "Waddell", , "adrian.waddell@roche.com", role = "aut"),
-    person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
-    person("Gabriel", "Becker", , "gabembecker@gmail.com", role = "ctb"),
-    person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb")
+    person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
+    person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
+    person("Heng", "Wang", , "wang.heng@gene.com", role = "aut"),
+    person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
 Description: Standard Table, Listings, and Graphs (TLG) library used in
     clinical trials.
-License: file LICENSE
+License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 4.0.0)
 Imports:
-    assertthat,
     checkmate,
     dm,
     dplyr,
+    dunlin,
     forcats,
     formatters,
+    lifecycle,
     ggplot2,
     magrittr,
     methods,
@@ -29,7 +28,8 @@ Imports:
     rtables,
     tern,
     tibble,
-    tidyr
+    tidyr,
+    yaml
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,
@@ -38,9 +38,9 @@ Suggests:
     rmarkdown,
     scda,
     scda.2021
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0

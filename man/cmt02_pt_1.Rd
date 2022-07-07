@@ -3,6 +3,7 @@
 \name{cmt02_pt_1}
 \alias{cmt02_pt_1}
 \alias{cmt02_pt_1_lyt}
+\alias{cmt02_pt_1_pre}
 \title{\code{CMT02_PT} Table 1 (Default) Concomitant Medications by Preferred Name}
 \usage{
 cmt02_pt_1(
@@ -20,6 +21,8 @@ cmt02_pt_1_lyt(
   deco = std_deco("CMT02_PT"),
   .study = list(planarm = "ARM", lbl_overall = NULL)
 )
+
+cmt02_pt_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -47,21 +50,25 @@ sorted by frequencies.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt02_pt_1_lyt}: 
+\item \code{cmt02_pt_1_lyt}: \code{cmt02_pt_1} Layout
+
+\item \code{cmt02_pt_1_pre}: \code{cmt02_pt_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  dm_zoom_to(adcm) \%>\%
-  filter(ATIREL == "CONCOMITANT") \%>\%
+  dm_zoom_to("adcm") \%>\%
+  filter(.data$ATIREL == "CONCOMITANT") \%>\%
   dm_update_zoomed() \%>\%
-  preprocess_data("cmt02_pt_1")
+  cmt02_pt_1_pre()
 
 cmt02_pt_1(adam_db = db)
 cmt02_pt_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
+syn_test_data() \%>\%
+  cmt02_pt_1_pre()
 }

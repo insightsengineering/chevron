@@ -2,6 +2,7 @@
 % Please edit documentation in R/cmt01a.R
 \name{cmt01a_2}
 \alias{cmt01a_2}
+\alias{cmt01a_2_pre}
 \title{\code{CMT01A} Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
 frequency).}
 \usage{
@@ -17,6 +18,8 @@ cmt01a_2(
   deco = std_deco("CMT01A"),
   .study = list(planarm = "ARM", lbl_overall = NULL)
 )
+
+cmt01a_2_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -54,14 +57,21 @@ medication name sorted by frequencies.
 the specific medication.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{cmt01a_2_pre}: \code{cmt01a_2} Preprocessing
+}}
+
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  dm_zoom_to(adcm) \%>\%
+  dm_zoom_to("adcm") \%>\%
   filter(ATIREL == "CONCOMITANT") \%>\%
   dm_update_zoomed() \%>\%
-  preprocess_data("cmt01a_2")
+  cmt01a_2_pre()
 
 cmt01a_2(adam_db = db)
+syn_test_data() \%>\%
+  cmt01a_2_pre()
 }

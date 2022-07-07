@@ -3,6 +3,7 @@
 \name{dmt01_1}
 \alias{dmt01_1}
 \alias{dmt01_1_lyt}
+\alias{dmt01_1_pre}
 \title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1}
 \usage{
 dmt01_1(
@@ -24,8 +25,10 @@ dmt01_1_lyt(
   deco = std_deco("DMT01"),
   .study = list(planarm = "ARM", summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
     "RACE"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
-    "RACE", "Baseline Weight (kg)"), lbl_overall = "All Patients")
+    "RACE"), lbl_overall = "All Patients")
 )
+
+dmt01_1_pre(adam_db)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -59,14 +62,16 @@ For each variable, summary statistics are by default based on the number of pati
 }
 \section{Functions}{
 \itemize{
-\item \code{dmt01_1_lyt}: 
+\item \code{dmt01_1_lyt}: \code{dmt01_1} Layout
+
+\item \code{dmt01_1_pre}: \code{dmt01_1} Preprocessing
 }}
 
 \examples{
 library(dm)
 
 db <- syn_test_data() \%>\%
-  preprocess_data("dmt01_1")
+  dmt01_1_pre()
 
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
@@ -75,4 +80,6 @@ dmt01_1(db,
   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 )
 dmt01_1_lyt(armvar = "ACTARM")
+syn_test_data() \%>\%
+  dmt01_1_pre()
 }

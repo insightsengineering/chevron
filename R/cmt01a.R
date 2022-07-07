@@ -28,10 +28,10 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adcm) %>%
-#'   filter(ATIREL == "CONCOMITANT") %>%
+#'   dm_zoom_to("adcm") %>%
+#'   filter(.data$ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("cmt01a_1")
+#'   cmt01a_1_pre()
 #'
 #' cmt01a_1(adam_db = db)
 cmt01a_1 <- function(adam_db,
@@ -74,10 +74,7 @@ cmt01a_1 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `CMT01A` Layout 1 (Default)
-#'
-#' @describeIn cmt01a_1
+#' @describeIn cmt01a_1 `cmt01a_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -142,6 +139,27 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
+#' @describeIn cmt01a_1 `cmt01a_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   cmt01a_1_pre()
+cmt01a_1_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adcm") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adcm") %>%
+    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    dm_update_zoomed()
+}
+
 # CMT01A_2 ----
 
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
@@ -173,10 +191,10 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adcm) %>%
+#'   dm_zoom_to("adcm") %>%
 #'   filter(ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("cmt01a_2")
+#'   cmt01a_2_pre()
 #'
 #' cmt01a_2(adam_db = db)
 cmt01a_2 <- function(adam_db,
@@ -225,6 +243,27 @@ cmt01a_2 <- function(adam_db,
   tbl_sorted
 }
 
+#' @describeIn cmt01a_2 `cmt01a_2` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   cmt01a_2_pre()
+cmt01a_2_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adcm") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adcm") %>%
+    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    dm_update_zoomed()
+}
+
 # CMT01A_3 ----
 
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
@@ -257,10 +296,10 @@ cmt01a_2 <- function(adam_db,
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adcm) %>%
+#'   dm_zoom_to("adcm") %>%
 #'   filter(ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed() %>%
-#'   preprocess_data("cmt01a_3")
+#'   cmt01a_3_pre()
 #'
 #' cmt01a_3(adam_db = db)
 cmt01a_3 <- function(adam_db,
@@ -303,10 +342,7 @@ cmt01a_3 <- function(adam_db,
   tbl_sorted
 }
 
-
-#' `CMT01A` Layout 3 (Supplementary)
-#'
-#' @describeIn cmt01a_3
+#' @describeIn cmt01a_3 `cmt01a_3` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -368,4 +404,25 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
       .indent_mods = -1L
     ) %>%
     append_topleft(paste0("  ", lbl_medname_var))
+}
+
+#' @describeIn cmt01a_3 `cmt01a_3` Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   cmt01a_3_pre()
+cmt01a_3_pre <- function(adam_db) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adcm") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adcm") %>%
+    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    dm_update_zoomed()
 }

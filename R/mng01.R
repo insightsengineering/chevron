@@ -20,11 +20,13 @@
 #' @param show_h_grid (`logical`) should horizontal grid be displayed.
 #' @param show_v_grid (`logical`) should vertical grid be displayed.
 #' @param legend_pos (`character`) the position of the legend. One of `top`, `bottom`, `right`, `left` or `none`.
+#' @param line_col (`character`) describing the colors to use for the lines or a named `character` vector associating
+#'   values of `armvar` with color names.
 #'
 #' @import ggplot2
 #' @importFrom checkmate assert_subset assert_vector assert_flag
 #'
-#' @return
+#' @return a `ggplot` object.
 #' @export
 #'
 #' @examples
@@ -41,26 +43,34 @@
 #'   interval_fun = "mean_sei",
 #'   legend_pos = "bottom",
 #'   show_n = TRUE,
-#'   jitter = FALSE
+#'   jitter = FALSE,
+#'   line_col = c(
+#'     "A: Drug X" = "#008080",
+#'     "B: Placebo" = "#9b2525",
+#'     "C: Combination" = "#ffa41c",
+#'     "D: Something" = "#ffa41c"
+#'   )
 #' )
-mng01_1 <- function(adam_db,
-                    dataset = "adlb",
-                    xval = "AVISIT",
-                    yval = "AVAL",
-                    armvar = .study$actualarm,
-                    center_fun = c("mean", "median"),
-                    interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-                    jitter = TRUE,
-                    show_n = TRUE,
-                    show_h_grid = .study$show_h_grid,
-                    show_v_grid = .study$show_v_grid,
-                    legend_pos = .study$legend_pos,
-                    .study = list(
-                      actualarm = "ACTARM",
-                      show_h_grid = TRUE,
-                      show_v_grid = FALSE,
-                      legend_pos = "top"
-                    )) {
+mng01_1_main <- function(adam_db,
+                         dataset = "adlb",
+                         xval = "AVISIT",
+                         yval = "AVAL",
+                         armvar = .study$actualarm,
+                         center_fun = c("mean", "median"),
+                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                         jitter = TRUE,
+                         show_n = TRUE,
+                         show_h_grid = .study$show_h_grid,
+                         show_v_grid = .study$show_v_grid,
+                         legend_pos = .study$legend_pos,
+                         line_col = .study$color_dict,
+                         .study = list(
+                           actualarm = "ACTARM",
+                           show_h_grid = TRUE,
+                           show_v_grid = FALSE,
+                           legend_pos = "top",
+                           color_dict = getOption("tern.color")
+                         )) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 
@@ -133,6 +143,22 @@ mng01_1 <- function(adam_db,
     )
   }
 
+
+  if (checkmate::check_names(line_col)) {
+    color_lvl <- sort(unique(adam_db[[dataset]][[armvar]]))
+    col <- line_col[color_lvl]
+
+    if (anyNA(col)) {
+      missing_col <- setdiff(color_lvl, names(col))
+      stop(paste("Missing color matching for", toString(missing_col)))
+    }
+
+    col <- unname(col)
+  } else {
+    col <- line_col
+  }
+
+
   p <- tern::g_lineplot(
     df = adam_db[[dataset]],
     alt_count = adam_db[["adsl"]],
@@ -143,7 +169,8 @@ mng01_1 <- function(adam_db,
     position = position_dodge(width = ifelse(jitter, 0.3, 0)),
     title = title,
     table = table,
-    ggtheme = ggtheme
+    ggtheme = ggtheme,
+    col = col
   )
 
   p

@@ -25,7 +25,7 @@ reference:
     contents:
       - chevron-package
 
-  - title: Standard Tables
+  - title: Standard Tables, Layouts and Preprocessing
     contents:
       - aet01_1
       - aet01_2
@@ -55,34 +55,14 @@ reference:
       - vst02_2
   - title: Standard Graph
     contents:
-      - mng01_1
+      - mng01_1_main
   - title: Data Preprocess Functions
     contents:
       - preprocess_data
       - std_pmap
       - pmap_row
       - remove_tlg_pmap
-      - std_filter_fun
-      - std_mutate_fun
-      - filter_adex_drug
-      - filter_adae_anl01fl
-      - filter_adeg_anl01fl
-      - filter_adlb_anl01fl
-      - filter_admh_anl01fl
-      - filter_advs_anl01fl
-      - filter_vst02
-      - filter_egt02
-      - mutate_adsl_gp
-      - filter_adcm_anl01fl
-      - mutate_for_aet01
-      - mutate_adsl_gp
-      - mutate_cmt02_pt_1
-      - remove_adex_aval
-      - reorder_adex_params
-      - mutate_cmt01a
-      - mutate_vst02
-      - reorder_dtht01
-      - mutate_dmt01
+
   - title: Utility Functions
     contents:
       - dm_explicit_na
@@ -102,3 +82,26 @@ reference:
       - cut_by_group
       - assert_colnames
       - h_as_factor
+
+  - title: TLG Preprocessing Functions
+    contents:
+      - filter_adae_anl01fl
+      - filter_adcm_anl01fl
+      - filter_adeg_anl01fl
+      - filter_adex_drug
+      - filter_adlb_anl01fl
+      - filter_admh_anl01fl
+      - filter_advs_anl01fl
+      - filter_egt02
+      - filter_vst02
+      - mutate_adsl_gp
+      - mutate_cmt01a
+      - mutate_cmt02_pt_1
+      - mutate_dmt01
+      - mutate_for_aet01
+      - mutate_vst02
+      - remove_adex_aval
+      - reorder_adex_params
+      - reorder_dtht01
+      - std_filter_fun
+      - std_mutate_fun
