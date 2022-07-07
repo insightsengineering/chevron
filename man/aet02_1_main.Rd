@@ -19,8 +19,8 @@ aet02_1_main(
 aet02_1_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
-  lbl_aebodsys = "Body System or Organ Class",
-  lbl_aedecod = "Dictionary-Derived Term",
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
@@ -67,6 +67,7 @@ events categorized by Body System and Dictionary-Derived Term.
 \item Split columns by arm.
 \item Does not include a total column by default.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
+\item Missing values in \code{AEBODSYS}, and \code{AEDECOD} are labeled by \verb{No Coding available}.
 }
 }
 \section{Functions}{
@@ -89,14 +90,7 @@ aet02_1_main(adam_db = db) \%>\% head(15)
 # alternatively adam_db also accepts a names list
 aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
 
-aet02_1_main(db, lbl_overall = "All Patients") \%>\% head()
-
-db_m <- db \%>\%
-  dm_zoom_to(adae) \%>\%
-  mutate(AEBODSYS = formatters::with_label(AEBODSYS, "Medra System Organ Class")) \%>\%
-  dm_update_zoomed()
-
-aet02_1_main(db_m) \%>\% head()
+aet02_1(db, lbl_overall = "All Patients") \%>\% head()
 aet02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

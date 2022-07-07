@@ -27,7 +27,7 @@
 #' aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
 #'
 #' aet02_1(db, lbl_overall = "All Patients") %>% head()
-aet02_1 <- function(adam_db,
+aet02_1_main <- function(adam_db,
                     armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,
@@ -211,7 +211,7 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' # Additional Examples
 #' aet02_2(db, lbl_overall = "All Patients") %>% head()
-aet02_2 <- function(adam_db,
+aet02_2_main <- function(adam_db,
                     armvar = .study$actualarm,
                     lbl_overall = .study$lbl_overall,
                     prune_0 = TRUE,

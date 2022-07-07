@@ -66,7 +66,6 @@ Collate:
     'package.R'
     'sample_study_object.R'
     'standard_data_preprocessing.R'
-    'standards_metadata.R'
     'utils.R'
     'vst01.R'
     'vst02.R'
