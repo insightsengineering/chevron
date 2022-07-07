@@ -34,10 +34,9 @@ mng01_1_main(
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{center_fun}{(\code{character}) the function to compute the estimate value. One of \code{mean} or \code{median}.}
+\item{center_fun}{(\code{character}) the function to compute the estimate value.}
 
-\item{interval_fun}{(\code{character}) the function defining the crossbar range. One of \code{mean_ci}, \code{mean_sei}, \code{mean_sdi},
-\code{median_ci}, \code{quantiles} or \code{range}.}
+\item{interval_fun}{(\code{character}) the function defining the crossbar range.}
 
 \item{jitter}{(\code{logical}) should data point be slightly spread on the x-axis.}
 
@@ -47,7 +46,7 @@ mng01_1_main(
 
 \item{show_v_grid}{(\code{logical}) should vertical grid be displayed.}
 
-\item{legend_pos}{(\code{character}) the position of the legend. One of \code{top}, \code{bottom}, \code{right}, \code{left} or \code{none}.}
+\item{legend_pos}{(\code{character}) the position of the legend.}
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} vector associating
 values of \code{armvar} with color names.}
@@ -74,7 +73,7 @@ db <- chevron::syn_test_data() \%>\%
   filter(PARAM == "Immunoglobulin A Measurement") \%>\%
   dm_update_zoomed()
 
-db \%>\% mng01_1(
+db \%>\% mng01_1_main(
   center_fun = "mean",
   interval_fun = "mean_sei",
   legend_pos = "bottom",

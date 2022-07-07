@@ -12,14 +12,13 @@
 #' @param dataset (`character`) the name of the data set to be analyzed.
 #' @param xval (`character`) the name of the variable to be represented on the x-axis.
 #' @param yval (`character`) the name of the variable to be represented on the y-axis.
-#' @param center_fun (`character`) the function to compute the estimate value. One of `mean` or `median`.
-#' @param interval_fun (`character`) the function defining the crossbar range. One of `mean_ci`, `mean_sei`, `mean_sdi`,
-#'   `median_ci`, `quantiles` or `range`.
+#' @param center_fun (`character`) the function to compute the estimate value.
+#' @param interval_fun (`character`) the function defining the crossbar range.
 #' @param show_n (`logical`) should the number of observation be displayed int the table.
 #' @param jitter (`logical`) should data point be slightly spread on the x-axis.
 #' @param show_h_grid (`logical`) should horizontal grid be displayed.
 #' @param show_v_grid (`logical`) should vertical grid be displayed.
-#' @param legend_pos (`character`) the position of the legend. One of `top`, `bottom`, `right`, `left` or `none`.
+#' @param legend_pos (`character`) the position of the legend.
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` vector associating
 #'   values of `armvar` with color names.
 #'
@@ -38,7 +37,7 @@
 #'   filter(PARAM == "Immunoglobulin A Measurement") %>%
 #'   dm_update_zoomed()
 #'
-#' db %>% mng01_1(
+#' db %>% mng01_1_main(
 #'   center_fun = "mean",
 #'   interval_fun = "mean_sei",
 #'   legend_pos = "bottom",
@@ -74,9 +73,14 @@ mng01_1_main <- function(adam_db,
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 
-  assert_vector(unique(adam_db[[dataset]]$PARAM), len = 1)
-  assert_flag(jitter)
-  assert_flag(show_n)
+  checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_subset(dataset, names(adam_db))
+  checkmate::assert_vector(unique(adam_db[[dataset]]$PARAM), len = 1)
+  checkmate::assert_flag(jitter)
+  checkmate::assert_flag(show_n)
+  checkmate::assert_flag(show_h_grid)
+  checkmate::assert_flag(show_v_grid)
+  checkmate::assert_character(line_col)
 
   interval_title <- switch(interval_fun,
     "mean_ci" = "95% Confidence Intervals",
@@ -109,7 +113,7 @@ mng01_1_main <- function(adam_db,
     x = xval,
     y = yval,
     strata = armvar,
-    paramcd = "PARAMCD",
+    paramcd = "PARAM",
     y_unit = "AVALU"
   )
 
