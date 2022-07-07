@@ -90,7 +90,7 @@ aet02_1_main(adam_db = db) \%>\% head(15)
 # alternatively adam_db also accepts a names list
 aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
 
-aet02_1(db, lbl_overall = "All Patients") \%>\% head()
+aet02_1_main(db, lbl_overall = "All Patients") \%>\% head()
 aet02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

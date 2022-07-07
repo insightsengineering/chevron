@@ -26,7 +26,7 @@
 #' # alternatively adam_db also accepts a names list
 #' aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
 #'
-#' aet02_1(db, lbl_overall = "All Patients") %>% head()
+#' aet02_1_main(db, lbl_overall = "All Patients") %>% head()
 aet02_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -210,7 +210,7 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "ada
 #' aet02_2_main(db) %>% head(15)
 #'
 #' # Additional Examples
-#' aet02_2(db, lbl_overall = "All Patients") %>% head()
+#' aet02_2_main(db, lbl_overall = "All Patients") %>% head()
 aet02_2_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,

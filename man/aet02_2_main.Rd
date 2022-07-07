@@ -79,7 +79,7 @@ db <- syn_test_data() \%>\%
 aet02_2_main(db) \%>\% head(15)
 
 # Additional Examples
-aet02_2(db, lbl_overall = "All Patients") \%>\% head()
+aet02_2_main(db, lbl_overall = "All Patients") \%>\% head()
 aet02_2_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
