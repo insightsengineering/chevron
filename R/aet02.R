@@ -28,14 +28,14 @@
 #'
 #' aet02_1(db, lbl_overall = "All Patients") %>% head()
 aet02_1_main <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("AET02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_1_lyt(
@@ -212,14 +212,14 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "ada
 #' # Additional Examples
 #' aet02_2(db, lbl_overall = "All Patients") %>% head()
 aet02_2_main <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("AET02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_2_lyt(
