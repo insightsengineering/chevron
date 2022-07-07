@@ -20,19 +20,11 @@ var_labels_for <- function(df, vars) {
 #'
 #' @export
 std_deco <- function(id, ...) {
-  if (!is.null(gds_data[[id]])) {
-    list(
-      title = gds_data[[id]]$`Standard titles`[1],
-      subtitles = c("Protocol: {{protocol}}", gds_data[[id]]$`Standard titles`[-1]), # nolint
-      main_footer = paste(gds_data[[id]]$`Standard footnotes`, collapse = " ")
-    )
-  } else {
-    list(
-      title = "Main Title",
-      subtitles = "Protocol: {{protocol}}",
-      main_footer = "Footnotes go here"
-    )
-  }
+  list(
+    title = "",
+    subtitles = "",
+    main_footer = ""
+  )
 }
 
 #' Convert Y N values used in CDISC to R boolean object
