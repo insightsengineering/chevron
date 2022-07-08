@@ -54,7 +54,6 @@ dtht01_1_main <- function(adam_db,
   tbl <- build_table(lyt[[1]], dbsel$adsl)
 
   if (other_category) {
-
     tbl_2 <- build_table(lyt[[2]], dbsel$adsl %>% filter(.data$DTHFL == "Y"))
     col_info(tbl_2) <- col_info(tbl)
     tbl <- rbind(tbl, tbl_2)
@@ -190,9 +189,11 @@ dtht01_1_pre <- function(adam_db, ...) {
     mutate(DTHCAT = forcats::fct_relevel(.data$DTHCAT, death_fact)) %>%
     mutate(is_OTHER = ifelse(.data$DTHCAT %in% c("OTHER", "<Missing>"), "Y", "N")) %>%
     mutate(DTHCAUS = as.factor(ifelse(.data$DTHCAUS == "DEATH DUE TO Death",
-                                      "DEATH", as.character(.data$DTHCAUS)))) %>%
+      "DEATH", as.character(.data$DTHCAUS)
+    ))) %>%
     mutate(DTHCAUS = as.factor(ifelse(.data$DTHCAT == "OTHER" | .data$DTHCAT == "<Missing>",
-                                      as.character(.data$DTHCAUS), "<Missing>"))) %>%
+      as.character(.data$DTHCAUS), "<Missing>"
+    ))) %>%
     dm_update_zoomed()
 }
 
