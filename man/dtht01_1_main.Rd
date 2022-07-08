@@ -21,7 +21,6 @@ dtht01_1_main(
 dtht01_1_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
-  other_category = TRUE,
   deco = std_deco("DTHT01"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
@@ -78,16 +77,12 @@ A description of the causes of death optionally with the breakdown of the
 library(dm)
 
 db <- syn_test_data() \%>\%
-  dm_zoom_to(adsl) \%>\%
-  mutate(DTHCAT = tern::explicit_na(DTHCAT)) \%>\%
-  mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) \%>\%
-  dm_update_zoomed() \%>\%
+  dunlin::dm_explicit_na() \%>\%
   dtht01_1_pre()
 
-dtht01_1_main(adam_db = db)
-dtht01_1_main(adam_db = db, other_category = FALSE)
+dtht01_1_main(adam_db = db, other_category = TRUE)
 dtht01_1_main(adam_db = db, time_since_last_dose = TRUE)
-dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
+dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = TRUE)
 dtht01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL

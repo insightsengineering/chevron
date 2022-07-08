@@ -20,16 +20,12 @@
 #' library(dm)
 #'
 #' db <- syn_test_data() %>%
-#'   dm_zoom_to(adsl) %>%
-#'   mutate(DTHCAT = tern::explicit_na(DTHCAT)) %>%
-#'   mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) %>%
-#'   dm_update_zoomed() %>%
+#'   dunlin::dm_explicit_na() %>%
 #'   dtht01_1_pre()
 #'
-#' dtht01_1_main(adam_db = db)
-#' dtht01_1_main(adam_db = db, other_category = FALSE)
+#' dtht01_1_main(adam_db = db, other_category = TRUE)
 #' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE)
-#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
+#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = TRUE)
 dtht01_1_main <- function(adam_db,
                           armvar = .study$actualarm,
                           time_since_last_dose = FALSE,
@@ -51,12 +47,19 @@ dtht01_1_main <- function(adam_db,
 
   lyt <- dtht01_1_lyt(
     armvar = armvar,
-    other_category = other_category,
     lbl_overall = lbl_overall,
     deco = deco
   )
 
-  tbl <- build_table(lyt, dbsel$adsl)
+  tbl <- build_table(lyt[[1]], dbsel$adsl)
+
+  if (other_category) {
+
+    tbl_2 <- build_table(lyt[[2]], dbsel$adsl %>% filter(.data$DTHFL == "Y"))
+    col_info(tbl_2) <- col_info(tbl)
+    tbl <- rbind(tbl, tbl_2)
+  }
+
 
   if (time_since_last_dose) {
     assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
@@ -67,12 +70,9 @@ dtht01_1_main <- function(adam_db,
       deco = deco
     )
 
-    tbl_other <- build_table(lyt2, dbsel$adsl)
-
-    col_info(tbl_other) <- col_info(tbl)
-
-    tbl <- rbind(tbl, tbl_other)
-
+    tbl_opt <- build_table(lyt2, dbsel$adsl)
+    col_info(tbl_opt) <- col_info(tbl)
+    tbl <- rbind(tbl, tbl_opt)
     tbl <- set_decoration(tbl, deco)
   }
 
@@ -97,7 +97,6 @@ dtht01_1_main <- function(adam_db,
 #' )
 dtht01_1_lyt <- function(armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
-                         other_category = TRUE,
                          deco = std_deco("DTHT01"),
                          .study = list(
                            actualarm = "ACTARM",
@@ -116,22 +115,21 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
     ) %>%
     summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
 
-  if (other_category) {
-    tab <-
-      tab %>%
-      split_rows_by(
-        "DTHCAT",
-        split_fun = keep_split_levels("OTHER"),
-        child_labels = "hidden"
-      ) %>%
-      summarize_vars(
-        "DTHCAUS",
-        nested = TRUE,
-        .stats = "count_fraction",
-        .indent_mods = c("count_fraction" = 4L)
-      )
-  }
-  tab
+  tab2 <-
+    basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
+    summarize_vars(
+      "DTHCAUS",
+      nested = FALSE,
+      .stats = "count_fraction",
+      .indent_mods = c("count_fraction" = 4L),
+      .formats = c(count_fraction = "xx (xx.x%)"),
+      denom = "N_col"
+    )
+
+  list(tab, tab2)
 }
 
 #' @describeIn dtht01_1_main `dtht01_1` Optional Layout
@@ -189,7 +187,12 @@ dtht01_1_pre <- function(adam_db, ...) {
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
-    mutate(DTHCAT = fct_relevel(.data$DTHCAT, death_fact)) %>%
+    mutate(DTHCAT = forcats::fct_relevel(.data$DTHCAT, death_fact)) %>%
+    mutate(is_OTHER = ifelse(.data$DTHCAT %in% c("OTHER", "<Missing>"), "Y", "N")) %>%
+    mutate(DTHCAUS = as.factor(ifelse(.data$DTHCAUS == "DEATH DUE TO Death",
+                                      "DEATH", as.character(.data$DTHCAUS)))) %>%
+    mutate(DTHCAUS = as.factor(ifelse(.data$DTHCAT == "OTHER" | .data$DTHCAT == "<Missing>",
+                                      as.character(.data$DTHCAUS), "<Missing>"))) %>%
     dm_update_zoomed()
 }
 
