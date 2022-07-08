@@ -1,7 +1,8 @@
-#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit
+
+#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.
 #'
-#' The LBT01 table provides an overview of the analysis values and its change from baseline of each respective arm over
-#' the course of the trial.
+#' The LBT01 table provides an
+#' overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
@@ -19,8 +20,6 @@
 #'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
 #'  by `AVISIT`. Re-level to customize order
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -29,17 +28,17 @@
 #' db <- syn_test_data() %>%
 #'   lbt01_1_pre()
 #'
-#' lbt01_1(db)
-lbt01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    summaryvars = c("AVAL", "CHG"),
-                    summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
-                    visitvar = "AVISIT",
-                    prune_0 = TRUE,
-                    deco = std_deco("LBT01"),
-                    .study = list(
-                      actualarm = "ACTARM"
-                    )) {
+#' lbt01_1_main(db)
+lbt01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         summaryvars = c("AVAL", "CHG"),
+                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
+                         visitvar = "AVISIT",
+                         prune_0 = TRUE,
+                         deco = std_deco("LBT01"),
+                         .study = list(
+                           actualarm = "ACTARM"
+                         )) {
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
@@ -57,7 +56,11 @@ lbt01_1 <- function(adam_db,
   tbl
 }
 
+<<<<<<< HEAD
 #' @describeIn lbt01_1 `lbt01_1` Layout
+=======
+#' @describeIn lbt01_1_main `lbt01_1` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -109,16 +112,27 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
+<<<<<<< HEAD
 #' @describeIn lbt01_1 `lbt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
+=======
+#' @describeIn lbt01_1_main `lbt01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+>>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   lbt01_1_pre()
+<<<<<<< HEAD
 lbt01_1_pre <- function(adam_db) {
+=======
+lbt01_1_pre <- function(adam_db, ...) {
+>>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -126,3 +140,15 @@ lbt01_1_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+<<<<<<< HEAD
+=======
+
+# `LBT01_1` Pipeline ----
+
+#' `LBT01_1`
+#'
+#' @seealso [lbt01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))
+>>>>>>> origin/main

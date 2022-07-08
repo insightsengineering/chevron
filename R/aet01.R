@@ -2,14 +2,13 @@
 
 #' `AET01` Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.
 #'
-#' Overview of death and summary of adverse events.
-#'
 #' @details
 #'  * Does not remove rows with zero counts by default.
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -19,22 +18,23 @@
 #' db <- syn_test_data() %>%
 #'   aet01_1_pre()
 #'
-#' aet01_1(db, armvar = "ARM")
-aet01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("AET01"),
-                    safety_var = .study$safety_var,
-                    lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL,
-                      safety_var = c(
-                        "FATAL", "SER", "SERWD", "SERDSM",
-                        "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                      )
-                    )) {
+#' aet01_1_main(db, armvar = "ARM")
+aet01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("AET01"),
+                         safety_var = .study$safety_var,
+                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL,
+                           safety_var = c(
+                             "FATAL", "SER", "SERWD", "SERDSM",
+                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                           )
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -68,7 +68,11 @@ aet01_1 <- function(adam_db,
   tbl
 }
 
+<<<<<<< HEAD
 #' @describeIn aet01_1 `aet01_1` Layout
+=======
+#' @describeIn aet01_1_main `aet01_1` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -145,6 +149,7 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
+<<<<<<< HEAD
 #' @describeIn aet01_1 `aet01_1` Preprocessing
 #'
 #' @inheritParams gen_args
@@ -214,12 +219,149 @@ aet01_1_pre <- function(adam_db) {
 
   db
 }
+=======
+#' @describeIn aet01_1_main `aet01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+#' @examples
+#' aet01_1_pre(syn_test_data(), armvar = "ACTARM")
+aet01_1_pre <- function(adam_db, ...) {
+  checkmate::assert_class(adam_db, "dm")
+
+  aet01_1_check(adam_db, ...)
+>>>>>>> origin/main
+
+  db <- adam_db %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      FATAL = .data$AESDTH == "Y",
+      SER = .data$AESER == "Y",
+      SERWD = (.data$AESER == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
+      SERDSM = (.data$AESER == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+      RELSER = (.data$AESER == "Y" & .data$AREL == "Y"),
+      WD = .data$AEACN == "DRUG WITHDRAWN",
+      DSM = .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      REL = .data$AREL == "Y",
+      RELWD = (.data$AREL == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
+      RELDSM = (.data$AREL == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
+      CTC35 = if ("ATOXGR" %in% colnames(.)) .data$ATOXGR %in% c("3", "4", "5"),
+      CTC45 = if ("ATOXGR" %in% colnames(.)) .data$ATOXGR %in% c("4", "5"),
+      SEV = if ("ASEV" %in% colnames(.)) .data$ASEV == "SEVERE",
+      SMQ01 = if ("SMQ01NAM" %in% colnames(.)) .data$SMQ01NAM != "",
+      SMQ02 = if ("SMQ02NAM" %in% colnames(.)) .data$SMQ02NAM != "",
+      CQ01 = if ("CQ01NAM" %in% colnames(.)) .data$CQ01NAM != ""
+    ) %>%
+    mutate(
+      AEDECOD = formatters::with_label(.data$AEDECOD, "Dictionary-Derived Term"),
+      AESDTH = formatters::with_label(.data$AESDTH, "Results in Death"),
+      AEACN = formatters::with_label(.data$AEACN, "Action Taken with Study Treatment"),
+      FATAL = formatters::with_label(.data$FATAL, "AE with fatal outcome"),
+      SER = formatters::with_label(.data$SER, "Serious AE"),
+      SEV = if ("SEV" %in% colnames(.)) formatters::with_label(.data$SEV, "Severe AE (at greatest intensity)"),
+      SERWD = formatters::with_label(.data$SERWD, "Serious AE leading to withdrawal from treatment"),
+      SERDSM = formatters::with_label(.data$SERDSM, "Serious AE leading to dose modification/interruption"),
+      RELSER = formatters::with_label(.data$RELSER, "Related Serious AE"),
+      WD = formatters::with_label(.data$WD, "AE leading to withdrawal from treatment"),
+      DSM = formatters::with_label(.data$DSM, "AE leading to dose modification/interruption"),
+      REL = formatters::with_label(.data$REL, "Related AE"),
+      RELWD = formatters::with_label(.data$RELWD, "Related AE leading to withdrawal from treatment"),
+      RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"),
+      CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(.data$CTC35, "Grade 3-5 AE"),
+      CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(.data$CTC45, "Grade 4/5 AE"),
+      SMQ01 = if ("SMQ01" %in% colnames(.)) {
+        formatters::with_label(
+          .data$SMQ01,
+          aesi_label(.data$SMQ01NAM, .data$SMQ01SC)
+        )
+      },
+      SMQ02 = if ("SMQ02" %in% colnames(.)) {
+        formatters::with_label(
+          .data$SMQ02,
+          aesi_label(.data$SMQ02NAM, .data$SMQ02SC)
+        )
+      },
+      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
+    ) %>%
+    dm_update_zoomed()
+
+  db
+}
+
+#' @describeIn aet01_1_main `aet01_1` Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+aet01_1_check <- function(adam_db,
+                          req_tables = c("adsl", "adae"),
+                          armvar = .study$actualarm,
+                          safety_var = .study$safety_var,
+                          lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                          .study = list(
+                            actualarm = "ACTARM",
+                            lbl_overall = NULL,
+                            safety_var = c(
+                              "FATAL", "SER", "SERWD", "SERDSM",
+                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                            )
+                          ),
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
+
+  msg <- NULL
+
+  corresponding_col <- list(
+    FATAL = "AESDTH",
+    SER = "AESER",
+    SERWD = c("AESER", "AEACN"),
+    SERDSM = c("AESER", "AEACN"),
+    RELSER = c("AESER", "AREL"),
+    WD = "AEACN",
+    DSM = "AEACN",
+    REL = "AREL",
+    RELWD = c("AREL", "AEACN"),
+    RELDSM = c("AREL", "AEACN"),
+    CTC35 = "ATOXGR",
+    CTC45 = "ATOXGR",
+    SEV = "ASEV",
+    SMQ01 = "SMQ01NAM",
+    SMQ02 = "SMQ02NAM",
+    CQ01 = "CQ01NAM"
+  )
+
+  native_col <- setdiff(c(armvar, safety_var), names(corresponding_col))
+  new_col <- unique(unlist(corresponding_col[c(armvar, safety_var)]))
+  adae_layout_col <- "USUBJID"
+  adsl_layout_col <- c("USUBJID", "DTHFL", "DCSREAS")
+
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, adae_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, adsl_layout_col)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg, collapse = "\n  "))
+  }
+}
+
+# `AET01_1` Pipeline ----
+
+#' @seealso [aet01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 # aet01_2 ----
 
-#' `AET01` Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2.
-#'
-#' Overview of death and summary of adverse events with medical concepts.
+#' `AET01` Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2. Overview of death and summary
+#' of adverse events with medical concepts.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -238,25 +380,25 @@ aet01_1_pre <- function(adam_db) {
 #' db <- syn_test_data() %>%
 #'   aet01_2_pre()
 #'
-#' aet01_2(db, armvar = "ARM", prune_0 = FALSE)
-aet01_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("AET01"),
-                    safety_var = .study$safety_var,
-                    lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
-                    medconcept_var = .study$medconcept_var,
-                    lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL,
-                      safety_var = c(
-                        "FATAL", "SER", "SERWD", "SERDSM",
-                        "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                      ),
-                      medconcept_var = c("SMQ01", "SMQ02", "CQ01")
-                    )) {
+#' aet01_2_main(db, armvar = "ARM", prune_0 = FALSE)
+aet01_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("AET01"),
+                         safety_var = .study$safety_var,
+                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         medconcept_var = .study$medconcept_var,
+                         lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL,
+                           safety_var = c(
+                             "FATAL", "SER", "SERWD", "SERDSM",
+                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                           ),
+                           medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -292,7 +434,11 @@ aet01_2 <- function(adam_db,
   tbl
 }
 
+<<<<<<< HEAD
 #' @describeIn aet01_2 `aet01_2` Layout
+=======
+#' @describeIn aet01_2_main `aet01_2` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -385,6 +531,7 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
+<<<<<<< HEAD
 #' @describeIn aet01_2 `aet01_2` Preprocessing
 #'
 #' @inheritParams gen_args
@@ -396,6 +543,22 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
 aet01_2_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
+=======
+#' @describeIn aet01_2_main `aet01_2` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+#' @examples
+#' aet01_2_pre(syn_test_data(), safety_var = "REL")
+aet01_2_pre <- function(adam_db, ...) {
+  checkmate::assert_class(adam_db, "dm")
+
+  aet01_2_check(adam_db, ...)
+
+>>>>>>> origin/main
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -454,3 +617,73 @@ aet01_2_pre <- function(adam_db) {
 
   db
 }
+<<<<<<< HEAD
+=======
+
+#' @describeIn aet01_2_main `aet01_2` Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+aet01_2_check <- function(adam_db,
+                          req_tables = c("adsl", "adae"),
+                          armvar = .study$actualarm,
+                          safety_var = .study$safety_var,
+                          lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                          medconcept_var = .study$medconcept_var,
+                          lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
+                          .study = list(
+                            actualarm = "ACTARM",
+                            lbl_overall = NULL,
+                            safety_var = c(
+                              "FATAL", "SER", "SERWD", "SERDSM",
+                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                            ),
+                            medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                          ),
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
+
+  msg <- NULL
+
+  corresponding_col <- list(
+    FATAL = "AESDTH",
+    SER = "AESER",
+    SERWD = c("AESER", "AEACN"),
+    SERDSM = c("AESER", "AEACN"),
+    RELSER = c("AESER", "AREL"),
+    WD = "AEACN",
+    DSM = "AEACN",
+    REL = "AREL",
+    RELWD = c("AREL", "AEACN"),
+    RELDSM = c("AREL", "AEACN"),
+    CTC35 = "ATOXGR",
+    CTC45 = "ATOXGR",
+    SEV = "ASEV",
+    SMQ01 = "SMQ01NAM",
+    SMQ02 = "SMQ02NAM",
+    CQ01 = "CQ01NAM"
+  )
+
+  native_col <- setdiff(c(armvar, safety_var, medconcept_var), names(corresponding_col))
+  new_col <- unique(unlist(corresponding_col[c(armvar, safety_var)]))
+  adae_layout_col <- "USUBJID"
+  adsl_layout_col <- c("USUBJID", "DTHFL", "DCSREAS")
+
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, adae_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, adsl_layout_col)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg))
+  }
+}
+
+# `AET01_2` Pipeline ----
+
+#' @seealso [aet01_2_main()]
+#' @rdname chevron_tlg-class
+#' @export
+aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+>>>>>>> origin/main

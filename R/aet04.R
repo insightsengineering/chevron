@@ -1,6 +1,7 @@
-#' `AET04` Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1
-#'
-#' The `AET04` table provides an overview of adverse event with the highest NCI CTCAE grade per individual.
+
+#' `AET04` Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.
+#' The `AET04` table provides an
+#' overview of adverse event with the highest NCI CTCAE grade per individual.
 #'
 #' @inheritParams gen_args
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
@@ -13,8 +14,6 @@
 #'  * Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
 #'  Grade is sorted by severity.
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -23,9 +22,15 @@
 #' db <- syn_test_data() %>%
 #'   aet04_1_pre()
 #'
+<<<<<<< HEAD
 #' aet04_1(db)
 #'
 #' aet04_1(
+=======
+#' aet04_1_main(db)
+#'
+#' aet04_1_main(
+>>>>>>> origin/main
 #'   db,
 #'   prune_0 = FALSE,
 #'   lbl_overall = "All Patients",
@@ -35,6 +40,7 @@
 #'     "Grade 3-5" = c("3", "4", "5")
 #'   )
 #' )
+<<<<<<< HEAD
 aet04_1 <- function(adam_db,
                     armvar = .study$actualarm,
                     group_grades = .study$group_grades,
@@ -46,6 +52,19 @@ aet04_1 <- function(adam_db,
                       lbl_overall = NULL,
                       group_grades = NULL
                     )) {
+=======
+aet04_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         group_grades = .study$group_grades,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET04"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL,
+                           group_grades = NULL
+                         )) {
+>>>>>>> origin/main
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
@@ -89,7 +108,11 @@ aet04_1 <- function(adam_db,
   tbl_sorted
 }
 
+<<<<<<< HEAD
 #' @describeIn aet04_1 `aet04_1` Layout
+=======
+#' @describeIn aet04_1_main `aet04_1` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -164,7 +187,11 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
+<<<<<<< HEAD
 #' @describeIn aet04_1 `aet04_1` Preprocessing
+=======
+#' @describeIn aet04_1_main `aet04_1` Preprocessing
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -181,3 +208,15 @@ aet04_1_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+<<<<<<< HEAD
+=======
+
+# `AET04_1` Pipeline ----
+
+#' `AET04_1`
+#'
+#' @seealso [aet04_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))
+>>>>>>> origin/main

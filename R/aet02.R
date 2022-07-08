@@ -11,8 +11,7 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
-#'
-#' @importFrom dplyr filter
+#'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
 #'
 #' @export
 #'
@@ -21,16 +20,20 @@
 #'
 #' db <- syn_test_data() %>%
 #'   aet02_1_pre()
+<<<<<<< HEAD
 #'
 #' aet02_1(adam_db = db) %>% head(15)
 #'
 #' # Additional Examples
 #' db_s <- db %>%
 #'   dm_filter(adsl, SEX == "F")
+=======
+>>>>>>> origin/main
 #'
-#' aet02_1(adam_db = db_s) %>% head()
+#' aet02_1_main(adam_db = db) %>% head(15)
 #'
 #' # alternatively adam_db also accepts a names list
+<<<<<<< HEAD
 #' aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
 #'
 #' aet02_1(db, lbl_overall = "All Patients") %>% head()
@@ -43,6 +46,20 @@ aet02_1 <- function(adam_db,
                       actualarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
+=======
+#' aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
+#'
+#' aet02_1_main(db, lbl_overall = "All Patients") %>% head()
+aet02_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
+>>>>>>> origin/main
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_1_lyt(
@@ -70,7 +87,11 @@ aet02_1 <- function(adam_db,
   tbl_sorted
 }
 
+<<<<<<< HEAD
 #' @describeIn aet02_1 `aet02_1` Layout
+=======
+#' @describeIn aet02_1_main `aet02_1` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
@@ -130,28 +151,84 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("  ", lbl_aedecod))
 }
 
+<<<<<<< HEAD
 #' @describeIn aet02_1 `aet02_1` Preprocessing
 #'
 #' @inheritParams gen_args
+=======
+#' @describeIn aet02_1_main `aet02_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+>>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet02_1_pre()
+<<<<<<< HEAD
 aet02_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
+=======
+aet02_1_pre <- function(adam_db, ...) {
+  checkmate::assert_class(adam_db, "dm")
+
+  aet02_1_check(adam_db, ...)
+
+>>>>>>> origin/main
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed() %>%
+<<<<<<< HEAD
     dm_explicit_na(na_level = "No Coding available")
 }
+=======
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
+    dm_update_zoomed()
+}
 
-# Version2 ----
+#' @describeIn aet02_1_main `aet02_1` Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+aet02_1_check <- function(adam_db,
+                          req_tables = c("adsl", "adae"),
+                          armvar = .study$actualarm,
+                          .study = list(
+                            actualarm = "ACTARM"
+                          ),
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
 
-#' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2
+  msg <- NULL
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(armvar, "USUBJID", "AEBODSYS", "AEDECOD")))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, "USUBJID")))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg, collapse = "\n  "))
+  }
+}
+
+# `AET02_1` Pipeline ----
+
+#' @seealso [aet02_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "adae"))
+>>>>>>> origin/main
+
+
+#' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.
 #'
 #' The `AET02_2` table provides an overview of the number of patients experiencing adverse events and the number of
 #' adverse events categorized by Body System, High Level Term and Dictionary-Derived Term.
@@ -165,8 +242,7 @@ aet02_1_pre <- function(adam_db) {
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 #'  frequencies.
-#'
-#' @importFrom dplyr filter
+#'  * Missing values of `AEBODSYS`, `AEHLT` and `AEDECOD` in `adae` are labeled by `No Coding available`.
 #'
 #' @export
 #'
@@ -176,9 +252,10 @@ aet02_1_pre <- function(adam_db) {
 #' db <- syn_test_data() %>%
 #'   aet02_2_pre()
 #'
-#' aet02_2(db) %>% head(15)
+#' aet02_2_main(db) %>% head(15)
 #'
 #' # Additional Examples
+<<<<<<< HEAD
 #' aet02_2(db, lbl_overall = "All Patients") %>% head()
 aet02_2 <- function(adam_db,
                     armvar = .study$actualarm,
@@ -189,6 +266,18 @@ aet02_2 <- function(adam_db,
                       actualarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
+=======
+#' aet02_2_main(db, lbl_overall = "All Patients") %>% head()
+aet02_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
+>>>>>>> origin/main
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   lyt <- aet02_2_lyt(
@@ -220,7 +309,11 @@ aet02_2 <- function(adam_db,
   tbl_sorted
 }
 
+<<<<<<< HEAD
 #' @describeIn aet02_2 `aet02_2` Layout
+=======
+#' @describeIn aet02_2_main `aet02_2` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -302,31 +395,59 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("    ", lbl_aedecod))
 }
 
+<<<<<<< HEAD
 #' @describeIn aet02_2 `aet02_2` Preprocessing
 #'
 #' @inheritParams gen_args
+=======
+#' @describeIn aet02_2_main `aet02_2` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+>>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet02_2_pre()
+<<<<<<< HEAD
 aet02_2_pre <- function(adam_db) {
+=======
+aet02_2_pre <- function(adam_db, ...) {
+>>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed() %>%
+<<<<<<< HEAD
     dm_explicit_na(na_level = "No Coding available")
+=======
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
+      AEHLT = tern::explicit_na(tern::sas_na(.data$AEHLT), label = "No Coding available"),
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
+    dm_update_zoomed()
+>>>>>>> origin/main
 }
 
-# Version 3 ----
+# `AET02_2` Pipeline ----
 
-#' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3
+#' `AET02_2`
 #'
-#' The `AET02_3` table provides an overview of the number of patients experiencing adverse events and the number of
-#' adverse events categorized by Dictionary-Derived Term.
+#' @seealso [aet02_2_main()]
+#' @rdname chevron_tlg-class
+#' @export
+aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "adae"))
+
+#' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.
+#'
+#'  The `AET02_3` table provides an overview of the number of patients experiencing adverse events and the number of
+#'  adverse events categorized by Dictionary-Derived Term.
 #'
 #' @inheritParams gen_args
 #'
@@ -336,8 +457,7 @@ aet02_2_pre <- function(adam_db) {
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code by highest overall frequencies.
-#'
-#' @importFrom dplyr filter
+#'  * Missing values of `AEDECOD` in `aead` are labeled by `No Coding available`.
 #'
 #' @export
 #'
@@ -347,6 +467,7 @@ aet02_2_pre <- function(adam_db) {
 #' db <- syn_test_data() %>%
 #'   aet02_3_pre()
 #'
+<<<<<<< HEAD
 #' aet02_3(adam_db = db) %>% head()
 #'
 #' aet02_3(db, lbl_overall = "All Patients") %>% head()
@@ -359,6 +480,20 @@ aet02_3 <- function(adam_db,
                       actualarm = "ACTARM",
                       lbl_overall = NULL
                     )) {
+=======
+#' aet02_3_main(adam_db = db) %>% head()
+#'
+#' aet02_3_main(db, lbl_overall = "All Patients") %>% head()
+aet02_3_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("AET02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
+>>>>>>> origin/main
   lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -380,11 +515,16 @@ aet02_3 <- function(adam_db,
   tbl_sorted
 }
 
+<<<<<<< HEAD
 #' @describeIn aet02_3 `aet02_3` Layout
+=======
+#' @describeIn aet02_3_main `aet02_3` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -402,7 +542,8 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -419,7 +560,11 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
     append_topleft(lbl_aedecod)
 }
 
+<<<<<<< HEAD
 #' @describeIn aet02_3 `aet02_3` Preprocessing
+=======
+#' @describeIn aet02_3_main `aet02_3` Preprocessing
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -435,5 +580,23 @@ aet02_3_pre <- function(adam_db) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed() %>%
+<<<<<<< HEAD
     dm_explicit_na(na_level = "No Coding available")
 }
+=======
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+    ) %>%
+    dm_update_zoomed()
+}
+
+# `AET02_3` Pipeline ----
+
+#' `AET02_3`
+#'
+#' @seealso [aet02_3_main()]
+#' @rdname chevron_tlg-class
+#' @export
+aet02_3 <- chevron_tlg(aet02_3_main, aet02_3_pre, adam_datasets = c("adsl", "adae"))
+>>>>>>> origin/main

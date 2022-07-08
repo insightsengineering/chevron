@@ -1,6 +1,8 @@
-#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1
+
+#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
 #'
-#' The `VST01` table provides an overview of the Vital Sign values and its change from baseline of each respective arm
+#' The `VST01` table provides an
+#' overview of the Vital Sign values and its change from baseline of each respective arm
 #' over the course of the trial.
 #'
 #' @inheritParams gen_args
@@ -20,8 +22,6 @@
 #'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
 #'  by `AVISIT`. Re-level to customize order
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -30,19 +30,19 @@
 #' db <- syn_test_data() %>%
 #'   vst01_1_pre()
 #'
-#' vst01_1(db)
-#' vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-vst01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    summaryvars = .study$evo_vars,
-                    summaryvars_lbls = var_labels_for(adam_db$advs, summaryvars),
-                    visitvar = "AVISIT", # or ATPTN
-                    prune_0 = TRUE,
-                    deco = std_deco("VST01"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      evo_vars = c("AVAL", "CHG")
-                    )) {
+#' vst01_1_main(db)
+#' vst01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
+vst01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         summaryvars = .study$evo_vars,
+                         summaryvars_lbls = var_labels_for(adam_db$advs, summaryvars),
+                         visitvar = "AVISIT", # or ATPTN
+                         prune_0 = TRUE,
+                         deco = std_deco("VST01"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           evo_vars = c("AVAL", "CHG")
+                         )) {
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 
@@ -67,7 +67,11 @@ vst01_1 <- function(adam_db,
   tbl
 }
 
+<<<<<<< HEAD
 #' @describeIn vst01_1 `vst01_1` Layout
+=======
+#' @describeIn vst01_1_main `vst01_1` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -122,16 +126,27 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste(" ", lbl_avisit))
 }
 
+<<<<<<< HEAD
 #' @describeIn vst01_1 `vst01_1` Preprocessing
 #'
 #' @inheritParams gen_args
+=======
+#' @describeIn vst01_1_main `vst01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+>>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   vst01_1_pre()
+<<<<<<< HEAD
 vst01_1_pre <- function(adam_db) {
+=======
+vst01_1_pre <- function(adam_db, ...) {
+>>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -139,3 +154,15 @@ vst01_1_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+<<<<<<< HEAD
+=======
+
+# `VST01_1` Pipeline ----
+
+#' `VST01_1`
+#'
+#' @seealso [vst01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))
+>>>>>>> origin/main

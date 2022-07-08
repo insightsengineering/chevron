@@ -9,6 +9,7 @@ gen_args(
   armvar,
   lbl_overall,
   prune_0,
+  req_tables,
   deco,
   .study,
   group,
@@ -25,6 +26,8 @@ gen_args(
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
+\item{req_tables}{(\code{character}) names of the required tables.}
+
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
@@ -33,7 +36,7 @@ gen_args(
 
 \item{tlgfname}{(\code{character}) function name of tlg-function}
 
-\item{pmap}{('data frame') preprocessing map, see \code{std_pmap} for the required format}
+\item{pmap}{(\verb{data frame}) preprocessing map, see \code{std_pmap} for the required format}
 }
 \description{
 General Argument Name Convention

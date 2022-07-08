@@ -15,10 +15,13 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
   }
 }
 
-#' DST01 Table 1 (Default) Patient Disposition Table 1
+
+# DST01_1 ----
+
+#' DST01 Table 1 (Default) Patient Disposition Table 1.
 #'
-#' The DST01 Disposition Table provides an overview of patients study completion. For patients who discontinued the
-#' study a reason is provided.
+#' The DST01 Disposition Table provides an overview of patients
+#' study completion. For patients who discontinued the study a reason is provided.
 #'
 #' @inheritParams gen_args
 #' @param armvar (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
@@ -38,8 +41,6 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -48,6 +49,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' db <- syn_test_data() %>%
 #'   dst01_1_pre()
 #'
+<<<<<<< HEAD
 #' dst01_1(db)
 dst01_1 <- function(adam_db,
                     armvar = .study$planarm,
@@ -62,6 +64,22 @@ dst01_1 <- function(adam_db,
                       disc_reason_var = "DCSREAS",
                       status_var = "EOSSTT"
                     )) {
+=======
+#' dst01_1_main(db)
+dst01_1_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         status_var = .study$status_var,
+                         disc_reason_var = .study$disc_reason_var,
+                         prune_0 = TRUE,
+                         lbl_overall = .study$lbl_overall,
+                         deco = std_deco("DST01"),
+                         .study = list(
+                           planarm = "ARM",
+                           lbl_overall = "All Patients",
+                           disc_reason_var = "DCSREAS",
+                           status_var = "EOSSTT"
+                         )) {
+>>>>>>> origin/main
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -107,7 +125,11 @@ dst01_1 <- function(adam_db,
   tbl
 }
 
+<<<<<<< HEAD
 #' @describeIn dst01_1 `dst01_1` Layout
+=======
+#' @describeIn dst01_1_main `dst01_1` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -185,23 +207,51 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   list(layout_table_completed, layout_table_other)
 }
 
+<<<<<<< HEAD
 #' @describeIn dst01_1 `dst01_1` Preprocessing
 #'
 #' @inheritParams gen_args
+=======
+#' @describeIn dst01_1_main `dst01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+>>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   dst01_1_pre()
+<<<<<<< HEAD
 dst01_1_pre <- function(adam_db) {
   adam_db
 }
 
 #' DST01 Table 2 (Supplementary) Patient Disposition Table 2
+=======
+dst01_1_pre <- function(adam_db, ...) {
+  adam_db
+}
+
+# `DST01_1` Pipeline ----
+
+#' `DST01_1`
 #'
-#' The DST01_2 Disposition Table provides an overview of patients study completion. For patients who discontinued the
-#' study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
+#' @seealso [dst01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
+
+
+# DST01_2 ----
+
+#' DST01 Table 2 (Supplementary) Patient Disposition Table 2.
+>>>>>>> origin/main
+#'
+#' The DST01_2 Disposition Table provides an overview of
+#' patients study completion. For patients who discontinued the study, the reason provided is categorized as "Safety" or
+#' "Non-Safety" issue.
 #'
 #' @inheritParams gen_args
 #'
@@ -222,9 +272,6 @@ dst01_1_pre <- function(adam_db) {
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
-#' @importFrom dplyr filter case_when mutate
-#' @importFrom rlang sym
-#'
 #' @export
 #'
 #' @examples
@@ -233,6 +280,7 @@ dst01_1_pre <- function(adam_db) {
 #' db <- syn_test_data() %>%
 #'   dst01_2_pre()
 #'
+<<<<<<< HEAD
 #' dst01_2(db)
 #' dst01_2(db, lbl_overall = NULL)
 dst01_2 <- function(adam_db,
@@ -248,6 +296,23 @@ dst01_2 <- function(adam_db,
                       disc_reason_var = "DCSREAS",
                       status_var = "EOSSTT"
                     )) {
+=======
+#' dst01_2_main(db)
+#' dst01_2_main(db, lbl_overall = NULL)
+dst01_2_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         status_var = .study$status_var,
+                         disc_reason_var = .study$disc_reason_var,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("DST01"),
+                         .study = list(
+                           planarm = "ARM",
+                           lbl_overall = "All Patients",
+                           disc_reason_var = "DCSREAS",
+                           status_var = "EOSSTT"
+                         )) {
+>>>>>>> origin/main
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -291,7 +356,11 @@ dst01_2 <- function(adam_db,
   tbl
 }
 
+<<<<<<< HEAD
 #' @describeIn dst01_2 `dst01_2` Layout
+=======
+#' @describeIn dst01_2_main `dst01_2` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -372,6 +441,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
   list(completed = layout_table_completed, other = layout_table_other)
 }
 
+<<<<<<< HEAD
 #' @describeIn dst01_2 `dst01_2` Preprocessing
 #'
 #' @inheritParams gen_args
@@ -398,9 +468,50 @@ dst01_2_pre <- function(adam_db,
 }
 
 #' DST01 Table 3 (Supplementary) Patient Disposition Table 3
+=======
+#' @describeIn dst01_2_main `dst01_2` Preprocessing
 #'
-#' The DST01_3 Disposition Table provides an overview of patients study treatment status.
-#' For patients who discontinued the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
+#' @inheritParams gen_args
+#' @param reason (`string`) the variable name for variable with the reason for discontinuation.
+#' @param ... not used.
+>>>>>>> origin/main
+#'
+#' @export
+#'
+#' @examples
+#' syn_test_data() %>%
+#'   dst01_2_pre()
+dst01_2_pre <- function(adam_db,
+                        reason = .study$disc_reason_var,
+                        .study = list(disc_reason_var = "DCSREAS"),
+                        ...) {
+  checkmate::assert_class(adam_db, "dm")
+
+  adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(reasonGP = case_when(
+      .data[[reason]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      .data[[reason]] == "<Missing>" ~ "<Missing>",
+      TRUE ~ "Non-safety"
+    )) %>%
+    dm_update_zoomed()
+}
+
+# `DST01_2` Pipeline ----
+
+#' `DST01_2`
+#'
+#' @seealso [dst01_2_main()]
+#' @rdname chevron_tlg-class
+#' @export
+dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
+
+# DST01_3 ----
+
+#' DST01 Table 3 (Supplementary) Patient Disposition Table 3.
+#'
+#' The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
+#' the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 #'
 #' @inheritParams gen_args
 #'
@@ -424,9 +535,6 @@ dst01_2_pre <- function(adam_db,
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
-#' @importFrom dplyr filter case_when mutate
-#' @importFrom rlang sym
-#'
 #' @export
 #'
 #' @examples
@@ -435,6 +543,7 @@ dst01_2_pre <- function(adam_db,
 #' db <- syn_test_data() %>%
 #'   dst01_3_pre()
 #'
+<<<<<<< HEAD
 #' dst01_3(db)
 #' dst01_3(db, lbl_overall = NULL)
 dst01_3 <- function(adam_db,
@@ -451,6 +560,24 @@ dst01_3 <- function(adam_db,
                       lbl_overall = "All Patients",
                       status_var = "EOSSTT"
                     )) {
+=======
+#' dst01_3_main(db)
+#' dst01_3_main(db, lbl_overall = NULL)
+dst01_3_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         status = .study$status_var,
+                         disc_reason_var = .study$disc_reason_var,
+                         status_treatment = "EOTSTT",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("DST01"),
+                         .study = list(
+                           planarm = "ARM",
+                           disc_reason_var = "DCSREAS",
+                           lbl_overall = "All Patients",
+                           status_var = "EOSSTT"
+                         )) {
+>>>>>>> origin/main
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status,
@@ -524,7 +651,11 @@ dst01_3 <- function(adam_db,
   tbl
 }
 
+<<<<<<< HEAD
 #' @describeIn dst01_3 `dst01_3` Layout
+=======
+#' @describeIn dst01_3_main `dst01_3` Layout
+>>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -584,10 +715,18 @@ dst01_3_lyt <- function(armvar = .study$planarm,
     )
 }
 
+<<<<<<< HEAD
 #' @describeIn dst01_3 `dst01_3` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
+=======
+#' @describeIn dst01_3_main `dst01_3` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param reason (`character`) the variable name for variable with the reason for discontinuation.
+#' @param ... not used.
+>>>>>>> origin/main
 #'
 #' @export
 #'
@@ -596,7 +735,12 @@ dst01_3_lyt <- function(armvar = .study$planarm,
 #'   dst01_3_pre()
 dst01_3_pre <- function(adam_db,
                         reason = .study$disc_reason_var,
+<<<<<<< HEAD
                         .study = list(disc_reason_var = "DCSREAS")) {
+=======
+                        .study = list(disc_reason_var = "DCSREAS"),
+                        ...) {
+>>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -608,3 +752,15 @@ dst01_3_pre <- function(adam_db,
     )) %>%
     dm_update_zoomed()
 }
+<<<<<<< HEAD
+=======
+
+# `DST01_3` Pipeline ----
+
+#' `DST01_3`
+#'
+#' @seealso [dst01_3_main()]
+#' @rdname chevron_tlg-class
+#' @export
+dst01_3 <- chevron_tlg(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))
+>>>>>>> origin/main

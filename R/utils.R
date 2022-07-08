@@ -20,6 +20,7 @@ var_labels_for <- function(df, vars) {
 #'
 #' @export
 std_deco <- function(id, ...) {
+<<<<<<< HEAD
   if (!is.null(gds_data[[id]])) {
     list(
       title = gds_data[[id]]$`Standard titles`[1],
@@ -33,6 +34,13 @@ std_deco <- function(id, ...) {
       main_footer = "Footnotes go here"
     )
   }
+=======
+  list(
+    title = "",
+    subtitles = "",
+    main_footer = ""
+  )
+>>>>>>> origin/main
 }
 
 #' Convert Y N values used in CDISC to R boolean object
@@ -49,6 +57,8 @@ std_deco <- function(id, ...) {
 #' }
 bol_YN <- function(x) { # nolint
 
+  .Deprecated(new = "apply_reformat", package = "dunlin")
+
   if (is.logical(x)) {
     x
   } else {
@@ -58,80 +68,22 @@ bol_YN <- function(x) { # nolint
   }
 }
 
-#' Cut by group
-#'
-#' @param df (`dataframe`) with a column of data to be cut and a column specifying the group of each observation.
-#' @param col_data (`string`) the column containing the data to be cut.
-#' @param col_group (`string`) the column containing the names of the groups according to which the data should be
-#'   split.
-#' @param group  (`nested list`) providing for each parameter value that should be analyzed in a categorical way: the
-#'   name of the parameter (`string`), a series of breakpoints (`vector`) where the first breakpoints is typically
-#'   `-Inf` and the last `Inf`, and a series of name which will describe each category (`vector`).
-#' @param new_col (`string`) the name of the new column in which the cut label should he stored.
-#' @param as_factor (`logical`) if TRUE, the new column is of type `factor` else `character`.
-#'
-#' @export
-#'
-#' @examples
-#' group <- list(
-#'   list(
-#'     "Dose administered during constant dosing interval",
-#'     c(-Inf, 700, 900, 1200, Inf),
-#'     c("<700", "700-900", "900-1200", ">1200")
-#'   ),
-#'   list(
-#'     "Total dose administered",
-#'     c(-Inf, 5000, 7000, 9000, Inf),
-#'     c("<5000", "5000-7000", "7000-9000", ">9000")
-#'   )
-#' )
-#'
-#' library(scda)
-#' sd <- synthetic_cdisc_data("rcd_2021_03_22")
-#' adsl <- sd$adsl
-#' adex <- dplyr::mutate(sd$adex, ANL01FL = "Y")
-#'
-#' adex_gp <- cut_by_group(adex, "AVAL", "PARAM", group, "AVAL_gp")
-#'
-#' head(adex_gp[, c("PARAM", "AVAL", "AVAL_gp")])
-cut_by_group <- function(df,
-                         col_data,
-                         col_group,
-                         group,
-                         new_col,
-                         as_factor = FALSE) {
-  df[new_col] <- "<Missing>"
-
-  for (g in group) {
-    selected_row <- df[[col_group]] == g[[1]]
-
-    df[selected_row, new_col] <- as.character(cut(df[[col_data]][selected_row], breaks = g[[2]], labels = g[[3]]))
-  }
-
-  if (as_factor) {
-    cut_levels <- c(unlist(lapply(group, "[[", 3)), "<Missing>")
-
-    df[, new_col] <- factor(df[[new_col]], levels = cut_levels)
-  }
-
-  df
-}
-
 #' Reorder PARAM and PARAMCD Levels Simultaneously
 #'
 #' @param df data.frame with PARAM and PARAMCD variables
 #' @param paramcd_levels ordered levels of PARAMCD
-#'
-#' @importFrom dplyr mutate
 #'
 #' @export
 #'
 #' @examples
 #' df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))
 #'
+#' \dontrun{
 #' str(reorder_levels_params(df, paramcd_levels = c("B", "A", "C")))
 #' str(reorder_levels_params(df, paramcd_levels = c("B", "A")))
+#' }
 reorder_levels_params <- function(df, paramcd_levels) {
+  .Deprecated(new = "co_relevels", package = "dunlin")
 
   # todo throw errors
   stopifnot(
@@ -155,6 +107,7 @@ reorder_levels_params <- function(df, paramcd_levels) {
   df
 }
 
+<<<<<<< HEAD
 #' Pivot wider a data frame while preserving labels.
 #'
 #' @param df (`data.frame`) to pivot.
@@ -195,6 +148,8 @@ pivot_wider_labels <- function(df,
   df_wide
 }
 
+=======
+>>>>>>> origin/main
 
 basic_table_deco <- function(deco, ...) {
   checkmate::assert_set_equal(names(deco), c("title", "subtitles", "main_footer"))
@@ -287,7 +242,8 @@ syn_test_data <- function() {
       c("<5000", "5000-7000", "7000-9000", ">9000")
     )
   )
-  sd$adex <- cut_by_group(sd$adex, "AVAL", "PARAM", group, "AVALCAT1", as_factor = TRUE)
+  sd$adex <- dunlin::cut_by_group(as.data.frame(sd$adex), "AVAL", "PARAM", group, "AVALCAT1")
+  sd$adex$AVALCAT1 <- forcats::fct_explicit_na(sd$adex$AVALCAT1, na_level = "<Missing>") # nolint
 
   # useful for dmt01
   adsub <- sd$adsub
