@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9015</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9017</span>
       </span>
     </div>
 
@@ -51,12 +51,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" href="https://insightsengineering.github.io/chevron/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -82,7 +76,7 @@
                         <h4 data-toc-skip class="author">Adrian
 Waddell</h4>
             
-            <h4 data-toc-skip class="date">2022-06-28</h4>
+            <h4 data-toc-skip class="date">2022-07-08</h4>
       
       
       <div class="hidden name"><code>chevron.Rmd</code></div>
@@ -96,21 +90,32 @@ Waddell</h4>
 </h3>
 <p>The <code>chevron</code> R package provides functions to produce
 standard tables, listings and graphs (TLGs) used to analyze and report
-clinical trials data. We refer to these functions as
-<em>tlg-functions</em>. The <em>tlg-functions</em> in
-<code>chevron</code> use other packages to produce the final outputs,
-for example <code>rtables</code> and <code>tern</code> are used to
-create listings and tables, and <code>ggplot2</code>,
-<code>lattice</code>, and <code>grid</code> are used to create
-graphs.</p>
+clinical trials data. The ensemble of function used to produce a
+particular output are stored in an <code>chevron_tlg</code> object of
+class <code>S4</code> also called <em>pipelines</em>. Each standard
+output is associated with one <em>pipeline</em>. They contain the
+following objects: * A <code>main</code> function also refereed to as
+<em>tlg_function</em>. * A <code>preprocess</code> function. * A
+<code>postprocess</code> function * A <code>adam_dataset</code>
+character vector of the name of the <code>AdAM</code> datasets required
+to create the output.</p>
+<div class="section level4">
+<h4 id="tlg-functions">
+<em>tlg-functions</em><a class="anchor" aria-label="anchor" href="#tlg-functions"></a>
+</h4>
+<p>The <em>tlg-functions</em> in <code>chevron</code> use other packages
+to produce the final outputs, for example <code>rtables</code> and
+<code>tern</code> are used to create listings and tables, and
+<code>ggplot2</code>, <code>lattice</code>, and <code>grid</code> are
+used to create graphs.</p>
 <p><em>tlg-functions</em> in <code>chevron</code> such as
-<code>dmt01_1</code>, <code>aet02_1</code>, <code>aet02_2</code> have
-the following properties:</p>
+<code>dmt01_1_main</code>, <code>aet02_1_main</code>,
+<code>aet02_2_main</code> have the following properties:</p>
 <ol style="list-style-type: decimal">
 <li>they produce a narrow defined output (currently standards in Roche
 GDS). Note, that the naming convention
-<code>&lt;gds template id&gt;_&lt;i&gt;</code> indicates that a Roche
-GDS defined standard may have different implementations. Or,
+<code>&lt;gds template id&gt;_&lt;i&gt;_main</code> indicates that a
+Roche GDS defined standard may have different implementations. Or,
 alternatively, a GDS template id can be regarded as a <em>guideline</em>
 and the function name in <code>chevron</code> as a
 <em>standard</em>.</li>
@@ -124,15 +129,60 @@ collection of ADaM datasets (<code>ADSL</code>, <code>ADAE</code>,
 vignette in this package for more details.</li>
 <li>have a <code>.study</code> argument, read the <em>The .study
 argument</em> vignette for more detail.</li>
+<li>have the <code>...</code> argument to facilitate their incorporation
+in a pipeline.</li>
 </ol>
+</div>
+<div class="section level4">
+<h4 id="pre-processing">
+<em>pre processing</em><a class="anchor" aria-label="anchor" href="#pre-processing"></a>
+</h4>
+<p>The <em>preprocess</em> functions in <code>chevron</code> use
+<code>dm</code> and <code>dunlin</code> packages to process
+<code>dm</code> object and turn them into a suitable input for
+<em>tlg-functions</em>. The pre processing step typically includes
+checks that will ensure that the <code>dm</code> input can be later
+processed by the <em>tlg-functions</em>.</p>
+<p><em>preprocess</em> in chevron such as <code>dmt01_1_pre</code>,
+<code>aet02_1_pre</code>, <code>aet02_2_pre</code> have the following
+properties: 1. they return a <code>dm</code> object amenable to
+processing by a <em>tlg-functions</em> or return rapidly an
+understandable error message. 1. have very few arguments to modify the
+standard. 1. have always the first argument <code>adam_db</code> which
+is the collection of ADaM datasets (<code>ADSL</code>,
+<code>ADAE</code>, <code>ADRS</code>, etc.). Please read the <em>The
+adam_db Argument</em> vignette in this package for more details. 1. can
+have the <code>.study</code> argument and other argument of the
+corresponding <em>tlg-functions</em> as they may inform the function on
+the column that will be required and facilitate the checking process. 1.
+have the <code>...</code> argument to facilitate their incorporation in
+a pipeline.</p>
+</div>
+<div class="section level4">
+<h4 id="post-processing">
+<em>post processing</em>`<a class="anchor" aria-label="anchor" href="#post-processing"></a>
+</h4>
+<p>Post processing function are not provided but can be created by the
+user.</p>
+</div>
+<div class="section level4">
+<h4 id="adam_dataset">
+<em>adam_dataset</em><a class="anchor" aria-label="anchor" href="#adam_dataset"></a>
+</h4>
+<p>The <code>adam_dataset</code> stores the name(s) of the data sets in
+the <code>AdAM</code> <code>dm</code> object that will be used in the
+process. This information is important when the <em>pipeline</em> is
+interfaced with other processes from the <code>chevron</code> ecosystem
+of packages such as <code>citril</code>.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="example-aet02">Example AET02<a class="anchor" aria-label="anchor" href="#example-aet02"></a>
 </h3>
 <p>For example, the GDS template <code>aet02</code> is implemented in
-<code>chevron</code> with <em>tlg-functions</em> that have the name
-<code>aet02_*</code>. The function documentation which is accessible
-with the <code>help</code> function, e.g. <code><a href="../reference/aet02_1.html">help('aet02_1')</a></code>
+<code>chevron</code> with the <em>pipeline</em> that have the name
+<code>aet02_*</code>. The object documentation which is accessible with
+the <code>help</code> function, e.g. <code><a href="../reference/chevron_tlg-class.html">help('aet02_1')</a></code>
 documents what is particular in the <code>_1</code> implementation.</p>
 <p>We first define the data and put it in a <code>dm</code> object, you
 can find more details about this in the <em>adam_db</em> vignette.</p>
@@ -153,24 +203,18 @@ can find more details about this in the <em>adam_db</em> vignette.</p>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"ASTDTM"</span>, <span class="st">"AETERM"</span>, <span class="st">"AESEQ"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://cynkra.github.io/dm/reference/dm.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://cynkra.github.io/dm/reference/deprecated.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: `validate_dm()` was deprecated in dm 0.3.0.</span></span>
+<span><span class="co">#&gt; Please use `dm_validate()` instead.</span></span></code></pre></div>
 <p>A the <code>aet02_1</code> output is then created as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Registered S3 method overwritten by 'tern':</span></span>
 <span><span class="co">#&gt;   method   from </span></span>
 <span><span class="co">#&gt;   tidy.glm broom</span></span>
-<span></span>
-<span><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/preprocess_data.html">preprocess_data</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/aet02_1.html">aet02_1</a></span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Adverse Events: {Specify Population}</span></span>
-<span><span class="co">#&gt; Protocol: {{protocol}}</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;   Dictionary-Derived Term                                     (N=134)       (N=134)        (N=132)    </span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet02_1</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; MedDRA System Organ Class                                    A: Drug X    B: Placebo    C: Combination</span></span>
+<span><span class="co">#&gt;   MedDRA Preferred Term                                       (N=134)       (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt; Total number of patients with at least one adverse event     97 (72.4%)   103 (76.9%)    102 (77.3%)  </span></span>
 <span><span class="co">#&gt; Overall total number of events                                  469           513            599      </span></span>
@@ -189,10 +233,6 @@ can find more details about this in the <em>adam_db</em> vignette.</p>
 <span><span class="co">#&gt;   Total number of events                                        100           88             110      </span></span>
 <span><span class="co">#&gt;   dcd D.1.1.1.1                                              40 (29.9%)   32 (23.9%)      43 (32.6%)  </span></span>
 <span><span class="co">#&gt;   dcd D.1.1.4.2                                              37 (27.6%)   37 (27.6%)      41 (31.1%)  </span></span>
-<span><span class="co">#&gt; cl C.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         36           43              57      </span></span>
-<span><span class="co">#&gt;   dcd C.2.1.2.1                                              26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
 <span><span class="co">#&gt; cl D.2                                                                                                </span></span>
 <span><span class="co">#&gt;   Total number of patients with at least one adverse event   35 (26.1%)   50 (37.3%)      49 (37.1%)  </span></span>
 <span><span class="co">#&gt;   Total number of events                                         45           62              63      </span></span>
@@ -201,79 +241,90 @@ can find more details about this in the <em>adam_db</em> vignette.</p>
 <span><span class="co">#&gt;   Total number of patients with at least one adverse event   37 (27.6%)   40 (29.9%)      36 (27.3%)  </span></span>
 <span><span class="co">#&gt;   Total number of events                                         43           46              51      </span></span>
 <span><span class="co">#&gt;   dcd B.1.1.1.1                                              37 (27.6%)   40 (29.9%)      36 (27.3%)  </span></span>
+<span><span class="co">#&gt; cl C.2                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         36           43              57      </span></span>
+<span><span class="co">#&gt;   dcd C.2.1.2.1                                              26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
 <span><span class="co">#&gt; cl C.1                                                                                                </span></span>
 <span><span class="co">#&gt;   Total number of patients with at least one adverse event   32 (23.9%)   38 (28.4%)      35 (26.5%)  </span></span>
 <span><span class="co">#&gt;   Total number of events                                         43           55              53      </span></span>
-<span><span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)  </span></span>
-<span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span></span></code></pre></div>
+<span><span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)</span></span></code></pre></div>
+<p>The function associated with a particular slot can be retrieved with
+the corresponding method: <code>get_main</code>,
+<code>get_preprocess</code>and <code>get_postprocess</code></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_main.html">get_main</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; function (adam_db, armvar = .study$actualarm, lbl_overall = .study$lbl_overall, </span></span>
+<span><span class="co">#&gt;     prune_0 = TRUE, deco = std_deco("AET02"), .study = list(actualarm = "ACTARM", </span></span>
+<span><span class="co">#&gt;         lbl_overall = NULL)) </span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     dbsel &lt;- get_db_data(adam_db, "adsl", "adae")</span></span>
+<span><span class="co">#&gt;     lyt &lt;- aet02_1_lyt(armvar = armvar, lbl_overall = lbl_overall, </span></span>
+<span><span class="co">#&gt;         deco = deco)</span></span>
+<span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
+<span><span class="co">#&gt;     if (prune_0) {</span></span>
+<span><span class="co">#&gt;         tbl &lt;- prune_table(tbl)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     tbl_sorted &lt;- tbl %&gt;% sort_at_path(path = c("AEBODSYS"), </span></span>
+<span><span class="co">#&gt;         scorefun = cont_n_allcols) %&gt;% sort_at_path(path = c("AEBODSYS", </span></span>
+<span><span class="co">#&gt;         "*", "AEDECOD"), scorefun = score_occurrences)</span></span>
+<span><span class="co">#&gt;     tbl_sorted</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d42d2c89e0&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
+<p>These are standard function that can be used on their own</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_preprocess.html">get_preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; Tables: `adsl`, `adae`</span></span>
+<span><span class="co">#&gt; Columns: 118</span></span>
+<span><span class="co">#&gt; Primary keys: 2</span></span>
+<span><span class="co">#&gt; Foreign keys: 1</span></span>
+<span></span>
+<span><span class="co"># or</span></span>
+<span><span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">aet02_1</span><span class="op">@</span><span class="va">preprocess</span></span>
+<span><span class="fu">foo</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; Tables: `adsl`, `adae`</span></span>
+<span><span class="co">#&gt; Columns: 118</span></span>
+<span><span class="co">#&gt; Primary keys: 2</span></span>
+<span><span class="co">#&gt; Foreign keys: 1</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="more-on-preprocess_data-and-processing-map">More on preprocess_data and processing map<a class="anchor" aria-label="anchor" href="#more-on-preprocess_data-and-processing-map"></a>
+<h2 id="pipeline-customization">Pipeline customization<a class="anchor" aria-label="anchor" href="#pipeline-customization"></a>
 </h2>
-<p>The <code>preprocess_data</code> function determines the the
-preprocessing using a <em>processing map</em> which is referred to in
-<code>chevron</code> as <code>pmap</code>.</p>
-<p>The standard preprocessing map that comes with the
-<em>tlg-functions</em> in <code>chevron</code> can be access via
-<code>std_pmap</code></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">std_pmap</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span></span>
-<span><span class="co">#&gt;   tlgfname filter_fname        mutate_fname     req_data </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> aet01_1  filter_adae_anl01fl mutate_for_aet01 <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> aet01_2  filter_adae_anl01fl mutate_for_aet01 <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> aet02_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>               <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> aet02_2  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>               <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> aet02_3  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>               <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> aet03_1  filter_adae_anl01fl <span style="color: #BB0000;">NA</span>               <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span></code></pre></div>
-<p>For example, for <code>aet02_1</code>:</p>
-<ol style="list-style-type: decimal">
-<li>the <code>adam_db</code> data gets filtered by the function
-<code>filter_adae_anl01fl</code>
-</li>
-<li>the <code>adam_db</code> does not get mutated (<code>NA</code> maps
-to <code>identity</code>)</li>
-<li>and the required data are in the <code>req_data</code> column
-accessible by</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">std_pmap</span><span class="op">[</span><span class="va">std_pmap</span><span class="op">$</span><span class="va">tlgfname</span> <span class="op">==</span> <span class="st">"aet02_1"</span>, <span class="st">"req_data"</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "adsl" "adae"</span></span></code></pre></div>
-<p>Note that you can access the explicit functions with
-<code>std_filter_fun</code> and <code>std_mutate_fun</code></p>
+<p>In some instances it is useful to customize the pipeline, for
+instance by changing the pre processing function. Be aware that you have
+to think carefully about argument names and compatibility with
+downstream functions.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/std_filter_fun.html">std_filter_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function (adam_db) </span></span>
-<span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     checkmate::assert_class(adam_db, "dm")</span></span>
-<span><span class="co">#&gt;     adam_db %&gt;% dm_zoom_to("adae") %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y") %&gt;% dm_update_zoomed()</span></span>
-<span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55afc9663e78&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
-<p>and</p>
+<code class="sourceCode R"><span><span class="va">aet02_1</span><span class="op">@</span><span class="va">preprocess</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span><span class="op">)</span> <span class="va">adam_db</span></span>
+<span><span class="fu"><a href="../reference/get_preprocess.html">get_preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; function(adam_db) adam_db</span></span></code></pre></div>
+<p>Note that this operation creates a local version of the pipeline. The
+package version of the pipeline (accessible with
+<code><a href="../reference/chevron_tlg-class.html">chevron::aet01_1</a></code>) remains unchanged.</p>
+</div>
+<div class="section level2">
+<h2 id="custom-pipeline-creation">Custom Pipeline creation<a class="anchor" aria-label="anchor" href="#custom-pipeline-creation"></a>
+</h2>
+<p>To create a pipeline from scratch, use the provided constructor:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/std_mutate_fun.html">std_mutate_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function (x) </span></span>
-<span><span class="co">#&gt; x</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55afbbebea10&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
-<p>so alternatively one can also create the output above with</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="op">(</span><span class="fu"><a href="../reference/std_filter_fun.html">std_filter_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="op">(</span><span class="fu"><a href="../reference/std_mutate_fun.html">std_mutate_fun</a></span><span class="op">(</span><span class="st">"aet02_1"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span></span>
+<span><span class="va">my_pipeline</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chevron_tlg-class.html">chevron_tlg</a></span><span class="op">(</span></span>
+<span>  main <span class="op">=</span> <span class="va">aet02_1_main</span>,</span>
+<span>  preprocess <span class="op">=</span> <span class="va">aet02_1_pre</span>,</span>
+<span>  postprocess <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Finished at"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">tlg</span></span>
+<span>  <span class="op">}</span>,</span>
+<span>  adam_datasets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/aet02_1.html">aet02_1</a></span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Adverse Events: {Specify Population}</span></span>
-<span><span class="co">#&gt; Protocol: {{protocol}}</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; Body System or Organ Class                                   A: Drug X    B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;   Dictionary-Derived Term                                     (N=134)       (N=134)        (N=132)    </span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_pipeline</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Finished at 2022-07-08 02:25:11"</span></span>
+<span><span class="co">#&gt; MedDRA System Organ Class                                    A: Drug X    B: Placebo    C: Combination</span></span>
+<span><span class="co">#&gt;   MedDRA Preferred Term                                       (N=134)       (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt; Total number of patients with at least one adverse event     97 (72.4%)   103 (76.9%)    102 (77.3%)  </span></span>
 <span><span class="co">#&gt; Overall total number of events                                  469           513            599      </span></span>
@@ -292,10 +343,6 @@ accessible by</li>
 <span><span class="co">#&gt;   Total number of events                                        100           88             110      </span></span>
 <span><span class="co">#&gt;   dcd D.1.1.1.1                                              40 (29.9%)   32 (23.9%)      43 (32.6%)  </span></span>
 <span><span class="co">#&gt;   dcd D.1.1.4.2                                              37 (27.6%)   37 (27.6%)      41 (31.1%)  </span></span>
-<span><span class="co">#&gt; cl C.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         36           43              57      </span></span>
-<span><span class="co">#&gt;   dcd C.2.1.2.1                                              26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
 <span><span class="co">#&gt; cl D.2                                                                                                </span></span>
 <span><span class="co">#&gt;   Total number of patients with at least one adverse event   35 (26.1%)   50 (37.3%)      49 (37.1%)  </span></span>
 <span><span class="co">#&gt;   Total number of events                                         45           62              63      </span></span>
@@ -304,13 +351,24 @@ accessible by</li>
 <span><span class="co">#&gt;   Total number of patients with at least one adverse event   37 (27.6%)   40 (29.9%)      36 (27.3%)  </span></span>
 <span><span class="co">#&gt;   Total number of events                                         43           46              51      </span></span>
 <span><span class="co">#&gt;   dcd B.1.1.1.1                                              37 (27.6%)   40 (29.9%)      36 (27.3%)  </span></span>
+<span><span class="co">#&gt; cl C.2                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         36           43              57      </span></span>
+<span><span class="co">#&gt;   dcd C.2.1.2.1                                              26 (19.4%)   38 (28.4%)      49 (37.1%)  </span></span>
 <span><span class="co">#&gt; cl C.1                                                                                                </span></span>
 <span><span class="co">#&gt;   Total number of patients with at least one adverse event   32 (23.9%)   38 (28.4%)      35 (26.5%)  </span></span>
 <span><span class="co">#&gt;   Total number of events                                         43           55              53      </span></span>
-<span><span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)  </span></span>
-<span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Investigator text for AEs encoded using MedDRA version xx.x.  Percentages are based on N in the column headings. For frequency counts by preferred term, multiple occurrences of the same AE in an individual are counted only once.  For frequency counts of "Total number of events" rows, multiple occurrences of the same AE in an individual are counted separately. Standard footnote defining AEs included in table (e.g., includes AEs with onset from first dose of study drug through 7 days after last dose of study drug).</span></span></code></pre></div>
+<span><span class="co">#&gt;   dcd C.1.1.1.3                                              32 (23.9%)   38 (28.4%)      35 (26.5%)</span></span></code></pre></div>
+<p>Note that to ensure the correct execution of the <code>run</code>
+function, the name of the first argument of the <code>main</code>
+function must be <code>adam_db</code>; the input <code>dm</code> object
+to preprocess. The name of the first argument of the
+<code>preprocess</code> function must be <code>adam_db</code>; the input
+<code>dm</code> object to create <code>tlg</code> output and finally,
+the name of the first argument of the <code>postprocess</code> function
+must be <code>tlg</code>, the input <code>TableTree</code> object to
+post process. Validation criteria enforce these rules upon creation of a
+<em>pipeline</em>.</p>
 </div>
   </div>
 

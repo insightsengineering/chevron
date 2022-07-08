@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chevron</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9015</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9017</span>
       </span>
     </div>
 
@@ -34,12 +34,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" href="https://insightsengineering.github.io/chevron/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/insightsengineering/chevron" class="external-link">
     <span class="fa fa-github"></span>
@@ -70,6 +64,7 @@
 <span>  <span class="va">armvar</span>,</span>
 <span>  <span class="va">lbl_overall</span>,</span>
 <span>  <span class="va">prune_0</span>,</span>
+<span>  <span class="va">req_tables</span>,</span>
 <span>  <span class="va">deco</span>,</span>
 <span>  <span class="va">.study</span>,</span>
 <span>  <span class="va">group</span>,</span>
@@ -96,6 +91,10 @@
 <dd><p>(<code>logical</code>) remove 0 count rows</p></dd>
 
 
+<dt>req_tables</dt>
+<dd><p>(<code>character</code>) names of the required tables.</p></dd>
+
+
 <dt>deco</dt>
 <dd><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></dd>
 
@@ -113,7 +112,7 @@
 
 
 <dt>pmap</dt>
-<dd><p>('data frame') preprocessing map, see <code>std_pmap</code> for the required format</p></dd>
+<dd><p>(<code>data frame</code>) preprocessing map, see <code>std_pmap</code> for the required format</p></dd>
 
 </dl></div>
     <div id="details">
