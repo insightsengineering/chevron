@@ -64,14 +64,13 @@ aet02_1_lyt
 Note that the `aet02_1_lyt` function returns a concise description on how `tern` and `rtables` can be used to create the cell values of the tables. The table creation function then does then use the `*_lyt` function and builds the table using `build_table` and the data given in `adam_db` as shown next:
 
 ```{r}
-aet02_1
+aet02_1_main
 ```
 
 
 ## Summary
 
 * Layouts specify a tabulation an cell-values derivation pre-data
-* `chevron` exports the layout functions for each table creating *tlg-function*
 * these layouts are useful to understand how table is created and what variables are required in the data to create a table using the layout
 * the table creation functions focus the main part of their code on building, sorting and pruning the table
 * Headers and footers are taken by default from the standards. They can be specified with the `deco` argument. Note that we currently do not have all of the data base for standard headers and footers imported in `chevron`.

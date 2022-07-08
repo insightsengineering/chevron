@@ -14,7 +14,6 @@ articles:
   - title: All vignettes
     contents:
       - chevron
-      - intended_use
       - adam_db_argument
       - dot_study_argument
       - layouts
@@ -25,34 +24,54 @@ reference:
     contents:
       - chevron-package
 
-  - title: Standard Tables, Layouts and Preprocessing
+  - title: Classes and Instances
     contents:
-      - aet01_1
-      - aet01_2
-      - aet02_1
-      - aet02_2
-      - aet02_3
-      - aet03_1
-      - aet04_1
-      - cmt01a_1
-      - cmt01a_2
-      - cmt01a_3
-      - cmt02_pt_1
-      - dmt01_1
-      - dst01_1
-      - dst01_2
-      - dst01_3
-      - dtht01_1
-      - egt01_1
-      - egt02_1
-      - egt02_2
-      - ext01_1
-      - ext01_2
-      - lbt01_1
-      - mht01_1
-      - vst01_1
-      - vst02_1
-      - vst02_2
+      - chevron_tlg-class
+
+  - title: Methods
+    contents:
+      - run
+      - get_main
+      - get_preprocess
+      - get_postprocess
+      - get_adam_datasets
+
+  - title: Standard Main, Preprocess and Check Functions
+    contents:
+      - aet01_1_main
+      - aet01_2_main
+      - aet02_1_main
+      - aet02_2_main
+      - aet02_3_main
+      - aet03_1_main
+      - aet04_1_main
+      - cmt01a_1_main
+      - cmt01a_2_main
+      - cmt01a_3_main
+      - cmt02_pt_1_main
+      - dmt01_1_main
+      - dst01_1_main
+      - dst01_2_main
+      - dst01_3_main
+      - dtht01_1_main
+      - egt01_1_main
+      - egt02_1_main
+      - egt02_2_main
+      - ext01_1_main
+      - ext01_2_main
+      - lbt01_1_main
+      - mht01_1_main
+      - vst01_1_main
+      - vst02_1_main
+      - vst02_2_main
+
+  - title: Checks and assertions
+    contents:
+      - assert_colnames
+      - assert_all_tablenames
+      - assert_one_tablenames
+      - check_all_colnames
+      - check_one_colnames
 
   - title: Data Preprocess Functions
     contents:
@@ -63,9 +82,7 @@ reference:
 
   - title: Utility Functions
     contents:
-      - dm_explicit_na
       - get_db_data
-      - pivot_wider_labels
       - reorder_levels_params
       - sample_study_object
       - set_decoration
@@ -77,9 +94,6 @@ reference:
     contents:
       - bol_YN
       - gen_args
-      - cut_by_group
-      - assert_colnames
-      - h_as_factor
 
   - title: TLG Preprocessing Functions
     contents:

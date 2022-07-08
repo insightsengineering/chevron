@@ -1,6 +1,8 @@
-#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1
+
+#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1.
 #'
-#' For each variable, summary statistics are by default based on the number of patients in the corresponding `n` row.
+#' For each variable, summary statistics are
+#' by default based on the number of patients in the corresponding `n` row.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of character`) variables summarized in demographic table.
@@ -24,23 +26,22 @@
 #' db <- syn_test_data() %>%
 #'   dmt01_1_pre()
 #'
-#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"))
-#' dmt01_1(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
-#' dmt01_1(db,
+#' dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
+#' dmt01_1_main(db,
 #'   summaryvars = c("AGE", "RACE", "SEX"),
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 #' )
-dmt01_1 <- function(adam_db,
-                    armvar = .study$planarm,
-                    summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-                    summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("DMT01"),
-                    .study = list(
-                      planarm = "ARM",
-                      lbl_overall = "All Patients"
-                    )) {
+dmt01_1_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
+                         summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("DMT01"),
+                         .study = list(
+                           planarm = "ARM",
+                           lbl_overall = "All Patients"
+                         )) {
   assert_colnames(adam_db$adsl, summaryvars)
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
@@ -61,7 +62,7 @@ dmt01_1 <- function(adam_db,
   }
 }
 
-#' @describeIn dmt01_1 `dmt01_1` Layout
+#' @describeIn dmt01_1_main `dmt01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -102,16 +103,17 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-#' @describeIn dmt01_1 `dmt01_1` Preprocessing
+#' @describeIn dmt01_1_main `dmt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   dmt01_1_pre()
-dmt01_1_pre <- function(adam_db) {
+dmt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adsl_lbs <- formatters::var_labels(adam_db$adsl)
   db <- adam_db %>%
@@ -124,3 +126,12 @@ dmt01_1_pre <- function(adam_db) {
     dm_update_zoomed()
   db
 }
+
+# `DMT01_1` Pipeline ----
+
+#' `DMT01_1`
+#'
+#' @seealso [dmt01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))
