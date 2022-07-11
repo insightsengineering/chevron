@@ -68,11 +68,7 @@ aet01_1_main <- function(adam_db,
   tbl
 }
 
-<<<<<<< HEAD
-#' @describeIn aet01_1 `aet01_1` Layout
-=======
 #' @describeIn aet01_1_main `aet01_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -149,77 +145,6 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-<<<<<<< HEAD
-#' @describeIn aet01_1 `aet01_1` Preprocessing
-#'
-#' @inheritParams gen_args
-#' @export
-#'
-#' @examples
-#' syn_test_data() %>%
-#'   aet01_1_pre()
-aet01_1_pre <- function(adam_db) {
-  checkmate::assert_class(adam_db, "dm")
-
-  db <- adam_db %>%
-    dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adae") %>%
-    mutate(
-      FATAL = .data$AESDTH == "Y",
-      SER = .data$AESER == "Y",
-      SERWD = (.data$AESER == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
-      SERDSM = (.data$AESER == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-      RELSER = (.data$AESER == "Y" & .data$AREL == "Y"),
-      WD = .data$AEACN == "DRUG WITHDRAWN",
-      DSM = .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      REL = .data$AREL == "Y",
-      RELWD = (.data$AREL == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
-      RELDSM = (.data$AREL == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-      CTC35 = if ("ATOXGR" %in% colnames(.)) .data$ATOXGR %in% c("3", "4", "5"),
-      CTC45 = if ("ATOXGR" %in% colnames(.)) .data$ATOXGR %in% c("4", "5"),
-      SEV = if ("ASEV" %in% colnames(.)) .data$ASEV == "SEVERE",
-      SMQ01 = if ("SMQ01NAM" %in% colnames(.)) .data$SMQ01NAM != "",
-      SMQ02 = if ("SMQ02NAM" %in% colnames(.)) .data$SMQ02NAM != "",
-      CQ01 = if ("CQ01NAM" %in% colnames(.)) .data$CQ01NAM != ""
-    ) %>%
-    mutate(
-      AEDECOD = formatters::with_label(.data$AEDECOD, "Dictionary-Derived Term"),
-      AESDTH = formatters::with_label(.data$AESDTH, "Results in Death"),
-      AEACN = formatters::with_label(.data$AEACN, "Action Taken with Study Treatment"),
-      FATAL = formatters::with_label(.data$FATAL, "AE with fatal outcome"),
-      SER = formatters::with_label(.data$SER, "Serious AE"),
-      SEV = if ("SEV" %in% colnames(.)) formatters::with_label(.data$SEV, "Severe AE (at greatest intensity)"),
-      SERWD = formatters::with_label(.data$SERWD, "Serious AE leading to withdrawal from treatment"),
-      SERDSM = formatters::with_label(.data$SERDSM, "Serious AE leading to dose modification/interruption"),
-      RELSER = formatters::with_label(.data$RELSER, "Related Serious AE"),
-      WD = formatters::with_label(.data$WD, "AE leading to withdrawal from treatment"),
-      DSM = formatters::with_label(.data$DSM, "AE leading to dose modification/interruption"),
-      REL = formatters::with_label(.data$REL, "Related AE"),
-      RELWD = formatters::with_label(.data$RELWD, "Related AE leading to withdrawal from treatment"),
-      RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"),
-      CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(.data$CTC35, "Grade 3-5 AE"),
-      CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(.data$CTC45, "Grade 4/5 AE"),
-      SMQ01 = if ("SMQ01" %in% colnames(.)) {
-        formatters::with_label(
-          .data$SMQ01,
-          aesi_label(.data$SMQ01NAM, .data$SMQ01SC)
-        )
-      },
-      SMQ02 = if ("SMQ02" %in% colnames(.)) {
-        formatters::with_label(
-          .data$SMQ02,
-          aesi_label(.data$SMQ02NAM, .data$SMQ02SC)
-        )
-      },
-      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
-    ) %>%
-    dm_update_zoomed()
-
-  db
-}
-=======
 #' @describeIn aet01_1_main `aet01_1` Preprocessing
 #'
 #' @inheritParams gen_args
@@ -233,7 +158,6 @@ aet01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet01_1_check(adam_db, ...)
->>>>>>> origin/main
 
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
@@ -434,11 +358,7 @@ aet01_2_main <- function(adam_db,
   tbl
 }
 
-<<<<<<< HEAD
-#' @describeIn aet01_2 `aet01_2` Layout
-=======
 #' @describeIn aet01_2_main `aet01_2` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -531,19 +451,6 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-<<<<<<< HEAD
-#' @describeIn aet01_2 `aet01_2` Preprocessing
-#'
-#' @inheritParams gen_args
-#' @export
-#'
-#' @examples
-#' syn_test_data() %>%
-#'   aet01_2_pre()
-aet01_2_pre <- function(adam_db) {
-  checkmate::assert_class(adam_db, "dm")
-
-=======
 #' @describeIn aet01_2_main `aet01_2` Preprocessing
 #'
 #' @inheritParams gen_args
@@ -558,7 +465,6 @@ aet01_2_pre <- function(adam_db, ...) {
 
   aet01_2_check(adam_db, ...)
 
->>>>>>> origin/main
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -617,8 +523,6 @@ aet01_2_pre <- function(adam_db, ...) {
 
   db
 }
-<<<<<<< HEAD
-=======
 
 #' @describeIn aet01_2_main `aet01_2` Checks
 #'
@@ -686,4 +590,4 @@ aet01_2_check <- function(adam_db,
 #' @rdname chevron_tlg-class
 #' @export
 aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
->>>>>>> origin/main
+

@@ -73,11 +73,8 @@ aet03_1_main <- function(adam_db,
   tbl_sorted
 }
 
-<<<<<<< HEAD
-#' @describeIn aet03_1 `aet03_1` Layout
-=======
+
 #' @describeIn aet03_1_main `aet03_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -142,11 +139,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-<<<<<<< HEAD
-#' @describeIn aet03_1 `aet03_1` Preprocessing
-=======
 #' @describeIn aet03_1_main `aet03_1` Preprocessing
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -163,8 +156,6 @@ aet03_1_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
-<<<<<<< HEAD
-=======
 
 # `AET03_1` Pipeline ----
 
@@ -174,4 +165,4 @@ aet03_1_pre <- function(adam_db) {
 #' @rdname chevron_tlg-class
 #' @export
 aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))
->>>>>>> origin/main
+
