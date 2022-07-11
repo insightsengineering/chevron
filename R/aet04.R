@@ -166,13 +166,14 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn aet04_1_main `aet04_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet04_1_pre()
-aet04_1_pre <- function(adam_db) {
+aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
