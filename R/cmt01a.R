@@ -141,13 +141,14 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 #' @describeIn cmt01a_1_main `cmt01a_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt01a_1_pre()
-cmt01a_1_pre <- function(adam_db) {
+cmt01a_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -252,13 +253,14 @@ cmt01a_2_main <- function(adam_db,
 #' @describeIn cmt01a_2_main `cmt01a_2` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt01a_2_pre()
-cmt01a_2_pre <- function(adam_db) {
+cmt01a_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -422,13 +424,14 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
 #' @describeIn cmt01a_3_main `cmt01a_3` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt01a_3_pre()
-cmt01a_3_pre <- function(adam_db) {
+cmt01a_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%

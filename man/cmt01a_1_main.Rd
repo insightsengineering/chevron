@@ -30,7 +30,7 @@ cmt01a_1_lyt(
   .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 
-cmt01a_1_pre(adam_db)
+cmt01a_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -52,6 +52,8 @@ cmt01a_1_pre(adam_db)
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{...}{not used.}
 }
 \description{
 A concomitant medication
