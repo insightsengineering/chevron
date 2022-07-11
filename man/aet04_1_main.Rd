@@ -32,7 +32,7 @@ aet04_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
 )
 
-aet04_1_pre(adam_db)
+aet04_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -52,6 +52,8 @@ aet04_1_pre(adam_db)
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{...}{not used.}
 }
 \description{
 \code{AET04} Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.

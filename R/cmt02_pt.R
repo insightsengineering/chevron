@@ -99,13 +99,14 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
 >>>>>>> origin/main
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt02_pt_1_pre()
-cmt02_pt_1_pre <- function(adam_db) {
+cmt02_pt_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
