@@ -20,27 +20,11 @@ var_labels_for <- function(df, vars) {
 #'
 #' @export
 std_deco <- function(id, ...) {
-<<<<<<< HEAD
-  if (!is.null(gds_data[[id]])) {
-    list(
-      title = gds_data[[id]]$`Standard titles`[1],
-      subtitles = c("Protocol: {{protocol}}", gds_data[[id]]$`Standard titles`[-1]), # nolint
-      main_footer = paste(gds_data[[id]]$`Standard footnotes`, collapse = " ")
-    )
-  } else {
-    list(
-      title = "Main Title",
-      subtitles = "Protocol: {{protocol}}",
-      main_footer = "Footnotes go here"
-    )
-  }
-=======
   list(
     title = "",
     subtitles = "",
     main_footer = ""
   )
->>>>>>> origin/main
 }
 
 #' Convert Y N values used in CDISC to R boolean object
@@ -107,49 +91,6 @@ reorder_levels_params <- function(df, paramcd_levels) {
   df
 }
 
-<<<<<<< HEAD
-#' Pivot wider a data frame while preserving labels.
-#'
-#' @param df (`data.frame`) to pivot.
-#' @param names_from (`string`) the name of a column in `df` that will be used to name the columns of the pivoted data
-#'   frame.
-#' @param labels_from (`string`) the name of a column in `df` that will be used to label the columns of the pivoted
-#'   data frame.
-#' @param values_from (`string`) the name of a column in `df`containing the values to be pivoted.
-#' @param keep  (`vector of strings`) containing the name of the columns to be conserved in the pivoted data frame.
-#'   Typically a unique identifier for the pivoted observations, such as `USUBJID`.
-#'
-#' @importFrom dplyr select
-#' @importFrom tidyr pivot_wider
-#'
-#' @return (`data.frame`)
-#' @export
-#'
-#' @examples
-#' library(scda)
-#' adsub <- synthetic_cdisc_data("rcd_2021_03_22")$adsub
-#' pivot_wider_labels(adsub, "PARAMCD", "PARAM", "AVAL", c("USUBJID", "SUBJID"))
-pivot_wider_labels <- function(df,
-                               names_from = "PARAMCD",
-                               labels_from = "PARAM",
-                               values_from = "AVAL",
-                               keep = "USUBJID") {
-  key_val <- df[!duplicated(df[, c(labels_from, names_from)]), c(labels_from, names_from)]
-
-  checkmate::assert_true(all(!duplicated(key_val[[1]])))
-  checkmate::assert_true(all(!duplicated(key_val[[2]])))
-
-  df_wide <- df %>%
-    select(keep, names_from, values_from) %>%
-    pivot_wider(names_from = names_from, values_from = values_from)
-
-  formatters::var_labels(df_wide[, key_val[[2]]]) <- as.character(key_val[[1]])
-
-  df_wide
-}
-
-=======
->>>>>>> origin/main
 
 basic_table_deco <- function(deco, ...) {
   checkmate::assert_set_equal(names(deco), c("title", "subtitles", "main_footer"))

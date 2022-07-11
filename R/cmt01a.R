@@ -32,22 +32,6 @@
 #'   dm_update_zoomed() %>%
 #'   cmt01a_1_pre()
 #'
-<<<<<<< HEAD
-#' cmt01a_1(adam_db = db)
-cmt01a_1 <- function(adam_db,
-                     armvar = .study$planarm,
-                     medcat_var = "ATC2", # Anatomical therapeutic category
-                     lbl_medcat_var = "ATC Class Level 2",
-                     medname_var = "CMDECOD",
-                     lbl_medname_var = "Other Treatment",
-                     lbl_overall = .study$lbl_overall,
-                     prune_0 = TRUE,
-                     deco = std_deco("CMT01A"),
-                     .study = list(
-                       planarm = "ARM",
-                       lbl_overall = NULL
-                     )) {
-=======
 #' cmt01a_1_main(adam_db = db)
 cmt01a_1_main <- function(adam_db,
                           armvar = .study$planarm,
@@ -62,7 +46,6 @@ cmt01a_1_main <- function(adam_db,
                             planarm = "ARM",
                             lbl_overall = NULL
                           )) {
->>>>>>> origin/main
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_1_lyt(
@@ -90,11 +73,7 @@ cmt01a_1_main <- function(adam_db,
   tbl_sorted
 }
 
-<<<<<<< HEAD
-#' @describeIn cmt01a_1 `cmt01a_1` Layout
-=======
 #' @describeIn cmt01a_1_main `cmt01a_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -159,11 +138,7 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-<<<<<<< HEAD
-#' @describeIn cmt01a_1 `cmt01a_1` Preprocessing
-=======
 #' @describeIn cmt01a_1_main `cmt01a_1` Preprocessing
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -185,8 +160,7 @@ cmt01a_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-<<<<<<< HEAD
-=======
+
 # `CMT01A_1` Pipeline ----
 
 #' `CMT01A_1`
@@ -196,7 +170,7 @@ cmt01a_1_pre <- function(adam_db, ...) {
 #' @export
 cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
 
->>>>>>> origin/main
+
 # CMT01A_2 ----
 
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
@@ -231,22 +205,6 @@ cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "
 #'   dm_update_zoomed() %>%
 #'   cmt01a_2_pre()
 #'
-<<<<<<< HEAD
-#' cmt01a_2(adam_db = db)
-cmt01a_2 <- function(adam_db,
-                     armvar = .study$planarm,
-                     medcat_var = "ATC2", # Anatomical therapeutic category
-                     lbl_medcat_var = "ATC Class Level 2",
-                     medname_var = "CMDECOD",
-                     lbl_medname_var = "Other Treatment",
-                     lbl_overall = .study$lbl_overall,
-                     prune_0 = TRUE,
-                     deco = std_deco("CMT01A"),
-                     .study = list(
-                       planarm = "ARM",
-                       lbl_overall = NULL
-                     )) {
-=======
 #' cmt01a_2_main(adam_db = db)
 cmt01a_2_main <- function(adam_db,
                           armvar = .study$planarm,
@@ -261,7 +219,6 @@ cmt01a_2_main <- function(adam_db,
                             planarm = "ARM",
                             lbl_overall = NULL
                           )) {
->>>>>>> origin/main
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   # The same layout can be used.
@@ -295,11 +252,8 @@ cmt01a_2_main <- function(adam_db,
   tbl_sorted
 }
 
-<<<<<<< HEAD
-#' @describeIn cmt01a_2 `cmt01a_2` Preprocessing
-=======
+
 #' @describeIn cmt01a_2_main `cmt01a_2` Preprocessing
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -321,8 +275,7 @@ cmt01a_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-<<<<<<< HEAD
-=======
+
 # `CMT01A_2` Pipeline ----
 
 #' `CMT01A_2`
@@ -332,7 +285,6 @@ cmt01a_2_pre <- function(adam_db, ...) {
 #' @export
 cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
 
->>>>>>> origin/main
 # CMT01A_3 ----
 
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
@@ -368,22 +320,6 @@ cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "
 #'   dm_update_zoomed() %>%
 #'   cmt01a_3_pre()
 #'
-<<<<<<< HEAD
-#' cmt01a_3(adam_db = db)
-cmt01a_3 <- function(adam_db,
-                     armvar = .study$planarm,
-                     medcat_var = "ATC2", # Anatomical therapeutic category
-                     lbl_medcat_var = "ATC Class Level 2",
-                     medname_var = "CMDECOD",
-                     lbl_medname_var = "Other Treatment",
-                     lbl_overall = .study$lbl_overall,
-                     prune_0 = TRUE,
-                     deco = std_deco("CMT01A"),
-                     .study = list(
-                       planarm = "ARM",
-                       lbl_overall = NULL
-                     )) {
-=======
 #' cmt01a_3_main(adam_db = db)
 cmt01a_3_main <- function(adam_db,
                           armvar = .study$planarm,
@@ -398,7 +334,6 @@ cmt01a_3_main <- function(adam_db,
                             planarm = "ARM",
                             lbl_overall = NULL
                           )) {
->>>>>>> origin/main
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_3_lyt(
@@ -426,11 +361,8 @@ cmt01a_3_main <- function(adam_db,
   tbl_sorted
 }
 
-<<<<<<< HEAD
-#' @describeIn cmt01a_3 `cmt01a_3` Layout
-=======
+
 #' @describeIn cmt01a_3_main `cmt01a_3` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -494,11 +426,7 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-<<<<<<< HEAD
-#' @describeIn cmt01a_3 `cmt01a_3` Preprocessing
-=======
 #' @describeIn cmt01a_3_main `cmt01a_3` Preprocessing
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -519,8 +447,7 @@ cmt01a_3_pre <- function(adam_db, ...) {
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
 }
-<<<<<<< HEAD
-=======
+
 
 # `CMT01A_3` Pipeline ----
 
@@ -530,4 +457,4 @@ cmt01a_3_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))
->>>>>>> origin/main
+

@@ -56,11 +56,8 @@ lbt01_1_main <- function(adam_db,
   tbl
 }
 
-<<<<<<< HEAD
-#' @describeIn lbt01_1 `lbt01_1` Layout
-=======
+
 #' @describeIn lbt01_1_main `lbt01_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -112,27 +109,18 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-<<<<<<< HEAD
-#' @describeIn lbt01_1 `lbt01_1` Preprocessing
-#'
-#' @inheritParams gen_args
-=======
+
 #' @describeIn lbt01_1_main `lbt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
->>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   lbt01_1_pre()
-<<<<<<< HEAD
-lbt01_1_pre <- function(adam_db) {
-=======
 lbt01_1_pre <- function(adam_db, ...) {
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -140,8 +128,6 @@ lbt01_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
-<<<<<<< HEAD
-=======
 
 # `LBT01_1` Pipeline ----
 
@@ -151,4 +137,3 @@ lbt01_1_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))
->>>>>>> origin/main

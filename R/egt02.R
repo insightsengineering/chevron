@@ -27,20 +27,6 @@
 #'   dm_update_zoomed() %>%
 #'   egt02_1_pre()
 #'
-<<<<<<< HEAD
-#' egt02_1(adam_db = db)
-egt02_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("EGT02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
-=======
 #' egt02_1_main(adam_db = db)
 egt02_1_main <- function(adam_db,
                          armvar = .study$actualarm,
@@ -53,7 +39,6 @@ egt02_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            lbl_overall = NULL
                          )) {
->>>>>>> origin/main
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
   lyt <- egt02_1_lyt(
@@ -69,11 +54,8 @@ egt02_1_main <- function(adam_db,
   tbl
 }
 
-<<<<<<< HEAD
-#' @describeIn egt02_1 `egt02_1` Layout
-=======
+
 #' @describeIn egt02_1_main `egt02_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -109,27 +91,18 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-<<<<<<< HEAD
-#' @describeIn egt02_1 `egt02_1` Preprocessing
-#'
-#' @inheritParams gen_args
-=======
+
 #' @describeIn egt02_1_main `egt02_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
->>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   egt02_1_pre()
-<<<<<<< HEAD
-egt02_1_pre <- function(adam_db) {
-=======
 egt02_1_pre <- function(adam_db, ...) {
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -138,9 +111,6 @@ egt02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-<<<<<<< HEAD
-# egt02_2 ----
-=======
 # `EGT02_1` Pipeline ----
 
 #' `EGT02_1`
@@ -149,7 +119,6 @@ egt02_1_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
->>>>>>> origin/main
 
 # egt02_2 ----
 
@@ -180,20 +149,6 @@ egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "ade
 #'   dm_update_zoomed() %>%
 #'   egt02_2_pre()
 #'
-<<<<<<< HEAD
-#' egt02_2(adam_db = db)
-egt02_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("EGT02_2"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
-=======
 #' egt02_2_main(adam_db = db)
 egt02_2_main <- function(adam_db,
                          armvar = .study$actualarm,
@@ -206,7 +161,6 @@ egt02_2_main <- function(adam_db,
                            actualarm = "ACTARM",
                            lbl_overall = NULL
                          )) {
->>>>>>> origin/main
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
   lyt <- egt02_2_lyt(
@@ -222,11 +176,8 @@ egt02_2_main <- function(adam_db,
   tbl
 }
 
-<<<<<<< HEAD
-#' @describeIn egt02_2 `egt02_2` Layout
-=======
+
 #' @describeIn egt02_2_main `egt02_2` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -262,27 +213,18 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-<<<<<<< HEAD
-#' @describeIn egt02_2 `egt02_2` Preprocessing
-#'
-#' @inheritParams gen_args
-=======
+
 #' @describeIn egt02_2_main `egt02_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
->>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   egt02_2_pre()
-<<<<<<< HEAD
-egt02_2_pre <- function(adam_db) {
-=======
 egt02_2_pre <- function(adam_db, ...) {
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -290,8 +232,7 @@ egt02_2_pre <- function(adam_db, ...) {
     filter(.data$ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
-<<<<<<< HEAD
-=======
+
 
 # `EGT02_2` Pipeline ----
 
@@ -301,4 +242,3 @@ egt02_2_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))
->>>>>>> origin/main

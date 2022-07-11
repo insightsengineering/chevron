@@ -31,19 +31,7 @@
 #'   summaryvars = c("AGE", "RACE", "SEX"),
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 #' )
-<<<<<<< HEAD
-dmt01_1 <- function(adam_db,
-                    armvar = .study$planarm,
-                    summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-                    summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("DMT01"),
-                    .study = list(
-                      planarm = "ARM",
-                      lbl_overall = "All Patients"
-                    )) {
-=======
+
 dmt01_1_main <- function(adam_db,
                          armvar = .study$planarm,
                          summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
@@ -55,7 +43,6 @@ dmt01_1_main <- function(adam_db,
                            planarm = "ARM",
                            lbl_overall = "All Patients"
                          )) {
->>>>>>> origin/main
   assert_colnames(adam_db$adsl, summaryvars)
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
@@ -76,11 +63,8 @@ dmt01_1_main <- function(adam_db,
   }
 }
 
-<<<<<<< HEAD
-#' @describeIn dmt01_1 `dmt01_1` Layout
-=======
+
 #' @describeIn dmt01_1_main `dmt01_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -121,27 +105,18 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-<<<<<<< HEAD
-#' @describeIn dmt01_1 `dmt01_1` Preprocessing
-#'
-#' @inheritParams gen_args
-=======
+
 #' @describeIn dmt01_1_main `dmt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
->>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   dmt01_1_pre()
-<<<<<<< HEAD
-dmt01_1_pre <- function(adam_db) {
-=======
 dmt01_1_pre <- function(adam_db, ...) {
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
   adsl_lbs <- formatters::var_labels(adam_db$adsl)
   db <- adam_db %>%
@@ -154,8 +129,7 @@ dmt01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
   db
 }
-<<<<<<< HEAD
-=======
+
 
 # `DMT01_1` Pipeline ----
 
@@ -165,4 +139,3 @@ dmt01_1_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))
->>>>>>> origin/main

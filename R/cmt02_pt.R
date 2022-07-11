@@ -53,11 +53,8 @@ cmt02_pt_1_main <- function(adam_db,
     )
 }
 
-<<<<<<< HEAD
-#' @describeIn cmt02_pt_1 `cmt02_pt_1` Layout
-=======
+
 #' @describeIn cmt02_pt_1_main `cmt02_pt_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -92,11 +89,8 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
     append_topleft("Other Treatment")
 }
 
-<<<<<<< HEAD
-#' @describeIn cmt02_pt_1 `cmt02_pt_1` Preprocessing
-=======
+
 #' @describeIn cmt02_pt_1_main `cmt02_pt_1` Preprocessing
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -117,8 +111,7 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
 }
-<<<<<<< HEAD
-=======
+
 
 # `CMT02_PT_1` Pipeline ----
 
@@ -128,4 +121,3 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))
->>>>>>> origin/main

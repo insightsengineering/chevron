@@ -65,11 +65,8 @@ egt01_1_main <- function(adam_db,
   tbl
 }
 
-<<<<<<< HEAD
-#' @describeIn egt01_1 `egt01_1` Layout
-=======
+
 #' @describeIn egt01_1_main `egt01_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #'
@@ -123,27 +120,18 @@ egt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-<<<<<<< HEAD
-#' @describeIn egt01_1 `egt01_1` Preprocessing
-#'
-#' @inheritParams gen_args
-=======
+
 #' @describeIn egt01_1_main `egt01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
->>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   egt01_1_pre()
-<<<<<<< HEAD
-egt01_1_pre <- function(adam_db) {
-=======
 egt01_1_pre <- function(adam_db, ...) {
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -151,8 +139,6 @@ egt01_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
-<<<<<<< HEAD
-=======
 
 # `EGT01_1` Pipeline ----
 
@@ -162,4 +148,3 @@ egt01_1_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))
->>>>>>> origin/main

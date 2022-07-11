@@ -128,11 +128,8 @@ get_req_data <- function(id, pmap) {
 #'   preprocess_data("aet02_2")
 #' }
 preprocess_data <- function(adam_db, tlgfname, pmap = std_pmap, .study) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`preprocess_data` is deprecated. \nUse the tlg specific preprocessing functions instead")
 
->>>>>>> origin/main
   checkmate::assert_subset(get_req_data(tlgfname, pmap), names(adam_db))
 
   ffun <- get_filter_fun(tlgfname, pmap)
@@ -184,10 +181,7 @@ std_mutate_fun <- function(tlgfname, pmap = std_pmap) {
 #' @inheritParams gen_args
 #'
 filter_adae_anl01fl <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_adae_anl01fl` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -200,10 +194,7 @@ filter_adae_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adlb_anl01fl <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_adlb_anl01fl` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -216,10 +207,7 @@ filter_adlb_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adeg_anl01fl <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_adeg_anl01fl` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -232,10 +220,7 @@ filter_adeg_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_advs_anl01fl <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_advs_anl01fl` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -248,10 +233,7 @@ filter_advs_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_admh_anl01fl <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_admh_anl01fl` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -264,10 +246,7 @@ filter_admh_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adex_drug <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_adex_drug` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -282,10 +261,7 @@ filter_adex_drug <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_adcm_anl01fl <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_adcm_anl01fl` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adcm") %>%
@@ -297,10 +273,7 @@ filter_adcm_anl01fl <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_vst02 <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_vst02` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("advs") %>%
@@ -313,10 +286,7 @@ filter_vst02 <- function(adam_db) {
 #'
 #' @inheritParams gen_args
 filter_egt02 <- function(adam_db) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`filter_egt02` is deprecated. \nUse the tlg specific preprocessing functions instead")
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -394,11 +364,8 @@ mutate_for_aet01 <- function(adam_db) {
 mutate_adsl_gp <- function(adam_db,
                            reason = .study$disc_reason_var,
                            .study = list(disc_reason_var = "DCSREAS")) {
-<<<<<<< HEAD
-=======
   .Deprecated(msg = "`mutate_adsl_gp` is deprecated. \nUse the tlg specific preprocessing functions instead")
 
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   # TODO: revisit
@@ -439,11 +406,7 @@ reorder_adex_params <- function(adam_db,
   .Deprecated(msg = "`reorder_adex_params` is deprecated. \nUse the tlg specific preprocessing functions instead")
   param_vars <- adam_db$adex %>%
     select(.data$PARAM, .data$PARAMCD) %>%
-<<<<<<< HEAD
-    reorder_levels_params(paramcd_levels = paramcd_order)
-=======
     dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
->>>>>>> origin/main
 
   adam_db %>%
     dm_zoom_to("adex") %>%
