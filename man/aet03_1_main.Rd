@@ -26,7 +26,7 @@ aet03_1_lyt(
     "MODERATE", "SEVERE", "LIFE THREATENING"))
 )
 
-aet03_1_pre(adam_db)
+aet03_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -46,6 +46,8 @@ aet03_1_pre(adam_db)
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the data set.}
+
+\item{...}{not used.}
 }
 \description{
 An adverse events table categorized by System
