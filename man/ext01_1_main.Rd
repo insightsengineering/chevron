@@ -4,11 +4,7 @@
 \alias{ext01_1_main}
 \alias{ext01_1_lyt}
 \alias{ext01_1_pre}
-<<<<<<< HEAD:man/ext01_1.Rd
-\title{EXT01 Table 1 (Default) Exposure Summary Table}
-=======
 \title{EXT01 Table 1 (Default) Exposure Summary Table.}
->>>>>>> origin/main:man/ext01_1_main.Rd
 \usage{
 ext01_1_main(
   adam_db,
@@ -33,12 +29,8 @@ ext01_1_lyt(
 ext01_1_pre(
   adam_db,
   paramcd_order = .study$paramcd_order,
-<<<<<<< HEAD:man/ext01_1.Rd
-  .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))
-=======
   .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
   ...
->>>>>>> origin/main:man/ext01_1_main.Rd
 )
 }
 \arguments{
@@ -59,11 +51,8 @@ ext01_1_pre(
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
 
 \item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
-<<<<<<< HEAD:man/ext01_1.Rd
-=======
 
 \item{...}{not used.}
->>>>>>> origin/main:man/ext01_1_main.Rd
 }
 \description{
 The EXT01 table provides an overview of the of the exposure of the
@@ -94,11 +83,7 @@ library(dm)
 db <- syn_test_data() \%>\%
   ext01_1_pre()
 
-<<<<<<< HEAD:man/ext01_1.Rd
-ext01_1(db)
-=======
 ext01_1_main(db)
->>>>>>> origin/main:man/ext01_1_main.Rd
 syn_test_data() \%>\%
   ext01_1_pre()
 }

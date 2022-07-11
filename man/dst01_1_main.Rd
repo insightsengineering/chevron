@@ -4,11 +4,7 @@
 \alias{dst01_1_main}
 \alias{dst01_1_lyt}
 \alias{dst01_1_pre}
-<<<<<<< HEAD:man/dst01_1.Rd
-\title{DST01 Table 1 (Default) Patient Disposition Table 1}
-=======
 \title{DST01 Table 1 (Default) Patient Disposition Table 1.}
->>>>>>> origin/main:man/dst01_1_main.Rd
 \usage{
 dst01_1_main(
   adam_db,
@@ -35,11 +31,7 @@ dst01_1_lyt(
     disc_reason_var = "DCSREAS")
 )
 
-<<<<<<< HEAD:man/dst01_1.Rd
-dst01_1_pre(adam_db)
-=======
 dst01_1_pre(adam_db, ...)
->>>>>>> origin/main:man/dst01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}

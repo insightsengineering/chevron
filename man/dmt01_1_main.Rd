@@ -4,11 +4,7 @@
 \alias{dmt01_1_main}
 \alias{dmt01_1_lyt}
 \alias{dmt01_1_pre}
-<<<<<<< HEAD:man/dmt01_1.Rd
-\title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1}
-=======
 \title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1.}
->>>>>>> origin/main:man/dmt01_1_main.Rd
 \usage{
 dmt01_1_main(
   adam_db,
@@ -32,11 +28,7 @@ dmt01_1_lyt(
     "RACE"), lbl_overall = "All Patients")
 )
 
-<<<<<<< HEAD:man/dmt01_1.Rd
-dmt01_1_pre(adam_db)
-=======
 dmt01_1_pre(adam_db, ...)
->>>>>>> origin/main:man/dmt01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}

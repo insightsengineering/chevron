@@ -4,11 +4,7 @@
 \alias{egt02_2_main}
 \alias{egt02_2_lyt}
 \alias{egt02_2_pre}
-<<<<<<< HEAD:man/egt02_2.Rd
-\title{\code{EGT02} Table 2 (Supplementary) ECG Abnormalities Table 2}
-=======
 \title{\code{EGT02} Table 2 (Supplementary) ECG Abnormalities Table 2.}
->>>>>>> origin/main:man/egt02_2_main.Rd
 \usage{
 egt02_2_main(
   adam_db,
@@ -30,11 +26,7 @@ egt02_2_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
-<<<<<<< HEAD:man/egt02_2.Rd
-egt02_2_pre(adam_db)
-=======
 egt02_2_pre(adam_db, ...)
->>>>>>> origin/main:man/egt02_2_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}

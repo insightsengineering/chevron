@@ -4,11 +4,7 @@
 \alias{lbt01_1_main}
 \alias{lbt01_1_lyt}
 \alias{lbt01_1_pre}
-<<<<<<< HEAD:man/lbt01_1.Rd
-\title{\code{LBT01} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit}
-=======
 \title{\code{LBT01} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.}
->>>>>>> origin/main:man/lbt01_1_main.Rd
 \usage{
 lbt01_1_main(
   adam_db,
@@ -32,11 +28,7 @@ lbt01_1_lyt(
   .study = list(actualarm = "ACTARM", visitvar = "AVISIT")
 )
 
-<<<<<<< HEAD:man/lbt01_1.Rd
-lbt01_1_pre(adam_db)
-=======
 lbt01_1_pre(adam_db, ...)
->>>>>>> origin/main:man/lbt01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -92,11 +84,7 @@ library(dm)
 db <- syn_test_data() \%>\%
   lbt01_1_pre()
 
-<<<<<<< HEAD:man/lbt01_1.Rd
-lbt01_1(db)
-=======
 lbt01_1_main(db)
->>>>>>> origin/main:man/lbt01_1_main.Rd
 syn_test_data() \%>\%
   lbt01_1_pre()
 }

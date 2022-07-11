@@ -33,11 +33,7 @@ dtht01_1_opt_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
-<<<<<<< HEAD:man/dtht01_1.Rd
-dtht01_1_pre(adam_db)
-=======
 dtht01_1_pre(adam_db, ...)
->>>>>>> origin/main:man/dtht01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -67,7 +63,6 @@ A description of the causes of death optionally with the breakdown of the
 \item Numbers represent absolute numbers of subjects and fraction of \code{N}, or absolute numbers when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Does not include a total column by default.
-\item For the breakdown of \code{OTHER}, the percentages are based on \code{N}.
 }
 }
 \section{Functions}{
@@ -89,17 +84,10 @@ db <- syn_test_data() \%>\%
   dm_update_zoomed() \%>\%
   dtht01_1_pre()
 
-<<<<<<< HEAD:man/dtht01_1.Rd
-dtht01_1(adam_db = db)
-dtht01_1(adam_db = db, other_category = TRUE)
-dtht01_1(adam_db = db, time_since_last_dose = TRUE)
-dtht01_1(adam_db = db, time_since_last_dose = TRUE, other_category = TRUE)
-=======
 dtht01_1_main(adam_db = db)
 dtht01_1_main(adam_db = db, other_category = FALSE)
 dtht01_1_main(adam_db = db, time_since_last_dose = TRUE)
 dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
->>>>>>> origin/main:man/dtht01_1_main.Rd
 dtht01_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL

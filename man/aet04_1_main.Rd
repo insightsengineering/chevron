@@ -4,13 +4,9 @@
 \alias{aet04_1_main}
 \alias{aet04_1_lyt}
 \alias{aet04_1_pre}
-<<<<<<< HEAD:man/aet04_1.Rd
-\title{\code{AET04} Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1}
-=======
 \title{\code{AET04} Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.
 The \code{AET04} table provides an
 overview of adverse event with the highest NCI CTCAE grade per individual.}
->>>>>>> origin/main:man/aet04_1_main.Rd
 \usage{
 aet04_1_main(
   adam_db,
@@ -83,15 +79,9 @@ library(dm)
 db <- syn_test_data() \%>\%
   aet04_1_pre()
 
-<<<<<<< HEAD:man/aet04_1.Rd
-aet04_1(db)
-
-aet04_1(
-=======
 aet04_1_main(db)
 
 aet04_1_main(
->>>>>>> origin/main:man/aet04_1_main.Rd
   db,
   prune_0 = FALSE,
   lbl_overall = "All Patients",

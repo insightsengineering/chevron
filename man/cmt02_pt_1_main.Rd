@@ -4,11 +4,7 @@
 \alias{cmt02_pt_1_main}
 \alias{cmt02_pt_1_lyt}
 \alias{cmt02_pt_1_pre}
-<<<<<<< HEAD:man/cmt02_pt_1.Rd
-\title{\code{CMT02_PT} Table 1 (Default) Concomitant Medications by Preferred Name}
-=======
 \title{\code{CMT02_PT} Table 1 (Default) Concomitant Medications by Preferred Name.}
->>>>>>> origin/main:man/cmt02_pt_1_main.Rd
 \usage{
 cmt02_pt_1_main(
   adam_db,

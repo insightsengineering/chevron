@@ -4,11 +4,7 @@
 \alias{egt01_1_main}
 \alias{egt01_1_lyt}
 \alias{egt01_1_pre}
-<<<<<<< HEAD:man/egt01_1.Rd
-\title{\code{EGT01} Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1}
-=======
 \title{\code{EGT01} Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.}
->>>>>>> origin/main:man/egt01_1_main.Rd
 \usage{
 egt01_1_main(
   adam_db,
@@ -33,11 +29,7 @@ egt01_1_lyt(
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
 
-<<<<<<< HEAD:man/egt01_1.Rd
-egt01_1_pre(adam_db)
-=======
 egt01_1_pre(adam_db, ...)
->>>>>>> origin/main:man/egt01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -93,13 +85,8 @@ library(dm)
 db <- syn_test_data() \%>\%
   egt01_1_pre()
 
-<<<<<<< HEAD:man/egt01_1.Rd
-egt01_1(db)
-egt01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-=======
 egt01_1_main(db)
 egt01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
->>>>>>> origin/main:man/egt01_1_main.Rd
 syn_test_data() \%>\%
   egt01_1_pre()
 }

@@ -4,11 +4,7 @@
 \alias{dst01_2_main}
 \alias{dst01_2_lyt}
 \alias{dst01_2_pre}
-<<<<<<< HEAD:man/dst01_2.Rd
-\title{DST01 Table 2 (Supplementary) Patient Disposition Table 2}
-=======
 \title{DST01 Table 2 (Supplementary) Patient Disposition Table 2.}
->>>>>>> origin/main:man/dst01_2_main.Rd
 \usage{
 dst01_2_main(
   adam_db,
@@ -38,12 +34,8 @@ dst01_2_lyt(
 dst01_2_pre(
   adam_db,
   reason = .study$disc_reason_var,
-<<<<<<< HEAD:man/dst01_2.Rd
-  .study = list(disc_reason_var = "DCSREAS")
-=======
   .study = list(disc_reason_var = "DCSREAS"),
   ...
->>>>>>> origin/main:man/dst01_2_main.Rd
 )
 }
 \arguments{
@@ -79,13 +71,9 @@ By Default `ONGOING.}
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
 
-<<<<<<< HEAD:man/dst01_2.Rd
-\item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
-=======
 \item{reason}{(\code{string}) the variable name for variable with the reason for discontinuation.}
 
 \item{...}{not used.}
->>>>>>> origin/main:man/dst01_2_main.Rd
 }
 \description{
 The DST01_2 Disposition Table provides an overview of

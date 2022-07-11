@@ -4,10 +4,7 @@
 \alias{aet02_1_main}
 \alias{aet02_1_lyt}
 \alias{aet02_1_pre}
-<<<<<<< HEAD:man/aet02_1.Rd
-=======
 \alias{aet02_1_check}
->>>>>>> origin/main:man/aet02_1_main.Rd
 \title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \usage{
 aet02_1_main(
@@ -28,9 +25,6 @@ aet02_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
-<<<<<<< HEAD:man/aet02_1.Rd
-aet02_1_pre(adam_db)
-=======
 aet02_1_pre(adam_db, ...)
 
 aet02_1_check(
@@ -40,7 +34,6 @@ aet02_1_check(
   .study = list(actualarm = "ACTARM"),
   ...
 )
->>>>>>> origin/main:man/aet02_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -82,11 +75,8 @@ events categorized by Body System and Dictionary-Derived Term.
 \item \code{aet02_1_lyt}: \code{aet02_1} Layout
 
 \item \code{aet02_1_pre}: \code{aet02_1} Preprocessing
-<<<<<<< HEAD:man/aet02_1.Rd
-=======
 
 \item \code{aet02_1_check}: \code{aet02_1} Checks
->>>>>>> origin/main:man/aet02_1_main.Rd
 }}
 
 \examples{
@@ -94,24 +84,13 @@ library(dm)
 
 db <- syn_test_data() \%>\%
   aet02_1_pre()
-<<<<<<< HEAD:man/aet02_1.Rd
-
-aet02_1(adam_db = db) \%>\% head(15)
-=======
->>>>>>> origin/main:man/aet02_1_main.Rd
 
 aet02_1_main(adam_db = db) \%>\% head(15)
 
 # alternatively adam_db also accepts a names list
-<<<<<<< HEAD:man/aet02_1.Rd
-aet02_1(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
-
-aet02_1(db, lbl_overall = "All Patients") \%>\% head()
-=======
 aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
 
 aet02_1_main(db, lbl_overall = "All Patients") \%>\% head()
->>>>>>> origin/main:man/aet02_1_main.Rd
 aet02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

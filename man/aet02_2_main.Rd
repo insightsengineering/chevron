@@ -4,11 +4,7 @@
 \alias{aet02_2_main}
 \alias{aet02_2_lyt}
 \alias{aet02_2_pre}
-<<<<<<< HEAD:man/aet02_2.Rd
-\title{\code{AET02} Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2}
-=======
 \title{\code{AET02} Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.}
->>>>>>> origin/main:man/aet02_2_main.Rd
 \usage{
 aet02_2_main(
   adam_db,
@@ -29,11 +25,7 @@ aet02_2_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
-<<<<<<< HEAD:man/aet02_2.Rd
-aet02_2_pre(adam_db)
-=======
 aet02_2_pre(adam_db, ...)
->>>>>>> origin/main:man/aet02_2_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -87,11 +79,7 @@ db <- syn_test_data() \%>\%
 aet02_2_main(db) \%>\% head(15)
 
 # Additional Examples
-<<<<<<< HEAD:man/aet02_2.Rd
-aet02_2(db, lbl_overall = "All Patients") \%>\% head()
-=======
 aet02_2_main(db, lbl_overall = "All Patients") \%>\% head()
->>>>>>> origin/main:man/aet02_2_main.Rd
 aet02_2_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,

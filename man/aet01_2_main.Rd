@@ -4,13 +4,9 @@
 \alias{aet01_2_main}
 \alias{aet01_2_lyt}
 \alias{aet01_2_pre}
-<<<<<<< HEAD:man/aet01_2.Rd
-\title{\code{AET01} Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2.}
-=======
 \alias{aet01_2_check}
 \title{\code{AET01} Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2. Overview of death and summary
 of adverse events with medical concepts.}
->>>>>>> origin/main:man/aet01_2_main.Rd
 \usage{
 aet01_2_main(
   adam_db,
@@ -42,9 +38,6 @@ aet01_2_lyt(
     c("SMQ01", "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
 )
 
-<<<<<<< HEAD:man/aet01_2.Rd
-aet01_2_pre(adam_db)
-=======
 aet01_2_pre(adam_db, ...)
 
 aet01_2_check(
@@ -60,7 +53,6 @@ aet01_2_check(
     medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
   ...
 )
->>>>>>> origin/main:man/aet01_2_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -101,11 +93,8 @@ of adverse events with medical concepts.
 \item \code{aet01_2_lyt}: \code{aet01_2} Layout
 
 \item \code{aet01_2_pre}: \code{aet01_2} Preprocessing
-<<<<<<< HEAD:man/aet01_2.Rd
-=======
 
 \item \code{aet01_2_check}: \code{aet01_2} Checks
->>>>>>> origin/main:man/aet01_2_main.Rd
 }}
 
 \examples{
@@ -120,10 +109,5 @@ aet01_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("AET01")
 )
-<<<<<<< HEAD:man/aet01_2.Rd
-syn_test_data() \%>\%
-  aet01_2_pre()
-=======
 aet01_2_pre(syn_test_data(), safety_var = "REL")
->>>>>>> origin/main:man/aet01_2_main.Rd
 }

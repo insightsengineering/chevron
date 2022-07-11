@@ -4,11 +4,7 @@
 \alias{mht01_1_main}
 \alias{mht01_1_lyt}
 \alias{mht01_1_pre}
-<<<<<<< HEAD:man/mht01_1.Rd
-\title{\code{MHT01} Table 1 (Default) Medical History Table 1}
-=======
 \title{\code{MHT01} Table 1 (Default) Medical History Table 1.}
->>>>>>> origin/main:man/mht01_1_main.Rd
 \usage{
 mht01_1_main(
   adam_db,
@@ -30,11 +26,7 @@ mht01_1_lyt(
   .study = list(planarm = "ARM", lbl_overall = NULL)
 )
 
-<<<<<<< HEAD:man/mht01_1.Rd
-mht01_1_pre(adam_db)
-=======
 mht01_1_pre(adam_db, ...)
->>>>>>> origin/main:man/mht01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}

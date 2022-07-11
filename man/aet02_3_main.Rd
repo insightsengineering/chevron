@@ -4,11 +4,7 @@
 \alias{aet02_3_main}
 \alias{aet02_3_lyt}
 \alias{aet02_3_pre}
-<<<<<<< HEAD:man/aet02_3.Rd
-\title{\code{AET02} Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3}
-=======
 \title{\code{AET02} Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.}
->>>>>>> origin/main:man/aet02_3_main.Rd
 \usage{
 aet02_3_main(
   adam_db,

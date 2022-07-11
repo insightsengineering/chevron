@@ -28,12 +28,8 @@ ext01_2_pre(
   adam_db,
   show_stats = .study$show_cont_stats,
   show_bins = .study$show_cat_stats,
-<<<<<<< HEAD:man/ext01_2.Rd
-  .study = list(show_cont_stats = c("ALL"), show_cat_stats = c("ALL"))
-=======
   .study = list(show_cont_stats = c("ALL"), show_cat_stats = c("ALL")),
   ...
->>>>>>> origin/main:man/ext01_2_main.Rd
 )
 }
 \arguments{
@@ -58,11 +54,8 @@ presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analy
 
 \item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
 presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
-<<<<<<< HEAD:man/ext01_2.Rd
-=======
 
 \item{...}{not used.}
->>>>>>> origin/main:man/ext01_2_main.Rd
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
@@ -92,11 +85,7 @@ library(dm)
 db <- syn_test_data() \%>\%
   ext01_2_pre()
 
-<<<<<<< HEAD:man/ext01_2.Rd
-ext01_2(db)
-=======
 ext01_2_main(db)
->>>>>>> origin/main:man/ext01_2_main.Rd
 syn_test_data() \%>\%
   ext01_2_pre()
 }

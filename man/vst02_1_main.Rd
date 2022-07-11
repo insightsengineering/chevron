@@ -4,11 +4,7 @@
 \alias{vst02_1_main}
 \alias{vst02_1_lyt}
 \alias{vst02_1_pre}
-<<<<<<< HEAD:man/vst02_1.Rd
-\title{\code{VST02} Table 1 (Default) Vital Sign Abnormalities Table 1}
-=======
 \title{\code{VST02} Table 1 (Default) Vital Sign Abnormalities Table 1.}
->>>>>>> origin/main:man/vst02_1_main.Rd
 \usage{
 vst02_1_main(
   adam_db,
@@ -30,11 +26,7 @@ vst02_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL)
 )
 
-<<<<<<< HEAD:man/vst02_1.Rd
-vst02_1_pre(adam_db)
-=======
 vst02_1_pre(adam_db, ...)
->>>>>>> origin/main:man/vst02_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -88,10 +80,5 @@ vst02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-<<<<<<< HEAD:man/vst02_1.Rd
-syn_test_data() \%>\%
-  vst02_1_pre()
-=======
 vst02_1_pre(syn_test_data())
->>>>>>> origin/main:man/vst02_1_main.Rd
 }

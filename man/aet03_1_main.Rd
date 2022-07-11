@@ -4,11 +4,7 @@
 \alias{aet03_1_main}
 \alias{aet03_1_lyt}
 \alias{aet03_1_pre}
-<<<<<<< HEAD:man/aet03_1.Rd
-\title{\code{AET03} Table 1 (Default) Advert Events by Greatest Intensity Table 1}
-=======
 \title{\code{AET03} Table 1 (Default) Advert Events by Greatest Intensity Table 1.}
->>>>>>> origin/main:man/aet03_1_main.Rd
 \usage{
 aet03_1_main(
   adam_db,

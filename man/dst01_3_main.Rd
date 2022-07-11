@@ -4,11 +4,7 @@
 \alias{dst01_3_main}
 \alias{dst01_3_lyt}
 \alias{dst01_3_pre}
-<<<<<<< HEAD:man/dst01_3.Rd
-\title{DST01 Table 3 (Supplementary) Patient Disposition Table 3}
-=======
 \title{DST01 Table 3 (Supplementary) Patient Disposition Table 3.}
->>>>>>> origin/main:man/dst01_3_main.Rd
 \usage{
 dst01_3_main(
   adam_db,
@@ -38,12 +34,8 @@ dst01_3_lyt(
 dst01_3_pre(
   adam_db,
   reason = .study$disc_reason_var,
-<<<<<<< HEAD:man/dst01_3.Rd
-  .study = list(disc_reason_var = "DCSREAS")
-=======
   .study = list(disc_reason_var = "DCSREAS"),
   ...
->>>>>>> origin/main:man/dst01_3_main.Rd
 )
 }
 \arguments{
@@ -81,11 +73,8 @@ the analysis period.}
 By Default `ONGOING.}
 
 \item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
-<<<<<<< HEAD:man/dst01_3.Rd
-=======
 
 \item{...}{not used.}
->>>>>>> origin/main:man/dst01_3_main.Rd
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued

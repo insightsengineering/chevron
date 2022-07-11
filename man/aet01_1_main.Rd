@@ -4,10 +4,7 @@
 \alias{aet01_1_main}
 \alias{aet01_1_lyt}
 \alias{aet01_1_pre}
-<<<<<<< HEAD:man/aet01_1.Rd
-=======
 \alias{aet01_1_check}
->>>>>>> origin/main:man/aet01_1_main.Rd
 \title{\code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.}
 \usage{
 aet01_1_main(
@@ -35,9 +32,6 @@ aet01_1_lyt(
     "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
 )
 
-<<<<<<< HEAD:man/aet01_1.Rd
-aet01_1_pre(adam_db)
-=======
 aet01_1_pre(adam_db, ...)
 
 aet01_1_check(
@@ -50,7 +44,6 @@ aet01_1_check(
     "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   ...
 )
->>>>>>> origin/main:man/aet01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -86,11 +79,8 @@ aet01_1_check(
 \item \code{aet01_1_lyt}: \code{aet01_1} Layout
 
 \item \code{aet01_1_pre}: \code{aet01_1} Preprocessing
-<<<<<<< HEAD:man/aet01_1.Rd
-=======
 
 \item \code{aet01_1_check}: \code{aet01_1} Checks
->>>>>>> origin/main:man/aet01_1_main.Rd
 }}
 
 \examples{
@@ -105,10 +95,5 @@ aet01_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("AET01")
 )
-<<<<<<< HEAD:man/aet01_1.Rd
-syn_test_data() \%>\%
-  aet01_1_pre()
-=======
 aet01_1_pre(syn_test_data(), armvar = "ACTARM")
->>>>>>> origin/main:man/aet01_1_main.Rd
 }

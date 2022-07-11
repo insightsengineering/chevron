@@ -4,11 +4,7 @@
 \alias{vst01_1_main}
 \alias{vst01_1_lyt}
 \alias{vst01_1_pre}
-<<<<<<< HEAD:man/vst01_1.Rd
-\title{\code{VST01} Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1}
-=======
 \title{\code{VST01} Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.}
->>>>>>> origin/main:man/vst01_1_main.Rd
 \usage{
 vst01_1_main(
   adam_db,
@@ -33,11 +29,7 @@ vst01_1_lyt(
     c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
 )
 
-<<<<<<< HEAD:man/vst01_1.Rd
-vst01_1_pre(adam_db)
-=======
 vst01_1_pre(adam_db, ...)
->>>>>>> origin/main:man/vst01_1_main.Rd
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -94,13 +86,8 @@ library(dm)
 db <- syn_test_data() \%>\%
   vst01_1_pre()
 
-<<<<<<< HEAD:man/vst01_1.Rd
-vst01_1(db)
-vst01_1(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-=======
 vst01_1_main(db)
 vst01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
->>>>>>> origin/main:man/vst01_1_main.Rd
 syn_test_data() \%>\%
   vst01_1_pre()
 }
