@@ -61,11 +61,8 @@ mht01_1_main <- function(adam_db,
   tbl_sorted
 }
 
-<<<<<<< HEAD
-#' @describeIn mht01_1 `mht01_1` Layout
-=======
+
 #' @describeIn mht01_1_main `mht01_1` Layout
->>>>>>> origin/main
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -125,27 +122,18 @@ mht01_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_mhdecod))
 }
 
-<<<<<<< HEAD
-#' @describeIn mht01_1 `mht01_1` Preprocessing
-#'
-#' @inheritParams gen_args
-=======
+
 #' @describeIn mht01_1_main `mht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
->>>>>>> origin/main
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   mht01_1_pre()
-<<<<<<< HEAD
-mht01_1_pre <- function(adam_db) {
-=======
 mht01_1_pre <- function(adam_db, ...) {
->>>>>>> origin/main
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -153,8 +141,6 @@ mht01_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
-<<<<<<< HEAD
-=======
 
 # `MHT01_1` Pipeline ----
 
@@ -164,4 +150,3 @@ mht01_1_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))
->>>>>>> origin/main
