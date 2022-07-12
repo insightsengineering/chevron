@@ -185,24 +185,24 @@ mng01_1_main <- function(adam_db,
 #' @describeIn mng01_1_main `mng01_1` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param (`string`) the value of `PARAM` to select.
+#' @param param_val (`string`) the value of `PARAM` to select.
 #' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' mng01_1_pre(syn_test_data(), param = "Alanine Aminotransferase Measurement")
-mng01_1_pre <- function(adam_db, dataset = "adlb", param, ...) {
+mng01_1_pre <- function(adam_db, dataset = "adlb", param_val, ...) {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_string(dataset)
-  checkmate::assert_string(param)
-  checkmate::assert_subset(param, as.character(adam_db[[dataset]]$PARAM))
+  checkmate::assert_string(param_val)
+  checkmate::assert_subset(param_val, as.character(adam_db[[dataset]]$PARAM))
 
   sym_dataset <- sym(dataset)
 
   adam_db %>%
     dm_zoom_to(!!sym_dataset) %>%
-    filter(PARAM == param) %>%
+    filter(.data$PARAM == param_val) %>%
     dm_update_zoomed()
 }
 

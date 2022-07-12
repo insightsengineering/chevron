@@ -27,7 +27,7 @@ mng01_1_main(
   ...
 )
 
-mng01_1_pre(adam_db, dataset = "adlb", param, ...)
+mng01_1_pre(adam_db, dataset = "adlb", param_val, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -65,7 +65,7 @@ values of \code{armvar} with color names.}
 
 \item{...}{not used.}
 
-\item{(`string`)}{the value of \code{PARAM} to select.}
+\item{param_val}{(\code{string}) the value of \code{PARAM} to select.}
 }
 \value{
 a \code{ggplot} object.
