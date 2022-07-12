@@ -41,7 +41,7 @@ dst01_3_pre(
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting.}
 
 \item{status}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis

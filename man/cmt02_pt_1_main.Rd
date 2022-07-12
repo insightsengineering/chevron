@@ -27,7 +27,7 @@ cmt02_pt_1_pre(adam_db, ...)
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 

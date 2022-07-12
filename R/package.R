@@ -12,6 +12,7 @@
 #' @importFrom dunlin poly_pivot_wider
 #' @importFrom dplyr filter case_when mutate
 #' @importFrom forcats fct_relevel
+#' @importFrom ggplot2 theme
 #' @importFrom magrittr %>%
 #' @importFrom methods is setValidity
 #' @importFrom rlang sym

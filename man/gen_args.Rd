@@ -7,6 +7,7 @@
 gen_args(
   adam_db,
   armvar,
+  dataset,
   lbl_overall,
   prune_0,
   req_tables,
@@ -20,7 +21,9 @@ gen_args(
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting.}
+
+\item{dataset}{(\code{string}) the name of the data set to be analyzed.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

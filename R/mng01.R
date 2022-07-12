@@ -9,21 +9,20 @@
 #'  * No overall value.
 #'
 #' @inheritParams gen_args
-#' @param dataset (`character`) the name of the data set to be analyzed.
-#' @param xval (`character`) the name of the variable to be represented on the x-axis.
-#' @param yval (`character`) the name of the variable to be represented on the y-axis.
-#' @param center_fun (`character`) the function to compute the estimate value.
-#' @param interval_fun (`character`) the function defining the crossbar range.
-#' @param show_n (`logical`) should the number of observation be displayed int the table.
-#' @param jitter (`logical`) should data point be slightly spread on the x-axis.
-#' @param show_h_grid (`logical`) should horizontal grid be displayed.
-#' @param show_v_grid (`logical`) should vertical grid be displayed.
-#' @param legend_pos (`character`) the position of the legend.
+#' @param x (`string`) the name of the variable to be represented on the x-axis.
+#' @param y (`string`) the name of the variable to be represented on the y-axis.
+#' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
+#' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle.
+#' @param center_fun (`string`) the function to compute the estimate value.
+#' @param interval_fun (`string`) the function defining the crossbar range.
+#' @param show_n (`flag`) should the number of observation be displayed int the table.
+#' @param jitter (`flag`) should data point be slightly spread on the x-axis.
+#' @param show_h_grid (`flag`) should horizontal grid be displayed.
+#' @param show_v_grid (`flag`) should vertical grid be displayed.
+#' @param legend_pos (`string`) the position of the legend.
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` vector associating
 #'   values of `armvar` with color names.
-#'
-#' @import ggplot2
-#' @importFrom checkmate assert_subset assert_vector assert_flag
+#' @param ... not used.
 #'
 #' @return a `ggplot` object.
 #' @export
@@ -33,16 +32,16 @@
 #' library(dplyr)
 #'
 #' db <- chevron::syn_test_data() %>%
-#'   dm_zoom_to("adlb") %>%
-#'   filter(PARAM == "Immunoglobulin A Measurement") %>%
-#'   dm_update_zoomed()
+#'   mng01_1_pre(param = "Alanine Aminotransferase Measurement")
 #'
 #' db %>% mng01_1_main(
 #'   center_fun = "mean",
 #'   interval_fun = "mean_sei",
 #'   legend_pos = "bottom",
 #'   show_n = TRUE,
-#'   jitter = FALSE,
+#'   show_h_grid = FALSE,
+#'   show_v_grid = FALSE,
+#'   jitter = TRUE,
 #'   line_col = c(
 #'     "A: Drug X" = "#008080",
 #'     "B: Placebo" = "#9b2525",
@@ -52,8 +51,10 @@
 #' )
 mng01_1_main <- function(adam_db,
                          dataset = "adlb",
-                         xval = "AVISIT",
-                         yval = "AVAL",
+                         x = "AVISIT",
+                         y = "AVAL",
+                         y_name = "PARAM",
+                         y_unit = "AVALU",
                          armvar = .study$actualarm,
                          center_fun = c("mean", "median"),
                          interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
@@ -69,7 +70,8 @@ mng01_1_main <- function(adam_db,
                            show_v_grid = FALSE,
                            legend_pos = "top",
                            color_dict = getOption("tern.color")
-                         )) {
+                         ),
+                         ...) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 
@@ -97,7 +99,7 @@ mng01_1_main <- function(adam_db,
     " and ",
     interval_title,
     " by ",
-    var_labels_for(adam_db[[dataset]], xval)
+    var_labels_for(adam_db[[dataset]], x)
   )
 
   whiskers_fun <- switch(interval_fun,
@@ -110,11 +112,11 @@ mng01_1_main <- function(adam_db,
   )
 
   variables <- c(
-    x = xval,
-    y = yval,
+    x = x,
+    y = y,
     strata = armvar,
-    paramcd = "PARAM",
-    y_unit = "AVALU"
+    paramcd = y_name,
+    y_unit = y_unit
   )
 
   n_func <- if (show_n) "n" else NULL
@@ -125,25 +127,25 @@ mng01_1_main <- function(adam_db,
     interval_fun
   )
 
-  ggtheme <- theme_bw() +
-    theme(legend.position = legend_pos) +
-    theme(axis.title.x = element_blank())
+  ggtheme <- ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = legend_pos) +
+    ggplot2::theme(axis.title.x = ggplot2::element_blank())
 
   if (!show_v_grid) {
-    ggtheme <- ggtheme + theme(panel.grid.major.x = element_blank())
+    ggtheme <- ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
   } else {
-    ggtheme <- ggtheme + theme(panel.grid.major.x = element_line(size = 1))
+    ggtheme <- ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(size = 1))
   }
 
   if (!show_h_grid) {
-    ggtheme <- ggtheme + theme(
-      panel.grid.minor.y = element_blank(),
-      panel.grid.major.y = element_blank()
+    ggtheme <- ggtheme + ggplot2::theme(
+      panel.grid.minor.y = ggplot2::element_blank(),
+      panel.grid.major.y = ggplot2::element_blank()
     )
   } else {
-    ggtheme <- ggtheme + theme(
-      panel.grid.minor.y = element_line(size = 1),
-      panel.grid.major.y = element_line(size = 1)
+    ggtheme <- ggtheme + ggplot2::theme(
+      panel.grid.minor.y = ggplot2::element_line(size = 1),
+      panel.grid.major.y = ggplot2::element_line(size = 1)
     )
   }
 
@@ -162,7 +164,6 @@ mng01_1_main <- function(adam_db,
     col <- line_col
   }
 
-
   p <- tern::g_lineplot(
     df = adam_db[[dataset]],
     alt_count = adam_db[["adsl"]],
@@ -170,7 +171,7 @@ mng01_1_main <- function(adam_db,
     mid = center_fun,
     interval = interval_fun,
     whiskers = whiskers_fun,
-    position = position_dodge(width = ifelse(jitter, 0.3, 0)),
+    position = ggplot2::position_dodge(width = ifelse(jitter, 0.3, 0)),
     title = title,
     table = table,
     ggtheme = ggtheme,
@@ -179,3 +180,34 @@ mng01_1_main <- function(adam_db,
 
   p
 }
+
+#' @describeIn mng01_1_main `mng01_1` Preprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+#' @examples
+#' mng01_1_pre(syn_test_data(), param = "Alanine Aminotransferase Measurement")
+mng01_1_pre <- function(adam_db, dataset = "adlb", param, ...) {
+  checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_string(dataset)
+  checkmate::assert_string(param)
+  checkmate::assert_subset(param, as.character(adam_db[[dataset]]$PARAM))
+
+  sym_dataset <- sym(dataset)
+
+  adam_db %>%
+    dm_zoom_to(!!sym_dataset) %>%
+    filter(PARAM == param) %>%
+    dm_update_zoomed()
+}
+
+
+# `mng01_1` Pipeline ----
+
+#' @seealso [mng01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+mng01_1 <- chevron_tlg(mng01_1_main, mng01_1_pre, adam_datasets = c("adsl", "adlb"))

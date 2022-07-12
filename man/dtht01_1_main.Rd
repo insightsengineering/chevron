@@ -38,7 +38,7 @@ dtht01_1_pre(adam_db, ...)
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting.}
 
 \item{time_since_last_dose}{(\code{logical}) should the time to event information be displayed.}
 

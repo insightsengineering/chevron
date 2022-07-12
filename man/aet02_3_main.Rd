@@ -29,7 +29,7 @@ aet02_3_pre(adam_db, ...)
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

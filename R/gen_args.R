@@ -2,7 +2,8 @@
 #' General Argument Name Convention
 #'
 #' @param adam_db (`dm`) object containing the ADaM datasets
-#' @param armvar (`character`) variable used for column splitting
+#' @param armvar (`character`) variable used for column splitting.
+#' @param dataset (`string`) the name of the data set to be analyzed.
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content
 #' @param lbl_overall (`character`) label used for overall column, if set to `NULL` the overall column is omitted
 #' @param prune_0 (`logical`) remove 0 count rows
@@ -14,7 +15,7 @@
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `armvar`.
 #'
-gen_args <- function(adam_db, armvar, lbl_overall, prune_0, req_tables, deco, .study, group,
+gen_args <- function(adam_db, armvar, dataset, lbl_overall, prune_0, req_tables, deco, .study, group,
                      tlgfname, pmap) {
   NULL
 }

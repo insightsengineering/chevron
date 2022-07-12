@@ -64,6 +64,7 @@ Collate:
     'gen_args.R'
     'lbt01.R'
     'mht01.R'
+    'mng01.R'
     'package.R'
     'sample_study_object.R'
     'standard_data_preprocessing.R'

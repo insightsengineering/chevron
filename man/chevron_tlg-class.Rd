@@ -2,7 +2,7 @@
 % Please edit documentation in R/TLG_pipeline-S4class.R, R/aet01.R, R/aet02.R,
 %   R/aet03.R, R/aet04.R, R/cmt01a.R, R/cmt02_pt.R, R/dmt01.R, R/dst01.R,
 %   R/dtht01.R, R/egt01.R, R/egt02.R, R/ext01.R, R/lbt01.R, R/mht01.R,
-%   R/vst01.R, R/vst02.R
+%   R/mng01.R, R/vst01.R, R/vst02.R
 \docType{class}
 \name{chevron_tlg-class}
 \alias{chevron_tlg-class}
@@ -31,11 +31,14 @@
 \alias{ext01_2}
 \alias{lbt01_1}
 \alias{mht01_1}
+\alias{mng01_1}
 \alias{vst01_1}
 \alias{vst02_1}
 \alias{vst02_2}
 \title{\code{chevron_tlg} Class}
 \format{
+An object of class \code{chevron_tlg} of length 1.
+
 An object of class \code{chevron_tlg} of length 1.
 
 An object of class \code{chevron_tlg} of length 1.
@@ -142,6 +145,8 @@ lbt01_1
 
 mht01_1
 
+mng01_1
+
 vst01_1
 
 vst02_1
@@ -239,6 +244,8 @@ x <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 \code{\link[=lbt01_1_main]{lbt01_1_main()}}
 
 \code{\link[=mht01_1_main]{mht01_1_main()}}
+
+\code{\link[=mng01_1_main]{mng01_1_main()}}
 
 \code{\link[=vst01_1_main]{vst01_1_main()}}
 

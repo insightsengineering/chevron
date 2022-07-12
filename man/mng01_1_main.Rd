@@ -2,13 +2,16 @@
 % Please edit documentation in R/mng01.R
 \name{mng01_1_main}
 \alias{mng01_1_main}
+\alias{mng01_1_pre}
 \title{\code{MNG01} Graph 1 (Default) Mean Plot 1.}
 \usage{
 mng01_1_main(
   adam_db,
   dataset = "adlb",
-  xval = "AVISIT",
-  yval = "AVAL",
+  x = "AVISIT",
+  y = "AVAL",
+  y_name = "PARAM",
+  y_unit = "AVALU",
   armvar = .study$actualarm,
   center_fun = c("mean", "median"),
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles",
@@ -20,38 +23,47 @@ mng01_1_main(
   legend_pos = .study$legend_pos,
   line_col = .study$color_dict,
   .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE,
-    legend_pos = "top", color_dict = getOption("tern.color"))
+    legend_pos = "top", color_dict = getOption("tern.color")),
+  ...
 )
+
+mng01_1_pre(adam_db, dataset = "adlb", param, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
-\item{dataset}{(\code{character}) the name of the data set to be analyzed.}
+\item{dataset}{(\code{string}) the name of the data set to be analyzed.}
 
-\item{xval}{(\code{character}) the name of the variable to be represented on the x-axis.}
+\item{x}{(\code{string}) the name of the variable to be represented on the x-axis.}
 
-\item{yval}{(\code{character}) the name of the variable to be represented on the y-axis.}
+\item{y}{(\code{string}) the name of the variable to be represented on the y-axis.}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{y_name}{(\code{string}) the variable name for \code{y}. Used for plot's subtitle.}
 
-\item{center_fun}{(\code{character}) the function to compute the estimate value.}
+\item{y_unit}{(\code{string}) the name of the variable with the units of \code{y}. Used for plot's subtitle.}
 
-\item{interval_fun}{(\code{character}) the function defining the crossbar range.}
+\item{armvar}{(\code{character}) variable used for column splitting.}
 
-\item{jitter}{(\code{logical}) should data point be slightly spread on the x-axis.}
+\item{center_fun}{(\code{string}) the function to compute the estimate value.}
 
-\item{show_n}{(\code{logical}) should the number of observation be displayed int the table.}
+\item{interval_fun}{(\code{string}) the function defining the crossbar range.}
 
-\item{show_h_grid}{(\code{logical}) should horizontal grid be displayed.}
+\item{jitter}{(\code{flag}) should data point be slightly spread on the x-axis.}
 
-\item{show_v_grid}{(\code{logical}) should vertical grid be displayed.}
+\item{show_n}{(\code{flag}) should the number of observation be displayed int the table.}
 
-\item{legend_pos}{(\code{character}) the position of the legend.}
+\item{show_h_grid}{(\code{flag}) should horizontal grid be displayed.}
+
+\item{show_v_grid}{(\code{flag}) should vertical grid be displayed.}
+
+\item{legend_pos}{(\code{string}) the position of the legend.}
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} vector associating
 values of \code{armvar} with color names.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
+
+\item{...}{not used.}
 }
 \value{
 a \code{ggplot} object.
@@ -64,21 +76,26 @@ Overview of a summary statistics across time and arm for a selected parameter an
 \item No overall value.
 }
 }
+\section{Functions}{
+\itemize{
+\item \code{mng01_1_pre}: \code{mng01_1} Preprocessing
+}}
+
 \examples{
 library(dm)
 library(dplyr)
 
 db <- chevron::syn_test_data() \%>\%
-  dm_zoom_to("adlb") \%>\%
-  filter(PARAM == "Immunoglobulin A Measurement") \%>\%
-  dm_update_zoomed()
+  mng01_1_pre(param = "Alanine Aminotransferase Measurement")
 
 db \%>\% mng01_1_main(
   center_fun = "mean",
   interval_fun = "mean_sei",
   legend_pos = "bottom",
   show_n = TRUE,
-  jitter = FALSE,
+  show_h_grid = FALSE,
+  show_v_grid = FALSE,
+  jitter = TRUE,
   line_col = c(
     "A: Drug X" = "#008080",
     "B: Placebo" = "#9b2525",
@@ -86,4 +103,5 @@ db \%>\% mng01_1_main(
     "D: Something" = "#ffa41c"
   )
 )
+mng01_1_pre(syn_test_data(), param = "Alanine Aminotransferase Measurement")
 }

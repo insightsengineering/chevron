@@ -24,7 +24,7 @@ cmt01a_2_pre(adam_db, ...)
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{armvar}{(\code{character}) variable used for column splitting.}
 
 \item{medcat_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
