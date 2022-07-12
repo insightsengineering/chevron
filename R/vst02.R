@@ -1,16 +1,15 @@
 # vst02_1 ----
 
-
-#' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1
+#' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1.
 #'
-#' Assessments Outside Normal Limits Regardless of Abnormality at Baseline Table.
+#' Assessments Outside Normal Limits Regardless of
+#' Abnormality at Baseline Table.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
 #'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
-#'
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -27,18 +26,18 @@
 #'   dm_update_zoomed() %>%
 #'   vst02_1_pre()
 #'
-#' vst02_1(adam_db = db)
-vst02_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("VST02"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' vst02_1_main(adam_db = db)
+vst02_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("VST02"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_1_lyt(
@@ -54,7 +53,7 @@ vst02_1 <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst02_1 `vst02_1` Layout
+#' @describeIn vst02_1_main `vst02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -90,16 +89,16 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn vst02_1 `vst02_1` Preprocessing
+#' @describeIn vst02_1_main `vst02_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   vst02_1_pre()
-vst02_1_pre <- function(adam_db) {
+#' vst02_1_pre(syn_test_data())
+vst02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("advs") %>%
@@ -126,11 +125,21 @@ vst02_1_pre <- function(adam_db) {
     dm_update_zoomed()
 }
 
+# `VST02_1` Pipeline ----
+
+#' `VST02_1` Pipeline
+#'
+#' @seealso [vst02_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
+
 # vst02_2 ----
 
-#' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2
+#' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2.
 #'
-#' Assessments Outside Normal Limits Among Subject Without Abnormality at Baseline.
+#' Assessments Outside Normal Limits Among Subject
+#' Without Abnormality at Baseline.
 #'
 #' @details
 #'   *
@@ -155,18 +164,18 @@ vst02_1_pre <- function(adam_db) {
 #'   dm_update_zoomed() %>%
 #'   vst02_2_pre()
 #'
-#' vst02_2(adam_db = db)
-vst02_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_vs_assessment = "Assessment",
-                    lbl_vs_abnormality = "Abnormality",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = FALSE,
-                    deco = std_deco("VST02_2"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' vst02_2_main(adam_db = db)
+vst02_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = FALSE,
+                         deco = std_deco("VST02_2"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_2_lyt(
@@ -182,7 +191,7 @@ vst02_2 <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst02_2 `vst02_2` Layout
+#' @describeIn vst02_2_main `vst02_2` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -218,16 +227,17 @@ vst02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0("  ", lbl_vs_abnormality))
 }
 
-#' @describeIn vst02_2 `vst02_2` Preprocessing
+#' @describeIn vst02_2_main `vst02_2` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   vst02_2_pre()
-vst02_2_pre <- function(adam_db) {
+vst02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("advs") %>%
@@ -253,3 +263,12 @@ vst02_2_pre <- function(adam_db) {
     ) %>%
     dm_update_zoomed()
 }
+
+# `VST02_2` Pipeline ----
+
+#' `VST02_2`
+#'
+#' @seealso [vst02_2_main()]
+#' @rdname chevron_tlg-class
+#' @export
+vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))

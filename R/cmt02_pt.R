@@ -1,7 +1,8 @@
-#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name
+
+#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
 #'
-#' A concomitant medication table with the number of subjects and the total number of treatments by medication name
-#' sorted by frequencies.
+#' A concomitant medication table with the
+#' number of subjects and the total number of treatments by medication name sorted by frequencies.
 #'
 #' @inheritParams gen_args
 #'
@@ -21,16 +22,16 @@
 #'   dm_update_zoomed() %>%
 #'   cmt02_pt_1_pre()
 #'
-#' cmt02_pt_1(adam_db = db)
-cmt02_pt_1 <- function(adam_db,
-                       armvar = .study$planarm,
-                       prune_0 = TRUE,
-                       lbl_overall = .study$lbl_overall,
-                       deco = std_deco("CMT02_PT"),
-                       .study = list(
-                         planarm = "ARM",
-                         lbl_overall = NULL
-                       )) {
+#' cmt02_pt_1_main(adam_db = db)
+cmt02_pt_1_main <- function(adam_db,
+                            armvar = .study$planarm,
+                            prune_0 = TRUE,
+                            lbl_overall = .study$lbl_overall,
+                            deco = std_deco("CMT02_PT"),
+                            .study = list(
+                              planarm = "ARM",
+                              lbl_overall = NULL
+                            )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt02_pt_1_lyt(
@@ -52,7 +53,7 @@ cmt02_pt_1 <- function(adam_db,
     )
 }
 
-#' @describeIn cmt02_pt_1 `cmt02_pt_1` Layout
+#' @describeIn cmt02_pt_1_main `cmt02_pt_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -87,16 +88,17 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
     append_topleft("Other Treatment")
 }
 
-#' @describeIn cmt02_pt_1 `cmt02_pt_1` Preprocessing
+#' @describeIn cmt02_pt_1_main `cmt02_pt_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt02_pt_1_pre()
-cmt02_pt_1_pre <- function(adam_db) {
+cmt02_pt_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -107,3 +109,12 @@ cmt02_pt_1_pre <- function(adam_db) {
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
 }
+
+# `CMT02_PT_1` Pipeline ----
+
+#' `CMT02_PT_1`
+#'
+#' @seealso [cmt02_pt_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

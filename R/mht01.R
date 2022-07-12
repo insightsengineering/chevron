@@ -1,6 +1,8 @@
-#' `MHT01` Table 1 (Default) Medical History Table 1
+
+#' `MHT01` Table 1 (Default) Medical History Table 1.
 #'
-#' The `MHT01` table provides an overview of the subjects medical history by SOC and Preferred Term.
+#' The `MHT01` table provides an overview of the subjects medical
+#' history by SOC and Preferred Term.
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -14,8 +16,6 @@
 #'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
 #'  patients with the specific condition.
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -24,18 +24,18 @@
 #' db <- syn_test_data() %>%
 #'   mht01_1_pre()
 #'
-#' mht01_1(adam_db = db) %>% head(15)
-mht01_1 <- function(adam_db,
-                    armvar = .study$planarm,
-                    lbl_overall = .study$lbl_overall,
-                    lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
-                    lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
-                    prune_0 = TRUE,
-                    deco = std_deco("MHT01"),
-                    .study = list(
-                      planarm = "ARM",
-                      lbl_overall = NULL
-                    )) {
+#' mht01_1_main(adam_db = db) %>% head(15)
+mht01_1_main <- function(adam_db,
+                         armvar = .study$planarm,
+                         lbl_overall = .study$lbl_overall,
+                         lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
+                         lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
+                         prune_0 = TRUE,
+                         deco = std_deco("MHT01"),
+                         .study = list(
+                           planarm = "ARM",
+                           lbl_overall = NULL
+                         )) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   lyt <- mht01_1_lyt(
@@ -61,7 +61,7 @@ mht01_1 <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn mht01_1 `mht01_1` Layout
+#' @describeIn mht01_1_main `mht01_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -121,16 +121,17 @@ mht01_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_mhdecod))
 }
 
-#' @describeIn mht01_1 `mht01_1` Preprocessing
+#' @describeIn mht01_1_main `mht01_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   mht01_1_pre()
-mht01_1_pre <- function(adam_db) {
+mht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -138,3 +139,12 @@ mht01_1_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `MHT01_1` Pipeline ----
+
+#' `MHT01_1`
+#'
+#' @seealso [mht01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))

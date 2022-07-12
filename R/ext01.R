@@ -1,8 +1,9 @@
-#' EXT01 Table 1 (Default) Exposure Summary Table
+# EXT01_1 ----
+
+#' EXT01 Table 1 (Default) Exposure Summary Table.
 #'
-#' The EXT01 table provides an overview of the of the exposure of the patients in terms of Total dose administered or
-#' missed, and treatment duration.
-#'
+#' The EXT01 table provides an overview of the of the exposure of the
+#' patients in terms of Total dose administered or missed, and treatment duration.
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) the name of the variable to be analyzed. By default `"AVAL"`.
@@ -25,17 +26,17 @@
 #' db <- syn_test_data() %>%
 #'   ext01_1_pre()
 #'
-#' ext01_1(db)
-ext01_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    summaryvars = "AVAL",
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("EXT01"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' ext01_1_main(db)
+ext01_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         summaryvars = "AVAL",
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("EXT01"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(
@@ -53,7 +54,7 @@ ext01_1 <- function(adam_db,
   tbl
 }
 
-#' @describeIn ext01_1 `ext01_1` Layout
+#' @describeIn ext01_1_main `ext01_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -84,10 +85,11 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-#' @describeIn ext01_1 `ext01_1` Preprocessing
+#' @describeIn ext01_1_main `ext01_1` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -96,7 +98,8 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #'   ext01_1_pre()
 ext01_1_pre <- function(adam_db,
                         paramcd_order = .study$paramcd_order,
-                        .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"))) {
+                        .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -106,7 +109,7 @@ ext01_1_pre <- function(adam_db,
 
   param_vars <- db$adex %>%
     select(.data$PARAM, .data$PARAMCD) %>%
-    reorder_levels_params(paramcd_levels = paramcd_order)
+    dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
   db %>%
     dm_zoom_to("adex") %>%
@@ -114,12 +117,20 @@ ext01_1_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-# Version 2 ----
+# `EXT01_1` Pipeline ----
+
+#' `EXT01_1`
+#'
+#' @seealso [ext01_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
+
+# EXT01_2 ----
 
 #' EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 #'
 #' @inheritParams gen_args
-#'
 #'
 #' @details
 #'  * Supplementary Exposure table with binning of desired analysis values.
@@ -139,16 +150,16 @@ ext01_1_pre <- function(adam_db,
 #' db <- syn_test_data() %>%
 #'   ext01_2_pre()
 #'
-#' ext01_2(db)
-ext01_2 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    lbl_overall = .study$lbl_overall,
-                    prune_0 = TRUE,
-                    deco = std_deco("EXT01"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' ext01_2_main(db)
+ext01_2_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         lbl_overall = .study$lbl_overall,
+                         prune_0 = TRUE,
+                         deco = std_deco("EXT01"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
   summaryvars <- c("AVAL", "AVALCAT1")
 
   # Provide a clearer error message in the case of missing variable.
@@ -169,7 +180,7 @@ ext01_2 <- function(adam_db,
   tbl
 }
 
-#' @describeIn ext01_2 `ext01_2` Layout
+#' @describeIn ext01_2_main `ext01_2` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -198,7 +209,7 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
     summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
 }
 
-#' @describeIn ext01_2 `ext01_2` Preprocessing
+#' @describeIn ext01_2_main `ext01_2` Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param show_stats (`vector of character`) providing the name of the parameters whose statistical summary should be
@@ -206,6 +217,7 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @param show_bins (`vector of character`) providing the name of the parameters whose categorical summary should be
 #'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -218,7 +230,8 @@ ext01_2_pre <- function(adam_db,
                         .study = list(
                           show_cont_stats = c("ALL"),
                           show_cat_stats = c("ALL")
-                        )) {
+                        ),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -242,3 +255,12 @@ ext01_2_pre <- function(adam_db,
 
   db
 }
+
+# `EXT01_2` Pipeline ----
+
+#' `EXT01_2`
+#'
+#' @seealso [ext01_2_main()]
+#' @rdname chevron_tlg-class
+#' @export
+ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))

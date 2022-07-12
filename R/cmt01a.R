@@ -2,8 +2,9 @@
 
 #' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
 #'
-#' A concomitant medication table with the number of subjects and the total number of treatments by medication class
-#' sorted alphabetically and medication name sorted by frequencies.
+#' A concomitant medication
+#' table with the number of subjects and the total number of treatments by medication class sorted alphabetically and
+#' medication name sorted by frequencies.
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -20,8 +21,6 @@
 #'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 #'  the specific medication.
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -33,20 +32,20 @@
 #'   dm_update_zoomed() %>%
 #'   cmt01a_1_pre()
 #'
-#' cmt01a_1(adam_db = db)
-cmt01a_1 <- function(adam_db,
-                     armvar = .study$planarm,
-                     medcat_var = "ATC2", # Anatomical therapeutic category
-                     lbl_medcat_var = "ATC Class Level 2",
-                     medname_var = "CMDECOD",
-                     lbl_medname_var = "Other Treatment",
-                     lbl_overall = .study$lbl_overall,
-                     prune_0 = TRUE,
-                     deco = std_deco("CMT01A"),
-                     .study = list(
-                       planarm = "ARM",
-                       lbl_overall = NULL
-                     )) {
+#' cmt01a_1_main(adam_db = db)
+cmt01a_1_main <- function(adam_db,
+                          armvar = .study$planarm,
+                          medcat_var = "ATC2", # Anatomical therapeutic category
+                          lbl_medcat_var = "ATC Class Level 2",
+                          medname_var = "CMDECOD",
+                          lbl_medname_var = "Other Treatment",
+                          lbl_overall = .study$lbl_overall,
+                          prune_0 = TRUE,
+                          deco = std_deco("CMT01A"),
+                          .study = list(
+                            planarm = "ARM",
+                            lbl_overall = NULL
+                          )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_1_lyt(
@@ -74,7 +73,7 @@ cmt01a_1 <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_1 `cmt01a_1` Layout
+#' @describeIn cmt01a_1_main `cmt01a_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -139,16 +138,17 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' @describeIn cmt01a_1 `cmt01a_1` Preprocessing
+#' @describeIn cmt01a_1_main `cmt01a_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt01a_1_pre()
-cmt01a_1_pre <- function(adam_db) {
+cmt01a_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -160,13 +160,22 @@ cmt01a_1_pre <- function(adam_db) {
     dm_update_zoomed()
 }
 
+# `CMT01A_1` Pipeline ----
+
+#' `CMT01A_1`
+#'
+#' @seealso [cmt01a_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
+
 # CMT01A_2 ----
 
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
 #' frequency).
 #'
-#' A concomitant medication table with the number of subjects and the total number of treatments by medication class and
-#' medication name sorted by frequencies.
+#' A concomitant medication table with the number of subjects and the total number of treatments by
+#' medication class and medication name sorted by frequencies.
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -183,8 +192,6 @@ cmt01a_1_pre <- function(adam_db) {
 #'  * Sort by medication class frequency and within medication class by decreasing total number of patients with
 #'  the specific medication.
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -196,20 +203,20 @@ cmt01a_1_pre <- function(adam_db) {
 #'   dm_update_zoomed() %>%
 #'   cmt01a_2_pre()
 #'
-#' cmt01a_2(adam_db = db)
-cmt01a_2 <- function(adam_db,
-                     armvar = .study$planarm,
-                     medcat_var = "ATC2", # Anatomical therapeutic category
-                     lbl_medcat_var = "ATC Class Level 2",
-                     medname_var = "CMDECOD",
-                     lbl_medname_var = "Other Treatment",
-                     lbl_overall = .study$lbl_overall,
-                     prune_0 = TRUE,
-                     deco = std_deco("CMT01A"),
-                     .study = list(
-                       planarm = "ARM",
-                       lbl_overall = NULL
-                     )) {
+#' cmt01a_2_main(adam_db = db)
+cmt01a_2_main <- function(adam_db,
+                          armvar = .study$planarm,
+                          medcat_var = "ATC2", # Anatomical therapeutic category
+                          lbl_medcat_var = "ATC Class Level 2",
+                          medname_var = "CMDECOD",
+                          lbl_medname_var = "Other Treatment",
+                          lbl_overall = .study$lbl_overall,
+                          prune_0 = TRUE,
+                          deco = std_deco("CMT01A"),
+                          .study = list(
+                            planarm = "ARM",
+                            lbl_overall = NULL
+                          )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   # The same layout can be used.
@@ -243,16 +250,17 @@ cmt01a_2 <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_2 `cmt01a_2` Preprocessing
+#' @describeIn cmt01a_2_main `cmt01a_2` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt01a_2_pre()
-cmt01a_2_pre <- function(adam_db) {
+cmt01a_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -264,14 +272,23 @@ cmt01a_2_pre <- function(adam_db) {
     dm_update_zoomed()
 }
 
+# `CMT01A_2` Pipeline ----
+
+#' `CMT01A_2`
+#'
+#' @seealso [cmt01a_2_main()]
+#' @rdname chevron_tlg-class
+#' @export
+cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
+
 # CMT01A_3 ----
 
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
 #' treatments per medication class suppressed).
 #'
-#' A concomitant medication table with the number of subjects and the total number of treatments by medication class
-#' sorted alphabetically and medication name sorted by frequencies presented without the total number of treatments per
-#' medication.
+#' A concomitant medication table with the number of subjects and the total
+#' number of treatments by medication class sorted alphabetically and medication name sorted by frequencies presented
+#' without the total number of treatments per medication.
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -288,8 +305,6 @@ cmt01a_2_pre <- function(adam_db) {
 #'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 #'  the specific medication.
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -301,20 +316,20 @@ cmt01a_2_pre <- function(adam_db) {
 #'   dm_update_zoomed() %>%
 #'   cmt01a_3_pre()
 #'
-#' cmt01a_3(adam_db = db)
-cmt01a_3 <- function(adam_db,
-                     armvar = .study$planarm,
-                     medcat_var = "ATC2", # Anatomical therapeutic category
-                     lbl_medcat_var = "ATC Class Level 2",
-                     medname_var = "CMDECOD",
-                     lbl_medname_var = "Other Treatment",
-                     lbl_overall = .study$lbl_overall,
-                     prune_0 = TRUE,
-                     deco = std_deco("CMT01A"),
-                     .study = list(
-                       planarm = "ARM",
-                       lbl_overall = NULL
-                     )) {
+#' cmt01a_3_main(adam_db = db)
+cmt01a_3_main <- function(adam_db,
+                          armvar = .study$planarm,
+                          medcat_var = "ATC2", # Anatomical therapeutic category
+                          lbl_medcat_var = "ATC Class Level 2",
+                          medname_var = "CMDECOD",
+                          lbl_medname_var = "Other Treatment",
+                          lbl_overall = .study$lbl_overall,
+                          prune_0 = TRUE,
+                          deco = std_deco("CMT01A"),
+                          .study = list(
+                            planarm = "ARM",
+                            lbl_overall = NULL
+                          )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_3_lyt(
@@ -342,7 +357,7 @@ cmt01a_3 <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_3 `cmt01a_3` Layout
+#' @describeIn cmt01a_3_main `cmt01a_3` Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -406,16 +421,17 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' @describeIn cmt01a_3 `cmt01a_3` Preprocessing
+#' @describeIn cmt01a_3_main `cmt01a_3` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   cmt01a_3_pre()
-cmt01a_3_pre <- function(adam_db) {
+cmt01a_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -426,3 +442,12 @@ cmt01a_3_pre <- function(adam_db) {
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
 }
+
+# `CMT01A_3` Pipeline ----
+
+#' `CMT01A_3` Pipeline
+#'
+#' @seealso [cmt01a_3_main()]
+#' @rdname chevron_tlg-class
+#' @export
+cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))

@@ -1,7 +1,8 @@
 
-#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1
+#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
 #'
-#' An adverse events table categorized by System Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#' An adverse events table categorized by System
+#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
 #'
 #' @inheritParams gen_args
 #'
@@ -13,8 +14,6 @@
 #'  * Does not include a total column by default.
 #'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
 #'
-#' @importFrom dplyr filter
-#'
 #' @export
 #'
 #' @examples
@@ -23,17 +22,17 @@
 #' db <- syn_test_data() %>%
 #'   aet03_1_pre()
 #'
-#' aet03_1(db)
-#' aet03_1(db, lbl_overall = "All Patients")
-aet03_1 <- function(adam_db,
-                    armvar = .study$actualarm,
-                    prune_0 = TRUE,
-                    lbl_overall = .study$lbl_overall,
-                    deco = std_deco("AET03"),
-                    .study = list(
-                      actualarm = "ACTARM",
-                      lbl_overall = NULL
-                    )) {
+#' aet03_1_main(db)
+#' aet03_1_main(db, lbl_overall = "All Patients")
+aet03_1_main <- function(adam_db,
+                         armvar = .study$actualarm,
+                         prune_0 = TRUE,
+                         lbl_overall = .study$lbl_overall,
+                         deco = std_deco("AET03"),
+                         .study = list(
+                           actualarm = "ACTARM",
+                           lbl_overall = NULL
+                         )) {
 
 
   # specific to AET03: avoid error if some severity levels are not present
@@ -74,7 +73,7 @@ aet03_1 <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet03_1 `aet03_1` Layout
+#' @describeIn aet03_1_main `aet03_1` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -139,16 +138,17 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-#' @describeIn aet03_1 `aet03_1` Preprocessing
+#' @describeIn aet03_1_main `aet03_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' syn_test_data() %>%
 #'   aet03_1_pre()
-aet03_1_pre <- function(adam_db) {
+aet03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -156,3 +156,12 @@ aet03_1_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 }
+
+# `AET03_1` Pipeline ----
+
+#' `AET03_1`
+#'
+#' @seealso [aet03_1_main()]
+#' @rdname chevron_tlg-class
+#' @export
+aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))
