@@ -3,7 +3,8 @@
 
 #' `MNG01` Graph 1 (Default) Mean Plot 1.
 #'
-#' Overview of a summary statistics across time and arm for a selected parameter and data set.
+#' Overview of a summary statistics across time and arm for a selected parameter and data set. Analyzed values must
+#' correspond to a single type of `PARAM`.
 #'
 #' @details
 #'  * No overall value.
@@ -184,6 +185,7 @@ mng01_1_main <- function(adam_db,
 #' @describeIn mng01_1_main `mng01_1` Preprocessing
 #'
 #' @inheritParams gen_args
+#' @param (`string`) the value of `PARAM` to select.
 #' @param ... not used.
 #'
 #' @export

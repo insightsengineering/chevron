@@ -64,12 +64,15 @@ values of \code{armvar} with color names.}
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
+
+\item{(`string`)}{the value of \code{PARAM} to select.}
 }
 \value{
 a \code{ggplot} object.
 }
 \description{
-Overview of a summary statistics across time and arm for a selected parameter and data set.
+Overview of a summary statistics across time and arm for a selected parameter and data set. Analyzed values must
+correspond to a single type of \code{PARAM}.
 }
 \details{
 \itemize{
