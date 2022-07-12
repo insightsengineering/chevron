@@ -212,4 +212,4 @@ mng01_1_pre <- function(adam_db, dataset = "adlb", param, ...) {
 #' @seealso [mng01_1_main()]
 #' @rdname chevron_tlg-class
 #' @export
-mng01_1 <- chevron_tlg(mng01_1_main, mng01_1_pre, adam_datasets = c("adsl", "adlb"))
+mng01_1 <- chevron_tlg(mng01_1_main, mng01_1_pre, adam_datasets = c("adsl", "adlb", "adeg", "advs"))
