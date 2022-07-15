@@ -3,8 +3,7 @@
 
 #' `MNG01` Graph 1 (Default) Mean Plot 1.
 #'
-#' Overview of a summary statistics across time and arm for a selected parameter and data set. Analyzed values must
-#' correspond to a single type of `PARAM`.
+#' Overview of a summary statistics across time and arm for a selected data set.
 #'
 #' @details
 #'  * No overall value.
@@ -25,7 +24,7 @@
 #'   values of `armvar` with color names.
 #' @param ... not used.
 #'
-#' @return a `ggplot` object.
+#' @return a list of `ggplot` objects.
 #' @export
 #'
 #' @examples
@@ -73,12 +72,66 @@ mng01_1_main <- function(adam_db,
                            color_dict = getOption("tern.color")
                          ),
                          ...) {
+
+  #should it do all tables?
+
+  data_ls <- split(adam_db[[dataset]], adam_db[[dataset]]$PARAM)
+
+  lapply(
+    data_ls,
+    mng01_1_lyt,
+    alt_count = adam_db[["adsl"]],
+    x = x,
+    y = y,
+    y_name = y_name,
+    y_unit = y_unit,
+    armvar = armvar,
+    center_fun = center_fun,
+    interval_fun = interval_fun,
+    jitter = jitter,
+    show_n = show_n,
+    show_h_grid = show_h_grid,
+    show_v_grid = show_v_grid,
+    legend_pos = legend_pos,
+    line_col = line_col
+  )
+}
+
+
+#' @describeIn mng01_1_main `mng01_1` Graph Layout
+#'
+#' @inheritParams mng01_1_main
+#' @param df (`dataframe`) data set containing all analysis variables.
+#' @param alt_count (`dataframe`) data set that will be used (only) to counts objects in strata.
+#'
+#' @export
+mng01_1_lyt <- function(df,
+                        alt_count,
+                         x = "AVISIT",
+                         y = "AVAL",
+                         y_name = "PARAM",
+                         y_unit = "AVALU",
+                         armvar = .study$actualarm,
+                         center_fun = c("mean", "median"),
+                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                         jitter = TRUE,
+                         show_n = TRUE,
+                         show_h_grid = .study$show_h_grid,
+                         show_v_grid = .study$show_v_grid,
+                         legend_pos = .study$legend_pos,
+                         line_col = .study$color_dict,
+                         .study = list(
+                           actualarm = "ACTARM",
+                           show_h_grid = TRUE,
+                           show_v_grid = FALSE,
+                           legend_pos = "top",
+                           color_dict = getOption("tern.color")
+                         )
+                        ) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 
-  checkmate::assert_class(adam_db, "dm")
-  checkmate::assert_subset(dataset, names(adam_db))
-  checkmate::assert_vector(unique(adam_db[[dataset]]$PARAM), len = 1)
+  checkmate::assert_vector(unique(df$PARAM), len = 1)
   checkmate::assert_flag(jitter)
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
@@ -100,7 +153,7 @@ mng01_1_main <- function(adam_db,
     " and ",
     interval_title,
     " by ",
-    var_labels_for(adam_db[[dataset]], x)
+    var_labels_for(df, x)
   )
 
   whiskers_fun <- switch(interval_fun,
@@ -152,7 +205,7 @@ mng01_1_main <- function(adam_db,
 
 
   if (checkmate::check_names(line_col)) {
-    color_lvl <- sort(unique(adam_db[[dataset]][[armvar]]))
+    color_lvl <- sort(unique(df[[armvar]]))
     col <- line_col[color_lvl]
 
     if (anyNA(col)) {
@@ -166,8 +219,8 @@ mng01_1_main <- function(adam_db,
   }
 
   p <- tern::g_lineplot(
-    df = adam_db[[dataset]],
-    alt_count = adam_db[["adsl"]],
+    df = df,
+    alt_count = alt_count,
     variables = variables,
     mid = center_fun,
     interval = interval_fun,
@@ -185,25 +238,15 @@ mng01_1_main <- function(adam_db,
 #' @describeIn mng01_1_main `mng01_1` Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param param_val (`string`) the value of `PARAM` to select.
 #' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
-#' mng01_1_pre(syn_test_data(), param = "Alanine Aminotransferase Measurement")
-mng01_1_pre <- function(adam_db, dataset = "adlb", param_val, ...) {
+#' mng01_1_pre(syn_test_data())
+mng01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
-  checkmate::assert_string(dataset)
-  checkmate::assert_string(param_val)
-  checkmate::assert_subset(param_val, as.character(adam_db[[dataset]]$PARAM))
-
-  sym_dataset <- sym(dataset)
-
-  adam_db %>%
-    dm_zoom_to(!!sym_dataset) %>%
-    filter(.data$PARAM == param_val) %>%
-    dm_update_zoomed()
+  adam_db
 }
 
 

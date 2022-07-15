@@ -2,6 +2,7 @@
 % Please edit documentation in R/mng01.R
 \name{mng01_1_main}
 \alias{mng01_1_main}
+\alias{mng01_1_lyt}
 \alias{mng01_1_pre}
 \title{\code{MNG01} Graph 1 (Default) Mean Plot 1.}
 \usage{
@@ -27,7 +28,28 @@ mng01_1_main(
   ...
 )
 
-mng01_1_pre(adam_db, dataset = "adlb", param_val, ...)
+mng01_1_lyt(
+  df,
+  x = "AVISIT",
+  y = "AVAL",
+  y_name = "PARAM",
+  y_unit = "AVALU",
+  armvar = .study$actualarm,
+  center_fun = c("mean", "median"),
+  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles",
+    "range"),
+  jitter = TRUE,
+  show_n = TRUE,
+  show_h_grid = .study$show_h_grid,
+  show_v_grid = .study$show_v_grid,
+  legend_pos = .study$legend_pos,
+  line_col = .study$color_dict,
+  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE,
+    legend_pos = "top", color_dict = getOption("tern.color")),
+  ...
+)
+
+mng01_1_pre(adam_db, ...)
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the ADaM datasets}
@@ -64,8 +86,6 @@ values of \code{armvar} with color names.}
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
-
-\item{param_val}{(\code{string}) the value of \code{PARAM} to select.}
 }
 \value{
 a \code{ggplot} object.
@@ -81,6 +101,8 @@ correspond to a single type of \code{PARAM}.
 }
 \section{Functions}{
 \itemize{
+\item \code{mng01_1_lyt}: \code{mng01_1} Graph Layout
+
 \item \code{mng01_1_pre}: \code{mng01_1} Preprocessing
 }}
 
@@ -106,5 +128,10 @@ db \%>\% mng01_1_main(
     "D: Something" = "#ffa41c"
   )
 )
-mng01_1_pre(syn_test_data(), param = "Alanine Aminotransferase Measurement")
+cmt01a_1_lyt(
+  armvar = "ARM",
+  lbl_overall = NULL,
+  deco = std_deco("CMT01A")
+)
+mng01_1_pre(syn_test_data())
 }
