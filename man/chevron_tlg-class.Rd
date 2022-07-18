@@ -15,6 +15,7 @@
 \alias{aet02_3}
 \alias{aet03_1}
 \alias{aet04_1}
+\alias{aet04_2}
 \alias{cmt01a_1}
 \alias{cmt01a_2}
 \alias{cmt01a_3}
@@ -36,6 +37,8 @@
 \alias{vst02_2}
 \title{\code{chevron_tlg} Class}
 \format{
+An object of class \code{chevron_tlg} of length 1.
+
 An object of class \code{chevron_tlg} of length 1.
 
 An object of class \code{chevron_tlg} of length 1.
@@ -109,6 +112,8 @@ aet02_3
 aet03_1
 
 aet04_1
+
+aet04_2
 
 cmt01a_1
 
@@ -207,6 +212,8 @@ x <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 \code{\link[=aet03_1_main]{aet03_1_main()}}
 
 \code{\link[=aet04_1_main]{aet04_1_main()}}
+
+\code{\link[=aet04_2_main]{aet04_2_main()}}
 
 \code{\link[=cmt01a_1_main]{cmt01a_1_main()}}
 

@@ -37,7 +37,7 @@ aet03_1_main <- function(adam_db,
 
   # specific to AET03: avoid error if some severity levels are not present
   # TODO: rename all gradation to grade or grading (depending on context)
-  severity_grade <- levels(adam_db$adae[["AESEV"]])
+  severity_grade <- levels(adam_db$adae[["ASEV"]])
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
@@ -107,7 +107,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
-      var = "AESEV",
+      var = "ASEV",
       grade_groups = list("- Any Intensity -" = severity_grade)
     ) %>%
     split_rows_by(
@@ -120,7 +120,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
       split_label = lbl_aebodsys
     ) %>%
     summarize_occurrences_by_grade(
-      var = "AESEV",
+      var = "ASEV",
       grade_groups = list("- Any Intensity -" = severity_grade)
     ) %>%
     split_rows_by(
@@ -133,7 +133,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
       split_label = lbl_aedecod
     ) %>%
     summarize_occurrences_by_grade(
-      var = "AESEV",
+      var = "ASEV",
       grade_groups = list("- Any Intensity -" = severity_grade)
     )
 }
@@ -153,7 +153,7 @@ aet03_1_pre <- function(adam_db, ...) {
 
   adam_db %>%
     dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y") %>%
+    filter(.data$ANL01FL == "Y", .data$ASEV != c('', NA)) %>%
     dm_update_zoomed()
 }
 
