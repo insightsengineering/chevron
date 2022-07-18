@@ -200,7 +200,7 @@ dst01_1_pre <- function(adam_db, ...) {
   adam_db
 }
 
-# `DST01_1` Pipeline ----
+# `DST01_1` `chevron_tlg` ----
 
 #' `DST01_1`
 #'
@@ -411,7 +411,7 @@ dst01_2_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-# `DST01_2` Pipeline ----
+# `DST01_2` `chevron_tlg` ----
 
 #' `DST01_2`
 #'
@@ -633,7 +633,7 @@ dst01_3_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-# `DST01_3` Pipeline ----
+# `DST01_3` `chevron_tlg` ----
 
 #' `DST01_3`
 #'

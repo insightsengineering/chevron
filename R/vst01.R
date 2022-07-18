@@ -92,8 +92,6 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
                           evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                           visitvar = "AVISIT"
                         )) {
-
-
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
   # problem with the column count
@@ -141,7 +139,7 @@ vst01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `VST01_1` Pipeline ----
+# `VST01_1` `chevron_tlg` ----
 
 #' `VST01_1`
 #'

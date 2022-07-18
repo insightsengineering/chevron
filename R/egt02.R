@@ -109,7 +109,7 @@ egt02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `EGT02_1` Pipeline ----
+# `EGT02_1` `chevron_tlg` ----
 
 #' `EGT02_1`
 #'
@@ -229,7 +229,7 @@ egt02_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `EGT02_2` Pipeline ----
+# `EGT02_2` `chevron_tlg` ----
 
 #' `EGT02_2`
 #'

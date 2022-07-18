@@ -140,7 +140,7 @@ mht01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `MHT01_1` Pipeline ----
+# `MHT01_1` `chevron_tlg` ----
 
 #' `MHT01_1`
 #'

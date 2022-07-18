@@ -79,8 +79,6 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
                           actualarm = "ACTARM",
                           visitvar = "AVISIT"
                         )) {
-
-
   # TODO solve the problem of the overall column
   # remove change from baseline in BASELINE
 
@@ -127,7 +125,7 @@ lbt01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `LBT01_1` Pipeline ----
+# `LBT01_1` `chevron_tlg` ----
 
 #' `LBT01_1`
 #'

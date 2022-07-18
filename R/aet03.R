@@ -33,8 +33,6 @@ aet03_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            lbl_overall = NULL
                          )) {
-
-
   # specific to AET03: avoid error if some severity levels are not present
   # TODO: rename all gradation to grade or grading (depending on context)
   severity_grade <- levels(adam_db$adae[["AESEV"]])
@@ -79,7 +77,7 @@ aet03_1_main <- function(adam_db,
 #'
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param severity_grade (`vector of character`) describing the severity levels present in the data set.
+#' @param severity_grade (`vector of character`) describing the severity levels present in the dataset.
 #'
 #' @export
 #'
@@ -157,7 +155,7 @@ aet03_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `AET03_1` Pipeline ----
+# `AET03_1` `chevron_tlg` ----
 
 #' `AET03_1`
 #'

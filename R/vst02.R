@@ -125,9 +125,9 @@ vst02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `VST02_1` Pipeline ----
+# `VST02_1` `chevron_tlg` ----
 
-#' `VST02_1` Pipeline
+#' `VST02_1` `chevron_tlg`
 #'
 #' @seealso [vst02_1_main()]
 #' @rdname chevron_tlg-class
@@ -264,7 +264,7 @@ vst02_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `VST02_2` Pipeline ----
+# `VST02_2` `chevron_tlg` ----
 
 #' `VST02_2`
 #'

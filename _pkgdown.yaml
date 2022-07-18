@@ -2,8 +2,7 @@
 url: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron
 
 template:
-  params:
-    bootswatch: cerulean
+  package: nesttemplate
 
 navbar:
   right:

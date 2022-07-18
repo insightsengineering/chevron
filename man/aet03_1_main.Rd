@@ -45,7 +45,7 @@ aet03_1_pre(adam_db, ...)
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
-\item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the data set.}
+\item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the dataset.}
 
 \item{...}{not used.}
 }

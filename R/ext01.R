@@ -117,7 +117,7 @@ ext01_1_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-# `EXT01_1` Pipeline ----
+# `EXT01_1` `chevron_tlg` ----
 
 #' `EXT01_1`
 #'
@@ -256,7 +256,7 @@ ext01_2_pre <- function(adam_db,
   db
 }
 
-# `EXT01_2` Pipeline ----
+# `EXT01_2` `chevron_tlg` ----
 
 #' `EXT01_2`
 #'

@@ -110,7 +110,7 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT02_PT_1` Pipeline ----
+# `CMT02_PT_1` `chevron_tlg` ----
 
 #' `CMT02_PT_1`
 #'

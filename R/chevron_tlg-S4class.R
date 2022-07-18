@@ -1,5 +1,5 @@
 
-#' `chevron_tlg` Class
+#' `chevron_tlg` class
 #'
 #' The `chevron_tlg` class associates a `preprocess` function, a main `tlg` function and `AdAM` tables names and
 #' optionally a `postprocess` function.

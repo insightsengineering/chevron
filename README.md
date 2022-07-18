@@ -3,7 +3,7 @@
 
 <!-- markdownlint-enable MD033 -->
 
-*chevron* is a collection of function to create standard tables, listings, and graphs for clinical trials reporting.
+`chevron` is a collection of function to create standard tables, listings, and graphs for clinical trials reporting.
 
 ## Installation
 
@@ -37,12 +37,9 @@
 
 ```r
 library(chevron)
-library(magrittr)
 
-db <- syn_test_data() %>%
-  aet02_1_pre()
-
-aet02_1_main(adam_db = db)
+db <- syn_test_data()
+run(aet02_1, db)
 ```
 
 which returns

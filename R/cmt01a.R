@@ -160,7 +160,7 @@ cmt01a_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT01A_1` Pipeline ----
+# `CMT01A_1` `chevron_tlg` ----
 
 #' `CMT01A_1`
 #'
@@ -272,7 +272,7 @@ cmt01a_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT01A_2` Pipeline ----
+# `CMT01A_2` `chevron_tlg` ----
 
 #' `CMT01A_2`
 #'
@@ -443,9 +443,9 @@ cmt01a_3_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT01A_3` Pipeline ----
+# `CMT01A_3` `chevron_tlg` ----
 
-#' `CMT01A_3` Pipeline
+#' `CMT01A_3` `chevron_tlg`
 #'
 #' @seealso [cmt01a_3_main()]
 #' @rdname chevron_tlg-class

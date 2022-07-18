@@ -4,7 +4,7 @@
 \name{chevron-package}
 \alias{chevron}
 \alias{chevron-package}
-\title{Chevron Package}
+\title{\code{chevron} package}
 \description{
 Standard Table, Listings, and Graphs (TLG) library used in clinical trials.
 }

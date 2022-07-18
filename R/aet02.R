@@ -175,7 +175,7 @@ aet02_1_check <- function(adam_db,
   }
 }
 
-# `AET02_1` Pipeline ----
+# `AET02_1` `chevron_tlg` ----
 
 #' @seealso [aet02_1_main()]
 #' @rdname chevron_tlg-class
@@ -359,7 +359,7 @@ aet02_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `AET02_2` Pipeline ----
+# `AET02_2` `chevron_tlg` ----
 
 #' `AET02_2`
 #'
@@ -489,7 +489,7 @@ aet02_3_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `AET02_3` Pipeline ----
+# `AET02_3` `chevron_tlg` ----
 
 #' `AET02_3`
 #'
