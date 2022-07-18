@@ -114,7 +114,7 @@ egt02_1_pre <- function(adam_db, ...) {
 #' `EGT02_1`
 #'
 #' @seealso [egt02_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
 
@@ -234,6 +234,6 @@ egt02_2_pre <- function(adam_db, ...) {
 #' `EGT02_2`
 #'
 #' @seealso [egt02_2_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))

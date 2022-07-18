@@ -278,7 +278,7 @@ aet01_1_check <- function(adam_db,
 # `AET01_1` `chevron_tlg` ----
 
 #' @seealso [aet01_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
@@ -587,6 +587,6 @@ aet01_2_check <- function(adam_db,
 # `AET01_2` `chevron_tlg` ----
 
 #' @seealso [aet01_2_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))

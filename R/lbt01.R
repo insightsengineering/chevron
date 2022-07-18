@@ -1,7 +1,7 @@
 
 #' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.
 #'
-#' The LBT01 table provides an
+#' The `LBT01` table provides an
 #' overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
 #'
 #' @inheritParams gen_args
@@ -130,6 +130,6 @@ lbt01_1_pre <- function(adam_db, ...) {
 #' `LBT01_1`
 #'
 #' @seealso [lbt01_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))

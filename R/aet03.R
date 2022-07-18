@@ -160,6 +160,6 @@ aet03_1_pre <- function(adam_db, ...) {
 #' `AET03_1`
 #'
 #' @seealso [aet03_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))

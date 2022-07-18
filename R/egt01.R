@@ -141,6 +141,6 @@ egt01_1_pre <- function(adam_db, ...) {
 #' `EGT01_1`
 #'
 #' @seealso [egt01_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))

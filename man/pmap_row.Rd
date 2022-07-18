@@ -9,11 +9,11 @@ pmap_row(tlgfname, filter_fname = NA, mutate_fname = NA, req_data)
 \arguments{
 \item{tlgfname}{(\code{character}) name of a function which creates a table, listing or graph}
 
-\item{filter_fname}{(\code{character}) name of function which filters the ADaM \code{dm} data object}
+\item{filter_fname}{(\code{character}) name of function which filters the \code{ADaM} \code{dm} data object}
 
-\item{mutate_fname}{(\code{character}) name of function which mutates the ADaM \code{dm} data object}
+\item{mutate_fname}{(\code{character}) name of function which mutates the \code{ADaM} \code{dm} data object}
 
-\item{req_data}{(\code{character}) vector of data names in the ADaM \code{dm} data objects that are required to create the
+\item{req_data}{(\code{character}) vector of data names in the \code{ADaM} \code{dm} data objects that are required to create the
 output}
 }
 \description{

@@ -16,6 +16,4 @@ get_postprocess(object, ...)
 }
 \description{
 Retrieve post-processing Function
-
-get_postprocess
 }

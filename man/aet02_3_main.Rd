@@ -27,7 +27,7 @@ aet02_3_lyt(
 aet02_3_pre(adam_db, ...)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

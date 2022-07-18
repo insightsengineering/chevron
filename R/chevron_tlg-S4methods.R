@@ -2,9 +2,9 @@
 
 # run ----
 
-#' Execute the pre-processing, main and post-processing functions in a single run.
+#' Run the pipeline
 #'
-#' Run the pipeline including checks, pre-processing and `tlg` generation on the provided dataset.
+#' Execute the pre-processing, main and post-processing functions in a single run.
 #'
 #' @inheritParams gen_args
 #' @param object (`chevron_tlg`) input.
@@ -14,13 +14,11 @@
 #' @export
 setGeneric("run", function(object, adam_db, ...) standardGeneric("run"))
 
-#' run
-#'
+#' Run the pipeline
 #' @rdname run
 #' @export
 #' @examples
 #' run(aet01_1, syn_test_data())
-#'
 setMethod(
   f = "run",
   signature = "chevron_tlg",
@@ -47,8 +45,6 @@ setMethod(
 #' @export
 setGeneric("get_main", function(object, ...) standardGeneric("get_main"))
 
-#' get_main
-#'
 #' @rdname get_main
 #' @export
 setMethod(
@@ -70,8 +66,6 @@ setMethod(
 #' @export
 setGeneric("get_preprocess", function(object, ...) standardGeneric("get_preprocess"))
 
-#' get_preprocess
-#'
 #' @rdname get_preprocess
 #' @export
 setMethod(
@@ -93,8 +87,6 @@ setMethod(
 #' @export
 setGeneric("get_postprocess", function(object, ...) standardGeneric("get_postprocess"))
 
-#' get_postprocess
-#'
 #' @rdname get_postprocess
 #' @export
 setMethod(
@@ -116,8 +108,6 @@ setMethod(
 #' @aliases get_adam_datasets
 setGeneric("get_adam_datasets", function(object, ...) standardGeneric("get_adam_datasets"))
 
-#' get_adam_datasets
-#'
 #' @rdname get_adam_datasets
 #' @export
 setMethod(

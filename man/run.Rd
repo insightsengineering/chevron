@@ -3,7 +3,7 @@
 \name{run}
 \alias{run}
 \alias{run,chevron_tlg-method}
-\title{run}
+\title{Run the pipeline}
 \usage{
 run(object, adam_db, ...)
 
@@ -12,14 +12,13 @@ run(object, adam_db, ...)
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
 
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{...}{extra arguments to pass to the check, pre-processing or \code{tlg} functions.}
 }
 \description{
-run
+Run the pipeline
 }
 \examples{
 run(aet01_1, syn_test_data())
-
 }

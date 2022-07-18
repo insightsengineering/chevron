@@ -4,9 +4,9 @@
 \alias{aet04_1_main}
 \alias{aet04_1_lyt}
 \alias{aet04_1_pre}
-\title{\code{AET04} Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.
+\title{\code{AET04} Table 1 (Default) Adverse Events by Highest \code{NCI} \code{CTACAE} \code{AE} Grade Table 1.
 The \code{AET04} table provides an
-overview of adverse event with the highest NCI CTCAE grade per individual.}
+overview of adverse event with the highest \code{NCI} \code{CTCAE} grade per individual.}
 \usage{
 aet04_1_main(
   adam_db,
@@ -31,7 +31,7 @@ aet04_1_lyt(
 aet04_1_pre(adam_db, ...)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -52,9 +52,9 @@ aet04_1_pre(adam_db, ...)
 \item{...}{not used.}
 }
 \description{
-\code{AET04} Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.
+\code{AET04} Table 1 (Default) Adverse Events by Highest \code{NCI} \code{CTACAE} \code{AE} Grade Table 1.
 The \code{AET04} table provides an
-overview of adverse event with the highest NCI CTCAE grade per individual.
+overview of adverse event with the highest \code{NCI} \code{CTCAE} grade per individual.
 }
 \details{
 \itemize{

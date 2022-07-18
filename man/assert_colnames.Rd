@@ -2,7 +2,7 @@
 % Please edit documentation in R/assertions.R
 \name{assert_colnames}
 \alias{assert_colnames}
-\title{Check if strings are column names of a data frame}
+\title{Check if strings are column names of a \code{data.frame}}
 \usage{
 assert_colnames(df, x, null_ok = TRUE)
 }

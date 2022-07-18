@@ -130,7 +130,7 @@ vst02_1_pre <- function(adam_db, ...) {
 #' `VST02_1` `chevron_tlg`
 #'
 #' @seealso [vst02_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
 
@@ -269,6 +269,6 @@ vst02_2_pre <- function(adam_db, ...) {
 #' `VST02_2`
 #'
 #' @seealso [vst02_2_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))

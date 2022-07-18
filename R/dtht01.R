@@ -198,6 +198,6 @@ dtht01_1_pre <- function(adam_db, ...) {
 #' `DTHT01_1`
 #'
 #' @seealso [dtht01_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 dtht01_1 <- chevron_tlg(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))

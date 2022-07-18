@@ -1,7 +1,7 @@
 
-#' `AET04` Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.
+#' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.
 #' The `AET04` table provides an
-#' overview of adverse event with the highest NCI CTCAE grade per individual.
+#' overview of adverse event with the highest `NCI` `CTCAE` grade per individual.
 #'
 #' @inheritParams gen_args
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
@@ -187,6 +187,6 @@ aet04_1_pre <- function(adam_db, ...) {
 #' `AET04_1`
 #'
 #' @seealso [aet04_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))

@@ -115,6 +115,6 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 #' `CMT02_PT_1`
 #'
 #' @seealso [cmt02_pt_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

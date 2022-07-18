@@ -16,6 +16,4 @@ get_preprocess(object, ...)
 }
 \description{
 Retrieve pre-processing Function
-
-get_preprocess
 }

@@ -165,7 +165,7 @@ cmt01a_1_pre <- function(adam_db, ...) {
 #' `CMT01A_1`
 #'
 #' @seealso [cmt01a_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
 
@@ -277,7 +277,7 @@ cmt01a_2_pre <- function(adam_db, ...) {
 #' `CMT01A_2`
 #'
 #' @seealso [cmt01a_2_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
 
@@ -448,6 +448,6 @@ cmt01a_3_pre <- function(adam_db, ...) {
 #' `CMT01A_3` `chevron_tlg`
 #'
 #' @seealso [cmt01a_3_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))

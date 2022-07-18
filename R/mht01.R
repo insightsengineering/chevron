@@ -145,6 +145,6 @@ mht01_1_pre <- function(adam_db, ...) {
 #' `MHT01_1`
 #'
 #' @seealso [mht01_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))

@@ -16,6 +16,4 @@ get_main(object, ...)
 }
 \description{
 Retrieve Main Function
-
-get_main
 }

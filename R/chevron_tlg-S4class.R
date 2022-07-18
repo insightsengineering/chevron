@@ -14,7 +14,7 @@
 #' @format NULL
 #'
 #' @note To ensure the correct execution of the workflow additional validation criteria are:
-#' * the first argument of the `main` function must be `adam_db`, the input `dm` object to preprocess.
+#' * the first argument of the `main` function must be `adam_db`, the input `dm` object to pre-process.
 #' * the first argument of the `preprocess` function must be `adam_db`, the input `dm` object to create `tlg` output.
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post-process.
 #'

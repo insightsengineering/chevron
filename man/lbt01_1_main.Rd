@@ -31,7 +31,7 @@ lbt01_1_lyt(
 lbt01_1_pre(adam_db, ...)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -55,7 +55,7 @@ to be displayed.}
 \item{...}{not used.}
 }
 \description{
-The LBT01 table provides an
+The \code{LBT01} table provides an
 overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
 }
 \details{

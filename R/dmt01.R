@@ -1,5 +1,5 @@
 
-#' DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1.
+#' `DMT01` Table 1 (Default) Demographics and Baseline Characteristics Table 1.
 #'
 #' For each variable, summary statistics are
 #' by default based on the number of patients in the corresponding `n` row.
@@ -11,7 +11,7 @@
 #' @param summaryvars_lbls (`vector of character`) labels corresponding to the analyzed variables.
 #'
 #' @details
-#'  * Information from ADSUB are generally included into ADSL before analysis.
+#'  * Information from `ADSUB` are generally included into `ADSL` before analysis.
 #'  * Default demographic and characteristics table
 #'  * If not specified otherwise, numbers represent absolute numbers of patients and fraction of `N`
 #'  * Remove zero-count rows
@@ -132,6 +132,6 @@ dmt01_1_pre <- function(adam_db, ...) {
 #' `DMT01_1`
 #'
 #' @seealso [dmt01_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))

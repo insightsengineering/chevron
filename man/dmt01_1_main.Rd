@@ -4,7 +4,7 @@
 \alias{dmt01_1_main}
 \alias{dmt01_1_lyt}
 \alias{dmt01_1_pre}
-\title{DMT01 Table 1 (Default) Demographics and Baseline Characteristics Table 1.}
+\title{\code{DMT01} Table 1 (Default) Demographics and Baseline Characteristics Table 1.}
 \usage{
 dmt01_1_main(
   adam_db,
@@ -31,7 +31,7 @@ dmt01_1_lyt(
 dmt01_1_pre(adam_db, ...)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -55,7 +55,7 @@ by default based on the number of patients in the corresponding \code{n} row.
 }
 \details{
 \itemize{
-\item Information from ADSUB are generally included into ADSL before analysis.
+\item Information from \code{ADSUB} are generally included into \code{ADSL} before analysis.
 \item Default demographic and characteristics table
 \item If not specified otherwise, numbers represent absolute numbers of patients and fraction of \code{N}
 \item Remove zero-count rows

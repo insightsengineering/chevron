@@ -16,6 +16,4 @@ get_adam_datasets(object, ...)
 }
 \description{
 Retrieve names of datasets associated with the object
-
-get_adam_datasets
 }

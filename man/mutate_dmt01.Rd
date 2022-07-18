@@ -7,7 +7,7 @@
 mutate_dmt01(adam_db)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 }
 \description{
 Mutate function for \code{DMT01_1}

@@ -122,7 +122,7 @@ ext01_1_pre <- function(adam_db,
 #' `EXT01_1`
 #'
 #' @seealso [ext01_1_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
 
@@ -261,6 +261,6 @@ ext01_2_pre <- function(adam_db,
 #' `EXT01_2`
 #'
 #' @seealso [ext01_2_main()]
-#' @rdname chevron_tlg-class
+#' @include chevron_tlg-S4class.R
 #' @export
 ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))
