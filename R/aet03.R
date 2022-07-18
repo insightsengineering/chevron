@@ -108,6 +108,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "ASEV",
+      .indent_mods = 11L,
       grade_groups = list("- Any Intensity -" = severity_grade)
     ) %>%
     split_rows_by(
@@ -121,6 +122,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     ) %>%
     summarize_occurrences_by_grade(
       var = "ASEV",
+      .indent_mods = 10L,
       grade_groups = list("- Any Intensity -" = severity_grade)
     ) %>%
     split_rows_by(
@@ -134,6 +136,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     ) %>%
     summarize_occurrences_by_grade(
       var = "ASEV",
+      .indent_mods = 8L,
       grade_groups = list("- Any Intensity -" = severity_grade)
     )
 }
