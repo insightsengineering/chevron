@@ -1,9 +1,6 @@
+# vst01_1 ----
 
-#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
-#'
-#' The `VST01` table provides an
-#' overview of the Vital Sign values and its change from baseline of each respective arm
-#' over the course of the trial.
+#' @describeIn vst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
@@ -67,7 +64,7 @@ vst01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst01_1_main `vst01_1` Layout
+#' @describeIn vst01_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -120,7 +117,7 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste(" ", lbl_avisit))
 }
 
-#' @describeIn vst01_1_main `vst01_1` Preprocessing
+#' @describeIn vst01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -139,11 +136,12 @@ vst01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `VST01_1` `chevron_tlg` ----
-
-#' `VST01_1`
+#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
 #'
-#' @seealso [vst01_1_main()]
+#' The `VST01` table provides an
+#' overview of the Vital Sign values and its change from baseline of each respective arm
+#' over the course of the trial.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))

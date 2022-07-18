@@ -1,8 +1,6 @@
+# cmt02_pt_1 ----
 
-#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
-#'
-#' A concomitant medication table with the
-#' number of subjects and the total number of treatments by medication name sorted by frequencies.
+#' @describeIn cmt02_pt_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -53,7 +51,7 @@ cmt02_pt_1_main <- function(adam_db,
     )
 }
 
-#' @describeIn cmt02_pt_1_main `cmt02_pt_1` Layout
+#' @describeIn cmt02_pt_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -88,7 +86,7 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
     append_topleft("Other Treatment")
 }
 
-#' @describeIn cmt02_pt_1_main `cmt02_pt_1` Preprocessing
+#' @describeIn cmt02_pt_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -110,11 +108,11 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT02_PT_1` `chevron_tlg` ----
-
-#' `CMT02_PT_1`
+#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
 #'
-#' @seealso [cmt02_pt_1_main()]
+#' A concomitant medication table with the
+#' number of subjects and the total number of treatments by medication name sorted by frequencies.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

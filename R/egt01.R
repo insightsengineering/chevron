@@ -1,8 +1,6 @@
+# egt01_1 ----
 
-#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.
-#'
-#' The `EGT01` table 1 summarizes
-#' several electrocardiogram parameters and their evolution throughout the study.
+#' @describeIn egt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
@@ -65,7 +63,7 @@ egt01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt01_1_main `egt01_1` Layout
+#' @describeIn egt01_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -117,7 +115,7 @@ egt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-#' @describeIn egt01_1_main `egt01_1` Preprocessing
+#' @describeIn egt01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -136,11 +134,11 @@ egt01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `EGT01_1` `chevron_tlg` ----
-
-#' `EGT01_1`
+#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.
 #'
-#' @seealso [egt01_1_main()]
+#' The `EGT01` table 1 summarizes
+#' several electrocardiogram parameters and their evolution throughout the study.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))

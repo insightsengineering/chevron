@@ -1,8 +1,6 @@
+# dmt01_1 ----
 
-#' `DMT01` Table 1 (Default) Demographics and Baseline Characteristics Table 1.
-#'
-#' For each variable, summary statistics are
-#' by default based on the number of patients in the corresponding `n` row.
+#' @describeIn dmt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of character`) variables summarized in demographic table.
@@ -62,7 +60,7 @@ dmt01_1_main <- function(adam_db,
   }
 }
 
-#' @describeIn dmt01_1_main `dmt01_1` Layout
+#' @describeIn dmt01_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -103,7 +101,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
-#' @describeIn dmt01_1_main `dmt01_1` Preprocessing
+#' @describeIn dmt01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -127,11 +125,11 @@ dmt01_1_pre <- function(adam_db, ...) {
   db
 }
 
-# `DMT01_1` `chevron_tlg` ----
-
-#' `DMT01_1`
+#' `DMT01` Table 1 (Default) Demographics and Baseline Characteristics Table 1.
 #'
-#' @seealso [dmt01_1_main()]
+#' For each variable, summary statistics are
+#' by default based on the number of patients in the corresponding `n` row.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))

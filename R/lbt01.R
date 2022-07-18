@@ -1,8 +1,6 @@
+# lbt01_1 ----
 
-#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.
-#'
-#' The `LBT01` table provides an
-#' overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
+#' @describeIn lbt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
@@ -56,7 +54,7 @@ lbt01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt01_1_main `lbt01_1` Layout
+#' @describeIn lbt01_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -106,7 +104,7 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-#' @describeIn lbt01_1_main `lbt01_1` Preprocessing
+#' @describeIn lbt01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -125,11 +123,11 @@ lbt01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `LBT01_1` `chevron_tlg` ----
-
-#' `LBT01_1`
+#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.
 #'
-#' @seealso [lbt01_1_main()]
+#' The `LBT01` table provides an
+#' overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))

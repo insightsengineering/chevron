@@ -1,10 +1,6 @@
-# CMT01A_1 ----
+# cmt01a_1 ----
 
-#' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
-#'
-#' A concomitant medication
-#' table with the number of subjects and the total number of treatments by medication class sorted alphabetically and
-#' medication name sorted by frequencies.
+#' @describeIn cmt01a_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -73,7 +69,7 @@ cmt01a_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_1_main `cmt01a_1` Layout
+#' @describeIn cmt01a_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -138,7 +134,7 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' @describeIn cmt01a_1_main `cmt01a_1` Preprocessing
+#' @describeIn cmt01a_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -160,22 +156,20 @@ cmt01a_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT01A_1` `chevron_tlg` ----
-
-#' `CMT01A_1`
+#' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
 #'
-#' @seealso [cmt01a_1_main()]
+#' A concomitant medication
+#' table with the number of subjects and the total number of treatments by medication class sorted alphabetically and
+#' medication name sorted by frequencies.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
 
-# CMT01A_2 ----
 
-#' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
-#' frequency).
-#'
-#' A concomitant medication table with the number of subjects and the total number of treatments by
-#' medication class and medication name sorted by frequencies.
+# cmt01a_2 ----
+
+#' @describeIn cmt01a_2 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -250,7 +244,7 @@ cmt01a_2_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_2_main `cmt01a_2` Preprocessing
+#' @describeIn cmt01a_2 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -272,23 +266,20 @@ cmt01a_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT01A_2` `chevron_tlg` ----
-
-#' `CMT01A_2`
+#' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
+#' frequency).
 #'
-#' @seealso [cmt01a_2_main()]
+#' A concomitant medication table with the number of subjects and the total number of treatments by
+#' medication class and medication name sorted by frequencies.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
 
-# CMT01A_3 ----
 
-#' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
-#' treatments per medication class suppressed).
-#'
-#' A concomitant medication table with the number of subjects and the total
-#' number of treatments by medication class sorted alphabetically and medication name sorted by frequencies presented
-#' without the total number of treatments per medication.
+# cmt01a_3 ----
+
+#' @describeIn cmt01a_3 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -357,7 +348,7 @@ cmt01a_3_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn cmt01a_3_main `cmt01a_3` Layout
+#' @describeIn cmt01a_3 Layout
 #'
 #' @inheritParams gen_args
 #' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
@@ -421,7 +412,7 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' @describeIn cmt01a_3_main `cmt01a_3` Preprocessing
+#' @describeIn cmt01a_3 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -443,11 +434,13 @@ cmt01a_3_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `CMT01A_3` `chevron_tlg` ----
-
-#' `CMT01A_3` `chevron_tlg`
+#' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
+#' treatments per medication class suppressed).
 #'
-#' @seealso [cmt01a_3_main()]
+#' A concomitant medication table with the number of subjects and the total
+#' number of treatments by medication class sorted alphabetically and medication name sorted by frequencies presented
+#' without the total number of treatments per medication.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))

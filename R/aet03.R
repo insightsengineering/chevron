@@ -1,8 +1,6 @@
+# aet03_1 ----
 
-#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
-#'
-#' An adverse events table categorized by System
-#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#' @describeIn aet03_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -71,7 +69,7 @@ aet03_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet03_1_main `aet03_1` Layout
+#' @describeIn aet03_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -136,7 +134,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-#' @describeIn aet03_1_main `aet03_1` Preprocessing
+#' @describeIn aet03_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -155,11 +153,11 @@ aet03_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `AET03_1` `chevron_tlg` ----
-
-#' `AET03_1`
+#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
 #'
-#' @seealso [aet03_1_main()]
+#' An adverse events table categorized by System
+#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))

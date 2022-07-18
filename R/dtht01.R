@@ -1,9 +1,6 @@
-# DTHT01_1 ----
+# dtht01_1 ----
 
-#' `DTHT01` Table 1 (Default) Death Table.
-#'
-#'  A description of the causes of death optionally with the breakdown of the
-#' `OTHER` category and/or post-study reporting of death.
+#' @describeIn dtht01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param time_since_last_dose (`logical`) should the time to event information be displayed.
@@ -83,7 +80,7 @@ dtht01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dtht01_1_main `dtht01_1` Layout
+#' @describeIn dtht01_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
@@ -134,7 +131,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
   tab
 }
 
-#' @describeIn dtht01_1_main `dtht01_1` Optional Layout
+#' @describeIn dtht01_1 Optional Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -170,7 +167,7 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
     summarize_vars("DTHCAT")
 }
 
-#' @describeIn dtht01_1_main `dtht01_1` Preprocessing
+#' @describeIn dtht01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -193,11 +190,11 @@ dtht01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `DTHT01_1` `chevron_tlg` ----
-
-#' `DTHT01_1`
+#' `DTHT01` Table 1 (Default) Death Table.
 #'
-#' @seealso [dtht01_1_main()]
+#'  A description of the causes of death optionally with the breakdown of the
+#' `OTHER` category and/or post-study reporting of death.
+#'
 #' @include chevron_tlg-S4class.R
 #' @export
 dtht01_1 <- chevron_tlg(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))

@@ -3,7 +3,7 @@ title: "The `adam_db` argument"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The adam_db Argument}
+  %\VignetteIndexEntry{The `adam_db` argument}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options:
