@@ -2,21 +2,21 @@
 % Please edit documentation in R/standard_data_preprocessing.R
 \name{preprocess_data}
 \alias{preprocess_data}
-\title{Preprocess ADaM Data for A TLG function}
+\title{pre-process \code{ADaM} data for a TLG function}
 \usage{
 preprocess_data(adam_db, tlgfname, pmap = std_pmap, .study)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{tlgfname}{(\code{character}) function name of tlg-function}
+\item{tlgfname}{(\code{character}) function name of TLG function}
 
-\item{pmap}{(\verb{data frame}) preprocessing map, see \code{std_pmap} for the required format}
+\item{pmap}{(\code{data.frame}) preprocessing map, see \code{std_pmap} for the required format}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 }
 \description{
-Preprocess ADaM Data for A TLG function
+pre-process \code{ADaM} data for a TLG function
 }
 \examples{
 \dontrun{

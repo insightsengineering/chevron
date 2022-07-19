@@ -1,22 +1,22 @@
 
-#' `chevron_tlg` Class
+#' `chevron_tlg` class
 #'
 #' The `chevron_tlg` class associates a `preprocess` function, a main `tlg` function and `AdAM` tables names and
 #' optionally a `postprocess` function.
 #'
 #' @slot main (`function`) returning a `tlg`. Typically one of the `*_main` function from `chevron`.
-#' @slot preprocess (`function`) returning a pre processed `dm` object amenable to `tlg` creation. Typically one of the
+#' @slot preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `*_pre` function from `chevron`.
-#' @slot postprocess (`function`) returning a post processed `tlg`.
-#' @slot adam_datasets (`character`) representing the name of the tables from an `AdAM` data set required for `tlg`
+#' @slot postprocess (`function`) returning a post-processed `tlg`.
+#' @slot adam_datasets (`character`) representing the name of the tables from an `AdAM` dataset required for `tlg`
 #'   creation.
 #'
 #' @format NULL
 #'
-#' @note To ensure the correct execution of the pipeline workflow additional validation criteria are:
-#' * the first argument of the `main` function must be `adam_db`, the input `dm` object to preprocess.
+#' @note To ensure the correct execution of the workflow additional validation criteria are:
+#' * the first argument of the `main` function must be `adam_db`, the input `dm` object to pre-process.
 #' * the first argument of the `preprocess` function must be `adam_db`, the input `dm` object to create `tlg` output.
-#' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post process.
+#' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post-process.
 #'
 #' @aliases chevron_tlg
 #' @name chevron_tlg-class
@@ -66,10 +66,10 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @describeIn chevron_tlg Default Constructor
 #'
 #' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
-#' @param preprocess (`function`) returning a pre processed `dm` object amenable to `tlg` creation. Typically one of the
+#' @param preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `_pre` function of `chevron`.
-#' @param postprocess (`function`) returning a post processed `tlg`.
-#' @param adam_datasets (`character`) representing the name of the table from an `AdAM` data set required for `tlg`
+#' @param postprocess (`function`) returning a post-processed `tlg`.
+#' @param adam_datasets (`character`) representing the name of the table from an `AdAM` dataset required for `tlg`
 #'   creation.
 #'
 #' @export

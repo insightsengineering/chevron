@@ -9,7 +9,7 @@ var_labels_for(df, vars)
 \arguments{
 \item{df}{data frame}
 
-\item{vars}{variable names in data frame \code{df}}
+\item{vars}{variable names in \code{df}}
 }
 \description{
 Retrieve variables for certain variables

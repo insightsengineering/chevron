@@ -6,7 +6,7 @@ vignette: >
   %\VignetteIndexEntry{Layouts in Chevron}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -18,9 +18,9 @@ knitr::opts_chunk$set(
 ```
 
 
-## Introduction 
+## Introduction
 
-The `chevron` R package has a collection of functions that create standard tables, listings, and graphs (TLGs). These functions are referred in `chevron` as *tlg-functions*. A subset of these *tlg-functions* create tables. Tables are created using the `rtables` package. `rtables` has the context of table layouts, i.e. pre-data table cell-derivation instructions. For example:
+The `chevron` R package has a collection of functions that create standard tables, listings, and graphs (TLGs). These functions are referred in `chevron` as *TLG-functions*. A subset of these *TLG-functions* create tables. Tables are created using the `rtables` package. `rtables` has the context of table layouts, i.e. pre-data table cell-derivation instructions. For example:
 
 ```{r}
 library(rtables)
