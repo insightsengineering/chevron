@@ -179,7 +179,7 @@ aet04_1_pre <- function(adam_db, ...) {
 
   adam_db %>%
     dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y", .data$ATOXGR != c('', NA)) %>%
+    filter(.data$ANL01FL == "Y", .data$ATOXGR != c("", NA)) %>%
     dm_update_zoomed()
 }
 
@@ -195,9 +195,9 @@ aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "ada
 
 
 
-#' #' `AET04` Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5 combined Table 2.
-#' The `AET04_2` table provides an
-#' overview of adverse event with the highest NCI CTCAE grade per individual, with the Analysis Toxicity Grade 3-5 combined in one group.
+#' #' `AET04` Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5 combined.
+#' The `AET04_2` table provides an overview of adverse event with the highest NCI CTCAE grade per individual,
+#' with the Analysis Toxicity Grade 3-5 combined in one group.
 #'
 #' @inheritParams gen_args
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
@@ -365,7 +365,7 @@ aet04_2_pre <- function(adam_db, ...) {
 
   adam_db %>%
     dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y", .data$ATOXGR != c('', NA)) %>%
+    filter(.data$ANL01FL == "Y", .data$ATOXGR != c("", NA)) %>%
     dm_update_zoomed()
 }
 
@@ -377,4 +377,3 @@ aet04_2_pre <- function(adam_db, ...) {
 #' @rdname chevron_tlg-class
 #' @export
 aet04_2 <- chevron_tlg(aet04_2_main, aet04_2_pre, adam_datasets = c("adsl", "adae"))
-

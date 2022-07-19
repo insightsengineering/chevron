@@ -156,7 +156,7 @@ aet03_1_pre <- function(adam_db, ...) {
 
   adam_db %>%
     dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y", .data$ASEV != c('', NA)) %>%
+    filter(.data$ANL01FL == "Y", .data$ASEV != c("", NA)) %>%
     dm_update_zoomed()
 }
 
