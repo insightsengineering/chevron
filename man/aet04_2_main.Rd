@@ -4,9 +4,9 @@
 \alias{aet04_2_main}
 \alias{aet04_2_lyt}
 \alias{aet04_2_pre}
-\title{#' \code{AET04} Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5 combined Table 2.
-The \code{AET04_2} table provides an
-overview of adverse event with the highest NCI CTCAE grade per individual, with the Analysis Toxicity Grade 3-5 combined in one group.}
+\title{#' \code{AET04} Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5 combined.
+The \code{AET04_2} table provides an overview of adverse event with the highest NCI CTCAE grade per individual,
+with the Analysis Toxicity Grade 3-5 combined in one group.}
 \usage{
 aet04_2_main(
   adam_db,
@@ -52,9 +52,9 @@ aet04_2_pre(adam_db, ...)
 \item{...}{not used.}
 }
 \description{
-#' \code{AET04} Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5 combined Table 2.
-The \code{AET04_2} table provides an
-overview of adverse event with the highest NCI CTCAE grade per individual, with the Analysis Toxicity Grade 3-5 combined in one group.
+#' \code{AET04} Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5 combined.
+The \code{AET04_2} table provides an overview of adverse event with the highest NCI CTCAE grade per individual,
+with the Analysis Toxicity Grade 3-5 combined in one group.
 }
 \details{
 \itemize{
