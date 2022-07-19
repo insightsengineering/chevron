@@ -30,6 +30,7 @@ mng01_1_main(
 
 mng01_1_lyt(
   df,
+  alt_count,
   x = "AVISIT",
   y = "AVAL",
   y_name = "PARAM",
@@ -45,8 +46,7 @@ mng01_1_lyt(
   legend_pos = .study$legend_pos,
   line_col = .study$color_dict,
   .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE,
-    legend_pos = "top", color_dict = getOption("tern.color")),
-  ...
+    legend_pos = "top", color_dict = getOption("tern.color"))
 )
 
 mng01_1_pre(adam_db, ...)
@@ -86,13 +86,16 @@ values of \code{armvar} with color names.}
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
+
+\item{df}{(\code{dataframe}) data set containing all analysis variables.}
+
+\item{alt_count}{(\code{dataframe}) data set that will be used (only) to counts objects in strata.}
 }
 \value{
-a \code{ggplot} object.
+a list of \code{ggplot} objects.
 }
 \description{
-Overview of a summary statistics across time and arm for a selected parameter and data set. Analyzed values must
-correspond to a single type of \code{PARAM}.
+Overview of a summary statistics across time and arm for a selected data set.
 }
 \details{
 \itemize{
@@ -127,11 +130,6 @@ db \%>\% mng01_1_main(
     "C: Combination" = "#ffa41c",
     "D: Something" = "#ffa41c"
   )
-)
-cmt01a_1_lyt(
-  armvar = "ARM",
-  lbl_overall = NULL,
-  deco = std_deco("CMT01A")
 )
 mng01_1_pre(syn_test_data())
 }
