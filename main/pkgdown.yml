@@ -1,5 +1,5 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.5
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   Adding_new_TLGs_to_Chevron: Adding_new_TLGs_to_Chevron.html
@@ -7,7 +7,7 @@ articles:
   chevron: chevron.html
   dot_study_argument: dot_study_argument.html
   layouts: layouts.html
-last_built: 2022-07-11T15:47Z
+last_built: 2022-07-19T13:08Z
 urls:
   reference: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference
   article: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/articles
