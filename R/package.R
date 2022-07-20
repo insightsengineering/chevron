@@ -1,5 +1,5 @@
 
-#' Chevron Package
+#' `chevron` package
 #'
 #' @import dm
 #' @import dplyr

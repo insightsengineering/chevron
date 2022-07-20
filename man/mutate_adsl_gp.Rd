@@ -11,7 +11,7 @@ mutate_adsl_gp(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
 

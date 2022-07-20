@@ -15,13 +15,9 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
   }
 }
 
+# dst01_1 ----
 
-# DST01_1 ----
-
-#' DST01 Table 1 (Default) Patient Disposition Table 1.
-#'
-#' The DST01 Disposition Table provides an overview of patients
-#' study completion. For patients who discontinued the study a reason is provided.
+#' @describeIn dst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param armvar (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
@@ -31,7 +27,6 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
-#'
 #'
 #' @details
 #'  * Default patient disposition table summarizing the reasons for patients withdrawal.
@@ -108,10 +103,9 @@ dst01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dst01_1_main `dst01_1` Layout
+#' @describeIn dst01_1 Layout
 #'
 #' @inheritParams gen_args
-#'
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
@@ -186,7 +180,7 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   list(layout_table_completed, layout_table_other)
 }
 
-#' @describeIn dst01_1_main `dst01_1` Preprocessing
+#' @describeIn dst01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -200,26 +194,21 @@ dst01_1_pre <- function(adam_db, ...) {
   adam_db
 }
 
-# `DST01_1` Pipeline ----
-
-#' `DST01_1`
+#' DST01 Table 1 (Default) Patient Disposition Table 1.
 #'
-#' @seealso [dst01_1_main()]
-#' @rdname chevron_tlg-class
+#' The DST01 Disposition Table provides an overview of patients
+#' study completion. For patients who discontinued the study a reason is provided.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 
 
-# DST01_2 ----
+# dst01_2 ----
 
-#' DST01 Table 2 (Supplementary) Patient Disposition Table 2.
-#'
-#' The DST01_2 Disposition Table provides an overview of
-#' patients study completion. For patients who discontinued the study, the reason provided is categorized as "Safety" or
-#' "Non-Safety" issue.
+#' @describeIn dst01_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#'
 #' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
@@ -303,10 +292,9 @@ dst01_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dst01_2_main `dst01_2` Layout
+#' @describeIn dst01_2 Layout
 #'
 #' @inheritParams gen_args
-#'
 #' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
@@ -384,7 +372,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
   list(completed = layout_table_completed, other = layout_table_other)
 }
 
-#' @describeIn dst01_2_main `dst01_2` Preprocessing
+#' @describeIn dst01_2 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param reason (`string`) the variable name for variable with the reason for discontinuation.
@@ -411,24 +399,22 @@ dst01_2_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-# `DST01_2` Pipeline ----
-
-#' `DST01_2`
+#' DST01 Table 2 (Supplementary) Patient Disposition Table 2.
 #'
-#' @seealso [dst01_2_main()]
-#' @rdname chevron_tlg-class
+#' The DST01_2 Disposition Table provides an overview of
+#' patients study completion. For patients who discontinued the study, the reason provided is categorized as "Safety" or
+#' "Non-Safety" issue.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 
-# DST01_3 ----
 
-#' DST01 Table 3 (Supplementary) Patient Disposition Table 3.
-#'
-#' The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
-#' the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
+# dst01_3 ----
+
+#' @describeIn dst01_3 Main TLG function
 #'
 #' @inheritParams gen_args
-#'
 #' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
@@ -546,7 +532,7 @@ dst01_3_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dst01_3_main `dst01_3` Layout
+#' @describeIn dst01_3 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -606,7 +592,7 @@ dst01_3_lyt <- function(armvar = .study$planarm,
     )
 }
 
-#' @describeIn dst01_3_main `dst01_3` Preprocessing
+#' @describeIn dst01_3 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param reason (`character`) the variable name for variable with the reason for discontinuation.
@@ -633,11 +619,11 @@ dst01_3_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
-# `DST01_3` Pipeline ----
-
-#' `DST01_3`
+#' DST01 Table 3 (Supplementary) Patient Disposition Table 3.
 #'
-#' @seealso [dst01_3_main()]
-#' @rdname chevron_tlg-class
+#' The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
+#' the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 dst01_3 <- chevron_tlg(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))

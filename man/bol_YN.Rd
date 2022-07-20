@@ -2,12 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{bol_YN}
 \alias{bol_YN}
-\title{Convert Y N values used in CDISC to R boolean object}
+\title{Convert \code{"Y"} \code{"N"} values used in \code{CDISC} to R boolean object}
 \usage{
 bol_YN(x)
 }
 \arguments{
-\item{x}{character vector with Y and N}
+\item{x}{character vector with \code{"Y"} and \code{"N"}}
 }
 \description{
 Empty strings are mapped to \code{NA}

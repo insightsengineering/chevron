@@ -25,60 +25,60 @@ The `chevron` R package provides functions to produce standard tables, listings 
 report clinical trials data. The ensemble of function used to produce a particular output are stored in an
 `chevron_tlg` object of class `S4` also called *pipelines*.
 Each standard output is associated with one  *pipeline*. They contain the following objects:
-* A `main` function also refereed to as *tlg_function*.
+* A `main` function also refereed to as *TLG-function*.
 * A `preprocess` function.
 * A `postprocess` function
 * A `adam_dataset` character vector of the name of the `AdAM` datasets required to create the output.
- 
 
-### *tlg-functions*
-The *tlg-functions* in `chevron` use other packages to produce the final outputs, for example `rtables` and `tern` are
+
+### *TLG-functions*
+The *TLG-functions* in `chevron` use other packages to produce the final outputs, for example `rtables` and `tern` are
 used to create listings and tables, and `ggplot2`, `lattice`, and `grid` are used to create graphs.
 
-*tlg-functions* in `chevron` such as `dmt01_1_main`, `aet02_1_main`, `aet02_2_main` have the following properties:
+*TLG-functions* in `chevron` such as `dmt01_1_main`, `aet02_1_main`, `aet02_2_main` have the following properties:
 
-1. they produce a narrow defined output (currently standards in Roche GDS). Note, that the naming convention
-   `<gds template id>_<i>_main` indicates that a Roche GDS defined standard may have different implementations. Or,
-    alternatively, a GDS template id can be regarded as a *guideline* and the function name in `chevron` as a
+1. they produce a narrow defined output (currently standards in Roche `GDS`). Note, that the naming convention
+   `<gds template id>_<i>_main` indicates that a Roche `GDS` defined standard may have different implementations. Or,
+    alternatively, a `GDS` template id can be regarded as a *guideline* and the function name in `chevron` as a
     *standard*.
 1. have very few arguments to modify the standard. Generally, arguments may change the structure of the table (arm
 variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).
-1. have always the first argument `adam_db` which is the collection of ADaM datasets (`ADSL`, `ADAE`,
-`ADRS`, etc.). Please read the *The adam_db Argument* vignette in this package for more details.
+1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
+`ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 1. have a `.study` argument, read the *The .study argument* vignette for more detail.
 1. have the `...` argument to facilitate their incorporation in a pipeline.
 
-### *pre processing*
-The *preprocess* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
-suitable input for *tlg-functions*. The pre processing step typically includes checks that will ensure that the `dm`
-input can be later processed by the *tlg-functions*.
+### *pre-processing*
+The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
+suitable input for *TLG-functions*. The pre-processing step typically includes checks that will ensure that the `dm`
+input can be later processed by the *TLG-functions*.
 
-*preprocess* in chevron such as `dmt01_1_pre`, `aet02_1_pre`, `aet02_2_pre` have the following properties:
-1. they return a `dm` object amenable to processing by a *tlg-functions* or return rapidly an understandable error
+*pre-process* in chevron such as `dmt01_1_pre`, `aet02_1_pre`, `aet02_2_pre` have the following properties:
+1. they return a `dm` object amenable to processing by a *TLG-functions* or return rapidly an understandable error
 message.
 1. have very few arguments to modify the standard.
-1. have always the first argument `adam_db` which is the collection of ADaM datasets (`ADSL`, `ADAE`,
-`ADRS`, etc.). Please read the *The adam_db Argument* vignette in this package for more details.
-1. can have the `.study` argument and other argument of the corresponding *tlg-functions* as they may inform the
+1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
+`ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
+1. can have the `.study` argument and other argument of the corresponding *TLG-functions* as they may inform the
 function on the column that will be required and facilitate the checking process.
 1. have the `...` argument to facilitate their incorporation in a pipeline.
 
-### *post processing*`
-Post processing function are not provided but can be created by the user. 
+### *post-processing*`
+Post-processing function are not provided but can be created by the user.
 
-### *adam_dataset*
+### *`adam_dataset`*
 The `adam_dataset` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
 information is important when the *pipeline* is interfaced with other processes from the `chevron` ecosystem of packages
 such as `citril`.
 
 
-## Example AET02
+## Example `AET02`
 
-For example, the GDS template `aet02` is implemented in `chevron` with the *pipeline* that have the name `aet02_*`. The
+For example, the `GDS` template `aet02` is implemented in `chevron` with the *pipeline* that have the name `aet02_*`. The
 object documentation which is accessible with the `help` function, e.g. `help('aet02_1')` documents what is particular
 in the `_1` implementation.
 
-We first define the data and put it in a `dm` object, you can find more details about this in the *adam_db* vignette.
+We first define the data and put it in a `dm` object, you can find more details about this in the *`adam_db`* vignette.
 
 ```{r}
 library(dm)
@@ -151,7 +151,7 @@ run(my_pipeline, adam_study_data)
 
 
 Note that to ensure the correct execution of the `run` function, the name of the first argument of the `main` function
-must be `adam_db`; the input `dm` object to preprocess. The name of the first argument of the `preprocess` function must
-be `adam_db`; the input `dm` object to create `tlg` output and finally, the name of the first argument of the
-`postprocess` function must be `tlg`, the input `TableTree` object to post process. Validation criteria enforce these
+must be `adam_db`; the input `dm` object to pre-process. The name of the first argument of the `preprocess` function must
+be `adam_db`; the input `dm` object to create `TLG` output and finally, the name of the first argument of the
+`postprocess` function must be `TLG`, the input `TableTree` object to post-process. Validation criteria enforce these
 rules upon creation of a *pipeline*.
