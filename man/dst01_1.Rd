@@ -94,15 +94,16 @@ which allows the tables to be constructed and pruned separately before binding.
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_1_main}: Main TLG function
+\item \code{dst01_1_main()}: Main TLG function
 
-\item \code{dst01_1_lyt}: Layout
+\item \code{dst01_1_lyt()}: Layout
 
-\item \code{dst01_1_pre}: Preprocessing
+\item \code{dst01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   dst01_1_pre()
@@ -113,7 +114,6 @@ dst01_1_lyt(
   status = "EOP01STT",
   disc_reason_var = "DCP01RS"
 )
-syn_test_data() \%>\%
-  dst01_1_pre()
+dst01_1_pre(syn_test_data())
 }
 \keyword{datasets}

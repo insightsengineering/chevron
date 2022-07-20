@@ -74,17 +74,18 @@ A description of the causes of death optionally with the breakdown of the
 }
 \section{Functions}{
 \itemize{
-\item \code{dtht01_1_main}: Main TLG function
+\item \code{dtht01_1_main()}: Main TLG function
 
-\item \code{dtht01_1_lyt}: Layout
+\item \code{dtht01_1_lyt()}: Layout
 
-\item \code{dtht01_1_opt_lyt}: Optional Layout
+\item \code{dtht01_1_opt_lyt()}: Optional Layout
 
-\item \code{dtht01_1_pre}: Preprocessing
+\item \code{dtht01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to(adsl) \%>\%
@@ -105,7 +106,6 @@ dtht01_1_opt_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-syn_test_data() \%>\%
-  dtht01_1_pre()
+dtht01_1_pre(syn_test_data())
 }
 \keyword{datasets}

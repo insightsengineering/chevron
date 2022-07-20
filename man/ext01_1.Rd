@@ -79,21 +79,21 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ext01_1_main}: Main TLG function
+\item \code{ext01_1_main()}: Main TLG function
 
-\item \code{ext01_1_lyt}: Layout
+\item \code{ext01_1_lyt()}: Layout
 
-\item \code{ext01_1_pre}: Preprocessing
+\item \code{ext01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   ext01_1_pre()
 
 ext01_1_main(db)
-syn_test_data() \%>\%
-  ext01_1_pre()
+ext01_1_pre(syn_test_data())
 }
 \keyword{datasets}

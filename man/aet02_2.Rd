@@ -91,17 +91,18 @@ frequencies.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_2_main}: Main TLG function
+\item \code{aet02_2_main()}: Main TLG function
 
-\item \code{aet02_2_lyt}: Layout
+\item \code{aet02_2_lyt()}: Layout
 
-\item \code{aet02_2_pre}: Preprocessing
+\item \code{aet02_2_pre()}: Preprocessing
 
-\item \code{aet02_3_main}: Main TLG function
+\item \code{aet02_3_main()}: Main TLG function
+
 }}
-
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet02_2_pre()
@@ -118,9 +119,9 @@ aet02_2_lyt(
   lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02")
 )
-syn_test_data() \%>\%
-  aet02_2_pre()
+aet02_2_pre(syn_test_data())
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet02_3_pre()

@@ -72,15 +72,16 @@ Grade is sorted by severity.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet04_1_main}: Main TLG function
+\item \code{aet04_1_main()}: Main TLG function
 
-\item \code{aet04_1_lyt}: Layout
+\item \code{aet04_1_lyt()}: Layout
 
-\item \code{aet04_1_pre}: Preprocessing
+\item \code{aet04_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet04_1_pre()
@@ -98,7 +99,6 @@ aet04_1_main(
   )
 )
 aet04_1_lyt(armvar = "ACTARM")
-syn_test_data() \%>\%
-  aet04_1_pre()
+aet04_1_pre(syn_test_data())
 }
 \keyword{datasets}

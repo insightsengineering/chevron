@@ -81,22 +81,22 @@ by \code{AVISIT}. Re-level to customize order
 }
 \section{Functions}{
 \itemize{
-\item \code{egt01_1_main}: Main TLG function
+\item \code{egt01_1_main()}: Main TLG function
 
-\item \code{egt01_1_lyt}: Layout
+\item \code{egt01_1_lyt()}: Layout
 
-\item \code{egt01_1_pre}: Preprocessing
+\item \code{egt01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   egt01_1_pre()
 
 egt01_1_main(db)
 egt01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-syn_test_data() \%>\%
-  egt01_1_pre()
+egt01_1_pre(syn_test_data())
 }
 \keyword{datasets}

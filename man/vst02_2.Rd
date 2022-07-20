@@ -69,15 +69,16 @@ Without Abnormality at Baseline.
 }
 \section{Functions}{
 \itemize{
-\item \code{vst02_2_main}: Main TLG function
+\item \code{vst02_2_main()}: Main TLG function
 
-\item \code{vst02_2_lyt}: Layout
+\item \code{vst02_2_lyt()}: Layout
 
-\item \code{vst02_2_pre}: Preprocessing
+\item \code{vst02_2_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("advs") \%>\%
@@ -90,7 +91,6 @@ vst02_2_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-syn_test_data() \%>\%
-  vst02_2_pre()
+vst02_2_pre(syn_test_data())
 }
 \keyword{datasets}

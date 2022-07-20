@@ -44,11 +44,11 @@ adverse events categorized by Dictionary-Derived Term.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_3_lyt}: Layout
+\item \code{aet02_3_lyt()}: Layout
 
-\item \code{aet02_3_pre}: Preprocessing
+\item \code{aet02_3_pre()}: Preprocessing
+
 }}
-
 \examples{
 aet02_3_lyt(
   armvar = "ACTARM",
@@ -56,7 +56,6 @@ aet02_3_lyt(
   lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02")
 )
-syn_test_data() \%>\%
-  aet02_3_pre()
+aet02_3_pre(syn_test_data())
 }
 \keyword{datasets}

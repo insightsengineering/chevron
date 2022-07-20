@@ -68,15 +68,16 @@ Abnormality at Baseline.
 }
 \section{Functions}{
 \itemize{
-\item \code{egt02_2_main}: Main TLG function
+\item \code{egt02_2_main()}: Main TLG function
 
-\item \code{egt02_2_lyt}: Layout
+\item \code{egt02_2_lyt()}: Layout
 
-\item \code{egt02_2_pre}: Preprocessing
+\item \code{egt02_2_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("adeg") \%>\%
@@ -89,7 +90,6 @@ egt02_2_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-syn_test_data() \%>\%
-  egt02_2_pre()
+egt02_2_pre(syn_test_data())
 }
 \keyword{datasets}

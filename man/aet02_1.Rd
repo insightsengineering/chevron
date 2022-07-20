@@ -79,33 +79,23 @@ events categorized by Body System and Dictionary-Derived Term.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_1_main}: Main TLG function
+\item \code{aet02_1_main()}: Main TLG function
 
-\item \code{aet02_1_lyt}: Layout
+\item \code{aet02_1_lyt()}: Layout
 
-\item \code{aet02_1_pre}: Preprocessing
+\item \code{aet02_1_pre()}: Preprocessing
 
-\item \code{aet02_1_check}: Checks
+\item \code{aet02_1_check()}: Checks
+
 }}
-
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  aet02_1_pre()
-
-aet02_1_main(adam_db = db) \%>\% head(15)
-
-# alternatively adam_db also accepts a names list
-aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
-
-aet02_1_main(db, lbl_overall = "All Patients") \%>\% head()
+db <- aet02_1_pre(syn_test_data())
+aet02_1_main(adam_db = db)
 aet02_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("AET02")
 )
-syn_test_data() \%>\%
-  aet02_1_pre()
+aet02_1_pre(syn_test_data())
 }
 \keyword{datasets}

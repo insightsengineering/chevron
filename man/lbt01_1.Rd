@@ -80,21 +80,21 @@ by \code{AVISIT}. Re-level to customize order
 }
 \section{Functions}{
 \itemize{
-\item \code{lbt01_1_main}: Main TLG function
+\item \code{lbt01_1_main()}: Main TLG function
 
-\item \code{lbt01_1_lyt}: Layout
+\item \code{lbt01_1_lyt()}: Layout
 
-\item \code{lbt01_1_pre}: Preprocessing
+\item \code{lbt01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   lbt01_1_pre()
 
 lbt01_1_main(db)
-syn_test_data() \%>\%
-  lbt01_1_pre()
+lbt01_1_pre(syn_test_data())
 }
 \keyword{datasets}

@@ -81,15 +81,16 @@ the specific medication.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt01a_3_main}: Main TLG function
+\item \code{cmt01a_3_main()}: Main TLG function
 
-\item \code{cmt01a_3_lyt}: Layout
+\item \code{cmt01a_3_lyt()}: Layout
 
-\item \code{cmt01a_3_pre}: Preprocessing
+\item \code{cmt01a_3_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("adcm") \%>\%
@@ -103,7 +104,6 @@ cmt01a_3_lyt(
   lbl_overall = NULL,
   deco = std_deco("CMT01A")
 )
-syn_test_data() \%>\%
-  cmt01a_3_pre()
+cmt01a_3_pre(syn_test_data())
 }
 \keyword{datasets}

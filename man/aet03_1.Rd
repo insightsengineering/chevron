@@ -72,15 +72,16 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet03_1_main}: Main TLG function
+\item \code{aet03_1_main()}: Main TLG function
 
-\item \code{aet03_1_lyt}: Layout
+\item \code{aet03_1_lyt()}: Layout
 
-\item \code{aet03_1_pre}: Preprocessing
+\item \code{aet03_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet03_1_pre()
@@ -94,7 +95,6 @@ aet03_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("AET03")
 )
-syn_test_data() \%>\%
-  aet03_1_pre()
+aet03_1_pre(syn_test_data())
 }
 \keyword{datasets}
