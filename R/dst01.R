@@ -40,7 +40,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   dst01_1_pre()
@@ -230,7 +230,7 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   dst01_2_pre()
@@ -439,7 +439,7 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   dst01_3_pre()

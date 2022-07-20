@@ -23,7 +23,7 @@
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   vst01_1_pre()

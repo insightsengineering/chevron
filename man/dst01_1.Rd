@@ -103,7 +103,7 @@ which allows the tables to be constructed and pruned separately before binding.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   dst01_1_pre()

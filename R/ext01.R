@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   ext01_1_pre()
@@ -144,7 +144,7 @@ ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "ade
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   ext01_2_pre()

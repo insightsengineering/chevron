@@ -81,7 +81,7 @@ by default based on the number of patients in the corresponding \code{n} row.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   dmt01_1_pre()

@@ -102,7 +102,7 @@ frequencies.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet02_2_pre()
@@ -121,7 +121,7 @@ aet02_2_lyt(
 )
 aet02_2_pre(syn_test_data())
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet02_3_pre()

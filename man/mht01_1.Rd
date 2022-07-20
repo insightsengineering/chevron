@@ -79,7 +79,7 @@ patients with the specific condition.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   mht01_1_pre()

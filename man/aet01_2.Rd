@@ -108,7 +108,7 @@ of adverse events with medical concepts.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet01_2_pre()

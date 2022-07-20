@@ -110,7 +110,7 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   dst01_3_pre()

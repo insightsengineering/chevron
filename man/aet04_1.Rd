@@ -81,7 +81,7 @@ Grade is sorted by severity.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet04_1_pre()

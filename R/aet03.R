@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet03_1_pre()

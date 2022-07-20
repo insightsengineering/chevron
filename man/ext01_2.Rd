@@ -90,7 +90,7 @@ patients in the corresponding analysis population given by \code{N}.
 }}
 \examples{
 library(dm)
-library(dplyr)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   ext01_2_pre()

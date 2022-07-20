@@ -193,7 +193,7 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet02_2_pre()
@@ -377,7 +377,7 @@ aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "ada
 #'
 #' @examples
 #' library(dm)
-#' library(dplyr)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet02_3_pre()
