@@ -19,6 +19,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   ext01_1_pre()
@@ -91,8 +92,7 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   ext01_1_pre()
+#' ext01_1_pre(syn_test_data())
 ext01_1_pre <- function(adam_db,
                         paramcd_order = .study$paramcd_order,
                         .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
@@ -144,6 +144,7 @@ ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "ade
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   ext01_2_pre()
@@ -220,8 +221,7 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   ext01_2_pre()
+#' ext01_2_pre(syn_test_data())
 ext01_2_pre <- function(adam_db,
                         show_stats = .study$show_cont_stats,
                         show_bins = .study$show_cat_stats,

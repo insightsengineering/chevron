@@ -81,6 +81,7 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }}
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   aet03_1_pre()
@@ -94,7 +95,6 @@ aet03_1_lyt(
   lbl_overall = NULL,
   deco = std_deco("AET03")
 )
-syn_test_data() \%>\%
-  aet03_1_pre()
+aet03_1_pre(syn_test_data())
 }
 \keyword{datasets}

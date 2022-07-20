@@ -15,17 +15,8 @@
 #' @export
 #'
 #' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   aet02_1_pre()
-#'
-#' aet02_1_main(adam_db = db) %>% head(15)
-#'
-#' # alternatively adam_db also accepts a names list
-#' aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) %>% head()
-#'
-#' aet02_1_main(db, lbl_overall = "All Patients") %>% head()
+#' db <- aet02_1_pre(syn_test_data())
+#' aet02_1_main(adam_db = db)
 aet02_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -130,8 +121,7 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   aet02_1_pre()
+#' aet02_1_pre(syn_test_data())
 aet02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -203,6 +193,7 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet02_2_pre()
@@ -341,8 +332,7 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   aet02_2_pre()
+#' aet02_2_pre(syn_test_data())
 aet02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -387,6 +377,7 @@ aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "ada
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet02_3_pre()
@@ -473,8 +464,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   aet02_3_pre()
+#' aet02_3_pre(syn_test_data())
 aet02_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 

@@ -68,6 +68,7 @@ number of subjects and the total number of treatments by medication name sorted 
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("adcm") \%>\%
@@ -80,7 +81,6 @@ cmt02_pt_1_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-syn_test_data() \%>\%
-  cmt02_pt_1_pre()
+cmt02_pt_1_pre(syn_test_data())
 }
 \keyword{datasets}
