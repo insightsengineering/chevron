@@ -91,15 +91,15 @@ frequencies.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_2_main}: Main TLG function
+\item \code{aet02_2_main()}: Main TLG function
 
-\item \code{aet02_2_lyt}: Layout
+\item \code{aet02_2_lyt()}: Layout
 
-\item \code{aet02_2_pre}: Preprocessing
+\item \code{aet02_2_pre()}: Preprocessing
 
-\item \code{aet02_3_main}: Main TLG function
+\item \code{aet02_3_main()}: Main TLG function
+
 }}
-
 \examples{
 library(dm)
 

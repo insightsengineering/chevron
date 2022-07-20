@@ -43,7 +43,7 @@ Config/Needs/website: insightsengineering/nesttemplate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Collate:
     'chevron_tlg-S4class.R'
     'aet01.R'
