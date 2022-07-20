@@ -193,10 +193,7 @@ aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "ada
 
 
 
-
-#' #' `AET04` Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5 combined.
-#' The `AET04_2` table provides an overview of adverse event with the highest NCI CTCAE grade per individual,
-#' with the Analysis Toxicity Grade 3-5 combined in one group.
+#' @describeIn aet04_2 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
@@ -272,7 +269,7 @@ aet04_2_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet04_2_main `aet04_2` Layout
+#' @describeIn aet04_2 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -349,7 +346,7 @@ aet04_2_lyt <- function(armvar = .study$actualarm,
 
 
 
-#' @describeIn aet04_2_main `aet04_2` Preprocessing
+#' @describeIn aet04_2 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -370,9 +367,12 @@ aet04_2_pre <- function(adam_db, ...) {
 
 # `AET04_2` Pipeline ----
 
-#' `AET04_2`
+#' `AET04` Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5
+#' combined.
 #'
-#' @seealso [aet04_2_main()]
-#' @rdname chevron_tlg-class
+#' The `AET04_2` table provides an overview of adverse event with the highest NCI CTCAE grade per individual,
+#' with the Analysis Toxicity Grade 3-5 combined in one group.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 aet04_2 <- chevron_tlg(aet04_2_main, aet04_2_pre, adam_datasets = c("adsl", "adae"))
