@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9019
+Version: 0.1.0.9020
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -39,19 +39,20 @@ Suggests:
     scda.2021
 VignetteBuilder:
     knitr
+Config/Needs/website: insightsengineering/nesttemplate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
-Collate: 
-    'TLG_pipeline-S4class.R'
-    'TLG_pipeline-S4methods.R'
+Collate:
+    'chevron_tlg-S4class.R'
     'aet01.R'
     'aet02.R'
     'aet03.R'
     'aet04.R'
     'assertions.R'
     'checks.R'
+    'chevron_tlg-S4methods.R'
     'cmt01a.R'
     'cmt02_pt.R'
     'dmt01.R'

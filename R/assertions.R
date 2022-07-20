@@ -1,6 +1,6 @@
 # assert_colnames ----
 
-#' Check if strings are column names of a data frame
+#' Check if strings are column names of a `data.frame`
 #'
 #' Provides a clearer error message in the case of missing variable.
 #'

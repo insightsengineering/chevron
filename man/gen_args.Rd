@@ -18,7 +18,7 @@ gen_args(
 )
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -34,9 +34,9 @@ gen_args(
 
 \item{group}{(\verb{list of lists}) for group-dependent data binning}
 
-\item{tlgfname}{(\code{character}) function name of tlg-function}
+\item{tlgfname}{(\code{character}) function name of TLG function}
 
-\item{pmap}{(\verb{data frame}) preprocessing map, see \code{std_pmap} for the required format}
+\item{pmap}{(\code{data.frame}) preprocessing map, see \code{std_pmap} for the required format}
 }
 \description{
 General Argument Name Convention

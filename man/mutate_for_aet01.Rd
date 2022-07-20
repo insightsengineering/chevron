@@ -7,7 +7,7 @@
 mutate_for_aet01(adam_db)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 }
 \description{
 Creating Necessary Columns for \code{aet01}
