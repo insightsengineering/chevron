@@ -23,8 +23,8 @@ aet01_2_main(
   lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
   medconcept_var = .study$medconcept_var,
   lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL",
-    "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
+    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
     medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
 )
 
@@ -36,11 +36,11 @@ aet01_2_lyt(
   lbl_safety_var = .study$lbl_safety_var,
   medconcept_var = .study$medconcept_var,
   lbl_medconcept_var = .study$lbl_medconcept_var,
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL",
-    "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35",
-    "CTC45", "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER",
-    "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"), medconcept_var =
-    c("SMQ01", "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
+    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
+    "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
+    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"), medconcept_var = c("SMQ01",
+    "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
 )
 
 aet01_2_pre(adam_db, ...)
@@ -53,8 +53,8 @@ aet01_2_check(
   lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
   medconcept_var = .study$medconcept_var,
   lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL",
-    "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
+    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
     medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
   ...
 )
@@ -97,15 +97,15 @@ of adverse events with medical concepts.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet01_2_main}: Main TLG function
+\item \code{aet01_2_main()}: Main TLG function
 
-\item \code{aet01_2_lyt}: Layout
+\item \code{aet01_2_lyt()}: Layout
 
-\item \code{aet01_2_pre}: Preprocessing
+\item \code{aet01_2_pre()}: Preprocessing
 
-\item \code{aet01_2_check}: Checks
+\item \code{aet01_2_check()}: Checks
+
 }}
-
 \examples{
 library(dm)
 

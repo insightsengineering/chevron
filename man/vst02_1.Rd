@@ -68,13 +68,13 @@ Abnormality at Baseline Table.
 }
 \section{Functions}{
 \itemize{
-\item \code{vst02_1_main}: Main TLG function
+\item \code{vst02_1_main()}: Main TLG function
 
-\item \code{vst02_1_lyt}: Layout
+\item \code{vst02_1_lyt()}: Layout
 
-\item \code{vst02_1_pre}: Preprocessing
+\item \code{vst02_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

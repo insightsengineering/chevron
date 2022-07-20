@@ -74,15 +74,15 @@ A description of the causes of death optionally with the breakdown of the
 }
 \section{Functions}{
 \itemize{
-\item \code{dtht01_1_main}: Main TLG function
+\item \code{dtht01_1_main()}: Main TLG function
 
-\item \code{dtht01_1_lyt}: Layout
+\item \code{dtht01_1_lyt()}: Layout
 
-\item \code{dtht01_1_opt_lyt}: Optional Layout
+\item \code{dtht01_1_opt_lyt()}: Optional Layout
 
-\item \code{dtht01_1_pre}: Preprocessing
+\item \code{dtht01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

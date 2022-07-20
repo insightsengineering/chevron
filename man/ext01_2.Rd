@@ -81,13 +81,13 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ext01_2_main}: Main TLG function
+\item \code{ext01_2_main()}: Main TLG function
 
-\item \code{ext01_2_lyt}: Layout
+\item \code{ext01_2_lyt()}: Layout
 
-\item \code{ext01_2_pre}: Preprocessing
+\item \code{ext01_2_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

@@ -70,13 +70,13 @@ patients with the specific condition.
 }
 \section{Functions}{
 \itemize{
-\item \code{mht01_1_main}: Main TLG function
+\item \code{mht01_1_main()}: Main TLG function
 
-\item \code{mht01_1_lyt}: Layout
+\item \code{mht01_1_lyt()}: Layout
 
-\item \code{mht01_1_pre}: Preprocessing
+\item \code{mht01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

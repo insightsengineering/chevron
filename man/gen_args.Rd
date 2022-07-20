@@ -21,9 +21,7 @@ gen_args(
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting.}
-
-\item{dataset}{(\code{string}) the name of the data set to be analyzed.}
+\item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

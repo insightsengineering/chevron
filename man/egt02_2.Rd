@@ -68,13 +68,13 @@ Abnormality at Baseline.
 }
 \section{Functions}{
 \itemize{
-\item \code{egt02_2_main}: Main TLG function
+\item \code{egt02_2_main()}: Main TLG function
 
-\item \code{egt02_2_lyt}: Layout
+\item \code{egt02_2_lyt()}: Layout
 
-\item \code{egt02_2_pre}: Preprocessing
+\item \code{egt02_2_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

@@ -1,11 +1,7 @@
 
 # mng01_1 ----
 
-#' @describeIn mng01_1 Main Graph
-#'
-#' `MNG01` Graph 1 (Default) Mean Plot 1.
-#'
-#' Overview of a summary statistics across time and arm for a selected data set.
+#' @describeIn mng01_1 Main TLG Function
 #'
 #' @details
 #'  * No overall value.
@@ -28,29 +24,6 @@
 #'
 #' @return a list of `ggplot` objects.
 #' @export
-#'
-#' @examples
-#' library(dm)
-#' library(dplyr)
-#'
-#' db <- chevron::syn_test_data() %>%
-#'   mng01_1_pre(param = "Alanine Aminotransferase Measurement")
-#'
-#' db %>% mng01_1_main(
-#'   center_fun = "mean",
-#'   interval_fun = "mean_sei",
-#'   legend_pos = "bottom",
-#'   show_n = TRUE,
-#'   show_h_grid = FALSE,
-#'   show_v_grid = FALSE,
-#'   jitter = TRUE,
-#'   line_col = c(
-#'     "A: Drug X" = "#008080",
-#'     "B: Placebo" = "#9b2525",
-#'     "C: Combination" = "#ffa41c",
-#'     "D: Something" = "#ffa41c"
-#'   )
-#' )
 mng01_1_main <- function(adam_db,
                          dataset = "adlb",
                          x = "AVISIT",
@@ -71,7 +44,7 @@ mng01_1_main <- function(adam_db,
                            show_h_grid = TRUE,
                            show_v_grid = FALSE,
                            legend_pos = "top",
-                           color_dict = getOption("tern.color")
+                           color_dict = nestcolor::color_palette()
                          ),
                          ...) {
 
@@ -243,9 +216,6 @@ mng01_1_lyt <- function(df,
 #' @param ... not used.
 #'
 #' @export
-#'
-#' @examples
-#' mng01_1_pre(syn_test_data())
 mng01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db
@@ -254,7 +224,16 @@ mng01_1_pre <- function(adam_db, ...) {
 
 # `mng01_1` Pipeline ----
 
-#' `MNG01_1`
+#' `MNG01` Graph 1 (Default) Mean Plot 1.
 #'
+#' Overview of a summary statistics across time and arm for a selected data set.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' library(dm)
+#' library(dplyr)
+#'
+#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median")
 mng01_1 <- chevron_tlg(mng01_1_main, mng01_1_pre, adam_datasets = c("adsl", "adlb", "adeg", "advs"))

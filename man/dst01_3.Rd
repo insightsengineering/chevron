@@ -101,13 +101,13 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_3_main}: Main TLG function
+\item \code{dst01_3_main()}: Main TLG function
 
-\item \code{dst01_3_lyt}: Layout
+\item \code{dst01_3_lyt()}: Layout
 
-\item \code{dst01_3_pre}: Preprocessing
+\item \code{dst01_3_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 
