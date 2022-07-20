@@ -82,13 +82,13 @@ by \code{AVISIT}. Re-level to customize order
 }
 \section{Functions}{
 \itemize{
-\item \code{vst01_1_main}: Main TLG function
+\item \code{vst01_1_main()}: Main TLG function
 
-\item \code{vst01_1_lyt}: Layout
+\item \code{vst01_1_lyt()}: Layout
 
-\item \code{vst01_1_pre}: Preprocessing
+\item \code{vst01_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

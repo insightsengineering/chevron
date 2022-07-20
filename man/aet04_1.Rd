@@ -72,13 +72,13 @@ Grade is sorted by severity.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet04_1_main}: Main TLG function
+\item \code{aet04_1_main()}: Main TLG function
 
-\item \code{aet04_1_lyt}: Layout
+\item \code{aet04_1_lyt()}: Layout
 
-\item \code{aet04_1_pre}: Preprocessing
+\item \code{aet04_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

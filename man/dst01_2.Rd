@@ -104,13 +104,13 @@ which allows the tables to be constructed and pruned separately before binding.
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_2_main}: Main TLG function
+\item \code{dst01_2_main()}: Main TLG function
 
-\item \code{dst01_2_lyt}: Layout
+\item \code{dst01_2_lyt()}: Layout
 
-\item \code{dst01_2_pre}: Preprocessing
+\item \code{dst01_2_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

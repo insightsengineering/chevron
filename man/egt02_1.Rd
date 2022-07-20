@@ -68,13 +68,13 @@ Baseline Table.
 }
 \section{Functions}{
 \itemize{
-\item \code{egt02_1_main}: Main TLG function
+\item \code{egt02_1_main()}: Main TLG function
 
-\item \code{egt02_1_lyt}: Layout
+\item \code{egt02_1_lyt()}: Layout
 
-\item \code{egt02_1_pre}: Preprocessing
+\item \code{egt02_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

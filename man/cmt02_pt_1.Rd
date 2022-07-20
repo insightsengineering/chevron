@@ -59,13 +59,13 @@ number of subjects and the total number of treatments by medication name sorted 
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt02_pt_1_main}: Main TLG function
+\item \code{cmt02_pt_1_main()}: Main TLG function
 
-\item \code{cmt02_pt_1_lyt}: Layout
+\item \code{cmt02_pt_1_lyt()}: Layout
 
-\item \code{cmt02_pt_1_pre}: Preprocessing
+\item \code{cmt02_pt_1_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 
