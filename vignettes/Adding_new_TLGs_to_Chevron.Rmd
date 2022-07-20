@@ -6,7 +6,7 @@ vignette: >
   %\VignetteIndexEntry{Adding new TLGs to Chevron}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Acknowledgments
 
-## Introduction 
+## Introduction
 The `chevron` package is a collection of function to create standard tables, listings, and graphs for clinical trials
 reporting. Here we present the logic to request new tables for the end users and how to construct new table functions
 for the programmers. The list of the already available functions is available
@@ -31,64 +31,64 @@ function. The naming convention for layout is  `<table name>_<design number>_lyt
 ## How to request a table
 In order to request a function that will generate a new table, please create an issue in the "TLG (ordered priority)" of
 the [chevron backlog](https://github.com/orgs/insightsengineering/projects/34). Private repositories on GitHub do not
-support yaml issue templates but you can use the format below to accurately describe your requirements. Adding images of
+support issue templates but you can use the format below to accurately describe your requirements. Adding images of
 the required table (without confidential information) is also very useful. Several designs of the same table can be
 (should be) requested in a same issue.
 
-># ex: AET02
+># ex: `AET02`
 >
 >## Table Name
->Standard name of the table. [see GDSR template]  
->_ex. AET02_
+>Standard name of the table. [see `GDSR` template]
+>_ex. `AET02`_
 >
 >## URL
->Link to an external file describing the table  
+>Link to an external file describing the table
 >
 >## Description
->Details on the generic purpose of the table  
+>Details on the generic purpose of the table
 >_ex. This is an adverse event table_
 >
 >## Analysis dataset
->Name of the standard dataset input  
->_ex. ADAE_
+>Name of the standard dataset input
+>_ex. `ADAE`_
 >
 >## Analysis filtering
->Filtering criteria of the input  
->_ex. ANL01FL = "Y"_
+>Filtering criteria of the input
+>_ex. `ANL01FL = "Y"`_
 >
 >## Analysis population
->The selected population, typically SE, AP or IT  
->_ex. SE_
+>The selected population, typically `SE`, `AP` or `IT`
+>_ex. `SE`_
 >
 >## Column Variable
->Names of the columns splitting variables in hierarchical order  
->_ex. ACTARM_
+>Names of the columns splitting variables in hierarchical order
+>_ex. `ACTARM`_
 >
 >## Analysis variables
->Names of the rows splitting variables in hierarchical order  
->_ex. AEBODSYS, AEDECOD, ASEV_  
->_ex._  
->    _1. AEBODSYS_  
->    _2. AEDECOD_  
->    _3. ASEV_  
+>Names of the rows splitting variables in hierarchical order
+>_ex. `AEBODSYS`, `AEDECOD`, `ASEV_`
+>_ex._
+>    _1. `AEBODSYS_`
+>    _2. `AEDECOD_`
+>    _3. `ASEV_`
 >
 >## Analysis concept
->Alternative table description for summary tables similar to AET01  
->_ex._  
->- _Serious AE_  
->- _Related AE_  
->- _Total number of AEs_  
+>Alternative table description for summary tables similar to `AET01`
+>_ex._
+>- _`Serious AE`_
+>- _`Related AE`_
+>- _`Total number of AEs`_
 >
 >## Statistics
->Description of the statistical procedure  
+>Description of the statistical procedure
 >_ex. Frequency count and % (based on N)_
 >
 >## Default treatment of zero count rows
->Choose one option:  
->- "Remove zero count rows by default"  
->- "Keep zero count rows by default"  
->- "Always ask for user input"  
->- "Not applicable / Other"  
+>Choose one option:
+>- "Remove zero count rows by default"
+>- "Keep zero count rows by default"
+>- "Always ask for user input"
+>- "Not applicable / Other"
 >
 >## Comments
 >_ex. Some additional details_
@@ -114,14 +114,13 @@ Other arguments are more specific to a particular table (e.g Should zero count r
 
 The following variables are best hard coded in the table-generating functions (with the possibility to the user to
 override some of these choices.):
-- `evo_vars` (used in LBT01, which variables capture status and the evolution of the analysis): generally `c("AVAL",
-"CNG")`
-- `severity_grade` (internal, used in AET03, capture the levels of severity of adverse events): generally corresponds to
+- `evo_vars` (used in `LBT01`, which variables capture status and the evolution of the analysis): generally `c("AVAL", "CNG")`
+- `severity_grade` (internal, used in `AET03`, capture the levels of severity of adverse events): generally corresponds to
 the levels of `AESEV`in `adae`.
 - `lbl_overall` (used everywhere, the label associated with the overall column)
-- `reason` (used in DST01, the name of the column specifying study withdrawal): generally `DCSREAS`.
-- `status` (used in DST01, the name of the column specifying study status): generally: `EOSSTT`. 
-- `summaryvars` (used in DMT01,  the list of variables to be summarized):  
+- `reason` (used in `DST01`, the name of the column specifying study withdrawal): generally `DCSREAS`.
+- `status` (used in `DST01`, the name of the column specifying study status): generally: `EOSSTT`.
+- `summaryvars` (used in `DMT01`,  the list of variables to be summarized):
 
 The `.study` object contains information relative to the way the study is analyzed.
 - "Patient" or "Subject" (the designation of the person depends on the study)

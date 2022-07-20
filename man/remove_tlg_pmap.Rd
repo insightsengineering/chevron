@@ -2,17 +2,17 @@
 % Please edit documentation in R/standard_data_preprocessing.R
 \name{remove_tlg_pmap}
 \alias{remove_tlg_pmap}
-\title{Remove Row For a tlgfunction from a pre-processing map}
+\title{Remove row for a TLG function from a pre-processing map}
 \usage{
 remove_tlg_pmap(pmap, tlgfname)
 }
 \arguments{
-\item{pmap}{(\verb{data frame}) preprocessing map, see \code{std_pmap} for the required format}
+\item{pmap}{(\code{data.frame}) preprocessing map, see \code{std_pmap} for the required format}
 
-\item{tlgfname}{(\code{character}) function name of tlg-function}
+\item{tlgfname}{(\code{character}) function name of TLG function}
 }
 \description{
-Remove Row For a tlgfunction from a pre-processing map
+Remove row for a TLG function from a pre-processing map
 }
 \examples{
 remove_tlg_pmap(std_pmap, "aet02_1")

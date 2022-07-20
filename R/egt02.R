@@ -1,20 +1,16 @@
 # egt02_1 ----
 
-#' `EGT02` Table 1 (Default) ECG Abnormalities Table 1.
+#' @describeIn egt02_1 Main TLG function
 #'
-#' Assessments Outside Normal Limits Regardless of Abnormality at
-#' Baseline Table.
+#' @inheritParams gen_args
+#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
+#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
 #'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
-#'
-#'
-#' @inheritParams gen_args
-#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
 #'
 #' @export
 #'
@@ -54,7 +50,7 @@ egt02_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt02_1_main `egt02_1` Layout
+#' @describeIn egt02_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -90,7 +86,7 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn egt02_1_main `egt02_1` Preprocessing
+#' @describeIn egt02_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -109,21 +105,23 @@ egt02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `EGT02_1` Pipeline ----
-
-#' `EGT02_1`
+#' `EGT02` Table 1 (Default) ECG Abnormalities Table 1.
 #'
-#' @seealso [egt02_1_main()]
-#' @rdname chevron_tlg-class
+#' Assessments Outside Normal Limits Regardless of Abnormality at
+#' Baseline Table.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
 
+
 # egt02_2 ----
 
-#' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2.
+#' @describeIn egt02_2 Main TLG function
 #'
-#' Assessments Outside Normal Limits Among Subject Without
-#' Abnormality at Baseline.
+#' @inheritParams gen_args
+#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
+#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -131,15 +129,11 @@ egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "ade
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
-#'
-#' @inheritParams gen_args
-#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
-#'
 #' @export
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("adeg") %>%
@@ -174,7 +168,7 @@ egt02_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt02_2_main `egt02_2` Layout
+#' @describeIn egt02_2 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
@@ -210,7 +204,7 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn egt02_2_main `egt02_2` Preprocessing
+#' @describeIn egt02_2 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -218,8 +212,7 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   egt02_2_pre()
+#' egt02_2_pre(syn_test_data())
 egt02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
@@ -229,11 +222,11 @@ egt02_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `EGT02_2` Pipeline ----
-
-#' `EGT02_2`
+#' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2.
 #'
-#' @seealso [egt02_2_main()]
-#' @rdname chevron_tlg-class
+#' Assessments Outside Normal Limits Among Subject Without
+#' Abnormality at Baseline.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))

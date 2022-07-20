@@ -2,17 +2,17 @@
 % Please edit documentation in R/utils.R
 \name{reorder_levels_params}
 \alias{reorder_levels_params}
-\title{Reorder PARAM and PARAMCD Levels Simultaneously}
+\title{Reorder \code{PARAM} and \code{PARAMCD} Levels Simultaneously}
 \usage{
 reorder_levels_params(df, paramcd_levels)
 }
 \arguments{
-\item{df}{data.frame with PARAM and PARAMCD variables}
+\item{df}{\code{data.frame} with \code{PARAM} and \code{PARAMCD} variables}
 
-\item{paramcd_levels}{ordered levels of PARAMCD}
+\item{paramcd_levels}{ordered levels of \code{PARAMCD}}
 }
 \description{
-Reorder PARAM and PARAMCD Levels Simultaneously
+Reorder \code{PARAM} and \code{PARAMCD} Levels Simultaneously
 }
 \examples{
 df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))

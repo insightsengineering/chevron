@@ -1,6 +1,6 @@
 #' Standard Preprocessing Map
 #'
-#' The preprocessing map contains information how the ADaM data needs to be preprocessed for each function.
+#' The pre-processing map contains information how the `ADaM` data needs to be pre-processed for each function.
 #'
 #' @export
 #'
@@ -39,9 +39,9 @@ std_pmap <- tibble::tribble(
 #' Row in Preprocessing Map
 #'
 #' @param tlgfname (`character`) name of a function which creates a table, listing or graph
-#' @param filter_fname (`character`) name of function which filters the ADaM `dm` data object
-#' @param mutate_fname (`character`) name of function which mutates the ADaM `dm` data object
-#' @param req_data (`character`) vector of data names in the ADaM `dm` data objects that are required to create the
+#' @param filter_fname (`character`) name of function which filters the `ADaM` `dm` data object
+#' @param mutate_fname (`character`) name of function which mutates the `ADaM` `dm` data object
+#' @param req_data (`character`) vector of data names in the `ADaM` `dm` data objects that are required to create the
 #'   output
 #'
 #' @export
@@ -64,7 +64,7 @@ pmap_row <- function(tlgfname, filter_fname = NA, mutate_fname = NA, req_data) {
   )
 }
 
-#' Remove Row For a tlgfunction from a pre-processing map
+#' Remove row for a TLG function from a pre-processing map
 #'
 #' @inheritParams gen_args
 #'
@@ -113,7 +113,7 @@ get_req_data <- function(id, pmap) {
   fstr[[1]]
 }
 
-#' Preprocess ADaM Data for A TLG function
+#' pre-process `ADaM` data for a TLG function
 #'
 #' @inheritParams gen_args
 #'

@@ -1,7 +1,6 @@
+# aet04_1 ----
 
-#' `AET04` Table 1 (Default) Adverse Events by Highest NCI CTACAE AE Grade Table 1.
-#' The `AET04` table provides an
-#' overview of adverse event with the highest NCI CTCAE grade per individual.
+#' @describeIn aet04_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
@@ -18,6 +17,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet04_1_pre()
@@ -88,7 +88,7 @@ aet04_1_main <- function(adam_db,
   tbl_sorted
 }
 
-#' @describeIn aet04_1_main `aet04_1` Layout
+#' @describeIn aet04_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -163,7 +163,7 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-#' @describeIn aet04_1_main `aet04_1` Preprocessing
+#' @describeIn aet04_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -171,8 +171,7 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   aet04_1_pre()
+#' aet04_1_pre(syn_test_data())
 aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -182,11 +181,11 @@ aet04_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `AET04_1` Pipeline ----
-
-#' `AET04_1`
+#' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.
 #'
-#' @seealso [aet04_1_main()]
-#' @rdname chevron_tlg-class
+#' The `AET04` table provides an
+#' overview of adverse event with the highest `NCI` `CTCAE` grade per individual.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))

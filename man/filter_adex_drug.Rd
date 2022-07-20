@@ -7,7 +7,7 @@
 filter_adex_drug(adam_db)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 }
 \description{
 Filter \code{adex} for \code{PARCAT1}

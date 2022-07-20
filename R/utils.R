@@ -4,7 +4,7 @@ globalVariables(c("."))
 #' Retrieve variables for certain variables
 #'
 #' @param df data frame
-#' @param vars variable names in data frame `df`
+#' @param vars variable names in `df`
 #'
 #' @export
 var_labels_for <- function(df, vars) {
@@ -27,11 +27,11 @@ std_deco <- function(id, ...) {
   )
 }
 
-#' Convert Y N values used in CDISC to R boolean object
+#' Convert `"Y"` `"N"` values used in `CDISC` to R boolean object
 #'
 #' Empty strings are mapped to `NA`
 #'
-#' @param x character vector with Y and N
+#' @param x character vector with `"Y"` and `"N"`
 #'
 #' @export
 #'
@@ -52,10 +52,10 @@ bol_YN <- function(x) { # nolint
   }
 }
 
-#' Reorder PARAM and PARAMCD Levels Simultaneously
+#' Reorder `PARAM` and `PARAMCD` Levels Simultaneously
 #'
-#' @param df data.frame with PARAM and PARAMCD variables
-#' @param paramcd_levels ordered levels of PARAMCD
+#' @param df `data.frame` with `PARAM` and `PARAMCD` variables
+#' @param paramcd_levels ordered levels of `PARAMCD`
 #'
 #' @export
 #'
