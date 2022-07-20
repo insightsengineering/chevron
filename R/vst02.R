@@ -16,6 +16,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("advs") %>%
@@ -151,6 +152,7 @@ vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "adv
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("advs") %>%
@@ -229,8 +231,7 @@ vst02_2_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   vst02_2_pre()
+#' vst02_2_pre(syn_test_data())
 vst02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%

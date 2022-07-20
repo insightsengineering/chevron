@@ -40,6 +40,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dst01_1_pre()
@@ -188,8 +189,7 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   dst01_1_pre()
+#' dst01_1_pre(syn_test_data())
 dst01_1_pre <- function(adam_db, ...) {
   adam_db
 }
@@ -230,6 +230,7 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dst01_2_pre()
@@ -381,8 +382,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   dst01_2_pre()
+#' dst01_2_pre(syn_test_data())
 dst01_2_pre <- function(adam_db,
                         reason = .study$disc_reason_var,
                         .study = list(disc_reason_var = "DCSREAS"),
@@ -439,6 +439,7 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dst01_3_pre()
@@ -601,8 +602,7 @@ dst01_3_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   dst01_3_pre()
+#' dst01_3_pre(syn_test_data())
 dst01_3_pre <- function(adam_db,
                         reason = .study$disc_reason_var,
                         .study = list(disc_reason_var = "DCSREAS"),

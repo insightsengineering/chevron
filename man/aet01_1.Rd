@@ -94,6 +94,7 @@ aet01_1
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   aet01_1_pre()

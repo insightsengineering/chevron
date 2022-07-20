@@ -20,6 +20,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dmt01_1_pre()
@@ -109,8 +110,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   dmt01_1_pre()
+#' dmt01_1_pre(syn_test_data())
 dmt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adsl_lbs <- formatters::var_labels(adam_db$adsl)

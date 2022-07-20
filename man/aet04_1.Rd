@@ -81,6 +81,7 @@ Grade is sorted by severity.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   aet04_1_pre()
@@ -98,7 +99,6 @@ aet04_1_main(
   )
 )
 aet04_1_lyt(armvar = "ACTARM")
-syn_test_data() \%>\%
-  aet04_1_pre()
+aet04_1_pre(syn_test_data())
 }
 \keyword{datasets}

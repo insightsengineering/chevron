@@ -83,7 +83,6 @@ db <- syn_test_data() \%>\%
   cmt01a_2_pre()
 
 cmt01a_2_main(adam_db = db)
-syn_test_data() \%>\%
-  cmt01a_2_pre()
+cmt01a_2_pre(syn_test_data())
 }
 \keyword{datasets}

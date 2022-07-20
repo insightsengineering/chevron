@@ -13,6 +13,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("adcm") %>%
@@ -94,8 +95,7 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   cmt02_pt_1_pre()
+#' cmt02_pt_1_pre(syn_test_data())
 cmt02_pt_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 

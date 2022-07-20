@@ -81,6 +81,7 @@ by default based on the number of patients in the corresponding \code{n} row.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dmt01_1_pre()
@@ -91,7 +92,6 @@ dmt01_1_main(db,
   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 )
 dmt01_1_lyt(armvar = "ACTARM")
-syn_test_data() \%>\%
-  dmt01_1_pre()
+dmt01_1_pre(syn_test_data())
 }
 \keyword{datasets}

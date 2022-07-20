@@ -110,6 +110,7 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dst01_3_pre()
@@ -120,7 +121,6 @@ dst01_3_lyt(
   armvar = "ACTARM",
   status_treatment = "EOTxx01"
 )
-syn_test_data() \%>\%
-  dst01_3_pre()
+dst01_3_pre(syn_test_data())
 }
 \keyword{datasets}

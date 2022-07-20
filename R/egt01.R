@@ -23,6 +23,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   egt01_1_pre()
@@ -123,8 +124,7 @@ egt01_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   egt01_1_pre()
+#' egt01_1_pre(syn_test_data())
 egt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 

@@ -88,12 +88,12 @@ patients in the corresponding analysis population given by \code{N}.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   ext01_1_pre()
 
 ext01_1_main(db)
-syn_test_data() \%>\%
-  ext01_1_pre()
+ext01_1_pre(syn_test_data())
 }
 \keyword{datasets}

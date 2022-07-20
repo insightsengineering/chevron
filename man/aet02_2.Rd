@@ -102,6 +102,7 @@ frequencies.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   aet02_2_pre()
@@ -118,9 +119,9 @@ aet02_2_lyt(
   lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02")
 )
-syn_test_data() \%>\%
-  aet02_2_pre()
+aet02_2_pre(syn_test_data())
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   aet02_3_pre()

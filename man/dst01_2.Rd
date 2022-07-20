@@ -113,6 +113,7 @@ which allows the tables to be constructed and pruned separately before binding.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dst01_2_pre()
@@ -124,7 +125,6 @@ dst01_2_lyt(
   status = "EOP01STT",
   disc_reason_var = "DCP01RS"
 )
-syn_test_data() \%>\%
-  dst01_2_pre()
+dst01_2_pre(syn_test_data())
 }
 \keyword{datasets}
