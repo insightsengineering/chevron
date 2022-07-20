@@ -1,8 +1,6 @@
+# cmt02_pt_1 ----
 
-#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
-#'
-#' A concomitant medication table with the
-#' number of subjects and the total number of treatments by medication name sorted by frequencies.
+#' @describeIn cmt02_pt_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -15,6 +13,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("adcm") %>%
@@ -53,8 +52,7 @@ cmt02_pt_1_main <- function(adam_db,
     )
 }
 
-
-#' @describeIn cmt02_pt_1_main `cmt02_pt_1` Layout
+#' @describeIn cmt02_pt_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -89,8 +87,7 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
     append_topleft("Other Treatment")
 }
 
-
-#' @describeIn cmt02_pt_1_main `cmt02_pt_1` Preprocessing
+#' @describeIn cmt02_pt_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -98,8 +95,7 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   cmt02_pt_1_pre()
+#' cmt02_pt_1_pre(syn_test_data())
 cmt02_pt_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -112,12 +108,11 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-
-# `CMT02_PT_1` Pipeline ----
-
-#' `CMT02_PT_1`
+#' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
 #'
-#' @seealso [cmt02_pt_1_main()]
-#' @rdname chevron_tlg-class
+#' A concomitant medication table with the
+#' number of subjects and the total number of treatments by medication name sorted by frequencies.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

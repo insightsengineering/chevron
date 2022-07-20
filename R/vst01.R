@@ -1,9 +1,6 @@
+# vst01_1 ----
 
-#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
-#'
-#' The `VST01` table provides an
-#' overview of the Vital Sign values and its change from baseline of each respective arm
-#' over the course of the trial.
+#' @describeIn vst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
@@ -26,6 +23,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   vst01_1_pre()
@@ -67,8 +65,7 @@ vst01_1_main <- function(adam_db,
   tbl
 }
 
-
-#' @describeIn vst01_1_main `vst01_1` Layout
+#' @describeIn vst01_1 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -93,8 +90,6 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
                           evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                           visitvar = "AVISIT"
                         )) {
-
-
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
   # problem with the column count
@@ -123,7 +118,7 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
     append_topleft(paste(" ", lbl_avisit))
 }
 
-#' @describeIn vst01_1_main `vst01_1` Preprocessing
+#' @describeIn vst01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -131,8 +126,7 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   vst01_1_pre()
+#' vst01_1_pre(syn_test_data())
 vst01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -142,11 +136,12 @@ vst01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `VST01_1` Pipeline ----
-
-#' `VST01_1`
+#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
 #'
-#' @seealso [vst01_1_main()]
-#' @rdname chevron_tlg-class
+#' The `VST01` table provides an
+#' overview of the Vital Sign values and its change from baseline of each respective arm
+#' over the course of the trial.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))

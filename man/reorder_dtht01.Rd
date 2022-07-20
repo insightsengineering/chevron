@@ -7,7 +7,7 @@
 reorder_dtht01(adam_db)
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the ADaM datasets}
+\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 }
 \description{
 The \code{OTHER} level is pushed last so that it appears last, and then the \code{DTHCAUS} related to \code{OTHER} appear underneath

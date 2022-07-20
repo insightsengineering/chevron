@@ -6,7 +6,7 @@ vignette: >
   %\VignetteIndexEntry{The .study Argument}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -18,9 +18,9 @@ knitr::opts_chunk$set(
 ```
 
 
-# Introduction 
+# Introduction
 
-The `.study` argument in *tlg-functions* is used to pass values that are used in several tables.
+The `.study` argument in *TLG-functions* is used to pass values that are used in several tables.
 
 
 
@@ -56,18 +56,18 @@ Used to specify the planned arm of the study. Typically `ARM`.
 ## `reason`
 used in `DST01`, the name of the column specifying study withdrawal): generally `DCSREAS`.
 
-## `safety_var` 
-Used in `AET01` the safety variables to be summarized. Typically 
+## `safety_var`
+Used in `AET01` the safety variables to be summarized. Typically
 `c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")`.
 
 ## `severity_grade`
 internal, used in `AET03`, capture the levels of severity of adverse events: generally corresponds to the levels of
 `AESEV`in `adae`.
 
-## `status_var` 
+## `status_var`
 Used in `DST01` to define patient status.
 
-## `summary_demo` 
+## `summary_demo`
 Used in `DMT01`,  the list of variables to be summarized.
 
 ## `summary_demo_lbl`

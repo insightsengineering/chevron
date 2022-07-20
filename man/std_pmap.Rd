@@ -11,7 +11,7 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 std_pmap
 }
 \description{
-The preprocessing map contains information how the ADaM data needs to be preprocessed for each function.
+The pre-processing map contains information how the \code{ADaM} data needs to be pre-processed for each function.
 }
 \examples{
 std_pmap

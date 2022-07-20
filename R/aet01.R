@@ -1,19 +1,20 @@
 # aet01_1 ----
 
-#' `AET01` Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.
-#'
-#' @details
-#'  * Does not remove rows with zero counts by default.
+#' @describeIn aet01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param ... not used.
 #'
+#' @details
+#'  * Does not remove rows with zero counts by default.
+#'
 #' @export
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet01_1_pre()
@@ -68,7 +69,7 @@ aet01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet01_1_main `aet01_1` Layout
+#' @describeIn aet01_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -145,7 +146,7 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-#' @describeIn aet01_1_main `aet01_1` Preprocessing
+#' @describeIn aet01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -218,7 +219,7 @@ aet01_1_pre <- function(adam_db, ...) {
   db
 }
 
-#' @describeIn aet01_1_main `aet01_1` Checks
+#' @describeIn aet01_1 Checks
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -275,20 +276,17 @@ aet01_1_check <- function(adam_db,
   }
 }
 
-# `AET01_1` Pipeline ----
-
-#' @seealso [aet01_1_main()]
-#' @rdname chevron_tlg-class
+#' `AET01` Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
+
 # aet01_2 ----
 
-#' `AET01` Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2. Overview of death and summary
-#' of adverse events with medical concepts.
+#' @describeIn aet01_2 Main TLG function
 #'
-#' @details
-#'  * Does not remove rows with zero counts by default.
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -296,10 +294,13 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "ada
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
 #'
+#' @details
+#'  * Does not remove rows with zero counts by default.
 #' @export
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet01_2_pre()
@@ -358,7 +359,7 @@ aet01_2_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet01_2_main `aet01_2` Layout
+#' @describeIn aet01_2 Layout
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -451,7 +452,7 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
 }
 
-#' @describeIn aet01_2_main `aet01_2` Preprocessing
+#' @describeIn aet01_2 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -524,7 +525,7 @@ aet01_2_pre <- function(adam_db, ...) {
   db
 }
 
-#' @describeIn aet01_2_main `aet01_2` Checks
+#' @describeIn aet01_2 Checks
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -584,10 +585,10 @@ aet01_2_check <- function(adam_db,
   }
 }
 
-# `AET01_2` Pipeline ----
-
-#' @seealso [aet01_2_main()]
-#' @rdname chevron_tlg-class
+#' `AET01` Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2. Overview of death and summary
+#' of adverse events with medical concepts.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 

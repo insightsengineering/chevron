@@ -1,8 +1,6 @@
+# aet03_1 ----
 
-#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
-#'
-#' An adverse events table categorized by System
-#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#' @describeIn aet03_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -18,6 +16,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   aet03_1_pre()
@@ -33,8 +32,6 @@ aet03_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            lbl_overall = NULL
                          )) {
-
-
   # specific to AET03: avoid error if some severity levels are not present
   # TODO: rename all gradation to grade or grading (depending on context)
   severity_grade <- levels(adam_db$adae[["AESEV"]])
@@ -73,14 +70,13 @@ aet03_1_main <- function(adam_db,
   tbl_sorted
 }
 
-
-#' @describeIn aet03_1_main `aet03_1` Layout
+#' @describeIn aet03_1 Layout
 #'
 #' @inheritParams gen_args
 #'
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param severity_grade (`vector of character`) describing the severity levels present in the data set.
+#' @param severity_grade (`vector of character`) describing the severity levels present in the dataset.
 #'
 #' @export
 #'
@@ -139,7 +135,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
     )
 }
 
-#' @describeIn aet03_1_main `aet03_1` Preprocessing
+#' @describeIn aet03_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -147,8 +143,7 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   aet03_1_pre()
+#' aet03_1_pre(syn_test_data())
 aet03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -158,12 +153,11 @@ aet03_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `AET03_1` Pipeline ----
-
-#' `AET03_1`
+#' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
 #'
-#' @seealso [aet03_1_main()]
-#' @rdname chevron_tlg-class
+#' An adverse events table categorized by System
+#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))
-

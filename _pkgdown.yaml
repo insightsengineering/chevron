@@ -2,8 +2,7 @@
 url: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron
 
 template:
-  params:
-    bootswatch: cerulean
+  package: nesttemplate
 
 navbar:
   right:
@@ -40,34 +39,34 @@ reference:
       - get_postprocess
       - get_adam_datasets
 
-  - title: Standard Main, Preprocess and Check Functions
+  - title: chevron_tlg objects
     contents:
-      - aet01_1_main
-      - aet01_2_main
-      - aet02_1_main
-      - aet02_2_main
-      - aet02_3_main
-      - aet03_1_main
-      - aet04_1_main
-      - cmt01a_1_main
-      - cmt01a_2_main
-      - cmt01a_3_main
-      - cmt02_pt_1_main
-      - dmt01_1_main
-      - dst01_1_main
-      - dst01_2_main
-      - dst01_3_main
-      - dtht01_1_main
-      - egt01_1_main
-      - egt02_1_main
-      - egt02_2_main
-      - ext01_1_main
-      - ext01_2_main
-      - lbt01_1_main
-      - mht01_1_main
-      - vst01_1_main
-      - vst02_1_main
-      - vst02_2_main
+      - aet01_1
+      - aet01_2
+      - aet02_1
+      - aet02_2
+      - aet02_3
+      - aet03_1
+      - aet04_1
+      - cmt01a_1
+      - cmt01a_2
+      - cmt01a_3
+      - cmt02_pt_1
+      - dmt01_1
+      - dst01_1
+      - dst01_2
+      - dst01_3
+      - dtht01_1
+      - egt01_1
+      - egt02_1
+      - egt02_2
+      - ext01_1
+      - ext01_2
+      - lbt01_1
+      - mht01_1
+      - vst01_1
+      - vst02_1
+      - vst02_2
 
   - title: Checks and assertions
     contents:

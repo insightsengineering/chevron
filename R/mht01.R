@@ -1,8 +1,6 @@
+# mht01_1 ----
 
-#' `MHT01` Table 1 (Default) Medical History Table 1.
-#'
-#' The `MHT01` table provides an overview of the subjects medical
-#' history by SOC and Preferred Term.
+#' @describeIn mht01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -20,6 +18,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   mht01_1_pre()
@@ -61,8 +60,7 @@ mht01_1_main <- function(adam_db,
   tbl_sorted
 }
 
-
-#' @describeIn mht01_1_main `mht01_1` Layout
+#' @describeIn mht01_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
@@ -122,8 +120,7 @@ mht01_1_lyt <- function(armvar = .study$planarm,
     append_topleft(paste0("  ", lbl_mhdecod))
 }
 
-
-#' @describeIn mht01_1_main `mht01_1` Preprocessing
+#' @describeIn mht01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -131,8 +128,7 @@ mht01_1_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   mht01_1_pre()
+#' mht01_1_pre(syn_test_data())
 mht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -142,11 +138,11 @@ mht01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
-# `MHT01_1` Pipeline ----
-
-#' `MHT01_1`
+#' `MHT01` Table 1 (Default) Medical History Table 1.
 #'
-#' @seealso [mht01_1_main()]
-#' @rdname chevron_tlg-class
+#' The `MHT01` table provides an overview of the subjects medical
+#' history by SOC and Preferred Term.
+#'
+#' @include chevron_tlg-S4class.R
 #' @export
 mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))
