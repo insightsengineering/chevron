@@ -77,6 +77,7 @@ Abnormality at Baseline Table.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("advs") \%>\%

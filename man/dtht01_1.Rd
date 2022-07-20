@@ -85,6 +85,7 @@ A description of the causes of death optionally with the breakdown of the
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to(adsl) \%>\%
@@ -105,7 +106,6 @@ dtht01_1_opt_lyt(
   armvar = "ACTARM",
   lbl_overall = NULL
 )
-syn_test_data() \%>\%
-  dtht01_1_pre()
+dtht01_1_pre(syn_test_data())
 }
 \keyword{datasets}

@@ -133,6 +133,7 @@ egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "ade
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("adeg") %>%
@@ -211,8 +212,7 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   egt02_2_pre()
+#' egt02_2_pre(syn_test_data())
 egt02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%

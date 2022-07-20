@@ -89,12 +89,12 @@ by \code{AVISIT}. Re-level to customize order
 }}
 \examples{
 library(dm)
+library(magrittr)
 
 db <- syn_test_data() \%>\%
   lbt01_1_pre()
 
 lbt01_1_main(db)
-syn_test_data() \%>\%
-  lbt01_1_pre()
+lbt01_1_pre(syn_test_data())
 }
 \keyword{datasets}

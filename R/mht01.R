@@ -18,6 +18,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(magrittr)
 #'
 #' db <- syn_test_data() %>%
 #'   mht01_1_pre()
@@ -127,8 +128,7 @@ mht01_1_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   mht01_1_pre()
+#' mht01_1_pre(syn_test_data())
 mht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 

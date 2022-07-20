@@ -21,6 +21,7 @@
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("adcm") %>%
@@ -142,8 +143,7 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   cmt01a_1_pre()
+#' cmt01a_1_pre(syn_test_data())
 cmt01a_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -252,8 +252,7 @@ cmt01a_2_main <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   cmt01a_2_pre()
+#' cmt01a_2_pre(syn_test_data())
 cmt01a_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -300,6 +299,7 @@ cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "
 #'
 #' @examples
 #' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_test_data() %>%
 #'   dm_zoom_to("adcm") %>%
@@ -420,8 +420,7 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 #' @examples
-#' syn_test_data() %>%
-#'   cmt01a_3_pre()
+#' cmt01a_3_pre(syn_test_data())
 cmt01a_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 

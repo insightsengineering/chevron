@@ -90,6 +90,7 @@ the specific medication.
 }}
 \examples{
 library(dm)
+library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("adcm") \%>\%
@@ -103,7 +104,6 @@ cmt01a_3_lyt(
   lbl_overall = NULL,
   deco = std_deco("CMT01A")
 )
-syn_test_data() \%>\%
-  cmt01a_3_pre()
+cmt01a_3_pre(syn_test_data())
 }
 \keyword{datasets}

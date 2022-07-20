@@ -56,7 +56,6 @@ aet02_3_lyt(
   lbl_aedecod = "Dictionary-Derived Term",
   deco = std_deco("AET02")
 )
-syn_test_data() \%>\%
-  aet02_3_pre()
+aet02_3_pre(syn_test_data())
 }
 \keyword{datasets}
