@@ -6,7 +6,7 @@
 \alias{aet04_2_lyt}
 \alias{aet04_2_pre}
 \alias{aet04_2}
-\title{\code{AET04} Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5
+\title{\code{AET04} Table 2 (Supplementary) Adverse Events by Highest \code{NCI} \code{CTACAE} \code{AE} Grade with Analysis Toxicity Grade 3-5
 combined.}
 \format{
 An object of class \code{chevron_tlg} of length 1.
@@ -58,7 +58,7 @@ aet04_2
 \item{...}{not used.}
 }
 \description{
-The \code{AET04_2} table provides an overview of adverse event with the highest NCI CTCAE grade per individual,
+The \code{AET04_2} table provides an overview of adverse event with the highest \code{NCI} \code{CTCAE} grade per individual,
 with the Analysis Toxicity Grade 3-5 combined in one group.
 }
 \details{

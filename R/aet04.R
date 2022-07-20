@@ -367,10 +367,10 @@ aet04_2_pre <- function(adam_db, ...) {
 
 # `AET04_2` Pipeline ----
 
-#' `AET04` Table 2 (Supplementary) Adverse Events by Highest NCI CTACAE AE Grade with Analysis Toxicity Grade 3-5
+#' `AET04` Table 2 (Supplementary) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade with Analysis Toxicity Grade 3-5
 #' combined.
 #'
-#' The `AET04_2` table provides an overview of adverse event with the highest NCI CTCAE grade per individual,
+#' The `AET04_2` table provides an overview of adverse event with the highest `NCI` `CTCAE` grade per individual,
 #' with the Analysis Toxicity Grade 3-5 combined in one group.
 #'
 #' @include chevron_tlg-S4class.R
