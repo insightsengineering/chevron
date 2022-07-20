@@ -33,6 +33,7 @@ Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     knitr,
+    nestcolor,
     purrr,
     rmarkdown,
     scda,
