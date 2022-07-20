@@ -31,9 +31,9 @@ optionally a \code{postprocess} function.
 }
 \section{Functions}{
 \itemize{
-\item \code{chevron_tlg}: Default Constructor
-}}
+\item \code{chevron_tlg()}: Default Constructor
 
+}}
 \section{Slots}{
 
 \describe{

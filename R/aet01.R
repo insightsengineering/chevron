@@ -588,4 +588,4 @@ aet01_2_check <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_2 <- chevron_tlg(aet01_2_main, aet01_2_pre, adam_datasets = c("adsl", "adae"))

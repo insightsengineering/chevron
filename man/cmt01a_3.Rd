@@ -81,13 +81,13 @@ the specific medication.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt01a_3_main}: Main TLG function
+\item \code{cmt01a_3_main()}: Main TLG function
 
-\item \code{cmt01a_3_lyt}: Layout
+\item \code{cmt01a_3_lyt()}: Layout
 
-\item \code{cmt01a_3_pre}: Preprocessing
+\item \code{cmt01a_3_pre()}: Preprocessing
+
 }}
-
 \examples{
 library(dm)
 
