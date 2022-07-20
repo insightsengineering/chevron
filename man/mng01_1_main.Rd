@@ -15,16 +15,15 @@ mng01_1_main(
   y_unit = "AVALU",
   armvar = .study$actualarm,
   center_fun = c("mean", "median"),
-  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles",
-    "range"),
+  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
   jitter = TRUE,
   show_n = TRUE,
   show_h_grid = .study$show_h_grid,
   show_v_grid = .study$show_v_grid,
   legend_pos = .study$legend_pos,
   line_col = .study$color_dict,
-  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE,
-    legend_pos = "top", color_dict = getOption("tern.color")),
+  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
+    = "top", color_dict = getOption("tern.color")),
   ...
 )
 
@@ -37,16 +36,15 @@ mng01_1_lyt(
   y_unit = "AVALU",
   armvar = .study$actualarm,
   center_fun = c("mean", "median"),
-  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles",
-    "range"),
+  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
   jitter = TRUE,
   show_n = TRUE,
   show_h_grid = .study$show_h_grid,
   show_v_grid = .study$show_v_grid,
   legend_pos = .study$legend_pos,
   line_col = .study$color_dict,
-  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE,
-    legend_pos = "top", color_dict = getOption("tern.color"))
+  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
+    = "top", color_dict = getOption("tern.color"))
 )
 
 mng01_1_pre(adam_db, ...)
@@ -104,11 +102,11 @@ Overview of a summary statistics across time and arm for a selected data set.
 }
 \section{Functions}{
 \itemize{
-\item \code{mng01_1_lyt}: \code{mng01_1} Graph Layout
+\item \code{mng01_1_lyt()}: \code{mng01_1} Graph Layout
 
-\item \code{mng01_1_pre}: \code{mng01_1} Preprocessing
+\item \code{mng01_1_pre()}: \code{mng01_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 library(dplyr)

@@ -74,11 +74,11 @@ by \code{AVISIT}. Re-level to customize order
 }
 \section{Functions}{
 \itemize{
-\item \code{egt01_1_lyt}: \code{egt01_1} Layout
+\item \code{egt01_1_lyt()}: \code{egt01_1} Layout
 
-\item \code{egt01_1_pre}: \code{egt01_1} Preprocessing
+\item \code{egt01_1_pre()}: \code{egt01_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

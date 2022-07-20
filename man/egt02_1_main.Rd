@@ -61,11 +61,11 @@ Baseline Table.
 }
 \section{Functions}{
 \itemize{
-\item \code{egt02_1_lyt}: \code{egt02_1} Layout
+\item \code{egt02_1_lyt()}: \code{egt02_1} Layout
 
-\item \code{egt02_1_pre}: \code{egt02_1} Preprocessing
+\item \code{egt02_1_pre()}: \code{egt02_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

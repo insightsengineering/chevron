@@ -61,11 +61,11 @@ Abnormality at Baseline.
 }
 \section{Functions}{
 \itemize{
-\item \code{egt02_2_lyt}: \code{egt02_2} Layout
+\item \code{egt02_2_lyt()}: \code{egt02_2} Layout
 
-\item \code{egt02_2_pre}: \code{egt02_2} Preprocessing
+\item \code{egt02_2_pre()}: \code{egt02_2} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

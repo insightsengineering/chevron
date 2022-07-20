@@ -74,11 +74,11 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \section{Functions}{
 \itemize{
-\item \code{ext01_2_lyt}: \code{ext01_2} Layout
+\item \code{ext01_2_lyt()}: \code{ext01_2} Layout
 
-\item \code{ext01_2_pre}: \code{ext01_2} Preprocessing
+\item \code{ext01_2_pre()}: \code{ext01_2} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

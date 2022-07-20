@@ -65,11 +65,11 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet03_1_lyt}: \code{aet03_1} Layout
+\item \code{aet03_1_lyt()}: \code{aet03_1} Layout
 
-\item \code{aet03_1_pre}: \code{aet03_1} Preprocessing
+\item \code{aet03_1_pre()}: \code{aet03_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

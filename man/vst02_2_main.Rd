@@ -62,11 +62,11 @@ Without Abnormality at Baseline.
 }
 \section{Functions}{
 \itemize{
-\item \code{vst02_2_lyt}: \code{vst02_2} Layout
+\item \code{vst02_2_lyt()}: \code{vst02_2} Layout
 
-\item \code{vst02_2_pre}: \code{vst02_2} Preprocessing
+\item \code{vst02_2_pre()}: \code{vst02_2} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

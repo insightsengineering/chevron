@@ -52,11 +52,11 @@ number of subjects and the total number of treatments by medication name sorted 
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt02_pt_1_lyt}: \code{cmt02_pt_1} Layout
+\item \code{cmt02_pt_1_lyt()}: \code{cmt02_pt_1} Layout
 
-\item \code{cmt02_pt_1_pre}: \code{cmt02_pt_1} Preprocessing
+\item \code{cmt02_pt_1_pre()}: \code{cmt02_pt_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

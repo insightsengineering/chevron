@@ -1,6 +1,8 @@
 
 # mng01_1 ----
 
+#' @describeIn mng01_1 Main Graph
+#'
 #' `MNG01` Graph 1 (Default) Mean Plot 1.
 #'
 #' Overview of a summary statistics across time and arm for a selected data set.
@@ -98,7 +100,7 @@ mng01_1_main <- function(adam_db,
 }
 
 
-#' @describeIn mng01_1_main `mng01_1` Graph Layout
+#' @describeIn mng01_1 Graph Layout
 #'
 #' @inheritParams mng01_1_main
 #' @param df (`dataframe`) data set containing all analysis variables.
@@ -235,7 +237,7 @@ mng01_1_lyt <- function(df,
   p
 }
 
-#' @describeIn mng01_1_main `mng01_1` Preprocessing
+#' @describeIn mng01_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -252,7 +254,7 @@ mng01_1_pre <- function(adam_db, ...) {
 
 # `mng01_1` Pipeline ----
 
-#' @seealso [mng01_1_main()]
-#' @rdname chevron_tlg-class
+#' `MNG01_1`
+#'
 #' @export
 mng01_1 <- chevron_tlg(mng01_1_main, mng01_1_pre, adam_datasets = c("adsl", "adlb", "adeg", "advs"))

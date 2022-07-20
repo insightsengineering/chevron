@@ -75,11 +75,11 @@ by \code{AVISIT}. Re-level to customize order
 }
 \section{Functions}{
 \itemize{
-\item \code{vst01_1_lyt}: \code{vst01_1} Layout
+\item \code{vst01_1_lyt()}: \code{vst01_1} Layout
 
-\item \code{vst01_1_pre}: \code{vst01_1} Preprocessing
+\item \code{vst01_1_pre()}: \code{vst01_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

@@ -74,11 +74,11 @@ the specific medication.
 }
 \section{Functions}{
 \itemize{
-\item \code{cmt01a_3_lyt}: \code{cmt01a_3} Layout
+\item \code{cmt01a_3_lyt()}: \code{cmt01a_3} Layout
 
-\item \code{cmt01a_3_pre}: \code{cmt01a_3} Preprocessing
+\item \code{cmt01a_3_pre()}: \code{cmt01a_3} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

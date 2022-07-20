@@ -61,11 +61,11 @@ Abnormality at Baseline Table.
 }
 \section{Functions}{
 \itemize{
-\item \code{vst02_1_lyt}: \code{vst02_1} Layout
+\item \code{vst02_1_lyt()}: \code{vst02_1} Layout
 
-\item \code{vst02_1_pre}: \code{vst02_1} Preprocessing
+\item \code{vst02_1_pre()}: \code{vst02_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

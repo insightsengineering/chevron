@@ -59,11 +59,11 @@ adverse events categorized by Dictionary-Derived Term.
 }
 \section{Functions}{
 \itemize{
-\item \code{aet02_3_lyt}: \code{aet02_3} Layout
+\item \code{aet02_3_lyt()}: \code{aet02_3} Layout
 
-\item \code{aet02_3_pre}: \code{aet02_3} Preprocessing
+\item \code{aet02_3_pre()}: \code{aet02_3} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

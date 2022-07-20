@@ -94,11 +94,11 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }
 \section{Functions}{
 \itemize{
-\item \code{dst01_3_lyt}: \code{dst01_3} Layout
+\item \code{dst01_3_lyt()}: \code{dst01_3} Layout
 
-\item \code{dst01_3_pre}: \code{dst01_3} Preprocessing
+\item \code{dst01_3_pre()}: \code{dst01_3} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

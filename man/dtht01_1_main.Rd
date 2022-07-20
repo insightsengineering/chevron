@@ -67,13 +67,13 @@ A description of the causes of death optionally with the breakdown of the
 }
 \section{Functions}{
 \itemize{
-\item \code{dtht01_1_lyt}: \code{dtht01_1} Layout
+\item \code{dtht01_1_lyt()}: \code{dtht01_1} Layout
 
-\item \code{dtht01_1_opt_lyt}: \code{dtht01_1} Optional Layout
+\item \code{dtht01_1_opt_lyt()}: \code{dtht01_1} Optional Layout
 
-\item \code{dtht01_1_pre}: \code{dtht01_1} Preprocessing
+\item \code{dtht01_1_pre()}: \code{dtht01_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 

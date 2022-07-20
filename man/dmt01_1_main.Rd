@@ -65,11 +65,11 @@ by default based on the number of patients in the corresponding \code{n} row.
 }
 \section{Functions}{
 \itemize{
-\item \code{dmt01_1_lyt}: \code{dmt01_1} Layout
+\item \code{dmt01_1_lyt()}: \code{dmt01_1} Layout
 
-\item \code{dmt01_1_pre}: \code{dmt01_1} Preprocessing
+\item \code{dmt01_1_pre()}: \code{dmt01_1} Preprocessing
+
 }}
-
 \examples{
 library(dm)
 
