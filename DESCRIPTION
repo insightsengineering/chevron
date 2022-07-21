@@ -35,7 +35,7 @@ Suggests:
     purrr,
     rmarkdown,
     scda,
-    scda.2021
+    scda.2021,
     tidyr
 VignetteBuilder:
     knitr
