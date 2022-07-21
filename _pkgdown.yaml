@@ -83,6 +83,7 @@ reference:
     contents:
       - get_db_data
       - reorder_levels_params
+      - report_null
       - sample_study_object
       - set_decoration
       - std_deco

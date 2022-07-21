@@ -46,6 +46,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Collate:
+    'utils.R'
     'chevron_tlg-S4class.R'
     'aet01.R'
     'aet02.R'
@@ -68,6 +69,5 @@ Collate:
     'package.R'
     'sample_study_object.R'
     'standard_data_preprocessing.R'
-    'utils.R'
     'vst01.R'
     'vst02.R'

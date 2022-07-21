@@ -273,3 +273,22 @@ set_decoration <- function(x, deco) {
   x@main_footer <- deco$main_footer
   x
 }
+
+#' Create a Null Report
+#'
+#' @param tlg (`TableTree`) object.
+#' @param ... not used.
+#'
+#' @export
+#'
+#' @return original `TableTree` or a null report if no observation are found in the table.
+#'
+report_null <- function(tlg, ...) {
+
+  if (is.null(tlg)) {
+  rtables::rtable(header = "Null Report: No observations met the reporting criteria for inclusion in this output.")
+  } else {
+  checkmate::assert_class(tlg, "TableTree")
+  tlg
+  }
+}
