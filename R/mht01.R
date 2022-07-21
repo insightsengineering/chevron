@@ -16,14 +16,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   mht01_1_pre()
-#'
-#' mht01_1_main(adam_db = db) %>% head(15)
 mht01_1_main <- function(adam_db,
                          armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
@@ -68,12 +60,6 @@ mht01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' mht01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("MHT01")
-#' )
 mht01_1_lyt <- function(armvar = .study$planarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_mhbodsys = "MedDRA System Organ Class",
@@ -127,8 +113,6 @@ mht01_1_lyt <- function(armvar = .study$planarm,
 #'
 #' @export
 #'
-#' @examples
-#' mht01_1_pre(syn_test_data())
 mht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -145,4 +129,7 @@ mht01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(mht01_1, syn_test_data())
 mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))

@@ -76,20 +76,6 @@ Baseline Table.
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  dm_zoom_to("adeg") \%>\%
-  filter(PARAM \%in\% c("Heart Rate", "QT Duration", "RR Duration")) \%>\%
-  dm_update_zoomed() \%>\%
-  egt02_1_pre()
-
-egt02_1_main(adam_db = db)
-egt02_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL
-)
-syn_test_data() \%>\%
-  egt02_1_pre()
+run(egt02_1, syn_test_data())
 }
 \keyword{datasets}

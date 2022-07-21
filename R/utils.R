@@ -1,7 +1,7 @@
 # as we use NSE
 globalVariables(c("."))
 
-#' Retrieve variables for certain variables
+#' Retrieve labels for certain variables
 #'
 #' @param df data frame
 #' @param vars variable names in `df`

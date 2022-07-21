@@ -14,16 +14,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adeg") %>%
-#'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
-#'   dm_update_zoomed() %>%
-#'   egt02_1_pre()
-#'
-#' egt02_1_main(adam_db = db)
 egt02_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
@@ -58,11 +48,6 @@ egt02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' egt02_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 egt02_1_lyt <- function(armvar = .study$actualarm,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
@@ -93,9 +78,6 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   egt02_1_pre()
 egt02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
@@ -112,6 +94,9 @@ egt02_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(egt02_1, syn_test_data())
 egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
 
 
@@ -131,17 +116,6 @@ egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "ade
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(dplyr)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adeg") %>%
-#'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
-#'   dm_update_zoomed() %>%
-#'   egt02_2_pre()
-#'
-#' egt02_2_main(adam_db = db)
 egt02_2_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
@@ -176,11 +150,6 @@ egt02_2_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' egt02_2_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 egt02_2_lyt <- function(armvar = .study$actualarm,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
@@ -211,8 +180,6 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' egt02_2_pre(syn_test_data())
 egt02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
@@ -229,4 +196,7 @@ egt02_2_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(egt02_2, syn_test_data())
 egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))

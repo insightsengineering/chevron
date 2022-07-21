@@ -76,20 +76,6 @@ Abnormality at Baseline.
 
 }}
 \examples{
-library(dm)
-library(dplyr)
-
-db <- syn_test_data() \%>\%
-  dm_zoom_to("adeg") \%>\%
-  filter(PARAM \%in\% c("Heart Rate", "QT Duration", "RR Duration")) \%>\%
-  dm_update_zoomed() \%>\%
-  egt02_2_pre()
-
-egt02_2_main(adam_db = db)
-egt02_2_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL
-)
-egt02_2_pre(syn_test_data())
+run(egt02_2, syn_test_data())
 }
 \keyword{datasets}
