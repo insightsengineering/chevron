@@ -20,14 +20,12 @@ Imports:
     dunlin,
     forcats,
     formatters,
-    lifecycle,
     magrittr,
     methods,
     rlang,
     rtables,
     tern,
     tibble,
-    tidyr,
     yaml
 Suggests:
     DiagrammeR,
@@ -38,6 +36,7 @@ Suggests:
     rmarkdown,
     scda,
     scda.2021
+    tidyr
 VignetteBuilder:
     knitr
 Config/Needs/website: insightsengineering/nesttemplate
