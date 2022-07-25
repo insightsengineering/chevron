@@ -11,17 +11,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(dplyr)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(.data$ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed() %>%
-#'   cmt02_pt_1_pre()
-#'
-#' cmt02_pt_1_main(adam_db = db)
 cmt02_pt_1_main <- function(adam_db,
                             armvar = .study$planarm,
                             prune_0 = TRUE,
@@ -58,11 +47,6 @@ cmt02_pt_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' cmt02_pt_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 cmt02_pt_1_lyt <- function(armvar = .study$planarm,
                            lbl_overall = .study$lbl_overall,
                            deco = std_deco("CMT02_PT"),
@@ -94,8 +78,6 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
 #'
 #' @export
 #'
-#' @examples
-#' cmt02_pt_1_pre(syn_test_data())
 cmt02_pt_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -115,4 +97,7 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(cmt02_pt_1, syn_test_data())
 cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))
