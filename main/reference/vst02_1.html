@@ -12,7 +12,7 @@ Abnormality at Baseline Table."><!-- mathjax --><script src="https://cdnjs.cloud
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9020</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9021</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,12 +32,6 @@ Abnormality at Baseline Table."><!-- mathjax --><script src="https://cdnjs.cloud
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" href="https://insightsengineering.github.io/chevron/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -151,40 +145,28 @@ Abnormality at Baseline Table.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="st">"advs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">PARAM</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Temperature"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">vst02_1_pre</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">vst02_1_main</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Assessment       A: Drug X        B: Placebo     C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Abnormality      (N=134)          (N=134)          (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Temperature                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Low          66/134 (49.3%)   68/134 (50.7%)   81/132 (61.4%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   High          67/134 (50%)    66/134 (49.3%)   69/132 (52.3%)</span>
-<span class="r-in"><span><span class="fu">vst02_1_lyt</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  armvar <span class="op">=</span> <span class="st">"ACTARM"</span>,</span></span>
-<span class="r-in"><span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A Pre-data Table Layout</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Column-Split Structure:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ACTARM (lvls) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Row-Split Structure:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PARAM (lvls) -&gt; ANRIND (** analysis **) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">vst02_1_pre</span><span class="op">(</span><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">vst02_1</span>, <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assessment                   A: Drug X        B: Placebo     C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Abnormality                  (N=134)          (N=134)          (N=132)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diastolic Blood Pressure                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Low                      69/134 (51.5%)   73/134 (54.5%)   67/132 (50.8%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   High                      75/134 (56%)     67/134 (50%)    65/132 (49.2%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pulse Rate                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Low                       75/134 (56%)     67/134 (50%)    69/132 (52.3%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   High                     66/134 (49.3%)   74/134 (55.2%)   53/132 (40.2%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Respiratory Rate                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Low                      70/134 (52.2%)   72/134 (53.7%)   64/132 (48.5%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   High                      75/134 (56%)    65/134 (48.5%)   71/132 (53.8%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Systolic Blood Pressure                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Low                       71/134 (53%)    69/134 (51.5%)    70/132 (53%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   High                     78/134 (58.2%)   62/134 (46.3%)   64/132 (48.5%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Temperature                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Low                      66/134 (49.3%)   68/134 (50.7%)   81/132 (61.4%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   High                      67/134 (50%)    66/134 (49.3%)   69/132 (52.3%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Weight                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Low                      72/134 (53.7%)    71/134 (53%)    76/132 (57.6%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   High                     69/134 (51.5%)   74/134 (55.2%)   74/132 (56.1%)</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

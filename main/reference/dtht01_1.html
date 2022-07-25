@@ -12,7 +12,7 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9020</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9021</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,12 +32,6 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" href="https://insightsengineering.github.io/chevron/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -157,17 +151,10 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">dunlin</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/dm_explicit_na.html" class="external-link">dm_explicit_na</a></span><span class="op">(</span><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_zoom_to</a></span><span class="op">(</span><span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>DTHCAT <span class="op">=</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tern/man/explicit_na.html" class="external-link">explicit_na</a></span><span class="op">(</span><span class="va">DTHCAT</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>LDDTHGR1 <span class="op">=</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tern/man/explicit_na.html" class="external-link">explicit_na</a></span><span class="op">(</span><span class="va">LDDTHGR1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_zoom_to.html" class="external-link">dm_update_zoomed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">dtht01_1_pre</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">dtht01_1_main</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01_1</span>, <span class="va">db</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          A: Drug X    B: Placebo   C: Combination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           (N=134)      (N=134)        (N=132)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————</span>
@@ -177,17 +164,7 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ADVERSE EVENT          6 (27.3%)    12 (46.2%)     7 (36.8%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   PROGRESSIVE DISEASE    7 (31.8%)    9 (34.6%)      8 (42.1%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   OTHER                  9 (40.9%)    5 (19.2%)      4 (21.1%)   </span>
-<span class="r-in"><span><span class="fu">dtht01_1_main</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span>, other_category <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          A: Drug X    B: Placebo   C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                           (N=134)      (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> —————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of deaths   22 (16.4%)   26 (19.4%)     19 (14.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Primary cause of death                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   n                          22           26             19      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ADVERSE EVENT          6 (27.3%)    12 (46.2%)     7 (36.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   PROGRESSIVE DISEASE    7 (31.8%)    9 (34.6%)      8 (42.1%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   OTHER                  9 (40.9%)    5 (19.2%)      4 (21.1%)   </span>
-<span class="r-in"><span><span class="fu">dtht01_1_main</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span>, time_since_last_dose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01_1</span>, <span class="va">db</span>, other_category <span class="op">=</span> <span class="cn">TRUE</span>, time_since_last_dose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                             A: Drug X    B: Placebo   C: Combination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                              (N=134)      (N=134)        (N=132)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ————————————————————————————————————————————————————————————————————————————————————————————————————</span>
@@ -197,6 +174,10 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ADVERSE EVENT                                             6 (27.3%)    12 (46.2%)     7 (36.8%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   PROGRESSIVE DISEASE                                       7 (31.8%)    9 (34.6%)      8 (42.1%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   OTHER                                                     9 (40.9%)    5 (19.2%)      4 (21.1%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         LOST TO FOLLOW UP                                   2 (22.2%)     2 (40%)        1 (25%)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         MISSING                                             4 (44.4%)     1 (20%)        2 (50%)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         SUICIDE                                             2 (22.2%)     1 (20%)        1 (25%)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         UNKNOWN                                             1 (11.1%)     1 (20%)           0       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Days from last drug administration                                                                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   n                                                             22           26             19      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;=30                                                      12 (54.5%)   16 (61.5%)     10 (52.6%)  </span>
@@ -212,63 +193,6 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 <span class="r-out co"><span class="r-pr">#&gt;</span>     ADVERSE EVENT                                            3 (30%)      3 (30%)       3 (33.3%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     PROGRESSIVE DISEASE                                      4 (40%)      5 (50%)       5 (55.6%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     OTHER                                                    3 (30%)      2 (20%)       1 (11.1%)   </span>
-<span class="r-in"><span><span class="fu">dtht01_1_main</span><span class="op">(</span>adam_db <span class="op">=</span> <span class="va">db</span>, time_since_last_dose <span class="op">=</span> <span class="cn">TRUE</span>, other_category <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                             A: Drug X    B: Placebo   C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                              (N=134)      (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of deaths                                      22 (16.4%)   26 (19.4%)     19 (14.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Primary cause of death                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   n                                                             22           26             19      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ADVERSE EVENT                                             6 (27.3%)    12 (46.2%)     7 (36.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   PROGRESSIVE DISEASE                                       7 (31.8%)    9 (34.6%)      8 (42.1%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   OTHER                                                     9 (40.9%)    5 (19.2%)      4 (21.1%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Days from last drug administration                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   n                                                             22           26             19      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;=30                                                      12 (54.5%)   16 (61.5%)     10 (52.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &gt;30                                                       10 (45.5%)   10 (38.5%)     9 (47.4%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Primary cause by days from last study drug administration                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;=30                                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     n                                                           12           16             10      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ADVERSE EVENT                                            3 (25%)     9 (56.2%)       4 (40%)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     PROGRESSIVE DISEASE                                      3 (25%)      4 (25%)        3 (30%)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     OTHER                                                    6 (50%)     3 (18.8%)       3 (30%)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &gt;30                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     n                                                           10           10             9       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ADVERSE EVENT                                            3 (30%)      3 (30%)       3 (33.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     PROGRESSIVE DISEASE                                      4 (40%)      5 (50%)       5 (55.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     OTHER                                                    3 (30%)      2 (20%)       1 (11.1%)   </span>
-<span class="r-in"><span><span class="fu">dtht01_1_lyt</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  armvar <span class="op">=</span> <span class="st">"ACTARM"</span>,</span></span>
-<span class="r-in"><span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A Pre-data Table Layout</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Column-Split Structure:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ACTARM (lvls) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Row-Split Structure:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DTHFL:DTHCAT (** multivar analysis **) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DTHCAT (lvls) -&gt; DTHCAUS (** analysis **) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">dtht01_1_opt_lyt</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  armvar <span class="op">=</span> <span class="st">"ACTARM"</span>,</span></span>
-<span class="r-in"><span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A Pre-data Table Layout</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Column-Split Structure:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ACTARM (lvls) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Row-Split Structure:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LDDTHGR1 (** analysis **) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LDDTHGR1 (lvls) -&gt; DTHCAT (** analysis **) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">dtht01_1_pre</span><span class="op">(</span><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adae`, `adaette`, `adcm`, `addv`, … (15 total)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

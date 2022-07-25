@@ -73,9 +73,6 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_one_tablenames.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/bol_YN.html</loc>
-  </url>
-  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/check_all_colnames.html</loc>
   </url>
   <url>
@@ -130,33 +127,6 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ext01_2.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_adae_anl01fl.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_adcm_anl01fl.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_adeg_anl01fl.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_adex_drug.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_adlb_anl01fl.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_admh_anl01fl.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_advs_anl01fl.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_egt02.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/filter_vst02.html</loc>
-  </url>
-  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/gen_args.html</loc>
   </url>
   <url>
@@ -184,45 +154,6 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mht01_1.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mutate_adsl_gp.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mutate_cmt01a.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mutate_cmt02_pt_1.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mutate_dmt01.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mutate_for_aet01.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mutate_vst02.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pmap_row.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/preprocess_data.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/remove_adex_aval.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/remove_tlg_pmap.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/reorder_adex_params.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/reorder_dtht01.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/reorder_levels_params.html</loc>
-  </url>
-  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/run.html</loc>
   </url>
   <url>
@@ -233,15 +164,6 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/std_deco.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/std_filter_fun.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/std_mutate_fun.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/std_pmap.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/syn_test_data.html</loc>

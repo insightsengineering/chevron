@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9020</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9021</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,12 +30,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" href="https://insightsengineering.github.io/chevron/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -304,37 +298,6 @@ treatments per medication class suppressed).</dd>
         </dt>
         <dd>Check that at least one name is among column names</dd>
       </dl></div><div class="section level2">
-      <h2 id="data-preprocess-functions">Data Preprocess Functions<a class="anchor" aria-label="anchor" href="#data-preprocess-functions"></a></h2>
-      
-      
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="preprocess_data.html">preprocess_data()</a></code> 
-        </dt>
-        <dd>pre-process <code>ADaM</code> data for a TLG function</dd>
-      </dl><dl><dt>
-          
-          <code><a href="std_pmap.html">std_pmap</a></code> 
-        </dt>
-        <dd>Standard Preprocessing Map</dd>
-      </dl><dl><dt>
-          
-          <code><a href="pmap_row.html">pmap_row()</a></code> 
-        </dt>
-        <dd>Row in Preprocessing Map</dd>
-      </dl><dl><dt>
-          
-          <code><a href="remove_tlg_pmap.html">remove_tlg_pmap()</a></code> 
-        </dt>
-        <dd>Remove row for a TLG function from a pre-processing map</dd>
-      </dl></div><div class="section level2">
       <h2 id="utility-functions">Utility Functions<a class="anchor" aria-label="anchor" href="#utility-functions"></a></h2>
       
       
@@ -350,11 +313,6 @@ treatments per medication class suppressed).</dd>
           <code><a href="get_db_data.html">get_db_data()</a></code> 
         </dt>
         <dd>Get Data from a DB</dd>
-      </dl><dl><dt>
-          
-          <code><a href="reorder_levels_params.html">reorder_levels_params()</a></code> 
-        </dt>
-        <dd>Reorder <code>PARAM</code> and <code>PARAMCD</code> Levels Simultaneously</dd>
       </dl><dl><dt>
           
           <code><a href="sample_study_object.html">sample_study_object()</a></code> 
@@ -379,7 +337,7 @@ treatments per medication class suppressed).</dd>
           
           <code><a href="var_labels_for.html">var_labels_for()</a></code> 
         </dt>
-        <dd>Retrieve variables for certain variables</dd>
+        <dd>Retrieve labels for certain variables</dd>
       </dl></div><div class="section level2">
       <h2 id="non-exported-documented-functions-for-packagage-developers">Non-exported Documented Functions for Packagage Developers<a class="anchor" aria-label="anchor" href="#non-exported-documented-functions-for-packagage-developers"></a></h2>
       
@@ -393,125 +351,9 @@ treatments per medication class suppressed).</dd>
 
       <dl><dt>
           
-          <code><a href="bol_YN.html">bol_YN()</a></code> 
-        </dt>
-        <dd>Convert <code>"Y"</code> <code>"N"</code> values used in <code>CDISC</code> to R boolean object</dd>
-      </dl><dl><dt>
-          
           <code><a href="gen_args.html">gen_args()</a></code> 
         </dt>
         <dd>General Argument Name Convention</dd>
-      </dl></div><div class="section level2">
-      <h2 id="tlg-preprocessing-functions">TLG Preprocessing Functions<a class="anchor" aria-label="anchor" href="#tlg-preprocessing-functions"></a></h2>
-      
-      
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="filter_adae_anl01fl.html">filter_adae_anl01fl()</a></code> 
-        </dt>
-        <dd>Filter <code>adae</code> for <code>ANL01FL</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_adcm_anl01fl.html">filter_adcm_anl01fl()</a></code> 
-        </dt>
-        <dd>Filter <code>adcm</code> for <code>ANL01FL</code> and  <code>ATIREL</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_adeg_anl01fl.html">filter_adeg_anl01fl()</a></code> 
-        </dt>
-        <dd>Filter <code>adeg</code> for <code>ANL01FL</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_adex_drug.html">filter_adex_drug()</a></code> 
-        </dt>
-        <dd>Filter <code>adex</code> for <code>PARCAT1</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_adlb_anl01fl.html">filter_adlb_anl01fl()</a></code> 
-        </dt>
-        <dd>Filter <code>adlb</code> for <code>ANL01FL</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_admh_anl01fl.html">filter_admh_anl01fl()</a></code> 
-        </dt>
-        <dd>Filter <code>admh</code> for <code>ANL01FL</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_advs_anl01fl.html">filter_advs_anl01fl()</a></code> 
-        </dt>
-        <dd>Filter <code>advs</code> for <code>ANL01FL</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_egt02.html">filter_egt02()</a></code> 
-        </dt>
-        <dd>Filter post-baseline values in <code>adeg</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="filter_vst02.html">filter_vst02()</a></code> 
-        </dt>
-        <dd>Filter post-baseline values in <code>advs</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="mutate_adsl_gp.html">mutate_adsl_gp()</a></code> 
-        </dt>
-        <dd>Categorize Reason for Discontinuation from Study.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="mutate_cmt01a.html">mutate_cmt01a()</a></code> 
-        </dt>
-        <dd>Coerce <code>CMSEQ</code> to factor in <code>adcm</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="mutate_cmt02_pt_1.html">mutate_cmt02_pt_1()</a></code> 
-        </dt>
-        <dd>Mutate function for <code>CMT02_PT_1</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="mutate_dmt01.html">mutate_dmt01()</a></code> 
-        </dt>
-        <dd>Mutate function for <code>DMT01_1</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="mutate_for_aet01.html">mutate_for_aet01()</a></code> 
-        </dt>
-        <dd>Creating Necessary Columns for <code>aet01</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="mutate_vst02.html">mutate_vst02()</a></code> 
-        </dt>
-        <dd>Categorize <code>advs</code> values</dd>
-      </dl><dl><dt>
-          
-          <code><a href="remove_adex_aval.html">remove_adex_aval()</a></code> 
-        </dt>
-        <dd>Remove specific <code>AVAL</code> and <code>AVALCAT1</code> data from <code>adex</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="reorder_adex_params.html">reorder_adex_params()</a></code> 
-        </dt>
-        <dd>Reorder <code>PARAM</code> and <code>PARAMCD</code> levels</dd>
-      </dl><dl><dt>
-          
-          <code><a href="reorder_dtht01.html">reorder_dtht01()</a></code> 
-        </dt>
-        <dd>Reorder levels of <code>DTHCAT</code> in <code>adsl</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="std_filter_fun.html">std_filter_fun()</a></code> 
-        </dt>
-        <dd>Retrieve Standard Subsetting for Templates</dd>
-      </dl><dl><dt>
-          
-          <code><a href="std_mutate_fun.html">std_mutate_fun()</a></code> 
-        </dt>
-        <dd>Retrieve Standard Mutation for Templates</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
