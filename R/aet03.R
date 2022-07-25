@@ -14,15 +14,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet03_1_pre()
-#'
-#' aet03_1_main(db)
-#' aet03_1_main(db, lbl_overall = "All Patients")
 aet03_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          prune_0 = TRUE,
@@ -80,14 +71,6 @@ aet03_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' aet03_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_aebodsys = "Body System or Organ Class",
-#'   lbl_aedecod = "Dictionary-Derived Term",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET03")
-#' )
 aet03_1_lyt <- function(armvar = .study$actualarm,
                         lbl_aebodsys = "",
                         lbl_aedecod = "",
@@ -142,8 +125,6 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet03_1_pre(syn_test_data())
 aet03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -160,4 +141,7 @@ aet03_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(aet03_1, syn_test_data())
 aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))

@@ -80,25 +80,12 @@ Grade is sorted by severity.
 
 }}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  aet04_1_pre()
-
-aet04_1_main(db)
-
-aet04_1_main(
-  db,
-  prune_0 = FALSE,
-  lbl_overall = "All Patients",
-  group_grades = list(
-    "Any Grade" = c("1", "2", "3", "4", "5"),
-    "Grade 1-2" = c("1", "2"),
-    "Grade 3-5" = c("3", "4", "5")
-  )
+group_grades <- list(
+  "Any Grade" = c("1", "2", "3", "4", "5"),
+  "Grade 1-2" = c("1", "2"),
+  "Grade 3-5" = c("3", "4", "5")
 )
-aet04_1_lyt(armvar = "ACTARM")
-aet04_1_pre(syn_test_data())
+
+run(aet04_1, syn_test_data(), group_grades = group_grades)
 }
 \keyword{datasets}

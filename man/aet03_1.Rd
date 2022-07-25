@@ -80,21 +80,6 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 
 }}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  aet03_1_pre()
-
-aet03_1_main(db)
-aet03_1_main(db, lbl_overall = "All Patients")
-aet03_1_lyt(
-  armvar = "ACTARM",
-  lbl_aebodsys = "Body System or Organ Class",
-  lbl_aedecod = "Dictionary-Derived Term",
-  lbl_overall = NULL,
-  deco = std_deco("AET03")
-)
-aet03_1_pre(syn_test_data())
+run(aet03_1, syn_test_data())
 }
 \keyword{datasets}

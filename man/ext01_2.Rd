@@ -89,13 +89,6 @@ patients in the corresponding analysis population given by \code{N}.
 
 }}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  ext01_2_pre()
-
-ext01_2_main(db)
-ext01_2_pre(syn_test_data())
+run(ext01_2, syn_test_data())
 }
 \keyword{datasets}

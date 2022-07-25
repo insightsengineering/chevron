@@ -14,9 +14,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' db <- aet02_1_pre(syn_test_data())
-#' aet02_1_main(adam_db = db)
 aet02_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -61,12 +58,6 @@ aet02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET02")
-#' )
 aet02_1_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
@@ -120,8 +111,6 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_1_pre(syn_test_data())
 aet02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -171,6 +160,9 @@ aet02_1_check <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(aet02_1, syn_test_data())
 aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "adae"))
 
 
@@ -191,17 +183,6 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet02_2_pre()
-#'
-#' aet02_2_main(db) %>% head(15)
-#'
-#' # Additional Examples
-#' aet02_2_main(db, lbl_overall = "All Patients") %>% head()
 aet02_2_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -252,15 +233,6 @@ aet02_2_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_2_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   lbl_aebodsys = "Body System or Organ Class",
-#'   lbl_aehlt = "High Level Term",
-#'   lbl_aedecod = "Dictionary-Derived Term",
-#'   deco = std_deco("AET02")
-#' )
 aet02_2_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
@@ -331,8 +303,6 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_2_pre(syn_test_data())
 aet02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -356,6 +326,9 @@ aet02_2_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(aet02_2, syn_test_data())
 aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "adae"))
 
 
@@ -375,16 +348,6 @@ aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "ada
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet02_3_pre()
-#'
-#' aet02_3_main(adam_db = db) %>% head()
-#'
-#' aet02_3_main(db, lbl_overall = "All Patients") %>% head()
 aet02_3_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -424,13 +387,6 @@ aet02_3_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_3_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   lbl_aedecod = "Dictionary-Derived Term",
-#'   deco = std_deco("AET02")
-#' )
 aet02_3_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_aedecod = "MedDRA Preferred Term",
@@ -463,8 +419,6 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_3_pre(syn_test_data())
 aet02_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -486,4 +440,7 @@ aet02_3_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(aet02_3, syn_test_data())
 aet02_3 <- chevron_tlg(aet02_3_main, aet02_3_pre, adam_datasets = c("adsl", "adae"))

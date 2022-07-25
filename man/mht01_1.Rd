@@ -78,18 +78,6 @@ patients with the specific condition.
 
 }}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  mht01_1_pre()
-
-mht01_1_main(adam_db = db) \%>\% head(15)
-mht01_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("MHT01")
-)
-mht01_1_pre(syn_test_data())
+run(mht01_1, syn_test_data())
 }
 \keyword{datasets}

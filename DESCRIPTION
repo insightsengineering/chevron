@@ -20,14 +20,12 @@ Imports:
     dunlin,
     forcats,
     formatters,
-    lifecycle,
     magrittr,
     methods,
     rlang,
     rtables,
     tern,
     tibble,
-    tidyr,
     yaml
 Suggests:
     DiagrammeR,
@@ -37,7 +35,8 @@ Suggests:
     purrr,
     rmarkdown,
     scda,
-    scda.2021
+    scda.2021,
+    tidyr
 VignetteBuilder:
     knitr
 Config/Needs/website: insightsengineering/nesttemplate
@@ -67,7 +66,6 @@ Collate:
     'mht01.R'
     'package.R'
     'sample_study_object.R'
-    'standard_data_preprocessing.R'
     'utils.R'
     'vst01.R'
     'vst02.R'

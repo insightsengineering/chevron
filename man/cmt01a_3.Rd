@@ -89,21 +89,14 @@ the specific medication.
 
 }}
 \examples{
+library(magrittr)
 library(dm)
-library(dplyr)
 
 db <- syn_test_data() \%>\%
   dm_zoom_to("adcm") \%>\%
-  filter(ATIREL == "CONCOMITANT") \%>\%
-  dm_update_zoomed() \%>\%
-  cmt01a_3_pre()
+  filter(.data$ATIREL == "CONCOMITANT") \%>\%
+  dm_update_zoomed()
 
-cmt01a_3_main(adam_db = db)
-cmt01a_3_lyt(
-  armvar = "ARM",
-  lbl_overall = NULL,
-  deco = std_deco("CMT01A")
-)
-cmt01a_3_pre(syn_test_data())
+run(cmt01a_3, db)
 }
 \keyword{datasets}
