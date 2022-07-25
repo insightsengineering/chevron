@@ -67,6 +67,5 @@ Collate:
     'mht01.R'
     'package.R'
     'sample_study_object.R'
-    'utils.R'
     'vst01.R'
     'vst02.R'
