@@ -36,6 +36,7 @@ Suggests:
     rmarkdown,
     scda,
     scda.2021,
+    testthat (>= 3.0.0),
     tidyr
 VignetteBuilder:
     knitr
@@ -69,3 +70,4 @@ Collate:
     'sample_study_object.R'
     'vst01.R'
     'vst02.R'
+Config/testthat/edition: 3
