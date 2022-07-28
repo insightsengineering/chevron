@@ -19,16 +19,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(.data$ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed() %>%
-#'   cmt01a_1_pre()
-#'
-#' cmt01a_1_main(adam_db = db)
 cmt01a_1_main <- function(adam_db,
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
@@ -79,12 +69,6 @@ cmt01a_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' cmt01a_1_lyt(
-#'   armvar = "ARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("CMT01A")
-#' )
 cmt01a_1_lyt <- function(armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
                          medcat_var = "ATC2",
@@ -141,9 +125,6 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   cmt01a_1_pre()
 cmt01a_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -164,6 +145,17 @@ cmt01a_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' library(magrittr)
+#' library(dm)
+#'
+#' db <- syn_test_data() %>%
+#'   dm_zoom_to("adcm") %>%
+#'   filter(.data$ATIREL == "CONCOMITANT") %>%
+#'   dm_update_zoomed()
+#'
+#' run(cmt01a_1, db)
 cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
 
 
@@ -188,16 +180,6 @@ cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed() %>%
-#'   cmt01a_2_pre()
-#'
-#' cmt01a_2_main(adam_db = db)
 cmt01a_2_main <- function(adam_db,
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
@@ -251,9 +233,6 @@ cmt01a_2_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   cmt01a_2_pre()
 cmt01a_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -274,6 +253,17 @@ cmt01a_2_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' library(magrittr)
+#' library(dm)
+#'
+#' db <- syn_test_data() %>%
+#'   dm_zoom_to("adcm") %>%
+#'   filter(.data$ATIREL == "CONCOMITANT") %>%
+#'   dm_update_zoomed()
+#'
+#' run(cmt01a_2, db)
 cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
 
 
@@ -298,16 +288,6 @@ cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed() %>%
-#'   cmt01a_3_pre()
-#'
-#' cmt01a_3_main(adam_db = db)
 cmt01a_3_main <- function(adam_db,
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
@@ -358,12 +338,6 @@ cmt01a_3_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' cmt01a_3_lyt(
-#'   armvar = "ARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("CMT01A")
-#' )
 cmt01a_3_lyt <- function(armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
                          medcat_var = "ATC2",
@@ -419,9 +393,6 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   cmt01a_3_pre()
 cmt01a_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -443,4 +414,15 @@ cmt01a_3_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' library(magrittr)
+#' library(dm)
+#'
+#' db <- syn_test_data() %>%
+#'   dm_zoom_to("adcm") %>%
+#'   filter(.data$ATIREL == "CONCOMITANT") %>%
+#'   dm_update_zoomed()
+#'
+#' run(cmt01a_3, db)
 cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))

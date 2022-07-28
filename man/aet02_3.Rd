@@ -50,13 +50,6 @@ adverse events categorized by Dictionary-Derived Term.
 
 }}
 \examples{
-aet02_3_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  lbl_aedecod = "Dictionary-Derived Term",
-  deco = std_deco("AET02")
-)
-syn_test_data() \%>\%
-  aet02_3_pre()
+run(aet02_3, syn_test_data())
 }
 \keyword{datasets}

@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9020
+Version: 0.1.0.9022
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -20,7 +20,6 @@ Imports:
     dunlin,
     forcats,
     formatters,
-    lifecycle,
     ggplot2,
     magrittr,
     methods,
@@ -28,16 +27,17 @@ Imports:
     rtables,
     tern,
     tibble,
-    tidyr,
     yaml
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     knitr,
+    nestcolor,
     purrr,
     rmarkdown,
     scda,
-    scda.2021
+    scda.2021,
+    tidyr
 VignetteBuilder:
     knitr
 Config/Needs/website: insightsengineering/nesttemplate
@@ -68,7 +68,6 @@ Collate:
     'mng01.R'
     'package.R'
     'sample_study_object.R'
-    'standard_data_preprocessing.R'
     'utils.R'
     'vst01.R'
     'vst02.R'

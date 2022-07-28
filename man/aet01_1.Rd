@@ -93,17 +93,6 @@ aet01_1
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  aet01_1_pre()
-
-aet01_1_main(db, armvar = "ARM")
-aet01_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("AET01")
-)
-aet01_1_pre(syn_test_data(), armvar = "ACTARM")
+run(aet01_1, syn_test_data(), armvar = "ARM")
 }
 \keyword{datasets}

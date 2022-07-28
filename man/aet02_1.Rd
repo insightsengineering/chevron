@@ -89,23 +89,6 @@ events categorized by Body System and Dictionary-Derived Term.
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  aet02_1_pre()
-
-aet02_1_main(adam_db = db) \%>\% head(15)
-
-# alternatively adam_db also accepts a names list
-aet02_1_main(adam_db = list(adsl = db$adsl, adae = db$adae)) \%>\% head()
-
-aet02_1_main(db, lbl_overall = "All Patients") \%>\% head()
-aet02_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("AET02")
-)
-syn_test_data() \%>\%
-  aet02_1_pre()
+run(aet02_1, syn_test_data())
 }
 \keyword{datasets}

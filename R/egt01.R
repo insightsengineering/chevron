@@ -21,14 +21,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   egt01_1_pre()
-#'
-#' egt01_1_main(db)
-#' egt01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 egt01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          summaryvars = .study$evo_vars,
@@ -122,9 +114,6 @@ egt01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   egt01_1_pre()
 egt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -141,4 +130,9 @@ egt01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' db <- syn_test_data()
+#' run(egt01_1, db)
+#' run(egt01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))

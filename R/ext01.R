@@ -17,13 +17,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   ext01_1_pre()
-#'
-#' ext01_1_main(db)
 ext01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          summaryvars = "AVAL",
@@ -90,9 +83,6 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   ext01_1_pre()
 ext01_1_pre <- function(adam_db,
                         paramcd_order = .study$paramcd_order,
                         .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
@@ -121,6 +111,9 @@ ext01_1_pre <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(ext01_1, syn_test_data())
 ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
 
 
@@ -142,13 +135,6 @@ ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "ade
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   ext01_2_pre()
-#'
-#' ext01_2_main(db)
 ext01_2_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -219,9 +205,6 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   ext01_2_pre()
 ext01_2_pre <- function(adam_db,
                         show_stats = .study$show_cont_stats,
                         show_bins = .study$show_cat_stats,
@@ -258,4 +241,7 @@ ext01_2_pre <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(ext01_2, syn_test_data())
 ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))

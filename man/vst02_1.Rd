@@ -76,19 +76,6 @@ Abnormality at Baseline Table.
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  dm_zoom_to("advs") \%>\%
-  filter(PARAM \%in\% c("Temperature")) \%>\%
-  dm_update_zoomed() \%>\%
-  vst02_1_pre()
-
-vst02_1_main(adam_db = db)
-vst02_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL
-)
-vst02_1_pre(syn_test_data())
+run(vst02_1, syn_test_data())
 }
 \keyword{datasets}

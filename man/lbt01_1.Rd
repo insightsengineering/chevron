@@ -88,13 +88,6 @@ by \code{AVISIT}. Re-level to customize order
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  lbt01_1_pre()
-
-lbt01_1_main(db)
-syn_test_data() \%>\%
-  lbt01_1_pre()
+run(lbt01_1, syn_test_data())
 }
 \keyword{datasets}

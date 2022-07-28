@@ -87,13 +87,6 @@ patients in the corresponding analysis population given by \code{N}.
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  ext01_1_pre()
-
-ext01_1_main(db)
-syn_test_data() \%>\%
-  ext01_1_pre()
+run(ext01_1, syn_test_data())
 }
 \keyword{datasets}

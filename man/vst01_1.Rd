@@ -90,14 +90,10 @@ by \code{AVISIT}. Re-level to customize order
 
 }}
 \examples{
-library(dm)
 
-db <- syn_test_data() \%>\%
-  vst01_1_pre()
+db <- syn_test_data()
 
-vst01_1_main(db)
-vst01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-syn_test_data() \%>\%
-  vst01_1_pre()
+run(vst01_1, db)
+run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 }
 \keyword{datasets}

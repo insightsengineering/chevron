@@ -67,20 +67,6 @@ number of subjects and the total number of treatments by medication name sorted 
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  dm_zoom_to("adcm") \%>\%
-  filter(.data$ATIREL == "CONCOMITANT") \%>\%
-  dm_update_zoomed() \%>\%
-  cmt02_pt_1_pre()
-
-cmt02_pt_1_main(adam_db = db)
-cmt02_pt_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL
-)
-syn_test_data() \%>\%
-  cmt02_pt_1_pre()
+run(cmt02_pt_1, syn_test_data())
 }
 \keyword{datasets}

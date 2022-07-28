@@ -13,20 +13,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to(adsl) %>%
-#'   mutate(DTHCAT = tern::explicit_na(DTHCAT)) %>%
-#'   mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) %>%
-#'   dm_update_zoomed() %>%
-#'   dtht01_1_pre()
-#'
-#' dtht01_1_main(adam_db = db)
-#' dtht01_1_main(adam_db = db, other_category = FALSE)
-#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE)
-#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
 dtht01_1_main <- function(adam_db,
                           armvar = .study$actualarm,
                           time_since_last_dose = FALSE,
@@ -87,11 +73,6 @@ dtht01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' dtht01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 dtht01_1_lyt <- function(armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          other_category = TRUE,
@@ -137,11 +118,6 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' dtht01_1_opt_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
                              lbl_overall = .study$lbl_overall,
                              deco = std_deco("DTHT01"),
@@ -174,9 +150,6 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   dtht01_1_pre()
 dtht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -197,4 +170,11 @@ dtht01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#'
+#' db <- dunlin::dm_explicit_na(syn_test_data())
+#'
+#' run(dtht01_1, db)
+#' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
 dtht01_1 <- chevron_tlg(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))

@@ -84,28 +84,10 @@ A description of the causes of death optionally with the breakdown of the
 
 }}
 \examples{
-library(dm)
 
-db <- syn_test_data() \%>\%
-  dm_zoom_to(adsl) \%>\%
-  mutate(DTHCAT = tern::explicit_na(DTHCAT)) \%>\%
-  mutate(LDDTHGR1 = tern::explicit_na(LDDTHGR1)) \%>\%
-  dm_update_zoomed() \%>\%
-  dtht01_1_pre()
+db <- dunlin::dm_explicit_na(syn_test_data())
 
-dtht01_1_main(adam_db = db)
-dtht01_1_main(adam_db = db, other_category = FALSE)
-dtht01_1_main(adam_db = db, time_since_last_dose = TRUE)
-dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = FALSE)
-dtht01_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL
-)
-dtht01_1_opt_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL
-)
-syn_test_data() \%>\%
-  dtht01_1_pre()
+run(dtht01_1, db)
+run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
 }
 \keyword{datasets}

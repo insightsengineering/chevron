@@ -107,17 +107,6 @@ of adverse events with medical concepts.
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  aet01_2_pre()
-
-aet01_2_main(db, armvar = "ARM", prune_0 = FALSE)
-aet01_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("AET01")
-)
-aet01_2_pre(syn_test_data(), safety_var = "REL")
+run(aet01_2, syn_test_data())
 }
 \keyword{datasets}

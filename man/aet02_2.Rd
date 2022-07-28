@@ -101,32 +101,6 @@ frequencies.
 
 }}
 \examples{
-library(dm)
-
-db <- syn_test_data() \%>\%
-  aet02_2_pre()
-
-aet02_2_main(db) \%>\% head(15)
-
-# Additional Examples
-aet02_2_main(db, lbl_overall = "All Patients") \%>\% head()
-aet02_2_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  lbl_aebodsys = "Body System or Organ Class",
-  lbl_aehlt = "High Level Term",
-  lbl_aedecod = "Dictionary-Derived Term",
-  deco = std_deco("AET02")
-)
-syn_test_data() \%>\%
-  aet02_2_pre()
-library(dm)
-
-db <- syn_test_data() \%>\%
-  aet02_3_pre()
-
-aet02_3_main(adam_db = db) \%>\% head()
-
-aet02_3_main(db, lbl_overall = "All Patients") \%>\% head()
+run(aet02_2, syn_test_data())
 }
 \keyword{datasets}

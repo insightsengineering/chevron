@@ -21,14 +21,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   vst01_1_pre()
-#'
-#' vst01_1_main(db)
-#' vst01_1_main(db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 vst01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          summaryvars = .study$evo_vars,
@@ -76,6 +68,7 @@ vst01_1_main <- function(adam_db,
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #'
 #' @export
+#'
 vst01_1_lyt <- function(armvar = .study$actualarm,
                         summaryvars = .study$evo_vars,
                         summaryvars_lbls = .study$evo_vars_lbls,
@@ -124,9 +117,6 @@ vst01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   vst01_1_pre()
 vst01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -144,4 +134,11 @@ vst01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#'
+#' db <- syn_test_data()
+#'
+#' run(vst01_1, db)
+#' run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))

@@ -12,13 +12,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   aet01_1_pre()
-#'
-#' aet01_1_main(db, armvar = "ARM")
 aet01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -76,12 +69,6 @@ aet01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' aet01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET01")
-#' )
 aet01_1_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET01"),
@@ -152,8 +139,6 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet01_1_pre(syn_test_data(), armvar = "ACTARM")
 aet01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -279,6 +264,9 @@ aet01_1_check <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(aet01_1, syn_test_data(), armvar = "ARM")
 aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 
@@ -295,15 +283,9 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   aet01_2_pre()
-#'
-#' aet01_2_main(db, armvar = "ARM", prune_0 = FALSE)
 aet01_2_main <- function(adam_db,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
@@ -367,12 +349,6 @@ aet01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' aet01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET01")
-#' )
 aet01_2_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET01"),
@@ -457,8 +433,6 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet01_2_pre(syn_test_data(), safety_var = "REL")
 aet01_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -588,4 +562,7 @@ aet01_2_check <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' run(aet01_2, syn_test_data())
+aet01_2 <- chevron_tlg(aet01_2_main, aet01_2_pre, adam_datasets = c("adsl", "adae"))

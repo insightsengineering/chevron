@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{var_labels_for}
 \alias{var_labels_for}
-\title{Retrieve variables for certain variables}
+\title{Retrieve labels for certain variables}
 \usage{
 var_labels_for(df, vars)
 }
@@ -12,5 +12,5 @@ var_labels_for(df, vars)
 \item{vars}{variable names in \code{df}}
 }
 \description{
-Retrieve variables for certain variables
+Retrieve labels for certain variables
 }
