@@ -55,7 +55,7 @@ aet01_2_check(
   lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
-    medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
+    medconcept_var = c("SMQ01")),
   ...
 )
 
