@@ -20,14 +20,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   lbt01_1_pre()
-#'
-#' lbt01_1_main(db)
 lbt01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          summaryvars = c("AVAL", "CHG"),
@@ -67,6 +59,7 @@ lbt01_1_main <- function(adam_db,
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #'
 #' @export
+#'
 lbt01_1_lyt <- function(armvar = .study$actualarm,
                         summaryvars = c("AVAL", "CHG"),
                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
@@ -112,8 +105,6 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' lbt01_1_pre(syn_test_data())
 lbt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -130,4 +121,7 @@ lbt01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(lbt01_1, syn_test_data())
 lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))

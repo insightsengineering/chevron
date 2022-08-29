@@ -89,13 +89,6 @@ events categorized by Body System and Dictionary-Derived Term.
 
 }}
 \examples{
-db <- aet02_1_pre(syn_test_data())
-aet02_1_main(adam_db = db)
-aet02_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("AET02")
-)
-aet02_1_pre(syn_test_data())
+run(aet02_1, syn_test_data())
 }
 \keyword{datasets}

@@ -76,17 +76,9 @@ reference:
       - check_all_colnames
       - check_one_colnames
 
-  - title: Data Preprocess Functions
-    contents:
-      - preprocess_data
-      - std_pmap
-      - pmap_row
-      - remove_tlg_pmap
-
   - title: Utility Functions
     contents:
       - get_db_data
-      - reorder_levels_params
       - sample_study_object
       - set_decoration
       - std_deco
@@ -95,7 +87,6 @@ reference:
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
-      - bol_YN
       - gen_args
 <<<<<<< HEAD
       - cut_by_group
@@ -103,26 +94,3 @@ reference:
       - h_as_factor
 =======
 >>>>>>> origin/main
-
-  - title: TLG Preprocessing Functions
-    contents:
-      - filter_adae_anl01fl
-      - filter_adcm_anl01fl
-      - filter_adeg_anl01fl
-      - filter_adex_drug
-      - filter_adlb_anl01fl
-      - filter_admh_anl01fl
-      - filter_advs_anl01fl
-      - filter_egt02
-      - filter_vst02
-      - mutate_adsl_gp
-      - mutate_cmt01a
-      - mutate_cmt02_pt_1
-      - mutate_dmt01
-      - mutate_for_aet01
-      - mutate_vst02
-      - remove_adex_aval
-      - reorder_adex_params
-      - reorder_dtht01
-      - std_filter_fun
-      - std_mutate_fun
