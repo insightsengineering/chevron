@@ -20,12 +20,12 @@ aet01_2_main(
   prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+  lbl_safety_var = NULL,
   medconcept_var = .study$medconcept_var,
-  lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
+  lbl_medconcept_var = NULL,
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
-    medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
+    medconcept_var = c("SMQ01"))
 )
 
 aet01_2_lyt(
@@ -39,8 +39,8 @@ aet01_2_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
     "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
-    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"), medconcept_var = c("SMQ01",
-    "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
+    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"), medconcept_var = c("SMQ01"),
+    lbl_medconcept_var = c("SMQ01"))
 )
 
 aet01_2_pre(adam_db, ...)

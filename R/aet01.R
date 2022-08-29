@@ -4,7 +4,8 @@
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, defaults to the
+#'   labels of the `safety_var` column.
 #' @param ... not used.
 #'
 #' @details
@@ -18,7 +19,7 @@ aet01_1_main <- function(adam_db,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = .study$safety_var,
-                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         lbl_safety_var = NULL,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
@@ -32,6 +33,8 @@ aet01_1_main <- function(adam_db,
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
   assert_colnames(dbsel$adae, safety_var)
+
+  if (is.null(lbl_safety_var)) lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
 
   lyt <- aet01_1_lyt(
     armvar = armvar,
@@ -63,8 +66,7 @@ aet01_1_main <- function(adam_db,
 
 #' @describeIn aet01_1 Layout
 #'
-#' @inheritParams gen_args
-#' @param safety_var (`character`) the safety variables to be summarized.
+#' @inheritParams aet01_1_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #'
 #' @export
@@ -212,7 +214,7 @@ aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           armvar = .study$actualarm,
                           safety_var = .study$safety_var,
-                          lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                          lbl_safety_var = NULL,
                           .study = list(
                             actualarm = "ACTARM",
                             lbl_overall = NULL,
@@ -267,6 +269,20 @@ aet01_1_check <- function(adam_db,
 #'
 #' @examples
 #' run(aet01_1, syn_test_data(), armvar = "ARM")
+#'
+#' # To create a custom column
+#' db <- syn_test_data()
+#'
+#' db_add <- db %>%
+#'   dm_zoom_to(adae) %>%
+#'   mutate(
+#'     RED = .data$AEACN == "DOSE REDUCED",
+#'     RED = formatters::with_label(.data$RED, "AE leading to dose reduction")
+#'   ) %>%
+#'   dm_update_zoomed()
+#'
+#' run(aet01_1, db_add, armvar = "ARM", safety_var = c("FATAL", "CTC35", "RED"))
+#'
 aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 
@@ -277,9 +293,11 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, defaults to the
+#'   labels of the `safety_var` column.
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
-#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
+#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.  If `NULL`,
+#'   defaults to the labels of the `medconcept_var` columns.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -292,9 +310,9 @@ aet01_2_main <- function(adam_db,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = .study$safety_var,
-                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         lbl_safety_var = NULL,
                          medconcept_var = .study$medconcept_var,
-                         lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
+                         lbl_medconcept_var = NULL,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
@@ -302,12 +320,15 @@ aet01_2_main <- function(adam_db,
                              "FATAL", "SER", "SERWD", "SERDSM",
                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                            ),
-                           medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                           medconcept_var = c("SMQ01")
                          )) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
   assert_colnames(dbsel$adae, c(safety_var, medconcept_var))
+
+  if (is.null(lbl_safety_var)) lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
+  if (is.null(lbl_medconcept_var)) lbl_medconcept_var <- var_labels_for(adam_db$adae, medconcept_var)
 
   lyt <- aet01_2_lyt(
     armvar = armvar,
@@ -341,10 +362,8 @@ aet01_2_main <- function(adam_db,
 
 #' @describeIn aet01_2 Layout
 #'
-#' @inheritParams gen_args
-#' @param safety_var (`character`) the safety variables to be summarized.
+#' @inheritParams aet01_2_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
-#' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
 #'
 #' @export
@@ -367,8 +386,8 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
                           ),
-                          medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-                          lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                          medconcept_var = c("SMQ01"),
+                          lbl_medconcept_var = c("SMQ01")
                         )) {
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
@@ -566,4 +585,3 @@ aet01_2_check <- function(adam_db,
 #' @examples
 #' run(aet01_2, syn_test_data())
 aet01_2 <- chevron_tlg(aet01_2_main, aet01_2_pre, adam_datasets = c("adsl", "adae"))
-

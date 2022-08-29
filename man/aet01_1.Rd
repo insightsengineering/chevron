@@ -19,7 +19,7 @@ aet01_1_main(
   prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+  lbl_safety_var = NULL,
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   ...
@@ -44,7 +44,7 @@ aet01_1_check(
   req_tables = c("adsl", "adae"),
   armvar = .study$actualarm,
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+  lbl_safety_var = NULL,
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   ...
@@ -94,5 +94,19 @@ aet01_1
 }}
 \examples{
 run(aet01_1, syn_test_data(), armvar = "ARM")
+
+# To create a custom column
+db <- syn_test_data()
+
+db_add <- db \%>\%
+  dm_zoom_to(adae) \%>\%
+  mutate(
+    RED = .data$AEACN == "DOSE REDUCED",
+    RED = formatters::with_label(.data$RED, "AE leading to dose reduction")
+  ) \%>\%
+  dm_update_zoomed()
+
+run(aet01_1, db_add, armvar = "ARM", safety_var = c("FATAL", "CTC35", "RED"))
+
 }
 \keyword{datasets}
