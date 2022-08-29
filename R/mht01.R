@@ -3,8 +3,10 @@
 #' @describeIn mht01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
-#' @param lbl_mhdecod (`character`) text label for `MHDECOD`.
+#' @param lbl_mhbodsys (`string`) text label for `MHBODSYS`. If `NULL`, the value of the argument defaults to the label
+#'   of the correponding column in the `admh` table.
+#' @param lbl_mhdecod (`string`) text label for `MHDECOD`. If `NULL`, the value of the argument defaults to the label of
+#'   the correponding column in the `admh` table.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -19,8 +21,8 @@
 mht01_1_main <- function(adam_db,
                          armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
-                         lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
-                         lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
+                         lbl_mhbodsys = "MedDRA System Organ Class",
+                         lbl_mhdecod = "MedDRA preferred Term",
                          prune_0 = TRUE,
                          deco = std_deco("MHT01"),
                          .study = list(
@@ -28,6 +30,9 @@ mht01_1_main <- function(adam_db,
                            lbl_overall = NULL
                          )) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
+
+  if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
+  if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
   lyt <- mht01_1_lyt(
     armvar = armvar,
@@ -54,9 +59,7 @@ mht01_1_main <- function(adam_db,
 
 #' @describeIn mht01_1 Layout
 #'
-#' @inheritParams gen_args
-#' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
-#' @param lbl_mhdecod (`character`) text label for `MHDECOD`.
+#' @inheritParams mht01_1_main
 #'
 #' @export
 #'
@@ -116,7 +119,7 @@ mht01_1_lyt <- function(armvar = .study$planarm,
 mht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("admh") %>%
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
