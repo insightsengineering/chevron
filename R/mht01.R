@@ -4,9 +4,9 @@
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`string`) text label for `MHBODSYS`. If `NULL`, the value of the argument defaults to the label
-#'   of the correponding column in the `admh` table.
+#'   of the corresponding column in the `admh` table.
 #' @param lbl_mhdecod (`string`) text label for `MHDECOD`. If `NULL`, the value of the argument defaults to the label of
-#'   the correponding column in the `admh` table.
+#'   the corresponding column in the `admh` table.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.

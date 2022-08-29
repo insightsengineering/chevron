@@ -43,10 +43,10 @@ mht01_1
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_mhbodsys}{(\code{string}) text label for \code{MHBODSYS}. If \code{NULL}, the value of the argument defaults to the label
-of the correponding column in the \code{admh} table.}
+of the corresponding column in the \code{admh} table.}
 
 \item{lbl_mhdecod}{(\code{string}) text label for \code{MHDECOD}. If \code{NULL}, the value of the argument defaults to the label of
-the correponding column in the \code{admh} table.}
+the corresponding column in the \code{admh} table.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
