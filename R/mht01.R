@@ -120,6 +120,19 @@ mht01_1_pre <- function(adam_db, ...) {
     dm_zoom_to("admh") %>%
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
+
+  new_format <- list(
+    admh = list(
+      MHBODSYS = list(
+        "No Coding available" = c("", NA)
+      ),
+      MHDECOD = list(
+        "No Coding available" = c("", NA)
+      )
+    )
+  )
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `MHT01` Table 1 (Default) Medical History Table 1.
