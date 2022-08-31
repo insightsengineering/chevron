@@ -23,11 +23,7 @@ reference:
     contents:
       - chevron-package
 
-<<<<<<< HEAD
-  - title: Standard Tables, Layouts and Preprocessing
-=======
   - title: Classes and Instances
->>>>>>> origin/main
     contents:
       - chevron_tlg-class
 
@@ -88,9 +84,3 @@ reference:
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
       - gen_args
-<<<<<<< HEAD
-      - cut_by_group
-      - assert_colnames
-      - h_as_factor
-=======
->>>>>>> origin/main
