@@ -96,6 +96,8 @@ aet01_1
 run(aet01_1, syn_test_data(), armvar = "ARM")
 
 # To create a custom column
+library(dm)
+
 db <- syn_test_data()
 
 db_add <- db \%>\%
