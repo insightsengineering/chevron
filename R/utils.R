@@ -220,10 +220,32 @@ set_decoration <- function(x, deco) {
 #'
 report_null <- function(tlg, ...) {
 
-  if (is.null(tlg)) {
+  if (nrow(tlg) == 0L) {
   rtables::rtable(header = "Null Report: No observations met the reporting criteria for inclusion in this output.")
   } else {
-  checkmate::assert_class(tlg, "TableTree")
+  checkmate::assert_multi_class(tlg, c("TableTree"))
   tlg
   }
 }
+
+
+#' Prune Table up to an `ElementaryTable`
+#'
+#' Avoid returning `NULL` when the `table` is empty.
+#'
+#' @param tlg (`TableTree`) object.
+#'
+#' @return pruned `TableTree`.
+#'
+smart_prune <- function(tlg) {
+
+  res <- prune_table(tlg)
+
+  if(is.null(res)) {
+    res <- build_table(rtables::basic_table(), df = data.frame())
+    col_info(res) <- col_info(tlg)
+  }
+
+  res
+}
+

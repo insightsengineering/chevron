@@ -55,7 +55,7 @@ dmt01_1_main <- function(adam_db,
   tbl <- build_table(lyt, adam_db$adsl)
 
   if (prune_0) {
-    prune_table(tbl)
+    smart_prune(tbl)
   } else {
     tbl
   }
