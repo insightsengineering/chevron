@@ -95,15 +95,14 @@ ext01_1_pre <- function(adam_db,
     dm_update_zoomed()
 
   if (nrow(db$adex) > 0L) {
+    param_vars <- db$adex %>%
+      select(.data$PARAM, .data$PARAMCD) %>%
+      dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
-  param_vars <- db$adex %>%
-    select(.data$PARAM, .data$PARAMCD) %>%
-    dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
-
-  db <- db %>%
-    dm_zoom_to("adex") %>%
-    mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
-    dm_update_zoomed()
+    db <- db %>%
+      dm_zoom_to("adex") %>%
+      mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
+      dm_update_zoomed()
   }
 
   db
