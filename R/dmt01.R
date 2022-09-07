@@ -22,7 +22,7 @@
 #' library(dm)
 #' library(magrittr)
 #'
-#' db <- syn_test_data() %>%
+#' db <- dat_n %>%
 #'   dmt01_1_pre()
 #'
 #' dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
@@ -99,6 +99,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
@@ -121,6 +122,7 @@ dmt01_1_pre <- function(adam_db, ...) {
       SEX = factor(.data$SEX, levels = c("Female", "Male"))
     ) %>%
     mutate(SEX = formatters::with_label(.data$SEX, adsl_lbs["SEX"])) %>%
+    mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
   db
 }
