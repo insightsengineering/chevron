@@ -39,7 +39,7 @@ ext01_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
-  if (prune_0) tbl <- prune_table(tbl)
+  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl
 }
@@ -94,14 +94,19 @@ ext01_1_pre <- function(adam_db,
     filter(.data$PARCAT1 == "OVERALL") %>%
     dm_update_zoomed()
 
+  if(nrow(db$adex) > 0L) {
+
   param_vars <- db$adex %>%
     select(.data$PARAM, .data$PARAMCD) %>%
     dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
-  db %>%
+  db <- db %>%
     dm_zoom_to("adex") %>%
     mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
     dm_update_zoomed()
+  }
+
+  db
 }
 
 #' EXT01 Table 1 (Default) Exposure Summary Table.
@@ -159,7 +164,7 @@ ext01_2_main <- function(adam_db,
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
-  if (prune_0) tbl <- prune_table(tbl)
+  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl
 }

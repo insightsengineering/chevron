@@ -5,4 +5,4 @@ test_that("aet04_1 works as expected", {
   expect_snapshot(res)
 })
 
-  res <- run(aet04_1, syn_test_data(), prune_0 = FALSE)
+res <- run(aet04_1, syn_test_data(), prune_0 = FALSE)

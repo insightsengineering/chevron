@@ -22,7 +22,7 @@
 #' library(dm)
 #' library(magrittr)
 #'
-#' db <- dat_n %>%
+#' db <- syn_test_data() %>%
 #'   dmt01_1_pre()
 #'
 #' dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)

@@ -372,19 +372,19 @@ aet02_3_main <- function(adam_db,
     sort_at_path(
       c("DOMAIN", "*", "AEDECOD"),
       scorefun = score_occurrences # score_occurrences
-  )
+    )
 
-  res <- if(nrow(tbl_bottom) > 0L) {
+  res <- if (nrow(tbl_bottom) > 0L) {
     rbind(tbl_top, tbl_bottom)
   } else {
     tbl_top
   }
 
-  if(prune_0) { trim_rows(res)
+  if (prune_0) {
+    trim_rows(res)
   } else {
     res
   }
-
 }
 
 #' @describeIn aet02_3 Layout
@@ -405,7 +405,6 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
                           lbl_overall = NULL
                         ),
                         ...) {
-
   lyt_top <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -451,7 +450,6 @@ aet02_3_pre <- function(adam_db, ...) {
     mutate(
       AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available"),
       DOMAIN = "AE" # necessary to handle empty tables
-
     ) %>%
     dm_update_zoomed()
 }

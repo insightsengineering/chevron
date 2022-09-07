@@ -50,7 +50,7 @@ egt01_1_main <- function(adam_db,
     df = adam_db$adeg
   )
 
-  if (prune_0) tbl <- prune_table(tbl)
+  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl
 }
