@@ -94,7 +94,7 @@ ext01_1_pre <- function(adam_db,
     filter(.data$PARCAT1 == "OVERALL") %>%
     dm_update_zoomed()
 
-  if(nrow(db$adex) > 0L) {
+  if (nrow(db$adex) > 0L) {
 
   param_vars <- db$adex %>%
     select(.data$PARAM, .data$PARAMCD) %>%

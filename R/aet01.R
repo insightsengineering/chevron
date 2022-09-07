@@ -333,7 +333,6 @@ aet01_2_main <- function(adam_db,
   tbl <- set_decoration(tbl, deco)
 
   if (prune_0) {
-    # tbl <- prune_table(tbl)
     tbl <- smart_prune(tbl)
   }
 
