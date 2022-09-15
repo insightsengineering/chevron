@@ -5,6 +5,7 @@
 \alias{mng01_1_main}
 \alias{mng01_1_lyt}
 \alias{mng01_1_pre}
+\alias{mng01_1_post}
 \alias{mng01_1}
 \title{\code{MNG01} Graph 1 (Default) Mean Plot 1.}
 \format{
@@ -53,6 +54,8 @@ mng01_1_lyt(
 )
 
 mng01_1_pre(adam_db, ...)
+
+mng01_1_post(tlg, ...)
 
 mng01_1
 }
@@ -112,6 +115,8 @@ Overview of a summary statistics across time and arm for a selected data set.
 \item \code{mng01_1_lyt()}: Graph Layout
 
 \item \code{mng01_1_pre()}: Preprocessing
+
+\item \code{mng01_1_post()}: Postprocessing
 
 }}
 \examples{

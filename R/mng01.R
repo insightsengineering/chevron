@@ -48,7 +48,7 @@ mng01_1_main <- function(adam_db,
                          ),
                          ...) {
 
-  #should it do all tables?
+  # should it do all tables?
 
   data_ls <- split(adam_db[[dataset]], adam_db[[dataset]]$PARAM)
 
@@ -82,31 +82,30 @@ mng01_1_main <- function(adam_db,
 #' @export
 mng01_1_lyt <- function(df,
                         alt_count,
-                         x = "AVISIT",
-                         y = "AVAL",
-                         y_name = "PARAM",
-                         y_unit = "AVALU",
-                         armvar = .study$actualarm,
-                         center_fun = c("mean", "median"),
-                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-                         jitter = TRUE,
-                         show_n = TRUE,
-                         show_h_grid = .study$show_h_grid,
-                         show_v_grid = .study$show_v_grid,
-                         legend_pos = .study$legend_pos,
-                         line_col = .study$color_dict,
-                         .study = list(
-                           actualarm = "ACTARM",
-                           show_h_grid = TRUE,
-                           show_v_grid = FALSE,
-                           legend_pos = "top",
-                           color_dict = getOption("tern.color")
-                         )
-                        ) {
+                        x = "AVISIT",
+                        y = "AVAL",
+                        y_name = "PARAM",
+                        y_unit = "AVALU",
+                        armvar = .study$actualarm,
+                        center_fun = c("mean", "median"),
+                        interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                        jitter = TRUE,
+                        show_n = TRUE,
+                        show_h_grid = .study$show_h_grid,
+                        show_v_grid = .study$show_v_grid,
+                        legend_pos = .study$legend_pos,
+                        line_col = .study$color_dict,
+                        .study = list(
+                          actualarm = "ACTARM",
+                          show_h_grid = TRUE,
+                          show_v_grid = FALSE,
+                          legend_pos = "top",
+                          color_dict = getOption("tern.color")
+                        )) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 
-  checkmate::assert_vector(unique(df$PARAM), len = 1)
+  checkmate::assert_vector(unique(df$PARAM), max.len = 1)
   checkmate::assert_flag(jitter)
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
@@ -221,6 +220,15 @@ mng01_1_pre <- function(adam_db, ...) {
   adam_db
 }
 
+#' @describeIn mng01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+mng01_1_post <- function(tlg, ...) {
+  tlg
+}
+
 
 # `mng01_1` Pipeline ----
 
@@ -236,4 +244,9 @@ mng01_1_pre <- function(adam_db, ...) {
 #' library(dplyr)
 #'
 #' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median")
-mng01_1 <- chevron_tlg(mng01_1_main, mng01_1_pre, adam_datasets = c("adsl", "adlb", "adeg", "advs"))
+mng01_1 <- chevron_tlg(
+  mng01_1_main,
+  mng01_1_pre,
+  mng01_1_post,
+  adam_datasets = c("adsl", "adlb", "adeg", "advs")
+)
