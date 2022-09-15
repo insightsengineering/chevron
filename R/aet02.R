@@ -34,7 +34,7 @@ aet02_1_main <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -203,7 +203,7 @@ aet02_2_main <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -363,19 +363,28 @@ aet02_3_main <- function(adam_db,
     deco = deco
   )
 
-  tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
+  tbl_top <- build_table(lyt$lyt_top, adam_db$adae, alt_counts_df = adam_db$adsl)
 
-  if (prune_0) {
-    tbl <- prune_table(tbl)
-  }
+  tbl_bottom <- build_table(lyt$lyt_bottom, adam_db$adae, alt_counts_df = adam_db$adsl)
 
-  tbl_sorted <- tbl %>%
+  # needed to handle empty adae tables.
+  tbl_bottom <- tbl_bottom %>%
     sort_at_path(
-      "AEDECOD",
-      scorefun = score_occurrences
+      c("DOMAIN", "*", "AEDECOD"),
+      scorefun = score_occurrences # score_occurrences
     )
 
-  tbl_sorted
+  res <- if (nrow(tbl_bottom) > 0L) {
+    rbind(tbl_top, tbl_bottom)
+  } else {
+    tbl_top
+  }
+
+  if (prune_0) {
+    trim_rows(res)
+  } else {
+    res
+  }
 }
 
 #' @describeIn aet02_3 Layout
@@ -396,7 +405,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
                           lbl_overall = NULL
                         ),
                         ...) {
-  basic_table_deco(deco) %>%
+  lyt_top <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -408,8 +417,19 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
         nonunique = "Total number of events"
       )
     ) %>%
+    append_topleft(lbl_aedecod)
+
+  lyt_bottom <- basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
+    # needed to handle empty df.
+    split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
     append_topleft(lbl_aedecod)
+
+
+  list(lyt_top = lyt_top, lyt_bottom = lyt_bottom)
 }
 
 #' @describeIn aet02_3 Preprocessing
@@ -428,7 +448,8 @@ aet02_3_pre <- function(adam_db, ...) {
     dm_update_zoomed() %>%
     dm_zoom_to("adae") %>%
     mutate(
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available"),
+      DOMAIN = "AE" # necessary to handle empty tables
     ) %>%
     dm_update_zoomed()
 }

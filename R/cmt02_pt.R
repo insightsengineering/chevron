@@ -31,12 +31,12 @@ cmt02_pt_1_main <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl %>%
     sort_at_path(
-      path = c("CMDECOD"),
+      path = c("DOMAIN", "*", "CMDECOD"),
       scorefun = score_occurrences
     )
 }
@@ -67,6 +67,7 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
         nonunique = "Total number of treatments"
       )
     ) %>%
+    split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     count_occurrences(vars = "CMDECOD", .indent_mods = 0L) %>%
     append_topleft("Other Treatment")
 }
@@ -84,7 +85,12 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
   adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adcm") %>%
+    mutate(
+      CMSEQ = as.factor(.data$CMSEQ),
+      DOMAIN = "CM"
+    ) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(

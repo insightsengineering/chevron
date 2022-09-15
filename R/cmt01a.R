@@ -47,7 +47,7 @@ cmt01a_1_main <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -222,7 +222,7 @@ cmt01a_2_main <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -341,7 +341,7 @@ cmt01a_3_main <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%

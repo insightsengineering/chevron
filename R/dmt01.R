@@ -55,7 +55,7 @@ dmt01_1_main <- function(adam_db,
   tbl <- build_table(lyt, adam_db$adsl)
 
   if (prune_0) {
-    prune_table(tbl)
+    smart_prune(tbl)
   } else {
     tbl
   }
@@ -99,6 +99,7 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
 }
 
@@ -121,6 +122,7 @@ dmt01_1_pre <- function(adam_db, ...) {
       SEX = factor(.data$SEX, levels = c("Female", "Male"))
     ) %>%
     mutate(SEX = formatters::with_label(.data$SEX, adsl_lbs["SEX"])) %>%
+    mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
   db
 }
