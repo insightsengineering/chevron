@@ -60,7 +60,7 @@ dtht01_1_main <- function(adam_db,
   }
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl
