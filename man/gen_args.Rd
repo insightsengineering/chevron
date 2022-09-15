@@ -7,7 +7,6 @@
 gen_args(
   adam_db,
   armvar,
-  dataset,
   lbl_overall,
   prune_0,
   req_tables,
