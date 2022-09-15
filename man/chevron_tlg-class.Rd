@@ -10,7 +10,7 @@
 chevron_tlg(
   main = function(adam_db, ...) adam_db,
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) tlg,
+  postprocess = report_null,
   adam_datasets = NA_character_
 )
 }

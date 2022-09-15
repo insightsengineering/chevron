@@ -37,6 +37,10 @@ vst02_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$advs, alt_counts_df = dbsel$adsl)
 
+  if (prune_0) {
+    tbl <- smart_prune(tbl)
+  }
+
   tbl
 }
 
@@ -156,6 +160,10 @@ vst02_2_main <- function(adam_db,
   )
 
   tbl <- build_table(lyt, dbsel$advs, alt_counts_df = dbsel$adsl)
+
+  if (prune_0) {
+    tbl <- smart_prune(tbl)
+  }
 
   tbl
 }
