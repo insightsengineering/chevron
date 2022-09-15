@@ -76,8 +76,10 @@ reference:
   - title: Utility Functions
     contents:
       - get_db_data
+      - report_null
       - sample_study_object
       - set_decoration
+      - smart_prune
       - std_deco
       - syn_test_data
       - var_labels_for

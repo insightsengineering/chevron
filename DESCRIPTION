@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9023
+Version: 0.1.0.9024
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -37,15 +37,18 @@ Suggests:
     rmarkdown,
     scda,
     scda.2021,
+    testthat (>= 3.0.0),
     tidyr
 VignetteBuilder:
     knitr
 Config/Needs/website: insightsengineering/nesttemplate
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Collate:
+    'utils.R'
     'chevron_tlg-S4class.R'
     'aet01.R'
     'aet02.R'
@@ -68,6 +71,5 @@ Collate:
     'mng01.R'
     'package.R'
     'sample_study_object.R'
-    'utils.R'
     'vst01.R'
     'vst02.R'

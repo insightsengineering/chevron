@@ -72,12 +72,14 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @param adam_datasets (`character`) representing the name of the table from an `AdAM` dataset required for `tlg`
 #'   creation.
 #'
+#' @include utils.R
+#'
 #' @export
 #' @examples
 #' x <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 chevron_tlg <- function(main = function(adam_db, ...) adam_db,
                         preprocess = function(adam_db, ...) adam_db,
-                        postprocess = function(tlg, ...) tlg,
+                        postprocess = report_null,
                         adam_datasets = NA_character_) {
   res <- .chevron_tlg(
     main = main,
