@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9023
+Version: 0.1.0.9024
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -41,6 +41,7 @@ Suggests:
 VignetteBuilder:
     knitr
 Config/Needs/website: insightsengineering/nesttemplate
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -70,4 +71,3 @@ Collate:
     'sample_study_object.R'
     'vst01.R'
     'vst02.R'
-Config/testthat/edition: 3
