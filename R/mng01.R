@@ -7,6 +7,7 @@
 #'  * No overall value.
 #'
 #' @inheritParams gen_args
+#' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param x (`string`) the name of the variable to be represented on the x-axis.
 #' @param y (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
@@ -50,7 +51,7 @@ mng01_1_main <- function(adam_db,
 
   # should it do all tables?
 
-  data_ls <- split(adam_db[[dataset]], adam_db[[dataset]]$PARAM)
+  data_ls <- split(adam_db[[dataset]], adam_db[[dataset]]$PARAM, drop = TRUE)
 
   lapply(
     data_ls,

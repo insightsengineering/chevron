@@ -14,8 +14,8 @@ gen_args(
   deco,
   .study,
   group,
-  tlgfname,
-  pmap
+  tlg,
+  tlgfname
 )
 }
 \arguments{
@@ -35,9 +35,9 @@ gen_args(
 
 \item{group}{(\verb{list of lists}) for group-dependent data binning}
 
-\item{tlgfname}{(\code{character}) function name of TLG function}
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{pmap}{(\code{data.frame}) preprocessing map, see \code{std_pmap} for the required format}
+\item{tlgfname}{(\code{character}) function name of TLG function}
 }
 \description{
 General Argument Name Convention

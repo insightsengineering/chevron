@@ -62,6 +62,8 @@ mng01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
+\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+
 \item{x}{(\code{string}) the name of the variable to be represented on the x-axis.}
 
 \item{y}{(\code{string}) the name of the variable to be represented on the y-axis.}
@@ -96,6 +98,8 @@ values of \code{armvar} with color names.}
 \item{df}{(\code{dataframe}) data set containing all analysis variables.}
 
 \item{alt_count}{(\code{dataframe}) data set that will be used (only) to counts objects in strata.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
 a list of \code{ggplot} objects.
