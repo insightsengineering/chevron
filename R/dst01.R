@@ -93,7 +93,7 @@ dst01_1_main <- function(adam_db,
     df = adam_db$adsl
   )
 
-  if (prune_0) tbl_other <- tbl_other %>% prune_table()
+  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
 
   col_info(tbl_other) <- col_info(tbl_completed)
 
@@ -147,7 +147,8 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall)
+    ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden")
 
   layout_table_completed <-
     layout_table %>%
@@ -191,7 +192,10 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 #' @examples
 #' dst01_1_pre(syn_test_data())
 dst01_1_pre <- function(adam_db, ...) {
-  adam_db
+  adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(DOMAIN = "ADSL") %>%
+    dm_update_zoomed()
 }
 
 #' DST01 Table 1 (Default) Patient Disposition Table 1.
@@ -282,7 +286,7 @@ dst01_2_main <- function(adam_db,
     df = adam_db$adsl
   )
 
-  if (prune_0) tbl_other <- tbl_other %>% prune_table()
+  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
 
   col_info(tbl_other) <- col_info(tbl_completed)
 
@@ -336,7 +340,8 @@ dst01_2_lyt <- function(armvar = .study$planarm,
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall)
+    ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden")
 
   layout_table_completed <- layout_table %>%
     count_values(
@@ -396,6 +401,7 @@ dst01_2_pre <- function(adam_db,
       .data[[reason]] == "<Missing>" ~ "<Missing>",
       TRUE ~ "Non-safety"
     )) %>%
+    mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
 }
 
@@ -516,7 +522,7 @@ dst01_3_main <- function(adam_db,
     df = adam_db$adsl
   )
 
-  if (prune_0) tbl_other <- tbl_other %>% prune_table()
+  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
 
   col_info(tbl_other) <- col_info(tbl_completed)
 
@@ -524,7 +530,7 @@ dst01_3_main <- function(adam_db,
 
   col_info(tbl) <- col_info(tbl2)
 
-  if (prune_0) tbl <- prune_table(tbl)
+  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl <- rbind(tbl2, tbl)
 
@@ -570,6 +576,7 @@ dst01_3_lyt <- function(armvar = .study$planarm,
     split_cols_by(armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     count_values(
       vars = status_treatment,
       values = completed_lbl,
@@ -616,6 +623,7 @@ dst01_3_pre <- function(adam_db,
       .data[[reason]] == "<Missing>" ~ "<Missing>",
       TRUE ~ "Non-safety"
     )) %>%
+    mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
 }
 

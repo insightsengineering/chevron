@@ -199,7 +199,7 @@ syn_test_data <- function() {
 #'
 #' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 set_decoration <- function(x, deco) {
-  checkmate::assert_class(x, "TableTree")
+  checkmate::assert_multi_class(x, c("TableTree", "ElementaryTable"))
   checkmate::assert_list(deco, types = "character", max.len = 3, names = "unique")
   checkmate::assert_subset(names(deco), c("title", "subtitles", "main_footer"))
 
@@ -207,4 +207,42 @@ set_decoration <- function(x, deco) {
   x@subtitles <- deco$subtitles
   x@main_footer <- deco$main_footer
   x
+}
+
+#' Create a Null Report
+#'
+#' @param tlg (`TableTree`) object.
+#' @param ... not used.
+#'
+#' @export
+#'
+#' @return original `TableTree` or a null report if no observation are found in the table.
+#'
+report_null <- function(tlg, ...) {
+  if (nrow(tlg) == 0L) {
+    rtables::rtable(header = "Null Report: No observations met the reporting criteria for inclusion in this output.")
+  } else {
+    checkmate::assert_multi_class(tlg, c("TableTree"))
+    tlg
+  }
+}
+
+
+#' Prune Table up to an `ElementaryTable`
+#'
+#' Avoid returning `NULL` when the `table` is empty.
+#'
+#' @param tlg (`TableTree`) object.
+#'
+#' @return pruned `TableTree`.
+#'
+smart_prune <- function(tlg) {
+  res <- prune_table(tlg)
+
+  if (is.null(res)) {
+    res <- build_table(rtables::basic_table(), df = data.frame())
+    col_info(res) <- col_info(tlg)
+  }
+
+  res
 }
