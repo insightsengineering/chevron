@@ -22,6 +22,7 @@ mng01_1_main(
   armvar = .study$actualarm,
   center_fun = c("mean", "median"),
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+  show_table = TRUE,
   jitter = TRUE,
   show_n = TRUE,
   show_h_grid = .study$show_h_grid,
@@ -43,6 +44,7 @@ mng01_1_lyt(
   armvar = .study$actualarm,
   center_fun = c("mean", "median"),
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+  show_table = TRUE,
   jitter = TRUE,
   show_n = TRUE,
   show_h_grid = .study$show_h_grid,
@@ -53,7 +55,7 @@ mng01_1_lyt(
     = "top", color_dict = getOption("tern.color"))
 )
 
-mng01_1_pre(adam_db, ...)
+mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)
 
 mng01_1_post(tlg, ...)
 
@@ -64,7 +66,7 @@ mng01_1
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
-\item{x}{(\code{string}) the name of the variable to be represented on the x-axis.}
+\item{x}{(\code{character}) the name of a column in the \code{dataset} to represent on the x-axis.}
 
 \item{y}{(\code{string}) the name of the variable to be represented on the y-axis.}
 
@@ -77,6 +79,8 @@ mng01_1
 \item{center_fun}{(\code{string}) the function to compute the estimate value.}
 
 \item{interval_fun}{(\code{string}) the function defining the crossbar range.}
+
+\item{show_table}{(\code{flag}) should the summary statistic table be displayed.}
 
 \item{jitter}{(\code{flag}) should data point be slightly spread on the x-axis.}
 
@@ -110,6 +114,7 @@ Overview of a summary statistics across time and arm for a selected data set.
 \details{
 \itemize{
 \item No overall value.
+\item Preprocessig filters for \code{ANL01FL} in the selected data set.
 }
 }
 \section{Functions}{

@@ -5,15 +5,17 @@
 #'
 #' @details
 #'  * No overall value.
+#'  * Preprocessig filters for `ANL01FL` in the selected data set.
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param x (`string`) the name of the variable to be represented on the x-axis.
+#' @param x (`character`) the name of a column in the `dataset` to represent on the x-axis.
 #' @param y (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
 #' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle.
 #' @param center_fun (`string`) the function to compute the estimate value.
 #' @param interval_fun (`string`) the function defining the crossbar range.
+#' @param show_table (`flag`) should the summary statistic table be displayed.
 #' @param show_n (`flag`) should the number of observation be displayed int the table.
 #' @param jitter (`flag`) should data point be slightly spread on the x-axis.
 #' @param show_h_grid (`flag`) should horizontal grid be displayed.
@@ -34,6 +36,7 @@ mng01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          center_fun = c("mean", "median"),
                          interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                         show_table = TRUE,
                          jitter = TRUE,
                          show_n = TRUE,
                          show_h_grid = .study$show_h_grid,
@@ -49,9 +52,9 @@ mng01_1_main <- function(adam_db,
                          ),
                          ...) {
 
-  # should it do all tables?
-
   data_ls <- split(adam_db[[dataset]], adam_db[[dataset]]$PARAM, drop = TRUE)
+
+  x <- paste(x, collapse = "_")
 
   lapply(
     data_ls,
@@ -64,6 +67,7 @@ mng01_1_main <- function(adam_db,
     armvar = armvar,
     center_fun = center_fun,
     interval_fun = interval_fun,
+    show_table = show_table,
     jitter = jitter,
     show_n = show_n,
     show_h_grid = show_h_grid,
@@ -90,6 +94,7 @@ mng01_1_lyt <- function(df,
                         armvar = .study$actualarm,
                         center_fun = c("mean", "median"),
                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                        show_table = TRUE,
                         jitter = TRUE,
                         show_n = TRUE,
                         show_h_grid = .study$show_h_grid,
@@ -107,6 +112,7 @@ mng01_1_lyt <- function(df,
   interval_fun <- match.arg(interval_fun)
 
   checkmate::assert_vector(unique(df$PARAM), max.len = 1)
+  checkmate::assert_flag(show_table)
   checkmate::assert_flag(jitter)
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
@@ -150,34 +156,29 @@ mng01_1_lyt <- function(df,
 
   n_func <- if (show_n) "n" else NULL
 
-  table <- c(
-    n_func,
-    center_fun,
-    interval_fun
-  )
+  table <- if (show_table) c(n_func, center_fun, interval_fun) else NULL
 
   ggtheme <- ggplot2::theme_bw() +
     ggplot2::theme(legend.position = legend_pos) +
     ggplot2::theme(axis.title.x = ggplot2::element_blank())
 
-  if (!show_v_grid) {
-    ggtheme <- ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
+  ggtheme <- if (!show_v_grid) {
+    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
   } else {
-    ggtheme <- ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(size = 1))
+    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(size = 1))
   }
 
-  if (!show_h_grid) {
-    ggtheme <- ggtheme + ggplot2::theme(
+  ggtheme <- if (!show_h_grid) {
+    ggtheme + ggplot2::theme(
       panel.grid.minor.y = ggplot2::element_blank(),
       panel.grid.major.y = ggplot2::element_blank()
     )
   } else {
-    ggtheme <- ggtheme + ggplot2::theme(
+    ggtheme + ggplot2::theme(
       panel.grid.minor.y = ggplot2::element_line(size = 1),
       panel.grid.major.y = ggplot2::element_line(size = 1)
     )
   }
-
 
   if (checkmate::check_names(line_col)) {
     color_lvl <- sort(unique(df[[armvar]]))
@@ -212,13 +213,19 @@ mng01_1_lyt <- function(df,
 
 #' @describeIn mng01_1 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams mng01_1_main
 #' @param ... not used.
 #'
 #' @export
-mng01_1_pre <- function(adam_db, ...) {
+mng01_1_pre <- function(adam_db, dataset, x = "AVISIT", ...) {
   checkmate::assert_class(adam_db, "dm")
-  adam_db
+
+  adam_db <- adam_db %>%
+    dm_zoom_to(!!dataset) %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed()
+
+  dm_unite(adam_db, dataset, x, "_")
 }
 
 #' @describeIn mng01_1 Postprocessing
@@ -229,7 +236,6 @@ mng01_1_pre <- function(adam_db, ...) {
 mng01_1_post <- function(tlg, ...) {
   tlg
 }
-
 
 # `mng01_1` Pipeline ----
 
@@ -244,7 +250,13 @@ mng01_1_post <- function(tlg, ...) {
 #' library(dm)
 #' library(dplyr)
 #'
-#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median")
+#' col <- c(
+#'   "A: Drug X" = "black",
+#'   "B: Placebo" = "blue",
+#'   "C: Combination" = "grey"
+#' )
+#'
+#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
 mng01_1 <- chevron_tlg(
   mng01_1_main,
   mng01_1_pre,

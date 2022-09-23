@@ -75,6 +75,7 @@ reference:
 
   - title: Utility Functions
     contents:
+      - dm_unite
       - get_db_data
       - report_null
       - sample_study_object
