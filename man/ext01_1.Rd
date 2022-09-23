@@ -31,12 +31,7 @@ ext01_1_lyt(
     lbl_analysis_var = "Analysis Value")
 )
 
-ext01_1_pre(
-  adam_db,
-  paramcd_order = .study$paramcd_order,
-  .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
-  ...
-)
+ext01_1_pre(adam_db, ...)
 
 ext01_1
 }
@@ -56,8 +51,6 @@ ext01_1
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
-
-\item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
 
 \item{...}{not used.}
 }

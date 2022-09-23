@@ -78,14 +78,11 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn ext01_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
 #' @param ... not used.
 #'
 #' @export
 #'
 ext01_1_pre <- function(adam_db,
-                        paramcd_order = .study$paramcd_order,
-                        .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 
