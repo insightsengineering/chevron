@@ -64,6 +64,7 @@ overview of adverse event with the highest \code{NCI} \code{CTCAE} grade per ind
 \itemize{
 \item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
+\item Event with missing grading values are excluded.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
