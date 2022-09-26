@@ -15,11 +15,12 @@ lbt01_1_main(
   adam_db,
   armvar = .study$actualarm,
   summaryvars = .study$evo_vars,
-  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
+  summaryvars_lbls = .study$evo_vars_lbls,
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
-  .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"))
+  .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
+    c("Value at Visit", "Change from \\nBaseline"))
 )
 
 lbt01_1_lyt(
