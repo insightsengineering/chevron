@@ -8,6 +8,7 @@
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
+#'  * Event with missing grading values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
@@ -152,9 +153,20 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
 aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
+  new_format <- list(
+    adae = list(
+      AETOXGR = list(
+        "No Grading Available" = c("", NA, "<Missing>")
+      )
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    filter(.data$AETOXGR != "No Grading Available") %>%
     dm_update_zoomed()
 }
 
