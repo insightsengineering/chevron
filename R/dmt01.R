@@ -32,16 +32,26 @@
 #' )
 dmt01_1_main <- function(adam_db,
                          armvar = .study$planarm,
-                         summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-                         summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
+                         summaryvars = .study$demo_vars,
+                         summaryvars_lbls = .study$demo_vars_lbls,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
                          deco = std_deco("DMT01"),
                          .study = list(
                            planarm = "ARM",
+                           demo_vars = c("AGE", "BWGHTSI", "SEX", "COUNTRY", "RACE"),
+                           demo_vars_lbls = NULL,
                            lbl_overall = "All Patients"
                          )) {
   assert_colnames(adam_db$adsl, summaryvars)
+
+  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
+    var_labels_for(adam_db$adsl, summaryvars)
+  } else {
+    summaryvars_lbls
+  }
+
+
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
   lyt <- dmt01_1_lyt(
@@ -65,28 +75,28 @@ dmt01_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars (`vector of strings`) variables summarized in demographic table.
-#' @param summaryvars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
+#' @param demo_vars (`vector of strings`) variables summarized in demographic table.
+#' @param demo_vars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
 #'
 #' @export
 #'
 #' @examples
 #' dmt01_1_lyt(armvar = "ACTARM")
 dmt01_1_lyt <- function(armvar = .study$planarm,
-                        summaryvars = .study$summary_demo,
-                        summaryvars_lbls = .study$summary_demo_lbl,
+                        summaryvars = .study$demo_vars,
+                        summaryvars_lbls = .study$demo_vars_lbl,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("DMT01"),
                         .study = list(
                           planarm = "ARM",
-                          summary_demo = c(
+                          demo_vars = c(
                             "AAGE", # TODO: revisit
                             "AGEGR1",
                             "SEX",
                             "ETHNIC",
                             "RACE"
                           ),
-                          summary_demo_lbl = c(
+                          demo_vars_lbl = c(
                             "Age (yr)",
                             "Pooled Age Group 1 (yr)",
                             "SEX",
