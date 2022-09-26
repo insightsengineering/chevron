@@ -18,7 +18,7 @@ mng01_1_main(
   x = "AVISIT",
   y = "AVAL",
   y_name = "PARAM",
-  y_unit = "AVALU",
+  y_unit = NA,
   armvar = .study$actualarm,
   center_fun = c("mean", "median"),
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
@@ -72,7 +72,8 @@ mng01_1
 
 \item{y_name}{(\code{string}) the variable name for \code{y}. Used for plot's subtitle.}
 
-\item{y_unit}{(\code{string}) the name of the variable with the units of \code{y}. Used for plot's subtitle.}
+\item{y_unit}{(\code{string}) the name of the variable with the units of \code{y}. Used for plot's subtitle. if \code{NA}, only
+\code{y_name} is displayed as subtitle.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -114,7 +115,7 @@ Overview of a summary statistics across time and arm for a selected data set.
 \details{
 \itemize{
 \item No overall value.
-\item Preprocessig filters for \code{ANL01FL} in the selected data set.
+\item Preprocessing filters for \code{ANL01FL} in the selected data set.
 }
 }
 \section{Functions}{
@@ -132,6 +133,12 @@ Overview of a summary statistics across time and arm for a selected data set.
 library(dm)
 library(dplyr)
 
-run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median")
+col <- c(
+  "A: Drug X" = "black",
+  "B: Placebo" = "blue",
+  "C: Combination" = "grey"
+)
+
+run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
 }
 \keyword{datasets}

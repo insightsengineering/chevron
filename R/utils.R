@@ -249,13 +249,11 @@ smart_prune <- function(tlg) {
 
 #' Unite Columns of a Table in a `dm` object.
 #'
-#' if the number of column to
-#'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param cols (`character`) the name of the columns to unite.
 #' @param sep (`string`) the separator for the new column name.
-#' @param new (`string`) the name of the new column. If `NULL` the concatenation of `cols` interspaced by `sep` is used.
+#' @param new (`string`) the name of the new column. If `NULL` the concatenation of `cols` separated by `sep` is used.
 #'
 #' @return `dm` object with a united column.
 #'

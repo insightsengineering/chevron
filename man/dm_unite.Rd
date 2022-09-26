@@ -15,11 +15,11 @@ dm_unite(adam_db, dataset, cols, sep = ".", new = NULL)
 
 \item{sep}{(\code{string}) the separator for the new column name.}
 
-\item{new}{(\code{string}) the name of the new column. If \code{NULL} the concatenation of \code{cols} interspaced by \code{sep} is used.}
+\item{new}{(\code{string}) the name of the new column. If \code{NULL} the concatenation of \code{cols} separated by \code{sep} is used.}
 }
 \value{
 \code{dm} object with a united column.
 }
 \description{
-if the number of column to
+Unite Columns of a Table in a \code{dm} object.
 }

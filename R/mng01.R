@@ -5,14 +5,15 @@
 #'
 #' @details
 #'  * No overall value.
-#'  * Preprocessig filters for `ANL01FL` in the selected data set.
+#'  * Preprocessing filters for `ANL01FL` in the selected data set.
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param x (`character`) the name of a column in the `dataset` to represent on the x-axis.
 #' @param y (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
-#' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle.
+#' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NA`, only
+#'   `y_name` is displayed as subtitle.
 #' @param center_fun (`string`) the function to compute the estimate value.
 #' @param interval_fun (`string`) the function defining the crossbar range.
 #' @param show_table (`flag`) should the summary statistic table be displayed.
@@ -32,7 +33,7 @@ mng01_1_main <- function(adam_db,
                          x = "AVISIT",
                          y = "AVAL",
                          y_name = "PARAM",
-                         y_unit = "AVALU",
+                         y_unit = NA,
                          armvar = .study$actualarm,
                          center_fun = c("mean", "median"),
                          interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
@@ -51,7 +52,6 @@ mng01_1_main <- function(adam_db,
                            color_dict = nestcolor::color_palette()
                          ),
                          ...) {
-
   data_ls <- split(adam_db[[dataset]], adam_db[[dataset]]$PARAM, drop = TRUE)
 
   x <- paste(x, collapse = "_")
@@ -205,7 +205,8 @@ mng01_1_lyt <- function(df,
     title = title,
     table = table,
     ggtheme = ggtheme,
-    col = col
+    col = col,
+    subtitle_add_unit = !is.na(y_unit)
   )
 
   p
