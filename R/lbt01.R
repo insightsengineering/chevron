@@ -32,6 +32,12 @@ lbt01_1_main <- function(adam_db,
                            evo_vars = c("AVAL", "CHG"),
                            evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
                          )) {
+  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
+    var_labels_for(adab_db$adlb, summaryvars)
+  } else {
+    summaryvars_lbls
+  }
+
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
