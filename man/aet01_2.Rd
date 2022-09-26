@@ -20,9 +20,9 @@ aet01_2_main(
   prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+  lbl_safety_var = NULL,
   medconcept_var = .study$medconcept_var,
-  lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
+  lbl_medconcept_var = NULL,
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
     medconcept_var = c("SMQ01", "SMQ02", "CQ01"))

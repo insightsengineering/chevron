@@ -32,16 +32,25 @@
 #' )
 dmt01_1_main <- function(adam_db,
                          armvar = .study$planarm,
-                         summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-                         summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
+                         summaryvars = .study$demo_vars,
+                         summaryvars_lbls = NULL,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
                          deco = std_deco("DMT01"),
                          .study = list(
                            planarm = "ARM",
+                           demo_vars = c("AGE", "BWGHTSI", "SEX", "COUNTRY", "RACE"),
                            lbl_overall = "All Patients"
                          )) {
   assert_colnames(adam_db$adsl, summaryvars)
+
+  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
+    var_labels_for(adam_db$adsl, summaryvars)
+  } else {
+    summaryvars_lbls
+  }
+
+
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
   lyt <- dmt01_1_lyt(

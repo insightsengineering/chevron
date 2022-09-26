@@ -4,7 +4,8 @@
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, uses the label
+#'   attribute of the columns selected in `safety_var`.
 #' @param ... not used.
 #'
 #' @details
@@ -18,7 +19,7 @@ aet01_1_main <- function(adam_db,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = .study$safety_var,
-                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         lbl_safety_var = NULL,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
@@ -32,6 +33,12 @@ aet01_1_main <- function(adam_db,
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
   assert_colnames(dbsel$adae, safety_var)
+
+  lbl_safety_var <- if (is.null(lbl_safety_var)) {
+    var_labels_for(adam_db$adae, safety_var)
+  } else {
+    lbl_safety_var
+  }
 
   lyt <- aet01_1_lyt(
     armvar = armvar,
@@ -277,9 +284,11 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, uses the label
+#'   attribute of the columns selected in `safety_var`.
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
-#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
+#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized. If `NULL`, uses
+#'   the label attribute of the columns selected in `medconcept_var`.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -292,9 +301,9 @@ aet01_2_main <- function(adam_db,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = .study$safety_var,
-                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         lbl_safety_var = NULL,
                          medconcept_var = .study$medconcept_var,
-                         lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
+                         lbl_medconcept_var = NULL,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
@@ -308,6 +317,18 @@ aet01_2_main <- function(adam_db,
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
   assert_colnames(dbsel$adae, c(safety_var, medconcept_var))
+
+  lbl_safety_var <- if (is.null(lbl_safety_var)) {
+    var_labels_for(adam_db$adae, safety_var)
+  } else {
+    lbl_safety_var
+  }
+
+  lbl_medconcept_var <- if (is.null(lbl_medconcept_var)) {
+    var_labels_for(adam_db$adae, medconcept_var)
+  } else {
+    lbl_medconcept_var
+  }
 
   lyt <- aet01_2_lyt(
     armvar = armvar,

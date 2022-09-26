@@ -14,12 +14,13 @@ An object of class \code{chevron_tlg} of length 1.
 dmt01_1_main(
   adam_db,
   armvar = .study$planarm,
-  summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-  summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
+  summaryvars = .study$demo_vars,
+  summaryvars_lbls = NULL,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients")
+  .study = list(planarm = "ARM", demo_vars = c("AGE", "BWGHTSI", "SEX", "COUNTRY",
+    "RACE"), lbl_overall = "All Patients")
 )
 
 dmt01_1_lyt(
