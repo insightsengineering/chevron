@@ -19,8 +19,8 @@ dmt01_1_main(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
-  .study = list(planarm = "ARM", demo_vars = c("AGE", "BWGHTSI", "SEX", "COUNTRY",
-    "RACE"), demo_vars_lbls = NULL, lbl_overall = "All Patients")
+  .study = list(planarm = "ARM", demo_vars = c("AGE", "SEX", "COUNTRY", "RACE"),
+    demo_vars_lbls = NULL, lbl_overall = "All Patients")
 )
 
 dmt01_1_lyt(

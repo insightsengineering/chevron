@@ -39,7 +39,7 @@ dmt01_1_main <- function(adam_db,
                          deco = std_deco("DMT01"),
                          .study = list(
                            planarm = "ARM",
-                           demo_vars = c("AGE", "BWGHTSI", "SEX", "COUNTRY", "RACE"),
+                           demo_vars = c("AGE", "SEX", "COUNTRY", "RACE"),
                            demo_vars_lbls = NULL,
                            lbl_overall = "All Patients"
                          )) {
@@ -50,7 +50,6 @@ dmt01_1_main <- function(adam_db,
   } else {
     summaryvars_lbls
   }
-
 
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
@@ -124,14 +123,22 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
 #' dmt01_1_pre(syn_test_data())
 dmt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
-  adsl_lbs <- formatters::var_labels(adam_db$adsl)
+
+  new_format <- list(
+    adsl = list(
+      SEX = list(
+        "Female" = "F",
+        "Male" = "M"
+      )
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
+  adam_db <- dunlin::dm_explicit_na(adam_db)
+
   db <- adam_db %>%
     dm_zoom_to("adsl") %>%
-    mutate(
-      SEX = case_when(.data$SEX == "F" ~ "Female", .data$SEX == "M" ~ "Male", TRUE ~ as.character(.data$SEX)),
-      SEX = factor(.data$SEX, levels = c("Female", "Male"))
-    ) %>%
-    mutate(SEX = formatters::with_label(.data$SEX, adsl_lbs["SEX"])) %>%
     mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
   db
