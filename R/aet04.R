@@ -60,11 +60,13 @@ aet04_1_main <- function(adam_db,
   tbl_sorted <- tbl %>%
     sort_at_path(
       path = c("AEBODSYS"),
-      scorefun = cont_n_allcols
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
     ) %>%
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
     )
 
   tbl_sorted
@@ -153,6 +155,9 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
 aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
+  # Essential to preserve the good ordering of the factors.
+  ori_lvl <- levels(adam_db$adae$AETOXGR)
+
   new_format <- list(
     adae = list(
       AETOXGR = list(
@@ -167,6 +172,7 @@ aet04_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$AETOXGR != "No Grading Available") %>%
+    mutate(AETOXGR = factor(AETOXGR, ori_lvl)) %>%
     dm_update_zoomed()
 }
 
