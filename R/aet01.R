@@ -141,7 +141,7 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
 
 #' @describeIn aet01_1 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams aet01_1_main
 #' @param ... not used.
 #'
 #' @export
@@ -207,6 +207,16 @@ aet01_1_pre <- function(adam_db, ...) {
     ) %>%
     dm_update_zoomed()
 
+  missing_list <- list("<Missing>" = c("", NA))
+
+  new_format <- list(
+    adsl = list(
+      DCSREAS = missing_list
+    )
+  )
+
+  db <- dunlin::apply_reformat(db, new_format)
+
   db
 }
 
@@ -219,7 +229,6 @@ aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           armvar = .study$actualarm,
                           safety_var = .study$safety_var,
-                          lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
                           .study = list(
                             actualarm = "ACTARM",
                             lbl_overall = NULL,
@@ -514,6 +523,16 @@ aet01_2_pre <- function(adam_db, ...) {
       CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
     ) %>%
     dm_update_zoomed()
+
+  missing_list <- list("<Missing>" = c("", NA))
+
+  new_format <- list(
+    adsl = list(
+      DCSREAS = missing_list
+    )
+  )
+
+  db <- dunlin::apply_reformat(db, new_format)
 
   db
 }

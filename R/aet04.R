@@ -172,7 +172,7 @@ aet04_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$AETOXGR != "No Grading Available") %>%
-    mutate(AETOXGR = factor(AETOXGR, ori_lvl)) %>%
+    mutate(AETOXGR = factor(.data$AETOXGR, ori_lvl)) %>%
     dm_update_zoomed()
 }
 

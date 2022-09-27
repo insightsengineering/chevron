@@ -137,6 +137,7 @@ syn_test_data <- function() {
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
 
+  set.seed(321)
   sd$adsl <- sd$adsl %>%
     mutate(EOTSTT = as.factor(sample(
       c("ONGOING", "COMPLETED", "DISCONTINUED"),

@@ -37,7 +37,7 @@ egt01_1_main <- function(adam_db,
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
   summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
-    var_labels_for(adab_db$adeg, summaryvars)
+    var_labels_for(adam_db$adeg, summaryvars)
   } else {
     summaryvars_lbls
   }

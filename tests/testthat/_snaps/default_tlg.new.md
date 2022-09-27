@@ -603,9 +603,9 @@
           PROTOCOL VIOLATION                4 (3%)      7 (5.2%)       6 (4.5%)       17 (4.2%)  
           WITHDRAWAL BY PARENT/GUARDIAN    2 (1.5%)     5 (3.7%)       3 (2.3%)       10 (2.5%)  
           WITHDRAWAL BY SUBJECT            2 (1.5%)     2 (1.5%)          0             4 (1%)   
-      Completed Treatment                 52 (38.8%)   50 (37.3%)     49 (37.1%)     151 (37.8%) 
-      Ongoing Treatment                   34 (25.4%)   36 (26.9%)     36 (27.3%)     106 (26.5%) 
-      Discontinued Treatment              48 (35.8%)   48 (35.8%)     47 (35.6%)     143 (35.8%) 
+      Completed Treatment                 41 (30.6%)   50 (37.3%)     49 (37.1%)     140 (35.0%) 
+      Ongoing Treatment                   48 (35.8%)   43 (32.1%)     43 (32.6%)     134 (33.5%) 
+      Discontinued Treatment              45 (33.6%)   41 (30.6%)     40 (30.3%)     126 (31.5%) 
 
 ---
 
