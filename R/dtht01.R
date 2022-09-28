@@ -157,10 +157,21 @@ dtht01_1_pre <- function(adam_db, ...) {
   death_fact <- setdiff(death_fact, "OTHER")
   death_fact <- c(death_fact, "OTHER")
 
-  adam_db %>%
-    dm_zoom_to("adsl") %>%
-    mutate(DTHCAT = fct_relevel(.data$DTHCAT, death_fact)) %>%
-    dm_update_zoomed()
+  existing_lvl <- as.list(setNames(death_fact, death_fact))
+  na_lvl <- list("<Missing>" = c("", NA))
+
+  new_formats <- list(
+    adsl = list(
+      DTHCAT = c(
+        existing_lvl,
+        na_lvl
+      ),
+      DTHCAUS = na_lvl,
+      LDDTHGR1 = na_lvl
+    )
+  )
+
+  dunlin::apply_reformat(adam_db, new_formats)
 }
 
 #' `DTHT01` Table 1 (Default) Death Table.
@@ -173,7 +184,7 @@ dtht01_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #'
-#' db <- dunlin::dm_explicit_na(syn_test_data())
+#' db <- syn_test_data()
 #'
 #' run(dtht01_1, db)
 #' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)

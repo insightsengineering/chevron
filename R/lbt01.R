@@ -22,14 +22,22 @@
 #'
 lbt01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
-                         summaryvars = c("AVAL", "CHG"),
-                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
+                         summaryvars = .study$evo_vars,
+                         summaryvars_lbls = .study$evo_vars_lbls,
                          visitvar = "AVISIT",
                          prune_0 = TRUE,
                          deco = std_deco("LBT01"),
                          .study = list(
-                           actualarm = "ACTARM"
+                           actualarm = "ACTARM",
+                           evo_vars = c("AVAL", "CHG"),
+                           evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
                          )) {
+  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
+    var_labels_for(adam_db$adlb, summaryvars)
+  } else {
+    summaryvars_lbls
+  }
+
   lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,

@@ -88,11 +88,6 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
   checkmate::assert_subset(datasets, names(db))
 
-  if (is(db, "dm")) {
-    db <- db %>%
-      dm_apply_filters() # TODO this might be computationally expensive
-  }
-
   db[datasets]
 }
 
@@ -137,6 +132,7 @@ syn_test_data <- function() {
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
 
+  set.seed(321)
   sd$adsl <- sd$adsl %>%
     mutate(EOTSTT = as.factor(sample(
       c("ONGOING", "COMPLETED", "DISCONTINUED"),

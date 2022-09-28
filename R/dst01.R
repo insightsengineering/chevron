@@ -184,14 +184,32 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 
 #' @describeIn dst01_1 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams dst01_1_main
 #' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' dst01_1_pre(syn_test_data())
-dst01_1_pre <- function(adam_db, ...) {
+dst01_1_pre <- function(adam_db,
+                        status = .study$status,
+                        disc_reason_var = .study$disc_reason_var,
+                        .study = list(
+                          status = "EOSSTT",
+                          disc_reason_var = "DCSREAS"
+                        ),
+                        ...) {
+  new_format <- list(
+    adsl = list(
+      list("<Missing>" = c("", NA)),
+      list("<Missing>" = c("", NA))
+    )
+  )
+
+  names(new_format$adsl) <- c(disc_reason_var, status)
+
+  adam_db <- dunlin::apply_reformat(adam_db)
+
   adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(DOMAIN = "ADSL") %>%
@@ -205,6 +223,9 @@ dst01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(dst01_1, syn_test_data())
 dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 
 
@@ -380,8 +401,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 
 #' @describeIn dst01_2 Preprocessing
 #'
-#' @inheritParams gen_args
-#' @param reason (`string`) the variable name for variable with the reason for discontinuation.
+#' @inheritParams dst01_2_main
 #' @param ... not used.
 #'
 #' @export
@@ -389,16 +409,31 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #' @examples
 #' dst01_2_pre(syn_test_data())
 dst01_2_pre <- function(adam_db,
-                        reason = .study$disc_reason_var,
-                        .study = list(disc_reason_var = "DCSREAS"),
+                        status = .study$status,
+                        disc_reason_var = .study$disc_reason_var,
+                        .study = list(
+                          status = "EOSSTT",
+                          disc_reason_var = "DCSREAS"
+                        ),
                         ...) {
   checkmate::assert_class(adam_db, "dm")
+
+  new_format <- list(
+    adsl = list(
+      list("<Missing>" = c("", NA)),
+      list("<Missing>" = c("", NA))
+    )
+  )
+
+  names(new_format$adsl) <- c(disc_reason_var, status)
+
+  adam_db <- dunlin::apply_reformat(adam_db)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(reasonGP = case_when(
-      .data[[reason]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
-      .data[[reason]] == "<Missing>" ~ "<Missing>",
+      .data[[disc_reason_var]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      .data[[disc_reason_var]] == "<Missing>" ~ "<Missing>",
       TRUE ~ "Non-safety"
     )) %>%
     mutate(DOMAIN = "ADSL") %>%
@@ -413,6 +448,9 @@ dst01_2_pre <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(dst01_2, syn_test_data())
 dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 
 
@@ -602,25 +640,37 @@ dst01_3_lyt <- function(armvar = .study$planarm,
 
 #' @describeIn dst01_3 Preprocessing
 #'
-#' @inheritParams gen_args
-#' @param reason (`character`) the variable name for variable with the reason for discontinuation.
+#' @inheritParams dst01_3_main
 #' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' dst01_3_pre(syn_test_data())
 dst01_3_pre <- function(adam_db,
-                        reason = .study$disc_reason_var,
-                        .study = list(disc_reason_var = "DCSREAS"),
+                        status = .study$status,
+                        disc_reason_var = .study$disc_reason_var,
+                        .study = list(
+                          disc_reason_var = "DCSREAS",
+                          status_var = "EOSSTT"
+                        ),
                         ...) {
   checkmate::assert_class(adam_db, "dm")
+
+  new_format <- list(
+    adsl = list(
+      list("<Missing>" = c("", NA)),
+      list("<Missing>" = c("", NA))
+    )
+  )
+
+  names(new_format$adsl) <- c(disc_reason_var, status)
+
+  adam_db <- dunlin::apply_reformat(adam_db)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(reasonGP = case_when(
-      .data[[reason]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
-      .data[[reason]] == "<Missing>" ~ "<Missing>",
+      .data[[disc_reason_var]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      .data[[disc_reason_var]] == "<Missing>" ~ "<Missing>",
       TRUE ~ "Non-safety"
     )) %>%
     mutate(DOMAIN = "ADSL") %>%
@@ -634,4 +684,7 @@ dst01_3_pre <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(dst01_3, syn_test_data())
 dst01_3 <- chevron_tlg(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))

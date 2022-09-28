@@ -85,7 +85,7 @@ A description of the causes of death optionally with the breakdown of the
 }}
 \examples{
 
-db <- dunlin::dm_explicit_na(syn_test_data())
+db <- syn_test_data()
 
 run(dtht01_1, db)
 run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
