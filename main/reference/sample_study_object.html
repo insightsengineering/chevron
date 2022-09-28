@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9029</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9030</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,12 +30,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -77,22 +71,23 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">lst</span> <span class="op">&lt;-</span> <span class="fu">sample_study_object</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dput.html" class="external-link">dput</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> list(actualarm = "ACTARM", analysis_var = "AVAL", demo_vars = c("AAGE", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "AGEGR1", "SEX", "ETHNIC", "RACE"), demo_vars_lbl = c("Age (yr)", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "Pooled Age Group 1 (yr)", "SEX", "ETHNIC", "RACE"), demo_vars_lbls = NULL, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     disc_reason_var = "DCSREAS", evo_vars = c("AVAL", "CHG"), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ), group_grades = NULL, lbl_analysis_var = "Analysis Value", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(actualarm = "ACTARM", analysis_var = "AVAL", color_dict = NULL, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     demo_vars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"), </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     demo_vars_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "SEX", "ETHNIC", "RACE"), demo_vars_lbls = NULL, disc_reason_var = "DCSREAS", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     evo_vars = c("AVAL", "CHG"), evo_vars_lbls = c("Analysis \nValue", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "Change from \nBaseline"), group_grades = NULL, lbl_analysis_var = "Analysis Value", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"), lbl_overall = NULL, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "SEV"), medconcept_var = c("SMQ01", "SMQ02", "CQ01"), paramcd_order = c("TNDOSE", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "DOSE", "NDOSE", "TDOSE"), planarm = "ARM", safety_var = c("FATAL", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "RELDSM", "CTC35", "CTC45", "SEV"), severity_grade = c("MILD", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "MODERATE", "SEVERE", "LIFE THREATENING"), show_cat_stats = "ALL", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     show_cont_stats = "ALL", status = "EOSSTT", status_treatment = "EOTSTT", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     status_var = "EOSSTT", visitvar = "AVISIT")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "SEV"), legend_pos = "top", medconcept_var = c("SMQ01", "SMQ02", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "CQ01"), paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ), planarm = "ARM", safety_var = c("FATAL", "SER", "SERWD", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "CTC35", "CTC45", "SEV"), severity_grade = c("MILD", "MODERATE", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "SEVERE", "LIFE THREATENING"), show_cat_stats = "ALL", show_cont_stats = "ALL", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     show_h_grid = TRUE, show_v_grid = FALSE, status = "EOSSTT", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     status_treatment = "EOTSTT", status_var = "EOSSTT", visitvar = "AVISIT")</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
