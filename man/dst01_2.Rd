@@ -38,8 +38,9 @@ dst01_2_lyt(
 
 dst01_2_pre(
   adam_db,
-  reason = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS"),
+  status = .study$status,
+  disc_reason_var = .study$disc_reason_var,
+  .study = list(status = "EOSSTT", disc_reason_var = "DCSREAS"),
   ...
 )
 
@@ -77,8 +78,6 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
-
-\item{reason}{(\code{string}) the variable name for variable with the reason for discontinuation.}
 
 \item{...}{not used.}
 }
@@ -126,5 +125,6 @@ dst01_2_lyt(
   disc_reason_var = "DCP01RS"
 )
 dst01_2_pre(syn_test_data())
+run(dst01_2, syn_test_data())
 }
 \keyword{datasets}

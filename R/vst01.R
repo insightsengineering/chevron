@@ -37,7 +37,7 @@ vst01_1_main <- function(adam_db,
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 
   summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
-    var_labels_for(adab_db$advs, summaryvars)
+    var_labels_for(adam_db$advs, summaryvars)
   } else {
     summaryvars_lbls
   }

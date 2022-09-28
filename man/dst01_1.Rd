@@ -36,7 +36,13 @@ dst01_1_lyt(
     disc_reason_var = "DCSREAS")
 )
 
-dst01_1_pre(adam_db, ...)
+dst01_1_pre(
+  adam_db,
+  status = .study$status,
+  disc_reason_var = .study$disc_reason_var,
+  .study = list(status = "EOSSTT", disc_reason_var = "DCSREAS"),
+  ...
+)
 
 dst01_1
 }
@@ -115,5 +121,6 @@ dst01_1_lyt(
   disc_reason_var = "DCP01RS"
 )
 dst01_1_pre(syn_test_data())
+run(dst01_1, syn_test_data())
 }
 \keyword{datasets}
