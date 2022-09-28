@@ -88,11 +88,6 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
   checkmate::assert_subset(datasets, names(db))
 
-  if (is(db, "dm")) {
-    db <- db %>%
-      dm_apply_filters() # TODO this might be computationally expensive
-  }
-
   db[datasets]
 }
 
