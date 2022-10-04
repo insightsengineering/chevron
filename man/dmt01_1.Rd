@@ -14,22 +14,23 @@ An object of class \code{chevron_tlg} of length 1.
 dmt01_1_main(
   adam_db,
   armvar = .study$planarm,
-  summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-  summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
+  summaryvars = .study$demo_vars,
+  summaryvars_lbls = .study$demo_vars_lbls,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients")
+  .study = list(planarm = "ARM", demo_vars = c("AGE", "SEX", "COUNTRY", "RACE"),
+    demo_vars_lbls = NULL, lbl_overall = "All Patients")
 )
 
 dmt01_1_lyt(
   armvar = .study$planarm,
-  summaryvars = .study$summary_demo,
-  summaryvars_lbls = .study$summary_demo_lbl,
+  summaryvars = .study$demo_vars,
+  summaryvars_lbls = .study$demo_vars_lbl,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DMT01"),
-  .study = list(planarm = "ARM", summary_demo = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
-    "RACE"), summary_demo_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
+  .study = list(planarm = "ARM", demo_vars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
+    "RACE"), demo_vars_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
     "RACE"), lbl_overall = "All Patients")
 )
 
@@ -42,9 +43,11 @@ dmt01_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of strings}) variables summarized in demographic table.}
+\item{summaryvars}{(\verb{vector of character}) variables summarized in demographic table.
+Usually a vector containing the following one or more of the following:
+\code{AAGE}, \code{AGEGR1}, \code{SEX}, \code{ETHNIC}, \code{RACE} and by default all of them.}
 
-\item{summaryvars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
+\item{summaryvars_lbls}{(\verb{vector of character}) labels corresponding to the analyzed variables.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -55,6 +58,10 @@ dmt01_1
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
+
+\item{demo_vars}{(\verb{vector of strings}) variables summarized in demographic table.}
+
+\item{demo_vars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
 }
 \description{
 For each variable, summary statistics are

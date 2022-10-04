@@ -8,6 +8,7 @@
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
+#'  * Events with missing grading values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
@@ -59,11 +60,13 @@ aet04_1_main <- function(adam_db,
   tbl_sorted <- tbl %>%
     sort_at_path(
       path = c("AEBODSYS"),
-      scorefun = cont_n_allcols
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
     ) %>%
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
     )
 
   tbl_sorted
@@ -152,9 +155,29 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
 aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  # Essential to preserve the good ordering of the factors.
+  ori_lvl <- if (is.factor(adam_db$adae$AETOXGR)) {
+    levels(adam_db$adae$AETOXGR)
+  } else {
+    unique(adam_db$adae$AETOXGR)
+  }
+
+  new_format <- list(
+    adae = list(
+      AEBODSYS = list("No Coding Available" = c("", NA, "<Missing>")),
+      AEDECOD = list("No Coding Available" = c("", NA, "<Missing>")),
+      AETOXGR = list("No Grading Available" = c("", NA, "<Missing>"))
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
+  adam_db <- adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    filter(.data$AETOXGR != "No Grading Available") %>%
+    mutate(AETOXGR = droplevels(.data$AETOXGR, "No Grading Available")) %>%
+    mutate(AETOXGR = if (length(levels(.data$AETOXGR)) > 0L) .data$AETOXGR else factor(.data$AETOXGR, "Missing")) %>%
     dm_update_zoomed()
 }
 

@@ -38,8 +38,9 @@ dst01_3_lyt(
 
 dst01_3_pre(
   adam_db,
-  reason = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS"),
+  status = .study$status,
+  disc_reason_var = .study$disc_reason_var,
+  .study = list(disc_reason_var = "DCSREAS", status_var = "EOSSTT"),
   ...
 )
 
@@ -78,8 +79,6 @@ the analysis period.}
 
 \item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
 By Default `ONGOING.}
-
-\item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
 
 \item{...}{not used.}
 }
@@ -121,6 +120,6 @@ dst01_3_lyt(
   armvar = "ACTARM",
   status_treatment = "EOTxx01"
 )
-dst01_3_pre(syn_test_data())
+run(dst01_3, syn_test_data())
 }
 \keyword{datasets}

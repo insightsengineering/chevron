@@ -128,6 +128,22 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
 aet03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
+  new_format <- list(
+    adae = list(
+      AEDECOD = list(
+        "No Coding available" = c("", NA, "<Missing>")
+      ),
+      AEBODSYS = list(
+        "No Coding available" = c("", NA, "<Missing>")
+      ),
+      AESEV = list(
+        "<Missing>" = c("", NA)
+      )
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%

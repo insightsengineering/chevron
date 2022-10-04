@@ -24,16 +24,23 @@
 egt01_1_main <- function(adam_db,
                          armvar = .study$actualarm,
                          summaryvars = .study$evo_vars,
-                         summaryvars_lbls = var_labels_for(adam_db$adeg, summaryvars),
+                         summaryvars_lbls = .study$evo_vars_lbls,
                          visitvar = "AVISIT", # or ATPTN
                          prune_0 = TRUE,
                          deco = std_deco("EGT01"),
                          .study = list(
                            actualarm = "ACTARM",
-                           evo_vars = c("AVAL", "CHG")
+                           evo_vars = c("AVAL", "CHG"),
+                           evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
                          )) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
+
+  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
+    var_labels_for(adam_db$adeg, summaryvars)
+  } else {
+    summaryvars_lbls
+  }
 
   lyt <- egt01_1_lyt(
     armvar = armvar,

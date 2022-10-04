@@ -15,8 +15,8 @@ mht01_1_main(
   adam_db,
   armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
-  lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
-  lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
+  lbl_mhbodsys = "MedDRA System Organ Class",
+  lbl_mhdecod = "MedDRA Preferred Term",
   prune_0 = TRUE,
   deco = std_deco("MHT01"),
   .study = list(planarm = "ARM", lbl_overall = NULL)
@@ -42,9 +42,11 @@ mht01_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_mhbodsys}{(\code{character}) text label for \code{MHBODSYS}.}
+\item{lbl_mhbodsys}{(\code{string}) text label for \code{MHBODSYS}. If \code{NULL}, the value of the argument defaults to the label
+of the corresponding column in the \code{admh} table.}
 
-\item{lbl_mhdecod}{(\code{character}) text label for \code{MHDECOD}.}
+\item{lbl_mhdecod}{(\code{string}) text label for \code{MHDECOD}. If \code{NULL}, the value of the argument defaults to the label of
+the corresponding column in the \code{admh} table.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 

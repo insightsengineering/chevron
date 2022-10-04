@@ -1,5 +1,4 @@
-# NULL report
-
+# NULL report ----
 
 test_that("tlg functions return null reports when domain table is empty", {
   dat <- syn_test_data()

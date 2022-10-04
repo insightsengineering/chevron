@@ -60,6 +60,7 @@ reference:
       - ext01_2
       - lbt01_1
       - mht01_1
+      - mng01_1
       - vst01_1
       - vst02_1
       - vst02_2
@@ -74,6 +75,7 @@ reference:
 
   - title: Utility Functions
     contents:
+      - dm_unite
       - get_db_data
       - report_null
       - sample_study_object
