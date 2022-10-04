@@ -85,8 +85,6 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
   adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(
       CMSEQ = as.factor(.data$CMSEQ),
       DOMAIN = "CM"
@@ -96,6 +94,9 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
   fmt_ls <- list(
     CMDECOD = list(
       "No Coding available" = c("", NA)
+    ),
+    CMSEQ = list(
+      "<Missing>" = c("", NA)
     )
   )
 
