@@ -21,3 +21,4 @@ Check that all names are among column names
 \examples{
 check_all_colnames(mtcars, c("mpg", "new", "hoho"), qualifier = "first test:")
 }
+\keyword{internal}

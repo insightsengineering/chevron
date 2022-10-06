@@ -87,28 +87,28 @@ mng01_1_main <- function(adam_db,
 #'
 #' @export
 mng01_1_plot <- function(df,
-                        alt_count,
-                        x = "AVISIT",
-                        y = "AVAL",
-                        y_name = "PARAM",
-                        y_unit = "AVALU",
-                        armvar = .study$actualarm,
-                        center_fun = c("mean", "median"),
-                        interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-                        show_table = TRUE,
-                        jitter = TRUE,
-                        show_n = TRUE,
-                        show_h_grid = .study$show_h_grid,
-                        show_v_grid = .study$show_v_grid,
-                        legend_pos = .study$legend_pos,
-                        line_col = .study$color_dict,
-                        .study = list(
-                          actualarm = "ACTARM",
-                          show_h_grid = TRUE,
-                          show_v_grid = FALSE,
-                          legend_pos = "top",
-                          color_dict = getOption("tern.color")
-                        )) {
+                         alt_count,
+                         x = "AVISIT",
+                         y = "AVAL",
+                         y_name = "PARAM",
+                         y_unit = "AVALU",
+                         armvar = .study$actualarm,
+                         center_fun = c("mean", "median"),
+                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                         show_table = TRUE,
+                         jitter = TRUE,
+                         show_n = TRUE,
+                         show_h_grid = .study$show_h_grid,
+                         show_v_grid = .study$show_v_grid,
+                         legend_pos = .study$legend_pos,
+                         line_col = .study$color_dict,
+                         .study = list(
+                           actualarm = "ACTARM",
+                           show_h_grid = TRUE,
+                           show_v_grid = FALSE,
+                           legend_pos = "top",
+                           color_dict = getOption("tern.color")
+                         )) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 

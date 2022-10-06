@@ -12,3 +12,4 @@ assert_fun_or_list(x, add = NULL)
 \description{
 Assertion that an object is a function or a list of functions
 }
+\keyword{internal}

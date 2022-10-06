@@ -55,6 +55,27 @@ setMethod(
   }
 )
 
+# get_lyt ----
+
+#' Retrieve Layout
+#'
+#' @param object (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @aliases get_lyt
+#' @export
+setGeneric("get_lyt", function(object, ...) standardGeneric("get_lyt"))
+
+#' @rdname get_lyt
+#' @export
+setMethod(
+  f = "get_lyt",
+  signature = "chevron_tlg",
+  definition = function(object) {
+    object@lyt
+  }
+)
+
 # get_preprocess ----
 
 #' Retrieve pre-processing Function

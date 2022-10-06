@@ -8,7 +8,8 @@
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @export
+#' @keywords internal
+#'
 #' @examples
 #' check_all_colnames(mtcars, c("mpg", "new", "hoho"), qualifier = "first test:")
 check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
@@ -32,7 +33,8 @@ check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @export
+#' @keywords internal
+#'
 #' @examples
 #' check_one_colnames(mtcars, c("new", "hoho"))
 check_one_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {

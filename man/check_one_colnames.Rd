@@ -21,3 +21,4 @@ Check that at least one name is among column names
 \examples{
 check_one_colnames(mtcars, c("new", "hoho"))
 }
+\keyword{internal}

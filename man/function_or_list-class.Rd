@@ -7,3 +7,4 @@
 \description{
 Function or List Union Class
 }
+\keyword{internal}
