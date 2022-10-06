@@ -15,6 +15,7 @@
 #' @export
 #'
 vst02_1_main <- function(adam_db,
+                         lyt_fun = vst02_1_lyt,
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -27,7 +28,7 @@ vst02_1_main <- function(adam_db,
                          )) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
-  lyt <- vst02_1_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
@@ -119,7 +120,7 @@ vst02_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(vst02_1, syn_test_data())
-vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
+vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_lyt, vst02_1_pre, adam_datasets = c("adsl", "advs"))
 
 
 # vst02_2 ----
@@ -139,6 +140,7 @@ vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "adv
 #' @export
 #'
 vst02_2_main <- function(adam_db,
+                         lyt_fun = vst02_2_lyt,
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -151,7 +153,7 @@ vst02_2_main <- function(adam_db,
                          )) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
-  lyt <- vst02_2_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
@@ -243,4 +245,4 @@ vst02_2_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(vst02_2, syn_test_data())
-vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))
+vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_lyt, vst02_2_pre, adam_datasets = c("adsl", "advs"))

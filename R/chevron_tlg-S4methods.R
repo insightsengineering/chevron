@@ -28,7 +28,7 @@ setMethod(
     optional_arg <- if (!missing(...)) list(...) else NULL
 
     proc_data <- list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
-    res_tlg <- list(tlg = do.call(object@main, c(proc_data, optional_arg)))
+    res_tlg <- list(tlg = do.call(object@main, c(proc_data, list(object@lyt), optional_arg)))
 
     do.call(object@postprocess, c(res_tlg, optional_arg))
   }

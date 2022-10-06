@@ -14,6 +14,7 @@
 #' @export
 #'
 dtht01_1_main <- function(adam_db,
+                          lyt_fun = list(dtht01_1_lyt, dtht01_1_opt_lyt),
                           armvar = .study$actualarm,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
@@ -32,7 +33,7 @@ dtht01_1_main <- function(adam_db,
   checkmate::assert_flag(other_category)
 
 
-  lyt <- dtht01_1_lyt(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     other_category = other_category,
     lbl_overall = lbl_overall,
@@ -44,7 +45,7 @@ dtht01_1_main <- function(adam_db,
   if (time_since_last_dose) {
     assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-    lyt2 <- dtht01_1_opt_lyt(
+    lyt2 <- lyt_fun[[2]](
       armvar = armvar,
       lbl_overall = lbl_overall,
       deco = deco
@@ -188,4 +189,4 @@ dtht01_1_pre <- function(adam_db, ...) {
 #'
 #' run(dtht01_1, db)
 #' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
-dtht01_1 <- chevron_tlg(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))
+dtht01_1 <- chevron_tlg(dtht01_1_main, list(dtht01_1_lyt, dtht01_1_opt_lyt), dtht01_1_pre, adam_datasets = c("adsl"))

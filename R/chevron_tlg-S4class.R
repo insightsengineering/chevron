@@ -1,10 +1,29 @@
 
+#' Function or List Union Class
+#'
+#'
+#' @exportClass function_or_list
+setClassUnion("function_or_list", c("function", "list"))
+
+#' Assertion that an object is a function or a list of functions
+#'
+#' @param db (`x`) input to check for type.
+#'
+assert_fun_or_list <- function(x, add = NULL) {
+  if (is.function(x)) {
+    checkmate::assert_function(x, add = add)
+  } else {
+    checkmate::assert_list(x, types = "function", add = add)
+  }
+}
+
 #' `chevron_tlg` class
 #'
 #' The `chevron_tlg` class associates a `preprocess` function, a main `tlg` function and `AdAM` tables names and
 #' optionally a `postprocess` function.
 #'
 #' @slot main (`function`) returning a `tlg`. Typically one of the `*_main` function from `chevron`.
+#' @slot lyt (`function` or `list of function`).  Typically one of the `*_lyt` function from `chevron`.
 #' @slot preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `*_pre` function from `chevron`.
 #' @slot postprocess (`function`) returning a post-processed `tlg`.
@@ -25,6 +44,7 @@
   "chevron_tlg",
   slots = c(
     main = "function",
+    lyt = "function_or_list",
     preprocess = "function",
     postprocess = "function",
     adam_datasets = "character"
@@ -53,6 +73,7 @@ check_first_args <- function(fun, first_arg) {
 methods::setValidity("chevron_tlg", function(object) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assert_function(object@main, args = "adam_db", add = coll)
+  assert_fun_or_list(object@lyt, add = coll)
   checkmate::assert_function(object@preprocess, args = "adam_db", add = coll)
   checkmate::assert_function(object@postprocess, args = "tlg", add = coll)
 
@@ -66,6 +87,7 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @describeIn chevron_tlg Default Constructor
 #'
 #' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
+#' @param lyt (`function`) typically one of the `_lyt` function of `chevron`.
 #' @param preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`.
@@ -78,11 +100,13 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @examples
 #' x <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 chevron_tlg <- function(main = function(adam_db, ...) adam_db,
+                        lyt = function(...) basic_table(),
                         preprocess = function(adam_db, ...) adam_db,
                         postprocess = report_null,
                         adam_datasets = NA_character_) {
   res <- .chevron_tlg(
     main = main,
+    lyt = lyt,
     preprocess = preprocess,
     postprocess = postprocess,
     adam_datasets = adam_datasets

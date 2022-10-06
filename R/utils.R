@@ -43,12 +43,6 @@ ifelse_layout <- function(lyt, test, fun_lyt_yes = identity, fun_lyt_no = identi
   }
 }
 
-lyt_fun <- function(fun, ...) {
-  function(lyt) {
-    fun(lyt, ...)
-  }
-}
-
 has_overall_col <- function(lbl_overall) {
   !is.null(lbl_overall) && !identical(lbl_overall, "")
 }

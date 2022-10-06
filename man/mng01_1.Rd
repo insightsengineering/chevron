@@ -3,7 +3,7 @@
 \docType{data}
 \name{mng01_1_main}
 \alias{mng01_1_main}
-\alias{mng01_1_lyt}
+\alias{mng01_1_plot}
 \alias{mng01_1_pre}
 \alias{mng01_1_post}
 \alias{mng01_1}
@@ -14,6 +14,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 mng01_1_main(
   adam_db,
+  plot_fun = mng01_1_plot,
   dataset = "adlb",
   x = "AVISIT",
   y = "AVAL",
@@ -34,7 +35,7 @@ mng01_1_main(
   ...
 )
 
-mng01_1_lyt(
+mng01_1_plot(
   df,
   alt_count,
   x = "AVISIT",
@@ -63,6 +64,8 @@ mng01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{plot_fun}{(\code{function} or \verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
@@ -122,7 +125,7 @@ Overview of a summary statistics across time and arm for a selected data set.
 \itemize{
 \item \code{mng01_1_main()}: Main TLG Function
 
-\item \code{mng01_1_lyt()}: Graph Layout
+\item \code{mng01_1_plot()}: Plot Function
 
 \item \code{mng01_1_pre()}: Preprocessing
 

@@ -37,6 +37,10 @@ gen_args(
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{tlgfname}{(\code{character}) function name of TLG function}
+
+\item{lyt_fun}{(\code{function} or \verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+
+\item{plot_fun}{(\code{function} or \verb{list of functions}) creating a \code{ggplot} object.}
 }
 \description{
 General Argument Name Convention

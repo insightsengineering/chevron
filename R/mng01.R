@@ -29,6 +29,7 @@
 #' @return a list of `ggplot` objects.
 #' @export
 mng01_1_main <- function(adam_db,
+                         plot_fun = mng01_1_plot,
                          dataset = "adlb",
                          x = "AVISIT",
                          y = "AVAL",
@@ -58,7 +59,7 @@ mng01_1_main <- function(adam_db,
 
   lapply(
     data_ls,
-    mng01_1_lyt,
+    plot_fun,
     alt_count = adam_db[["adsl"]],
     x = x,
     y = y,
@@ -78,14 +79,14 @@ mng01_1_main <- function(adam_db,
 }
 
 
-#' @describeIn mng01_1 Graph Layout
+#' @describeIn mng01_1 Plot Function
 #'
 #' @inheritParams mng01_1_main
 #' @param df (`dataframe`) data set containing all analysis variables.
 #' @param alt_count (`dataframe`) data set that will be used (only) to counts objects in strata.
 #'
 #' @export
-mng01_1_lyt <- function(df,
+mng01_1_plot <- function(df,
                         alt_count,
                         x = "AVISIT",
                         y = "AVAL",
@@ -260,6 +261,7 @@ mng01_1_post <- function(tlg, ...) {
 #' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
 mng01_1 <- chevron_tlg(
   mng01_1_main,
+  mng01_1_plot,
   mng01_1_pre,
   mng01_1_post,
   adam_datasets = c("adsl", "adlb", "adeg", "advs")

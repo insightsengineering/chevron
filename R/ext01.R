@@ -18,6 +18,7 @@
 #' @export
 #'
 ext01_1_main <- function(adam_db,
+                         lyt_fun = ext01_1_lyt,
                          armvar = .study$actualarm,
                          summaryvars = "AVAL",
                          lbl_overall = .study$lbl_overall,
@@ -29,7 +30,7 @@ ext01_1_main <- function(adam_db,
                          )) {
   assert_colnames(adam_db$adex, summaryvars)
 
-  lyt <- ext01_1_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
@@ -118,7 +119,7 @@ ext01_1_pre <- function(adam_db,
 #'
 #' @examples
 #' run(ext01_1, syn_test_data())
-ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
+ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_lyt, ext01_1_pre, adam_datasets = c("adsl", "adex"))
 
 
 # ext01_2 ----
@@ -140,6 +141,7 @@ ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "ade
 #' @export
 #'
 ext01_2_main <- function(adam_db,
+                         lyt_fun = ext01_2_lyt,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
@@ -153,7 +155,7 @@ ext01_2_main <- function(adam_db,
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adam_db$adex, summaryvars)
 
-  lyt <- ext01_2_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
@@ -248,4 +250,4 @@ ext01_2_pre <- function(adam_db,
 #'
 #' @examples
 #' run(ext01_2, syn_test_data())
-ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))
+ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_lyt, ext01_2_pre, adam_datasets = c("adsl", "adex"))

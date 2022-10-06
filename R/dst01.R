@@ -47,6 +47,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' dst01_1_main(db)
 dst01_1_main <- function(adam_db,
+                         lyt_fun = dst01_1_lyt,
                          armvar = .study$planarm,
                          status_var = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -72,7 +73,7 @@ dst01_1_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- dst01_1_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -226,7 +227,7 @@ dst01_1_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_1, syn_test_data())
-dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
+dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_lyt, dst01_1_pre, adam_datasets = c("adsl"))
 
 
 # dst01_2 ----
@@ -263,6 +264,7 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 #' dst01_2_main(db)
 #' dst01_2_main(db, lbl_overall = NULL)
 dst01_2_main <- function(adam_db,
+                         lyt_fun = dst01_2_lyt,
                          armvar = .study$planarm,
                          status_var = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -286,7 +288,7 @@ dst01_2_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- dst01_2_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     status = status_var,
     disc_reason_var = disc_reason_var,
@@ -451,7 +453,7 @@ dst01_2_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_2, syn_test_data())
-dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
+dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c("adsl"))
 
 
 # dst01_3 ----
@@ -491,6 +493,7 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 #' dst01_3_main(db)
 #' dst01_3_main(db, lbl_overall = NULL)
 dst01_3_main <- function(adam_db,
+                         lyt_fun = list(dst01_3_lyt, dst01_2_lyt),
                          armvar = .study$planarm,
                          status = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -516,7 +519,7 @@ dst01_3_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- dst01_3_lyt(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -538,7 +541,7 @@ dst01_3_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- dst01_2_lyt(
+  lyt <- lyt_fun[[2]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -687,4 +690,4 @@ dst01_3_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_3, syn_test_data())
-dst01_3 <- chevron_tlg(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))
+dst01_3 <- chevron_tlg(dst01_3_main, list(dst01_3_lyt, dst01_2_lyt), dst01_3_pre, adam_datasets = c("adsl"))
