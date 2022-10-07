@@ -3,7 +3,6 @@
 #'
 #' @keywords internal
 #'
-#' @exportClass function_or_list
 setClassUnion("function_or_list", c("function", "list"))
 
 #' Assertion that an object is a function or a list of functions

@@ -1,6 +1,4 @@
 
-
-
 #' Check that all names are among column names
 #'
 #' @param df (`data.frame`)
@@ -10,8 +8,6 @@
 #'
 #' @keywords internal
 #'
-#' @examples
-#' check_all_colnames(mtcars, c("mpg", "new", "hoho"), qualifier = "first test:")
 check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
   checkmate::assert_data_frame(df)
   checkmate::assert_character(x, null.ok = null_ok)
@@ -35,8 +31,6 @@ check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
 #'
 #' @keywords internal
 #'
-#' @examples
-#' check_one_colnames(mtcars, c("new", "hoho"))
 check_one_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
   checkmate::assert_data_frame(df)
   checkmate::assert_character(x, null.ok = null_ok)
