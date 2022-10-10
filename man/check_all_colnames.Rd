@@ -18,4 +18,6 @@ check_all_colnames(df, x, null_ok = TRUE, qualifier = NULL)
 \description{
 Check that all names are among column names
 }
-\keyword{internal}
+\examples{
+check_all_colnames(mtcars, c("mpg", "new", "hoho"), qualifier = "first test:")
+}

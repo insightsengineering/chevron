@@ -23,4 +23,3 @@ Assert that all names are among table names of a \code{dm} object
 assert_all_tablenames(dm::dm_nycflights13(), c("mpg", "new", "hoho"), qualifier = "first test:")
 }
 }
-\keyword{internal}

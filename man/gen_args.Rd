@@ -6,8 +6,6 @@
 \usage{
 gen_args(
   adam_db,
-  lyt_fun,
-  plot_fun,
   armvar,
   lbl_overall,
   prune_0,
@@ -21,10 +19,6 @@ gen_args(
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
-
-\item{lyt_fun}{(\code{function} or \verb{list of functions}) creating \verb{Pre-data Table Layout}.}
-
-\item{plot_fun}{(\code{function} or \verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

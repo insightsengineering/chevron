@@ -29,7 +29,6 @@
 #' @return a list of `ggplot` objects.
 #' @export
 mng01_1_main <- function(adam_db,
-                         plot_fun = mng01_1_plot,
                          dataset = "adlb",
                          x = "AVISIT",
                          y = "AVAL",
@@ -59,7 +58,7 @@ mng01_1_main <- function(adam_db,
 
   lapply(
     data_ls,
-    plot_fun,
+    mng01_1_lyt,
     alt_count = adam_db[["adsl"]],
     x = x,
     y = y,
@@ -79,36 +78,36 @@ mng01_1_main <- function(adam_db,
 }
 
 
-#' @describeIn mng01_1 Plot Function
+#' @describeIn mng01_1 Graph Layout
 #'
 #' @inheritParams mng01_1_main
 #' @param df (`dataframe`) data set containing all analysis variables.
 #' @param alt_count (`dataframe`) data set that will be used (only) to counts objects in strata.
 #'
 #' @export
-mng01_1_plot <- function(df,
-                         alt_count,
-                         x = "AVISIT",
-                         y = "AVAL",
-                         y_name = "PARAM",
-                         y_unit = "AVALU",
-                         armvar = .study$actualarm,
-                         center_fun = c("mean", "median"),
-                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-                         show_table = TRUE,
-                         jitter = TRUE,
-                         show_n = TRUE,
-                         show_h_grid = .study$show_h_grid,
-                         show_v_grid = .study$show_v_grid,
-                         legend_pos = .study$legend_pos,
-                         line_col = .study$color_dict,
-                         .study = list(
-                           actualarm = "ACTARM",
-                           show_h_grid = TRUE,
-                           show_v_grid = FALSE,
-                           legend_pos = "top",
-                           color_dict = getOption("tern.color")
-                         )) {
+mng01_1_lyt <- function(df,
+                        alt_count,
+                        x = "AVISIT",
+                        y = "AVAL",
+                        y_name = "PARAM",
+                        y_unit = "AVALU",
+                        armvar = .study$actualarm,
+                        center_fun = c("mean", "median"),
+                        interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                        show_table = TRUE,
+                        jitter = TRUE,
+                        show_n = TRUE,
+                        show_h_grid = .study$show_h_grid,
+                        show_v_grid = .study$show_v_grid,
+                        legend_pos = .study$legend_pos,
+                        line_col = .study$color_dict,
+                        .study = list(
+                          actualarm = "ACTARM",
+                          show_h_grid = TRUE,
+                          show_v_grid = FALSE,
+                          legend_pos = "top",
+                          color_dict = getOption("tern.color")
+                        )) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 
@@ -261,7 +260,6 @@ mng01_1_post <- function(tlg, ...) {
 #' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
 mng01_1 <- chevron_tlg(
   mng01_1_main,
-  mng01_1_plot,
   mng01_1_pre,
   mng01_1_post,
   adam_datasets = c("adsl", "adlb", "adeg", "advs")

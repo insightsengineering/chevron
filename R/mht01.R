@@ -19,7 +19,6 @@
 #' @export
 #'
 mht01_1_main <- function(adam_db,
-                         lyt_fun = mht01_1_lyt,
                          armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
                          lbl_mhbodsys = "MedDRA System Organ Class",
@@ -35,7 +34,7 @@ mht01_1_main <- function(adam_db,
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- lyt_fun(
+  lyt <- mht01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
@@ -149,4 +148,4 @@ mht01_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(mht01_1, syn_test_data())
-mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_lyt, mht01_1_pre, adam_datasets = c("adsl", "admh"))
+mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))

@@ -15,7 +15,6 @@
 #' @export
 #'
 aet03_1_main <- function(adam_db,
-                         lyt_fun = aet03_1_lyt,
                          armvar = .study$actualarm,
                          prune_0 = TRUE,
                          lbl_overall = .study$lbl_overall,
@@ -28,7 +27,7 @@ aet03_1_main <- function(adam_db,
   # TODO: rename all gradation to grade or grading (depending on context)
   severity_grade <- levels(adam_db$adae[["AESEV"]])
 
-  lyt <- lyt_fun(
+  lyt <- aet03_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = var_labels_for(adam_db$adae, "AEBODSYS"),
@@ -161,4 +160,4 @@ aet03_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(aet03_1, syn_test_data())
-aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_lyt, aet03_1_pre, adam_datasets = c("adsl", "adae"))
+aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))

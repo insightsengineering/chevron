@@ -18,4 +18,6 @@ check_one_colnames(df, x, null_ok = TRUE, qualifier = NULL)
 \description{
 Check that at least one name is among column names
 }
-\keyword{internal}
+\examples{
+check_one_colnames(mtcars, c("new", "hoho"))
+}

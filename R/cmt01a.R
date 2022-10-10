@@ -20,7 +20,6 @@
 #' @export
 #'
 cmt01a_1_main <- function(adam_db,
-                          lyt_fun = cmt01a_1_lyt,
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -35,7 +34,7 @@ cmt01a_1_main <- function(adam_db,
                           )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_fun(
+  lyt <- cmt01a_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -157,7 +156,7 @@ cmt01a_1_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_1, db)
-cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_lyt, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
 
 
 # cmt01a_2 ----
@@ -182,7 +181,6 @@ cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_lyt, cmt01a_1_pre, adam_datasets
 #' @export
 #'
 cmt01a_2_main <- function(adam_db,
-                          lyt_fun = cmt01a_1_lyt,
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -266,7 +264,7 @@ cmt01a_2_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_2, db)
-cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_1_lyt, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
 
 
 # cmt01a_3 ----
@@ -291,7 +289,6 @@ cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_1_lyt, cmt01a_2_pre, adam_datasets
 #' @export
 #'
 cmt01a_3_main <- function(adam_db,
-                          lyt_fun = cmt01a_3_lyt,
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -306,7 +303,7 @@ cmt01a_3_main <- function(adam_db,
                           )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_fun(
+  lyt <- cmt01a_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -428,4 +425,4 @@ cmt01a_3_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_3, db)
-cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_lyt, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))
