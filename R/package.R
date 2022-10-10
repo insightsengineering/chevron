@@ -15,7 +15,7 @@
 #' @importFrom ggplot2 theme
 #' @importFrom magrittr %>%
 #' @importFrom methods is setValidity
-#' @importFrom rlang sym .data .env
+#' @importFrom rlang sym
 #' @importFrom stats setNames
 #' @importFrom tibble tribble
 #' @importFrom yaml read_yaml

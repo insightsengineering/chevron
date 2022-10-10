@@ -12,7 +12,6 @@
 #' @export
 #'
 cmt02_pt_1_main <- function(adam_db,
-                            lyt_fun = cmt02_pt_1_lyt,
                             armvar = .study$planarm,
                             prune_0 = TRUE,
                             lbl_overall = .study$lbl_overall,
@@ -23,7 +22,7 @@ cmt02_pt_1_main <- function(adam_db,
                             )) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_fun(
+  lyt <- cmt02_pt_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco
@@ -105,4 +104,4 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(cmt02_pt_1, syn_test_data())
-cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_lyt, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))
+cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

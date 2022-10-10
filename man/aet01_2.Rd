@@ -15,7 +15,6 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 aet01_2_main(
   adam_db,
-  lyt_fun = aet01_2_lyt,
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
@@ -64,8 +63,6 @@ aet01_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
-
-\item{lyt_fun}{(\code{function} or \verb{list of functions}) creating \verb{Pre-data Table Layout}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

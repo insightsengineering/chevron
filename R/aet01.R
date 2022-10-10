@@ -14,7 +14,6 @@
 #' @export
 #'
 aet01_1_main <- function(adam_db,
-                         lyt_fun = aet01_1_lyt,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = FALSE,
@@ -41,7 +40,7 @@ aet01_1_main <- function(adam_db,
     lbl_safety_var
   }
 
-  lyt <- lyt_fun(
+  lyt <- aet01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -284,7 +283,7 @@ aet01_1_check <- function(adam_db,
 #'
 #' @examples
 #' run(aet01_1, syn_test_data(), armvar = "ARM")
-aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 
 # aet01_2 ----
@@ -306,7 +305,6 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c
 #' @export
 #'
 aet01_2_main <- function(adam_db,
-                         lyt_fun = aet01_2_lyt,
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = FALSE,
@@ -341,7 +339,7 @@ aet01_2_main <- function(adam_db,
     lbl_medconcept_var
   }
 
-  lyt <- lyt_fun(
+  lyt <- aet01_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -607,4 +605,4 @@ aet01_2_check <- function(adam_db,
 #'
 #' @examples
 #' run(aet01_2, syn_test_data())
-aet01_2 <- chevron_tlg(aet01_2_main, aet01_2_lyt, aet01_2_pre, adam_datasets = c("adsl", "adae"))
+aet01_2 <- chevron_tlg(aet01_2_main, aet01_2_pre, adam_datasets = c("adsl", "adae"))
