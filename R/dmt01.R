@@ -31,6 +31,7 @@
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 #' )
 dmt01_1_main <- function(adam_db,
+                         lyt_fun = dmt01_1_lyt,
                          armvar = .study$planarm,
                          summaryvars = .study$demo_vars,
                          summaryvars_lbls = .study$demo_vars_lbls,
@@ -151,4 +152,4 @@ dmt01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))
+dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_lyt, dmt01_1_pre, adam_datasets = c("adsl"))

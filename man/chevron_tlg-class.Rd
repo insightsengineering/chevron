@@ -9,6 +9,7 @@
 \usage{
 chevron_tlg(
   main = function(adam_db, ...) adam_db,
+  lyt = function(...) basic_table(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = report_null,
   adam_datasets = NA_character_
@@ -16,6 +17,8 @@ chevron_tlg(
 }
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{_main} function of \code{chevron}.}
+
+\item{lyt}{(\code{function}) typically one of the \verb{_lyt} function of \code{chevron}.}
 
 \item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
 \verb{_pre} function of \code{chevron}.}
@@ -38,6 +41,8 @@ optionally a \code{postprocess} function.
 
 \describe{
 \item{\code{main}}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{*_main} function from \code{chevron}.}
+
+\item{\code{lyt}}{(\code{function} or \verb{list of function}).  Typically one of the \verb{*_lyt} function from \code{chevron}.}
 
 \item{\code{preprocess}}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
 \verb{*_pre} function from \code{chevron}.}

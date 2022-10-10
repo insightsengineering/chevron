@@ -17,6 +17,7 @@
 #' @export
 #'
 aet04_1_main <- function(adam_db,
+                         lyt_fun = aet04_1_lyt,
                          armvar = .study$actualarm,
                          group_grades = .study$group_grades,
                          lbl_overall = .study$lbl_overall,
@@ -40,7 +41,7 @@ aet04_1_main <- function(adam_db,
     )
   }
 
-  lyt <- aet04_1_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
@@ -197,4 +198,4 @@ aet04_1_pre <- function(adam_db, ...) {
 #' )
 #'
 #' run(aet04_1, syn_test_data(), group_grades = group_grades)
-aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))
+aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_lyt, aet04_1_pre, adam_datasets = c("adsl", "adae"))

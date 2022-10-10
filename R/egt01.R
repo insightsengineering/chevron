@@ -22,6 +22,7 @@
 #' @export
 #'
 egt01_1_main <- function(adam_db,
+                         lyt_fun = egt01_1_lyt,
                          armvar = .study$actualarm,
                          summaryvars = .study$evo_vars,
                          summaryvars_lbls = .study$evo_vars_lbls,
@@ -42,7 +43,7 @@ egt01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
-  lyt <- egt01_1_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -142,4 +143,4 @@ egt01_1_pre <- function(adam_db, ...) {
 #' db <- syn_test_data()
 #' run(egt01_1, db)
 #' run(egt01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_pre, adam_datasets = c("adeg"))
+egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_lyt, egt01_1_pre, adam_datasets = c("adeg"))

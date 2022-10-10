@@ -1,6 +1,4 @@
 
-
-
 #' Check that all names are among column names
 #'
 #' @param df (`data.frame`)
@@ -8,9 +6,8 @@
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @export
-#' @examples
-#' check_all_colnames(mtcars, c("mpg", "new", "hoho"), qualifier = "first test:")
+#' @keywords internal
+#'
 check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
   checkmate::assert_data_frame(df)
   checkmate::assert_character(x, null.ok = null_ok)
@@ -32,9 +29,8 @@ check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @export
-#' @examples
-#' check_one_colnames(mtcars, c("new", "hoho"))
+#' @keywords internal
+#'
 check_one_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
   checkmate::assert_data_frame(df)
   checkmate::assert_character(x, null.ok = null_ok)

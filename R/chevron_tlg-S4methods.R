@@ -28,7 +28,7 @@ setMethod(
     optional_arg <- if (!missing(...)) list(...) else NULL
 
     proc_data <- list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
-    res_tlg <- list(tlg = do.call(object@main, c(proc_data, optional_arg)))
+    res_tlg <- list(tlg = do.call(object@main, c(proc_data, list(object@lyt), optional_arg)))
 
     do.call(object@postprocess, c(res_tlg, optional_arg))
   }
@@ -52,6 +52,27 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(object) {
     object@main
+  }
+)
+
+# get_lyt ----
+
+#' Retrieve Layout
+#'
+#' @param object (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @aliases get_lyt
+#' @export
+setGeneric("get_lyt", function(object, ...) standardGeneric("get_lyt"))
+
+#' @rdname get_lyt
+#' @export
+setMethod(
+  f = "get_lyt",
+  signature = "chevron_tlg",
+  definition = function(object) {
+    object@lyt
   }
 )
 

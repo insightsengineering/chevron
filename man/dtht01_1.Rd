@@ -14,6 +14,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 dtht01_1_main(
   adam_db,
+  lyt_fun = list(dtht01_1_lyt, dtht01_1_opt_lyt),
   armvar = .study$actualarm,
   time_since_last_dose = FALSE,
   other_category = FALSE,
@@ -44,6 +45,8 @@ dtht01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_fun}{(\code{function} or \verb{list of functions}) creating \verb{Pre-data Table Layout}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

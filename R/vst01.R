@@ -22,6 +22,7 @@
 #' @export
 #'
 vst01_1_main <- function(adam_db,
+                         lyt_fun = vst01_1_lyt,
                          armvar = .study$actualarm,
                          summaryvars = .study$evo_vars,
                          summaryvars_lbls = .study$evo_vars_lbls,
@@ -42,7 +43,7 @@ vst01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
-  lyt <- vst01_1_lyt(
+  lyt <- lyt_fun(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -148,4 +149,4 @@ vst01_1_pre <- function(adam_db, ...) {
 #'
 #' run(vst01_1, db)
 #' run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_pre, adam_datasets = c("adsl", "advs"))
+vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_lyt, vst01_1_pre, adam_datasets = c("adsl", "advs"))

@@ -13,6 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 cmt02_pt_1_main(
   adam_db,
+  lyt_fun = cmt02_pt_1_lyt,
   armvar = .study$planarm,
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
@@ -33,6 +34,8 @@ cmt02_pt_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_fun}{(\code{function} or \verb{list of functions}) creating \verb{Pre-data Table Layout}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

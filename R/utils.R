@@ -43,12 +43,6 @@ ifelse_layout <- function(lyt, test, fun_lyt_yes = identity, fun_lyt_no = identi
   }
 }
 
-lyt_fun <- function(fun, ...) {
-  function(lyt) {
-    fun(lyt, ...)
-  }
-}
-
 has_overall_col <- function(lbl_overall) {
   !is.null(lbl_overall) && !identical(lbl_overall, "")
 }
@@ -193,6 +187,8 @@ syn_test_data <- function() {
 #' @param x (`rtables`) object.
 #' @param deco (`list`) typically generated with `std_deco()`.
 #'
+#' @keywords internal
+#'
 #' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 set_decoration <- function(x, deco) {
   checkmate::assert_multi_class(x, c("TableTree", "ElementaryTable"))
@@ -245,6 +241,8 @@ smart_prune <- function(tlg) {
 
 #' Unite Columns of a Table in a `dm` object.
 #'
+#' @keywords internal
+#'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param cols (`character`) the name of the columns to unite.
@@ -253,6 +251,9 @@ smart_prune <- function(tlg) {
 #'
 #' @return `dm` object with a united column.
 #'
+#' @examples
+#' x <- dm_unite(dm::dm_nycflights13(), "airlines", c("carrier", "name"), new = "FUSION")
+#' x$airlines
 dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_string("dataset")
@@ -278,7 +279,7 @@ dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
 
   x_vec <- x_df %>%
     unite("res", cols, sep = sep) %>%
-    pull(res)
+    pull(.data$res)
 
   existing_lvl <- intersect(all_lvl, x_vec)
   levels(x_vec) <- existing_lvl
