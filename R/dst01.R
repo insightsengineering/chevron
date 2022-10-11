@@ -59,7 +59,8 @@ dst01_1_main <- function(adam_db,
                            lbl_overall = "All Patients",
                            disc_reason_var = "DCSREAS",
                            status_var = "EOSSTT"
-                         )) {
+                         ),
+                         ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -81,7 +82,8 @@ dst01_1_main <- function(adam_db,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
-    discontinued_lbl = discontinued_lbl
+    discontinued_lbl = discontinued_lbl,
+    ... = ...
   )
 
   tbl_completed <- build_table(
@@ -278,7 +280,8 @@ dst01_2_main <- function(adam_db,
                            lbl_overall = "All Patients",
                            disc_reason_var = "DCSREAS",
                            status_var = "EOSSTT"
-                         )) {
+                         ),
+                         ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -298,7 +301,8 @@ dst01_2_main <- function(adam_db,
     discontinued_lbl = discontinued_lbl,
     lbl_overall = lbl_overall,
     ongoing_lbl = ongoing_lbl,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl_completed <- build_table(
@@ -510,7 +514,8 @@ dst01_3_main <- function(adam_db,
                            disc_reason_var = "DCSREAS",
                            lbl_overall = "All Patients",
                            status_var = "EOSSTT"
-                         )) {
+                         ),
+                         ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status,
@@ -531,6 +536,7 @@ dst01_3_main <- function(adam_db,
     ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl,
     status_treatment = status_treatment,
+    ... = ...
   )
 
   tbl <- build_table(
@@ -553,7 +559,8 @@ dst01_3_main <- function(adam_db,
     ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl,
     status = status,
-    disc_reason_var = disc_reason_var
+    disc_reason_var = disc_reason_var,
+    ... = ...
   )
 
 

@@ -46,7 +46,8 @@ aet01_1_main <- function(adam_db,
     lbl_overall = lbl_overall,
     deco = deco,
     safety_var = safety_var,
-    lbl_safety_var = lbl_safety_var
+    lbl_safety_var = lbl_safety_var,
+    ... = ...
   )
 
   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -325,7 +326,8 @@ aet01_2_main <- function(adam_db,
                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                            ),
                            medconcept_var = c("SMQ01", "SMQ02", "CQ01")
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -350,7 +352,8 @@ aet01_2_main <- function(adam_db,
     safety_var = safety_var,
     lbl_safety_var = lbl_safety_var,
     medconcept_var = medconcept_var,
-    lbl_medconcept_var = lbl_medconcept_var
+    lbl_medconcept_var = lbl_medconcept_var,
+    ... = ...
   )
 
   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)

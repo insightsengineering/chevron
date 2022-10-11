@@ -26,7 +26,8 @@ aet01_2_main(
   lbl_medconcept_var = NULL,
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
-    medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
+    medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
+  ...
 )
 
 aet01_2_lyt(

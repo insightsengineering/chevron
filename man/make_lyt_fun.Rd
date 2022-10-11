@@ -23,9 +23,6 @@ lyt2 <- make_lyt_fun(my_obj)
 
 my_fun <- function(arm = "ARM", ...) rtables::basic_table() \%>\% rtables::split_cols_by(arm)
 lyt3 <- make_lyt_fun(my_fun)
-
-identical(lyt1(), lyt2())
-identical(lyt1(), lyt3())
 }
 }
 \keyword{internal}

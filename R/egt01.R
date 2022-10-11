@@ -33,7 +33,8 @@ egt01_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            evo_vars = c("AVAL", "CHG"),
                            evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
-                         )) {
+                         ),
+                         ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
@@ -50,7 +51,8 @@ egt01_1_main <- function(adam_db,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(

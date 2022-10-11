@@ -20,7 +20,8 @@ mht01_1_main(
   lbl_mhdecod = "MedDRA Preferred Term",
   prune_0 = TRUE,
   deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 mht01_1_lyt(

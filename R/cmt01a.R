@@ -32,7 +32,8 @@ cmt01a_1_main <- function(adam_db,
                           .study = list(
                             planarm = "ARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- lyt_fun(
@@ -42,7 +43,8 @@ cmt01a_1_main <- function(adam_db,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -305,7 +307,8 @@ cmt01a_3_main <- function(adam_db,
                           .study = list(
                             planarm = "ARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- lyt_fun(
@@ -315,7 +318,8 @@ cmt01a_3_main <- function(adam_db,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)

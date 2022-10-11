@@ -32,7 +32,8 @@ lbt01_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            evo_vars = c("AVAL", "CHG"),
                            evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
-                         )) {
+                         ),
+                         ...) {
   summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
     var_labels_for(adam_db$adlb, summaryvars)
   } else {
@@ -46,7 +47,8 @@ lbt01_1_main <- function(adam_db,
     visitvar = visitvar,
     lbl_avisit = var_labels_for(adam_db$adlb, visitvar),
     lbl_param = var_labels_for(adam_db$adlb, "PARAM"),
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, adam_db$adlb)

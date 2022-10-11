@@ -19,7 +19,8 @@ ext01_1_main(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 ext01_1_lyt(
@@ -59,9 +60,9 @@ ext01_1
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
-\item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
-
 \item{...}{not used.}
+
+\item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
 
 \item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
 }

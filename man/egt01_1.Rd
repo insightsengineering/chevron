@@ -21,7 +21,8 @@ egt01_1_main(
   prune_0 = TRUE,
   deco = std_deco("EGT01"),
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Value at Visit", "Change from \\nBaseline"))
+    c("Value at Visit", "Change from \\nBaseline")),
+  ...
 )
 
 egt01_1_lyt(
@@ -61,11 +62,11 @@ to be displayed.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{EGT01} table 1 summarizes

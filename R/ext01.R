@@ -27,7 +27,8 @@ ext01_1_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   assert_colnames(adam_db$adex, summaryvars)
 
   lyt <- lyt_fun(
@@ -35,7 +36,8 @@ ext01_1_main <- function(adam_db,
     summaryvars = summaryvars,
     summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
@@ -151,7 +153,8 @@ ext01_2_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   summaryvars <- c("AVAL", "AVALCAT1")
 
   # Provide a clearer error message in the case of missing variable.
@@ -162,7 +165,8 @@ ext01_2_main <- function(adam_db,
     summaryvars = summaryvars,
     summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)

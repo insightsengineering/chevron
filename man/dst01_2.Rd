@@ -21,7 +21,8 @@ dst01_2_main(
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", disc_reason_var =
-    "DCSREAS", status_var = "EOSSTT")
+    "DCSREAS", status_var = "EOSSTT"),
+  ...
 )
 
 dst01_2_lyt(
@@ -71,6 +72,8 @@ the analysis period.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
 name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
@@ -82,8 +85,6 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
-
-\item{...}{not used.}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of

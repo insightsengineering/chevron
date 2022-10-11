@@ -7,6 +7,9 @@
 assert_fun_or_list(x, add = NULL)
 }
 \arguments{
+\item{add}{[\code{AssertCollection}]\cr
+Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
+
 \item{db}{(\code{x}) input to check for type.}
 }
 \description{

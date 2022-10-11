@@ -20,13 +20,15 @@ cmt02_pt_1_main <- function(adam_db,
                             .study = list(
                               planarm = "ARM",
                               lbl_overall = NULL
-                            )) {
+                            ),
+                            ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- lyt_fun(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)

@@ -24,7 +24,8 @@ dtht01_1_main <- function(adam_db,
                           .study = list(
                             actualarm = "ACTARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl")
 
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
@@ -37,7 +38,8 @@ dtht01_1_main <- function(adam_db,
     armvar = armvar,
     other_category = other_category,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adsl)
@@ -48,7 +50,8 @@ dtht01_1_main <- function(adam_db,
     lyt2 <- lyt_fun[[2]](
       armvar = armvar,
       lbl_overall = lbl_overall,
-      deco = deco
+      deco = deco,
+      ... = ...
     )
 
     tbl_other <- build_table(lyt2, dbsel$adsl)

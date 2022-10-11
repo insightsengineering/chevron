@@ -29,7 +29,8 @@ mht01_1_main <- function(adam_db,
                          .study = list(
                            planarm = "ARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
@@ -40,7 +41,8 @@ mht01_1_main <- function(adam_db,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
     lbl_mhdecod = lbl_mhdecod,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)

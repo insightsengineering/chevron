@@ -82,6 +82,7 @@ setMethod(
 #'
 #' @inheritParams chevron_tlg
 #' @param object (`chevron_tlg`) input.
+#' @param ... not used.
 #'
 #' @export
 setGeneric("set_lyt", function(object, lyt, ...) standardGeneric("set_lyt"))

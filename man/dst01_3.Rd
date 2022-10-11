@@ -22,7 +22,8 @@ dst01_3_main(
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
-    "All Patients", status_var = "EOSSTT")
+    "All Patients", status_var = "EOSSTT"),
+  ...
 )
 
 dst01_3_lyt(
@@ -75,6 +76,8 @@ the analysis period.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{completed_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
 \code{status_treatment}. By Default \code{COMPLETED}.}
 
@@ -83,8 +86,6 @@ the analysis period.}
 
 \item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
 By Default `ONGOING.}
-
-\item{...}{not used.}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued

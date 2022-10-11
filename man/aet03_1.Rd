@@ -18,7 +18,8 @@ aet03_1_main(
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet03_1_lyt(
@@ -52,13 +53,13 @@ aet03_1
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the dataset.}
-
-\item{...}{not used.}
 }
 \description{
 An adverse events table categorized by System

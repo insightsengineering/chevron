@@ -10,6 +10,7 @@ setClassUnion("function_or_list", c("function", "list"))
 #' @keywords internal
 #'
 #' @param db (`x`) input to check for type.
+#' @inheritParams checkmate::assert
 #'
 assert_fun_or_list <- function(x, add = NULL) {
   if (is.function(x)) {
@@ -136,9 +137,6 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
 #'
 #' my_fun <- function(arm = "ARM", ...) rtables::basic_table() %>% rtables::split_cols_by(arm)
 #' lyt3 <- make_lyt_fun(my_fun)
-#'
-#' identical(lyt1(), lyt2())
-#' identical(lyt1(), lyt3())
 #' }
 make_lyt_fun <- function(lyt) {
   cl <- class(lyt)

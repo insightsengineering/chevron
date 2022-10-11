@@ -27,7 +27,8 @@ aet04_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
                            group_grades = NULL
-                         )) {
+                         ),
+                         ...) {
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
@@ -47,7 +48,8 @@ aet04_1_main <- function(adam_db,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
     group_grades = group_grades,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(

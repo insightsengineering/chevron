@@ -14,6 +14,8 @@ set_lyt(object, lyt, ...)
 
 \item{lyt}{(\code{function}, \verb{list of functions}, \code{call} or \code{PreDataTableLayouts}) typically one of the \verb{_lyt} function
 of \code{chevron}.}
+
+\item{...}{not used.}
 }
 \description{
 Set Layout Function

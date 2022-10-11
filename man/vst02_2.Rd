@@ -20,7 +20,8 @@ vst02_2_main(
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
   deco = std_deco("VST02_2"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 vst02_2_lyt(
