@@ -76,6 +76,29 @@ setMethod(
   }
 )
 
+# set_lyt ----
+
+#' Set Layout Function
+#'
+#' @inheritParams chevron_tlg
+#' @param object (`chevron_tlg`) input.
+#'
+#' @export
+setGeneric("set_lyt", function(object, lyt, ...) standardGeneric("set_lyt"))
+
+#' @rdname set_lyt
+#' @export
+setMethod(
+  f = "set_lyt",
+  signature = "chevron_tlg",
+  definition = function(object, lyt) {
+    lyt_proc <- make_lyt_fun(lyt)
+    object@lyt <- lyt_proc
+    validObject(object)
+    object
+  }
+)
+
 # get_preprocess ----
 
 #' Retrieve pre-processing Function

@@ -37,7 +37,7 @@ check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' check_all_colnames(mtcars, c("x", "y))
+#' check_all_colnames(mtcars, c("x", "y"))
 #' }
 check_one_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
   checkmate::assert_data_frame(df)
