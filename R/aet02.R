@@ -56,6 +56,7 @@ aet02_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -67,7 +68,8 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -232,6 +234,7 @@ aet02_2_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aehlt (`character`) text label for `AEHLT`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -244,7 +247,8 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

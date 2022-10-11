@@ -29,7 +29,8 @@ ext01_1_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, analysis_var = "AVAL",
-    lbl_analysis_var = "Analysis Value")
+    lbl_analysis_var = "Analysis Value"),
+  ...
 )
 
 ext01_1_pre(
@@ -60,9 +61,9 @@ ext01_1
 
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
 
-\item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
-
 \item{...}{not used.}
+
+\item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
 }
 \description{
 The EXT01 table provides an overview of the of the exposure of the

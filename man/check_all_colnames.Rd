@@ -18,4 +18,9 @@ check_all_colnames(df, x, null_ok = TRUE, qualifier = NULL)
 \description{
 Check that all names are among column names
 }
+\examples{
+\dontrun{
+check_all_colnames(mtcars, c("x", "y"))
+}
+}
 \keyword{internal}

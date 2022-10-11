@@ -74,6 +74,7 @@ aet01_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param ... not used
 #'
 #' @export
 #'
@@ -93,7 +94,8 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
                           )
-                        )) {
+                        ),
+                        ...) {
   names(lbl_safety_var) <- safety_var
 
   lyt_adae <- basic_table_deco(deco) %>%
@@ -378,6 +380,7 @@ aet01_2_main <- function(adam_db,
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -401,7 +404,8 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
                           ),
                           medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
                           lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")
-                        )) {
+                        ),
+                        ...) {
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
 

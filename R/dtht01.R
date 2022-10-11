@@ -71,6 +71,7 @@ dtht01_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -81,7 +82,8 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   tab <-
     basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -116,6 +118,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn dtht01_1 Optional Layout
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -125,7 +128,8 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
                              .study = list(
                                actualarm = "ACTARM",
                                lbl_overall = NULL
-                             )) {
+                             ),
+                             ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

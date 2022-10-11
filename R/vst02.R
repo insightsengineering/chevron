@@ -50,6 +50,7 @@ vst02_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -61,7 +62,8 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -175,6 +177,7 @@ vst02_2_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -186,7 +189,8 @@ vst02_2_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

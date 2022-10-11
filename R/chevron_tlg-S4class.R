@@ -89,7 +89,8 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @describeIn chevron_tlg Default Constructor
 #'
 #' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
-#' @param lyt (`function`) typically one of the `_lyt` function of `chevron`.
+#' @param lyt  (`function`, `list of functions`, `call` or `PreDataTableLayouts`) typically one of the `_lyt` function
+#'   of `chevron`.
 #' @param preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`.
@@ -100,7 +101,7 @@ methods::setValidity("chevron_tlg", function(object) {
 #'
 #' @export
 #' @examples
-#' x <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+#' x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 chevron_tlg <- function(main = function(adam_db, ...) adam_db,
                         lyt = function(...) basic_table(),
                         preprocess = function(adam_db, ...) adam_db,
@@ -108,7 +109,7 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
                         adam_datasets = NA_character_) {
   res <- .chevron_tlg(
     main = main,
-    lyt = lyt,
+    lyt = make_lyt_fun(lyt),
     preprocess = preprocess,
     postprocess = postprocess,
     adam_datasets = adam_datasets
@@ -116,4 +117,52 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
 
   validObject(res)
   res
+}
+
+
+#' Layout function constructor
+#'
+#' @inheritParams chevron_tlg
+#'
+#' @keywords internal
+#'
+#' @examples
+#' \dontrun{
+#' my_call <- quote(rtables::basic_table() %>% rtables::split_cols_by("ARM"))
+#' lyt1 <- make_lyt_fun(my_call)
+#'
+#' my_obj <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
+#' lyt2 <- make_lyt_fun(my_obj)
+#'
+#' my_fun <- function(arm = "ARM", ...) rtables::basic_table() %>% rtables::split_cols_by(arm)
+#' lyt3 <- make_lyt_fun(my_fun)
+#'
+#' identical(lyt1(), lyt2())
+#' identical(lyt1(), lyt3())
+#' }
+make_lyt_fun <- function(lyt) {
+  cl <- class(lyt)
+
+  e <- new.env()
+  e$lyt <- lyt
+
+  switch(cl,
+    "function" = {
+      checkmate::assert_function(lyt, args = "...")
+      lyt
+    },
+    "list" = {
+      lapply(lyt, checkmate::assert_function, args = "...")
+      lyt
+    },
+    "call" = {
+      arg <- as.pairlist(alist(... = )) # nolint
+      eval(call("function", arg, lyt))
+    },
+    "PreDataTableLayouts" = {
+      arg <- as.pairlist(alist(... = )) # nolint
+      eval(call("function", arg, lyt))
+    },
+    stop(paste("lyt must be a `function`, `list of functions`, `call` or `PreDataTableLayouts` but is", cl))
+  )
 }

@@ -80,6 +80,7 @@ aet04_1_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -93,7 +94,8 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
                           actualarm = "ACTARM",
                           lbl_overall = NULL,
                           group_grades = NULL
-                        )) {
+                        ),
+                        ...) {
   if (is.null(group_grades)) {
     group_grades <- list(
       "Any Grade" = c("1", "2", "3", "4", "5"),

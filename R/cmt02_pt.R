@@ -45,6 +45,7 @@ cmt02_pt_1_main <- function(adam_db,
 #' @describeIn cmt02_pt_1 Layout
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -54,7 +55,8 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
                            .study = list(
                              planarm = "ARM",
                              lbl_overall = NULL
-                           )) {
+                           ),
+                           ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

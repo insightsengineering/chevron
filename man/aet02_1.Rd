@@ -28,7 +28,8 @@ aet02_1_lyt(
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet02_1_pre(adam_db, ...)

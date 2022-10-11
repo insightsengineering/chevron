@@ -252,8 +252,10 @@ smart_prune <- function(tlg) {
 #' @return `dm` object with a united column.
 #'
 #' @examples
+#' \dontrun{
 #' x <- dm_unite(dm::dm_nycflights13(), "airlines", c("carrier", "name"), new = "FUSION")
 #' x$airlines
+#' }
 dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_string("dataset")

@@ -29,7 +29,8 @@ mht01_1_lyt(
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA preferred Term",
   deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 mht01_1_pre(adam_db, ...)

@@ -69,6 +69,7 @@ aet03_1_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param severity_grade (`vector of character`) describing the severity levels present in the dataset.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -82,7 +83,8 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
                           actualarm = "ACTARM",
                           lbl_overall = NULL,
                           severity_grade = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

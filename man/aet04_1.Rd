@@ -29,7 +29,8 @@ aet04_1_lyt(
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL),
+  ...
 )
 
 aet04_1_pre(adam_db, ...)

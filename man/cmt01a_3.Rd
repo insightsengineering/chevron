@@ -34,7 +34,8 @@ cmt01a_3_lyt(
   medname_var = "CMDECOD",
   lbl_medname_var = "Other Treatment",
   deco = std_deco("CMT01A"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 cmt01a_3_pre(adam_db, ...)

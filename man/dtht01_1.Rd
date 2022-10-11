@@ -29,14 +29,16 @@ dtht01_1_lyt(
   lbl_overall = .study$lbl_overall,
   other_category = TRUE,
   deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 dtht01_1_opt_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 dtht01_1_pre(adam_db, ...)

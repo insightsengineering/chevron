@@ -119,6 +119,7 @@ dst01_1_main <- function(adam_db,
 #'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
+#' @param ... not used.
 #'
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
@@ -144,7 +145,8 @@ dst01_1_lyt <- function(armvar = .study$planarm,
                           lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
-                        )) {
+                        ),
+                        ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
@@ -334,6 +336,7 @@ dst01_2_main <- function(adam_db,
 #'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
+#' @param ... not used.
 #'
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
@@ -359,7 +362,8 @@ dst01_2_lyt <- function(armvar = .study$planarm,
                           lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
-                        )) {
+                        ),
+                        ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
@@ -593,6 +597,7 @@ dst01_3_main <- function(adam_db,
 #'   `status_treatment`. By Default `DISCONTINUED`.
 #' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
 #'   By Default `ONGOING.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -612,7 +617,8 @@ dst01_3_lyt <- function(armvar = .study$planarm,
                           planarm = "ARM",
                           lbl_overall = "All Patients",
                           status_treatment = "EOTSTT"
-                        )) {
+                        ),
+                        ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%

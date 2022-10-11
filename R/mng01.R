@@ -84,6 +84,7 @@ mng01_1_main <- function(adam_db,
 #' @inheritParams mng01_1_main
 #' @param df (`dataframe`) data set containing all analysis variables.
 #' @param alt_count (`dataframe`) data set that will be used (only) to counts objects in strata.
+#' @param ... not used.
 #'
 #' @export
 mng01_1_plot <- function(df,
@@ -108,7 +109,8 @@ mng01_1_plot <- function(df,
                            show_v_grid = FALSE,
                            legend_pos = "top",
                            color_dict = getOption("tern.color")
-                         )) {
+                         ),
+                         ...) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 

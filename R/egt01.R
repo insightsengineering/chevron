@@ -73,6 +73,7 @@ egt01_1_main <- function(adam_db,
 #'   to be displayed.
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
 #' @param lbl_param (`character`) label of the `PARAM` variable.
+#' @param ... not used.
 #'
 #' @export
 egt01_1_lyt <- function(armvar = .study$actualarm,
@@ -87,7 +88,8 @@ egt01_1_lyt <- function(armvar = .study$actualarm,
                           evo_vars = c("AVAL", "CHG"),
                           evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
                           visitvar = "AVISIT"
-                        )) {
+                        ),
+                        ...) {
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
 

@@ -77,6 +77,7 @@ dmt01_1_main <- function(adam_db,
 #'
 #' @param demo_vars (`vector of strings`) variables summarized in demographic table.
 #' @param demo_vars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -104,7 +105,8 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
                             "RACE"
                           ),
                           lbl_overall = "All Patients"
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

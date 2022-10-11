@@ -61,6 +61,7 @@ mht01_1_main <- function(adam_db,
 #' @describeIn mht01_1 Layout
 #'
 #' @inheritParams mht01_1_main
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -72,7 +73,8 @@ mht01_1_lyt <- function(armvar = .study$planarm,
                         .study = list(
                           planarm = "ARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

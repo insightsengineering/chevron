@@ -29,7 +29,8 @@ aet03_1_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, severity_grade = c("MILD",
-    "MODERATE", "SEVERE", "LIFE THREATENING"))
+    "MODERATE", "SEVERE", "LIFE THREATENING")),
+  ...
 )
 
 aet03_1_pre(adam_db, ...)

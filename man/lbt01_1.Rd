@@ -32,7 +32,8 @@ lbt01_1_lyt(
   lbl_avisit = "Visit",
   lbl_param = "Parameter",
   deco = std_deco("LBT01"),
-  .study = list(actualarm = "ACTARM", visitvar = "AVISIT")
+  .study = list(actualarm = "ACTARM", visitvar = "AVISIT"),
+  ...
 )
 
 lbt01_1_pre(adam_db, ...)

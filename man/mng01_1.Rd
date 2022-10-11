@@ -53,7 +53,8 @@ mng01_1_plot(
   legend_pos = .study$legend_pos,
   line_col = .study$color_dict,
   .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top", color_dict = getOption("tern.color"))
+    = "top", color_dict = getOption("tern.color")),
+  ...
 )
 
 mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)

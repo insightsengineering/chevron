@@ -25,7 +25,8 @@ cmt02_pt_1_lyt(
   armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("CMT02_PT"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 cmt02_pt_1_pre(adam_db, ...)

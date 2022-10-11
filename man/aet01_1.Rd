@@ -35,7 +35,8 @@ aet01_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
     "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
-    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
+    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV")),
+  ...
 )
 
 aet01_1_pre(adam_db, ...)

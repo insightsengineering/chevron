@@ -32,7 +32,8 @@ dmt01_1_lyt(
   deco = std_deco("DMT01"),
   .study = list(planarm = "ARM", demo_vars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
     "RACE"), demo_vars_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
-    "RACE"), lbl_overall = "All Patients")
+    "RACE"), lbl_overall = "All Patients"),
+  ...
 )
 
 dmt01_1_pre(adam_db, ...)

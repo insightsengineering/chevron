@@ -18,7 +18,8 @@ chevron_tlg(
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{_main} function of \code{chevron}.}
 
-\item{lyt}{(\code{function}) typically one of the \verb{_lyt} function of \code{chevron}.}
+\item{lyt}{(\code{function}, \verb{list of functions}, \code{call} or \code{PreDataTableLayouts}) typically one of the \verb{_lyt} function
+of \code{chevron}.}
 
 \item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
 \verb{_pre} function of \code{chevron}.}
@@ -62,5 +63,5 @@ To ensure the correct execution of the workflow additional validation criteria a
 }
 }
 \examples{
-x <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 }

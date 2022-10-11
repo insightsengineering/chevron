@@ -33,7 +33,8 @@ egt01_1_lyt(
   lbl_param = "",
   deco = std_deco("EGT01"),
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
+    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT"),
+  ...
 )
 
 egt01_1_pre(adam_db, ...)

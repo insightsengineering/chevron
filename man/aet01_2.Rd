@@ -41,7 +41,8 @@ aet01_2_lyt(
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
     "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
     "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"), medconcept_var = c("SMQ01",
-    "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01"))
+    "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
+  ...
 )
 
 aet01_2_pre(adam_db, ...)

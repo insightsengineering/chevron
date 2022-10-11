@@ -67,6 +67,7 @@ cmt01a_1_main <- function(adam_db,
 #' @param lbl_medcat_var (`character`) the label for the medication category.
 #' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
 #' @param lbl_medname_var (`character`) the label for the medication name.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -80,7 +81,8 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
                          .study = list(
                            planarm = "ARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -338,6 +340,7 @@ cmt01a_3_main <- function(adam_db,
 #' @param lbl_medcat_var (`character`) the label for the medication category.
 #' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
 #' @param lbl_medname_var (`character`) the label for the medication name.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -351,7 +354,8 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
                          .study = list(
                            planarm = "ARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%

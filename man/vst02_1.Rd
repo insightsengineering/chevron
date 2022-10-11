@@ -29,7 +29,8 @@ vst02_1_lyt(
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   deco = std_deco("VST02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 vst02_1_pre(adam_db, ...)

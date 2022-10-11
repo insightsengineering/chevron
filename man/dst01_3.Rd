@@ -34,7 +34,8 @@ dst01_3_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", status_treatment =
-    "EOTSTT")
+    "EOTSTT"),
+  ...
 )
 
 dst01_3_pre(

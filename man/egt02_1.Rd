@@ -29,7 +29,8 @@ egt02_1_lyt(
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EGT02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 egt02_1_pre(adam_db, ...)

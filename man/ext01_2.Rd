@@ -27,7 +27,8 @@ ext01_2_lyt(
   summaryvars_lbls = c("Summary", "Categories"),
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 ext01_2_pre(
@@ -59,13 +60,13 @@ ext01_2
 
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
 
+\item{...}{not used.}
+
 \item{show_stats}{(\verb{vector of character}) providing the name of the parameters whose statistical summary should be
 presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{show_stats = ""}.}
 
 \item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
 presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
-
-\item{...}{not used.}
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
