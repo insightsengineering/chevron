@@ -34,24 +34,47 @@ setMethod(
   }
 )
 
-# get_main ----
+# main ----
 
-#' Retrieve Main Function
+#' Retrieve Main
 #'
-#' @param object (`chevron_tlg`) input.
+#' @param x (`chevron_tlg`) input.
 #' @param ... not used.
 #'
-#' @aliases get_main
+#' @aliases main
+#' @name main
 #' @export
-setGeneric("get_main", function(object, ...) standardGeneric("get_main"))
+setGeneric("main", function(x, ...) standardGeneric("main"))
 
 #' @rdname get_main
 #' @export
 setMethod(
-  f = "get_main",
+  f = "main",
   signature = "chevron_tlg",
-  definition = function(object) {
-    object@main
+  definition = function(x) {
+    x@main
+  }
+)
+
+#' Set Main Function
+#'
+#' @inheritParams chevron_tlg
+#' @param x (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @rdname main
+#' @export
+setGeneric("main<-", function(x, value, ...) standardGeneric("main<-"))
+
+#' @rdname main
+#' @export
+setMethod(
+  f = "main<-",
+  signature = "chevron_tlg",
+  definition = function(x, value) {
+    x@main <- value
+    validObject(x)
+    x
   }
 )
 
@@ -59,7 +82,7 @@ setMethod(
 
 #' Retrieve Layout
 #'
-#' @param object (`chevron_tlg`) input.
+#' @param x (`chevron_tlg`) input.
 #' @param ... not used.
 #'
 #' @aliases layout
@@ -77,12 +100,10 @@ setMethod(
   }
 )
 
-# lyt<- ----
-
 #' Set Layout Function
 #'
 #' @inheritParams chevron_tlg
-#' @param object (`chevron_tlg`) input.
+#' @param x (`chevron_tlg`) input.
 #' @param ... not used.
 #'
 #' @rdname layout
@@ -99,6 +120,160 @@ setMethod(
     x@lyt <- lyt_proc
     validObject(x)
     x
+  }
+)
+
+# preprocess ----
+
+#' Retrieve Preprocess
+#'
+#' @param x (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @aliases preprocess
+#' @name preprocess
+#' @export
+setGeneric("preprocess", function(x, ...) standardGeneric("preprocess"))
+
+#' @rdname preprocess
+#' @export
+setMethod(
+  f = "preprocess",
+  signature = "chevron_tlg",
+  definition = function(x) {
+    x@preprocess
+  }
+)
+
+#' Set Preprocess Function
+#'
+#' @inheritParams chevron_tlg
+#' @param x (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @rdname preprocess
+#' @export
+setGeneric("preprocess<-", function(x, value, ...) standardGeneric("preprocess<-"))
+
+#' @rdname preprocess
+#' @export
+setMethod(
+  f = "preprocess<-",
+  signature = "chevron_tlg",
+  definition = function(x, value) {
+    x@preprocess <- value
+    validObject(x)
+    x
+  }
+)
+
+# postprocess ----
+
+#' Retrieve Postprocess
+#'
+#' @param x (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @aliases postprocess
+#' @name postprocess
+#' @export
+setGeneric("postprocess", function(x, ...) standardGeneric("postprocess"))
+
+#' @rdname postprocess
+#' @export
+setMethod(
+  f = "postprocess",
+  signature = "chevron_tlg",
+  definition = function(x) {
+    x@postprocess
+  }
+)
+
+#' Set Postprocess Function
+#'
+#' @inheritParams chevron_tlg
+#' @param x (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @rdname postprocess
+#' @export
+setGeneric("postprocess<-", function(x, value, ...) standardGeneric("postprocess<-"))
+
+#' @rdname postprocess
+#' @export
+setMethod(
+  f = "postprocess<-",
+  signature = "chevron_tlg",
+  definition = function(x, value) {
+    x@postprocess <- value
+    validObject(x)
+    x
+  }
+)
+
+# datasets ----
+
+#' Retrieve Data Sets
+#'
+#' @param x (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @aliases datasets
+#' @name datasets
+#' @export
+setGeneric("datasets", function(x, ...) standardGeneric("datasets"))
+
+#' @rdname datasets
+#' @export
+setMethod(
+  f = "datasets",
+  signature = "chevron_tlg",
+  definition = function(x) {
+    x@adam_datasets
+  }
+)
+
+#' Set Data Sets
+#'
+#' @inheritParams chevron_tlg
+#' @param x (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @rdname datasets
+#' @export
+setGeneric("datasets<-", function(x, value, ...) standardGeneric("datasets<-"))
+
+#' @rdname datasets
+#' @export
+setMethod(
+  f = "datasets<-",
+  signature = "chevron_tlg",
+  definition = function(x, value) {
+    x@adam_datasets <- value
+    validObject(x)
+    x
+  }
+)
+
+# get_main ----
+
+#' Retrieve Main Function
+#'
+#' @param object (`chevron_tlg`) input.
+#' @param ... not used.
+#'
+#' @aliases get_main
+#' @export
+setGeneric("get_main", function(object, ...) standardGeneric("get_main"))
+
+#' @rdname get_main
+#' @export
+setMethod(
+  f = "get_main",
+  signature = "chevron_tlg",
+  definition = function(object) {
+    .Deprecated("main()", old = "get_main()")
+    object@main
   }
 )
 
@@ -119,6 +294,7 @@ setMethod(
   f = "get_preprocess",
   signature = "chevron_tlg",
   definition = function(object) {
+    .Deprecated("preprocess()", old = "get_preprocess()")
     object@preprocess
   }
 )
@@ -140,6 +316,7 @@ setMethod(
   f = "get_postprocess",
   signature = "chevron_tlg",
   definition = function(object) {
+    .Deprecated("postprocess()", old = "get_postprocess()")
     object@postprocess
   }
 )
@@ -161,6 +338,7 @@ setMethod(
   f = "get_adam_datasets",
   signature = "chevron_tlg",
   definition = function(object) {
+    .Deprecated("datasets()", old = "get_adam_datasets()")
     object@adam_datasets
   }
 )

@@ -16,9 +16,9 @@ lyt(x, ...) <- value
 \S4method{lyt}{chevron_tlg}(x) <- value
 }
 \arguments{
-\item{...}{not used.}
+\item{x}{(\code{chevron_tlg}) input.}
 
-\item{object}{(\code{chevron_tlg}) input.}
+\item{...}{not used.}
 }
 \description{
 Retrieve Layout
