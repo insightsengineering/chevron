@@ -35,29 +35,20 @@
 
 # Validation ----
 
-check_first_args <- function(fun, first_arg) {
-  actual <- names(formals(fun))[1]
-
-  if (actual == first_arg) {
-    NULL
-  } else {
-    paste0(
-      deparse(substitute(fun)),
-      " expects `",
-      first_arg,
-      "` as first argument name but found `",
-      actual,
-      "`"
-    )
-  }
-}
-
 methods::setValidity("chevron_tlg", function(object) {
   coll <- checkmate::makeAssertCollection()
-  checkmate::assert_function(object@main, args = "adam_db", add = coll)
+  checkmate::assert_function(object@main, args = c("adam_db", "..."), add = coll)
   checkmate::assert_list(object@lyt, types = "function", add = coll)
-  checkmate::assert_function(object@preprocess, args = "adam_db", add = coll)
-  checkmate::assert_function(object@postprocess, args = "tlg", add = coll)
+  for (i in seq_along(object@lyt)) {
+    checkmate::assert_function(
+      object@lyt[[i]],
+      args = "...",
+      add = coll,
+      .var.name = paste("Element", i, "of the lyt slot")
+    )
+  }
+  checkmate::assert_function(object@preprocess, args = c("adam_db", "..."), add = coll)
+  checkmate::assert_function(object@postprocess, args = c("tlg", "..."), add = coll)
 
   checkmate::reportAssertions(coll)
 })
@@ -126,13 +117,22 @@ make_lyt_fun <- function(lyt) {
       list(lyt)
     },
     "list" = {
-      lapply(lyt, checkmate::assert_function, args = "...")
+      coll <- checkmate::makeAssertCollection()
+      for (i in seq_along(lyt)) {
+        checkmate::assert_function(
+          lyt[[i]],
+          args = "...",
+          add = coll,
+          .var.name = paste("Element", i, "of the layout input")
+        )
+      }
+      checkmate::reportAssertions(coll)
       lyt
     },
     "PreDataTableLayouts" = {
       arg <- as.pairlist(alist(... = )) # nolint
       list(eval(call("function", arg, lyt)))
     },
-    stop(paste("lyt must be a `function`, `list of functions`, `call` or `PreDataTableLayouts` but is", cl))
+    stop(paste("lyt must be a `function`, `list of functions` or `PreDataTableLayouts` but is", cl))
   )
 }

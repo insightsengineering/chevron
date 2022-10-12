@@ -21,7 +21,8 @@ dmt01_1_main(
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
   .study = list(planarm = "ARM", demo_vars = c("AGE", "SEX", "COUNTRY", "RACE"),
-    demo_vars_lbls = NULL, lbl_overall = "All Patients")
+    demo_vars_lbls = NULL, lbl_overall = "All Patients"),
+  ...
 )
 
 dmt01_1_lyt(
@@ -43,7 +44,7 @@ dmt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_fun}{(\code{function} or \verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_fun}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

@@ -14,7 +14,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 mng01_1_main(
   adam_db,
-  plot_fun = mng01_1_plot,
+  plot_fun = list(mng01_1_plot),
   dataset = "adlb",
   x = "AVISIT",
   y = "AVAL",
@@ -66,7 +66,7 @@ mng01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{plot_fun}{(\code{function} or \verb{list of functions}) creating a \code{ggplot} object.}
+\item{plot_fun}{(\verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 

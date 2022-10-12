@@ -43,7 +43,8 @@ dmt01_1_main <- function(adam_db,
                            demo_vars = c("AGE", "SEX", "COUNTRY", "RACE"),
                            demo_vars_lbls = NULL,
                            lbl_overall = "All Patients"
-                         )) {
+                         ),
+                         ...) {
   assert_colnames(adam_db$adsl, summaryvars)
 
   summaryvars_lbls <- if (is.null(summaryvars_lbls)) {

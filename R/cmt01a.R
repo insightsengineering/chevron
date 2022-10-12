@@ -198,7 +198,8 @@ cmt01a_2_main <- function(adam_db,
                           .study = list(
                             planarm = "ARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   # The same layout can be used.
