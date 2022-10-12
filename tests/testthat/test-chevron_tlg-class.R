@@ -5,12 +5,6 @@ test_that("chevron_tlg constructor creates valid object with default value", {
   expect_true(validObject(res))
 })
 
-test_that("chevron_tlg constructor accepts call as lyt argument", {
-  lyt <- quote(rtables::basic_table() %>% rtables::split_cols_by("ARM"))
-  res <- expect_silent(chevron_tlg(lyt = lyt))
-  expect_true(validObject(res))
-})
-
 test_that("chevron_tlg constructor accepts pre-data table layout as lyt argument", {
   lyt <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
   res <- expect_silent(chevron_tlg(lyt = lyt))

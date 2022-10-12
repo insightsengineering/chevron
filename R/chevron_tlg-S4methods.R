@@ -55,28 +55,29 @@ setMethod(
   }
 )
 
-# get_lyt ----
+# lyt ----
 
 #' Retrieve Layout
 #'
 #' @param object (`chevron_tlg`) input.
 #' @param ... not used.
 #'
-#' @aliases get_lyt
+#' @aliases layout
+#' @name layout
 #' @export
-setGeneric("get_lyt", function(object, ...) standardGeneric("get_lyt"))
+setGeneric("lyt", function(x, ...) standardGeneric("lyt"))
 
-#' @rdname get_lyt
+#' @rdname layout
 #' @export
 setMethod(
-  f = "get_lyt",
+  f = "lyt",
   signature = "chevron_tlg",
-  definition = function(object) {
-    object@lyt
+  definition = function(x) {
+    x@lyt
   }
 )
 
-# set_lyt ----
+# lyt<- ----
 
 #' Set Layout Function
 #'
@@ -84,19 +85,20 @@ setMethod(
 #' @param object (`chevron_tlg`) input.
 #' @param ... not used.
 #'
+#' @rdname layout
 #' @export
-setGeneric("set_lyt", function(object, lyt, ...) standardGeneric("set_lyt"))
+setGeneric("lyt<-", function(x, value, ...) standardGeneric("lyt<-"))
 
-#' @rdname set_lyt
+#' @rdname layout
 #' @export
 setMethod(
-  f = "set_lyt",
+  f = "lyt<-",
   signature = "chevron_tlg",
-  definition = function(object, lyt) {
-    lyt_proc <- make_lyt_fun(lyt)
-    object@lyt <- lyt_proc
-    validObject(object)
-    object
+  definition = function(x, value) {
+    lyt_proc <- make_lyt_fun(value)
+    x@lyt <- lyt_proc
+    validObject(x)
+    x
   }
 )
 

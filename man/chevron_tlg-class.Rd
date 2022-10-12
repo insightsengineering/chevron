@@ -18,7 +18,7 @@ chevron_tlg(
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{_main} function of \code{chevron}.}
 
-\item{lyt}{(\code{function}, \verb{list of functions}, \code{call} or \code{PreDataTableLayouts}) typically one of the \verb{_lyt} function
+\item{lyt}{(\code{function}, \verb{list of functions} or \code{PreDataTableLayouts}) typically one of the \verb{_lyt} function
 of \code{chevron}.}
 
 \item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the

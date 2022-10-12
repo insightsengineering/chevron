@@ -7,7 +7,7 @@
 make_lyt_fun(lyt)
 }
 \arguments{
-\item{lyt}{(\code{function}, \verb{list of functions}, \code{call} or \code{PreDataTableLayouts}) typically one of the \verb{_lyt} function
+\item{lyt}{(\code{function}, \verb{list of functions} or \code{PreDataTableLayouts}) typically one of the \verb{_lyt} function
 of \code{chevron}.}
 }
 \description{

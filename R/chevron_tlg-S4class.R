@@ -90,7 +90,7 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @describeIn chevron_tlg Default Constructor
 #'
 #' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
-#' @param lyt  (`function`, `list of functions`, `call` or `PreDataTableLayouts`) typically one of the `_lyt` function
+#' @param lyt  (`function`, `list of functions` or `PreDataTableLayouts`) typically one of the `_lyt` function
 #'   of `chevron`.
 #' @param preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `_pre` function of `chevron`.
@@ -141,9 +141,6 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
 make_lyt_fun <- function(lyt) {
   cl <- class(lyt)
 
-  e <- new.env()
-  e$lyt <- lyt
-
   switch(cl,
     "function" = {
       checkmate::assert_function(lyt, args = "...")
@@ -152,10 +149,6 @@ make_lyt_fun <- function(lyt) {
     "list" = {
       lapply(lyt, checkmate::assert_function, args = "...")
       lyt
-    },
-    "call" = {
-      arg <- as.pairlist(alist(... = )) # nolint
-      eval(call("function", arg, lyt))
     },
     "PreDataTableLayouts" = {
       arg <- as.pairlist(alist(... = )) # nolint

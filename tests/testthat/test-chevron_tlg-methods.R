@@ -21,21 +21,11 @@ test_that("get_lyt works as expected", {
   expect_identical(res, aet04_1_lyt)
 })
 
-# set_lyt ----
+# lyt<- ----
 
-test_that("set_lyt works as expected with call", {
-  my_call <- quote(rtables::basic_table() %>% rtables::split_cols_by("ARM"))
-  aet04_1 <- expect_silent(set_lyt(aet04_1, my_call))
-  expect_equal(
-    deparse(aet04_1@lyt),
-    deparse(function(...) rtables::basic_table() %>% rtables::split_cols_by("ARM"))
-  )
-})
-
-test_that("set_lyt works as expected with pre-data table layout", {
+test_that("layout setter works as expected with pre-data table layout", {
   my_tab <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
-  get_lyt(aet04_1)
-  aet04_1 <- set_lyt(aet04_1, my_fun)
+  lyt(aet04_1) <- my_tab
   expect_equal(
     aet04_1@lyt(),
     my_tab
