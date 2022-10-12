@@ -13,7 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 cmt01a_1_main(
   adam_db,
-  lyt_fun = cmt01a_1_lyt,
+  lyt_fun = list(cmt01a_1_lyt),
   armvar = .study$planarm,
   medcat_var = "ATC2",
   lbl_medcat_var = "ATC Class Level 2",

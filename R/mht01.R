@@ -19,7 +19,7 @@
 #' @export
 #'
 mht01_1_main <- function(adam_db,
-                         lyt_fun = mht01_1_lyt,
+                         lyt_fun = list(mht01_1_lyt),
                          armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
                          lbl_mhbodsys = "MedDRA System Organ Class",
@@ -36,7 +36,7 @@ mht01_1_main <- function(adam_db,
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,

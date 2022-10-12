@@ -17,7 +17,7 @@
 #' @export
 #'
 aet04_1_main <- function(adam_db,
-                         lyt_fun = aet04_1_lyt,
+                         lyt_fun = list(aet04_1_lyt),
                          armvar = .study$actualarm,
                          group_grades = .study$group_grades,
                          lbl_overall = .study$lbl_overall,
@@ -42,7 +42,7 @@ aet04_1_main <- function(adam_db,
     )
   }
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,

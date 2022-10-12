@@ -29,7 +29,7 @@
 #' @return a list of `ggplot` objects.
 #' @export
 mng01_1_main <- function(adam_db,
-                         plot_fun = mng01_1_plot,
+                         plot_fun = list(mng01_1_plot),
                          dataset = "adlb",
                          x = "AVISIT",
                          y = "AVAL",
@@ -59,7 +59,7 @@ mng01_1_main <- function(adam_db,
 
   lapply(
     data_ls,
-    plot_fun,
+    plot_fun[[1]],
     alt_count = adam_db[["adsl"]],
     x = x,
     y = y,

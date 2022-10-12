@@ -22,7 +22,7 @@
 #' @export
 #'
 vst01_1_main <- function(adam_db,
-                         lyt_fun = vst01_1_lyt,
+                         lyt_fun = list(vst01_1_lyt),
                          armvar = .study$actualarm,
                          summaryvars = .study$evo_vars,
                          summaryvars_lbls = .study$evo_vars_lbls,
@@ -44,7 +44,7 @@ vst01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,

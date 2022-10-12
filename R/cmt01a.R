@@ -20,7 +20,7 @@
 #' @export
 #'
 cmt01a_1_main <- function(adam_db,
-                          lyt_fun = cmt01a_1_lyt,
+                          lyt_fun = list(cmt01a_1_lyt),
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -36,7 +36,7 @@ cmt01a_1_main <- function(adam_db,
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -186,7 +186,7 @@ cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_lyt, cmt01a_1_pre, adam_datasets
 #' @export
 #'
 cmt01a_2_main <- function(adam_db,
-                          lyt_fun = cmt01a_1_lyt,
+                          lyt_fun = list(cmt01a_1_lyt),
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -202,7 +202,7 @@ cmt01a_2_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   # The same layout can be used.
-  lyt <- cmt01a_1_lyt(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -295,7 +295,7 @@ cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_1_lyt, cmt01a_2_pre, adam_datasets
 #' @export
 #'
 cmt01a_3_main <- function(adam_db,
-                          lyt_fun = cmt01a_3_lyt,
+                          lyt_fun = list(cmt01a_3_lyt),
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -311,7 +311,7 @@ cmt01a_3_main <- function(adam_db,
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,

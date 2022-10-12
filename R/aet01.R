@@ -14,7 +14,7 @@
 #' @export
 #'
 aet01_1_main <- function(adam_db,
-                         lyt_fun = aet01_1_lyt,
+                         lyt_fun = list(aet01_1_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = FALSE,
@@ -41,7 +41,7 @@ aet01_1_main <- function(adam_db,
     lbl_safety_var
   }
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -309,7 +309,7 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c
 #' @export
 #'
 aet01_2_main <- function(adam_db,
-                         lyt_fun = aet01_2_lyt,
+                         lyt_fun = list(aet01_2_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = FALSE,
@@ -345,7 +345,7 @@ aet01_2_main <- function(adam_db,
     lbl_medconcept_var
   }
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,

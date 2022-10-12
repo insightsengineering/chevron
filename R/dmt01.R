@@ -31,7 +31,7 @@
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 #' )
 dmt01_1_main <- function(adam_db,
-                         lyt_fun = dmt01_1_lyt,
+                         lyt_fun = list(dmt01_1_lyt),
                          armvar = .study$planarm,
                          summaryvars = .study$demo_vars,
                          summaryvars_lbls = .study$demo_vars_lbls,
@@ -54,7 +54,7 @@ dmt01_1_main <- function(adam_db,
 
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
-  lyt <- dmt01_1_lyt(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,

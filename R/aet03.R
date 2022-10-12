@@ -15,7 +15,7 @@
 #' @export
 #'
 aet03_1_main <- function(adam_db,
-                         lyt_fun = aet03_1_lyt,
+                         lyt_fun = list(aet03_1_lyt),
                          armvar = .study$actualarm,
                          prune_0 = TRUE,
                          lbl_overall = .study$lbl_overall,
@@ -29,7 +29,7 @@ aet03_1_main <- function(adam_db,
   # TODO: rename all gradation to grade or grading (depending on context)
   severity_grade <- levels(adam_db$adae[["AESEV"]])
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = var_labels_for(adam_db$adae, "AEBODSYS"),

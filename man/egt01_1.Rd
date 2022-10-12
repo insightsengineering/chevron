@@ -13,7 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 egt01_1_main(
   adam_db,
-  lyt_fun = egt01_1_lyt,
+  lyt_fun = list(egt01_1_lyt),
   armvar = .study$actualarm,
   summaryvars = .study$evo_vars,
   summaryvars_lbls = .study$evo_vars_lbls,

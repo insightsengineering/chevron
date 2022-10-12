@@ -2,8 +2,8 @@
 #' General Argument Name Convention
 #'
 #' @param adam_db (`dm`) object containing the `ADaM` datasets
-#' @param lyt_fun (`function` or `list of functions`) creating `Pre-data Table Layout`.
-#' @param plot_fun (`function` or `list of functions`) creating a `ggplot` object.
+#' @param lyt_fun (`list of functions`) creating `Pre-data Table Layout`.
+#' @param plot_fun (`list of functions`) creating a `ggplot` object.
 #' @param armvar (`character`) variable used for column splitting
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content
 #' @param lbl_overall (`character`) label used for overall column, if set to `NULL` the overall column is omitted

@@ -14,7 +14,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 aet02_1_main(
   adam_db,
-  lyt_fun = aet02_1_lyt,
+  lyt_fun = list(aet02_1_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,

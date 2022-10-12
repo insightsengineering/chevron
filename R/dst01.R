@@ -47,7 +47,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' dst01_1_main(db)
 dst01_1_main <- function(adam_db,
-                         lyt_fun = dst01_1_lyt,
+                         lyt_fun = list(dst01_1_lyt),
                          armvar = .study$planarm,
                          status_var = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -74,7 +74,7 @@ dst01_1_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -268,7 +268,7 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_lyt, dst01_1_pre, adam_datasets = c
 #' dst01_2_main(db)
 #' dst01_2_main(db, lbl_overall = NULL)
 dst01_2_main <- function(adam_db,
-                         lyt_fun = dst01_2_lyt,
+                         lyt_fun = list(dst01_2_lyt),
                          armvar = .study$planarm,
                          status_var = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -293,7 +293,7 @@ dst01_2_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     status = status_var,
     disc_reason_var = disc_reason_var,

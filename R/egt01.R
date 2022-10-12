@@ -22,7 +22,7 @@
 #' @export
 #'
 egt01_1_main <- function(adam_db,
-                         lyt_fun = egt01_1_lyt,
+                         lyt_fun = list(egt01_1_lyt),
                          armvar = .study$actualarm,
                          summaryvars = .study$evo_vars,
                          summaryvars_lbls = .study$evo_vars_lbls,
@@ -44,7 +44,7 @@ egt01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
-  lyt <- lyt_fun(
+  lyt <- lyt_fun[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,

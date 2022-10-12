@@ -13,7 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 vst02_1_main(
   adam_db,
-  lyt_fun = vst02_1_lyt,
+  lyt_fun = list(vst02_1_lyt),
   armvar = .study$actualarm,
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",

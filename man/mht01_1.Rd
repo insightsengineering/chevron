@@ -13,7 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 mht01_1_main(
   adam_db,
-  lyt_fun = mht01_1_lyt,
+  lyt_fun = list(mht01_1_lyt),
   armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   lbl_mhbodsys = "MedDRA System Organ Class",
