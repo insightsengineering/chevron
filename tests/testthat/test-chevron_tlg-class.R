@@ -35,7 +35,7 @@ test_that("chevron_tlg constructor accepts list of  pre-data table layout as lyt
   expect_true(validObject(res))
 })
 
-test_that("chevron_tlg constructor accepts list of  pre-data table layout and function as lyt argument", {
+test_that("chevron_tlg constructor accepts list of pre-data table layout and function as lyt argument", {
   lyt1 <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
   foo <- function(...) rtables::basic_table() %>% rtables::split_cols_by("ARM")
   lyt <- list(lyt1, foo)
