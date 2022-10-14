@@ -141,6 +141,8 @@ make_lyt_ls <- function(lyt) {
         checkmate::reportAssertions(coll)
         lyt
       }
+
+      names(res) <- names(lyt)
       res
     },
     "PreDataTableLayouts" = {

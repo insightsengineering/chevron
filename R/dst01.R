@@ -479,6 +479,7 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c
 #'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
 #'   referring to the analysis period.
 #'
+#'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status.
 #'  * Withdrawal reasons are grouped into Safety and Non-Safety issues.
@@ -501,7 +502,7 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c
 #' dst01_3_main(db)
 #' dst01_3_main(db, lbl_overall = NULL)
 dst01_3_main <- function(adam_db,
-                         lyt_ls = list(dst01_3_lyt, dst01_2_lyt),
+                         lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
                          armvar = .study$planarm,
                          status = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -522,19 +523,21 @@ dst01_3_main <- function(adam_db,
     status_treatment = status_treatment
   )
 
-  # TODO: revisit
-  status_lvl <- levels(adam_db$adsl[[status_treatment]])
-  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
-  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
-  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
+  checkmate::assert_subset(c("study", "treatment"), names(lyt_ls))
 
-  lyt <- lyt_ls[[1]](
+  # TODO: revisit
+  status_trt_lvl <- levels(adam_db$adsl[[status_treatment]])
+  completed_trt_lbl <- status_trt_lvl[grep("completed", status_trt_lvl, ignore.case = TRUE)]
+  discontinued_trt_lbl <- status_trt_lvl[grep("discontinued", status_trt_lvl, ignore.case = TRUE)]
+  ongoing_trt_lbl <- status_trt_lvl[grep("ongoing", status_trt_lvl, ignore.case = TRUE)]
+
+  lyt <- lyt_ls[["treatment"]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    completed_lbl = completed_lbl,
-    ongoing_lbl = ongoing_lbl,
-    discontinued_lbl = discontinued_lbl,
+    completed_lbl = completed_trt_lbl,
+    ongoing_lbl = ongoing_trt_lbl,
+    discontinued_lbl = discontinued_trt_lbl,
     status_treatment = status_treatment,
     ... = ...
   )
@@ -551,7 +554,7 @@ dst01_3_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- lyt_ls[[2]](
+  lyt <- lyt_ls[["study"]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -703,4 +706,9 @@ dst01_3_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_3, syn_test_data())
-dst01_3 <- chevron_tlg(dst01_3_main, list(dst01_3_lyt, dst01_2_lyt), dst01_3_pre, adam_datasets = c("adsl"))
+dst01_3 <- chevron_tlg(
+  dst01_3_main,
+  list(treatment = dst01_3_lyt, study = dst01_2_lyt),
+  dst01_3_pre,
+  adam_datasets = c("adsl")
+)

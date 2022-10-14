@@ -14,7 +14,7 @@
 #' @export
 #'
 dtht01_1_main <- function(adam_db,
-                          lyt_ls = list(dtht01_1_lyt, dtht01_1_opt_lyt),
+                          lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
                           armvar = .study$actualarm,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
@@ -28,13 +28,14 @@ dtht01_1_main <- function(adam_db,
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl")
 
+  checkmate::assert_subset("causes", names(lyt_ls))
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
   checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
   checkmate::assert_flag(time_since_last_dose)
   checkmate::assert_flag(other_category)
 
 
-  lyt <- lyt_ls[[1]](
+  lyt <- lyt_ls[["causes"]](
     armvar = armvar,
     other_category = other_category,
     lbl_overall = lbl_overall,
@@ -45,9 +46,11 @@ dtht01_1_main <- function(adam_db,
   tbl <- build_table(lyt, dbsel$adsl)
 
   if (time_since_last_dose) {
-    assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-    lyt2 <- lyt_ls[[2]](
+    checkmate::assert_subset("time_since_last_dose", names(lyt_ls))
+    checkmate::assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
+
+    lyt2 <- lyt_ls[["time_since_last_dose"]](
       armvar = armvar,
       lbl_overall = lbl_overall,
       deco = deco,
@@ -196,4 +199,8 @@ dtht01_1_pre <- function(adam_db, ...) {
 #'
 #' run(dtht01_1, db)
 #' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
-dtht01_1 <- chevron_tlg(dtht01_1_main, list(dtht01_1_lyt, dtht01_1_opt_lyt), dtht01_1_pre, adam_datasets = c("adsl"))
+dtht01_1 <- chevron_tlg(
+  dtht01_1_main,
+  list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
+  dtht01_1_pre, adam_datasets = c("adsl")
+)

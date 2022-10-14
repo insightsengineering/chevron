@@ -14,7 +14,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 dtht01_1_main(
   adam_db,
-  lyt_ls = list(dtht01_1_lyt, dtht01_1_opt_lyt),
+  lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
   armvar = .study$actualarm,
   time_since_last_dose = FALSE,
   other_category = FALSE,

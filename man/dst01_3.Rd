@@ -13,7 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 dst01_3_main(
   adam_db,
-  lyt_ls = list(dst01_3_lyt, dst01_2_lyt),
+  lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
   armvar = .study$planarm,
   status = .study$status_var,
   disc_reason_var = .study$disc_reason_var,
