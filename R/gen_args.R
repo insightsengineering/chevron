@@ -2,7 +2,7 @@
 #' General Argument Name Convention
 #'
 #' @param adam_db (`dm`) object containing the `ADaM` datasets
-#' @param lyt_ls (`list of functions`) creating `Pre-data Table Layout`.
+#' @param lyt_ls (a single `function` or `PreDataTableLayouts` or `list` of either `functions` or `PreDataTableLayouts` elements) typically one of the `_lyt` function of `chevron`.
 #' @param plot_ls (`list of functions`) creating a `ggplot` object.
 #' @param armvar (`character`) variable used for column splitting
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content

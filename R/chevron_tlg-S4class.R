@@ -62,8 +62,7 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @describeIn chevron_tlg Default Constructor
 #'
 #' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
-#' @param lyt  (`function`, `list of functions`, `PreDataTableLayouts` or `list of PreDataTableLayouts`) typically one of the `_lyt` function
-#'   of `chevron`.
+#' @param lyt  (a single `function` or `PreDataTableLayouts` or `list` of either `functions` or `PreDataTableLayouts` elements) typically one of the `_lyt` function of `chevron`.
 #' @param preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`.
