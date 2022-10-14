@@ -37,7 +37,8 @@
 
 methods::setValidity("chevron_tlg", function(object) {
   coll <- checkmate::makeAssertCollection()
-  checkmate::assert_function(object@main, args = c("adam_db", "..."), add = coll)
+  checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
+  checkmate::assert_function(object@main, args = c("..."), add = coll)
   checkmate::assert_list(object@lyt, types = "function", add = coll)
   for (i in seq_along(object@lyt)) {
     checkmate::assert_function(
@@ -47,9 +48,10 @@ methods::setValidity("chevron_tlg", function(object) {
       .var.name = paste("Element", i, "of the lyt slot")
     )
   }
-  checkmate::assert_function(object@preprocess, args = c("adam_db", "..."), add = coll)
-  checkmate::assert_function(object@postprocess, args = c("tlg", "..."), add = coll)
-
+  checkmate::assert_function(object@preprocess, args = c("adam_db"), ordered = TRUE, add = coll)
+  checkmate::assert_function(object@preprocess, args = c("..."), add = coll)
+  checkmate::assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
+  checkmate::assert_function(object@postprocess, args = c("..."), add = coll)
   checkmate::reportAssertions(coll)
 })
 
@@ -60,12 +62,12 @@ methods::setValidity("chevron_tlg", function(object) {
 #' @describeIn chevron_tlg Default Constructor
 #'
 #' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
-#' @param lyt  (`function`, `list of functions` or `PreDataTableLayouts`) typically one of the `_lyt` function
+#' @param lyt  (`function`, `list of functions`, `PreDataTableLayouts` or `list of PreDataTableLayouts`) typically one of the `_lyt` function
 #'   of `chevron`.
 #' @param preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`.
-#' @param adam_datasets (`character`) representing the name of the table from an `AdAM` dataset required for `tlg`
+#' @param adam_datasets (`character`) representing the name of the table from an `ADaM` dataset required for `tlg`
 #'   creation.
 #'
 #' @include utils.R
@@ -80,7 +82,7 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
                         adam_datasets = NA_character_) {
   res <- .chevron_tlg(
     main = main,
-    lyt = make_lyt_fun(lyt),
+    lyt = make_lyt_ls(lyt),
     preprocess = preprocess,
     postprocess = postprocess,
     adam_datasets = adam_datasets
@@ -91,7 +93,7 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
 }
 
 
-#' Layout function constructor
+#' Layout List Constructor
 #'
 #' @inheritParams chevron_tlg
 #'
@@ -99,16 +101,13 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
 #'
 #' @examples
 #' \dontrun{
-#' my_call <- quote(rtables::basic_table() %>% rtables::split_cols_by("ARM"))
-#' lyt1 <- make_lyt_fun(my_call)
-#'
 #' my_obj <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
-#' lyt2 <- make_lyt_fun(my_obj)
+#' lyt2 <- make_lyt_ls(my_obj)
 #'
 #' my_fun <- function(arm = "ARM", ...) rtables::basic_table() %>% rtables::split_cols_by(arm)
-#' lyt3 <- make_lyt_fun(my_fun)
+#' lyt3 <- make_lyt_ls(my_fun)
 #' }
-make_lyt_fun <- function(lyt) {
+make_lyt_ls <- function(lyt) {
   cl <- class(lyt)
 
   switch(cl,
@@ -118,21 +117,36 @@ make_lyt_fun <- function(lyt) {
     },
     "list" = {
       coll <- checkmate::makeAssertCollection()
+      res <- list()
       for (i in seq_along(lyt)) {
-        checkmate::assert_function(
-          lyt[[i]],
-          args = "...",
-          add = coll,
-          .var.name = paste("Element", i, "of the layout input")
-        )
+        obj <- lyt[[i]]
+        res[[i]] <- if (is(obj, "function")) {
+          checkmate::assert_function(
+            lyt[[i]],
+            args = "...",
+            add = coll,
+            .var.name = paste("Element", i, "of the layout input")
+          )
+          obj
+        } else if (is(obj, "PreDataTableLayouts")) {
+          arg <- as.pairlist(alist(... = )) # nolint
+          eval(call("function", arg, obj))
+        } else {
+          checkmate::assert_multi_class(
+            obj,
+            c("function", "PreDataTableLayouts"),
+            .var.name = paste("Element", i, "of the layout input")
+          )
+        }
+        checkmate::reportAssertions(coll)
+        lyt
       }
-      checkmate::reportAssertions(coll)
-      lyt
+      res
     },
     "PreDataTableLayouts" = {
       arg <- as.pairlist(alist(... = )) # nolint
       list(eval(call("function", arg, lyt)))
     },
-    stop(paste("lyt must be a `function`, `list of functions` or `PreDataTableLayouts` but is", cl))
+    stop(paste("lyt must be a `function`, `list of functions` or `PreDataTableLayouts` but is", toString(cl)))
   )
 }

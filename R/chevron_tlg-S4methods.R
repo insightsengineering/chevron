@@ -10,7 +10,7 @@
 #' @param object (`chevron_tlg`) input.
 #' @param ... extra arguments to pass to the check, pre-processing or `tlg` functions.
 #'
-#' @aliases run
+#' @name run
 #' @export
 setGeneric("run", function(object, adam_db, ...) standardGeneric("run"))
 
@@ -39,14 +39,12 @@ setMethod(
 #' Retrieve Main
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @aliases main
-#' @name main
 #' @export
-setGeneric("main", function(x, ...) standardGeneric("main"))
+setGeneric("main", function(x) standardGeneric("main"))
 
-#' @rdname get_main
+#' @rdname main
 #' @export
 setMethod(
   f = "main",
@@ -58,13 +56,12 @@ setMethod(
 
 #' Set Main Function
 #'
-#' @inheritParams chevron_tlg
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
+#' @param value (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
 #'
 #' @rdname main
 #' @export
-setGeneric("main<-", function(x, value, ...) standardGeneric("main<-"))
+setGeneric("main<-", function(x, value) standardGeneric("main<-"))
 
 #' @rdname main
 #' @export
@@ -83,14 +80,12 @@ setMethod(
 #' Retrieve Layout
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
 #'
-#' @aliases layout
-#' @name layout
+#' @name lyt
 #' @export
-setGeneric("lyt", function(x, ...) standardGeneric("lyt"))
+setGeneric("lyt", function(x) standardGeneric("lyt"))
 
-#' @rdname layout
+#' @rdname lyt
 #' @export
 setMethod(
   f = "lyt",
@@ -102,21 +97,21 @@ setMethod(
 
 #' Set Layout Function
 #'
-#' @inheritParams chevron_tlg
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
+#' @param value (`function`, `list of functions`, `PreDataTableLayouts` or `list of PreDataTableLayouts`) typically one
+#'   of the `_lyt` function of `chevron`.
 #'
-#' @rdname layout
+#' @rdname lyt
 #' @export
-setGeneric("lyt<-", function(x, value, ...) standardGeneric("lyt<-"))
+setGeneric("lyt<-", function(x, value) standardGeneric("lyt<-"))
 
-#' @rdname layout
+#' @rdname lyt
 #' @export
 setMethod(
   f = "lyt<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
-    lyt_proc <- make_lyt_fun(value)
+    lyt_proc <- make_lyt_ls(value)
     x@lyt <- lyt_proc
     validObject(x)
     x
@@ -128,12 +123,10 @@ setMethod(
 #' Retrieve Preprocess
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @aliases preprocess
-#' @name preprocess
 #' @export
-setGeneric("preprocess", function(x, ...) standardGeneric("preprocess"))
+setGeneric("preprocess", function(x) standardGeneric("preprocess"))
 
 #' @rdname preprocess
 #' @export
@@ -147,13 +140,13 @@ setMethod(
 
 #' Set Preprocess Function
 #'
-#' @inheritParams chevron_tlg
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
+#' @param value  (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
+#'   `_pre` function of `chevron`.
 #'
 #' @rdname preprocess
 #' @export
-setGeneric("preprocess<-", function(x, value, ...) standardGeneric("preprocess<-"))
+setGeneric("preprocess<-", function(x, value) standardGeneric("preprocess<-"))
 
 #' @rdname preprocess
 #' @export
@@ -172,12 +165,10 @@ setMethod(
 #' Retrieve Postprocess
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @aliases postprocess
-#' @name postprocess
 #' @export
-setGeneric("postprocess", function(x, ...) standardGeneric("postprocess"))
+setGeneric("postprocess", function(x) standardGeneric("postprocess"))
 
 #' @rdname postprocess
 #' @export
@@ -191,13 +182,12 @@ setMethod(
 
 #' Set Postprocess Function
 #'
-#' @inheritParams chevron_tlg
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
+#' @param value (`function`) returning a post-processed `tlg`.
 #'
 #' @rdname postprocess
 #' @export
-setGeneric("postprocess<-", function(x, value, ...) standardGeneric("postprocess<-"))
+setGeneric("postprocess<-", function(x, value) standardGeneric("postprocess<-"))
 
 #' @rdname postprocess
 #' @export
@@ -216,12 +206,10 @@ setMethod(
 #' Retrieve Data Sets
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @aliases datasets
-#' @name datasets
 #' @export
-setGeneric("datasets", function(x, ...) standardGeneric("datasets"))
+setGeneric("datasets", function(x) standardGeneric("datasets"))
 
 #' @rdname datasets
 #' @export
@@ -235,13 +223,12 @@ setMethod(
 
 #' Set Data Sets
 #'
-#' @inheritParams chevron_tlg
 #' @param x (`chevron_tlg`) input.
-#' @param ... not used.
+#' @param value (`character`) representing the name of the table from an `ADaM` dataset required for `tlg` creation.
 #'
 #' @rdname datasets
 #' @export
-setGeneric("datasets<-", function(x, value, ...) standardGeneric("datasets<-"))
+setGeneric("datasets<-", function(x, value) standardGeneric("datasets<-"))
 
 #' @rdname datasets
 #' @export
@@ -260,11 +247,10 @@ setMethod(
 #' Retrieve Main Function
 #'
 #' @param object (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @aliases get_main
 #' @export
-setGeneric("get_main", function(object, ...) standardGeneric("get_main"))
+setGeneric("get_main", function(object) standardGeneric("get_main"))
 
 #' @rdname get_main
 #' @export
@@ -282,11 +268,10 @@ setMethod(
 #' Retrieve pre-processing Function
 #'
 #' @param object (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @aliases get_preprocess
 #' @export
-setGeneric("get_preprocess", function(object, ...) standardGeneric("get_preprocess"))
+setGeneric("get_preprocess", function(object) standardGeneric("get_preprocess"))
 
 #' @rdname get_preprocess
 #' @export
@@ -304,11 +289,10 @@ setMethod(
 #' Retrieve post-processing Function
 #'
 #' @param object (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @aliases get_postprocess
 #' @export
-setGeneric("get_postprocess", function(object, ...) standardGeneric("get_postprocess"))
+setGeneric("get_postprocess", function(object) standardGeneric("get_postprocess"))
 
 #' @rdname get_postprocess
 #' @export
@@ -326,11 +310,10 @@ setMethod(
 #' Retrieve names of datasets associated with the object
 #'
 #' @param object (`chevron_tlg`) input.
-#' @param ... not used.
 #'
 #' @export
 #' @aliases get_adam_datasets
-setGeneric("get_adam_datasets", function(object, ...) standardGeneric("get_adam_datasets"))
+setGeneric("get_adam_datasets", function(object) standardGeneric("get_adam_datasets"))
 
 #' @rdname get_adam_datasets
 #' @export

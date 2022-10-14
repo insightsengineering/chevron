@@ -13,7 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 dst01_2_main(
   adam_db,
-  lyt_fun = list(dst01_2_lyt),
+  lyt_ls = list(dst01_2_lyt),
   armvar = .study$planarm,
   status_var = .study$status_var,
   disc_reason_var = .study$disc_reason_var,
@@ -52,7 +52,7 @@ dst01_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_fun}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

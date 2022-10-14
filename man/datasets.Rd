@@ -7,18 +7,18 @@
 \alias{datasets<-,chevron_tlg-method}
 \title{Retrieve Data Sets}
 \usage{
-datasets(x, ...)
+datasets(x)
 
 \S4method{datasets}{chevron_tlg}(x)
 
-datasets(x, ...) <- value
+datasets(x) <- value
 
 \S4method{datasets}{chevron_tlg}(x) <- value
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
-\item{...}{not used.}
+\item{value}{(\code{character}) representing the name of the table from an \code{ADaM} dataset required for \code{tlg} creation.}
 }
 \description{
 Retrieve Data Sets

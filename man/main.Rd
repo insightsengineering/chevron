@@ -2,20 +2,23 @@
 % Please edit documentation in R/chevron_tlg-S4methods.R
 \name{main}
 \alias{main}
+\alias{main,chevron_tlg-method}
 \alias{main<-}
 \alias{main<-,chevron_tlg-method}
 \title{Retrieve Main}
 \usage{
-main(x, ...)
+main(x)
 
-main(x, ...) <- value
+\S4method{main}{chevron_tlg}(x)
+
+main(x) <- value
 
 \S4method{main}{chevron_tlg}(x) <- value
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
-\item{...}{not used.}
+\item{value}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{_main} function of \code{chevron}.}
 }
 \description{
 Retrieve Main

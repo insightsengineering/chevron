@@ -5,14 +5,12 @@
 \alias{get_preprocess,chevron_tlg-method}
 \title{Retrieve pre-processing Function}
 \usage{
-get_preprocess(object, ...)
+get_preprocess(object)
 
 \S4method{get_preprocess}{chevron_tlg}(object)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
-
-\item{...}{not used.}
 }
 \description{
 Retrieve pre-processing Function

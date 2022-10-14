@@ -7,18 +7,18 @@
 \alias{postprocess<-,chevron_tlg-method}
 \title{Retrieve Postprocess}
 \usage{
-postprocess(x, ...)
+postprocess(x)
 
 \S4method{postprocess}{chevron_tlg}(x)
 
-postprocess(x, ...) <- value
+postprocess(x) <- value
 
 \S4method{postprocess}{chevron_tlg}(x) <- value
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
-\item{...}{not used.}
+\item{value}{(\code{function}) returning a post-processed \code{tlg}.}
 }
 \description{
 Retrieve Postprocess

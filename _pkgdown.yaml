@@ -30,12 +30,15 @@ reference:
   - title: Methods
     contents:
       - run
+      - main
+      - lyt
+      - preprocess
+      - postprocess
+      - datasets
       - get_main
-      - get_lyt
       - get_preprocess
       - get_postprocess
       - get_adam_datasets
-      - layout
 
   - title: chevron_tlg objects
     contents:

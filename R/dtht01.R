@@ -14,7 +14,7 @@
 #' @export
 #'
 dtht01_1_main <- function(adam_db,
-                          lyt_fun = list(dtht01_1_lyt, dtht01_1_opt_lyt),
+                          lyt_ls = list(dtht01_1_lyt, dtht01_1_opt_lyt),
                           armvar = .study$actualarm,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
@@ -34,7 +34,7 @@ dtht01_1_main <- function(adam_db,
   checkmate::assert_flag(other_category)
 
 
-  lyt <- lyt_fun[[1]](
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     other_category = other_category,
     lbl_overall = lbl_overall,
@@ -47,7 +47,7 @@ dtht01_1_main <- function(adam_db,
   if (time_since_last_dose) {
     assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-    lyt2 <- lyt_fun[[2]](
+    lyt2 <- lyt_ls[[2]](
       armvar = armvar,
       lbl_overall = lbl_overall,
       deco = deco,

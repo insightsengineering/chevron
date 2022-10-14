@@ -13,7 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 egt01_1_main(
   adam_db,
-  lyt_fun = list(egt01_1_lyt),
+  lyt_ls = list(egt01_1_lyt),
   armvar = .study$actualarm,
   summaryvars = .study$evo_vars,
   summaryvars_lbls = .study$evo_vars_lbls,
@@ -45,7 +45,7 @@ egt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_fun}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

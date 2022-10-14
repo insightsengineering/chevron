@@ -26,6 +26,15 @@ test_that("chevron_tlg constructor accepts list of functions as lyt argument", {
   expect_true(validObject(res))
 })
 
+test_that("chevron_tlg constructor accepts list of  pre-data table layout as lyt argument", {
+  lyt1 <- function(...) rtables::basic_table() %>% rtables::split_cols_by("ARM")
+  lyt2 <- function(...) rtables::basic_table()
+  lyt <- list(lyt1, lyt2)
+
+  res <- expect_silent(chevron_tlg(lyt = lyt))
+  expect_true(validObject(res))
+})
+
 test_that("chevron_tlg constructor returns an error if lyt function doesn't have the formal argument ...", {
   foo <- function(x) rtables::basic_table() %>% rtables::split_cols_by("ARM")
   expect_error(chevron_tlg(lyt = foo), "Assertion on 'lyt' failed: Must have formal arguments: ....")

@@ -7,18 +7,19 @@
 \alias{preprocess<-,chevron_tlg-method}
 \title{Retrieve Preprocess}
 \usage{
-preprocess(x, ...)
+preprocess(x)
 
 \S4method{preprocess}{chevron_tlg}(x)
 
-preprocess(x, ...) <- value
+preprocess(x) <- value
 
 \S4method{preprocess}{chevron_tlg}(x) <- value
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
-\item{...}{not used.}
+\item{value}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
+\verb{_pre} function of \code{chevron}.}
 }
 \description{
 Retrieve Preprocess
