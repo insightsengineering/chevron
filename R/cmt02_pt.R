@@ -82,16 +82,27 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
 cmt02_pt_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(
       CMSEQ = as.factor(.data$CMSEQ),
       DOMAIN = "CM"
     ) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    CMDECOD = list(
+      "No Coding available" = c("", NA)
+    ),
+    CMSEQ = list(
+      "<Missing>" = c("", NA)
+    )
+  )
+
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
