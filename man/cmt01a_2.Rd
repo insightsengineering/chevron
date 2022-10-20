@@ -33,7 +33,8 @@ cmt01a_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -77,6 +78,12 @@ the specific medication.
 \item \code{cmt01a_2_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{medcat_var} and \code{medname_var} as well
+as "CMSEQ".
+}
+}
 \examples{
 library(magrittr)
 library(dm)

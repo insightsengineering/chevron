@@ -46,7 +46,8 @@ ext01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -79,7 +80,7 @@ patients in the corresponding analysis population given by \code{N}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sorted by alphabetic order of the \code{PARAM} value. Transform to factor and re-level for custom order.
-\item \code{ANL01FL} is not relevant subset
+\item \code{ANL01FL} is not relevant subset.
 }
 }
 \section{Functions}{
@@ -91,6 +92,11 @@ patients in the corresponding analysis population given by \code{N}.
 \item \code{ext01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adex} table with columns specified in \code{summaryvars}.
+}
+}
 \examples{
 run(ext01_1, syn_test_data())
 }

@@ -12,6 +12,9 @@
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
+#' @note
+#'   * `adam_db` object must contain an `advs` table with the "PARAM", "ANRIND" and "BNRIND" columns.
+#'
 #' @export
 #'
 vst02_1_main <- function(adam_db,
@@ -140,6 +143,9 @@ vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_lyt, vst02_1_pre, adam_datasets = c
 #'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
+#'
+#' @note
+#'   * `adam_db` object must contain an `advs` table with the "PARAM", "ANRIND" and "BNRIND" columns.
 #'
 #' @export
 #'

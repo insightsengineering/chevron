@@ -9,6 +9,9 @@
 #'  * Order by decreasing total number of patients with the specific medication.
 #'  * Does not include a total column by default.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adcm` table with the columns "CMDECOD" and "CMSEQ".
+#'
 #' @export
 #'
 cmt02_pt_1_main <- function(adam_db,

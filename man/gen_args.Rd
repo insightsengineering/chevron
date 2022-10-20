@@ -22,7 +22,8 @@ gen_args(
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
 

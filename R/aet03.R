@@ -12,6 +12,9 @@
 #'  * Does not include a total column by default.
 #'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns "AESEV", "AEBODSYS" and "AEDECOD".
+#'
 #' @export
 #'
 aet03_1_main <- function(adam_db,
@@ -25,8 +28,9 @@ aet03_1_main <- function(adam_db,
                            lbl_overall = NULL
                          ),
                          ...) {
+  assert_colnames(adam_db$adae, c("AESEV", "AEBODSYS", "AEDECOD"))
+
   # specific to AET03: avoid error if some severity levels are not present
-  # TODO: rename all gradation to grade or grading (depending on context)
   severity_grade <- levels(adam_db$adae[["AESEV"]])
 
   lyt <- lyt_ls[[1]](

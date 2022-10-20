@@ -52,7 +52,8 @@ dst01_3
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -112,6 +113,13 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 \item \code{dst01_3_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the column specified in \code{status}, \code{status_treatment} and
+\code{disc_reason_var}.
+\item \code{lyt_ls} must contain a "treatment" and a "study" element.
+}
+}
 \examples{
 library(dm)
 library(magrittr)

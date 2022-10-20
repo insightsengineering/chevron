@@ -16,6 +16,9 @@
 #'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
 #'  patients with the specific condition.
 #'
+#' @note
+#'   * `adam_db` object must contain an `admh` table with columns "MHBODSYS" and "MHDECOD".
+#'
 #' @export
 #'
 mht01_1_main <- function(adam_db,

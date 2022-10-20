@@ -16,6 +16,9 @@
 #'  * Split columns by arm (planned or actual / code or description)
 #'  * Include a total column by default
 #'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the columns specified in `summaryvars`.
+#'
 #' @export
 #'
 #' @examples
@@ -113,7 +116,11 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
-    summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+    summarize_vars(
+      vars = summaryvars,
+      var_labels = summaryvars_lbls,
+      .formats = list(count_fraction = "xx.x (xx.x%)")
+    )
 }
 
 #' @describeIn dmt01_1 Preprocessing
@@ -155,4 +162,7 @@ dmt01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
+#'
+#' @examples
+#' run(dmt01_1, syn_test_data(), summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_lyt, dmt01_1_pre, adam_datasets = c("adsl"))

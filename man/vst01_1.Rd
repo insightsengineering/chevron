@@ -45,7 +45,8 @@ vst01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -95,6 +96,11 @@ by \code{AVISIT}. Re-level to customize order
 \item \code{vst01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{advs} table with the columns specified in \code{summaryvars}.
+}
+}
 \examples{
 
 db <- syn_test_data()

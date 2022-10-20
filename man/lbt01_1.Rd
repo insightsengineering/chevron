@@ -44,7 +44,8 @@ lbt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -81,7 +82,7 @@ median and range of changes relative to the baseline.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sorted  based on factor level; first by \code{PARAM} labels in alphabetic order then by chronological time point given
-by \code{AVISIT}. Re-level to customize order
+by \code{AVISIT}. Re-level to customize order.
 }
 }
 \section{Functions}{
@@ -93,6 +94,11 @@ by \code{AVISIT}. Re-level to customize order
 \item \code{lbt01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adlb} table with columns specified in \code{summaryvars}.
+}
+}
 \examples{
 run(lbt01_1, syn_test_data())
 }

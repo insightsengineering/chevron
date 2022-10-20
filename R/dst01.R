@@ -490,6 +490,11 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the column specified in `status`, `status_treatment` and
+#'  `disc_reason_var`.
+#'  * `lyt_ls` must contain a "treatment" and a "study" element.
+#'
 #' @export
 #'
 #' @examples

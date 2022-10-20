@@ -41,7 +41,8 @@ aet03_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -84,6 +85,11 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 \item \code{aet03_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns "AESEV", "AEBODSYS" and "AEDECOD".
+}
+}
 \examples{
 run(aet03_1, syn_test_data())
 }

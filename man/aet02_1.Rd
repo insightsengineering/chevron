@@ -48,7 +48,8 @@ aet02_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -93,6 +94,11 @@ events categorized by Body System and Dictionary-Derived Term.
 \item \code{aet02_1_check()}: Checks
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns "AEBODSYS" and "AEDECOD".
+}
+}
 \examples{
 run(aet02_1, syn_test_data())
 }

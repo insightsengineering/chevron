@@ -49,7 +49,8 @@ dtht01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -89,6 +90,13 @@ A description of the causes of death optionally with the breakdown of the
 \item \code{dtht01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the columns "DTHFL", "DTHCAT" as well as \code{LDDTHGR1} if
+\code{time_since_last_dose} is \code{TRUE}.
+\item \code{lyt_ls} must contain a "causes" and, if \code{time_since_last_dose} is \code{TRUE}, a "time_since_last_dose" element.
+}
+}
 \examples{
 
 db <- syn_test_data()

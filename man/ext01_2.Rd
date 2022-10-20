@@ -45,7 +45,8 @@ ext01_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -93,6 +94,11 @@ patients in the corresponding analysis population given by \code{N}.
 \item \code{ext01_2_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adex} table with columns specified in \code{summaryvars}.
+}
+}
 \examples{
 run(ext01_2, syn_test_data())
 }

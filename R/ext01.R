@@ -13,7 +13,10 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
-#'  * `ANL01FL` is not relevant subset
+#'  * `ANL01FL` is not relevant subset.
+#'
+#' @note
+#'   * `adam_db` object must contain an `adex` table with columns specified in `summaryvars`.
 #'
 #' @export
 #'
@@ -142,6 +145,9 @@ ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_lyt, ext01_1_pre, adam_datasets = c
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
 #'  * `ANL01FL` is not relevant subset
 #'
+#' @note
+#'   * `adam_db` object must contain an `adex` table with columns specified in `summaryvars`.
+#'
 #' @export
 #'
 ext01_2_main <- function(adam_db,
@@ -204,7 +210,12 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
       "PARAM",
       split_fun = NULL
     ) %>%
-    summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
+    summarize_vars(
+      vars = summaryvars,
+      show_labels = "hidden",
+      var_labels = summaryvars_lbls,
+      .formats = list(count_fraction = "xx.x (xx.x%)")
+    )
 }
 
 #' @describeIn ext01_2 Preprocessing

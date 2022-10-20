@@ -16,7 +16,10 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
-#'  by `AVISIT`. Re-level to customize order
+#'  by `AVISIT`. Re-level to customize order.
+#'
+#' @note
+#'   * `adam_db` object must contain an `adlb` table with columns specified in `summaryvars`.
 #'
 #' @export
 #'

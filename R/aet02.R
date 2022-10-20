@@ -12,6 +12,10 @@
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
 #'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns "AEBODSYS" and "AEDECOD".
+#'
+#'
 #' @export
 #'
 aet02_1_main <- function(adam_db,
@@ -26,6 +30,8 @@ aet02_1_main <- function(adam_db,
                          ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
+
+  assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))
 
   lyt <- lyt_ls[[1]](
     armvar = armvar,
@@ -186,6 +192,10 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_lyt, aet02_1_pre, adam_datasets = c
 #'  frequencies.
 #'  * Missing values of `AEBODSYS`, `AEHLT` and `AEDECOD` in `adae` are labeled by `No Coding available`.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns "AEBODSYS", "AEHLT" and "AEDECOD".
+#'
+#'
 #' @export
 #'
 aet02_2_main <- function(adam_db,
@@ -200,6 +210,8 @@ aet02_2_main <- function(adam_db,
                          ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
+
+  assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "AEHLT"))
 
   lyt <- lyt_ls[[1]](
     armvar = armvar,
@@ -356,6 +368,9 @@ aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_lyt, aet02_2_pre, adam_datasets = c
 #'  * Sort Dictionary-Derived Code by highest overall frequencies.
 #'  * Missing values of `AEDECOD` in `aead` are labeled by `No Coding available`.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the column "AEDECOD".
+#'
 #' @export
 #'
 aet02_3_main <- function(adam_db,
@@ -369,6 +384,8 @@ aet02_3_main <- function(adam_db,
                            lbl_overall = NULL
                          ),
                          ...) {
+  assert_colnames(adam_db$adae, c("AEDECOD"))
+
   lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,

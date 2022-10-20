@@ -14,6 +14,9 @@
 #'  * Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
 #'  Grade is sorted by severity.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns "AETOXGR", "AEBODSYS" and "AEDECOD".
+#'
 #' @export
 #'
 aet04_1_main <- function(adam_db,
@@ -29,6 +32,8 @@ aet04_1_main <- function(adam_db,
                            group_grades = NULL
                          ),
                          ...) {
+  assert_colnames(adam_db$adae, c("AETOXGR", "AEBODSYS", "AEDECOD"))
+
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 

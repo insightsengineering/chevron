@@ -26,6 +26,10 @@
 #'   values of `armvar` with color names.
 #' @param ... not used.
 #'
+#' @note
+#'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x`, `y`, `y_name`,
+#'  `y_unit` and `armvar`.
+#'
 #' @return a list of `ggplot` objects.
 #' @export
 mng01_1_main <- function(adam_db,

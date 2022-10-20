@@ -37,7 +37,8 @@ cmt02_pt_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -71,6 +72,11 @@ number of subjects and the total number of treatments by medication name sorted 
 \item \code{cmt02_pt_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adcm} table with the columns "CMDECOD" and "CMSEQ".
+}
+}
 \examples{
 run(cmt02_pt_1, syn_test_data())
 }

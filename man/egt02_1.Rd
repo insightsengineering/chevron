@@ -41,7 +41,8 @@ egt02_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -80,6 +81,11 @@ Baseline Table.
 \item \code{egt02_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adeg} table with the "PARAM", "ANRIND" and "BNRIND" columns.
+}
+}
 \examples{
 run(egt02_1, syn_test_data())
 }

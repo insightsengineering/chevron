@@ -133,6 +133,12 @@ Overview of a summary statistics across time and arm for a selected data set.
 \item \code{mng01_1_post()}: Postprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x}, \code{y}, \code{y_name},
+\code{y_unit} and \code{armvar}.
+}
+}
 \examples{
 library(dm)
 library(dplyr)

@@ -52,7 +52,8 @@ aet02_3_main(
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{lyt_ls}{(\verb{list of functions}) creating \verb{Pre-data Table Layout}.}
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -107,6 +108,15 @@ frequencies.
 \item \code{aet02_3_main()}: Main TLG function
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns "AEBODSYS", "AEHLT" and "AEDECOD".
+}
+
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the column "AEDECOD".
+}
+}
 \examples{
 run(aet02_2, syn_test_data())
 }

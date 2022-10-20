@@ -54,7 +54,7 @@ the required table (without confidential information) is also very useful. Sever
 >
 >## Analysis filtering
 >Filtering criteria of the input
->_ex. `ANL01FL = "Y"`_
+>_ex. `ANL01FL == "Y"`_
 >
 >## Analysis population
 >The selected population, typically `SE`, `AP` or `IT`
