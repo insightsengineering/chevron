@@ -39,7 +39,7 @@ cmt01a_3_lyt(
   ...
 )
 
-cmt01a_3_pre(adam_db, ...)
+cmt01a_3_pre(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...)
 
 cmt01a_3
 }

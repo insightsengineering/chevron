@@ -131,21 +131,34 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 
 #' @describeIn cmt01a_1 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams cmt01a_1_main
+#'
 #' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_1_pre <- function(adam_db, ...) {
+cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    medcat_var = list(
+      "No Coding available" = c("", NA)
+    ),
+    medname_var = list(
+      "No Coding available" = c("", NA)
+    )
+  )
+
+  names(fmt_ls) <- c(medcat_var, medname_var)
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
@@ -247,21 +260,33 @@ cmt01a_2_main <- function(adam_db,
 
 #' @describeIn cmt01a_2 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams cmt01a_2_main
 #' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_2_pre <- function(adam_db, ...) {
+cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    medcat_var = list(
+      "No Coding available" = c("", NA)
+    ),
+    medname_var = list(
+      "No Coding available" = c("", NA)
+    )
+  )
+
+  names(fmt_ls) <- c(medcat_var, medname_var)
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
@@ -358,12 +383,7 @@ cmt01a_3_main <- function(adam_db,
 
 #' @describeIn cmt01a_3 Layout
 #'
-#' @inheritParams gen_args
-#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`character`) the label for the medication category.
-#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`character`) the label for the medication name.
-#' @param ... not used.
+#' @inheritParams cmt01a_3_main
 #'
 #' @export
 #'
@@ -418,21 +438,33 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
 
 #' @describeIn cmt01a_3 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams cmt01a_3_main
 #' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_3_pre <- function(adam_db, ...) {
+cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    medcat_var = list(
+      "No Coding available" = c("", NA)
+    ),
+    medname_var = list(
+      "No Coding available" = c("", NA)
+    )
+  )
+
+  names(fmt_ls) <- c(medcat_var, medname_var)
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of

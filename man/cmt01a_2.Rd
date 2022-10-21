@@ -26,7 +26,7 @@ cmt01a_2_main(
   ...
 )
 
-cmt01a_2_pre(adam_db, ...)
+cmt01a_2_pre(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...)
 
 cmt01a_2
 }
