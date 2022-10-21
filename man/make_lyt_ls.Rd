@@ -7,8 +7,10 @@
 make_lyt_ls(lyt)
 }
 \arguments{
-\item{lyt}{(a single \code{function} or \code{PreDataTableLayouts} or \code{list} of either \code{functions} or \code{PreDataTableLayouts}
-elements) typically one of the \verb{_lyt} function of \code{chevron}.}
+\item{lyt}{(a single \code{function} returning \code{PreDataTableLayouts} object or \code{PreDataTableLayouts} object or \code{list} of
+either \code{functions} or \code{PreDataTableLayouts} type of elements) typically one of the \verb{_lyt} function of \code{chevron}.
+Functions passed to \code{lyt}, whether as a single \code{function} or as a \verb{list of functions}, must have the \code{...} formal
+argument.}
 }
 \description{
 Layout List Constructor

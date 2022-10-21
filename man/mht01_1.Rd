@@ -87,7 +87,7 @@ patients with the specific condition.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{admh} table with columns "MHBODSYS" and "MHDECOD".
+\item \code{adam_db} object must contain an \code{admh} table with columns \code{"MHBODSYS"} and \code{"MHDECOD"}.
 }
 }
 \examples{

@@ -87,7 +87,7 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with the columns "AESEV", "AEBODSYS" and "AEDECOD".
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AESEV"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
 }
 }
 \examples{

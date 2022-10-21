@@ -88,7 +88,7 @@ Grade is sorted by severity.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with the columns "AETOXGR", "AEBODSYS" and "AEDECOD".
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AETOXGR"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
 }
 }
 \examples{

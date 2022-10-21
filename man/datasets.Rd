@@ -5,7 +5,7 @@
 \alias{datasets,chevron_tlg-method}
 \alias{datasets<-}
 \alias{datasets<-,chevron_tlg-method}
-\title{Retrieve Data Sets}
+\title{\code{Datasets}}
 \usage{
 datasets(x)
 
@@ -21,7 +21,5 @@ datasets(x) <- value
 \item{value}{(\code{character}) representing the name of the table from an \code{ADaM} dataset required for \code{tlg} creation.}
 }
 \description{
-Retrieve Data Sets
-
-Set Data Sets
+retrieve or set \code{adam_dataset}.
 }

@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Chevron"
-date: "`r Sys.Date()`"
+date: "2022-10-21"
 author: Adrian Waddell
 output: rmarkdown::html_vignette
 vignette: >
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 The `chevron` R package provides functions to produce standard tables, listings and graphs (TLGs) used to analyze and
 report clinical trials data. The ensemble of function used to produce a particular output are stored in an
 `chevron_tlg` object of class `S4`.
-Each standard output is associated with one  *`chevron_tlg` object*. They contain the following objects:
+Each standard output is associated with one  *`chevron_tlg` object*. They contain the following objects in separate slots:
 * A `main` function also refereed to as *TLG-function*.
 * A `lyt` list of functions also refereed to as *Layout-list*.
 * A `preprocess` function.
@@ -51,7 +51,7 @@ variable, which variables are summarized) but not parameterize the cell content 
 1. have the `...` argument to facilitate their incorporation in a workflow including pre and post processing.
 
 ### *Layout-list*
-*Layout-list* in `chevron` are stored in each `chevron_tlg` objects as list of functions. These functions must have the formal argument `...`.
+*Layout-list* in `chevron` are stored in each `chevron_tlg` objects as list of functions in the `lyt` slot. These functions must have the formal argument `...`.
  
 ### *pre-processing*
 The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
@@ -69,7 +69,7 @@ function on the column that will be required and facilitate the checking process
 1. must have the `...` argument to facilitate their incorporation in a workflow.
 
 ### *post-processing*
-By default, the Post-processing function returns its input or a `NULL` report if the input has no rows but the slot is present to enable user-defined customization. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` and `...` as formal arguments.
+By default, the Post-processing function returns its input or a `NULL` report if the input has no rows. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` and `...` as formal arguments.
 
 ### *adam_dataset*
 The `adam_dataset` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
@@ -106,13 +106,13 @@ library(chevron)
 run(aet02_1, adam_study_data)
 ```
 
-The function associated with a particular slot can be retrieved with the corresponding method: `main`, `lyt`, `preprocess` `postprocess` and `datasets`
+The function associated with a particular slot can be retrieved with the corresponding method: `main`, `lyt`, `preprocess` `postprocess` and `datasets`.
 
 ```{r}
 main(aet02_1)
 ```
 
-These are standard function that can be used on their own
+These are standard functions that can be used on their own.
 
 ```{r}
 preprocess(aet02_1)(adam_study_data)
@@ -124,7 +124,7 @@ foo(adam_study_data)
 
 # `chevron_tlg` object customization
 
-In some instances it is useful to customize the `chevron_tlg` object, for instance by changing the pre processing functions. Be aware that you have to think carefully about argument names and compatibility with downstream functions. The `lyt` slot stores a `list of functions` but the constructor and setter method `lyt<-` can handle input of class `function`, `list of functions`, as long as they possess the formal argument `...`, or `Pre-Data Table Layout` or list of `Pre-Data Table Layout`.
+In some instances it is useful to customize the `chevron_tlg` object, for example by changing the pre processing functions. Be aware that you have to think carefully about argument names and compatibility with downstream functions. The `lyt` slot stores a `list of functions` but the constructor and setter method `lyt<-` can handle input of class `function` and `list of functions`, as long as they possess the formal argument `...`, or `Pre-Data Table Layout` or list of `Pre-Data Table Layout`.
 
 Note that this operation creates a local version of the `chevron_tlg` object. The package version of the `chevron_tlg`
 object (accessible with `chevron::aet01_1`) remains unchanged.
@@ -154,7 +154,7 @@ lyt(aet02_1)
 
 # Custom `chevron_tlg` object creation
 
-To create a `chevron_tlg` object from scratch, use the provided constructor:
+To create a `chevron_tlg` object from scratch, use the provided constructor method: `chevron_tlg()`.
 ```{r}
 
 my_pipeline <- chevron_tlg(

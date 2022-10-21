@@ -116,6 +116,11 @@ which allows the tables to be constructed and pruned separately before binding.
 \item \code{dst01_2_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the columns specified by \code{status_var} and \code{disc_reason_var}.
+}
+}
 \examples{
 library(dm)
 library(magrittr)

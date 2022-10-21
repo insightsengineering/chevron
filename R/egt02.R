@@ -13,7 +13,7 @@
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adeg` table with the "PARAM", "ANRIND" and "BNRIND" columns.
+#'   * `adam_db` object must contain an `adeg` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
 #'
 #' @export
 #'
@@ -123,7 +123,7 @@ egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_lyt, egt02_1_pre, adam_datasets = c
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adeg` table with the "PARAM", "ANRIND" and "BNRIND" columns.
+#'   * `adam_db` object must contain an `adeg` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
 #'
 #' @export
 #'

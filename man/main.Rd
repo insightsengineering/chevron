@@ -5,7 +5,7 @@
 \alias{main,chevron_tlg-method}
 \alias{main<-}
 \alias{main<-,chevron_tlg-method}
-\title{Retrieve Main}
+\title{Main}
 \usage{
 main(x)
 
@@ -21,7 +21,5 @@ main(x) <- value
 \item{value}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{_main} function of \code{chevron}.}
 }
 \description{
-Retrieve Main
-
-Set Main Function
+retrieve or set \code{main} function.
 }

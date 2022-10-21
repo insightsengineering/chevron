@@ -36,7 +36,9 @@ setMethod(
 
 # main ----
 
-#' Retrieve Main
+#' Main
+#'
+#' retrieve or set `main` function.
 #'
 #' @param x (`chevron_tlg`) input.
 #'
@@ -77,7 +79,9 @@ setMethod(
 
 # lyt ----
 
-#' Retrieve Layout
+#' Layout
+#'
+#' retrieve or set `lyt` function.
 #'
 #' @param x (`chevron_tlg`) input.
 #'
@@ -99,7 +103,8 @@ setMethod(
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param value (`function`, `list of functions`, `PreDataTableLayouts` or `list of PreDataTableLayouts`) typically one
-#'   of the `_lyt` function of `chevron`.
+#'   of the `_lyt` function of `chevron`. If a `function` or a `list of functions` is provided, they must have the `...`
+#'   formal argument.
 #'
 #' @rdname lyt
 #' @export
@@ -120,7 +125,9 @@ setMethod(
 
 # preprocess ----
 
-#' Retrieve Preprocess
+#' Preprocess
+#'
+#' retrieve or set `preprocess` function.
 #'
 #' @param x (`chevron_tlg`) input.
 #'
@@ -162,7 +169,9 @@ setMethod(
 
 # postprocess ----
 
-#' Retrieve Postprocess
+#' Postprocess
+#'
+#' retrieve or set `postprocess` function.
 #'
 #' @param x (`chevron_tlg`) input.
 #'
@@ -180,7 +189,7 @@ setMethod(
   }
 )
 
-#' Set Postprocess Function
+#' Postprocess Assignment Function
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param value (`function`) returning a post-processed `tlg`.
@@ -203,7 +212,9 @@ setMethod(
 
 # datasets ----
 
-#' Retrieve Data Sets
+#' `Datasets`
+#'
+#' retrieve or set `adam_dataset`.
 #'
 #' @param x (`chevron_tlg`) input.
 #'

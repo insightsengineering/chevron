@@ -5,7 +5,7 @@
 \alias{lyt,chevron_tlg-method}
 \alias{lyt<-}
 \alias{lyt<-,chevron_tlg-method}
-\title{Retrieve Layout}
+\title{Layout}
 \usage{
 lyt(x)
 
@@ -22,7 +22,5 @@ lyt(x) <- value
 of the \verb{_lyt} function of \code{chevron}.}
 }
 \description{
-Retrieve Layout
-
-Set Layout Function
+retrieve or set \code{lyt} function.
 }

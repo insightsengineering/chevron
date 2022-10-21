@@ -20,7 +20,7 @@
 #'  by `AVISIT`. Re-level to customize order.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adeg` table with a "PARAM" columns as well as columns specified in `summaryvars`
+#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column as well as columns specified in `summaryvars`
 #'  and `visitvar`.
 #'
 #' @export

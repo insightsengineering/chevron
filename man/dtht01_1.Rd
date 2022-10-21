@@ -92,7 +92,7 @@ A description of the causes of death optionally with the breakdown of the
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adsl} table with the columns "DTHFL", "DTHCAT" as well as \code{LDDTHGR1} if
+\item \code{adam_db} object must contain an \code{adsl} table with the columns \code{"DTHFL"}, \code{"DTHCAT"} as well as \code{LDDTHGR1} if
 \code{time_since_last_dose} is \code{TRUE}.
 \item \code{lyt_ls} must contain a "causes" and, if \code{time_since_last_dose} is \code{TRUE}, a "time_since_last_dose" element.
 }

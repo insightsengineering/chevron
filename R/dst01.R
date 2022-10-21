@@ -36,6 +36,10 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the columns specified by `status_var` and `disc_reason_var`.
+#'
+#'
 #' @export
 #'
 #' @examples
@@ -255,6 +259,9 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_lyt, dst01_1_pre, adam_datasets = c
 #'  * Split columns by arm.
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
+#'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the columns specified by `status_var` and `disc_reason_var`.
 #'
 #' @export
 #'

@@ -15,8 +15,11 @@
 #' @format NULL
 #'
 #' @note To ensure the correct execution of the workflow additional validation criteria are:
-#' * the first argument of the `main` function must be `adam_db`, the input `dm` object to pre-process.
+#' * the first argument of the `main` function must be `adam_db`, the input `dm` object to pre-process. In addition, it
+#' must possess the `...` argument.
+#' * the `lyt` function must posses the `...` argument.
 #' * the first argument of the `preprocess` function must be `adam_db`, the input `dm` object to create `tlg` output.
+#' In addition, it must possess the `...` argument.
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post-process.
 #'
 #' @aliases chevron_tlg
@@ -61,13 +64,16 @@ methods::setValidity("chevron_tlg", function(object) {
 #'
 #' @describeIn chevron_tlg Default Constructor
 #'
-#' @param main (`function`) returning a `tlg`. Typically one of the `_main` function of `chevron`.
-#' @param lyt  (a single `function` or `PreDataTableLayouts` or `list` of either `functions` or `PreDataTableLayouts`
-#'   elements) typically one of the `_lyt` function of `chevron`.
-#' @param preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
-#'   `_pre` function of `chevron`.
-#' @param postprocess (`function`) returning a post-processed `tlg`.
-#' @param adam_datasets (`character`) representing the name of the table from an `ADaM` dataset required for `tlg`
+#' @param main (`function`) returning a `tlg`, with `adam_db` as first argument and `...` as last argument. Typically
+#'   one of the `_main` function of `chevron`.
+#' @param lyt  (a single `function` returning `PreDataTableLayouts` object or `PreDataTableLayouts` object or `list` of
+#'   either `functions` or `PreDataTableLayouts` type of elements) typically one of the `_lyt` function of `chevron`.
+#'   Functions passed to `lyt`, whether as a single `function` or as a `list of functions`, must have the `...` formal
+#'   argument.
+#' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument and `...` as
+#'   last argument. Typically one of the `_pre` function of `chevron`.
+#' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
+#' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` dataset required for `tlg`
 #'   creation.
 #'
 #' @include utils.R

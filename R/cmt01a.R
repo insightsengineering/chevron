@@ -19,7 +19,7 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
-#'  as "CMSEQ".
+#'  as `"CMSEQ"`.
 #'
 #' @export
 #'
@@ -204,7 +204,7 @@ cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_lyt, cmt01a_1_pre, adam_datasets
 #'
 #' @note
 #'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
-#'  as "CMSEQ".
+#'  as `"CMSEQ"`.
 #'
 #' @export
 #'
@@ -332,7 +332,7 @@ cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_1_lyt, cmt01a_2_pre, adam_datasets
 #'
 #' @note
 #'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
-#'  as "CMSEQ".
+#'  as `"CMSEQ"`.
 #'
 #' @export
 #'

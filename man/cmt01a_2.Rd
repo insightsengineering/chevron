@@ -81,7 +81,7 @@ the specific medication.
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{medcat_var} and \code{medname_var} as well
-as "CMSEQ".
+as \code{"CMSEQ"}.
 }
 }
 \examples{

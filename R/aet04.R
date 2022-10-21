@@ -15,7 +15,7 @@
 #'  Grade is sorted by severity.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the columns "AETOXGR", "AEBODSYS" and "AEDECOD".
+#'  * `adam_db` object must contain an `adae` table with the columns `"AETOXGR"`, `"AEBODSYS"` and `"AEDECOD"`.
 #'
 #' @export
 #'

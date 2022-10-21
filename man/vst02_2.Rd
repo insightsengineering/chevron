@@ -83,7 +83,7 @@ Without Abnormality at Baseline.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{advs} table with the "PARAM", "ANRIND" and "BNRIND" columns.
+\item \code{adam_db} object must contain an \code{advs} table with the \code{"PARAM"}, \code{"ANRIND"} and \code{"BNRIND"} columns.
 }
 }
 \examples{

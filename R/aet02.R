@@ -13,7 +13,7 @@
 #'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the columns "AEBODSYS" and "AEDECOD".
+#'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"` and `"AEDECOD"`.
 #'
 #'
 #' @export
@@ -193,7 +193,7 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_lyt, aet02_1_pre, adam_datasets = c
 #'  * Missing values of `AEBODSYS`, `AEHLT` and `AEDECOD` in `adae` are labeled by `No Coding available`.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the columns "AEBODSYS", "AEHLT" and "AEDECOD".
+#'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"`, `"AEHLT"` and `"AEDECOD"`.
 #'
 #'
 #' @export
@@ -369,7 +369,7 @@ aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_lyt, aet02_2_pre, adam_datasets = c
 #'  * Missing values of `AEDECOD` in `aead` are labeled by `No Coding available`.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the column "AEDECOD".
+#'  * `adam_db` object must contain an `adae` table with the column `"AEDECOD"`.
 #'
 #' @export
 #'

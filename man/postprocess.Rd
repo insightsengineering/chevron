@@ -5,7 +5,7 @@
 \alias{postprocess,chevron_tlg-method}
 \alias{postprocess<-}
 \alias{postprocess<-,chevron_tlg-method}
-\title{Retrieve Postprocess}
+\title{Postprocess}
 \usage{
 postprocess(x)
 
@@ -21,7 +21,5 @@ postprocess(x) <- value
 \item{value}{(\code{function}) returning a post-processed \code{tlg}.}
 }
 \description{
-Retrieve Postprocess
-
-Set Postprocess Function
+retrieve or set \code{postprocess} function.
 }

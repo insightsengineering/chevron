@@ -74,7 +74,7 @@ number of subjects and the total number of treatments by medication name sorted 
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adcm} table with the columns "CMDECOD" and "CMSEQ".
+\item \code{adam_db} object must contain an \code{adcm} table with the columns \code{"CMDECOD"} and \code{"CMSEQ"}.
 }
 }
 \examples{

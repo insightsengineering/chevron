@@ -17,7 +17,7 @@
 #'  patients with the specific condition.
 #'
 #' @note
-#'   * `adam_db` object must contain an `admh` table with columns "MHBODSYS" and "MHDECOD".
+#'   * `adam_db` object must contain an `admh` table with columns `"MHBODSYS"` and `"MHDECOD"`.
 #'
 #' @export
 #'

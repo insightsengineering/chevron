@@ -5,7 +5,7 @@
 \alias{preprocess,chevron_tlg-method}
 \alias{preprocess<-}
 \alias{preprocess<-,chevron_tlg-method}
-\title{Retrieve Preprocess}
+\title{Preprocess}
 \usage{
 preprocess(x)
 
@@ -22,7 +22,5 @@ preprocess(x) <- value
 \verb{_pre} function of \code{chevron}.}
 }
 \description{
-Retrieve Preprocess
-
-Set Preprocess Function
+retrieve or set \code{preprocess} function.
 }

@@ -12,7 +12,7 @@
 #'  * Does not include a total column by default.
 #'
 #' @note
-#' * `adam_db` object must contain an `adsl` table with the columns "DTHFL", "DTHCAT" as well as `LDDTHGR1` if
+#' * `adam_db` object must contain an `adsl` table with the columns `"DTHFL"`, `"DTHCAT"` as well as `LDDTHGR1` if
 #' `time_since_last_dose` is `TRUE`.
 #' * `lyt_ls` must contain a "causes" and, if `time_since_last_dose` is `TRUE`, a "time_since_last_dose" element.
 #'

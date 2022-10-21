@@ -96,7 +96,7 @@ events categorized by Body System and Dictionary-Derived Term.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with the columns "AEBODSYS" and "AEDECOD".
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"} and \code{"AEDECOD"}.
 }
 }
 \examples{

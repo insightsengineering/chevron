@@ -10,7 +10,7 @@
 #'  * Does not include a total column by default.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adcm` table with the columns "CMDECOD" and "CMSEQ".
+#'  * `adam_db` object must contain an `adcm` table with the columns `"CMDECOD"` and `"CMSEQ"`.
 #'
 #' @export
 #'

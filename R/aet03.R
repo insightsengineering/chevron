@@ -13,7 +13,7 @@
 #'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the columns "AESEV", "AEBODSYS" and "AEDECOD".
+#'  * `adam_db` object must contain an `adae` table with the columns `"AESEV"`, `"AEBODSYS"` and `"AEDECOD"`.
 #'
 #' @export
 #'
