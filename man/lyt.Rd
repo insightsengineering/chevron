@@ -19,7 +19,8 @@ lyt(x) <- value
 \item{x}{(\code{chevron_tlg}) input.}
 
 \item{value}{(\code{function}, \verb{list of functions}, \code{PreDataTableLayouts} or \verb{list of PreDataTableLayouts}) typically one
-of the \verb{_lyt} function of \code{chevron}.}
+of the \verb{_lyt} function of \code{chevron}. If a \code{function} or a \verb{list of functions} is provided, they must have the \code{...}
+formal argument.}
 }
 \description{
 retrieve or set \code{lyt} function.

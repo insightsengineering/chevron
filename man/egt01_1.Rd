@@ -97,8 +97,8 @@ by \code{AVISIT}. Re-level to customize order.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column as well as columns specified in \code{summaryvars}
-and \code{visitvar}.
+\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column as well as columns specified in
+\code{summaryvars} and \code{visitvar}.
 }
 }
 \examples{

@@ -125,7 +125,7 @@ setMethod(
 
 # preprocess ----
 
-#' Preprocess
+#' Pre process
 #'
 #' retrieve or set `preprocess` function.
 #'
@@ -169,7 +169,7 @@ setMethod(
 
 # postprocess ----
 
-#' Postprocess
+#' Post process
 #'
 #' retrieve or set `postprocess` function.
 #'

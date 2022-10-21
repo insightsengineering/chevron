@@ -5,7 +5,7 @@
 \alias{postprocess,chevron_tlg-method}
 \alias{postprocess<-}
 \alias{postprocess<-,chevron_tlg-method}
-\title{Postprocess}
+\title{Post process}
 \usage{
 postprocess(x)
 

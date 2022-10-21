@@ -60,8 +60,11 @@ creation.}
 \note{
 To ensure the correct execution of the workflow additional validation criteria are:
 \itemize{
-\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process.
+\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. In addition, it
+must possess the \code{...} argument.
+\item the \code{lyt} function must posses the \code{...} argument.
 \item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{dm} object to create \code{tlg} output.
+In addition, it must possess the \code{...} argument.
 \item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process.
 }
 }

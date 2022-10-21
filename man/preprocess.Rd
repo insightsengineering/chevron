@@ -5,7 +5,7 @@
 \alias{preprocess,chevron_tlg-method}
 \alias{preprocess<-}
 \alias{preprocess<-,chevron_tlg-method}
-\title{Preprocess}
+\title{Pre process}
 \usage{
 preprocess(x)
 

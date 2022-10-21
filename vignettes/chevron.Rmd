@@ -71,7 +71,7 @@ function on the column that will be required and facilitate the checking process
 ### *post-processing*
 By default, the Post-processing function returns its input or a `NULL` report if the input has no rows. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` and `...` as formal arguments.
 
-### *adam_dataset*
+### *ADaM dataset*
 The `adam_dataset` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
 information is important when the `chevropn_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
 such as `citril`.
