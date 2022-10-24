@@ -102,7 +102,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
     count_values(
       "DTHFL",
       values = "Y",
-      .labels =  c(count_fraction = "Total number of deaths"),
+      .labels = c(count_fraction = "Total number of deaths"),
       .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
     summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
