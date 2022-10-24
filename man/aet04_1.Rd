@@ -13,12 +13,14 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 aet04_1_main(
   adam_db,
+  lyt_ls = list(aet04_1_lyt),
   armvar = .study$actualarm,
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL),
+  ...
 )
 
 aet04_1_lyt(
@@ -28,7 +30,8 @@ aet04_1_lyt(
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL),
+  ...
 )
 
 aet04_1_pre(adam_db, ...)
@@ -37,6 +40,9 @@ aet04_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -50,11 +56,11 @@ aet04_1
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{AET04} table provides an
@@ -80,6 +86,11 @@ Grade is sorted by severity.
 \item \code{aet04_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AETOXGR"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
+}
+}
 \examples{
 group_grades <- list(
   "Any Grade" = c("1", "2", "3", "4", "5"),

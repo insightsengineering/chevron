@@ -5,14 +5,12 @@
 \alias{get_postprocess,chevron_tlg-method}
 \title{Retrieve post-processing Function}
 \usage{
-get_postprocess(object, ...)
+get_postprocess(object)
 
 \S4method{get_postprocess}{chevron_tlg}(object)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
-
-\item{...}{not used.}
 }
 \description{
 Retrieve post-processing Function

@@ -1,19 +1,19 @@
-# TLG fuinction with default argument value return expected result with test data
+# TLG function with default argument value return expected result with test data
 
     Code
       res
     Output
                                                                     A: Drug X    B: Placebo    C: Combination
                                                                      (N=134)       (N=134)        (N=132)    
-      -------------------------------------------------------------------------------------------------------
-      Total number of patients with at least one AE                 122 (91%)    123 (91.8%)    120 (90.9%)  
+      ———————————————————————————————————————————————————————————————————————————————————————————————————————
+      Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
       Total number of AEs                                              609           622            703      
       Total number of deaths                                       22 (16.4%)    26 (19.4%)      19 (14.4%)  
       Total number of patients withdrawn from study due to an AE    6 (4.5%)      1 (0.7%)        2 (1.5%)   
       Total number of patients with at least one                                                             
         AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
-        Serious AE                                                 104 (77.6%)   101 (75.4%)      99 (75%)   
-        Serious AE leading to withdrawal from treatment              8 (6%)        8 (6%)         7 (5.3%)   
+        Serious AE                                                 104 (77.6%)   101 (75.4%)     99 (75.0%)  
+        Serious AE leading to withdrawal from treatment             8 (6.0%)      8 (6.0%)        7 (5.3%)   
         Serious AE leading to dose modification/interruption       36 (26.9%)    31 (23.1%)      26 (19.7%)  
         Related Serious AE                                         76 (56.7%)    70 (52.2%)      75 (56.8%)  
         AE leading to withdrawal from treatment                    23 (17.2%)    24 (17.9%)      27 (20.5%)  
@@ -30,15 +30,15 @@
     Output
                                                                     A: Drug X    B: Placebo    C: Combination
                                                                      (N=134)       (N=134)        (N=132)    
-      -------------------------------------------------------------------------------------------------------
-      Total number of patients with at least one AE                 122 (91%)    123 (91.8%)    120 (90.9%)  
+      ———————————————————————————————————————————————————————————————————————————————————————————————————————
+      Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
       Total number of AEs                                              609           622            703      
       Total number of deaths                                       22 (16.4%)    26 (19.4%)      19 (14.4%)  
       Total number of patients withdrawn from study due to an AE    6 (4.5%)      1 (0.7%)        2 (1.5%)   
       Total number of patients with at least one                                                             
         AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
-        Serious AE                                                 104 (77.6%)   101 (75.4%)      99 (75%)   
-        Serious AE leading to withdrawal from treatment              8 (6%)        8 (6%)         7 (5.3%)   
+        Serious AE                                                 104 (77.6%)   101 (75.4%)     99 (75.0%)  
+        Serious AE leading to withdrawal from treatment             8 (6.0%)      8 (6.0%)        7 (5.3%)   
         Serious AE leading to dose modification/interruption       36 (26.9%)    31 (23.1%)      26 (19.7%)  
         Related Serious AE                                         76 (56.7%)    70 (52.2%)      75 (56.8%)  
         AE leading to withdrawal from treatment                    23 (17.2%)    24 (17.9%)      27 (20.5%)  
@@ -48,8 +48,8 @@
         Related AE leading to dose modification/interruption       31 (23.1%)    31 (23.1%)      32 (24.2%)  
         Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
       Total number of patients with at least one                                                             
-        C.1.1.1.3/B.2.2.3.1 AESI (BROAD)                           72 (53.7%)     79 (59%)       75 (56.8%)  
-        SMQ 02 Reference Name                                           0             0              0       
+        C.1.1.1.3/B.2.2.3.1 AESI (BROAD)                           72 (53.7%)    79 (59.0%)      75 (56.8%)  
+        SMQ 02 Reference Name                                       0 (0.0%)      0 (0.0%)        0 (0.0%)   
         D.2.1.5.3/A.1.1.1.1 AESI                                   74 (55.2%)    80 (59.7%)      87 (65.9%)  
 
 ---
@@ -59,7 +59,7 @@
     Output
       MedDRA System Organ Class                                    A: Drug X    B: Placebo    C: Combination
         MedDRA Preferred Term                                       (N=134)       (N=134)        (N=132)    
-      ------------------------------------------------------------------------------------------------------
+      ——————————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  
       Overall total number of events                                  609           622            703      
       cl A.1                                                                                                
@@ -102,7 +102,7 @@
       MedDRA System Organ Class                                                                               
         MedDRA High-Level Term                                       A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                       (N=134)       (N=134)        (N=132)    
-      --------------------------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one adverse event       122 (91%)    123 (91.8%)    120 (90.9%)  
       Overall total number of events                                    609           622            703      
       cl A.1                                                                                                  
@@ -171,7 +171,7 @@
     Output
       MedDRA Preferred Term                                      A: Drug X    B: Placebo    C: Combination
                                                                   (N=134)       (N=134)        (N=132)    
-      ----------------------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one adverse event   122 (91%)    123 (91.8%)    120 (90.9%)  
       Total number of events                                        609           622            703      
       dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
@@ -192,7 +192,7 @@
     Output
       MedDRA System Organ Class   A: Drug X    B: Placebo    C: Combination
         MedDRA Preferred Term      (N=134)       (N=134)        (N=132)    
-      ---------------------------------------------------------------------
+      —————————————————————————————————————————————————————————————————————
       - Any Intensity -           122 (91%)    123 (91.8%)    120 (90.9%)  
       MILD                         7 (5.2%)     9 (6.7%)         4 (3%)    
       MODERATE                    24 (17.9%)   24 (17.9%)      23 (17.4%)  
@@ -259,7 +259,7 @@
     Output
       MedDRA System Organ Class   A: Drug X    B: Placebo    C: Combination
         MedDRA Preferred Term      (N=134)       (N=134)        (N=132)    
-      ---------------------------------------------------------------------
+      —————————————————————————————————————————————————————————————————————
       Any Grade                   122 (91%)    123 (91.8%)    120 (90.9%)  
       Grade 1-2                   13 (9.7%)    19 (14.2%)      11 (8.3%)   
       1                            7 (5.2%)     9 (6.7%)         4 (3%)    
@@ -345,7 +345,7 @@
     Output
       ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
         Other Treatment                                          (N=134)       (N=134)        (N=132)    
-      ---------------------------------------------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
       Total number of treatments                                   609           622            703      
       ATCCLAS2 A                                                                                         
@@ -397,7 +397,7 @@
     Output
       ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
         Other Treatment                                          (N=134)       (N=134)        (N=132)    
-      ---------------------------------------------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
       Total number of treatments                                   609           622            703      
       ATCCLAS2 B                                                                                         
@@ -449,7 +449,7 @@
     Output
       ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
         Other Treatment                                          (N=134)       (N=134)        (N=132)    
-      ---------------------------------------------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
       Total number of treatments                                   609           622            703      
       ATCCLAS2 A                                                                                         
@@ -493,7 +493,7 @@
     Output
       Other Treatment                                        A: Drug X    B: Placebo    C: Combination
                                                               (N=134)       (N=134)        (N=132)    
-      ------------------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one treatment   122 (91%)    123 (91.8%)    120 (90.9%)  
       Total number of treatments                                609           622            703      
         medname A_1/3                                        54 (40.3%)   49 (36.6%)      69 (52.3%)  
@@ -511,37 +511,37 @@
     Code
       res
     Output
-                                                     A: Drug X    B: Placebo    C: Combination   All Patients
-                                                      (N=134)       (N=134)        (N=132)         (N=400)   
-      -------------------------------------------------------------------------------------------------------
-      Age                                                                                                    
-        n                                               134           134            132             400     
-        Mean (SD)                                   33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
-        Median                                         33.0          35.0            35.0            34.0    
-        Min - Max                                   21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
-      Sex                                                                                                    
-        n                                               134           134            132             400     
-        Female                                       79 (59%)     82 (61.2%)       70 (53%)      231 (57.8%) 
-        Male                                         55 (41%)     52 (38.8%)       62 (47%)      169 (42.2%) 
-      Country                                                                                                
-        n                                               134           134            132             400     
-        CHN                                         74 (55.2%)    81 (60.4%)      64 (48.5%)     219 (54.8%) 
-        USA                                          10 (7.5%)     13 (9.7%)      17 (12.9%)       40 (10%)  
-        BRA                                          13 (9.7%)     7 (5.2%)       10 (7.6%)       30 (7.5%)  
-        PAK                                           12 (9%)      9 (6.7%)       10 (7.6%)       31 (7.8%)  
-        NGA                                           8 (6%)       7 (5.2%)       11 (8.3%)       26 (6.5%)  
-        RUS                                          5 (3.7%)       8 (6%)         6 (4.5%)       19 (4.8%)  
-        JPN                                          5 (3.7%)       4 (3%)         9 (6.8%)       18 (4.5%)  
-        GBR                                           4 (3%)       3 (2.2%)        2 (1.5%)        9 (2.2%)  
-        CAN                                          3 (2.2%)      2 (1.5%)        3 (2.3%)         8 (2%)   
-      Race                                                                                                   
-        n                                               134           134            132             400     
-        ASIAN                                       68 (50.7%)     67 (50%)       73 (55.3%)      208 (52%)  
-        BLACK OR AFRICAN AMERICAN                   31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
-        WHITE                                       27 (20.1%)    26 (19.4%)      21 (15.9%)      74 (18.5%) 
-        AMERICAN INDIAN OR ALASKA NATIVE              8 (6%)       11 (8.2%)       6 (4.5%)       25 (6.2%)  
-        MULTIPLE                                         0         1 (0.7%)           0            1 (0.2%)  
-        NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER        0         1 (0.7%)           0            1 (0.2%)  
+                                                     A: Drug X      B: Placebo    C: Combination   All Patients 
+                                                      (N=134)        (N=134)         (N=132)          (N=400)   
+      ——————————————————————————————————————————————————————————————————————————————————————————————————————————
+      Age                                                                                                       
+        n                                               134            134             132              400     
+        Mean (SD)                                    33.8 (6.6)     35.4 (7.9)      35.4 (7.7)      34.9 (7.4)  
+        Median                                          33.0           35.0            35.0            34.0     
+        Min - Max                                   21.0 - 50.0    21.0 - 62.0     20.0 - 69.0      20.0 - 69.0 
+      Sex                                                                                                       
+        n                                               134            134             132              400     
+        Female                                      79.0 (59.0%)   82.0 (61.2%)    70.0 (53.0%)    231.0 (57.8%)
+        Male                                        55.0 (41.0%)   52.0 (38.8%)    62.0 (47.0%)    169.0 (42.2%)
+      Country                                                                                                   
+        n                                               134            134             132              400     
+        CHN                                         74.0 (55.2%)   81.0 (60.4%)    64.0 (48.5%)    219.0 (54.8%)
+        USA                                         10.0 (7.5%)    13.0 (9.7%)     17.0 (12.9%)    40.0 (10.0%) 
+        BRA                                         13.0 (9.7%)     7.0 (5.2%)     10.0 (7.6%)      30.0 (7.5%) 
+        PAK                                         12.0 (9.0%)     9.0 (6.7%)     10.0 (7.6%)      31.0 (7.8%) 
+        NGA                                          8.0 (6.0%)     7.0 (5.2%)     11.0 (8.3%)      26.0 (6.5%) 
+        RUS                                          5.0 (3.7%)     8.0 (6.0%)      6.0 (4.5%)      19.0 (4.8%) 
+        JPN                                          5.0 (3.7%)     4.0 (3.0%)      9.0 (6.8%)      18.0 (4.5%) 
+        GBR                                          4.0 (3.0%)     3.0 (2.2%)      2.0 (1.5%)      9.0 (2.2%)  
+        CAN                                          3.0 (2.2%)     2.0 (1.5%)      3.0 (2.3%)      8.0 (2.0%)  
+      Race                                                                                                      
+        n                                               134            134             132              400     
+        ASIAN                                       68.0 (50.7%)   67.0 (50.0%)    73.0 (55.3%)    208.0 (52.0%)
+        BLACK OR AFRICAN AMERICAN                   31.0 (23.1%)   28.0 (20.9%)    32.0 (24.2%)    91.0 (22.8%) 
+        WHITE                                       27.0 (20.1%)   26.0 (19.4%)    21.0 (15.9%)    74.0 (18.5%) 
+        AMERICAN INDIAN OR ALASKA NATIVE             8.0 (6.0%)    11.0 (8.2%)      6.0 (4.5%)      25.0 (6.2%) 
+        MULTIPLE                                     0.0 (0.0%)     1.0 (0.7%)      0.0 (0.0%)      1.0 (0.2%)  
+        NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER    0.0 (0.0%)     1.0 (0.7%)      0.0 (0.0%)      1.0 (0.2%)  
 
 ---
 
@@ -550,7 +550,7 @@
     Output
                                         A: Drug X    B: Placebo   C: Combination   All Patients
                                          (N=134)      (N=134)        (N=132)         (N=400)   
-      -----------------------------------------------------------------------------------------
+      —————————————————————————————————————————————————————————————————————————————————————————
       Completed Study                   69 (51.5%)   69 (51.5%)     72 (54.5%)     210 (52.5%) 
       Ongoing                           27 (20.1%)   22 (16.4%)     21 (15.9%)      70 (17.5%) 
       Discontinued Study                38 (28.4%)   43 (32.1%)     39 (29.5%)     120 (30.0%) 
@@ -569,7 +569,7 @@
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
-      -------------------------------------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————————————————————————————————
       Completed Study                     69 (51.5%)   69 (51.5%)     72 (54.5%)     210 (52.5%) 
       Ongoing                             27 (20.1%)   22 (16.4%)     21 (15.9%)      70 (17.5%) 
       Discontinued Study                  38 (28.4%)   43 (32.1%)     39 (29.5%)     120 (30.0%) 
@@ -590,7 +590,7 @@
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
-      -------------------------------------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————————————————————————————————
       Completed Study                     69 (51.5%)   69 (51.5%)     72 (54.5%)     210 (52.5%) 
       Ongoing                             27 (20.1%)   22 (16.4%)     21 (15.9%)      70 (17.5%) 
       Discontinued Study                  38 (28.4%)   43 (32.1%)     39 (29.5%)     120 (30.0%) 
@@ -614,7 +614,7 @@
     Output
                                A: Drug X    B: Placebo   C: Combination
                                 (N=134)      (N=134)        (N=132)    
-      -----------------------------------------------------------------
+      —————————————————————————————————————————————————————————————————
       Total number of deaths   22 (16.4%)   26 (19.4%)     19 (14.4%)  
       Primary cause of death                                           
         n                          22           26             19      
@@ -631,7 +631,7 @@
         Analysis Visit               A: Drug X                          B: Placebo                        C: Combination          
                                             Change from                         Change from                         Change from   
                          Value at Visit       Baseline       Value at Visit       Baseline       Value at Visit       Baseline    
-      ----------------------------------------------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
       Heart Rate                                                                                                                  
         BASELINE                                                                                                                  
           n                   134                0                134                0                132                0        
@@ -733,7 +733,7 @@
     Output
       Assessment       A: Drug X        B: Placebo     C: Combination
        Abnormality      (N=134)          (N=134)          (N=132)    
-      ---------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————
       Heart Rate                                                     
         Low          48/134 (35.8%)   57/134 (42.5%)   55/132 (41.7%)
         High         48/134 (35.8%)   50/134 (37.3%)   48/132 (36.4%)
@@ -751,7 +751,7 @@
     Output
       Assessment       A: Drug X        B: Placebo     C: Combination
        Abnormality      (N=134)          (N=134)          (N=132)    
-      ---------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————
       Heart Rate                                                     
         Low          42/128 (32.8%)   47/124 (37.9%)   40/117 (34.2%)
         High         41/127 (32.3%)   45/129 (34.9%)   38/122 (31.1%)
@@ -769,7 +769,7 @@
     Output
                                               A: Drug X        B: Placebo      C: Combination 
                                                (N=134)           (N=134)           (N=132)    
-      ----------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————
       Total number of doses administered                                                      
         n                                        134               134               132      
         Mean (SD)                             7.0 (0.0)         7.0 (0.0)         7.0 (0.0)   
@@ -788,17 +788,17 @@
     Output
                                               A: Drug X        B: Placebo      C: Combination 
                                                (N=134)           (N=134)           (N=132)    
-      ----------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————
       Total dose administered                                                                 
         n                                        134               134               132      
         Mean (SD)                          6655.5 (1209.6)   6401.2 (1269.9)   6776.4 (1212.5)
         Median                                 6720.0            6360.0            6720.0     
         Min - Max                          4320.0 - 9360.0   4080.0 - 9360.0   4320.0 - 9360.0
         n                                        134               134               132      
-        5000-7000                            72 (53.7%)         71 (53%)         71 (53.8%)   
-        7000-9000                            50 (37.3%)        42 (31.3%)        51 (38.6%)   
-        <5000                                 10 (7.5%)        18 (13.4%)         7 (5.3%)    
-        >9000                                 2 (1.5%)          3 (2.2%)          3 (2.3%)    
+        5000-7000                           72.0 (53.7%)      71.0 (53.0%)      71.0 (53.8%)  
+        7000-9000                           50.0 (37.3%)      42.0 (31.3%)      51.0 (38.6%)  
+        <5000                                10.0 (7.5%)      18.0 (13.4%)       7.0 (5.3%)   
+        >9000                                2.0 (1.5%)        3.0 (2.2%)        3.0 (2.3%)   
       Total number of doses administered                                                      
         n                                        134               134               132      
         Mean (SD)                             7.0 (0.0)         7.0 (0.0)         7.0 (0.0)   
@@ -814,7 +814,7 @@
         Analysis Visit                                 A: Drug X                      B: Placebo                    C: Combination        
                                                               Change from                     Change from                     Change from 
                                              Value at Visit     Baseline     Value at Visit     Baseline     Value at Visit     Baseline  
-      ------------------------------------------------------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
       Alanine Aminotransferase Measurement                                                                                                
         BASELINE                                                                                                                          
           n                                       134             134             134             134             132             132     
@@ -916,7 +916,7 @@
     Output
       MedDRA System Organ Class                                A: Drug X    B: Placebo    C: Combination
         MedDRA Preferred Term                                   (N=134)       (N=134)        (N=132)    
-      --------------------------------------------------------------------------------------------------
+      ——————————————————————————————————————————————————————————————————————————————————————————————————
       Total number of patients with at least one condition     122 (91%)    123 (91.8%)    120 (90.9%)  
       Total number of conditions                                  609           622            703      
       cl A                                                                                              
@@ -950,7 +950,7 @@
       Parameter                            A: Drug X                      B: Placebo                    C: Combination        
         Analysis Visit                            Change from                     Change from                     Change from 
                                  Value at Visit     Baseline     Value at Visit     Baseline     Value at Visit     Baseline  
-      ------------------------------------------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
       Diastolic Blood Pressure                                                                                                
         SCREENING                                                                                                             
           n                           134              0              134              0              132              0      
@@ -1176,7 +1176,7 @@
       Parameter                            A: Drug X                      B: Placebo                    C: Combination        
         Analysis Visit                            Change from                     Change from                     Change from 
                                  Value at Visit     Baseline     Value at Visit     Baseline     Value at Visit     Baseline  
-      ------------------------------------------------------------------------------------------------------------------------
+      ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
       Diastolic Blood Pressure                                                                                                
         SCREENING                                                                                                             
           n                           134              0              134              0              132              0      
@@ -1401,7 +1401,7 @@
     Output
       Assessment                   A: Drug X        B: Placebo     C: Combination
        Abnormality                  (N=134)          (N=134)          (N=132)    
-      ---------------------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————————————————
       Diastolic Blood Pressure                                                   
         Low                      69/134 (51.5%)   73/134 (54.5%)   67/132 (50.8%)
         High                      75/134 (56%)     67/134 (50%)    65/132 (49.2%)
@@ -1428,7 +1428,7 @@
     Output
       Assessment                   A: Drug X        B: Placebo     C: Combination
         Abnormality                 (N=134)          (N=134)          (N=132)    
-      ---------------------------------------------------------------------------
+      ———————————————————————————————————————————————————————————————————————————
       Diastolic Blood Pressure                                                   
         Low                      55/120 (45.8%)   60/121 (49.6%)   53/118 (44.9%)
         High                     54/113 (47.8%)   56/123 (45.5%)   52/119 (43.7%)

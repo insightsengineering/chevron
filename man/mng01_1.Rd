@@ -3,7 +3,7 @@
 \docType{data}
 \name{mng01_1_main}
 \alias{mng01_1_main}
-\alias{mng01_1_lyt}
+\alias{mng01_1_plot}
 \alias{mng01_1_pre}
 \alias{mng01_1_post}
 \alias{mng01_1}
@@ -14,6 +14,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 mng01_1_main(
   adam_db,
+  plot_ls = list(mng01_1_plot),
   dataset = "adlb",
   x = "AVISIT",
   y = "AVAL",
@@ -34,7 +35,7 @@ mng01_1_main(
   ...
 )
 
-mng01_1_lyt(
+mng01_1_plot(
   df,
   alt_count,
   x = "AVISIT",
@@ -52,7 +53,8 @@ mng01_1_lyt(
   legend_pos = .study$legend_pos,
   line_col = .study$color_dict,
   .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top", color_dict = getOption("tern.color"))
+    = "top", color_dict = getOption("tern.color")),
+  ...
 )
 
 mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)
@@ -63,6 +65,8 @@ mng01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
@@ -122,13 +126,19 @@ Overview of a summary statistics across time and arm for a selected data set.
 \itemize{
 \item \code{mng01_1_main()}: Main TLG Function
 
-\item \code{mng01_1_lyt()}: Graph Layout
+\item \code{mng01_1_plot()}: Plot Function
 
 \item \code{mng01_1_pre()}: Preprocessing
 
 \item \code{mng01_1_post()}: Postprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x}, \code{y}, \code{y_name},
+\code{y_unit} and \code{armvar}.
+}
+}
 \examples{
 library(dm)
 library(dplyr)

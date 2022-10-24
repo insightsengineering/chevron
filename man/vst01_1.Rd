@@ -13,6 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 vst01_1_main(
   adam_db,
+  lyt_ls = list(vst01_1_lyt),
   armvar = .study$actualarm,
   summaryvars = .study$evo_vars,
   summaryvars_lbls = .study$evo_vars_lbls,
@@ -20,7 +21,8 @@ vst01_1_main(
   prune_0 = TRUE,
   deco = std_deco("VST01"),
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Value at Visit", "Change from \\nBaseline"))
+    c("Value at Visit", "Change from \\nBaseline")),
+  ...
 )
 
 vst01_1_lyt(
@@ -32,7 +34,8 @@ vst01_1_lyt(
   lbl_param = "",
   deco = std_deco("VST01"),
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
+    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT"),
+  ...
 )
 
 vst01_1_pre(adam_db, ...)
@@ -41,6 +44,9 @@ vst01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -57,11 +63,11 @@ to be displayed.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{VST01} table provides an
@@ -90,6 +96,11 @@ by \code{AVISIT}. Re-level to customize order
 \item \code{vst01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{advs} table with the columns specified in \code{summaryvars}.
+}
+}
 \examples{
 
 db <- syn_test_data()

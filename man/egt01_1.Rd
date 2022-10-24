@@ -13,6 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 egt01_1_main(
   adam_db,
+  lyt_ls = list(egt01_1_lyt),
   armvar = .study$actualarm,
   summaryvars = .study$evo_vars,
   summaryvars_lbls = .study$evo_vars_lbls,
@@ -20,7 +21,8 @@ egt01_1_main(
   prune_0 = TRUE,
   deco = std_deco("EGT01"),
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Value at Visit", "Change from \\nBaseline"))
+    c("Value at Visit", "Change from \\nBaseline")),
+  ...
 )
 
 egt01_1_lyt(
@@ -32,7 +34,8 @@ egt01_1_lyt(
   lbl_param = "",
   deco = std_deco("EGT01"),
   .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT")
+    c("Analysis \\nValue", "Change from \\nBaseline"), visitvar = "AVISIT"),
+  ...
 )
 
 egt01_1_pre(adam_db, ...)
@@ -41,6 +44,9 @@ egt01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -57,11 +63,11 @@ to be displayed.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{EGT01} table 1 summarizes
@@ -77,7 +83,7 @@ median and range of changes relative to the baseline.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sorted  based on factor level; first by \code{PARAM} labels in alphabetic order then by chronological time point given
-by \code{AVISIT}. Re-level to customize order
+by \code{AVISIT}. Re-level to customize order.
 }
 }
 \section{Functions}{
@@ -89,6 +95,12 @@ by \code{AVISIT}. Re-level to customize order
 \item \code{egt01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column as well as columns specified in
+\code{summaryvars} and \code{visitvar}.
+}
+}
 \examples{
 db <- syn_test_data()
 run(egt01_1, db)

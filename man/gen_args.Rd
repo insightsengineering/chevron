@@ -6,6 +6,8 @@
 \usage{
 gen_args(
   adam_db,
+  lyt_ls,
+  plot_ls,
   armvar,
   lbl_overall,
   prune_0,
@@ -19,6 +21,11 @@ gen_args(
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
+
+\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

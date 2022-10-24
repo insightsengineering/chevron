@@ -14,9 +14,13 @@
 #'  * Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
 #'  Grade is sorted by severity.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns `"AETOXGR"`, `"AEBODSYS"` and `"AEDECOD"`.
+#'
 #' @export
 #'
 aet04_1_main <- function(adam_db,
+                         lyt_ls = list(aet04_1_lyt),
                          armvar = .study$actualarm,
                          group_grades = .study$group_grades,
                          lbl_overall = .study$lbl_overall,
@@ -26,7 +30,10 @@ aet04_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
                            group_grades = NULL
-                         )) {
+                         ),
+                         ...) {
+  assert_colnames(adam_db$adae, c("AETOXGR", "AEBODSYS", "AEDECOD"))
+
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
@@ -40,13 +47,14 @@ aet04_1_main <- function(adam_db,
     )
   }
 
-  lyt <- aet04_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
     group_grades = group_grades,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(
@@ -79,6 +87,7 @@ aet04_1_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -92,7 +101,8 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
                           actualarm = "ACTARM",
                           lbl_overall = NULL,
                           group_grades = NULL
-                        )) {
+                        ),
+                        ...) {
   if (is.null(group_grades)) {
     group_grades <- list(
       "Any Grade" = c("1", "2", "3", "4", "5"),
@@ -197,4 +207,4 @@ aet04_1_pre <- function(adam_db, ...) {
 #' )
 #'
 #' run(aet04_1, syn_test_data(), group_grades = group_grades)
-aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))
+aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_lyt, aet04_1_pre, adam_datasets = c("adsl", "adae"))

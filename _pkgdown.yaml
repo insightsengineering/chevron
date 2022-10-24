@@ -30,6 +30,11 @@ reference:
   - title: Methods
     contents:
       - run
+      - main
+      - lyt
+      - preprocess
+      - postprocess
+      - datasets
       - get_main
       - get_preprocess
       - get_postprocess
@@ -65,21 +70,11 @@ reference:
       - vst02_1
       - vst02_2
 
-  - title: Checks and assertions
-    contents:
-      - assert_colnames
-      - assert_all_tablenames
-      - assert_one_tablenames
-      - check_all_colnames
-      - check_one_colnames
-
   - title: Utility Functions
     contents:
-      - dm_unite
       - get_db_data
       - report_null
       - sample_study_object
-      - set_decoration
       - smart_prune
       - std_deco
       - syn_test_data

@@ -8,7 +8,7 @@
 #' @param x (vector of `character`) the names of the columns to be checked.
 #' @param null_ok (`logical`) can `x` be NULL.
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' \dontrun{
@@ -54,7 +54,8 @@ assert_colnames <- function(df, x, null_ok = TRUE) {
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @export
+#' @keywords internal
+#'
 #' @examples
 #' \dontrun{
 #' assert_all_tablenames(dm::dm_nycflights13(), c("mpg", "new", "hoho"), qualifier = "first test:")
@@ -82,7 +83,8 @@ assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @export
+#' @keywords internal
+#'
 #' @examples
 #' \dontrun{
 #' assert_one_tablenames(dm::dm_nycflights13(), c("mpg", "new", "hoho"), qualifier = "first test:")

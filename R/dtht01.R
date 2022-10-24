@@ -11,9 +11,15 @@
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Does not include a total column by default.
 #'
+#' @note
+#' * `adam_db` object must contain an `adsl` table with the columns `"DTHFL"`, `"DTHCAT"` as well as `LDDTHGR1` if
+#' `time_since_last_dose` is `TRUE`.
+#' * `lyt_ls` must contain a "causes" and, if `time_since_last_dose` is `TRUE`, a "time_since_last_dose" element.
+#'
 #' @export
 #'
 dtht01_1_main <- function(adam_db,
+                          lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
                           armvar = .study$actualarm,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
@@ -23,31 +29,36 @@ dtht01_1_main <- function(adam_db,
                           .study = list(
                             actualarm = "ACTARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl")
 
+  checkmate::assert_subset("causes", names(lyt_ls))
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
   checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
   checkmate::assert_flag(time_since_last_dose)
   checkmate::assert_flag(other_category)
 
 
-  lyt <- dtht01_1_lyt(
+  lyt <- lyt_ls[["causes"]](
     armvar = armvar,
     other_category = other_category,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adsl)
 
   if (time_since_last_dose) {
-    assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
+    checkmate::assert_subset("time_since_last_dose", names(lyt_ls))
+    checkmate::assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-    lyt2 <- dtht01_1_opt_lyt(
+    lyt2 <- lyt_ls[["time_since_last_dose"]](
       armvar = armvar,
       lbl_overall = lbl_overall,
-      deco = deco
+      deco = deco,
+      ... = ...
     )
 
     tbl_other <- build_table(lyt2, dbsel$adsl)
@@ -70,6 +81,7 @@ dtht01_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -80,7 +92,8 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   tab <-
     basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -89,7 +102,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
     count_values(
       "DTHFL",
       values = "Y",
-      .labels =  c(count_fraction = "Total number of deaths"),
+      .labels = c(count_fraction = "Total number of deaths"),
       .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
     summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
@@ -115,6 +128,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn dtht01_1 Optional Layout
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -124,7 +138,8 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
                              .study = list(
                                actualarm = "ACTARM",
                                lbl_overall = NULL
-                             )) {
+                             ),
+                             ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -188,4 +203,9 @@ dtht01_1_pre <- function(adam_db, ...) {
 #'
 #' run(dtht01_1, db)
 #' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
-dtht01_1 <- chevron_tlg(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))
+dtht01_1 <- chevron_tlg(
+  dtht01_1_main,
+  list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
+  dtht01_1_pre,
+  adam_datasets = c("adsl")
+)

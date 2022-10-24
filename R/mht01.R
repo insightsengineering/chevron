@@ -16,9 +16,13 @@
 #'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
 #'  patients with the specific condition.
 #'
+#' @note
+#'   * `adam_db` object must contain an `admh` table with columns `"MHBODSYS"` and `"MHDECOD"`.
+#'
 #' @export
 #'
 mht01_1_main <- function(adam_db,
+                         lyt_ls = list(mht01_1_lyt),
                          armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
                          lbl_mhbodsys = "MedDRA System Organ Class",
@@ -28,18 +32,20 @@ mht01_1_main <- function(adam_db,
                          .study = list(
                            planarm = "ARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- mht01_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
     lbl_mhdecod = lbl_mhdecod,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
@@ -60,6 +66,7 @@ mht01_1_main <- function(adam_db,
 #' @describeIn mht01_1 Layout
 #'
 #' @inheritParams mht01_1_main
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -71,7 +78,8 @@ mht01_1_lyt <- function(armvar = .study$planarm,
                         .study = list(
                           planarm = "ARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -148,4 +156,4 @@ mht01_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(mht01_1, syn_test_data())
-mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))
+mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_lyt, mht01_1_pre, adam_datasets = c("adsl", "admh"))

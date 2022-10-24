@@ -36,6 +36,10 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the columns specified by `status_var` and `disc_reason_var`.
+#'
+#'
 #' @export
 #'
 #' @examples
@@ -47,6 +51,7 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #'
 #' dst01_1_main(db)
 dst01_1_main <- function(adam_db,
+                         lyt_ls = list(dst01_1_lyt),
                          armvar = .study$planarm,
                          status_var = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -58,7 +63,8 @@ dst01_1_main <- function(adam_db,
                            lbl_overall = "All Patients",
                            disc_reason_var = "DCSREAS",
                            status_var = "EOSSTT"
-                         )) {
+                         ),
+                         ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -72,7 +78,7 @@ dst01_1_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- dst01_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -80,7 +86,8 @@ dst01_1_main <- function(adam_db,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
-    discontinued_lbl = discontinued_lbl
+    discontinued_lbl = discontinued_lbl,
+    ... = ...
   )
 
   tbl_completed <- build_table(
@@ -118,6 +125,7 @@ dst01_1_main <- function(adam_db,
 #'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
+#' @param ... not used.
 #'
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
@@ -143,7 +151,8 @@ dst01_1_lyt <- function(armvar = .study$planarm,
                           lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
-                        )) {
+                        ),
+                        ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
@@ -226,7 +235,7 @@ dst01_1_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_1, syn_test_data())
-dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
+dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_lyt, dst01_1_pre, adam_datasets = c("adsl"))
 
 
 # dst01_2 ----
@@ -251,6 +260,9 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the columns specified by `status_var` and `disc_reason_var`.
+#'
 #' @export
 #'
 #' @examples
@@ -263,6 +275,7 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_pre, adam_datasets = c("adsl"))
 #' dst01_2_main(db)
 #' dst01_2_main(db, lbl_overall = NULL)
 dst01_2_main <- function(adam_db,
+                         lyt_ls = list(dst01_2_lyt),
                          armvar = .study$planarm,
                          status_var = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -274,7 +287,8 @@ dst01_2_main <- function(adam_db,
                            lbl_overall = "All Patients",
                            disc_reason_var = "DCSREAS",
                            status_var = "EOSSTT"
-                         )) {
+                         ),
+                         ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status_var
@@ -286,7 +300,7 @@ dst01_2_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- dst01_2_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     status = status_var,
     disc_reason_var = disc_reason_var,
@@ -294,7 +308,8 @@ dst01_2_main <- function(adam_db,
     discontinued_lbl = discontinued_lbl,
     lbl_overall = lbl_overall,
     ongoing_lbl = ongoing_lbl,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl_completed <- build_table(
@@ -332,6 +347,7 @@ dst01_2_main <- function(adam_db,
 #'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
+#' @param ... not used.
 #'
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
@@ -357,7 +373,8 @@ dst01_2_lyt <- function(armvar = .study$planarm,
                           lbl_overall = "All Patients",
                           status = "EOSSTT",
                           disc_reason_var = "DCSREAS"
-                        )) {
+                        ),
+                        ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
@@ -451,7 +468,7 @@ dst01_2_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_2, syn_test_data())
-dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
+dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c("adsl"))
 
 
 # dst01_3 ----
@@ -469,6 +486,7 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 #'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
 #'   referring to the analysis period.
 #'
+#'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status.
 #'  * Withdrawal reasons are grouped into Safety and Non-Safety issues.
@@ -478,6 +496,11 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 #'  * Split columns by arm.
 #'  * Include a total column by default.
 #'  * Sort withdrawal reasons by alphabetic order.
+#'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the column specified in `status`, `status_treatment` and
+#'  `disc_reason_var`.
+#'  * `lyt_ls` must contain a "treatment" and a "study" element.
 #'
 #' @export
 #'
@@ -491,6 +514,7 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_pre, adam_datasets = c("adsl"))
 #' dst01_3_main(db)
 #' dst01_3_main(db, lbl_overall = NULL)
 dst01_3_main <- function(adam_db,
+                         lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
                          armvar = .study$planarm,
                          status = .study$status_var,
                          disc_reason_var = .study$disc_reason_var,
@@ -503,27 +527,31 @@ dst01_3_main <- function(adam_db,
                            disc_reason_var = "DCSREAS",
                            lbl_overall = "All Patients",
                            status_var = "EOSSTT"
-                         )) {
+                         ),
+                         ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
     status = status,
     status_treatment = status_treatment
   )
 
-  # TODO: revisit
-  status_lvl <- levels(adam_db$adsl[[status_treatment]])
-  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
-  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
-  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
+  checkmate::assert_subset(c("study", "treatment"), names(lyt_ls))
 
-  lyt <- dst01_3_lyt(
+  # TODO: revisit
+  status_trt_lvl <- levels(adam_db$adsl[[status_treatment]])
+  completed_trt_lbl <- status_trt_lvl[grep("completed", status_trt_lvl, ignore.case = TRUE)]
+  discontinued_trt_lbl <- status_trt_lvl[grep("discontinued", status_trt_lvl, ignore.case = TRUE)]
+  ongoing_trt_lbl <- status_trt_lvl[grep("ongoing", status_trt_lvl, ignore.case = TRUE)]
+
+  lyt <- lyt_ls[["treatment"]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    completed_lbl = completed_lbl,
-    ongoing_lbl = ongoing_lbl,
-    discontinued_lbl = discontinued_lbl,
+    completed_lbl = completed_trt_lbl,
+    ongoing_lbl = ongoing_trt_lbl,
+    discontinued_lbl = discontinued_trt_lbl,
     status_treatment = status_treatment,
+    ... = ...
   )
 
   tbl <- build_table(
@@ -538,7 +566,7 @@ dst01_3_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- dst01_2_lyt(
+  lyt <- lyt_ls[["study"]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -546,7 +574,8 @@ dst01_3_main <- function(adam_db,
     ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl,
     status = status,
-    disc_reason_var = disc_reason_var
+    disc_reason_var = disc_reason_var,
+    ... = ...
   )
 
 
@@ -590,6 +619,7 @@ dst01_3_main <- function(adam_db,
 #'   `status_treatment`. By Default `DISCONTINUED`.
 #' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
 #'   By Default `ONGOING.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -609,7 +639,8 @@ dst01_3_lyt <- function(armvar = .study$planarm,
                           planarm = "ARM",
                           lbl_overall = "All Patients",
                           status_treatment = "EOTSTT"
-                        )) {
+                        ),
+                        ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
@@ -687,4 +718,9 @@ dst01_3_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_3, syn_test_data())
-dst01_3 <- chevron_tlg(dst01_3_main, dst01_3_pre, adam_datasets = c("adsl"))
+dst01_3 <- chevron_tlg(
+  dst01_3_main,
+  list(treatment = dst01_3_lyt, study = dst01_2_lyt),
+  dst01_3_pre,
+  adam_datasets = c("adsl")
+)
