@@ -136,17 +136,17 @@ preprocess(aet02_1)
 lyt(aet02_1) <- rtables::basic_table() %>%
   rtables::split_cols_by("ARM") %>%
   tern::count_occurrences(
-      vars = "AEDECOD",
-      .indent_mods = -1L
+    vars = "AEDECOD",
+    .indent_mods = -1L
   )
 
 lyt(aet02_1) <- function(arm, ...) {
   rtables::basic_table() %>%
-  rtables::split_cols_by(arm) %>%
-  tern::count_occurrences(
+    rtables::split_cols_by(arm) %>%
+    tern::count_occurrences(
       vars = "AEDECOD",
       .indent_mods = -1L
-  )
+    )
 }
 
 lyt(aet02_1)
