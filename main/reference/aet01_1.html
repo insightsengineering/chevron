@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,14 +30,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -67,6 +59,7 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aet01_1_main</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
+<span>  lyt_ls <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">aet01_1_lyt</span><span class="op">)</span>,</span>
 <span>  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,</span>
 <span>  lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,</span>
 <span>  prune_0 <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -87,7 +80,8 @@
 <span>  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span>, safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>,</span>
 <span>    <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"CTC35"</span>, <span class="st">"CTC45"</span>,</span>
 <span>    <span class="st">"SEV"</span><span class="op">)</span>, lbl_safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>, <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>,</span>
-<span>    <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"CTC35"</span>, <span class="st">"CTC45"</span>, <span class="st">"SEV"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="st">"REL"</span>, <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"CTC35"</span>, <span class="st">"CTC45"</span>, <span class="st">"SEV"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">aet01_1_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -113,6 +107,11 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>adam_db</dt>
 <dd><p>(<code>dm</code>) object containing the <code>ADaM</code> datasets</p></dd>
+
+
+<dt>lyt_ls</dt>
+<dd><p>(<code>list of functions</code> returning <code>PreDataTableLayout</code> object. Typically one of the <code>_lyt</code> function of
+<code>chevron</code> stored in a <code>list</code>.</p></dd>
 
 
 <dt>armvar</dt>
@@ -164,6 +163,12 @@
 <li><p><code>aet01_1_pre()</code>: Preprocessing</p></li>
 <li><p><code>aet01_1_check()</code>: Checks</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    
+<ul><li><p><code>adam_db</code> object must contain an <code>adsl</code> table with the <code>"DTHFL"</code> and <code>"DCSREAS"</code> columns.</p></li>
+<li><p><code>adam_db</code> object must contain an <code>adae</code> table with the columns passed to <code>safety_var</code>.</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -171,14 +176,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                               A: Drug X    B: Placebo    C: Combination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                (N=134)       (N=134)        (N=132)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of patients with at least one AE                 122 (91%)    123 (91.8%)    120 (90.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total number of AEs                                              609           622            703      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total number of deaths                                       22 (16.4%)    26 (19.4%)      19 (14.4%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total number of patients withdrawn from study due to an AE    6 (4.5%)      1 (0.7%)        2 (1.5%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total number of patients with at least one                                                             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE                                                 104 (77.6%)   101 (75.4%)      99 (75%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE leading to withdrawal from treatment              8 (6%)        8 (6%)         7 (5.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE                                                 104 (77.6%)   101 (75.4%)     99 (75.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE leading to withdrawal from treatment             8 (6.0%)      8 (6.0%)        7 (5.3%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Serious AE leading to dose modification/interruption       36 (26.9%)    31 (23.1%)      26 (19.7%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Related Serious AE                                         76 (56.7%)    70 (52.2%)      75 (56.8%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   AE leading to withdrawal from treatment                    23 (17.2%)    24 (17.9%)      27 (20.5%)  </span>

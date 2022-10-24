@@ -12,7 +12,7 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,14 +32,6 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -70,6 +62,7 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dst01_3_main</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
+<span>  lyt_ls <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>treatment <span class="op">=</span> <span class="va">dst01_3_lyt</span>, study <span class="op">=</span> <span class="va">dst01_2_lyt</span><span class="op">)</span>,</span>
 <span>  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">planarm</span>,</span>
 <span>  status <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">status_var</span>,</span>
 <span>  disc_reason_var <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">disc_reason_var</span>,</span>
@@ -78,7 +71,8 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 <span>  prune_0 <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DST01"</span><span class="op">)</span>,</span>
 <span>  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>planarm <span class="op">=</span> <span class="st">"ARM"</span>, disc_reason_var <span class="op">=</span> <span class="st">"DCSREAS"</span>, lbl_overall <span class="op">=</span></span>
-<span>    <span class="st">"All Patients"</span>, status_var <span class="op">=</span> <span class="st">"EOSSTT"</span><span class="op">)</span></span>
+<span>    <span class="st">"All Patients"</span>, status_var <span class="op">=</span> <span class="st">"EOSSTT"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">dst01_3_lyt</span><span class="op">(</span></span>
@@ -90,7 +84,8 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 <span>  lbl_overall <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">lbl_overall</span>,</span>
 <span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DST01"</span><span class="op">)</span>,</span>
 <span>  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>planarm <span class="op">=</span> <span class="st">"ARM"</span>, lbl_overall <span class="op">=</span> <span class="st">"All Patients"</span>, status_treatment <span class="op">=</span></span>
-<span>    <span class="st">"EOTSTT"</span><span class="op">)</span></span>
+<span>    <span class="st">"EOTSTT"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">dst01_3_pre</span><span class="op">(</span></span>
@@ -112,6 +107,11 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>adam_db</dt>
 <dd><p>(<code>dm</code>) object containing the <code>ADaM</code> datasets</p></dd>
+
+
+<dt>lyt_ls</dt>
+<dd><p>(<code>list of functions</code> returning <code>PreDataTableLayout</code> object. Typically one of the <code>_lyt</code> function of
+<code>chevron</code> stored in a <code>list</code>.</p></dd>
 
 
 <dt>armvar</dt>
@@ -152,6 +152,10 @@ the analysis period.</p></dd>
 <dd><p>(<code>list</code>)  with default values for the arguments of the function</p></dd>
 
 
+<dt>...</dt>
+<dd><p>not used.</p></dd>
+
+
 <dt>completed_lbl</dt>
 <dd><p>(<code>string</code>) associated with completed treatment and found in the columns given by
 <code>status_treatment</code>. By Default <code>COMPLETED</code>.</p></dd>
@@ -165,10 +169,6 @@ the analysis period.</p></dd>
 <dt>ongoing_lbl</dt>
 <dd><p>(<code>string</code>) associated with ongoing treatment and found in the columns given by <code>status_treatment</code>.
 By Default `ONGOING.</p></dd>
-
-
-<dt>...</dt>
-<dd><p>not used.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -189,6 +189,13 @@ By Default `ONGOING.</p></dd>
 <ul><li><p><code>dst01_3_main()</code>: Main TLG function</p></li>
 <li><p><code>dst01_3_lyt()</code>: Layout</p></li>
 <li><p><code>dst01_3_pre()</code>: Preprocessing</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    
+<ul><li><p><code>adam_db</code> object must contain an <code>adsl</code> table with the column specified in <code>status</code>, <code>status_treatment</code> and
+<code>disc_reason_var</code>.</p></li>
+<li><p><code>lyt_ls</code> must contain a "treatment" and a "study" element.</p></li>
 </ul></div>
 
     <div class="section level2">

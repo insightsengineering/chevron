@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,14 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -84,7 +76,7 @@
                         <h4 data-toc-skip class="author">Adrian
 Waddell</h4>
             
-            <h4 data-toc-skip class="date">2022-10-19</h4>
+            <h4 data-toc-skip class="date">2022-10-21</h4>
       
       
       <div class="d-none name"><code>chevron.Rmd</code></div>
@@ -99,13 +91,14 @@ Waddell</h4>
 standard tables, listings and graphs (TLGs) used to analyze and report
 clinical trials data. The ensemble of function used to produce a
 particular output are stored in an <code>chevron_tlg</code> object of
-class <code>S4</code> also called <em>pipelines</em>. Each standard
-output is associated with one <em>pipeline</em>. They contain the
-following objects: * A <code>main</code> function also refereed to as
-<em>TLG-function</em>. * A <code>preprocess</code> function. * A
-<code>postprocess</code> function * A <code>adam_dataset</code>
-character vector of the name of the <code>AdAM</code> datasets required
-to create the output.</p>
+class <code>S4</code>. Each standard output is associated with one
+<em><code>chevron_tlg</code> object</em>. They contain the following
+objects in separate slots: * A <code>main</code> function also refereed
+to as <em>TLG-function</em>. * A <code>lyt</code> list of functions also
+refereed to as <em>Layout-list</em>. * A <code>preprocess</code>
+function. * A <code>postprocess</code> function * A
+<code>adam_dataset</code> character vector of the name of the
+<code>AdAM</code> datasets required to create the output.</p>
 <div class="section level4">
 <h4 id="tlg-functions">
 <em>TLG-functions</em><a class="anchor" aria-label="anchor" href="#tlg-functions"></a>
@@ -126,20 +119,32 @@ Roche <code>GDS</code> defined standard may have different
 implementations. Or, alternatively, a <code>GDS</code> template id can
 be regarded as a <em>guideline</em> and the function name in
 <code>chevron</code> as a <em>standard</em>.</li>
-<li>have very few arguments to modify the standard. Generally, arguments
-may change the structure of the table (arm variable, which variables are
-summarized) but not parameterize the cell content (i.e. alpha-level for
-p-value).</li>
+<li>have, if possible, few arguments to modify the standard. Generally,
+arguments may change the structure of the table (arm variable, which
+variables are summarized) but not parameterize the cell content
+(i.e. alpha-level for p-value).</li>
 <li>have always the first argument <code>adam_db</code> which is the
 collection of <code>ADaM</code> datasets (<code>ADSL</code>,
 <code>ADAE</code>, <code>ADRS</code>, etc.). Please read the <em>The
 <code>adam_db</code> Argument</em> vignette in this package for more
 details.</li>
+<li>have always as second argument <code>lyt_ls</code>, a list of
+functions returning <code>Pre-data Table Layout</code> that are used by
+the main function to generate the output.</li>
 <li>have a <code>.study</code> argument, read the <em>The .study
 argument</em> vignette for more detail.</li>
 <li>have the <code>...</code> argument to facilitate their incorporation
-in a pipeline.</li>
+in a workflow including pre and post processing.</li>
 </ol>
+</div>
+<div class="section level4">
+<h4 id="layout-list">
+<em>Layout-list</em><a class="anchor" aria-label="anchor" href="#layout-list"></a>
+</h4>
+<p><em>Layout-list</em> in <code>chevron</code> are stored in each
+<code>chevron_tlg</code> objects as list of functions in the
+<code>lyt</code> slot. These functions must have the formal argument
+<code>...</code>.</p>
 </div>
 <div class="section level4">
 <h4 id="pre-processing">
@@ -163,34 +168,38 @@ is the collection of <code>ADaM</code> datasets (<code>ADSL</code>,
 details. 1. can have the <code>.study</code> argument and other argument
 of the corresponding <em>TLG-functions</em> as they may inform the
 function on the column that will be required and facilitate the checking
-process. 1. have the <code>...</code> argument to facilitate their
-incorporation in a pipeline.</p>
+process. 1. must have the <code>...</code> argument to facilitate their
+incorporation in a workflow.</p>
 </div>
 <div class="section level4">
 <h4 id="post-processing">
-<em>post-processing</em>`<a class="anchor" aria-label="anchor" href="#post-processing"></a>
+<em>post-processing</em><a class="anchor" aria-label="anchor" href="#post-processing"></a>
 </h4>
-<p>Post-processing function are not provided but can be created by the
-user.</p>
+<p>By default, the Post-processing function returns its input or a
+<code>NULL</code> report if the input has no rows.
+<em><code>post-processing</code></em> function of a
+<code>chevron_tlg</code> object must have at least <code>tlg</code> and
+<code>...</code> as formal arguments.</p>
 </div>
 <div class="section level4">
-<h4 id="adam_dataset">
-<em><code>adam_dataset</code></em><a class="anchor" aria-label="anchor" href="#adam_dataset"></a>
+<h4 id="adam-dataset">
+<em>ADaM dataset</em><a class="anchor" aria-label="anchor" href="#adam-dataset"></a>
 </h4>
 <p>The <code>adam_dataset</code> stores the name(s) of the data sets in
 the <code>AdAM</code> <code>dm</code> object that will be used in the
-process. This information is important when the <em>pipeline</em> is
-interfaced with other processes from the <code>chevron</code> ecosystem
-of packages such as <code>citril</code>.</p>
+process. This information is important when the
+<code>chevropn_tlg</code> object is interfaced with other processes from
+the <code>chevron</code> ecosystem of packages such as
+<code>citril</code>.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="example-aet02">Example <code>AET02</code><a class="anchor" aria-label="anchor" href="#example-aet02"></a>
 </h3>
 <p>For example, the <code>GDS</code> template <code>aet02</code> is
-implemented in <code>chevron</code> with the <em>pipeline</em> that have
-the name <code>aet02_*</code>. The object documentation which is
-accessible with the <code>help</code> function,
+implemented in <code>chevron</code> with the <code>chevropn_tlg</code>
+objects that have the name <code>aet02_*</code>. The object
+documentation which is accessible with the <code>help</code> function,
 e.g. <code><a href="../reference/aet02_1.html">help('aet02_1')</a></code> documents what is particular in the
 <code>_1</code> implementation.</p>
 <p>We first define the data and put it in a <code>dm</code> object, you
@@ -260,17 +269,20 @@ vignette.</p>
 <span><span class="co">#&gt;   Total number of events                                         47            51             54      </span></span>
 <span><span class="co">#&gt;   dcd C.1.1.1.3                                              36 (26.9%)    34 (25.4%)     36 (27.3%)</span></span></code></pre></div>
 <p>The function associated with a particular slot can be retrieved with
-the corresponding method: <code>get_main</code>,
-<code>get_preprocess</code>and <code>get_postprocess</code></p>
+the corresponding method: <code>main</code>, <code>lyt</code>,
+<code>preprocess</code> <code>postprocess</code> and
+<code>datasets</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_main.html">get_main</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function (adam_db, armvar = .study$actualarm, lbl_overall = .study$lbl_overall, </span></span>
-<span><span class="co">#&gt;     prune_0 = TRUE, deco = std_deco("AET02"), .study = list(actualarm = "ACTARM", </span></span>
-<span><span class="co">#&gt;         lbl_overall = NULL)) </span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/main.html">main</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; function (adam_db, lyt_ls = list(aet02_1_lyt), armvar = .study$actualarm, </span></span>
+<span><span class="co">#&gt;     lbl_overall = .study$lbl_overall, prune_0 = TRUE, deco = std_deco("AET02"), </span></span>
+<span><span class="co">#&gt;     .study = list(actualarm = "ACTARM", lbl_overall = NULL), </span></span>
+<span><span class="co">#&gt;     ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     dbsel &lt;- get_db_data(adam_db, "adsl", "adae")</span></span>
-<span><span class="co">#&gt;     lyt &lt;- aet02_1_lyt(armvar = armvar, lbl_overall = lbl_overall, </span></span>
-<span><span class="co">#&gt;         deco = deco)</span></span>
+<span><span class="co">#&gt;     assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))</span></span>
+<span><span class="co">#&gt;     lyt &lt;- lyt_ls[[1]](armvar = armvar, lbl_overall = lbl_overall, </span></span>
+<span><span class="co">#&gt;         deco = deco, ... = ...)</span></span>
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     if (prune_0) {</span></span>
 <span><span class="co">#&gt;         tbl &lt;- smart_prune(tbl)</span></span>
@@ -280,11 +292,11 @@ the corresponding method: <code>get_main</code>,
 <span><span class="co">#&gt;         "*", "AEDECOD"), scorefun = score_occurrences)</span></span>
 <span><span class="co">#&gt;     tbl_sorted</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x556747728288&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55bd26f94970&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
-<p>These are standard function that can be used on their own</p>
+<p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_preprocess.html">get_preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; Tables: `adsl`, `adae`</span></span>
 <span><span class="co">#&gt; Columns: 148</span></span>
@@ -301,24 +313,60 @@ the corresponding method: <code>get_main</code>,
 <span><span class="co">#&gt; Foreign keys: 1</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="pipeline-customization">Pipeline customization<a class="anchor" aria-label="anchor" href="#pipeline-customization"></a>
+<h2 id="chevron_tlg-object-customization">
+<code>chevron_tlg</code> object customization<a class="anchor" aria-label="anchor" href="#chevron_tlg-object-customization"></a>
 </h2>
-<p>In some instances it is useful to customize the pipeline, for
-instance by changing the pre processing function. Be aware that you have
-to think carefully about argument names and compatibility with
-downstream functions.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aet02_1</span><span class="op">@</span><span class="va">preprocess</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span><span class="op">)</span> <span class="va">adam_db</span></span>
-<span><span class="fu"><a href="../reference/get_preprocess.html">get_preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function(adam_db) adam_db</span></span></code></pre></div>
-<p>Note that this operation creates a local version of the pipeline. The
-package version of the pipeline (accessible with
+<p>In some instances it is useful to customize the
+<code>chevron_tlg</code> object, for example by changing the pre
+processing functions. Be aware that you have to think carefully about
+argument names and compatibility with downstream functions. The
+<code>lyt</code> slot stores a <code>list of functions</code> but the
+constructor and setter method <code>lyt&lt;-</code> can handle input of
+class <code>function</code> and <code>list of functions</code>, as long
+as they possess the formal argument <code>...</code>, or
+<code>Pre-Data Table Layout</code> or list of
+<code>Pre-Data Table Layout</code>.</p>
+<p>Note that this operation creates a local version of the
+<code>chevron_tlg</code> object. The package version of the
+<code>chevron_tlg</code> object (accessible with
 <code><a href="../reference/aet01_1.html">chevron::aet01_1</a></code>) remains unchanged.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span> <span class="va">adam_db</span></span>
+<span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; function(adam_db, ...) adam_db</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/lyt.html">lyt</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tern/man/count_occurrences.html" class="external-link">count_occurrences</a></span><span class="op">(</span></span>
+<span>    vars <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
+<span>    .indent_mods <span class="op">=</span> <span class="op">-</span><span class="fl">1L</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/lyt.html">lyt</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arm</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="va">arm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tern/man/count_occurrences.html" class="external-link">count_occurrences</a></span><span class="op">(</span></span>
+<span>      vars <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
+<span>      .indent_mods <span class="op">=</span> <span class="op">-</span><span class="fl">1L</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/lyt.html">lyt</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; function(arm, ...) {</span></span>
+<span><span class="co">#&gt;   rtables::basic_table() %&gt;%</span></span>
+<span><span class="co">#&gt;     rtables::split_cols_by(arm) %&gt;%</span></span>
+<span><span class="co">#&gt;     tern::count_occurrences(</span></span>
+<span><span class="co">#&gt;       vars = "AEDECOD",</span></span>
+<span><span class="co">#&gt;       .indent_mods = -1L</span></span>
+<span><span class="co">#&gt;     )</span></span>
+<span><span class="co">#&gt; }</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="custom-pipeline-creation">Custom Pipeline creation<a class="anchor" aria-label="anchor" href="#custom-pipeline-creation"></a>
+<h2 id="custom-chevron_tlg-object-creation">Custom <code>chevron_tlg</code> object creation<a class="anchor" aria-label="anchor" href="#custom-chevron_tlg-object-creation"></a>
 </h2>
-<p>To create a pipeline from scratch, use the provided constructor:</p>
+<p>To create a <code>chevron_tlg</code> object from scratch, use the
+provided constructor method: <code><a href="../reference/chevron_tlg-class.html">chevron_tlg()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">my_pipeline</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chevron_tlg-class.html">chevron_tlg</a></span><span class="op">(</span></span>
@@ -332,43 +380,9 @@ package version of the pipeline (accessible with
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_pipeline</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Finished at 2022-10-19 07:02:41"</span></span>
-<span><span class="co">#&gt; MedDRA System Organ Class                                     A: Drug X    B: Placebo   C: Combination</span></span>
-<span><span class="co">#&gt;   MedDRA Preferred Term                                        (N=134)      (N=134)        (N=132)    </span></span>
-<span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; Total number of patients with at least one adverse event     100 (74.6%)   98 (73.1%)     103 (78%)   </span></span>
-<span><span class="co">#&gt; Overall total number of events                                   502          480            604      </span></span>
-<span><span class="co">#&gt; cl A.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   68 (50.7%)    58 (43.3%)     76 (57.6%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         115           99            137      </span></span>
-<span><span class="co">#&gt;   dcd A.1.1.1.1                                              45 (33.6%)    31 (23.1%)     52 (39.4%)  </span></span>
-<span><span class="co">#&gt;   dcd A.1.1.1.2                                              41 (30.6%)    39 (29.1%)     42 (31.8%)  </span></span>
-<span><span class="co">#&gt; cl B.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   62 (46.3%)    56 (41.8%)     74 (56.1%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         102          106            127      </span></span>
-<span><span class="co">#&gt;   dcd B.2.2.3.1                                              38 (28.4%)    40 (29.9%)     45 (34.1%)  </span></span>
-<span><span class="co">#&gt;   dcd B.2.1.2.1                                              39 (29.1%)    34 (25.4%)     46 (34.8%)  </span></span>
-<span><span class="co">#&gt; cl D.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   64 (47.8%)    54 (40.3%)     68 (51.5%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         106           84            114      </span></span>
-<span><span class="co">#&gt;   dcd D.1.1.1.1                                              42 (31.3%)    32 (23.9%)     46 (34.8%)  </span></span>
-<span><span class="co">#&gt;   dcd D.1.1.4.2                                              38 (28.4%)    34 (25.4%)     40 (30.3%)  </span></span>
-<span><span class="co">#&gt; cl D.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         49            57             65      </span></span>
-<span><span class="co">#&gt;   dcd D.2.1.5.3                                              37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
-<span><span class="co">#&gt; cl C.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         39            40             57      </span></span>
-<span><span class="co">#&gt;   dcd C.2.1.2.1                                              28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
-<span><span class="co">#&gt; cl B.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         44            43             50      </span></span>
-<span><span class="co">#&gt;   dcd B.1.1.1.1                                              38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt; cl C.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   36 (26.9%)    34 (25.4%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         47            51             54      </span></span>
-<span><span class="co">#&gt;   dcd C.1.1.1.3                                              36 (26.9%)    34 (25.4%)     36 (27.3%)</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Finished at 2022-10-24 14:03:57"</span></span>
+<span><span class="co">#&gt;    all obs</span></span>
+<span><span class="co">#&gt; ——————————</span></span></code></pre></div>
 <p>Note that to ensure the correct execution of the <code>run</code>
 function, the name of the first argument of the <code>main</code>
 function must be <code>adam_db</code>; the input <code>dm</code> object
@@ -376,9 +390,9 @@ to pre-process. The name of the first argument of the
 <code>preprocess</code> function must be <code>adam_db</code>; the input
 <code>dm</code> object to create <code>TLG</code> output and finally,
 the name of the first argument of the <code>postprocess</code> function
-must be <code>TLG</code>, the input <code>TableTree</code> object to
+must be <code>tlg</code>, the input <code>TableTree</code> object to
 post-process. Validation criteria enforce these rules upon creation of a
-<em>pipeline</em>.</p>
+<code>chevron_tlg</code> object.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
