@@ -296,7 +296,7 @@ aet01_1_check <- function(adam_db,
 #'
 #' run(aet01_1, db_add, armvar = "ARM", safety_var = c("FATAL", "CTC35", "RED"))
 #'
-aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 
 
@@ -341,7 +341,7 @@ aet01_2_main <- function(adam_db,
                            ),
                            medconcept_var = c("SMQ01")
                          ),
-                        ...) {
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -420,8 +420,7 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
                           medconcept_var = c("SMQ01"),
                           lbl_medconcept_var = c("SMQ01")
                         ),
-                       ...) {
-
+                        ...) {
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
 

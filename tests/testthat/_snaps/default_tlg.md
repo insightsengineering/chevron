@@ -48,9 +48,7 @@
         Related AE leading to dose modification/interruption       31 (23.1%)    31 (23.1%)      32 (24.2%)  
         Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
       Total number of patients with at least one                                                             
-        C.1.1.1.3/B.2.2.3.1 AESI (BROAD)                           72 (53.7%)    79 (59.0%)      75 (56.8%)  
-        SMQ 02 Reference Name                                       0 (0.0%)      0 (0.0%)        0 (0.0%)   
-        D.2.1.5.3/A.1.1.1.1 AESI                                   74 (55.2%)    80 (59.7%)      87 (65.9%)  
+        SMQ 01 Reference Name                                      72 (53.7%)    79 (59.0%)      75 (56.8%)  
 
 ---
 
