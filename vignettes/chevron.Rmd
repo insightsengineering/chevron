@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Chevron"
-date: "`r Sys.Date()`"
+date: "2022-10-21"
 author: Adrian Waddell
 output: rmarkdown::html_vignette
 vignette: >
@@ -23,9 +23,10 @@ knitr::opts_chunk$set(
 
 The `chevron` R package provides functions to produce standard tables, listings and graphs (TLGs) used to analyze and
 report clinical trials data. The ensemble of function used to produce a particular output are stored in an
-`chevron_tlg` object of class `S4` also called *pipelines*.
-Each standard output is associated with one  *pipeline*. They contain the following objects:
+`chevron_tlg` object of class `S4`.
+Each standard output is associated with one  *`chevron_tlg` object*. They contain the following objects in separate slots:
 * A `main` function also refereed to as *TLG-function*.
+* A `lyt` list of functions also refereed to as *Layout-list*.
 * A `preprocess` function.
 * A `postprocess` function
 * A `adam_dataset` character vector of the name of the `AdAM` datasets required to create the output.
@@ -41,13 +42,17 @@ used to create listings and tables, and `ggplot2`, `lattice`, and `grid` are use
    `<gds template id>_<i>_main` indicates that a Roche `GDS` defined standard may have different implementations. Or,
     alternatively, a `GDS` template id can be regarded as a *guideline* and the function name in `chevron` as a
     *standard*.
-1. have very few arguments to modify the standard. Generally, arguments may change the structure of the table (arm
+1. have, if possible, few arguments to modify the standard. Generally, arguments may change the structure of the table (arm
 variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
+1. have always as second argument `lyt_ls`, a list of functions returning `Pre-data Table Layout` that are used by the main function to generate the output.
 1. have a `.study` argument, read the *The .study argument* vignette for more detail.
-1. have the `...` argument to facilitate their incorporation in a pipeline.
+1. have the `...` argument to facilitate their incorporation in a workflow including pre and post processing.
 
+### *Layout-list*
+*Layout-list* in `chevron` are stored in each `chevron_tlg` objects as list of functions in the `lyt` slot. These functions must have the formal argument `...`.
+ 
 ### *pre-processing*
 The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
 suitable input for *TLG-functions*. The pre-processing step typically includes checks that will ensure that the `dm`
@@ -61,20 +66,20 @@ message.
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 1. can have the `.study` argument and other argument of the corresponding *TLG-functions* as they may inform the
 function on the column that will be required and facilitate the checking process.
-1. have the `...` argument to facilitate their incorporation in a pipeline.
+1. must have the `...` argument to facilitate their incorporation in a workflow.
 
-### *post-processing*`
-Post-processing function are not provided but can be created by the user.
+### *post-processing*
+By default, the Post-processing function returns its input or a `NULL` report if the input has no rows. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` and `...` as formal arguments.
 
-### *`adam_dataset`*
+### *ADaM dataset*
 The `adam_dataset` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
-information is important when the *pipeline* is interfaced with other processes from the `chevron` ecosystem of packages
+information is important when the `chevropn_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
 such as `citril`.
 
 
 ## Example `AET02`
 
-For example, the `GDS` template `aet02` is implemented in `chevron` with the *pipeline* that have the name `aet02_*`. The
+For example, the `GDS` template `aet02` is implemented in `chevron` with the `chevropn_tlg` objects that have the name `aet02_*`. The
 object documentation which is accessible with the `help` function, e.g. `help('aet02_1')` documents what is particular
 in the `_1` implementation.
 
@@ -101,39 +106,55 @@ library(chevron)
 run(aet02_1, adam_study_data)
 ```
 
-The function associated with a particular slot can be retrieved with the corresponding method: `get_main`,
-`get_preprocess`and `get_postprocess`
+The function associated with a particular slot can be retrieved with the corresponding method: `main`, `lyt`, `preprocess` `postprocess` and `datasets`.
 
 ```{r}
-get_main(aet02_1)
+main(aet02_1)
 ```
 
-These are standard function that can be used on their own
+These are standard functions that can be used on their own.
 
 ```{r}
-get_preprocess(aet02_1)(adam_study_data)
+preprocess(aet02_1)(adam_study_data)
 
 # or
 foo <- aet02_1@preprocess
 foo(adam_study_data)
 ```
 
-# Pipeline customization
+# `chevron_tlg` object customization
 
-In some instances it is useful to customize the pipeline, for instance by changing the pre processing function. Be aware
-that you have to think carefully about argument names and compatibility with downstream functions.
+In some instances it is useful to customize the `chevron_tlg` object, for example by changing the pre processing functions. Be aware that you have to think carefully about argument names and compatibility with downstream functions. The `lyt` slot stores a `list of functions` but the constructor and setter method `lyt<-` can handle input of class `function` and `list of functions`, as long as they possess the formal argument `...`, or `Pre-Data Table Layout` or list of `Pre-Data Table Layout`.
+
+Note that this operation creates a local version of the `chevron_tlg` object. The package version of the `chevron_tlg`
+object (accessible with `chevron::aet01_1`) remains unchanged.
 
 ```{r}
-aet02_1@preprocess <- function(adam_db) adam_db
-get_preprocess(aet02_1)
+preprocess(aet02_1) <- function(adam_db, ...) adam_db
+preprocess(aet02_1)
+
+lyt(aet02_1) <- rtables::basic_table() %>%
+  rtables::split_cols_by("ARM") %>%
+  tern::count_occurrences(
+    vars = "AEDECOD",
+    .indent_mods = -1L
+  )
+
+lyt(aet02_1) <- function(arm, ...) {
+  rtables::basic_table() %>%
+    rtables::split_cols_by(arm) %>%
+    tern::count_occurrences(
+      vars = "AEDECOD",
+      .indent_mods = -1L
+    )
+}
+
+lyt(aet02_1)
 ```
 
-Note that this operation creates a local version of the pipeline. The package version of the pipeline (accessible with
-`chevron::aet01_1`) remains unchanged.
+# Custom `chevron_tlg` object creation
 
-# Custom Pipeline creation
-
-To create a pipeline from scratch, use the provided constructor:
+To create a `chevron_tlg` object from scratch, use the provided constructor method: `chevron_tlg()`.
 ```{r}
 
 my_pipeline <- chevron_tlg(
@@ -153,5 +174,5 @@ run(my_pipeline, adam_study_data)
 Note that to ensure the correct execution of the `run` function, the name of the first argument of the `main` function
 must be `adam_db`; the input `dm` object to pre-process. The name of the first argument of the `preprocess` function must
 be `adam_db`; the input `dm` object to create `TLG` output and finally, the name of the first argument of the
-`postprocess` function must be `TLG`, the input `TableTree` object to post-process. Validation criteria enforce these
-rules upon creation of a *pipeline*.
+`postprocess` function must be `tlg`, the input `TableTree` object to post-process. Validation criteria enforce these
+rules upon creation of a `chevron_tlg` object.

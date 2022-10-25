@@ -19,5 +19,8 @@ check_all_colnames(df, x, null_ok = TRUE, qualifier = NULL)
 Check that all names are among column names
 }
 \examples{
-check_all_colnames(mtcars, c("mpg", "new", "hoho"), qualifier = "first test:")
+\dontrun{
+check_all_colnames(mtcars, c("x", "y"))
 }
+}
+\keyword{internal}

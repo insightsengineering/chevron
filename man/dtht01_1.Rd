@@ -14,13 +14,15 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 dtht01_1_main(
   adam_db,
+  lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
   armvar = .study$actualarm,
   time_since_last_dose = FALSE,
   other_category = FALSE,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 dtht01_1_lyt(
@@ -28,14 +30,16 @@ dtht01_1_lyt(
   lbl_overall = .study$lbl_overall,
   other_category = TRUE,
   deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 dtht01_1_opt_lyt(
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 dtht01_1_pre(adam_db, ...)
@@ -44,6 +48,9 @@ dtht01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -83,9 +90,16 @@ A description of the causes of death optionally with the breakdown of the
 \item \code{dtht01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the columns \code{"DTHFL"}, \code{"DTHCAT"} as well as \code{LDDTHGR1} if
+\code{time_since_last_dose} is \code{TRUE}.
+\item \code{lyt_ls} must contain a "causes" and, if \code{time_since_last_dose} is \code{TRUE}, a "time_since_last_dose" element.
+}
+}
 \examples{
 
-db <- dunlin::dm_explicit_na(syn_test_data())
+db <- syn_test_data()
 
 run(dtht01_1, db)
 run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)

@@ -1,7 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.0.9024
+Version: 0.1.1.9001
+Date: 2022-10-24
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -17,25 +18,26 @@ Imports:
     checkmate,
     dm,
     dplyr,
-    dunlin,
+    dunlin (>= 0.1.1),
     forcats,
     formatters,
+    ggplot2,
     magrittr,
     methods,
     rlang,
     rtables,
-    tern,
+    tern (>= 0.7.10),
     tibble,
     yaml
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     knitr,
-    nestcolor,
+    nestcolor (>= 0.1.0),
     purrr,
     rmarkdown,
-    scda,
-    scda.2021,
+    scda (>= 0.1.5),
+    scda.2021 (>= 0.1.5),
     testthat (>= 3.0.0),
     tidyr
 VignetteBuilder:
@@ -67,6 +69,7 @@ Collate:
     'gen_args.R'
     'lbt01.R'
     'mht01.R'
+    'mng01.R'
     'package.R'
     'sample_study_object.R'
     'vst01.R'

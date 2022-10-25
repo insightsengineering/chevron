@@ -13,6 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 dst01_2_main(
   adam_db,
+  lyt_ls = list(dst01_2_lyt),
   armvar = .study$planarm,
   status_var = .study$status_var,
   disc_reason_var = .study$disc_reason_var,
@@ -20,7 +21,8 @@ dst01_2_main(
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", disc_reason_var =
-    "DCSREAS", status_var = "EOSSTT")
+    "DCSREAS", status_var = "EOSSTT"),
+  ...
 )
 
 dst01_2_lyt(
@@ -33,13 +35,15 @@ dst01_2_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", status = "EOSSTT",
-    disc_reason_var = "DCSREAS")
+    disc_reason_var = "DCSREAS"),
+  ...
 )
 
 dst01_2_pre(
   adam_db,
-  reason = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS"),
+  status = .study$status,
+  disc_reason_var = .study$disc_reason_var,
+  .study = list(status = "EOSSTT", disc_reason_var = "DCSREAS"),
   ...
 )
 
@@ -47,6 +51,9 @@ dst01_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -66,6 +73,8 @@ the analysis period.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
 name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
@@ -77,10 +86,6 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
-
-\item{reason}{(\code{string}) the variable name for variable with the reason for discontinuation.}
-
-\item{...}{not used.}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of
@@ -111,6 +116,11 @@ which allows the tables to be constructed and pruned separately before binding.
 \item \code{dst01_2_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the columns specified by \code{status_var} and \code{disc_reason_var}.
+}
+}
 \examples{
 library(dm)
 library(magrittr)
@@ -126,5 +136,6 @@ dst01_2_lyt(
   disc_reason_var = "DCP01RS"
 )
 dst01_2_pre(syn_test_data())
+run(dst01_2, syn_test_data())
 }
 \keyword{datasets}

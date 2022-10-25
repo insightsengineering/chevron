@@ -17,3 +17,4 @@ set_decoration(x, deco)
 \description{
 Temporary function to add decorator to a table
 }
+\keyword{internal}
