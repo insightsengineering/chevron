@@ -1,3 +1,4 @@
+# Chevron_tlg ----
 
 #' `chevron_tlg` class
 #'
@@ -87,7 +88,7 @@ chevron_tlg <- function(main = function(adam_db, ...) adam_db,
                         postprocess = report_null,
                         adam_datasets = NA_character_) {
   res <- .chevron_tlg(
-    main = main,
+    main = main,T
     lyt = make_lyt_ls(lyt),
     preprocess = preprocess,
     postprocess = postprocess,
@@ -158,3 +159,65 @@ make_lyt_ls <- function(lyt) {
     stop(paste("lyt must be a `function`, `list of functions` or `PreDataTableLayouts` but is", toString(cl)))
   )
 }
+
+# Subclasses ----
+
+## chevron_t ----
+
+#' `chevron_t`
+#'
+#' `chevron_t`, a subclass of [chevron::chevron_tlg] with specific validation criteria to handle graph creation
+#'
+#' @aliases chevron_table
+#' @rdname chevron_tlg-class
+#' @exportClass chevron_t
+.chevron_t <- setClass(
+  "chevron_t",
+  contains = "chevron_tlg"
+)
+
+methods::setValidity("chevron_t", function(object) {
+  coll <- checkmate::makeAssertCollection()
+  checkmate::assert_function(object@main, args = c("adam_db", "lyt_ls"), ordered = TRUE, add = coll)
+  checkmate::reportAssertions(coll)
+})
+
+## chevron_l ----
+
+#' `chevron_l`
+#'
+#' `chevron_l`, a subclass of [chevron::chevron_tlg] with specific validation criteria to handle listing creation
+#'
+#' @aliases chevron_listing
+#' @rdname chevron_tlg-class
+#' @exportClass chevron_l
+.chevron_l <- setClass(
+  "chevron_l",
+  contains = "chevron_tlg"
+)
+
+methods::setValidity("chevron_t", function(object) {
+  coll <- checkmate::makeAssertCollection()
+  checkmate::assert_function(object@main, args = c("adam_db", "lyt_ls"), ordered = TRUE, add = coll)
+  checkmate::reportAssertions(coll)
+})
+
+## chevron_g ----
+
+#' `chevron_g`
+#'
+#' `chevron_g`, a subclass of [chevron::chevron_tlg] with specific validation criteria to handle graph creation
+#'
+#' @aliases chevron_graph
+#' @rdname chevron_tlg-class
+#' @exportClass chevron_g
+.chevron_g <- setClass(
+  "chevron_g",
+  contains = "chevron_tlg"
+)
+
+methods::setValidity("chevron_g", function(object) {
+  coll <- checkmate::makeAssertCollection()
+  checkmate::assert_function(object@main, args = c("adam_db", "plot_ls"), ordered = TRUE, add = coll)
+  checkmate::reportAssertions(coll)
+})

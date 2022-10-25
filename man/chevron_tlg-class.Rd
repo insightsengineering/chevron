@@ -5,6 +5,15 @@
 \alias{chevron_tlg-class}
 \alias{.chevron_tlg}
 \alias{chevron_tlg}
+\alias{chevron_t-class}
+\alias{.chevron_t}
+\alias{chevron_table}
+\alias{chevron_l-class}
+\alias{.chevron_l}
+\alias{chevron_listing}
+\alias{chevron_g-class}
+\alias{.chevron_g}
+\alias{chevron_graph}
 \title{\code{chevron_tlg} class}
 \usage{
 chevron_tlg(
@@ -35,6 +44,12 @@ creation.}
 \description{
 The \code{chevron_tlg} class associates a \code{preprocess} function, a main \code{tlg} function and \code{AdAM} tables names and
 optionally a \code{postprocess} function.
+
+\code{chevron_t}, a subclass of \link{chevron_tlg} with specific validation criteria to handle graph creation
+
+\code{chevron_l}, a subclass of \link{chevron_tlg} with specific validation criteria to handle listing creation
+
+\code{chevron_g}, a subclass of \link{chevron_tlg} with specific validation criteria to handle graph creation
 }
 \section{Functions}{
 \itemize{
