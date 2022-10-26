@@ -10,7 +10,7 @@
 \title{\code{AET01} Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2. Overview of death and summary
 of adverse events with medical concepts.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet01_2_main(

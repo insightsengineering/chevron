@@ -17,11 +17,12 @@
 \title{\code{chevron_tlg} class}
 \usage{
 chevron_tlg(
-  main = function(adam_db, ...) adam_db,
-  lyt = list(function(...) basic_table()),
+  main,
+  lyt,
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = report_null,
-  adam_datasets = NA_character_
+  postprocess,
+  adam_datasets = NA_character_,
+  type = c("table", "listing", "graph", NA)
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} dataset required for \code{tlg}
 creation.}
+
+\item{type}{(\code{string}) indicating the subclass.}
 }
 \description{
 The \code{chevron_tlg} class associates a \code{preprocess} function, a main \code{tlg} function and \code{AdAM} tables names and

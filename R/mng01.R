@@ -270,5 +270,6 @@ mng01_1 <- chevron_tlg(
   mng01_1_plot,
   mng01_1_pre,
   mng01_1_post,
-  adam_datasets = c("adsl", "adlb", "adeg", "advs")
+  adam_datasets = c("adsl", "adlb", "adeg", "advs"),
+  "graph"
 )

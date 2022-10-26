@@ -59,47 +59,6 @@ methods::setValidity("chevron_tlg", function(object) {
   checkmate::reportAssertions(coll)
 })
 
-# Constructor ----
-
-#' `chevron_tlg` constructor
-#'
-#' @describeIn chevron_tlg Default Constructor
-#'
-#' @param main (`function`) returning a `tlg`, with `adam_db` as first argument and `...` as last argument. Typically
-#'   one of the `_main` function of `chevron`.
-#' @param lyt  (a single `function` returning `PreDataTableLayouts` object or `PreDataTableLayouts` object or `list` of
-#'   either `functions` or `PreDataTableLayouts` type of elements) typically one of the `_lyt` function of `chevron`.
-#'   Functions passed to `lyt`, whether as a single `function` or as a `list of functions`, must have the `...` formal
-#'   argument.
-#' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument and `...` as
-#'   last argument. Typically one of the `_pre` function of `chevron`.
-#' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
-#' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` dataset required for `tlg`
-#'   creation.
-#'
-#' @include utils.R
-#'
-#' @export
-#' @examples
-#' x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
-chevron_tlg <- function(main = function(adam_db, ...) adam_db,
-                        lyt = list(function(...) basic_table()),
-                        preprocess = function(adam_db, ...) adam_db,
-                        postprocess = report_null,
-                        adam_datasets = NA_character_) {
-  res <- .chevron_tlg(
-    main = main,T
-    lyt = make_lyt_ls(lyt),
-    preprocess = preprocess,
-    postprocess = postprocess,
-    adam_datasets = adam_datasets
-  )
-
-  validObject(res)
-  res
-}
-
-
 #' Layout List Constructor
 #'
 #' @inheritParams chevron_tlg
@@ -221,3 +180,165 @@ methods::setValidity("chevron_g", function(object) {
   checkmate::assert_function(object@main, args = c("adam_db", "plot_ls"), ordered = TRUE, add = coll)
   checkmate::reportAssertions(coll)
 })
+
+
+# Sub Constructor ----
+
+#' `chevron_tlg` constructor helper
+#'
+#' handle missing arguments for the `chevron_tlg` constructor.
+#'
+h_chevron_tlg <- function(
+    main = function(adam_db, lyt_ls, ...) adam_db,
+                        lyt = list(function(...) basic_table()),
+                        preprocess = function(adam_db, ...) adam_db,
+                        postprocess = function(tlg, ...) tlg,
+                        adam_datasets = NA_character_
+    ) {
+
+    res <- .chevron_tlg(
+    main = main,
+    lyt = make_lyt_ls(lyt),
+    preprocess = preprocess,
+    postprocess = postprocess,
+    adam_datasets = adam_datasets
+  )
+
+  validObject(res)
+  res
+
+
+
+}
+
+
+
+#' `chevron_t` constructor
+#'
+#' @inheritParams chevron_tlg
+#'
+#' @export
+#'
+chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[1]](), adam_db[[1]]),
+                        lyt = list(function(...) basic_table()),
+                        preprocess = function(adam_db, ...) adam_db,
+                        postprocess = report_null,
+                        adam_datasets = NA_character_) {
+
+  res <- .chevron_t(
+    main = main,
+    lyt = make_lyt_ls(lyt),
+    preprocess = preprocess,
+    postprocess = postprocess,
+    adam_datasets = adam_datasets
+  )
+
+  validObject(res)
+  res
+}
+
+#' `chevron_l` constructor
+#'
+#' @inheritParams chevron_tlg
+#'
+#' @export
+#'
+chevron_l <- function(main = function(adam_db, lyt_ls, ...) data.frame(),
+                        lyt = list(function(...) NULL),
+                        preprocess = function(adam_db, ...) adam_db,
+                        postprocess = function(tlg, ...) {tlg},
+                        adam_datasets = NA_character_) {
+
+  res <- .chevron_l(
+    main = main,
+    lyt = make_lyt_ls(lyt),
+    preprocess = preprocess,
+    postprocess = postprocess,
+    adam_datasets = adam_datasets
+  )
+
+  validObject(res)
+  res
+}
+
+#' `chevron_g` constructor
+#'
+#' @inheritParams chevron_tlg
+#'
+#' @export
+#'
+chevron_g <- function(main = function(adam_db, plot_ls, ...) plot_ls[[1]](),
+                        lyt = list(function(...) ggplot2::ggplot()),
+                        preprocess = function(adam_db, ...) adam_db,
+                        postprocess = function(tlg, ...) {tlg},
+                        adam_datasets = NA_character_) {
+
+  res <- .chevron_g(
+    main = main,
+    lyt = make_lyt_ls(lyt),
+    preprocess = preprocess,
+    postprocess = postprocess,
+    adam_datasets = adam_datasets
+  )
+
+  validObject(res)
+  res
+}
+
+# Constructor ----
+
+#' `chevron_tlg` constructor
+#'
+#' @describeIn chevron_tlg Default Constructor
+#'
+#' @param main (`function`) returning a `tlg`, with `adam_db` as first argument and `...` as last argument. Typically
+#'   one of the `_main` function of `chevron`.
+#' @param lyt  (a single `function` returning `PreDataTableLayouts` object or `PreDataTableLayouts` object or `list` of
+#'   either `functions` or `PreDataTableLayouts` type of elements) typically one of the `_lyt` function of `chevron`.
+#'   Functions passed to `lyt`, whether as a single `function` or as a `list of functions`, must have the `...` formal
+#'   argument.
+#' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument and `...` as
+#'   last argument. Typically one of the `_pre` function of `chevron`.
+#' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
+#' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` dataset required for `tlg`
+#'   creation.
+#' @param type (`string`) indicating the subclass.
+#'
+#' @include utils.R
+#'
+#' @export
+#' @examples
+#' x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+chevron_tlg <- function(main,
+                        lyt,
+                        preprocess = function(adam_db, ...) adam_db,
+                        postprocess,
+                        adam_datasets = NA_character_,
+                        type = c("table", "listing", "graph", NA)) {
+
+  type <- match.arg(type)
+    constructor <- switch(
+      type,
+      "table" = chevron_t,
+      "listing" = chevron_l,
+      "graph" = chevron_g,
+      `NA` = h_chevron_tlg
+    )
+
+  args <- list(
+    main = ifelse(missing(main), rlang::missing_arg(), main),
+    lyt = ifelse(missing(lyt), rlang::missing_arg(), lyt),
+    preprocess = preprocess,
+    postprocess = ifelse(missing(postprocess), rlang::missing_arg(), postprocess),
+    adam_datasets = adam_datasets
+  )
+
+  res <- do.call(
+    constructor,
+    args
+  )
+
+  validObject(res)
+  res
+}
+

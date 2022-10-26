@@ -9,7 +9,7 @@
 \alias{mng01_1}
 \title{\code{MNG01} Graph 1 (Default) Mean Plot 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_g} of length 1.
 }
 \usage{
 mng01_1_main(

@@ -7,7 +7,7 @@
 \alias{aet02_3}
 \title{\code{AET02} Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet02_3_lyt(
