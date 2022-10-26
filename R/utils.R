@@ -89,7 +89,7 @@ get_db_data <- function(db, ...) { # TODO: revisit
 #' Retrieve Synthetic Test Data Used For Examples
 #' @export
 syn_test_data <- function() {
-  sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
+  sd <- scda::synthetic_cdisc_data("rcd_2022_06_27")
 
   # to avoid bug
   attr(sd, "data_from") <- NULL
