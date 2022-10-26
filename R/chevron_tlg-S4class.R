@@ -155,7 +155,7 @@ methods::setValidity("chevron_t", function(object) {
   contains = "chevron_tlg"
 )
 
-methods::setValidity("chevron_t", function(object) {
+methods::setValidity("chevron_l", function(object) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assert_function(object@main, args = c("adam_db", "lyt_ls"), ordered = TRUE, add = coll)
   checkmate::reportAssertions(coll)
