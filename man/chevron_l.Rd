@@ -5,8 +5,8 @@
 \title{\code{chevron_l} constructor}
 \usage{
 chevron_l(
-  main = function(adam_db, lyt_ls, ...) lyt_ls[[1]](adam_db),
-  lyt = list(function(...) list(...)),
+  main = function(adam_db, lyt_ls, ...) data.frame(),
+  lyt = list(function(...) NULL),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = function(tlg, ...) {
      tlg

@@ -188,6 +188,8 @@ methods::setValidity("chevron_g", function(object) {
 #'
 #' handle missing arguments for the `chevron_tlg` constructor.
 #'
+#' @inheritParams chevron_tlg
+#'
 h_chevron_tlg <- function(
     main = function(adam_db, lyt_ls, ...) adam_db,
                         lyt = list(function(...) basic_table()),
@@ -314,7 +316,7 @@ chevron_tlg <- function(main,
                         preprocess = function(adam_db, ...) adam_db,
                         postprocess,
                         adam_datasets = NA_character_,
-                        type = c("table", "listing", "graph", NA)) {
+                        type = c(NA, "table", "listing", "graph")) {
 
   type <- match.arg(type)
     constructor <- switch(
@@ -325,6 +327,7 @@ chevron_tlg <- function(main,
       `NA` = h_chevron_tlg
     )
 
+  # Pass missing argument to allow sub-class specific default.
   args <- list(
     main = ifelse(missing(main), rlang::missing_arg(), main),
     lyt = ifelse(missing(lyt), rlang::missing_arg(), lyt),
@@ -341,4 +344,3 @@ chevron_tlg <- function(main,
   validObject(res)
   res
 }
-

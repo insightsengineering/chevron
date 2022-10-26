@@ -9,7 +9,7 @@
 \title{\code{CMT01A} Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
 treatments per medication class suppressed).}
 \format{
-An object of class \code{chevron_t} of length 1.
+An object of class \code{chevron_tlg} of length 1.
 }
 \usage{
 cmt01a_3_main(

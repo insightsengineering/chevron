@@ -8,7 +8,7 @@
 \title{\code{CMT01A} Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
 frequency).}
 \format{
-An object of class \code{chevron_t} of length 1.
+An object of class \code{chevron_tlg} of length 1.
 }
 \usage{
 cmt01a_2_main(

@@ -22,7 +22,7 @@ chevron_tlg(
   preprocess = function(adam_db, ...) adam_db,
   postprocess,
   adam_datasets = NA_character_,
-  type = c("table", "listing", "graph", NA)
+  type = c(NA, "table", "listing", "graph")
 )
 }
 \arguments{

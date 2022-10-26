@@ -9,7 +9,7 @@
 \alias{dtht01_1}
 \title{\code{DTHT01} Table 1 (Default) Death Table.}
 \format{
-An object of class \code{chevron_t} of length 1.
+An object of class \code{chevron_tlg} of length 1.
 }
 \usage{
 dtht01_1_main(
