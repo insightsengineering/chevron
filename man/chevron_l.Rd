@@ -6,22 +6,17 @@
 \usage{
 chevron_l(
   main = function(adam_db, lyt_ls, ...) data.frame(),
-  lyt = list(function(...) NULL),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = function(tlg, ...) {
      tlg
  },
-  adam_datasets = NA_character_
+  adam_datasets = NA_character_,
+  ...
 )
 }
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
 one of the \verb{_main} function of \code{chevron}.}
-
-\item{lyt}{(a single \code{function} returning \code{PreDataTableLayouts} object or \code{PreDataTableLayouts} object or \code{list} of
-either \code{functions} or \code{PreDataTableLayouts} type of elements) typically one of the \verb{_lyt} function of \code{chevron}.
-Functions passed to \code{lyt}, whether as a single \code{function} or as a \verb{list of functions}, must have the \code{...} formal
-argument.}
 
 \item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument and \code{...} as
 last argument. Typically one of the \verb{_pre} function of \code{chevron}.}

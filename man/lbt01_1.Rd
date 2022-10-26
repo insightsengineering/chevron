@@ -8,7 +8,7 @@
 \alias{lbt01_1}
 \title{\code{LBT01} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 lbt01_1_main(

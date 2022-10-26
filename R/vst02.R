@@ -127,7 +127,7 @@ vst02_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(vst02_1, syn_test_data())
-vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_lyt, vst02_1_pre, adam_datasets = c("adsl", "advs"))
+vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_lyt, vst02_1_pre, adam_datasets = c("adsl", "advs"), type = "t")
 
 
 # vst02_2 ----
@@ -259,4 +259,4 @@ vst02_2_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(vst02_2, syn_test_data())
-vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_lyt, vst02_2_pre, adam_datasets = c("adsl", "advs"))
+vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_lyt, vst02_2_pre, adam_datasets = c("adsl", "advs"), type = "t")

@@ -9,7 +9,8 @@ chevron_t(
   lyt = list(function(...) basic_table()),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = report_null,
-  adam_datasets = NA_character_
+  adam_datasets = NA_character_,
+  ...
 )
 }
 \arguments{

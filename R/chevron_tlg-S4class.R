@@ -6,7 +6,6 @@
 #' optionally a `postprocess` function.
 #'
 #' @slot main (`function`) returning a `tlg`. Typically one of the `*_main` function from `chevron`.
-#' @slot lyt (`list of function`).  Typically one of the `*_lyt` function from `chevron`wrapped in a `list`.
 #' @slot preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
 #'   `*_pre` function from `chevron`.
 #' @slot postprocess (`function`) returning a post-processed `tlg`.
@@ -30,7 +29,6 @@
   "chevron_tlg",
   slots = c(
     main = "function",
-    lyt = "list",
     preprocess = "function",
     postprocess = "function",
     adam_datasets = "character"
@@ -43,15 +41,6 @@ methods::setValidity("chevron_tlg", function(object) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
   checkmate::assert_function(object@main, args = c("..."), add = coll)
-  checkmate::assert_list(object@lyt, types = "function", add = coll)
-  for (i in seq_along(object@lyt)) {
-    checkmate::assert_function(
-      object@lyt[[i]],
-      args = "...",
-      add = coll,
-      .var.name = paste("Element", i, "of the lyt slot")
-    )
-  }
   checkmate::assert_function(object@preprocess, args = c("adam_db"), ordered = TRUE, add = coll)
   checkmate::assert_function(object@preprocess, args = c("..."), add = coll)
   checkmate::assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
@@ -127,17 +116,29 @@ make_lyt_ls <- function(lyt) {
 #'
 #' `chevron_t`, a subclass of [chevron::chevron_tlg] with specific validation criteria to handle graph creation
 #'
+#' @slot lyt (`list of function`).  Typically one of the `*_lyt` function from `chevron`wrapped in a `list`.
+#'
 #' @aliases chevron_table
 #' @rdname chevron_tlg-class
 #' @exportClass chevron_t
 .chevron_t <- setClass(
   "chevron_t",
+  slot = c(lyt = "list"),
   contains = "chevron_tlg"
 )
 
 methods::setValidity("chevron_t", function(object) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assert_function(object@main, args = c("adam_db", "lyt_ls"), ordered = TRUE, add = coll)
+  checkmate::assert_list(object@lyt, types = "function", add = coll)
+  for (i in seq_along(object@lyt)) {
+    checkmate::assert_function(
+      object@lyt[[i]],
+      args = "...",
+      add = coll,
+      .var.name = paste("Element", i, "of the lyt slot")
+    )
+  }
   checkmate::reportAssertions(coll)
 })
 
@@ -172,48 +173,27 @@ methods::setValidity("chevron_l", function(object) {
 #' @exportClass chevron_g
 .chevron_g <- setClass(
   "chevron_g",
+  slot = c("graph" = "list"),
   contains = "chevron_tlg"
 )
 
 methods::setValidity("chevron_g", function(object) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assert_function(object@main, args = c("adam_db", "plot_ls"), ordered = TRUE, add = coll)
+  checkmate::assert_list(object@graph, types = "function", add = coll)
+  for (i in seq_along(object@graph)) {
+    checkmate::assert_function(
+      object@graph[[i]],
+      args = "...",
+      add = coll,
+      .var.name = paste("Element", i, "of the graph slot")
+    )
+  }
   checkmate::reportAssertions(coll)
 })
 
 
 # Sub Constructor ----
-
-#' `chevron_tlg` constructor helper
-#'
-#' handle missing arguments for the `chevron_tlg` constructor.
-#'
-#' @inheritParams chevron_tlg
-#'
-h_chevron_tlg <- function(
-    main = function(adam_db, lyt_ls, ...) adam_db,
-                        lyt = list(function(...) basic_table()),
-                        preprocess = function(adam_db, ...) adam_db,
-                        postprocess = function(tlg, ...) tlg,
-                        adam_datasets = NA_character_
-    ) {
-
-    res <- .chevron_tlg(
-    main = main,
-    lyt = make_lyt_ls(lyt),
-    preprocess = preprocess,
-    postprocess = postprocess,
-    adam_datasets = adam_datasets
-  )
-
-  validObject(res)
-  res
-
-
-
-}
-
-
 
 #' `chevron_t` constructor
 #'
@@ -225,7 +205,8 @@ chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[
                         lyt = list(function(...) basic_table()),
                         preprocess = function(adam_db, ...) adam_db,
                         postprocess = report_null,
-                        adam_datasets = NA_character_) {
+                        adam_datasets = NA_character_,
+                      ...) {
 
   res <- .chevron_t(
     main = main,
@@ -246,14 +227,13 @@ chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[
 #' @export
 #'
 chevron_l <- function(main = function(adam_db, lyt_ls, ...) data.frame(),
-                        lyt = list(function(...) NULL),
                         preprocess = function(adam_db, ...) adam_db,
                         postprocess = function(tlg, ...) {tlg},
-                        adam_datasets = NA_character_) {
+                        adam_datasets = NA_character_,
+                      ...) {
 
   res <- .chevron_l(
     main = main,
-    lyt = make_lyt_ls(lyt),
     preprocess = preprocess,
     postprocess = postprocess,
     adam_datasets = adam_datasets
@@ -270,14 +250,15 @@ chevron_l <- function(main = function(adam_db, lyt_ls, ...) data.frame(),
 #' @export
 #'
 chevron_g <- function(main = function(adam_db, plot_ls, ...) plot_ls[[1]](),
-                        lyt = list(function(...) ggplot2::ggplot()),
+                        graph = list(function(...) ggplot2::ggplot()),
                         preprocess = function(adam_db, ...) adam_db,
                         postprocess = function(tlg, ...) {tlg},
-                        adam_datasets = NA_character_) {
+                        adam_datasets = NA_character_,
+                      ...) {
 
   res <- .chevron_g(
     main = main,
-    lyt = make_lyt_ls(lyt),
+    graph = make_lyt_ls(graph),
     preprocess = preprocess,
     postprocess = postprocess,
     adam_datasets = adam_datasets
@@ -299,6 +280,7 @@ chevron_g <- function(main = function(adam_db, plot_ls, ...) plot_ls[[1]](),
 #'   either `functions` or `PreDataTableLayouts` type of elements) typically one of the `_lyt` function of `chevron`.
 #'   Functions passed to `lyt`, whether as a single `function` or as a `list of functions`, must have the `...` formal
 #'   argument.
+#' @param graph
 #' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument and `...` as
 #'   last argument. Typically one of the `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
@@ -313,24 +295,27 @@ chevron_g <- function(main = function(adam_db, plot_ls, ...) plot_ls[[1]](),
 #' x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 chevron_tlg <- function(main,
                         lyt,
+                        graph,
                         preprocess = function(adam_db, ...) adam_db,
                         postprocess,
                         adam_datasets = NA_character_,
                         type = c(NA, "table", "listing", "graph")) {
 
   type <- match.arg(type)
+  checkmate::assert_string(type, na.ok = FALSE)
+
     constructor <- switch(
       type,
       "table" = chevron_t,
       "listing" = chevron_l,
-      "graph" = chevron_g,
-      `NA` = h_chevron_tlg
+      "graph" = chevron_g
     )
 
   # Pass missing argument to allow sub-class specific default.
   args <- list(
     main = ifelse(missing(main), rlang::missing_arg(), main),
     lyt = ifelse(missing(lyt), rlang::missing_arg(), lyt),
+    graph = ifelse(missing(graph), rlang::missing_arg(), graph),
     preprocess = preprocess,
     postprocess = ifelse(missing(postprocess), rlang::missing_arg(), postprocess),
     adam_datasets = adam_datasets

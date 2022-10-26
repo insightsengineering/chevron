@@ -19,6 +19,7 @@
 chevron_tlg(
   main,
   lyt,
+  graph,
   preprocess = function(adam_db, ...) adam_db,
   postprocess,
   adam_datasets = NA_character_,
@@ -64,8 +65,6 @@ optionally a \code{postprocess} function.
 \describe{
 \item{\code{main}}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{*_main} function from \code{chevron}.}
 
-\item{\code{lyt}}{(\verb{list of function}).  Typically one of the \verb{*_lyt} function from \code{chevron}wrapped in a \code{list}.}
-
 \item{\code{preprocess}}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
 \verb{*_pre} function from \code{chevron}.}
 
@@ -73,6 +72,8 @@ optionally a \code{postprocess} function.
 
 \item{\code{adam_datasets}}{(\code{character}) representing the name of the tables from an \code{AdAM} dataset required for \code{tlg}
 creation.}
+
+\item{\code{lyt}}{(\verb{list of function}).  Typically one of the \verb{*_lyt} function from \code{chevron}wrapped in a \code{list}.}
 }}
 
 \note{
