@@ -82,7 +82,6 @@ vst01_1_main <- function(adam_db,
 #' @param ... not used.
 #'
 #' @export
-#'
 vst01_1_lyt <- function(armvar = .study$actualarm,
                         summaryvars = .study$evo_vars,
                         summaryvars_lbls = .study$evo_vars_lbls,
