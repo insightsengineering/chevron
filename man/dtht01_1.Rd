@@ -97,6 +97,7 @@ A description of the causes of death optionally with the breakdown of the
 }
 }
 \examples{
+
 db <- syn_test_data()
 
 run(dtht01_1, db)

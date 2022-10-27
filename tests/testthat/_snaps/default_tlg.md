@@ -618,9 +618,9 @@
       Total number of deaths   25 (18.7%)   23 (17.2%)     22 (16.7%)  
       Primary cause of death                                           
         n                          25           23             22      
-        ADVERSE EVENT           9 (36%)     7 (30.4%)      10 (45.5%)  
-        PROGRESSIVE DISEASE     8 (32%)     6 (26.1%)      6 (27.3%)   
-        OTHER                   8 (32%)     10 (43.5%)     6 (27.3%)   
+        ADVERSE EVENT          9 (36.0%)    7 (30.4%)      10 (45.5%)  
+        PROGRESSIVE DISEASE    8 (32.0%)    6 (26.1%)      6 (27.3%)   
+        OTHER                  8 (32.0%)    10 (43.5%)     6 (27.3%)   
 
 ---
 

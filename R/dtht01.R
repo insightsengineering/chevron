@@ -50,8 +50,7 @@ dtht01_1_main <- function(adam_db,
   tbl <- build_table(lyt[[1]], dbsel$adsl)
 
   if (other_category) {
-
-    tbl_2 <- build_table(lyt[[2]],dbsel$adsl %>% filter(.data$DTHFL == "Y"))
+    tbl_2 <- build_table(lyt[[2]], dbsel$adsl %>% filter(.data$DTHFL == "Y")) # to ensure the correct denominator.
     col_info(tbl_2) <- col_info(tbl)
     tbl <- rbind(tbl, tbl_2)
   }
@@ -108,16 +107,20 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
       .labels = c(count_fraction = "Total number of deaths"),
       .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
-    summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
+    summarize_vars(
+      vars = c("DTHCAT"),
+      var_labels = c("Primary cause of death"),
+      .formats = c(count_fraction = "xx (xx.x%)")
+    )
 
   tab2 <-
     basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by("DTHCAT", split_fun = keep_split_levels("OTHER"), child_labels = "hidden") %>%
     summarize_vars(
       "DTHCAUS",
-      nested = FALSE,
       .stats = "count_fraction",
       .indent_mods = c("count_fraction" = 4L),
       .formats = c(count_fraction = "xx (xx.x%)"),
@@ -149,7 +152,8 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
     summarize_vars(
       vars = "LDDTHGR1",
       var_labels = "Days from last drug administration",
-      show_labels = "visible"
+      show_labels = "visible",
+      .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       "LDDTHGR1",
@@ -157,7 +161,10 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
       split_label = "Primary cause by days from last study drug administration",
       label_pos = "visible"
     ) %>%
-    summarize_vars("DTHCAT")
+    summarize_vars(
+      "DTHCAT",
+      .formats = c(count_fraction = "xx (xx.x%)")
+    )
 }
 
 #' @describeIn dtht01_1 Preprocessing
@@ -173,18 +180,6 @@ dtht01_1_pre <- function(adam_db, ...) {
   death_fact <- levels(adam_db$adsl$DTHCAT)
   death_fact <- setdiff(death_fact, "OTHER")
   death_fact <- c(death_fact, "OTHER")
-
-  adam_db <- adam_db %>%
-    dm_zoom_to("adsl") %>%
-    mutate(DTHCAT = forcats::fct_relevel(.data$DTHCAT, death_fact)) %>%
-    mutate(is_OTHER = ifelse(.data$DTHCAT %in% c("OTHER", "<Missing>"), "Y", "N")) %>%
-    mutate(DTHCAUS = as.factor(
-      gsub("DEATH DUE TO ", "", as.character(.data$DTHCAUS), ignore.case = TRUE))
-    ) %>%
-    mutate(DTHCAUS = as.factor(ifelse(.data$DTHCAT == "OTHER" | .data$DTHCAT == "<Missing>",
-                                      as.character(.data$DTHCAUS), "<Missing>"
-    ))) %>%
-    dm_update_zoomed()
 
   existing_lvl <- as.list(setNames(death_fact, death_fact))
   na_lvl <- list("<Missing>" = c("", NA))
