@@ -12,19 +12,13 @@
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
+#' @note
+#'   * `adam_db` object must contain an `adeg` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adeg") %>%
-#'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
-#'   dm_update_zoomed() %>%
-#'   egt02_1_pre()
-#'
-#' egt02_1_main(adam_db = db)
 egt02_1_main <- function(adam_db,
+                         lyt_ls = list(egt02_1_lyt),
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -34,15 +28,17 @@ egt02_1_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
-  lyt <- egt02_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adeg, alt_counts_df = dbsel$adsl)
@@ -55,14 +51,10 @@ egt02_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' egt02_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 egt02_1_lyt <- function(armvar = .study$actualarm,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
@@ -71,7 +63,8 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -93,9 +86,6 @@ egt02_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' syn_test_data() %>%
-#'   egt02_1_pre()
 egt02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
@@ -112,7 +102,10 @@ egt02_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
+#'
+#' @examples
+#' run(egt02_1, syn_test_data())
+egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_lyt, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
 
 
 # egt02_2 ----
@@ -129,20 +122,13 @@ egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_pre, adam_datasets = c("adsl", "ade
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
+#' @note
+#'   * `adam_db` object must contain an `adeg` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(dplyr)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adeg") %>%
-#'   filter(PARAM %in% c("Heart Rate", "QT Duration", "RR Duration")) %>%
-#'   dm_update_zoomed() %>%
-#'   egt02_2_pre()
-#'
-#' egt02_2_main(adam_db = db)
 egt02_2_main <- function(adam_db,
+                         lyt_ls = list(egt02_2_lyt),
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -152,15 +138,17 @@ egt02_2_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
-  lyt <- egt02_2_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adeg, alt_counts_df = dbsel$adsl)
@@ -173,14 +161,10 @@ egt02_2_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' egt02_2_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 egt02_2_lyt <- function(armvar = .study$actualarm,
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
@@ -189,7 +173,8 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -211,8 +196,6 @@ egt02_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' egt02_2_pre(syn_test_data())
 egt02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
@@ -229,4 +212,7 @@ egt02_2_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_pre, adam_datasets = c("adsl", "adeg"))
+#'
+#' @examples
+#' run(egt02_2, syn_test_data())
+egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_lyt, egt02_2_pre, adam_datasets = c("adsl", "adeg"))

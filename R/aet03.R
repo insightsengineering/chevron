@@ -12,18 +12,13 @@
 #'  * Does not include a total column by default.
 #'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns `"AESEV"`, `"AEBODSYS"` and `"AEDECOD"`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet03_1_pre()
-#'
-#' aet03_1_main(db)
-#' aet03_1_main(db, lbl_overall = "All Patients")
 aet03_1_main <- function(adam_db,
+                         lyt_ls = list(aet03_1_lyt),
                          armvar = .study$actualarm,
                          prune_0 = TRUE,
                          lbl_overall = .study$lbl_overall,
@@ -31,18 +26,21 @@ aet03_1_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
+  assert_colnames(adam_db$adae, c("AESEV", "AEBODSYS", "AEDECOD"))
+
   # specific to AET03: avoid error if some severity levels are not present
-  # TODO: rename all gradation to grade or grading (depending on context)
   severity_grade <- levels(adam_db$adae[["AESEV"]])
 
-  lyt <- aet03_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = var_labels_for(adam_db$adae, "AEBODSYS"),
     lbl_aedecod = var_labels_for(adam_db$adae, "AEDECOD"),
     severity_grade = severity_grade,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   # build table
@@ -77,17 +75,10 @@ aet03_1_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param severity_grade (`vector of character`) describing the severity levels present in the dataset.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' aet03_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_aebodsys = "Body System or Organ Class",
-#'   lbl_aedecod = "Dictionary-Derived Term",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET03")
-#' )
 aet03_1_lyt <- function(armvar = .study$actualarm,
                         lbl_aebodsys = "",
                         lbl_aedecod = "",
@@ -98,7 +89,8 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
                           actualarm = "ACTARM",
                           lbl_overall = NULL,
                           severity_grade = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -142,10 +134,24 @@ aet03_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet03_1_pre(syn_test_data())
 aet03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
+
+  new_format <- list(
+    adae = list(
+      AEDECOD = list(
+        "No Coding available" = c("", NA, "<Missing>")
+      ),
+      AEBODSYS = list(
+        "No Coding available" = c("", NA, "<Missing>")
+      ),
+      AESEV = list(
+        "<Missing>" = c("", NA)
+      )
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adae") %>%
@@ -160,4 +166,7 @@ aet03_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' run(aet03_1, syn_test_data())
+aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_lyt, aet03_1_pre, adam_datasets = c("adsl", "adae"))

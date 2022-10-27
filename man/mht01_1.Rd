@@ -13,13 +13,15 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 mht01_1_main(
   adam_db,
+  lyt_ls = list(mht01_1_lyt),
   armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
-  lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
-  lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
+  lbl_mhbodsys = "MedDRA System Organ Class",
+  lbl_mhdecod = "MedDRA Preferred Term",
   prune_0 = TRUE,
   deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 mht01_1_lyt(
@@ -28,7 +30,8 @@ mht01_1_lyt(
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA preferred Term",
   deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 mht01_1_pre(adam_db, ...)
@@ -38,13 +41,18 @@ mht01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_mhbodsys}{(\code{character}) text label for \code{MHBODSYS}.}
+\item{lbl_mhbodsys}{(\code{string}) text label for \code{MHBODSYS}. If \code{NULL}, the value of the argument defaults to the label
+of the corresponding column in the \code{admh} table.}
 
-\item{lbl_mhdecod}{(\code{character}) text label for \code{MHDECOD}.}
+\item{lbl_mhdecod}{(\code{string}) text label for \code{MHDECOD}. If \code{NULL}, the value of the argument defaults to the label of
+the corresponding column in the \code{admh} table.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
@@ -77,19 +85,12 @@ patients with the specific condition.
 \item \code{mht01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{admh} table with columns \code{"MHBODSYS"} and \code{"MHDECOD"}.
+}
+}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  mht01_1_pre()
-
-mht01_1_main(adam_db = db) \%>\% head(15)
-mht01_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("MHT01")
-)
-mht01_1_pre(syn_test_data())
+run(mht01_1, syn_test_data())
 }
 \keyword{datasets}

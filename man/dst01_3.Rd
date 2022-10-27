@@ -13,6 +13,7 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 dst01_3_main(
   adam_db,
+  lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
   armvar = .study$planarm,
   status = .study$status_var,
   disc_reason_var = .study$disc_reason_var,
@@ -21,7 +22,8 @@ dst01_3_main(
   prune_0 = TRUE,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
-    "All Patients", status_var = "EOSSTT")
+    "All Patients", status_var = "EOSSTT"),
+  ...
 )
 
 dst01_3_lyt(
@@ -33,13 +35,15 @@ dst01_3_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("DST01"),
   .study = list(planarm = "ARM", lbl_overall = "All Patients", status_treatment =
-    "EOTSTT")
+    "EOTSTT"),
+  ...
 )
 
 dst01_3_pre(
   adam_db,
-  reason = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS"),
+  status = .study$status,
+  disc_reason_var = .study$disc_reason_var,
+  .study = list(disc_reason_var = "DCSREAS", status_var = "EOSSTT"),
   ...
 )
 
@@ -47,6 +51,9 @@ dst01_3
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -70,6 +77,8 @@ the analysis period.}
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{completed_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
 \code{status_treatment}. By Default \code{COMPLETED}.}
 
@@ -78,10 +87,6 @@ the analysis period.}
 
 \item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
 By Default `ONGOING.}
-
-\item{reason}{(\code{character}) the variable name for variable with the reason for discontinuation.}
-
-\item{...}{not used.}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
@@ -108,6 +113,13 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 \item \code{dst01_3_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the column specified in \code{status}, \code{status_treatment} and
+\code{disc_reason_var}.
+\item \code{lyt_ls} must contain a "treatment" and a "study" element.
+}
+}
 \examples{
 library(dm)
 library(magrittr)
@@ -121,6 +133,6 @@ dst01_3_lyt(
   armvar = "ACTARM",
   status_treatment = "EOTxx01"
 )
-dst01_3_pre(syn_test_data())
+run(dst01_3, syn_test_data())
 }
 \keyword{datasets}

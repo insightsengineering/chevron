@@ -14,11 +14,13 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 aet02_2_main(
   adam_db,
+  lyt_ls = list(aet02_2_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet02_2_lyt(
@@ -28,7 +30,8 @@ aet02_2_lyt(
   lbl_aehlt = "MedDRA High-Level Term",
   lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet02_2_pre(adam_db, ...)
@@ -37,15 +40,20 @@ aet02_2
 
 aet02_3_main(
   adam_db,
+  lyt_ls = list(aet02_3_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -57,13 +65,13 @@ aet02_3_main(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aehlt}{(\code{character}) text label for \code{AEHLT}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{AET02_2} table provides an overview of the number of patients experiencing adverse events and the number of
@@ -100,34 +108,16 @@ frequencies.
 \item \code{aet02_3_main()}: Main TLG function
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"}, \code{"AEHLT"} and \code{"AEDECOD"}.
+}
+
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the column \code{"AEDECOD"}.
+}
+}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  aet02_2_pre()
-
-aet02_2_main(db) \%>\% head(15)
-
-# Additional Examples
-aet02_2_main(db, lbl_overall = "All Patients") \%>\% head()
-aet02_2_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  lbl_aebodsys = "Body System or Organ Class",
-  lbl_aehlt = "High Level Term",
-  lbl_aedecod = "Dictionary-Derived Term",
-  deco = std_deco("AET02")
-)
-aet02_2_pre(syn_test_data())
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  aet02_3_pre()
-
-aet02_3_main(adam_db = db) \%>\% head()
-
-aet02_3_main(db, lbl_overall = "All Patients") \%>\% head()
+run(aet02_2, syn_test_data())
 }
 \keyword{datasets}

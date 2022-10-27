@@ -9,20 +9,27 @@
 \usage{
 chevron_tlg(
   main = function(adam_db, ...) adam_db,
+  lyt = list(function(...) basic_table()),
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) tlg,
+  postprocess = report_null,
   adam_datasets = NA_character_
 )
 }
 \arguments{
-\item{main}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{_main} function of \code{chevron}.}
+\item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
+one of the \verb{_main} function of \code{chevron}.}
 
-\item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
-\verb{_pre} function of \code{chevron}.}
+\item{lyt}{(a single \code{function} returning \code{PreDataTableLayouts} object or \code{PreDataTableLayouts} object or \code{list} of
+either \code{functions} or \code{PreDataTableLayouts} type of elements) typically one of the \verb{_lyt} function of \code{chevron}.
+Functions passed to \code{lyt}, whether as a single \code{function} or as a \verb{list of functions}, must have the \code{...} formal
+argument.}
 
-\item{postprocess}{(\code{function}) returning a post-processed \code{tlg}.}
+\item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument and \code{...} as
+last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 
-\item{adam_datasets}{(\code{character}) representing the name of the table from an \code{AdAM} dataset required for \code{tlg}
+\item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
+
+\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} dataset required for \code{tlg}
 creation.}
 }
 \description{
@@ -39,6 +46,8 @@ optionally a \code{postprocess} function.
 \describe{
 \item{\code{main}}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{*_main} function from \code{chevron}.}
 
+\item{\code{lyt}}{(\verb{list of function}).  Typically one of the \verb{*_lyt} function from \code{chevron}wrapped in a \code{list}.}
+
 \item{\code{preprocess}}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
 \verb{*_pre} function from \code{chevron}.}
 
@@ -51,11 +60,14 @@ creation.}
 \note{
 To ensure the correct execution of the workflow additional validation criteria are:
 \itemize{
-\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process.
+\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. In addition, it
+must possess the \code{...} argument.
+\item the \code{lyt} function must posses the \code{...} argument.
 \item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{dm} object to create \code{tlg} output.
+In addition, it must possess the \code{...} argument.
 \item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process.
 }
 }
 \examples{
-x <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 }

@@ -13,19 +13,15 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
-#'  * `ANL01FL` is not relevant subset
+#'  * `ANL01FL` is not relevant subset.
+#'
+#' @note
+#'   * `adam_db` object must contain an `adex` table with columns specified in `summaryvars`.
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   ext01_1_pre()
-#'
-#' ext01_1_main(db)
 ext01_1_main <- function(adam_db,
+                         lyt_ls = list(ext01_1_lyt),
                          armvar = .study$actualarm,
                          summaryvars = "AVAL",
                          lbl_overall = .study$lbl_overall,
@@ -34,20 +30,22 @@ ext01_1_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   assert_colnames(adam_db$adex, summaryvars)
 
-  lyt <- ext01_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
-  if (prune_0) tbl <- prune_table(tbl)
+  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl
 }
@@ -58,6 +56,7 @@ ext01_1_main <- function(adam_db,
 #'
 #' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -71,7 +70,8 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
                           lbl_overall = NULL,
                           analysis_var = "AVAL",
                           lbl_analysis_var = "Analysis Value"
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -91,8 +91,6 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' ext01_1_pre(syn_test_data())
 ext01_1_pre <- function(adam_db,
                         paramcd_order = .study$paramcd_order,
                         .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
@@ -104,14 +102,18 @@ ext01_1_pre <- function(adam_db,
     filter(.data$PARCAT1 == "OVERALL") %>%
     dm_update_zoomed()
 
-  param_vars <- db$adex %>%
-    select(.data$PARAM, .data$PARAMCD) %>%
-    dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
+  if (nrow(db$adex) > 0L) {
+    param_vars <- db$adex %>%
+      dplyr::select("PARAM", "PARAMCD") %>%
+      dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
-  db %>%
-    dm_zoom_to("adex") %>%
-    mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
-    dm_update_zoomed()
+    db <- db %>%
+      dm_zoom_to("adex") %>%
+      mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
+      dm_update_zoomed()
+  }
+
+  db
 }
 
 #' EXT01 Table 1 (Default) Exposure Summary Table.
@@ -121,7 +123,10 @@ ext01_1_pre <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "adex"))
+#'
+#' @examples
+#' run(ext01_1, syn_test_data())
+ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_lyt, ext01_1_pre, adam_datasets = c("adsl", "adex"))
 
 
 # ext01_2 ----
@@ -140,17 +145,13 @@ ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_pre, adam_datasets = c("adsl", "ade
 #'  * Sorted by alphabetic order of the `PARAM` value. Transform to factor and re-level for custom order.
 #'  * `ANL01FL` is not relevant subset
 #'
+#' @note
+#'   * `adam_db` object must contain an `adex` table with columns specified in `summaryvars`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   ext01_2_pre()
-#'
-#' ext01_2_main(db)
 ext01_2_main <- function(adam_db,
+                         lyt_ls = list(ext01_2_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
@@ -158,23 +159,25 @@ ext01_2_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   summaryvars <- c("AVAL", "AVALCAT1")
 
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adam_db$adex, summaryvars)
 
-  lyt <- ext01_2_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
 
-  if (prune_0) tbl <- prune_table(tbl)
+  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl
 }
@@ -185,6 +188,7 @@ ext01_2_main <- function(adam_db,
 #'
 #' @param summaryvars (`string`) the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls (`string`) the label associated with the analyzed variable.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -196,7 +200,8 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -205,7 +210,12 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
       "PARAM",
       split_fun = NULL
     ) %>%
-    summarize_vars(vars = summaryvars, show_labels = "hidden", var_labels = summaryvars_lbls)
+    summarize_vars(
+      vars = summaryvars,
+      show_labels = "hidden",
+      var_labels = summaryvars_lbls,
+      .formats = list(count_fraction = "xx.x (xx.x%)")
+    )
 }
 
 #' @describeIn ext01_2 Preprocessing
@@ -220,8 +230,6 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' ext01_2_pre(syn_test_data())
 ext01_2_pre <- function(adam_db,
                         show_stats = .study$show_cont_stats,
                         show_bins = .study$show_cat_stats,
@@ -258,4 +266,7 @@ ext01_2_pre <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_pre, adam_datasets = c("adsl", "adex"))
+#'
+#' @examples
+#' run(ext01_2, syn_test_data())
+ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_lyt, ext01_2_pre, adam_datasets = c("adsl", "adex"))

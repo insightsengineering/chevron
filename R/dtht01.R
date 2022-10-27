@@ -11,20 +11,15 @@
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Does not include a total column by default.
 #'
+#' @note
+#' * `adam_db` object must contain an `adsl` table with the columns `"DTHFL"`, `"DTHCAT"` as well as `LDDTHGR1` if
+#' `time_since_last_dose` is `TRUE`.
+#' * `lyt_ls` must contain a "causes" and, if `time_since_last_dose` is `TRUE`, a "time_since_last_dose" element.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(dplyr)
-#'
-#' db <- syn_test_data() %>%
-#'   dunlin::dm_explicit_na() %>%
-#'   dtht01_1_pre()
-#'
-#' dtht01_1_main(adam_db = db, other_category = TRUE)
-#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE)
-#' dtht01_1_main(adam_db = db, time_since_last_dose = TRUE, other_category = TRUE)
 dtht01_1_main <- function(adam_db,
+                          lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
                           armvar = .study$actualarm,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
@@ -34,19 +29,22 @@ dtht01_1_main <- function(adam_db,
                           .study = list(
                             actualarm = "ACTARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl")
 
+  checkmate::assert_subset("causes", names(lyt_ls))
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
   checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
   checkmate::assert_flag(time_since_last_dose)
   checkmate::assert_flag(other_category)
 
 
-  lyt <- dtht01_1_lyt(
+  lyt <- lyt_ls[["causes"]](
     armvar = armvar,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt[[1]], dbsel$adsl)
@@ -60,12 +58,14 @@ dtht01_1_main <- function(adam_db,
 
 
   if (time_since_last_dose) {
-    assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
+    checkmate::assert_subset("time_since_last_dose", names(lyt_ls))
+    checkmate::assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-    lyt2 <- dtht01_1_opt_lyt(
+    lyt2 <- lyt_ls[["time_since_last_dose"]](
       armvar = armvar,
       lbl_overall = lbl_overall,
-      deco = deco
+      deco = deco,
+      ... = ...
     )
 
     tbl_opt <- build_table(lyt2, dbsel$adsl)
@@ -75,7 +75,7 @@ dtht01_1_main <- function(adam_db,
   }
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl
@@ -85,21 +85,18 @@ dtht01_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' dtht01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 dtht01_1_lyt <- function(armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          deco = std_deco("DTHT01"),
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   tab <-
     basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -108,7 +105,7 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
     count_values(
       "DTHFL",
       values = "Y",
-      .labels =  c(count_fraction = "Total number of deaths"),
+      .labels = c(count_fraction = "Total number of deaths"),
       .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
     summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
@@ -133,21 +130,18 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
 #' @describeIn dtht01_1 Optional Layout
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' dtht01_1_opt_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
                              lbl_overall = .study$lbl_overall,
                              deco = std_deco("DTHT01"),
                              .study = list(
                                actualarm = "ACTARM",
                                lbl_overall = NULL
-                             )) {
+                             ),
+                             ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -173,8 +167,6 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' dtht01_1_pre(syn_test_data())
 dtht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -182,7 +174,7 @@ dtht01_1_pre <- function(adam_db, ...) {
   death_fact <- setdiff(death_fact, "OTHER")
   death_fact <- c(death_fact, "OTHER")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(DTHCAT = forcats::fct_relevel(.data$DTHCAT, death_fact)) %>%
     mutate(is_OTHER = ifelse(.data$DTHCAT %in% c("OTHER", "<Missing>"), "Y", "N")) %>%
@@ -193,6 +185,22 @@ dtht01_1_pre <- function(adam_db, ...) {
                                       as.character(.data$DTHCAUS), "<Missing>"
     ))) %>%
     dm_update_zoomed()
+
+  existing_lvl <- as.list(setNames(death_fact, death_fact))
+  na_lvl <- list("<Missing>" = c("", NA))
+
+  new_formats <- list(
+    adsl = list(
+      DTHCAT = c(
+        existing_lvl,
+        na_lvl
+      ),
+      DTHCAUS = na_lvl,
+      LDDTHGR1 = na_lvl
+    )
+  )
+
+  dunlin::apply_reformat(adam_db, new_formats)
 }
 
 #' `DTHT01` Table 1 (Default) Death Table.
@@ -202,4 +210,16 @@ dtht01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-dtht01_1 <- chevron_tlg(dtht01_1_main, dtht01_1_pre, adam_datasets = c("adsl"))
+#'
+#' @examples
+#'
+#' db <- syn_test_data()
+#'
+#' run(dtht01_1, db)
+#' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
+dtht01_1 <- chevron_tlg(
+  dtht01_1_main,
+  list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
+  dtht01_1_pre,
+  adam_datasets = c("adsl")
+)

@@ -12,12 +12,14 @@
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
 #'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"` and `"AEDECOD"`.
+#'
+#'
 #' @export
 #'
-#' @examples
-#' db <- aet02_1_pre(syn_test_data())
-#' aet02_1_main(adam_db = db)
 aet02_1_main <- function(adam_db,
+                         lyt_ls = list(aet02_1_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
@@ -25,19 +27,23 @@ aet02_1_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
-  lyt <- aet02_1_lyt(
+  assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))
+
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -58,15 +64,10 @@ aet02_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' aet02_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET02")
-#' )
 aet02_1_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
@@ -75,7 +76,8 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -120,8 +122,6 @@ aet02_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_1_pre(syn_test_data())
 aet02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -171,7 +171,10 @@ aet02_1_check <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' run(aet02_1, syn_test_data())
+aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_lyt, aet02_1_pre, adam_datasets = c("adsl", "adae"))
 
 
 # aet02_2 ----
@@ -189,20 +192,14 @@ aet02_1 <- chevron_tlg(aet02_1_main, aet02_1_pre, adam_datasets = c("adsl", "ada
 #'  frequencies.
 #'  * Missing values of `AEBODSYS`, `AEHLT` and `AEDECOD` in `adae` are labeled by `No Coding available`.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"`, `"AEHLT"` and `"AEDECOD"`.
+#'
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet02_2_pre()
-#'
-#' aet02_2_main(db) %>% head(15)
-#'
-#' # Additional Examples
-#' aet02_2_main(db, lbl_overall = "All Patients") %>% head()
 aet02_2_main <- function(adam_db,
+                         lyt_ls = list(aet02_2_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
@@ -210,19 +207,23 @@ aet02_2_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
-  lyt <- aet02_2_lyt(
+  assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "AEHLT"))
+
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -249,18 +250,10 @@ aet02_2_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aehlt (`character`) text label for `AEHLT`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' aet02_2_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   lbl_aebodsys = "Body System or Organ Class",
-#'   lbl_aehlt = "High Level Term",
-#'   lbl_aedecod = "Dictionary-Derived Term",
-#'   deco = std_deco("AET02")
-#' )
 aet02_2_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
@@ -270,7 +263,8 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -331,8 +325,6 @@ aet02_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_2_pre(syn_test_data())
 aet02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -356,7 +348,10 @@ aet02_2_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' run(aet02_2, syn_test_data())
+aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_lyt, aet02_2_pre, adam_datasets = c("adsl", "adae"))
 
 
 # aet02_3 ----
@@ -373,19 +368,13 @@ aet02_2 <- chevron_tlg(aet02_2_main, aet02_2_pre, adam_datasets = c("adsl", "ada
 #'  * Sort Dictionary-Derived Code by highest overall frequencies.
 #'  * Missing values of `AEDECOD` in `aead` are labeled by `No Coding available`.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the column `"AEDECOD"`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet02_3_pre()
-#'
-#' aet02_3_main(adam_db = db) %>% head()
-#'
-#' aet02_3_main(db, lbl_overall = "All Patients") %>% head()
 aet02_3_main <- function(adam_db,
+                         lyt_ls = list(aet02_3_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
@@ -393,26 +382,39 @@ aet02_3_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
-  lyt <- aet02_3_lyt(
+                         ),
+                         ...) {
+  assert_colnames(adam_db$adae, c("AEDECOD"))
+
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
-  tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
+  tbl_top <- build_table(lyt$lyt_top, adam_db$adae, alt_counts_df = adam_db$adsl)
 
-  if (prune_0) {
-    tbl <- prune_table(tbl)
-  }
+  tbl_bottom <- build_table(lyt$lyt_bottom, adam_db$adae, alt_counts_df = adam_db$adsl)
 
-  tbl_sorted <- tbl %>%
+  # needed to handle empty adae tables.
+  tbl_bottom <- tbl_bottom %>%
     sort_at_path(
-      "AEDECOD",
-      scorefun = score_occurrences
+      c("DOMAIN", "*", "AEDECOD"),
+      scorefun = score_occurrences # score_occurrences
     )
 
-  tbl_sorted
+  res <- if (nrow(tbl_bottom) > 0L) {
+    rbind(tbl_top, tbl_bottom)
+  } else {
+    tbl_top
+  }
+
+  if (prune_0) {
+    trim_rows(res)
+  } else {
+    res
+  }
 }
 
 #' @describeIn aet02_3 Layout
@@ -424,13 +426,6 @@ aet02_3_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_3_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   lbl_aedecod = "Dictionary-Derived Term",
-#'   deco = std_deco("AET02")
-#' )
 aet02_3_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_aedecod = "MedDRA Preferred Term",
@@ -440,7 +435,7 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
                           lbl_overall = NULL
                         ),
                         ...) {
-  basic_table_deco(deco) %>%
+  lyt_top <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -452,8 +447,19 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
         nonunique = "Total number of events"
       )
     ) %>%
+    append_topleft(lbl_aedecod)
+
+  lyt_bottom <- basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
+    # needed to handle empty df.
+    split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
     append_topleft(lbl_aedecod)
+
+
+  list(lyt_top = lyt_top, lyt_bottom = lyt_bottom)
 }
 
 #' @describeIn aet02_3 Preprocessing
@@ -463,8 +469,6 @@ aet02_3_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet02_3_pre(syn_test_data())
 aet02_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -474,7 +478,8 @@ aet02_3_pre <- function(adam_db, ...) {
     dm_update_zoomed() %>%
     dm_zoom_to("adae") %>%
     mutate(
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available"),
+      DOMAIN = "AE" # necessary to handle empty tables
     ) %>%
     dm_update_zoomed()
 }
@@ -486,4 +491,7 @@ aet02_3_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet02_3 <- chevron_tlg(aet02_3_main, aet02_3_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' run(aet02_3, syn_test_data())
+aet02_3 <- chevron_tlg(aet02_3_main, aet02_3_lyt, aet02_3_pre, adam_datasets = c("adsl", "adae"))

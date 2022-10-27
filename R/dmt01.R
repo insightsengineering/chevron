@@ -16,6 +16,9 @@
 #'  * Split columns by arm (planned or actual / code or description)
 #'  * Include a total column by default
 #'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the columns specified in `summaryvars`.
+#'
 #' @export
 #'
 #' @examples
@@ -31,20 +34,31 @@
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 #' )
 dmt01_1_main <- function(adam_db,
+                         lyt_ls = list(dmt01_1_lyt),
                          armvar = .study$planarm,
-                         summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-                         summaryvars_lbls = var_labels_for(adam_db$adsl, summaryvars),
+                         summaryvars = .study$demo_vars,
+                         summaryvars_lbls = .study$demo_vars_lbls,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = TRUE,
                          deco = std_deco("DMT01"),
                          .study = list(
                            planarm = "ARM",
+                           demo_vars = c("AGE", "SEX", "COUNTRY", "RACE"),
+                           demo_vars_lbls = NULL,
                            lbl_overall = "All Patients"
-                         )) {
+                         ),
+                         ...) {
   assert_colnames(adam_db$adsl, summaryvars)
+
+  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
+    var_labels_for(adam_db$adsl, summaryvars)
+  } else {
+    summaryvars_lbls
+  }
+
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
-  lyt <- dmt01_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -55,7 +69,7 @@ dmt01_1_main <- function(adam_db,
   tbl <- build_table(lyt, adam_db$adsl)
 
   if (prune_0) {
-    prune_table(tbl)
+    smart_prune(tbl)
   } else {
     tbl
   }
@@ -65,28 +79,29 @@ dmt01_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars (`vector of strings`) variables summarized in demographic table.
-#' @param summaryvars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
+#' @param demo_vars (`vector of strings`) variables summarized in demographic table.
+#' @param demo_vars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
+#' @param ... not used.
 #'
 #' @export
 #'
 #' @examples
 #' dmt01_1_lyt(armvar = "ACTARM")
 dmt01_1_lyt <- function(armvar = .study$planarm,
-                        summaryvars = .study$summary_demo,
-                        summaryvars_lbls = .study$summary_demo_lbl,
+                        summaryvars = .study$demo_vars,
+                        summaryvars_lbls = .study$demo_vars_lbl,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("DMT01"),
                         .study = list(
                           planarm = "ARM",
-                          summary_demo = c(
+                          demo_vars = c(
                             "AAGE", # TODO: revisit
                             "AGEGR1",
                             "SEX",
                             "ETHNIC",
                             "RACE"
                           ),
-                          summary_demo_lbl = c(
+                          demo_vars_lbl = c(
                             "Age (yr)",
                             "Pooled Age Group 1 (yr)",
                             "SEX",
@@ -94,12 +109,18 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
                             "RACE"
                           ),
                           lbl_overall = "All Patients"
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+    split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
+    summarize_vars(
+      vars = summaryvars,
+      var_labels = summaryvars_lbls,
+      .formats = list(count_fraction = "xx.x (xx.x%)")
+    )
 }
 
 #' @describeIn dmt01_1 Preprocessing
@@ -113,14 +134,23 @@ dmt01_1_lyt <- function(armvar = .study$planarm,
 #' dmt01_1_pre(syn_test_data())
 dmt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
-  adsl_lbs <- formatters::var_labels(adam_db$adsl)
+
+  new_format <- list(
+    adsl = list(
+      SEX = list(
+        "Female" = "F",
+        "Male" = "M"
+      )
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
+  adam_db <- dunlin::dm_explicit_na(adam_db)
+
   db <- adam_db %>%
     dm_zoom_to("adsl") %>%
-    mutate(
-      SEX = case_when(.data$SEX == "F" ~ "Female", .data$SEX == "M" ~ "Male", TRUE ~ as.character(.data$SEX)),
-      SEX = factor(.data$SEX, levels = c("Female", "Male"))
-    ) %>%
-    mutate(SEX = formatters::with_label(.data$SEX, adsl_lbs["SEX"])) %>%
+    mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
   db
 }
@@ -132,4 +162,7 @@ dmt01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_pre, adam_datasets = c("adsl"))
+#'
+#' @examples
+#' run(dmt01_1, syn_test_data(), summaryvars = c("AGE", "RACE", "SEX"))
+dmt01_1 <- chevron_tlg(dmt01_1_main, dmt01_1_lyt, dmt01_1_pre, adam_datasets = c("adsl"))

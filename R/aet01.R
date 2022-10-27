@@ -4,29 +4,27 @@
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, uses the label
+#'   attribute of the columns selected in `safety_var`.
 #' @param ... not used.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the `"DTHFL"` and `"DCSREAS"` columns.
+#'  * `adam_db` object must contain an `adae` table with the columns passed to `safety_var`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet01_1_pre()
-#'
-#' aet01_1_main(db, armvar = "ARM")
 aet01_1_main <- function(adam_db,
+                         lyt_ls = list(aet01_1_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = .study$safety_var,
-                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         lbl_safety_var = NULL,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
@@ -41,12 +39,19 @@ aet01_1_main <- function(adam_db,
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
   assert_colnames(dbsel$adae, safety_var)
 
-  lyt <- aet01_1_lyt(
+  lbl_safety_var <- if (is.null(lbl_safety_var)) {
+    var_labels_for(adam_db$adae, safety_var)
+  } else {
+    lbl_safety_var
+  }
+
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
     safety_var = safety_var,
-    lbl_safety_var = lbl_safety_var
+    lbl_safety_var = lbl_safety_var,
+    ... = ...
   )
 
   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -63,7 +68,7 @@ aet01_1_main <- function(adam_db,
   tbl <- set_decoration(tbl, deco)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl
@@ -74,15 +79,10 @@ aet01_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param ... not used
 #'
 #' @export
 #'
-#' @examples
-#' aet01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET01")
-#' )
 aet01_1_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET01"),
@@ -99,7 +99,8 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
                           )
-                        )) {
+                        ),
+                        ...) {
   names(lbl_safety_var) <- safety_var
 
   lyt_adae <- basic_table_deco(deco) %>%
@@ -112,7 +113,8 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
       .labels = c(
         unique = "Total number of patients with at least one AE",
         nonunique = "Total number of AEs"
-      )
+      ),
+      .formats = list(unique = "xx (xx.x%)", nonunique = "xx")
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -121,7 +123,8 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
       var_labels = "Total number of patients with at least one",
       show_labels = "visible",
       table_names = "AllAE",
-      .indent_mods = 0L
+      .indent_mods = 0L,
+      .formats = list(count_fraction = "xx (xx.x%)")
     )
 
   lyt_adsl <- basic_table_deco(deco) %>%
@@ -148,13 +151,11 @@ aet01_1_lyt <- function(armvar = .study$actualarm,
 
 #' @describeIn aet01_1 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams aet01_1_main
 #' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' aet01_1_pre(syn_test_data(), armvar = "ACTARM")
 aet01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -216,6 +217,16 @@ aet01_1_pre <- function(adam_db, ...) {
     ) %>%
     dm_update_zoomed()
 
+  missing_list <- list("<Missing>" = c("", NA))
+
+  new_format <- list(
+    adsl = list(
+      DCSREAS = missing_list
+    )
+  )
+
+  db <- dunlin::apply_reformat(db, new_format)
+
   db
 }
 
@@ -228,7 +239,6 @@ aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           armvar = .study$actualarm,
                           safety_var = .study$safety_var,
-                          lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
                           .study = list(
                             actualarm = "ACTARM",
                             lbl_overall = NULL,
@@ -280,7 +290,10 @@ aet01_1_check <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' run(aet01_1, syn_test_data(), armvar = "ARM")
+aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 
 
 # aet01_2 ----
@@ -290,31 +303,31 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "ada
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
+#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, uses the label
+#'   attribute of the columns selected in `safety_var`.
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
-#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
+#' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized. If `NULL`, uses
+#'   the label attribute of the columns selected in `medconcept_var`.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
+#'
+#' @note
+#'  * `adam_db` object must contain an `adsl` table with the `"DTHFL"` and `"DCSREAS"` columns.
+#'  * `adam_db` object must contain an `adae` table with the columns passed to `safety_var`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet01_2_pre()
-#'
-#' aet01_2_main(db, armvar = "ARM", prune_0 = FALSE)
 aet01_2_main <- function(adam_db,
+                         lyt_ls = list(aet01_2_lyt),
                          armvar = .study$actualarm,
                          lbl_overall = .study$lbl_overall,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = .study$safety_var,
-                         lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+                         lbl_safety_var = NULL,
                          medconcept_var = .study$medconcept_var,
-                         lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
+                         lbl_medconcept_var = NULL,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
@@ -323,20 +336,34 @@ aet01_2_main <- function(adam_db,
                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                            ),
                            medconcept_var = c("SMQ01", "SMQ02", "CQ01")
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
   assert_colnames(dbsel$adae, c(safety_var, medconcept_var))
 
-  lyt <- aet01_2_lyt(
+  lbl_safety_var <- if (is.null(lbl_safety_var)) {
+    var_labels_for(adam_db$adae, safety_var)
+  } else {
+    lbl_safety_var
+  }
+
+  lbl_medconcept_var <- if (is.null(lbl_medconcept_var)) {
+    var_labels_for(adam_db$adae, medconcept_var)
+  } else {
+    lbl_medconcept_var
+  }
+
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
     safety_var = safety_var,
     lbl_safety_var = lbl_safety_var,
     medconcept_var = medconcept_var,
-    lbl_medconcept_var = lbl_medconcept_var
+    lbl_medconcept_var = lbl_medconcept_var,
+    ... = ...
   )
 
   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -353,7 +380,7 @@ aet01_2_main <- function(adam_db,
   tbl <- set_decoration(tbl, deco)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl
@@ -366,15 +393,10 @@ aet01_2_main <- function(adam_db,
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' aet01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("AET01")
-#' )
 aet01_2_lyt <- function(armvar = .study$actualarm,
                         lbl_overall = .study$lbl_overall,
                         deco = std_deco("AET01"),
@@ -395,7 +417,8 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
                           ),
                           medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
                           lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")
-                        )) {
+                        ),
+                        ...) {
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
 
@@ -409,7 +432,8 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
       .labels = c(
         unique = "Total number of patients with at least one AE",
         nonunique = "Total number of AEs"
-      )
+      ),
+      .formats = list(unique = "xx (xx.x%)", nonunique = "xx")
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -418,7 +442,8 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
       var_labels = "Total number of patients with at least one",
       show_labels = "visible",
       table_names = "AllAE",
-      .indent_mods = 0L
+      .indent_mods = 0L,
+      .formats = list(count_fraction = "xx (xx.x%)")
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -427,7 +452,8 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
       var_labels = "Total number of patients with at least one",
       show_labels = "visible",
       table_names = "MedConcept",
-      .indent_mods = 0L
+      .indent_mods = 0L,
+      .formats = list(count_fraction = "xx (xx.x%)")
     )
 
   lyt_adsl <- basic_table_deco(deco) %>%
@@ -439,14 +465,16 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
       filters = c("DTHFL" = "Y"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of deaths"),
-      table_names = "TotDeath"
+      table_names = "TotDeath",
+      .formats = list(count_fraction = "xx (xx.x%)")
     ) %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("DCSREAS" = "ADVERSE EVENT"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of patients withdrawn from study due to an AE"),
-      table_names = "TotWithdrawal"
+      table_names = "TotWithdrawal",
+      .formats = list(count_fraction = "xx (xx.x%)")
     )
 
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
@@ -459,8 +487,6 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet01_2_pre(syn_test_data(), safety_var = "REL")
 aet01_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -521,6 +547,16 @@ aet01_2_pre <- function(adam_db, ...) {
       CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
     ) %>%
     dm_update_zoomed()
+
+  missing_list <- list("<Missing>" = c("", NA))
+
+  new_format <- list(
+    adsl = list(
+      DCSREAS = missing_list
+    )
+  )
+
+  db <- dunlin::apply_reformat(db, new_format)
 
   db
 }
@@ -590,4 +626,7 @@ aet01_2_check <- function(adam_db,
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet01_2 <- chevron_tlg(aet01_1_main, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' run(aet01_2, syn_test_data())
+aet01_2 <- chevron_tlg(aet01_2_main, aet01_2_lyt, aet01_2_pre, adam_datasets = c("adsl", "adae"))

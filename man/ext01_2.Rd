@@ -13,11 +13,13 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 ext01_2_main(
   adam_db,
+  lyt_ls = list(ext01_2_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 ext01_2_lyt(
@@ -26,7 +28,8 @@ ext01_2_lyt(
   summaryvars_lbls = c("Summary", "Categories"),
   lbl_overall = .study$lbl_overall,
   deco = std_deco("EXT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 ext01_2_pre(
@@ -42,6 +45,9 @@ ext01_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -52,6 +58,8 @@ ext01_2
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
@@ -61,8 +69,6 @@ presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analy
 
 \item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
 presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
-
-\item{...}{not used.}
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
@@ -88,14 +94,12 @@ patients in the corresponding analysis population given by \code{N}.
 \item \code{ext01_2_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adex} table with columns specified in \code{summaryvars}.
+}
+}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  ext01_2_pre()
-
-ext01_2_main(db)
-ext01_2_pre(syn_test_data())
+run(ext01_2, syn_test_data())
 }
 \keyword{datasets}

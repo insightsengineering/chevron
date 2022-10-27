@@ -14,11 +14,13 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 aet02_1_main(
   adam_db,
+  lyt_ls = list(aet02_1_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet02_1_lyt(
@@ -27,7 +29,8 @@ aet02_1_lyt(
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet02_1_pre(adam_db, ...)
@@ -45,6 +48,9 @@ aet02_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -55,11 +61,11 @@ aet02_1
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
-
-\item{...}{not used.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 }
@@ -88,14 +94,12 @@ events categorized by Body System and Dictionary-Derived Term.
 \item \code{aet02_1_check()}: Checks
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"} and \code{"AEDECOD"}.
+}
+}
 \examples{
-db <- aet02_1_pre(syn_test_data())
-aet02_1_main(adam_db = db)
-aet02_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("AET02")
-)
-aet02_1_pre(syn_test_data())
+run(aet02_1, syn_test_data())
 }
 \keyword{datasets}

@@ -3,8 +3,10 @@
 #' @describeIn mht01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
-#' @param lbl_mhdecod (`character`) text label for `MHDECOD`.
+#' @param lbl_mhbodsys (`string`) text label for `MHBODSYS`. If `NULL`, the value of the argument defaults to the label
+#'   of the corresponding column in the `admh` table.
+#' @param lbl_mhdecod (`string`) text label for `MHDECOD`. If `NULL`, the value of the argument defaults to the label of
+#'   the corresponding column in the `admh` table.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -14,41 +16,42 @@
 #'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
 #'  patients with the specific condition.
 #'
+#' @note
+#'   * `adam_db` object must contain an `admh` table with columns `"MHBODSYS"` and `"MHDECOD"`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   mht01_1_pre()
-#'
-#' mht01_1_main(adam_db = db) %>% head(15)
 mht01_1_main <- function(adam_db,
+                         lyt_ls = list(mht01_1_lyt),
                          armvar = .study$planarm,
                          lbl_overall = .study$lbl_overall,
-                         lbl_mhbodsys = var_labels_for(adam_db$admh, "MHBODSYS"),
-                         lbl_mhdecod = var_labels_for(adam_db$admh, "MHDECOD"),
+                         lbl_mhbodsys = "MedDRA System Organ Class",
+                         lbl_mhdecod = "MedDRA Preferred Term",
                          prune_0 = TRUE,
                          deco = std_deco("MHT01"),
                          .study = list(
                            planarm = "ARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
-  lyt <- mht01_1_lyt(
+  if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
+  if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
+
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
     lbl_mhdecod = lbl_mhdecod,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl_sorted <- tbl %>%
@@ -62,18 +65,11 @@ mht01_1_main <- function(adam_db,
 
 #' @describeIn mht01_1 Layout
 #'
-#' @inheritParams gen_args
-#' @param lbl_mhbodsys (`character`) text label for `MHBODSYS`.
-#' @param lbl_mhdecod (`character`) text label for `MHDECOD`.
+#' @inheritParams mht01_1_main
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' mht01_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL,
-#'   deco = std_deco("MHT01")
-#' )
 mht01_1_lyt <- function(armvar = .study$planarm,
                         lbl_overall = .study$lbl_overall,
                         lbl_mhbodsys = "MedDRA System Organ Class",
@@ -82,7 +78,8 @@ mht01_1_lyt <- function(armvar = .study$planarm,
                         .study = list(
                           planarm = "ARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -127,15 +124,26 @@ mht01_1_lyt <- function(armvar = .study$planarm,
 #'
 #' @export
 #'
-#' @examples
-#' mht01_1_pre(syn_test_data())
 mht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("admh") %>%
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
+
+  new_format <- list(
+    admh = list(
+      MHBODSYS = list(
+        "No Coding available" = c("", NA)
+      ),
+      MHDECOD = list(
+        "No Coding available" = c("", NA)
+      )
+    )
+  )
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `MHT01` Table 1 (Default) Medical History Table 1.
@@ -145,4 +153,7 @@ mht01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_pre, adam_datasets = c("adsl", "admh"))
+#'
+#' @examples
+#' run(mht01_1, syn_test_data())
+mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_lyt, mht01_1_pre, adam_datasets = c("adsl", "admh"))

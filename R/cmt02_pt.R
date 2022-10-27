@@ -9,20 +9,13 @@
 #'  * Order by decreasing total number of patients with the specific medication.
 #'  * Does not include a total column by default.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adcm` table with the columns `"CMDECOD"` and `"CMSEQ"`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(dplyr)
-#'
-#' db <- syn_test_data() %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(.data$ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed() %>%
-#'   cmt02_pt_1_pre()
-#'
-#' cmt02_pt_1_main(adam_db = db)
 cmt02_pt_1_main <- function(adam_db,
+                            lyt_ls = list(cmt02_pt_1_lyt),
                             armvar = .study$planarm,
                             prune_0 = TRUE,
                             lbl_overall = .study$lbl_overall,
@@ -30,24 +23,26 @@ cmt02_pt_1_main <- function(adam_db,
                             .study = list(
                               planarm = "ARM",
                               lbl_overall = NULL
-                            )) {
+                            ),
+                            ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- cmt02_pt_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
   if (prune_0) {
-    tbl <- prune_table(tbl)
+    tbl <- smart_prune(tbl)
   }
 
   tbl %>%
     sort_at_path(
-      path = c("CMDECOD"),
+      path = c("DOMAIN", "*", "CMDECOD"),
       scorefun = score_occurrences
     )
 }
@@ -55,21 +50,18 @@ cmt02_pt_1_main <- function(adam_db,
 #' @describeIn cmt02_pt_1 Layout
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' cmt02_pt_1_lyt(
-#'   armvar = "ACTARM",
-#'   lbl_overall = NULL
-#' )
 cmt02_pt_1_lyt <- function(armvar = .study$planarm,
                            lbl_overall = .study$lbl_overall,
                            deco = std_deco("CMT02_PT"),
                            .study = list(
                              planarm = "ARM",
                              lbl_overall = NULL
-                           )) {
+                           ),
+                           ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -83,6 +75,7 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
         nonunique = "Total number of treatments"
       )
     ) %>%
+    split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     count_occurrences(vars = "CMDECOD", .indent_mods = 0L) %>%
     append_topleft("Other Treatment")
 }
@@ -94,18 +87,30 @@ cmt02_pt_1_lyt <- function(armvar = .study$planarm,
 #'
 #' @export
 #'
-#' @examples
-#' cmt02_pt_1_pre(syn_test_data())
 cmt02_pt_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    mutate(
+      CMSEQ = as.factor(.data$CMSEQ),
+      DOMAIN = "CM"
+    ) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    CMDECOD = list(
+      "No Coding available" = c("", NA)
+    ),
+    CMSEQ = list(
+      "<Missing>" = c("", NA)
+    )
+  )
+
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
@@ -115,4 +120,7 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))
+#'
+#' @examples
+#' run(cmt02_pt_1, syn_test_data())
+cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_lyt, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"))

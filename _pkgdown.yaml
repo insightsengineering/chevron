@@ -30,6 +30,11 @@ reference:
   - title: Methods
     contents:
       - run
+      - main
+      - lyt
+      - preprocess
+      - postprocess
+      - datasets
       - get_main
       - get_preprocess
       - get_postprocess
@@ -60,59 +65,21 @@ reference:
       - ext01_2
       - lbt01_1
       - mht01_1
+      - mng01_1
       - vst01_1
       - vst02_1
       - vst02_2
 
-  - title: Checks and assertions
-    contents:
-      - assert_colnames
-      - assert_all_tablenames
-      - assert_one_tablenames
-      - check_all_colnames
-      - check_one_colnames
-
-  - title: Data Preprocess Functions
-    contents:
-      - preprocess_data
-      - std_pmap
-      - pmap_row
-      - remove_tlg_pmap
-
   - title: Utility Functions
     contents:
       - get_db_data
-      - reorder_levels_params
+      - report_null
       - sample_study_object
-      - set_decoration
+      - smart_prune
       - std_deco
       - syn_test_data
       - var_labels_for
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
-      - bol_YN
       - gen_args
-
-  - title: TLG Preprocessing Functions
-    contents:
-      - filter_adae_anl01fl
-      - filter_adcm_anl01fl
-      - filter_adeg_anl01fl
-      - filter_adex_drug
-      - filter_adlb_anl01fl
-      - filter_admh_anl01fl
-      - filter_advs_anl01fl
-      - filter_egt02
-      - filter_vst02
-      - mutate_adsl_gp
-      - mutate_cmt01a
-      - mutate_cmt02_pt_1
-      - mutate_dmt01
-      - mutate_for_aet01
-      - mutate_vst02
-      - remove_adex_aval
-      - reorder_adex_params
-      - reorder_dtht01
-      - std_filter_fun
-      - std_mutate_fun

@@ -14,12 +14,13 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 aet01_1_main(
   adam_db,
+  lyt_ls = list(aet01_1_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
+  lbl_safety_var = NULL,
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   ...
@@ -34,7 +35,8 @@ aet01_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
     "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
-    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
+    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV")),
+  ...
 )
 
 aet01_1_pre(adam_db, ...)
@@ -44,7 +46,6 @@ aet01_1_check(
   req_tables = c("adsl", "adae"),
   armvar = .study$actualarm,
   safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   ...
@@ -54,6 +55,9 @@ aet01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -92,19 +96,13 @@ aet01_1
 \item \code{aet01_1_check()}: Checks
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the \code{"DTHFL"} and \code{"DCSREAS"} columns.
+\item \code{adam_db} object must contain an \code{adae} table with the columns passed to \code{safety_var}.
+}
+}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  aet01_1_pre()
-
-aet01_1_main(db, armvar = "ARM")
-aet01_1_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL,
-  deco = std_deco("AET01")
-)
-aet01_1_pre(syn_test_data(), armvar = "ACTARM")
+run(aet01_1, syn_test_data(), armvar = "ARM")
 }
 \keyword{datasets}

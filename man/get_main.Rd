@@ -5,14 +5,12 @@
 \alias{get_main,chevron_tlg-method}
 \title{Retrieve Main Function}
 \usage{
-get_main(object, ...)
+get_main(object)
 
 \S4method{get_main}{chevron_tlg}(object)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
-
-\item{...}{not used.}
 }
 \description{
 Retrieve Main Function

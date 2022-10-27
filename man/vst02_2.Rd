@@ -13,13 +13,15 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 vst02_2_main(
   adam_db,
+  lyt_ls = list(vst02_2_lyt),
   armvar = .study$actualarm,
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
   deco = std_deco("VST02_2"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 vst02_2_lyt(
@@ -28,7 +30,8 @@ vst02_2_lyt(
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = .study$lbl_overall,
   deco = std_deco("VST02_2"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 vst02_2_pre(adam_db, ...)
@@ -37,6 +40,9 @@ vst02_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -60,7 +66,6 @@ Without Abnormality at Baseline.
 }
 \details{
 \itemize{
-\item 
 \item Only count LOW or HIGH values.
 \item Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
 \item Does not include a total column by default.
@@ -76,21 +81,12 @@ Without Abnormality at Baseline.
 \item \code{vst02_2_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{advs} table with the \code{"PARAM"}, \code{"ANRIND"} and \code{"BNRIND"} columns.
+}
+}
 \examples{
-library(dm)
-library(dplyr)
-
-db <- syn_test_data() \%>\%
-  dm_zoom_to("advs") \%>\%
-  filter(PARAM \%in\% c("Temperature")) \%>\%
-  dm_update_zoomed() \%>\%
-  vst02_2_pre()
-
-vst02_2_main(adam_db = db)
-vst02_2_lyt(
-  armvar = "ACTARM",
-  lbl_overall = NULL
-)
-vst02_2_pre(syn_test_data())
+run(vst02_2, syn_test_data())
 }
 \keyword{datasets}

@@ -13,12 +13,14 @@ An object of class \code{chevron_tlg} of length 1.
 \usage{
 aet04_1_main(
   adam_db,
+  lyt_ls = list(aet04_1_lyt),
   armvar = .study$actualarm,
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL),
+  ...
 )
 
 aet04_1_lyt(
@@ -28,7 +30,8 @@ aet04_1_lyt(
   group_grades = .study$group_grades,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL),
+  ...
 )
 
 aet04_1_pre(adam_db, ...)
@@ -37,6 +40,9 @@ aet04_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -50,11 +56,11 @@ aet04_1
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{AET04} table provides an
@@ -64,6 +70,7 @@ overview of adverse event with the highest \code{NCI} \code{CTCAE} grade per ind
 \itemize{
 \item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
+\item Events with missing grading values are excluded.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
@@ -79,26 +86,18 @@ Grade is sorted by severity.
 \item \code{aet04_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AETOXGR"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
+}
+}
 \examples{
-library(dm)
-library(magrittr)
-
-db <- syn_test_data() \%>\%
-  aet04_1_pre()
-
-aet04_1_main(db)
-
-aet04_1_main(
-  db,
-  prune_0 = FALSE,
-  lbl_overall = "All Patients",
-  group_grades = list(
-    "Any Grade" = c("1", "2", "3", "4", "5"),
-    "Grade 1-2" = c("1", "2"),
-    "Grade 3-5" = c("3", "4", "5")
-  )
+group_grades <- list(
+  "Any Grade" = c("1", "2", "3", "4", "5"),
+  "Grade 1-2" = c("1", "2"),
+  "Grade 3-5" = c("3", "4", "5")
 )
-aet04_1_lyt(armvar = "ACTARM")
-aet04_1_pre(syn_test_data())
+
+run(aet04_1, syn_test_data(), group_grades = group_grades)
 }
 \keyword{datasets}

@@ -8,33 +8,19 @@
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
+#'  * Events with missing grading values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sort Body System or Organ Class and Dictionary-Derived Term by highest overall frequencies. Analysis Toxicity
 #'  Grade is sorted by severity.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with the columns `"AETOXGR"`, `"AEBODSYS"` and `"AEDECOD"`.
+#'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   aet04_1_pre()
-#'
-#' aet04_1_main(db)
-#'
-#' aet04_1_main(
-#'   db,
-#'   prune_0 = FALSE,
-#'   lbl_overall = "All Patients",
-#'   group_grades = list(
-#'     "Any Grade" = c("1", "2", "3", "4", "5"),
-#'     "Grade 1-2" = c("1", "2"),
-#'     "Grade 3-5" = c("3", "4", "5")
-#'   )
-#' )
 aet04_1_main <- function(adam_db,
+                         lyt_ls = list(aet04_1_lyt),
                          armvar = .study$actualarm,
                          group_grades = .study$group_grades,
                          lbl_overall = .study$lbl_overall,
@@ -44,7 +30,10 @@ aet04_1_main <- function(adam_db,
                            actualarm = "ACTARM",
                            lbl_overall = NULL,
                            group_grades = NULL
-                         )) {
+                         ),
+                         ...) {
+  assert_colnames(adam_db$adae, c("AETOXGR", "AEBODSYS", "AEDECOD"))
+
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
@@ -58,13 +47,14 @@ aet04_1_main <- function(adam_db,
     )
   }
 
-  lyt <- aet04_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
     group_grades = group_grades,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(
@@ -78,11 +68,13 @@ aet04_1_main <- function(adam_db,
   tbl_sorted <- tbl %>%
     sort_at_path(
       path = c("AEBODSYS"),
-      scorefun = cont_n_allcols
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
     ) %>%
     sort_at_path(
       path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
     )
 
   tbl_sorted
@@ -95,11 +87,10 @@ aet04_1_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param group_grades (`list`) putting in correspondence severity levels and labels.
+#' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' aet04_1_lyt(armvar = "ACTARM")
 aet04_1_lyt <- function(armvar = .study$actualarm,
                         lbl_aebodsys = "AEBODSYS",
                         lbl_aedecod = "AEDECOD",
@@ -110,7 +101,8 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
                           actualarm = "ACTARM",
                           lbl_overall = NULL,
                           group_grades = NULL
-                        )) {
+                        ),
+                        ...) {
   if (is.null(group_grades)) {
     group_grades <- list(
       "Any Grade" = c("1", "2", "3", "4", "5"),
@@ -170,14 +162,32 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' aet04_1_pre(syn_test_data())
 aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  # Essential to preserve the good ordering of the factors.
+  ori_lvl <- if (is.factor(adam_db$adae$AETOXGR)) {
+    levels(adam_db$adae$AETOXGR)
+  } else {
+    unique(adam_db$adae$AETOXGR)
+  }
+
+  new_format <- list(
+    adae = list(
+      AEBODSYS = list("No Coding Available" = c("", NA, "<Missing>")),
+      AEDECOD = list("No Coding Available" = c("", NA, "<Missing>")),
+      AETOXGR = list("No Grading Available" = c("", NA, "<Missing>"))
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
+  adam_db <- adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    filter(.data$AETOXGR != "No Grading Available") %>%
+    mutate(AETOXGR = droplevels(.data$AETOXGR, "No Grading Available")) %>%
+    mutate(AETOXGR = if (length(levels(.data$AETOXGR)) > 0L) .data$AETOXGR else factor(.data$AETOXGR, "Missing")) %>%
     dm_update_zoomed()
 }
 
@@ -188,4 +198,13 @@ aet04_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_pre, adam_datasets = c("adsl", "adae"))
+#'
+#' @examples
+#' group_grades <- list(
+#'   "Any Grade" = c("1", "2", "3", "4", "5"),
+#'   "Grade 1-2" = c("1", "2"),
+#'   "Grade 3-5" = c("3", "4", "5")
+#' )
+#'
+#' run(aet04_1, syn_test_data(), group_grades = group_grades)
+aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_lyt, aet04_1_pre, adam_datasets = c("adsl", "adae"))

@@ -16,36 +16,42 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
-#'  by `AVISIT`. Re-level to customize order
+#'  by `AVISIT`. Re-level to customize order.
+#'
+#' @note
+#'   * `adam_db` object must contain an `adlb` table with columns specified in `summaryvars`.
 #'
 #' @export
 #'
-#' @examples
-#' library(dm)
-#' library(magrittr)
-#'
-#' db <- syn_test_data() %>%
-#'   lbt01_1_pre()
-#'
-#' lbt01_1_main(db)
 lbt01_1_main <- function(adam_db,
+                         lyt_ls = list(lbt01_1_lyt),
                          armvar = .study$actualarm,
-                         summaryvars = c("AVAL", "CHG"),
-                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
+                         summaryvars = .study$evo_vars,
+                         summaryvars_lbls = .study$evo_vars_lbls,
                          visitvar = "AVISIT",
                          prune_0 = TRUE,
                          deco = std_deco("LBT01"),
                          .study = list(
-                           actualarm = "ACTARM"
-                         )) {
-  lyt <- lbt01_1_lyt(
+                           actualarm = "ACTARM",
+                           evo_vars = c("AVAL", "CHG"),
+                           evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
+                         ),
+                         ...) {
+  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
+    var_labels_for(adam_db$adlb, summaryvars)
+  } else {
+    summaryvars_lbls
+  }
+
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
     lbl_avisit = var_labels_for(adam_db$adlb, visitvar),
     lbl_param = var_labels_for(adam_db$adlb, "PARAM"),
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, adam_db$adlb)
@@ -65,8 +71,10 @@ lbt01_1_main <- function(adam_db,
 #'   to be displayed.
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
 #' @param lbl_param (`character`) label of the `PARAM` variable.
+#' @param ... not used.
 #'
 #' @export
+#'
 lbt01_1_lyt <- function(armvar = .study$actualarm,
                         summaryvars = c("AVAL", "CHG"),
                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
@@ -77,7 +85,8 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           visitvar = "AVISIT"
-                        )) {
+                        ),
+                        ...) {
   # TODO solve the problem of the overall column
   # remove change from baseline in BASELINE
 
@@ -112,8 +121,6 @@ lbt01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-#' @examples
-#' lbt01_1_pre(syn_test_data())
 lbt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -130,4 +137,7 @@ lbt01_1_pre <- function(adam_db, ...) {
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
-lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_pre, adam_datasets = c("adlb"))
+#'
+#' @examples
+#' run(lbt01_1, syn_test_data())
+lbt01_1 <- chevron_tlg(lbt01_1_main, lbt01_1_lyt, lbt01_1_pre, adam_datasets = c("adlb"))

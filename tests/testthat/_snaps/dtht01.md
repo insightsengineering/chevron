@@ -1,0 +1,44 @@
+# dtht01 can handle all NA values
+
+    Code
+      res
+    Output
+                                           A: Drug X    B: Placebo   C: Combination
+                                            (N=134)      (N=134)        (N=132)    
+      —————————————————————————————————————————————————————————————————————————————
+      Total number of deaths               25 (18.7%)   23 (17.2%)     22 (16.7%)  
+      Days from last drug administration                                           
+        n                                      25           23             22      
+        <=30                                14 (56%)    11 (47.8%)     14 (63.6%)  
+        >30                                 11 (44%)    12 (52.2%)     8 (36.4%)   
+
+# dtht01 can handle some NA values
+
+    Code
+      res
+    Output
+                                                                  A: Drug X    B: Placebo   C: Combination
+                                                                   (N=134)      (N=134)        (N=132)    
+      ————————————————————————————————————————————————————————————————————————————————————————————————————
+      Total number of deaths                                      25 (18.7%)   23 (17.2%)     22 (16.7%)  
+      Primary cause of death                                                                              
+        n                                                             24           23             22      
+        1                                                         8 (33.3%)    7 (30.4%)      10 (45.5%)  
+        2                                                         8 (33.3%)    10 (43.5%)     6 (27.3%)   
+        3                                                         8 (33.3%)    6 (26.1%)      6 (27.3%)   
+      Days from last drug administration                                                                  
+        n                                                             25           23             22      
+        <=30                                                       14 (56%)    11 (47.8%)     14 (63.6%)  
+        >30                                                        11 (44%)    12 (52.2%)     8 (36.4%)   
+      Primary cause by days from last study drug administration                                           
+        <=30                                                                                              
+          n                                                           13           11             14      
+          1                                                       3 (23.1%)    2 (18.2%)      6 (42.9%)   
+          2                                                       4 (30.8%)    6 (54.5%)      4 (28.6%)   
+          3                                                       6 (46.2%)    3 (27.3%)      4 (28.6%)   
+        >30                                                                                               
+          n                                                           11           12             8       
+          1                                                       5 (45.5%)    5 (41.7%)       4 (50%)    
+          2                                                       4 (36.4%)    4 (33.3%)       2 (25%)    
+          3                                                       2 (18.2%)     3 (25%)        2 (25%)    
+

@@ -1,7 +1,7 @@
 # as we use NSE
 globalVariables(c("."))
 
-#' Retrieve variables for certain variables
+#' Retrieve labels for certain variables
 #'
 #' @param df data frame
 #' @param vars variable names in `df`
@@ -27,71 +27,6 @@ std_deco <- function(id, ...) {
   )
 }
 
-#' Convert `"Y"` `"N"` values used in `CDISC` to R boolean object
-#'
-#' Empty strings are mapped to `NA`
-#'
-#' @param x character vector with `"Y"` and `"N"`
-#'
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' chevron:::bol_YN(c("Y", "Y", "N", "", NA))
-#' }
-bol_YN <- function(x) { # nolint
-
-  .Deprecated(new = "apply_reformat", package = "dunlin")
-
-  if (is.logical(x)) {
-    x
-  } else {
-    y <- x == "Y"
-    y[x == ""] <- NA
-    y
-  }
-}
-
-#' Reorder `PARAM` and `PARAMCD` Levels Simultaneously
-#'
-#' @param df `data.frame` with `PARAM` and `PARAMCD` variables
-#' @param paramcd_levels ordered levels of `PARAMCD`
-#'
-#' @export
-#'
-#' @examples
-#' df <- data.frame(PARAMCD = factor(c("A", "B", "C")), PARAM = factor(paste("letter", LETTERS[1:3])))
-#'
-#' \dontrun{
-#' str(reorder_levels_params(df, paramcd_levels = c("B", "A", "C")))
-#' str(reorder_levels_params(df, paramcd_levels = c("B", "A")))
-#' }
-reorder_levels_params <- function(df, paramcd_levels) {
-  .Deprecated(new = "co_relevels", package = "dunlin")
-
-  # todo throw errors
-  stopifnot(
-    all(c("PARAM", "PARAMCD") %in% names(df))
-  )
-
-  dfs <- df[c("PARAMCD", "PARAM")]
-  dfsd <- dfs[!duplicated(dfs), ]
-
-  if (any(duplicated(dfsd[, "PARAM"])) || any(duplicated(dfsd[, "PARAMCD"]))) {
-    stop(".... are not unique")
-  } ## assuming 1:1 mapping
-
-  x <- setNames(as.character(dfsd$PARAM), dfsd$PARAMCD)
-
-  new_levels <- c(paramcd_levels, setdiff(levels(df$PARAMCD), paramcd_levels))
-
-  levels(df$PARAMCD) <- new_levels
-  levels(df$PARAM) <- x[new_levels]
-
-  df
-}
-
-
 basic_table_deco <- function(deco, ...) {
   checkmate::assert_set_equal(names(deco), c("title", "subtitles", "main_footer"))
 
@@ -105,12 +40,6 @@ ifelse_layout <- function(lyt, test, fun_lyt_yes = identity, fun_lyt_no = identi
     fun_lyt_yes(lyt)
   } else {
     fun_lyt_no(lyt)
-  }
-}
-
-lyt_fun <- function(fun, ...) {
-  function(lyt) {
-    fun(lyt, ...)
   }
 }
 
@@ -153,11 +82,6 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
   checkmate::assert_subset(datasets, names(db))
 
-  if (is(db, "dm")) {
-    db <- db %>%
-      dm_apply_filters() # TODO this might be computationally expensive
-  }
-
   db[datasets]
 }
 
@@ -165,7 +89,7 @@ get_db_data <- function(db, ...) { # TODO: revisit
 #' Retrieve Synthetic Test Data Used For Examples
 #' @export
 syn_test_data <- function() {
-  sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
+  sd <- scda::synthetic_cdisc_data("rcd_2022_06_27")
 
   # to avoid bug
   attr(sd, "data_from") <- NULL
@@ -202,6 +126,7 @@ syn_test_data <- function() {
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
 
+  set.seed(321)
   sd$adsl <- sd$adsl %>%
     mutate(EOTSTT = as.factor(sample(
       c("ONGOING", "COMPLETED", "DISCONTINUED"),
@@ -262,9 +187,11 @@ syn_test_data <- function() {
 #' @param x (`rtables`) object.
 #' @param deco (`list`) typically generated with `std_deco()`.
 #'
+#' @keywords internal
+#'
 #' @return `rtables` with set title, subtitle and footnotes. If one of this attribute is NULL, the slot is empty.
 set_decoration <- function(x, deco) {
-  checkmate::assert_class(x, "TableTree")
+  checkmate::assert_multi_class(x, c("TableTree", "ElementaryTable"))
   checkmate::assert_list(deco, types = "character", max.len = 3, names = "unique")
   checkmate::assert_subset(names(deco), c("title", "subtitles", "main_footer"))
 
@@ -272,4 +199,96 @@ set_decoration <- function(x, deco) {
   x@subtitles <- deco$subtitles
   x@main_footer <- deco$main_footer
   x
+}
+
+#' Create a Null Report
+#'
+#' @param tlg (`TableTree`) object.
+#' @param ... not used.
+#'
+#' @export
+#'
+#' @return original `TableTree` or a null report if no observation are found in the table.
+#'
+report_null <- function(tlg, ...) {
+  if (nrow(tlg) == 0L) {
+    rtables::rtable(header = "Null Report: No observations met the reporting criteria for inclusion in this output.")
+  } else {
+    checkmate::assert_multi_class(tlg, c("TableTree"))
+    tlg
+  }
+}
+
+
+#' Prune Table up to an `ElementaryTable`
+#'
+#' Avoid returning `NULL` when the `table` is empty.
+#'
+#' @param tlg (`TableTree`) object.
+#'
+#' @return pruned `TableTree`.
+#'
+smart_prune <- function(tlg) {
+  res <- prune_table(tlg)
+
+  if (is.null(res)) {
+    res <- build_table(rtables::basic_table(), df = data.frame())
+    col_info(res) <- col_info(tlg)
+  }
+
+  res
+}
+
+#' Unite Columns of a Table in a `dm` object.
+#'
+#' @keywords internal
+#'
+#' @inheritParams gen_args
+#' @param dataset (`string`) the name of a table in the `adam_db` object.
+#' @param cols (`character`) the name of the columns to unite.
+#' @param sep (`string`) the separator for the new column name.
+#' @param new (`string`) the name of the new column. If `NULL` the concatenation of `cols` separated by `sep` is used.
+#'
+#' @return `dm` object with a united column.
+#'
+#' @examples
+#' \dontrun{
+#' x <- dm_unite(dm::dm_nycflights13(), "airlines", c("carrier", "name"), new = "FUSION")
+#' x$airlines
+#' }
+dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
+  checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_string("dataset")
+  checkmate::assert_character(cols, min.len = 1)
+  checkmate::assert_string(sep)
+
+  int_df <- adam_db %>%
+    dm_zoom_to(!!dataset)
+
+  x_interaction <- paste(cols, collapse = sep)
+
+  x_df <- int_df %>%
+    select(all_of(cols)) %>%
+    pull_tbl()
+
+  lvl <- lapply(x_df, function(y) if (is.factor(y)) levels(y) else unique(y))
+  all_lvl_df <- as.data.frame(Reduce(expand.grid, lvl))
+  colnames(all_lvl_df) <- cols
+
+  all_lvl <- all_lvl_df %>%
+    unite("res", cols, sep = sep) %>%
+    pull("res")
+
+  x_vec <- x_df %>%
+    unite("res", cols, sep = sep) %>%
+    pull(.data$res)
+
+  existing_lvl <- intersect(all_lvl, x_vec)
+  levels(x_vec) <- existing_lvl
+
+  x_interaction <- if (!is.null(new)) new else x_interaction
+
+  int_df %>%
+    mutate(!!x_interaction := .env$x_vec) %>%
+    dm_update_zoomed()
 }

@@ -6,6 +6,8 @@
 \usage{
 gen_args(
   adam_db,
+  lyt_ls,
+  plot_ls,
   armvar,
   lbl_overall,
   prune_0,
@@ -13,12 +15,17 @@ gen_args(
   deco,
   .study,
   group,
-  tlgfname,
-  pmap
+  tlg,
+  tlgfname
 )
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
+
+\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -34,9 +41,9 @@ gen_args(
 
 \item{group}{(\verb{list of lists}) for group-dependent data binning}
 
-\item{tlgfname}{(\code{character}) function name of TLG function}
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{pmap}{(\code{data.frame}) preprocessing map, see \code{std_pmap} for the required format}
+\item{tlgfname}{(\code{character}) function name of TLG function}
 }
 \description{
 General Argument Name Convention
