@@ -228,7 +228,7 @@ chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[
 #'
 chevron_l <- function(main = function(adam_db, lyt_ls, ...) data.frame(),
                         preprocess = function(adam_db, ...) adam_db,
-                        postprocess = function(tlg, ...) {tlg},
+                        postprocess = function(tlg, ...) tlg,
                         adam_datasets = NA_character_,
                       ...) {
 
@@ -252,7 +252,7 @@ chevron_l <- function(main = function(adam_db, lyt_ls, ...) data.frame(),
 chevron_g <- function(main = function(adam_db, plot_ls, ...) plot_ls[[1]](),
                         graph = list(function(...) ggplot2::ggplot()),
                         preprocess = function(adam_db, ...) adam_db,
-                        postprocess = function(tlg, ...) {tlg},
+                        postprocess = function(tlg, ...) tlg,
                         adam_datasets = NA_character_,
                       ...) {
 
