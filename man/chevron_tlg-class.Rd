@@ -44,6 +44,8 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 creation.}
 
 \item{type}{(\code{string}) indicating the subclass.}
+
+\item{additional}{stuff}
 }
 \description{
 The \code{chevron_tlg} class associates a \code{preprocess} function, a main \code{tlg} function and \code{AdAM} tables names and

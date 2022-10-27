@@ -8,9 +8,7 @@ chevron_g(
   main = function(adam_db, plot_ls, ...) plot_ls[[1]](),
   graph = list(function(...) ggplot2::ggplot()),
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) {
-     tlg
- },
+  postprocess = function(tlg, ...) tlg,
   adam_datasets = NA_character_,
   ...
 )

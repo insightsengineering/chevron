@@ -235,7 +235,7 @@ dst01_1_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_1, syn_test_data())
-dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_lyt, dst01_1_pre, adam_datasets = c("adsl"), type = "t")
+dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_lyt, dst01_1_pre, adam_datasets = c("adsl"), type = "table")
 
 
 # dst01_2 ----
@@ -468,7 +468,7 @@ dst01_2_pre <- function(adam_db,
 #'
 #' @examples
 #' run(dst01_2, syn_test_data())
-dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c("adsl"), type = "t")
+dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c("adsl"), type = "table")
 
 
 # dst01_3 ----
@@ -723,5 +723,5 @@ dst01_3 <- chevron_tlg(
   list(treatment = dst01_3_lyt, study = dst01_2_lyt),
   dst01_3_pre,
   adam_datasets = c("adsl"),
-  type = "t"
+  type = "table"
 )

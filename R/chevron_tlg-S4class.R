@@ -287,6 +287,7 @@ chevron_g <- function(main = function(adam_db, plot_ls, ...) plot_ls[[1]](),
 #' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` dataset required for `tlg`
 #'   creation.
 #' @param type (`string`) indicating the subclass.
+#' @param additional stuff
 #'
 #' @include utils.R
 #'

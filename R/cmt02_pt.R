@@ -123,4 +123,4 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(cmt02_pt_1, syn_test_data())
-cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_lyt, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"), type = "t")
+cmt02_pt_1 <- chevron_tlg(cmt02_pt_1_main, cmt02_pt_1_lyt, cmt02_pt_1_pre, adam_datasets = c("adsl", "adcm"), type = "table")

@@ -180,7 +180,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_1, db)
-cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_lyt, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"), type = "t")
+cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_lyt, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"), type = "table")
 
 
 # cmt01a_2 ----
@@ -308,7 +308,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_2, db)
-cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_1_lyt, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"), type = "t")
+cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_1_lyt, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"), type = "table")
 
 
 # cmt01a_3 ----
@@ -487,4 +487,4 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_3, db)
-cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_lyt, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"), type = "t")
+cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_lyt, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"), type = "table")

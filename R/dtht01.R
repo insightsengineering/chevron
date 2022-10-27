@@ -208,5 +208,5 @@ dtht01_1 <- chevron_tlg(
   list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
   dtht01_1_pre,
   adam_datasets = c("adsl"),
-  type = "t"
+  type = "table"
 )

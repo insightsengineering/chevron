@@ -7,9 +7,7 @@
 chevron_l(
   main = function(adam_db, lyt_ls, ...) data.frame(),
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) {
-     tlg
- },
+  postprocess = function(tlg, ...) tlg,
   adam_datasets = NA_character_,
   ...
 )
