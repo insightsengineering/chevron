@@ -43,8 +43,6 @@ mng01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
-
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{x}{(\code{character}) the name of a column in the \code{dataset} to represent on the x-axis.}

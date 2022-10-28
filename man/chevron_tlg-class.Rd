@@ -43,15 +43,6 @@ chevron_g(
   adam_datasets = NA_character_,
   ...
 )
-
-chevron_tlg(
-  main,
-  preprocess,
-  postprocess,
-  adam_datasets,
-  type = c(NA, "table", "listing", "graph"),
-  ...
-)
 }
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
@@ -69,26 +60,18 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} dataset required for \code{tlg}
 creation.}
-
-\item{...}{used to pass additional class specific argument. see \link{chevron_t}}
-
-\item{type}{(\code{string}) indicating the subclass.}
 }
 \description{
 The \code{chevron_tlg} class associates a \code{preprocess} function, a main \code{tlg} function and \code{AdAM} tables names and
 optionally a \code{postprocess} function.
 
-\code{chevron_t}, a subclass of \link{chevron_tlg} with specific validation criteria to handle graph creation
+\code{chevron_t}, a subclass of \link{chevron_tlg} with specific validation criteria to handle graph creation and an
+additional \code{lyt} slot.
 
 \code{chevron_l}, a subclass of \link{chevron_tlg} with specific validation criteria to handle listing creation
 
 \code{chevron_g}, a subclass of \link{chevron_tlg} with specific validation criteria to handle graph creation
 }
-\section{Functions}{
-\itemize{
-\item \code{chevron_tlg()}: Default Constructor
-
-}}
 \section{Slots}{
 
 \describe{
@@ -110,7 +93,6 @@ To ensure the correct execution of the workflow additional validation criteria a
 \itemize{
 \item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. In addition, it
 must possess the \code{...} argument.
-\item the \code{lyt} function must posses the \code{...} argument.
 \item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{dm} object to create \code{tlg} output.
 In addition, it must possess the \code{...} argument.
 \item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process.
@@ -128,5 +110,4 @@ chevron_l_obj <- chevron_l()
 chevron_g_obj <- chevron_g()
 chevron_g_obj <- chevron_g(postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title))
 
-x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"), type = "table")
 }

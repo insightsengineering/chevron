@@ -210,10 +210,9 @@ mng01_1_post <- function(tlg, ...) {
 #' )
 #'
 #' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
-mng01_1 <- chevron_tlg(
+mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,
   postprocess = mng01_1_post,
-  adam_datasets = c("adsl", "adlb", "adeg", "advs"),
-  type = "graph"
+  adam_datasets = c("adsl", "adlb", "adeg", "advs")
 )

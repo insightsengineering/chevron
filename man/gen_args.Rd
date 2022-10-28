@@ -25,8 +25,6 @@ gen_args(
 \item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
 \code{chevron} stored in a \code{list}.}
 
-\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
-
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -44,6 +42,19 @@ gen_args(
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{tlgfname}{(\code{character}) function name of TLG function}
+
+\item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
+one of the \verb{_main} function of \code{chevron}.}
+
+\item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument and \code{...} as
+last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
+
+\item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
+
+\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} dataset required for \code{tlg}
+creation.}
+
+\item{type}{(\code{string}) indicating the subclass.}
 }
 \description{
 General Argument Name Convention

@@ -140,10 +140,9 @@ lbt01_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(lbt01_1, syn_test_data())
-lbt01_1 <- chevron_tlg(
+lbt01_1 <- chevron_t(
   main = lbt01_1_main,
   lyt = lbt01_1_lyt,
   preprocess = lbt01_1_pre,
-  adam_datasets = c("adlb"),
-  type = "table"
+  adam_datasets = c("adlb")
 )

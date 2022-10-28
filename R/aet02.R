@@ -174,12 +174,11 @@ aet02_1_check <- function(adam_db,
 #'
 #' @examples
 #' run(aet02_1, syn_test_data())
-aet02_1 <- chevron_tlg(
+aet02_1 <- chevron_t(
   main = aet02_1_main,
   lyt = aet02_1_lyt,
   preprocess = aet02_1_pre,
-  adam_datasets = c("adsl", "adae"),
-  type = "table"
+  adam_datasets = c("adsl", "adae")
 )
 
 
@@ -357,12 +356,11 @@ aet02_2_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(aet02_2, syn_test_data())
-aet02_2 <- chevron_tlg(
+aet02_2 <- chevron_t(
   main = aet02_2_main,
   lyt = aet02_2_lyt,
   preprocess = aet02_2_pre,
-  adam_datasets = c("adsl", "adae"),
-  type = "table"
+  adam_datasets = c("adsl", "adae")
 )
 
 
@@ -506,10 +504,9 @@ aet02_3_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(aet02_3, syn_test_data())
-aet02_3 <- chevron_tlg(
+aet02_3 <- chevron_t(
   main = aet02_3_main,
   lyt = aet02_3_lyt,
   preprocess = aet02_3_pre,
-  adam_datasets = c("adsl", "adae"),
-  type = "table"
+  adam_datasets = c("adsl", "adae")
 )

@@ -203,10 +203,9 @@ aet04_1_pre <- function(adam_db, ...) {
 #' )
 #'
 #' run(aet04_1, syn_test_data(), group_grades = group_grades)
-aet04_1 <- chevron_tlg(
+aet04_1 <- chevron_t(
   main = aet04_1_main,
   lyt = aet04_1_lyt,
   preprocess = aet04_1_pre,
-  adam_datasets = c("adsl", "adae"),
-  type = "table"
+  adam_datasets = c("adsl", "adae")
 )
