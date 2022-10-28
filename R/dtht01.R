@@ -204,9 +204,9 @@ dtht01_1_pre <- function(adam_db, ...) {
 #' run(dtht01_1, db)
 #' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
 dtht01_1 <- chevron_tlg(
-  dtht01_1_main,
-  list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
-  dtht01_1_pre,
+  main = dtht01_1_main,
+  lyt = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
+  preprocess = dtht01_1_pre,
   adam_datasets = c("adsl"),
   type = "table"
 )

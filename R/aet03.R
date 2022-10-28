@@ -169,4 +169,10 @@ aet03_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(aet03_1, syn_test_data())
-aet03_1 <- chevron_tlg(aet03_1_main, aet03_1_lyt, aet03_1_pre, adam_datasets = c("adsl", "adae"), type = "table")
+aet03_1 <- chevron_tlg(
+  main = aet03_1_main,
+  lyt = aet03_1_lyt,
+  preprocess = aet03_1_pre,
+  adam_datasets = c("adsl", "adae"),
+  type = "table"
+)

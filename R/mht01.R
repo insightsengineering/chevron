@@ -156,4 +156,10 @@ mht01_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(mht01_1, syn_test_data())
-mht01_1 <- chevron_tlg(mht01_1_main, mht01_1_lyt, mht01_1_pre, adam_datasets = c("adsl", "admh"), type = "table")
+mht01_1 <- chevron_tlg(
+  main = mht01_1_main,
+  lyt = mht01_1_lyt,
+  preprocess = mht01_1_pre,
+  adam_datasets = c("adsl", "admh"),
+  type = "table"
+)

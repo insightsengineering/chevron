@@ -155,4 +155,10 @@ vst01_1_pre <- function(adam_db, ...) {
 #'
 #' run(vst01_1, db)
 #' run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-vst01_1 <- chevron_tlg(vst01_1_main, vst01_1_lyt, vst01_1_pre, adam_datasets = c("adsl", "advs"), type = "table")
+vst01_1 <- chevron_tlg(
+  main = vst01_1_main,
+  lyt = vst01_1_lyt,
+  preprocess = vst01_1_pre,
+  adam_datasets = c("adsl", "advs"),
+  type = "table"
+)

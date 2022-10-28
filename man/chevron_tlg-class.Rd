@@ -14,16 +14,43 @@
 \alias{chevron_g-class}
 \alias{.chevron_g}
 \alias{chevron_graph}
+\alias{chevron_t}
+\alias{chevron_l}
+\alias{chevron_g}
 \title{\code{chevron_tlg} class}
 \usage{
+chevron_t(
+  main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[1]](), adam_db[[1]]),
+  lyt = list(function(...) basic_table()),
+  preprocess = function(adam_db, ...) adam_db,
+  postprocess = report_null,
+  adam_datasets = NA_character_,
+  ...
+)
+
+chevron_l(
+  main = function(adam_db, ...) data.frame(),
+  preprocess = function(adam_db, ...) adam_db,
+  postprocess = function(tlg, ...) tlg,
+  adam_datasets = NA_character_,
+  ...
+)
+
+chevron_g(
+  main = function(adam_db, ...) ggplot2::ggplot(),
+  preprocess = function(adam_db, ...) adam_db,
+  postprocess = function(tlg, ...) tlg,
+  adam_datasets = NA_character_,
+  ...
+)
+
 chevron_tlg(
   main,
-  lyt,
-  graph,
-  preprocess = function(adam_db, ...) adam_db,
+  preprocess,
   postprocess,
-  adam_datasets = NA_character_,
-  type = c(NA, "table", "listing", "graph")
+  adam_datasets,
+  type = c(NA, "table", "listing", "graph"),
+  ...
 )
 }
 \arguments{
@@ -43,9 +70,9 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 \item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} dataset required for \code{tlg}
 creation.}
 
-\item{type}{(\code{string}) indicating the subclass.}
+\item{...}{used to pass additional class specific argument. see \link{chevron_t}}
 
-\item{additional}{stuff}
+\item{type}{(\code{string}) indicating the subclass.}
 }
 \description{
 The \code{chevron_tlg} class associates a \code{preprocess} function, a main \code{tlg} function and \code{AdAM} tables names and
@@ -75,7 +102,7 @@ optionally a \code{postprocess} function.
 \item{\code{adam_datasets}}{(\code{character}) representing the name of the tables from an \code{AdAM} dataset required for \code{tlg}
 creation.}
 
-\item{\code{lyt}}{(\verb{list of function}).  Typically one of the \verb{*_lyt} function from \code{chevron}wrapped in a \code{list}.}
+\item{\code{lyt}}{(\verb{list of function}).  Typically one of the \verb{*_lyt} function from \code{chevron} wrapped in a \code{list}.}
 }}
 
 \note{
@@ -90,5 +117,16 @@ In addition, it must possess the \code{...} argument.
 }
 }
 \examples{
+chevron_t_obj <- chevron_t()
+chevron_t_obj <- chevron_t(postprocess = function(tlg, indent, ...) {
+  rtables::table_inset(tlg) <- indent
+  tlg
+})
+
+chevron_l_obj <- chevron_l()
+
+chevron_g_obj <- chevron_g()
+chevron_g_obj <- chevron_g(postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title))
+
 x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
 }
