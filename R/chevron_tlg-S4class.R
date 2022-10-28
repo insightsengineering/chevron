@@ -291,7 +291,7 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
 #'
 #' @export
 #' @examples
-#' x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+#' x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"), type = "table")
 chevron_tlg <- function(main,
                         preprocess,
                         postprocess,
