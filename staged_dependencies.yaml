@@ -11,9 +11,6 @@ upstream_repos:
   Roche/rtables:
     repo: Roche/rtables
     host: https://github.com
-  Roche/rlistings:
-    repo: Roche/rlistings
-    host: https://github.com
   insightsengineering/formatters:
     repo: insightsengineering/formatters
     host: https://github.com
