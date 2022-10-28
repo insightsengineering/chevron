@@ -174,7 +174,6 @@ methods::setValidity("chevron_l", function(object) {
 #' @exportClass chevron_g
 .chevron_g <- setClass(
   "chevron_g",
-  slot = c("graph" = "list"),
   contains = "chevron_tlg"
 )
 
