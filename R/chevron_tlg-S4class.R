@@ -115,8 +115,8 @@ make_lyt_ls <- function(lyt) {
 
 #' `chevron_t`
 #'
-#' `chevron_t`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle graph creation and an
-#' additional `lyt` slot.
+#' `chevron_t`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle graph creation
+#' and an additional `lyt` slot.
 #'
 #' @slot lyt (`list of function`).  Typically one of the `*_lyt` function from `chevron` wrapped in a `list`.
 #'

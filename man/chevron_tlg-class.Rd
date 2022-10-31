@@ -63,8 +63,8 @@ creation.}
 \item{...}{not used.}
 }
 \description{
-\code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation and an
-additional \code{lyt} slot.
+\code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation
+and an additional \code{lyt} slot.
 
 \code{chevron_l}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle listing creation
 
