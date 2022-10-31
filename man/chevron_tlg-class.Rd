@@ -4,7 +4,6 @@
 \name{chevron_tlg-class}
 \alias{chevron_tlg-class}
 \alias{.chevron_tlg}
-\alias{chevron_tlg}
 \alias{chevron_t-class}
 \alias{.chevron_t}
 \alias{chevron_table}
@@ -32,7 +31,7 @@ chevron_l(
   main = function(adam_db, ...) data.frame(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = function(tlg, ...) tlg,
-  adam_datasets = NA_character,
+  adam_datasets = NA_character_,
   ...
 )
 

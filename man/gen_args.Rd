@@ -10,7 +10,7 @@ gen_args(
   main,
   preprocess,
   postprocess,
-  adam_dataset,
+  adam_datasets,
   type,
   armvar,
   lbl_overall,
@@ -37,6 +37,9 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
+\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
+creation.}
+
 \item{type}{(\code{string}) indicating the subclass.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
@@ -56,9 +59,6 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{tlgfname}{(\code{character}) function name of TLG function}
-
-\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
-creation.}
 }
 \description{
 General Argument Name Convention

@@ -21,7 +21,6 @@
 #' In addition, it must possess the `...` argument.
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post-process.
 #'
-#' @aliases chevron_tlg
 #' @name chevron_tlg-class
 #' @exportClass chevron_tlg
 .chevron_tlg <- setClass(
@@ -238,7 +237,7 @@ chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[
 chevron_l <- function(main = function(adam_db, ...) data.frame(),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = function(tlg, ...) tlg,
-                      adam_datasets = NA_character,
+                      adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_l(
     main = main,
@@ -286,6 +285,8 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
 #' @param ... used to pass additional class specific argument. see [chevron::chevron_t]
 #'
 #' @include utils.R
+#'
+#' @aliases chevron_tlg-internal
 #'
 #' @keywords internal
 chevron_tlg <- function(main,

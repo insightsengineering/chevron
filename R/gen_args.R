@@ -24,7 +24,7 @@
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `armvar`.
 #'
-gen_args <- function(adam_db, lyt_ls, main, preprocess, postprocess, adam_dataset,
+gen_args <- function(adam_db, lyt_ls, main, preprocess, postprocess, adam_datasets,
                      type, armvar, lbl_overall, prune_0, req_tables, deco, .study, group,
                      tlg, tlgfname) {
   NULL

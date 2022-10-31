@@ -168,7 +168,7 @@ setMethod(
 
 #' `Datasets`
 #'
-#' retrieve or set `adam_dataset`.
+#' retrieve or set `adam_datasets`.
 #'
 #' @param x (`chevron_tlg`) input.
 #'

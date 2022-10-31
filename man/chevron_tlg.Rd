@@ -2,6 +2,7 @@
 % Please edit documentation in R/chevron_tlg-S4class.R
 \name{chevron_tlg}
 \alias{chevron_tlg}
+\alias{chevron_tlg-internal}
 \title{\code{chevron_tlg} constructor}
 \usage{
 chevron_tlg(
