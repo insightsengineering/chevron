@@ -1,5 +1,5 @@
 # as we use NSE
-globalVariables(c("."))
+globalVariables(c(".",":=","res",".env"))
 
 #' Retrieve labels for certain variables
 #'
@@ -250,7 +250,10 @@ smart_prune <- function(tlg) {
 #' @param new (`string`) the name of the new column. If `NULL` the concatenation of `cols` separated by `sep` is used.
 #'
 #' @return `dm` object with a united column.
-#'
+#' @importFrom rlang :=
+#' @importFrom rlang .data
+#' @importFrom rlang .env
+#' 
 #' @examples
 #' \dontrun{
 #' x <- dm_unite(dm::dm_nycflights13(), "airlines", c("carrier", "name"), new = "FUSION")
