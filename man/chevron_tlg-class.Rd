@@ -16,7 +16,7 @@
 \alias{chevron_t}
 \alias{chevron_l}
 \alias{chevron_g}
-\title{\code{chevron_tlg} class}
+\title{\code{chevron_t}}
 \usage{
 chevron_t(
   main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[1]](), adam_db[[1]]),
@@ -63,15 +63,12 @@ creation.}
 \item{...}{not used.}
 }
 \description{
-The \code{chevron_tlg} class associates a \code{preprocess} function, a main \code{tlg} function and \code{AdAM} tables names and
-optionally a \code{postprocess} function.
-
-\code{chevron_t}, a subclass of \link{chevron_tlg} with specific validation criteria to handle graph creation and an
+\code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation and an
 additional \code{lyt} slot.
 
-\code{chevron_l}, a subclass of \link{chevron_tlg} with specific validation criteria to handle listing creation
+\code{chevron_l}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle listing creation
 
-\code{chevron_g}, a subclass of \link{chevron_tlg} with specific validation criteria to handle graph creation
+\code{chevron_g}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation
 }
 \section{Slots}{
 

@@ -1,3 +1,5 @@
+#' @include utils.R
+
 # Chevron_tlg ----
 
 #' `chevron_tlg` class
@@ -49,7 +51,7 @@ methods::setValidity("chevron_tlg", function(object) {
 
 #' Layout List Constructor
 #'
-#' @inheritParams chevron_tlg
+#' @inheritParams chevron_t
 #'
 #' @keywords internal
 #'
@@ -113,7 +115,7 @@ make_lyt_ls <- function(lyt) {
 
 #' `chevron_t`
 #'
-#' `chevron_t`, a subclass of [chevron::chevron_tlg] with specific validation criteria to handle graph creation and an
+#' `chevron_t`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle graph creation and an
 #' additional `lyt` slot.
 #'
 #' @slot lyt (`list of function`).  Typically one of the `*_lyt` function from `chevron` wrapped in a `list`.
@@ -146,7 +148,7 @@ methods::setValidity("chevron_t", function(object) {
 
 #' `chevron_l`
 #'
-#' `chevron_l`, a subclass of [chevron::chevron_tlg] with specific validation criteria to handle listing creation
+#' `chevron_l`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle listing creation
 #'
 #' @aliases chevron_listing
 #' @rdname chevron_tlg-class
@@ -166,7 +168,7 @@ methods::setValidity("chevron_l", function(object) {
 
 #' `chevron_g`
 #'
-#' `chevron_g`, a subclass of [chevron::chevron_tlg] with specific validation criteria to handle graph creation
+#' `chevron_g`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle graph creation
 #'
 #' @aliases chevron_graph
 #' @rdname chevron_tlg-class
@@ -275,45 +277,4 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
   )
 
   res
-}
-
-# Constructor ----
-
-#' `chevron_tlg` constructor
-#'
-#' @inheritParams gen_args
-#' @param ... used to pass additional class specific argument. see [chevron::chevron_t]
-#'
-#' @include utils.R
-#'
-#' @aliases chevron_tlg-internal
-#'
-#' @keywords internal
-chevron_tlg <- function(main,
-                        preprocess,
-                        postprocess,
-                        adam_datasets,
-                        type = c(NA, "table", "listing", "graph"),
-                        ...) {
-  type <- match.arg(type)
-  checkmate::assert_string(type, na.ok = FALSE)
-
-  obj <- switch(type,
-    "table" = chevron_t(),
-    "listing" = chevron_l(),
-    "graph" = chevron_g()
-  )
-
-  extra_arg <- list(...)
-
-  if (!missing(main)) obj@main <- main
-  if (!missing(preprocess)) obj@preprocess <- preprocess
-  if (!missing(postprocess)) obj@postprocess <- postprocess
-  if (!missing(adam_datasets)) obj@adam_datasets <- adam_datasets
-
-  if ("lyt" %in% names(extra_arg) && type == "table") obj@lyt <- make_lyt_ls(extra_arg$lyt)
-
-  validObject(obj)
-
-  obj
 }
