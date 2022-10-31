@@ -25,6 +25,7 @@ Imports:
     magrittr,
     methods,
     rlang,
+    rlistings,
     rtables,
     tern (>= 0.7.10),
     tibble,
