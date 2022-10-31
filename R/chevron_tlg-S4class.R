@@ -195,6 +195,7 @@ methods::setValidity("chevron_g", function(object) {
 #'   either `functions` or `PreDataTableLayouts` type of elements) typically one of the `_lyt` function of `chevron`.
 #'   Functions passed to `lyt`, whether as a single `function` or as a `list of functions`, must have the `...` formal
 #'   argument.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -209,7 +210,8 @@ chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[
                       lyt = list(function(...) basic_table()),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = report_null,
-                      adam_datasets = NA_character_) {
+                      adam_datasets = NA_character_,
+                      ...) {
   res <- .chevron_t(
     main = main,
     lyt = make_lyt_ls(lyt),
@@ -226,6 +228,7 @@ chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[
 #' @rdname chevron_tlg-class
 #'
 #' @inheritParams gen_args
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -235,7 +238,8 @@ chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[
 chevron_l <- function(main = function(adam_db, ...) data.frame(),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = function(tlg, ...) tlg,
-                      adam_datasets = NA_character) {
+                      adam_datasets = NA_character,
+                      ...) {
   res <- .chevron_l(
     main = main,
     preprocess = preprocess,
@@ -249,6 +253,7 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 #' `chevron_g` constructor
 #'
 #' @rdname chevron_tlg-class
+#' @param ... not used.
 #'
 #' @inheritParams gen_args
 #'
@@ -261,7 +266,8 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = function(tlg, ...) tlg,
-                      adam_datasets = NA_character_) {
+                      adam_datasets = NA_character_,
+                      ...) {
   res <- .chevron_g(
     main = main,
     preprocess = preprocess,

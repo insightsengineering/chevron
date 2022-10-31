@@ -165,8 +165,7 @@ my_pipeline <- chevron_t(
     print(paste("Finished at", Sys.time()))
     tlg
   },
-  adam_datasets = c("adsl", "adae"),
-  type = "table"
+  adam_datasets = c("adsl", "adae")
 )
 
 run(my_pipeline, adam_study_data)
