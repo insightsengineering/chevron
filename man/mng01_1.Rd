@@ -13,7 +13,6 @@ An object of class \code{chevron_g} of length 1.
 \usage{
 mng01_1_main(
   adam_db,
-  plot_ls = list(mng01_1_plot),
   dataset = "adlb",
   x = "AVISIT",
   y = "AVAL",

@@ -24,24 +24,21 @@ chevron_t(
   lyt = list(function(...) basic_table()),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = report_null,
-  adam_datasets = NA_character_,
-  ...
+  adam_datasets = NA_character_
 )
 
 chevron_l(
   main = function(adam_db, ...) data.frame(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = function(tlg, ...) tlg,
-  adam_datasets = NA_character_,
-  ...
+  adam_datasets = NA_character
 )
 
 chevron_g(
   main = function(adam_db, ...) ggplot2::ggplot(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = function(tlg, ...) tlg,
-  adam_datasets = NA_character_,
-  ...
+  adam_datasets = NA_character_
 )
 }
 \arguments{
@@ -58,7 +55,7 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
-\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} dataset required for \code{tlg}
+\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
 creation.}
 }
 \description{

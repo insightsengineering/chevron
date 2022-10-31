@@ -33,7 +33,6 @@
 #' @return a list of `ggplot` objects.
 #' @export
 mng01_1_main <- function(adam_db,
-                         plot_ls = list(mng01_1_plot),
                          dataset = "adlb",
                          x = "AVISIT",
                          y = "AVAL",

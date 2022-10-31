@@ -22,7 +22,7 @@ last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
-\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} dataset required for \code{tlg}
+\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
 creation.}
 
 \item{type}{(\code{string}) indicating the subclass.}
@@ -31,8 +31,5 @@ creation.}
 }
 \description{
 \code{chevron_tlg} constructor
-}
-\examples{
-x <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"), type = "table")
 }
 \keyword{internal}
