@@ -27,9 +27,9 @@ dst01_3_main(
 dst01_3_lyt(
   armvar,
   status_treatment,
-  completed_lbl,
-  discontinued_lbl,
-  ongoing_lbl,
+  completed_trt_lbl,
+  discontinued_trt_lbl,
+  ongoing_trt_lbl,
   lbl_overall,
   deco,
   ...
@@ -67,13 +67,13 @@ the analysis period.}
 
 \item{...}{not used.}
 
-\item{completed_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
+\item{completed_trt_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
 \code{status_treatment}. By Default \code{COMPLETED}.}
 
-\item{discontinued_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
+\item{discontinued_trt_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
 \code{status_treatment}. By Default \code{DISCONTINUED}.}
 
-\item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
+\item{ongoing_trt_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
 By Default `ONGOING.}
 }
 \description{

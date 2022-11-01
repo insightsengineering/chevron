@@ -25,7 +25,7 @@ dst01_2_main(
 
 dst01_2_lyt(
   armvar,
-  status,
+  status_var,
   disc_reason_var,
   completed_lbl,
   ongoing_lbl,
@@ -63,9 +63,6 @@ the analysis period.}
 
 \item{...}{not used.}
 
-\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
-name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
-
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}
 
@@ -74,6 +71,9 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
+
+\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
+name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of
@@ -120,7 +120,7 @@ dst01_2_main(db)
 dst01_2_main(db, lbl_overall = NULL)
 dst01_2_lyt(
   armvar = "ACTARM",
-  status = "EOP01STT",
+  status_var = "EOP01STT",
   disc_reason_var = "DCP01RS"
 )
 dst01_2_pre(syn_test_data())

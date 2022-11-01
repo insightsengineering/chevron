@@ -23,7 +23,7 @@ mht01_1_main(
   ...
 )
 
-mht01_1_lyt(armvar, lbl_overall, lbl_mhbodsys, lbl_mhdecod, ...)
+mht01_1_lyt(armvar, lbl_overall, lbl_mhbodsys, lbl_mhdecod, deco, ...)
 
 mht01_1_pre(adam_db, ...)
 

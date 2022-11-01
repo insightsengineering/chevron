@@ -95,7 +95,6 @@ dmt01_1_main(db,
   summaryvars = c("AGE", "RACE", "SEX"),
   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 )
-dmt01_1_lyt(armvar = "ACTARM")
 dmt01_1_pre(syn_test_data())
 run(dmt01_1, syn_test_data(), summaryvars = c("AGE", "RACE", "SEX"))
 }

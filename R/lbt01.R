@@ -38,13 +38,16 @@ lbt01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
+  lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
+  lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+
   lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
-    lbl_avisit = var_labels_for(adam_db$adlb, visitvar),
-    lbl_param = var_labels_for(adam_db$adlb, "PARAM"),
+    lbl_avisit = lbl_avisit,
+    lbl_param = lbl_param,
     deco = deco,
     ... = ...
   )

@@ -28,12 +28,14 @@ aet03_1_main <- function(adam_db,
 
   # specific to AET03: avoid error if some severity levels are not present
   severity_grade <- levels(adam_db$adae[["AESEV"]])
+  lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
+  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
   lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = var_labels_for(adam_db$adae, "AEBODSYS"),
-    lbl_aedecod = var_labels_for(adam_db$adae, "AEDECOD"),
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     severity_grade = severity_grade,
     deco = deco,
     ... = ...

@@ -70,6 +70,7 @@ mht01_1_lyt <- function(armvar,
                         lbl_overall,
                         lbl_mhbodsys,
                         lbl_mhdecod,
+                        deco,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

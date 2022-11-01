@@ -76,7 +76,7 @@ dst01_1_main <- function(adam_db,
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    status = status_var,
+    status_var = status_var,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
@@ -108,7 +108,7 @@ dst01_1_main <- function(adam_db,
 #' @describeIn dst01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
@@ -133,7 +133,7 @@ dst01_1_main <- function(adam_db,
 #'   disc_reason_var = "DCP01RS"
 #' )
 dst01_1_lyt <- function(armvar,
-                        status,
+                        status_var,
                         disc_reason_var,
                         completed_lbl = "COMPLETED",
                         ongoing_lbl = "ONGOING",
@@ -150,7 +150,7 @@ dst01_1_lyt <- function(armvar,
   layout_table_completed <-
     layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
       .formats = "xx (xx.x%)"
@@ -159,13 +159,13 @@ dst01_1_lyt <- function(armvar,
   layout_table_other <-
     layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
       .formats = "xx (xx.x%)"
     ) %>%
     split_rows_by(
-      status,
+      status_var,
       split_fun = keep_split_levels(discontinued_lbl),
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study", format = "xx (xx.x%)") %>%
@@ -280,7 +280,7 @@ dst01_2_main <- function(adam_db,
 
   lyt <- lyt_ls[[1]](
     armvar = armvar,
-    status = status_var,
+    status_var = status_var,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lbl,
     discontinued_lbl = discontinued_lbl,
@@ -335,11 +335,11 @@ dst01_2_main <- function(adam_db,
 #' @examples
 #' dst01_2_lyt(
 #'   armvar = "ACTARM",
-#'   status = "EOP01STT",
+#'   status_var = "EOP01STT",
 #'   disc_reason_var = "DCP01RS"
 #' )
 dst01_2_lyt <- function(armvar,
-                        status,
+                        status_var,
                         disc_reason_var,
                         completed_lbl,
                         ongoing_lbl,
@@ -355,7 +355,7 @@ dst01_2_lyt <- function(armvar,
 
   layout_table_completed <- layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
       .formats = "xx (xx.x%)"
@@ -363,13 +363,13 @@ dst01_2_lyt <- function(armvar,
 
   layout_table_other <- layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
       .formats = "xx (xx.x%)"
     ) %>%
     split_rows_by(
-      var = status,
+      var = status_var,
       split_fun = keep_split_levels(discontinued_lbl)
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study") %>%
@@ -509,9 +509,9 @@ dst01_3_main <- function(adam_db,
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    completed_lbl = completed_trt_lbl,
-    ongoing_lbl = ongoing_trt_lbl,
-    discontinued_lbl = discontinued_trt_lbl,
+    completed_trt_lbl = completed_trt_lbl,
+    ongoing_trt_lbl = ongoing_trt_lbl,
+    discontinued_trt_lbl = discontinued_trt_lbl,
     status_treatment = status_treatment,
     ... = ...
   )
@@ -575,11 +575,11 @@ dst01_3_main <- function(adam_db,
 #' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
 #'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
-#' @param completed_lbl (`string`) associated with completed treatment and found in the columns given by
+#' @param completed_trt_lbl (`string`) associated with completed treatment and found in the columns given by
 #'   `status_treatment`. By Default `COMPLETED`.
-#' @param discontinued_lbl (`string`) associated with discontinued treatment and found in the columns given by
+#' @param discontinued_trt_lbl (`string`) associated with discontinued treatment and found in the columns given by
 #'   `status_treatment`. By Default `DISCONTINUED`.
-#' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
+#' @param ongoing_trt_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
 #'   By Default `ONGOING.
 #' @param ... not used.
 #'
@@ -592,9 +592,9 @@ dst01_3_main <- function(adam_db,
 #' )
 dst01_3_lyt <- function(armvar,
                         status_treatment,
-                        completed_lbl,
-                        discontinued_lbl,
-                        ongoing_lbl,
+                        completed_trt_lbl,
+                        discontinued_trt_lbl,
+                        ongoing_trt_lbl,
                         lbl_overall,
                         deco ,
                         ...) {
@@ -605,21 +605,21 @@ dst01_3_lyt <- function(armvar,
     split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     count_values(
       vars = status_treatment,
-      values = completed_lbl,
+      values = completed_trt_lbl,
       .labels = c(count_fraction = "Completed Treatment"),
       .formats = "xx (xx.x%)",
       table_names = c("COMPLETED")
     ) %>%
     count_values(
       vars = status_treatment,
-      values = ongoing_lbl,
+      values = ongoing_trt_lbl,
       .labels = c(count_fraction = "Ongoing Treatment"),
       .formats = "xx (xx.x%)",
       table_names = c("ONGOING")
     ) %>%
     count_values(
       vars = status_treatment,
-      values = discontinued_lbl,
+      values = discontinued_trt_lbl,
       .labels = c(count_fraction = "Discontinued Treatment"),
       .formats = "xx (xx.x%)",
       table_names = c("DISCONTINUED")

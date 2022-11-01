@@ -30,10 +30,12 @@ ext01_1_main <- function(adam_db,
                          ...) {
   assert_colnames(adam_db$adex, summaryvars)
 
+  summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
+
   lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
-    summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
+    summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...
@@ -151,10 +153,12 @@ ext01_2_main <- function(adam_db,
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adam_db$adex, summaryvars)
 
+  summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
+
   lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
-    summaryvars_lbls = var_labels_for(adam_db$adex, summaryvars),
+    summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...

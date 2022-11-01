@@ -79,8 +79,6 @@ dmt01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' dmt01_1_lyt(armvar = "ACTARM")
 dmt01_1_lyt <- function(armvar,
                         summaryvars,
                         summaryvars_lbls,
