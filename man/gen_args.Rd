@@ -13,7 +13,6 @@ gen_args(
   prune_0,
   req_tables,
   deco,
-  .study,
   group,
   tlg,
   tlgfname
@@ -36,8 +35,6 @@ gen_args(
 \item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{group}{(\verb{list of lists}) for group-dependent data binning}
 
