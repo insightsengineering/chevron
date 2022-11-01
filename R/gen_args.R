@@ -4,7 +4,14 @@
 #' @param adam_db (`dm`) object containing the `ADaM` datasets
 #' @param lyt_ls (`list of functions` returning `PreDataTableLayout` object. Typically one of the `_lyt` function of
 #'   `chevron` stored in a `list`.
-#' @param plot_ls (`list of functions`) creating a `ggplot` object.
+#' @param main (`function`) returning a `tlg`, with `adam_db` as first argument and `...` as last argument. Typically
+#'   one of the `_main` function of `chevron`.
+#' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument and `...` as
+#'   last argument. Typically one of the `_pre` function of `chevron`.
+#' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
+#' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` data set required for `tlg`
+#'   creation.
+#' @param type (`string`) indicating the subclass.
 #' @param armvar (`character`) variable used for column splitting
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content
 #' @param lbl_overall (`character`) label used for overall column, if set to `NULL` the overall column is omitted
@@ -16,7 +23,8 @@
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `armvar`.
 #'
-gen_args <- function(adam_db, lyt_ls, plot_ls, armvar, lbl_overall, prune_0, req_tables, deco, group,
+gen_args <- function(adam_db, lyt_ls, main, preprocess, postprocess, adam_datasets,
+                     type, armvar, lbl_overall, prune_0, req_tables, deco, group,
                      tlg, tlgfname) {
   NULL
 }

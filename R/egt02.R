@@ -97,8 +97,12 @@ egt02_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(egt02_1, syn_test_data())
-egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_lyt, egt02_1_pre, adam_datasets = c("adsl", "adeg"))
-
+egt02_1 <- chevron_t(
+  main = egt02_1_main,
+  lyt = egt02_1_lyt,
+  preprocess = egt02_1_pre,
+  adam_datasets = c("adsl", "adeg")
+)
 
 # egt02_2 ----
 
@@ -199,4 +203,9 @@ egt02_2_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(egt02_2, syn_test_data())
-egt02_2 <- chevron_tlg(egt02_2_main, egt02_2_lyt, egt02_2_pre, adam_datasets = c("adsl", "adeg"))
+egt02_2 <- chevron_t(
+  main = egt02_2_main,
+  lyt = egt02_2_lyt,
+  preprocess = egt02_2_pre,
+  adam_datasets = c("adsl", "adeg")
+)

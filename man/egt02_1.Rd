@@ -8,7 +8,7 @@
 \alias{egt02_1}
 \title{\code{EGT02} Table 1 (Default) ECG Abnormalities Table 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 egt02_1_main(

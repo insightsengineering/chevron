@@ -23,10 +23,11 @@ knitr::opts_chunk$set(
 
 The `chevron` R package provides functions to produce standard tables, listings and graphs (TLGs) used to analyze and
 report clinical trials data. The ensemble of function used to produce a particular output are stored in an
-`chevron_tlg` object of class `S4`.
+`S4` object of virtual class `chevron_tlg`. Each type of output are associated with a specific class: `chevron_t` for tables, `chevron_l` for listings and `chevron_g` for graphs.
+
 Each standard output is associated with one  *`chevron_tlg` object*. They contain the following objects in separate slots:
 * A `main` function also refereed to as *TLG-function*.
-* A `lyt` list of functions also refereed to as *Layout-list*.
+* A `lyt` list of functions also refereed to as *Layout-list*. (only for `chevron_t` objects)
 * A `preprocess` function.
 * A `postprocess` function
 * A `adam_dataset` character vector of the name of the `AdAM` datasets required to create the output.
@@ -46,11 +47,11 @@ used to create listings and tables, and `ggplot2`, `lattice`, and `grid` are use
 variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
-1. have always as second argument `lyt_ls`, a list of functions returning `Pre-data Table Layout` that are used by the main function to generate the output.
+1. If they are of the subclass `chevron_t`, have always as second argument `lyt_ls`, a list of functions returning `Pre-data Table Layout` that are used by the main function to generate the output.
 1. have the `...` argument to facilitate their incorporation in a workflow including pre and post processing.
 
 ### *Layout-list*
-*Layout-list* in `chevron` are stored in each `chevron_tlg` objects as list of functions in the `lyt` slot. These functions must have the formal argument `...`.
+*Layout-list* in `chevron` are stored in each `chevron_t` objects as list of functions in the `lyt` slot. These functions must have the formal argument `...`.
  
 ### *pre-processing*
 The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
@@ -151,10 +152,15 @@ lyt(aet02_1)
 
 # Custom `chevron_tlg` object creation
 
-To create a `chevron_tlg` object from scratch, use the provided constructor method: `chevron_tlg()`.
+To create a `chevron_tlg` object from scratch, use the provided constructors corresponding to the desired output:
+
+* `chevron_t()` for tables.
+* `chevron_l()` for listings.
+* `chevron_g()` for graphs.
+
 ```{r}
 
-my_pipeline <- chevron_tlg(
+my_pipeline <- chevron_t(
   main = aet02_1_main,
   preprocess = aet02_1_pre,
   postprocess = function(tlg, ...) {

@@ -8,7 +8,7 @@
 \alias{vst01_1}
 \title{\code{VST01} Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 vst01_1_main(

@@ -3,18 +3,16 @@
 \docType{data}
 \name{mng01_1_main}
 \alias{mng01_1_main}
-\alias{mng01_1_plot}
 \alias{mng01_1_pre}
 \alias{mng01_1_post}
 \alias{mng01_1}
 \title{\code{MNG01} Graph 1 (Default) Mean Plot 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_g} of length 1.
 }
 \usage{
 mng01_1_main(
   adam_db,
-  plot_ls = list(mng01_1_plot),
   dataset = "adlb",
   x = "AVISIT",
   y = "AVAL",
@@ -33,26 +31,6 @@ mng01_1_main(
   ...
 )
 
-mng01_1_plot(
-  df,
-  alt_count,
-  x,
-  y,
-  y_name,
-  y_unit,
-  armvar,
-  center_fun,
-  interval_fun,
-  show_table,
-  jitter,
-  show_n,
-  show_h_grid,
-  show_v_grid,
-  legend_pos,
-  line_col,
-  ...
-)
-
 mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)
 
 mng01_1_post(tlg, ...)
@@ -61,8 +39,6 @@ mng01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
-
-\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
@@ -98,10 +74,6 @@ values of \code{armvar} with color names.}
 
 \item{...}{not used.}
 
-\item{df}{(\code{dataframe}) data set containing all analysis variables.}
-
-\item{alt_count}{(\code{dataframe}) data set that will be used (only) to counts objects in strata.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
@@ -119,8 +91,6 @@ Overview of a summary statistics across time and arm for a selected data set.
 \section{Functions}{
 \itemize{
 \item \code{mng01_1_main()}: Main TLG Function
-
-\item \code{mng01_1_plot()}: Plot Function
 
 \item \code{mng01_1_pre()}: Preprocessing
 

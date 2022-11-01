@@ -8,7 +8,7 @@
 \alias{cmt01a_1}
 \title{\code{CMT01A} Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 cmt01a_1_main(

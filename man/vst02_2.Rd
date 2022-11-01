@@ -8,7 +8,7 @@
 \alias{vst02_2}
 \title{\code{VST02} Table 2 (Supplementary) Vital Sign Abnormalities Table 2.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 vst02_2_main(

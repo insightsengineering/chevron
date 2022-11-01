@@ -117,7 +117,12 @@ ext01_1_pre <- function(adam_db,
 #'
 #' @examples
 #' run(ext01_1, syn_test_data())
-ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_lyt, ext01_1_pre, adam_datasets = c("adsl", "adex"))
+ext01_1 <- chevron_t(
+  main = ext01_1_main,
+  lyt = ext01_1_lyt,
+  preprocess = ext01_1_pre,
+  adam_datasets = c("adsl", "adex")
+)
 
 
 # ext01_2 ----
@@ -250,4 +255,9 @@ ext01_2_pre <- function(adam_db,
 #'
 #' @examples
 #' run(ext01_2, syn_test_data())
-ext01_2 <- chevron_tlg(ext01_2_main, ext01_2_lyt, ext01_2_pre, adam_datasets = c("adsl", "adex"))
+ext01_2 <- chevron_t(
+  main = ext01_2_main,
+  lyt = ext01_2_lyt,
+  preprocess = ext01_2_pre,
+  adam_datasets = c("adsl", "adex")
+)

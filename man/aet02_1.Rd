@@ -9,7 +9,7 @@
 \alias{aet02_1}
 \title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet02_1_main(

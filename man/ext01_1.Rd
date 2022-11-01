@@ -8,7 +8,7 @@
 \alias{ext01_1}
 \title{EXT01 Table 1 (Default) Exposure Summary Table.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 ext01_1_main(
