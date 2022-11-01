@@ -14,28 +14,16 @@ An object of class \code{chevron_tlg} of length 1.
 dmt01_1_main(
   adam_db,
   lyt_ls = list(dmt01_1_lyt),
-  armvar = .study$planarm,
-  summaryvars = .study$demo_vars,
-  summaryvars_lbls = .study$demo_vars_lbls,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ARM",
+  summaryvars = c("AGE", "SEX", "COUNTRY", "RACE"),
+  summaryvars_lbls = NULL,
+  lbl_overall = "All Patients",
   prune_0 = TRUE,
   deco = std_deco("DMT01"),
-  .study = list(planarm = "ARM", demo_vars = c("AGE", "SEX", "COUNTRY", "RACE"),
-    demo_vars_lbls = NULL, lbl_overall = "All Patients"),
   ...
 )
 
-dmt01_1_lyt(
-  armvar = .study$planarm,
-  summaryvars = .study$demo_vars,
-  summaryvars_lbls = .study$demo_vars_lbl,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("DMT01"),
-  .study = list(planarm = "ARM", demo_vars = c("AAGE", "AGEGR1", "SEX", "ETHNIC",
-    "RACE"), demo_vars_lbl = c("Age (yr)", "Pooled Age Group 1 (yr)", "SEX", "ETHNIC",
-    "RACE"), lbl_overall = "All Patients"),
-  ...
-)
+dmt01_1_lyt(armvar, summaryvars, summaryvars_lbls, lbl_overall, deco, ...)
 
 dmt01_1_pre(adam_db, ...)
 
@@ -60,8 +48,6 @@ Usually a vector containing the following one or more of the following:
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

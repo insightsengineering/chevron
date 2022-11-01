@@ -52,18 +52,12 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' dst01_1_main(db)
 dst01_1_main <- function(adam_db,
                          lyt_ls = list(dst01_1_lyt),
-                         armvar = .study$planarm,
-                         status_var = .study$status_var,
-                         disc_reason_var = .study$disc_reason_var,
+                         armvar = "ARM",
+                         status_var = "EOSSTT",
+                         disc_reason_var = "DCSREAS",
                          prune_0 = TRUE,
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = "All Patients",
                          deco = std_deco("DST01"),
-                         .study = list(
-                           planarm = "ARM",
-                           lbl_overall = "All Patients",
-                           disc_reason_var = "DCSREAS",
-                           status_var = "EOSSTT"
-                         ),
                          ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
@@ -138,20 +132,14 @@ dst01_1_main <- function(adam_db,
 #'   status = "EOP01STT",
 #'   disc_reason_var = "DCP01RS"
 #' )
-dst01_1_lyt <- function(armvar = .study$planarm,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
+dst01_1_lyt <- function(armvar,
+                        status,
+                        disc_reason_var,
                         completed_lbl = "COMPLETED",
                         ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("DST01"),
-                        .study = list(
-                          planarm = "ARM",
-                          lbl_overall = "All Patients",
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
+                        lbl_overall,
+                        deco,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -201,12 +189,8 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 #' @examples
 #' dst01_1_pre(syn_test_data())
 dst01_1_pre <- function(adam_db,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        .study = list(
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
+                        status = "EOSSTT",
+                        disc_reason_var = "DCSREAS",
                         ...) {
   new_format <- list(
     adsl = list(
@@ -276,18 +260,12 @@ dst01_1 <- chevron_tlg(dst01_1_main, dst01_1_lyt, dst01_1_pre, adam_datasets = c
 #' dst01_2_main(db, lbl_overall = NULL)
 dst01_2_main <- function(adam_db,
                          lyt_ls = list(dst01_2_lyt),
-                         armvar = .study$planarm,
-                         status_var = .study$status_var,
-                         disc_reason_var = .study$disc_reason_var,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ARM",
+                         status_var = "EOSSTT",
+                         disc_reason_var = "DCSREAS",
+                         lbl_overall = "All Patients",
                          prune_0 = TRUE,
                          deco = std_deco("DST01"),
-                         .study = list(
-                           planarm = "ARM",
-                           lbl_overall = "All Patients",
-                           disc_reason_var = "DCSREAS",
-                           status_var = "EOSSTT"
-                         ),
                          ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
@@ -360,20 +338,14 @@ dst01_2_main <- function(adam_db,
 #'   status = "EOP01STT",
 #'   disc_reason_var = "DCP01RS"
 #' )
-dst01_2_lyt <- function(armvar = .study$planarm,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        completed_lbl = "COMPLETED",
-                        ongoing_lbl = "ONGOING",
-                        discontinued_lbl = "DISCONTINUED",
-                        lbl_overall = .study$lbl_overall,
+dst01_2_lyt <- function(armvar,
+                        status,
+                        disc_reason_var,
+                        completed_lbl,
+                        ongoing_lbl,
+                        discontinued_lbl,
+                        lbl_overall,
                         deco = std_deco("DST01"),
-                        .study = list(
-                          planarm = "ARM",
-                          lbl_overall = "All Patients",
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -426,12 +398,8 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #' @examples
 #' dst01_2_pre(syn_test_data())
 dst01_2_pre <- function(adam_db,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        .study = list(
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
+                        status = "EOSSTT",
+                        disc_reason_var = "DCSREAS",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -515,19 +483,13 @@ dst01_2 <- chevron_tlg(dst01_2_main, dst01_2_lyt, dst01_2_pre, adam_datasets = c
 #' dst01_3_main(db, lbl_overall = NULL)
 dst01_3_main <- function(adam_db,
                          lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
-                         armvar = .study$planarm,
-                         status = .study$status_var,
-                         disc_reason_var = .study$disc_reason_var,
+                         armvar = "ARM",
+                         status = "EOSSTT",
+                         disc_reason_var = "DCSREAS",
                          status_treatment = "EOTSTT",
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = "All Patients",
                          prune_0 = TRUE,
                          deco = std_deco("DST01"),
-                         .study = list(
-                           planarm = "ARM",
-                           disc_reason_var = "DCSREAS",
-                           lbl_overall = "All Patients",
-                           status_var = "EOSSTT"
-                         ),
                          ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
@@ -628,18 +590,13 @@ dst01_3_main <- function(adam_db,
 #'   armvar = "ACTARM",
 #'   status_treatment = "EOTxx01"
 #' )
-dst01_3_lyt <- function(armvar = .study$planarm,
-                        status_treatment = .study$status,
-                        completed_lbl = "COMPLETED",
-                        discontinued_lbl = "DISCONTINUED",
-                        ongoing_lbl = "ONGOING",
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("DST01"),
-                        .study = list(
-                          planarm = "ARM",
-                          lbl_overall = "All Patients",
-                          status_treatment = "EOTSTT"
-                        ),
+dst01_3_lyt <- function(armvar,
+                        status_treatment,
+                        completed_lbl,
+                        discontinued_lbl,
+                        ongoing_lbl,
+                        lbl_overall,
+                        deco ,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -677,12 +634,8 @@ dst01_3_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 dst01_3_pre <- function(adam_db,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        .study = list(
-                          disc_reason_var = "DCSREAS",
-                          status_var = "EOSSTT"
-                        ),
+                        status = "EOSSTT",
+                        disc_reason_var = "DCSREAS",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 

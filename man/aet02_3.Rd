@@ -11,11 +11,10 @@ An object of class \code{chevron_tlg} of length 1.
 }
 \usage{
 aet02_3_lyt(
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar,
+  lbl_overall,
   lbl_aedecod = "MedDRA Preferred Term",
-  deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  deco,
   ...
 )
 
@@ -31,8 +30,6 @@ aet02_3
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

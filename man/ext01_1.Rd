@@ -14,30 +14,19 @@ An object of class \code{chevron_tlg} of length 1.
 ext01_1_main(
   adam_db,
   lyt_ls = list(ext01_1_lyt),
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   summaryvars = "AVAL",
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   prune_0 = TRUE,
   deco = std_deco("EXT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
-ext01_1_lyt(
-  armvar = .study$actualarm,
-  summaryvars = .study$analysis_var,
-  summaryvars_lbls = .study$lbl_analysis_var,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("EXT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, analysis_var = "AVAL",
-    lbl_analysis_var = "Analysis Value"),
-  ...
-)
+ext01_1_lyt(armvar, summaryvars, summaryvars_lbls, lbl_overall, deco, ...)
 
 ext01_1_pre(
   adam_db,
-  paramcd_order = .study$paramcd_order,
-  .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
+  paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
   ...
 )
 
@@ -58,8 +47,6 @@ ext01_1
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

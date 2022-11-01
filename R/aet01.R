@@ -19,20 +19,15 @@
 #'
 aet01_1_main <- function(adam_db,
                          lyt_ls = list(aet01_1_lyt),
-                         armvar = .study$actualarm,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ACTARM",
+                         lbl_overall = NULL,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
-                         safety_var = .study$safety_var,
-                         lbl_safety_var = NULL,
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL,
-                           safety_var = c(
-                             "FATAL", "SER", "SERWD", "SERDSM",
-                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                           )
+                         safety_var = c(
+                           "FATAL", "SER", "SERWD", "SERDSM",
+                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          ),
+                         lbl_safety_var = NULL,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
@@ -83,23 +78,11 @@ aet01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet01_1_lyt <- function(armvar = .study$actualarm,
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("AET01"),
-                        safety_var = .study$safety_var,
-                        lbl_safety_var = .study$lbl_safety_var,
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL,
-                          safety_var = c(
-                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
-                          ),
-                          lbl_safety_var = c(
-                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
-                          )
-                        ),
+aet01_1_lyt <- function(armvar,
+                        lbl_overall,
+                        deco,
+                        safety_var,
+                        lbl_safety_var,
                         ...) {
   names(lbl_safety_var) <- safety_var
 
@@ -237,16 +220,11 @@ aet01_1_pre <- function(adam_db, ...) {
 #'
 aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          armvar = .study$actualarm,
-                          safety_var = .study$safety_var,
-                          .study = list(
-                            actualarm = "ACTARM",
-                            lbl_overall = NULL,
-                            safety_var = c(
+                          armvar = "ACTARM",
+                          safety_var = c(
                               "FATAL", "SER", "SERWD", "SERDSM",
                               "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                            )
-                          ),
+                            ),
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -320,23 +298,17 @@ aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c
 #'
 aet01_2_main <- function(adam_db,
                          lyt_ls = list(aet01_2_lyt),
-                         armvar = .study$actualarm,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ACTARM",
+                         lbl_overall = NULL,
                          prune_0 = FALSE,
                          deco = std_deco("AET01"),
-                         safety_var = .study$safety_var,
-                         lbl_safety_var = NULL,
-                         medconcept_var = .study$medconcept_var,
-                         lbl_medconcept_var = NULL,
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL,
-                           safety_var = c(
-                             "FATAL", "SER", "SERWD", "SERDSM",
-                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                           ),
-                           medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                         safety_var = c(
+                           "FATAL", "SER", "SERWD", "SERDSM",
+                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          ),
+                         lbl_safety_var = NULL,
+                         medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
+                         lbl_medconcept_var = NULL,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
@@ -397,27 +369,13 @@ aet01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-aet01_2_lyt <- function(armvar = .study$actualarm,
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("AET01"),
-                        safety_var = .study$safety_var,
-                        lbl_safety_var = .study$lbl_safety_var,
-                        medconcept_var = .study$medconcept_var,
-                        lbl_medconcept_var = .study$lbl_medconcept_var,
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL,
-                          safety_var = c(
-                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
-                          ),
-                          lbl_safety_var = c(
-                            "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-                            "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
-                          ),
-                          medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-                          lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")
-                        ),
+aet01_2_lyt <- function(armvar,
+                        lbl_overall,
+                        deco,
+                        safety_var,
+                        lbl_safety_var,
+                        medconcept_var,
+                        lbl_medconcept_var,
                         ...) {
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
@@ -568,20 +526,12 @@ aet01_2_pre <- function(adam_db, ...) {
 #'
 aet01_2_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          armvar = .study$actualarm,
-                          safety_var = .study$safety_var,
-                          lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
-                          medconcept_var = .study$medconcept_var,
-                          lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
-                          .study = list(
-                            actualarm = "ACTARM",
-                            lbl_overall = NULL,
-                            safety_var = c(
-                              "FATAL", "SER", "SERWD", "SERDSM",
-                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                            ),
-                            medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                          armvar = "ACTARM",
+                          safety_var = c(
+                            "FATAL", "SER", "SERWD", "SERDSM",
+                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                           ),
+                          medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 

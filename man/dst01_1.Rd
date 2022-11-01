@@ -14,38 +14,28 @@ An object of class \code{chevron_tlg} of length 1.
 dst01_1_main(
   adam_db,
   lyt_ls = list(dst01_1_lyt),
-  armvar = .study$planarm,
-  status_var = .study$status_var,
-  disc_reason_var = .study$disc_reason_var,
+  armvar = "ARM",
+  status_var = "EOSSTT",
+  disc_reason_var = "DCSREAS",
   prune_0 = TRUE,
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = "All Patients",
   deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients", disc_reason_var =
-    "DCSREAS", status_var = "EOSSTT"),
   ...
 )
 
 dst01_1_lyt(
-  armvar = .study$planarm,
-  status = .study$status,
-  disc_reason_var = .study$disc_reason_var,
+  armvar,
+  status,
+  disc_reason_var,
   completed_lbl = "COMPLETED",
   ongoing_lbl = "ONGOING",
   discontinued_lbl = "DISCONTINUED",
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients", status = "EOSSTT",
-    disc_reason_var = "DCSREAS"),
+  lbl_overall,
+  deco,
   ...
 )
 
-dst01_1_pre(
-  adam_db,
-  status = .study$status,
-  disc_reason_var = .study$disc_reason_var,
-  .study = list(status = "EOSSTT", disc_reason_var = "DCSREAS"),
-  ...
-)
+dst01_1_pre(adam_db, status = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
 dst01_1
 }
@@ -70,8 +60,6 @@ the analysis period.}
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

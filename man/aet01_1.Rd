@@ -15,39 +15,26 @@ An object of class \code{chevron_tlg} of length 1.
 aet01_1_main(
   adam_db,
   lyt_ls = list(aet01_1_lyt),
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ACTARM",
+  lbl_overall = NULL,
   prune_0 = FALSE,
   deco = std_deco("AET01"),
-  safety_var = .study$safety_var,
+  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+    "RELWD", "RELDSM", "SEV"),
   lbl_safety_var = NULL,
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   ...
 )
 
-aet01_1_lyt(
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("AET01"),
-  safety_var = .study$safety_var,
-  lbl_safety_var = .study$lbl_safety_var,
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
-    "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
-    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV")),
-  ...
-)
+aet01_1_lyt(armvar, lbl_overall, deco, safety_var, lbl_safety_var, ...)
 
 aet01_1_pre(adam_db, ...)
 
 aet01_1_check(
   adam_db,
   req_tables = c("adsl", "adae"),
-  armvar = .study$actualarm,
-  safety_var = .study$safety_var,
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
+  armvar = "ACTARM",
+  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+    "RELWD", "RELDSM", "SEV"),
   ...
 )
 
@@ -70,8 +57,6 @@ aet01_1
 \item{safety_var}{(\code{character}) the safety variables to be summarized.}
 
 \item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

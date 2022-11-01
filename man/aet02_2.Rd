@@ -15,22 +15,20 @@ An object of class \code{chevron_tlg} of length 1.
 aet02_2_main(
   adam_db,
   lyt_ls = list(aet02_2_lyt),
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ACTARM",
+  lbl_overall = NULL,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
 aet02_2_lyt(
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar,
+  lbl_overall = NULL,
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aehlt = "MedDRA High-Level Term",
   lbl_aedecod = "MedDRA Preferred Term",
-  deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  deco,
   ...
 )
 
@@ -41,11 +39,10 @@ aet02_2
 aet02_3_main(
   adam_db,
   lyt_ls = list(aet02_3_lyt),
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ACTARM",
+  lbl_overall = NULL,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 }
@@ -62,8 +59,6 @@ aet02_3_main(
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

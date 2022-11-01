@@ -22,15 +22,11 @@
 #'
 ext01_1_main <- function(adam_db,
                          lyt_ls = list(ext01_1_lyt),
-                         armvar = .study$actualarm,
+                         armvar = "ACTARM",
                          summaryvars = "AVAL",
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = NULL,
                          prune_0 = TRUE,
                          deco = std_deco("EXT01"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   assert_colnames(adam_db$adex, summaryvars)
 
@@ -60,17 +56,11 @@ ext01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-ext01_1_lyt <- function(armvar = .study$actualarm,
-                        summaryvars = .study$analysis_var,
-                        summaryvars_lbls = .study$lbl_analysis_var,
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("EXT01"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL,
-                          analysis_var = "AVAL",
-                          lbl_analysis_var = "Analysis Value"
-                        ),
+ext01_1_lyt <- function(armvar,
+                        summaryvars,
+                        summaryvars_lbls ,
+                        lbl_overall,
+                        deco,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -92,8 +82,7 @@ ext01_1_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 ext01_1_pre <- function(adam_db,
-                        paramcd_order = .study$paramcd_order,
-                        .study = list(paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")),
+                        paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -152,14 +141,10 @@ ext01_1 <- chevron_tlg(ext01_1_main, ext01_1_lyt, ext01_1_pre, adam_datasets = c
 #'
 ext01_2_main <- function(adam_db,
                          lyt_ls = list(ext01_2_lyt),
-                         armvar = .study$actualarm,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ACTARM",
+                         lbl_overall = NULL,
                          prune_0 = TRUE,
                          deco = std_deco("EXT01"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   summaryvars <- c("AVAL", "AVALCAT1")
 
@@ -192,15 +177,11 @@ ext01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-ext01_2_lyt <- function(armvar = .study$actualarm,
-                        summaryvars = c("AVAL", "AVALCAT1"),
-                        summaryvars_lbls = c("Summary", "Categories"),
-                        lbl_overall = .study$lbl_overall,
+ext01_2_lyt <- function(armvar ,
+                        summaryvars,
+                        summaryvars_lbls,
+                        lbl_overall,
                         deco = std_deco("EXT01"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -231,12 +212,8 @@ ext01_2_lyt <- function(armvar = .study$actualarm,
 #' @export
 #'
 ext01_2_pre <- function(adam_db,
-                        show_stats = .study$show_cont_stats,
-                        show_bins = .study$show_cat_stats,
-                        .study = list(
-                          show_cont_stats = c("ALL"),
-                          show_cat_stats = c("ALL")
-                        ),
+                        show_stats = c("ALL"),
+                        show_bins = c("ALL"),
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 

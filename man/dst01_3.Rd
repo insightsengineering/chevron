@@ -14,38 +14,28 @@ An object of class \code{chevron_tlg} of length 1.
 dst01_3_main(
   adam_db,
   lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
-  armvar = .study$planarm,
-  status = .study$status_var,
-  disc_reason_var = .study$disc_reason_var,
+  armvar = "ARM",
+  status = "EOSSTT",
+  disc_reason_var = "DCSREAS",
   status_treatment = "EOTSTT",
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = "All Patients",
   prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
-    "All Patients", status_var = "EOSSTT"),
   ...
 )
 
 dst01_3_lyt(
-  armvar = .study$planarm,
-  status_treatment = .study$status,
-  completed_lbl = "COMPLETED",
-  discontinued_lbl = "DISCONTINUED",
-  ongoing_lbl = "ONGOING",
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients", status_treatment =
-    "EOTSTT"),
+  armvar,
+  status_treatment,
+  completed_lbl,
+  discontinued_lbl,
+  ongoing_lbl,
+  lbl_overall,
+  deco,
   ...
 )
 
-dst01_3_pre(
-  adam_db,
-  status = .study$status,
-  disc_reason_var = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS", status_var = "EOSSTT"),
-  ...
-)
+dst01_3_pre(adam_db, status = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
 dst01_3
 }
@@ -74,8 +64,6 @@ the analysis period.}
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

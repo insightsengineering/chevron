@@ -27,17 +27,12 @@
 #'
 egt01_1_main <- function(adam_db,
                          lyt_ls = list(egt01_1_lyt),
-                         armvar = .study$actualarm,
-                         summaryvars = .study$evo_vars,
-                         summaryvars_lbls = .study$evo_vars_lbls,
+                         armvar = "ACTARM",
+                         summaryvars = c("AVAL", "CHG"),
+                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                          visitvar = "AVISIT", # or ATPTN
                          prune_0 = TRUE,
                          deco = std_deco("EGT01"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           evo_vars = c("AVAL", "CHG"),
-                           evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
-                         ),
                          ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
@@ -82,19 +77,13 @@ egt01_1_main <- function(adam_db,
 #' @param ... not used.
 #'
 #' @export
-egt01_1_lyt <- function(armvar = .study$actualarm,
-                        summaryvars = .study$evo_vars,
-                        summaryvars_lbls = .study$evo_vars_lbls,
-                        visitvar = .study$visitvar,
-                        lbl_avisit = "",
-                        lbl_param = "",
-                        deco = std_deco("EGT01"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          evo_vars = c("AVAL", "CHG"),
-                          evo_vars_lbls = c("Analysis \nValue", "Change from \nBaseline"),
-                          visitvar = "AVISIT"
-                        ),
+egt01_1_lyt <- function(armvar,
+                        summaryvars,
+                        summaryvars_lbls,
+                        visitvar,
+                        lbl_avisit,
+                        lbl_param,
+                        deco,
                         ...) {
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE

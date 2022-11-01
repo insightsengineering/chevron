@@ -14,15 +14,14 @@ An object of class \code{chevron_tlg} of length 1.
 cmt01a_2_main(
   adam_db,
   lyt_ls = list(cmt01a_1_lyt),
-  armvar = .study$planarm,
+  armvar = "ARM",
   medcat_var = "ATC2",
   lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
   lbl_medname_var = "Other Treatment",
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   prune_0 = TRUE,
   deco = std_deco("CMT01A"),
-  .study = list(planarm = "ARM", lbl_overall = NULL),
   ...
 )
 
@@ -51,8 +50,6 @@ cmt01a_2
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 }

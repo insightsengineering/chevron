@@ -16,33 +16,26 @@ An object of class \code{chevron_tlg} of length 1.
 aet01_2_main(
   adam_db,
   lyt_ls = list(aet01_2_lyt),
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ACTARM",
+  lbl_overall = NULL,
   prune_0 = FALSE,
   deco = std_deco("AET01"),
-  safety_var = .study$safety_var,
+  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+    "RELWD", "RELDSM", "SEV"),
   lbl_safety_var = NULL,
-  medconcept_var = .study$medconcept_var,
+  medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
   lbl_medconcept_var = NULL,
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
-    medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
   ...
 )
 
 aet01_2_lyt(
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("AET01"),
-  safety_var = .study$safety_var,
-  lbl_safety_var = .study$lbl_safety_var,
-  medconcept_var = .study$medconcept_var,
-  lbl_medconcept_var = .study$lbl_medconcept_var,
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
-    "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
-    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"), medconcept_var = c("SMQ01",
-    "SMQ02", "CQ01"), lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
+  armvar,
+  lbl_overall,
+  deco,
+  safety_var,
+  lbl_safety_var,
+  medconcept_var,
+  lbl_medconcept_var,
   ...
 )
 
@@ -51,14 +44,10 @@ aet01_2_pre(adam_db, ...)
 aet01_2_check(
   adam_db,
   req_tables = c("adsl", "adae"),
-  armvar = .study$actualarm,
-  safety_var = .study$safety_var,
-  lbl_safety_var = var_labels_for(adam_db$adae, safety_var),
-  medconcept_var = .study$medconcept_var,
-  lbl_medconcept_var = var_labels_for(adam_db$adae, medconcept_var),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
-    "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"),
-    medconcept_var = c("SMQ01", "SMQ02", "CQ01")),
+  armvar = "ACTARM",
+  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+    "RELWD", "RELDSM", "SEV"),
+  medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
   ...
 )
 
@@ -85,8 +74,6 @@ aet01_2
 \item{medconcept_var}{(\code{character}) the medical concept variables to be summarized.}
 
 \item{lbl_medconcept_var}{(\code{character}) the label of the medical concept variables to be summarized.}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

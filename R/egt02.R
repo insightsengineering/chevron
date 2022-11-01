@@ -19,16 +19,12 @@
 #'
 egt02_1_main <- function(adam_db,
                          lyt_ls = list(egt02_1_lyt),
-                         armvar = .study$actualarm,
+                         armvar = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = NULL,
                          prune_0 = FALSE,
                          deco = std_deco("EGT02"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
@@ -55,15 +51,11 @@ egt02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-egt02_1_lyt <- function(armvar = .study$actualarm,
+egt02_1_lyt <- function(armvar = "ACTARM",
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
-                        lbl_overall = .study$lbl_overall,
+                        lbl_overall = NULL,
                         deco = std_deco("EGT02"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -129,16 +121,12 @@ egt02_1 <- chevron_tlg(egt02_1_main, egt02_1_lyt, egt02_1_pre, adam_datasets = c
 #'
 egt02_2_main <- function(adam_db,
                          lyt_ls = list(egt02_2_lyt),
-                         armvar = .study$actualarm,
+                         armvar = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = NULL,
                          prune_0 = FALSE,
                          deco = std_deco("EGT02_2"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
@@ -165,15 +153,11 @@ egt02_2_main <- function(adam_db,
 #'
 #' @export
 #'
-egt02_2_lyt <- function(armvar = .study$actualarm,
+egt02_2_lyt <- function(armvar = "ACTARM",
                         lbl_vs_assessment = "Assessment",
                         lbl_vs_abnormality = "Abnormality",
-                        lbl_overall = .study$lbl_overall,
+                        lbl_overall = NULL,
                         deco = std_deco("EGT02_2"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
