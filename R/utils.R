@@ -276,11 +276,11 @@ dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
   colnames(all_lvl_df) <- cols
 
   all_lvl <- all_lvl_df %>%
-    unite("res", cols, sep = sep) %>%
+    unite("res", all_of(cols), sep = sep) %>%
     pull("res")
 
   x_vec <- x_df %>%
-    unite("res", cols, sep = sep) %>%
+    unite("res", all_of(cols), sep = sep) %>%
     pull(.data$res)
 
   existing_lvl <- intersect(all_lvl, x_vec)

@@ -4,8 +4,8 @@ test_that("aet04 can handle all NA values", {
   proc_data <- data %>%
     dm_zoom_to("adae") %>%
     mutate(
-      AEBODSYS = NA,
-      AEDECOD = NA,
+      AEBODSYS = factor(NA),
+      AEDECOD = factor(NA),
     ) %>%
     dm_update_zoomed()
 
@@ -23,9 +23,9 @@ test_that("aet04 can handle some NA values", {
   proc_data <- data %>%
     dm_zoom_to("adae") %>%
     mutate(
-      AEBODSYS = .env$new_aebodsys,
-      AEDECOD = .env$new_aedecod,
-      AETOXGR = .env$new_aetoxgr
+      AEBODSYS = factor(.env$new_aebodsys),
+      AEDECOD = factor(.env$new_aedecod),
+      AETOXGR = factor(.env$new_aetoxgr)
     ) %>%
     dm_update_zoomed()
 

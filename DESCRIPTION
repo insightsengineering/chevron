@@ -64,6 +64,7 @@ Collate:
     'assertions.R'
     'checks.R'
     'chevron_tlg-S4methods.R'
+    'chevron_t-S4methods.R'
     'cmt01a.R'
     'cmt02_pt.R'
     'dmt01.R'

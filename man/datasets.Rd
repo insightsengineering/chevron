@@ -21,5 +21,5 @@ datasets(x) <- value
 \item{value}{(\code{character}) representing the name of the table from an \code{ADaM} dataset required for \code{tlg} creation.}
 }
 \description{
-retrieve or set \code{adam_dataset}.
+retrieve or set \code{adam_datasets}.
 }

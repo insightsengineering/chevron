@@ -7,7 +7,11 @@
 gen_args(
   adam_db,
   lyt_ls,
-  plot_ls,
+  main,
+  preprocess,
+  postprocess,
+  adam_datasets,
+  type,
   armvar,
   lbl_overall,
   prune_0,
@@ -25,7 +29,18 @@ gen_args(
 \item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
 \code{chevron} stored in a \code{list}.}
 
-\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
+\item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
+one of the \verb{_main} function of \code{chevron}.}
+
+\item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument and \code{...} as
+last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
+
+\item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
+
+\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
+creation.}
+
+\item{type}{(\code{string}) indicating the subclass.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
