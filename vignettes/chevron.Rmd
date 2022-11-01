@@ -155,7 +155,11 @@ lyt(aet02_1)
 
 # Custom `chevron_tlg` object creation
 
-To create a `chevron_tlg` object from scratch, use the provided constructor method: `chevron_tlg()`.
+To create a `chevron_tlg` object from scratch, use one of the provided constructors: 
+* `chevron_t()` if the output is a table.
+* `chevron_l()` if the output is a listing.
+* `chevron_g()` if the output is a graph.
+
 ```{r}
 
 my_pipeline <- chevron_t(
