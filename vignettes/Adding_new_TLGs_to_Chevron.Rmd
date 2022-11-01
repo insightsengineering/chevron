@@ -101,33 +101,15 @@ the aggregated results, for instance removing the rows with no counts, and retur
 
 ### Data preprocessing
 Data processing and standardization should be performed before feeding the data to `chevron`. Beware of levels that are
-not present in the test data but could appear in real datasets.
+not present in the test data but could appear in real data sets.
 
 ### Arguments
 To enhance the reproducibility, it is advised to reduce the parametrization of the table-constructing function. Some
-arguments are specific to an entire study and used in multiple tables, for instance the choice of the variable used to
-specify the arm of the study (should it be `ARM` or `ACTARM`?). Such arguments should be defined in the `.study` object,
-which is then passed to the function. The list of argument accepted by the study object is defined below.
-Other arguments are more specific to a particular table (e.g Should zero count rows be removed?) and should be accessible to the end-user insofar as it cannot compromise the accuracy of the report. Appropriate default values should be provided.
-
-### The `.study` object
-
-The following variables are best hard coded in the table-generating functions (with the possibility to the user to
-override some of these choices.):
-- `evo_vars` (used in `LBT01`, which variables capture status and the evolution of the analysis): generally `c("AVAL", "CNG")`
-- `severity_grade` (internal, used in `AET03`, capture the levels of severity of adverse events): generally corresponds to
-the levels of `AESEV`in `adae`.
-- `lbl_overall` (used everywhere, the label associated with the overall column)
-- `reason` (used in `DST01`, the name of the column specifying study withdrawal): generally `DCSREAS`.
-- `status` (used in `DST01`, the name of the column specifying study status): generally: `EOSSTT`.
-- `summaryvars` (used in `DMT01`,  the list of variables to be summarized):
-
-The `.study` object contains information relative to the way the study is analyzed.
-- "Patient" or "Subject" (the designation of the person depends on the study)
-- `armvar` (Randomized arm variable): generally: `ARM`or `ACTARM`.
-- Actually received variable
-- `format`: of percentages etc...
+arguments are used in multiple tables, for instance the choice of the variable used to specify the arm of the study
+(should it be `ARM` or `ACTARM`?). For these type of arguments, try to stick to the arguments available in `gen_args`.
 
 
 ### Tests
-TODO
+Use snapshot test to control the output of the run method for each `TLG`. In addition, create tests to check how the
+function behaves when confronted with missing values. It is also recommended to check that the run method returns a
+`NULL` report when appropriate.
