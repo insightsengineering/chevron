@@ -20,40 +20,36 @@ mng01_1_main(
   y = "AVAL",
   y_name = "PARAM",
   y_unit = NA,
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   center_fun = c("mean", "median"),
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
   show_table = TRUE,
   jitter = TRUE,
   show_n = TRUE,
-  show_h_grid = .study$show_h_grid,
-  show_v_grid = .study$show_v_grid,
-  legend_pos = .study$legend_pos,
-  line_col = .study$color_dict,
-  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top", color_dict = nestcolor::color_palette()),
+  show_h_grid = TRUE,
+  show_v_grid = FALSE,
+  legend_pos = "top",
+  line_col = nestcolor::color_palette(),
   ...
 )
 
 mng01_1_plot(
   df,
   alt_count,
-  x = "AVISIT",
-  y = "AVAL",
-  y_name = "PARAM",
-  y_unit = "AVALU",
-  armvar = .study$actualarm,
-  center_fun = c("mean", "median"),
-  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-  show_table = TRUE,
-  jitter = TRUE,
-  show_n = TRUE,
-  show_h_grid = .study$show_h_grid,
-  show_v_grid = .study$show_v_grid,
-  legend_pos = .study$legend_pos,
-  line_col = .study$color_dict,
-  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top", color_dict = getOption("tern.color")),
+  x,
+  y,
+  y_name,
+  y_unit,
+  armvar,
+  center_fun,
+  interval_fun,
+  show_table,
+  jitter,
+  show_n,
+  show_h_grid,
+  show_v_grid,
+  legend_pos,
+  line_col,
   ...
 )
 
@@ -99,8 +95,6 @@ mng01_1
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} vector associating
 values of \code{armvar} with color names.}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

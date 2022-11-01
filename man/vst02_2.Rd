@@ -14,23 +14,21 @@ An object of class \code{chevron_tlg} of length 1.
 vst02_2_main(
   adam_db,
   lyt_ls = list(vst02_2_lyt),
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   prune_0 = FALSE,
   deco = std_deco("VST02_2"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
 vst02_2_lyt(
-  armvar = .study$actualarm,
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("VST02_2"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  armvar,
+  lbl_vs_assessment,
+  lbl_vs_abnormality,
+  lbl_overall,
+  deco,
   ...
 )
 
@@ -55,8 +53,6 @@ vst02_2
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 }
