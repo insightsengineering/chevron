@@ -9,7 +9,7 @@
 \alias{aet01_1}
 \title{\code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet01_1_main(

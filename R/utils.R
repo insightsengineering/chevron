@@ -89,7 +89,7 @@ get_db_data <- function(db, ...) { # TODO: revisit
 #' Retrieve Synthetic Test Data Used For Examples
 #' @export
 syn_test_data <- function() {
-  sd <- scda::synthetic_cdisc_data("rcd_2021_03_22")
+  sd <- scda::synthetic_cdisc_data("rcd_2022_06_27")
 
   # to avoid bug
   attr(sd, "data_from") <- NULL
@@ -276,11 +276,11 @@ dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
   colnames(all_lvl_df) <- cols
 
   all_lvl <- all_lvl_df %>%
-    unite("res", cols, sep = sep) %>%
+    unite("res", all_of(cols), sep = sep) %>%
     pull("res")
 
   x_vec <- x_df %>%
-    unite("res", cols, sep = sep) %>%
+    unite("res", all_of(cols), sep = sep) %>%
     pull(.data$res)
 
   existing_lvl <- intersect(all_lvl, x_vec)

@@ -280,23 +280,12 @@ aet01_1_check <- function(adam_db,
 #'
 #' @examples
 #' run(aet01_1, syn_test_data(), armvar = "ARM")
-#'
-#' # To create a custom column
-#' library(dm)
-#'
-#' db <- syn_test_data()
-#'
-#' db_add <- db %>%
-#'   dm_zoom_to(adae) %>%
-#'   mutate(
-#'     RED = .data$AEACN == "DOSE REDUCED",
-#'     RED = formatters::with_label(.data$RED, "AE leading to dose reduction")
-#'   ) %>%
-#'   dm_update_zoomed()
-#'
-#' run(aet01_1, db_add, armvar = "ARM", safety_var = c("FATAL", "CTC35", "RED"))
-#'
-aet01_1 <- chevron_tlg(aet01_1_main, aet01_1_lyt, aet01_1_pre, adam_datasets = c("adsl", "adae"))
+aet01_1 <- chevron_t(
+  main = aet01_1_main,
+  lyt = aet01_1_lyt,
+  preprocess = aet01_1_pre,
+  adam_datasets = c("adsl", "adae")
+)
 
 
 
@@ -632,4 +621,9 @@ aet01_2_check <- function(adam_db,
 #'
 #' @examples
 #' run(aet01_2, syn_test_data())
-aet01_2 <- chevron_tlg(aet01_2_main, aet01_2_lyt, aet01_2_pre, adam_datasets = c("adsl", "adae"))
+aet01_2 <- chevron_t(
+  main = aet01_2_main,
+  lyt = aet01_2_lyt,
+  preprocess = aet01_2_pre,
+  adam_datasets = c("adsl", "adae")
+)
