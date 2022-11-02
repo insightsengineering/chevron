@@ -47,8 +47,9 @@ dst01_2
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
-name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
+\item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
+period.}
 
 \item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to

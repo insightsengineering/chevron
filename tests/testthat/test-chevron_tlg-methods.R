@@ -22,13 +22,6 @@ test_that("main setter works as expected", {
 
 # lyt ----
 
-# test_that("lyt works as expected", {
-#   res <- lyt(aet02_1)
-#   expect_identical(
-#     res[[1]](),
-#     aet02_1_lyt(armvar = "ACTARM", lbl_overall = NULL, deco = list()))
-# })
-
 test_that("lyt setter works as expected with pre-data table layout", {
   my_tab <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
   lyt(aet04_1) <- my_tab

@@ -108,8 +108,9 @@ dst01_1_main <- function(adam_db,
 #' @describeIn dst01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
-#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
@@ -313,8 +314,9 @@ dst01_2_main <- function(adam_db,
 #' @describeIn dst01_2 Layout
 #'
 #' @inheritParams gen_args
-#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
-#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
@@ -577,8 +579,8 @@ dst01_3_main <- function(adam_db,
 #'   `status_treatment`. By Default `COMPLETED`.
 #' @param discontinued_trt_lbl (`string`) associated with discontinued treatment and found in the columns given by
 #'   `status_treatment`. By Default `DISCONTINUED`.
-#' @param ongoing_trt_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
-#'   By Default `ONGOING.
+#' @param ongoing_trt_lbl (`string`) associated with ongoing treatment and found in the columns given by
+#'   `status_treatment`. By Default `ONGOING.
 #' @param ... not used.
 #'
 #' @export

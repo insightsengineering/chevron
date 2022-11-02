@@ -73,8 +73,8 @@ the analysis period.}
 \item{discontinued_trt_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
 \code{status_treatment}. By Default \code{DISCONTINUED}.}
 
-\item{ongoing_trt_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
-By Default `ONGOING.}
+\item{ongoing_trt_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by
+\code{status_treatment}. By Default `ONGOING.}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
