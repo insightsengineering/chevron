@@ -35,7 +35,7 @@ dst01_2_lyt(
   ...
 )
 
-dst01_2_pre(adam_db, status = "EOSSTT", disc_reason_var = "DCSREAS", ...)
+dst01_2_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
 dst01_2
 }
@@ -47,9 +47,8 @@ dst01_2
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
-variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
-period.}
+\item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
+name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
 \item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
@@ -71,9 +70,6 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
-
-\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
-name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of
@@ -118,11 +114,6 @@ db <- syn_test_data() \%>\%
 
 dst01_2_main(db)
 dst01_2_main(db, lbl_overall = NULL)
-dst01_2_lyt(
-  armvar = "ACTARM",
-  status_var = "EOP01STT",
-  disc_reason_var = "DCP01RS"
-)
 dst01_2_pre(syn_test_data())
 run(dst01_2, syn_test_data())
 }

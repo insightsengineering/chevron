@@ -76,9 +76,9 @@ lbt01_1_main <- function(adam_db,
 lbt01_1_lyt <- function(armvar,
                         summaryvars,
                         summaryvars_lbls,
-                        visitvar ,
+                        visitvar,
                         lbl_avisit,
-                        lbl_param ,
+                        lbl_param,
                         deco,
                         ...) {
   # TODO solve the problem of the overall column

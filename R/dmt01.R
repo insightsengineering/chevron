@@ -72,9 +72,6 @@ dmt01_1_main <- function(adam_db,
 #' @describeIn dmt01_1 Layout
 #'
 #' @inheritParams gen_args
-#'
-#' @param demo_vars (`vector of strings`) variables summarized in demographic table.
-#' @param demo_vars_lbls (`vector of strings`) labels corresponding to the analyzed variables.
 #' @param ... not used.
 #'
 #' @export

@@ -222,9 +222,9 @@ aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           armvar = "ACTARM",
                           safety_var = c(
-                              "FATAL", "SER", "SERWD", "SERDSM",
-                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                            ),
+                            "FATAL", "SER", "SERWD", "SERDSM",
+                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                          ),
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 

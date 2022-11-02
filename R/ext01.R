@@ -60,7 +60,7 @@ ext01_1_main <- function(adam_db,
 #'
 ext01_1_lyt <- function(armvar,
                         summaryvars,
-                        summaryvars_lbls ,
+                        summaryvars_lbls,
                         lbl_overall,
                         deco,
                         ...) {
@@ -186,7 +186,7 @@ ext01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-ext01_2_lyt <- function(armvar ,
+ext01_2_lyt <- function(armvar,
                         summaryvars,
                         summaryvars_lbls,
                         lbl_overall,

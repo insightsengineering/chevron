@@ -15,7 +15,7 @@ dst01_3_main(
   adam_db,
   lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
   armvar = "ARM",
-  status = "EOSSTT",
+  status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
   status_treatment = "EOTSTT",
   lbl_overall = "All Patients",
@@ -35,7 +35,7 @@ dst01_3_lyt(
   ...
 )
 
-dst01_3_pre(adam_db, status = "EOSSTT", disc_reason_var = "DCSREAS", ...)
+dst01_3_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
 dst01_3
 }
@@ -47,7 +47,7 @@ dst01_3
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{status}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
@@ -117,10 +117,6 @@ db <- syn_test_data() \%>\%
 
 dst01_3_main(db)
 dst01_3_main(db, lbl_overall = NULL)
-dst01_3_lyt(
-  armvar = "ACTARM",
-  status_treatment = "EOTxx01"
-)
 run(dst01_3, syn_test_data())
 }
 \keyword{datasets}

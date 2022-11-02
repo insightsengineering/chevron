@@ -126,12 +126,6 @@ dst01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' dst01_1_lyt(
-#'   armvar = "ACTARM",
-#'   status = "EOP01STT",
-#'   disc_reason_var = "DCP01RS"
-#' )
 dst01_1_lyt <- function(armvar,
                         status_var,
                         disc_reason_var,
@@ -189,7 +183,7 @@ dst01_1_lyt <- function(armvar,
 #' @examples
 #' dst01_1_pre(syn_test_data())
 dst01_1_pre <- function(adam_db,
-                        status = "EOSSTT",
+                        status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
   new_format <- list(
@@ -199,7 +193,7 @@ dst01_1_pre <- function(adam_db,
     )
   )
 
-  names(new_format$adsl) <- c(disc_reason_var, status)
+  names(new_format$adsl) <- c(disc_reason_var, status_var)
 
   adam_db <- dunlin::apply_reformat(adam_db)
 
@@ -319,7 +313,7 @@ dst01_2_main <- function(adam_db,
 #' @describeIn dst01_2 Layout
 #'
 #' @inheritParams gen_args
-#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
 #'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
@@ -337,12 +331,6 @@ dst01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' dst01_2_lyt(
-#'   armvar = "ACTARM",
-#'   status_var = "EOP01STT",
-#'   disc_reason_var = "DCP01RS"
-#' )
 dst01_2_lyt <- function(armvar,
                         status_var,
                         disc_reason_var,
@@ -403,7 +391,7 @@ dst01_2_lyt <- function(armvar,
 #' @examples
 #' dst01_2_pre(syn_test_data())
 dst01_2_pre <- function(adam_db,
-                        status = "EOSSTT",
+                        status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
@@ -415,7 +403,7 @@ dst01_2_pre <- function(adam_db,
     )
   )
 
-  names(new_format$adsl) <- c(disc_reason_var, status)
+  names(new_format$adsl) <- c(disc_reason_var, status_var)
 
   adam_db <- dunlin::apply_reformat(adam_db)
 
@@ -454,7 +442,7 @@ dst01_2 <- chevron_t(
 #' @describeIn dst01_3 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
@@ -494,7 +482,7 @@ dst01_2 <- chevron_t(
 dst01_3_main <- function(adam_db,
                          lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
                          armvar = "ARM",
-                         status = "EOSSTT",
+                         status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          status_treatment = "EOTSTT",
                          lbl_overall = "All Patients",
@@ -503,7 +491,7 @@ dst01_3_main <- function(adam_db,
                          ...) {
   check_dst01_1_args(
     reason = disc_reason_var,
-    status = status,
+    status = status_var,
     status_treatment = status_treatment
   )
 
@@ -533,7 +521,7 @@ dst01_3_main <- function(adam_db,
 
   # TODO: revisit later
   # re-extract the labels associated with status in case they changed.
-  status_lvl <- levels(adam_db$adsl[[status]])
+  status_lvl <- levels(adam_db$adsl[[status_var]])
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
@@ -545,7 +533,7 @@ dst01_3_main <- function(adam_db,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl,
-    status = status,
+    status_var = status_var,
     disc_reason_var = disc_reason_var,
     ... = ...
   )
@@ -595,18 +583,13 @@ dst01_3_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' dst01_3_lyt(
-#'   armvar = "ACTARM",
-#'   status_treatment = "EOTxx01"
-#' )
 dst01_3_lyt <- function(armvar,
                         status_treatment,
                         completed_trt_lbl,
                         discontinued_trt_lbl,
                         ongoing_trt_lbl,
                         lbl_overall,
-                        deco ,
+                        deco,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -644,7 +627,7 @@ dst01_3_lyt <- function(armvar,
 #' @export
 #'
 dst01_3_pre <- function(adam_db,
-                        status = "EOSSTT",
+                        status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
@@ -656,7 +639,7 @@ dst01_3_pre <- function(adam_db,
     )
   )
 
-  names(new_format$adsl) <- c(disc_reason_var, status)
+  names(new_format$adsl) <- c(disc_reason_var, status_var)
 
   adam_db <- dunlin::apply_reformat(adam_db)
 

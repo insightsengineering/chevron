@@ -35,7 +35,7 @@ dst01_1_lyt(
   ...
 )
 
-dst01_1_pre(adam_db, status = "EOSSTT", disc_reason_var = "DCSREAS", ...)
+dst01_1_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
 dst01_1
 }
@@ -110,11 +110,6 @@ db <- syn_test_data() \%>\%
   dst01_1_pre()
 
 dst01_1_main(db)
-dst01_1_lyt(
-  armvar = "ACTARM",
-  status = "EOP01STT",
-  disc_reason_var = "DCP01RS"
-)
 dst01_1_pre(syn_test_data())
 run(dst01_1, syn_test_data())
 }

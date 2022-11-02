@@ -50,10 +50,6 @@ Usually a vector containing the following one or more of the following:
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
-
-\item{demo_vars}{(\verb{vector of strings}) variables summarized in demographic table.}
-
-\item{demo_vars_lbls}{(\verb{vector of strings}) labels corresponding to the analyzed variables.}
 }
 \description{
 For each variable, summary statistics are

@@ -185,7 +185,7 @@ vst02_2_main <- function(adam_db,
 #' @export
 #'
 vst02_2_lyt <- function(armvar,
-                        lbl_vs_assessment ,
+                        lbl_vs_assessment,
                         lbl_vs_abnormality,
                         lbl_overall,
                         deco,
