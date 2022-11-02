@@ -571,9 +571,9 @@ dst01_3_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param status_treatment_var (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
-#'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
-#'   the analysis period.
+#' @param status_treatment_var (`string`) variable used to define the treatment status of the patients. Default is
+#'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
+#'   referring to the analysis period.
 #' @param completed_trt_lbl (`string`) associated with completed treatment and found in the columns given by
 #'   `status_treatment_var`. By Default `COMPLETED`.
 #' @param discontinued_trt_lbl (`string`) associated with discontinued treatment and found in the columns given by
