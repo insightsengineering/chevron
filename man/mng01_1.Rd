@@ -14,8 +14,8 @@ An object of class \code{chevron_g} of length 1.
 mng01_1_main(
   adam_db,
   dataset = "adlb",
-  x = "AVISIT",
-  y = "AVAL",
+  x_var = "AVISIT",
+  y_var = "AVAL",
   y_name = "PARAM",
   y_unit = NA,
   armvar = "ACTARM",
@@ -42,9 +42,9 @@ mng01_1
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
-\item{x}{(\code{character}) the name of a column in the \code{dataset} to represent on the x-axis.}
+\item{x_var}{(\code{character}) the name of a column in the \code{dataset} to represent on the x-axis.}
 
-\item{y}{(\code{string}) the name of the variable to be represented on the y-axis.}
+\item{y_var}{(\code{string}) the name of the variable to be represented on the y-axis.}
 
 \item{y_name}{(\code{string}) the variable name for \code{y}. Used for plot's subtitle.}
 

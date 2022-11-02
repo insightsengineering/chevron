@@ -9,8 +9,8 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param x (`character`) the name of a column in the `dataset` to represent on the x-axis.
-#' @param y (`string`) the name of the variable to be represented on the y-axis.
+#' @param x_var (`character`) the name of a column in the `dataset` to represent on the x-axis.
+#' @param y_var (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
 #' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NA`, only
 #'   `y_name` is displayed as subtitle.
@@ -34,8 +34,8 @@
 #' @export
 mng01_1_main <- function(adam_db,
                          dataset = "adlb",
-                         x = "AVISIT",
-                         y = "AVAL",
+                         x_var = "AVISIT",
+                         y_var = "AVAL",
                          y_name = "PARAM",
                          y_unit = NA,
                          armvar = "ACTARM",
@@ -52,7 +52,7 @@ mng01_1_main <- function(adam_db,
   df <- adam_db[[dataset]]
 
   data_ls <- split(df, df$PARAM, drop = TRUE)
-  x <- paste(x, collapse = "_")
+  x_var <- paste(x_var, collapse = "_")
 
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
@@ -79,7 +79,7 @@ mng01_1_main <- function(adam_db,
     " and ",
     interval_title,
     " by ",
-    var_labels_for(df, x)
+    var_labels_for(df, x_var)
   )
 
   whiskers_fun <- switch(interval_fun,
@@ -92,8 +92,8 @@ mng01_1_main <- function(adam_db,
   )
 
   variables <- c(
-    x = x,
-    y = y,
+    x = x_var,
+    y = y_var,
     strata = armvar,
     paramcd = y_name,
     y_unit = y_unit

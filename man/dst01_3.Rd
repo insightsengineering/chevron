@@ -17,7 +17,7 @@ dst01_3_main(
   armvar = "ARM",
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
-  status_treatment = "EOTSTT",
+  status_treatment_var = "EOTSTT",
   lbl_overall = "All Patients",
   prune_0 = TRUE,
   deco = std_deco("DST01"),
@@ -26,7 +26,7 @@ dst01_3_main(
 
 dst01_3_lyt(
   armvar,
-  status_treatment,
+  status_treatment_var,
   completed_trt_lbl,
   discontinued_trt_lbl,
   ongoing_trt_lbl,
@@ -55,7 +55,7 @@ period.}
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
-\item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
+\item{status_treatment_var}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
 however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
@@ -68,13 +68,13 @@ the analysis period.}
 \item{...}{not used.}
 
 \item{completed_trt_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
-\code{status_treatment}. By Default \code{COMPLETED}.}
+\code{status_treatment_var}. By Default \code{COMPLETED}.}
 
 \item{discontinued_trt_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
-\code{status_treatment}. By Default \code{DISCONTINUED}.}
+\code{status_treatment_var}. By Default \code{DISCONTINUED}.}
 
 \item{ongoing_trt_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by
-\code{status_treatment}. By Default `ONGOING.}
+\code{status_treatment_var}. By Default `ONGOING.}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
