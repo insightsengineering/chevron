@@ -105,21 +105,5 @@ aet01_1
 }
 \examples{
 run(aet01_1, syn_test_data(), armvar = "ARM")
-
-# To create a custom column
-library(dm)
-
-db <- syn_test_data()
-
-db_add <- db \%>\%
-  dm_zoom_to(adae) \%>\%
-  mutate(
-    RED = .data$AEACN == "DOSE REDUCED",
-    RED = formatters::with_label(.data$RED, "AE leading to dose reduction")
-  ) \%>\%
-  dm_update_zoomed()
-
-run(aet01_1, db_add, armvar = "ARM", safety_var = c("FATAL", "CTC35", "RED"))
-
 }
 \keyword{datasets}
