@@ -151,4 +151,9 @@ egt01_1_pre <- function(adam_db, ...) {
 #' db <- syn_test_data()
 #' run(egt01_1, db)
 #' run(egt01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
-egt01_1 <- chevron_tlg(egt01_1_main, egt01_1_lyt, egt01_1_pre, adam_datasets = c("adeg"))
+egt01_1 <- chevron_t(
+  main = egt01_1_main,
+  lyt = egt01_1_lyt,
+  preprocess = egt01_1_pre,
+  adam_datasets = c("adeg")
+)

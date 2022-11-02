@@ -8,7 +8,7 @@
 \alias{dst01_3}
 \title{DST01 Table 3 (Supplementary) Patient Disposition Table 3.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 dst01_3_main(

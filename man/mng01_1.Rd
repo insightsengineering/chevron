@@ -3,18 +3,16 @@
 \docType{data}
 \name{mng01_1_main}
 \alias{mng01_1_main}
-\alias{mng01_1_plot}
 \alias{mng01_1_pre}
 \alias{mng01_1_post}
 \alias{mng01_1}
 \title{\code{MNG01} Graph 1 (Default) Mean Plot 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_g} of length 1.
 }
 \usage{
 mng01_1_main(
   adam_db,
-  plot_ls = list(mng01_1_plot),
   dataset = "adlb",
   x = "AVISIT",
   y = "AVAL",
@@ -35,28 +33,6 @@ mng01_1_main(
   ...
 )
 
-mng01_1_plot(
-  df,
-  alt_count,
-  x = "AVISIT",
-  y = "AVAL",
-  y_name = "PARAM",
-  y_unit = "AVALU",
-  armvar = .study$actualarm,
-  center_fun = c("mean", "median"),
-  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-  show_table = TRUE,
-  jitter = TRUE,
-  show_n = TRUE,
-  show_h_grid = .study$show_h_grid,
-  show_v_grid = .study$show_v_grid,
-  legend_pos = .study$legend_pos,
-  line_col = .study$color_dict,
-  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top", color_dict = getOption("tern.color")),
-  ...
-)
-
 mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)
 
 mng01_1_post(tlg, ...)
@@ -65,8 +41,6 @@ mng01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
-
-\item{plot_ls}{(\verb{list of functions}) creating a \code{ggplot} object.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
@@ -104,10 +78,6 @@ values of \code{armvar} with color names.}
 
 \item{...}{not used.}
 
-\item{df}{(\code{dataframe}) data set containing all analysis variables.}
-
-\item{alt_count}{(\code{dataframe}) data set that will be used (only) to counts objects in strata.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
@@ -125,8 +95,6 @@ Overview of a summary statistics across time and arm for a selected data set.
 \section{Functions}{
 \itemize{
 \item \code{mng01_1_main()}: Main TLG Function
-
-\item \code{mng01_1_plot()}: Plot Function
 
 \item \code{mng01_1_pre()}: Preprocessing
 

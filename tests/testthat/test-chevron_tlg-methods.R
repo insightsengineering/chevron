@@ -1,6 +1,6 @@
 # run ----
 
-test_that("run works as expected", {
+test_that("run works as expected for chevron_t object", {
   res <- run(aet04_1, syn_test_data(), prune_0 = TRUE)
   expect_snapshot(res)
 })
@@ -13,14 +13,14 @@ test_that("main works as expected", {
 })
 
 test_that("main setter works as expected", {
-  func <- function(adam_db, lyt, ...) {
-    build_table(lyt, adam_db)
+  func <- function(adam_db, lyt_ls, ...) {
+    build_table(lyt_ls, adam_db)
   }
   main(aet04_1) <- func
   expect_identical(aet04_1@main, func)
 })
 
-# lyt<- ----
+# lyt ----
 
 test_that("lyt works as expected", {
   res <- lyt(aet02_1)

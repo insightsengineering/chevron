@@ -118,7 +118,8 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "AETOXGR",
-      grade_groups = group_grades
+      grade_groups = group_grades,
+      .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       "AEBODSYS",
@@ -132,7 +133,8 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
     summarize_occurrences_by_grade(
       var = "AETOXGR",
       grade_groups = group_grades,
-      .indent_mods = 0L
+      .indent_mods = 0L,
+      .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       "AEDECOD",
@@ -151,7 +153,8 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
     count_occurrences_by_grade(
       var = "AETOXGR",
       grade_groups = group_grades[-1],
-      .indent_mods = -1L
+      .indent_mods = -1L,
+      .formats = c("count_fraction" = "xx (xx.x%)")
     )
 }
 
@@ -165,13 +168,6 @@ aet04_1_lyt <- function(armvar = .study$actualarm,
 aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  # Essential to preserve the good ordering of the factors.
-  ori_lvl <- if (is.factor(adam_db$adae$AETOXGR)) {
-    levels(adam_db$adae$AETOXGR)
-  } else {
-    unique(adam_db$adae$AETOXGR)
-  }
-
   new_format <- list(
     adae = list(
       AEBODSYS = list("No Coding Available" = c("", NA, "<Missing>")),
@@ -182,7 +178,7 @@ aet04_1_pre <- function(adam_db, ...) {
 
   adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
-  adam_db <- adam_db %>%
+  adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$AETOXGR != "No Grading Available") %>%
@@ -207,4 +203,9 @@ aet04_1_pre <- function(adam_db, ...) {
 #' )
 #'
 #' run(aet04_1, syn_test_data(), group_grades = group_grades)
-aet04_1 <- chevron_tlg(aet04_1_main, aet04_1_lyt, aet04_1_pre, adam_datasets = c("adsl", "adae"))
+aet04_1 <- chevron_t(
+  main = aet04_1_main,
+  lyt = aet04_1_lyt,
+  preprocess = aet04_1_pre,
+  adam_datasets = c("adsl", "adae")
+)
