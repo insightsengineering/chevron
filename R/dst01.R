@@ -1,20 +1,4 @@
 
-# Avoid non-standard argument values for `status`, `reason` and `status_treatment` In `EOPxxSTT`, `DCPxxRS` amd
-# `EOTxxSTT` the analysis period `xx` is substituted by 2 digits
-check_dst01_1_args <- function(reason, status_var, status_treatment_var) {
-  if (!missing(status_var)) {
-    stopifnot(status_var == "EOSSTT" || grepl("^EOP[[:digit:]]{2}STT$", status_var))
-  }
-
-  if (!missing(reason)) {
-    stopifnot(reason == "DCSREAS" || grepl("^DCP[[:digit:]]{2}RS$", reason))
-  }
-
-  if (!missing(status_treatment_var)) {
-    stopifnot(status_treatment_var == "EOTSTT" || grepl("^EOT[[:digit:]]{2}STT$", status_treatment_var))
-  }
-}
-
 # dst01_1 ----
 
 #' @describeIn dst01_1 Main TLG function
@@ -59,13 +43,6 @@ dst01_1_main <- function(adam_db,
                          lbl_overall = "All Patients",
                          deco = std_deco("DST01"),
                          ...) {
-  check_dst01_1_args(
-    reason = disc_reason_var,
-    status_var = status_var
-  )
-
-
-  # TODO: review later
   status_lvl <- levels(adam_db$adsl[[status_var]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
@@ -267,11 +244,6 @@ dst01_2_main <- function(adam_db,
                          prune_0 = TRUE,
                          deco = std_deco("DST01"),
                          ...) {
-  check_dst01_1_args(
-    reason = disc_reason_var,
-    status_var = status_var
-  )
-
   status_lvl <- levels(adam_db$adsl[[status_var]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
@@ -490,12 +462,6 @@ dst01_3_main <- function(adam_db,
                          prune_0 = TRUE,
                          deco = std_deco("DST01"),
                          ...) {
-  check_dst01_1_args(
-    reason = disc_reason_var,
-    status_var = status_var,
-    status_treatment_var = status_treatment_var
-  )
-
   checkmate::assert_subset(c("study", "treatment"), names(lyt_ls))
 
   # TODO: revisit

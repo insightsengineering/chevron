@@ -27,8 +27,8 @@
 #' @param ... not used.
 #'
 #' @note
-#'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x`, `y`, `y_name`,
-#'  `y_unit` and `armvar`.
+#'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
+#'  `y_name`, `y_unit` and `armvar`.
 #'
 #' @return a list of `ggplot` objects.
 #' @export
@@ -162,7 +162,7 @@ mng01_1_main <- function(adam_db,
 #' @param ... not used.
 #'
 #' @export
-mng01_1_pre <- function(adam_db, dataset, x = "AVISIT", ...) {
+mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -170,7 +170,7 @@ mng01_1_pre <- function(adam_db, dataset, x = "AVISIT", ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 
-  dm_unite(adam_db, dataset, x, "_")
+  dm_unite(adam_db, dataset, x_var, "_")
 }
 
 #' @describeIn mng01_1 Postprocessing
@@ -201,7 +201,7 @@ mng01_1_post <- function(tlg, ...) {
 #'   "C: Combination" = "grey"
 #' )
 #'
-#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
+#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,

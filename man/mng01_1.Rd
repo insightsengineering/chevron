@@ -31,7 +31,7 @@ mng01_1_main(
   ...
 )
 
-mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)
+mng01_1_pre(adam_db, dataset, x_var = "AVISIT", ...)
 
 mng01_1_post(tlg, ...)
 
@@ -99,8 +99,8 @@ Overview of a summary statistics across time and arm for a selected data set.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x}, \code{y}, \code{y_name},
-\code{y_unit} and \code{armvar}.
+\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x_var}, \code{y_var},
+\code{y_name}, \code{y_unit} and \code{armvar}.
 }
 }
 \examples{
@@ -113,6 +113,6 @@ col <- c(
   "C: Combination" = "grey"
 )
 
-run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
+run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
 }
 \keyword{datasets}
