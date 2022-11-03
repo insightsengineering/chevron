@@ -177,6 +177,11 @@ dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
 dtht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
+  adam_db <- adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(DTHFL = as.factor(.data$DTHFL)) %>%
+    dm_update_zoomed()
+
   death_fact <- levels(adam_db$adsl$DTHCAT)
   death_fact <- setdiff(death_fact, "OTHER")
   death_fact <- c(death_fact, "OTHER")
