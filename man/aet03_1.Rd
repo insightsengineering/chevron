@@ -8,16 +8,18 @@
 \alias{aet03_1}
 \title{\code{AET03} Table 1 (Default) Advert Events by Greatest Intensity Table 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet03_1_main(
   adam_db,
+  lyt_ls = list(aet03_1_lyt),
   armvar = .study$actualarm,
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet03_1_lyt(
@@ -28,7 +30,8 @@ aet03_1_lyt(
   lbl_overall = .study$lbl_overall,
   deco = std_deco("AET03"),
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, severity_grade = c("MILD",
-    "MODERATE", "SEVERE", "LIFE THREATENING"))
+    "MODERATE", "SEVERE", "LIFE THREATENING")),
+  ...
 )
 
 aet03_1_pre(adam_db, ...)
@@ -37,6 +40,9 @@ aet03_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -48,13 +54,13 @@ aet03_1
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the dataset.}
-
-\item{...}{not used.}
 }
 \description{
 An adverse events table categorized by System
@@ -79,6 +85,11 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 \item \code{aet03_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AESEV"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
+}
+}
 \examples{
 run(aet03_1, syn_test_data())
 }

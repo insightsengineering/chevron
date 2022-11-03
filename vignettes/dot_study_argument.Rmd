@@ -31,7 +31,7 @@ Used to specify the actual arm of the study.
 - default: `ACTARM`.
 
 ## `demo_vars`
-Used in `DMT01`,  the list of variables to be summarized.
+Used in `DMT01`,  the list of demographic variables to be summarized.
 
 ## `demo_vars_lbls`
 Used in `DMT01`,  the labels for the list of variables to be summarized.

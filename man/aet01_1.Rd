@@ -9,11 +9,12 @@
 \alias{aet01_1}
 \title{\code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet01_1_main(
   adam_db,
+  lyt_ls = list(aet01_1_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = FALSE,
@@ -34,7 +35,8 @@ aet01_1_lyt(
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "CTC35", "CTC45",
     "SEV"), lbl_safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM",
-    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"))
+    "REL", "RELWD", "RELDSM", "CTC35", "CTC45", "SEV")),
+  ...
 )
 
 aet01_1_pre(adam_db, ...)
@@ -53,6 +55,9 @@ aet01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -91,6 +96,12 @@ aet01_1
 \item \code{aet01_1_check()}: Checks
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adsl} table with the \code{"DTHFL"} and \code{"DCSREAS"} columns.
+\item \code{adam_db} object must contain an \code{adae} table with the columns passed to \code{safety_var}.
+}
+}
 \examples{
 run(aet01_1, syn_test_data(), armvar = "ARM")
 }

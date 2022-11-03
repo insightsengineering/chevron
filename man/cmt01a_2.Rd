@@ -8,11 +8,12 @@
 \title{\code{CMT01A} Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
 frequency).}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 cmt01a_2_main(
   adam_db,
+  lyt_ls = list(cmt01a_1_lyt),
   armvar = .study$planarm,
   medcat_var = "ATC2",
   lbl_medcat_var = "ATC Class Level 2",
@@ -21,15 +22,19 @@ cmt01a_2_main(
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("CMT01A"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
-cmt01a_2_pre(adam_db, ...)
+cmt01a_2_pre(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...)
 
 cmt01a_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -73,6 +78,12 @@ the specific medication.
 \item \code{cmt01a_2_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{medcat_var} and \code{medname_var} as well
+as \code{"CMSEQ"}.
+}
+}
 \examples{
 library(magrittr)
 library(dm)

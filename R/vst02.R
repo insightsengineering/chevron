@@ -12,9 +12,13 @@
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
+#' @note
+#'   * `adam_db` object must contain an `advs` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
+#'
 #' @export
 #'
 vst02_1_main <- function(adam_db,
+                         lyt_ls = list(vst02_1_lyt),
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -24,15 +28,17 @@ vst02_1_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
-  lyt <- vst02_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$advs, alt_counts_df = dbsel$adsl)
@@ -49,6 +55,7 @@ vst02_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -60,7 +67,8 @@ vst02_1_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -119,7 +127,12 @@ vst02_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(vst02_1, syn_test_data())
-vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "advs"))
+vst02_1 <- chevron_t(
+  main = vst02_1_main,
+  lyt = vst02_1_lyt,
+  preprocess = vst02_1_pre,
+  adam_datasets = c("adsl", "advs")
+)
 
 
 # vst02_2 ----
@@ -136,9 +149,13 @@ vst02_1 <- chevron_tlg(vst02_1_main, vst02_1_pre, adam_datasets = c("adsl", "adv
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
+#' @note
+#'   * `adam_db` object must contain an `advs` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
+#'
 #' @export
 #'
 vst02_2_main <- function(adam_db,
+                         lyt_ls = list(vst02_2_lyt),
                          armvar = .study$actualarm,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -148,15 +165,17 @@ vst02_2_main <- function(adam_db,
                          .study = list(
                            actualarm = "ACTARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
-  lyt <- vst02_2_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
     lbl_overall = lbl_overall,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$advs, alt_counts_df = dbsel$adsl)
@@ -173,6 +192,7 @@ vst02_2_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`character`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -184,7 +204,8 @@ vst02_2_lyt <- function(armvar = .study$actualarm,
                         .study = list(
                           actualarm = "ACTARM",
                           lbl_overall = NULL
-                        )) {
+                        ),
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -243,4 +264,9 @@ vst02_2_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #' run(vst02_2, syn_test_data())
-vst02_2 <- chevron_tlg(vst02_2_main, vst02_2_pre, adam_datasets = c("adsl", "advs"))
+vst02_2 <- chevron_t(
+  main = vst02_2_main,
+  lyt = vst02_2_lyt,
+  preprocess = vst02_2_pre,
+  adam_datasets = c("adsl", "advs")
+)

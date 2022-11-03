@@ -5,14 +5,12 @@
 \alias{get_adam_datasets,chevron_tlg-method}
 \title{Retrieve names of datasets associated with the object}
 \usage{
-get_adam_datasets(object, ...)
+get_adam_datasets(object)
 
 \S4method{get_adam_datasets}{chevron_tlg}(object)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
-
-\item{...}{not used.}
 }
 \description{
 Retrieve names of datasets associated with the object

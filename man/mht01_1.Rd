@@ -8,18 +8,20 @@
 \alias{mht01_1}
 \title{\code{MHT01} Table 1 (Default) Medical History Table 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 mht01_1_main(
   adam_db,
+  lyt_ls = list(mht01_1_lyt),
   armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA Preferred Term",
   prune_0 = TRUE,
   deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 mht01_1_lyt(
@@ -28,7 +30,8 @@ mht01_1_lyt(
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA preferred Term",
   deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 mht01_1_pre(adam_db, ...)
@@ -37,6 +40,9 @@ mht01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -79,6 +85,11 @@ patients with the specific condition.
 \item \code{mht01_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{admh} table with columns \code{"MHBODSYS"} and \code{"MHDECOD"}.
+}
+}
 \examples{
 run(mht01_1, syn_test_data())
 }

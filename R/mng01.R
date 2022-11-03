@@ -26,6 +26,10 @@
 #'   values of `armvar` with color names.
 #' @param ... not used.
 #'
+#' @note
+#'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x`, `y`, `y_name`,
+#'  `y_unit` and `armvar`.
+#'
 #' @return a list of `ggplot` objects.
 #' @export
 mng01_1_main <- function(adam_db,
@@ -52,66 +56,14 @@ mng01_1_main <- function(adam_db,
                            color_dict = nestcolor::color_palette()
                          ),
                          ...) {
-  data_ls <- split(adam_db[[dataset]], adam_db[[dataset]]$PARAM, drop = TRUE)
+  df <- adam_db[[dataset]]
 
+  data_ls <- split(df, df$PARAM, drop = TRUE)
   x <- paste(x, collapse = "_")
 
-  lapply(
-    data_ls,
-    mng01_1_lyt,
-    alt_count = adam_db[["adsl"]],
-    x = x,
-    y = y,
-    y_name = y_name,
-    y_unit = y_unit,
-    armvar = armvar,
-    center_fun = center_fun,
-    interval_fun = interval_fun,
-    show_table = show_table,
-    jitter = jitter,
-    show_n = show_n,
-    show_h_grid = show_h_grid,
-    show_v_grid = show_v_grid,
-    legend_pos = legend_pos,
-    line_col = line_col
-  )
-}
-
-
-#' @describeIn mng01_1 Graph Layout
-#'
-#' @inheritParams mng01_1_main
-#' @param df (`dataframe`) data set containing all analysis variables.
-#' @param alt_count (`dataframe`) data set that will be used (only) to counts objects in strata.
-#'
-#' @export
-mng01_1_lyt <- function(df,
-                        alt_count,
-                        x = "AVISIT",
-                        y = "AVAL",
-                        y_name = "PARAM",
-                        y_unit = "AVALU",
-                        armvar = .study$actualarm,
-                        center_fun = c("mean", "median"),
-                        interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-                        show_table = TRUE,
-                        jitter = TRUE,
-                        show_n = TRUE,
-                        show_h_grid = .study$show_h_grid,
-                        show_v_grid = .study$show_v_grid,
-                        legend_pos = .study$legend_pos,
-                        line_col = .study$color_dict,
-                        .study = list(
-                          actualarm = "ACTARM",
-                          show_h_grid = TRUE,
-                          show_v_grid = FALSE,
-                          legend_pos = "top",
-                          color_dict = getOption("tern.color")
-                        )) {
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
 
-  checkmate::assert_vector(unique(df$PARAM), max.len = 1)
   checkmate::assert_flag(show_table)
   checkmate::assert_flag(jitter)
   checkmate::assert_flag(show_n)
@@ -194,9 +146,10 @@ mng01_1_lyt <- function(df,
     col <- line_col
   }
 
-  p <- tern::g_lineplot(
-    df = df,
-    alt_count = alt_count,
+  lapply(
+    data_ls,
+    tern::g_lineplot,
+    alt_count = adam_db[["adsl"]],
     variables = variables,
     mid = center_fun,
     interval = interval_fun,
@@ -208,8 +161,6 @@ mng01_1_lyt <- function(df,
     col = col,
     subtitle_add_unit = !is.na(y_unit)
   )
-
-  p
 }
 
 #' @describeIn mng01_1 Preprocessing
@@ -257,10 +208,10 @@ mng01_1_post <- function(tlg, ...) {
 #'   "C: Combination" = "grey"
 #' )
 #'
-#' run(mng01_1, syn_test_data(), "adlb")
-mng01_1 <- chevron_tlg(
-  mng01_1_main,
-  mng01_1_pre,
-  mng01_1_post,
+#' run(mng01_1, syn_test_data(), dataset = "adlb")
+mng01_1 <- chevron_g(
+  main = mng01_1_main,
+  preprocess = mng01_1_pre,
+  postprocess = mng01_1_post,
   adam_datasets = c("adsl", "adlb", "adeg", "advs")
 )

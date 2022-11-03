@@ -17,9 +17,14 @@
 #'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 #'  the specific medication.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
+#'  as `"CMSEQ"`.
+#'
 #' @export
 #'
 cmt01a_1_main <- function(adam_db,
+                          lyt_ls = list(cmt01a_1_lyt),
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -31,17 +36,21 @@ cmt01a_1_main <- function(adam_db,
                           .study = list(
                             planarm = "ARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
+  assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
+
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- cmt01a_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -66,6 +75,7 @@ cmt01a_1_main <- function(adam_db,
 #' @param lbl_medcat_var (`character`) the label for the medication category.
 #' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
 #' @param lbl_medname_var (`character`) the label for the medication name.
+#' @param ... not used.
 #'
 #' @export
 #'
@@ -79,7 +89,8 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
                          .study = list(
                            planarm = "ARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -120,21 +131,34 @@ cmt01a_1_lyt <- function(armvar = .study$planarm,
 
 #' @describeIn cmt01a_1 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams cmt01a_1_main
+#'
 #' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_1_pre <- function(adam_db, ...) {
+cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    medcat_var = list(
+      "No Coding available" = c("", NA)
+    ),
+    medname_var = list(
+      "No Coding available" = c("", NA)
+    )
+  )
+
+  names(fmt_ls) <- c(medcat_var, medname_var)
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
@@ -156,7 +180,12 @@ cmt01a_1_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_1, db)
-cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_1 <- chevron_t(
+  main = cmt01a_1_main,
+  lyt = cmt01a_1_lyt,
+  preprocess = cmt01a_1_pre,
+  adam_datasets = c("adsl", "adcm")
+)
 
 
 # cmt01a_2 ----
@@ -178,9 +207,14 @@ cmt01a_1 <- chevron_tlg(cmt01a_1_main, cmt01a_1_pre, adam_datasets = c("adsl", "
 #'  * Sort by medication class frequency and within medication class by decreasing total number of patients with
 #'  the specific medication.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
+#'  as `"CMSEQ"`.
+#'
 #' @export
 #'
 cmt01a_2_main <- function(adam_db,
+                          lyt_ls = list(cmt01a_1_lyt),
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -192,11 +226,14 @@ cmt01a_2_main <- function(adam_db,
                           .study = list(
                             planarm = "ARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
+  assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
+
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   # The same layout can be used.
-  lyt <- cmt01a_1_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -228,21 +265,33 @@ cmt01a_2_main <- function(adam_db,
 
 #' @describeIn cmt01a_2 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams cmt01a_2_main
 #' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_2_pre <- function(adam_db, ...) {
+cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    medcat_var = list(
+      "No Coding available" = c("", NA)
+    ),
+    medname_var = list(
+      "No Coding available" = c("", NA)
+    )
+  )
+
+  names(fmt_ls) <- c(medcat_var, medname_var)
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
@@ -264,7 +313,12 @@ cmt01a_2_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_2, db)
-cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_2 <- chevron_t(
+  main = cmt01a_2_main,
+  lyt = cmt01a_1_lyt,
+  preprocess = cmt01a_2_pre,
+  adam_datasets = c("adsl", "adcm")
+)
 
 
 # cmt01a_3 ----
@@ -286,9 +340,14 @@ cmt01a_2 <- chevron_tlg(cmt01a_2_main, cmt01a_2_pre, adam_datasets = c("adsl", "
 #'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 #'  the specific medication.
 #'
+#' @note
+#'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
+#'  as `"CMSEQ"`.
+#'
 #' @export
 #'
 cmt01a_3_main <- function(adam_db,
+                          lyt_ls = list(cmt01a_3_lyt),
                           armvar = .study$planarm,
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -300,17 +359,21 @@ cmt01a_3_main <- function(adam_db,
                           .study = list(
                             planarm = "ARM",
                             lbl_overall = NULL
-                          )) {
+                          ),
+                          ...) {
+  assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
+
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- cmt01a_3_lyt(
+  lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var,
-    deco = deco
+    deco = deco,
+    ... = ...
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -330,11 +393,7 @@ cmt01a_3_main <- function(adam_db,
 
 #' @describeIn cmt01a_3 Layout
 #'
-#' @inheritParams gen_args
-#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`character`) the label for the medication category.
-#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`character`) the label for the medication name.
+#' @inheritParams cmt01a_3_main
 #'
 #' @export
 #'
@@ -348,7 +407,8 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
                          .study = list(
                            planarm = "ARM",
                            lbl_overall = NULL
-                         )) {
+                         ),
+                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -388,21 +448,33 @@ cmt01a_3_lyt <- function(armvar = .study$planarm,
 
 #' @describeIn cmt01a_3 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams cmt01a_3_main
 #' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_3_pre <- function(adam_db, ...) {
+cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db %>%
+  adam_db <- adam_db %>%
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adcm") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
     dm_update_zoomed()
+
+  fmt_ls <- list(
+    medcat_var = list(
+      "No Coding available" = c("", NA)
+    ),
+    medname_var = list(
+      "No Coding available" = c("", NA)
+    )
+  )
+
+  names(fmt_ls) <- c(medcat_var, medname_var)
+  new_format <- list(adcm = fmt_ls)
+
+  dunlin::apply_reformat(adam_db, new_format)
 }
 
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
@@ -425,4 +497,9 @@ cmt01a_3_pre <- function(adam_db, ...) {
 #'   dm_update_zoomed()
 #'
 #' run(cmt01a_3, db)
-cmt01a_3 <- chevron_tlg(cmt01a_3_main, cmt01a_3_pre, adam_datasets = c("adsl", "adcm"))
+cmt01a_3 <- chevron_t(
+  main = cmt01a_3_main,
+  lyt = cmt01a_3_lyt,
+  preprocess = cmt01a_3_pre,
+  adam_datasets = c("adsl", "adcm")
+)

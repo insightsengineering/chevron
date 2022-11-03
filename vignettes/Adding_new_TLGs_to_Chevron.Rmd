@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 ## Introduction
 The `chevron` package is a collection of function to create standard tables, listings, and graphs for clinical trials
-reporting. Here we present the logic to request new tables for the end users and how to construct new table functions
+reporting. Here we present the logic to request new tables for the end users and how to construct new `chevron_tlg` objects
 for the programmers. The list of the already available functions is available
 [here](https://glowing-giggle-c0c5190c.pages.github.io/reference/index.html). The naming convention for table functions
 is `<table name>_<design number>`. ex: `aet02_2`. The default design number is by convention the number 1. Layouts are internal
@@ -54,7 +54,7 @@ the required table (without confidential information) is also very useful. Sever
 >
 >## Analysis filtering
 >Filtering criteria of the input
->_ex. `ANL01FL = "Y"`_
+>_ex. `ANL01FL == "Y"`_
 >
 >## Analysis population
 >The selected population, typically `SE`, `AP` or `IT`

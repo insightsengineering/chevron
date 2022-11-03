@@ -9,16 +9,18 @@
 \alias{aet02_3_main}
 \title{\code{AET02} Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet02_2_main(
   adam_db,
+  lyt_ls = list(aet02_2_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet02_2_lyt(
@@ -28,7 +30,8 @@ aet02_2_lyt(
   lbl_aehlt = "MedDRA High-Level Term",
   lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 
 aet02_2_pre(adam_db, ...)
@@ -37,15 +40,20 @@ aet02_2
 
 aet02_3_main(
   adam_db,
+  lyt_ls = list(aet02_3_lyt),
   armvar = .study$actualarm,
   lbl_overall = .study$lbl_overall,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL)
+  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  ...
 )
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -57,13 +65,13 @@ aet02_3_main(
 
 \item{.study}{(\code{list})  with default values for the arguments of the function}
 
+\item{...}{not used.}
+
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aehlt}{(\code{character}) text label for \code{AEHLT}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
-
-\item{...}{not used.}
 }
 \description{
 The \code{AET02_2} table provides an overview of the number of patients experiencing adverse events and the number of
@@ -100,6 +108,15 @@ frequencies.
 \item \code{aet02_3_main()}: Main TLG function
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"}, \code{"AEHLT"} and \code{"AEDECOD"}.
+}
+
+\itemize{
+\item \code{adam_db} object must contain an \code{adae} table with the column \code{"AEDECOD"}.
+}
+}
 \examples{
 run(aet02_2, syn_test_data())
 }

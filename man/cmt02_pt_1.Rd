@@ -8,23 +8,26 @@
 \alias{cmt02_pt_1}
 \title{\code{CMT02_PT} Table 1 (Default) Concomitant Medications by Preferred Name.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_t} of length 1.
 }
 \usage{
 cmt02_pt_1_main(
   adam_db,
+  lyt_ls = list(cmt02_pt_1_lyt),
   armvar = .study$planarm,
   prune_0 = TRUE,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("CMT02_PT"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 cmt02_pt_1_lyt(
   armvar = .study$planarm,
   lbl_overall = .study$lbl_overall,
   deco = std_deco("CMT02_PT"),
-  .study = list(planarm = "ARM", lbl_overall = NULL)
+  .study = list(planarm = "ARM", lbl_overall = NULL),
+  ...
 )
 
 cmt02_pt_1_pre(adam_db, ...)
@@ -33,6 +36,9 @@ cmt02_pt_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
+\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
@@ -66,6 +72,11 @@ number of subjects and the total number of treatments by medication name sorted 
 \item \code{cmt02_pt_1_pre()}: Preprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain an \code{adcm} table with the columns \code{"CMDECOD"} and \code{"CMSEQ"}.
+}
+}
 \examples{
 run(cmt02_pt_1, syn_test_data())
 }

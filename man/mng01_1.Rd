@@ -3,13 +3,12 @@
 \docType{data}
 \name{mng01_1_main}
 \alias{mng01_1_main}
-\alias{mng01_1_lyt}
 \alias{mng01_1_pre}
 \alias{mng01_1_post}
 \alias{mng01_1}
 \title{\code{MNG01} Graph 1 (Default) Mean Plot 1.}
 \format{
-An object of class \code{chevron_tlg} of length 1.
+An object of class \code{chevron_g} of length 1.
 }
 \usage{
 mng01_1_main(
@@ -32,27 +31,6 @@ mng01_1_main(
   .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
     = "top", color_dict = nestcolor::color_palette()),
   ...
-)
-
-mng01_1_lyt(
-  df,
-  alt_count,
-  x = "AVISIT",
-  y = "AVAL",
-  y_name = "PARAM",
-  y_unit = "AVALU",
-  armvar = .study$actualarm,
-  center_fun = c("mean", "median"),
-  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
-  show_table = TRUE,
-  jitter = TRUE,
-  show_n = TRUE,
-  show_h_grid = .study$show_h_grid,
-  show_v_grid = .study$show_v_grid,
-  legend_pos = .study$legend_pos,
-  line_col = .study$color_dict,
-  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top", color_dict = getOption("tern.color"))
 )
 
 mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)
@@ -100,10 +78,6 @@ values of \code{armvar} with color names.}
 
 \item{...}{not used.}
 
-\item{df}{(\code{dataframe}) data set containing all analysis variables.}
-
-\item{alt_count}{(\code{dataframe}) data set that will be used (only) to counts objects in strata.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
@@ -122,13 +96,17 @@ Overview of a summary statistics across time and arm for a selected data set.
 \itemize{
 \item \code{mng01_1_main()}: Main TLG Function
 
-\item \code{mng01_1_lyt()}: Graph Layout
-
 \item \code{mng01_1_pre()}: Preprocessing
 
 \item \code{mng01_1_post()}: Postprocessing
 
 }}
+\note{
+\itemize{
+\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x}, \code{y}, \code{y_name},
+\code{y_unit} and \code{armvar}.
+}
+}
 \examples{
 library(dm)
 library(dplyr)

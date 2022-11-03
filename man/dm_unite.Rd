@@ -23,3 +23,10 @@ dm_unite(adam_db, dataset, cols, sep = ".", new = NULL)
 \description{
 Unite Columns of a Table in a \code{dm} object.
 }
+\examples{
+\dontrun{
+x <- dm_unite(dm::dm_nycflights13(), "airlines", c("carrier", "name"), new = "FUSION")
+x$airlines
+}
+}
+\keyword{internal}

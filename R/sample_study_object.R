@@ -9,7 +9,6 @@
 #' lst <- sample_study_object()
 #' dput(lst)
 sample_study_object <- function() {
-
   # list functions
   ls_exported <- as.vector(utils::lsf.str("package:chevron"))
 
