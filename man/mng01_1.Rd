@@ -117,6 +117,6 @@ col <- c(
   "C: Combination" = "grey"
 )
 
-run(mng01_1, syn_test_data(), "adlb")
+run(mng01_1, syn_test_data(), dataset = "adlb")
 }
 \keyword{datasets}
