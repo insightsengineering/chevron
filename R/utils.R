@@ -1,5 +1,5 @@
 # as we use NSE
-globalVariables(c("."))
+globalVariables(c(".", ":=", ".env"))
 
 #' Retrieve labels for certain variables
 #'
@@ -278,7 +278,7 @@ dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
 
   x_vec <- x_df %>%
     unite("res", cols, sep = sep) %>%
-    pull(res)
+    pull("res")
 
   existing_lvl <- intersect(all_lvl, x_vec)
   levels(x_vec) <- existing_lvl
