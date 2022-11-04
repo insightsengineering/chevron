@@ -1,4 +1,4 @@
-# chevron 0.1.1.9000
+# chevron 0.1.2
 
 * Update snapshot tests.
 
