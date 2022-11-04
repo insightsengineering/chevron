@@ -182,17 +182,19 @@ dtht01_1_pre <- function(adam_db, ...) {
     mutate(DTHFL = as.factor(.data$DTHFL)) %>%
     dm_update_zoomed()
 
-  death_fact <- levels(adam_db$adsl$DTHCAT)
-  death_fact <- setdiff(death_fact, "OTHER")
-  death_fact <- c(death_fact, "OTHER")
+  # Reorder factors to have "OTHER" last.
+  dthcat <- as.factor(adam_db$adsl$DTHCAT)
+  dthcat_lvl <- levels(dthcat)
+  dthcat_lvl <- setdiff(dthcat_lvl, c("OTHER", "", NA))
+  dthcat_lvl <- c(dthcat_lvl, "OTHER")
 
-  existing_lvl <- as.list(setNames(death_fact, death_fact))
+  dthcat_lvl_order <- as.list(setNames(dthcat_lvl, dthcat_lvl))
   na_lvl <- list("<Missing>" = c("", NA))
 
   new_formats <- list(
     adsl = list(
       DTHCAT = c(
-        existing_lvl,
+        dthcat_lvl_order,
         na_lvl
       ),
       DTHCAUS = na_lvl,
