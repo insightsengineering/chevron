@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
           aria-expanded="false" aria-haspopup="true"
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
 <!-- end dropdown for versions -->
       </ul>
@@ -84,7 +85,7 @@
                         <h4 data-toc-skip class="author">Adrian
 Waddell</h4>
             
-            <h4 data-toc-skip class="date">2022-10-14</h4>
+            <h4 data-toc-skip class="date">2022-11-04</h4>
       
       
       <div class="d-none name"><code>chevron.Rmd</code></div>
@@ -215,7 +216,7 @@ vignette.</p>
 <span></span>
 <span><span class="fu"><a href="https://cynkra.github.io/dm/reference/deprecated.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: `validate_dm()` was deprecated in dm 0.3.0.</span></span>
-<span><span class="co">#&gt; Please use `dm_validate()` instead.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `dm_validate()` instead.</span></span></code></pre></div>
 <p>A the <code>aet02_1</code> output is then created as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span></span>
@@ -280,7 +281,7 @@ the corresponding method: <code>get_main</code>,
 <span><span class="co">#&gt;         "*", "AEDECOD"), scorefun = score_occurrences)</span></span>
 <span><span class="co">#&gt;     tbl_sorted</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x556acaa4c1a0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560bafe5a480&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard function that can be used on their own</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -332,7 +333,7 @@ package version of the pipeline (accessible with
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_pipeline</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Finished at 2022-10-14 01:37:42"</span></span>
+<span><span class="co">#&gt; [1] "Finished at 2022-11-04 20:02:32"</span></span>
 <span><span class="co">#&gt; MedDRA System Organ Class                                     A: Drug X    B: Placebo   C: Combination</span></span>
 <span><span class="co">#&gt;   MedDRA Preferred Term                                        (N=134)      (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>

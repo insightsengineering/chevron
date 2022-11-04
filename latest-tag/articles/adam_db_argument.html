@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
           aria-expanded="false" aria-haspopup="true"
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
 <!-- end dropdown for versions -->
       </ul>
@@ -82,7 +83,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>The `adam_db` argument</h1>
             
-            <h4 data-toc-skip class="date">2022-10-14</h4>
+            <h4 data-toc-skip class="date">2022-11-04</h4>
       
       
       <div class="d-none name"><code>adam_db_argument.Rmd</code></div>
@@ -143,7 +144,7 @@ back as needed.</p>
 <span></span>
 <span><span class="fu"><a href="https://cynkra.github.io/dm/reference/deprecated.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: `validate_dm()` was deprecated in dm 0.3.0.</span></span>
-<span><span class="co">#&gt; Please use `dm_validate()` instead.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `dm_validate()` instead.</span></span></code></pre></div>
 <p>Note that the keys are defined in the data analysis plan at
 Roche.</p>
 </div>
@@ -181,7 +182,9 @@ Roche.</p>
 <code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_filter.html" class="external-link">dm_filter</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">SEX</span> <span class="op">==</span> <span class="st">"F"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: The `table` argument of `dm_filter()` is deprecated as of dm 1.0.0.</span></span>
-<span><span class="co">#&gt; `dm_filter()` now takes named filter expressions, the names correspond to the tables to be filtered. You no longer need to call `dm_apply_filters()` to materialize the filters.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> `dm_filter()` now takes named filter expressions, the names correspond to the</span></span>
+<span><span class="co">#&gt;   tables to be filtered. You no longer need to call `dm_apply_filters()` to</span></span>
+<span><span class="co">#&gt;   materialize the filters.</span></span></code></pre></div>
 <p>which adds the filter information to the <code>dm</code> object but
 does not apply the filtering</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -284,9 +287,7 @@ relation specification:</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">SEX</span>, <span class="va">AESEQ</span>, <span class="va">AETERM</span>, <span class="va">AESEQ</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: `dm_join_to_tbl()` was deprecated in dm 0.3.0.</span></span>
-<span><span class="co">#&gt; Please use `dm_flatten_to_tbl()` instead.</span></span>
-<span><span class="co">#&gt; Warning: The `table` argument of `dm_filter()` is deprecated as of dm 1.0.0.</span></span>
-<span><span class="co">#&gt; `dm_filter()` now takes named filter expressions, the names correspond to the tables to be filtered. You no longer need to call `dm_apply_filters()` to materialize the filters.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `dm_flatten_to_tbl()` instead.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span></span>
 <span><span class="co">#&gt;   USUBJID              SEX   AESEQ AETERM       </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        </span></span>
@@ -309,8 +310,6 @@ create a TLG.</p>
 <code class="sourceCode R"><span><span class="va">adam_study_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/deprecated.html" class="external-link">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">adsl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">AESEQ</span>, <span class="va">ARM</span>, <span class="va">SEX</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: `dm_join_to_tbl()` was deprecated in dm 0.3.0.</span></span>
-<span><span class="co">#&gt; Please use `dm_flatten_to_tbl()` instead.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,934 × 3</span></span></span>
 <span><span class="co">#&gt;    AESEQ ARM            SEX  </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span></span>
@@ -342,11 +341,9 @@ create a TLG.</p>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adsub_wide</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsub_wide</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/deprecated.html" class="external-link">dm_join_to_tbl</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">adsub_wide</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: `dm_join_to_tbl()` was deprecated in dm 0.3.0.</span></span>
-<span><span class="co">#&gt; Please use `dm_flatten_to_tbl()` instead.</span></span>
 <span><span class="co">#&gt; Warning: `dm_add_tbl()` was deprecated in dm 1.0.0.</span></span>
-<span><span class="co">#&gt; Please use `dm()` instead.</span></span>
-<span><span class="co">#&gt; Use `.name_repair = "unique"` if necessary.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `dm()` instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `.name_repair = "unique"` if necessary.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 400 × 49</span></span></span>
 <span><span class="co">#&gt;    USUBJID     STUDYID AVAL_…¹ AVAL_…² AVALU…³ AVALU…⁴ SUBJID SITEID   AGE SEX  </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span></span>
