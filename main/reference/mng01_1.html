@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9007</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,15 +30,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -69,26 +60,24 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mng01_1_main</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"adlb"</span>,</span>
-<span>  x <span class="op">=</span> <span class="st">"AVISIT"</span>,</span>
-<span>  y <span class="op">=</span> <span class="st">"AVAL"</span>,</span>
+<span>  x_var <span class="op">=</span> <span class="st">"AVISIT"</span>,</span>
+<span>  y_var <span class="op">=</span> <span class="st">"AVAL"</span>,</span>
 <span>  y_name <span class="op">=</span> <span class="st">"PARAM"</span>,</span>
 <span>  y_unit <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  armvar <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">actualarm</span>,</span>
+<span>  armvar <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
 <span>  center_fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span>, <span class="st">"median"</span><span class="op">)</span>,</span>
 <span>  interval_fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean_ci"</span>, <span class="st">"mean_sei"</span>, <span class="st">"mean_sdi"</span>, <span class="st">"median_ci"</span>, <span class="st">"quantiles"</span>, <span class="st">"range"</span><span class="op">)</span>,</span>
 <span>  show_table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  jitter <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_n <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  show_h_grid <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">show_h_grid</span>,</span>
-<span>  show_v_grid <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">show_v_grid</span>,</span>
-<span>  legend_pos <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">legend_pos</span>,</span>
-<span>  line_col <span class="op">=</span> <span class="va">.study</span><span class="op">$</span><span class="va">color_dict</span>,</span>
-<span>  .study <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>actualarm <span class="op">=</span> <span class="st">"ACTARM"</span>, show_h_grid <span class="op">=</span> <span class="cn">TRUE</span>, show_v_grid <span class="op">=</span> <span class="cn">FALSE</span>, legend_pos</span>
-<span>    <span class="op">=</span> <span class="st">"top"</span>, color_dict <span class="op">=</span> <span class="fu">nestcolor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nestcolor/man/color_palette.html" class="external-link">color_palette</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  show_h_grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  show_v_grid <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  legend_pos <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>  line_col <span class="op">=</span> <span class="fu">nestcolor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nestcolor/man/color_palette.html" class="external-link">color_palette</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">mng01_1_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">dataset</span>, x <span class="op">=</span> <span class="st">"AVISIT"</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">mng01_1_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">dataset</span>, x_var <span class="op">=</span> <span class="st">"AVISIT"</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">mng01_1_post</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
@@ -109,11 +98,11 @@
 <dd><p>(<code>string</code>) the name of a table in the <code>adam_db</code> object.</p></dd>
 
 
-<dt>x</dt>
+<dt>x_var</dt>
 <dd><p>(<code>character</code>) the name of a column in the <code>dataset</code> to represent on the x-axis.</p></dd>
 
 
-<dt>y</dt>
+<dt>y_var</dt>
 <dd><p>(<code>string</code>) the name of the variable to be represented on the y-axis.</p></dd>
 
 
@@ -167,10 +156,6 @@
 values of <code>armvar</code> with color names.</p></dd>
 
 
-<dt>.study</dt>
-<dd><p>(<code>list</code>)  with default values for the arguments of the function</p></dd>
-
-
 <dt>...</dt>
 <dd><p>not used.</p></dd>
 
@@ -201,8 +186,8 @@ values of <code>armvar</code> with color names.</p></dd>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     
-<ul><li><p><code>adam_db</code> object must contain the table specified by <code>dataset</code> with the columns specified by <code>x</code>, <code>y</code>, <code>y_name</code>,
-<code>y_unit</code> and <code>armvar</code>.</p></li>
+<ul><li><p><code>adam_db</code> object must contain the table specified by <code>dataset</code> with the columns specified by <code>x_var</code>, <code>y_var</code>,
+<code>y_name</code>, <code>y_unit</code> and <code>armvar</code>.</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -224,7 +209,7 @@ values of <code>armvar</code> with color names.</p></dd>
 <span class="r-in"><span>  <span class="st">"C: Combination"</span> <span class="op">=</span> <span class="st">"grey"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">mng01_1</span>, <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span>, dataset <span class="op">=</span> <span class="st">"adlb"</span>, center_fun <span class="op">=</span> <span class="st">"median"</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, line_col <span class="op">=</span> <span class="va">col</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">mng01_1</span>, <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span>, dataset <span class="op">=</span> <span class="st">"adlb"</span>, center_fun <span class="op">=</span> <span class="st">"median"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span><span class="op">)</span>, line_col <span class="op">=</span> <span class="va">col</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`Alanine Aminotransferase Measurement`</span>
 <span class="r-plt img"><img src="mng01_1-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
