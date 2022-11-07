@@ -38,13 +38,19 @@ dtht01_1_main <- function(adam_db,
 
   lyt <- lyt_ls[["causes"]](
     armvar = armvar,
-    other_category = other_category,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...
   )
 
-  tbl <- build_table(lyt, dbsel$adsl)
+  tbl <- build_table(lyt[[1]], dbsel$adsl)
+
+  if (other_category) {
+    tbl_2 <- build_table(lyt[[2]], dbsel$adsl %>% filter(.data$DTHFL == "Y")) # to ensure the correct denominator.
+    col_info(tbl_2) <- col_info(tbl)
+    tbl <- rbind(tbl, tbl_2)
+  }
+
 
   if (time_since_last_dose) {
     checkmate::assert_subset("time_since_last_dose", names(lyt_ls))
@@ -57,12 +63,9 @@ dtht01_1_main <- function(adam_db,
       ... = ...
     )
 
-    tbl_other <- build_table(lyt2, dbsel$adsl)
-
-    col_info(tbl_other) <- col_info(tbl)
-
-    tbl <- rbind(tbl, tbl_other)
-
+    tbl_opt <- build_table(lyt2, dbsel$adsl)
+    col_info(tbl_opt) <- col_info(tbl)
+    tbl <- rbind(tbl, tbl_opt)
     tbl <- set_decoration(tbl, deco)
   }
 
@@ -97,24 +100,27 @@ dtht01_1_lyt <- function(armvar,
       .labels = c(count_fraction = "Total number of deaths"),
       .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
-    summarize_vars(vars = c("DTHCAT"), var_labels = c("Primary cause of death"))
+    summarize_vars(
+      vars = c("DTHCAT"),
+      var_labels = c("Primary cause of death"),
+      .formats = c(count_fraction = "xx (xx.x%)")
+    )
 
-  if (other_category) {
-    tab <-
-      tab %>%
-      split_rows_by(
-        "DTHCAT",
-        split_fun = keep_split_levels("OTHER"),
-        child_labels = "hidden"
-      ) %>%
-      summarize_vars(
-        "DTHCAUS",
-        nested = TRUE,
-        .stats = "count_fraction",
-        .indent_mods = c("count_fraction" = 4L)
-      )
-  }
-  tab
+  tab2 <-
+    basic_table_deco(deco) %>%
+    split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by("DTHCAT", split_fun = keep_split_levels("OTHER"), child_labels = "hidden") %>%
+    summarize_vars(
+      "DTHCAUS",
+      .stats = "count_fraction",
+      .indent_mods = c("count_fraction" = 4L),
+      .formats = c(count_fraction = "xx (xx.x%)"),
+      denom = "N_col"
+    )
+
+  list(tab, tab2)
 }
 
 #' @describeIn dtht01_1 Optional Layout
@@ -135,7 +141,8 @@ dtht01_1_opt_lyt <- function(armvar,
     summarize_vars(
       vars = "LDDTHGR1",
       var_labels = "Days from last drug administration",
-      show_labels = "visible"
+      show_labels = "visible",
+      .formats = c(count_fraction = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       "LDDTHGR1",
@@ -143,7 +150,10 @@ dtht01_1_opt_lyt <- function(armvar,
       split_label = "Primary cause by days from last study drug administration",
       label_pos = "visible"
     ) %>%
-    summarize_vars("DTHCAT")
+    summarize_vars(
+      "DTHCAT",
+      .formats = c(count_fraction = "xx (xx.x%)")
+    )
 }
 
 #' @describeIn dtht01_1 Preprocessing
@@ -156,17 +166,24 @@ dtht01_1_opt_lyt <- function(armvar,
 dtht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  death_fact <- levels(adam_db$adsl$DTHCAT)
-  death_fact <- setdiff(death_fact, "OTHER")
-  death_fact <- c(death_fact, "OTHER")
+  adam_db <- adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(DTHFL = as.factor(.data$DTHFL)) %>%
+    dm_update_zoomed()
 
-  existing_lvl <- as.list(setNames(death_fact, death_fact))
+  # Reorder factors to have "OTHER" last.
+  dthcat <- as.factor(adam_db$adsl$DTHCAT)
+  dthcat_lvl <- levels(dthcat)
+  dthcat_lvl <- setdiff(dthcat_lvl, c("OTHER", "", NA))
+  dthcat_lvl <- c(dthcat_lvl, "OTHER")
+
+  dthcat_lvl_order <- as.list(setNames(dthcat_lvl, dthcat_lvl))
   na_lvl <- list("<Missing>" = c("", NA))
 
   new_formats <- list(
     adsl = list(
       DTHCAT = c(
-        existing_lvl,
+        dthcat_lvl_order,
         na_lvl
       ),
       DTHCAUS = na_lvl,
