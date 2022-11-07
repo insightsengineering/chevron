@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.1.9006
+Version: 0.1.1.9007
 Date: 2022-11-07
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
@@ -45,10 +45,10 @@ VignetteBuilder:
     knitr
 Remotes:
     insightsengineering/dunlin@*release,
+    insightsengineering/rlistings@*release,
     insightsengineering/scda.2022@*release,
     insightsengineering/scda@*release,
-    insightsengineering/tern@*release,
-    insightsengineering/rlistings@*release
+    insightsengineering/tern@*release
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
