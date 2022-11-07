@@ -14,7 +14,6 @@ articles:
     contents:
       - chevron
       - adam_db_argument
-      - dot_study_argument
       - layouts
       - Adding_new_TLGs_to_Chevron
 
@@ -74,7 +73,6 @@ reference:
     contents:
       - get_db_data
       - report_null
-      - sample_study_object
       - smart_prune
       - std_deco
       - syn_test_data

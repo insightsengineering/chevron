@@ -19,16 +19,12 @@
 #'
 vst02_1_main <- function(adam_db,
                          lyt_ls = list(vst02_1_lyt),
-                         armvar = .study$actualarm,
+                         armvar = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = NULL,
                          prune_0 = FALSE,
                          deco = std_deco("VST02"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
@@ -59,15 +55,11 @@ vst02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-vst02_1_lyt <- function(armvar = .study$actualarm,
-                        lbl_vs_assessment = "Assessment",
-                        lbl_vs_abnormality = "Abnormality",
-                        lbl_overall = .study$lbl_overall,
+vst02_1_lyt <- function(armvar,
+                        lbl_vs_assessment,
+                        lbl_vs_abnormality,
+                        lbl_overall,
                         deco = std_deco("VST02"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -156,16 +148,12 @@ vst02_1 <- chevron_t(
 #'
 vst02_2_main <- function(adam_db,
                          lyt_ls = list(vst02_2_lyt),
-                         armvar = .study$actualarm,
+                         armvar = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = NULL,
                          prune_0 = FALSE,
                          deco = std_deco("VST02_2"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
@@ -196,15 +184,11 @@ vst02_2_main <- function(adam_db,
 #'
 #' @export
 #'
-vst02_2_lyt <- function(armvar = .study$actualarm,
-                        lbl_vs_assessment = "Assessment",
-                        lbl_vs_abnormality = "Abnormality",
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("VST02_2"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
+vst02_2_lyt <- function(armvar,
+                        lbl_vs_assessment,
+                        lbl_vs_abnormality,
+                        lbl_overall,
+                        deco,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

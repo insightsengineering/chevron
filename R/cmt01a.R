@@ -25,18 +25,14 @@
 #'
 cmt01a_1_main <- function(adam_db,
                           lyt_ls = list(cmt01a_1_lyt),
-                          armvar = .study$planarm,
+                          armvar = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
-                          lbl_overall = .study$lbl_overall,
+                          lbl_overall = NULL,
                           prune_0 = TRUE,
                           deco = std_deco("CMT01A"),
-                          .study = list(
-                            planarm = "ARM",
-                            lbl_overall = NULL
-                          ),
                           ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
@@ -79,17 +75,13 @@ cmt01a_1_main <- function(adam_db,
 #'
 #' @export
 #'
-cmt01a_1_lyt <- function(armvar = .study$planarm,
-                         lbl_overall = .study$lbl_overall,
-                         medcat_var = "ATC2",
-                         lbl_medcat_var = "ATC Class Level 2",
-                         medname_var = "CMDECOD",
-                         lbl_medname_var = "Other Treatment",
-                         deco = std_deco("CMT01A"),
-                         .study = list(
-                           planarm = "ARM",
-                           lbl_overall = NULL
-                         ),
+cmt01a_1_lyt <- function(armvar,
+                         lbl_overall,
+                         medcat_var,
+                         lbl_medcat_var,
+                         medname_var,
+                         lbl_medname_var,
+                         deco,
                          ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -215,18 +207,14 @@ cmt01a_1 <- chevron_t(
 #'
 cmt01a_2_main <- function(adam_db,
                           lyt_ls = list(cmt01a_1_lyt),
-                          armvar = .study$planarm,
+                          armvar = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
-                          lbl_overall = .study$lbl_overall,
+                          lbl_overall = NULL,
                           prune_0 = TRUE,
                           deco = std_deco("CMT01A"),
-                          .study = list(
-                            planarm = "ARM",
-                            lbl_overall = NULL
-                          ),
                           ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
@@ -348,18 +336,14 @@ cmt01a_2 <- chevron_t(
 #'
 cmt01a_3_main <- function(adam_db,
                           lyt_ls = list(cmt01a_3_lyt),
-                          armvar = .study$planarm,
+                          armvar = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
-                          lbl_overall = .study$lbl_overall,
+                          lbl_overall = NULL,
                           prune_0 = TRUE,
                           deco = std_deco("CMT01A"),
-                          .study = list(
-                            planarm = "ARM",
-                            lbl_overall = NULL
-                          ),
                           ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
@@ -397,17 +381,13 @@ cmt01a_3_main <- function(adam_db,
 #'
 #' @export
 #'
-cmt01a_3_lyt <- function(armvar = .study$planarm,
-                         lbl_overall = .study$lbl_overall,
+cmt01a_3_lyt <- function(armvar = "ARM",
+                         lbl_overall = NULL,
                          medcat_var = "ATC2",
                          lbl_medcat_var = "ATC Class Level 2",
                          medname_var = "CMDECOD",
                          lbl_medname_var = "Other Treatment",
                          deco = std_deco("CMT01A"),
-                         .study = list(
-                           planarm = "ARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

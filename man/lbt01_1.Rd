@@ -14,26 +14,23 @@ An object of class \code{chevron_t} of length 1.
 lbt01_1_main(
   adam_db,
   lyt_ls = list(lbt01_1_lyt),
-  armvar = .study$actualarm,
-  summaryvars = .study$evo_vars,
-  summaryvars_lbls = .study$evo_vars_lbls,
+  armvar = "ACTARM",
+  summaryvars = c("AVAL", "CHG"),
+  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = "AVISIT",
   prune_0 = TRUE,
   deco = std_deco("LBT01"),
-  .study = list(actualarm = "ACTARM", evo_vars = c("AVAL", "CHG"), evo_vars_lbls =
-    c("Value at Visit", "Change from \\nBaseline")),
   ...
 )
 
 lbt01_1_lyt(
-  armvar = .study$actualarm,
-  summaryvars = c("AVAL", "CHG"),
-  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
-  visitvar = .study$visitvar,
-  lbl_avisit = "Visit",
-  lbl_param = "Parameter",
-  deco = std_deco("LBT01"),
-  .study = list(actualarm = "ACTARM", visitvar = "AVISIT"),
+  armvar,
+  summaryvars,
+  summaryvars_lbls,
+  visitvar,
+  lbl_avisit,
+  lbl_param,
+  deco,
   ...
 )
 
@@ -59,8 +56,6 @@ to be displayed.}
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

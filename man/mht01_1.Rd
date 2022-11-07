@@ -14,25 +14,16 @@ An object of class \code{chevron_t} of length 1.
 mht01_1_main(
   adam_db,
   lyt_ls = list(mht01_1_lyt),
-  armvar = .study$planarm,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ARM",
+  lbl_overall = NULL,
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA Preferred Term",
   prune_0 = TRUE,
   deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL),
   ...
 )
 
-mht01_1_lyt(
-  armvar = .study$planarm,
-  lbl_overall = .study$lbl_overall,
-  lbl_mhbodsys = "MedDRA System Organ Class",
-  lbl_mhdecod = "MedDRA preferred Term",
-  deco = std_deco("MHT01"),
-  .study = list(planarm = "ARM", lbl_overall = NULL),
-  ...
-)
+mht01_1_lyt(armvar, lbl_overall, lbl_mhbodsys, lbl_mhdecod, deco, ...)
 
 mht01_1_pre(adam_db, ...)
 
@@ -57,8 +48,6 @@ the corresponding column in the \code{admh} table.}
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 }

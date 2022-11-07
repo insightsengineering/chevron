@@ -22,11 +22,6 @@ test_that("main setter works as expected", {
 
 # lyt ----
 
-test_that("lyt works as expected", {
-  res <- lyt(aet02_1)
-  expect_identical(res[[1]](), aet02_1_lyt())
-})
-
 test_that("lyt setter works as expected with pre-data table layout", {
   my_tab <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
   lyt(aet04_1) <- my_tab
@@ -77,6 +72,7 @@ test_that("datasets setter works as expected", {
 # get_main ----
 
 test_that("get_main works as expected", {
+  skip_if_not(interactive())
   res <- get_main(aet04_1)
   expect_identical(res, aet04_1_main)
 })
@@ -84,6 +80,7 @@ test_that("get_main works as expected", {
 # get_preprocess ----
 
 test_that("get_preprocess works as expected", {
+  skip_if_not(interactive())
   res <- get_preprocess(aet04_1)
   expect_identical(res, aet04_1_pre)
 })
@@ -91,6 +88,7 @@ test_that("get_preprocess works as expected", {
 # get_postprocess ----
 
 test_that("get_postprocess works as expected", {
+  skip_if_not(interactive())
   res <- get_postprocess(aet04_1)
   expect_identical(res, report_null)
 })
@@ -98,6 +96,7 @@ test_that("get_postprocess works as expected", {
 # get_adam_datasets ----
 
 test_that("get_adam_datasets works as expected", {
+  skip_if_not(interactive())
   res <- get_adam_datasets(aet04_1)
   expect_identical(res, c("adsl", "adae"))
 })

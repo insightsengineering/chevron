@@ -14,38 +14,28 @@ An object of class \code{chevron_t} of length 1.
 dst01_3_main(
   adam_db,
   lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
-  armvar = .study$planarm,
-  status = .study$status_var,
-  disc_reason_var = .study$disc_reason_var,
-  status_treatment = "EOTSTT",
-  lbl_overall = .study$lbl_overall,
+  armvar = "ARM",
+  status_var = "EOSSTT",
+  disc_reason_var = "DCSREAS",
+  status_treatment_var = "EOTSTT",
+  lbl_overall = "All Patients",
   prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", disc_reason_var = "DCSREAS", lbl_overall =
-    "All Patients", status_var = "EOSSTT"),
   ...
 )
 
 dst01_3_lyt(
-  armvar = .study$planarm,
-  status_treatment = .study$status,
-  completed_lbl = "COMPLETED",
-  discontinued_lbl = "DISCONTINUED",
-  ongoing_lbl = "ONGOING",
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients", status_treatment =
-    "EOTSTT"),
+  armvar,
+  status_treatment_var,
+  completed_trt_lbl,
+  discontinued_trt_lbl,
+  ongoing_trt_lbl,
+  lbl_overall,
+  deco,
   ...
 )
 
-dst01_3_pre(
-  adam_db,
-  status = .study$status,
-  disc_reason_var = .study$disc_reason_var,
-  .study = list(disc_reason_var = "DCSREAS", status_var = "EOSSTT"),
-  ...
-)
+dst01_3_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
 dst01_3
 }
@@ -57,7 +47,7 @@ dst01_3
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{status}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
@@ -65,9 +55,9 @@ period.}
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
-\item{status_treatment}{(\code{string}) variable used to define the treatment status of the patients. Default is \code{EOTSTT},
-however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits referring to
-the analysis period.}
+\item{status_treatment_var}{(\code{string}) variable used to define the treatment status of the patients. Default is
+\code{EOTSTT}, however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits
+referring to the analysis period.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -75,18 +65,16 @@ the analysis period.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{(\code{list})  with default values for the arguments of the function}
-
 \item{...}{not used.}
 
-\item{completed_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
-\code{status_treatment}. By Default \code{COMPLETED}.}
+\item{completed_trt_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
+\code{status_treatment_var}. By Default \code{COMPLETED}.}
 
-\item{discontinued_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
-\code{status_treatment}. By Default \code{DISCONTINUED}.}
+\item{discontinued_trt_lbl}{(\code{string}) associated with discontinued treatment and found in the columns given by
+\code{status_treatment_var}. By Default \code{DISCONTINUED}.}
 
-\item{ongoing_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by \code{status_treatment}.
-By Default `ONGOING.}
+\item{ongoing_trt_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by
+\code{status_treatment_var}. By Default `ONGOING.}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
@@ -129,10 +117,6 @@ db <- syn_test_data() \%>\%
 
 dst01_3_main(db)
 dst01_3_main(db, lbl_overall = NULL)
-dst01_3_lyt(
-  armvar = "ACTARM",
-  status_treatment = "EOTxx01"
-)
 run(dst01_3, syn_test_data())
 }
 \keyword{datasets}

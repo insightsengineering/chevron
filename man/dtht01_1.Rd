@@ -15,31 +15,18 @@ An object of class \code{chevron_t} of length 1.
 dtht01_1_main(
   adam_db,
   lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   time_since_last_dose = FALSE,
   other_category = FALSE,
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   prune_0 = TRUE,
   deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
-dtht01_1_lyt(
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
-  ...
-)
+dtht01_1_lyt(armvar, lbl_overall, other_category, deco, ...)
 
-dtht01_1_opt_lyt(
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("DTHT01"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
-  ...
-)
+dtht01_1_opt_lyt(armvar, lbl_overall, deco, ...)
 
 dtht01_1_pre(adam_db, ...)
 
@@ -62,8 +49,6 @@ dtht01_1
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 }

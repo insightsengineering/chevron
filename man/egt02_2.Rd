@@ -14,23 +14,21 @@ An object of class \code{chevron_t} of length 1.
 egt02_2_main(
   adam_db,
   lyt_ls = list(egt02_2_lyt),
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   prune_0 = FALSE,
   deco = std_deco("EGT02_2"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
 egt02_2_lyt(
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   deco = std_deco("EGT02_2"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
@@ -55,8 +53,6 @@ egt02_2
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 }

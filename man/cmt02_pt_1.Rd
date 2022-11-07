@@ -14,21 +14,14 @@ An object of class \code{chevron_t} of length 1.
 cmt02_pt_1_main(
   adam_db,
   lyt_ls = list(cmt02_pt_1_lyt),
-  armvar = .study$planarm,
+  armvar = "ARM",
   prune_0 = TRUE,
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   deco = std_deco("CMT02_PT"),
-  .study = list(planarm = "ARM", lbl_overall = NULL),
   ...
 )
 
-cmt02_pt_1_lyt(
-  armvar = .study$planarm,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("CMT02_PT"),
-  .study = list(planarm = "ARM", lbl_overall = NULL),
-  ...
-)
+cmt02_pt_1_lyt(armvar, lbl_overall, deco, ...)
 
 cmt02_pt_1_pre(adam_db, ...)
 
@@ -47,8 +40,6 @@ cmt02_pt_1
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 }

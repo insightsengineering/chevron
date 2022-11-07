@@ -14,38 +14,28 @@ An object of class \code{chevron_t} of length 1.
 dst01_2_main(
   adam_db,
   lyt_ls = list(dst01_2_lyt),
-  armvar = .study$planarm,
-  status_var = .study$status_var,
-  disc_reason_var = .study$disc_reason_var,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ARM",
+  status_var = "EOSSTT",
+  disc_reason_var = "DCSREAS",
+  lbl_overall = "All Patients",
   prune_0 = TRUE,
   deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients", disc_reason_var =
-    "DCSREAS", status_var = "EOSSTT"),
   ...
 )
 
 dst01_2_lyt(
-  armvar = .study$planarm,
-  status = .study$status,
-  disc_reason_var = .study$disc_reason_var,
-  completed_lbl = "COMPLETED",
-  ongoing_lbl = "ONGOING",
-  discontinued_lbl = "DISCONTINUED",
-  lbl_overall = .study$lbl_overall,
+  armvar,
+  status_var,
+  disc_reason_var,
+  completed_lbl,
+  ongoing_lbl,
+  discontinued_lbl,
+  lbl_overall,
   deco = std_deco("DST01"),
-  .study = list(planarm = "ARM", lbl_overall = "All Patients", status = "EOSSTT",
-    disc_reason_var = "DCSREAS"),
   ...
 )
 
-dst01_2_pre(
-  adam_db,
-  status = .study$status,
-  disc_reason_var = .study$disc_reason_var,
-  .study = list(status = "EOSSTT", disc_reason_var = "DCSREAS"),
-  ...
-)
+dst01_2_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
 dst01_2
 }
@@ -57,7 +47,7 @@ dst01_2
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+\item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
@@ -71,12 +61,7 @@ the analysis period.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{.study}{(\code{list})  with default values for the arguments of the function}
-
 \item{...}{not used.}
-
-\item{status}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a variable
-name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis period.}
 
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}
@@ -130,11 +115,6 @@ db <- syn_test_data() \%>\%
 
 dst01_2_main(db)
 dst01_2_main(db, lbl_overall = NULL)
-dst01_2_lyt(
-  armvar = "ACTARM",
-  status = "EOP01STT",
-  disc_reason_var = "DCP01RS"
-)
 dst01_2_pre(syn_test_data())
 run(dst01_2, syn_test_data())
 }

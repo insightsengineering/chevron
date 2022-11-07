@@ -20,14 +20,10 @@
 #'
 aet02_1_main <- function(adam_db,
                          lyt_ls = list(aet02_1_lyt),
-                         armvar = .study$actualarm,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ACTARM",
+                         lbl_overall = NULL,
                          prune_0 = TRUE,
                          deco = std_deco("AET02"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
@@ -68,15 +64,11 @@ aet02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet02_1_lyt <- function(armvar = .study$actualarm,
-                        lbl_overall = .study$lbl_overall,
+aet02_1_lyt <- function(armvar,
+                        lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aedecod = "MedDRA Preferred Term",
-                        deco = std_deco("AET02"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
+                        deco,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -146,10 +138,7 @@ aet02_1_pre <- function(adam_db, ...) {
 #'
 aet02_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          armvar = .study$actualarm,
-                          .study = list(
-                            actualarm = "ACTARM"
-                          ),
+                          armvar = "ACTARM",
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -205,14 +194,10 @@ aet02_1 <- chevron_t(
 #'
 aet02_2_main <- function(adam_db,
                          lyt_ls = list(aet02_2_lyt),
-                         armvar = .study$actualarm,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ACTARM",
+                         lbl_overall = NULL,
                          prune_0 = TRUE,
                          deco = std_deco("AET02"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
@@ -259,16 +244,12 @@ aet02_2_main <- function(adam_db,
 #'
 #' @export
 #'
-aet02_2_lyt <- function(armvar = .study$actualarm,
-                        lbl_overall = .study$lbl_overall,
+aet02_2_lyt <- function(armvar,
+                        lbl_overall = NULL,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aehlt = "MedDRA High-Level Term",
                         lbl_aedecod = "MedDRA Preferred Term",
-                        deco = std_deco("AET02"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
+                        deco,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -385,14 +366,10 @@ aet02_2 <- chevron_t(
 #'
 aet02_3_main <- function(adam_db,
                          lyt_ls = list(aet02_3_lyt),
-                         armvar = .study$actualarm,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ACTARM",
+                         lbl_overall = NULL,
                          prune_0 = TRUE,
                          deco = std_deco("AET02"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   assert_colnames(adam_db$adae, c("AEDECOD"))
 
@@ -436,14 +413,10 @@ aet02_3_main <- function(adam_db,
 #'
 #' @export
 #'
-aet02_3_lyt <- function(armvar = .study$actualarm,
-                        lbl_overall = .study$lbl_overall,
+aet02_3_lyt <- function(armvar,
+                        lbl_overall,
                         lbl_aedecod = "MedDRA Preferred Term",
-                        deco = std_deco("AET02"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL
-                        ),
+                        deco,
                         ...) {
   lyt_top <- basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

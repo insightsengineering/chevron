@@ -48,7 +48,6 @@ variable, which variables are summarized) but not parameterize the cell content 
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 1. If they are of the subclass `chevron_t`, have always as second argument `lyt_ls`, a list of functions returning `Pre-data Table Layout` that are used by the main function to generate the output.
-1. have a `.study` argument, read the *The .study argument* vignette for more detail.
 1. have the `...` argument to facilitate their incorporation in a workflow including pre and post processing.
 
 ### *Layout-list*
@@ -65,8 +64,6 @@ message.
 1. have very few arguments to modify the standard.
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
-1. can have the `.study` argument and other argument of the corresponding *TLG-functions* as they may inform the
-function on the column that will be required and facilitate the checking process.
 1. must have the `...` argument to facilitate their incorporation in a workflow.
 
 ### *post-processing*

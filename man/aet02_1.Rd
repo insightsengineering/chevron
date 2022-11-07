@@ -15,33 +15,25 @@ An object of class \code{chevron_t} of length 1.
 aet02_1_main(
   adam_db,
   lyt_ls = list(aet02_1_lyt),
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ACTARM",
+  lbl_overall = NULL,
   prune_0 = TRUE,
   deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
 aet02_1_lyt(
-  armvar = .study$actualarm,
-  lbl_overall = .study$lbl_overall,
+  armvar,
+  lbl_overall,
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
-  deco = std_deco("AET02"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
+  deco,
   ...
 )
 
 aet02_1_pre(adam_db, ...)
 
-aet02_1_check(
-  adam_db,
-  req_tables = c("adsl", "adae"),
-  armvar = .study$actualarm,
-  .study = list(actualarm = "ACTARM"),
-  ...
-)
+aet02_1_check(adam_db, req_tables = c("adsl", "adae"), armvar = "ACTARM", ...)
 
 aet02_1
 }
@@ -58,8 +50,6 @@ aet02_1
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

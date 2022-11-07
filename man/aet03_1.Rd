@@ -14,23 +14,20 @@ An object of class \code{chevron_t} of length 1.
 aet03_1_main(
   adam_db,
   lyt_ls = list(aet03_1_lyt),
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   prune_0 = TRUE,
-  lbl_overall = .study$lbl_overall,
+  lbl_overall = NULL,
   deco = std_deco("AET03"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL),
   ...
 )
 
 aet03_1_lyt(
-  armvar = .study$actualarm,
-  lbl_aebodsys = "",
-  lbl_aedecod = "",
-  severity_grade = .study$severity_grade,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("AET03"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, severity_grade = c("MILD",
-    "MODERATE", "SEVERE", "LIFE THREATENING")),
+  armvar,
+  lbl_aebodsys,
+  lbl_aedecod,
+  severity_grade,
+  lbl_overall,
+  deco,
   ...
 )
 
@@ -51,8 +48,6 @@ aet03_1
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 

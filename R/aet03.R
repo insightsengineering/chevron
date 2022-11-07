@@ -19,25 +19,23 @@
 #'
 aet03_1_main <- function(adam_db,
                          lyt_ls = list(aet03_1_lyt),
-                         armvar = .study$actualarm,
+                         armvar = "ACTARM",
                          prune_0 = TRUE,
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = NULL,
                          deco = std_deco("AET03"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   assert_colnames(adam_db$adae, c("AESEV", "AEBODSYS", "AEDECOD"))
 
   # specific to AET03: avoid error if some severity levels are not present
   severity_grade <- levels(adam_db$adae[["AESEV"]])
+  lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
+  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
   lyt <- lyt_ls[[1]](
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = var_labels_for(adam_db$adae, "AEBODSYS"),
-    lbl_aedecod = var_labels_for(adam_db$adae, "AEDECOD"),
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     severity_grade = severity_grade,
     deco = deco,
     ... = ...
@@ -79,17 +77,12 @@ aet03_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet03_1_lyt <- function(armvar = .study$actualarm,
-                        lbl_aebodsys = "",
-                        lbl_aedecod = "",
-                        severity_grade = .study$severity_grade,
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("AET03"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL,
-                          severity_grade = c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
-                        ),
+aet03_1_lyt <- function(armvar,
+                        lbl_aebodsys,
+                        lbl_aedecod,
+                        severity_grade,
+                        lbl_overall,
+                        deco,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

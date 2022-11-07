@@ -21,16 +21,11 @@
 #'
 aet04_1_main <- function(adam_db,
                          lyt_ls = list(aet04_1_lyt),
-                         armvar = .study$actualarm,
-                         group_grades = .study$group_grades,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ACTARM",
+                         group_grades = NULL,
+                         lbl_overall = NULL,
                          prune_0 = TRUE,
                          deco = std_deco("AET04"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL,
-                           group_grades = NULL
-                         ),
                          ...) {
   assert_colnames(adam_db$adae, c("AETOXGR", "AEBODSYS", "AEDECOD"))
 
@@ -91,17 +86,12 @@ aet04_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet04_1_lyt <- function(armvar = .study$actualarm,
-                        lbl_aebodsys = "AEBODSYS",
-                        lbl_aedecod = "AEDECOD",
-                        group_grades = .study$group_grades,
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("AET04"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          lbl_overall = NULL,
-                          group_grades = NULL
-                        ),
+aet04_1_lyt <- function(armvar,
+                        lbl_aebodsys,
+                        lbl_aedecod,
+                        group_grades,
+                        lbl_overall,
+                        deco,
                         ...) {
   if (is.null(group_grades)) {
     group_grades <- list(

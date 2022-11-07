@@ -25,17 +25,12 @@
 #'
 lbt01_1_main <- function(adam_db,
                          lyt_ls = list(lbt01_1_lyt),
-                         armvar = .study$actualarm,
-                         summaryvars = .study$evo_vars,
-                         summaryvars_lbls = .study$evo_vars_lbls,
+                         armvar = "ACTARM",
+                         summaryvars = c("AVAL", "CHG"),
+                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                          visitvar = "AVISIT",
                          prune_0 = TRUE,
                          deco = std_deco("LBT01"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           evo_vars = c("AVAL", "CHG"),
-                           evo_vars_lbls = c("Value at Visit", "Change from \nBaseline")
-                         ),
                          ...) {
   summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
     var_labels_for(adam_db$adlb, summaryvars)
@@ -43,13 +38,16 @@ lbt01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
+  lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
+  lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+
   lyt <- lyt_ls[[1]](
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
-    lbl_avisit = var_labels_for(adam_db$adlb, visitvar),
-    lbl_param = var_labels_for(adam_db$adlb, "PARAM"),
+    lbl_avisit = lbl_avisit,
+    lbl_param = lbl_param,
     deco = deco,
     ... = ...
   )
@@ -75,17 +73,13 @@ lbt01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt01_1_lyt <- function(armvar = .study$actualarm,
-                        summaryvars = c("AVAL", "CHG"),
-                        summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
-                        visitvar = .study$visitvar,
-                        lbl_avisit = "Visit",
-                        lbl_param = "Parameter",
-                        deco = std_deco("LBT01"),
-                        .study = list(
-                          actualarm = "ACTARM",
-                          visitvar = "AVISIT"
-                        ),
+lbt01_1_lyt <- function(armvar,
+                        summaryvars,
+                        summaryvars_lbls,
+                        visitvar,
+                        lbl_avisit,
+                        lbl_param,
+                        deco,
                         ...) {
   # TODO solve the problem of the overall column
   # remove change from baseline in BASELINE

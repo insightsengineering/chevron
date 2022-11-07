@@ -1,20 +1,4 @@
 
-# Avoid non-standard argument values for `status`, `reason` and `status_treatment` In `EOPxxSTT`, `DCPxxRS` amd
-# `EOTxxSTT` the analysis period `xx` is substituted by 2 digits
-check_dst01_1_args <- function(reason, status, status_treatment) {
-  if (!missing(status)) {
-    stopifnot(status == "EOSSTT" || grepl("^EOP[[:digit:]]{2}STT$", status))
-  }
-
-  if (!missing(reason)) {
-    stopifnot(reason == "DCSREAS" || grepl("^DCP[[:digit:]]{2}RS$", reason))
-  }
-
-  if (!missing(status_treatment)) {
-    stopifnot(status_treatment == "EOTSTT" || grepl("^EOT[[:digit:]]{2}STT$", status_treatment))
-  }
-}
-
 # dst01_1 ----
 
 #' @describeIn dst01_1 Main TLG function
@@ -52,26 +36,13 @@ check_dst01_1_args <- function(reason, status, status_treatment) {
 #' dst01_1_main(db)
 dst01_1_main <- function(adam_db,
                          lyt_ls = list(dst01_1_lyt),
-                         armvar = .study$planarm,
-                         status_var = .study$status_var,
-                         disc_reason_var = .study$disc_reason_var,
+                         armvar = "ARM",
+                         status_var = "EOSSTT",
+                         disc_reason_var = "DCSREAS",
                          prune_0 = TRUE,
-                         lbl_overall = .study$lbl_overall,
+                         lbl_overall = "All Patients",
                          deco = std_deco("DST01"),
-                         .study = list(
-                           planarm = "ARM",
-                           lbl_overall = "All Patients",
-                           disc_reason_var = "DCSREAS",
-                           status_var = "EOSSTT"
-                         ),
                          ...) {
-  check_dst01_1_args(
-    reason = disc_reason_var,
-    status = status_var
-  )
-
-
-  # TODO: review later
   status_lvl <- levels(adam_db$adsl[[status_var]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
@@ -82,7 +53,7 @@ dst01_1_main <- function(adam_db,
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    status = status_var,
+    status_var = status_var,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
@@ -114,8 +85,9 @@ dst01_1_main <- function(adam_db,
 #' @describeIn dst01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
-#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
@@ -132,26 +104,14 @@ dst01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' dst01_1_lyt(
-#'   armvar = "ACTARM",
-#'   status = "EOP01STT",
-#'   disc_reason_var = "DCP01RS"
-#' )
-dst01_1_lyt <- function(armvar = .study$planarm,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
+dst01_1_lyt <- function(armvar,
+                        status_var,
+                        disc_reason_var,
                         completed_lbl = "COMPLETED",
                         ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("DST01"),
-                        .study = list(
-                          planarm = "ARM",
-                          lbl_overall = "All Patients",
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
+                        lbl_overall,
+                        deco,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -162,7 +122,7 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   layout_table_completed <-
     layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
       .formats = "xx (xx.x%)"
@@ -171,13 +131,13 @@ dst01_1_lyt <- function(armvar = .study$planarm,
   layout_table_other <-
     layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
       .formats = "xx (xx.x%)"
     ) %>%
     split_rows_by(
-      status,
+      status_var,
       split_fun = keep_split_levels(discontinued_lbl),
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study", format = "xx (xx.x%)") %>%
@@ -201,12 +161,8 @@ dst01_1_lyt <- function(armvar = .study$planarm,
 #' @examples
 #' dst01_1_pre(syn_test_data())
 dst01_1_pre <- function(adam_db,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        .study = list(
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
+                        status_var = "EOSSTT",
+                        disc_reason_var = "DCSREAS",
                         ...) {
   new_format <- list(
     adsl = list(
@@ -215,7 +171,7 @@ dst01_1_pre <- function(adam_db,
     )
   )
 
-  names(new_format$adsl) <- c(disc_reason_var, status)
+  names(new_format$adsl) <- c(disc_reason_var, status_var)
 
   adam_db <- dunlin::apply_reformat(adam_db)
 
@@ -281,24 +237,13 @@ dst01_1 <- chevron_t(
 #' dst01_2_main(db, lbl_overall = NULL)
 dst01_2_main <- function(adam_db,
                          lyt_ls = list(dst01_2_lyt),
-                         armvar = .study$planarm,
-                         status_var = .study$status_var,
-                         disc_reason_var = .study$disc_reason_var,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ARM",
+                         status_var = "EOSSTT",
+                         disc_reason_var = "DCSREAS",
+                         lbl_overall = "All Patients",
                          prune_0 = TRUE,
                          deco = std_deco("DST01"),
-                         .study = list(
-                           planarm = "ARM",
-                           lbl_overall = "All Patients",
-                           disc_reason_var = "DCSREAS",
-                           status_var = "EOSSTT"
-                         ),
                          ...) {
-  check_dst01_1_args(
-    reason = disc_reason_var,
-    status = status_var
-  )
-
   status_lvl <- levels(adam_db$adsl[[status_var]])
 
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
@@ -307,7 +252,7 @@ dst01_2_main <- function(adam_db,
 
   lyt <- lyt_ls[[1]](
     armvar = armvar,
-    status = status_var,
+    status_var = status_var,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lbl,
     discontinued_lbl = discontinued_lbl,
@@ -341,8 +286,9 @@ dst01_2_main <- function(adam_db,
 #' @describeIn dst01_2 Layout
 #'
 #' @inheritParams gen_args
-#' @param status (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a variable
-#'   name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis period.
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
+#'   period.
 #' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
@@ -359,26 +305,14 @@ dst01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-#' @examples
-#' dst01_2_lyt(
-#'   armvar = "ACTARM",
-#'   status = "EOP01STT",
-#'   disc_reason_var = "DCP01RS"
-#' )
-dst01_2_lyt <- function(armvar = .study$planarm,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        completed_lbl = "COMPLETED",
-                        ongoing_lbl = "ONGOING",
-                        discontinued_lbl = "DISCONTINUED",
-                        lbl_overall = .study$lbl_overall,
+dst01_2_lyt <- function(armvar,
+                        status_var,
+                        disc_reason_var,
+                        completed_lbl,
+                        ongoing_lbl,
+                        discontinued_lbl,
+                        lbl_overall,
                         deco = std_deco("DST01"),
-                        .study = list(
-                          planarm = "ARM",
-                          lbl_overall = "All Patients",
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -388,7 +322,7 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 
   layout_table_completed <- layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
       .formats = "xx (xx.x%)"
@@ -396,13 +330,13 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 
   layout_table_other <- layout_table %>%
     count_values(
-      vars = status,
+      vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
       .formats = "xx (xx.x%)"
     ) %>%
     split_rows_by(
-      var = status,
+      var = status_var,
       split_fun = keep_split_levels(discontinued_lbl)
     ) %>%
     summarize_row_groups(label_fstr = "Discontinued Study") %>%
@@ -431,12 +365,8 @@ dst01_2_lyt <- function(armvar = .study$planarm,
 #' @examples
 #' dst01_2_pre(syn_test_data())
 dst01_2_pre <- function(adam_db,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        .study = list(
-                          status = "EOSSTT",
-                          disc_reason_var = "DCSREAS"
-                        ),
+                        status_var = "EOSSTT",
+                        disc_reason_var = "DCSREAS",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -447,7 +377,7 @@ dst01_2_pre <- function(adam_db,
     )
   )
 
-  names(new_format$adsl) <- c(disc_reason_var, status)
+  names(new_format$adsl) <- c(disc_reason_var, status_var)
 
   adam_db <- dunlin::apply_reformat(adam_db)
 
@@ -486,16 +416,15 @@ dst01_2 <- chevron_t(
 #' @describeIn dst01_3 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param status (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
-#' @param status_treatment (`character`) variable used to define the treatment status of the patients. Default is
+#' @param status_treatment_var (`character`) variable used to define the treatment status of the patients. Default is
 #'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
 #'   referring to the analysis period.
-#'
 #'
 #' @details
 #'  * Non-standard disposition table summarizing the reasons for patient withdrawal and treatment status.
@@ -525,30 +454,18 @@ dst01_2 <- chevron_t(
 #' dst01_3_main(db, lbl_overall = NULL)
 dst01_3_main <- function(adam_db,
                          lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
-                         armvar = .study$planarm,
-                         status = .study$status_var,
-                         disc_reason_var = .study$disc_reason_var,
-                         status_treatment = "EOTSTT",
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ARM",
+                         status_var = "EOSSTT",
+                         disc_reason_var = "DCSREAS",
+                         status_treatment_var = "EOTSTT",
+                         lbl_overall = "All Patients",
                          prune_0 = TRUE,
                          deco = std_deco("DST01"),
-                         .study = list(
-                           planarm = "ARM",
-                           disc_reason_var = "DCSREAS",
-                           lbl_overall = "All Patients",
-                           status_var = "EOSSTT"
-                         ),
                          ...) {
-  check_dst01_1_args(
-    reason = disc_reason_var,
-    status = status,
-    status_treatment = status_treatment
-  )
-
   checkmate::assert_subset(c("study", "treatment"), names(lyt_ls))
 
   # TODO: revisit
-  status_trt_lvl <- levels(adam_db$adsl[[status_treatment]])
+  status_trt_lvl <- levels(adam_db$adsl[[status_treatment_var]])
   completed_trt_lbl <- status_trt_lvl[grep("completed", status_trt_lvl, ignore.case = TRUE)]
   discontinued_trt_lbl <- status_trt_lvl[grep("discontinued", status_trt_lvl, ignore.case = TRUE)]
   ongoing_trt_lbl <- status_trt_lvl[grep("ongoing", status_trt_lvl, ignore.case = TRUE)]
@@ -557,10 +474,10 @@ dst01_3_main <- function(adam_db,
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    completed_lbl = completed_trt_lbl,
-    ongoing_lbl = ongoing_trt_lbl,
-    discontinued_lbl = discontinued_trt_lbl,
-    status_treatment = status_treatment,
+    completed_trt_lbl = completed_trt_lbl,
+    ongoing_trt_lbl = ongoing_trt_lbl,
+    discontinued_trt_lbl = discontinued_trt_lbl,
+    status_treatment_var = status_treatment_var,
     ... = ...
   )
 
@@ -571,7 +488,7 @@ dst01_3_main <- function(adam_db,
 
   # TODO: revisit later
   # re-extract the labels associated with status in case they changed.
-  status_lvl <- levels(adam_db$adsl[[status]])
+  status_lvl <- levels(adam_db$adsl[[status_var]])
   completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
@@ -583,7 +500,7 @@ dst01_3_main <- function(adam_db,
     completed_lbl = completed_lbl,
     ongoing_lbl = ongoing_lbl,
     discontinued_lbl = discontinued_lbl,
-    status = status,
+    status_var = status_var,
     disc_reason_var = disc_reason_var,
     ... = ...
   )
@@ -620,36 +537,26 @@ dst01_3_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param status_treatment (`string`) variable used to define the treatment status of the patients. Default is `EOTSTT`,
-#'   however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits referring to
-#'   the analysis period.
-#' @param completed_lbl (`string`) associated with completed treatment and found in the columns given by
-#'   `status_treatment`. By Default `COMPLETED`.
-#' @param discontinued_lbl (`string`) associated with discontinued treatment and found in the columns given by
-#'   `status_treatment`. By Default `DISCONTINUED`.
-#' @param ongoing_lbl (`string`) associated with ongoing treatment and found in the columns given by `status_treatment`.
-#'   By Default `ONGOING.
+#' @param status_treatment_var (`string`) variable used to define the treatment status of the patients. Default is
+#'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
+#'   referring to the analysis period.
+#' @param completed_trt_lbl (`string`) associated with completed treatment and found in the columns given by
+#'   `status_treatment_var`. By Default `COMPLETED`.
+#' @param discontinued_trt_lbl (`string`) associated with discontinued treatment and found in the columns given by
+#'   `status_treatment_var`. By Default `DISCONTINUED`.
+#' @param ongoing_trt_lbl (`string`) associated with ongoing treatment and found in the columns given by
+#'   `status_treatment_var`. By Default `ONGOING.
 #' @param ... not used.
 #'
 #' @export
 #'
-#' @examples
-#' dst01_3_lyt(
-#'   armvar = "ACTARM",
-#'   status_treatment = "EOTxx01"
-#' )
-dst01_3_lyt <- function(armvar = .study$planarm,
-                        status_treatment = .study$status,
-                        completed_lbl = "COMPLETED",
-                        discontinued_lbl = "DISCONTINUED",
-                        ongoing_lbl = "ONGOING",
-                        lbl_overall = .study$lbl_overall,
-                        deco = std_deco("DST01"),
-                        .study = list(
-                          planarm = "ARM",
-                          lbl_overall = "All Patients",
-                          status_treatment = "EOTSTT"
-                        ),
+dst01_3_lyt <- function(armvar,
+                        status_treatment_var,
+                        completed_trt_lbl,
+                        discontinued_trt_lbl,
+                        ongoing_trt_lbl,
+                        lbl_overall,
+                        deco,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -657,22 +564,22 @@ dst01_3_lyt <- function(armvar = .study$planarm,
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     count_values(
-      vars = status_treatment,
-      values = completed_lbl,
+      vars = status_treatment_var,
+      values = completed_trt_lbl,
       .labels = c(count_fraction = "Completed Treatment"),
       .formats = "xx (xx.x%)",
       table_names = c("COMPLETED")
     ) %>%
     count_values(
-      vars = status_treatment,
-      values = ongoing_lbl,
+      vars = status_treatment_var,
+      values = ongoing_trt_lbl,
       .labels = c(count_fraction = "Ongoing Treatment"),
       .formats = "xx (xx.x%)",
       table_names = c("ONGOING")
     ) %>%
     count_values(
-      vars = status_treatment,
-      values = discontinued_lbl,
+      vars = status_treatment_var,
+      values = discontinued_trt_lbl,
       .labels = c(count_fraction = "Discontinued Treatment"),
       .formats = "xx (xx.x%)",
       table_names = c("DISCONTINUED")
@@ -687,12 +594,8 @@ dst01_3_lyt <- function(armvar = .study$planarm,
 #' @export
 #'
 dst01_3_pre <- function(adam_db,
-                        status = .study$status,
-                        disc_reason_var = .study$disc_reason_var,
-                        .study = list(
-                          disc_reason_var = "DCSREAS",
-                          status_var = "EOSSTT"
-                        ),
+                        status_var = "EOSSTT",
+                        disc_reason_var = "DCSREAS",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -703,7 +606,7 @@ dst01_3_pre <- function(adam_db,
     )
   )
 
-  names(new_format$adsl) <- c(disc_reason_var, status)
+  names(new_format$adsl) <- c(disc_reason_var, status_var)
 
   adam_db <- dunlin::apply_reformat(adam_db)
 

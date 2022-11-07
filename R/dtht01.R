@@ -20,16 +20,12 @@
 #'
 dtht01_1_main <- function(adam_db,
                           lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
-                          armvar = .study$actualarm,
+                          armvar = "ACTARM",
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
-                          lbl_overall = .study$lbl_overall,
+                          lbl_overall = NULL,
                           prune_0 = TRUE,
                           deco = std_deco("DTHT01"),
-                          .study = list(
-                            actualarm = "ACTARM",
-                            lbl_overall = NULL
-                          ),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl")
 
@@ -88,13 +84,10 @@ dtht01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-dtht01_1_lyt <- function(armvar = .study$actualarm,
-                         lbl_overall = .study$lbl_overall,
-                         deco = std_deco("DTHT01"),
-                         .study = list(
-                           actualarm = "ACTARM",
-                           lbl_overall = NULL
-                         ),
+dtht01_1_lyt <- function(armvar,
+                         lbl_overall,
+                         other_category,
+                         deco,
                          ...) {
   tab <-
     basic_table_deco(deco) %>%
@@ -137,13 +130,9 @@ dtht01_1_lyt <- function(armvar = .study$actualarm,
 #'
 #' @export
 #'
-dtht01_1_opt_lyt <- function(armvar = .study$actualarm,
-                             lbl_overall = .study$lbl_overall,
-                             deco = std_deco("DTHT01"),
-                             .study = list(
-                               actualarm = "ACTARM",
-                               lbl_overall = NULL
-                             ),
+dtht01_1_opt_lyt <- function(armvar,
+                             lbl_overall,
+                             deco,
                              ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

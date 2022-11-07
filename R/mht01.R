@@ -23,16 +23,12 @@
 #'
 mht01_1_main <- function(adam_db,
                          lyt_ls = list(mht01_1_lyt),
-                         armvar = .study$planarm,
-                         lbl_overall = .study$lbl_overall,
+                         armvar = "ARM",
+                         lbl_overall = NULL,
                          lbl_mhbodsys = "MedDRA System Organ Class",
                          lbl_mhdecod = "MedDRA Preferred Term",
                          prune_0 = TRUE,
                          deco = std_deco("MHT01"),
-                         .study = list(
-                           planarm = "ARM",
-                           lbl_overall = NULL
-                         ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
@@ -70,15 +66,11 @@ mht01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-mht01_1_lyt <- function(armvar = .study$planarm,
-                        lbl_overall = .study$lbl_overall,
-                        lbl_mhbodsys = "MedDRA System Organ Class",
-                        lbl_mhdecod = "MedDRA preferred Term",
-                        deco = std_deco("MHT01"),
-                        .study = list(
-                          planarm = "ARM",
-                          lbl_overall = NULL
-                        ),
+mht01_1_lyt <- function(armvar,
+                        lbl_overall,
+                        lbl_mhbodsys,
+                        lbl_mhdecod,
+                        deco,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

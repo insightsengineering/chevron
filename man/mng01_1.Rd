@@ -14,26 +14,24 @@ An object of class \code{chevron_g} of length 1.
 mng01_1_main(
   adam_db,
   dataset = "adlb",
-  x = "AVISIT",
-  y = "AVAL",
+  x_var = "AVISIT",
+  y_var = "AVAL",
   y_name = "PARAM",
   y_unit = NA,
-  armvar = .study$actualarm,
+  armvar = "ACTARM",
   center_fun = c("mean", "median"),
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
   show_table = TRUE,
   jitter = TRUE,
   show_n = TRUE,
-  show_h_grid = .study$show_h_grid,
-  show_v_grid = .study$show_v_grid,
-  legend_pos = .study$legend_pos,
-  line_col = .study$color_dict,
-  .study = list(actualarm = "ACTARM", show_h_grid = TRUE, show_v_grid = FALSE, legend_pos
-    = "top", color_dict = nestcolor::color_palette()),
+  show_h_grid = TRUE,
+  show_v_grid = FALSE,
+  legend_pos = "top",
+  line_col = nestcolor::color_palette(),
   ...
 )
 
-mng01_1_pre(adam_db, dataset, x = "AVISIT", ...)
+mng01_1_pre(adam_db, dataset, x_var = "AVISIT", ...)
 
 mng01_1_post(tlg, ...)
 
@@ -44,9 +42,9 @@ mng01_1
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
-\item{x}{(\code{character}) the name of a column in the \code{dataset} to represent on the x-axis.}
+\item{x_var}{(\code{character}) the name of a column in the \code{dataset} to represent on the x-axis.}
 
-\item{y}{(\code{string}) the name of the variable to be represented on the y-axis.}
+\item{y_var}{(\code{string}) the name of the variable to be represented on the y-axis.}
 
 \item{y_name}{(\code{string}) the variable name for \code{y}. Used for plot's subtitle.}
 
@@ -73,8 +71,6 @@ mng01_1
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} vector associating
 values of \code{armvar} with color names.}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 
@@ -103,8 +99,8 @@ Overview of a summary statistics across time and arm for a selected data set.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x}, \code{y}, \code{y_name},
-\code{y_unit} and \code{armvar}.
+\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x_var}, \code{y_var},
+\code{y_name}, \code{y_unit} and \code{armvar}.
 }
 }
 \examples{
@@ -117,6 +113,6 @@ col <- c(
   "C: Combination" = "grey"
 )
 
-run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
+run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
 }
 \keyword{datasets}

@@ -9,8 +9,8 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param x (`character`) the name of a column in the `dataset` to represent on the x-axis.
-#' @param y (`string`) the name of the variable to be represented on the y-axis.
+#' @param x_var (`character`) the name of a column in the `dataset` to represent on the x-axis.
+#' @param y_var (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
 #' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NA`, only
 #'   `y_name` is displayed as subtitle.
@@ -27,39 +27,32 @@
 #' @param ... not used.
 #'
 #' @note
-#'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x`, `y`, `y_name`,
-#'  `y_unit` and `armvar`.
+#'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
+#'  `y_name`, `y_unit` and `armvar`.
 #'
 #' @return a list of `ggplot` objects.
 #' @export
 mng01_1_main <- function(adam_db,
                          dataset = "adlb",
-                         x = "AVISIT",
-                         y = "AVAL",
+                         x_var = "AVISIT",
+                         y_var = "AVAL",
                          y_name = "PARAM",
                          y_unit = NA,
-                         armvar = .study$actualarm,
+                         armvar = "ACTARM",
                          center_fun = c("mean", "median"),
                          interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
                          show_table = TRUE,
                          jitter = TRUE,
                          show_n = TRUE,
-                         show_h_grid = .study$show_h_grid,
-                         show_v_grid = .study$show_v_grid,
-                         legend_pos = .study$legend_pos,
-                         line_col = .study$color_dict,
-                         .study = list(
-                           actualarm = "ACTARM",
-                           show_h_grid = TRUE,
-                           show_v_grid = FALSE,
-                           legend_pos = "top",
-                           color_dict = nestcolor::color_palette()
-                         ),
+                         show_h_grid = TRUE,
+                         show_v_grid = FALSE,
+                         legend_pos = "top",
+                         line_col = nestcolor::color_palette(),
                          ...) {
   df <- adam_db[[dataset]]
 
   data_ls <- split(df, df$PARAM, drop = TRUE)
-  x <- paste(x, collapse = "_")
+  x_var <- paste(x_var, collapse = "_")
 
   center_fun <- match.arg(center_fun)
   interval_fun <- match.arg(interval_fun)
@@ -86,7 +79,7 @@ mng01_1_main <- function(adam_db,
     " and ",
     interval_title,
     " by ",
-    var_labels_for(df, x)
+    var_labels_for(df, x_var)
   )
 
   whiskers_fun <- switch(interval_fun,
@@ -99,8 +92,8 @@ mng01_1_main <- function(adam_db,
   )
 
   variables <- c(
-    x = x,
-    y = y,
+    x = x_var,
+    y = y_var,
     strata = armvar,
     paramcd = y_name,
     y_unit = y_unit
@@ -169,7 +162,7 @@ mng01_1_main <- function(adam_db,
 #' @param ... not used.
 #'
 #' @export
-mng01_1_pre <- function(adam_db, dataset, x = "AVISIT", ...) {
+mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -177,7 +170,7 @@ mng01_1_pre <- function(adam_db, dataset, x = "AVISIT", ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 
-  dm_unite(adam_db, dataset, x, "_")
+  dm_unite(adam_db, dataset, x_var, "_")
 }
 
 #' @describeIn mng01_1 Postprocessing
@@ -208,7 +201,7 @@ mng01_1_post <- function(tlg, ...) {
 #'   "C: Combination" = "grey"
 #' )
 #'
-#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x = c("AVISIT", "AVISITN"), line_col = col)
+#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,

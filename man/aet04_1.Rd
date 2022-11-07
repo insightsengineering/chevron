@@ -14,23 +14,21 @@ An object of class \code{chevron_t} of length 1.
 aet04_1_main(
   adam_db,
   lyt_ls = list(aet04_1_lyt),
-  armvar = .study$actualarm,
-  group_grades = .study$group_grades,
-  lbl_overall = .study$lbl_overall,
+  armvar = "ACTARM",
+  group_grades = NULL,
+  lbl_overall = NULL,
   prune_0 = TRUE,
   deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL),
   ...
 )
 
 aet04_1_lyt(
-  armvar = .study$actualarm,
-  lbl_aebodsys = "AEBODSYS",
-  lbl_aedecod = "AEDECOD",
-  group_grades = .study$group_grades,
-  lbl_overall = .study$lbl_overall,
-  deco = std_deco("AET04"),
-  .study = list(actualarm = "ACTARM", lbl_overall = NULL, group_grades = NULL),
+  armvar,
+  lbl_aebodsys,
+  lbl_aedecod,
+  group_grades,
+  lbl_overall,
+  deco,
   ...
 )
 
@@ -53,8 +51,6 @@ aet04_1
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{.study}{(\code{list})  with default values for the arguments of the function}
 
 \item{...}{not used.}
 
