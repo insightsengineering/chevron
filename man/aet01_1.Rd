@@ -46,6 +46,7 @@ aet01_1_check(
   req_tables = c("adsl", "adae"),
   armvar = .study$actualarm,
   safety_var = .study$safety_var,
+  lbl_safety_var = NULL,
   .study = list(actualarm = "ACTARM", lbl_overall = NULL, safety_var = c("FATAL", "SER",
     "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   ...

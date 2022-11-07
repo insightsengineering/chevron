@@ -76,8 +76,7 @@ aet01_1_main <- function(adam_db,
 
 #' @describeIn aet01_1 Layout
 #'
-#' @inheritParams gen_args
-#' @param safety_var (`character`) the safety variables to be summarized.
+#' @inheritParams aet01_1_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param ... not used
 #'
@@ -200,20 +199,7 @@ aet01_1_pre <- function(adam_db, ...) {
       RELWD = formatters::with_label(.data$RELWD, "Related AE leading to withdrawal from treatment"),
       RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"),
       CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(.data$CTC35, "Grade 3-5 AE"),
-      CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(.data$CTC45, "Grade 4/5 AE"),
-      SMQ01 = if ("SMQ01" %in% colnames(.)) {
-        formatters::with_label(
-          .data$SMQ01,
-          aesi_label(.data$SMQ01NAM, .data$SMQ01SC)
-        )
-      },
-      SMQ02 = if ("SMQ02" %in% colnames(.)) {
-        formatters::with_label(
-          .data$SMQ02,
-          aesi_label(.data$SMQ02NAM, .data$SMQ02SC)
-        )
-      },
-      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
+      CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(.data$CTC45, "Grade 4/5 AE")
     ) %>%
     dm_update_zoomed()
 
@@ -239,6 +225,7 @@ aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           armvar = .study$actualarm,
                           safety_var = .study$safety_var,
+                          lbl_safety_var = NULL,
                           .study = list(
                             actualarm = "ACTARM",
                             lbl_overall = NULL,
@@ -301,6 +288,7 @@ aet01_1 <- chevron_t(
 )
 
 
+
 # aet01_2 ----
 
 #' @describeIn aet01_2 Main TLG function
@@ -340,7 +328,7 @@ aet01_2_main <- function(adam_db,
                              "FATAL", "SER", "SERWD", "SERDSM",
                              "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                            ),
-                           medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                           medconcept_var = c("SMQ01")
                          ),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -393,10 +381,8 @@ aet01_2_main <- function(adam_db,
 
 #' @describeIn aet01_2 Layout
 #'
-#' @inheritParams gen_args
-#' @param safety_var (`character`) the safety variables to be summarized.
+#' @inheritParams aet01_2_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
-#' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
 #' @param ... not used.
 #'
@@ -420,8 +406,8 @@ aet01_2_lyt <- function(armvar = .study$actualarm,
                             "FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
                             "RELWD", "RELDSM", "CTC35", "CTC45", "SEV"
                           ),
-                          medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-                          lbl_medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                          medconcept_var = c("SMQ01"),
+                          lbl_medconcept_var = c("SMQ01")
                         ),
                         ...) {
   names(lbl_safety_var) <- safety_var
@@ -497,11 +483,12 @@ aet01_2_pre <- function(adam_db, ...) {
 
   aet01_2_check(adam_db, ...)
 
+  df <- adam_db$adae
+  labs <- formatters::var_labels(df)
+
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adae") %>%
     mutate(
       FATAL = .data$AESDTH == "Y",
       SER = .data$AESER == "Y",
@@ -540,16 +527,16 @@ aet01_2_pre <- function(adam_db, ...) {
       SMQ01 = if ("SMQ01" %in% colnames(.)) {
         formatters::with_label(
           .data$SMQ01,
-          aesi_label(.data$SMQ01NAM, .data$SMQ01SC)
+          .env$labs["SMQ01NAM"]
         )
       },
       SMQ02 = if ("SMQ02" %in% colnames(.)) {
         formatters::with_label(
           .data$SMQ02,
-          aesi_label(.data$SMQ02NAM, .data$SMQ02SC)
+          .env$labs["SMQ02SC"]
         )
       },
-      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, aesi_label(.data$CQ01NAM))
+      CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, .env$labs["CQ01NAM"])
     ) %>%
     dm_update_zoomed()
 
@@ -585,7 +572,7 @@ aet01_2_check <- function(adam_db,
                               "FATAL", "SER", "SERWD", "SERDSM",
                               "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                             ),
-                            medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+                            medconcept_var = c("SMQ01")
                           ),
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
