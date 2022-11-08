@@ -55,7 +55,7 @@ methods::setValidity("chevron_tlg", function(object) {
 
 #' `chevron_t`
 #'
-#' `chevron_t`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle table creation 
+#' `chevron_t`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle table creation
 #'
 #' @aliases chevron_table
 #' @rdname chevron_tlg-class
