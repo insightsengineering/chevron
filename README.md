@@ -1,6 +1,10 @@
 <!-- markdownlint-disable MD033 -->
 # Chevron: Standard TLGs for clinical trials reporting <a href='https://github.com/insightsengineering/chevron'><img src="man/figures/chevron.png" align="right" height="139" style="max-width: 100%;"/></a  >
 
+<!-- start badges -->
+[![Code Coverage](https://raw.githubusercontent.com/insightsengineering/chevron/_xml_coverage_reports/data/main/badge.svg)](https://raw.githubusercontent.com/insightsengineering/chevron/_xml_coverage_reports/data/main/coverage.xml)
+<!-- end badges -->
+
 <!-- markdownlint-enable MD033 -->
 
 `chevron` is a collection of function to create standard tables, listings, and graphs for clinical trials reporting.
