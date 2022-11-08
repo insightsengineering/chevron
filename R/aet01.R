@@ -18,7 +18,6 @@
 #' @export
 #'
 aet01_1_main <- function(adam_db,
-                         lyt_ls = list(aet01_1_lyt),
                          armvar = "ACTARM",
                          lbl_overall = NULL,
                          prune_0 = FALSE,
@@ -40,7 +39,7 @@ aet01_1_main <- function(adam_db,
     lbl_safety_var
   }
 
-  lyt <- lyt_ls[[1]](
+  lyt <- aet01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -259,7 +258,6 @@ aet01_1_check <- function(adam_db,
 #' run(aet01_1, syn_test_data(), armvar = "ARM")
 aet01_1 <- chevron_t(
   main = aet01_1_main,
-  lyt = aet01_1_lyt,
   preprocess = aet01_1_pre,
   adam_datasets = c("adsl", "adae")
 )
@@ -289,7 +287,6 @@ aet01_1 <- chevron_t(
 #' @export
 #'
 aet01_2_main <- function(adam_db,
-                         lyt_ls = list(aet01_2_lyt),
                          armvar = "ACTARM",
                          lbl_overall = NULL,
                          prune_0 = FALSE,
@@ -319,7 +316,7 @@ aet01_2_main <- function(adam_db,
     lbl_medconcept_var
   }
 
-  lyt <- lyt_ls[[1]](
+  lyt <- aet01_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -572,7 +569,6 @@ aet01_2_check <- function(adam_db,
 #' run(aet01_2, syn_test_data())
 aet01_2 <- chevron_t(
   main = aet01_2_main,
-  lyt = aet01_2_lyt,
   preprocess = aet01_2_pre,
   adam_datasets = c("adsl", "adae")
 )

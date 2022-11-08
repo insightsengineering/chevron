@@ -49,6 +49,8 @@
         Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
       Total number of patients with at least one                                                             
         SMQ 01 Reference Name                                      72 (53.7%)    79 (59.0%)      75 (56.8%)  
+        SMQ 02 Scope                                                0 (0.0%)      0 (0.0%)        0 (0.0%)   
+        CQ 01 Reference Name                                       74 (55.2%)    80 (59.7%)      87 (65.9%)  
 
 ---
 

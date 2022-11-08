@@ -26,7 +26,6 @@
 #' @export
 #'
 egt01_1_main <- function(adam_db,
-                         lyt_ls = list(egt01_1_lyt),
                          armvar = "ACTARM",
                          summaryvars = c("AVAL", "CHG"),
                          summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
@@ -43,7 +42,7 @@ egt01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
-  lyt <- lyt_ls[[1]](
+  lyt <- egt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -142,7 +141,6 @@ egt01_1_pre <- function(adam_db, ...) {
 #' run(egt01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 egt01_1 <- chevron_t(
   main = egt01_1_main,
-  lyt = egt01_1_lyt,
   preprocess = egt01_1_pre,
   adam_datasets = c("adeg")
 )

@@ -15,7 +15,6 @@
 #' @export
 #'
 cmt02_pt_1_main <- function(adam_db,
-                            lyt_ls = list(cmt02_pt_1_lyt),
                             armvar = "ARM",
                             prune_0 = TRUE,
                             lbl_overall = NULL,
@@ -23,7 +22,7 @@ cmt02_pt_1_main <- function(adam_db,
                             ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- cmt02_pt_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,

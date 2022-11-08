@@ -24,7 +24,6 @@
 #' @export
 #'
 cmt01a_1_main <- function(adam_db,
-                          lyt_ls = list(cmt01a_1_lyt),
                           armvar = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -38,7 +37,7 @@ cmt01a_1_main <- function(adam_db,
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- cmt01a_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -206,7 +205,6 @@ cmt01a_1 <- chevron_t(
 #' @export
 #'
 cmt01a_2_main <- function(adam_db,
-                          lyt_ls = list(cmt01a_1_lyt),
                           armvar = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -221,7 +219,7 @@ cmt01a_2_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   # The same layout can be used.
-  lyt <- lyt_ls[[1]](
+  lyt <- cmt01a_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -303,7 +301,6 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #' run(cmt01a_2, db)
 cmt01a_2 <- chevron_t(
   main = cmt01a_2_main,
-  lyt = cmt01a_1_lyt,
   preprocess = cmt01a_2_pre,
   adam_datasets = c("adsl", "adcm")
 )
@@ -335,7 +332,6 @@ cmt01a_2 <- chevron_t(
 #' @export
 #'
 cmt01a_3_main <- function(adam_db,
-                          lyt_ls = list(cmt01a_3_lyt),
                           armvar = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
@@ -349,7 +345,7 @@ cmt01a_3_main <- function(adam_db,
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- cmt01a_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
@@ -479,7 +475,6 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #' run(cmt01a_3, db)
 cmt01a_3 <- chevron_t(
   main = cmt01a_3_main,
-  lyt = cmt01a_3_lyt,
   preprocess = cmt01a_3_pre,
   adam_datasets = c("adsl", "adcm")
 )

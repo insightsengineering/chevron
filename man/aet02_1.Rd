@@ -14,7 +14,6 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 aet02_1_main(
   adam_db,
-  lyt_ls = list(aet02_1_lyt),
   armvar = "ACTARM",
   lbl_overall = NULL,
   prune_0 = TRUE,
@@ -39,9 +38,6 @@ aet02_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
-
-\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
-\code{chevron} stored in a \code{list}.}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 

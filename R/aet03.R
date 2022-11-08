@@ -18,7 +18,6 @@
 #' @export
 #'
 aet03_1_main <- function(adam_db,
-                         lyt_ls = list(aet03_1_lyt),
                          armvar = "ACTARM",
                          prune_0 = TRUE,
                          lbl_overall = NULL,
@@ -31,7 +30,7 @@ aet03_1_main <- function(adam_db,
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- aet03_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,

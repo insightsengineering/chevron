@@ -35,7 +35,6 @@
 #'
 #' dst01_1_main(db)
 dst01_1_main <- function(adam_db,
-                         lyt_ls = list(dst01_1_lyt),
                          armvar = "ARM",
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
@@ -49,7 +48,7 @@ dst01_1_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- lyt_ls[[1]](
+  lyt <- dst01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -193,7 +192,6 @@ dst01_1_pre <- function(adam_db,
 #' run(dst01_1, syn_test_data())
 dst01_1 <- chevron_t(
   main = dst01_1_main,
-  lyt = dst01_1_lyt,
   preprocess = dst01_1_pre,
   adam_datasets = c("adsl")
 )
@@ -236,7 +234,6 @@ dst01_1 <- chevron_t(
 #' dst01_2_main(db)
 #' dst01_2_main(db, lbl_overall = NULL)
 dst01_2_main <- function(adam_db,
-                         lyt_ls = list(dst01_2_lyt),
                          armvar = "ARM",
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
@@ -250,7 +247,7 @@ dst01_2_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- lyt_ls[[1]](
+  lyt <- dst01_2_lyt(
     armvar = armvar,
     status_var = status_var,
     disc_reason_var = disc_reason_var,
@@ -405,7 +402,6 @@ dst01_2_pre <- function(adam_db,
 #' run(dst01_2, syn_test_data())
 dst01_2 <- chevron_t(
   main = dst01_2_main,
-  lyt = dst01_2_lyt,
   preprocess = dst01_2_pre,
   adam_datasets = c("adsl")
 )
@@ -439,7 +435,6 @@ dst01_2 <- chevron_t(
 #' @note
 #'  * `adam_db` object must contain an `adsl` table with the column specified in `status`, `status_treatment` and
 #'  `disc_reason_var`.
-#'  * `lyt_ls` must contain a "treatment" and a "study" element.
 #'
 #' @export
 #'
@@ -453,7 +448,6 @@ dst01_2 <- chevron_t(
 #' dst01_3_main(db)
 #' dst01_3_main(db, lbl_overall = NULL)
 dst01_3_main <- function(adam_db,
-                         lyt_ls = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
                          armvar = "ARM",
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
@@ -462,15 +456,13 @@ dst01_3_main <- function(adam_db,
                          prune_0 = TRUE,
                          deco = std_deco("DST01"),
                          ...) {
-  checkmate::assert_subset(c("study", "treatment"), names(lyt_ls))
-
   # TODO: revisit
   status_trt_lvl <- levels(adam_db$adsl[[status_treatment_var]])
   completed_trt_lbl <- status_trt_lvl[grep("completed", status_trt_lvl, ignore.case = TRUE)]
   discontinued_trt_lbl <- status_trt_lvl[grep("discontinued", status_trt_lvl, ignore.case = TRUE)]
   ongoing_trt_lbl <- status_trt_lvl[grep("ongoing", status_trt_lvl, ignore.case = TRUE)]
 
-  lyt <- lyt_ls[["treatment"]](
+  lyt <- dst01_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -493,7 +485,7 @@ dst01_3_main <- function(adam_db,
   discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
   ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
 
-  lyt <- lyt_ls[["study"]](
+  lyt <- dst01_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -633,7 +625,6 @@ dst01_3_pre <- function(adam_db,
 #' run(dst01_3, syn_test_data())
 dst01_3 <- chevron_t(
   main = dst01_3_main,
-  lyt = list(treatment = dst01_3_lyt, study = dst01_2_lyt),
   preprocess = dst01_3_pre,
   adam_datasets = c("adsl")
 )

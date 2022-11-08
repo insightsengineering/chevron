@@ -19,7 +19,6 @@
 #' @export
 #'
 aet02_1_main <- function(adam_db,
-                         lyt_ls = list(aet02_1_lyt),
                          armvar = "ACTARM",
                          lbl_overall = NULL,
                          prune_0 = TRUE,
@@ -29,7 +28,7 @@ aet02_1_main <- function(adam_db,
 
   assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))
 
-  lyt <- lyt_ls[[1]](
+  lyt <- aet02_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -193,7 +192,6 @@ aet02_1 <- chevron_t(
 #' @export
 #'
 aet02_2_main <- function(adam_db,
-                         lyt_ls = list(aet02_2_lyt),
                          armvar = "ACTARM",
                          lbl_overall = NULL,
                          prune_0 = TRUE,
@@ -203,7 +201,7 @@ aet02_2_main <- function(adam_db,
 
   assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "AEHLT"))
 
-  lyt <- lyt_ls[[1]](
+  lyt <- aet02_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -365,7 +363,6 @@ aet02_2 <- chevron_t(
 #' @export
 #'
 aet02_3_main <- function(adam_db,
-                         lyt_ls = list(aet02_3_lyt),
                          armvar = "ACTARM",
                          lbl_overall = NULL,
                          prune_0 = TRUE,
@@ -373,7 +370,7 @@ aet02_3_main <- function(adam_db,
                          ...) {
   assert_colnames(adam_db$adae, c("AEDECOD"))
 
-  lyt <- lyt_ls[[1]](
+  lyt <- aet02_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -479,7 +476,6 @@ aet02_3_pre <- function(adam_db, ...) {
 #' run(aet02_3, syn_test_data())
 aet02_3 <- chevron_t(
   main = aet02_3_main,
-  lyt = aet02_3_lyt,
   preprocess = aet02_3_pre,
   adam_datasets = c("adsl", "adae")
 )
