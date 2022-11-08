@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9007</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9008</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -107,9 +98,7 @@ graphs.</p>
 <p>Each standard output is associated with one
 <em><code>chevron_tlg</code> object</em>. They contain the following
 objects in separate slots: * A <code>main</code> function also refereed
-to as <em>TLG-function</em>. * A <code>lyt</code> list of functions also
-refereed to as <em>Layout-list</em>. (only for <code>chevron_t</code>
-objects) * A <code>preprocess</code> function. * A
+to as <em>TLG-function</em>. * A <code>preprocess</code> function. * A
 <code>postprocess</code> function * A <code>adam_dataset</code>
 character vector of the name of the <code>AdAM</code> datasets required
 to create the output.</p>
@@ -142,22 +131,9 @@ collection of <code>ADaM</code> datasets (<code>ADSL</code>,
 <code>ADAE</code>, <code>ADRS</code>, etc.). Please read the <em>The
 <code>adam_db</code> Argument</em> vignette in this package for more
 details.</li>
-<li>If they are of the subclass <code>chevron_t</code>, have always as
-second argument <code>lyt_ls</code>, a list of functions returning
-<code>Pre-data Table Layout</code> that are used by the main function to
-generate the output.</li>
 <li>have the <code>...</code> argument to facilitate their incorporation
 in a workflow including pre and post processing.</li>
 </ol>
-</div>
-<div class="section level4">
-<h4 id="layout-list">
-<em>Layout-list</em><a class="anchor" aria-label="anchor" href="#layout-list"></a>
-</h4>
-<p><em>Layout-list</em> in <code>chevron</code> are stored in each
-<code>chevron_t</code> objects as list of functions in the
-<code>lyt</code> slot. These functions must have the formal argument
-<code>...</code>.</p>
 </div>
 <div class="section level4">
 <h4 id="pre-processing">
@@ -232,9 +208,7 @@ vignette.</p>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"ASTDTM"</span>, <span class="st">"AETERM"</span>, <span class="st">"AESEQ"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://cynkra.github.io/dm/reference/deprecated.html" class="external-link">validate_dm</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: `validate_dm()` was deprecated in dm 0.3.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `dm_validate()` instead.</span></span></code></pre></div>
+<span><span class="fu"><a href="https://cynkra.github.io/dm/reference/dm_validate.html" class="external-link">dm_validate</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span></code></pre></div>
 <p>A the <code>aet02_1</code> output is then created as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span></span>
@@ -284,13 +258,12 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <code>datasets</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/main.html">main</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function (adam_db, lyt_ls = list(aet02_1_lyt), armvar = "ACTARM", </span></span>
-<span><span class="co">#&gt;     lbl_overall = NULL, prune_0 = TRUE, deco = std_deco("AET02"), </span></span>
-<span><span class="co">#&gt;     ...) </span></span>
+<span><span class="co">#&gt; function (adam_db, armvar = "ACTARM", lbl_overall = NULL, prune_0 = TRUE, </span></span>
+<span><span class="co">#&gt;     deco = std_deco("AET02"), ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     dbsel &lt;- get_db_data(adam_db, "adsl", "adae")</span></span>
 <span><span class="co">#&gt;     assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))</span></span>
-<span><span class="co">#&gt;     lyt &lt;- lyt_ls[[1]](armvar = armvar, lbl_overall = lbl_overall, </span></span>
+<span><span class="co">#&gt;     lyt &lt;- aet02_1_lyt(armvar = armvar, lbl_overall = lbl_overall, </span></span>
 <span><span class="co">#&gt;         deco = deco, ... = ...)</span></span>
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     if (prune_0) {</span></span>
@@ -301,7 +274,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;         "*", "AEDECOD"), scorefun = score_occurrences)</span></span>
 <span><span class="co">#&gt;     tbl_sorted</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55aa9e6f28b8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e1fefacda8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -328,13 +301,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <p>In some instances it is useful to customize the
 <code>chevron_tlg</code> object, for example by changing the pre
 processing functions. Be aware that you have to think carefully about
-argument names and compatibility with downstream functions. The
-<code>lyt</code> slot stores a <code>list of functions</code> but the
-constructor and setter method <code>lyt&lt;-</code> can handle input of
-class <code>function</code> and <code>list of functions</code>, as long
-as they possess the formal argument <code>...</code>, or
-<code>Pre-Data Table Layout</code> or list of
-<code>Pre-Data Table Layout</code>.</p>
+argument names and compatibility with downstream functions.</p>
 <p>Note that this operation creates a local version of the
 <code>chevron_tlg</code> object. The package version of the
 <code>chevron_tlg</code> object (accessible with
@@ -342,34 +309,7 @@ as they possess the formal argument <code>...</code>, or
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span> <span class="va">adam_db</span></span>
 <span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function(adam_db, ...) adam_db</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/lyt.html">lyt</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tern/man/count_occurrences.html" class="external-link">count_occurrences</a></span><span class="op">(</span></span>
-<span>    vars <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
-<span>    .indent_mods <span class="op">=</span> <span class="op">-</span><span class="fl">1L</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/lyt.html">lyt</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arm</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://roche.github.io/rtables/reference/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="va">arm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tern/man/count_occurrences.html" class="external-link">count_occurrences</a></span><span class="op">(</span></span>
-<span>      vars <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
-<span>      .indent_mods <span class="op">=</span> <span class="op">-</span><span class="fl">1L</span></span>
-<span>    <span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/lyt.html">lyt</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; function(arm, ...) {</span></span>
-<span><span class="co">#&gt;   rtables::basic_table() %&gt;%</span></span>
-<span><span class="co">#&gt;     rtables::split_cols_by(arm) %&gt;%</span></span>
-<span><span class="co">#&gt;     tern::count_occurrences(</span></span>
-<span><span class="co">#&gt;       vars = "AEDECOD",</span></span>
-<span><span class="co">#&gt;       .indent_mods = -1L</span></span>
-<span><span class="co">#&gt;     )</span></span>
-<span><span class="co">#&gt; }</span></span></code></pre></div>
+<span><span class="co">#&gt; function(adam_db, ...) adam_db</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="custom-chevron_tlg-object-creation">Custom <code>chevron_tlg</code> object creation<a class="anchor" aria-label="anchor" href="#custom-chevron_tlg-object-creation"></a>
@@ -385,21 +325,65 @@ provided constructors corresponding to the desired output:</p>
 <code><a href="../reference/chevron_tlg-class.html">chevron_g()</a></code> for graphs.</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">my_pipeline</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chevron_tlg-class.html">chevron_t</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/roche/rtables" class="external-link">rtables</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: magrittr</span></span>
+<span><span class="co">#&gt; Loading required package: formatters</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/insightsengineering/tern" class="external-link">tern</a></span><span class="op">)</span></span>
+<span><span class="va">my_template</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chevron_tlg-class.html">chevron_t</a></span><span class="op">(</span></span>
 <span>  main <span class="op">=</span> <span class="va">aet02_1_main</span>,</span>
 <span>  preprocess <span class="op">=</span> <span class="va">aet02_1_pre</span>,</span>
 <span>  postprocess <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Finished at"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="va">tlg</span></span>
+<span>    <span class="va">tbl_sorted</span> <span class="op">&lt;-</span> <span class="va">tlg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://roche.github.io/rtables/reference/sort_at_path.html" class="external-link">sort_at_path</a></span><span class="op">(</span></span>
+<span>        path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AEBODSYS"</span><span class="op">)</span>,</span>
+<span>        scorefun <span class="op">=</span> <span class="fu"><a href="https://roche.github.io/rtables/reference/score_funs.html" class="external-link">cont_n_onecol</a></span><span class="op">(</span>j <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># sort based on your chosen column</span></span>
+<span>      <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://roche.github.io/rtables/reference/sort_at_path.html" class="external-link">sort_at_path</a></span><span class="op">(</span></span>
+<span>        path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AEBODSYS"</span>, <span class="st">"*"</span>, <span class="st">"AEDECOD"</span><span class="op">)</span>,</span>
+<span>        scorefun <span class="op">=</span> <span class="va">score_occurrences</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="va">tbl_sorted</span></span>
 <span>  <span class="op">}</span>,</span>
 <span>  adam_datasets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_pipeline</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Finished at 2022-11-07 15:15:21"</span></span>
-<span><span class="co">#&gt;    all obs</span></span>
-<span><span class="co">#&gt; ——————————</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_template</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; MedDRA System Organ Class                                     A: Drug X    B: Placebo   C: Combination</span></span>
+<span><span class="co">#&gt;   MedDRA Preferred Term                                        (N=134)      (N=134)        (N=132)    </span></span>
+<span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; Total number of patients with at least one adverse event     100 (74.6%)   98 (73.1%)     103 (78%)   </span></span>
+<span><span class="co">#&gt; Overall total number of events                                   502          480            604      </span></span>
+<span><span class="co">#&gt; cl A.1                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   68 (50.7%)    58 (43.3%)     76 (57.6%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         115           99            137      </span></span>
+<span><span class="co">#&gt;   dcd A.1.1.1.1                                              45 (33.6%)    31 (23.1%)     52 (39.4%)  </span></span>
+<span><span class="co">#&gt;   dcd A.1.1.1.2                                              41 (30.6%)    39 (29.1%)     42 (31.8%)  </span></span>
+<span><span class="co">#&gt; cl B.2                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   62 (46.3%)    56 (41.8%)     74 (56.1%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         102          106            127      </span></span>
+<span><span class="co">#&gt;   dcd B.2.2.3.1                                              38 (28.4%)    40 (29.9%)     45 (34.1%)  </span></span>
+<span><span class="co">#&gt;   dcd B.2.1.2.1                                              39 (29.1%)    34 (25.4%)     46 (34.8%)  </span></span>
+<span><span class="co">#&gt; cl D.1                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   64 (47.8%)    54 (40.3%)     68 (51.5%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         106           84            114      </span></span>
+<span><span class="co">#&gt;   dcd D.1.1.1.1                                              42 (31.3%)    32 (23.9%)     46 (34.8%)  </span></span>
+<span><span class="co">#&gt;   dcd D.1.1.4.2                                              38 (28.4%)    34 (25.4%)     40 (30.3%)  </span></span>
+<span><span class="co">#&gt; cl D.2                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         49            57             65      </span></span>
+<span><span class="co">#&gt;   dcd D.2.1.5.3                                              37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
+<span><span class="co">#&gt; cl C.2                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         39            40             57      </span></span>
+<span><span class="co">#&gt;   dcd C.2.1.2.1                                              28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
+<span><span class="co">#&gt; cl B.1                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         44            43             50      </span></span>
+<span><span class="co">#&gt;   dcd B.1.1.1.1                                              38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
+<span><span class="co">#&gt; cl C.1                                                                                                </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   36 (26.9%)    34 (25.4%)     36 (27.3%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         47            51             54      </span></span>
+<span><span class="co">#&gt;   dcd C.1.1.1.3                                              36 (26.9%)    34 (25.4%)     36 (27.3%)</span></span></code></pre></div>
 <p>Note that to ensure the correct execution of the <code>run</code>
 function, the name of the first argument of the <code>main</code>
 function must be <code>adam_db</code>; the input <code>dm</code> object
