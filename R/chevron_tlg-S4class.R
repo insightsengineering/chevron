@@ -49,98 +49,25 @@ methods::setValidity("chevron_tlg", function(object) {
   checkmate::reportAssertions(coll)
 })
 
-#' Layout List Constructor
-#'
-#' @inheritParams chevron_t
-#'
-#' @keywords internal
-#'
-#' @examples
-#' \dontrun{
-#' my_obj <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
-#' lyt2 <- make_lyt_ls(my_obj)
-#'
-#' my_fun <- function(arm = "ARM", ...) rtables::basic_table() %>% rtables::split_cols_by(arm)
-#' lyt3 <- make_lyt_ls(my_fun)
-#' }
-make_lyt_ls <- function(lyt) {
-  cl <- class(lyt)
-
-  switch(cl,
-    "function" = {
-      checkmate::assert_function(lyt, args = "...")
-      list(lyt)
-    },
-    "list" = {
-      coll <- checkmate::makeAssertCollection()
-      res <- list()
-      for (i in seq_along(lyt)) {
-        obj <- lyt[[i]]
-        res[[i]] <- if (is(obj, "function")) {
-          checkmate::assert_function(
-            lyt[[i]],
-            args = "...",
-            add = coll,
-            .var.name = paste("Element", i, "of the layout input")
-          )
-          obj
-        } else if (is(obj, "PreDataTableLayouts")) {
-          arg <- as.pairlist(alist(... = )) # nolint
-          eval(call("function", arg, obj))
-        } else {
-          checkmate::assert_multi_class(
-            obj,
-            c("function", "PreDataTableLayouts"),
-            .var.name = paste("Element", i, "of the layout input")
-          )
-        }
-        checkmate::reportAssertions(coll)
-        lyt
-      }
-
-      names(res) <- names(lyt)
-      res
-    },
-    "PreDataTableLayouts" = {
-      arg <- as.pairlist(alist(... = )) # nolint
-      list(eval(call("function", arg, lyt)))
-    },
-    stop(paste("lyt must be a `function`, `list of functions` or `PreDataTableLayouts` but is", toString(cl)))
-  )
-}
-
 # Subclasses ----
 
 ## chevron_t ----
 
 #' `chevron_t`
 #'
-#' `chevron_t`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle graph creation
-#' and an additional `lyt` slot.
-#'
-#' @slot lyt (`list of function`).  Typically one of the `*_lyt` function from `chevron` wrapped in a `list`.
+#' `chevron_t`, a subclass of [chevron::chevron_tlg-class] with specific validation criteria to handle table creation 
 #'
 #' @aliases chevron_table
 #' @rdname chevron_tlg-class
 #' @exportClass chevron_t
 .chevron_t <- setClass(
   "chevron_t",
-  slot = c(lyt = "list"),
   contains = "chevron_tlg"
 )
 
 methods::setValidity("chevron_t", function(object) {
   coll <- checkmate::makeAssertCollection()
-  checkmate::assert_function(object@main, args = c("adam_db", "lyt_ls"), ordered = TRUE, add = coll)
-  checkmate::assert_list(object@lyt, types = "function", add = coll)
-  for (i in seq_along(object@lyt)) {
-    checkmate::assert_function(
-      object@lyt[[i]],
-      args = "...",
-      add = coll,
-      .var.name = paste("Element", i, "of the lyt slot")
-    )
-  }
+  checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
   checkmate::reportAssertions(coll)
 })
 
@@ -192,10 +119,6 @@ methods::setValidity("chevron_g", function(object) {
 #' @rdname chevron_tlg-class
 #'
 #' @inheritParams gen_args
-#' @param lyt  (a single `function` returning `PreDataTableLayouts` object or `PreDataTableLayouts` object or `list` of
-#'   either `functions` or `PreDataTableLayouts` type of elements) typically one of the `_lyt` function of `chevron`.
-#'   Functions passed to `lyt`, whether as a single `function` or as a `list of functions`, must have the `...` formal
-#'   argument.
 #' @param ... not used.
 #'
 #' @export
@@ -207,15 +130,13 @@ methods::setValidity("chevron_g", function(object) {
 #'   tlg
 #' })
 #'
-chevron_t <- function(main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[1]](), adam_db[[1]]),
-                      lyt = list(function(...) basic_table()),
+chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = report_null,
                       adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_t(
     main = main,
-    lyt = make_lyt_ls(lyt),
     preprocess = preprocess,
     postprocess = postprocess,
     adam_datasets = adam_datasets

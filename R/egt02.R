@@ -18,7 +18,6 @@
 #' @export
 #'
 egt02_1_main <- function(adam_db,
-                         lyt_ls = list(egt02_1_lyt),
                          armvar = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -28,7 +27,7 @@ egt02_1_main <- function(adam_db,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- egt02_1_lyt(
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
@@ -99,7 +98,6 @@ egt02_1_pre <- function(adam_db, ...) {
 #' run(egt02_1, syn_test_data())
 egt02_1 <- chevron_t(
   main = egt02_1_main,
-  lyt = egt02_1_lyt,
   preprocess = egt02_1_pre,
   adam_datasets = c("adsl", "adeg")
 )
@@ -124,7 +122,6 @@ egt02_1 <- chevron_t(
 #' @export
 #'
 egt02_2_main <- function(adam_db,
-                         lyt_ls = list(egt02_2_lyt),
                          armvar = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
@@ -134,7 +131,7 @@ egt02_2_main <- function(adam_db,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- egt02_2_lyt(
     armvar = armvar,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
@@ -205,7 +202,6 @@ egt02_2_pre <- function(adam_db, ...) {
 #' run(egt02_2, syn_test_data())
 egt02_2 <- chevron_t(
   main = egt02_2_main,
-  lyt = egt02_2_lyt,
   preprocess = egt02_2_pre,
   adam_datasets = c("adsl", "adeg")
 )

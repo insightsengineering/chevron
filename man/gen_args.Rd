@@ -6,7 +6,6 @@
 \usage{
 gen_args(
   adam_db,
-  lyt_ls,
   main,
   preprocess,
   postprocess,
@@ -24,9 +23,6 @@ gen_args(
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
-
-\item{lyt_ls}{(\verb{list of functions} returning \code{PreDataTableLayout} object. Typically one of the \verb{_lyt} function of
-\code{chevron} stored in a \code{list}.}
 
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
 one of the \verb{_main} function of \code{chevron}.}

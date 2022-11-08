@@ -20,7 +20,6 @@
 #' @export
 #'
 aet04_1_main <- function(adam_db,
-                         lyt_ls = list(aet04_1_lyt),
                          armvar = "ACTARM",
                          group_grades = NULL,
                          lbl_overall = NULL,
@@ -42,7 +41,7 @@ aet04_1_main <- function(adam_db,
     )
   }
 
-  lyt <- lyt_ls[[1]](
+  lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
@@ -195,7 +194,6 @@ aet04_1_pre <- function(adam_db, ...) {
 #' run(aet04_1, syn_test_data(), group_grades = group_grades)
 aet04_1 <- chevron_t(
   main = aet04_1_main,
-  lyt = aet04_1_lyt,
   preprocess = aet04_1_pre,
   adam_datasets = c("adsl", "adae")
 )

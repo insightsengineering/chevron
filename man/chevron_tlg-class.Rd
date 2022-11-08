@@ -19,8 +19,7 @@
 \title{\code{chevron_t}}
 \usage{
 chevron_t(
-  main = function(adam_db, lyt_ls, ...) build_table(lyt_ls[[1]](), adam_db[[1]]),
-  lyt = list(function(...) basic_table()),
+  main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = report_null,
   adam_datasets = NA_character_,
@@ -47,11 +46,6 @@ chevron_g(
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
 one of the \verb{_main} function of \code{chevron}.}
 
-\item{lyt}{(a single \code{function} returning \code{PreDataTableLayouts} object or \code{PreDataTableLayouts} object or \code{list} of
-either \code{functions} or \code{PreDataTableLayouts} type of elements) typically one of the \verb{_lyt} function of \code{chevron}.
-Functions passed to \code{lyt}, whether as a single \code{function} or as a \verb{list of functions}, must have the \code{...} formal
-argument.}
-
 \item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument and \code{...} as
 last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
 
@@ -63,8 +57,7 @@ creation.}
 \item{...}{not used.}
 }
 \description{
-\code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation
-and an additional \code{lyt} slot.
+\code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle table creation
 
 \code{chevron_l}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle listing creation
 
@@ -82,8 +75,6 @@ and an additional \code{lyt} slot.
 
 \item{\code{adam_datasets}}{(\code{character}) representing the name of the tables from an \code{AdAM} dataset required for \code{tlg}
 creation.}
-
-\item{\code{lyt}}{(\verb{list of function}).  Typically one of the \verb{*_lyt} function from \code{chevron} wrapped in a \code{list}.}
 }}
 
 \note{

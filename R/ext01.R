@@ -21,7 +21,6 @@
 #' @export
 #'
 ext01_1_main <- function(adam_db,
-                         lyt_ls = list(ext01_1_lyt),
                          armvar = "ACTARM",
                          summaryvars = "AVAL",
                          lbl_overall = NULL,
@@ -32,7 +31,7 @@ ext01_1_main <- function(adam_db,
 
   summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
 
-  lyt <- lyt_ls[[1]](
+  lyt <- ext01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -119,7 +118,6 @@ ext01_1_pre <- function(adam_db,
 #' run(ext01_1, syn_test_data())
 ext01_1 <- chevron_t(
   main = ext01_1_main,
-  lyt = ext01_1_lyt,
   preprocess = ext01_1_pre,
   adam_datasets = c("adsl", "adex")
 )
@@ -147,7 +145,6 @@ ext01_1 <- chevron_t(
 #' @export
 #'
 ext01_2_main <- function(adam_db,
-                         lyt_ls = list(ext01_2_lyt),
                          armvar = "ACTARM",
                          lbl_overall = NULL,
                          prune_0 = TRUE,
@@ -160,7 +157,7 @@ ext01_2_main <- function(adam_db,
 
   summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
 
-  lyt <- lyt_ls[[1]](
+  lyt <- ext01_2_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -257,7 +254,6 @@ ext01_2_pre <- function(adam_db,
 #' run(ext01_2, syn_test_data())
 ext01_2 <- chevron_t(
   main = ext01_2_main,
-  lyt = ext01_2_lyt,
   preprocess = ext01_2_pre,
   adam_datasets = c("adsl", "adex")
 )

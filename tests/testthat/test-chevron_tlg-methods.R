@@ -13,22 +13,11 @@ test_that("main works as expected", {
 })
 
 test_that("main setter works as expected", {
-  func <- function(adam_db, lyt_ls, ...) {
-    build_table(lyt_ls, adam_db)
+  func <- function(adam_db, ...) {
+    build_table(basic_table(), adam_db)
   }
   main(aet04_1) <- func
   expect_identical(aet04_1@main, func)
-})
-
-# lyt ----
-
-test_that("lyt setter works as expected with pre-data table layout", {
-  my_tab <- rtables::basic_table() %>% rtables::split_cols_by("ARM")
-  lyt(aet04_1) <- my_tab
-  expect_equal(
-    aet04_1@lyt[[1]](),
-    my_tab
-  )
 })
 
 # preprocess ----
@@ -69,34 +58,26 @@ test_that("datasets setter works as expected", {
   expect_identical(aet04_1@adam_datasets, c("adsl", "adxx"))
 })
 
-# get_main ----
+# main ----
 
-test_that("get_main works as expected", {
+test_that("main works as expected", {
   skip_if_not(interactive())
-  res <- get_main(aet04_1)
+  res <- main(aet04_1)
   expect_identical(res, aet04_1_main)
 })
 
-# get_preprocess ----
+# preprocess ----
 
-test_that("get_preprocess works as expected", {
+test_that("preprocess works as expected", {
   skip_if_not(interactive())
-  res <- get_preprocess(aet04_1)
+  res <- preprocess(aet04_1)
   expect_identical(res, aet04_1_pre)
 })
 
-# get_postprocess ----
+# postprocess ----
 
-test_that("get_postprocess works as expected", {
+test_that("postprocess works as expected", {
   skip_if_not(interactive())
-  res <- get_postprocess(aet04_1)
+  res <- postprocess(aet04_1)
   expect_identical(res, report_null)
-})
-
-# get_adam_datasets ----
-
-test_that("get_adam_datasets works as expected", {
-  skip_if_not(interactive())
-  res <- get_adam_datasets(aet04_1)
-  expect_identical(res, c("adsl", "adae"))
 })

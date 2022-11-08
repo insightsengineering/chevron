@@ -14,12 +14,10 @@
 #' @note
 #' * `adam_db` object must contain an `adsl` table with the columns `"DTHFL"`, `"DTHCAT"` as well as `LDDTHGR1` if
 #' `time_since_last_dose` is `TRUE`.
-#' * `lyt_ls` must contain a "causes" and, if `time_since_last_dose` is `TRUE`, a "time_since_last_dose" element.
 #'
 #' @export
 #'
 dtht01_1_main <- function(adam_db,
-                          lyt_ls = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
                           armvar = "ACTARM",
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
@@ -29,14 +27,13 @@ dtht01_1_main <- function(adam_db,
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl")
 
-  checkmate::assert_subset("causes", names(lyt_ls))
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
   checkmate::assert_factor(dbsel$adsl$DTHCAT, any.missing = FALSE)
   checkmate::assert_flag(time_since_last_dose)
   checkmate::assert_flag(other_category)
 
 
-  lyt <- lyt_ls[["causes"]](
+  lyt <- dtht01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
@@ -53,10 +50,9 @@ dtht01_1_main <- function(adam_db,
 
 
   if (time_since_last_dose) {
-    checkmate::assert_subset("time_since_last_dose", names(lyt_ls))
     checkmate::assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
-    lyt2 <- lyt_ls[["time_since_last_dose"]](
+    lyt2 <- dtht01_1_opt_lyt(
       armvar = armvar,
       lbl_overall = lbl_overall,
       deco = deco,
@@ -210,7 +206,6 @@ dtht01_1_pre <- function(adam_db, ...) {
 #' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
 dtht01_1 <- chevron_t(
   main = dtht01_1_main,
-  lyt = list(causes = dtht01_1_lyt, time_since_last_dose = dtht01_1_opt_lyt),
   preprocess = dtht01_1_pre,
   adam_datasets = c("adsl")
 )

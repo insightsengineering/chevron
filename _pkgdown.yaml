@@ -30,7 +30,6 @@ reference:
     contents:
       - run
       - main
-      - lyt
       - preprocess
       - postprocess
       - datasets

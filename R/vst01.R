@@ -25,7 +25,6 @@
 #' @export
 #'
 vst01_1_main <- function(adam_db,
-                         lyt_ls = list(vst01_1_lyt),
                          armvar = "ACTARM",
                          summaryvars = c("AVAL", "CHG"),
                          summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
@@ -42,7 +41,7 @@ vst01_1_main <- function(adam_db,
     summaryvars_lbls
   }
 
-  lyt <- lyt_ls[[1]](
+  lyt <- vst01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -147,7 +146,6 @@ vst01_1_pre <- function(adam_db, ...) {
 #' run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 vst01_1 <- chevron_t(
   main = vst01_1_main,
-  lyt = vst01_1_lyt,
   preprocess = vst01_1_pre,
   adam_datasets = c("adsl", "advs")
 )
