@@ -145,7 +145,7 @@ my_template <- chevron_t(
     tbl_sorted <- tlg %>%
       sort_at_path(
         path = c("AEBODSYS"),
-        scorefun = cont_n_onecol(j=3) # sort based on your chosen column
+        scorefun = cont_n_onecol(j = 3) # sort based on your chosen column
       ) %>%
       sort_at_path(
         path = c("AEBODSYS", "*", "AEDECOD"),
