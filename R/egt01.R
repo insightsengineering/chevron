@@ -56,7 +56,6 @@ egt01_1_main <- function(adam_db,
     lyt,
     df = adam_db$adeg
   )
-
 }
 
 #' @describeIn egt01_1 Layout

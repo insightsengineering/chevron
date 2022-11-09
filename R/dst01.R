@@ -648,7 +648,7 @@ dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl <- set_decoration(tbl, deco)
 
   report_null(tbl)
-} 
+}
 #' DST01 Table 3 (Supplementary) Patient Disposition Table 3.
 #'
 #' The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
