@@ -27,7 +27,6 @@ report clinical trials data. The ensemble of function used to produce a particul
 
 Each standard output is associated with one  *`chevron_tlg` object*. They contain the following objects in separate slots:
 * A `main` function also refereed to as *TLG-function*.
-* A `lyt` list of functions also refereed to as *Layout-list*. (only for `chevron_t` objects)
 * A `preprocess` function.
 * A `postprocess` function
 * A `adam_dataset` character vector of the name of the `AdAM` datasets required to create the output.
@@ -47,12 +46,8 @@ used to create listings and tables, and `ggplot2`, `lattice`, and `grid` are use
 variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
-1. If they are of the subclass `chevron_t`, have always as second argument `lyt_ls`, a list of functions returning `Pre-data Table Layout` that are used by the main function to generate the output.
 1. have the `...` argument to facilitate their incorporation in a workflow including pre and post processing.
 
-### *Layout-list*
-*Layout-list* in `chevron` are stored in each `chevron_t` objects as list of functions in the `lyt` slot. These functions must have the formal argument `...`.
- 
 ### *pre-processing*
 The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
 suitable input for *TLG-functions*. The pre-processing step typically includes checks that will ensure that the `dm`
@@ -94,7 +89,7 @@ adam_study_data <- dm(adsl = syn_data$adsl, adae = syn_data$adae) %>%
   dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
   dm_add_pk(adae, c("USUBJID", "STUDYID", "ASTDTM", "AETERM", "AESEQ"))
 
-validate_dm(adam_study_data)
+dm_validate(adam_study_data)
 ```
 
 A the `aet02_1` output is then created as follows:
@@ -122,7 +117,7 @@ foo(adam_study_data)
 
 # `chevron_tlg` object customization
 
-In some instances it is useful to customize the `chevron_tlg` object, for example by changing the pre processing functions. Be aware that you have to think carefully about argument names and compatibility with downstream functions. The `lyt` slot stores a `list of functions` but the constructor and setter method `lyt<-` can handle input of class `function` and `list of functions`, as long as they possess the formal argument `...`, or `Pre-Data Table Layout` or list of `Pre-Data Table Layout`.
+In some instances it is useful to customize the `chevron_tlg` object, for example by changing the pre processing functions. Be aware that you have to think carefully about argument names and compatibility with downstream functions.
 
 Note that this operation creates a local version of the `chevron_tlg` object. The package version of the `chevron_tlg`
 object (accessible with `chevron::aet01_1`) remains unchanged.
@@ -130,24 +125,6 @@ object (accessible with `chevron::aet01_1`) remains unchanged.
 ```{r}
 preprocess(aet02_1) <- function(adam_db, ...) adam_db
 preprocess(aet02_1)
-
-lyt(aet02_1) <- rtables::basic_table() %>%
-  rtables::split_cols_by("ARM") %>%
-  tern::count_occurrences(
-    vars = "AEDECOD",
-    .indent_mods = -1L
-  )
-
-lyt(aet02_1) <- function(arm, ...) {
-  rtables::basic_table() %>%
-    rtables::split_cols_by(arm) %>%
-    tern::count_occurrences(
-      vars = "AEDECOD",
-      .indent_mods = -1L
-    )
-}
-
-lyt(aet02_1)
 ```
 
 # Custom `chevron_tlg` object creation
@@ -159,18 +136,27 @@ To create a `chevron_tlg` object from scratch, use the provided constructors cor
 * `chevron_g()` for graphs.
 
 ```{r}
-
-my_pipeline <- chevron_t(
+library(rtables)
+library(tern)
+my_template <- chevron_t(
   main = aet02_1_main,
   preprocess = aet02_1_pre,
   postprocess = function(tlg, ...) {
-    print(paste("Finished at", Sys.time()))
-    tlg
+    tbl_sorted <- tlg %>%
+      sort_at_path(
+        path = c("AEBODSYS"),
+        scorefun = cont_n_onecol(j = 3) # sort based on your chosen column
+      ) %>%
+      sort_at_path(
+        path = c("AEBODSYS", "*", "AEDECOD"),
+        scorefun = score_occurrences
+      )
+    tbl_sorted
   },
   adam_datasets = c("adsl", "adae")
 )
 
-run(my_pipeline, adam_study_data)
+run(my_template, adam_study_data)
 ```
 
 

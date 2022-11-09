@@ -22,7 +22,6 @@
 #' @export
 #'
 mht01_1_main <- function(adam_db,
-                         lyt_ls = list(mht01_1_lyt),
                          armvar = "ARM",
                          lbl_overall = NULL,
                          lbl_mhbodsys = "MedDRA System Organ Class",
@@ -35,7 +34,7 @@ mht01_1_main <- function(adam_db,
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- mht01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
@@ -150,7 +149,6 @@ mht01_1_pre <- function(adam_db, ...) {
 #' run(mht01_1, syn_test_data())
 mht01_1 <- chevron_t(
   main = mht01_1_main,
-  lyt = mht01_1_lyt,
   preprocess = mht01_1_pre,
   adam_datasets = c("adsl", "admh")
 )

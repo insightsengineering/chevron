@@ -2,8 +2,6 @@
 #' General Argument Name Convention
 #'
 #' @param adam_db (`dm`) object containing the `ADaM` datasets
-#' @param lyt_ls (`list of functions` returning `PreDataTableLayout` object. Typically one of the `_lyt` function of
-#'   `chevron` stored in a `list`.
 #' @param main (`function`) returning a `tlg`, with `adam_db` as first argument and `...` as last argument. Typically
 #'   one of the `_main` function of `chevron`.
 #' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument and `...` as
@@ -23,7 +21,7 @@
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `armvar`.
 #'
-gen_args <- function(adam_db, lyt_ls, main, preprocess, postprocess, adam_datasets,
+gen_args <- function(adam_db, main, preprocess, postprocess, adam_datasets,
                      type, armvar, lbl_overall, prune_0, req_tables, deco, group,
                      tlg, tlgfname) {
   NULL

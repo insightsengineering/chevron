@@ -34,7 +34,6 @@
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 #' )
 dmt01_1_main <- function(adam_db,
-                         lyt_ls = list(dmt01_1_lyt),
                          armvar = "ARM",
                          summaryvars = c("AGE", "SEX", "COUNTRY", "RACE"),
                          summaryvars_lbls = NULL,
@@ -52,7 +51,7 @@ dmt01_1_main <- function(adam_db,
 
   checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
 
-  lyt <- lyt_ls[[1]](
+  lyt <- dmt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -138,7 +137,6 @@ dmt01_1_pre <- function(adam_db, ...) {
 #' run(dmt01_1, syn_test_data(), summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_1 <- chevron_t(
   main = dmt01_1_main,
-  lyt = dmt01_1_lyt,
   preprocess = dmt01_1_pre,
   adam_datasets = c("adsl")
 )

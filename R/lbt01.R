@@ -24,7 +24,6 @@
 #' @export
 #'
 lbt01_1_main <- function(adam_db,
-                         lyt_ls = list(lbt01_1_lyt),
                          armvar = "ACTARM",
                          summaryvars = c("AVAL", "CHG"),
                          summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
@@ -41,7 +40,7 @@ lbt01_1_main <- function(adam_db,
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
 
-  lyt <- lyt_ls[[1]](
+  lyt <- lbt01_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -136,7 +135,6 @@ lbt01_1_pre <- function(adam_db, ...) {
 #' run(lbt01_1, syn_test_data())
 lbt01_1 <- chevron_t(
   main = lbt01_1_main,
-  lyt = lbt01_1_lyt,
   preprocess = lbt01_1_pre,
   adam_datasets = c("adlb")
 )
