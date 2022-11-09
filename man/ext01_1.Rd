@@ -5,6 +5,7 @@
 \alias{ext01_1_main}
 \alias{ext01_1_lyt}
 \alias{ext01_1_pre}
+\alias{ext01_1_post}
 \alias{ext01_1}
 \title{EXT01 Table 1 (Default) Exposure Summary Table.}
 \format{
@@ -16,7 +17,6 @@ ext01_1_main(
   armvar = "ACTARM",
   summaryvars = "AVAL",
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("EXT01"),
   ...
 )
@@ -29,6 +29,8 @@ ext01_1_pre(
   ...
 )
 
+ext01_1_post(tlg, prune_0 = TRUE, ...)
+
 ext01_1
 }
 \arguments{
@@ -40,8 +42,6 @@ ext01_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -49,6 +49,10 @@ ext01_1
 \item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
 
 \item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The EXT01 table provides an overview of the of the exposure of the
@@ -74,6 +78,8 @@ patients in the corresponding analysis population given by \code{N}.
 
 \item \code{ext01_1_pre()}: Preprocessing
 
+\item \code{ext01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -81,6 +87,6 @@ patients in the corresponding analysis population given by \code{N}.
 }
 }
 \examples{
-run(ext01_1, syn_test_data())
+run(ext01_1, syn_data)
 }
 \keyword{datasets}

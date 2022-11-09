@@ -16,7 +16,6 @@
 #'
 cmt02_pt_1_main <- function(adam_db,
                             armvar = "ARM",
-                            prune_0 = TRUE,
                             lbl_overall = NULL,
                             deco = std_deco("CMT02_PT"),
                             ...) {
@@ -31,15 +30,7 @@ cmt02_pt_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl %>%
-    sort_at_path(
-      path = c("DOMAIN", "*", "CMDECOD"),
-      scorefun = score_occurrences
-    )
+  tbl
 }
 
 #' @describeIn cmt02_pt_1 Layout
@@ -104,6 +95,26 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
   dunlin::apply_reformat(adam_db, new_format)
 }
 
+#' @describeIn cmt02_pt_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+cmt02_pt_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+
+  tlg %>%
+    sort_at_path(
+      path = c("DOMAIN", "*", "CMDECOD"),
+      scorefun = score_occurrences
+    ) %>%
+    report_null()
+}
+
 #' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
 #'
 #' A concomitant medication table with the
@@ -113,10 +124,11 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(cmt02_pt_1, syn_test_data())
+#' run(cmt02_pt_1, syn_data)
 cmt02_pt_1 <- chevron_t(
   main = cmt02_pt_1_main,
   lyt = cmt02_pt_1_lyt,
   preprocess = cmt02_pt_1_pre,
+  postprocess = cmt02_pt_1_post,
   adam_datasets = c("adsl", "adcm")
 )

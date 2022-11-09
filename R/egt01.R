@@ -30,7 +30,6 @@ egt01_1_main <- function(adam_db,
                          summaryvars = c("AVAL", "CHG"),
                          summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                          visitvar = "AVISIT", # or ATPTN
-                         prune_0 = TRUE,
                          deco = std_deco("EGT01"),
                          ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
@@ -58,9 +57,6 @@ egt01_1_main <- function(adam_db,
     df = adam_db$adeg
   )
 
-  if (prune_0) tbl <- smart_prune(tbl)
-
-  tbl
 }
 
 #' @describeIn egt01_1 Layout
@@ -127,6 +123,18 @@ egt01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn egt01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+egt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- smart_prune(tlg)
+
+  report_null(tlg)
+}
+
 #' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.
 #'
 #' The `EGT01` table 1 summarizes
@@ -136,11 +144,12 @@ egt01_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' db <- syn_test_data()
+#' db <- syn_data
 #' run(egt01_1, db)
 #' run(egt01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 egt01_1 <- chevron_t(
   main = egt01_1_main,
   preprocess = egt01_1_pre,
+  postprocess = egt01_1_post,
   adam_datasets = c("adeg")
 )

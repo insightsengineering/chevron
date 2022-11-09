@@ -88,8 +88,8 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
 #' Retrieve Synthetic Test Data Used For Examples
 #' @export
-#' @rdname syn_test_data
-syn_test_data <- function() {
+#' @rdname syn_data
+syn_data <- function() {
   sd <- scda::synthetic_cdisc_data("rcd_2022_06_27")
 
   # to avoid bug
@@ -183,10 +183,10 @@ syn_test_data <- function() {
   db
 }
 
-#' example data generated with syn_test_data()
+#' example data generated with syn_data()
 #' @export
-#' @rdname syn_test_data
-syn_data <- syn_test_data()
+#' @rdname syn_data
+syn_data <- syn_data()
 
 #' Temporary function to add decorator to a table
 #'

@@ -17,7 +17,6 @@ aet01_2_main(
   adam_db,
   armvar = "ACTARM",
   lbl_overall = NULL,
-  prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
@@ -58,8 +57,6 @@ aet01_2
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -102,6 +99,6 @@ of adverse events with medical concepts.
 }
 }
 \examples{
-run(aet01_2, syn_test_data())
+run(aet01_2, syn_data)
 }
 \keyword{datasets}

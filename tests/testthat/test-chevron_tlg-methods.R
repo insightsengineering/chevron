@@ -1,7 +1,7 @@
 # run ----
 
 test_that("run works as expected for chevron_t object", {
-  res <- run(aet04_1, syn_test_data(), prune_0 = TRUE)
+  res <- run(aet04_1, data, prune_0 = TRUE)
   expect_snapshot(res)
 })
 
@@ -79,5 +79,5 @@ test_that("preprocess works as expected", {
 test_that("postprocess works as expected", {
   skip_if_not(interactive())
   res <- postprocess(aet04_1)
-  expect_identical(res, report_null)
+  expect_identical(res, aet04_1_post)
 })

@@ -20,7 +20,6 @@
 aet01_1_main <- function(adam_db,
                          armvar = "ACTARM",
                          lbl_overall = NULL,
-                         prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = c(
                            "FATAL", "SER", "SERWD", "SERDSM",
@@ -59,13 +58,7 @@ aet01_1_main <- function(adam_db,
     tbl_adae[3:nrow(tbl_adae), ]
   )
 
-  tbl <- set_decoration(tbl, deco)
-
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl
+  return(tbl)
 }
 
 #' @describeIn aet01_1 Layout
@@ -249,16 +242,31 @@ aet01_1_check <- function(adam_db,
   }
 }
 
+#' @describeIn aet01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used
+#'
+#' @export
+aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...) {
+  tbl <- set_decoration(tlg, deco)
+  if (prune_0) {
+    tbl <- smart_prune(tbl)
+  }
+  report_null(tbl)
+}
+
 #' `AET01` Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
-#' run(aet01_1, syn_test_data(), armvar = "ARM")
+#' run(aet01_1, syn_data, armvar = "ARM")
 aet01_1 <- chevron_t(
   main = aet01_1_main,
   preprocess = aet01_1_pre,
+  postprocess = aet01_post,
   adam_datasets = c("adsl", "adae")
 )
 
@@ -289,7 +297,6 @@ aet01_1 <- chevron_t(
 aet01_2_main <- function(adam_db,
                          armvar = "ACTARM",
                          lbl_overall = NULL,
-                         prune_0 = FALSE,
                          deco = std_deco("AET01"),
                          safety_var = c(
                            "FATAL", "SER", "SERWD", "SERDSM",
@@ -337,12 +344,6 @@ aet01_2_main <- function(adam_db,
     tbl_adsl,
     tbl_adae[3:nrow(tbl_adae), ]
   )
-
-  tbl <- set_decoration(tbl, deco)
-
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
 
   tbl
 }
@@ -566,9 +567,10 @@ aet01_2_check <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' run(aet01_2, syn_test_data())
+#' run(aet01_2, syn_data)
 aet01_2 <- chevron_t(
   main = aet01_2_main,
   preprocess = aet01_2_pre,
+  postprocess = aet01_post,
   adam_datasets = c("adsl", "adae")
 )

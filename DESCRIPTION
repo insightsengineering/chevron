@@ -24,6 +24,8 @@ Imports:
     ggplot2,
     magrittr,
     methods,
+    scda (>= 0.1.5),
+    scda.2022 (>= 0.1.3),
     rlang,
     rlistings,
     rtables,
@@ -37,8 +39,6 @@ Suggests:
     nestcolor (>= 0.1.0),
     purrr,
     rmarkdown,
-    scda (>= 0.1.5),
-    scda.2022 (>= 0.1.3),
     testthat (>= 3.0.0),
     tidyr
 VignetteBuilder:

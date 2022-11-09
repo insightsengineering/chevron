@@ -23,7 +23,6 @@ aet04_1_main <- function(adam_db,
                          armvar = "ACTARM",
                          group_grades = NULL,
                          lbl_overall = NULL,
-                         prune_0 = TRUE,
                          deco = std_deco("AET04"),
                          ...) {
   assert_colnames(adam_db$adae, c("AETOXGR", "AEBODSYS", "AEDECOD"))
@@ -57,21 +56,7 @@ aet04_1_main <- function(adam_db,
     alt_counts_df = adam_db$adsl
   )
 
-  if (prune_0) tbl <- tbl %>% trim_rows()
-
-  tbl_sorted <- tbl %>%
-    sort_at_path(
-      path = c("AEBODSYS"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    )
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn aet04_1 Layout
@@ -175,6 +160,30 @@ aet04_1_pre <- function(adam_db, ...) {
     mutate(AETOXGR = if (length(levels(.data$AETOXGR)) > 0L) .data$AETOXGR else factor(.data$AETOXGR, "Missing")) %>%
     dm_update_zoomed()
 }
+#' @describeIn aet04_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- tlg %>% trim_rows()
+
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = c("AEBODSYS"),
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
+    ) %>%
+    sort_at_path(
+      path = c("AEBODSYS", "*", "AEDECOD"),
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
+    )
+
+  report_null(tbl_sorted)
+}
 
 #' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.
 #'
@@ -191,9 +200,10 @@ aet04_1_pre <- function(adam_db, ...) {
 #'   "Grade 3-5" = c("3", "4", "5")
 #' )
 #'
-#' run(aet04_1, syn_test_data(), group_grades = group_grades)
+#' run(aet04_1, syn_data, group_grades = group_grades)
 aet04_1 <- chevron_t(
   main = aet04_1_main,
   preprocess = aet04_1_pre,
+  postprocess = aet04_1_post,
   adam_datasets = c("adsl", "adae")
 )

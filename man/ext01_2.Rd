@@ -5,6 +5,7 @@
 \alias{ext01_2_main}
 \alias{ext01_2_lyt}
 \alias{ext01_2_pre}
+\alias{ext01_2_post}
 \alias{ext01_2}
 \title{EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options}
 \format{
@@ -15,7 +16,6 @@ ext01_2_main(
   adam_db,
   armvar = "ACTARM",
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("EXT01"),
   ...
 )
@@ -31,6 +31,8 @@ ext01_2_lyt(
 
 ext01_2_pre(adam_db, show_stats = c("ALL"), show_bins = c("ALL"), ...)
 
+ext01_2_post(tlg, prune_0 = TRUE, ...)
+
 ext01_2
 }
 \arguments{
@@ -39,8 +41,6 @@ ext01_2
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -55,6 +55,10 @@ presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analy
 
 \item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
 presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
@@ -79,6 +83,8 @@ patients in the corresponding analysis population given by \code{N}.
 
 \item \code{ext01_2_pre()}: Preprocessing
 
+\item \code{ext01_2_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -86,6 +92,6 @@ patients in the corresponding analysis population given by \code{N}.
 }
 }
 \examples{
-run(ext01_2, syn_test_data())
+run(ext01_2, syn_data)
 }
 \keyword{datasets}

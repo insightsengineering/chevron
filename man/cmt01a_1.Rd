@@ -5,6 +5,7 @@
 \alias{cmt01a_1_main}
 \alias{cmt01a_1_lyt}
 \alias{cmt01a_1_pre}
+\alias{cmt01a_1_post}
 \alias{cmt01a_1}
 \title{\code{CMT01A} Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.}
 \format{
@@ -19,7 +20,6 @@ cmt01a_1_main(
   medname_var = "CMDECOD",
   lbl_medname_var = "Other Treatment",
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("CMT01A"),
   ...
 )
@@ -36,6 +36,14 @@ cmt01a_1_lyt(
 )
 
 cmt01a_1_pre(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...)
+
+cmt01a_1_post(
+  tlg,
+  prune_0 = TRUE,
+  medcat_var = "ATC2",
+  medname_var = "CMDECOD",
+  ...
+)
 
 cmt01a_1
 }
@@ -54,11 +62,13 @@ cmt01a_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 A concomitant medication
@@ -84,6 +94,8 @@ the specific medication.
 
 \item \code{cmt01a_1_pre()}: Preprocessing
 
+\item \code{cmt01a_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -95,7 +107,7 @@ as \code{"CMSEQ"}.
 library(magrittr)
 library(dm)
 
-db <- syn_test_data() \%>\%
+db <- syn_data \%>\%
   dm_zoom_to("adcm") \%>\%
   filter(.data$ATIREL == "CONCOMITANT") \%>\%
   dm_update_zoomed()

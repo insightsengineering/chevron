@@ -1,0 +1,1 @@
+data <- syn_data

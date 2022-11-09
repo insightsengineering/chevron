@@ -5,6 +5,7 @@
 \alias{aet02_2_main}
 \alias{aet02_2_lyt}
 \alias{aet02_2_pre}
+\alias{aet02_2_post}
 \alias{aet02_2}
 \alias{aet02_3_main}
 \title{\code{AET02} Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.}
@@ -16,7 +17,6 @@ aet02_2_main(
   adam_db,
   armvar = "ACTARM",
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("AET02"),
   ...
 )
@@ -33,13 +33,14 @@ aet02_2_lyt(
 
 aet02_2_pre(adam_db, ...)
 
+aet02_2_post(tlg, prune_0 = TRUE, ...)
+
 aet02_2
 
 aet02_3_main(
   adam_db,
   armvar = "ACTARM",
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("AET02"),
   ...
 )
@@ -51,8 +52,6 @@ aet02_3_main(
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -62,6 +61,10 @@ aet02_3_main(
 \item{lbl_aehlt}{(\code{character}) text label for \code{AEHLT}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{AET02_2} table provides an overview of the number of patients experiencing adverse events and the number of
@@ -95,6 +98,8 @@ frequencies.
 
 \item \code{aet02_2_pre()}: Preprocessing
 
+\item \code{aet02_2_post()}: Postprocessing
+
 \item \code{aet02_3_main()}: Main TLG function
 
 }}
@@ -108,6 +113,6 @@ frequencies.
 }
 }
 \examples{
-run(aet02_2, syn_test_data())
+run(aet02_2, syn_data)
 }
 \keyword{datasets}

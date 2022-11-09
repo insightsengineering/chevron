@@ -22,7 +22,6 @@ dtht01_1_main <- function(adam_db,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
                           lbl_overall = NULL,
-                          prune_0 = TRUE,
                           deco = std_deco("DTHT01"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl")
@@ -64,11 +63,6 @@ dtht01_1_main <- function(adam_db,
     tbl <- rbind(tbl, tbl_opt)
     tbl <- set_decoration(tbl, deco)
   }
-
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
   tbl
 }
 
@@ -190,6 +184,21 @@ dtht01_1_pre <- function(adam_db, ...) {
   dunlin::apply_reformat(adam_db, new_formats)
 }
 
+
+#' @describeIn dtht01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+dtht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tbl <- smart_prune(tlg)
+  }
+  report_null(tbl)
+}
+
 #' `DTHT01` Table 1 (Default) Death Table.
 #'
 #'  A description of the causes of death optionally with the breakdown of the
@@ -200,12 +209,13 @@ dtht01_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #'
-#' db <- syn_test_data()
+#' db <- syn_data
 #'
 #' run(dtht01_1, db)
 #' run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)
 dtht01_1 <- chevron_t(
   main = dtht01_1_main,
   preprocess = dtht01_1_pre,
+  postprocess = dtht01_1_post,
   adam_datasets = c("adsl")
 )

@@ -30,7 +30,7 @@
 #' library(dm)
 #' library(magrittr)
 #'
-#' db <- syn_test_data() %>%
+#' db <- syn_data %>%
 #'   dst01_1_pre()
 #'
 #' dst01_1_main(db)
@@ -38,7 +38,6 @@ dst01_1_main <- function(adam_db,
                          armvar = "ARM",
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
-                         prune_0 = TRUE,
                          lbl_overall = "All Patients",
                          deco = std_deco("DST01"),
                          ...) {
@@ -70,15 +69,7 @@ dst01_1_main <- function(adam_db,
     df = adam_db$adsl
   )
 
-  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
-
-  col_info(tbl_other) <- col_info(tbl_completed)
-
-  tbl <- rbind(tbl_completed, tbl_other)
-
-  tbl <- set_decoration(tbl, deco)
-
-  tbl
+  list(tbl_completed, tbl_other)
 }
 
 #' @describeIn dst01_1 Layout
@@ -158,7 +149,7 @@ dst01_1_lyt <- function(armvar,
 #' @export
 #'
 #' @examples
-#' dst01_1_pre(syn_test_data())
+#' dst01_1_pre(syn_data)
 dst01_1_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
@@ -180,6 +171,26 @@ dst01_1_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
+#' @describeIn dst01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
+  tbl_completed <- tlg[[1]]
+  tbl_other <- tlg[[2]]
+  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
+
+  col_info(tbl_other) <- col_info(tbl_completed)
+
+  tbl <- rbind(tbl_completed, tbl_other)
+
+  tbl <- set_decoration(tbl, deco)
+
+  report_null(tbl)
+}
+
 #' DST01 Table 1 (Default) Patient Disposition Table 1.
 #'
 #' The DST01 Disposition Table provides an overview of patients
@@ -189,10 +200,11 @@ dst01_1_pre <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' run(dst01_1, syn_test_data())
+#' run(dst01_1, syn_data)
 dst01_1 <- chevron_t(
   main = dst01_1_main,
   preprocess = dst01_1_pre,
+  postprocess = dst01_1_post,
   adam_datasets = c("adsl")
 )
 
@@ -228,7 +240,7 @@ dst01_1 <- chevron_t(
 #' library(dm)
 #' library(magrittr)
 #'
-#' db <- syn_test_data() %>%
+#' db <- syn_data %>%
 #'   dst01_2_pre()
 #'
 #' dst01_2_main(db)
@@ -238,7 +250,6 @@ dst01_2_main <- function(adam_db,
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
-                         prune_0 = TRUE,
                          deco = std_deco("DST01"),
                          ...) {
   status_lvl <- levels(adam_db$adsl[[status_var]])
@@ -269,15 +280,7 @@ dst01_2_main <- function(adam_db,
     df = adam_db$adsl
   )
 
-  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
-
-  col_info(tbl_other) <- col_info(tbl_completed)
-
-  tbl <- rbind(tbl_completed, tbl_other)
-
-  tbl <- set_decoration(tbl, deco)
-
-  tbl
+  list(tbl_completed, tbl_other)
 }
 
 #' @describeIn dst01_2 Layout
@@ -360,7 +363,7 @@ dst01_2_lyt <- function(armvar,
 #' @export
 #'
 #' @examples
-#' dst01_2_pre(syn_test_data())
+#' dst01_2_pre(syn_data)
 dst01_2_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
@@ -389,6 +392,26 @@ dst01_2_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
+#' @describeIn dst01_2 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
+  tbl_completed <- tlg[[1]]
+  tbl_other <- tlg[[2]]
+  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
+
+  col_info(tbl_other) <- col_info(tbl_completed)
+
+  tbl <- rbind(tbl_completed, tbl_other)
+
+  tbl <- set_decoration(tbl, deco)
+
+  report_null(tbl)
+}
+
 #' DST01 Table 2 (Supplementary) Patient Disposition Table 2.
 #'
 #' The DST01_2 Disposition Table provides an overview of
@@ -399,10 +422,11 @@ dst01_2_pre <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' run(dst01_2, syn_test_data())
+#' run(dst01_2, syn_data)
 dst01_2 <- chevron_t(
   main = dst01_2_main,
   preprocess = dst01_2_pre,
+  postprocess = dst01_2_post,
   adam_datasets = c("adsl")
 )
 
@@ -442,7 +466,7 @@ dst01_2 <- chevron_t(
 #' library(dm)
 #' library(magrittr)
 #'
-#' db <- syn_test_data() %>%
+#' db <- syn_data %>%
 #'   dst01_3_pre()
 #'
 #' dst01_3_main(db)
@@ -453,7 +477,6 @@ dst01_3_main <- function(adam_db,
                          disc_reason_var = "DCSREAS",
                          status_treatment_var = "EOTSTT",
                          lbl_overall = "All Patients",
-                         prune_0 = TRUE,
                          deco = std_deco("DST01"),
                          ...) {
   # TODO: revisit
@@ -508,21 +531,7 @@ dst01_3_main <- function(adam_db,
     df = adam_db$adsl
   )
 
-  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
-
-  col_info(tbl_other) <- col_info(tbl_completed)
-
-  tbl2 <- rbind(tbl_completed, tbl_other)
-
-  col_info(tbl) <- col_info(tbl2)
-
-  if (prune_0) tbl <- smart_prune(tbl)
-
-  tbl <- rbind(tbl2, tbl)
-
-  tbl <- set_decoration(tbl, deco)
-
-  tbl
+  list(tbl, tbl_completed, tbl_other)
 }
 
 #' @describeIn dst01_3 Layout
@@ -613,6 +622,33 @@ dst01_3_pre <- function(adam_db,
     dm_update_zoomed()
 }
 
+#' @describeIn dst01_3 Postprocessing
+#'
+#' @inheritParams dst01_3_main
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
+  tbl <- tlg[[1]]
+  tbl_completed <- tlg[[2]]
+  tbl_other <- tlg[[3]]
+  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
+
+  col_info(tbl_other) <- col_info(tbl_completed)
+
+  tbl2 <- rbind(tbl_completed, tbl_other)
+
+  col_info(tbl) <- col_info(tbl2)
+
+  if (prune_0) tbl <- smart_prune(tbl)
+
+  tbl <- rbind(tbl2, tbl)
+
+  tbl <- set_decoration(tbl, deco)
+
+  report_null(tbl)
+} 
 #' DST01 Table 3 (Supplementary) Patient Disposition Table 3.
 #'
 #' The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
@@ -622,9 +658,10 @@ dst01_3_pre <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' run(dst01_3, syn_test_data())
+#' run(dst01_3, syn_data)
 dst01_3 <- chevron_t(
   main = dst01_3_main,
   preprocess = dst01_3_pre,
+  postprocess = dst01_3_post,
   adam_datasets = c("adsl")
 )

@@ -4,6 +4,7 @@
 \name{aet02_3_lyt}
 \alias{aet02_3_lyt}
 \alias{aet02_3_pre}
+\alias{aet02_3_post}
 \alias{aet02_3}
 \title{\code{AET02} Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.}
 \format{
@@ -20,6 +21,8 @@ aet02_3_lyt(
 
 aet02_3_pre(adam_db, ...)
 
+aet02_3_post(tlg, prune_0 = TRUE, ...)
+
 aet02_3
 }
 \arguments{
@@ -34,6 +37,10 @@ aet02_3
 \item{...}{not used.}
 
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{AET02_3} table provides an overview of the number of patients experiencing adverse events and the number of
@@ -45,8 +52,10 @@ adverse events categorized by Dictionary-Derived Term.
 
 \item \code{aet02_3_pre()}: Preprocessing
 
+\item \code{aet02_3_post()}: Postprocessing
+
 }}
 \examples{
-run(aet02_3, syn_test_data())
+run(aet02_3, syn_data)
 }
 \keyword{datasets}
