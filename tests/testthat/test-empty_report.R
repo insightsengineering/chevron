@@ -29,7 +29,8 @@ test_that("tlg functions return null reports when domain table is empty", {
     dm_update_zoomed()
 
   empty_report <- rtables::rtable(
-    header = "Null Report: No observations met the reporting criteria for inclusion in this output."
+    header = "",
+    rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
   )
   res <- run(aet01_1, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)

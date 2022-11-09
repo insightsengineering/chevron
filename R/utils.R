@@ -208,7 +208,8 @@ set_decoration <- function(x, deco) {
 }
 
 #' Create a Null Report
-#'
+#' @rdname report_null
+#' @aliases null_report
 #' @param tlg (`TableTree`) object.
 #' @param ... not used.
 #'
@@ -218,13 +219,19 @@ set_decoration <- function(x, deco) {
 #'
 report_null <- function(tlg, ...) {
   if (nrow(tlg) == 0L) {
-    rtables::rtable(header = "Null Report: No observations met the reporting criteria for inclusion in this output.")
+    null_report
   } else {
     checkmate::assert_multi_class(tlg, c("TableTree"))
     tlg
   }
 }
 
+#' @export
+#' @rdname report_null
+null_report <- rtables::rtable(
+  header = "",
+  rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
+)
 
 #' Prune Table up to an `ElementaryTable`
 #'
