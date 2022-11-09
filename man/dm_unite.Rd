@@ -23,6 +23,10 @@ dm_unite(adam_db, dataset, cols, sep = ".", new = NULL)
 \description{
 Unite Columns of a Table in a \code{dm} object.
 }
+\note{
+Levels in the resulting columns are sorted hierarchically based on the levels (or the order of unique values)
+in the columns to unite.
+}
 \examples{
 \dontrun{
 x <- dm_unite(dm::dm_nycflights13(), "airlines", c("carrier", "name"), new = "FUSION")

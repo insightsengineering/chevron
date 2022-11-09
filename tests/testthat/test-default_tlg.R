@@ -1,84 +1,161 @@
-test_that("TLG function with default argument value return expected result with test data", {
-  data <- syn_test_data()
-
-  res <- run(aet01_1, data)
+test_that("aet01_1 function with default argument value return expected result with test data", {
+  pre_data <- aet01_1_pre(syn_data)
+  res <- aet01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(aet01_2, data)
+test_that("aet01_2 functions with default argument value return expected result with test data", {
+  pre_data <- aet01_2_pre(syn_data)
+  res <- aet01_2_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(aet02_1, data)
+test_that("aet02_1 functions with default argument value return expected result with test data", {
+  pre_data <- aet02_1_pre(syn_data)
+  res <- aet02_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(aet02_2, data)
+test_that("aet02_2 functions with default argument value return expected result with test data", {
+  pre_data <- aet02_2_pre(syn_data)
+  res <- aet02_2_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(aet02_3, data)
+test_that("aet02_3 functions with default argument value return expected result with test data", {
+  pre_data <- aet02_3_pre(syn_data)
+  res <- aet02_3_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(aet03_1, data)
+test_that("aet03_1 functions with default argument value return expected result with test data", {
+  pre_data <- aet03_1_pre(syn_data)
+  res <- aet03_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(aet04_1, data)
+test_that("aet04_1 functions with default argument value return expected result with test data", {
+  pre_data <- aet04_1_pre(syn_data)
+  res <- aet04_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(cmt01a_1, data)
+test_that("cmt01a_1 functions with default argument value return expected result with test data", {
+  pre_data <- cmt01a_1_pre(syn_data)
+  res <- cmt01a_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(cmt01a_2, data)
+test_that("cmt01a_2 functions with default argument value return expected result with test data", {
+  pre_data <- cmt01a_2_pre(syn_data)
+  res <- cmt01a_2_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(cmt01a_3, data)
+test_that("cmt01a_3 functions with default argument value return expected result with test data", {
+  pre_data <- cmt01a_3_pre(syn_data)
+  res <- cmt01a_3_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(cmt02_pt_1, data)
+test_that("cmt02_pt_1 functions with default argument value return expected result with test data", {
+  pre_data <- cmt02_pt_1_pre(syn_data)
+  res <- cmt02_pt_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(dmt01_1, data)
+test_that("dmt01_1 functions with default argument value return expected result with test data", {
+  pre_data <- dmt01_1_pre(syn_data)
+  res <- dmt01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(dst01_1, data)
+test_that("dst01_1 functions with default argument value return expected result with test data", {
+  pre_data <- dst01_1_pre(syn_data)
+  res <- dst01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(dst01_2, data)
+test_that("dst01_2 functions with default argument value return expected result with test data", {
+  pre_data <- dst01_2_pre(syn_data)
+  res <- dst01_2_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(dst01_3, data)
+test_that("dst01_3 functions with default argument value return expected result with test data", {
+  pre_data <- dst01_3_pre(syn_data)
+  res <- dst01_3_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(dtht01_1, data)
+test_that("dtht01_1 functions with default argument value return expected result with test data", {
+  pre_data <- dtht01_1_pre(syn_data)
+  res <- dtht01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(egt01_1, data)
+test_that("gt01_1 functions with default argument value return expected result with test data", {
+  pre_data <- egt01_1_pre(syn_data)
+  res <- egt01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(egt02_1, data)
+test_that("egt02_1 functions with default argument value return expected result with test data", {
+  pre_data <- egt02_1_pre(syn_data)
+  res <- egt02_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(egt02_2, data)
+test_that("egt02_2 functions with default argument value return expected result with test data", {
+  pre_data <- egt02_2_pre(syn_data)
+  res <- egt02_2_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(ext01_1, data)
+test_that("ext01_1 functions with default argument value return expected result with test data", {
+  pre_data <- ext01_1_pre(syn_data)
+  res <- ext01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(ext01_2, data)
+test_that("ext01_2 functions with default argument value return expected result with test data", {
+  pre_data <- ext01_2_pre(syn_data)
+  res <- ext01_2_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(lbt01_1, data)
+test_that("lbt01_1 functions with default argument value return expected result with test data", {
+  pre_data <- lbt01_1_pre(syn_data)
+  res <- lbt01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(mht01_1, data)
+test_that("mht01_1 functions with default argument value return expected result with test data", {
+  pre_data <- mht01_1_pre(syn_data)
+  res <- mht01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(vst01_1, data)
+test_that("vst01_1 functions with default argument value return expected result with test data", {
+  pre_data <- vst01_1_pre(syn_data)
+  res <- vst01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(vst01_1, data)
+test_that("vst01_1 functions with default argument value return expected result with test data", {
+  pre_data <- vst01_1_pre(syn_data)
+  res <- vst01_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(vst02_1, data)
+test_that("vst02_1 functions with default argument value return expected result with test data", {
+  pre_data <- vst02_1_pre(syn_data)
+  res <- vst02_1_main(pre_data)
   expect_snapshot(res)
+})
 
-  res <- run(vst02_2, data)
+test_that("vst02_2 functions with default argument value return expected result with test data", {
+  pre_data <- vst02_2_pre(syn_data)
+  res <- vst02_2_main(pre_data)
   expect_snapshot(res)
 })

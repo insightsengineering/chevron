@@ -33,16 +33,6 @@ basic_table_deco <- function(deco, ...) {
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer, ...)
 }
 
-ifelse_layout <- function(lyt, test, fun_lyt_yes = identity, fun_lyt_no = identity) {
-  checkmate::assert_flag(test)
-
-  if (test) {
-    fun_lyt_yes(lyt)
-  } else {
-    fun_lyt_no(lyt)
-  }
-}
-
 has_overall_col <- function(lbl_overall) {
   !is.null(lbl_overall) && !identical(lbl_overall, "")
 }
@@ -249,6 +239,9 @@ smart_prune <- function(tlg) {
 #' @param sep (`string`) the separator for the new column name.
 #' @param new (`string`) the name of the new column. If `NULL` the concatenation of `cols` separated by `sep` is used.
 #'
+#' @note Levels in the resulting columns are sorted hierarchically based on the levels (or the order of unique values)
+#'   in the columns to unite.
+#'
 #' @return `dm` object with a united column.
 #'
 #' @examples
@@ -271,11 +264,15 @@ dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
     select(all_of(cols)) %>%
     pull_tbl()
 
-  lvl <- lapply(x_df, function(y) if (is.factor(y)) levels(y) else unique(y))
-  all_lvl_df <- as.data.frame(Reduce(expand.grid, lvl))
+  lvl <- lapply(x_df, function(y) {
+    uni <- if(is.factor(y)) levels(y) else unique(y)
+    factor(uni, levels = uni)
+  })
+  all_lvl_df <- expand.grid(lvl)
   colnames(all_lvl_df) <- cols
 
   all_lvl <- all_lvl_df %>%
+    arrange(across(all_of(cols))) %>%
     unite("res", all_of(cols), sep = sep) %>%
     pull("res")
 
@@ -284,11 +281,12 @@ dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
     pull(.data$res)
 
   existing_lvl <- intersect(all_lvl, x_vec)
-  levels(x_vec) <- existing_lvl
+  x_fact <- as.factor(x_vec)
+  x_fact <- fct_relevel(x_fact, existing_lvl)
 
   x_interaction <- if (!is.null(new)) new else x_interaction
 
   int_df %>%
-    mutate(!!x_interaction := .env$x_vec) %>%
+    mutate(!!x_interaction := .env$x_fact) %>%
     dm_update_zoomed()
 }
