@@ -29,7 +29,6 @@ vst01_1_main <- function(adam_db,
                          summaryvars = c("AVAL", "CHG"),
                          summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                          visitvar = "AVISIT", # or ATPTN
-                         prune_0 = TRUE,
                          deco = std_deco("VST01"),
                          ...) {
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
@@ -57,8 +56,6 @@ vst01_1_main <- function(adam_db,
     df = adam_db$advs,
     alt_counts_df = adam_db$adsl
   )
-
-  if (prune_0) tbl <- tbl %>% trim_rows()
 
   tbl
 }
@@ -129,6 +126,16 @@ vst01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn vst01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+vst01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- tlg %>% trim_rows()
+  report_null(tlg)
+}
 #' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
 #'
 #' The `VST01` table provides an
@@ -140,12 +147,13 @@ vst01_1_pre <- function(adam_db, ...) {
 #'
 #' @examples
 #'
-#' db <- syn_test_data()
+#' db <- syn_data
 #'
 #' run(vst01_1, db)
 #' run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 vst01_1 <- chevron_t(
   main = vst01_1_main,
   preprocess = vst01_1_pre,
+  postprocess = vst01_1_post,
   adam_datasets = c("adsl", "advs")
 )

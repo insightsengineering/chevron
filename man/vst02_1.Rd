@@ -79,6 +79,6 @@ Abnormality at Baseline Table.
 }
 }
 \examples{
-run(vst02_1, syn_test_data())
+run(vst02_1, syn_data)
 }
 \keyword{datasets}

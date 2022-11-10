@@ -5,6 +5,7 @@
 \alias{dmt01_1_main}
 \alias{dmt01_1_lyt}
 \alias{dmt01_1_pre}
+\alias{dmt01_1_post}
 \alias{dmt01_1}
 \title{\code{DMT01} Table 1 (Default) Demographics and Baseline Characteristics Table 1.}
 \format{
@@ -17,7 +18,6 @@ dmt01_1_main(
   summaryvars = c("AGE", "SEX", "COUNTRY", "RACE"),
   summaryvars_lbls = NULL,
   lbl_overall = "All Patients",
-  prune_0 = TRUE,
   deco = std_deco("DMT01"),
   ...
 )
@@ -25,6 +25,8 @@ dmt01_1_main(
 dmt01_1_lyt(armvar, summaryvars, summaryvars_lbls, lbl_overall, deco, ...)
 
 dmt01_1_pre(adam_db, ...)
+
+dmt01_1_post(tlg, prune_0 = TRUE, ...)
 
 dmt01_1
 }
@@ -41,11 +43,13 @@ Usually a vector containing the following one or more of the following:
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 For each variable, summary statistics are
@@ -69,6 +73,8 @@ by default based on the number of patients in the corresponding \code{n} row.
 
 \item \code{dmt01_1_pre()}: Preprocessing
 
+\item \code{dmt01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -79,7 +85,7 @@ by default based on the number of patients in the corresponding \code{n} row.
 library(dm)
 library(magrittr)
 
-db <- syn_test_data() \%>\%
+db <- syn_data \%>\%
   dmt01_1_pre()
 
 dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
@@ -87,7 +93,7 @@ dmt01_1_main(db,
   summaryvars = c("AGE", "RACE", "SEX"),
   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 )
-dmt01_1_pre(syn_test_data())
-run(dmt01_1, syn_test_data(), summaryvars = c("AGE", "RACE", "SEX"))
+dmt01_1_pre(syn_data)
+run(dmt01_1, syn_data, summaryvars = c("AGE", "RACE", "SEX"))
 }
 \keyword{datasets}

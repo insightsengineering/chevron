@@ -26,7 +26,6 @@ mht01_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          lbl_mhbodsys = "MedDRA System Organ Class",
                          lbl_mhdecod = "MedDRA Preferred Term",
-                         prune_0 = TRUE,
                          deco = std_deco("MHT01"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
@@ -45,17 +44,7 @@ mht01_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl_sorted <- tbl %>%
-    sort_at_path(
-      path = c("MHBODSYS", "*", "MHDECOD"),
-      scorefun = score_occurrences
-    )
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn mht01_1 Layout
@@ -137,6 +126,27 @@ mht01_1_pre <- function(adam_db, ...) {
   dunlin::apply_reformat(adam_db, new_format)
 }
 
+#' @describeIn mht01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = c("MHBODSYS", "*", "MHDECOD"),
+      scorefun = score_occurrences
+    )
+
+  report_null(tbl_sorted)
+}
+
 #' `MHT01` Table 1 (Default) Medical History Table 1.
 #'
 #' The `MHT01` table provides an overview of the subjects medical
@@ -146,9 +156,10 @@ mht01_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(mht01_1, syn_test_data())
+#' run(mht01_1, syn_data)
 mht01_1 <- chevron_t(
   main = mht01_1_main,
   preprocess = mht01_1_pre,
+  postprocess = mht01_1_post,
   adam_datasets = c("adsl", "admh")
 )

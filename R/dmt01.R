@@ -25,7 +25,7 @@
 #' library(dm)
 #' library(magrittr)
 #'
-#' db <- syn_test_data() %>%
+#' db <- syn_data %>%
 #'   dmt01_1_pre()
 #'
 #' dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
@@ -38,7 +38,6 @@ dmt01_1_main <- function(adam_db,
                          summaryvars = c("AGE", "SEX", "COUNTRY", "RACE"),
                          summaryvars_lbls = NULL,
                          lbl_overall = "All Patients",
-                         prune_0 = TRUE,
                          deco = std_deco("DMT01"),
                          ...) {
   assert_colnames(adam_db$adsl, summaryvars)
@@ -61,11 +60,7 @@ dmt01_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, adam_db$adsl)
 
-  if (prune_0) {
-    smart_prune(tbl)
-  } else {
-    tbl
-  }
+  tbl
 }
 
 #' @describeIn dmt01_1 Layout
@@ -101,7 +96,7 @@ dmt01_1_lyt <- function(armvar,
 #' @export
 #'
 #' @examples
-#' dmt01_1_pre(syn_test_data())
+#' dmt01_1_pre(syn_data)
 dmt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
@@ -125,6 +120,19 @@ dmt01_1_pre <- function(adam_db, ...) {
   db
 }
 
+#' @describeIn dmt01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+  report_null(tlg)
+}
+
 #' `DMT01` Table 1 (Default) Demographics and Baseline Characteristics Table 1.
 #'
 #' For each variable, summary statistics are
@@ -134,9 +142,10 @@ dmt01_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(dmt01_1, syn_test_data(), summaryvars = c("AGE", "RACE", "SEX"))
+#' run(dmt01_1, syn_data, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_1 <- chevron_t(
   main = dmt01_1_main,
   preprocess = dmt01_1_pre,
+  postprocess = dmt01_1_post,
   adam_datasets = c("adsl")
 )

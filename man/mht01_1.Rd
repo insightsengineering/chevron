@@ -5,6 +5,7 @@
 \alias{mht01_1_main}
 \alias{mht01_1_lyt}
 \alias{mht01_1_pre}
+\alias{mht01_1_post}
 \alias{mht01_1}
 \title{\code{MHT01} Table 1 (Default) Medical History Table 1.}
 \format{
@@ -17,7 +18,6 @@ mht01_1_main(
   lbl_overall = NULL,
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA Preferred Term",
-  prune_0 = TRUE,
   deco = std_deco("MHT01"),
   ...
 )
@@ -25,6 +25,8 @@ mht01_1_main(
 mht01_1_lyt(armvar, lbl_overall, lbl_mhbodsys, lbl_mhdecod, deco, ...)
 
 mht01_1_pre(adam_db, ...)
+
+mht01_1_post(tlg, prune_0 = TRUE, ...)
 
 mht01_1
 }
@@ -41,11 +43,13 @@ of the corresponding column in the \code{admh} table.}
 \item{lbl_mhdecod}{(\code{string}) text label for \code{MHDECOD}. If \code{NULL}, the value of the argument defaults to the label of
 the corresponding column in the \code{admh} table.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{MHT01} table provides an overview of the subjects medical
@@ -69,6 +73,8 @@ patients with the specific condition.
 
 \item \code{mht01_1_pre()}: Preprocessing
 
+\item \code{mht01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -76,6 +82,6 @@ patients with the specific condition.
 }
 }
 \examples{
-run(mht01_1, syn_test_data())
+run(mht01_1, syn_data)
 }
 \keyword{datasets}

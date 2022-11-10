@@ -5,6 +5,7 @@
 \alias{lbt01_1_main}
 \alias{lbt01_1_lyt}
 \alias{lbt01_1_pre}
+\alias{lbt01_1_post}
 \alias{lbt01_1}
 \title{\code{LBT01} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.}
 \format{
@@ -17,7 +18,6 @@ lbt01_1_main(
   summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = "AVISIT",
-  prune_0 = TRUE,
   deco = std_deco("LBT01"),
   ...
 )
@@ -35,6 +35,8 @@ lbt01_1_lyt(
 
 lbt01_1_pre(adam_db, ...)
 
+lbt01_1_post(tlg, prune_0 = TRUE, ...)
+
 lbt01_1
 }
 \arguments{
@@ -49,8 +51,6 @@ lbt01_1
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -58,6 +58,10 @@ to be displayed.}
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{LBT01} table provides an
@@ -84,6 +88,8 @@ by \code{AVISIT}. Re-level to customize order.
 
 \item \code{lbt01_1_pre()}: Preprocessing
 
+\item \code{lbt01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -91,6 +97,6 @@ by \code{AVISIT}. Re-level to customize order.
 }
 }
 \examples{
-run(lbt01_1, syn_test_data())
+run(lbt01_1, syn_data)
 }
 \keyword{datasets}

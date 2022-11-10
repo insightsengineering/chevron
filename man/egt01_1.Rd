@@ -5,6 +5,7 @@
 \alias{egt01_1_main}
 \alias{egt01_1_lyt}
 \alias{egt01_1_pre}
+\alias{egt01_1_post}
 \alias{egt01_1}
 \title{\code{EGT01} Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.}
 \format{
@@ -17,7 +18,6 @@ egt01_1_main(
   summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = "AVISIT",
-  prune_0 = TRUE,
   deco = std_deco("EGT01"),
   ...
 )
@@ -35,6 +35,8 @@ egt01_1_lyt(
 
 egt01_1_pre(adam_db, ...)
 
+egt01_1_post(tlg, prune_0 = TRUE, ...)
+
 egt01_1
 }
 \arguments{
@@ -49,8 +51,6 @@ egt01_1
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -58,6 +58,10 @@ to be displayed.}
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{EGT01} table 1 summarizes
@@ -84,6 +88,8 @@ by \code{AVISIT}. Re-level to customize order.
 
 \item \code{egt01_1_pre()}: Preprocessing
 
+\item \code{egt01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -92,7 +98,7 @@ by \code{AVISIT}. Re-level to customize order.
 }
 }
 \examples{
-db <- syn_test_data()
+db <- syn_data
 run(egt01_1, db)
 run(egt01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
 }

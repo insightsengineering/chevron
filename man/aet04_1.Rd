@@ -5,6 +5,7 @@
 \alias{aet04_1_main}
 \alias{aet04_1_lyt}
 \alias{aet04_1_pre}
+\alias{aet04_1_post}
 \alias{aet04_1}
 \title{\code{AET04} Table 1 (Default) Adverse Events by Highest \code{NCI} \code{CTACAE} \code{AE} Grade Table 1.}
 \format{
@@ -16,7 +17,6 @@ aet04_1_main(
   armvar = "ACTARM",
   group_grades = NULL,
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("AET04"),
   ...
 )
@@ -33,6 +33,8 @@ aet04_1_lyt(
 
 aet04_1_pre(adam_db, ...)
 
+aet04_1_post(tlg, prune_0 = TRUE, ...)
+
 aet04_1
 }
 \arguments{
@@ -44,8 +46,6 @@ aet04_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -53,6 +53,10 @@ aet04_1
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{AET04} table provides an
@@ -77,6 +81,8 @@ Grade is sorted by severity.
 
 \item \code{aet04_1_pre()}: Preprocessing
 
+\item \code{aet04_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -90,6 +96,6 @@ group_grades <- list(
   "Grade 3-5" = c("3", "4", "5")
 )
 
-run(aet04_1, syn_test_data(), group_grades = group_grades)
+run(aet04_1, syn_data, group_grades = group_grades)
 }
 \keyword{datasets}

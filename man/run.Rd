@@ -20,5 +20,5 @@ run(object, adam_db, ...)
 Run the pipeline
 }
 \examples{
-run(mng01_1, syn_test_data(), dataset = "adlb")
+run(mng01_1, syn_data, dataset = "adlb")
 }

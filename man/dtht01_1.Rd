@@ -6,6 +6,7 @@
 \alias{dtht01_1_lyt}
 \alias{dtht01_1_opt_lyt}
 \alias{dtht01_1_pre}
+\alias{dtht01_1_post}
 \alias{dtht01_1}
 \title{\code{DTHT01} Table 1 (Default) Death Table.}
 \format{
@@ -18,7 +19,6 @@ dtht01_1_main(
   time_since_last_dose = FALSE,
   other_category = FALSE,
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("DTHT01"),
   ...
 )
@@ -28,6 +28,8 @@ dtht01_1_lyt(armvar, lbl_overall, other_category, deco, ...)
 dtht01_1_opt_lyt(armvar, lbl_overall, deco, ...)
 
 dtht01_1_pre(adam_db, ...)
+
+dtht01_1_post(tlg, prune_0 = TRUE, ...)
 
 dtht01_1
 }
@@ -42,11 +44,13 @@ dtht01_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 A description of the causes of death optionally with the breakdown of the
@@ -69,6 +73,8 @@ A description of the causes of death optionally with the breakdown of the
 
 \item \code{dtht01_1_pre()}: Preprocessing
 
+\item \code{dtht01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -78,7 +84,7 @@ A description of the causes of death optionally with the breakdown of the
 }
 \examples{
 
-db <- syn_test_data()
+db <- syn_data
 
 run(dtht01_1, db)
 run(dtht01_1, db, other_category = TRUE, time_since_last_dose = TRUE)

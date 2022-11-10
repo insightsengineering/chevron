@@ -28,7 +28,6 @@ lbt01_1_main <- function(adam_db,
                          summaryvars = c("AVAL", "CHG"),
                          summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
                          visitvar = "AVISIT",
-                         prune_0 = TRUE,
                          deco = std_deco("LBT01"),
                          ...) {
   summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
@@ -52,8 +51,6 @@ lbt01_1_main <- function(adam_db,
   )
 
   tbl <- build_table(lyt, adam_db$adlb)
-
-  if (prune_0) tbl <- tbl %>% trim_rows()
 
   tbl
 }
@@ -123,6 +120,18 @@ lbt01_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn lbt01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- tlg %>% trim_rows()
+  report_null(tlg)
+}
+
 #' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.
 #'
 #' The `LBT01` table provides an
@@ -132,9 +141,10 @@ lbt01_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(lbt01_1, syn_test_data())
+#' run(lbt01_1, syn_data)
 lbt01_1 <- chevron_t(
   main = lbt01_1_main,
   preprocess = lbt01_1_pre,
+  postprocess = lbt01_1_post,
   adam_datasets = c("adlb")
 )

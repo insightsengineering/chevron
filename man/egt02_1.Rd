@@ -5,6 +5,7 @@
 \alias{egt02_1_main}
 \alias{egt02_1_lyt}
 \alias{egt02_1_pre}
+\alias{egt02_1_post}
 \alias{egt02_1}
 \title{\code{EGT02} Table 1 (Default) ECG Abnormalities Table 1.}
 \format{
@@ -17,7 +18,6 @@ egt02_1_main(
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
-  prune_0 = FALSE,
   deco = std_deco("EGT02"),
   ...
 )
@@ -33,6 +33,8 @@ egt02_1_lyt(
 
 egt02_1_pre(adam_db, ...)
 
+egt02_1_post(tlg, ...)
+
 egt02_1
 }
 \arguments{
@@ -46,11 +48,11 @@ egt02_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 Assessments Outside Normal Limits Regardless of Abnormality at
@@ -72,6 +74,8 @@ Baseline Table.
 
 \item \code{egt02_1_pre()}: Preprocessing
 
+\item \code{egt02_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -79,6 +83,6 @@ Baseline Table.
 }
 }
 \examples{
-run(egt02_1, syn_test_data())
+run(egt02_1, syn_data)
 }
 \keyword{datasets}

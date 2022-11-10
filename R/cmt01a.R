@@ -30,7 +30,6 @@ cmt01a_1_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          prune_0 = TRUE,
                           deco = std_deco("CMT01A"),
                           ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
@@ -50,17 +49,7 @@ cmt01a_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl_sorted <- tbl %>%
-    sort_at_path(
-      path = c(medcat_var, "*", medname_var),
-      scorefun = score_occurrences
-    )
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn cmt01a_1 Layout
@@ -152,6 +141,29 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   dunlin::apply_reformat(adam_db, new_format)
 }
 
+#' @describeIn cmt01a_1 Postprocessing
+#'
+#' @inheritParams cmt01a_1_main
+#' @inheritParams gen_args
+#'
+#' @param ... not used.
+#'
+#' @export
+#'
+cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = c(medcat_var, "*", medname_var),
+      scorefun = score_occurrences
+    )
+
+  report_null(tbl_sorted)
+}
+
 #' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
 #'
 #' A concomitant medication
@@ -165,7 +177,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #' library(magrittr)
 #' library(dm)
 #'
-#' db <- syn_test_data() %>%
+#' db <- syn_data %>%
 #'   dm_zoom_to("adcm") %>%
 #'   filter(.data$ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed()
@@ -175,6 +187,7 @@ cmt01a_1 <- chevron_t(
   main = cmt01a_1_main,
   lyt = cmt01a_1_lyt,
   preprocess = cmt01a_1_pre,
+  postprocess = cmt01a_1_post,
   adam_datasets = c("adsl", "adcm")
 )
 
@@ -211,7 +224,6 @@ cmt01a_2_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          prune_0 = TRUE,
                           deco = std_deco("CMT01A"),
                           ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
@@ -231,22 +243,7 @@ cmt01a_2_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl_sorted <- tbl %>%
-    sort_at_path(
-      medcat_var,
-      scorefun = cont_n_onecol(ncol(tbl))
-    ) %>%
-    sort_at_path(
-      path = c(medcat_var, "*", medname_var),
-      scorefun = score_occurrences
-    )
-
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn cmt01a_2 Preprocessing
@@ -280,6 +277,33 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   dunlin::apply_reformat(adam_db, new_format)
 }
 
+#' @describeIn cmt01a_2 Postprocessing
+#'
+#' @inheritParams cmt01a_main
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      medcat_var,
+      scorefun = cont_n_onecol(ncol(tlg))
+    ) %>%
+    sort_at_path(
+      path = c(medcat_var, "*", medname_var),
+      scorefun = score_occurrences
+    )
+
+
+  report_null(tbl_sorted)
+}
+
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
 #' frequency).
 #'
@@ -293,7 +317,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #' library(magrittr)
 #' library(dm)
 #'
-#' db <- syn_test_data() %>%
+#' db <- syn_data %>%
 #'   dm_zoom_to("adcm") %>%
 #'   filter(.data$ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed()
@@ -302,6 +326,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 cmt01a_2 <- chevron_t(
   main = cmt01a_2_main,
   preprocess = cmt01a_2_pre,
+  postprocess = cmt01a_2_post,
   adam_datasets = c("adsl", "adcm")
 )
 
@@ -338,7 +363,6 @@ cmt01a_3_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          prune_0 = TRUE,
                           deco = std_deco("CMT01A"),
                           ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
@@ -358,17 +382,7 @@ cmt01a_3_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl_sorted <- tbl %>%
-    sort_at_path(
-      path = c(medcat_var, "*", medname_var),
-      scorefun = score_occurrences
-    )
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn cmt01a_3 Layout
@@ -453,6 +467,27 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   dunlin::apply_reformat(adam_db, new_format)
 }
 
+#' @describeIn cmt01a_3 Preprocessing
+#'
+#' @inheritParams cmt01a_3_main
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = c(medcat_var, "*", medname_var),
+      scorefun = score_occurrences
+    )
+
+  report_null(tbl_sorted)
+}
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
 #' treatments per medication class suppressed).
 #'
@@ -467,7 +502,7 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #' library(magrittr)
 #' library(dm)
 #'
-#' db <- syn_test_data() %>%
+#' db <- syn_data %>%
 #'   dm_zoom_to("adcm") %>%
 #'   filter(.data$ATIREL == "CONCOMITANT") %>%
 #'   dm_update_zoomed()
@@ -476,5 +511,6 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 cmt01a_3 <- chevron_t(
   main = cmt01a_3_main,
   preprocess = cmt01a_3_pre,
+  postprocess = cmt01a_3_post,
   adam_datasets = c("adsl", "adcm")
 )

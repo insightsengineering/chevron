@@ -21,7 +21,6 @@
 aet02_1_main <- function(adam_db,
                          armvar = "ACTARM",
                          lbl_overall = NULL,
-                         prune_0 = TRUE,
                          deco = std_deco("AET02"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -37,21 +36,7 @@ aet02_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl_sorted <- tbl %>%
-    sort_at_path(
-      path = c("AEBODSYS"),
-      scorefun = cont_n_allcols
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = score_occurrences
-    )
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn aet02_1 Layout
@@ -152,6 +137,28 @@ aet02_1_check <- function(adam_db,
   }
 }
 
+#' @describeIn aet02_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+aet02_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = c("AEBODSYS"),
+      scorefun = cont_n_allcols
+    ) %>%
+    sort_at_path(
+      path = c("AEBODSYS", "*", "AEDECOD"),
+      scorefun = score_occurrences
+    )
+  report_null(tbl_sorted)
+}
 #' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
 #' The `AET02` table provides an overview of the number of subjects experiencing adverse events and the number of advert
@@ -161,11 +168,12 @@ aet02_1_check <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' run(aet02_1, syn_test_data())
+#' run(aet02_1, syn_data)
 aet02_1 <- chevron_t(
   main = aet02_1_main,
   lyt = aet02_1_lyt,
   preprocess = aet02_1_pre,
+  postprocess = aet02_1_post,
   adam_datasets = c("adsl", "adae")
 )
 
@@ -194,7 +202,6 @@ aet02_1 <- chevron_t(
 aet02_2_main <- function(adam_db,
                          armvar = "ACTARM",
                          lbl_overall = NULL,
-                         prune_0 = TRUE,
                          deco = std_deco("AET02"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -210,25 +217,7 @@ aet02_2_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
-
-  tbl_sorted <- tbl %>%
-    sort_at_path(
-      path = c("AEBODSYS"),
-      scorefun = cont_n_allcols
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEHLT"),
-      scorefun = cont_n_allcols
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEHLT", "*", "AEDECOD"),
-      scorefun = score_occurrences
-    )
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn aet02_2 Layout
@@ -325,6 +314,34 @@ aet02_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn aet02_2 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+aet02_2_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = c("AEBODSYS"),
+      scorefun = cont_n_allcols
+    ) %>%
+    sort_at_path(
+      path = c("AEBODSYS", "*", "AEHLT"),
+      scorefun = cont_n_allcols
+    ) %>%
+    sort_at_path(
+      path = c("AEBODSYS", "*", "AEHLT", "*", "AEDECOD"),
+      scorefun = score_occurrences
+    )
+
+  report_null(tbl_sorted)
+}
+
 #' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.
 #'
 #' The `AET02_2` table provides an overview of the number of patients experiencing adverse events and the number of
@@ -334,11 +351,12 @@ aet02_2_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(aet02_2, syn_test_data())
+#' run(aet02_2, syn_data)
 aet02_2 <- chevron_t(
   main = aet02_2_main,
   lyt = aet02_2_lyt,
   preprocess = aet02_2_pre,
+  postprocess = aet02_2_post,
   adam_datasets = c("adsl", "adae")
 )
 
@@ -365,7 +383,6 @@ aet02_2 <- chevron_t(
 aet02_3_main <- function(adam_db,
                          armvar = "ACTARM",
                          lbl_overall = NULL,
-                         prune_0 = TRUE,
                          deco = std_deco("AET02"),
                          ...) {
   assert_colnames(adam_db$adae, c("AEDECOD"))
@@ -381,24 +398,8 @@ aet02_3_main <- function(adam_db,
 
   tbl_bottom <- build_table(lyt$lyt_bottom, adam_db$adae, alt_counts_df = adam_db$adsl)
 
-  # needed to handle empty adae tables.
-  tbl_bottom <- tbl_bottom %>%
-    sort_at_path(
-      c("DOMAIN", "*", "AEDECOD"),
-      scorefun = score_occurrences # score_occurrences
-    )
 
-  res <- if (nrow(tbl_bottom) > 0L) {
-    rbind(tbl_top, tbl_bottom)
-  } else {
-    tbl_top
-  }
-
-  if (prune_0) {
-    trim_rows(res)
-  } else {
-    res
-  }
+  list(tbl_top, tbl_bottom)
 }
 
 #' @describeIn aet02_3 Layout
@@ -464,6 +465,36 @@ aet02_3_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn aet02_3 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+aet02_3_post <- function(tlg, prune_0 = TRUE, ...) {
+  tbl_top <- tlg[[1]]
+  tbl_bottom <- tlg[[2]]
+
+  # needed to handle empty adae tables.
+  tbl_bottom <- tbl_bottom %>%
+    sort_at_path(
+      c("DOMAIN", "*", "AEDECOD"),
+      scorefun = score_occurrences # score_occurrences
+    )
+
+  res <- if (nrow(tbl_bottom) > 0L) {
+    rbind(tbl_top, tbl_bottom)
+  } else {
+    tbl_top
+  }
+
+  if (prune_0) {
+    res <- trim_rows(res)
+  }
+  report_null(res)
+}
+
 #' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.
 #'
 #'  The `AET02_3` table provides an overview of the number of patients experiencing adverse events and the number of
@@ -473,9 +504,10 @@ aet02_3_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(aet02_3, syn_test_data())
+#' run(aet02_3, syn_data)
 aet02_3 <- chevron_t(
   main = aet02_3_main,
   preprocess = aet02_3_pre,
+  postprocess = aet02_3_post,
   adam_datasets = c("adsl", "adae")
 )
