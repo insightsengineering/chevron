@@ -201,7 +201,7 @@ mng01_1_post <- function(tlg, ...) {
 #'   "C: Combination" = "grey"
 #' )
 #'
-#' run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
+#' run(mng01_1, syn_data, dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,

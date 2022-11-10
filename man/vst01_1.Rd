@@ -5,6 +5,7 @@
 \alias{vst01_1_main}
 \alias{vst01_1_lyt}
 \alias{vst01_1_pre}
+\alias{vst01_1_post}
 \alias{vst01_1}
 \title{\code{VST01} Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.}
 \format{
@@ -17,7 +18,6 @@ vst01_1_main(
   summaryvars = c("AVAL", "CHG"),
   summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
   visitvar = "AVISIT",
-  prune_0 = TRUE,
   deco = std_deco("VST01"),
   ...
 )
@@ -35,6 +35,8 @@ vst01_1_lyt(
 
 vst01_1_pre(adam_db, ...)
 
+vst01_1_post(tlg, prune_0 = TRUE, ...)
+
 vst01_1
 }
 \arguments{
@@ -49,8 +51,6 @@ vst01_1
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -58,6 +58,10 @@ to be displayed.}
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{VST01} table provides an
@@ -85,6 +89,8 @@ by \code{AVISIT}. Re-level to customize order
 
 \item \code{vst01_1_pre()}: Preprocessing
 
+\item \code{vst01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -93,7 +99,7 @@ by \code{AVISIT}. Re-level to customize order
 }
 \examples{
 
-db <- syn_test_data()
+db <- syn_data
 
 run(vst01_1, db)
 run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))

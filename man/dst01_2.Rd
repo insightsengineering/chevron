@@ -5,6 +5,7 @@
 \alias{dst01_2_main}
 \alias{dst01_2_lyt}
 \alias{dst01_2_pre}
+\alias{dst01_2_post}
 \alias{dst01_2}
 \title{DST01 Table 2 (Supplementary) Patient Disposition Table 2.}
 \format{
@@ -17,7 +18,6 @@ dst01_2_main(
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
   lbl_overall = "All Patients",
-  prune_0 = TRUE,
   deco = std_deco("DST01"),
   ...
 )
@@ -36,6 +36,8 @@ dst01_2_lyt(
 
 dst01_2_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
+dst01_2_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
+
 dst01_2
 }
 \arguments{
@@ -53,8 +55,6 @@ the analysis period.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -67,6 +67,10 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of
@@ -96,6 +100,8 @@ which allows the tables to be constructed and pruned separately before binding.
 
 \item \code{dst01_2_pre()}: Preprocessing
 
+\item \code{dst01_2_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -106,12 +112,12 @@ which allows the tables to be constructed and pruned separately before binding.
 library(dm)
 library(magrittr)
 
-db <- syn_test_data() \%>\%
+db <- syn_data \%>\%
   dst01_2_pre()
 
 dst01_2_main(db)
 dst01_2_main(db, lbl_overall = NULL)
-dst01_2_pre(syn_test_data())
-run(dst01_2, syn_test_data())
+dst01_2_pre(syn_data)
+run(dst01_2, syn_data)
 }
 \keyword{datasets}

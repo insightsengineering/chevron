@@ -24,7 +24,6 @@ ext01_1_main <- function(adam_db,
                          armvar = "ACTARM",
                          summaryvars = "AVAL",
                          lbl_overall = NULL,
-                         prune_0 = TRUE,
                          deco = std_deco("EXT01"),
                          ...) {
   assert_colnames(adam_db$adex, summaryvars)
@@ -41,8 +40,6 @@ ext01_1_main <- function(adam_db,
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
-
-  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl
 }
@@ -105,6 +102,16 @@ ext01_1_pre <- function(adam_db,
 
   db
 }
+#' @describeIn ext01_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+ext01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- smart_prune(tlg)
+  report_null(tlg)
+}
 
 #' EXT01 Table 1 (Default) Exposure Summary Table.
 #'
@@ -115,10 +122,11 @@ ext01_1_pre <- function(adam_db,
 #' @export
 #'
 #' @examples
-#' run(ext01_1, syn_test_data())
+#' run(ext01_1, syn_data)
 ext01_1 <- chevron_t(
   main = ext01_1_main,
   preprocess = ext01_1_pre,
+  postprocess = ext01_1_post,
   adam_datasets = c("adsl", "adex")
 )
 
@@ -147,7 +155,6 @@ ext01_1 <- chevron_t(
 ext01_2_main <- function(adam_db,
                          armvar = "ACTARM",
                          lbl_overall = NULL,
-                         prune_0 = TRUE,
                          deco = std_deco("EXT01"),
                          ...) {
   summaryvars <- c("AVAL", "AVALCAT1")
@@ -167,8 +174,6 @@ ext01_2_main <- function(adam_db,
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
-
-  if (prune_0) tbl <- smart_prune(tbl)
 
   tbl
 }
@@ -245,15 +250,28 @@ ext01_2_pre <- function(adam_db,
   db
 }
 
+#' @describeIn ext01_2 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+ext01_2_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- smart_prune(tlg)
+  report_null(tlg)
+}
+
 #' EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
-#' run(ext01_2, syn_test_data())
+#' run(ext01_2, syn_data)
 ext01_2 <- chevron_t(
   main = ext01_2_main,
   preprocess = ext01_2_pre,
+  postprocess = ext01_2_post,
   adam_datasets = c("adsl", "adex")
 )

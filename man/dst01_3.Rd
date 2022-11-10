@@ -5,6 +5,7 @@
 \alias{dst01_3_main}
 \alias{dst01_3_lyt}
 \alias{dst01_3_pre}
+\alias{dst01_3_post}
 \alias{dst01_3}
 \title{DST01 Table 3 (Supplementary) Patient Disposition Table 3.}
 \format{
@@ -18,7 +19,6 @@ dst01_3_main(
   disc_reason_var = "DCSREAS",
   status_treatment_var = "EOTSTT",
   lbl_overall = "All Patients",
-  prune_0 = TRUE,
   deco = std_deco("DST01"),
   ...
 )
@@ -35,6 +35,8 @@ dst01_3_lyt(
 )
 
 dst01_3_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
+
+dst01_3_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
 
 dst01_3
 }
@@ -57,8 +59,6 @@ referring to the analysis period.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -71,6 +71,10 @@ referring to the analysis period.}
 
 \item{ongoing_trt_lbl}{(\code{string}) associated with ongoing treatment and found in the columns given by
 \code{status_treatment_var}. By Default `ONGOING.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued
@@ -96,6 +100,8 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 
 \item \code{dst01_3_pre()}: Preprocessing
 
+\item \code{dst01_3_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -107,11 +113,11 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 library(dm)
 library(magrittr)
 
-db <- syn_test_data() \%>\%
+db <- syn_data \%>\%
   dst01_3_pre()
 
 dst01_3_main(db)
 dst01_3_main(db, lbl_overall = NULL)
-run(dst01_3, syn_test_data())
+run(dst01_3, syn_data)
 }
 \keyword{datasets}

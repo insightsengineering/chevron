@@ -113,6 +113,6 @@ col <- c(
   "C: Combination" = "grey"
 )
 
-run(mng01_1, syn_test_data(), dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
+run(mng01_1, syn_data, dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
 }
 \keyword{datasets}

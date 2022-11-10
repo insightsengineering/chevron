@@ -1,6 +1,4 @@
 test_that("cmt01a can handle all NA values", {
-  data <- syn_test_data()
-
   proc_data <- data %>%
     dm_zoom_to("adcm") %>%
     mutate(
@@ -14,8 +12,6 @@ test_that("cmt01a can handle all NA values", {
 })
 
 test_that("cmt01a can handle some NA values", {
-  data <- syn_test_data()
-
   new_atc2 <- c(NA, "", as.character(data$adcm$ATC2[-c(1, 2)]))
   new_cmdecod <- c(NA, "", as.character(data$adcm$CMDECOD[-c(1, 2)]))
 
@@ -32,8 +28,6 @@ test_that("cmt01a can handle some NA values", {
 })
 
 test_that("cmt01a_2 can handle all NA values", {
-  data <- syn_test_data()
-
   proc_data <- data %>%
     dm_zoom_to("adcm") %>%
     mutate(
@@ -47,8 +41,6 @@ test_that("cmt01a_2 can handle all NA values", {
 })
 
 test_that("cmt01a_2 can handle some NA values", {
-  data <- syn_test_data()
-
   new_atc2 <- c(NA, "", as.character(data$adcm$ATC2[-c(1, 2)]))
   new_cmdecod <- c(NA, "", as.character(data$adcm$CMDECOD[-c(1, 2)]))
 
@@ -65,8 +57,6 @@ test_that("cmt01a_2 can handle some NA values", {
 })
 
 test_that("cmt01a_3 can handle all NA values", {
-  data <- syn_test_data()
-
   proc_data <- data %>%
     dm_zoom_to("adcm") %>%
     mutate(
@@ -80,8 +70,6 @@ test_that("cmt01a_3 can handle all NA values", {
 })
 
 test_that("cmt01a_3 can handle some NA values", {
-  data <- syn_test_data()
-
   new_atc2 <- c(NA, "", as.character(data$adcm$ATC2[-c(1, 2)]))
   new_cmdecod <- c(NA, "", as.character(data$adcm$CMDECOD[-c(1, 2)]))
 

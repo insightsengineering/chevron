@@ -19,7 +19,6 @@
 #'
 aet03_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         prune_0 = TRUE,
                          lbl_overall = NULL,
                          deco = std_deco("AET03"),
                          ...) {
@@ -47,22 +46,7 @@ aet03_1_main <- function(adam_db,
     alt_counts_df = adam_db$adsl
   )
 
-  if (prune_0) tbl <- tbl %>% trim_rows()
-
-  tbl_sorted <- tbl %>%
-    # trim_rows() %>%
-    sort_at_path(
-      path = "AEBODSYS",
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    )
-
-  tbl_sorted
+  tbl
 }
 
 #' @describeIn aet03_1 Layout
@@ -151,6 +135,31 @@ aet03_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn aet03_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @param ... not used.
+#'
+#' @export
+aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- tlg %>% trim_rows()
+
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = "AEBODSYS",
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
+    ) %>%
+    sort_at_path(
+      path = c("AEBODSYS", "*", "AEDECOD"),
+      scorefun = cont_n_allcols,
+      decreasing = TRUE
+    )
+
+  report_null(tbl_sorted)
+}
+
 #' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
 #'
 #' An adverse events table categorized by System
@@ -160,10 +169,11 @@ aet03_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(aet03_1, syn_test_data())
+#' run(aet03_1, syn_data)
 aet03_1 <- chevron_t(
   main = aet03_1_main,
   lyt = aet03_1_lyt,
   preprocess = aet03_1_pre,
+  postprocess = aet03_1_post,
   adam_datasets = c("adsl", "adae")
 )

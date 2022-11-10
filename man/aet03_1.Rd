@@ -5,6 +5,7 @@
 \alias{aet03_1_main}
 \alias{aet03_1_lyt}
 \alias{aet03_1_pre}
+\alias{aet03_1_post}
 \alias{aet03_1}
 \title{\code{AET03} Table 1 (Default) Advert Events by Greatest Intensity Table 1.}
 \format{
@@ -14,7 +15,6 @@ An object of class \code{chevron_t} of length 1.
 aet03_1_main(
   adam_db,
   armvar = "ACTARM",
-  prune_0 = TRUE,
   lbl_overall = NULL,
   deco = std_deco("AET03"),
   ...
@@ -32,14 +32,14 @@ aet03_1_lyt(
 
 aet03_1_pre(adam_db, ...)
 
+aet03_1_post(tlg, prune_0 = TRUE, ...)
+
 aet03_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{armvar}{(\code{character}) variable used for column splitting}
-
-\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -52,6 +52,10 @@ aet03_1
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the dataset.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 An adverse events table categorized by System
@@ -75,6 +79,8 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 
 \item \code{aet03_1_pre()}: Preprocessing
 
+\item \code{aet03_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -82,6 +88,6 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }
 }
 \examples{
-run(aet03_1, syn_test_data())
+run(aet03_1, syn_data)
 }
 \keyword{datasets}

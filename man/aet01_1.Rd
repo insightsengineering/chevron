@@ -6,6 +6,7 @@
 \alias{aet01_1_lyt}
 \alias{aet01_1_pre}
 \alias{aet01_1_check}
+\alias{aet01_post}
 \alias{aet01_1}
 \title{\code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.}
 \format{
@@ -16,7 +17,6 @@ aet01_1_main(
   adam_db,
   armvar = "ACTARM",
   lbl_overall = NULL,
-  prune_0 = FALSE,
   deco = std_deco("AET01"),
   safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
@@ -37,6 +37,8 @@ aet01_1_check(
   ...
 )
 
+aet01_post(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...)
+
 aet01_1
 }
 \arguments{
@@ -46,17 +48,19 @@ aet01_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{safety_var}{(\code{character}) the safety variables to be summarized.}
 
 \item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
 
-\item{...}{not used.}
+\item{...}{not used}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 \code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.
@@ -76,6 +80,8 @@ aet01_1
 
 \item \code{aet01_1_check()}: Checks
 
+\item \code{aet01_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -84,6 +90,6 @@ aet01_1
 }
 }
 \examples{
-run(aet01_1, syn_test_data(), armvar = "ARM")
+run(aet01_1, syn_data, armvar = "ARM")
 }
 \keyword{datasets}

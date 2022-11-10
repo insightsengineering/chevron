@@ -88,6 +88,7 @@ get_db_data <- function(db, ...) { # TODO: revisit
 
 #' Retrieve Synthetic Test Data Used For Examples
 #' @export
+#' @rdname syn_test_data
 syn_test_data <- function() {
   sd <- scda::synthetic_cdisc_data("rcd_2022_06_27")
 
@@ -182,6 +183,11 @@ syn_test_data <- function() {
   db
 }
 
+#' example data generated with syn_test_data()
+#' @export
+#' @rdname syn_test_data
+syn_data <- syn_test_data()
+
 #' Temporary function to add decorator to a table
 #'
 #' @param x (`rtables`) object.
@@ -202,7 +208,8 @@ set_decoration <- function(x, deco) {
 }
 
 #' Create a Null Report
-#'
+#' @rdname report_null
+#' @aliases null_report
 #' @param tlg (`TableTree`) object.
 #' @param ... not used.
 #'
@@ -212,13 +219,19 @@ set_decoration <- function(x, deco) {
 #'
 report_null <- function(tlg, ...) {
   if (nrow(tlg) == 0L) {
-    rtables::rtable(header = "Null Report: No observations met the reporting criteria for inclusion in this output.")
+    null_report
   } else {
     checkmate::assert_multi_class(tlg, c("TableTree"))
     tlg
   }
 }
 
+#' @export
+#' @rdname report_null
+null_report <- rtables::rtable(
+  header = "",
+  rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
+)
 
 #' Prune Table up to an `ElementaryTable`
 #'

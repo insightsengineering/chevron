@@ -117,7 +117,7 @@ vst02_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(vst02_1, syn_test_data())
+#' run(vst02_1, syn_data)
 vst02_1 <- chevron_t(
   main = vst02_1_main,
   preprocess = vst02_1_pre,
@@ -149,7 +149,6 @@ vst02_2_main <- function(adam_db,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
-                         prune_0 = FALSE,
                          deco = std_deco("VST02_2"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
@@ -164,10 +163,6 @@ vst02_2_main <- function(adam_db,
   )
 
   tbl <- build_table(lyt, dbsel$advs, alt_counts_df = dbsel$adsl)
-
-  if (prune_0) {
-    tbl <- smart_prune(tbl)
-  }
 
   tbl
 }
@@ -235,6 +230,19 @@ vst02_2_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn vst02_2 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+vst02_2_post <- function(tlg, prune_0 = FALSE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+  report_null(tlg)
+}
 #' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2.
 #'
 #' Assessments Outside Normal Limits Among Subject
@@ -244,9 +252,10 @@ vst02_2_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(vst02_2, syn_test_data())
+#' run(vst02_2, syn_data)
 vst02_2 <- chevron_t(
   main = vst02_2_main,
   preprocess = vst02_2_pre,
+  postprocess = vst02_2_post,
   adam_datasets = c("adsl", "advs")
 )

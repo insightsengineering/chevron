@@ -22,7 +22,6 @@ egt02_1_main <- function(adam_db,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
-                         prune_0 = FALSE,
                          deco = std_deco("EGT02"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
@@ -86,6 +85,17 @@ egt02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn egt02_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+egt02_1_post <- function(tlg, ...) {
+  report_null(tlg)
+}
+
 #' `EGT02` Table 1 (Default) ECG Abnormalities Table 1.
 #'
 #' Assessments Outside Normal Limits Regardless of Abnormality at
@@ -95,10 +105,11 @@ egt02_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(egt02_1, syn_test_data())
+#' run(egt02_1, syn_data)
 egt02_1 <- chevron_t(
   main = egt02_1_main,
   preprocess = egt02_1_pre,
+  postprocess = egt02_1_post,
   adam_datasets = c("adsl", "adeg")
 )
 
@@ -126,7 +137,6 @@ egt02_2_main <- function(adam_db,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
-                         prune_0 = FALSE,
                          deco = std_deco("EGT02_2"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
@@ -189,6 +199,15 @@ egt02_2_pre <- function(adam_db, ...) {
     filter(.data$ONTRTFL == "Y") %>%
     dm_update_zoomed()
 }
+#' @describeIn egt02_2 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+egt02_2_post <- function(tlg, ...) {
+  report_null(tlg)
+}
 
 #' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2.
 #'
@@ -199,9 +218,10 @@ egt02_2_pre <- function(adam_db, ...) {
 #' @export
 #'
 #' @examples
-#' run(egt02_2, syn_test_data())
+#' run(egt02_2, syn_data)
 egt02_2 <- chevron_t(
   main = egt02_2_main,
   preprocess = egt02_2_pre,
+  postprocess = egt02_2_post,
   adam_datasets = c("adsl", "adeg")
 )

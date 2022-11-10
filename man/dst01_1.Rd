@@ -5,6 +5,7 @@
 \alias{dst01_1_main}
 \alias{dst01_1_lyt}
 \alias{dst01_1_pre}
+\alias{dst01_1_post}
 \alias{dst01_1}
 \title{DST01 Table 1 (Default) Patient Disposition Table 1.}
 \format{
@@ -16,7 +17,6 @@ dst01_1_main(
   armvar = "ARM",
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
-  prune_0 = TRUE,
   lbl_overall = "All Patients",
   deco = std_deco("DST01"),
   ...
@@ -36,6 +36,8 @@ dst01_1_lyt(
 
 dst01_1_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
+dst01_1_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
+
 dst01_1
 }
 \arguments{
@@ -51,8 +53,6 @@ period.}
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
@@ -67,6 +67,10 @@ By Default `ONGOING.}
 
 \item{discontinued_lbl}{(\code{string}) associated with discontinued study and found in the columns given by \code{status}. By
 Default \code{DISCONTINUED}.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The DST01 Disposition Table provides an overview of patients
@@ -93,6 +97,8 @@ which allows the tables to be constructed and pruned separately before binding.
 
 \item \code{dst01_1_pre()}: Preprocessing
 
+\item \code{dst01_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -103,11 +109,11 @@ which allows the tables to be constructed and pruned separately before binding.
 library(dm)
 library(magrittr)
 
-db <- syn_test_data() \%>\%
+db <- syn_data \%>\%
   dst01_1_pre()
 
 dst01_1_main(db)
-dst01_1_pre(syn_test_data())
-run(dst01_1, syn_test_data())
+dst01_1_pre(syn_data)
+run(dst01_1, syn_data)
 }
 \keyword{datasets}

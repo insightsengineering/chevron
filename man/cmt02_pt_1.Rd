@@ -5,6 +5,7 @@
 \alias{cmt02_pt_1_main}
 \alias{cmt02_pt_1_lyt}
 \alias{cmt02_pt_1_pre}
+\alias{cmt02_pt_1_post}
 \alias{cmt02_pt_1}
 \title{\code{CMT02_PT} Table 1 (Default) Concomitant Medications by Preferred Name.}
 \format{
@@ -14,7 +15,6 @@ An object of class \code{chevron_t} of length 1.
 cmt02_pt_1_main(
   adam_db,
   armvar = "ARM",
-  prune_0 = TRUE,
   lbl_overall = NULL,
   deco = std_deco("CMT02_PT"),
   ...
@@ -24,6 +24,8 @@ cmt02_pt_1_lyt(armvar, lbl_overall, deco, ...)
 
 cmt02_pt_1_pre(adam_db, ...)
 
+cmt02_pt_1_post(tlg, prune_0 = TRUE, ...)
+
 cmt02_pt_1
 }
 \arguments{
@@ -31,13 +33,15 @@ cmt02_pt_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 A concomitant medication table with the
@@ -58,6 +62,8 @@ number of subjects and the total number of treatments by medication name sorted 
 
 \item \code{cmt02_pt_1_pre()}: Preprocessing
 
+\item \code{cmt02_pt_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -65,6 +71,6 @@ number of subjects and the total number of treatments by medication name sorted 
 }
 }
 \examples{
-run(cmt02_pt_1, syn_test_data())
+run(cmt02_pt_1, syn_data)
 }
 \keyword{datasets}

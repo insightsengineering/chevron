@@ -6,6 +6,7 @@
 \alias{aet02_1_lyt}
 \alias{aet02_1_pre}
 \alias{aet02_1_check}
+\alias{aet02_1_post}
 \alias{aet02_1}
 \title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
 \format{
@@ -16,7 +17,6 @@ aet02_1_main(
   adam_db,
   armvar = "ACTARM",
   lbl_overall = NULL,
-  prune_0 = TRUE,
   deco = std_deco("AET02"),
   ...
 )
@@ -34,6 +34,8 @@ aet02_1_pre(adam_db, ...)
 
 aet02_1_check(adam_db, req_tables = c("adsl", "adae"), armvar = "ACTARM", ...)
 
+aet02_1_post(tlg, prune_0 = TRUE, ...)
+
 aet02_1
 }
 \arguments{
@@ -42,8 +44,6 @@ aet02_1
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -54,6 +54,10 @@ aet02_1
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 The \code{AET02} table provides an overview of the number of subjects experiencing adverse events and the number of advert
@@ -79,6 +83,8 @@ events categorized by Body System and Dictionary-Derived Term.
 
 \item \code{aet02_1_check()}: Checks
 
+\item \code{aet02_1_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -86,6 +92,6 @@ events categorized by Body System and Dictionary-Derived Term.
 }
 }
 \examples{
-run(aet02_1, syn_test_data())
+run(aet02_1, syn_data)
 }
 \keyword{datasets}

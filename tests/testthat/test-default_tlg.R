@@ -1,6 +1,4 @@
 test_that("TLG function with default argument value return expected result with test data", {
-  data <- syn_test_data()
-
   res <- run(aet01_1, data)
   expect_snapshot(res)
 
