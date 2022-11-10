@@ -265,7 +265,7 @@ dm_unite <- function(adam_db, dataset, cols, sep = ".", new = NULL) {
     pull_tbl()
 
   lvl <- lapply(x_df, function(y) {
-    uni <- if(is.factor(y)) levels(y) else unique(y)
+    uni <- if (is.factor(y)) levels(y) else unique(y)
     factor(uni, levels = uni)
   })
   all_lvl_df <- expand.grid(lvl)
