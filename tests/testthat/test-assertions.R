@@ -2,7 +2,6 @@
 # assert_colnames ----
 
 test_that("assert_colnames works as expected", {
-
   expect_silent(
     assert_colnames(mtcars, c("mpg", "cyl"), null_ok = TRUE)
   )
@@ -12,9 +11,18 @@ test_that("assert_colnames works as expected", {
     "Variable(s) not a column name of mtcars:
  speed
  seats
- [available columns are: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb]", fixed = TRUE
+ [available columns are: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb]",
+    fixed = TRUE
   )
 
+  expect_silent(
+    assert_colnames(mtcars, NULL, null_ok = TRUE)
+  )
+
+  expect_error(
+    assert_colnames(mtcars, NULL, null_ok = FALSE),
+    "x cannot be NULL"
+  )
 })
 
 # assert_one_tablenames ----

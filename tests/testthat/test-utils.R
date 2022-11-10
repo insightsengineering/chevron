@@ -2,14 +2,12 @@
 # dm_unite ----
 
 test_that("dm_unite works as expected with characters", {
-
   x <- dm_unite(dm::dm_nycflights13(), "airlines", c("carrier", "name"), new = "FUSION")
   checkmate::expect_factor(x$airlines$FUSION)
   expect_identical(x$airlines$FUSION, factor(paste(x$airlines$carrier, x$airlines$name, sep = ".")))
 })
 
 test_that("dm_unite works as expected with factors", {
-
   dat <- dm::dm_nycflights13()
   dat <- dat %>%
     dm_zoom_to("airlines") %>%
@@ -26,7 +24,6 @@ test_that("dm_unite works as expected with factors", {
 })
 
 test_that("dm_unite works as expected with more than 2 columns", {
-
   dat <- dm::dm_nycflights13()
   dat <- dat %>%
     dm_zoom_to("airports") %>%
