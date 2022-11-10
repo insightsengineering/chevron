@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.1.9010
-Date: 2022-11-09
+Version: 0.1.1.9011
+Date: 2022-11-10
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -24,11 +24,11 @@ Imports:
     ggplot2,
     magrittr,
     methods,
-    scda (>= 0.1.5),
-    scda.2022 (>= 0.1.3),
     rlang,
     rlistings,
     rtables,
+    scda (>= 0.1.5),
+    scda.2022 (>= 0.1.3),
     tern (>= 0.7.10),
     tibble,
     yaml
