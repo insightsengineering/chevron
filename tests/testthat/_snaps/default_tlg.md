@@ -558,8 +558,8 @@
         DEATH                           25 (18.7%)   23 (17.2%)     22 (16.7%)      70 (17.5%) 
         LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
         PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-        PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)        4 (3%)         12 (3%)   
-        WITHDRAWAL BY PARENT/GUARDIAN     4 (3%)      2 (1.5%)       1 (0.8%)        7 (1.8%)  
+        PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
+        WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
         WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
 
 # dst01_2 functions with default argument value return expected result with test data
@@ -579,8 +579,8 @@
         Non-safety                        14 (10.4%)   11 (8.2%)      11 (8.3%)       36 (9.0%)  
           LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
           PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)        4 (3%)         12 (3%)   
-          WITHDRAWAL BY PARENT/GUARDIAN     4 (3%)      2 (1.5%)       1 (0.8%)        7 (1.8%)  
+          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
+          WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
           WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
 
 # dst01_3 functions with default argument value return expected result with test data
@@ -600,8 +600,8 @@
         Non-safety                        14 (10.4%)   11 (8.2%)      11 (8.3%)       36 (9.0%)  
           LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
           PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)        4 (3%)         12 (3%)   
-          WITHDRAWAL BY PARENT/GUARDIAN     4 (3%)      2 (1.5%)       1 (0.8%)        7 (1.8%)  
+          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
+          WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
           WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
       Completed Treatment                 47 (35.1%)   35 (26.1%)     42 (31.8%)     124 (31.0%) 
       Ongoing Treatment                   39 (29.1%)   46 (34.3%)     46 (34.8%)     131 (32.8%) 

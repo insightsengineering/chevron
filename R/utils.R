@@ -1,5 +1,5 @@
 # as we use NSE
-globalVariables(c("."))
+globalVariables(c(".", ":="))
 
 #' Retrieve labels for certain variables
 #'

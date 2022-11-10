@@ -17,7 +17,7 @@ test_that("aet01 can handle some NA values", {
   new_aesdth <- c(NA, "", as.character(data$adae$AESDTH[-c(1, 2)]))
   new_aeser <- c(NA, "", as.character(data$adae$AESER[-c(1, 2)]))
 
-  proc_data <- syn_data %>%
+  proc_data <- data %>%
     dm_zoom_to("adae") %>%
     mutate(
       AESDTH = .env$new_aesdth,
