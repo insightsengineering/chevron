@@ -12,7 +12,7 @@ history by SOC and Preferred Term."><!-- mathjax --><script src="https://cdnjs.c
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9010</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,15 +32,6 @@ history by SOC and Preferred Term."><!-- mathjax --><script src="https://cdnjs.c
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -75,7 +66,6 @@ history by SOC and Preferred Term.</p>
 <span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  lbl_mhbodsys <span class="op">=</span> <span class="st">"MedDRA System Organ Class"</span>,</span>
 <span>  lbl_mhdecod <span class="op">=</span> <span class="st">"MedDRA Preferred Term"</span>,</span>
-<span>  prune_0 <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"MHT01"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
@@ -83,6 +73,8 @@ history by SOC and Preferred Term.</p>
 <span><span class="fu">mht01_1_lyt</span><span class="op">(</span><span class="va">armvar</span>, <span class="va">lbl_overall</span>, <span class="va">lbl_mhbodsys</span>, <span class="va">lbl_mhdecod</span>, <span class="va">deco</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">mht01_1_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">mht01_1_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mht01_1</span></span></code></pre></div>
     </div>
@@ -115,16 +107,20 @@ of the corresponding column in the <code>admh</code> table.</p></dd>
 the corresponding column in the <code>admh</code> table.</p></dd>
 
 
-<dt>prune_0</dt>
-<dd><p>(<code>logical</code>) remove 0 count rows</p></dd>
-
-
 <dt>deco</dt>
 <dd><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></dd>
 
 
 <dt>...</dt>
 <dd><p>not used.</p></dd>
+
+
+<dt>tlg</dt>
+<dd><p>(<code>TableTree</code>, <code>Listing</code> or <code>ggplot</code>) object typically produced by a <code>main</code> function.</p></dd>
+
+
+<dt>prune_0</dt>
+<dd><p>(<code>logical</code>) remove 0 count rows</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -143,6 +139,7 @@ patients with the specific condition.</p></li>
 <ul><li><p><code>mht01_1_main()</code>: Main TLG function</p></li>
 <li><p><code>mht01_1_lyt()</code>: Layout</p></li>
 <li><p><code>mht01_1_pre()</code>: Preprocessing</p></li>
+<li><p><code>mht01_1_post()</code>: Postprocessing</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -152,7 +149,7 @@ patients with the specific condition.</p></li>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">mht01_1</span>, <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">mht01_1</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MedDRA System Organ Class                                A: Drug X    B: Placebo    C: Combination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   MedDRA Preferred Term                                   (N=134)       (N=134)        (N=132)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ——————————————————————————————————————————————————————————————————————————————————————————————————</span>

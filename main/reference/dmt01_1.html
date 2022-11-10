@@ -12,7 +12,7 @@ by default based on the number of patients in the corresponding n row."><!-- mat
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9010</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,15 +32,6 @@ by default based on the number of patients in the corresponding n row."><!-- mat
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -75,7 +66,6 @@ by default based on the number of patients in the corresponding <code>n</code> r
 <span>  summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"SEX"</span>, <span class="st">"COUNTRY"</span>, <span class="st">"RACE"</span><span class="op">)</span>,</span>
 <span>  summaryvars_lbls <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  lbl_overall <span class="op">=</span> <span class="st">"All Patients"</span>,</span>
-<span>  prune_0 <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"DMT01"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
@@ -83,6 +73,8 @@ by default based on the number of patients in the corresponding <code>n</code> r
 <span><span class="fu">dmt01_1_lyt</span><span class="op">(</span><span class="va">armvar</span>, <span class="va">summaryvars</span>, <span class="va">summaryvars_lbls</span>, <span class="va">lbl_overall</span>, <span class="va">deco</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">dmt01_1_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dmt01_1_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dmt01_1</span></span></code></pre></div>
     </div>
@@ -115,16 +107,20 @@ Usually a vector containing the following one or more of the following:
 <dd><p>(<code>character</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
 
 
-<dt>prune_0</dt>
-<dd><p>(<code>logical</code>) remove 0 count rows</p></dd>
-
-
 <dt>deco</dt>
 <dd><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></dd>
 
 
 <dt>...</dt>
 <dd><p>not used.</p></dd>
+
+
+<dt>tlg</dt>
+<dd><p>(<code>TableTree</code>, <code>Listing</code> or <code>ggplot</code>) object typically produced by a <code>main</code> function.</p></dd>
+
+
+<dt>prune_0</dt>
+<dd><p>(<code>logical</code>) remove 0 count rows</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -143,6 +139,7 @@ Usually a vector containing the following one or more of the following:
 <ul><li><p><code>dmt01_1_main()</code>: Main TLG function</p></li>
 <li><p><code>dmt01_1_lyt()</code>: Layout</p></li>
 <li><p><code>dmt01_1_pre()</code>: Preprocessing</p></li>
+<li><p><code>dmt01_1_post()</code>: Postprocessing</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -155,7 +152,7 @@ Usually a vector containing the following one or more of the following:
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cynkra.github.io/dm/" class="external-link">dm</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">syn_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">dmt01_1_pre</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">dmt01_1_main</span><span class="op">(</span><span class="va">db</span>, summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"RACE"</span>, <span class="st">"SEX"</span><span class="op">)</span>, lbl_overall <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
@@ -175,6 +172,8 @@ Usually a vector containing the following one or more of the following:
 <span class="r-out co"><span class="r-pr">#&gt;</span>   AMERICAN INDIAN OR ALASKA NATIVE             8 (6.0%)      11 (8.2%)       6 (4.5%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   MULTIPLE                                     0 (0.0%)      1 (0.7%)        0 (0.0%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER    0 (0.0%)      1 (0.7%)        0 (0.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   OTHER                                        0 (0.0%)      0 (0.0%)        0 (0.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   UNKNOWN                                      0 (0.0%)      0 (0.0%)        0 (0.0%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sex                                                                                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   n                                               134           134            132      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Female                                      79 (59.0%)    82 (61.2%)      70 (53.0%)  </span>
@@ -199,17 +198,19 @@ Usually a vector containing the following one or more of the following:
 <span class="r-out co"><span class="r-pr">#&gt;</span>   AMERICAN INDIAN OR ALASKA NATIVE             8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   MULTIPLE                                     0 (0.0%)      1 (0.7%)        0 (0.0%)        1 (0.2%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER    0 (0.0%)      1 (0.7%)        0 (0.0%)        1 (0.2%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   OTHER                                        0 (0.0%)      0 (0.0%)        0 (0.0%)        0 (0.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   UNKNOWN                                      0 (0.0%)      0 (0.0%)        0 (0.0%)        0 (0.0%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sex                                                                                                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   n                                               134           134            132             400     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Female                                      79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Male                                        55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) </span>
-<span class="r-in"><span><span class="fu">dmt01_1_pre</span><span class="op">(</span><span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">dmt01_1_pre</span><span class="op">(</span><span class="va">syn_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tables: `adsl`, `adab`, `adae`, `adaette`, `adcm`, … (19 total)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 1393</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Primary keys: 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Foreign keys: 1</span>
-<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dmt01_1</span>, <span class="fu"><a href="syn_test_data.html">syn_test_data</a></span><span class="op">(</span><span class="op">)</span>, summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"RACE"</span>, <span class="st">"SEX"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dmt01_1</span>, <span class="va">syn_data</span>, summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"RACE"</span>, <span class="st">"SEX"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                A: Drug X    B: Placebo    C: Combination   All Patients</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                 (N=134)       (N=134)        (N=132)         (N=400)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————————————————————</span>
