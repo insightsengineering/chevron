@@ -166,7 +166,7 @@ dst01_1_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db)
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
@@ -385,7 +385,7 @@ dst01_2_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db)
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
@@ -615,7 +615,7 @@ dst01_3_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db)
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
