@@ -170,7 +170,7 @@ mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
     filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed()
 
-  dm_unite(adam_db, dataset, x_var, "_")
+  dunlin::dm_unite(adam_db, dataset, x_var, "_")
 }
 
 #' @describeIn mng01_1 Postprocessing
