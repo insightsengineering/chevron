@@ -1,7 +1,7 @@
 # run ----
 
 test_that("run works as expected for chevron_t object", {
-  res <- run(aet04_1, data, prune_0 = TRUE)
+  res <- run(aet04_1, syn_data, prune_0 = TRUE)
   expect_snapshot(res)
 })
 

@@ -1,5 +1,5 @@
 test_that("cmt02_pt_1 can handle all NA values", {
-  proc_data <- data %>%
+  proc_data <- syn_data %>%
     dm_zoom_to("adcm") %>%
     mutate(
       CMSEQ = NA,
@@ -12,8 +12,8 @@ test_that("cmt02_pt_1 can handle all NA values", {
 })
 
 test_that("cmt02_pt_1 can handle some NA values", {
-  new_cmseq <- c(NA, "", as.character(data$adcm$CMSEQ[-c(1, 2)]))
-  new_cmdecod <- c(NA, "", as.character(data$adcm$CMDECOD[-c(1, 2)]))
+  new_cmseq <- c(NA, "", as.character(syn_data$adcm$CMSEQ[-c(1, 2)]))
+  new_cmdecod <- c(NA, "", as.character(syn_data$adcm$CMDECOD[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("adcm") %>%

@@ -1,7 +1,7 @@
 # aet01_1 ----
 
 test_that("aet01 can handle all NA values", {
-  proc_data <- data %>%
+  proc_data <- syn_data %>%
     dm_zoom_to("adae") %>%
     mutate(
       AESDTH = NA,
@@ -14,10 +14,10 @@ test_that("aet01 can handle all NA values", {
 })
 
 test_that("aet01 can handle some NA values", {
-  new_aesdth <- c(NA, "", as.character(data$adae$AESDTH[-c(1, 2)]))
-  new_aeser <- c(NA, "", as.character(data$adae$AESER[-c(1, 2)]))
+  new_aesdth <- c(NA, "", as.character(syn_data$adae$AESDTH[-c(1, 2)]))
+  new_aeser <- c(NA, "", as.character(syn_data$adae$AESER[-c(1, 2)]))
 
-  proc_data <- data %>%
+  proc_data <- syn_data %>%
     dm_zoom_to("adae") %>%
     mutate(
       AESDTH = .env$new_aesdth,
