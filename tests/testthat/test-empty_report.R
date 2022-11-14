@@ -1,7 +1,7 @@
 # NULL report ----
 
 test_that("tlg functions return null reports when domain table is empty", {
-  dat_empty <- data %>%
+  dat_empty <- syn_data %>%
     dunlin::dm_explicit_na() %>%
     dm_zoom_to(adsl) %>%
     filter(STUDYID == "") %>%

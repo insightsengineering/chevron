@@ -19,13 +19,7 @@
 #' }
 assert_colnames <- function(df, x, null_ok = TRUE) {
   if (!null_ok && is.null(x)) {
-    stop(
-      paste0(
-        deparse(substitute(x)),
-        " cannot be NULL."
-      ),
-      call. = FALSE
-    )
+    stop("x cannot be NULL.", call. = FALSE)
   }
 
   missing_var <- setdiff(x, colnames(df))

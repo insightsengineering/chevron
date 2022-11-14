@@ -1,5 +1,5 @@
 # as we use NSE
-globalVariables(c("."))
+globalVariables(c(".", ":="))
 
 #' Retrieve labels for certain variables
 #'
@@ -31,16 +31,6 @@ basic_table_deco <- function(deco, ...) {
   checkmate::assert_set_equal(names(deco), c("title", "subtitles", "main_footer"))
 
   basic_table(title = deco$title, subtitles = deco$subtitles, main_footer = deco$main_footer, ...)
-}
-
-ifelse_layout <- function(lyt, test, fun_lyt_yes = identity, fun_lyt_no = identity) {
-  checkmate::assert_flag(test)
-
-  if (test) {
-    fun_lyt_yes(lyt)
-  } else {
-    fun_lyt_no(lyt)
-  }
 }
 
 has_overall_col <- function(lbl_overall) {

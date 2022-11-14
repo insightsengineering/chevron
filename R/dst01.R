@@ -115,7 +115,7 @@ dst01_1_lyt <- function(armvar,
       vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
-      .formats = "xx (xx.x%)"
+      .formats = list(count_fraction = "xx (xx.x%)")
     )
 
   layout_table_other <-
@@ -124,18 +124,21 @@ dst01_1_lyt <- function(armvar,
       vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
-      .formats = "xx (xx.x%)"
+      .formats = list(count_fraction = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       status_var,
       split_fun = keep_split_levels(discontinued_lbl),
     ) %>%
-    summarize_row_groups(label_fstr = "Discontinued Study", format = "xx (xx.x%)") %>%
+    summarize_row_groups(
+      label_fstr = "Discontinued Study",
+      format = "xx (xx.x%)"
+    ) %>%
     summarize_vars(
       disc_reason_var,
       .stats = "count_fraction",
       denom = "N_col",
-      formats = "xx (xx.x%)"
+      .formats = list(count_fraction = "xx (xx.x%)")
     )
 
   list(layout_table_completed, layout_table_other)
@@ -163,7 +166,7 @@ dst01_1_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db)
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
@@ -325,7 +328,7 @@ dst01_2_lyt <- function(armvar,
       vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
-      .formats = "xx (xx.x%)"
+      .formats = list(count_fraction = "xx (xx.x%)")
     )
 
   layout_table_other <- layout_table %>%
@@ -333,13 +336,16 @@ dst01_2_lyt <- function(armvar,
       vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
-      .formats = "xx (xx.x%)"
+      .formats = list(count_fraction = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       var = status_var,
       split_fun = keep_split_levels(discontinued_lbl)
     ) %>%
-    summarize_row_groups(label_fstr = "Discontinued Study") %>%
+    summarize_row_groups(
+      label_fstr = "Discontinued Study",
+      format = "xx (xx.x%)"
+    ) %>%
     split_rows_by(
       "reasonGP",
       split_fun = reorder_split_levels(neworder = c("Safety", "Non-safety"))
@@ -349,7 +355,7 @@ dst01_2_lyt <- function(armvar,
       disc_reason_var,
       .stats = "count_fraction",
       denom = "N_col",
-      formats = "xx (xx.x%)"
+      .formats = list(count_fraction = "xx (xx.x%)")
     )
 
   list(completed = layout_table_completed, other = layout_table_other)
@@ -379,7 +385,7 @@ dst01_2_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db)
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
@@ -568,21 +574,21 @@ dst01_3_lyt <- function(armvar,
       vars = status_treatment_var,
       values = completed_trt_lbl,
       .labels = c(count_fraction = "Completed Treatment"),
-      .formats = "xx (xx.x%)",
+      .formats = list(count_fraction = "xx (xx.x%)"),
       table_names = c("COMPLETED")
     ) %>%
     count_values(
       vars = status_treatment_var,
       values = ongoing_trt_lbl,
       .labels = c(count_fraction = "Ongoing Treatment"),
-      .formats = "xx (xx.x%)",
+      .formats = list(count_fraction = "xx (xx.x%)"),
       table_names = c("ONGOING")
     ) %>%
     count_values(
       vars = status_treatment_var,
       values = discontinued_trt_lbl,
       .labels = c(count_fraction = "Discontinued Treatment"),
-      .formats = "xx (xx.x%)",
+      .formats = list(count_fraction = "xx (xx.x%)"),
       table_names = c("DISCONTINUED")
     )
 }
@@ -609,7 +615,7 @@ dst01_3_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db)
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%

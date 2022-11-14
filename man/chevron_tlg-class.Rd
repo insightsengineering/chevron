@@ -97,6 +97,8 @@ chevron_t_obj <- chevron_t(postprocess = function(tlg, indent, ...) {
 chevron_l_obj <- chevron_l()
 
 chevron_g_obj <- chevron_g()
-chevron_g_obj <- chevron_g(postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title))
+chevron_g_obj <- chevron_g(
+  postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title)
+)
 
 }

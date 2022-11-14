@@ -5,6 +5,7 @@
 \alias{vst02_1_main}
 \alias{vst02_1_lyt}
 \alias{vst02_1_pre}
+\alias{vst02_1_post}
 \alias{vst02_1}
 \title{\code{VST02} Table 1 (Default) Vital Sign Abnormalities Table 1.}
 \format{
@@ -33,6 +34,8 @@ vst02_1_lyt(
 
 vst02_1_pre(adam_db, ...)
 
+vst02_1_post(tlg, prune_0 = FALSE, ...)
+
 vst02_1
 }
 \arguments{
@@ -51,6 +54,8 @@ vst02_1
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 Assessments Outside Normal Limits Regardless of
@@ -71,6 +76,8 @@ Abnormality at Baseline Table.
 \item \code{vst02_1_lyt()}: Layout
 
 \item \code{vst02_1_pre()}: Preprocessing
+
+\item \code{vst02_1_post()}: Postprocessing
 
 }}
 \note{

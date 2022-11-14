@@ -1,4 +1,4 @@
-# TLG function with default argument value return expected result with test data
+# aet01_1 function with default argument value return expected result with test data
 
     Code
       res
@@ -23,7 +23,7 @@
         Related AE leading to dose modification/interruption       29 (21.6%)    38 (28.4%)      38 (28.8%)  
         Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
 
----
+# aet01_2 functions with default argument value return expected result with test data
 
     Code
       res
@@ -52,7 +52,7 @@
         SMQ 02 Scope                                                0 (0.0%)      0 (0.0%)        0 (0.0%)   
         CQ 01 Reference Name                                       74 (55.2%)    80 (59.7%)      87 (65.9%)  
 
----
+# aet02_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -94,7 +94,7 @@
         Total number of events                                         55           63              64      
         dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
 
----
+# aet02_2 functions with default argument value return expected result with test data
 
     Code
       res
@@ -164,7 +164,7 @@
           Total number of events                                         55           63              64      
           dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
 
----
+# aet02_3 functions with default argument value return expected result with test data
 
     Code
       res
@@ -185,7 +185,7 @@
       dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
       dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
 
----
+# aet03_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -252,7 +252,7 @@
           - Any Intensity -       43 (32.1%)   46 (34.3%)      43 (32.6%)  
           SEVERE                  43 (32.1%)   46 (34.3%)      43 (32.6%)  
 
----
+# aet04_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -338,7 +338,7 @@
           Grade 3-4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
           4                       43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
----
+# cmt01a_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -390,7 +390,7 @@
         Total number of treatments                                 69            73              80      
         medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
 
----
+# cmt01a_2 functions with default argument value return expected result with test data
 
     Code
       res
@@ -442,7 +442,7 @@
         Total number of treatments                                 58            66              64      
         medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
 
----
+# cmt01a_3 functions with default argument value return expected result with test data
 
     Code
       res
@@ -486,7 +486,7 @@
         Total number of patients with at least one treatment   52 (38.8%)    58 (43.3%)      60 (45.5%)  
         medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
 
----
+# cmt02_pt_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -506,7 +506,7 @@
         medname A_3/3                                        45 (33.6%)   54 (40.3%)      48 (36.4%)  
         medname B_3/4                                        47 (35.1%)   47 (35.1%)      52 (39.4%)  
 
----
+# dmt01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -543,7 +543,7 @@
         MULTIPLE                                     0 (0.0%)      1 (0.7%)        0 (0.0%)        1 (0.2%)  
         NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER    0 (0.0%)      1 (0.7%)        0 (0.0%)        1 (0.2%)  
 
----
+# dst01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -558,11 +558,11 @@
         DEATH                           25 (18.7%)   23 (17.2%)     22 (16.7%)      70 (17.5%) 
         LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
         PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-        PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)        4 (3%)         12 (3%)   
-        WITHDRAWAL BY PARENT/GUARDIAN     4 (3%)      2 (1.5%)       1 (0.8%)        7 (1.8%)  
+        PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
+        WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
         WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
 
----
+# dst01_2 functions with default argument value return expected result with test data
 
     Code
       res
@@ -579,11 +579,11 @@
         Non-safety                        14 (10.4%)   11 (8.2%)      11 (8.3%)       36 (9.0%)  
           LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
           PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)        4 (3%)         12 (3%)   
-          WITHDRAWAL BY PARENT/GUARDIAN     4 (3%)      2 (1.5%)       1 (0.8%)        7 (1.8%)  
+          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
+          WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
           WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
 
----
+# dst01_3 functions with default argument value return expected result with test data
 
     Code
       res
@@ -600,14 +600,14 @@
         Non-safety                        14 (10.4%)   11 (8.2%)      11 (8.3%)       36 (9.0%)  
           LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
           PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)        4 (3%)         12 (3%)   
-          WITHDRAWAL BY PARENT/GUARDIAN     4 (3%)      2 (1.5%)       1 (0.8%)        7 (1.8%)  
+          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
+          WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
           WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
       Completed Treatment                 47 (35.1%)   35 (26.1%)     42 (31.8%)     124 (31.0%) 
       Ongoing Treatment                   39 (29.1%)   46 (34.3%)     46 (34.8%)     131 (32.8%) 
       Discontinued Treatment              48 (35.8%)   53 (39.6%)     44 (33.3%)     145 (36.2%) 
 
----
+# dtht01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -622,7 +622,7 @@
         PROGRESSIVE DISEASE    8 (32.0%)    6 (26.1%)      6 (27.3%)   
         OTHER                  8 (32.0%)    10 (43.5%)     6 (27.3%)   
 
----
+# gt01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -726,7 +726,7 @@
           Median             1067.3             55.9             1068.9             33.6             1065.3            -34.4      
           Min - Max      353.0 - 2000.6   -1028.8 - 1418.6   208.8 - 1794.7   -979.0 - 1365.1    436.3 - 1794.1   -962.2 - 1329.9 
 
----
+# egt02_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -744,7 +744,7 @@
         Low          56/134 (41.8%)   41/134 (30.6%)   50/132 (37.9%)
         High         39/134 (29.1%)   62/134 (46.3%)   41/132 (31.1%)
 
----
+# egt02_2 functions with default argument value return expected result with test data
 
     Code
       res
@@ -762,7 +762,7 @@
         Low          51/129 (39.5%)   30/123 (24.4%)   44/126 (34.9%)
         High         32/127 (25.2%)    50/122 (41%)    34/125 (27.2%)
 
----
+# ext01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -781,7 +781,7 @@
         Median                                 6720.0            6360.0            6720.0     
         Min - Max                          4320.0 - 9360.0   4080.0 - 9360.0   4320.0 - 9360.0
 
----
+# ext01_2 functions with default argument value return expected result with test data
 
     Code
       res
@@ -805,7 +805,7 @@
         Median                                   7.0               7.0               7.0      
         Min - Max                             7.0 - 7.0         7.0 - 7.0         7.0 - 7.0   
 
----
+# lbt01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -909,7 +909,7 @@
           Median                                  2.0             -0.0            2.0             0.1             2.0             0.0     
           Min - Max                            1.0 - 3.1       -1.7 - 1.3      0.9 - 3.4       -1.4 - 1.6      0.6 - 2.9       -1.6 - 1.3 
 
----
+# mht01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -942,7 +942,7 @@
         trm D_1/3                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
         trm D_2/3                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
 
----
+# vst01_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -1394,7 +1394,7 @@
           Median                      49.8            -0.8            51.8            1.2             49.6            -0.2    
           Min - Max               26.4 - 66.7     -34.8 - 29.7    26.3 - 76.6     -24.0 - 29.3    28.7 - 67.9     -36.1 - 31.0
 
----
+# vst02_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -1421,7 +1421,7 @@
         Low                      73/134 (54.5%)    71/134 (53%)    76/132 (57.6%)
         High                     69/134 (51.5%)   74/134 (55.2%)   74/132 (56.1%)
 
----
+# vst02_2 functions with default argument value return expected result with test data
 
     Code
       res

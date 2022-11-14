@@ -183,7 +183,9 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 #'
 #' @examples
 #' chevron_g_obj <- chevron_g()
-#' chevron_g_obj <- chevron_g(postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title))
+#' chevron_g_obj <- chevron_g(
+#'   postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title)
+#' )
 #'
 chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
                       preprocess = function(adam_db, ...) adam_db,

@@ -108,6 +108,20 @@ vst02_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn vst02_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+#' @export
+#'
+vst02_1_post <- function(tlg, prune_0 = FALSE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+  report_null(tlg)
+}
+
 #' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1.
 #'
 #' Assessments Outside Normal Limits Regardless of
@@ -121,6 +135,7 @@ vst02_1_pre <- function(adam_db, ...) {
 vst02_1 <- chevron_t(
   main = vst02_1_main,
   preprocess = vst02_1_pre,
+  postprocess = vst02_1_post,
   adam_datasets = c("adsl", "advs")
 )
 
@@ -243,6 +258,7 @@ vst02_2_post <- function(tlg, prune_0 = FALSE, ...) {
   }
   report_null(tlg)
 }
+
 #' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2.
 #'
 #' Assessments Outside Normal Limits Among Subject

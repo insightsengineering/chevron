@@ -1,13 +1,14 @@
 # run ----
 
 test_that("run works as expected for chevron_t object", {
-  res <- run(aet04_1, data, prune_0 = TRUE)
+  res <- run(aet04_1, syn_data, prune_0 = TRUE)
   expect_snapshot(res)
 })
 
 # main ----
 
 test_that("main works as expected", {
+  skip_on_covr()
   res <- main(aet04_1)
   expect_identical(res, aet04_1_main)
 })
@@ -23,6 +24,7 @@ test_that("main setter works as expected", {
 # preprocess ----
 
 test_that("preprocess works as expected", {
+  skip_on_covr()
   res <- preprocess(aet04_1)
   expect_identical(res, aet04_1_pre)
 })
@@ -62,7 +64,7 @@ test_that("datasets setter works as expected", {
 
 test_that("main works as expected", {
   skip_if_not(interactive())
-  res <- main(aet04_1)
+  res <- get_main(aet04_1)
   expect_identical(res, aet04_1_main)
 })
 
@@ -70,7 +72,7 @@ test_that("main works as expected", {
 
 test_that("preprocess works as expected", {
   skip_if_not(interactive())
-  res <- preprocess(aet04_1)
+  res <- get_preprocess(aet04_1)
   expect_identical(res, aet04_1_pre)
 })
 
