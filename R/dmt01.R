@@ -35,7 +35,7 @@
 #' )
 dmt01_1_main <- function(adam_db,
                          armvar = "ARM",
-                         summaryvars = c("AGE", "SEX", "COUNTRY", "RACE"),
+                         summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
                          summaryvars_lbls = NULL,
                          lbl_overall = "All Patients",
                          deco = std_deco("DMT01"),
