@@ -41,11 +41,12 @@ dst01_1_main <- function(adam_db,
                          lbl_overall = "All Patients",
                          deco = std_deco("DST01"),
                          ...) {
-  status_lvl <- levels(adam_db$adsl[[status_var]])
+  # Standard values defined in GDSR.
+  completed_lvl <- "COMPLETED"
+  discontinued_lvl <- "DISCONTINUED"
+  ongoing_lvl <- "ONGOING"
 
-  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
-  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
-  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
+  checkmate::assert_factor(adam_db$adsl[[status_var]])
 
   lyt <- dst01_1_lyt(
     armvar = armvar,
@@ -53,9 +54,9 @@ dst01_1_main <- function(adam_db,
     deco = deco,
     status_var = status_var,
     disc_reason_var = disc_reason_var,
-    completed_lbl = completed_lbl,
-    ongoing_lbl = ongoing_lbl,
-    discontinued_lbl = discontinued_lbl,
+    completed_lbl = completed_lvl,
+    ongoing_lbl = ongoing_lvl,
+    discontinued_lbl = discontinued_lvl,
     ... = ...
   )
 
@@ -160,7 +161,12 @@ dst01_1_pre <- function(adam_db,
   new_format <- list(
     adsl = list(
       list("<Missing>" = c("", NA)),
-      list("<Missing>" = c("", NA))
+      list(
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
+        "<Missing>" = c("", NA)
+      )
     )
   )
 
@@ -183,7 +189,7 @@ dst01_1_pre <- function(adam_db,
 dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
-  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
+  if (prune_0) tbl_other <- tbl_other %>% trim_rows()
 
   col_info(tbl_other) <- col_info(tbl_completed)
 
@@ -255,20 +261,21 @@ dst01_2_main <- function(adam_db,
                          lbl_overall = "All Patients",
                          deco = std_deco("DST01"),
                          ...) {
-  status_lvl <- levels(adam_db$adsl[[status_var]])
+  # Standard values defined in GDSR.
+  completed_lvl <- "COMPLETED"
+  discontinued_lvl <- "DISCONTINUED"
+  ongoing_lvl <- "ONGOING"
 
-  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
-  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
-  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
+  checkmate::assert_factor(adam_db$adsl[[status_var]])
 
   lyt <- dst01_2_lyt(
     armvar = armvar,
     status_var = status_var,
     disc_reason_var = disc_reason_var,
-    completed_lbl = completed_lbl,
-    discontinued_lbl = discontinued_lbl,
+    completed_lbl = completed_lvl,
+    discontinued_lbl = discontinued_lvl,
     lbl_overall = lbl_overall,
-    ongoing_lbl = ongoing_lbl,
+    ongoing_lbl = ongoing_lvl,
     deco = deco,
     ... = ...
   )
@@ -318,9 +325,11 @@ dst01_2_lyt <- function(armvar,
                         deco = std_deco("DST01"),
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(
+      armvar,
+      split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
+    ) %>%
     add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden")
 
   layout_table_completed <- layout_table %>%
@@ -348,7 +357,7 @@ dst01_2_lyt <- function(armvar,
     ) %>%
     split_rows_by(
       "reasonGP",
-      split_fun = reorder_split_levels(neworder = c("Safety", "Non-safety"))
+      split_fun = reorder_split_levels(neworder = c("Safety", "Non-Safety"))
     ) %>%
     summarize_row_groups(format = "xx (xx.x%)") %>%
     summarize_vars(
@@ -357,6 +366,8 @@ dst01_2_lyt <- function(armvar,
       denom = "N_col",
       .formats = list(count_fraction = "xx (xx.x%)")
     )
+
+
 
   list(completed = layout_table_completed, other = layout_table_other)
 }
@@ -379,7 +390,12 @@ dst01_2_pre <- function(adam_db,
   new_format <- list(
     adsl = list(
       list("<Missing>" = c("", NA)),
-      list("<Missing>" = c("", NA))
+      list(
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
+        "<Missing>" = c("", NA)
+      )
     )
   )
 
@@ -391,9 +407,11 @@ dst01_2_pre <- function(adam_db,
     dm_zoom_to("adsl") %>%
     mutate(reasonGP = case_when(
       .data[[disc_reason_var]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
+      (.data[[disc_reason_var]] != "<Missing>" &
+        !.data[[disc_reason_var]] %in% c("ADVERSE EVENT", "DEATH")) ~ "Non-Safety",
       .data[[disc_reason_var]] == "<Missing>" ~ "<Missing>",
-      TRUE ~ "Non-safety"
     )) %>%
+    mutate(reasonGP = as.factor(.data$reasonGP)) %>%
     mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
 }
@@ -407,7 +425,7 @@ dst01_2_pre <- function(adam_db,
 dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
-  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
+  if (prune_0) tbl_other <- tbl_other %>% trim_rows()
 
   col_info(tbl_other) <- col_info(tbl_completed)
 
@@ -485,19 +503,20 @@ dst01_3_main <- function(adam_db,
                          lbl_overall = "All Patients",
                          deco = std_deco("DST01"),
                          ...) {
-  # TODO: revisit
-  status_trt_lvl <- levels(adam_db$adsl[[status_treatment_var]])
-  completed_trt_lbl <- status_trt_lvl[grep("completed", status_trt_lvl, ignore.case = TRUE)]
-  discontinued_trt_lbl <- status_trt_lvl[grep("discontinued", status_trt_lvl, ignore.case = TRUE)]
-  ongoing_trt_lbl <- status_trt_lvl[grep("ongoing", status_trt_lvl, ignore.case = TRUE)]
+  completed_lvl <- "COMPLETED"
+  discontinued_lvl <- "DISCONTINUED"
+  ongoing_lvl <- "ONGOING"
+
+  checkmate::assert_factor(adam_db$adsl[[status_var]])
+  checkmate::assert_factor(adam_db$adsl[[status_treatment_var]])
 
   lyt <- dst01_3_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    completed_trt_lbl = completed_trt_lbl,
-    ongoing_trt_lbl = ongoing_trt_lbl,
-    discontinued_trt_lbl = discontinued_trt_lbl,
+    completed_trt_lbl = completed_lvl,
+    ongoing_trt_lbl = ongoing_lvl,
+    discontinued_trt_lbl = discontinued_lvl,
     status_treatment_var = status_treatment_var,
     ... = ...
   )
@@ -507,20 +526,13 @@ dst01_3_main <- function(adam_db,
     df = adam_db$adsl
   )
 
-  # TODO: revisit later
-  # re-extract the labels associated with status in case they changed.
-  status_lvl <- levels(adam_db$adsl[[status_var]])
-  completed_lbl <- status_lvl[grep("completed", status_lvl, ignore.case = TRUE)]
-  discontinued_lbl <- status_lvl[grep("discontinued", status_lvl, ignore.case = TRUE)]
-  ongoing_lbl <- status_lvl[grep("ongoing", status_lvl, ignore.case = TRUE)]
-
   lyt <- dst01_2_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     deco = deco,
-    completed_lbl = completed_lbl,
-    ongoing_lbl = ongoing_lbl,
-    discontinued_lbl = discontinued_lbl,
+    completed_lbl = completed_lvl,
+    ongoing_lbl = ongoing_lvl,
+    discontinued_lbl = discontinued_lvl,
     status_var = status_var,
     disc_reason_var = disc_reason_var,
     ... = ...
@@ -603,17 +615,29 @@ dst01_3_lyt <- function(armvar,
 dst01_3_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
+                        status_treatment_var = "EOTSTT",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
     adsl = list(
       list("<Missing>" = c("", NA)),
-      list("<Missing>" = c("", NA))
+      list(
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
+        "<Missing>" = c("", NA)
+      ),
+      list(
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
+        "<Missing>" = c("", NA)
+      )
     )
   )
 
-  names(new_format$adsl) <- c(disc_reason_var, status_var)
+  names(new_format$adsl) <- c(disc_reason_var, status_var, status_treatment_var)
 
   adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
@@ -622,8 +646,9 @@ dst01_3_pre <- function(adam_db,
     mutate(reasonGP = case_when(
       .data[[disc_reason_var]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       .data[[disc_reason_var]] == "<Missing>" ~ "<Missing>",
-      TRUE ~ "Non-safety"
+      TRUE ~ "Non-Safety"
     )) %>%
+    mutate(reasonGP = factor(.data$reasonGP, levels = c("Safety", "Non-Safety", "<Missing>"))) %>%
     mutate(DOMAIN = "ADSL") %>%
     dm_update_zoomed()
 }
@@ -639,7 +664,7 @@ dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl <- tlg[[1]]
   tbl_completed <- tlg[[2]]
   tbl_other <- tlg[[3]]
-  if (prune_0) tbl_other <- tbl_other %>% smart_prune()
+  if (prune_0) tbl_other <- tbl_other %>% trim_rows()
 
   col_info(tbl_other) <- col_info(tbl_completed)
 
@@ -647,7 +672,7 @@ dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
 
   col_info(tbl) <- col_info(tbl2)
 
-  if (prune_0) tbl <- smart_prune(tbl)
+  if (prune_0) tbl <- trim_rows(tbl)
 
   tbl <- rbind(tbl2, tbl)
 

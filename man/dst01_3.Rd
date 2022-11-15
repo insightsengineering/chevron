@@ -34,7 +34,13 @@ dst01_3_lyt(
   ...
 )
 
-dst01_3_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
+dst01_3_pre(
+  adam_db,
+  status_var = "EOSSTT",
+  disc_reason_var = "DCSREAS",
+  status_treatment_var = "EOTSTT",
+  ...
+)
 
 dst01_3_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
 
