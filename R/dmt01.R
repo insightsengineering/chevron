@@ -142,7 +142,7 @@ dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(dmt01_1, syn_data, summaryvars = c("AGE", "RACE", "SEX"))
+#' run(dmt01_1, syn_data, summaryvars = c("AGEGR1", "RACE", "SEX"))
 dmt01_1 <- chevron_t(
   main = dmt01_1_main,
   preprocess = dmt01_1_pre,
