@@ -162,9 +162,9 @@ dst01_1_pre <- function(adam_db,
     adsl = list(
       list("<Missing>" = c("", NA)),
       list(
-        "COMPLETED" = "COMPLETED",
-        "DISCONTINUED" = "DISCONTINUED",
-        "ONGOING" = "ONGOING",
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
         "<Missing>" = c("", NA)
       )
     )
@@ -391,9 +391,9 @@ dst01_2_pre <- function(adam_db,
     adsl = list(
       list("<Missing>" = c("", NA)),
       list(
-        "COMPLETED" = "COMPLETED",
-        "DISCONTINUED" = "DISCONTINUED",
-        "ONGOING" = "ONGOING",
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
         "<Missing>" = c("", NA)
       )
     )
@@ -623,15 +623,15 @@ dst01_3_pre <- function(adam_db,
     adsl = list(
       list("<Missing>" = c("", NA)),
       list(
-        "COMPLETED" = "COMPLETED",
-        "DISCONTINUED" = "DISCONTINUED",
-        "ONGOING" = "ONGOING",
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
         "<Missing>" = c("", NA)
       ),
       list(
-        "COMPLETED" = "COMPLETED",
-        "DISCONTINUED" = "DISCONTINUED",
-        "ONGOING" = "ONGOING",
+        "COMPLETED" = "Completed",
+        "DISCONTINUED" = "Discontinued",
+        "ONGOING" = "Ongoing",
         "<Missing>" = c("", NA)
       )
     )
