@@ -28,7 +28,7 @@
 #' db <- syn_data %>%
 #'   dmt01_1_pre()
 #'
-#' dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
+#' dmt01_1_main(db, lbl_overall = NULL)
 #' dmt01_1_main(db,
 #'   summaryvars = c("AGE", "RACE", "SEX"),
 #'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
@@ -36,7 +36,7 @@
 dmt01_1_main <- function(adam_db,
                          armvar = "ARM",
                          summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-                         summaryvars_lbls = NULL,
+                         summaryvars_lbls = c("Age (yr)", "Age group (yr)", "Sex", "Ethnicity", "Race"),
                          lbl_overall = "All Patients",
                          deco = std_deco("DMT01"),
                          ...) {
