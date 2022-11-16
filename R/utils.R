@@ -101,7 +101,7 @@ syn_test_data <- function() {
   sd$adex <- dunlin::cut_by_group(as.data.frame(sd$adex), "AVAL", "PARAM", group, "AVALCAT1")
   sd$adsl$AAGE <- sd$adsl$AGE
   attr(sd$adsl$AAGE, "label") <- "Age (yr)"
-  sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 18, 200), c("<18", ">=18"))
+  sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
   sd$adex$AVALCAT1 <- forcats::fct_explicit_na(sd$adex$AVALCAT1, na_level = "<Missing>") # nolint
 
