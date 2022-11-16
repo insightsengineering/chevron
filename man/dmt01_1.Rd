@@ -94,6 +94,6 @@ dmt01_1_main(db,
   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
 )
 dmt01_1_pre(syn_data)
-run(dmt01_1, syn_data, summaryvars = c("AGEGR1", "RACE", "SEX"))
+run(dmt01_1, syn_data)
 }
 \keyword{datasets}
