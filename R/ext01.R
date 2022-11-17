@@ -3,7 +3,8 @@
 #' @describeIn ext01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`character`) the name of the variable to be analyzed. By default `"AVAL"`.
+#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
 #'
 #' @details
 #'  * Default Exposure table
@@ -28,7 +29,7 @@ ext01_1_main <- function(adam_db,
                          ...) {
   assert_colnames(adam_db$adex, summaryvars)
 
-  summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
+  summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(
     armvar = armvar,
@@ -136,6 +137,8 @@ ext01_1 <- chevron_t(
 #' @describeIn ext01_2 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
 #'
 #' @details
 #'  * Supplementary Exposure table with binning of desired analysis values.
@@ -153,16 +156,14 @@ ext01_1 <- chevron_t(
 #' @export
 #'
 ext01_2_main <- function(adam_db,
+                         summaryvars = c("AVAL", "AVALCAT1"),
                          armvar = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("EXT01"),
                          ...) {
-  summaryvars <- c("AVAL", "AVALCAT1")
-
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adam_db$adex, summaryvars)
-
-  summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
+  summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
 
   lyt <- ext01_2_lyt(
     armvar = armvar,

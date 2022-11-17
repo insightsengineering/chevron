@@ -14,6 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 ext01_2_main(
   adam_db,
+  summaryvars = c("AVAL", "AVALCAT1"),
   armvar = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("EXT01"),
@@ -38,6 +39,8 @@ ext01_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
+\item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
+
 \item{armvar}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
@@ -45,8 +48,6 @@ ext01_2
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
-
-\item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
 

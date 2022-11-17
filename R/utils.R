@@ -245,3 +245,34 @@ smart_prune <- function(tlg) {
 
   res
 }
+
+#' Get Labels
+#'
+#' @param df (`data.frame`).
+#' @param x (`character`) the names of column in the `df` data frame.
+#'
+#' @return the name of each element in the `x` vector where missing names are replaced with the value of the label
+#'   attribute for the corresponding column in the `df` data frame.
+#'
+#' @keywords internal
+#'
+get_labels <- function(df, x) {
+  checkmate::assert_character(x)
+  assert_colnames(df, x)
+
+  labels <- var_labels_for(df, x)
+
+  summaryvars_lbls <- c()
+
+  for (i in seq_along(x)) {
+    res <- if (is.null(names(x[i])) || names(x[i]) == "") {
+      labels[i]
+    } else {
+      names(x[i])
+    }
+
+    summaryvars_lbls[i] <- res
+  }
+
+  summaryvars_lbls
+}

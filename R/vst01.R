@@ -3,8 +3,8 @@
 #' @describeIn vst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
+#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#'   where no name is provided, the label attribute of the corresponding column in `advs` table of `adam_db` is used.
 #' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed
 #'
@@ -26,19 +26,14 @@
 #'
 vst01_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         summaryvars = c("AVAL", "CHG"),
-                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
+                         summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT", # or ATPTN
                          deco = std_deco("VST01"),
                          ...) {
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 
-  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
-    var_labels_for(adam_db$advs, summaryvars)
-  } else {
-    summaryvars_lbls
-  }
+  summaryvars_lbls <- get_labels(adam_db$advs, summaryvars)
 
   lyt <- vst01_1_lyt(
     armvar = armvar,
@@ -146,11 +141,7 @@ vst01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#'
-#' db <- syn_data
-#'
-#' run(vst01_1, db)
-#' run(vst01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
+#' run(vst01_1, syn_data)
 vst01_1 <- chevron_t(
   main = vst01_1_main,
   preprocess = vst01_1_pre,
