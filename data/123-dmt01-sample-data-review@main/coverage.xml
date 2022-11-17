@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.94098955969133" branch-rate="0" lines-covered="2073" lines-valid="2203" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2022-11-17 14:37:48">
+<coverage line-rate="0.940855323020928" branch-rate="0" lines-covered="2068" lines-valid="2198" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2022-11-17 15:31:46">
   <sources/>
   <packages>
-    <package name="chevron" line-rate="0.94098955969133" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.940855323020928" branch-rate="0" complexity="0">
       <classes>
         <class name="aet01.R" filename="R/aet01.R" line-rate="0.982089552238806" branch-rate="0" complexity="0">
           <methods>
@@ -4466,7 +4466,7 @@
             <line number="182" hits="0" branch="false"/>
           </lines>
         </class>
-        <class name="utils.R" filename="R/utils.R" line-rate="0.368852459016393" branch-rate="0" complexity="0">
+        <class name="utils.R" filename="R/utils.R" line-rate="0.341880341880342" branch-rate="0" complexity="0">
           <methods>
             <method name="var_labels_for" signature="" line-rate="1" branch-rate="0">
               <lines>
@@ -4625,13 +4625,8 @@
                 <line number="263" hits="16" branch="false"/>
                 <line number="265" hits="16" branch="false"/>
                 <line number="267" hits="16" branch="false"/>
-                <line number="268" hits="38" branch="false"/>
-                <line number="269" hits="15" branch="false"/>
-                <line number="270" hits="38" branch="false"/>
-                <line number="271" hits="23" branch="false"/>
-                <line number="272" hits="38" branch="false"/>
-                <line number="274" hits="38" branch="false"/>
-                <line number="277" hits="16" branch="false"/>
+                <line number="268" hits="4" branch="false"/>
+                <line number="270" hits="12" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -4751,13 +4746,8 @@
             <line number="263" hits="16" branch="false"/>
             <line number="265" hits="16" branch="false"/>
             <line number="267" hits="16" branch="false"/>
-            <line number="268" hits="38" branch="false"/>
-            <line number="269" hits="15" branch="false"/>
-            <line number="270" hits="38" branch="false"/>
-            <line number="271" hits="23" branch="false"/>
-            <line number="272" hits="38" branch="false"/>
-            <line number="274" hits="38" branch="false"/>
-            <line number="277" hits="16" branch="false"/>
+            <line number="268" hits="4" branch="false"/>
+            <line number="270" hits="12" branch="false"/>
           </lines>
         </class>
         <class name="vst01.R" filename="R/vst01.R" line-rate="1" branch-rate="0" complexity="0">
