@@ -262,17 +262,11 @@ get_labels <- function(df, x) {
 
   labels <- var_labels_for(df, x)
 
-  summaryvars_lbls <- c()
+  all_names <- names(x)
 
-  for (i in seq_along(x)) {
-    res <- if (is.null(names(x[i])) || names(x[i]) == "") {
-      labels[i]
-    } else {
-      names(x[i])
-    }
-
-    summaryvars_lbls[i] <- res
+  if (is.null(all_names)) {
+    labels
+  } else {
+    if_else(all_names == "", labels, all_names)
   }
-
-  summaryvars_lbls
 }
