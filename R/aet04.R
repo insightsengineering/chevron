@@ -3,7 +3,7 @@
 #' @describeIn aet04_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param group_grades (`list`) putting in correspondence severity levels and labels.
+#' @param grade_groups (`list`) putting in correspondence severity levels and labels.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -15,24 +15,22 @@
 #'  Grade is sorted by severity.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the columns `"AETOXGR"`, `"AEBODSYS"` and `"AEDECOD"`.
+#'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"`, `"AEDECOD"` and `"ATOXGR"`.
 #'
 #' @export
 #'
 aet04_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         group_grades = NULL,
+                         grade_groups = NULL,
                          lbl_overall = NULL,
                          deco = std_deco("AET04"),
                          ...) {
-  assert_colnames(adam_db$adae, c("AETOXGR", "AEBODSYS", "AEDECOD"))
+  dbsel <- get_db_data(adam_db, "adsl", "adae")
 
-  lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
-  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
+  assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
 
-  # TODO: check that there are not grades in the data that are not defined in the `group_grades` map
-  if (is.null(group_grades)) {
-    group_grades <- list(
+  if (is.null(grade_groups)) {
+    grade_groups <- list(
       "Any Grade" = c("1", "2", "3", "4", "5"),
       "Grade 1-2" = c("1", "2"),
       "Grade 3-4" = c("3", "4"),
@@ -43,18 +41,12 @@ aet04_1_main <- function(adam_db,
   lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = lbl_aebodsys,
-    lbl_aedecod = lbl_aedecod,
-    group_grades = group_grades,
+    grade_groups = grade_groups,
     deco = deco,
     ... = ...
   )
 
-  tbl <- build_table(
-    lyt,
-    df = adam_db$adae,
-    alt_counts_df = adam_db$adsl
-  )
+  tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
 
   tbl
 }
@@ -65,20 +57,20 @@ aet04_1_main <- function(adam_db,
 #'
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param group_grades (`list`) putting in correspondence severity levels and labels.
+#' @param grade_groups (`list`) putting in correspondence severity levels and labels.
 #' @param ... not used.
 #'
 #' @export
 #'
 aet04_1_lyt <- function(armvar,
-                        lbl_aebodsys,
-                        lbl_aedecod,
-                        group_grades,
                         lbl_overall,
+                        lbl_aebodsys = "MedDRA System Organ Class",
+                        lbl_aedecod = "MedDRA Preferred Term",
+                        grade_groups,
                         deco,
                         ...) {
-  if (is.null(group_grades)) {
-    group_grades <- list(
+  if (is.null(grade_groups)) {
+    grade_groups <- list(
       "Any Grade" = c("1", "2", "3", "4", "5"),
       "Grade 1-2" = c("1", "2"),
       "Grade 3-4" = c("3", "4"),
@@ -91,8 +83,8 @@ aet04_1_lyt <- function(armvar,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
-      var = "AETOXGR",
-      grade_groups = group_grades,
+      var = "ATOXGR",
+      grade_groups = grade_groups,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
@@ -105,8 +97,8 @@ aet04_1_lyt <- function(armvar,
       split_label = lbl_aebodsys
     ) %>%
     summarize_occurrences_by_grade(
-      var = "AETOXGR",
-      grade_groups = group_grades,
+      var = "ATOXGR",
+      grade_groups = grade_groups,
       .indent_mods = 0L,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
@@ -125,8 +117,8 @@ aet04_1_lyt <- function(armvar,
       .labels = "Any Grade"
     ) %>%
     count_occurrences_by_grade(
-      var = "AETOXGR",
-      grade_groups = group_grades[-1],
+      var = "ATOXGR",
+      grade_groups = grade_groups[-1],
       .indent_mods = -1L,
       .formats = c("count_fraction" = "xx (xx.x%)")
     )
@@ -146,7 +138,7 @@ aet04_1_pre <- function(adam_db, ...) {
     adae = list(
       AEBODSYS = list("No Coding Available" = c("", NA, "<Missing>")),
       AEDECOD = list("No Coding Available" = c("", NA, "<Missing>")),
-      AETOXGR = list("No Grading Available" = c("", NA, "<Missing>"))
+      ATOXGR = list("No Grading Available" = c("", NA, "<Missing>"))
     )
   )
 
@@ -155,11 +147,12 @@ aet04_1_pre <- function(adam_db, ...) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    filter(.data$AETOXGR != "No Grading Available") %>%
-    mutate(AETOXGR = droplevels(.data$AETOXGR, "No Grading Available")) %>%
-    mutate(AETOXGR = if (length(levels(.data$AETOXGR)) > 0L) .data$AETOXGR else factor(.data$AETOXGR, "Missing")) %>%
+    filter(.data$ATOXGR != "No Grading Available") %>%
+    mutate(ATOXGR = droplevels(.data$ATOXGR, "No Grading Available")) %>%
+    mutate(ATOXGR = if (length(levels(.data$ATOXGR)) > 0L) .data$ATOXGR else factor(.data$ATOXGR, "Missing")) %>%
     dm_update_zoomed()
 }
+
 #' @describeIn aet04_1 Postprocessing
 #'
 #' @inheritParams gen_args
@@ -194,15 +187,23 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' group_grades <- list(
+#' grade_groups <- list(
+#'   "Any Grade" = c("1", "2", "3", "4", "5"),
+#'   "Grade 1-2" = c("1", "2"),
+#'   "Grade 3-4" = c("3", "4"),
+#'   "Grade 5" = c("5")
+#' )
+#'
+#' grade_groups <- list(
 #'   "Any Grade" = c("1", "2", "3", "4", "5"),
 #'   "Grade 1-2" = c("1", "2"),
 #'   "Grade 3-5" = c("3", "4", "5")
 #' )
 #'
-#' run(aet04_1, syn_data, group_grades = group_grades)
+#' run(aet04_1, syn_data, grade_groups = grade_groups)
 aet04_1 <- chevron_t(
   main = aet04_1_main,
+  lyt = aet04_1_lyt,
   preprocess = aet04_1_pre,
   postprocess = aet04_1_post,
   adam_datasets = c("adsl", "adae")
