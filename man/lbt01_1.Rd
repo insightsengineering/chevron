@@ -15,8 +15,7 @@ An object of class \code{chevron_t} of length 1.
 lbt01_1_main(
   adam_db,
   armvar = "ACTARM",
-  summaryvars = c("AVAL", "CHG"),
-  summaryvars_lbls = c("Value at Visit", "Change from \\nBaseline"),
+  summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
   deco = std_deco("LBT01"),
   ...
@@ -46,14 +45,14 @@ lbt01_1
 
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
-\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
-
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
 
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 

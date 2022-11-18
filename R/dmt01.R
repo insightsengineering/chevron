@@ -3,10 +3,9 @@
 #' @describeIn dmt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`vector of character`) variables summarized in demographic table.
-#' Usually a vector containing the following one or more of the following:
-#' `AAGE`, `AGEGR1`, `SEX`, `ETHNIC`, `RACE` and by default all of them.
-#' @param summaryvars_lbls (`vector of character`) labels corresponding to the analyzed variables.
+#' @param summaryvars (named vector of `character`) variables summarized in demographic table. Names are used as
+#'   subtitles. For values where no name is provided, the label attribute of the corresponding column in `adsl` table of
+#'   `adam_db` is used.
 #'
 #' @details
 #'  * Information from `ADSUB` are generally included into `ADSL` before analysis.
@@ -28,27 +27,23 @@
 #' db <- syn_data %>%
 #'   dmt01_1_pre()
 #'
-#' dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
-#' dmt01_1_main(db,
-#'   summaryvars = c("AGE", "RACE", "SEX"),
-#'   summaryvars_lbls = c("Age (yr)", "Race", "Sex")
-#' )
+#' dmt01_1_main(db, lbl_overall = NULL)
+#' dmt01_1_main(db, summaryvars = c("Age" = "AGE", "RACE", "SEX"))
 dmt01_1_main <- function(adam_db,
                          armvar = "ARM",
-                         summaryvars = c("AGE", "SEX", "COUNTRY", "RACE"),
-                         summaryvars_lbls = NULL,
+                         summaryvars = c(
+                           "Age (yr)" = "AAGE",
+                           "Age group (yr)" = "AGEGR1",
+                           "SEX",
+                           "ETHNIC",
+                           "RACE"
+                         ),
                          lbl_overall = "All Patients",
                          deco = std_deco("DMT01"),
                          ...) {
   assert_colnames(adam_db$adsl, summaryvars)
 
-  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
-    var_labels_for(adam_db$adsl, summaryvars)
-  } else {
-    summaryvars_lbls
-  }
-
-  checkmate::assert_true(length(summaryvars) == length(summaryvars_lbls))
+  summaryvars_lbls <- get_labels(adam_db$adsl, summaryvars)
 
   lyt <- dmt01_1_lyt(
     armvar = armvar,
@@ -64,6 +59,7 @@ dmt01_1_main <- function(adam_db,
 }
 
 #' @describeIn dmt01_1 Layout
+#' @param summaryvars_lbls (`vector of character`) labels corresponding to the analyzed variables.
 #'
 #' @inheritParams gen_args
 #' @param ... not used.
@@ -142,7 +138,7 @@ dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(dmt01_1, syn_data, summaryvars = c("AGE", "RACE", "SEX"))
+#' run(dmt01_1, syn_data)
 dmt01_1 <- chevron_t(
   main = dmt01_1_main,
   preprocess = dmt01_1_pre,

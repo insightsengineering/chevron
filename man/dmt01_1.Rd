@@ -15,8 +15,8 @@ An object of class \code{chevron_t} of length 1.
 dmt01_1_main(
   adam_db,
   armvar = "ARM",
-  summaryvars = c("AGE", "SEX", "COUNTRY", "RACE"),
-  summaryvars_lbls = NULL,
+  summaryvars = c(`Age (yr)` = "AAGE", `Age group (yr)` = "AGEGR1", "SEX", "ETHNIC",
+    "RACE"),
   lbl_overall = "All Patients",
   deco = std_deco("DMT01"),
   ...
@@ -35,17 +35,17 @@ dmt01_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of character}) variables summarized in demographic table.
-Usually a vector containing the following one or more of the following:
-\code{AAGE}, \code{AGEGR1}, \code{SEX}, \code{ETHNIC}, \code{RACE} and by default all of them.}
-
-\item{summaryvars_lbls}{(\verb{vector of character}) labels corresponding to the analyzed variables.}
+\item{summaryvars}{(named vector of \code{character}) variables summarized in demographic table. Names are used as
+subtitles. For values where no name is provided, the label attribute of the corresponding column in \code{adsl} table of
+\code{adam_db} is used.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{summaryvars_lbls}{(\verb{vector of character}) labels corresponding to the analyzed variables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -88,12 +88,9 @@ library(magrittr)
 db <- syn_data \%>\%
   dmt01_1_pre()
 
-dmt01_1_main(db, summaryvars = c("AGE", "RACE", "SEX"), lbl_overall = NULL)
-dmt01_1_main(db,
-  summaryvars = c("AGE", "RACE", "SEX"),
-  summaryvars_lbls = c("Age (yr)", "Race", "Sex")
-)
+dmt01_1_main(db, lbl_overall = NULL)
+dmt01_1_main(db, summaryvars = c("Age" = "AGE", "RACE", "SEX"))
 dmt01_1_pre(syn_data)
-run(dmt01_1, syn_data, summaryvars = c("AGE", "RACE", "SEX"))
+run(dmt01_1, syn_data)
 }
 \keyword{datasets}

@@ -3,8 +3,8 @@
 #' @describeIn egt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`vector of string`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`vector of string`) the label of the variables to be analyzed.
+#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
 #' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
 #'   be displayed
 #'
@@ -27,19 +27,14 @@
 #'
 egt01_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         summaryvars = c("AVAL", "CHG"),
-                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
+                         summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT", # or ATPTN
                          deco = std_deco("EGT01"),
                          ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
-  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
-    var_labels_for(adam_db$adeg, summaryvars)
-  } else {
-    summaryvars_lbls
-  }
+  summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars)
 
   lyt <- egt01_1_lyt(
     armvar = armvar,
@@ -145,7 +140,7 @@ egt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @examples
 #' db <- syn_data
 #' run(egt01_1, db)
-#' run(egt01_1, db, summaryvars_lbls = c("Value at Visit", "Change from Baseline"))
+#' run(egt01_1, db, summaryvars = c("AVAL", "Change" = "CHG"))
 egt01_1 <- chevron_t(
   main = egt01_1_main,
   preprocess = egt01_1_pre,

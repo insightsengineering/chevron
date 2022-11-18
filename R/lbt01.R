@@ -3,8 +3,8 @@
 #' @describeIn lbt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
+#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#'   where no name is provided, the label attribute of the corresponding column in `adlb` table of `adam_db` is used.
 #' @param visitvar (`character`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
 #'
 #' @details
@@ -25,19 +25,14 @@
 #'
 lbt01_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         summaryvars = c("AVAL", "CHG"),
-                         summaryvars_lbls = c("Value at Visit", "Change from \nBaseline"),
+                         summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
                          deco = std_deco("LBT01"),
                          ...) {
-  summaryvars_lbls <- if (is.null(summaryvars_lbls)) {
-    var_labels_for(adam_db$adlb, summaryvars)
-  } else {
-    summaryvars_lbls
-  }
-
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+
+  summaryvars_lbls <- get_labels(adam_db$adlb, summaryvars)
 
   lyt <- lbt01_1_lyt(
     armvar = armvar,
