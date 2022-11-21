@@ -22,10 +22,10 @@ aet03_1_main(
 
 aet03_1_lyt(
   armvar,
-  lbl_aebodsys,
-  lbl_aedecod,
-  severity_grade,
   lbl_overall,
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
+  severity_grade,
   deco,
   ...
 )
@@ -84,7 +84,7 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AESEV"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"}, \code{"AEDECOD"} and \code{"ASEV"}.
 }
 }
 \examples{
