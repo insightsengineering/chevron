@@ -59,13 +59,15 @@ aet03_1_lyt <- function(armvar,
                         severity_grade,
                         deco,
                         ...) {
+  grade_groups <- list("- Any Intensity -" = severity_grade)
+
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "ASEV",
-      grade_groups = list("- Any Intensity -" = severity_grade),
+      grade_groups = grade_groups,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
@@ -79,7 +81,7 @@ aet03_1_lyt <- function(armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "ASEV",
-      grade_groups = list("- Any Intensity -" = severity_grade),
+      grade_groups = grade_groups,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
@@ -99,7 +101,6 @@ aet03_1_lyt <- function(armvar,
     count_occurrences_by_grade(
       var = "ASEV",
       .indent_mods = -1L,
-      grade_groups = grade_groups,
       .formats = c("count_fraction" = "xx (xx.x%)")
     )
 }
@@ -121,7 +122,6 @@ aet03_1_pre <- function(adam_db, ...) {
       ASEV = list("<Missing>" = c("", NA, "<Missing>"))
     )
   )
-
   adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
@@ -129,6 +129,7 @@ aet03_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ASEV != "<Missing>") %>%
     mutate(ASEV = droplevels(.data$ASEV, "<Missing>")) %>%
+    mutate(ASEV = if (length(levels(.data$ASEV)) > 0L) .data$ASEV else factor(.data$ASEV, "Missing")) %>%
     dm_update_zoomed()
 }
 
