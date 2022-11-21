@@ -149,7 +149,6 @@ aet04_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ATOXGR != "No Grading Available") %>%
     mutate(ATOXGR = droplevels(.data$ATOXGR, "No Grading Available")) %>%
-    mutate(ATOXGR = if (length(levels(.data$ATOXGR)) > 0L) .data$ATOXGR else factor(.data$ATOXGR, "Missing")) %>%
     dm_update_zoomed()
 }
 

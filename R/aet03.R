@@ -13,7 +13,7 @@
 #'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the columns `"AESEV"`, `"AEBODSYS"` and `"AEDECOD"`.
+#'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"`, `"AEDECOD"` and `"ASEV"`.
 #'
 #' @export
 #'
@@ -22,29 +22,21 @@ aet03_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          deco = std_deco("AET03"),
                          ...) {
-  assert_colnames(adam_db$adae, c("AESEV", "AEBODSYS", "AEDECOD"))
+  dbsel <- get_db_data(adam_db, "adsl", "adae")
 
-  # specific to AET03: avoid error if some severity levels are not present
-  severity_grade <- levels(adam_db$adae[["AESEV"]])
-  lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
-  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
+  assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
+
+  severity_grade <- levels(adam_db$adae[["ASEV"]])
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = lbl_aebodsys,
-    lbl_aedecod = lbl_aedecod,
     severity_grade = severity_grade,
     deco = deco,
     ... = ...
   )
 
-  # build table
-  tbl <- build_table(
-    lyt,
-    df = adam_db$adae,
-    alt_counts_df = adam_db$adsl
-  )
+  tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
 
   tbl
 }
@@ -61,10 +53,10 @@ aet03_1_main <- function(adam_db,
 #' @export
 #'
 aet03_1_lyt <- function(armvar,
-                        lbl_aebodsys,
-                        lbl_aedecod,
-                        severity_grade,
                         lbl_overall,
+                        lbl_aebodsys = "MedDRA System Organ Class",
+                        lbl_aedecod = "MedDRA Preferred Term",
+                        severity_grade,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
@@ -72,8 +64,9 @@ aet03_1_lyt <- function(armvar,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
-      var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade)
+      var = "ASEV",
+      grade_groups = list("- Any Intensity -" = severity_grade),
+      .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       "AEBODSYS",
@@ -85,8 +78,9 @@ aet03_1_lyt <- function(armvar,
       split_label = lbl_aebodsys
     ) %>%
     summarize_occurrences_by_grade(
-      var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade)
+      var = "ASEV",
+      grade_groups = list("- Any Intensity -" = severity_grade),
+      .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       "AEDECOD",
@@ -97,9 +91,16 @@ aet03_1_lyt <- function(armvar,
       label_pos = "topleft",
       split_label = lbl_aedecod
     ) %>%
-    summarize_occurrences_by_grade(
-      var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade)
+    summarize_num_patients(
+      var = "USUBJID",
+      .stats = "unique",
+      .labels = c("- Any Intensity -")
+    ) %>%
+    count_occurrences_by_grade(
+      var = "ASEV",
+      .indent_mods = -1L,
+      grade_groups = grade_groups,
+      .formats = c("count_fraction" = "xx (xx.x%)")
     )
 }
 
@@ -115,15 +116,9 @@ aet03_1_pre <- function(adam_db, ...) {
 
   new_format <- list(
     adae = list(
-      AEDECOD = list(
-        "No Coding available" = c("", NA, "<Missing>")
-      ),
-      AEBODSYS = list(
-        "No Coding available" = c("", NA, "<Missing>")
-      ),
-      AESEV = list(
-        "<Missing>" = c("", NA)
-      )
+      AEBODSYS = list("No Coding available" = c("", NA, "<Missing>")),
+      AEDECOD = list("No Coding available" = c("", NA, "<Missing>")),
+      ASEV = list("<Missing>" = c("", NA, "<Missing>"))
     )
   )
 
@@ -132,6 +127,8 @@ aet03_1_pre <- function(adam_db, ...) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    filter(.data$ASEV != "<Missing>") %>%
+    mutate(ASEV = droplevels(.data$ASEV, "<Missing>")) %>%
     dm_update_zoomed()
 }
 
@@ -147,7 +144,7 @@ aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
 
   tbl_sorted <- tlg %>%
     sort_at_path(
-      path = "AEBODSYS",
+      path = c("AEBODSYS"),
       scorefun = cont_n_allcols,
       decreasing = TRUE
     ) %>%

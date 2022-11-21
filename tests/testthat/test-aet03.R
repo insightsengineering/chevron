@@ -3,8 +3,7 @@ test_that("aet03 can handle all NA values", {
     dm_zoom_to("adae") %>%
     mutate(
       AEBODSYS = NA,
-      AEDECOD = NA,
-      AESEV = NA
+      AEDECOD = NA
     ) %>%
     dm_update_zoomed()
 
@@ -15,14 +14,14 @@ test_that("aet03 can handle all NA values", {
 test_that("aet03 can handle some NA values", {
   new_aebodsys <- c(NA, "", as.character(syn_data$adae$AEBODSYS[-c(1, 2)]))
   new_aedecod <- c(NA, "", as.character(syn_data$adae$AEDECOD[-c(1, 2)]))
-  new_aesev <- c(NA, "", as.character(syn_data$adae$AESEV[-c(1, 2)]))
+  new_asev <- c(NA, "", as.character(syn_data$adae$ASEV[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("adae") %>%
     mutate(
       AEBODSYS = .env$new_aebodsys,
       AEDECOD = .env$new_aedecod,
-      AESEV = .env$new_aesev
+      ASEV = .env$new_asev
     ) %>%
     dm_update_zoomed()
 
