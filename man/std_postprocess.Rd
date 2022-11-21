@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{std_postprocess}
 \alias{std_postprocess}
-\title{Standard Postprocessing}
+\title{Standard Post processing}
 \usage{
 std_postprocess(tlg, ind = 2L, ...)
 }
@@ -15,10 +15,10 @@ std_postprocess(tlg, ind = 2L, ...)
 a post-processed \code{tlg}.
 }
 \description{
-Standard Postprocessing
+Standard Post processing
 }
 \note{
-Standard postprocessing includes:
+Standard post processing includes:
 \itemize{
 \item \code{NULL} report creation if necessary
 \item indentation

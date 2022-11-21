@@ -271,12 +271,12 @@ get_labels <- function(df, x) {
   }
 }
 
-#' Standard Postprocessing
+#' Standard Post processing
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
 #'
-#' @note Standard postprocessing includes:
+#' @note Standard post processing includes:
 #' * `NULL` report creation if necessary
 #' * indentation
 #'
