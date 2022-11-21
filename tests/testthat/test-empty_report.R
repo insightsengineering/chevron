@@ -32,6 +32,9 @@ test_that("tlg functions return null reports when domain table is empty", {
     header = "",
     rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
   )
+
+  rtables::table_inset(empty_report) <- 2L
+
   res <- run(aet01_1, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
 

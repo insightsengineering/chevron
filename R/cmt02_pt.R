@@ -112,7 +112,7 @@ cmt02_pt_1_post <- function(tlg, prune_0 = TRUE, ...) {
       path = c("DOMAIN", "*", "CMDECOD"),
       scorefun = score_occurrences
     ) %>%
-    report_null()
+    std_postprocess()
 }
 
 #' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.

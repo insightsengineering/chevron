@@ -270,3 +270,25 @@ get_labels <- function(df, x) {
     if_else(all_names == "", labels, all_names)
   }
 }
+
+#' Standard Postprocessing
+#'
+#' @param tlg (`TableTree`) object.
+#' @param ind (`integer`) the indentation of the table.
+#'
+#' @note Standard postprocessing includes:
+#' * `NULL` report creation if necessary
+#' * indentation
+#'
+#' @return a post-processed `tlg`.
+#'
+#' @keywords internal
+#'
+std_postprocess <- function(tlg, ind = 2L, ...) {
+  checkmate::assert_integerish(ind, lower = 0L)
+
+  res <- report_null(tlg)
+  table_inset(res) <- ind
+
+  res
+}
