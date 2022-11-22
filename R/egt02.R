@@ -93,7 +93,7 @@ egt02_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 egt02_1_post <- function(tlg, ...) {
-  report_null(tlg)
+  std_postprocess(tlg)
 }
 
 #' `EGT02` Table 1 (Default) ECG Abnormalities Table 1.
@@ -206,7 +206,7 @@ egt02_2_pre <- function(adam_db, ...) {
 #'
 #' @export
 egt02_2_post <- function(tlg, ...) {
-  report_null(tlg)
+  std_postprocess(tlg)
 }
 
 #' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2.

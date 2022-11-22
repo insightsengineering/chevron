@@ -253,7 +253,7 @@ aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...) {
   if (prune_0) {
     tbl <- smart_prune(tbl)
   }
-  report_null(tbl)
+  std_postprocess(tbl)
 }
 
 #' `AET01` Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.

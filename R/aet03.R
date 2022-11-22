@@ -157,7 +157,7 @@ aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
       decreasing = TRUE
     )
 
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 
 #' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.

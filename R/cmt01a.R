@@ -161,7 +161,7 @@ cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var 
       scorefun = score_occurrences
     )
 
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 
 #' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
@@ -301,7 +301,7 @@ cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var 
     )
 
 
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 
 #' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
@@ -486,7 +486,7 @@ cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var 
       scorefun = score_occurrences
     )
 
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 #' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
 #' treatments per medication class suppressed).

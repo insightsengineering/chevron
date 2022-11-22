@@ -182,7 +182,7 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
       decreasing = TRUE
     )
 
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 
 #' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.

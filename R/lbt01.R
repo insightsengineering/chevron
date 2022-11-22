@@ -124,7 +124,7 @@ lbt01_1_pre <- function(adam_db, ...) {
 #'
 lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
-  report_null(tlg)
+  std_postprocess(tlg)
 }
 
 #' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.

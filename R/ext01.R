@@ -111,7 +111,7 @@ ext01_1_pre <- function(adam_db,
 #' @export
 ext01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
-  report_null(tlg)
+  std_postprocess(tlg)
 }
 
 #' EXT01 Table 1 (Default) Exposure Summary Table.
@@ -260,7 +260,7 @@ ext01_2_pre <- function(adam_db,
 #'
 ext01_2_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
-  report_null(tlg)
+  std_postprocess(tlg)
 }
 
 #' EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options

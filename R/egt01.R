@@ -126,7 +126,7 @@ egt01_1_pre <- function(adam_db, ...) {
 egt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
 
-  report_null(tlg)
+  std_postprocess(tlg)
 }
 
 #' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.

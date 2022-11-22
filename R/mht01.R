@@ -144,7 +144,7 @@ mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
       scorefun = score_occurrences
     )
 
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 
 #' `MHT01` Table 1 (Default) Medical History Table 1.

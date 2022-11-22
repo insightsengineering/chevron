@@ -129,7 +129,7 @@ vst01_1_pre <- function(adam_db, ...) {
 #' @export
 vst01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
-  report_null(tlg)
+  std_postprocess(tlg)
 }
 #' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
 #'
