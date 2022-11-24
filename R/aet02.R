@@ -157,7 +157,7 @@ aet02_1_post <- function(tlg, prune_0 = TRUE, ...) {
       path = c("AEBODSYS", "*", "AEDECOD"),
       scorefun = score_occurrences
     )
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 #' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
@@ -339,7 +339,7 @@ aet02_2_post <- function(tlg, prune_0 = TRUE, ...) {
       scorefun = score_occurrences
     )
 
-  report_null(tbl_sorted)
+  std_postprocess(tbl_sorted)
 }
 
 #' `AET02` Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.
@@ -492,7 +492,7 @@ aet02_3_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     res <- trim_rows(res)
   }
-  report_null(res)
+  std_postprocess(res)
 }
 
 #' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.
