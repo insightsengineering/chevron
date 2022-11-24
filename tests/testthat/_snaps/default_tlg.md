@@ -908,6 +908,26 @@
             Median                                  2.0             -0.0            2.0             0.1             2.0             0.0     
             Min - Max                            1.0 - 3.1       -1.7 - 1.3      0.9 - 3.4       -1.4 - 1.6      0.6 - 2.9       -1.6 - 1.3 
 
+# lbt04_1 functions with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+          Laboratory Test                          A: Drug X        B: Placebo     C: Combination
+            Direction of Abnormality                (N=2811)         (N=2807)         (N=2770)   
+        —————————————————————————————————————————————————————————————————————————————————————————
+        CHEMISTRY                                                                                
+          Alanine Aminotransferase Measurement                                                   
+            Low                                  58/124 (46.8%)    50/122 (41%)    46/117 (39.3%)
+            High                                 57/121 (47.1%)   54/118 (45.8%)   62/118 (52.5%)
+          C-Reactive Protein Measurement                                                         
+            Low                                  66/122 (54.1%)   54/125 (43.2%)   57/120 (47.5%)
+            High                                 60/115 (52.2%)   52/115 (45.2%)   58/114 (50.9%)
+        IMMUNOLOGY                                                                               
+          Immunoglobulin A Measurement                                                           
+            Low                                  59/120 (49.2%)   65/119 (54.6%)   58/120 (48.3%)
+            High                                 60/119 (50.4%)   60/123 (48.8%)   51/119 (42.9%)
+
 # mht01_1 functions with default argument value return expected result with test data
 
     Code
