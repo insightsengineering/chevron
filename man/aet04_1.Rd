@@ -91,14 +91,12 @@ Grade is sorted by severity.
 }
 \examples{
 grade_groups <- list(
-  "Any Grade" = c("1", "2", "3", "4", "5"),
   "Grade 1-2" = c("1", "2"),
   "Grade 3-4" = c("3", "4"),
   "Grade 5" = c("5")
 )
 
 grade_groups <- list(
-  "Any Grade" = c("1", "2", "3", "4", "5"),
   "Grade 1-2" = c("1", "2"),
   "Grade 3-5" = c("3", "4", "5")
 )

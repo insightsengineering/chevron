@@ -27,6 +27,7 @@ aet03_1_main <- function(adam_db,
   assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
   severity_grade <- levels(adam_db$adae[["ASEV"]])
+  checkmate::assert_character(severity_grade)
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
@@ -59,7 +60,7 @@ aet03_1_lyt <- function(armvar,
                         severity_grade,
                         deco,
                         ...) {
-  grade_groups <- list("- Any Intensity -" = severity_grade)
+  all_grade_groups <- list("- Any Intensity -" = severity_grade)
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -67,7 +68,7 @@ aet03_1_lyt <- function(armvar,
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "ASEV",
-      grade_groups = grade_groups,
+      grade_groups = all_grade_groups,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
@@ -81,7 +82,7 @@ aet03_1_lyt <- function(armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "ASEV",
-      grade_groups = grade_groups,
+      grade_groups = all_grade_groups,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(

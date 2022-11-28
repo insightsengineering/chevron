@@ -31,11 +31,16 @@ aet04_1_main <- function(adam_db,
 
   if (is.null(grade_groups)) {
     grade_groups <- list(
-      "Any Grade" = c("1", "2", "3", "4", "5"),
       "Grade 1-2" = c("1", "2"),
       "Grade 3-4" = c("3", "4"),
       "Grade 5" = c("5")
     )
+  }
+
+  checkmate::assert_class(grade_groups, "list")
+  for (i in seq_along(grade_groups)) {
+    checkmate::assert_true(min(as.integer(grade_groups[[i]])) >= 1)
+    checkmate::assert_true(max(as.integer(grade_groups[[i]])) <= 5)
   }
 
   lyt <- aet04_1_lyt(
@@ -69,14 +74,14 @@ aet04_1_lyt <- function(armvar,
                         grade_groups,
                         deco,
                         ...) {
-  if (is.null(grade_groups)) {
-    grade_groups <- list(
-      "Any Grade" = c("1", "2", "3", "4", "5"),
-      "Grade 1-2" = c("1", "2"),
-      "Grade 3-4" = c("3", "4"),
-      "Grade 5" = c("5")
-    )
+  all_grades <- c()
+  grade_groups <- grade_groups[order(names(grade_groups))]
+  for (i in seq_along(grade_groups)) {
+    grade_groups_i <- grade_groups[[i]]
+    grade_groups[[i]] <- grade_groups_i[order(nchar(grade_groups_i), grade_groups_i)]
+    all_grades <- c(all_grades, grade_groups[[i]])
   }
+  all_grade_groups <- c(list(`Any Group` = unique(all_grades)), grade_groups)
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -84,7 +89,7 @@ aet04_1_lyt <- function(armvar,
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = grade_groups,
+      grade_groups = all_grade_groups,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
     split_rows_by(
@@ -98,7 +103,7 @@ aet04_1_lyt <- function(armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = grade_groups,
+      grade_groups = all_grade_groups,
       .indent_mods = 0L,
       .formats = c("count_fraction" = "xx (xx.x%)")
     ) %>%
@@ -118,7 +123,7 @@ aet04_1_lyt <- function(armvar,
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = grade_groups[-1],
+      grade_groups = grade_groups,
       .indent_mods = -1L,
       .formats = c("count_fraction" = "xx (xx.x%)")
     )
@@ -188,14 +193,12 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' @examples
 #' grade_groups <- list(
-#'   "Any Grade" = c("1", "2", "3", "4", "5"),
 #'   "Grade 1-2" = c("1", "2"),
 #'   "Grade 3-4" = c("3", "4"),
 #'   "Grade 5" = c("5")
 #' )
 #'
 #' grade_groups <- list(
-#'   "Any Grade" = c("1", "2", "3", "4", "5"),
 #'   "Grade 1-2" = c("1", "2"),
 #'   "Grade 3-5" = c("3", "4", "5")
 #' )

@@ -9,18 +9,18 @@ test_that("aet04 can handle all NA values", {
 
   res1 <- expect_silent(run(aet04_1, proc_data))
   expect_snapshot(res1)
+
   grade_groups <- list(
-    "Any Grade" = c("1", "2", "3", "4", "5"),
+    "Grade 5" = c("5"),
     "Grade 1-2" = c("1", "2"),
-    "Grade 3-4" = c("3", "4"),
-    "Grade 5" = c("5")
+    "Grade 3-4" = c("3", "4")
   )
   res2 <- expect_silent(run(aet04_1, proc_data, grade_groups = grade_groups))
   expect_snapshot(res2)
+
   grade_groups <- list(
-    "Any Grade" = c("1", "2", "3", "4", "5"),
     "Grade 1-2" = c("1", "2"),
-    "Grade 3-5" = c("3", "4", "5")
+    "Grade 3-5" = c("5", "3", "4")
   )
   res3 <- expect_silent(run(aet04_1, proc_data, grade_groups = grade_groups))
   expect_snapshot(res3)
@@ -42,19 +42,25 @@ test_that("aet04 can handle some NA values", {
 
   res1 <- expect_silent(run(aet04_1, proc_data))
   expect_snapshot(res1)
+
   grade_groups <- list(
-    "Any Grade" = c("1", "2", "3", "4", "5"),
-    "Grade 1-2" = c("1", "2"),
-    "Grade 3-4" = c("3", "4"),
-    "Grade 5" = c("5")
+    "Grade 1-2" = c("2", "1"),
+    "Grade 5" = c("5"),
+    "Grade 3-4" = c("3", "4")
   )
   res2 <- expect_silent(run(aet04_1, proc_data, grade_groups = grade_groups))
   expect_snapshot(res2)
+
   grade_groups <- list(
-    "Any Grade" = c("1", "2", "3", "4", "5"),
-    "Grade 1-2" = c("1", "2"),
-    "Grade 3-5" = c("3", "4", "5")
+    "Grade 3-5" = c("4", "3", "5"),
+    "Grade 1-2" = c("2", "1")
   )
   res3 <- expect_silent(run(aet04_1, proc_data, grade_groups = grade_groups))
   expect_snapshot(res3)
+
+  grade_groups <- list(
+    "Grade 1-2" = c("1", "2"),
+    "Grade 3-5" = c("3", "4", "6")
+  )
+  res4 <- expect_error(run(aet04_1, proc_data, grade_groups = grade_groups))
 })
