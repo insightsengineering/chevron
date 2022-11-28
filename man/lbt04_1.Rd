@@ -76,7 +76,7 @@ overview of laboratory abnormalities not present at baseline.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"LBCAT"}, \code{"PARAM"}, \code{"ANRIND"},
+\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"PARCAT1"}, \code{"PARCAT2"}, \code{"PARAM"}, \code{"ANRIND"},
 and column specified by \code{armvar}.
 }
 }

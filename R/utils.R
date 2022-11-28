@@ -129,6 +129,14 @@ syn_test_data <- function() {
       replace = TRUE
     )))
 
+  # useful for lbt04
+  set.seed(321)
+  sd$adlb <- sd$adlb %>%
+    mutate(
+      PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), nrow(sd$adlb), replace = TRUE)),
+      PARCAT2 = as.factor(sample(c("LS", "CV", "SI"), nrow(sd$adlb), replace = TRUE))
+    )
+
   db <- new_dm(sd) %>%
     dm_add_pk("adsl", c("USUBJID", "STUDYID")) %>%
     dm_add_fk("adae", c("USUBJID", "STUDYID"), ref_table = "adsl") %>%

@@ -13,7 +13,7 @@
 #'  * Does not include a total column by default.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adlb` table with columns `"LBCAT"`, `"PARAM"`, `"ANRIND"`,
+#'  * `adam_db` object must contain an `adlb` table with columns `"PARCAT1"`, `"PARCAT2"`, `"PARAM"`, `"ANRIND"`,
 #'  and column specified by `armvar`.
 #'
 #' @export
@@ -55,7 +55,7 @@ lbt04_1_lyt <- function(armvar,
                         ...) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(armvar) %>%
-    split_rows_by("LBCAT") %>%
+    split_rows_by("PARCAT1") %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels,
@@ -95,7 +95,7 @@ lbt04_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adlb") %>%
     filter(
       .data$ONTRTFL == "Y",
-      .data$ANRIND != "No Coding Available"
+      .data$PARCAT2 == "SI",
       .data$ANRIND != "<Missing>"
     ) %>%
     dm_update_zoomed()
