@@ -5,6 +5,7 @@
 \alias{lbt04_1_main}
 \alias{lbt04_1_lyt}
 \alias{lbt04_1_pre}
+\alias{lbt04_1_check}
 \alias{lbt04_1_post}
 \alias{lbt04_1}
 \title{\code{LBT04} Table 1 (Default) Laboratory Abnormalities Not Present at Baseline.}
@@ -25,6 +26,8 @@ lbt04_1_lyt(armvar, lbl_param, lbl_anrind, deco, ...)
 
 lbt04_1_pre(adam_db, ...)
 
+lbt04_1_check(adam_db, req_tables = c("adsl", "adlb"), armvar = "ACTARM", ...)
+
 lbt04_1_post(tlg, ...)
 
 lbt04_1
@@ -41,6 +44,8 @@ lbt04_1
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
@@ -63,6 +68,8 @@ overview of laboratory abnormalities not present at baseline.
 \item \code{lbt04_1_lyt()}: Layout
 
 \item \code{lbt04_1_pre()}: Preprocessing
+
+\item \code{lbt04_1_check()}: Checks
 
 \item \code{lbt04_1_post()}: Postprocessing
 

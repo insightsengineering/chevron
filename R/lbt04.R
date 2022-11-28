@@ -32,7 +32,7 @@ lbt04_1_main <- function(adam_db,
     ... = ...
   )
 
-  tbl <- build_table(lyt, adam_db$adlb)
+  tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
 
   tbl
 }
@@ -81,9 +81,11 @@ lbt04_1_lyt <- function(armvar,
 lbt04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
+  lbt04_1_check(adam_db, ...)
+
   new_format <- list(
     adlb = list(
-      ANRIND = list("No Coding Available" = c("", NA, "<Missing>"))
+      ANRIND = list("<Missing>" = c("", NA, "<Missing>"))
     )
   )
 
@@ -94,8 +96,35 @@ lbt04_1_pre <- function(adam_db, ...) {
     filter(
       .data$ONTRTFL == "Y",
       .data$ANRIND != "No Coding Available"
+      .data$ANRIND != "<Missing>"
     ) %>%
     dm_update_zoomed()
+}
+
+#' @describeIn lbt04_1 Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+lbt04_1_check <- function(adam_db,
+                          req_tables = c("adsl", "adlb"),
+                          armvar = "ACTARM",
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
+
+  msg <- NULL
+
+  adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT1", "PARCAT2", "PARAM", "ANRIND")
+  adsl_layout_col <- c("USUBJID")
+
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg, collapse = "\n  "))
+  }
 }
 
 #' @describeIn lbt04_1 Postprocessing
@@ -123,5 +152,5 @@ lbt04_1 <- chevron_t(
   main = lbt04_1_main,
   preprocess = lbt04_1_pre,
   postprocess = lbt04_1_post,
-  adam_datasets = c("adlb")
+  adam_datasets = c("adsl", "adlb")
 )
