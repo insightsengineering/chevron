@@ -81,7 +81,7 @@ aet04_1_lyt <- function(armvar,
     grade_groups[[i]] <- grade_groups_i[order(nchar(grade_groups_i), grade_groups_i)]
     all_grades <- c(all_grades, grade_groups[[i]])
   }
-  all_grade_groups <- c(list(`Any Group` = unique(all_grades)), grade_groups)
+  all_grade_groups <- c(list(`Any Grade` = unique(all_grades)), grade_groups)
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
