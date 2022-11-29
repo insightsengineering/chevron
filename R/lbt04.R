@@ -66,7 +66,8 @@ lbt04_1_lyt <- function(armvar,
     count_abnormal(
       var = "ANRIND",
       abnormal = list(Low = "LOW", High = "HIGH"),
-      exclude_base_abn = TRUE
+      exclude_base_abn = TRUE,
+      .formats = list(fraction = format_fraction_fixed_dp)
     ) %>%
     append_topleft(paste("   ", lbl_anrind))
 }
