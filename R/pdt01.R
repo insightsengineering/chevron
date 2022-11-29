@@ -24,14 +24,14 @@
 #' @export
 #'
 pdt01_1_main <- function(adam_db,
-                       armvar = "ARM",
-                       dvcode_var = "DVDECOD",
-                       lbl_dvcode_var = "Protocol Deviation Coded Term",
-                       dvterm_var = "DVTERM",
-                       lbl_dvterm_var = "Category",
-                       lbl_overall = NULL,
-                       deco = std_deco("pdt01_1"),
-                       ...) {
+                         armvar = "ARM",
+                         dvcode_var = "DVDECOD",
+                         lbl_dvcode_var = "Protocol Deviation Coded Term",
+                         dvterm_var = "DVTERM",
+                         lbl_dvterm_var = "Category",
+                         lbl_overall = NULL,
+                         deco = std_deco("pdt01_1"),
+                         ...) {
   assert_colnames(adam_db$addv, c(dvcode_var, dvterm_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
@@ -64,13 +64,13 @@ pdt01_1_main <- function(adam_db,
 #' @export
 #'
 pdt01_1_lyt <- function(armvar,
-                      lbl_overall,
-                      dvcode_var,
-                      lbl_dvcode_var,
-                      dvterm_var,
-                      lbl_dvterm_var,
-                      deco,
-                      ...) {
+                        lbl_overall,
+                        dvcode_var,
+                        lbl_dvcode_var,
+                        dvterm_var,
+                        lbl_dvterm_var,
+                        deco,
+                        ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
