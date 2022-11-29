@@ -18,7 +18,7 @@ pdt01_1_main(
   dvcode_var = "DVDECOD",
   lbl_dvcode_var = "Protocol Deviation Coded Term",
   dvterm_var = "DVTERM",
-  lbl_dvterm_var = "Protocol Deviation Term",
+  lbl_dvterm_var = "Category",
   lbl_overall = NULL,
   deco = std_deco("pdt01_1"),
   ...
