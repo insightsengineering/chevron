@@ -1,6 +1,6 @@
-# pdt01 ----
+# pdt01_1 ----
 
-#' @describeIn pdt01 Main TLG function
+#' @describeIn pdt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param dvcode_var (`character`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
@@ -23,20 +23,20 @@
 #'
 #' @export
 #'
-pdt01_main <- function(adam_db,
+pdt01_1_main <- function(adam_db,
                        armvar = "ARM",
                        dvcode_var = "DVDECOD",
                        lbl_dvcode_var = "Protocol Deviation Coded Term",
                        dvterm_var = "DVTERM",
-                       lbl_dvterm_var = "Protocol Deviation Term",
+                       lbl_dvterm_var = "Category",
                        lbl_overall = NULL,
-                       deco = std_deco("PDT01"),
+                       deco = std_deco("pdt01_1"),
                        ...) {
   assert_colnames(adam_db$addv, c(dvcode_var, dvterm_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
 
-  lyt <- pdt01_lyt(
+  lyt <- pdt01_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     dvcode_var = dvcode_var,
@@ -52,7 +52,7 @@ pdt01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn pdt01 Layout
+#' @describeIn pdt01_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param dvcode_var (`character`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
@@ -63,7 +63,7 @@ pdt01_main <- function(adam_db,
 #'
 #' @export
 #'
-pdt01_lyt <- function(armvar,
+pdt01_1_lyt <- function(armvar,
                       lbl_overall,
                       dvcode_var,
                       lbl_dvcode_var,
@@ -83,7 +83,7 @@ pdt01_lyt <- function(armvar,
       )
     ) %>%
     split_rows_by(
-      "DVDECOD",
+      dvcode_var,
       child_labels = "visible",
       nested = FALSE,
       indent_mod = -1L,
@@ -91,19 +91,19 @@ pdt01_lyt <- function(armvar,
       label_pos = "topleft",
       split_label = lbl_dvterm_var
     ) %>%
-    count_occurrences(vars = "DVTERM") %>%
-    append_topleft(paste0("  ", lbl_dvterm_var))
+    count_occurrences(vars = dvterm_var) %>%
+    append_topleft(paste0("  Description"))
 }
 
-#' @describeIn pdt01 Preprocessing
+#' @describeIn pdt01_1 Preprocessing
 #'
-#' @inheritParams pdt01_main
+#' @inheritParams pdt01_1_main
 #'
 #' @param ... not used.
 #'
 #' @export
 #'
-pdt01_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
+pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -126,16 +126,16 @@ pdt01_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ..
   dunlin::apply_reformat(adam_db, new_format)
 }
 
-#' @describeIn pdt01 Postprocessing
+#' @describeIn pdt01_1 Postprocessing
 #'
-#' @inheritParams pdt01_main
+#' @inheritParams pdt01_1_main
 #' @inheritParams gen_args
 #'
 #' @param ... not used.
 #'
 #' @export
 #'
-pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
+pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -149,7 +149,7 @@ pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var =
   std_postprocess(tbl_sorted)
 }
 
-#' `PDT01` Table 1 (Default) Major Protocol Deviations.
+#' `pdt01_1` Table 1 (Default) Major Protocol Deviations.
 #'
 #' A major protocol deviations
 #' table with the number of subjects and the total number of treatments by medication class sorted alphabetically and
@@ -167,11 +167,11 @@ pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var =
 #'   filter(.data$DVCAT == "MAJOR") %>%
 #'   dm_update_zoomed()
 #'
-#' run(pdt01, db)
-pdt01 <- chevron_t(
-  main = pdt01_main,
-  lyt = pdt01_lyt,
-  preprocess = pdt01_pre,
-  postprocess = pdt01_post,
+#' run(pdt01_1, db)
+pdt01_1 <- chevron_t(
+  main = pdt01_1_main,
+  lyt = pdt01_1_lyt,
+  preprocess = pdt01_1_pre,
+  postprocess = pdt01_1_post,
   adam_datasets = c("adsl", "addv")
 )
