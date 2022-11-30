@@ -91,7 +91,7 @@ pdt01_1_lyt <- function(armvar,
       label_pos = "topleft",
       split_label = lbl_dvterm_var
     ) %>%
-    count_occurrences(vars = dvterm_var) %>%
+    count_occurrences(vars = dvterm_var, .formats = list(count_fraction = "xx (xx.x%)")) %>%
     append_topleft(paste0("  Description"))
 }
 
