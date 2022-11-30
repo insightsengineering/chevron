@@ -80,7 +80,8 @@ pdt01_1_lyt <- function(armvar,
       .labels = c(
         unique = "Total number of patients with at least one major protocol deviation",
         nonunique = "Total number of major protocol deviations"
-      )
+      ),
+      .formats = list(unique = "xx (xx.x%)")
     ) %>%
     split_rows_by(
       dvcode_var,
