@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.939353696325808" branch-rate="0" lines-covered="2122" lines-valid="2259" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2022-11-28 18:37:08">
+<coverage line-rate="0.939380530973451" branch-rate="0" lines-covered="2123" lines-valid="2260" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2022-11-30 17:15:19">
   <sources/>
   <packages>
-    <package name="chevron" line-rate="0.939353696325808" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.939380530973451" branch-rate="0" complexity="0">
       <classes>
         <class name="aet01.R" filename="R/aet01.R" line-rate="0.982089552238806" branch-rate="0" complexity="0">
           <methods>
@@ -4096,7 +4096,7 @@
             <line number="127" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="lbt04.R" filename="R/lbt04.R" line-rate="0.980392156862745" branch-rate="0" complexity="0">
+        <class name="lbt04.R" filename="R/lbt04.R" line-rate="0.980769230769231" branch-rate="0" complexity="0">
           <methods>
             <method name="lbt04_1_main" signature="" line-rate="1" branch-rate="0">
               <lines>
@@ -4129,19 +4129,19 @@
                 <line number="69" hits="3" branch="false"/>
                 <line number="70" hits="3" branch="false"/>
                 <line number="71" hits="3" branch="false"/>
+                <line number="72" hits="3" branch="false"/>
               </lines>
             </method>
             <method name="lbt04_1_pre" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="82" hits="1" branch="false"/>
-                <line number="84" hits="1" branch="false"/>
-                <line number="86" hits="1" branch="false"/>
+                <line number="83" hits="1" branch="false"/>
+                <line number="85" hits="1" branch="false"/>
                 <line number="87" hits="1" branch="false"/>
                 <line number="88" hits="1" branch="false"/>
                 <line number="89" hits="1" branch="false"/>
                 <line number="90" hits="1" branch="false"/>
-                <line number="92" hits="1" branch="false"/>
-                <line number="94" hits="1" branch="false"/>
+                <line number="91" hits="1" branch="false"/>
+                <line number="93" hits="1" branch="false"/>
                 <line number="95" hits="1" branch="false"/>
                 <line number="96" hits="1" branch="false"/>
                 <line number="97" hits="1" branch="false"/>
@@ -4149,24 +4149,25 @@
                 <line number="99" hits="1" branch="false"/>
                 <line number="100" hits="1" branch="false"/>
                 <line number="101" hits="1" branch="false"/>
+                <line number="102" hits="1" branch="false"/>
               </lines>
             </method>
             <method name="lbt04_1_check" signature="" line-rate="0.888888888888889" branch-rate="0">
               <lines>
-                <line number="113" hits="3" branch="false"/>
-                <line number="115" hits="3" branch="false"/>
-                <line number="117" hits="3" branch="false"/>
+                <line number="114" hits="3" branch="false"/>
+                <line number="116" hits="3" branch="false"/>
                 <line number="118" hits="3" branch="false"/>
-                <line number="120" hits="3" branch="false"/>
+                <line number="119" hits="3" branch="false"/>
                 <line number="121" hits="3" branch="false"/>
-                <line number="123" hits="3" branch="false"/>
+                <line number="122" hits="3" branch="false"/>
                 <line number="124" hits="3" branch="false"/>
-                <line number="126" hits="0" branch="false"/>
+                <line number="125" hits="3" branch="false"/>
+                <line number="127" hits="0" branch="false"/>
               </lines>
             </method>
             <method name="lbt04_1_post" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="138" hits="1" branch="false"/>
+                <line number="139" hits="1" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -4196,15 +4197,15 @@
             <line number="69" hits="3" branch="false"/>
             <line number="70" hits="3" branch="false"/>
             <line number="71" hits="3" branch="false"/>
-            <line number="82" hits="1" branch="false"/>
-            <line number="84" hits="1" branch="false"/>
-            <line number="86" hits="1" branch="false"/>
+            <line number="72" hits="3" branch="false"/>
+            <line number="83" hits="1" branch="false"/>
+            <line number="85" hits="1" branch="false"/>
             <line number="87" hits="1" branch="false"/>
             <line number="88" hits="1" branch="false"/>
             <line number="89" hits="1" branch="false"/>
             <line number="90" hits="1" branch="false"/>
-            <line number="92" hits="1" branch="false"/>
-            <line number="94" hits="1" branch="false"/>
+            <line number="91" hits="1" branch="false"/>
+            <line number="93" hits="1" branch="false"/>
             <line number="95" hits="1" branch="false"/>
             <line number="96" hits="1" branch="false"/>
             <line number="97" hits="1" branch="false"/>
@@ -4212,16 +4213,17 @@
             <line number="99" hits="1" branch="false"/>
             <line number="100" hits="1" branch="false"/>
             <line number="101" hits="1" branch="false"/>
-            <line number="113" hits="3" branch="false"/>
-            <line number="115" hits="3" branch="false"/>
-            <line number="117" hits="3" branch="false"/>
+            <line number="102" hits="1" branch="false"/>
+            <line number="114" hits="3" branch="false"/>
+            <line number="116" hits="3" branch="false"/>
             <line number="118" hits="3" branch="false"/>
-            <line number="120" hits="3" branch="false"/>
+            <line number="119" hits="3" branch="false"/>
             <line number="121" hits="3" branch="false"/>
-            <line number="123" hits="3" branch="false"/>
+            <line number="122" hits="3" branch="false"/>
             <line number="124" hits="3" branch="false"/>
-            <line number="126" hits="0" branch="false"/>
-            <line number="138" hits="1" branch="false"/>
+            <line number="125" hits="3" branch="false"/>
+            <line number="127" hits="0" branch="false"/>
+            <line number="139" hits="1" branch="false"/>
           </lines>
         </class>
         <class name="mht01.R" filename="R/mht01.R" line-rate="0.972222222222222" branch-rate="0" complexity="0">
