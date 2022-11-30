@@ -116,7 +116,7 @@ dst01_1_lyt <- function(armvar,
       vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction)
     )
 
   layout_table_other <-
@@ -125,7 +125,7 @@ dst01_1_lyt <- function(armvar,
       vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction)
     ) %>%
     split_rows_by(
       status_var,
@@ -139,7 +139,7 @@ dst01_1_lyt <- function(armvar,
       disc_reason_var,
       .stats = "count_fraction",
       denom = "N_col",
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction)
     )
 
   list(layout_table_completed, layout_table_other)
@@ -337,7 +337,7 @@ dst01_2_lyt <- function(armvar,
       vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction)
     )
 
   layout_table_other <- layout_table %>%
@@ -345,7 +345,7 @@ dst01_2_lyt <- function(armvar,
       vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction)
     ) %>%
     split_rows_by(
       var = status_var,
@@ -364,7 +364,7 @@ dst01_2_lyt <- function(armvar,
       disc_reason_var,
       .stats = "count_fraction",
       denom = "N_col",
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction)
     )
 
 

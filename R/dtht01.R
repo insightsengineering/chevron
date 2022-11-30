@@ -88,12 +88,12 @@ dtht01_1_lyt <- function(armvar,
       "DTHFL",
       values = "Y",
       .labels = c(count_fraction = "Total number of deaths"),
-      .formats = c(count_fraction = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction)
     ) %>%
     summarize_vars(
       vars = c("DTHCAT"),
       var_labels = c("Primary cause of death"),
-      .formats = c(count_fraction = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction)
     )
 
   tab2 <-
@@ -106,7 +106,7 @@ dtht01_1_lyt <- function(armvar,
       "DTHCAUS",
       .stats = "count_fraction",
       .indent_mods = c("count_fraction" = 4L),
-      .formats = c(count_fraction = "xx (xx.x%)"),
+      .formats = c(count_fraction = format_count_fraction),
       denom = "N_col"
     )
 
@@ -132,7 +132,7 @@ dtht01_1_opt_lyt <- function(armvar,
       vars = "LDDTHGR1",
       var_labels = "Days from last drug administration",
       show_labels = "visible",
-      .formats = c(count_fraction = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction)
     ) %>%
     split_rows_by(
       "LDDTHGR1",
@@ -142,7 +142,7 @@ dtht01_1_opt_lyt <- function(armvar,
     ) %>%
     summarize_vars(
       "DTHCAT",
-      .formats = c(count_fraction = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction)
     )
 }
 
