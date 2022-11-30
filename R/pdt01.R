@@ -81,7 +81,7 @@ pdt01_1_lyt <- function(armvar,
         unique = "Total number of patients with at least one major protocol deviation",
         nonunique = "Total number of major protocol deviations"
       ),
-      .formats = list(unique = "xx (xx.x%)")
+      .formats = list(unique = format_count_fraction)
     ) %>%
     split_rows_by(
       dvcode_var,
@@ -92,7 +92,7 @@ pdt01_1_lyt <- function(armvar,
       label_pos = "topleft",
       split_label = lbl_dvterm_var
     ) %>%
-    count_occurrences(vars = dvterm_var, .formats = list(count_fraction = "xx (xx.x%)")) %>%
+    count_occurrences(vars = dvterm_var, .formats = list(count_fraction = format_count_fraction)) %>%
     append_topleft(paste0("  Description"))
 }
 
