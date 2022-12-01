@@ -80,7 +80,7 @@ dmt01_1_lyt <- function(armvar,
     summarize_vars(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
-      .formats = list(count_fraction = format_count_fraction)
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
     )
 }
 
