@@ -108,6 +108,7 @@ aet01_1_lyt <- function(armvar,
       "USUBJID",
       filters = c("DTHFL" = "Y"),
       denom = "N_col",
+      .labels = c(count_fraction = "Total number of deaths"),
       table_names = "TotDeath"
     ) %>%
     count_patients_with_event(
