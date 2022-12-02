@@ -93,7 +93,7 @@ aet04_1_lyt <- function(armvar,
     summarize_occurrences_by_grade(
       var = "AETOXGR",
       grade_groups = group_grades,
-      .formats = c("count_fraction" = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEBODSYS",
@@ -108,7 +108,7 @@ aet04_1_lyt <- function(armvar,
       var = "AETOXGR",
       grade_groups = group_grades,
       .indent_mods = 0L,
-      .formats = c("count_fraction" = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEDECOD",
@@ -127,8 +127,7 @@ aet04_1_lyt <- function(armvar,
     count_occurrences_by_grade(
       var = "AETOXGR",
       grade_groups = group_grades[-1],
-      .indent_mods = -1L,
-      .formats = c("count_fraction" = "xx (xx.x%)")
+      .indent_mods = -1L
     )
 }
 
