@@ -81,7 +81,7 @@ pdt01_1_lyt <- function(armvar,
         unique = "Total number of patients with at least one major protocol deviation",
         nonunique = "Total number of major protocol deviations"
       ),
-      .formats = list(unique = format_count_fraction)
+      .formats = list(unique = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       dvcode_var,
