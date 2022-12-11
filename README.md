@@ -1,5 +1,7 @@
 <!-- markdownlint-disable MD033 -->
 
+# Chevron: Standard TLGs for clinical trials reporting <a href='https://github.com/insightsengineering/chevron'><img src="man/figures/chevron.png" align="right" height="139" style="max-width: 100%;"/></a>
+
 <!-- start badges -->
 [![Check 🛠](https://github.com/insightsengineering/chevron/actions/workflows/check.yaml/badge.svg)](https://github.com/insightsengineering/chevron/actions/workflows/check.yaml)
 [![Docs 📚](https://github.com/insightsengineering/chevron/actions/workflows/docs.yaml/badge.svg)](https://insightsengineering.github.io/chevron/)
@@ -18,8 +20,6 @@
 [![Current Version](https://img.shields.io/github/r-package/v/insightsengineering/chevron/main?color=purple\&label=package%20version)](https://github.com/insightsengineering/chevron/tree/main)
 [![Open Issues](https://img.shields.io/github/issues-raw/insightsengineering/chevron?color=red\&label=open%20issues)](https://github.com/insightsengineering/chevron/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 <!-- end badges -->
-
-# Chevron: Standard TLGs for clinical trials reporting <a href='https://github.com/insightsengineering/chevron'><img src="man/figures/chevron.png" align="right" height="139" style="max-width: 100%;"/></a  >
 
 <!-- markdownlint-enable MD033 -->
 
