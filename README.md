@@ -19,7 +19,6 @@
 [![Open Issues](https://img.shields.io/github/issues-raw/insightsengineering/chevron?color=red\&label=open%20issues)](https://github.com/insightsengineering/chevron/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 <!-- end badges -->
 
-
 # Chevron: Standard TLGs for clinical trials reporting <a href='https://github.com/insightsengineering/chevron'><img src="man/figures/chevron.png" align="right" height="139" style="max-width: 100%;"/></a  >
 
 <!-- markdownlint-enable MD033 -->
