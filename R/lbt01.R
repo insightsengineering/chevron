@@ -71,9 +71,10 @@ lbt01_1_lyt <- function(armvar,
                         lbl_avisit,
                         lbl_param,
                         deco,
+                        param_precision = list(
+                          "Immunoglobulin A Measurement" = list("Mean, SD" = "xx (xx)")
+                        ),
                         ...) {
-  # TODO solve the problem of the overall column
-  # remove change from baseline in BASELINE
 
   basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -94,7 +95,46 @@ lbt01_1_lyt <- function(armvar,
       varlabels = summaryvars_lbls,
       nested = TRUE
     ) %>%
-    summarize_colvars() %>%
+    analyze_colvars(afun = function(x, .spl_context, param_precision = param_precision) {
+
+      n <- sum(!is.na(x))
+      meanval <- mean(x, na.rm = TRUE)
+      medval <- median(x, na.rm = TRUE)
+      sdval <- sd(x, na.rm = TRUE)
+      minmax <- c(min(x), max(x))
+
+      # define default format
+      n_format = "xx"
+      mean_format = "xx.x (xx.x)"
+      median_format = "xx.x"
+      minmax_format = "xx.x - xx.x"
+
+      all_context <- .spl_context
+      current_param <- all_context$value[1]
+
+      precision_list <- param_precision[[current_param]]
+
+      # Coalesce
+      n_format <- c(precision_list$n, n_format)[1]
+      mean_format <- c(precision_list$`Mean, SD`, mean_format)[1]
+      median_format <- c(precision_list$Median, median_format)[1]
+      minmax_format <- c(precision_list$`Min - Max`, minmax_format)[1]
+
+      in_rows(n = n,
+              "Mean, SD" = c(meanval, sdval),
+              "Median" = medval,
+              "Min - Max" = minmax,
+              .formats = c(
+                "n" = n_format,
+                "Mean, SD" = mean_format,
+                "Median" = median_format,
+                "Min - Max" = minmax_format
+              )
+      )
+
+
+    }) %>%
+    # summarize_colvars() %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
