@@ -88,7 +88,7 @@ aet01_1_lyt <- function(armvar,
         unique = "Total number of patients with at least one AE",
         nonunique = "Total number of AEs"
       ),
-      .formats = list(unique = "xx (xx.x%)", nonunique = "xx")
+      .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx")
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -378,7 +378,7 @@ aet01_2_lyt <- function(armvar,
         unique = "Total number of patients with at least one AE",
         nonunique = "Total number of AEs"
       ),
-      .formats = list(unique = "xx (xx.x%)", nonunique = "xx")
+      .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx")
     ) %>%
     count_patients_with_flags(
       "USUBJID",
