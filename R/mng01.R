@@ -110,7 +110,7 @@ mng01_1_main <- function(adam_db,
   ggtheme <- if (!show_v_grid) {
     ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
   } else {
-    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))
+    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(size = 1))
   }
 
   ggtheme <- if (!show_h_grid) {
@@ -120,8 +120,8 @@ mng01_1_main <- function(adam_db,
     )
   } else {
     ggtheme + ggplot2::theme(
-      panel.grid.minor.y = ggplot2::element_line(linewidth = 1),
-      panel.grid.major.y = ggplot2::element_line(linewidth = 1)
+      panel.grid.minor.y = ggplot2::element_line(size = 1),
+      panel.grid.major.y = ggplot2::element_line(size = 1)
     )
   }
 
