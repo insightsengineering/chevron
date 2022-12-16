@@ -49,7 +49,7 @@
           Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
         Total number of patients with at least one                                                             
           SMQ 01 Reference Name                                      72 (53.7%)    79 (59.0%)      75 (56.8%)  
-          SMQ 02 Scope                                                0 (0.0%)      0 (0.0%)        0 (0.0%)   
+          SMQ 02 Scope                                                    0             0              0       
           CQ 01 Reference Name                                       74 (55.2%)    80 (59.7%)      87 (65.9%)  
 
 # aet02_1 functions with default argument value return expected result with test data
@@ -362,19 +362,19 @@
           Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
           Total number of treatments                                 264           275            306      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
           medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
           medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
         ATCCLAS2 B p2                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 B p3                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 C                                                                                         
           Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
           Total number of treatments                                 140           140            155      
@@ -404,7 +404,7 @@
           Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
           Total number of treatments                                 264           275            306      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
           medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
           medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
         ATCCLAS2 A                                                                                         
@@ -417,12 +417,12 @@
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 B p3                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 C                                                                                         
           Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
           Total number of treatments                                 140           140            155      
@@ -463,17 +463,17 @@
         ATCCLAS2 B                                                                                         
           Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
           medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
           medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
         ATCCLAS2 B p2                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 B p3                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 C                                                                                         
           Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
           medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
@@ -499,7 +499,7 @@
           medname A_1/3                                        54 (40.3%)   49 (36.6%)      69 (52.3%)  
           medname C_2/2                                        52 (38.8%)   58 (43.3%)      60 (45.5%)  
           medname B_1/4                                        52 (38.8%)   57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                        52 (38.8%)    55 (41%)       56 (42.4%)  
+          medname B_2/4                                        52 (38.8%)   55 (41.0%)      56 (42.4%)  
           medname A_2/3                                        53 (39.6%)   50 (37.3%)      56 (42.4%)  
           medname C_1/2                                        51 (38.1%)   50 (37.3%)      56 (42.4%)  
           medname B_4/4                                        50 (37.3%)   45 (33.6%)      55 (41.7%)  
@@ -511,36 +511,36 @@
     Code
       res
     Output
-                                                       A: Drug X      B: Placebo    C: Combination   All Patients
-                                                        (N=134)        (N=134)         (N=132)         (N=400)   
-        —————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Age (yr)                                                                                                 
-          n                                               134            134             132             400     
-          Mean (SD)                                    33.8 (6.6)     35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
-          Median                                          33.0           35.0            35.0            34.0    
-          Min - Max                                   21.0 - 50.0    21.0 - 62.0     20.0 - 69.0     20.0 - 69.0 
-        Age group (yr)                                                                                           
-          n                                               134            134             132             400     
-          <65                                         134 (100.0%)   134 (100.0%)    131 (99.2%)     399 (99.8%) 
-          >=65                                          0 (0.0%)       0 (0.0%)        1 (0.8%)        1 (0.2%)  
-        Sex                                                                                                      
-          n                                               134            134             132             400     
-          Female                                       79 (59.0%)     82 (61.2%)      70 (53.0%)     231 (57.8%) 
-          Male                                         55 (41.0%)     52 (38.8%)      62 (47.0%)     169 (42.2%) 
-        Ethnicity                                                                                                
-          n                                               134            134             132             400     
-           NOT REPORTED                                 6 (4.5%)      10 (7.5%)       11 (8.3%)       27 (6.8%)  
-          HISPANIC OR LATINO                           15 (11.2%)     18 (13.4%)      15 (11.4%)      48 (12.0%) 
-          NOT HISPANIC OR LATINO                      104 (77.6%)    103 (76.9%)     101 (76.5%)     308 (77.0%) 
-          UNKNOWN                                       9 (6.7%)       3 (2.2%)        5 (3.8%)       17 (4.2%)  
-        Race                                                                                                     
-          n                                               134            134             132             400     
-          ASIAN                                        68 (50.7%)     67 (50.0%)      73 (55.3%)     208 (52.0%) 
-          BLACK OR AFRICAN AMERICAN                    31 (23.1%)     28 (20.9%)      32 (24.2%)      91 (22.8%) 
-          WHITE                                        27 (20.1%)     26 (19.4%)      21 (15.9%)      74 (18.5%) 
-          AMERICAN INDIAN OR ALASKA NATIVE              8 (6.0%)      11 (8.2%)        6 (4.5%)       25 (6.2%)  
-          MULTIPLE                                      0 (0.0%)       1 (0.7%)        0 (0.0%)        1 (0.2%)  
-          NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER     0 (0.0%)       1 (0.7%)        0 (0.0%)        1 (0.2%)  
+                                                       A: Drug X    B: Placebo    C: Combination   All Patients
+                                                        (N=134)       (N=134)        (N=132)         (N=400)   
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        Age (yr)                                                                                               
+          n                                               134           134            132             400     
+          Mean (SD)                                   33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
+          Median                                         33.0          35.0            35.0            34.0    
+          Min - Max                                   21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
+        Age group (yr)                                                                                         
+          n                                               134           134            132             400     
+          <65                                         134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
+          >=65                                             0             0           1 (0.8%)        1 (0.2%)  
+        Sex                                                                                                    
+          n                                               134           134            132             400     
+          Female                                      79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
+          Male                                        55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
+        Ethnicity                                                                                              
+          n                                               134           134            132             400     
+           NOT REPORTED                                6 (4.5%)      10 (7.5%)      11 (8.3%)       27 (6.8%)  
+          HISPANIC OR LATINO                          15 (11.2%)    18 (13.4%)      15 (11.4%)      48 (12.0%) 
+          NOT HISPANIC OR LATINO                      104 (77.6%)   103 (76.9%)    101 (76.5%)     308 (77.0%) 
+          UNKNOWN                                      9 (6.7%)      3 (2.2%)        5 (3.8%)       17 (4.2%)  
+        Race                                                                                                   
+          n                                               134           134            132             400     
+          ASIAN                                       68 (50.7%)    67 (50.0%)      73 (55.3%)     208 (52.0%) 
+          BLACK OR AFRICAN AMERICAN                   31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
+          WHITE                                       27 (20.1%)    26 (19.4%)      21 (15.9%)      74 (18.5%) 
+          AMERICAN INDIAN OR ALASKA NATIVE             8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  
+          MULTIPLE                                         0         1 (0.7%)           0            1 (0.2%)  
+          NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER        0         1 (0.7%)           0            1 (0.2%)  
 
 # dst01_1 functions with default argument value return expected result with test data
 
@@ -794,10 +794,10 @@
           Median                                 6720.0            6360.0            6720.0     
           Min - Max                          4320.0 - 9360.0   4080.0 - 9360.0   4320.0 - 9360.0
           n                                        134               134               132      
-          <5000                                10.0 (7.5%)      18.0 (13.4%)       7.0 (5.3%)   
-          >9000                                2.0 (1.5%)        3.0 (2.2%)        3.0 (2.3%)   
-          5000-7000                           72.0 (53.7%)      71.0 (53.0%)      71.0 (53.8%)  
-          7000-9000                           50.0 (37.3%)      42.0 (31.3%)      51.0 (38.6%)  
+          <5000                                 10 (7.5%)        18 (13.4%)         7 (5.3%)    
+          >9000                                 2 (1.5%)          3 (2.2%)          3 (2.3%)    
+          5000-7000                            72 (53.7%)        71 (53.0%)        71 (53.8%)   
+          7000-9000                            50 (37.3%)        42 (31.3%)        51 (38.6%)   
         Total number of doses administered                                                      
           n                                        134               134               132      
           Mean (SD)                             7.0 (0.0)         7.0 (0.0)         7.0 (0.0)   
@@ -816,10 +816,10 @@
         ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                                                                                
           BASELINE                                                                                                                          
-            n                                       134             134             134             134             132             132     
-            Mean (SD)                            19.8 (4.2)      0.0 (0.0)       20.2 (4.2)      0.0 (0.0)       20.5 (3.9)      0.0 (0.0)  
-            Median                                  19.8            0.0             20.1            0.0             20.4            0.0     
-            Min - Max                            7.0 - 30.4      0.0 - 0.0       8.1 - 34.6      0.0 - 0.0       8.8 - 28.7      0.0 - 0.0  
+            n                                       134                             134                             132                     
+            Mean (SD)                            19.8 (4.2)                      20.2 (4.2)                      20.5 (3.9)                 
+            Median                                  19.8                            20.1                            20.4                    
+            Min - Max                            7.0 - 30.4                      8.1 - 34.6                      8.8 - 28.7                 
           WEEK 1 DAY 8                                                                                                                      
             n                                       134             134             134             134             132             132     
             Mean (SD)                            19.3 (4.0)      -0.5 (5.9)      20.2 (4.0)      0.1 (6.0)       20.6 (3.9)      0.1 (5.5)  
@@ -847,10 +847,10 @@
             Min - Max                           10.9 - 30.2     -16.0 - 16.1    10.3 - 29.1     -19.0 - 12.6     7.4 - 27.8     -15.6 - 16.6
         C-Reactive Protein Measurement                                                                                                      
           BASELINE                                                                                                                          
-            n                                       134             134             134             134             132             132     
-            Mean (SD)                            1.0 (0.2)       0.0 (0.0)       1.0 (0.2)       0.0 (0.0)       1.0 (0.2)       0.0 (0.0)  
-            Median                                  1.0             0.0             1.0             0.0             1.0             0.0     
-            Min - Max                            0.5 - 1.6       0.0 - 0.0       0.5 - 1.6       0.0 - 0.0       0.5 - 1.6       0.0 - 0.0  
+            n                                       134                             134                             132                     
+            Mean (SD)                            1.0 (0.2)                       1.0 (0.2)                       1.0 (0.2)                  
+            Median                                  1.0                             1.0                             1.0                     
+            Min - Max                            0.5 - 1.6                       0.5 - 1.6                       0.5 - 1.6                  
           WEEK 1 DAY 8                                                                                                                      
             n                                       134             134             134             134             132             132     
             Mean (SD)                            1.0 (0.2)       0.1 (0.3)       1.0 (0.2)       0.0 (0.3)       1.0 (0.2)       0.0 (0.3)  
@@ -878,10 +878,10 @@
             Min - Max                            0.4 - 1.5       -1.0 - 0.8      0.6 - 1.5       -0.6 - 0.8      0.6 - 1.6       -0.8 - 0.8 
         Immunoglobulin A Measurement                                                                                                        
           BASELINE                                                                                                                          
-            n                                       134             134             134             134             132             132     
-            Mean (SD)                            2.0 (0.4)       0.0 (0.0)       2.0 (0.4)       0.0 (0.0)       2.0 (0.5)       0.0 (0.0)  
-            Median                                  1.9             0.0             2.0             0.0             2.0             0.0     
-            Min - Max                            1.2 - 2.8       0.0 - 0.0       0.8 - 3.1       0.0 - 0.0       0.8 - 3.0       0.0 - 0.0  
+            n                                       134                             134                             132                     
+            Mean (SD)                            2.0 (0.4)                       2.0 (0.4)                       2.0 (0.5)                  
+            Median                                  1.9                             2.0                             2.0                     
+            Min - Max                            1.2 - 2.8                       0.8 - 3.1                       0.8 - 3.0                  
           WEEK 1 DAY 8                                                                                                                      
             n                                       134             134             134             134             132             132     
             Mean (SD)                            2.0 (0.4)       -0.0 (0.5)      2.1 (0.4)       0.1 (0.6)       2.0 (0.4)       0.0 (0.6)  
@@ -913,20 +913,39 @@
     Code
       res
     Output
-          Laboratory Test                          A: Drug X        B: Placebo     C: Combination
-            Direction of Abnormality                (N=2811)         (N=2807)         (N=2770)   
-        —————————————————————————————————————————————————————————————————————————————————————————
-        CHEMISTRY                                                                                
-          Alanine Aminotransferase Measurement                                                   
-            Low                                  58/124 (46.8%)    50/122 (41%)    46/117 (39.3%)
-            High                                 57/121 (47.1%)   54/118 (45.8%)   62/118 (52.5%)
-          C-Reactive Protein Measurement                                                         
-            Low                                  66/122 (54.1%)   54/125 (43.2%)   57/120 (47.5%)
-            High                                 60/115 (52.2%)   52/115 (45.2%)   58/114 (50.9%)
-        IMMUNOLOGY                                                                               
-          Immunoglobulin A Measurement                                                           
-            Low                                  59/120 (49.2%)   65/119 (54.6%)   58/120 (48.3%)
-            High                                 60/119 (50.4%)   60/123 (48.8%)   51/119 (42.9%)
+          Laboratory Test                          A: Drug X      B: Placebo     C: Combination
+            Direction of Abnormality                (N=134)         (N=134)         (N=132)    
+        ———————————————————————————————————————————————————————————————————————————————————————
+        CHEMISTRY                                                                              
+          Alanine Aminotransferase Measurement                                                 
+            Low                                  8/67 (11.9%)     5/61 (8.2%)    10/70 (14.3%) 
+            High                                 7/69 (10.1%)    6/59 (10.2%)     8/64 (12.5%) 
+          C-Reactive Protein Measurement                                                       
+            Low                                  10/69 (14.5%)   8/69 (11.6%)     8/70 (11.4%) 
+            High                                 12/64 (18.8%)   8/65 (12.3%)    10/66 (15.2%) 
+          Immunoglobulin A Measurement                                                         
+            Low                                  8/61 (13.1%)    9/73 (12.3%)    12/72 (16.7%) 
+            High                                 10/63 (15.9%)   12/74 (16.2%)    9/67 (13.4%) 
+        COAGULATION                                                                            
+          Alanine Aminotransferase Measurement                                                 
+            Low                                  7/64 (10.9%)    11/74 (14.9%)    4/66 (6.1%)  
+            High                                  3/64 (4.7%)     6/73 (8.2%)     6/67 (9.0%)  
+          C-Reactive Protein Measurement                                                       
+            Low                                  11/63 (17.5%)   8/76 (10.5%)     7/65 (10.8%) 
+            High                                  6/63 (9.5%)     6/71 (8.5%)     4/60 (6.7%)  
+          Immunoglobulin A Measurement                                                         
+            Low                                  7/61 (11.5%)    8/68 (11.8%)     7/61 (11.5%) 
+            High                                  4/55 (7.3%)    10/72 (13.9%)    6/59 (10.2%) 
+        HEMATOLOGY                                                                             
+          Alanine Aminotransferase Measurement                                                 
+            Low                                   6/66 (9.1%)    15/69 (21.7%)    7/63 (11.1%) 
+            High                                  5/63 (7.9%)    8/69 (11.6%)     8/70 (11.4%) 
+          C-Reactive Protein Measurement                                                       
+            Low                                  12/63 (19.0%)   13/71 (18.3%)    7/72 (9.7%)  
+            High                                 9/55 (16.4%)    11/71 (15.5%)   12/71 (16.9%) 
+          Immunoglobulin A Measurement                                                         
+            Low                                  7/66 (10.6%)     7/71 (9.9%)    11/65 (16.9%) 
+            High                                  5/67 (7.5%)    8/67 (11.9%)     7/67 (10.4%) 
 
 # mht01_1 functions with default argument value return expected result with test data
 

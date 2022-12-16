@@ -17,6 +17,7 @@ lbt01_1_main(
   armvar = "ACTARM",
   summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
+  precision = integer(),
   deco = std_deco("LBT01"),
   ...
 )
@@ -29,6 +30,7 @@ lbt01_1_lyt(
   lbl_avisit,
   lbl_param,
   deco,
+  precision = integer(),
   ...
 )
 
@@ -47,6 +49,10 @@ lbt01_1
 
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
+
+\item{precision}{(named vector of \code{integer}) where names are values found in the \code{PARAM} column and the the values
+indicate the number of digits that should be represented for the mean, median and standard deviation (by default,
+1).}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -96,6 +102,10 @@ by \code{AVISIT}. Re-level to customize order.
 }
 }
 \examples{
-run(lbt01_1, syn_data)
+run(lbt01_1, syn_data, precision = c(
+  "Alanine Aminotransferase Measurement" = 2,
+  "C-Reactive Protein Measurement" = 0,
+  "Immunoglobulin A Measurement" = 2
+))
 }
 \keyword{datasets}

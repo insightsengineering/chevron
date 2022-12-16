@@ -6,6 +6,9 @@
 #' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adlb` table of `adam_db` is used.
 #' @param visitvar (`character`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
+#' @param precision (named vector of `integer`) where names are values found in the `PARAM` column and the the values
+#'   indicate the number of digits that should be represented for the mean, median and standard deviation (by default,
+#'   1).
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -27,8 +30,15 @@ lbt01_1_main <- function(adam_db,
                          armvar = "ACTARM",
                          summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
+                         precision = integer(),
                          deco = std_deco("LBT01"),
                          ...) {
+  assert_colnames(adam_db$adlb, "PARAM")
+  assert_colnames(adam_db$adlb, summaryvars)
+  assert_colnames(adam_db$adlb, armvar)
+  assert_colnames(adam_db$adlb, visitvar)
+  checkmate::assert_integerish(precision, lower = 0, upper = 2)
+
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
 
@@ -42,6 +52,7 @@ lbt01_1_main <- function(adam_db,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     deco = deco,
+    precision = precision,
     ... = ...
   )
 
@@ -52,7 +63,7 @@ lbt01_1_main <- function(adam_db,
 
 #' @describeIn lbt01_1 Layout
 #'
-#' @inheritParams gen_args
+#' @inheritParams lbt01_1_main
 #'
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
 #' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
@@ -71,11 +82,8 @@ lbt01_1_lyt <- function(armvar,
                         lbl_avisit,
                         lbl_param,
                         deco,
-                        param_precision = list(
-                          "Immunoglobulin A Measurement" = list("Mean, SD" = "xx (xx)")
-                        ),
+                        precision = integer(),
                         ...) {
-
   basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     split_rows_by(
@@ -95,46 +103,50 @@ lbt01_1_lyt <- function(armvar,
       varlabels = summaryvars_lbls,
       nested = TRUE
     ) %>%
-    analyze_colvars(afun = function(x, .spl_context, param_precision = param_precision) {
+    analyze_colvars(
+      afun = function(x, .var, .spl_context, precision) {
+        param_val <- .spl_context$value[1]
 
-      n <- sum(!is.na(x))
-      meanval <- mean(x, na.rm = TRUE)
-      medval <- median(x, na.rm = TRUE)
-      sdval <- sd(x, na.rm = TRUE)
-      minmax <- c(min(x), max(x))
+        xn <- if (is.na(precision[param_val])) {
+          ".x" # default value
+        } else if (precision[param_val] == 0) {
+          "." # no decimal
+        } else {
+          paste0(".", paste0(rep("x", precision[param_val]), collapse = ""))
+        }
 
-      # define default format
-      n_format = "xx"
-      mean_format = "xx.x (xx.x)"
-      median_format = "xx.x"
-      minmax_format = "xx.x - xx.x"
+        n_fmt <- "xx"
+        mean_sd_fmt <- sprintf("xx%s (xx%s)", xn, xn)
+        median_fmt <- sprintf("xx%s", xn)
+        min_max_fmt <- "xx.x - xx.x"
 
-      all_context <- .spl_context
-      current_param <- all_context$value[1]
+        n_fun <- sum(!is.na(x))
+        mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+        median_fun <- median(x, na.rm = TRUE)
+        min_max_fun <- c(min(x), max(x))
 
-      precision_list <- param_precision[[current_param]]
+        is_baseline <- .spl_context$value[2] == "BASELINE"
+        is_chg <- .var == "CHG"
 
-      # Coalesce
-      n_format <- c(precision_list$n, n_format)[1]
-      mean_format <- c(precision_list$`Mean, SD`, mean_format)[1]
-      median_format <- c(precision_list$Median, median_format)[1]
-      minmax_format <- c(precision_list$`Min - Max`, minmax_format)[1]
+        if (is_baseline && is_chg) {
+          n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
+        }
 
-      in_rows(n = n,
-              "Mean, SD" = c(meanval, sdval),
-              "Median" = medval,
-              "Min - Max" = minmax,
-              .formats = c(
-                "n" = n_format,
-                "Mean, SD" = mean_format,
-                "Median" = median_format,
-                "Min - Max" = minmax_format
-              )
-      )
-
-
-    }) %>%
-    # summarize_colvars() %>%
+        in_rows(
+          "n" = n_fun,
+          "Mean (SD)" = mean_sd_fun,
+          "Median" = median_fun,
+          "Min - Max" = min_max_fun,
+          .formats = list(
+            "n" = n_fmt,
+            "Mean (SD)" = mean_sd_fmt,
+            "Median" = median_fmt,
+            "Min - Max" = min_max_fmt
+          )
+        )
+      },
+      extra_args = list(precision = precision)
+    ) %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
@@ -176,7 +188,11 @@ lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(lbt01_1, syn_data)
+#' run(lbt01_1, syn_data, precision = c(
+#'   "Alanine Aminotransferase Measurement" = 2,
+#'   "C-Reactive Protein Measurement" = 0,
+#'   "Immunoglobulin A Measurement" = 2
+#' ))
 lbt01_1 <- chevron_t(
   main = lbt01_1_main,
   preprocess = lbt01_1_pre,
