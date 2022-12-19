@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9021</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -282,7 +273,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55969f2c50d0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55b17ba170b8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -342,11 +333,11 @@ provided constructors corresponding to the desired output:</p>
 <span>  preprocess <span class="op">=</span> <span class="va">aet02_1_pre</span>,</span>
 <span>  postprocess <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">tbl_sorted</span> <span class="op">&lt;-</span> <span class="va">tlg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://roche.github.io/rtables/reference/sort_at_path.html" class="external-link">sort_at_path</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/rtables/man/sort_at_path.html" class="external-link">sort_at_path</a></span><span class="op">(</span></span>
 <span>        path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AEBODSYS"</span><span class="op">)</span>,</span>
-<span>        scorefun <span class="op">=</span> <span class="fu"><a href="https://roche.github.io/rtables/reference/score_funs.html" class="external-link">cont_n_onecol</a></span><span class="op">(</span>j <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># sort based on your chosen column</span></span>
+<span>        scorefun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/rtables/man/score_funs.html" class="external-link">cont_n_onecol</a></span><span class="op">(</span>j <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># sort based on your chosen column</span></span>
 <span>      <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://roche.github.io/rtables/reference/sort_at_path.html" class="external-link">sort_at_path</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/rtables/man/sort_at_path.html" class="external-link">sort_at_path</a></span><span class="op">(</span></span>
 <span>        path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AEBODSYS"</span>, <span class="st">"*"</span>, <span class="st">"AEDECOD"</span><span class="op">)</span>,</span>
 <span>        scorefun <span class="op">=</span> <span class="va">score_occurrences</span></span>
 <span>      <span class="op">)</span></span>
