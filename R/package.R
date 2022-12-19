@@ -19,5 +19,4 @@
 #' @importFrom stats setNames
 #' @importFrom tibble tribble
 #' @importFrom yaml read_yaml
-#' @importFrom rtables drop_split_levels
 "_PACKAGE"
