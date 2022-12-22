@@ -69,6 +69,7 @@ reference:
       - vst02_1
       - vst02_2
       - pdt01_1
+      - pdt02_1
 
   - title: Utility Functions
     contents:
