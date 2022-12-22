@@ -9,7 +9,8 @@
 #' @param lbl_dvterm_var (`character`) label for the variable defining the protocol deviation term.
 #'
 #' @details
-#'  * Data should be filtered for major protocol deviations related to epidemic/pandemic. `(AEPRELFL == "Y" & DVCAT == "MAJOR")`.
+#'  * Data should be filtered for major protocol deviations related to epidemic/pandemic.
+#'  `(AEPRELFL == "Y" & DVCAT == "MAJOR")`.
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
@@ -85,7 +86,6 @@ pdt02_1_lyt <- function(armvar,
     ) %>%
     split_rows_by(
       dvreas_var,
-      #child_labels = "visible",
       nested = FALSE,
       indent_mod = -1L,
       split_fun = drop_split_levels,
@@ -157,8 +157,8 @@ pdt02_1_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var 
 #' `pdt02_1` Table 1 (Default) Major Protocol Deviations Related to Epidemic/Pandemic.
 #'
 #' A major protocol deviations
-#' table with the number of subjects and the total number of Major Protocol Deviations Related to Epidemic/Pandemic sorted alphabetically and
-#' deviations name sorted by frequencies.
+#' table with the number of subjects and the total number of Major Protocol Deviations Related
+#' to Epidemic/Pandemic sorted alphabetically and deviations name sorted by frequencies.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -169,7 +169,7 @@ pdt02_1_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var 
 #'
 #' db <- syn_data %>%
 #'   dm_zoom_to("addv") %>%
-#'   filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y" ) %>%
+#'   filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
 #'   dm_update_zoomed()
 #'
 #' run(pdt02_1, db)
