@@ -72,12 +72,13 @@ pdt02_1
 }
 \description{
 A major protocol deviations
-table with the number of subjects and the total number of Major Protocol Deviations Related to Epidemic/Pandemic sorted alphabetically and
-deviations name sorted by frequencies.
+table with the number of subjects and the total number of Major Protocol Deviations Related
+to Epidemic/Pandemic sorted alphabetically and deviations name sorted by frequencies.
 }
 \details{
 \itemize{
-\item Data should be filtered for major protocol deviations related to epidemic/pandemic. \code{(AEPRELFL == "Y" & DVCAT == "MAJOR")}.
+\item Data should be filtered for major protocol deviations related to epidemic/pandemic.
+\code{(AEPRELFL == "Y" & DVCAT == "MAJOR")}.
 \item Numbers represent absolute numbers of subjects and fraction of \code{N}, or absolute numbers when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
@@ -109,7 +110,7 @@ library(dm)
 
 db <- syn_data \%>\%
   dm_zoom_to("addv") \%>\%
-  filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y" ) \%>\%
+  filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") \%>\%
   dm_update_zoomed()
 
 run(pdt02_1, db)
