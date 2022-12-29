@@ -9,28 +9,27 @@
 #'   be displayed
 #'
 #' @details
-#'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
-#'  the analysis value for each visit.
-#'  * The `Change from Baseline` column, displays the number of patient and the mean, standard deviation,
-#'  median and range of changes relative to the baseline.
+#'  * The `Analysis Value` column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
+#'  ">480 to <= 500 msec", ">500 msec", and "<Missing>" for each visit.
+#'  * The `Change from Baseline` column, displays the categories of QT value change from baseline for patients, "<=30 msec",
+#'  ">30 to <=60 msec", ">60 msec", and "<Missing>"
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
-#'  * Sorted  based on factor level; first by `PARAM` labels in alphabetic order then by chronological time point given
-#'  by `AVISIT`. Re-level to customize order.
+#'  * Sorted  based on factor level; by chronological time point given by `AVISIT`. Re-level to customize order.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column as well as columns specified in
+#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column contains 'QT' as well as columns specified in
 #'  `summaryvars` and `visitvar`.
 #'
 #' @export
 #'
 egt05_qtcat_1_main <- function(adam_db,
-                         armvar = "ACTARM",
-                         summaryvars = c("Value at Visit" = "AVALCAT1", "Change from Baseline" = "CHGCAT1"),
-                         visitvar = "AVISIT", # or ATPTN
-                         deco = std_deco("EGT05_QTCAT"),
-                         ...) {
+                               armvar = "ACTARM",
+                               summaryvars = c("Value at Visit" = "AVALCAT1", "Change from Baseline" = "CHGCAT1"),
+                               visitvar = "AVISIT", # or ATPTN
+                               deco = std_deco("EGT05_QTCAT"),
+                               ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
 
   summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars)
@@ -65,12 +64,12 @@ egt05_qtcat_1_main <- function(adam_db,
 #'
 #' @export
 egt05_qtcat_1_lyt <- function(armvar,
-                        summaryvars,
-                        summaryvars_lbls,
-                        visitvar,
-                        lbl_avisit,
-                        deco,
-                        ...) {
+                              summaryvars,
+                              summaryvars_lbls,
+                              visitvar,
+                              lbl_avisit,
+                              deco,
+                              ...) {
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
 
