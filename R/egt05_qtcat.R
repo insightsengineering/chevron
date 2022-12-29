@@ -27,12 +27,11 @@
 #'
 egt05_qtcat_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         summaryvars = c("Value at Visit" = "AVALCAT1", "Change from \nBaseline" = "CHGCAT1"),
+                         summaryvars = c("Value at Visit" = "AVALCAT1", "Change from Baseline" = "CHGCAT1"),
                          visitvar = "AVISIT", # or ATPTN
                          deco = std_deco("EGT05_QTCAT"),
                          ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
-  lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
   summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars)
 
@@ -42,14 +41,14 @@ egt05_qtcat_1_main <- function(adam_db,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
-    lbl_param = lbl_param,
     deco = deco,
     ... = ...
   )
 
   tbl <- build_table(
     lyt,
-    df = adam_db$adeg
+    df = adam_db$adeg,
+    alt_counts_df = adam_db$adsl
   )
 }
 
@@ -62,7 +61,6 @@ egt05_qtcat_1_main <- function(adam_db,
 #' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed.
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
-#' @param lbl_param (`character`) label of the `PARAM` variable.
 #' @param ... not used.
 #'
 #' @export
@@ -71,7 +69,6 @@ egt05_qtcat_1_lyt <- function(armvar,
                         summaryvars_lbls,
                         visitvar,
                         lbl_avisit,
-                        lbl_param,
                         deco,
                         ...) {
   # TODE solve the problem of the overall column
@@ -79,26 +76,18 @@ egt05_qtcat_1_lyt <- function(armvar,
 
   basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
-    split_rows_by(
-      "PARAM",
-      split_fun = drop_split_levels,
-      label_pos = "hidden",
-      split_label = paste(lbl_param)
-    ) %>%
+    add_colcounts() %>%
     split_rows_by(
       visitvar,
       split_fun = drop_split_levels,
       label_pos = "hidden",
       split_label = lbl_avisit
     ) %>%
-    split_cols_by_multivar(
+    summarize_vars(
       vars = summaryvars,
-      varlabels = summaryvars_lbls,
-      nested = TRUE
+      var_labels = summaryvars_lbls
     ) %>%
-    summarize_colvars() %>%
-    append_topleft(paste(lbl_param)) %>%
-    append_topleft(c(paste(" ", lbl_avisit), " "))
+    append_topleft("  Category")
 }
 
 #' @describeIn egt05_qtcat_1 Preprocessing
@@ -113,7 +102,8 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
 
   adam_db %>%
     dm_zoom_to("adeg") %>%
-    filter(ANL01FL == "Y") %>%
+    filter(ANL01FL == "Y",
+           PARAMCD == "QT") %>%
     mutate(
       AVALCAT1 = case_when(
         AVAL <= 450 ~ "<=450 msec",
