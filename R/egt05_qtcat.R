@@ -102,8 +102,10 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
 
   adam_db %>%
     dm_zoom_to("adeg") %>%
-    filter(ANL01FL == "Y",
-           PARAMCD == "QT") %>%
+    filter(
+      ANL01FL == "Y",
+      PARAMCD == "QT"
+      ) %>%
     mutate(
       AVALCAT1 = case_when(
         AVAL <= 450 ~ "<=450 msec",
