@@ -42,7 +42,7 @@ egt05_qtcat_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVALCAT1} and \code{CHGCAT1} by default.}
+\item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
 
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
@@ -67,8 +67,8 @@ several electrocardiogram parameters and their evolution throughout the study.
 \itemize{
 \item The \verb{Analysis Value} column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
 ">480 to <= 500 msec", ">500 msec", and "\if{html}{\out{<Missing>}}" for each visit.
-\item The \verb{Change from Baseline} column, displays the categories of QT value change from baseline for patients, "<=30 msec",
-">30 to <=60 msec", ">60 msec", and "\if{html}{\out{<Missing>}}"
+\item The \verb{Change from Baseline} column, displays the categories of QT value change from baseline for patients,
+"<=30 msec", ">30 to <=60 msec", ">60 msec", and "\if{html}{\out{<Missing>}}"
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
@@ -88,8 +88,8 @@ several electrocardiogram parameters and their evolution throughout the study.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column contains 'QT' as well as columns specified in
-\code{summaryvars} and \code{visitvar}.
+\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column contains 'QT' as well as columns
+specified in \code{summaryvars} and \code{visitvar}.
 }
 }
 \examples{

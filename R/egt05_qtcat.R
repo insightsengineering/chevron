@@ -11,16 +11,16 @@
 #' @details
 #'  * The `Analysis Value` column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
 #'  ">480 to <= 500 msec", ">500 msec", and "<Missing>" for each visit.
-#'  * The `Change from Baseline` column, displays the categories of QT value change from baseline for patients, "<=30 msec",
-#'  ">30 to <=60 msec", ">60 msec", and "<Missing>"
+#'  * The `Change from Baseline` column, displays the categories of QT value change from baseline for patients,
+#'  "<=30 msec", ">30 to <=60 msec", ">60 msec", and "<Missing>"
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'  * Sorted  based on factor level; by chronological time point given by `AVISIT`. Re-level to customize order.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column contains 'QT' as well as columns specified in
-#'  `summaryvars` and `visitvar`.
+#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column contains 'QT' as well as columns
+#'  specified in `summaryvars` and `visitvar`.
 #'
 #' @export
 #'
@@ -55,7 +55,7 @@ egt05_qtcat_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVALCAT1` and `CHGCAT1` by default.
+#' @param summaryvars (`vector of character`) the variables to be analyzed. `AVALCAT1` and `CHGCAT1` by default.
 #' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
 #' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed.
