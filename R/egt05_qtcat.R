@@ -48,7 +48,7 @@ egt05_qtcat_1_main <- function(adam_db,
     lyt,
     df = adam_db$adeg,
     alt_counts_df = adam_db$adsl
-  )
+    )
 }
 
 #' @describeIn egt05_qtcat_1 Layout
@@ -142,7 +142,7 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
         )
       ) %>%
     dm_update_zoomed()
-}
+  }
 
 #' @describeIn egt05_qtcat_1 Postprocessing
 #'

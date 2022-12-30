@@ -65,15 +65,14 @@ several electrocardiogram parameters and their evolution throughout the study.
 }
 \details{
 \itemize{
-\item The \verb{Analysis Value} column, displays the number of patients, the mean, standard deviation, median and range of
-the analysis value for each visit.
-\item The \verb{Change from Baseline} column, displays the number of patient and the mean, standard deviation,
-median and range of changes relative to the baseline.
+\item The \verb{Analysis Value} column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
+">480 to <= 500 msec", ">500 msec", and "\if{html}{\out{<Missing>}}" for each visit.
+\item The \verb{Change from Baseline} column, displays the categories of QT value change from baseline for patients, "<=30 msec",
+">30 to <=60 msec", ">60 msec", and "\if{html}{\out{<Missing>}}"
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
-\item Sorted  based on factor level; first by \code{PARAM} labels in alphabetic order then by chronological time point given
-by \code{AVISIT}. Re-level to customize order.
+\item Sorted  based on factor level; by chronological time point given by \code{AVISIT}. Re-level to customize order.
 }
 }
 \section{Functions}{
@@ -89,7 +88,7 @@ by \code{AVISIT}. Re-level to customize order.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column as well as columns specified in
+\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column contains 'QT' as well as columns specified in
 \code{summaryvars} and \code{visitvar}.
 }
 }
