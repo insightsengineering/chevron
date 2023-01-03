@@ -104,8 +104,8 @@ by \code{AVISIT}. Re-level to customize order.
 \examples{
 run(lbt01_1, syn_data, precision = c(
   "Alanine Aminotransferase Measurement" = 2,
-  "C-Reactive Protein Measurement" = 0,
-  "Immunoglobulin A Measurement" = 2
+  "C-Reactive Protein Measurement" = 1,
+  "Immunoglobulin A Measurement" = 0
 ))
 }
 \keyword{datasets}

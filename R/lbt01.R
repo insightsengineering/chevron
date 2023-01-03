@@ -37,7 +37,7 @@ lbt01_1_main <- function(adam_db,
   assert_colnames(adam_db$adlb, summaryvars)
   assert_colnames(adam_db$adlb, armvar)
   assert_colnames(adam_db$adlb, visitvar)
-  checkmate::assert_integerish(precision, lower = 0, upper = 2)
+  checkmate::assert_integerish(precision, lower = 0)
 
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
@@ -104,26 +104,41 @@ lbt01_1_lyt <- function(armvar,
       nested = TRUE
     ) %>%
     analyze_colvars(
-      afun = function(x, .var, .spl_context, precision) {
+      afun = function(x, .var, .spl_context, precision, ...) {
         param_val <- .spl_context$value[1]
+        pcs <- precision[param_val]
 
-        xn <- if (is.na(precision[param_val])) {
-          ".x" # default value
-        } else if (precision[param_val] == 0) {
-          "." # no decimal
-        } else {
-          paste0(".", paste0(rep("x", precision[param_val]), collapse = ""))
-        }
+        # xn <- if (is.na(precision[param_val])) {
+        #   ".x" # default value
+        # } else if (precision[param_val] == 0) {
+        #   "." # no decimal
+        # } else {
+        #   paste0(".", paste0(rep("x", precision[param_val]), collapse = ""))
+        # }
+        #
+        # n_fmt <- "xx"
+        # mean_sd_fmt <- sprintf("xx%s (xx%s)", xn, xn)
+        # median_fmt <- sprintf("xx%s", xn)
+        # min_max_fmt <- "xx.x - xx.x"
+        #
+        # n_fun <- as.character(sum(!is.na(x)))
+        # mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+        # median_fun <- median(x, na.rm = TRUE)
+        # min_max_fun <- c(min(x), max(x))
 
-        n_fmt <- "xx"
-        mean_sd_fmt <- sprintf("xx%s (xx%s)", xn, xn)
-        median_fmt <- sprintf("xx%s", xn)
-        min_max_fmt <- "xx.x - xx.x"
+        n_fun <- sum(!is.na(x), na.rm = TRUE)
 
-        n_fun <- sum(!is.na(x))
-        mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
-        median_fun <- median(x, na.rm = TRUE)
-        min_max_fun <- c(min(x), max(x))
+        mean_sd_fun <- c(
+          mean(x, na.rm = TRUE),
+          sd(x, na.rm = TRUE)
+        )
+
+        median_fun <-  median(x, na.rm = TRUE)
+
+        min_max_fun <- c(
+          min(x),
+          max(x)
+        )
 
         is_baseline <- .spl_context$value[2] == "BASELINE"
         is_chg <- .var == "CHG"
@@ -132,19 +147,37 @@ lbt01_1_lyt <- function(armvar,
           n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
         }
 
-        in_rows(
+        res <- in_rows(
+          "n" = n_fun,
+          "Mean (SD)" = mean_sd_fun,
+          "Median" = median_fun,
+          "Min - Max" = min_max_fun
+          # .formats = list(
+          #   "n" = "xx",
+          #   "Mean (SD)" = "xx (xx%)",
+          #   "Median" = "xx",
+          #   "Min - Max" = "xx - xx"
+          # )
+        )
+
+        res <- in_rows(
           "n" = n_fun,
           "Mean (SD)" = mean_sd_fun,
           "Median" = median_fun,
           "Min - Max" = min_max_fun,
+          "x" = sum(!is.na(x), na.rm = TRUE),
           .formats = list(
-            "n" = n_fmt,
-            "Mean (SD)" = mean_sd_fmt,
-            "Median" = median_fmt,
-            "Min - Max" = min_max_fmt
+            "n" = "xx",
+            "Mean (SD)" = function(x, ...) h_pad_or_round_pct(x, digits = pcs + 1),
+            "Median" = function(x, ...) h_pad_or_round(x, digits = pcs),
+            "Min - Max" = function(x, ...) h_pad_or_round_sep(x, digits = pcs),
+            "x" = function(x, ...) h_pad_or_round(x, digits = 2)
           )
         )
-      },
+
+        res
+
+       },
       extra_args = list(precision = precision)
     ) %>%
     append_topleft(paste(lbl_param)) %>%
@@ -190,8 +223,8 @@ lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @examples
 #' run(lbt01_1, syn_data, precision = c(
 #'   "Alanine Aminotransferase Measurement" = 2,
-#'   "C-Reactive Protein Measurement" = 0,
-#'   "Immunoglobulin A Measurement" = 2
+#'   "C-Reactive Protein Measurement" = 1,
+#'   "Immunoglobulin A Measurement" = 0
 #' ))
 lbt01_1 <- chevron_t(
   main = lbt01_1_main,
@@ -199,3 +232,94 @@ lbt01_1 <- chevron_t(
   postprocess = lbt01_1_post,
   adam_datasets = c("adlb")
 )
+
+# helper ----
+
+
+#' Padding or Rounding Numbers Error as Percentage
+#'
+#' @inheritParams h_pad_or_round
+#' @param x (`numeric`) representing the main value and its error.
+#'
+#' @export
+#'
+#' @examples
+#' h_pad_or_round_pct(c(1.11111, 0.5), 3)
+h_pad_or_round_pct <- function(x, digits = NA, ...) {
+
+  checkmate::assert_numeric(x, len = 2)
+
+  main <- h_pad_or_round(x[1], digits = digits)
+  err  <- h_pad_or_round(x[2], digits = digits)
+
+  paste0(main, " (", err, "%)")
+}
+
+#' Padding or Rounding Numbers with Separator
+#'
+#' @inheritParams h_pad_or_round
+#' @param x (`numeric`) to format.
+#' @param sep (`string`) separating the formatted values.
+#'
+#' @export
+#'
+#' @examples
+#' h_pad_or_round_sep(c(1.11111, 2.22222), 3)
+h_pad_or_round_sep <- function(x, digits = NA, sep = " - ", ...) {
+
+  checkmate::assert_numeric(x)
+  checkmate::assert_string(sep)
+
+  res <- vapply(x, h_pad_or_round, digits = digits, FUN.VALUE = character(1))
+  paste(res, collapse = sep)
+}
+
+#' Padding or Rounding Numbers
+#'
+#' @param x (`numeric`) to modify.
+#' @param digits (`integer`) number of digits.
+#'
+#' @export
+#'
+#' @examples
+#' h_pad_or_round(123.1234, 10)
+#' h_pad_or_round(123.1234, 1)
+#' h_pad_or_round(123, 1)
+#' h_pad_or_round(123, 3)
+#' h_pad_or_round(123, 0)
+h_pad_or_round <- function(n, digits = NA, ...) {
+
+  checkmate::assert_numeric(n, len = 1)
+  checkmate::assert_integerish(digits, lower = 0)
+
+  if (is.na(n) || is.na(digits)) return(n)
+
+  n_round <- round(n, digits)
+  x <- as.character(n_round)
+
+  main <- gsub("^([-0-9]{0,}).*", "\\1", x)
+
+  dec_pattern <- "\\-?[0-9]{0,}\\.([0-9]{0,})"
+  if (grepl(dec_pattern, x)) {
+    dec <- gsub(dec_pattern, "\\1", x)
+    n_dec <- nchar(dec)
+  } else {
+    n_dec <- 0
+  }
+
+  res <- if (digits == 0) {
+    main
+
+  } else if (digits >= n_dec) {
+    pad_0 <- paste(rep("0", digits - n_dec), collapse = "")
+    dec_point <- if(n_dec == 0) "." else NULL
+    paste0(x, dec_point, pad_0)
+
+  } else if (digits < n_dec) {
+    tr <- strtrim(dec, digits)
+    paste0(main, ".", tr)
+
+  }
+
+  as.character(res)
+}
