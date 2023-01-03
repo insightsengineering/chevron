@@ -59,6 +59,7 @@ Collate:
     'utils.R'
     'chevron_tlg-S4class.R'
     'aet01.R'
+    'aet01_aesi.R'
     'aet02.R'
     'aet03.R'
     'aet04.R'
