@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.900878293601004" branch-rate="0" lines-covered="2154" lines-valid="2391" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2022-12-30 02:35:57">
+<coverage line-rate="0.906644238856182" branch-rate="0" lines-covered="2156" lines-valid="2378" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-01-04 08:19:23">
   <sources/>
   <packages>
-    <package name="chevron" line-rate="0.900878293601004" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.906644238856182" branch-rate="0" complexity="0">
       <classes>
         <class name="aet01.R" filename="R/aet01.R" line-rate="0.981818181818182" branch-rate="0" complexity="0">
           <methods>
@@ -3762,14 +3762,12 @@
             <line number="209" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="egt05_qtcat.R" filename="R/egt05_qtcat.R" line-rate="0.184210526315789" branch-rate="0" complexity="0">
+        <class name="egt05_qtcat.R" filename="R/egt05_qtcat.R" line-rate="0.253968253968254" branch-rate="0" complexity="0">
           <methods>
             <method name="egt05_qtcat_1_main" signature="" line-rate="0" branch-rate="0">
               <lines>
-                <line number="33" hits="0" branch="false"/>
                 <line number="35" hits="0" branch="false"/>
                 <line number="37" hits="0" branch="false"/>
-                <line number="38" hits="0" branch="false"/>
                 <line number="39" hits="0" branch="false"/>
                 <line number="40" hits="0" branch="false"/>
                 <line number="41" hits="0" branch="false"/>
@@ -3777,20 +3775,19 @@
                 <line number="43" hits="0" branch="false"/>
                 <line number="44" hits="0" branch="false"/>
                 <line number="45" hits="0" branch="false"/>
+                <line number="46" hits="0" branch="false"/>
                 <line number="47" hits="0" branch="false"/>
                 <line number="48" hits="0" branch="false"/>
                 <line number="49" hits="0" branch="false"/>
-                <line number="50" hits="0" branch="false"/>
                 <line number="51" hits="0" branch="false"/>
+                <line number="52" hits="0" branch="false"/>
+                <line number="53" hits="0" branch="false"/>
+                <line number="54" hits="0" branch="false"/>
+                <line number="55" hits="0" branch="false"/>
               </lines>
             </method>
             <method name="egt05_qtcat_1_lyt" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="76" hits="2" branch="false"/>
-                <line number="77" hits="2" branch="false"/>
-                <line number="78" hits="2" branch="false"/>
-                <line number="79" hits="2" branch="false"/>
-                <line number="80" hits="2" branch="false"/>
                 <line number="81" hits="2" branch="false"/>
                 <line number="82" hits="2" branch="false"/>
                 <line number="83" hits="2" branch="false"/>
@@ -3800,18 +3797,18 @@
                 <line number="87" hits="2" branch="false"/>
                 <line number="88" hits="2" branch="false"/>
                 <line number="89" hits="2" branch="false"/>
+                <line number="90" hits="2" branch="false"/>
+                <line number="91" hits="2" branch="false"/>
+                <line number="92" hits="2" branch="false"/>
+                <line number="93" hits="2" branch="false"/>
+                <line number="94" hits="2" branch="false"/>
+                <line number="95" hits="2" branch="false"/>
+                <line number="96" hits="2" branch="false"/>
               </lines>
             </method>
             <method name="egt05_qtcat_1_pre" signature="" line-rate="0" branch-rate="0">
               <lines>
-                <line number="100" hits="0" branch="false"/>
-                <line number="102" hits="0" branch="false"/>
-                <line number="103" hits="0" branch="false"/>
-                <line number="104" hits="0" branch="false"/>
-                <line number="105" hits="0" branch="false"/>
-                <line number="106" hits="0" branch="false"/>
                 <line number="107" hits="0" branch="false"/>
-                <line number="108" hits="0" branch="false"/>
                 <line number="109" hits="0" branch="false"/>
                 <line number="110" hits="0" branch="false"/>
                 <line number="111" hits="0" branch="false"/>
@@ -3838,30 +3835,18 @@
                 <line number="132" hits="0" branch="false"/>
                 <line number="133" hits="0" branch="false"/>
                 <line number="134" hits="0" branch="false"/>
-                <line number="135" hits="0" branch="false"/>
-                <line number="136" hits="0" branch="false"/>
-                <line number="137" hits="0" branch="false"/>
-                <line number="138" hits="0" branch="false"/>
-                <line number="139" hits="0" branch="false"/>
-                <line number="140" hits="0" branch="false"/>
-                <line number="141" hits="0" branch="false"/>
-                <line number="142" hits="0" branch="false"/>
-                <line number="143" hits="0" branch="false"/>
-                <line number="144" hits="0" branch="false"/>
               </lines>
             </method>
             <method name="egt05_qtcat_1_post" signature="" line-rate="0" branch-rate="0">
               <lines>
-                <line number="154" hits="0" branch="false"/>
-                <line number="156" hits="0" branch="false"/>
+                <line number="144" hits="0" branch="false"/>
+                <line number="146" hits="0" branch="false"/>
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="33" hits="0" branch="false"/>
             <line number="35" hits="0" branch="false"/>
             <line number="37" hits="0" branch="false"/>
-            <line number="38" hits="0" branch="false"/>
             <line number="39" hits="0" branch="false"/>
             <line number="40" hits="0" branch="false"/>
             <line number="41" hits="0" branch="false"/>
@@ -3869,16 +3854,15 @@
             <line number="43" hits="0" branch="false"/>
             <line number="44" hits="0" branch="false"/>
             <line number="45" hits="0" branch="false"/>
+            <line number="46" hits="0" branch="false"/>
             <line number="47" hits="0" branch="false"/>
             <line number="48" hits="0" branch="false"/>
             <line number="49" hits="0" branch="false"/>
-            <line number="50" hits="0" branch="false"/>
             <line number="51" hits="0" branch="false"/>
-            <line number="76" hits="2" branch="false"/>
-            <line number="77" hits="2" branch="false"/>
-            <line number="78" hits="2" branch="false"/>
-            <line number="79" hits="2" branch="false"/>
-            <line number="80" hits="2" branch="false"/>
+            <line number="52" hits="0" branch="false"/>
+            <line number="53" hits="0" branch="false"/>
+            <line number="54" hits="0" branch="false"/>
+            <line number="55" hits="0" branch="false"/>
             <line number="81" hits="2" branch="false"/>
             <line number="82" hits="2" branch="false"/>
             <line number="83" hits="2" branch="false"/>
@@ -3888,14 +3872,14 @@
             <line number="87" hits="2" branch="false"/>
             <line number="88" hits="2" branch="false"/>
             <line number="89" hits="2" branch="false"/>
-            <line number="100" hits="0" branch="false"/>
-            <line number="102" hits="0" branch="false"/>
-            <line number="103" hits="0" branch="false"/>
-            <line number="104" hits="0" branch="false"/>
-            <line number="105" hits="0" branch="false"/>
-            <line number="106" hits="0" branch="false"/>
+            <line number="90" hits="2" branch="false"/>
+            <line number="91" hits="2" branch="false"/>
+            <line number="92" hits="2" branch="false"/>
+            <line number="93" hits="2" branch="false"/>
+            <line number="94" hits="2" branch="false"/>
+            <line number="95" hits="2" branch="false"/>
+            <line number="96" hits="2" branch="false"/>
             <line number="107" hits="0" branch="false"/>
-            <line number="108" hits="0" branch="false"/>
             <line number="109" hits="0" branch="false"/>
             <line number="110" hits="0" branch="false"/>
             <line number="111" hits="0" branch="false"/>
@@ -3922,18 +3906,8 @@
             <line number="132" hits="0" branch="false"/>
             <line number="133" hits="0" branch="false"/>
             <line number="134" hits="0" branch="false"/>
-            <line number="135" hits="0" branch="false"/>
-            <line number="136" hits="0" branch="false"/>
-            <line number="137" hits="0" branch="false"/>
-            <line number="138" hits="0" branch="false"/>
-            <line number="139" hits="0" branch="false"/>
-            <line number="140" hits="0" branch="false"/>
-            <line number="141" hits="0" branch="false"/>
-            <line number="142" hits="0" branch="false"/>
-            <line number="143" hits="0" branch="false"/>
             <line number="144" hits="0" branch="false"/>
-            <line number="154" hits="0" branch="false"/>
-            <line number="156" hits="0" branch="false"/>
+            <line number="146" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="ext01.R" filename="R/ext01.R" line-rate="0.901234567901235" branch-rate="0" complexity="0">
@@ -4927,14 +4901,14 @@
             </method>
             <method name="has_overall_col" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="37" hits="90" branch="false"/>
+                <line number="37" hits="92" branch="false"/>
               </lines>
             </method>
             <method name="ifneeded_add_overall_col" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="41" hits="90" branch="false"/>
+                <line number="41" hits="92" branch="false"/>
                 <line number="42" hits="18" branch="false"/>
-                <line number="44" hits="72" branch="false"/>
+                <line number="44" hits="74" branch="false"/>
               </lines>
             </method>
             <method name="get_db_data" signature="" line-rate="0.8" branch-rate="0">
@@ -5090,10 +5064,10 @@
             <line number="27" hits="120" branch="false"/>
             <line number="31" hits="118" branch="false"/>
             <line number="33" hits="118" branch="false"/>
-            <line number="37" hits="90" branch="false"/>
-            <line number="41" hits="90" branch="false"/>
+            <line number="37" hits="92" branch="false"/>
+            <line number="41" hits="92" branch="false"/>
             <line number="42" hits="18" branch="false"/>
-            <line number="44" hits="72" branch="false"/>
+            <line number="44" hits="74" branch="false"/>
             <line number="67" hits="43" branch="false"/>
             <line number="69" hits="43" branch="false"/>
             <line number="70" hits="0" branch="false"/>
