@@ -74,14 +74,11 @@ aet04_1_lyt <- function(armvar,
                         grade_groups,
                         deco,
                         ...) {
-  all_grades <- c()
   grade_groups <- grade_groups[order(names(grade_groups))]
-  for (i in seq_along(grade_groups)) {
-    grade_groups_i <- grade_groups[[i]]
-    grade_groups[[i]] <- grade_groups_i[order(nchar(grade_groups_i), grade_groups_i)]
-    all_grades <- c(all_grades, grade_groups[[i]])
-  }
-  all_grade_groups <- c(list(`Any Grade` = unique(all_grades)), grade_groups)
+  grade_groups <- lapply(grade_groups, function(x) {
+    return(x[order(nchar(x), x)])
+  })
+  all_grade_groups <- c(list(`Any Grade` = unique(unlist(grade_groups))), grade_groups)
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
@@ -90,7 +87,7 @@ aet04_1_lyt <- function(armvar,
     summarize_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = all_grade_groups,
-      .formats = c("count_fraction" = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEBODSYS",
@@ -105,7 +102,7 @@ aet04_1_lyt <- function(armvar,
       var = "ATOXGR",
       grade_groups = all_grade_groups,
       .indent_mods = 0L,
-      .formats = c("count_fraction" = "xx (xx.x%)")
+      .formats = c(count_fraction = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEDECOD",
@@ -124,8 +121,7 @@ aet04_1_lyt <- function(armvar,
     count_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = grade_groups,
-      .indent_mods = -1L,
-      .formats = c("count_fraction" = "xx (xx.x%)")
+      .indent_mods = -1L
     )
 }
 
