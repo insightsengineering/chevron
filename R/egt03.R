@@ -26,8 +26,7 @@ egt03_1_main <- function(adam_db,
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
                          ...) {
-
-  lbl_armvar <- var_labels_for(adam_db$adeg,  armvar)
+  lbl_armvar <- var_labels_for(adam_db$adeg, armvar)
   lbl_summaryvar <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
 
@@ -77,9 +76,10 @@ egt03_1_lyt <- function(armvar,
     split_cols_by("min_label") %>%
     split_cols_by(splitvar) %>%
     split_rows_by(armvar,
-                  split_fun = drop_split_levels,
-                  label_pos = "topleft",
-                  split_label = lbl_armvar) %>%
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_armvar
+    ) %>%
     add_rowcounts() %>%
     summarize_vars(summaryvar, denom = "N_row", .stats = "count_fraction") %>%
     append_topleft(lbl_summaryvars)
@@ -178,8 +178,7 @@ egt03_2_main <- function(adam_db,
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
                          ...) {
-
-  lbl_armvar <- var_labels_for(adam_db$adeg,  armvar)
+  lbl_armvar <- var_labels_for(adam_db$adeg, armvar)
   lbl_summaryvar <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
 
@@ -229,9 +228,10 @@ egt03_2_lyt <- function(armvar,
     split_cols_by("max_label") %>%
     split_cols_by(splitvar) %>%
     split_rows_by(armvar,
-                  split_fun = drop_split_levels,
-                  label_pos = "topleft",
-                  split_label = lbl_armvar) %>%
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_armvar
+    ) %>%
     add_rowcounts() %>%
     summarize_vars(summaryvar, denom = "N_row", .stats = "count_fraction") %>%
     append_topleft(lbl_summaryvars)
