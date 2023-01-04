@@ -2,9 +2,11 @@
 #' @describeIn egt03_1 Main TLG function
 #'
 #' @param armvar (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
-#' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as subtitles. For values
+#' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
-#' @param splitvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as subtitles. For values
+#' @param splitvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
 #'
 #' @details
@@ -154,9 +156,11 @@ egt03_1 <- chevron_t(
 #'
 #' @inheritParams gen_args
 #' @param armvar (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
-#' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as subtitles. For values
+#' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
-#' @param splitvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as subtitles. For values
+#' @param splitvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
 #'
 #' @details

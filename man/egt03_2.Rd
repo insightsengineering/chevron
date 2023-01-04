@@ -43,10 +43,12 @@ egt03_2
 
 \item{armvar}{(\verb{vector of character}) the arm variables used for row split, typically \code{"ARMCD"}.}
 
-\item{summaryvar}{(named vector of \code{character}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as subtitles. For values
+\item{summaryvar}{(named vector of \code{character}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
+subtitles. For values
 where no name is provided, the label attribute of the corresponding column in \code{adeg} table of \code{adam_db} is used.}
 
-\item{splitvar}{(named vector of \code{character}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as subtitles. For values
+\item{splitvar}{(named vector of \code{character}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
+subtitles. For values
 where no name is provided, the label attribute of the corresponding column in \code{adeg} table of \code{adam_db} is used.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
