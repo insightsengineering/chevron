@@ -16,8 +16,10 @@ egt05_qtcat_1_main(
   adam_db,
   armvar = "ACTARM",
   summaryvars = c(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
+  lbl_overall = NULL,
   visitvar = "AVISIT",
   deco = std_deco("EGT05_QTCAT"),
+  lbl_cat = "Category",
   ...
 )
 
@@ -25,9 +27,11 @@ egt05_qtcat_1_lyt(
   armvar,
   summaryvars,
   summaryvars_lbls,
+  lbl_overall = NULL,
   visitvar,
   lbl_avisit,
   deco,
+  lbl_cat,
   ...
 )
 
@@ -44,10 +48,14 @@ egt05_qtcat_1
 
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
 
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{lbl_cat}{(\code{character}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
 
 \item{...}{not used.}
 
@@ -65,14 +73,15 @@ several electrocardiogram parameters and their evolution throughout the study.
 }
 \details{
 \itemize{
-\item The \verb{Analysis Value} column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
+\item The \verb{Value at Visit} column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
 ">480 to <= 500 msec", ">500 msec", and "\if{html}{\out{<Missing>}}" for each visit.
 \item The \verb{Change from Baseline} column, displays the categories of QT value change from baseline for patients,
 "<=30 msec", ">30 to <=60 msec", ">60 msec", and "\if{html}{\out{<Missing>}}"
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
-\item Sorted  based on factor level; by chronological time point given by \code{AVISIT}. Re-level to customize order.
+\item Sorted based on factor level; by chronological time point given by one of \code{"AVISIT"} (Default) or \code{"ATPTN"}.
+Re-level to customize order.
 }
 }
 \section{Functions}{
@@ -88,8 +97,10 @@ several electrocardiogram parameters and their evolution throughout the study.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column contains 'QT' as well as columns
-specified in \code{summaryvars} and \code{visitvar}.
+\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column contains 'QT' as well as column
+specified in \code{visitvar}.
+For \code{summaryvars}, if \code{AVALCAT1} and \code{CHGCAT1} columns are already existed in input data sets, no need to
+specify \code{AVAL} or \code{CHG}. If not, \code{AVAL} and \code{CHG} columns must be contained.
 }
 }
 \examples{

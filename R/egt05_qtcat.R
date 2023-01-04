@@ -3,32 +3,34 @@
 #' @describeIn egt05_qtcat_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
-#'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
-#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
-#'   be displayed
+#' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
 #'
 #' @details
-#'  * The `Analysis Value` column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
+#'  * The `Value at Visit` column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
 #'  ">480 to <= 500 msec", ">500 msec", and "<Missing>" for each visit.
 #'  * The `Change from Baseline` column, displays the categories of QT value change from baseline for patients,
 #'  "<=30 msec", ">30 to <=60 msec", ">60 msec", and "<Missing>"
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
-#'  * Sorted  based on factor level; by chronological time point given by `AVISIT`. Re-level to customize order.
+#'  * Sorted based on factor level; by chronological time point given by one of `"AVISIT"` (Default) or `"ATPTN"`.
+#'  Re-level to customize order.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column contains 'QT' as well as columns
-#'  specified in `summaryvars` and `visitvar`.
+#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column contains 'QT' as well as column
+#'  specified in `visitvar`.
+#'  For `summaryvars`, if `AVALCAT1` and `CHGCAT1` columns are already existed in input data sets, no need to
+#'  specify `AVAL` or `CHG`. If not, `AVAL` and `CHG` columns must be contained.
 #'
 #' @export
 #'
 egt05_qtcat_1_main <- function(adam_db,
                                armvar = "ACTARM",
                                summaryvars = c("Value at Visit" = "AVALCAT1", "Change from Baseline" = "CHGCAT1"),
-                               visitvar = "AVISIT", # or ATPTN
+                               lbl_overall = NULL,
+                               visitvar = "AVISIT",
                                deco = std_deco("EGT05_QTCAT"),
+                               lbl_cat = "Category",
                                ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
 
@@ -38,9 +40,11 @@ egt05_qtcat_1_main <- function(adam_db,
     armvar = armvar,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
+    lbl_overall = lbl_overall,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     deco = deco,
+    lbl_cat = lbl_cat,
     ... = ...
   )
 
@@ -60,22 +64,24 @@ egt05_qtcat_1_main <- function(adam_db,
 #' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed.
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
+#' @param lbl_cat (`character`) label of the Category of `summaryvars` variable. Default as `Category`.
 #' @param ... not used.
 #'
 #' @export
 egt05_qtcat_1_lyt <- function(armvar,
                               summaryvars,
                               summaryvars_lbls,
+                              lbl_overall = NULL,
                               visitvar,
                               lbl_avisit,
                               deco,
+                              lbl_cat,
                               ...) {
-  # TODE solve the problem of the overall column
-  # remove change from baseline in BASELINE
 
   basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       visitvar,
       split_fun = drop_split_levels,
@@ -86,7 +92,8 @@ egt05_qtcat_1_lyt <- function(armvar,
       vars = summaryvars,
       var_labels = summaryvars_lbls
     ) %>%
-    append_topleft("  Category")
+    append_topleft("Analysis Visit") %>%
+    append_topleft(paste0("  ", lbl_cat))
 }
 
 #' @describeIn egt05_qtcat_1 Preprocessing
@@ -106,40 +113,23 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
       PARAMCD == "QT"
       ) %>%
     mutate(
-      AVALCAT1 = case_when(
+      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else case_when(
         AVAL <= 450 ~ "<=450 msec",
         AVAL <= 480 ~ ">450 to <=480 msec",
         AVAL <= 500 ~ ">480 to <= 500 msec",
         AVAL > 500 ~ ">500 msec",
         is.na(AVAL) ~ "<Missing>"
-        ),
-      CHGCAT1 = case_when(
+        )) %>%
+    mutate(
+      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else case_when(
         CHG <= 30 ~ "<=30 msec",
         CHG <= 60 ~ ">30 to <=60 msec",
         CHG > 60 ~ ">60 msec",
         is.na(CHG) ~ "<Missing>"
-        )
-      ) %>%
+        )) %>%
     mutate(
-      AVALCAT1 = factor(
-        AVALCAT1,
-        levels = c(
-          "<=450 msec",
-          ">450 to <=480 msec",
-          ">480 to <= 500 msec",
-          ">500 msec",
-          "<Missing>"
-          )
-        ),
-      CHGCAT1 = factor(
-        CHGCAT1,
-        levels = c(
-          "<=30 msec",
-          ">30 to <=60 msec",
-          ">60 msec",
-          "<Missing>"
-          )
-        )
+      AVALCAT1 = factor(AVALCAT1),
+      CHGCAT1 = factor(CHGCAT1)
       ) %>%
     dm_update_zoomed()
   }
