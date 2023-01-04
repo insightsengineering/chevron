@@ -50,9 +50,9 @@ lbt01_1
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{precision}{(named vector of \code{integer}) where names are values found in the \code{PARAM} column and the the values
-indicate the number of digits that should be represented for the mean, median and standard deviation (by default,
-1).}
+\item{precision}{(named vector of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
+indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
+represented with one more decimal of precision.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -103,9 +103,9 @@ by \code{AVISIT}. Re-level to customize order.
 }
 \examples{
 run(lbt01_1, syn_data, precision = c(
-  "Alanine Aminotransferase Measurement" = 2,
-  "C-Reactive Protein Measurement" = 1,
-  "Immunoglobulin A Measurement" = 0
+  "ALT" = 0,
+  "CRP" = 1,
+  "IGA" = 3
 ))
 }
 \keyword{datasets}

@@ -300,3 +300,93 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 
   res
 }
+
+# Special formats ----
+
+#' Padding or Rounding Numbers Error as Percentage
+#'
+#' @inheritParams h_pad_or_round
+#' @param x (`numeric`) representing the main value and its error.
+#'
+#' @export
+#'
+#' @examples
+#' h_pad_or_round_pct(c(1.11111, 0.5), 3)
+h_pad_or_round_pct <- function(x, digits = NA, ...) {
+  checkmate::assert_numeric(x, len = 2)
+
+  if (x[1] == 0) {
+    return("0")
+  }
+
+  main <- h_pad_or_round(x[1], digits = digits)
+  err <- h_pad_or_round(x[2], digits = digits)
+
+  paste0(main, " (", err, "%)")
+}
+
+#' Padding or Rounding Numbers with Separator
+#'
+#' @inheritParams h_pad_or_round
+#' @param x (`numeric`) to format.
+#' @param sep (`string`) separating the formatted values.
+#'
+#' @export
+#'
+#' @examples
+#' h_pad_or_round_sep(c(1.11111, 2.22222), 3)
+h_pad_or_round_sep <- function(x, digits = NA, sep = " - ", ...) {
+  checkmate::assert_numeric(x)
+  checkmate::assert_string(sep)
+
+  res <- vapply(x, h_pad_or_round, digits = digits, FUN.VALUE = character(1))
+  paste(res, collapse = sep)
+}
+
+#' Padding or Rounding Numbers
+#'
+#' @param x (`numeric`) to modify.
+#' @param digits (`integer`) number of digits.
+#'
+#' @export
+#'
+#' @examples
+#' h_pad_or_round(123.1234, 10)
+#' h_pad_or_round(123.1234, 1)
+#' h_pad_or_round(123, 1)
+#' h_pad_or_round(123, 3)
+#' h_pad_or_round(123, 0)
+h_pad_or_round <- function(n, digits = NA, ...) {
+  checkmate::assert_numeric(n, len = 1)
+  checkmate::assert_integerish(digits, lower = 0)
+
+  if (is.na(n) || is.na(digits)) {
+    return(n)
+  }
+
+  n_round <- round(n, digits)
+  x <- as.character(n_round)
+
+  main <- gsub("^([-0-9]{0,}).*", "\\1", x)
+
+  dec_pattern <- "\\-?[0-9]{0,}\\.([0-9]{0,})"
+  if (grepl(dec_pattern, x)) {
+    dec <- gsub(dec_pattern, "\\1", x)
+    n_dec <- nchar(dec)
+  } else {
+    n_dec <- 0
+  }
+
+  res <- if (digits == 0) {
+    main
+  } else if (digits >= n_dec) {
+    pad_0 <- paste(rep("0", digits - n_dec), collapse = "")
+    dec_point <- if (n_dec == 0) "." else NULL
+    paste0(x, dec_point, pad_0)
+  } else if (digits < n_dec) {
+    tr <- strtrim(dec, digits)
+    paste0(main, ".", tr)
+  }
+
+  as.character(res)
+}
