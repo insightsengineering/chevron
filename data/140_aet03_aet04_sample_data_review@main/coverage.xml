@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.943585077343039" branch-rate="0" lines-covered="2074" lines-valid="2198" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-01-04 05:47:40">
+<coverage line-rate="0.943482224247949" branch-rate="0" lines-covered="2070" lines-valid="2194" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-01-04 06:49:51">
   <sources/>
   <packages>
-    <package name="chevron" line-rate="0.943585077343039" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.943482224247949" branch-rate="0" complexity="0">
       <classes>
         <class name="aet01.R" filename="R/aet01.R" line-rate="0.982089552238806" branch-rate="0" complexity="0">
           <methods>
@@ -1281,12 +1281,12 @@
                 <line number="103" hits="4" branch="false"/>
                 <line number="104" hits="4" branch="false"/>
                 <line number="105" hits="4" branch="false"/>
-                <line number="106" hits="4" branch="false"/>
               </lines>
             </method>
             <method name="aet03_1_pre" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="117" hits="1" branch="false"/>
+                <line number="116" hits="1" branch="false"/>
+                <line number="118" hits="1" branch="false"/>
                 <line number="119" hits="1" branch="false"/>
                 <line number="120" hits="1" branch="false"/>
                 <line number="121" hits="1" branch="false"/>
@@ -1294,19 +1294,19 @@
                 <line number="123" hits="1" branch="false"/>
                 <line number="124" hits="1" branch="false"/>
                 <line number="125" hits="1" branch="false"/>
-                <line number="126" hits="1" branch="false"/>
+                <line number="127" hits="1" branch="false"/>
                 <line number="128" hits="1" branch="false"/>
                 <line number="129" hits="1" branch="false"/>
                 <line number="130" hits="1" branch="false"/>
                 <line number="131" hits="1" branch="false"/>
                 <line number="132" hits="1" branch="false"/>
                 <line number="133" hits="1" branch="false"/>
-                <line number="134" hits="1" branch="false"/>
               </lines>
             </method>
             <method name="aet03_1_post" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="145" hits="1" branch="false"/>
+                <line number="144" hits="1" branch="false"/>
+                <line number="146" hits="1" branch="false"/>
                 <line number="147" hits="1" branch="false"/>
                 <line number="148" hits="1" branch="false"/>
                 <line number="149" hits="1" branch="false"/>
@@ -1317,8 +1317,7 @@
                 <line number="154" hits="1" branch="false"/>
                 <line number="155" hits="1" branch="false"/>
                 <line number="156" hits="1" branch="false"/>
-                <line number="157" hits="1" branch="false"/>
-                <line number="159" hits="1" branch="false"/>
+                <line number="158" hits="1" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -1378,8 +1377,8 @@
             <line number="103" hits="4" branch="false"/>
             <line number="104" hits="4" branch="false"/>
             <line number="105" hits="4" branch="false"/>
-            <line number="106" hits="4" branch="false"/>
-            <line number="117" hits="1" branch="false"/>
+            <line number="116" hits="1" branch="false"/>
+            <line number="118" hits="1" branch="false"/>
             <line number="119" hits="1" branch="false"/>
             <line number="120" hits="1" branch="false"/>
             <line number="121" hits="1" branch="false"/>
@@ -1387,15 +1386,15 @@
             <line number="123" hits="1" branch="false"/>
             <line number="124" hits="1" branch="false"/>
             <line number="125" hits="1" branch="false"/>
-            <line number="126" hits="1" branch="false"/>
+            <line number="127" hits="1" branch="false"/>
             <line number="128" hits="1" branch="false"/>
             <line number="129" hits="1" branch="false"/>
             <line number="130" hits="1" branch="false"/>
             <line number="131" hits="1" branch="false"/>
             <line number="132" hits="1" branch="false"/>
             <line number="133" hits="1" branch="false"/>
-            <line number="134" hits="1" branch="false"/>
-            <line number="145" hits="1" branch="false"/>
+            <line number="144" hits="1" branch="false"/>
+            <line number="146" hits="1" branch="false"/>
             <line number="147" hits="1" branch="false"/>
             <line number="148" hits="1" branch="false"/>
             <line number="149" hits="1" branch="false"/>
@@ -1406,8 +1405,7 @@
             <line number="154" hits="1" branch="false"/>
             <line number="155" hits="1" branch="false"/>
             <line number="156" hits="1" branch="false"/>
-            <line number="157" hits="1" branch="false"/>
-            <line number="159" hits="1" branch="false"/>
+            <line number="158" hits="1" branch="false"/>
           </lines>
         </class>
         <class name="aet04.R" filename="R/aet04.R" line-rate="1" branch-rate="0" complexity="0">
@@ -1442,10 +1440,11 @@
                 <line number="77" hits="5" branch="false"/>
                 <line number="78" hits="5" branch="false"/>
                 <line number="79" hits="5" branch="false"/>
-                <line number="80" hits="15" branch="false"/>
-                <line number="81" hits="15" branch="false"/>
-                <line number="82" hits="15" branch="false"/>
+                <line number="80" hits="5" branch="false"/>
+                <line number="81" hits="5" branch="false"/>
+                <line number="83" hits="5" branch="false"/>
                 <line number="84" hits="5" branch="false"/>
+                <line number="85" hits="5" branch="false"/>
                 <line number="86" hits="5" branch="false"/>
                 <line number="87" hits="5" branch="false"/>
                 <line number="88" hits="5" branch="false"/>
@@ -1486,35 +1485,35 @@
                 <line number="123" hits="5" branch="false"/>
                 <line number="124" hits="5" branch="false"/>
                 <line number="125" hits="5" branch="false"/>
-                <line number="126" hits="5" branch="false"/>
-                <line number="127" hits="5" branch="false"/>
-                <line number="128" hits="5" branch="false"/>
-                <line number="129" hits="5" branch="false"/>
               </lines>
             </method>
             <method name="aet04_1_pre" signature="" line-rate="1" branch-rate="0">
               <lines>
+                <line number="136" hits="1" branch="false"/>
+                <line number="138" hits="1" branch="false"/>
+                <line number="139" hits="1" branch="false"/>
                 <line number="140" hits="1" branch="false"/>
+                <line number="141" hits="1" branch="false"/>
                 <line number="142" hits="1" branch="false"/>
                 <line number="143" hits="1" branch="false"/>
                 <line number="144" hits="1" branch="false"/>
-                <line number="145" hits="1" branch="false"/>
                 <line number="146" hits="1" branch="false"/>
-                <line number="147" hits="1" branch="false"/>
                 <line number="148" hits="1" branch="false"/>
+                <line number="149" hits="1" branch="false"/>
                 <line number="150" hits="1" branch="false"/>
+                <line number="151" hits="1" branch="false"/>
                 <line number="152" hits="1" branch="false"/>
                 <line number="153" hits="1" branch="false"/>
                 <line number="154" hits="1" branch="false"/>
-                <line number="155" hits="1" branch="false"/>
-                <line number="156" hits="1" branch="false"/>
-                <line number="157" hits="1" branch="false"/>
-                <line number="158" hits="1" branch="false"/>
               </lines>
             </method>
             <method name="aet04_1_post" signature="" line-rate="1" branch-rate="0">
               <lines>
+                <line number="165" hits="1" branch="false"/>
+                <line number="167" hits="1" branch="false"/>
+                <line number="168" hits="1" branch="false"/>
                 <line number="169" hits="1" branch="false"/>
+                <line number="170" hits="1" branch="false"/>
                 <line number="171" hits="1" branch="false"/>
                 <line number="172" hits="1" branch="false"/>
                 <line number="173" hits="1" branch="false"/>
@@ -1522,11 +1521,7 @@
                 <line number="175" hits="1" branch="false"/>
                 <line number="176" hits="1" branch="false"/>
                 <line number="177" hits="1" branch="false"/>
-                <line number="178" hits="1" branch="false"/>
                 <line number="179" hits="1" branch="false"/>
-                <line number="180" hits="1" branch="false"/>
-                <line number="181" hits="1" branch="false"/>
-                <line number="183" hits="1" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -1555,10 +1550,11 @@
             <line number="77" hits="5" branch="false"/>
             <line number="78" hits="5" branch="false"/>
             <line number="79" hits="5" branch="false"/>
-            <line number="80" hits="15" branch="false"/>
-            <line number="81" hits="15" branch="false"/>
-            <line number="82" hits="15" branch="false"/>
+            <line number="80" hits="5" branch="false"/>
+            <line number="81" hits="5" branch="false"/>
+            <line number="83" hits="5" branch="false"/>
             <line number="84" hits="5" branch="false"/>
+            <line number="85" hits="5" branch="false"/>
             <line number="86" hits="5" branch="false"/>
             <line number="87" hits="5" branch="false"/>
             <line number="88" hits="5" branch="false"/>
@@ -1599,27 +1595,27 @@
             <line number="123" hits="5" branch="false"/>
             <line number="124" hits="5" branch="false"/>
             <line number="125" hits="5" branch="false"/>
-            <line number="126" hits="5" branch="false"/>
-            <line number="127" hits="5" branch="false"/>
-            <line number="128" hits="5" branch="false"/>
-            <line number="129" hits="5" branch="false"/>
+            <line number="136" hits="1" branch="false"/>
+            <line number="138" hits="1" branch="false"/>
+            <line number="139" hits="1" branch="false"/>
             <line number="140" hits="1" branch="false"/>
+            <line number="141" hits="1" branch="false"/>
             <line number="142" hits="1" branch="false"/>
             <line number="143" hits="1" branch="false"/>
             <line number="144" hits="1" branch="false"/>
-            <line number="145" hits="1" branch="false"/>
             <line number="146" hits="1" branch="false"/>
-            <line number="147" hits="1" branch="false"/>
             <line number="148" hits="1" branch="false"/>
+            <line number="149" hits="1" branch="false"/>
             <line number="150" hits="1" branch="false"/>
+            <line number="151" hits="1" branch="false"/>
             <line number="152" hits="1" branch="false"/>
             <line number="153" hits="1" branch="false"/>
             <line number="154" hits="1" branch="false"/>
-            <line number="155" hits="1" branch="false"/>
-            <line number="156" hits="1" branch="false"/>
-            <line number="157" hits="1" branch="false"/>
-            <line number="158" hits="1" branch="false"/>
+            <line number="165" hits="1" branch="false"/>
+            <line number="167" hits="1" branch="false"/>
+            <line number="168" hits="1" branch="false"/>
             <line number="169" hits="1" branch="false"/>
+            <line number="170" hits="1" branch="false"/>
             <line number="171" hits="1" branch="false"/>
             <line number="172" hits="1" branch="false"/>
             <line number="173" hits="1" branch="false"/>
@@ -1627,11 +1623,7 @@
             <line number="175" hits="1" branch="false"/>
             <line number="176" hits="1" branch="false"/>
             <line number="177" hits="1" branch="false"/>
-            <line number="178" hits="1" branch="false"/>
             <line number="179" hits="1" branch="false"/>
-            <line number="180" hits="1" branch="false"/>
-            <line number="181" hits="1" branch="false"/>
-            <line number="183" hits="1" branch="false"/>
           </lines>
         </class>
         <class name="assertions.R" filename="R/assertions.R" line-rate="1" branch-rate="0" complexity="0">
