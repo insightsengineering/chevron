@@ -80,7 +80,7 @@ reference:
       - var_labels_for
       - h_pad_or_round
       - h_pad_or_round_sep
-      - h_pad_or_round_pct
+      - h_pad_or_round_dev
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

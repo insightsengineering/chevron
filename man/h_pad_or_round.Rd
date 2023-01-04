@@ -4,12 +4,17 @@
 \alias{h_pad_or_round}
 \title{Padding or Rounding Numbers}
 \usage{
-h_pad_or_round(n, digits = NA, ...)
+h_pad_or_round(x, digits = NA, ...)
 }
 \arguments{
+\item{x}{(\code{numeric}) to format.}
+
 \item{digits}{(\code{integer}) number of digits.}
 
-\item{x}{(\code{numeric}) to modify.}
+\item{...}{not used.}
+}
+\value{
+\code{string} corresponding to the number with the desired numbers of digits.
 }
 \description{
 Padding or Rounding Numbers

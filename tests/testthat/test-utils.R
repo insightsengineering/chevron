@@ -33,12 +33,12 @@ test_that("h_pad_or_round_sep works as expected", {
   expect_identical(res, "123.000 //// 222.200 //// 555.123")
 })
 
-# h_pad_or_round_pct ----
+# h_pad_or_round_dev ----
 
-test_that("h_pad_or_round_pct works as expected", {
-  res <- h_pad_or_round_pct(c(123, 12.1234), 3)
-  expect_identical(res, "123.000 (12.123%)")
+test_that("h_pad_or_round_dev works as expected", {
+  res <- h_pad_or_round_dev(c(123, 0.121234), 3)
+  expect_identical(res, "123.000 (0.121)")
 
-  res <- h_pad_or_round_pct(c(0, 0), 3)
+  res <- h_pad_or_round_dev(c(0, 0), 3)
   expect_identical(res, "0")
 })

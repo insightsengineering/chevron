@@ -18,6 +18,7 @@ lbt01_1_main(
   summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
   precision = integer(),
+  default_precision = 2,
   deco = std_deco("LBT01"),
   ...
 )
@@ -30,7 +31,8 @@ lbt01_1_lyt(
   lbl_avisit,
   lbl_param,
   deco,
-  precision = integer(),
+  precision,
+  default_precision,
   ...
 )
 
@@ -53,6 +55,8 @@ to be displayed.}
 \item{precision}{(named vector of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
+
+\item{default_precision}{(\code{integer}) the default number of digits.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -104,8 +108,7 @@ by \code{AVISIT}. Re-level to customize order.
 \examples{
 run(lbt01_1, syn_data, precision = c(
   "ALT" = 0,
-  "CRP" = 1,
-  "IGA" = 3
+  "CRP" = 1
 ))
 }
 \keyword{datasets}

@@ -303,7 +303,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 
 # Special formats ----
 
-#' Padding or Rounding Numbers Error as Percentage
+#' Padding or Rounding Numbers and Deviation
 #'
 #' @inheritParams h_pad_or_round
 #' @param x (`numeric`) representing the main value and its error.
@@ -311,18 +311,18 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' @export
 #'
 #' @examples
-#' h_pad_or_round_pct(c(1.11111, 0.5), 3)
-h_pad_or_round_pct <- function(x, digits = NA, ...) {
+#' h_pad_or_round_dev(c(1.11111, 0.5), 3)
+h_pad_or_round_dev <- function(x, digits = NA, ...) {
   checkmate::assert_numeric(x, len = 2)
 
-  if (x[1] == 0) {
+  if (x[1] == 0 && x[2] == 0) {
     return("0")
   }
 
   main <- h_pad_or_round(x[1], digits = digits)
   err <- h_pad_or_round(x[2], digits = digits)
 
-  paste0(main, " (", err, "%)")
+  paste0(main, " (", err, ")")
 }
 
 #' Padding or Rounding Numbers with Separator
@@ -345,8 +345,11 @@ h_pad_or_round_sep <- function(x, digits = NA, sep = " - ", ...) {
 
 #' Padding or Rounding Numbers
 #'
-#' @param x (`numeric`) to modify.
+#' @param x (`numeric`) to format.
 #' @param digits (`integer`) number of digits.
+#' @param ... not used.
+#'
+#' @return `string` corresponding to the number with the desired numbers of digits.
 #'
 #' @export
 #'
@@ -356,22 +359,22 @@ h_pad_or_round_sep <- function(x, digits = NA, sep = " - ", ...) {
 #' h_pad_or_round(123, 1)
 #' h_pad_or_round(123, 3)
 #' h_pad_or_round(123, 0)
-h_pad_or_round <- function(n, digits = NA, ...) {
-  checkmate::assert_numeric(n, len = 1)
+h_pad_or_round <- function(x, digits = NA, ...) {
+  checkmate::assert_numeric(x, len = 1)
   checkmate::assert_integerish(digits, lower = 0)
 
-  if (is.na(n) || is.na(digits)) {
-    return(n)
+  if (is.na(x) || is.na(digits)) {
+    return(as.character(x))
   }
 
-  n_round <- round(n, digits)
-  x <- as.character(n_round)
+  x_round <- round(x, digits)
+  x_char <- as.character(x_round)
 
-  main <- gsub("^([-0-9]{0,}).*", "\\1", x)
+  main <- gsub("^([-0-9]{0,}).*", "\\1", x_char)
 
   dec_pattern <- "\\-?[0-9]{0,}\\.([0-9]{0,})"
-  if (grepl(dec_pattern, x)) {
-    dec <- gsub(dec_pattern, "\\1", x)
+  if (grepl(dec_pattern, x_char)) {
+    dec <- gsub(dec_pattern, "\\1", x_char)
     n_dec <- nchar(dec)
   } else {
     n_dec <- 0
@@ -382,7 +385,7 @@ h_pad_or_round <- function(n, digits = NA, ...) {
   } else if (digits >= n_dec) {
     pad_0 <- paste(rep("0", digits - n_dec), collapse = "")
     dec_point <- if (n_dec == 0) "." else NULL
-    paste0(x, dec_point, pad_0)
+    paste0(x_char, dec_point, pad_0)
   } else if (digits < n_dec) {
     tr <- strtrim(dec, digits)
     paste0(main, ".", tr)

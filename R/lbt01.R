@@ -9,6 +9,7 @@
 #' @param precision (named vector of `integer`) where names are values found in the `PARAMCD` column and the the values
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
+#' @param default_precision (`integer`) the default number of digits.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -31,6 +32,7 @@ lbt01_1_main <- function(adam_db,
                          summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
                          precision = integer(),
+                         default_precision = 2,
                          deco = std_deco("LBT01"),
                          ...) {
   assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
@@ -53,6 +55,7 @@ lbt01_1_main <- function(adam_db,
     lbl_param = lbl_param,
     deco = deco,
     precision = precision,
+    default_precision = default_precision,
     ... = ...
   )
 
@@ -82,7 +85,8 @@ lbt01_1_lyt <- function(armvar,
                         lbl_avisit,
                         lbl_param,
                         deco,
-                        precision = integer(),
+                        precision,
+                        default_precision,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
@@ -105,9 +109,11 @@ lbt01_1_lyt <- function(armvar,
       nested = TRUE
     ) %>%
     analyze_colvars(
-      afun = function(x, .var, .spl_context, precision, ...) {
+      afun = function(x, .var, .spl_context, precision, default_precision, ...) {
         param_val <- .spl_context$value[1]
         pcs <- precision[param_val]
+
+        pcs <- ifelse(is.na(pcs), default_precision, pcs)
 
         # Create context dependent function.
         n_fun <- sum(!is.na(x), na.rm = TRUE)
@@ -130,13 +136,16 @@ lbt01_1_lyt <- function(armvar,
           "Min - Max" = min_max_fun,
           .formats = list(
             "n" = "xx",
-            "Mean (SD)" = function(x, ...) h_pad_or_round_pct(x, digits = pcs + 1),
+            "Mean (SD)" = function(x, ...) h_pad_or_round_dev(x, digits = pcs + 1),
             "Median" = function(x, ...) h_pad_or_round(x, digits = pcs),
             "Min - Max" = function(x, ...) h_pad_or_round_sep(x, digits = pcs)
           )
         )
       },
-      extra_args = list(precision = precision)
+      extra_args = list(
+        precision = precision,
+        default_precision = default_precision
+      )
     ) %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(c(paste(" ", lbl_avisit), " "))
@@ -181,8 +190,7 @@ lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @examples
 #' run(lbt01_1, syn_data, precision = c(
 #'   "ALT" = 0,
-#'   "CRP" = 1,
-#'   "IGA" = 3
+#'   "CRP" = 1
 #' ))
 lbt01_1 <- chevron_t(
   main = lbt01_1_main,

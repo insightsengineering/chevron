@@ -12,6 +12,8 @@ h_pad_or_round_sep(x, digits = NA, sep = " - ", ...)
 \item{digits}{(\code{integer}) number of digits.}
 
 \item{sep}{(\code{string}) separating the formatted values.}
+
+\item{...}{not used.}
 }
 \description{
 Padding or Rounding Numbers with Separator
