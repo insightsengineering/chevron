@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 egt03_2_main(
   adam_db,
-  armvar = "c",
+  armvar = "ARMCD",
   summaryvar = c(`Baseline Reference Range Indicator` = "BNRIND"),
   splitvar = c(`Analysis Reference Range Indicator` = "ANRIND"),
   deco = std_deco("EGT03"),
@@ -96,6 +96,6 @@ patient's last observation prior to initiation of study drug.
 }
 \examples{
 db <- syn_data
-run(egt03_2, db)
+run(egt03_1, db)
 }
 \keyword{datasets}

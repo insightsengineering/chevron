@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 egt03_1_main(
   adam_db,
-  armvar = "c",
+  armvar = "ARMCD",
   summaryvar = c(`Baseline Reference Range Indicator` = "BNRIND"),
   splitvar = c(`Analysis Reference Range Indicator` = "ANRIND"),
   deco = std_deco("EGT03"),

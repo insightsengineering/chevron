@@ -1,8 +1,6 @@
 # egt03_1 ----
-
 #' @describeIn egt03_1 Main TLG function
 #'
-#' @inheritParams gen_args
 #' @param armvar (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
 #' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
@@ -23,7 +21,7 @@
 #' @export
 #'
 egt03_1_main <- function(adam_db,
-                         armvar = "c",
+                         armvar = "ARMCD",
                          summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
@@ -175,7 +173,7 @@ egt03_1 <- chevron_t(
 #' @export
 #'
 egt03_2_main <- function(adam_db,
-                         armvar = "c",
+                         armvar = "ARMCD",
                          summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
@@ -228,7 +226,7 @@ egt03_2_lyt <- function(armvar,
   lbl_summaryvars <- paste0(space, lbl_summaryvars)
 
   basic_table_deco(deco) %>%
-    split_cols_by("min_label") %>%
+    split_cols_by("max_label") %>%
     split_cols_by(splitvar) %>%
     split_rows_by(armvar,
                   split_fun = drop_split_levels,
@@ -257,7 +255,7 @@ egt03_2_pre <- function(adam_db, ...) {
         ONTRTFL == "Y" & # "On Treatment Record Flag"
         AVISIT == "POST-BASELINE MAXIMUM" # "Analysis Visit"
     ) %>%
-    mutate(min_label = "Maximum Post-Baseline Assessment") %>%
+    mutate(max_label = "Maximum Post-Baseline Assessment") %>%
     mutate(BNRIND = factor(
       BNRIND,
       levels = c("LOW", "NORMAL", "HIGH", "Missing"),
