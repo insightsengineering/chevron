@@ -12,9 +12,9 @@
 #' @note
 #'  * `adam_db` object must contain an `adae` table with columns `"WD"`, `"DSM"`, `"CONTRT"`, `"ALL_RESOLVED"`,
 #'  `"NOT_RESOLVED"`, `"SER"`, `"REL"`, the column specified by `armvar`, and the columns passed to `aesi_vars`.
-#'  * `aesi_vars` may contain any of the following variables: `"ALLRESWD"`, `"ALLRESDSM"`, `"ALLRESCONTRT"`,
-#'  `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`, `"RELWD"`, `"RELDSM"`,
-#'  `"RELCONTRT"`, `"RELSER"`.
+#'  * `aesi_vars` may contain any/all of the following variables to display: `"ALLRESWD"`, `"ALLRESDSM"`,
+#'  `"ALLRESCONTRT"`, `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`,
+#'  `"RELWD"`, `"RELDSM"`, `"RELCONTRT"`, `"RELSER"`.
 #'
 #' @export
 #'

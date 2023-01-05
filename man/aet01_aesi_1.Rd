@@ -87,9 +87,9 @@ aet01_aesi_1
 \itemize{
 \item \code{adam_db} object must contain an \code{adae} table with columns \code{"WD"}, \code{"DSM"}, \code{"CONTRT"}, \code{"ALL_RESOLVED"},
 \code{"NOT_RESOLVED"}, \code{"SER"}, \code{"REL"}, the column specified by \code{armvar}, and the columns passed to \code{aesi_vars}.
-\item \code{aesi_vars} may contain any of the following variables: \code{"ALLRESWD"}, \code{"ALLRESDSM"}, \code{"ALLRESCONTRT"},
-\code{"NOTRESWD"}, \code{"NOTRESDSM"}, \code{"NOTRESCONTRT"}, \code{"SERWD"}, \code{"SERDSM"}, \code{"SERCONTRT"}, \code{"RELWD"}, \code{"RELDSM"},
-\code{"RELCONTRT"}, \code{"RELSER"}.
+\item \code{aesi_vars} may contain any/all of the following variables to display: \code{"ALLRESWD"}, \code{"ALLRESDSM"},
+\code{"ALLRESCONTRT"}, \code{"NOTRESWD"}, \code{"NOTRESDSM"}, \code{"NOTRESCONTRT"}, \code{"SERWD"}, \code{"SERDSM"}, \code{"SERCONTRT"},
+\code{"RELWD"}, \code{"RELDSM"}, \code{"RELCONTRT"}, \code{"RELSER"}.
 }
 }
 \examples{
