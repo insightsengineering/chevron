@@ -85,19 +85,6 @@ syn_test_data <- function() {
   # to avoid bug
   attr(sd, "data_from") <- NULL
 
-  # useful for aet01_aesi
-  not_resolved <- sd$adae %>%
-    filter(!(AEOUT %in% c("RECOVERED/RESOLVED", "FATAL", "RECOVERED/RESOLVED WITH SEQUELAE"))) %>%
-    distinct(USUBJID) %>%
-    mutate(NOT_RESOLVED = "Y")
-
-  sd$adae <- sd$adae %>%
-    left_join(not_resolved, by = "USUBJID") %>%
-    mutate(
-      ALL_RESOLVED = is.na(NOT_RESOLVED),
-      NOT_RESOLVED = !is.na(NOT_RESOLVED)
-    )
-
   # useful for ext01
   group <- list(
     list(
