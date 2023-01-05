@@ -1,0 +1,250 @@
+# aet01_aesi_1 ----
+
+#' @describeIn aet01_aesi_1 Main TLG function
+#'
+#' @inheritParams gen_args
+#' @param aesi_vars (`character`) the AESI variables to be included in the summary.
+#' @param ... not used.
+#'
+#' @details
+#'  * Does not remove rows with zero counts by default.
+#'
+#' @note
+#'  * `adam_db` object must contain an `adae` table with columns `"WD"`, `"DSM"`, `"CONTRT"`, `"ALL_RESOLVED"`,
+#'  `"NOT_RESOLVED"`, `"SER"`, `"REL"`, the column specified by `armvar`, and the columns passed to `aesi_vars`.
+#'
+#' @export
+#'
+aet01_aesi_1_main <- function(adam_db,
+                              armvar = "ACTARM",
+                              aesi_vars = c(
+                                "ALLRESWD", "ALLRESDSM", "ALLRESCONTRT",
+                                "NOTRESWD", "NOTRESDSM", "NOTRESCONTRT",
+                                "SERWD", "SERDSM", "SERCONTRT",
+                                "RELWD", "RELDSM", "RELCONTRT", "RELSER"
+                              ),
+                              deco = std_deco("AET01_AESI"),
+                              ...) {
+  aesi_vars <- c(
+    "WD", "DSM", "CONTRT",
+    "ALL_RESOLVED", grep("^ALLRES", aesi_vars, value = TRUE),
+    "NOT_RESOLVED", grep("^NOTRES", aesi_vars, value = TRUE),
+    "SER", grep("^SER", aesi_vars, value = TRUE),
+    "REL", grep("^REL", aesi_vars, value = TRUE)
+  )
+  lbl_aesi_vars <- var_labels_for(adam_db$adae, aesi_vars)
+  study_id <- as.character(unique(adam_db$adae$STUDYID))
+
+  lyt <- aet01_aesi_1_lyt(
+    armvar = armvar,
+    aesi_vars = aesi_vars,
+    deco = deco,
+    lbl_aesi_vars = lbl_aesi_vars,
+    study_id,
+    ... = ...
+  )
+
+  tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
+
+  tbl
+}
+
+#' @describeIn aet01_aesi_1 Layout
+#'
+#' @inheritParams gen_args
+#' @param lbl_aesi_vars (`character`) the labels of the AESI variables to be summarized.
+#' @param study_id (`character`) the study ID shared by all rows in the dataset.
+#' @param ... not used
+#'
+#' @export
+#'
+aet01_aesi_1_lyt <- function(armvar,
+                             aesi_vars,
+                             deco,
+                             lbl_aesi_vars,
+                             study_id,
+                             ...) {
+  names(lbl_aesi_vars) <- aesi_vars
+  basic_table_deco(deco, show_colcounts = TRUE) %>%
+    split_cols_by(var = armvar) %>%
+    count_patients_with_event(
+      vars = "USUBJID",
+      filters = c("STUDYID" = study_id),
+      denom = "N_col",
+      .labels = c(count_fraction = "Total number of patients with at least one AE")
+    ) %>%
+    count_values(
+      "STUDYID",
+      values = study_id,
+      .stats = "count",
+      .labels = c(count = "Total number of AEs"),
+      table_names = "total_aes"
+    ) %>%
+    count_occurrences_by_grade(
+      var = "AETOXGR",
+      var_labels = "Total number of patients with at least one AE by worst grade",
+      show_labels = "visible"
+    ) %>%
+    count_patients_with_flags(
+      "USUBJID",
+      flag_variables = lbl_aesi_vars,
+      denom = "N_col"
+    )
+}
+
+#' @describeIn aet01_aesi_1 Preprocessing
+#'
+#' @inheritParams aet01_aesi_1_main
+#' @param ... not used.
+#'
+#' @export
+#'
+aet01_aesi_1_pre <- function(adam_db, ...) {
+  checkmate::assert_class(adam_db, "dm")
+
+  aet01_aesi_1_check(adam_db, ...)
+
+  db <- adam_db %>%
+    dm_zoom_to("adae") %>%
+    filter(.data$ANL01FL == "Y") %>%
+    dm_update_zoomed() %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      WD = AEACN == "DRUG WITHDRAWN",
+      DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      CONTRT = AECONTRT == "Y",
+      SER = AESER == "Y",
+      REL = AEREL == "Y",
+      ALLRESWD = WD == TRUE & ALL_RESOLVED == TRUE,
+      ALLRESDSM = DSM == TRUE & ALL_RESOLVED == TRUE,
+      ALLRESCONTRT = CONTRT == TRUE & ALL_RESOLVED == TRUE,
+      NOTRESWD = WD == TRUE & NOT_RESOLVED == TRUE,
+      NOTRESDSM = DSM == TRUE & NOT_RESOLVED == TRUE,
+      NOTRESCONTRT = CONTRT == TRUE & NOT_RESOLVED == TRUE,
+      SERWD = AESER == "Y" & AEACN == "DRUG WITHDRAWN",
+      SERCONTRT = AECONTRT == "Y" & AESER == "Y",
+      SERDSM = AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      RELWD = AEREL == "Y" & AEACN == "DRUG WITHDRAWN",
+      RELDSM = AEREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      RELCONTRT = AECONTRT == "Y" & AEREL == "Y",
+      RELSER = AESER == "Y" & AEREL == "Y"
+    ) %>%
+    mutate(
+      ALL_RESOLVED = formatters::with_label(.data$ALL_RESOLVED, "Total number of patients with all non-fatal AEs resolved"),
+      NOT_RESOLVED = formatters::with_label(.data$NOT_RESOLVED, "Total number of patients with at least one unresolved or ongoing non-fatal AE"),
+      WD = formatters::with_label(.data$WD, "Total number of patients with study drug withdrawn due to AE"),
+      DSM = formatters::with_label(.data$DSM, "Total number of patients with dose modified/interrupted due to AE"),
+      CONTRT = formatters::with_label(.data$CONTRT, "Total number of patients with treatment received for AE"),
+      SER = formatters::with_label(.data$SER, "Total number of patients with at least one serious AE"),
+      REL = formatters::with_label(.data$REL, "Total number of patients with at least one related AE"),
+      ALLRESWD = formatters::with_label(.data$ALLRESWD, "  No. of patients with study drug withdrawn due to resolved AE"),
+      ALLRESDSM = formatters::with_label(.data$ALLRESDSM, "  No. of patients with dose modified/interrupted due to resolved AE"),
+      ALLRESCONTRT = formatters::with_label(.data$ALLRESCONTRT, "  No. of patients with treatment received for resolved AE"),
+      NOTRESWD = formatters::with_label(.data$NOTRESWD, "  No. of patients with study drug withdrawn due to unresolved or ongoing AE"),
+      NOTRESDSM = formatters::with_label(.data$NOTRESDSM, "  No. of patients with dose modified/interrupted due to unresolved or ongoing AE"),
+      NOTRESCONTRT = formatters::with_label(.data$NOTRESCONTRT, "  No. of patients with treatment received for unresolved/ongoing AE"),
+      SERWD = formatters::with_label(.data$SERWD, "  No. of patients with study drug withdrawn due to serious AE"),
+      SERDSM = formatters::with_label(.data$SERDSM, "  No. of patients with dose modified/interrupted due to serious AE"),
+      SERCONTRT = formatters::with_label(.data$SERCONTRT, "  No. of patients with treatment received for serious AE"),
+      RELWD = formatters::with_label(.data$RELWD, "  No. of patients with study drug withdrawn due to related AE"),
+      RELDSM = formatters::with_label(.data$RELDSM, "  No. of patients with dose modified/interrupted due to related AE"),
+      RELCONTRT = formatters::with_label(.data$RELCONTRT, "  No. of patients with treatment received for related AE"),
+      RELSER = formatters::with_label(.data$RELSER, "  No. of patients with serious, related AE")
+    ) %>%
+    mutate(
+      AETOXGR = forcats::fct_recode(
+        AETOXGR,
+        "Grade 1" = "1",
+        "Grade 2" = "2",
+        "Grade 3" = "3",
+        "Grade 4" = "4",
+        "Grade 5 (fatal outcome)" = "5"
+      )
+    ) %>%
+    dm_update_zoomed()
+
+  db
+}
+
+#' @describeIn aet01_aesi_1 Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+aet01_aesi_1_check <- function(adam_db,
+                               req_tables = c("adsl", "adae"),
+                               armvar = "ACTARM",
+                               aesi_vars = c(
+                                 "WD", "DSM", "CONTRT",
+                                 "ALL_RESOLVED", "ALLRESWD", "ALLRESDSM", "ALLRESCONTRT",
+                                 "NOT_RESOLVED", "NOTRESWD", "NOTRESDSM", "NOTRESCONTRT",
+                                 "SER", "SERWD", "SERDSM", "SERCONTRT",
+                                 "REL", "RELWD", "RELDSM", "RELCONTRT", "RELSER"
+                               ),
+                               ...) {
+  assert_all_tablenames(adam_db, req_tables)
+
+  msg <- NULL
+
+  corresponding_col <- list(
+    WD = "AEACN",
+    DSM = "AEACN",
+    CONTRT = "AECONTRT",
+    SER = "AESER",
+    REL = "AEREL",
+    ALLRESWD = "AEACN",
+    ALLRESDSM = "AEACN",
+    ALLRESCONTRT = "AECONTRT",
+    NOTRESWD = "AEACN",
+    NOTRESDSM = "AEACN",
+    NOTRESCONTRT = "AECONTRT",
+    SERWD = c("AESER", "AEACN"),
+    SERDSM = c("AESER", "AEACN"),
+    SERCONTRT = c("AESER", "AECONTRT"),
+    RELWD = c("AEREL", "AEACN"),
+    RELDSM = c("AEREL", "AEACN"),
+    RELCONTRT = c("AEREL", "AECONTRT"),
+    RELSER = c("AEREL", "AESER")
+  )
+
+  native_col <- setdiff(c(armvar, aesi_vars), names(corresponding_col))
+  new_col <- unique(unlist(corresponding_col[c(armvar, aesi_vars)]))
+  layout_col <- "USUBJID"
+
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, layout_col)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg, collapse = "\n  "))
+  }
+}
+
+#' @describeIn aet01_aesi_1 Postprocessing
+#'
+#' @inheritParams gen_args
+#' @param ... not used
+#'
+#' @export
+aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"), ...) {
+  tbl <- set_decoration(tlg, deco)
+  if (prune_0) {
+    tbl <- smart_prune(tbl)
+  }
+  std_postprocess(tbl)
+}
+
+#' `AET01_AESI` Table 1 (Default) Adverse Event of Special Interest Summary Table.
+#'
+#' @include chevron_tlg-S4class.R
+#' @export
+#'
+#' @examples
+#' run(aet01_aesi_1, syn_data)
+aet01_aesi_1 <- chevron_t(
+  main = aet01_aesi_1_main,
+  preprocess = aet01_aesi_1_pre,
+  postprocess = aet01_aesi_post,
+  adam_datasets = c("adsl", "adae")
+)
