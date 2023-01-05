@@ -12,6 +12,9 @@
 #' @note
 #'  * `adam_db` object must contain an `adae` table with columns `"WD"`, `"DSM"`, `"CONTRT"`, `"ALL_RESOLVED"`,
 #'  `"NOT_RESOLVED"`, `"SER"`, `"REL"`, the column specified by `armvar`, and the columns passed to `aesi_vars`.
+#'  * `aesi_vars` may contain any of the following variables: `"ALLRESWD"`, `"ALLRESDSM"`, `"ALLRESCONTRT"`,
+#'  `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`, `"RELWD"`, `"RELDSM"`,
+#'  `"RELCONTRT"`, `"RELSER"`.
 #'
 #' @export
 #'
@@ -127,7 +130,7 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
       DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
       CONTRT = AECONTRT == "Y",
       SER = AESER == "Y",
-      REL = AEREL == "Y",
+      REL = AREL == "Y",
       ALLRESWD = WD == TRUE & ALL_RESOLVED == TRUE,
       ALLRESDSM = DSM == TRUE & ALL_RESOLVED == TRUE,
       ALLRESCONTRT = CONTRT == TRUE & ALL_RESOLVED == TRUE,
@@ -137,10 +140,10 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
       SERWD = AESER == "Y" & AEACN == "DRUG WITHDRAWN",
       SERCONTRT = AECONTRT == "Y" & AESER == "Y",
       SERDSM = AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      RELWD = AEREL == "Y" & AEACN == "DRUG WITHDRAWN",
-      RELDSM = AEREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      RELCONTRT = AECONTRT == "Y" & AEREL == "Y",
-      RELSER = AESER == "Y" & AEREL == "Y"
+      RELWD = AREL == "Y" & AEACN == "DRUG WITHDRAWN",
+      RELDSM = AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      RELCONTRT = AECONTRT == "Y" & AREL == "Y",
+      RELSER = AESER == "Y" & AREL == "Y"
     ) %>%
     mutate(
       ALL_RESOLVED = formatters::with_label(
@@ -246,7 +249,7 @@ aet01_aesi_1_check <- function(adam_db,
     DSM = "AEACN",
     CONTRT = "AECONTRT",
     SER = "AESER",
-    REL = "AEREL",
+    REL = "AREL",
     ALLRESWD = "AEACN",
     ALLRESDSM = "AEACN",
     ALLRESCONTRT = "AECONTRT",
@@ -256,10 +259,10 @@ aet01_aesi_1_check <- function(adam_db,
     SERWD = c("AESER", "AEACN"),
     SERDSM = c("AESER", "AEACN"),
     SERCONTRT = c("AESER", "AECONTRT"),
-    RELWD = c("AEREL", "AEACN"),
-    RELDSM = c("AEREL", "AEACN"),
-    RELCONTRT = c("AEREL", "AECONTRT"),
-    RELSER = c("AEREL", "AESER")
+    RELWD = c("AREL", "AEACN"),
+    RELDSM = c("AREL", "AEACN"),
+    RELCONTRT = c("AREL", "AECONTRT"),
+    RELSER = c("AREL", "AESER")
   )
 
   native_col <- setdiff(c(armvar, aesi_vars), names(corresponding_col))
