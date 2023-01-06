@@ -23,7 +23,7 @@ aet01_aesi_1_main(
   ...
 )
 
-aet01_aesi_1_lyt(armvar, aesi_vars, deco, lbl_aesi_vars, study_id, ...)
+aet01_aesi_1_lyt(armvar, aesi_vars, deco, lbl_aesi_vars, ...)
 
 aet01_aesi_1_pre(adam_db, ...)
 
@@ -53,8 +53,6 @@ aet01_aesi_1
 \item{...}{not used}
 
 \item{lbl_aesi_vars}{(\code{character}) the labels of the AESI variables to be summarized.}
-
-\item{study_id}{(\code{character}) the study ID shared by all rows in the dataset.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
