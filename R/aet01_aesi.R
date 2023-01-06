@@ -36,14 +36,12 @@ aet01_aesi_1_main <- function(adam_db,
     "REL", grep("^REL", aesi_vars, value = TRUE)
   )
   lbl_aesi_vars <- var_labels_for(adam_db$adae, aesi_vars)
-  study_id <- as.character(unique(adam_db$adae$STUDYID))
 
   lyt <- aet01_aesi_1_lyt(
     armvar = armvar,
     aesi_vars = aesi_vars,
     deco = deco,
     lbl_aesi_vars = lbl_aesi_vars,
-    study_id,
     ... = ...
   )
 
@@ -56,7 +54,6 @@ aet01_aesi_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param lbl_aesi_vars (`character`) the labels of the AESI variables to be summarized.
-#' @param study_id (`character`) the study ID shared by all rows in the dataset.
 #' @param ... not used
 #'
 #' @export
@@ -65,20 +62,19 @@ aet01_aesi_1_lyt <- function(armvar,
                              aesi_vars,
                              deco,
                              lbl_aesi_vars,
-                             study_id,
                              ...) {
   names(lbl_aesi_vars) <- aesi_vars
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = armvar) %>%
     count_patients_with_event(
       vars = "USUBJID",
-      filters = c("STUDYID" = study_id),
+      filters = c("ANL01FL" = "Y"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of patients with at least one AE")
     ) %>%
     count_values(
-      "STUDYID",
-      values = study_id,
+      "ANL01FL",
+      values = "Y",
       .stats = "count",
       .labels = c(count = "Total number of AEs"),
       table_names = "total_aes"
@@ -109,7 +105,7 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
 
   new_format <- list(
     adae = list(
-      AEDECOD = list("<Missing>" = c("", NA, "<Missing>"))
+      AEDECOD = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
     )
   )
 
@@ -267,9 +263,10 @@ aet01_aesi_1_check <- function(adam_db,
 
   native_col <- setdiff(c(armvar, aesi_vars), names(corresponding_col))
   new_col <- unique(unlist(corresponding_col[c(armvar, aesi_vars)]))
+  filter_col <- "ANL01FL"
   layout_col <- "USUBJID"
 
-  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, filter_col, layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, layout_col)))
 
   if (is.null(msg)) {
