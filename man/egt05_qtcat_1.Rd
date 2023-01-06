@@ -20,6 +20,7 @@ egt05_qtcat_1_main(
   visitvar = "AVISIT",
   deco = std_deco("EGT05_QTCAT"),
   lbl_cat = "Category",
+  lbl_headvisit = "Analysis Visit",
   ...
 )
 
@@ -32,6 +33,7 @@ egt05_qtcat_1_lyt(
   lbl_avisit,
   deco,
   lbl_cat,
+  lbl_headvisit,
   ...
 )
 
@@ -56,6 +58,8 @@ to be displayed.}
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{lbl_cat}{(\code{character}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
+
+\item{lbl_headvisit}{(\code{character}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 
 \item{...}{not used.}
 
@@ -99,8 +103,8 @@ Re-level to customize order.
 \itemize{
 \item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column contains 'QT' as well as column
 specified in \code{visitvar}.
-For \code{summaryvars}, if \code{AVALCAT1} and \code{CHGCAT1} columns are already existed in input data sets, no need to
-specify \code{AVAL} or \code{CHG}. If not, \code{AVAL} and \code{CHG} columns must be contained.
+For \code{summaryvars}, if \code{AVALCAT1} and \code{CHGCAT1} columns are not existed in input data sets, \code{AVAL} and \code{CHG}
+columns must be contained to re-derive \code{AVALCAT1} and \code{CHGCAT1}.
 }
 }
 \examples{

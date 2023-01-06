@@ -19,8 +19,8 @@
 #' @note
 #'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column contains 'QT' as well as column
 #'  specified in `visitvar`.
-#'  For `summaryvars`, if `AVALCAT1` and `CHGCAT1` columns are already existed in input data sets, no need to
-#'  specify `AVAL` or `CHG`. If not, `AVAL` and `CHG` columns must be contained.
+#'  For `summaryvars`, if `AVALCAT1` and `CHGCAT1` columns are not existed in input data sets, `AVAL` and `CHG`
+#'  columns must be contained to re-derive `AVALCAT1` and `CHGCAT1`.
 #'
 #' @export
 #'
@@ -31,6 +31,7 @@ egt05_qtcat_1_main <- function(adam_db,
                                visitvar = "AVISIT",
                                deco = std_deco("EGT05_QTCAT"),
                                lbl_cat = "Category",
+                               lbl_headvisit = "Analysis Visit",
                                ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
 
@@ -45,6 +46,7 @@ egt05_qtcat_1_main <- function(adam_db,
     lbl_avisit = lbl_avisit,
     deco = deco,
     lbl_cat = lbl_cat,
+    lbl_headvisit = lbl_headvisit,
     ... = ...
   )
 
@@ -65,6 +67,7 @@ egt05_qtcat_1_main <- function(adam_db,
 #'   to be displayed.
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
 #' @param lbl_cat (`character`) label of the Category of `summaryvars` variable. Default as `Category`.
+#' @param lbl_headvisit (`character`) label of Visits in the header. Default as `Analysis Visit`.
 #' @param ... not used.
 #'
 #' @export
@@ -76,6 +79,7 @@ egt05_qtcat_1_lyt <- function(armvar,
                               lbl_avisit,
                               deco,
                               lbl_cat,
+                              lbl_headvisit,
                               ...) {
 
   basic_table_deco(deco) %>%
@@ -92,7 +96,7 @@ egt05_qtcat_1_lyt <- function(armvar,
       vars = summaryvars,
       var_labels = summaryvars_lbls
     ) %>%
-    append_topleft("Analysis Visit") %>%
+    append_topleft(lbl_headvisit) %>%
     append_topleft(paste0("  ", lbl_cat))
 }
 
@@ -113,24 +117,20 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
       PARAMCD == "QT"
       ) %>%
     mutate(
-      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else case_when(
+      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else factor(case_when(
         AVAL <= 450 ~ "<=450 msec",
         AVAL <= 480 ~ ">450 to <=480 msec",
         AVAL <= 500 ~ ">480 to <= 500 msec",
         AVAL > 500 ~ ">500 msec",
         is.na(AVAL) ~ "<Missing>"
-        )) %>%
+        ), levels = c("<=450 msec", ">450 to <=480 msec", ">480 to <= 500 msec", ">500 msec", "<Missing>"))) %>%
     mutate(
-      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else case_when(
+      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else factor(case_when(
         CHG <= 30 ~ "<=30 msec",
         CHG <= 60 ~ ">30 to <=60 msec",
         CHG > 60 ~ ">60 msec",
         is.na(CHG) ~ "<Missing>"
-        )) %>%
-    mutate(
-      AVALCAT1 = factor(AVALCAT1),
-      CHGCAT1 = factor(CHGCAT1)
-      ) %>%
+        ), levels = c("<=30 msec", ">30 to <=60 msec", ">60 msec", "<Missing>"))) %>%
     dm_update_zoomed()
   }
 
