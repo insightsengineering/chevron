@@ -355,10 +355,9 @@ h_pad_or_round_sep <- function(x, digits = NA, sep = " - ", ...) {
 #'
 #' @examples
 #' h_pad_or_round(123.1234, 10)
-#' h_pad_or_round(123.1234, 1)
+#' h_pad_or_round(123.15, 1)
 #' h_pad_or_round(123, 1)
 #' h_pad_or_round(123, 3)
-#' h_pad_or_round(123, 0)
 h_pad_or_round <- function(x, digits = NA, ...) {
   checkmate::assert_numeric(x, len = 1)
   checkmate::assert_integerish(digits, lower = 0)
@@ -367,29 +366,5 @@ h_pad_or_round <- function(x, digits = NA, ...) {
     return(as.character(x))
   }
 
-  x_round <- round(x, digits)
-  x_char <- as.character(x_round)
-
-  main <- gsub("^([-0-9]{0,}).*", "\\1", x_char)
-
-  dec_pattern <- "\\-?[0-9]{0,}\\.([0-9]{0,})"
-  if (grepl(dec_pattern, x_char)) {
-    dec <- gsub(dec_pattern, "\\1", x_char)
-    n_dec <- nchar(dec)
-  } else {
-    n_dec <- 0
-  }
-
-  res <- if (digits == 0) {
-    main
-  } else if (digits >= n_dec) {
-    pad_0 <- paste(rep("0", digits - n_dec), collapse = "")
-    dec_point <- if (n_dec == 0) "." else NULL
-    paste0(x_char, dec_point, pad_0)
-  } else if (digits < n_dec) {
-    tr <- strtrim(dec, digits)
-    paste0(main, ".", tr)
-  }
-
-  as.character(res)
+  sprintf(paste0("%.", digits, "f"), x)
 }

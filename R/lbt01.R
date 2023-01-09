@@ -137,7 +137,7 @@ lbt01_1_lyt <- function(armvar,
           .formats = list(
             "n" = "xx",
             "Mean (SD)" = function(x, ...) h_pad_or_round_dev(x, digits = pcs + 1),
-            "Median" = function(x, ...) h_pad_or_round(x, digits = pcs),
+            "Median" = function(x, ...) h_pad_or_round(x, digits = pcs + 1),
             "Min - Max" = function(x, ...) h_pad_or_round_sep(x, digits = pcs)
           )
         )

@@ -21,8 +21,7 @@ Padding or Rounding Numbers
 }
 \examples{
 h_pad_or_round(123.1234, 10)
-h_pad_or_round(123.1234, 1)
+h_pad_or_round(123.15, 1)
 h_pad_or_round(123, 1)
 h_pad_or_round(123, 3)
-h_pad_or_round(123, 0)
 }
