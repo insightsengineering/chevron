@@ -4,6 +4,7 @@
 \name{egt03_2_main}
 \alias{egt03_2_main}
 \alias{egt03_2_lyt}
+\alias{egt03_2_check}
 \alias{egt03_2_pre}
 \alias{egt03_2_post}
 \alias{egt03_2}
@@ -31,6 +32,8 @@ egt03_2_lyt(
   deco,
   ...
 )
+
+egt03_2_check(adam_db, req_tables = c("adeg"), visitvar = "AVISIT", ...)
 
 egt03_2_pre(adam_db, ...)
 
@@ -61,6 +64,8 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{lbl_summaryvars}{(\code{character}) label of the \code{summaryvar} variable.}
 
+\item{req_tables}{(\code{character}) names of the required tables.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
@@ -72,6 +77,7 @@ patient's last observation prior to initiation of study drug.
 }
 \details{
 \itemize{
+\item ADEG data are subsetted to contain only "POST-BASELINE MAXIMUM" visit
 \item the number of patients by baseline assessment and maximum post-baseline assessment.
 \item Percentages are based on the total number of patients in a treatment group.
 \item Split columns by Analysis Reference Range Indicator, typically \code{ANRIND}.
@@ -84,6 +90,8 @@ patient's last observation prior to initiation of study drug.
 \item \code{egt03_2_main()}: Main TLG function
 
 \item \code{egt03_2_lyt()}: Layout
+
+\item \code{egt03_2_check()}: Checks
 
 \item \code{egt03_2_pre()}: Preprocessing
 
@@ -98,6 +106,6 @@ patient's last observation prior to initiation of study drug.
 }
 \examples{
 db <- syn_data
-run(egt03_1, db)
+run(egt03_2, db)
 }
 \keyword{datasets}

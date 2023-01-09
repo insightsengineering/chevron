@@ -10,6 +10,7 @@
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
 #'
 #' @details
+#'  * ADEG data are subsetted to contain only "POST-BASELINE MINIMUM" visit
 #'  * the number of patients by baseline assessment and minimum post-baseline assessment.
 #'  * Percentages are based on the total number of patients in a treatment group.
 #'  * Split columns by Analysis Reference Range Indicator, typically `ANRIND`.
@@ -87,6 +88,31 @@ egt03_1_lyt <- function(armvar,
     append_topleft(lbl_summaryvars)
 }
 
+#' @describeIn egt03_1 Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+egt03_1_check <- function(adam_db,
+                          req_tables = c("adeg"),
+                          visitvar = "AVISIT",
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
+  msg <- NULL
+
+  adeg_layout_col <- "USUBJID"
+
+  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visitvar)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg))
+  }
+  checkmate::assert_true(c("POST-BASELINE MINIMUM") %in% adam_db$adeg$AVISIT)
+  checkmate::assert_true(c("HR") %in% adam_db$adeg$PARAMCD)
+}
+
 #' @describeIn egt03_1 Preprocessing
 #'
 #' @inheritParams gen_args
@@ -96,7 +122,7 @@ egt03_1_lyt <- function(armvar,
 #'
 egt03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
-
+  egt03_1_check(adam_db, ...)
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
@@ -164,6 +190,7 @@ egt03_1 <- chevron_t(
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
 #'
 #' @details
+#'  * ADEG data are subsetted to contain only "POST-BASELINE MAXIMUM" visit
 #'  * the number of patients by baseline assessment and maximum post-baseline assessment.
 #'  * Percentages are based on the total number of patients in a treatment group.
 #'  * Split columns by Analysis Reference Range Indicator, typically `ANRIND`.
@@ -241,6 +268,31 @@ egt03_2_lyt <- function(armvar,
     append_topleft(lbl_summaryvars)
 }
 
+#' @describeIn egt03_2 Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+egt03_2_check <- function(adam_db,
+                          req_tables = c("adeg"),
+                          visitvar = "AVISIT",
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
+  msg <- NULL
+
+  adeg_layout_col <- "USUBJID"
+
+  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visitvar)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg))
+  }
+  checkmate::assert_true(c("POST-BASELINE MAXIMUM") %in% adam_db$adeg$AVISIT)
+  checkmate::assert_true(c("HR") %in% adam_db$adeg$PARAMCD)
+}
+
 #' @describeIn egt03_2 Preprocessing
 #'
 #' @inheritParams gen_args
@@ -250,6 +302,7 @@ egt03_2_lyt <- function(armvar,
 #'
 egt03_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
+  egt03_2_check(adam_db, ...)
 
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -296,7 +349,7 @@ egt03_2_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' @examples
 #' db <- syn_data
-#' run(egt03_1, db)
+#' run(egt03_2, db)
 egt03_2 <- chevron_t(
   main = egt03_2_main,
   preprocess = egt03_2_pre,
