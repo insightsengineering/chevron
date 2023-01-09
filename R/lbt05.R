@@ -31,9 +31,9 @@ lbt05_1_main <- function(adam_db,
       adam_db$adlb$abn_dir %in% c("Low", "High") & adam_db$adlb$AVALCAT1 != "<Missing>", c("PARAM", "abn_dir")
     ]
   ) %>%
-  lapply(as.character) %>%
-  as.data.frame() %>%
-  arrange(PARAM, desc(abn_dir))
+    lapply(as.character) %>%
+    as.data.frame() %>%
+    arrange(PARAM, desc(abn_dir))
 
   if (nrow(map) == 0) {
     stop("Abnormality mapping cannot be constructed if all values of ANRIND are missing.")
@@ -120,30 +120,32 @@ lbt05_1_pre <- function(adam_db, ...) {
     left_join("adlb") %>%
     group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
-      ANRIND = factor(case_when(
-        ANRIND == "LOW" & AVAL <= q1 ~ "LOW LOW",
-        ANRIND == "HIGH" & AVAL >= q2 ~ "HIGH HIGH",
-        TRUE ~ as.character(ANRIND)
+      ANRIND = factor(
+        case_when(
+          ANRIND == "LOW" & AVAL <= q1 ~ "LOW LOW",
+          ANRIND == "HIGH" & AVAL >= q2 ~ "HIGH HIGH",
+          TRUE ~ as.character(ANRIND)
+        ),
+        levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
       ),
-      levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
-      ),
-      AVALCAT1 = factor(case_when(
-        ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
-          sample(x = avalcat1, size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
-        TRUE ~ ""
-      ),
-      levels = c("", avalcat1)
+      AVALCAT1 = factor(
+        case_when(
+          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
+            sample(x = avalcat1, size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
+          TRUE ~ ""
+        ),
+        levels = c("", avalcat1)
       ),
       PARCAT2 = factor(ifelse(ANRIND %in% c("HIGH HIGH", "LOW LOW"), "LS",
-                              sample(c("SI", "CV", "LS"), size = n(), replace = TRUE)
-      ))) %>%
-    ungroup() %>%
-    mutate(abn_dir = factor(case_when(
-        ANRIND == "LOW LOW" ~ "Low",
-        ANRIND == "HIGH HIGH" ~ "High",
-        TRUE ~ ""
+        sample(c("SI", "CV", "LS"), size = n(), replace = TRUE)
       ))
     ) %>%
+    ungroup() %>%
+    mutate(abn_dir = factor(case_when(
+      ANRIND == "LOW LOW" ~ "Low",
+      ANRIND == "HIGH HIGH" ~ "High",
+      TRUE ~ ""
+    ))) %>%
     dm_update_zoomed()
 
   new_format <- list(
