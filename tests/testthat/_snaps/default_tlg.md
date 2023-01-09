@@ -928,6 +928,42 @@
             Low                                  59/120 (49.2%)   65/119 (54.6%)   58/120 (48.3%)
             High                                 60/119 (50.4%)   60/123 (48.8%)   51/119 (42.9%)
 
+# lbt05_1 functions with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Laboratory Test                            A: Drug X   B: Placebo   C: Combination
+            Direction of Abnormality                (N=134)     (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————
+        Alanine Aminotransferase Measurement (n)      127         124            124      
+          Low                                                                             
+            Single, not last                           0        2 (1.6%)          0       
+            Last or replicated                     2 (1.6%)     1 (0.8%)       4 (3.2%)   
+            Any Abnormality                        2 (1.6%)     3 (2.4%)       4 (3.2%)   
+          High                                                                            
+            Single, not last                       1 (0.8%)        0              0       
+            Last or replicated                     2 (1.6%)     7 (5.6%)       2 (1.6%)   
+            Any Abnormality                        3 (2.4%)     7 (5.6%)       2 (1.6%)   
+        C-Reactive Protein Measurement (n)            129         124            127      
+          Low                                                                             
+            Single, not last                           0           0              0       
+            Last or replicated                     3 (2.3%)     2 (1.6%)       3 (2.4%)   
+            Any Abnormality                        3 (2.3%)     2 (1.6%)       3 (2.4%)   
+          High                                                                            
+            Single, not last                           0           0              0       
+            Last or replicated                     2 (1.6%)     3 (2.4%)       5 (3.9%)   
+            Any Abnormality                        2 (1.6%)     3 (2.4%)       5 (3.9%)   
+        Immunoglobulin A Measurement (n)              128         125            122      
+          Low                                                                             
+            Single, not last                           0        1 (0.8%)          0       
+            Last or replicated                     4 (3.1%)     3 (2.4%)       2 (1.6%)   
+            Any Abnormality                        4 (3.1%)     4 (3.2%)       2 (1.6%)   
+          High                                                                            
+            Single, not last                           0           0              0       
+            Last or replicated                     1 (0.8%)     2 (1.6%)       2 (1.6%)   
+            Any Abnormality                        1 (0.8%)     2 (1.6%)       2 (1.6%)   
+
 # mht01_1 functions with default argument value return expected result with test data
 
     Code
