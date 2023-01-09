@@ -17,6 +17,7 @@
 #' @importFrom methods is setValidity
 #' @importFrom rlang sym .data .env
 #' @importFrom stats setNames
+#' @importFrom stats quantile
 #' @importFrom tibble tribble
 #' @importFrom yaml read_yaml
 "_PACKAGE"
