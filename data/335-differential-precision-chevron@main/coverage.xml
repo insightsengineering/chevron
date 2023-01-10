@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.925707049387927" branch-rate="0" lines-covered="2193" lines-valid="2369" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-01-09 09:26:57">
+<coverage line-rate="0.925941599661447" branch-rate="0" lines-covered="2188" lines-valid="2363" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-01-10 09:13:39">
   <sources/>
   <packages>
-    <package name="chevron" line-rate="0.925707049387927" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.925941599661447" branch-rate="0" complexity="0">
       <classes>
         <class name="aet01.R" filename="R/aet01.R" line-rate="0.981818181818182" branch-rate="0" complexity="0">
           <methods>
@@ -4806,7 +4806,7 @@
             <line number="150" hits="0" branch="false"/>
           </lines>
         </class>
-        <class name="utils.R" filename="R/utils.R" line-rate="0.408450704225352" branch-rate="0" complexity="0">
+        <class name="utils.R" filename="R/utils.R" line-rate="0.389705882352941" branch-rate="0" complexity="0">
           <methods>
             <method name="var_labels_for" signature="" line-rate="1" branch-rate="0">
               <lines>
@@ -4983,31 +4983,17 @@
                 <line number="301" hits="92" branch="false"/>
               </lines>
             </method>
-            <method name="h_pad_or_round_dev" signature="" line-rate="1" branch-rate="0">
+            <method name="h_format_dec" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="316" hits="398" branch="false"/>
-                <line number="318" hits="398" branch="false"/>
-                <line number="319" hits="1" branch="false"/>
-                <line number="322" hits="397" branch="false"/>
-                <line number="323" hits="397" branch="false"/>
-                <line number="325" hits="397" branch="false"/>
-              </lines>
-            </method>
-            <method name="h_pad_or_round_sep" signature="" line-rate="1" branch-rate="0">
-              <lines>
-                <line number="339" hits="398" branch="false"/>
-                <line number="340" hits="398" branch="false"/>
-                <line number="342" hits="398" branch="false"/>
-                <line number="343" hits="398" branch="false"/>
-              </lines>
-            </method>
-            <method name="h_pad_or_round" signature="" line-rate="0.8" branch-rate="0">
-              <lines>
-                <line number="362" hits="1994" branch="false"/>
-                <line number="363" hits="1994" branch="false"/>
-                <line number="365" hits="1994" branch="false"/>
-                <line number="366" hits="0" branch="false"/>
-                <line number="369" hits="1994" branch="false"/>
+                <line number="320" hits="1199" branch="false"/>
+                <line number="321" hits="1199" branch="false"/>
+                <line number="322" hits="1199" branch="false"/>
+                <line number="324" hits="1199" branch="false"/>
+                <line number="325" hits="1" branch="false"/>
+                <line number="328" hits="1198" branch="false"/>
+                <line number="330" hits="1198" branch="false"/>
+                <line number="331" hits="1198" branch="false"/>
+                <line number="333" hits="1198" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -5139,21 +5125,15 @@
             <line number="298" hits="92" branch="false"/>
             <line number="299" hits="92" branch="false"/>
             <line number="301" hits="92" branch="false"/>
-            <line number="316" hits="398" branch="false"/>
-            <line number="318" hits="398" branch="false"/>
-            <line number="319" hits="1" branch="false"/>
-            <line number="322" hits="397" branch="false"/>
-            <line number="323" hits="397" branch="false"/>
-            <line number="325" hits="397" branch="false"/>
-            <line number="339" hits="398" branch="false"/>
-            <line number="340" hits="398" branch="false"/>
-            <line number="342" hits="398" branch="false"/>
-            <line number="343" hits="398" branch="false"/>
-            <line number="362" hits="1994" branch="false"/>
-            <line number="363" hits="1994" branch="false"/>
-            <line number="365" hits="1994" branch="false"/>
-            <line number="366" hits="0" branch="false"/>
-            <line number="369" hits="1994" branch="false"/>
+            <line number="320" hits="1199" branch="false"/>
+            <line number="321" hits="1199" branch="false"/>
+            <line number="322" hits="1199" branch="false"/>
+            <line number="324" hits="1199" branch="false"/>
+            <line number="325" hits="1" branch="false"/>
+            <line number="328" hits="1198" branch="false"/>
+            <line number="330" hits="1198" branch="false"/>
+            <line number="331" hits="1198" branch="false"/>
+            <line number="333" hits="1198" branch="false"/>
           </lines>
         </class>
         <class name="vst01.R" filename="R/vst01.R" line-rate="1" branch-rate="0" complexity="0">
