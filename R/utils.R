@@ -303,68 +303,32 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 
 # Special formats ----
 
-#' Padding or Rounding Numbers and Deviation
-#'
-#' @inheritParams h_pad_or_round
-#' @param x (`numeric`) representing the main value and its error.
-#'
-#' @export
-#'
-#' @examples
-#' h_pad_or_round_dev(c(1.11111, 0.5), 3)
-h_pad_or_round_dev <- function(x, digits = NA, ...) {
-  checkmate::assert_numeric(x, len = 2)
-
-  if (x[1] == 0 && x[2] == 0) {
-    return("0")
-  }
-
-  main <- h_pad_or_round(x[1], digits = digits)
-  err <- h_pad_or_round(x[2], digits = digits)
-
-  paste0(main, " (", err, ")")
-}
-
-#' Padding or Rounding Numbers with Separator
-#'
-#' @inheritParams h_pad_or_round
-#' @param x (`numeric`) to format.
-#' @param sep (`string`) separating the formatted values.
-#'
-#' @export
-#'
-#' @examples
-#' h_pad_or_round_sep(c(1.11111, 2.22222), 3)
-h_pad_or_round_sep <- function(x, digits = NA, sep = " - ", ...) {
-  checkmate::assert_numeric(x)
-  checkmate::assert_string(sep)
-
-  res <- vapply(x, h_pad_or_round, digits = digits, FUN.VALUE = character(1))
-  paste(res, collapse = sep)
-}
-
-#' Padding or Rounding Numbers
+#' Decimal Formatting
 #'
 #' @param x (`numeric`) to format.
 #' @param digits (`integer`) number of digits.
-#' @param ... not used.
+#' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
 #'
-#' @return `string` corresponding to the number with the desired numbers of digits.
+#' @return `string` with formatted numbers.
 #'
 #' @export
 #'
 #' @examples
-#' h_pad_or_round(123.1234, 10)
-#' h_pad_or_round(123.15, 1)
-#' h_pad_or_round(123, 1)
-#' h_pad_or_round(123, 3)
-h_pad_or_round <- function(x, digits = NA, ...) {
-  checkmate::assert_numeric(x, len = 1)
-  checkmate::assert_integerish(digits, lower = 0)
+#' h_format_dec(c(123, 5676.56), 1, "%f - %f")
+#'
+h_format_dec <- function(x, digits = NA, format = NA) {
+  checkmate::assert_numeric(x)
+  checkmate::assert_integerish(digits, lower = 0, len = 1)
+  checkmate::assert_string(format, na.ok = TRUE)
 
-  if (is.na(x) || is.na(digits)) {
-    return(as.character(x))
+  if (is.na(format)) {
+    return(toString(x))
   }
 
-  sprintf(paste0("%.", digits, "f"), x)
+  digit_string <- ifelse(is.na(digits), "", paste0(".", digits))
+
+  new_format <- gsub("%([a-z])", paste0("%", digit_string, "\\1"), format)
+  fun <- formatters::sprintf_format(new_format)
+
+  fun(x)
 }
