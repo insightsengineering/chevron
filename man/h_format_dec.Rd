@@ -4,17 +4,17 @@
 \alias{h_format_dec}
 \title{Decimal Formatting}
 \usage{
-h_format_dec(x, digits = NA, format = NA)
+h_format_dec(digits = NA, format = NA)
 }
 \arguments{
-\item{x}{(\code{numeric}) to format.}
-
 \item{digits}{(\code{integer}) number of digits.}
 
 \item{format}{(\code{string}) describing how the numbers should be formatted following the \code{sprintf} syntax.}
+
+\item{x}{(\code{numeric}) to format.}
 }
 \value{
-\code{string} with formatted numbers.
+\code{function} formatting numbers with the defined format.
 }
 \description{
 Decimal Formatting

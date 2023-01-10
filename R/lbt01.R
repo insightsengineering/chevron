@@ -136,9 +136,9 @@ lbt01_1_lyt <- function(armvar,
           "Min - Max" = min_max_fun,
           .formats = list(
             "n" = "xx",
-            "Mean (SD)" = function(x, ...) h_format_dec(x, format = "%f (%f)", digits = pcs + 1),
-            "Median" = function(x, ...) h_format_dec(x, format = "%f", digits = pcs + 1),
-            "Min - Max" = function(x, ...) h_format_dec(x, format = "%f - %f", digits = pcs)
+            "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
+            "Median" = h_format_dec(format = "%f", digits = pcs + 1),
+            "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
           )
         )
       },

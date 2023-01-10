@@ -309,26 +309,29 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' @param digits (`integer`) number of digits.
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
 #'
-#' @return `string` with formatted numbers.
+#' @return `function` formatting numbers with the defined format.
 #'
 #' @export
 #'
 #' @examples
 #' h_format_dec(c(123, 5676.56), 1, "%f - %f")
 #'
-h_format_dec <- function(x, digits = NA, format = NA) {
-  checkmate::assert_numeric(x)
+h_format_dec <- function(digits = NA, format = NA) {
   checkmate::assert_integerish(digits, lower = 0, len = 1)
   checkmate::assert_string(format, na.ok = TRUE)
 
-  if (is.na(format)) {
-    return(toString(x))
+  function(x, ...) {
+    checkmate::assert_numeric(x)
+
+    if (is.na(format)) {
+      return(toString(x))
+    }
+
+    digit_string <- ifelse(is.na(digits), "", paste0(".", digits))
+
+    new_format <- gsub("%([a-z])", paste0("%", digit_string, "\\1"), format)
+    fun <- formatters::sprintf_format(new_format)
+
+    fun(x)
   }
-
-  digit_string <- ifelse(is.na(digits), "", paste0(".", digits))
-
-  new_format <- gsub("%([a-z])", paste0("%", digit_string, "\\1"), format)
-  fun <- formatters::sprintf_format(new_format)
-
-  fun(x)
 }
