@@ -36,10 +36,9 @@ test_that("h_format_dec works as expected with more than one value", {
   expect_identical(res, "123.000 /// 222.200 /// 555.123")
 })
 
-test_that("h_format_dec works as expected with NA format", {
+test_that("h_format_dec works returns null with NA format", {
   fun <- h_format_dec(3)
-  res <- fun(c(123, 222))
-  expect_identical(res, "123, 222")
+  expect_null(fun)
 })
 
 test_that("h_format_dec works as expected with NA digits", {

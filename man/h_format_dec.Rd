@@ -10,16 +10,15 @@ h_format_dec(digits = NA, format = NA)
 \item{digits}{(\code{integer}) number of digits.}
 
 \item{format}{(\code{string}) describing how the numbers should be formatted following the \code{sprintf} syntax.}
-
-\item{x}{(\code{numeric}) to format.}
 }
 \value{
-\code{function} formatting numbers with the defined format.
+\code{function} formatting numbers with the defined format or \code{NULL} if the format is not defined.
 }
 \description{
 Decimal Formatting
 }
 \examples{
-h_format_dec(c(123, 5676.56), 1, "\%f - \%f")
+fun <- h_format_dec(1, "\%f - \%f")
+fun(c(123, 567.89))
 
 }
