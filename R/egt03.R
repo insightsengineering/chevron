@@ -30,7 +30,7 @@ egt03_1_main <- function(adam_db,
                          deco = std_deco("EGT03"),
                          ...) {
   lbl_armvar <- var_labels_for(adam_db$adeg, armvar)
-  lbl_summaryvar <- get_labels(adam_db$adeg, summaryvar)
+  lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
 
   lyt <- egt03_1_lyt(
@@ -39,7 +39,7 @@ egt03_1_main <- function(adam_db,
     summaryvar = summaryvar,
     lbl_armvar = lbl_armvar,
     lbl_splitvar = lbl_splitvar,
-    lbl_summaryvar = lbl_summaryvar,
+    lbl_summaryvars = lbl_summaryvars,
     deco = deco,
     ... = ...
   )
@@ -91,6 +91,7 @@ egt03_1_lyt <- function(armvar,
 #' @describeIn egt03_1 Checks
 #'
 #' @inheritParams gen_args
+#' @param visitvar Analysis Visit variable, `AVISIT` by default
 #' @param ... not used.
 #'
 egt03_1_check <- function(adam_db,
@@ -210,7 +211,7 @@ egt03_2_main <- function(adam_db,
                          deco = std_deco("EGT03"),
                          ...) {
   lbl_armvar <- var_labels_for(adam_db$adeg, armvar)
-  lbl_summaryvar <- get_labels(adam_db$adeg, summaryvar)
+  lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
 
   lyt <- egt03_2_lyt(
@@ -219,7 +220,7 @@ egt03_2_main <- function(adam_db,
     summaryvar = summaryvar,
     lbl_armvar = lbl_armvar,
     lbl_splitvar = lbl_splitvar,
-    lbl_summaryvar = lbl_summaryvar,
+    lbl_summaryvars = lbl_summaryvars,
     deco = deco,
     ... = ...
   )
@@ -271,6 +272,7 @@ egt03_2_lyt <- function(armvar,
 #' @describeIn egt03_2 Checks
 #'
 #' @inheritParams gen_args
+#' @param visitvar Analysis Visit variable, `AVISIT` by default
 #' @param ... not used.
 #'
 egt03_2_check <- function(adam_db,

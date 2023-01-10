@@ -66,6 +66,8 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
+\item{visitvar}{Analysis Visit variable, \code{AVISIT} by default}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
