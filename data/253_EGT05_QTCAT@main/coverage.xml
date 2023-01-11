@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.90778947368421" branch-rate="0" lines-covered="2156" lines-valid="2375" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-01-06 06:25:05">
+<coverage line-rate="0.90512174643157" branch-rate="0" lines-covered="2156" lines-valid="2382" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-01-11 11:04:47">
   <sources/>
   <packages>
-    <package name="chevron" line-rate="0.90778947368421" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.90512174643157" branch-rate="0" complexity="0">
       <classes>
         <class name="aet01.R" filename="R/aet01.R" line-rate="0.981818181818182" branch-rate="0" complexity="0">
           <methods>
@@ -3762,7 +3762,7 @@
             <line number="209" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="egt05_qtcat.R" filename="R/egt05_qtcat.R" line-rate="0.266666666666667" branch-rate="0" complexity="0">
+        <class name="egt05_qtcat.R" filename="R/egt05_qtcat.R" line-rate="0.238805970149254" branch-rate="0" complexity="0">
           <methods>
             <method name="egt05_qtcat_1_main" signature="" line-rate="0" branch-rate="0">
               <lines>
@@ -3810,6 +3810,7 @@
             <method name="egt05_qtcat_1_pre" signature="" line-rate="0" branch-rate="0">
               <lines>
                 <line number="111" hits="0" branch="false"/>
+                <line number="112" hits="0" branch="false"/>
                 <line number="113" hits="0" branch="false"/>
                 <line number="114" hits="0" branch="false"/>
                 <line number="115" hits="0" branch="false"/>
@@ -3832,12 +3833,18 @@
                 <line number="132" hits="0" branch="false"/>
                 <line number="133" hits="0" branch="false"/>
                 <line number="134" hits="0" branch="false"/>
+                <line number="135" hits="0" branch="false"/>
+                <line number="136" hits="0" branch="false"/>
+                <line number="137" hits="0" branch="false"/>
+                <line number="138" hits="0" branch="false"/>
+                <line number="139" hits="0" branch="false"/>
+                <line number="140" hits="0" branch="false"/>
               </lines>
             </method>
             <method name="egt05_qtcat_1_post" signature="" line-rate="0" branch-rate="0">
               <lines>
-                <line number="144" hits="0" branch="false"/>
-                <line number="146" hits="0" branch="false"/>
+                <line number="150" hits="0" branch="false"/>
+                <line number="152" hits="0" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -3878,6 +3885,7 @@
             <line number="99" hits="2" branch="false"/>
             <line number="100" hits="2" branch="false"/>
             <line number="111" hits="0" branch="false"/>
+            <line number="112" hits="0" branch="false"/>
             <line number="113" hits="0" branch="false"/>
             <line number="114" hits="0" branch="false"/>
             <line number="115" hits="0" branch="false"/>
@@ -3900,8 +3908,14 @@
             <line number="132" hits="0" branch="false"/>
             <line number="133" hits="0" branch="false"/>
             <line number="134" hits="0" branch="false"/>
-            <line number="144" hits="0" branch="false"/>
-            <line number="146" hits="0" branch="false"/>
+            <line number="135" hits="0" branch="false"/>
+            <line number="136" hits="0" branch="false"/>
+            <line number="137" hits="0" branch="false"/>
+            <line number="138" hits="0" branch="false"/>
+            <line number="139" hits="0" branch="false"/>
+            <line number="140" hits="0" branch="false"/>
+            <line number="150" hits="0" branch="false"/>
+            <line number="152" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="ext01.R" filename="R/ext01.R" line-rate="0.901234567901235" branch-rate="0" complexity="0">
