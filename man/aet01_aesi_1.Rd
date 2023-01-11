@@ -88,7 +88,7 @@ aet01_aesi_1
 \code{"RELWD"}, \code{"RELDSM"}, \code{"RELCONTRT"}, \code{"RELSER"}.
 \item \code{aesi_vars} variable prefixes are defined as follows:
 \itemize{
-\item \code{"ALLRES"} = "all non-fatal edverse events resolved"
+\item \code{"ALLRES"} = "all non-fatal adverse events resolved"
 \item \code{"NOTRES"} = "at least one unresolved or ongoing non-fatal adverse event"
 \item \code{"SER"} = "serious adverse event"
 \item \code{"REL"} = "related adverse event"

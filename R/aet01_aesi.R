@@ -16,7 +16,7 @@
 #'  `"ALLRESCONTRT"`, `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`,
 #'  `"RELWD"`, `"RELDSM"`, `"RELCONTRT"`, `"RELSER"`.
 #'  * `aesi_vars` variable prefixes are defined as follows:
-#'    * `"ALLRES"` = "all non-fatal edverse events resolved"
+#'    * `"ALLRES"` = "all non-fatal adverse events resolved"
 #'    * `"NOTRES"` = "at least one unresolved or ongoing non-fatal adverse event"
 #'    * `"SER"` = "serious adverse event"
 #'    * `"REL"` = "related adverse event"
