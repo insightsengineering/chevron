@@ -51,7 +51,9 @@ aet04_1_main <- function(adam_db,
     ... = ...
   )
 
-  tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt %>% append_varlabels(dbsel$adae, "ATOXGR", indent = 2L),
+    df = dbsel$adae, alt_counts_df = dbsel$adsl
+  )
 
   tbl
 }
@@ -82,34 +84,28 @@ aet04_1_lyt <- function(armvar,
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
-    summarize_occurrences_by_grade(
+    count_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = all_grade_groups,
-      .formats = c(count_fraction = format_count_fraction_fixed_dp)
+      grade_groups = all_grade_groups
     ) %>%
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
-      nested = FALSE,
-      indent_mod = -1L,
-      split_fun = drop_split_levels,
+      nested = TRUE,
+      split_fun = trim_levels_in_group("ATOXGR"),
       label_pos = "topleft",
       split_label = lbl_aebodsys
     ) %>%
     summarize_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = all_grade_groups,
-      .indent_mods = 0L,
-      .formats = c(count_fraction = format_count_fraction_fixed_dp)
+      grade_groups = all_grade_groups
     ) %>%
     split_rows_by(
       "AEDECOD",
       child_labels = "visible",
       nested = TRUE,
       indent_mod = -1L,
-      split_fun = drop_split_levels,
+      split_fun = trim_levels_in_group("ATOXGR"),
       label_pos = "topleft",
       split_label = lbl_aedecod
     ) %>%
@@ -202,7 +198,6 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' run(aet04_1, syn_data, grade_groups = grade_groups)
 aet04_1 <- chevron_t(
   main = aet04_1_main,
-  lyt = aet04_1_lyt,
   preprocess = aet04_1_pre,
   postprocess = aet04_1_post,
   adam_datasets = c("adsl", "adae")
