@@ -17,8 +17,8 @@
 #'  Re-level to customize order.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adeg` table with a `"PARAM"` column contains 'QT' as well as column
-#'  specified in `visitvar`.
+#'  * `adam_db` object must contain an `adeg` table with column specified in `visitvar`.
+#'  For `"PARAMCD"`, default as 'QT'. If other PARAMCD needed, please specify in `paramcdvar`.
 #'  For `summaryvars`, if `AVALCAT1` and `CHGCAT1` columns are not existed in input data sets, `AVAL` and `CHG`
 #'  columns must be contained to re-derive `AVALCAT1` and `CHGCAT1`.
 #'
@@ -103,34 +103,40 @@ egt05_qtcat_1_lyt <- function(armvar,
 #' @describeIn egt05_qtcat_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#' @param paramcdvar (`string`) typically `"QT"` (Default).
 #'
 #' @export
 #'
-egt05_qtcat_1_pre <- function(adam_db, ...) {
+egt05_qtcat_1_pre <- function(adam_db, paramcdvar = "QT", ...) {
   checkmate::assert_class(adam_db, "dm")
-
+  unit <- adam_db$adeg %>% filter(PARAMCD == paramcdvar) %>% select(AVALU) %>% unique()
+  unit <- as.character(unit[["AVALU"]])
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
       ANL01FL == "Y",
-      PARAMCD == "QT"
+      PARAMCD == paramcdvar
       ) %>%
     mutate(
       AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else factor(case_when(
-        AVAL <= 450 ~ "<=450 msec",
-        AVAL <= 480 ~ ">450 to <=480 msec",
-        AVAL <= 500 ~ ">480 to <= 500 msec",
-        AVAL > 500 ~ ">500 msec",
+        AVAL <= 450 ~ paste0("<=450 ", unit),
+        AVAL <= 480 ~ paste0(">450 to <=480 ", unit),
+        AVAL <= 500 ~ paste0(">480 to <= 500 ", unit),
+        AVAL > 500 ~ paste0(">500 ", unit),
         is.na(AVAL) ~ "<Missing>"
-        ), levels = c("<=450 msec", ">450 to <=480 msec", ">480 to <= 500 msec", ">500 msec", "<Missing>"))) %>%
+        ),
+        levels = c(sprintf(c("<=450 %s", ">450 to <=480 %s", ">480 to <= 500 %s", ">500 %s"), unit), "<missing>")
+        )
+      ) %>%
     mutate(
       CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else factor(case_when(
-        CHG <= 30 ~ "<=30 msec",
-        CHG <= 60 ~ ">30 to <=60 msec",
-        CHG > 60 ~ ">60 msec",
+        CHG <= 30 ~ paste0("<=30 ", unit),
+        CHG <= 60 ~ paste0(">30 to <=60 ", unit),
+        CHG > 60 ~ paste0(">60 ", unit),
         is.na(CHG) ~ "<Missing>"
-        ), levels = c("<=30 msec", ">30 to <=60 msec", ">60 msec", "<Missing>"))) %>%
+        ),
+        levels = c(sprintf(c("<=30 %s", ">30 to <=60 %s", ">60 %s"), unit), "<Missing>")
+        )) %>%
     dm_update_zoomed()
   }
 

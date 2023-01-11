@@ -37,7 +37,7 @@ egt05_qtcat_1_lyt(
   ...
 )
 
-egt05_qtcat_1_pre(adam_db, ...)
+egt05_qtcat_1_pre(adam_db, paramcdvar = "QT", ...)
 
 egt05_qtcat_1_post(tlg, prune_0 = TRUE, ...)
 
@@ -66,6 +66,8 @@ to be displayed.}
 \item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
 
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
+
+\item{paramcdvar}{(\code{string}) typically \code{"QT"} (Default).}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -101,8 +103,8 @@ Re-level to customize order.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column contains 'QT' as well as column
-specified in \code{visitvar}.
+\item \code{adam_db} object must contain an \code{adeg} table with column specified in \code{visitvar}.
+For \code{"PARAMCD"}, default as 'QT'. If other PARAMCD needed, please specify in \code{paramcdvar}.
 For \code{summaryvars}, if \code{AVALCAT1} and \code{CHGCAT1} columns are not existed in input data sets, \code{AVAL} and \code{CHG}
 columns must be contained to re-derive \code{AVALCAT1} and \code{CHGCAT1}.
 }
