@@ -18,7 +18,7 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adeg` table with column specified in `visitvar`.
-#'  For `"PARAMCD"`, default as 'QT'. If other PARAMCD needed, please specify in `paramcdvar`.
+#'  For `"PARAMCD"`, default as 'QT'. If other `PARAMCD` needed, please specify in `paramcdvar`.
 #'  For `summaryvars`, if `AVALCAT1` and `CHGCAT1` columns are not existed in input data sets, `AVAL` and `CHG`
 #'  columns must be contained to re-derive `AVALCAT1` and `CHGCAT1`.
 #'
