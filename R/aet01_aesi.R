@@ -15,6 +15,15 @@
 #'  * `aesi_vars` may contain any/all of the following variables to display: `"ALLRESWD"`, `"ALLRESDSM"`,
 #'  `"ALLRESCONTRT"`, `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`,
 #'  `"RELWD"`, `"RELDSM"`, `"RELCONTRT"`, `"RELSER"`.
+#'  * `aesi_vars` variable prefixes are defined as follows:
+#'    * `"ALLRES"` = "all non-fatal AEs resolved"
+#'    * `"NOTRES"` = "at least one unresolved or ongoing non-fatal AE"
+#'    * `"SER"` = "serious AE"
+#'    * `"REL"` = "related AE"
+#'  * `aesi_vars` variable suffixes are defined as follows:
+#'    * `"WD"` = "patients with study drug withdrawn"
+#'    * `"DSM"` = "patients with dose modified/interrupted"
+#'    * `"CONTRT"` = "patients with treatment received"
 #'
 #' @export
 #'

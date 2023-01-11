@@ -86,6 +86,19 @@ aet01_aesi_1
 \item \code{aesi_vars} may contain any/all of the following variables to display: \code{"ALLRESWD"}, \code{"ALLRESDSM"},
 \code{"ALLRESCONTRT"}, \code{"NOTRESWD"}, \code{"NOTRESDSM"}, \code{"NOTRESCONTRT"}, \code{"SERWD"}, \code{"SERDSM"}, \code{"SERCONTRT"},
 \code{"RELWD"}, \code{"RELDSM"}, \code{"RELCONTRT"}, \code{"RELSER"}.
+\item \code{aesi_vars} variable prefixes are defined as follows:
+\itemize{
+\item \code{"ALLRES"} = "all non-fatal AEs resolved"
+\item \code{"NOTRES"} = "at least one unresolved or ongoing non-fatal AE"
+\item \code{"SER"} = "serious AE"
+\item \code{"REL"} = "related AE"
+}
+\item \code{aesi_vars} variable suffixes are defined as follows:
+\itemize{
+\item \code{"WD"} = "patients with study drug withdrawn"
+\item \code{"DSM"} = "patients with dose modified/interrupted"
+\item \code{"CONTRT"} = "patients with treatment received"
+}
 }
 }
 \examples{
