@@ -104,7 +104,7 @@ Re-level to customize order.
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adeg} table with column specified in \code{visitvar}.
-For \code{"PARAMCD"}, default as 'QT'. If other PARAMCD needed, please specify in \code{paramcdvar}.
+For \code{paramcdvar}, default as 'QT'. If other \code{PARAMCD} needed, please specify in \code{paramcdvar}.
 For \code{summaryvars}, if \code{AVALCAT1} and \code{CHGCAT1} columns are not existed in input data sets, \code{AVAL} and \code{CHG}
 columns must be contained to re-derive \code{AVALCAT1} and \code{CHGCAT1}.
 }
