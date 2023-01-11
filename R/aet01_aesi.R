@@ -3,7 +3,7 @@
 #' @describeIn aet01_aesi_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param aesi_vars (`character`) the AESI variables to be included in the summary.
+#' @param aesi_vars (`character`) the AESI variables to be included in the summary. Defaults to `NA`.
 #' @param ... not used.
 #'
 #' @details
@@ -20,12 +20,7 @@
 #'
 aet01_aesi_1_main <- function(adam_db,
                               armvar = "ACTARM",
-                              aesi_vars = c(
-                                "ALLRESWD", "ALLRESDSM", "ALLRESCONTRT",
-                                "NOTRESWD", "NOTRESDSM", "NOTRESCONTRT",
-                                "SERWD", "SERDSM", "SERCONTRT",
-                                "RELWD", "RELDSM", "RELCONTRT", "RELSER"
-                              ),
+                              aesi_vars = NA,
                               deco = std_deco("AET01_AESI"),
                               ...) {
   aesi_vars <- c(

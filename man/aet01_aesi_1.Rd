@@ -16,9 +16,7 @@ An object of class \code{chevron_t} of length 1.
 aet01_aesi_1_main(
   adam_db,
   armvar = "ACTARM",
-  aesi_vars = c("ALLRESWD", "ALLRESDSM", "ALLRESCONTRT", "NOTRESWD", "NOTRESDSM",
-    "NOTRESCONTRT", "SERWD", "SERDSM", "SERCONTRT", "RELWD", "RELDSM", "RELCONTRT",
-    "RELSER"),
+  aesi_vars = NA,
   deco = std_deco("AET01_AESI"),
   ...
 )
@@ -46,7 +44,7 @@ aet01_aesi_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{aesi_vars}{(\code{character}) the AESI variables to be included in the summary.}
+\item{aesi_vars}{(\code{character}) the AESI variables to be included in the summary. Defaults to \code{NA}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
