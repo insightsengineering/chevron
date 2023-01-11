@@ -15,7 +15,7 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adlb` table with columns `"PARCAT1"`, `"PARCAT2"`, `"PARAM"`, `"ANRIND"`,
+#'  * `adam_db` object must contain an `adlb` table with columns `"PARCAT2"`, `"PARAM"`, `"ANRIND"`,
 #'  and column specified by `armvar`.
 #'
 #' @export
@@ -128,7 +128,7 @@ lbt05_1_pre <- function(adam_db, ...) {
         ),
         levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
       ),
-      AVALCAT1 = factor(
+      AVALCAT1 = if ("AVALCAT1" %in% names(.)) AVALCAT1 else factor(
         case_when(
           ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
             sample(x = avalcat1, size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
