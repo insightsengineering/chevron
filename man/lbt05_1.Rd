@@ -56,10 +56,6 @@ lbt05_1
 }
 \details{
 \itemize{
-\item \code{ANRIND} = "LOW LOW" when \code{ANRIND} = "LOW" and \code{AVAL} <= 10th quantile of all \code{AVAL}s for
-a given \code{PARAM} value.
-\item \code{ANRIND} = "HIGH HIGH" when \code{ANRIND} = "HIGH" and \code{AVAL} >= 90th quantile of all \code{AVAL}s for
-a given \code{PARAM} value.
 \item Lab test results with missing \code{AVAL} values are excluded.
 \item Split columns by arm, typically \code{ACTARM}.
 }
@@ -79,8 +75,8 @@ a given \code{PARAM} value.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"PARCAT1"}, \code{"PARCAT2"}, \code{"PARAM"}, \code{"ANRIND"},
-and column specified by \code{armvar}.
+\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"ONTRTFL"}, \code{"PARCAT2"}, \code{"PARAM"}, \code{"ANRIND"},
+\code{"AVALCAT1"}, and column specified by \code{armvar}.
 }
 }
 \examples{

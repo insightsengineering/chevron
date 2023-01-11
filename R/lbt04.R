@@ -65,7 +65,7 @@ lbt04_1_lyt <- function(armvar,
     ) %>%
     count_abnormal(
       var = "ANRIND",
-      abnormal = list(Low = "LOW", High = "HIGH"),
+      abnormal = list(Low = c("LOW", "LOW LOW"), High = c("HIGH", "HIGH HIGH")),
       exclude_base_abn = TRUE,
       .formats = list(fraction = format_fraction_fixed_dp)
     ) %>%
@@ -115,7 +115,7 @@ lbt04_1_check <- function(adam_db,
 
   msg <- NULL
 
-  adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT1", "PARCAT2", "PARAM", "ANRIND")
+  adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT1", "PARCAT2", "PARAM", "ANRIND", "AVALCAT1")
   adsl_layout_col <- c("USUBJID")
 
   msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))

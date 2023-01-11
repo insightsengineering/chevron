@@ -129,13 +129,40 @@ syn_test_data <- function() {
       replace = TRUE
     )))
 
-  # useful for lbt04
-  set.seed(321)
-  sd$adlb <- sd$adlb %>%
+  # useful for lbt04, lbt05
+  qntls <- sd$adlb %>%
+    group_by(PARAMCD) %>%
+    summarise(as_tibble(t(quantile(AVAL, probs = c(0.1, 0.9)))), .groups = "drop_last") %>%
+    rename(q1 = 2, q2 = 3)
+
+  sd$adlb <- qntls %>%
+    left_join(sd$adlb, by = "PARAMCD") %>%
+    group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
-      PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), nrow(sd$adlb), replace = TRUE)),
-      PARCAT2 = as.factor(sample(c("LS", "CV", "SI"), nrow(sd$adlb), replace = TRUE))
-    )
+      ANRIND = factor(
+        case_when(
+          ANRIND == "LOW" & AVAL <= q1 ~ "LOW LOW",
+          ANRIND == "HIGH" & AVAL >= q2 ~ "HIGH HIGH",
+          TRUE ~ as.character(ANRIND)
+        ), levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
+      ),
+      AVALCAT1 = factor(
+        case_when(
+          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
+            sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
+          TRUE ~ ""
+        ), levels = c("", "LAST", "REPLICATED", "SINGLE")
+      )
+    ) %>%
+    ungroup() %>%
+    mutate(
+      PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE)),
+      PARCAT2 = as.factor(case_when(
+          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
+          TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+          ))
+      ) %>%
+    select(-q1, -q2)
 
   db <- new_dm(sd) %>%
     dm_add_pk("adsl", c("USUBJID", "STUDYID")) %>%

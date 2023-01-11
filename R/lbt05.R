@@ -7,16 +7,12 @@
 #' @param lbl_anrind (`character`) label of the `ANRIND` variable.
 #'
 #' @details
-#'  * `ANRIND` = "LOW LOW" when `ANRIND` = "LOW" and `AVAL` <= 10th quantile of all `AVAL`s for
-#'  a given `PARAM` value.
-#'  * `ANRIND` = "HIGH HIGH" when `ANRIND` = "HIGH" and `AVAL` >= 90th quantile of all `AVAL`s for
-#'  a given `PARAM` value.
 #'  * Lab test results with missing `AVAL` values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adlb` table with columns `"PARCAT2"`, `"PARAM"`, `"ANRIND"`,
-#'  and column specified by `armvar`.
+#'  * `adam_db` object must contain an `adlb` table with columns `"ONTRTFL"`, `"PARCAT2"`, `"PARAM"`, `"ANRIND"`,
+#'  `"AVALCAT1"`, and column specified by `armvar`.
 #'
 #' @export
 #'
@@ -101,8 +97,6 @@ lbt05_1_pre <- function(adam_db, ...) {
 
   lbt05_1_check(adam_db, ...)
 
-  avalcat1 <- c("LAST", "REPLICATED", "SINGLE")
-
   db <- adam_db %>%
     dm_zoom_to("adlb") %>%
     filter(
@@ -111,36 +105,7 @@ lbt05_1_pre <- function(adam_db, ...) {
       !is.na(.data$AVAL)
     ) %>%
     dm_update_zoomed() %>%
-    dm_add_pk("adlb", "PARAMCD") %>%
-    dm_add_fk("adlb", "PARAMCD", "adlb") %>%
     dm_zoom_to("adlb") %>%
-    group_by(PARAMCD) %>%
-    summarise(as_tibble(t(quantile(AVAL, probs = c(0.1, 0.9)))), .groups = "drop_last") %>%
-    rename(q1 = 2, q2 = 3) %>%
-    left_join("adlb") %>%
-    group_by(USUBJID, PARAMCD, BASETYPE) %>%
-    mutate(
-      ANRIND = factor(
-        case_when(
-          ANRIND == "LOW" & AVAL <= q1 ~ "LOW LOW",
-          ANRIND == "HIGH" & AVAL >= q2 ~ "HIGH HIGH",
-          TRUE ~ as.character(ANRIND)
-        ),
-        levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
-      ),
-      AVALCAT1 = if ("AVALCAT1" %in% names(.)) AVALCAT1 else factor(
-        case_when(
-          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
-            sample(x = avalcat1, size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
-          TRUE ~ ""
-        ),
-        levels = c("", avalcat1)
-      ),
-      PARCAT2 = factor(ifelse(ANRIND %in% c("HIGH HIGH", "LOW LOW"), "LS",
-        sample(c("SI", "CV", "LS"), size = n(), replace = TRUE)
-      ))
-    ) %>%
-    ungroup() %>%
     mutate(abn_dir = factor(case_when(
       ANRIND == "LOW LOW" ~ "Low",
       ANRIND == "HIGH HIGH" ~ "High",
@@ -173,7 +138,7 @@ lbt05_1_check <- function(adam_db,
 
   msg <- NULL
 
-  adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT2", "PARAM", "ANRIND")
+  adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT2", "PARAM", "ANRIND", "AVALCAT1")
   adsl_layout_col <- c("USUBJID")
 
   msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
