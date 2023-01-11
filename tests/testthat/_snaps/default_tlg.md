@@ -913,20 +913,39 @@
     Code
       res
     Output
-          Laboratory Test                          A: Drug X        B: Placebo     C: Combination
-            Direction of Abnormality                (N=2811)         (N=2807)         (N=2770)   
-        —————————————————————————————————————————————————————————————————————————————————————————
-        CHEMISTRY                                                                                
-          Alanine Aminotransferase Measurement                                                   
-            Low                                  58/124 (46.8%)    50/122 (41%)    46/117 (39.3%)
-            High                                 57/121 (47.1%)   54/118 (45.8%)   62/118 (52.5%)
-          C-Reactive Protein Measurement                                                         
-            Low                                  66/122 (54.1%)   54/125 (43.2%)   57/120 (47.5%)
-            High                                 60/115 (52.2%)   52/115 (45.2%)   58/114 (50.9%)
-        IMMUNOLOGY                                                                               
-          Immunoglobulin A Measurement                                                           
-            Low                                  59/120 (49.2%)   65/119 (54.6%)   58/120 (48.3%)
-            High                                 60/119 (50.4%)   60/123 (48.8%)   51/119 (42.9%)
+          Laboratory Test                          A: Drug X      B: Placebo     C: Combination
+            Direction of Abnormality                (N=134)         (N=134)         (N=132)    
+        ———————————————————————————————————————————————————————————————————————————————————————
+        CHEMISTRY                                                                              
+          Alanine Aminotransferase Measurement                                                 
+            Low                                  7/70 (10.0%)    8/64 (12.5%)     7/65 (10.8%) 
+            High                                  6/71 (8.5%)    11/66 (16.7%)    9/63 (14.3%) 
+          C-Reactive Protein Measurement                                                       
+            Low                                  9/67 (13.4%)    9/68 (13.2%)     7/61 (11.5%) 
+            High                                 7/61 (11.5%)     3/63 (4.8%)     5/57 (8.8%)  
+          Immunoglobulin A Measurement                                                         
+            Low                                  7/64 (10.9%)     6/69 (8.7%)     9/72 (12.5%) 
+            High                                  6/64 (9.4%)    10/72 (13.9%)   11/69 (15.9%) 
+        COAGULATION                                                                            
+          Alanine Aminotransferase Measurement                                                 
+            Low                                   5/72 (6.9%)     6/69 (8.7%)     9/62 (14.5%) 
+            High                                  6/70 (8.6%)     4/65 (6.2%)     9/63 (14.3%) 
+          C-Reactive Protein Measurement                                                       
+            Low                                  8/66 (12.1%)    7/65 (10.8%)    12/76 (15.8%) 
+            High                                 10/64 (15.6%)   7/60 (11.7%)     9/73 (12.3%) 
+          Immunoglobulin A Measurement                                                         
+            Low                                   3/60 (5.0%)    10/68 (14.7%)    5/62 (8.1%)  
+            High                                 9/61 (14.8%)     6/70 (8.6%)     7/61 (11.5%) 
+        HEMATOLOGY                                                                             
+          Alanine Aminotransferase Measurement                                                 
+            Low                                  7/58 (12.1%)     4/67 (6.0%)     6/65 (9.2%)  
+            High                                 8/57 (14.0%)     3/59 (5.1%)     8/71 (11.3%) 
+          C-Reactive Protein Measurement                                                       
+            Low                                  9/62 (14.5%)     7/71 (9.9%)     3/63 (4.8%)  
+            High                                  5/64 (7.8%)    9/62 (14.5%)     5/63 (7.9%)  
+          Immunoglobulin A Measurement                                                         
+            Low                                   6/72 (8.3%)    10/70 (14.3%)    7/64 (10.9%) 
+            High                                 13/72 (18.1%)    5/74 (6.8%)     9/66 (13.6%) 
 
 # lbt05_1 functions with default argument value return expected result with test data
 
@@ -936,33 +955,33 @@
         Laboratory Test                            A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality                (N=134)     (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————————————————
-        Alanine Aminotransferase Measurement (n)      127         124            124      
+        Alanine Aminotransferase Measurement (n)      128         123            126      
           Low                                                                             
-            Single, not last                           0        2 (1.6%)          0       
-            Last or replicated                     2 (1.6%)     1 (0.8%)       4 (3.2%)   
-            Any Abnormality                        2 (1.6%)     3 (2.4%)       4 (3.2%)   
+            Single, not last                       1 (0.8%)     1 (0.8%)          0       
+            Last or replicated                     4 (3.1%)    12 (9.8%)       5 (4.0%)   
+            Any Abnormality                        5 (3.9%)    13 (10.6%)      5 (4.0%)   
           High                                                                            
-            Single, not last                       1 (0.8%)        0              0       
-            Last or replicated                     2 (1.6%)     7 (5.6%)       2 (1.6%)   
-            Any Abnormality                        3 (2.4%)     7 (5.6%)       2 (1.6%)   
-        C-Reactive Protein Measurement (n)            129         124            127      
+            Single, not last                       1 (0.8%)     1 (0.8%)       1 (0.8%)   
+            Last or replicated                     8 (6.2%)    11 (8.9%)       6 (4.8%)   
+            Any Abnormality                        9 (7.0%)    12 (9.8%)       7 (5.6%)   
+        C-Reactive Protein Measurement (n)            129         125            125      
           Low                                                                             
-            Single, not last                           0           0              0       
-            Last or replicated                     3 (2.3%)     2 (1.6%)       3 (2.4%)   
-            Any Abnormality                        3 (2.3%)     2 (1.6%)       3 (2.4%)   
+            Single, not last                       2 (1.6%)     2 (1.6%)          0       
+            Last or replicated                     10 (7.8%)    5 (4.0%)       7 (5.6%)   
+            Any Abnormality                        12 (9.3%)    7 (5.6%)       7 (5.6%)   
           High                                                                            
-            Single, not last                           0           0              0       
-            Last or replicated                     2 (1.6%)     3 (2.4%)       5 (3.9%)   
-            Any Abnormality                        2 (1.6%)     3 (2.4%)       5 (3.9%)   
-        Immunoglobulin A Measurement (n)              128         125            122      
+            Single, not last                           0        1 (0.8%)       1 (0.8%)   
+            Last or replicated                     11 (8.5%)   10 (8.0%)      12 (9.6%)   
+            Any Abnormality                        11 (8.5%)   11 (8.8%)      13 (10.4%)  
+        Immunoglobulin A Measurement (n)              127         130            125      
           Low                                                                             
-            Single, not last                           0        1 (0.8%)          0       
-            Last or replicated                     4 (3.1%)     3 (2.4%)       2 (1.6%)   
-            Any Abnormality                        4 (3.1%)     4 (3.2%)       2 (1.6%)   
+            Single, not last                       1 (0.8%)     1 (0.8%)       1 (0.8%)   
+            Last or replicated                     6 (4.7%)     8 (6.2%)      10 (8.0%)   
+            Any Abnormality                        7 (5.5%)     9 (6.9%)      11 (8.8%)   
           High                                                                            
-            Single, not last                           0           0              0       
-            Last or replicated                     1 (0.8%)     2 (1.6%)       2 (1.6%)   
-            Any Abnormality                        1 (0.8%)     2 (1.6%)       2 (1.6%)   
+            Single, not last                       1 (0.8%)        0           1 (0.8%)   
+            Last or replicated                     3 (2.4%)     9 (6.9%)       5 (4.0%)   
+            Any Abnormality                        4 (3.1%)     9 (6.9%)       6 (4.8%)   
 
 # mht01_1 functions with default argument value return expected result with test data
 
