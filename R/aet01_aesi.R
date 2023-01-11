@@ -16,10 +16,10 @@
 #'  `"ALLRESCONTRT"`, `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`,
 #'  `"RELWD"`, `"RELDSM"`, `"RELCONTRT"`, `"RELSER"`.
 #'  * `aesi_vars` variable prefixes are defined as follows:
-#'    * `"ALLRES"` = "all non-fatal AEs resolved"
-#'    * `"NOTRES"` = "at least one unresolved or ongoing non-fatal AE"
-#'    * `"SER"` = "serious AE"
-#'    * `"REL"` = "related AE"
+#'    * `"ALLRES"` = "all non-fatal edverse events resolved"
+#'    * `"NOTRES"` = "at least one unresolved or ongoing non-fatal adverse event"
+#'    * `"SER"` = "serious adverse event"
+#'    * `"REL"` = "related adverse event"
 #'  * `aesi_vars` variable suffixes are defined as follows:
 #'    * `"WD"` = "patients with study drug withdrawn"
 #'    * `"DSM"` = "patients with dose modified/interrupted"
