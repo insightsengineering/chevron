@@ -29,9 +29,6 @@ aet01_aesi_1_check(
   adam_db,
   req_tables = c("adsl", "adae"),
   armvar = "ACTARM",
-  aesi_vars = c("WD", "DSM", "CONTRT", "ALL_RESOLVED", "ALLRESWD", "ALLRESDSM",
-    "ALLRESCONTRT", "NOT_RESOLVED", "NOTRESWD", "NOTRESDSM", "NOTRESCONTRT", "SER",
-    "SERWD", "SERDSM", "SERCONTRT", "REL", "RELWD", "RELDSM", "RELCONTRT", "RELSER"),
   ...
 )
 
@@ -81,8 +78,8 @@ aet01_aesi_1
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with columns \code{"WD"}, \code{"DSM"}, \code{"CONTRT"}, \code{"ALL_RESOLVED"},
-\code{"NOT_RESOLVED"}, \code{"SER"}, \code{"REL"}, the column specified by \code{armvar}, and the columns passed to \code{aesi_vars}.
+\item \code{adam_db} object must contain an \code{adae} table with columns \code{"AEOUT"}, \code{"AEACN"}, \code{"AECONTRT"}, \code{"AESER"},
+\code{"AREL"}, and the column specified by \code{armvar}.
 \item \code{aesi_vars} may contain any/all of the following variables to display: \code{"ALLRESWD"}, \code{"ALLRESDSM"},
 \code{"ALLRESCONTRT"}, \code{"NOTRESWD"}, \code{"NOTRESDSM"}, \code{"NOTRESCONTRT"}, \code{"SERWD"}, \code{"SERDSM"}, \code{"SERCONTRT"},
 \code{"RELWD"}, \code{"RELDSM"}, \code{"RELCONTRT"}, \code{"RELSER"}.
@@ -98,6 +95,12 @@ aet01_aesi_1
 \item \code{"WD"} = "patients with study drug withdrawn"
 \item \code{"DSM"} = "patients with dose modified/interrupted"
 \item \code{"CONTRT"} = "patients with treatment received"
+}
+\item Several \code{aesi_vars} can be added to the table at once:
+\itemize{
+\item \code{aesi_vars = "ALL"} will include all possible \code{aesi_vars}.
+\item Including \code{"ALL_XXX"} in \code{aesi_vars} where \code{XXX} is one of the prefixes listed above will include all
+\code{aesi_vars} with that prefix.
 }
 }
 }

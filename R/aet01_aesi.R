@@ -10,8 +10,8 @@
 #'  * Does not remove rows with zero counts by default.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with columns `"WD"`, `"DSM"`, `"CONTRT"`, `"ALL_RESOLVED"`,
-#'  `"NOT_RESOLVED"`, `"SER"`, `"REL"`, the column specified by `armvar`, and the columns passed to `aesi_vars`.
+#'  * `adam_db` object must contain an `adae` table with columns `"AEOUT"`, `"AEACN"`, `"AECONTRT"`, `"AESER"`,
+#'  `"AREL"`, and the column specified by `armvar`.
 #'  * `aesi_vars` may contain any/all of the following variables to display: `"ALLRESWD"`, `"ALLRESDSM"`,
 #'  `"ALLRESCONTRT"`, `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`,
 #'  `"RELWD"`, `"RELDSM"`, `"RELCONTRT"`, `"RELSER"`.
@@ -24,6 +24,10 @@
 #'    * `"WD"` = "patients with study drug withdrawn"
 #'    * `"DSM"` = "patients with dose modified/interrupted"
 #'    * `"CONTRT"` = "patients with treatment received"
+#'  * Several `aesi_vars` can be added to the table at once:
+#'    * `aesi_vars = "ALL"` will include all possible `aesi_vars`.
+#'    * Including `"ALL_XXX"` in `aesi_vars` where `XXX` is one of the prefixes listed above will include all
+#'    `aesi_vars` with that prefix.
 #'
 #' @export
 #'
