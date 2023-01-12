@@ -63,7 +63,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #'
 #' get_db_data(db, "airports")
 #' }
-get_db_data <- function(db, ...) { # TODO: revisit
+get_db_data <- function(db, ...) {
   datasets <- c(...)
 
   if (length(datasets) == 0) {
