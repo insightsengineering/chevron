@@ -43,7 +43,9 @@ aet01_aesi_1_main <- function(adam_db,
       function(x) sub("^(ALL_)(.*)", paste0("\\2", x), grep("^ALL_", aesi_vars, value = TRUE))
     ))
     if ("ALL_REL" %in% aesi_vars) aesi <- c(aesi, "RELSER")
-  } else aesi <- aesi_vars
+  } else {
+    aesi <- aesi_vars
+  }
   all_aesi_vars <- c(
     "WD", "DSM", "CONTRT", "ALL_RESOLVED", grep("^ALLRES", aesi, value = TRUE),
     "NOT_RESOLVED", grep("^NOTRES", aesi, value = TRUE), "SER", grep("^SER", aesi, value = TRUE),
