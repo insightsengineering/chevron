@@ -128,7 +128,6 @@ egt03_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adeg") %>%
     filter(
       PARAMCD == "HR" & # Heart Rate
-        SAFFL == "Y" & # "Safety Population Flag"
         ONTRTFL == "Y" & # "On Treatment Record Flag"
         AVISIT == "POST-BASELINE MINIMUM" # "Analysis Visit"
     ) %>%
