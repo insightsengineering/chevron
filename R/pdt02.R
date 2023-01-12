@@ -27,9 +27,9 @@
 pdt02_1_main <- function(adam_db,
                          armvar = "ARM",
                          dvreas_var = "DVREAS",
-                         lbl_dvreas_var = "Reason for Deviation",
+                         lbl_dvreas_var = "Primary Reason",
                          dvterm_var = "DVTERM",
-                         lbl_dvterm_var = "Reason for Deviation",
+                         lbl_dvterm_var = "Description",
                          lbl_overall = NULL,
                          deco = std_deco("pdt02_1"),
                          ...) {
@@ -74,6 +74,7 @@ pdt02_1_lyt <- function(armvar,
                         ...) {
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     add_colcounts() %>%
     summarize_num_patients(
       var = "USUBJID",
@@ -90,14 +91,14 @@ pdt02_1_lyt <- function(armvar,
       indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_dvterm_var
+      split_label = lbl_dvreas_var
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique_count")
     ) %>%
     count_occurrences(vars = dvterm_var) %>%
-    append_topleft(paste0("  Protocol Deviation Term"))
+    append_topleft(paste(" ", lbl_dvterm_var))
 }
 
 #' @describeIn pdt02_1 Preprocessing
@@ -113,6 +114,7 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", .
 
   adam_db <- adam_db %>%
     dm_zoom_to("addv") %>%
+    filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
     mutate(DVSEQ = as.factor(.data$DVSEQ)) %>%
     dm_update_zoomed()
 
@@ -164,15 +166,7 @@ pdt02_1_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var 
 #' @export
 #'
 #' @examples
-#' library(magrittr)
-#' library(dm)
-#'
-#' db <- syn_data %>%
-#'   dm_zoom_to("addv") %>%
-#'   filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
-#'   dm_update_zoomed()
-#'
-#' run(pdt02_1, db)
+#' run(pdt02_1, syn_data)
 pdt02_1 <- chevron_t(
   main = pdt02_1_main,
   lyt = pdt02_1_lyt,
