@@ -8,6 +8,7 @@
 #' @import rtables
 #' @import scda.2022
 #' @import tern
+#' @importFrom rtables drop_split_levels
 #' @importFrom checkmate check_class
 #' @importFrom dunlin poly_pivot_wider
 #' @importFrom dplyr filter case_when mutate
