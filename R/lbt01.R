@@ -125,6 +125,8 @@ lbt01_1_lyt <- function(armvar,
         is_baseline <- .spl_context$value[2] == "BASELINE"
         is_chg <- .var == "CHG"
 
+        is_baseline <- .spl_context$value[which(.spl_context$split == "AVISIT")] == "BASELINE"
+
         if (is_baseline && is_chg) {
           n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
         }
