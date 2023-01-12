@@ -110,7 +110,7 @@ lbt05_1_pre <- function(adam_db, ...) {
       ANRIND == "LOW LOW" ~ "Low",
       ANRIND == "HIGH HIGH" ~ "High",
       TRUE ~ ""
-    ))) %>%
+    ), levels = c("Low", "High"))) %>%
     dm_update_zoomed()
 
   new_format <- list(
