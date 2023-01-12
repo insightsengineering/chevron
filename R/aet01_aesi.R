@@ -32,18 +32,24 @@ aet01_aesi_1_main <- function(adam_db,
                               aesi_vars = NA,
                               deco = std_deco("AET01_AESI"),
                               ...) {
-  aesi_vars <- c(
-    "WD", "DSM", "CONTRT",
-    "ALL_RESOLVED", grep("^ALLRES", aesi_vars, value = TRUE),
-    "NOT_RESOLVED", grep("^NOTRES", aesi_vars, value = TRUE),
-    "SER", grep("^SER", aesi_vars, value = TRUE),
-    "REL", grep("^REL", aesi_vars, value = TRUE)
+  if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
+  if (any(grepl("^ALL_", aesi_vars))) {
+    aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(
+      c("WD", "DSM", "CONTRT"),
+      function(x) sub("^(ALL_)(.*)", paste0("\\2", x), grep("^ALL_", aesi_vars, value = TRUE))
+    ))
+    if ("ALL_REL" %in% aesi_vars) aesi <- c(aesi, "RELSER")
+  }
+  all_aesi_vars <- c(
+    "WD", "DSM", "CONTRT", "ALL_RESOLVED", grep("^ALLRES", aesi, value = TRUE),
+    "NOT_RESOLVED", grep("^NOTRES", aesi, value = TRUE), "SER", grep("^SER", aesi, value = TRUE),
+    "REL", grep("^REL", aesi, value = TRUE)
   )
-  lbl_aesi_vars <- var_labels_for(adam_db$adae, aesi_vars)
+  lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
   lyt <- aet01_aesi_1_lyt(
     armvar = armvar,
-    aesi_vars = aesi_vars,
+    aesi_vars = all_aesi_vars,
     deco = deco,
     lbl_aesi_vars = lbl_aesi_vars,
     ... = ...
@@ -230,13 +236,6 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
 aet01_aesi_1_check <- function(adam_db,
                                req_tables = c("adsl", "adae"),
                                armvar = "ACTARM",
-                               aesi_vars = c(
-                                 "WD", "DSM", "CONTRT",
-                                 "ALL_RESOLVED", "ALLRESWD", "ALLRESDSM", "ALLRESCONTRT",
-                                 "NOT_RESOLVED", "NOTRESWD", "NOTRESDSM", "NOTRESCONTRT",
-                                 "SER", "SERWD", "SERDSM", "SERCONTRT",
-                                 "REL", "RELWD", "RELDSM", "RELCONTRT", "RELSER"
-                               ),
                                ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -265,12 +264,11 @@ aet01_aesi_1_check <- function(adam_db,
     RELSER = c("AREL", "AESER")
   )
 
-  native_col <- setdiff(c(armvar, aesi_vars), names(corresponding_col))
-  new_col <- unique(unlist(corresponding_col[c(armvar, aesi_vars)]))
+  native_col <- c(armvar, unique(unlist(corresponding_col)))
   filter_col <- "ANL01FL"
   layout_col <- "USUBJID"
 
-  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, filter_col, layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, filter_col, layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, layout_col)))
 
   if (is.null(msg)) {
