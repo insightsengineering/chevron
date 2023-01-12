@@ -16,9 +16,9 @@ pdt02_1_main(
   adam_db,
   armvar = "ARM",
   dvreas_var = "DVREAS",
-  lbl_dvreas_var = "Reason for Deviation",
+  lbl_dvreas_var = "Primary Reason",
   dvterm_var = "DVTERM",
-  lbl_dvterm_var = "Reason for Deviation",
+  lbl_dvterm_var = "Description",
   lbl_overall = NULL,
   deco = std_deco("pdt02_1"),
   ...
@@ -105,14 +105,6 @@ as \code{"DVSEQ"}.
 }
 }
 \examples{
-library(magrittr)
-library(dm)
-
-db <- syn_data \%>\%
-  dm_zoom_to("addv") \%>\%
-  filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") \%>\%
-  dm_update_zoomed()
-
-run(pdt02_1, db)
+run(pdt02_1, syn_data)
 }
 \keyword{datasets}
