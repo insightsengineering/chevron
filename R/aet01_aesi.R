@@ -119,14 +119,6 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
 
   aet01_aesi_1_check(adam_db, ...)
 
-  new_format <- list(
-    adae = list(
-      AEDECOD = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
-    )
-  )
-
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
-
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
