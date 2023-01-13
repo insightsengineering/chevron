@@ -8,7 +8,7 @@ test_that("lbt05 displays correct error message when ANRIND contains all NA valu
 
   expect_error(
     run(lbt05_1, proc_data),
-    "Abnormality mapping cannot be constructed if all values of ANRIND are missing."
+    "Abnormality mapping cannot be constructed if all values of ANRIND or AVALCAT1 are missing."
   )
 })
 

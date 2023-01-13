@@ -31,11 +31,6 @@ lbt05_1_main <- function(adam_db,
     as.data.frame() %>%
     arrange(PARAM, desc(abn_dir))
 
-  if (nrow(map) == 0) {
-    stop("Abnormality mapping cannot be constructed if all values of ANRIND are missing.")
-  }
-
-
   lyt <- lbt05_1_lyt(
     armvar = armvar,
     lbl_param = lbl_param,
@@ -121,6 +116,10 @@ lbt05_1_pre <- function(adam_db, ...) {
   )
 
   db <- dunlin::apply_reformat(db, new_format)
+
+  if (all(db$adlb$abn_dir == "<Missing>") || all(db$adlb$AVALCAT1 == "<Missing>")) {
+    stop("Abnormality mapping cannot be constructed if all values of ANRIND or AVALCAT1 are missing.")
+  }
 
   db
 }
