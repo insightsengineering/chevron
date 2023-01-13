@@ -129,10 +129,7 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
 
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
-    filter(
-      .data$ANL01FL == "Y",
-      .data$AEDECOD != "<Missing>"
-    ) %>%
+    filter(.data$ANL01FL == "Y") %>%
     dm_update_zoomed() %>%
     dm_zoom_to("adae") %>%
     mutate(
