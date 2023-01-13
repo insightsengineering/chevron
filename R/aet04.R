@@ -27,7 +27,7 @@ aet04_1_main <- function(adam_db,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
-  assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
+  assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
 
   if (is.null(grade_groups)) {
     grade_groups <- list(
@@ -35,12 +35,6 @@ aet04_1_main <- function(adam_db,
       "Grade 3-4" = c("3", "4"),
       "Grade 5" = c("5")
     )
-  }
-
-  checkmate::assert_class(grade_groups, "list")
-  for (i in seq_along(grade_groups)) {
-    checkmate::assert_true(min(as.integer(grade_groups[[i]])) >= 1)
-    checkmate::assert_true(max(as.integer(grade_groups[[i]])) <= 5)
   }
 
   lyt <- aet04_1_lyt(
@@ -84,6 +78,8 @@ aet04_1_lyt <- function(armvar,
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = all_grade_groups
@@ -153,6 +149,7 @@ aet04_1_pre <- function(adam_db, ...) {
 #' @describeIn aet04_1 Postprocessing
 #'
 #' @inheritParams gen_args
+#'
 #' @param ... not used.
 #'
 #' @export

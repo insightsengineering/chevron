@@ -4,8 +4,8 @@
       res1
     Output
         MedDRA System Organ Class                                             
-          MedDRA Preferred Term                                               
-            ATOXGR                   A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            ATOXGR                    (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Grade 1-2                    13 (9.7%)    19 (14.2%)      11 (8.3%)   
@@ -40,8 +40,8 @@
       res2
     Output
         MedDRA System Organ Class                                             
-          MedDRA Preferred Term                                               
-            ATOXGR                   A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            ATOXGR                    (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Grade 1-2                    13 (9.7%)    19 (14.2%)      11 (8.3%)   
@@ -76,8 +76,8 @@
       res3
     Output
         MedDRA System Organ Class                                             
-          MedDRA Preferred Term                                               
-            ATOXGR                   A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            ATOXGR                    (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Grade 1-2                    13 (9.7%)    19 (14.2%)      11 (8.3%)   
@@ -112,8 +112,8 @@
       res1
     Output
         MedDRA System Organ Class                                             
-          MedDRA Preferred Term                                               
-            ATOXGR                   A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            ATOXGR                    (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Grade 1-2                   14 (10.4%)    19 (14.2%)      11 (8.3%)   
@@ -199,8 +199,8 @@
       res2
     Output
         MedDRA System Organ Class                                             
-          MedDRA Preferred Term                                               
-            ATOXGR                   A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            ATOXGR                    (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Grade 1-2                   14 (10.4%)    19 (14.2%)      11 (8.3%)   
@@ -286,8 +286,8 @@
       res3
     Output
         MedDRA System Organ Class                                             
-          MedDRA Preferred Term                                               
-            ATOXGR                   A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            ATOXGR                    (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Grade 1-2                   14 (10.4%)    19 (14.2%)      11 (8.3%)   

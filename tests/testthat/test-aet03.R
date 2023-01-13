@@ -7,8 +7,12 @@ test_that("aet03 can handle all NA values", {
     ) %>%
     dm_update_zoomed()
 
-  res <- expect_silent(run(aet03_1, proc_data))
-  expect_snapshot(res)
+  res1 <- expect_silent(run(aet03_1, proc_data))
+  expect_snapshot(res1)
+
+  intensity_grade <- c("MILD", "MODERATE", "SEVERE")
+  res2 <- expect_silent(run(aet03_1, proc_data, intensity_grade = intensity_grade))
+  expect_snapshot(res2)
 })
 
 test_that("aet03 can handle some NA values", {
@@ -25,6 +29,14 @@ test_that("aet03 can handle some NA values", {
     ) %>%
     dm_update_zoomed()
 
-  res <- expect_silent(run(aet03_1, proc_data))
-  expect_snapshot(res)
+  res1 <- expect_silent(run(aet03_1, proc_data))
+  expect_snapshot(res1)
+
+  intensity_grade <- c("MILD", "MODERATE", "SEVERE")
+  res2 <- expect_silent(run(aet03_1, proc_data, intensity_grade = intensity_grade))
+  expect_snapshot(res2)
+
+  intensity_grade <- c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
+  res3 <- expect_silent(run(aet03_1, proc_data, intensity_grade = intensity_grade))
+  expect_snapshot(res3)
 })

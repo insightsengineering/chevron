@@ -190,8 +190,9 @@
     Code
       res
     Output
-        MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
+        MedDRA System Organ Class                                             
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            Severity/Intensity        (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         - Any Intensity -           122 (91.0%)   123 (91.8%)    120 (90.9%)  
         MILD                         7 (5.2%)      9 (6.7%)        4 (3.0%)   
@@ -258,8 +259,8 @@
       res
     Output
         MedDRA System Organ Class                                             
-          MedDRA Preferred Term                                               
-            ATOXGR                   A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term      A: Drug X    B: Placebo    C: Combination
+            ATOXGR                    (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————
         Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Grade 1-2                    13 (9.7%)    19 (14.2%)      11 (8.3%)   
