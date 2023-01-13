@@ -81,6 +81,7 @@ reference:
       - std_deco
       - syn_test_data
       - var_labels_for
+      - h_format_dec
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

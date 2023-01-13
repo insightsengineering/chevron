@@ -11,11 +11,11 @@
         Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
-          AE with fatal outcome                                       0 (0.0%)      0 (0.0%)        0 (0.0%)   
-          Serious AE                                                  0 (0.0%)      0 (0.0%)        0 (0.0%)   
-          Serious AE leading to withdrawal from treatment             0 (0.0%)      0 (0.0%)        0 (0.0%)   
-          Serious AE leading to dose modification/interruption        0 (0.0%)      0 (0.0%)        0 (0.0%)   
-          Related Serious AE                                          0 (0.0%)      0 (0.0%)        0 (0.0%)   
+          AE with fatal outcome                                           0             0              0       
+          Serious AE                                                      0             0              0       
+          Serious AE leading to withdrawal from treatment                 0             0              0       
+          Serious AE leading to dose modification/interruption            0             0              0       
+          Related Serious AE                                              0             0              0       
           AE leading to withdrawal from treatment                    27 (20.1%)    26 (19.4%)      30 (22.7%)  
           AE leading to dose modification/interruption               66 (49.3%)    76 (56.7%)      74 (56.1%)  
           Related AE                                                 105 (78.4%)   108 (80.6%)    109 (82.6%)  
