@@ -14,7 +14,6 @@
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
-#'  * Does not include a total column by default.
 #'  * Sort by deviation reason alphabetically and within deviation reason by decreasing total number of patients with
 #'  the specific deviation term.
 #'

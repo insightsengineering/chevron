@@ -19,14 +19,12 @@ pdt02_1_main(
   lbl_dvreas_var = "Primary Reason",
   dvterm_var = "DVTERM",
   lbl_dvterm_var = "Description",
-  lbl_overall = NULL,
   deco = std_deco("pdt02_1"),
   ...
 )
 
 pdt02_1_lyt(
   armvar,
-  lbl_overall,
   dvreas_var,
   lbl_dvreas_var,
   dvterm_var,
@@ -60,8 +58,6 @@ pdt02_1
 
 \item{lbl_dvterm_var}{(\code{character}) label for the variable defining the protocol deviation term.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -82,7 +78,6 @@ to Epidemic/Pandemic sorted alphabetically and deviations name sorted by frequen
 \item Numbers represent absolute numbers of subjects and fraction of \code{N}, or absolute numbers when specified.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
-\item Does not include a total column by default.
 \item Sort by deviation reason alphabetically and within deviation reason by decreasing total number of patients with
 the specific deviation term.
 }

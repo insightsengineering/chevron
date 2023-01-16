@@ -18,8 +18,8 @@ test_that("pdt02_1 can handle some NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("addv") %>%
     mutate(
-      DVREAS = .env$new_dvreas,
-      DVTERM = .env$new_dvterm
+      DVREAS = new_dvreas,
+      DVTERM = new_dvterm
     ) %>%
     dm_update_zoomed()
 
