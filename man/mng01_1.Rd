@@ -110,9 +110,9 @@ library(dplyr)
 col <- c(
   "A: Drug X" = "black",
   "B: Placebo" = "blue",
-  "C: Combination" = "grey"
+  "C: Combination" = "gray"
 )
 
-run(mng01_1, syn_data, dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
+run(mng01_1, syn_data, dataset = "adlb", line_col = col)
 }
 \keyword{datasets}
