@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.1.9022
-Date: 2022-12-19
+Version: 0.1.1.9028
+Date: 2023-01-16
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -59,6 +59,7 @@ Collate:
     'utils.R'
     'chevron_tlg-S4class.R'
     'aet01.R'
+    'aet01_aesi.R'
     'aet02.R'
     'aet03.R'
     'aet04.R'
@@ -72,10 +73,12 @@ Collate:
     'dtht01.R'
     'egt01.R'
     'egt02.R'
+    'egt03.R'
     'ext01.R'
     'gen_args.R'
     'lbt01.R'
     'lbt04.R'
+    'lbt05.R'
     'mht01.R'
     'mng01.R'
     'package.R'

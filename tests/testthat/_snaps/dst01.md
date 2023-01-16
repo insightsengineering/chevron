@@ -6,7 +6,7 @@
                           A: Drug X   B: Placebo   C: Combination   All Patients
                            (N=134)     (N=134)        (N=132)         (N=400)   
         ————————————————————————————————————————————————————————————————————————
-        Completed Study   0 (0.0%)     0 (0.0%)       0 (0.0%)        0 (0.0%)  
+        Completed Study       0           0              0               0      
 
 # dst01_1 can handle all NA values in disc_reason_var
 
@@ -47,7 +47,7 @@
                           A: Drug X    B: Placebo   C: Combination   All Patients
                            (N=134)      (N=134)        (N=132)         (N=400)   
         —————————————————————————————————————————————————————————————————————————
-        Completed Study    0 (0.0%)     0 (0.0%)       0 (0.0%)        0 (0.0%)  
+        Completed Study       0            0              0               0      
         Ongoing           24 (17.9%)   28 (20.9%)     21 (15.9%)      73 (18.2%) 
 
 # dst01_1 can handle missing levels in disc_reason_var
@@ -71,7 +71,7 @@
                           A: Drug X   B: Placebo   C: Combination   All Patients
                            (N=134)     (N=134)        (N=132)         (N=400)   
         ————————————————————————————————————————————————————————————————————————
-        Completed Study   0 (0.0%)     0 (0.0%)       0 (0.0%)        0 (0.0%)  
+        Completed Study       0           0              0               0      
 
 # dst01_2 can handle all NA values in disc_reason_var
 
@@ -128,7 +128,7 @@
                           A: Drug X   B: Placebo   C: Combination   All Patients
                            (N=134)     (N=134)        (N=132)         (N=400)   
         ————————————————————————————————————————————————————————————————————————
-        Completed Study   0 (0.0%)     0 (0.0%)       0 (0.0%)        0 (0.0%)  
+        Completed Study       0           0              0               0      
 
 # dst01_3 can handle all NA values in status_treatment_var
 

@@ -65,7 +65,7 @@ lbt04_1_lyt <- function(armvar,
     ) %>%
     count_abnormal(
       var = "ANRIND",
-      abnormal = list(Low = "LOW", High = "HIGH"),
+      abnormal = list(Low = c("LOW", "LOW LOW"), High = c("HIGH", "HIGH HIGH")),
       exclude_base_abn = TRUE,
       .formats = list(fraction = format_fraction_fixed_dp)
     ) %>%
