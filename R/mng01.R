@@ -198,10 +198,10 @@ mng01_1_post <- function(tlg, ...) {
 #' col <- c(
 #'   "A: Drug X" = "black",
 #'   "B: Placebo" = "blue",
-#'   "haha" = "orange"
+#'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01_1, syn_data, dataset = "adlb")
+#' run(mng01_1, syn_data, dataset = "adlb", line_col = col)
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,
