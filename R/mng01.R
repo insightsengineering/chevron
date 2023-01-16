@@ -125,7 +125,7 @@ mng01_1_main <- function(adam_db,
     )
   }
 
-  if (checkmate::check_names(line_col, what = "names")) {
+  if (!is.null(names(line_col))) {
     color_lvl <- sort(unique(df[[armvar]]))
     col <- line_col[as.character(color_lvl)]
 
@@ -201,7 +201,7 @@ mng01_1_post <- function(tlg, ...) {
 #'   "haha" = "orange"
 #' )
 #'
-#' run(mng01_1, syn_data, dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
+#' run(mng01_1, syn_data, dataset = "adlb")
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,
