@@ -14,6 +14,7 @@
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
+#'  * Does not include a total column by default.
 #'  * Sort by deviation reason alphabetically and within deviation reason by decreasing total number of patients with
 #'  the specific deviation term.
 #'
@@ -29,6 +30,7 @@ pdt02_1_main <- function(adam_db,
                          lbl_dvreas_var = "Primary Reason",
                          dvterm_var = "DVTERM",
                          lbl_dvterm_var = "Description",
+                         lbl_overall = NULL,
                          deco = std_deco("pdt02_1"),
                          ...) {
   assert_colnames(adam_db$addv, c(dvreas_var, dvterm_var))
@@ -37,6 +39,7 @@ pdt02_1_main <- function(adam_db,
 
   lyt <- pdt02_1_lyt(
     armvar = armvar,
+    lbl_overall = lbl_overall,
     dvreas_var = dvreas_var,
     lbl_dvreas_var = lbl_dvreas_var,
     dvterm_var = dvterm_var,
@@ -62,6 +65,7 @@ pdt02_1_main <- function(adam_db,
 #' @export
 #'
 pdt02_1_lyt <- function(armvar,
+                        lbl_overall,
                         dvreas_var,
                         lbl_dvreas_var,
                         dvterm_var,
@@ -70,14 +74,14 @@ pdt02_1_lyt <- function(armvar,
                         ...) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = armvar) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one major protocol deviation related to epidemic/pandemic",
         nonunique = "Total number of major protocol deviations related to epidemic/pandemic"
-      ),
-      .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx")
+      )
     ) %>%
     split_rows_by(
       dvreas_var,
@@ -87,8 +91,15 @@ pdt02_1_lyt <- function(armvar,
       label_pos = "topleft",
       split_label = lbl_dvreas_var
     ) %>%
-    summarize_row_groups(format = "xx (xx.x%)") %>%
-    count_occurrences(vars = dvterm_var) %>%
+    summarize_num_patients(
+      var = "USUBJID",
+      .stats = "unique",
+      .labels = NULL
+    ) %>%
+    count_occurrences(
+      vars = dvterm_var,
+      id = "USUBJID"
+    ) %>%
     append_topleft(paste(" ", lbl_dvterm_var))
 }
 
