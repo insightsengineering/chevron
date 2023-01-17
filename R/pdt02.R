@@ -77,7 +77,7 @@ pdt02_1_lyt <- function(armvar,
         unique = "Total number of patients with at least one major protocol deviation related to epidemic/pandemic",
         nonunique = "Total number of major protocol deviations related to epidemic/pandemic"
       ),
-      .formats = list(unique = format_count_fraction_fixed_dp)
+      .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx")
     ) %>%
     split_rows_by(
       dvreas_var,
@@ -87,7 +87,7 @@ pdt02_1_lyt <- function(armvar,
       label_pos = "topleft",
       split_label = lbl_dvreas_var
     ) %>%
-    summarize_row_groups(format = "xx") %>%
+    summarize_row_groups(format = "xx (xx.x%)") %>%
     count_occurrences(vars = dvterm_var) %>%
     append_topleft(paste(" ", lbl_dvterm_var))
 }
