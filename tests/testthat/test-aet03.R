@@ -37,6 +37,5 @@ test_that("aet03 can handle some NA values", {
   expect_snapshot(res2)
 
   intensity_grade <- c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
-  res3 <- expect_silent(run(aet03_1, proc_data, intensity_grade = intensity_grade))
-  expect_snapshot(res3)
+  expect_error(run(aet03_1, proc_data, intensity_grade = intensity_grade))
 })

@@ -37,6 +37,8 @@ aet04_1_main <- function(adam_db,
     )
   }
 
+  checkmate::assert_class(grade_groups, "list")
+
   lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
@@ -75,6 +77,8 @@ aet04_1_lyt <- function(armvar,
     return(x[order(nchar(x), x)])
   })
   all_grade_groups <- c(list(`Any Grade` = unique(unlist(grade_groups))), grade_groups)
+
+  checkmate::assert(all(all_grade_groups$`Any Grade` %in% c("1", "2", "3", "4", "5")))
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

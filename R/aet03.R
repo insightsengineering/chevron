@@ -20,7 +20,7 @@
 #'
 aet03_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         intensity_grade = NULL,
+                         intensity_grade = c("MILD", "MODERATE", "SEVERE"),
                          lbl_overall = NULL,
                          deco = std_deco("AET03"),
                          ...) {
@@ -28,9 +28,8 @@ aet03_1_main <- function(adam_db,
 
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
-  if (is.null(intensity_grade)) intensity_grade <- c("MILD", "MODERATE", "SEVERE")
-
   checkmate::assert_character(intensity_grade)
+  checkmate::assert(all(intensity_grade %in% c("MILD", "MODERATE", "SEVERE")))
 
   lyt <- aet03_1_lyt(
     armvar = armvar,

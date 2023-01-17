@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 aet03_1_main(
   adam_db,
   armvar = "ACTARM",
-  intensity_grade = NULL,
+  intensity_grade = c("MILD", "MODERATE", "SEVERE"),
   lbl_overall = NULL,
   deco = std_deco("AET03"),
   ...
