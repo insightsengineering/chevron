@@ -6,10 +6,8 @@
 #' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
 #'
 #' @details
-#'  * The `Value at Visit` column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
-#'  ">480 to <= 500 msec", ">500 msec", and "<Missing>" for each visit.
-#'  * The `Change from Baseline` column, displays the categories of QT value change from baseline for patients,
-#'  "<=30 msec", ">30 to <=60 msec", ">60 msec", and "<Missing>"
+#'  * The `Value at Visit` column, displays the categories of QT value for patients.
+#'  * The `Change from Baseline` column, displays the categories of QT value change from baseline for patients.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
@@ -19,8 +17,7 @@
 #' @note
 #'  * `adam_db` object must contain an `adeg` table with column specified in `visitvar`.
 #'  For `paramcdvar`, default as 'QT'. If other `PARAMCD` needed, please specify in `paramcdvar`.
-#'  For `summaryvars`, if `AVALCAT1` and `CHGCAT1` columns are not existed in input data sets, `AVAL` and `CHG`
-#'  columns must be contained to re-derive `AVALCAT1` and `CHGCAT1`.
+#'  For `summaryvars`, please make sure `AVALCAT1` and `CHGCAT1` columns existed in input data sets.
 #'
 #' @export
 #'
@@ -109,8 +106,7 @@ egt05_qtcat_1_lyt <- function(armvar,
 #'
 egt05_qtcat_1_pre <- function(adam_db, paramcdvar = "QT", ...) {
   checkmate::assert_class(adam_db, "dm")
-  unit <- adam_db$adeg %>% filter(PARAMCD == paramcdvar) %>% select(AVALU) %>% unique()
-  unit <- as.character(unit[["AVALU"]])
+
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
@@ -118,25 +114,13 @@ egt05_qtcat_1_pre <- function(adam_db, paramcdvar = "QT", ...) {
       PARAMCD == paramcdvar
       ) %>%
     mutate(
-      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else factor(case_when(
-        AVAL <= 450 ~ paste0("<=450 ", unit),
-        AVAL <= 480 ~ paste0(">450 to <=480 ", unit),
-        AVAL <= 500 ~ paste0(">480 to <= 500 ", unit),
-        AVAL > 500 ~ paste0(">500 ", unit),
-        is.na(AVAL) ~ "<Missing>"
-        ),
-        levels = c(sprintf(c("<=450 %s", ">450 to <=480 %s", ">480 to <= 500 %s", ">500 %s"), unit), "<missing>")
-        )
+      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else
+        warning("Please make sure 'AVALCAT1' is existed")
       ) %>%
     mutate(
-      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else factor(case_when(
-        CHG <= 30 ~ paste0("<=30 ", unit),
-        CHG <= 60 ~ paste0(">30 to <=60 ", unit),
-        CHG > 60 ~ paste0(">60 ", unit),
-        is.na(CHG) ~ "<Missing>"
-        ),
-        levels = c(sprintf(c("<=30 %s", ">30 to <=60 %s", ">60 %s"), unit), "<Missing>")
-        )) %>%
+      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else
+        warning("Please make sure 'CHGCAT1' is existed")
+    ) %>%
     dm_update_zoomed()
   }
 

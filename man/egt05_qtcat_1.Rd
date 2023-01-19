@@ -79,10 +79,8 @@ several electrocardiogram parameters and their evolution throughout the study.
 }
 \details{
 \itemize{
-\item The \verb{Value at Visit} column, displays the categories of QT value for patients, "<=450 msec", ">450 to <=480 msec",
-">480 to <= 500 msec", ">500 msec", and "\if{html}{\out{<Missing>}}" for each visit.
-\item The \verb{Change from Baseline} column, displays the categories of QT value change from baseline for patients,
-"<=30 msec", ">30 to <=60 msec", ">60 msec", and "\if{html}{\out{<Missing>}}"
+\item The \verb{Value at Visit} column, displays the categories of QT value for patients.
+\item The \verb{Change from Baseline} column, displays the categories of QT value change from baseline for patients.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
@@ -105,8 +103,7 @@ Re-level to customize order.
 \itemize{
 \item \code{adam_db} object must contain an \code{adeg} table with column specified in \code{visitvar}.
 For \code{paramcdvar}, default as 'QT'. If other \code{PARAMCD} needed, please specify in \code{paramcdvar}.
-For \code{summaryvars}, if \code{AVALCAT1} and \code{CHGCAT1} columns are not existed in input data sets, \code{AVAL} and \code{CHG}
-columns must be contained to re-derive \code{AVALCAT1} and \code{CHGCAT1}.
+For \code{summaryvars}, please make sure \code{AVALCAT1} and \code{CHGCAT1} columns existed in input data sets.
 }
 }
 \examples{
