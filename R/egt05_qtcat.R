@@ -132,7 +132,6 @@ egt05_qtcat_1_pre <- function(adam_db, paramcdvar = "QT", ...) {
 #' @export
 egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
-
   std_postprocess(tlg)
 }
 
