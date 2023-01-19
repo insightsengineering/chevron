@@ -60,7 +60,7 @@ aet03_1
 }
 \description{
 An adverse events table categorized by System
-Organ Class, Dictionary-Derived Term  and Greatest intensity.
+Organ Class, Dictionary-Derived Term and Greatest intensity.
 }
 \details{
 \itemize{

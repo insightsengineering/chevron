@@ -38,6 +38,7 @@ aet04_1_main <- function(adam_db,
   }
 
   checkmate::assert_class(grade_groups, "list")
+  invisible(lapply(grade_groups, function(x) checkmate::assert_character(x)))
 
   lyt <- aet04_1_lyt(
     armvar = armvar,
@@ -45,11 +46,10 @@ aet04_1_main <- function(adam_db,
     grade_groups = grade_groups,
     deco = deco,
     ... = ...
-  )
+  ) %>%
+    append_varlabels(df = dbsel$adae, vars = "ATOXGR", indent = 2L)
 
-  tbl <- build_table(lyt %>% append_varlabels(dbsel$adae, "ATOXGR", indent = 2L),
-    df = dbsel$adae, alt_counts_df = dbsel$adsl
-  )
+  tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
 
   tbl
 }
@@ -79,6 +79,7 @@ aet04_1_lyt <- function(armvar,
   all_grade_groups <- c(list(`Any Grade` = unique(unlist(grade_groups))), grade_groups)
 
   checkmate::assert(all(all_grade_groups$`Any Grade` %in% c("1", "2", "3", "4", "5")))
+  checkmate::assert(all(levels(dbsel$adae[["ATOXGR"]]) %in% all_grade_groups$`Any Grade`))
 
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%

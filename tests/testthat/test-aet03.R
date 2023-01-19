@@ -12,7 +12,7 @@ test_that("aet03 can handle all NA values", {
 
   intensity_grade <- c("MILD", "MODERATE", "SEVERE")
   res2 <- expect_silent(run(aet03_1, proc_data, intensity_grade = intensity_grade))
-  expect_snapshot(res2)
+  expect_identical(res1, res2)
 })
 
 test_that("aet03 can handle some NA values", {
@@ -34,8 +34,9 @@ test_that("aet03 can handle some NA values", {
 
   intensity_grade <- c("MILD", "MODERATE", "SEVERE")
   res2 <- expect_silent(run(aet03_1, proc_data, intensity_grade = intensity_grade))
-  expect_snapshot(res2)
+  expect_identical(res1, res2)
 
   intensity_grade <- c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")
-  expect_error(run(aet03_1, proc_data, intensity_grade = intensity_grade))
+  res3 <- expect_silent(run(aet03_1, proc_data, intensity_grade = intensity_grade))
+  expect_identical(res2, res3)
 })

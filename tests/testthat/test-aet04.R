@@ -16,7 +16,7 @@ test_that("aet04 can handle all NA values", {
     "Grade 3-4" = c("3", "4")
   )
   res2 <- expect_silent(run(aet04_1, proc_data, grade_groups = grade_groups))
-  expect_snapshot(res2)
+  expect_identical(res1, res2)
 
   grade_groups <- list(
     "Grade 1-2" = c("1", "2"),
@@ -49,7 +49,7 @@ test_that("aet04 can handle some NA values", {
     "Grade 3-4" = c("3", "4")
   )
   res2 <- expect_silent(run(aet04_1, proc_data, grade_groups = grade_groups))
-  expect_snapshot(res2)
+  expect_identical(res1, res2)
 
   grade_groups <- list(
     "Grade 3-5" = c("4", "3", "5"),

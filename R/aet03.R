@@ -29,7 +29,8 @@ aet03_1_main <- function(adam_db,
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
   checkmate::assert_character(intensity_grade)
-  checkmate::assert(all(intensity_grade %in% c("MILD", "MODERATE", "SEVERE")))
+  checkmate::assert(all(intensity_grade %in% c("MILD", "MODERATE", "SEVERE", "LIFE THREATENING")))
+  checkmate::assert(all(levels(dbsel$adae[["ASEV"]]) %in% intensity_grade))
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
@@ -37,11 +38,10 @@ aet03_1_main <- function(adam_db,
     intensity_grade = intensity_grade,
     deco = deco,
     ... = ...
-  )
+  ) %>%
+    append_varlabels(df = dbsel$adae, vars = "ASEV", indent = 2L)
 
-  tbl <- build_table(lyt %>% append_varlabels(dbsel$adae, "AESEV", indent = 2L),
-    df = dbsel$adae, alt_counts_df = dbsel$adsl
-  )
+  tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
 
   tbl
 }
@@ -162,7 +162,7 @@ aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
 #'
 #' An adverse events table categorized by System
-#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#' Organ Class, Dictionary-Derived Term and Greatest intensity.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
