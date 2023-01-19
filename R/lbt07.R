@@ -122,6 +122,33 @@ lbt07_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 }
 
+#' @describeIn lbt07_1 Checks
+#'
+#' @inheritParams gen_args
+#' @param ... not used.
+#'
+lbt07_1_check <- function(adam_db,
+                          req_tables = c("adsl", "adlb"),
+                          armvar = "ACTARM",
+                          ...) {
+  assert_all_tablenames(adam_db, req_tables)
+
+  msg <- NULL
+
+  adlb_layout_col <- c("USUBJID", "ATOXGR", "AVISIT", "ANL01FL","ONTRTFL", "WGRLOFL","WGRHIFL")
+  adsl_layout_col <- c("USUBJID")
+
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg, collapse = "\n  "))
+  }
+}
+
+
 #' @describeIn lbt07_1 Postprocessing
 #'
 #' @inheritParams gen_args
