@@ -135,7 +135,7 @@ lbt07_1_check <- function(adam_db,
 
   msg <- NULL
 
-  adlb_layout_col <- c("USUBJID", "ATOXGR", "AVISIT", "ANL01FL","ONTRTFL", "WGRLOFL","WGRHIFL")
+  adlb_layout_col <- c("USUBJID", "ATOXGR", "AVISIT", "ANL01FL", "ONTRTFL", "WGRLOFL", "WGRHIFL")
   adsl_layout_col <- c("USUBJID")
 
   msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
