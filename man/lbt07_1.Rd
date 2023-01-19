@@ -5,6 +5,7 @@
 \alias{lbt07_1_main}
 \alias{lbt07_1_lyt}
 \alias{lbt07_1_pre}
+\alias{lbt07_1_check}
 \alias{lbt07_1_post}
 \alias{lbt07_1}
 \title{\code{LBT07} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.}
@@ -25,6 +26,8 @@ lbt07_1_lyt(armvar, lbl_gradedir, lbl_param, deco, map, ...)
 
 lbt07_1_pre(adam_db, ...)
 
+lbt07_1_check(adam_db, req_tables = c("adsl", "adlb"), armvar = "ACTARM", ...)
+
 lbt07_1_post(tlg, prune_0 = TRUE, ...)
 
 lbt07_1
@@ -44,11 +47,11 @@ lbt07_1
 
 \item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
 
+\item{req_tables}{(\code{character}) names of the required tables.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
-
-\item{lbl_anrind}{(\code{character}) label of the \code{GRADE_DIR} variable.}
 }
 \description{
 The \code{LBT07} table provides an
@@ -66,6 +69,8 @@ overview of the analysis values and its change from baseline of each respective 
 \item \code{lbt07_1_lyt()}: Layout
 
 \item \code{lbt07_1_pre()}: Preprocessing
+
+\item \code{lbt07_1_check()}: Checks
 
 \item \code{lbt07_1_post()}: Postprocessing
 

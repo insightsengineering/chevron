@@ -4,7 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_anrind (`character`) label of the `GRADE_DIR` variable.
+#' @param lbl_gradedir (`character`) label of the `GRADE_DIR` variable.
 #'
 #' @details
 #'  * Split columns by arm, typically `ACTARM`.
@@ -113,7 +113,7 @@ lbt07_1_pre <- function(adam_db, ...) {
         levels = c("LOW", "ZERO", "HIGH")
       ),
       GRADE_ANL = fct_relevel(
-        fct_recode(ATOXGR,
+        forcats::fct_recode(ATOXGR,
           `1` = "-1", `2` = "-2", `3` = "-3", `4` = "-4"
         ),
         c("0", "1", "2", "3", "4")
