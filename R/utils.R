@@ -349,17 +349,14 @@ h_format_dec <- function(digits = NA, format = NA) {
 
   if (is.na(format)) {
     NULL
-
   } else {
-
     function(x, ...) {
       checkmate::assert_numeric(x)
 
       digit_string <- ifelse(is.na(digits), "", paste0(".", digits))
       new_format <- gsub("%([a-z])", paste0("%", digit_string, "\\1"), format)
-      fun <- formatters::sprintf_format(new_format)
 
-      fun(x)
+      formatters::sprintf_format(new_format)(x)
     }
   }
 }
