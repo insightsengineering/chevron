@@ -27,7 +27,6 @@ lbt07_1_main <- function(adam_db,
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
                          ...) {
-
   lbl_grade_var <- if (is.null(lbl_grade_var)) {
     var_labels_for(adam_db$adlb, grade_var)
   } else {
@@ -41,7 +40,7 @@ lbt07_1_main <- function(adam_db,
 
   lyt <- lbt07_1_lyt(
     armvar = armvar,
-    grade_var=grade_var,
+    grade_var = grade_var,
     lbl_grade_var = lbl_grade_var,
     deco = deco,
     map = map,
@@ -72,7 +71,6 @@ lbt07_1_lyt <- function(armvar,
                         deco,
                         map,
                         ...) {
-
   names(lbl_grade_var) <- grade_var
 
   basic_table_deco(deco, show_colcount = TRUE) %>%
