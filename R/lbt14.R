@@ -3,9 +3,9 @@
 #' @describeIn lbt14_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param gr_missing how missing baseline grades should be handled. Defaults to `"incl"` to include the `"Missing"` level.
-#' Other options are `"excl"` to exclude patients with missing baseline grades and `"gr_0"` to convert missing baseline
-#' grades to grade 0.
+#' @param gr_missing how missing baseline grades should be handled. Defaults to `"incl"` to include the `"Missing"`
+#' level. Other options are `"excl"` to exclude patients with missing baseline grades and `"gr_0"` to convert missing
+#' baseline grades to grade 0.
 #' @param title table title to display. Defaults to `"LBT14 - Low Direction"`.
 #'
 #' @details
@@ -121,24 +121,31 @@ lbt14_1_pre <- function(adam_db,
     dm_update_zoomed() %>%
     dm_zoom_to("adlb") %>%
     mutate(
-      ATOXGR_GRP = factor(case_when(
-        ATOXGR %in% c(0, 1, 2, 3, 4) ~ "Not Low",
-        ATOXGR == -1 ~ "1",
-        ATOXGR == -2 ~ "2",
-        ATOXGR == -3 ~ "3",
-        ATOXGR == -4 ~ "4",
-        ATOXGR == "<Missing>" ~ "Missing"),
-        levels = c("Not Low", "1", "2", "3", "4", "Missing")),
-      BTOXGR_GRP = factor(case_when(
-        BTOXGR %in% c(0, 1, 2, 3, 4) ~ "Not Low",
-        BTOXGR == -1 ~ "1",
-        BTOXGR == -2 ~ "2",
-        BTOXGR == -3 ~ "3",
-        BTOXGR == -4 ~ "4",
-        BTOXGR == "<Missing>" ~ "Missing"),
-        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>"))
+      ATOXGR_GRP = factor(
+        case_when(
+          ATOXGR %in% c(0, 1, 2, 3, 4) ~ "Not Low",
+          ATOXGR == -1 ~ "1",
+          ATOXGR == -2 ~ "2",
+          ATOXGR == -3 ~ "3",
+          ATOXGR == -4 ~ "4",
+          ATOXGR == "<Missing>" ~ "Missing"
+        ),
+        levels = c("Not Low", "1", "2", "3", "4", "Missing")
+      ),
+      BTOXGR_GRP = factor(
+        case_when(
+          BTOXGR %in% c(0, 1, 2, 3, 4) ~ "Not Low",
+          BTOXGR == -1 ~ "1",
+          BTOXGR == -2 ~ "2",
+          BTOXGR == -3 ~ "3",
+          BTOXGR == -4 ~ "4",
+          BTOXGR == "<Missing>" ~ "Missing"
+        ),
+        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>")) {
           c("Not Low", "1", "2", "3", "4", "Missing")
-        else c("Not Low", "1", "2", "3", "4")
+        } else {
+          c("Not Low", "1", "2", "3", "4")
+        }
       ),
     ) %>%
     dm_update_zoomed()
@@ -182,7 +189,8 @@ lbt14_1_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `LBT14` Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by Baseline Grade.
+#' `LBT14` Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
+#' Baseline Grade.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -201,9 +209,9 @@ lbt14_1 <- chevron_t(
 #' @describeIn lbt14_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param gr_missing how missing baseline grades should be handled. Defaults to `"incl"` to include the `"Missing"` level.
-#' Other options are `"excl"` to exclude patients with missing baseline grades and `"gr_0"` to convert missing baseline
-#' grades to grade 0.
+#' @param gr_missing how missing baseline grades should be handled. Defaults to `"incl"` to include the `"Missing"`
+#' level. Other options are `"excl"` to exclude patients with missing baseline grades and `"gr_0"` to convert missing
+#' baseline grades to grade 0.
 #' @param title table title to display. Defaults to `"LBT14 - High Direction"`.
 #'
 #' @details
@@ -319,25 +327,33 @@ lbt14_2_pre <- function(adam_db,
     dm_update_zoomed() %>%
     dm_zoom_to("adlb") %>%
     mutate(
-      ATOXGR_GRP = factor(case_when(
-        ATOXGR %in% c(0, -1, -2, -3, -4) ~ "Not High",
-        ATOXGR == 1 ~ "1",
-        ATOXGR == 2 ~ "2",
-        ATOXGR == 3 ~ "3",
-        ATOXGR == 4 ~ "4",
-        ATOXGR == "<Missing>" ~ "Missing"),
-        levels = c("Not High", "1", "2", "3", "4", "Missing")),
-      BTOXGR_GRP = factor(case_when(
-        BTOXGR %in% c(0, -1, -2, -3, -4) ~ "Not High",
-        BTOXGR == 1 ~ "1",
-        BTOXGR == 2 ~ "2",
-        BTOXGR == 3 ~ "3",
-        BTOXGR == 4 ~ "4",
-        BTOXGR == "<Missing>" ~ "Missing"),
-        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>"))
+      ATOXGR_GRP = factor(
+        case_when(
+          ATOXGR %in% c(0, -1, -2, -3, -4) ~ "Not High",
+          ATOXGR == 1 ~ "1",
+          ATOXGR == 2 ~ "2",
+          ATOXGR == 3 ~ "3",
+          ATOXGR == 4 ~ "4",
+          ATOXGR == "<Missing>" ~ "Missing"
+        ),
+        levels = c("Not High", "1", "2", "3", "4", "Missing")
+      ),
+      BTOXGR_GRP = factor(
+        case_when(
+          BTOXGR %in% c(0, -1, -2, -3, -4) ~ "Not High",
+          BTOXGR == 1 ~ "1",
+          BTOXGR == 2 ~ "2",
+          BTOXGR == 3 ~ "3",
+          BTOXGR == 4 ~ "4",
+          BTOXGR == "<Missing>" ~ "Missing"
+        ),
+        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>")) {
           c("Not Low", "1", "2", "3", "4", "Missing")
-        else c("Not Low", "1", "2", "3", "4")
-    )) %>%
+        } else {
+          c("Not Low", "1", "2", "3", "4")
+        }
+      )
+    ) %>%
     dm_update_zoomed()
 }
 
