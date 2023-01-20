@@ -8,7 +8,8 @@
 \alias{lbt14_1_check}
 \alias{lbt14_1_post}
 \alias{lbt14_1}
-\title{\code{LBT14} Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by Baseline Grade.}
+\title{\code{LBT14} Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
+Baseline Grade.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -37,9 +38,9 @@ lbt14_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{gr_missing}{how missing baseline grades should be handled. Defaults to \code{"incl"} to include the \code{"Missing"} level.
-Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing baseline
-grades to grade 0.}
+\item{gr_missing}{how missing baseline grades should be handled. Defaults to \code{"incl"} to include the \code{"Missing"}
+level. Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing
+baseline grades to grade 0.}
 
 \item{title}{table title to display. Defaults to \code{"LBT14 - Low Direction"}.}
 
@@ -54,7 +55,8 @@ grades to grade 0.}
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
-\code{LBT14} Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by Baseline Grade.
+\code{LBT14} Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
+Baseline Grade.
 }
 \details{
 \itemize{

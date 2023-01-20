@@ -38,9 +38,9 @@ lbt14_2
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{gr_missing}{how missing baseline grades should be handled. Defaults to \code{"incl"} to include the \code{"Missing"} level.
-Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing baseline
-grades to grade 0.}
+\item{gr_missing}{how missing baseline grades should be handled. Defaults to \code{"incl"} to include the \code{"Missing"}
+level. Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing
+baseline grades to grade 0.}
 
 \item{title}{table title to display. Defaults to \code{"LBT14 - High Direction"}.}
 
