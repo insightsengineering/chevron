@@ -117,12 +117,17 @@ lbt01_1_lyt <- function(armvar,
 
         # Create context dependent function.
         n_fun <- sum(!is.na(x), na.rm = TRUE)
-        mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
-        median_fun <- median(x, na.rm = TRUE)
-        min_max_fun <- c(min(x), max(x))
+        if (n_fun == 0) {
+          mean_sd_fun <- c(NA, NA)
+          median_fun <- NA
+          min_max_fun <- c(NA, NA)
+        } else {
+          mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+          median_fun <- median(x, na.rm = TRUE)
+          min_max_fun <- c(min(x), max(x))
+        }
 
         # Identify context-
-        is_baseline <- .spl_context$value[2] == "BASELINE"
         is_chg <- .var == "CHG"
 
         is_baseline <- .spl_context$value[which(.spl_context$split == "AVISIT")] == "BASELINE"
@@ -141,6 +146,12 @@ lbt01_1_lyt <- function(armvar,
             "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
             "Median" = h_format_dec(format = "%f", digits = pcs + 1),
             "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
+          ),
+          .format_na_strs = list(
+            "n" = "NE",
+            "Mean (SD)" = "NE (NE)",
+            "Median" = "NE",
+            "Min - Max" = "NE - NE"
           )
         )
       },
