@@ -16,13 +16,22 @@ An object of class \code{chevron_t} of length 1.
 lbt07_1_main(
   adam_db,
   armvar = "ACTARM",
-  lbl_gradedir = "Direction of Abnormality",
-  lbl_param = "Parameter",
+  grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
   deco = std_deco("LBT07"),
+  lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
   ...
 )
 
-lbt07_1_lyt(armvar, lbl_gradedir, lbl_param, deco, map, ...)
+lbt07_1_lyt(
+  armvar,
+  lbl_gradedir,
+  lbl_param,
+  grade_var,
+  lbl_grade_var,
+  deco,
+  map,
+  ...
+)
 
 lbt07_1_pre(adam_db, ...)
 
@@ -37,13 +46,24 @@ lbt07_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{lbl_gradedir}{(\code{character}) label of the \code{GRADE_DIR} variable.}
-
-\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+\item{grade_var}{(\code{character}) \code{PARAM} and variables derived from the standard lab grade variable \code{ATOXGR}:
+\itemize{
+\item A grade direction variable (\code{GRADE_DIR}) is required in order to obtain
+the correct denominators when building the layout as it is used to define row splitting.
+\item A toxicity grade variable (e.g. \code{GRADE_ANL}) where all negative values from
+\code{ATOXGR} are replaced by their absolute values.
+}}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{lbl_grade_var}{(\code{character}) label of the variables in \code{grade_var}. If \code{NULL}, uses the label
+attribute of the columns selected in \code{grade_var}.}
+
 \item{...}{not used.}
+
+\item{lbl_gradedir}{(\code{character}) label of the \code{GRADE_DIR} variable.}
+
+\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 
 \item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
 

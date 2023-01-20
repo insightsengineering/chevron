@@ -3,8 +3,14 @@
 #' @describeIn lbt07_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_gradedir (`character`) label of the `GRADE_DIR` variable.
+#' @param grade_var (`character`) `PARAM` and variables derived from the standard lab grade variable `ATOXGR`:
+#' * A grade direction variable (`GRADE_DIR`) is required in order to obtain
+#'   the correct denominators when building the layout as it is used to define row splitting.
+#' * A toxicity grade variable (e.g. `GRADE_ANL`) where all negative values from
+#'   `ATOXGR` are replaced by their absolute values.
+#' @param lbl_grade_var (`character`) label of the variables in `grade_var`. If `NULL`, uses the label
+#'   attribute of the columns selected in `grade_var`.
+#' @param ... not used.
 #'
 #' @details
 #'  * Split columns by arm, typically `ACTARM`.
@@ -13,24 +19,30 @@
 #'  * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"ATOXGR"`, `"AVISIT"`, `"ANL01FL"`,
 #'  `"ONTRTFL"`, `"WGRLOFL"`,`"WGRHIFL"`,and column specified by `armvar`.
 #'
-#'
 #' @export
 #'
 lbt07_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         lbl_gradedir = "Direction of Abnormality",
-                         lbl_param = "Parameter",
+                         grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
+                         lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
                          ...) {
+
+  lbl_grade_var <- if (is.null(lbl_grade_var)) {
+    var_labels_for(adam_db$adlb, grade_var)
+  } else {
+    lbl_grade_var
+  }
   map <- unique(adam_db$adlb[adam_db$adlb$GRADE_DIR != "ZERO", c("PARAM", "GRADE_DIR", "GRADE_ANL")]) %>%
     lapply(as.character) %>%
     as.data.frame() %>%
     arrange(PARAM, desc(GRADE_DIR), GRADE_ANL)
 
+
   lyt <- lbt07_1_lyt(
     armvar = armvar,
-    lbl_param = lbl_param,
-    lbl_gradedir = lbl_gradedir,
+    grade_var=grade_var,
+    lbl_grade_var = lbl_grade_var,
     deco = deco,
     map = map,
     ... = ...
@@ -55,15 +67,20 @@ lbt07_1_main <- function(adam_db,
 lbt07_1_lyt <- function(armvar,
                         lbl_gradedir,
                         lbl_param,
+                        grade_var,
+                        lbl_grade_var,
                         deco,
                         map,
                         ...) {
+
+  names(lbl_grade_var) <- grade_var
+
   basic_table_deco(deco, show_colcount = TRUE) %>%
     split_cols_by(armvar) %>%
     split_rows_by(
       "PARAM",
       label_pos = "topleft",
-      split_label = lbl_param
+      split_label = lbl_grade_var[1]
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
@@ -73,12 +90,13 @@ lbt07_1_lyt <- function(armvar,
     split_rows_by(
       "GRADE_DIR",
       label_pos = "topleft",
-      split_label = lbl_gradedir,
+      split_label = lbl_grade_var[2],
       split_fun = trim_levels_to_map(map)
     ) %>%
     count_abnormal_by_worst_grade(
       var = "GRADE_ANL",
       variables = list(id = "USUBJID", param = "PARAM", grade_dir = "GRADE_DIR"),
+      .formats = list(count_fraction = format_count_fraction_fixed_dp),
       .indent_mods = 4L
     ) %>%
     append_topleft("    Highest NCI CTCAE Grade")
