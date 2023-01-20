@@ -14,9 +14,9 @@ test_that("lbt14_1 can handle all NA values", {
 test_that("lbt14_1 can handle some NA values", {
   set.seed(1)
   new_btoxgr <- syn_data$adlb$BTOXGR
-  new_btoxgr[sample(1:length(new_btoxgr), 20)] <- NA
+  new_btoxgr[sample(seq_along(length(new_btoxgr)), 20)] <- NA
   new_atoxgr <- syn_data$adlb$ATOXGR
-  new_atoxgr[sample(1:length(new_atoxgr), 20)] <- NA
+  new_atoxgr[sample(seq_along(length(new_atoxgr)), 20)] <- NA
 
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
@@ -46,9 +46,9 @@ test_that("lbt14_2 can handle all NA values", {
 test_that("lbt14_2 can handle some NA values", {
   set.seed(1)
   new_btoxgr <- syn_data$adlb$BTOXGR
-  new_btoxgr[sample(1:length(new_btoxgr), 20)] <- NA
+  new_btoxgr[sample(seq_along(length(new_btoxgr)), 20)] <- NA
   new_atoxgr <- syn_data$adlb$ATOXGR
-  new_atoxgr[sample(1:length(new_atoxgr), 20)] <- NA
+  new_atoxgr[sample(seq_along(length(new_atoxgr)), 20)] <- NA
 
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
