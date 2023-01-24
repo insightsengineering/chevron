@@ -201,7 +201,7 @@ lbt14_1 <- chevron_t(
   main = lbt14_1_main,
   preprocess = lbt14_1_pre,
   postprocess = lbt14_1_post,
-  adam_datasets = c("adlb")
+  adam_datasets = c("adsl", "adlb")
 )
 
 # lbt14_2 ----
