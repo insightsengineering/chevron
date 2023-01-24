@@ -27,6 +27,9 @@ lbt07_1_main <- function(adam_db,
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
                          ...) {
+
+  lbt07_1_check(adam_db, ...)
+
   lbl_grade_var <- if (is.null(lbl_grade_var)) {
     var_labels_for(adam_db$adlb, grade_var)
   } else {
@@ -133,7 +136,8 @@ lbt07_1_pre <- function(adam_db, ...) {
           `1` = "-1", `2` = "-2", `3` = "-3", `4` = "-4"
         ),
         c("0", "1", "2", "3", "4")
-      )
+      ),
+      PARAM = as.factor(.data$PARAM)
     ) %>%
     dm_update_zoomed()
 }
