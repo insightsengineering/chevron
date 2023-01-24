@@ -2,14 +2,19 @@
 % Please edit documentation in R/chevron_tlg-S4methods.R
 \name{args}
 \alias{args}
+\alias{args,chevron_tlg-method}
 \title{Get Arguments List}
 \usage{
-args(x, simplify = FALSE)
+args(x, simplify = FALSE, omit = NULL)
+
+\S4method{args}{chevron_tlg}(x, simplify = FALSE, omit = NULL)
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
 \item{simplify}{(\code{flag}) whether to simplify the output.}
+
+\item{omit}{(\code{character}) the names of the argument to omit from the output.}
 }
 \description{
 Get Arguments List

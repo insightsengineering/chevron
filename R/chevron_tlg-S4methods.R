@@ -8,26 +8,33 @@
 #'
 #' @inheritParams gen_args
 #' @param object (`chevron_tlg`) input.
+#' @param auto_pre (`flag`) whether to perform the default pre processing step.
 #' @param ... extra arguments to pass to the check, pre-processing or `tlg` functions.
 #'
 #' @name run
 #' @export
-setGeneric("run", function(object, adam_db, ...) standardGeneric("run"))
+setGeneric("run", function(object, auto_pre, adam_db, ...) standardGeneric("run"))
 
 #' Run the pipeline
 #' @rdname run
 #' @export
 #' @examples
-#' run(mng01_1, syn_data, dataset = "adlb")
+#' run(mng01_1, syn_data, auto_pre = TRUE, dataset = "adlb")
 setMethod(
   f = "run",
   signature = "chevron_tlg",
   definition = function(object, adam_db, ...) {
     checkmate::assert_class(adam_db, "dm")
+    checkmate::assert_flag(auto_pre)
 
     optional_arg <- list(...)
 
-    proc_data <- list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
+    proc_data <- if (auto_pre) {
+      list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
+    } else {
+      adam_db
+    }
+
     res_tlg <- list(tlg = do.call(object@main, c(proc_data, optional_arg)))
 
     do.call(object@postprocess, c(res_tlg, optional_arg))
@@ -40,22 +47,25 @@ setMethod(
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param simplify (`flag`) whether to simplify the output.
+#' @param omit (`character`) the names of the argument to omit from the output.
 #'
 #' @rdname args
 #' @export
-setGeneric("args", function(x, simplify = FALSE) standardGeneric("args"))
+setGeneric("args", function(x, simplify = FALSE, omit = NULL) standardGeneric("args"))
 
-#' @rdname main
+#' @rdname args
 #' @export
 setMethod(
   f = "args",
   signature = "chevron_tlg",
-  definition = function(x, simplify = FALSE) {
-    if (simplify) {
+  definition = function(x, simplify = FALSE, omit = NULL) {
+    res <- if (simplify) {
       Reduce(fuse_sequentially, x@args)
     } else {
       x@args
     }
+
+    res[!names(res) %in% omit]
   }
 )
 
@@ -234,6 +244,55 @@ setMethod(
     x
   }
 )
+
+# script ----
+
+#' Create Pre Processing Script
+#'
+#' @param x (`chevron_tlg`) input.
+#'
+#' @rdname script
+#' @export
+setGeneric("script", function(x, con = stdout()) standardGeneric("script"))
+
+#' @rdname script
+#' @export
+setMethod(
+  f = "script",
+  signature = "chevron_tlg",
+  definition = function(x, con = stdout()) {
+
+    all_arg <- args(x, omit = c("tlg", "..."), simplify = TRUE)
+    names_args <- names(all_arg)
+    val_args <- unname(all_arg)
+
+    res <- alist()
+    for(i in seq_along(all_arg)){
+      val <- val_args[[i]]
+      id <- names_args[[i]]
+
+      if (missing(val)) {
+        res[[id]] <- "# enter custom value"
+      } else{
+        res[[id]] <- val
+      }
+    }
+
+    arg_calls <- mapply(function(x, y) call2("<-", sym(x), y), as.list(names(res)), res)
+    arg_fun <- lapply(names(res), sym)
+    names(arg_fun) <- names(res)
+
+    spt <- c(
+      lapply(arg_calls, deparse),
+      deparse(call2("<-", sym("foo"), x@preprocess)),
+      deparse(call2("<-", sym("proc_data"), call2("foo", !!!arg_fun)))
+    )
+
+    writeLines(unlist(spt), con = con)
+  }
+)
+
+
 
 # get_main ----
 

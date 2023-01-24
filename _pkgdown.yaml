@@ -33,6 +33,7 @@ reference:
       - preprocess
       - postprocess
       - datasets
+      - script
       - get_main
       - get_preprocess
       - get_postprocess

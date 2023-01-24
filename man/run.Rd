@@ -5,12 +5,14 @@
 \alias{run,chevron_tlg-method}
 \title{Run the pipeline}
 \usage{
-run(object, adam_db, ...)
+run(object, auto_pre, adam_db, ...)
 
-\S4method{run}{chevron_tlg}(object, adam_db, ...)
+\S4method{run}{chevron_tlg}(object, auto_pre, adam_db, ...)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
+
+\item{auto_pre}{(\code{flag}) whether to perform the default pre processing step.}
 
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
@@ -20,5 +22,5 @@ run(object, adam_db, ...)
 Run the pipeline
 }
 \examples{
-run(mng01_1, syn_data, dataset = "adlb")
+run(mng01_1, syn_data, auto_pre = TRUE, dataset = "adlb")
 }
