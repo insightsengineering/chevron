@@ -34,6 +34,31 @@ setMethod(
   }
 )
 
+# args ----
+
+#' Get Arguments List
+#'
+#' @param x (`chevron_tlg`) input.
+#' @param simplify (`flag`) whether to simplify the output.
+#'
+#' @rdname args
+#' @export
+setGeneric("args", function(x, simplify = FALSE) standardGeneric("args"))
+
+#' @rdname main
+#' @export
+setMethod(
+  f = "args",
+  signature = "chevron_tlg",
+  definition = function(x, simplify = FALSE) {
+    if (simplify) {
+      Reduce(fuse_sequentially, x@args)
+    } else {
+      x@args
+    }
+  }
+)
+
 # main ----
 
 #' Main
@@ -72,6 +97,7 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, value) {
     x@main <- value
+    x@args[["main"]] <- formals(value)
     validObject(x)
     x
   }
@@ -116,6 +142,7 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, value) {
     x@preprocess <- value
+    x@args[["preprocess"]] <- formals(value)
     validObject(x)
     x
   }
@@ -159,6 +186,7 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, value) {
     x@postprocess <- value
+    x@args[["postprocess"]] <- formals(value)
     validObject(x)
     x
   }

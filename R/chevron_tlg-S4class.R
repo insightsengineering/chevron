@@ -13,6 +13,7 @@
 #' @slot postprocess (`function`) returning a post-processed `tlg`.
 #' @slot adam_datasets (`character`) representing the name of the tables from an `AdAM` dataset required for `tlg`
 #'   creation.
+#' @slot args (`list`) storing the arguments of function and their default values.
 #'
 #' @format NULL
 #'
@@ -32,7 +33,8 @@
     main = "function",
     preprocess = "function",
     postprocess = "function",
-    adam_datasets = "character"
+    adam_datasets = "character",
+    args = "list"
   )
 )
 
@@ -46,6 +48,7 @@ methods::setValidity("chevron_tlg", function(object) {
   checkmate::assert_function(object@preprocess, args = c("..."), add = coll)
   checkmate::assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
   checkmate::assert_function(object@postprocess, args = c("..."), add = coll)
+  checkmate::assert_list(object@args, types = "list", null.ok = TRUE, add = coll)
   checkmate::reportAssertions(coll)
 })
 
@@ -139,7 +142,12 @@ chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), a
     main = main,
     preprocess = preprocess,
     postprocess = postprocess,
-    adam_datasets = adam_datasets
+    adam_datasets = adam_datasets,
+    args = list(
+      main = formals(main),
+      preprocess = formals(preprocess),
+      postprocess = formals(postprocess)
+    )
   )
 
   res
@@ -166,7 +174,12 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
     main = main,
     preprocess = preprocess,
     postprocess = postprocess,
-    adam_datasets = adam_datasets
+    adam_datasets = adam_datasets,
+    args = list(
+      main = formals(main),
+      preprocess = formals(preprocess),
+      postprocess = formals(postprocess)
+    )
   )
 
   res
@@ -196,7 +209,12 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
     main = main,
     preprocess = preprocess,
     postprocess = postprocess,
-    adam_datasets = adam_datasets
+    adam_datasets = adam_datasets,
+    args = list(
+      main = formals(main),
+      preprocess = formals(preprocess),
+      postprocess = formals(postprocess)
+    )
   )
 
   res
