@@ -254,25 +254,26 @@ setMethod(
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param con (`connection`) where the output is saved.
+#' @param dct (`list`) with the name and value of custom arguments
 #'
 #' @rdname script
 #' @export
-setGeneric("script", function(x, con = stdout()) standardGeneric("script"))
+setGeneric("script", function(x, con = stdout(), dict = list()) standardGeneric("script"))
 
 #' @rdname script
 #' @export
 setMethod(
   f = "script",
   signature = "chevron_tlg",
-  definition = function(x, con = stdout()) {
+  definition = function(x, con = stdout(), dict = list()) {
 
-    all_arg <- args(x, omit = c("tlg", "..."), simplify = FALSE)
-    pre_arg <- all_arg$preprocess # Select only pre processing arguments ? discuss.
-    names_args <- names(pre_arg)
-    val_args <- unname(pre_arg)
+    all_arg <- args(x, omit = c("tlg", "..."), simplify = TRUE)
+    all_arg <- fuse_sequentially(dict, all_arg)
+    names_args <- names(all_arg)
+    val_args <- unname(all_arg)
 
     res <- alist()
-    for(i in seq_along(pre_arg)){
+    for(i in seq_along(all_arg)){
       val <- val_args[[i]]
       id <- names_args[[i]]
 
@@ -283,14 +284,34 @@ setMethod(
       }
     }
 
+    # Construct call for attribution of all arguments
     arg_calls <- mapply(function(x, y) rlang::call2("<-", sym(x), y), as.list(names(res)), res)
-    arg_fun <- lapply(names(res), sym)
-    names(arg_fun) <- names(res)
+
+    # Construct argument list for each function
+    all_arg <- args(x, omit = c("..."), simplify = FALSE)
+
+    arg_pre <- lapply(names(all_arg$preprocess), sym)
+    names(arg_pre) <- arg_pre
+
+    arg_main <- lapply(names(all_arg$main), sym)
+    names(arg_main) <- arg_main
+    arg_main$adam_db <- sym("proc_data")
+
+    arg_post <- lapply(names(all_arg$post), sym)
+    names(arg_post) <- arg_post
+    arg_post$tlg <- sym("tlg")
 
     spt <- c(
+      "\n# Arguments definition ----\n",
       lapply(arg_calls, deparse),
-      deparse(rlang::call2("<-", sym("foo"), x@preprocess)),
-      deparse(rlang::call2("<-", sym("proc_data"), rlang::call2("foo", !!!arg_fun)))
+      "\n# Functions definition ----\n",
+      deparse(rlang::call2("<-", sym("preprocess_fun"), x@preprocess)),
+      deparse(rlang::call2("<-", sym("main_fun"), x@main)),
+      deparse(rlang::call2("<-", sym("postprocess_fun"), x@postprocess)),
+      "\n# Functions execution ----\n",
+      deparse(rlang::call2("<-", sym("proc_data"), rlang::call2("preprocess_fun", !!!arg_pre))),
+      deparse(rlang::call2("<-", sym("tlg"), rlang::call2("main_fun", !!!arg_main))),
+      deparse(rlang::call2("<-", sym("final_tlg"), rlang::call2("postprocess_fun", !!!arg_post)))
     )
 
     writeLines(unlist(spt), con = con)

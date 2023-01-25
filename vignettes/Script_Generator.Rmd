@@ -18,32 +18,72 @@ knitr::opts_chunk$set(
 )
 
 library(chevron)
+library(dm)
+library(dplyr)
 ```
 
 # Introduction
 
-In `chevron` the creation of the output entails data manipulation by the `preprocessing` function. This operation is preformed automatically upon calling `run(my_chevron_object, my_data)`. However, in some instances, the pre processing function has to be extensively modified. To facilitate the development of custom pre processing function, `chevron` includes a script-generating method (`script`).
+In addition of the embedded `run()` method to create a `tlg`, chevron offers a script-based approach that allow the user to quickly edit a chevron workflow without the need for modifying a `chevron_tlg` object. The script is generated based on the default value of the arguments but can be edit either manually after creation or programmatically with the `dict` argument.
 
-# 
-```{r, comment = ""}
+By default, the generated script is printed in the consol but it can also be saved in a file whose address in passed to the `con` argument. 
+
+# Using a chevron-defined object
+The script is stored in a temporary R file.
+```{r}
+# saving in a temporary file
 tmp <- tempfile("my_script", fileext = "R")
 script(aet01_1, con = tmp)
 ```
 
-The generated script:
+Print the generated script:
 ```{r, comment = "", echo = FALSE}
 cat(readLines(tmp), sep = '\n')
 ```
 
 
-```{r}
+# With a modified chevron object
 
-custom_aet01_1 <- aet01_1
-preprocess(custom_aet01_1) <- function(adam_db, new_format, ...) {
+The script generator depends on the functions actually stored in the object. Modifying the `chevron_tlg` object can lead to a different script.
+```{r, comment = ""}
+preprocess(aet01_1) <- function(adam_db, new_format, ...) {
   dunlin::apply_reformat(adam_db, new_format)
 }
 
-script(custom_aet01_1)
+tmp <- tempfile("my_script", fileext = "R")
+script(aet01_1, con = tmp)
 ```
 
+Print the first 20 lines of the generated script. Note that a new argument `new_format` has been added and the pre processing function has been modified.
+```{r, comment = "", echo = FALSE}
+cat(readLines(tmp, n = 20), sep = '\n')
+```
+
+# With custom argument definition
+
+To programmatically define the value of an argument, pass it to a named list. Existing values will be overwritten.
+
+Note: variables (in this case the `dm` object `syn_data`), have to be passed as symbol, using for instance `rlang::sym`.
+
+```{r, comment = ""}
+dict <- list(
+  adam_db = rlang::sym("syn_data"),
+  some_character = "A",
+  some_vector = c("A", "B")
+)
+
+tmp <- tempfile("my_script", fileext = "R")
+script(mng01_1, con = tmp, dict = dict)
+```
+
+Print the first 30 lines of the generated script.
+```{r, comment = "", echo = FALSE}
+cat(readLines(tmp, n = 30), sep = '\n')
+```
+
+Source the generated script and inspect the result stored in `final_tlg`.
+```{r, fig.width=7, fig.height=7}
+source(tmp, local = knitr::knit_global())
+print(final_tlg)
+```
 
