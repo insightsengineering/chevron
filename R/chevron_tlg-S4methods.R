@@ -9,11 +9,11 @@
 #' @inheritParams gen_args
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
-#' @param ... extra arguments to pass to the check, pre-processing or `tlg` functions.
+#' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
 #'
 #' @name run
 #' @export
-setGeneric("run", function(object, auto_pre, adam_db, ...) standardGeneric("run"))
+setGeneric("run", function(object, adam_db, auto_pre = TRUE, ...) standardGeneric("run"))
 
 #' Run the pipeline
 #' @rdname run
@@ -23,7 +23,7 @@ setGeneric("run", function(object, auto_pre, adam_db, ...) standardGeneric("run"
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, ...) {
+  definition = function(object, adam_db, auto_pre = TRUE, ...) {
     checkmate::assert_class(adam_db, "dm")
     checkmate::assert_flag(auto_pre)
 
