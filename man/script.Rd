@@ -5,12 +5,14 @@
 \alias{script,chevron_tlg-method}
 \title{Create Pre Processing Script}
 \usage{
-script(x)
+script(x, con = stdout())
 
-\S4method{script}{chevron_tlg}(x)
+\S4method{script}{chevron_tlg}(x, con = stdout())
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
+
+\item{con}{(\code{connection}) where the output is saved.}
 }
 \description{
 Create Pre Processing Script

@@ -59,13 +59,16 @@ setMethod(
   f = "args",
   signature = "chevron_tlg",
   definition = function(x, simplify = FALSE, omit = NULL) {
+
+    x_sel <- lapply(x@args, function(y)  y[!names(y) %in% omit])
+
     res <- if (simplify) {
-      Reduce(fuse_sequentially, x@args)
+      Reduce(fuse_sequentially, x_sel)
     } else {
-      x@args
+      x_sel
     }
 
-    res[!names(res) %in% omit]
+    res
   }
 )
 
@@ -250,6 +253,7 @@ setMethod(
 #' Create Pre Processing Script
 #'
 #' @param x (`chevron_tlg`) input.
+#' @param con (`connection`) where the output is saved.
 #'
 #' @rdname script
 #' @export
@@ -262,12 +266,13 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, con = stdout()) {
 
-    all_arg <- args(x, omit = c("tlg", "..."), simplify = TRUE)
-    names_args <- names(all_arg)
-    val_args <- unname(all_arg)
+    all_arg <- args(x, omit = c("tlg", "..."), simplify = FALSE)
+    pre_arg <- all_arg$preprocess # Select only pre processing arguments ? discuss.
+    names_args <- names(pre_arg)
+    val_args <- unname(pre_arg)
 
     res <- alist()
-    for(i in seq_along(all_arg)){
+    for(i in seq_along(pre_arg)){
       val <- val_args[[i]]
       id <- names_args[[i]]
 
@@ -278,14 +283,14 @@ setMethod(
       }
     }
 
-    arg_calls <- mapply(function(x, y) call2("<-", sym(x), y), as.list(names(res)), res)
+    arg_calls <- mapply(function(x, y) rlang::call2("<-", sym(x), y), as.list(names(res)), res)
     arg_fun <- lapply(names(res), sym)
     names(arg_fun) <- names(res)
 
     spt <- c(
       lapply(arg_calls, deparse),
-      deparse(call2("<-", sym("foo"), x@preprocess)),
-      deparse(call2("<-", sym("proc_data"), call2("foo", !!!arg_fun)))
+      deparse(rlang::call2("<-", sym("foo"), x@preprocess)),
+      deparse(rlang::call2("<-", sym("proc_data"), rlang::call2("foo", !!!arg_fun)))
     )
 
     writeLines(unlist(spt), con = con)

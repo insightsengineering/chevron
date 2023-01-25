@@ -1,0 +1,49 @@
+---
+title: "Script Generator"
+date: "2023-01-24"
+author: Benoit Falquet
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Script_Generator}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(chevron)
+```
+
+# Introduction
+
+In `chevron` the creation of the output entails data manipulation by the `preprocessing` function. This operation is preformed automatically upon calling `run(my_chevron_object, my_data)`. However, in some instances, the pre processing function has to be extensively modified. To facilitate the development of custom pre processing function, `chevron` includes a script-generating method (`script`).
+
+# 
+```{r, comment = ""}
+tmp <- tempfile("my_script", fileext = "R")
+script(aet01_1, con = tmp)
+```
+
+The generated script:
+```{r, comment = "", echo = FALSE}
+cat(readLines(tmp), sep = '\n')
+```
+
+
+```{r}
+
+custom_aet01_1 <- aet01_1
+preprocess(custom_aet01_1) <- function(adam_db, new_format, ...) {
+  dunlin::apply_reformat(adam_db, new_format)
+}
+
+script(custom_aet01_1)
+```
+
+
