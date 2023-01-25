@@ -82,7 +82,7 @@ Baseline Grade.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"USUBJID"}, \code{"PARAMCD"}, \code{"BTOXGR"}, \code{"ATOXGR"},
+\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"USUBJID"}, \code{"PARAM"}, \code{"BTOXGR"}, \code{"ATOXGR"},
 and the column specified by \code{armvar}.
 }
 }

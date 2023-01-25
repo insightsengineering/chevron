@@ -16,7 +16,7 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"PARAMCD"`, `"BTOXGR"`, `"ATOXGR"`,
+#'   * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"PARAM"`, `"BTOXGR"`, `"ATOXGR"`,
 #'   and the column specified by `armvar`.
 #'
 #' @export
@@ -62,10 +62,10 @@ lbt14_1_lyt <- function(armvar,
   lyt <- basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(armvar) %>%
     split_rows_by(
-      "PARAMCD",
+      "PARAM",
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = "Parameter Code"
+      split_label = "Parameter"
     ) %>%
     split_rows_by(
       "BTOXGR_GRP",
@@ -73,7 +73,7 @@ lbt14_1_lyt <- function(armvar,
       split_label = "    Baseline NCI-CTCAE Grade",
       indent_mod = 2L
     ) %>%
-    summarize_num_patients(var = "USUBJID", .stats = c("unique_count")) %>%
+    summarize_num_patients(var = "USUBJID", .stats = c("unique_count"), unique_count_suffix = FALSE) %>%
     count_occurrences("ATOXGR_GRP", denom = "n", drop = FALSE, .indent_mods = 3L) %>%
     append_topleft("              Post-baseline NCI-CTCAE Grade")
 }
@@ -90,6 +90,7 @@ lbt14_1_pre <- function(adam_db,
                         gr_missing = "incl",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
   lbt14_1_check(adam_db, ...)
 
@@ -110,7 +111,8 @@ lbt14_1_pre <- function(adam_db,
   } else if (gr_missing == "gr_0") {
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
-      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) factor(BTOXGR, levels = c("0", "<Missing>"))) %>%
+      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) factor(BTOXGR, levels = c("0", "<Missing>"))
+             else BTOXGR) %>%
       mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }
@@ -164,7 +166,7 @@ lbt14_1_check <- function(adam_db,
 
   msg <- NULL
 
-  adlb_layout_col <- c("USUBJID", "PARAMCD", "BTOXGR", "ATOXGR")
+  adlb_layout_col <- c("USUBJID", "PARAM", "BTOXGR", "ATOXGR")
   adsl_layout_col <- c("USUBJID")
 
   msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
@@ -222,7 +224,7 @@ lbt14_1 <- chevron_t(
 #'  * Split columns by arm, typically `ACTARM`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"PARAMCD"`, `"BTOXGR"`, `"ATOXGR"`,
+#'   * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"PARAM"`, `"BTOXGR"`, `"ATOXGR"`,
 #'   and the column specified by `armvar`.
 #'
 #' @export
@@ -268,10 +270,10 @@ lbt14_2_lyt <- function(armvar,
   lyt <- basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(armvar) %>%
     split_rows_by(
-      "PARAMCD",
+      "PARAM",
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = "Parameter Code"
+      split_label = "Parameter"
     ) %>%
     split_rows_by(
       "BTOXGR_GRP",
@@ -279,7 +281,7 @@ lbt14_2_lyt <- function(armvar,
       split_label = "    Baseline NCI-CTCAE Grade",
       indent_mod = 2L
     ) %>%
-    summarize_num_patients(var = "USUBJID", .stats = c("unique_count")) %>%
+    summarize_num_patients(var = "USUBJID", .stats = c("unique_count"), unique_count_suffix = FALSE) %>%
     count_occurrences("ATOXGR_GRP", denom = "n", drop = FALSE, .indent_mods = 3L) %>%
     append_topleft("              Post-baseline NCI-CTCAE Grade")
 }
@@ -296,6 +298,7 @@ lbt14_2_pre <- function(adam_db,
                         gr_missing = "incl",
                         ...) {
   checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
   lbt14_2_check(adam_db, ...)
 
@@ -316,7 +319,8 @@ lbt14_2_pre <- function(adam_db,
   } else if (gr_missing == "gr_0") {
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
-      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) factor(BTOXGR, levels = c("0", "<Missing>"))) %>%
+      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) factor(BTOXGR, levels = c("0", "<Missing>"))
+             else BTOXGR) %>%
       mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }
@@ -370,7 +374,7 @@ lbt14_2_check <- function(adam_db,
 
   msg <- NULL
 
-  adlb_layout_col <- c("USUBJID", "PARAMCD", "BTOXGR", "ATOXGR")
+  adlb_layout_col <- c("USUBJID", "PARAM", "BTOXGR", "ATOXGR")
   adsl_layout_col <- c("USUBJID")
 
   msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
