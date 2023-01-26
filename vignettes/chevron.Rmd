@@ -26,6 +26,7 @@ report clinical trials data. The ensemble of function used to produce a particul
 `S4` object of virtual class `chevron_tlg`. Each type of output are associated with a specific class: `chevron_t` for tables, `chevron_l` for listings and `chevron_g` for graphs.
 
 Each standard output is associated with one  *`chevron_tlg` object*. They contain the following objects in separate slots:
+
 * A `main` function also refereed to as *TLG-function*.
 * A `preprocess` function.
 * A `postprocess` function
@@ -54,6 +55,7 @@ suitable input for *TLG-functions*. The pre-processing step typically includes c
 input can be later processed by the *TLG-functions*.
 
 *pre-process* in chevron such as `dmt01_1_pre`, `aet02_1_pre`, `aet02_2_pre` have the following properties:
+
 1. they return a `dm` object amenable to processing by a *TLG-functions* or return rapidly an understandable error
 message.
 1. have very few arguments to modify the standard.
