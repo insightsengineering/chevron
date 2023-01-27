@@ -352,9 +352,9 @@ lbt14_2_pre <- function(adam_db,
           BTOXGR == "<Missing>" ~ "Missing"
         ),
         levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>")) {
-          c("Not Low", "1", "2", "3", "4", "Missing")
+          c("Not High", "1", "2", "3", "4", "Missing")
         } else {
-          c("Not Low", "1", "2", "3", "4")
+          c("Not High", "1", "2", "3", "4")
         }
       )
     ) %>%
