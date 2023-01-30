@@ -32,7 +32,7 @@ setMethod(
     proc_data <- if (auto_pre) {
       list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
     } else {
-      adam_db
+      list(adam_db = adam_db)
     }
 
     res_tlg <- list(tlg = do.call(object@main, c(proc_data, optional_arg)))
@@ -253,27 +253,29 @@ setMethod(
 #' Create Pre Processing Script
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param con (`connection`) where the output is saved.
-#' @param dct (`list`) with the name and value of custom arguments
+#' @param dct (`list`) with the name and value of custom arguments.
+#' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the prepocessing step is printed.
+#' @param con (`connection` or `string`) to store the resulting script.
 #'
 #' @rdname script
 #' @export
-setGeneric("script", function(x, con = stdout(), dict = list()) standardGeneric("script"))
+setGeneric("script", function(x,  dict = list(), details = FALSE, con = NULL) standardGeneric("script"))
 
 #' @rdname script
 #' @export
 setMethod(
   f = "script",
   signature = "chevron_tlg",
-  definition = function(x, con = stdout(), dict = list()) {
+  definition = function(x, dict = list(), details = FALSE, con = NULL) {
 
-    all_arg <- args(x, omit = c("tlg", "..."), simplify = TRUE)
-    all_arg <- fuse_sequentially(dict, all_arg)
-    names_args <- names(all_arg)
-    val_args <- unname(all_arg)
+    # Construct call for attribution of all arguments
+    simple_arg <- args(x, omit = c("tlg", "..."), simplify = TRUE)
+    simple_arg <- fuse_sequentially(dict, simple_arg)
+    names_args <- names(simple_arg)
+    val_args <- unname(simple_arg)
 
     res <- alist()
-    for(i in seq_along(all_arg)){
+    for(i in seq_along(simple_arg)){
       val <- val_args[[i]]
       id <- names_args[[i]]
 
@@ -284,37 +286,68 @@ setMethod(
       }
     }
 
-    # Construct call for attribution of all arguments
     arg_calls <- mapply(function(x, y) rlang::call2("<-", sym(x), y), as.list(names(res)), res)
 
-    # Construct argument list for each function
-    all_arg <- args(x, omit = c("..."), simplify = FALSE)
+    # Construct argument list for each function.
+    all_arg <- args(x, omit = c("...", "tlg"), simplify = FALSE)
 
     arg_pre <- lapply(names(all_arg$preprocess), sym)
     names(arg_pre) <- arg_pre
 
+    # Construct argument list of main function.
     arg_main <- lapply(names(all_arg$main), sym)
     names(arg_main) <- arg_main
     arg_main$adam_db <- sym("proc_data")
 
+    # Construct argument list of postprocess function.
     arg_post <- lapply(names(all_arg$post), sym)
     names(arg_post) <- arg_post
-    arg_post$tlg <- sym("tlg")
+
+    # Construct the call for the main and post process function.
+    fun_def <- if (details) {
+      c(
+        deparse(rlang::call2("<-", sym("main_fun"), x@main)),
+        deparse(rlang::call2("<-", sym("postprocess_fun"), x@postprocess))
+      )
+    } else {
+      NULL
+    }
+
+    # Execute either the main and post function separately or together using `run`.
+    fun_exec <- if (details) {
+      arg_post$tlg <- sym("tlg")
+      c(
+        deparse(rlang::call2("<-", sym("tlg"), rlang::call2("main_fun", !!!arg_main))),
+        deparse(rlang::call2("<-", sym("final_tlg"), rlang::call2("postprocess_fun", !!!arg_post)))
+      )
+    } else {
+      main_post_arg <- fuse_sequentially(arg_main, arg_post)
+      deparse(
+        rlang::call2(
+          "<-",
+          sym("final_tlg"),
+          rlang::call2("run", substitute(x), auto_pre = FALSE, !!!main_post_arg)
+        )
+      )
+    }
 
     spt <- c(
       "\n# Arguments definition ----\n",
       lapply(arg_calls, deparse),
       "\n# Functions definition ----\n",
       deparse(rlang::call2("<-", sym("preprocess_fun"), x@preprocess)),
-      deparse(rlang::call2("<-", sym("main_fun"), x@main)),
-      deparse(rlang::call2("<-", sym("postprocess_fun"), x@postprocess)),
+      fun_def,
       "\n# Functions execution ----\n",
       deparse(rlang::call2("<-", sym("proc_data"), rlang::call2("preprocess_fun", !!!arg_pre))),
-      deparse(rlang::call2("<-", sym("tlg"), rlang::call2("main_fun", !!!arg_main))),
-      deparse(rlang::call2("<-", sym("final_tlg"), rlang::call2("postprocess_fun", !!!arg_post)))
+      fun_exec
     )
 
-    writeLines(unlist(spt), con = con)
+    if (is.null(con)) {
+      unlist(spt)
+    } else {
+      writeLines(unlist(spt), con = con)
+    }
+
   }
 )
 

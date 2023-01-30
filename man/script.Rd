@@ -5,16 +5,18 @@
 \alias{script,chevron_tlg-method}
 \title{Create Pre Processing Script}
 \usage{
-script(x, con = stdout(), dict = list())
+script(x, dict = list(), details = FALSE, con = NULL)
 
-\S4method{script}{chevron_tlg}(x, con = stdout(), dict = list())
+\S4method{script}{chevron_tlg}(x, dict = list(), details = FALSE, con = NULL)
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
-\item{con}{(\code{connection}) where the output is saved.}
+\item{details}{(\code{flag}) whether to show the code of all function. By default, only the detail of the code of the prepocessing step is printed.}
 
-\item{dct}{(\code{list}) with the name and value of custom arguments}
+\item{con}{(\code{connection} or \code{string}) to store the resulting script.}
+
+\item{dct}{(\code{list}) with the name and value of custom arguments.}
 }
 \description{
 Create Pre Processing Script
