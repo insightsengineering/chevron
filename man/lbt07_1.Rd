@@ -97,8 +97,8 @@ overview of the analysis values and its change from baseline of each respective 
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"USUBJID"}, \code{"ATOXGR"}, \code{"AVISIT"}, \code{"ANL01FL"},
-\code{"ONTRTFL"}, \code{"WGRLOFL"},\code{"WGRHIFL"},and column specified by \code{armvar}.
+\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"USUBJID"}, \code{"ATOXGR"},
+\code{"ONTRTFL"} and column specified by \code{armvar}.
 }
 }
 \examples{

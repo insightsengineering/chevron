@@ -16,8 +16,8 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"ATOXGR"`, `"AVISIT"`, `"ANL01FL"`,
-#'  `"ONTRTFL"`, `"WGRLOFL"`,`"WGRHIFL"`,and column specified by `armvar`.
+#'  * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"ATOXGR"`,
+#'  `"ONTRTFL"` and column specified by `armvar`.
 #'
 #' @export
 #'
@@ -97,7 +97,7 @@ lbt07_1_lyt <- function(armvar,
     count_abnormal_by_worst_grade(
       var = "GRADE_ANL",
       variables = list(id = "USUBJID", param = "PARAM", grade_dir = "GRADE_DIR"),
-      .formats = list(count_fraction = format_count_fraction_fixed_dp),
+      .formats = list(count_fraction = tern::format_count_fraction_fixed_dp),
       .indent_mods = 4L
     ) %>%
     append_topleft("    Highest NCI CTCAE Grade")
@@ -116,11 +116,8 @@ lbt07_1_pre <- function(adam_db, ...) {
   db <- adam_db %>%
     dm_zoom_to("adlb") %>%
     filter(
-      .data$ANL01FL == "Y",
-      !.data$AVISIT %in% c("SCREENING", "BASELINE"),
       .data$ATOXGR != "<Missing>",
-      .data$ONTRTFL == "Y",
-      .data$WGRLOFL == "Y" | .data$WGRHIFL == "Y"
+      .data$ONTRTFL == "Y"
     ) %>%
     mutate(
       GRADE_DIR = factor(
@@ -155,7 +152,7 @@ lbt07_1_check <- function(adam_db,
 
   msg <- NULL
 
-  adlb_layout_col <- c("USUBJID", "ATOXGR", "AVISIT", "ANL01FL", "ONTRTFL", "WGRLOFL", "WGRHIFL")
+  adlb_layout_col <- c("USUBJID", "ATOXGR", "ONTRTFL")
   adsl_layout_col <- c("USUBJID")
 
   msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
