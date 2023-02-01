@@ -38,8 +38,8 @@ aet03_1_main <- function(adam_db,
     intensity_grade = intensity_grade,
     deco = deco,
     ... = ...
-  ) %>%
-    append_varlabels(df = dbsel$adae, vars = "ASEV", indent = 2L)
+  )
+  # %>% append_varlabels(df = dbsel$adae, vars = "ASEV", indent = 2L)
 
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
 
