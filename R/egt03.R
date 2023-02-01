@@ -91,27 +91,35 @@ egt03_1_lyt <- function(armvar,
 #' @describeIn egt03_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param visitvar Analysis Visit variable, `AVISIT` by default
+#' @param visit_var Analysis Visit variable, `AVISIT` by default
+#' @param paramcd_value Value of PARAMCD variable.
 #' @param ... not used.
 #'
 egt03_1_check <- function(adam_db,
-                          req_tables = c("adeg"),
-                          visitvar = "AVISIT",
+                          req_tables,
+                          visit_var,
+                          paramcd_value,
+                          visit_value,
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
+  checkmate::assert_subset(c(visit_var, "PARAMCD"), colnames(adam_db$adeg))
   msg <- NULL
 
   adeg_layout_col <- "USUBJID"
 
-  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visitvar)))
+  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visit_var)))
 
+  if (!visit_value %in% adam_db$adeg$AVISIT) {
+    warning(sprintf("No record available in [ADEG] with condition [ADEG.%s] = %s.", visit_var, visit_value))
+  }
+  if (!paramcd_value %in% adam_db$adeg$PARAMCD) {
+    warning(sprintf("No record available in [ADEG] with condition [ADEG.PARAMCD] = %s.", paramcd_value))
+  }
   if (is.null(msg)) {
     TRUE
   } else {
-    stop(paste(msg))
+    stop(paste(msg, sep = "\n"))
   }
-  checkmate::assert_true(c("POST-BASELINE MINIMUM") %in% adam_db$adeg$AVISIT)
-  checkmate::assert_true(c("HR") %in% adam_db$adeg$PARAMCD)
 }
 
 #' @describeIn egt03_1 Preprocessing
@@ -120,16 +128,15 @@ egt03_1_check <- function(adam_db,
 #' @param ... not used.
 #'
 #' @export
-#'
-egt03_1_pre <- function(adam_db, ...) {
+egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
   checkmate::assert_class(adam_db, "dm")
-  egt03_1_check(adam_db, ...)
+  visit_value <- "POST-BASELINE MINIMUM"
+  egt03_1_check(adam_db, visit_var = "AVISIT", paramcd_value = paramcd_value, visit_value = visit_value, ...)
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      PARAMCD == "HR" & # Heart Rate
-        ONTRTFL == "Y" & # "On Treatment Record Flag"
-        AVISIT == "POST-BASELINE MINIMUM" # "Analysis Visit"
+      PARAMCD == paramcd_value &
+      !!sym(visit_var) == visit_value # "Analysis Visit"
     ) %>%
     mutate(min_label = "Minimum Post-Baseline Assessment") %>%
     mutate(BNRIND = factor(
@@ -268,32 +275,6 @@ egt03_2_lyt <- function(armvar,
     append_topleft(lbl_summaryvars)
 }
 
-#' @describeIn egt03_2 Checks
-#'
-#' @inheritParams gen_args
-#' @param visitvar Analysis Visit variable, `AVISIT` by default
-#' @param ... not used.
-#'
-egt03_2_check <- function(adam_db,
-                          req_tables = c("adeg"),
-                          visitvar = "AVISIT",
-                          ...) {
-  assert_all_tablenames(adam_db, req_tables)
-  msg <- NULL
-
-  adeg_layout_col <- "USUBJID"
-
-  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visitvar)))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg))
-  }
-  checkmate::assert_true(c("POST-BASELINE MAXIMUM") %in% adam_db$adeg$AVISIT)
-  checkmate::assert_true(c("HR") %in% adam_db$adeg$PARAMCD)
-}
-
 #' @describeIn egt03_2 Preprocessing
 #'
 #' @inheritParams gen_args
@@ -301,17 +282,18 @@ egt03_2_check <- function(adam_db,
 #'
 #' @export
 #'
-egt03_2_pre <- function(adam_db, ...) {
+egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
   checkmate::assert_class(adam_db, "dm")
-  egt03_2_check(adam_db, ...)
-
+  visit_value <- "POST-BASELINE MAXIMUM"
+  egt03_1_check(
+    adam_db, req_tables = "adeg", visit_var = "AVISIT", 
+    paramcd_value = paramcd_value, visit_value = visit_value, ...
+  )
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      PARAMCD == "HR" & # Heart Rate
-        SAFFL == "Y" & # "Safety Population Flag"
-        ONTRTFL == "Y" & # "On Treatment Record Flag"
-        AVISIT == "POST-BASELINE MAXIMUM" # "Analysis Visit"
+      PARAMCD == paramcd_value &
+      !!sym(visit_var) == visit_value # "Analysis Visit"
     ) %>%
     mutate(max_label = "Maximum Post-Baseline Assessment") %>%
     mutate(BNRIND = factor(

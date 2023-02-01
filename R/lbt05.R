@@ -22,15 +22,17 @@ lbt05_1_main <- function(adam_db,
                          lbl_anrind = "Direction of Abnormality",
                          deco = std_deco("LBT05"),
                          ...) {
-  map <- unique(
-    adam_db$adlb[
-      adam_db$adlb$abn_dir %in% c("Low", "High") & adam_db$adlb$AVALCAT1 != "<Missing>", c("PARAM", "abn_dir")
-    ]
-  ) %>%
-    lapply(as.character) %>%
-    as.data.frame() %>%
+  map <- adam_db %>%
+    pull_tbl(adlb) %>%
+    select(PARAM, abn_dir) %>%
+    unique() %>%
     arrange(PARAM, desc(abn_dir))
-
+  if (nrow(map) == 0) {
+    map <- expand.grid(
+      PARAM = if (is.factor(map$PARAM)) levels(map$PARAM) else "Missing", abn_dir = c("Low", "High"), stringsAsFactors = FALSE
+    )
+  }
+  map <- mutate_all(map, as.character)
   lyt <- lbt05_1_lyt(
     armvar = armvar,
     lbl_param = lbl_param,
@@ -87,10 +89,10 @@ lbt05_1_lyt <- function(armvar,
 #'
 #' @export
 #'
-lbt05_1_pre <- function(adam_db, ...) {
+lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  lbt05_1_check(adam_db, ...)
+  lbt05_1_check(adam_db, armvar = armvar, req_tables = "adlb", ...)
 
   db <- adam_db %>%
     dm_zoom_to("adlb") %>%
@@ -117,11 +119,11 @@ lbt05_1_pre <- function(adam_db, ...) {
 
   db <- dunlin::apply_reformat(db, new_format)
 
-  if (all(db$adlb$abn_dir == "<Missing>") || all(db$adlb$AVALCAT1 == "<Missing>")) {
-    stop("Abnormality mapping cannot be constructed if all values of ANRIND or AVALCAT1 are missing.")
-  }
-
-  db
+  db %>%
+    dm_zoom_to("adlb") %>%
+    filter(AVALCAT1 != "<Missing>") %>%
+    filter(abn_dir %in% c("Low", "High")) %>%
+    dm_update_zoomed()
 }
 
 #' @describeIn lbt05_1 Checks
@@ -130,8 +132,8 @@ lbt05_1_pre <- function(adam_db, ...) {
 #' @param ... not used.
 #'
 lbt05_1_check <- function(adam_db,
-                          req_tables = c("adsl", "adlb"),
-                          armvar = "ACTARM",
+                          req_tables,
+                          armvar,
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
