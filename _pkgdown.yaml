@@ -68,12 +68,15 @@ reference:
       - lbt01_1
       - lbt04_1
       - lbt05_1
+      - lbt14_1
+      - lbt14_2
       - mht01_1
       - mng01_1
       - vst01_1
       - vst02_1
       - vst02_2
       - pdt01_1
+      - pdt02_1
 
   - title: Utility Functions
     contents:

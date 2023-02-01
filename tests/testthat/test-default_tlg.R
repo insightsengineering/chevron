@@ -173,6 +173,20 @@ test_that("lbt05_1 functions with default argument value return expected result 
   expect_snapshot(res)
 })
 
+test_that("lbt14_1 functions with default argument value return expected result with test data", {
+  pre_data <- lbt14_1_pre(syn_data)
+  raw_res <- lbt14_1_main(pre_data)
+  res <- lbt14_1_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("lbt14_2 functions with default argument value return expected result with test data", {
+  pre_data <- lbt14_2_pre(syn_data)
+  raw_res <- lbt14_2_main(pre_data)
+  res <- lbt14_2_post(raw_res)
+  expect_snapshot(res)
+})
+
 test_that("mht01_1 functions with default argument value return expected result with test data", {
   pre_data <- mht01_1_pre(syn_data)
   raw_res <- mht01_1_main(pre_data)
@@ -205,5 +219,12 @@ test_that("vst02_2 functions with default argument value return expected result 
   pre_data <- vst02_2_pre(syn_data)
   raw_res <- vst02_2_main(pre_data)
   res <- vst02_2_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("pdt02_1 function with default argument value return expected result with test data", {
+  pre_data <- pdt02_1_pre(syn_data)
+  raw_res <- pdt02_1_main(pre_data)
+  res <- pdt02_1_post(raw_res)
   expect_snapshot(res)
 })
