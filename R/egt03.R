@@ -131,7 +131,10 @@ egt03_1_check <- function(adam_db,
 egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
   checkmate::assert_class(adam_db, "dm")
   visit_value <- "POST-BASELINE MINIMUM"
-  egt03_1_check(adam_db, visit_var = "AVISIT", paramcd_value = paramcd_value, visit_value = visit_value, ...)
+  egt03_1_check(
+    adam_db, req_tables = "adeg", visit_var = "AVISIT",
+    paramcd_value = paramcd_value, visit_value = visit_value, ...
+  )
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(

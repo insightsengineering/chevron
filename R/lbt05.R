@@ -26,13 +26,14 @@ lbt05_1_main <- function(adam_db,
     pull_tbl(adlb) %>%
     select(PARAM, abn_dir) %>%
     unique() %>%
-    arrange(PARAM, desc(abn_dir))
+    arrange(PARAM, abn_dir) %>%
+    mutate_all(as.character) %>%
+    filter(abn_dir != "<Missing>")
   if (nrow(map) == 0) {
     map <- expand.grid(
-      PARAM = if (is.factor(map$PARAM)) levels(map$PARAM) else "Missing", abn_dir = c("Low", "High"), stringsAsFactors = FALSE
+      PARAM = if (is.factor(adam_db$adlb$PARAM)) levels(adam_db$adlb$PARAM) else "Missing", abn_dir = c("Low", "High"), stringsAsFactors = FALSE
     )
   }
-  map <- mutate_all(map, as.character)
   lyt <- lbt05_1_lyt(
     armvar = armvar,
     lbl_param = lbl_param,
@@ -89,7 +90,7 @@ lbt05_1_lyt <- function(armvar,
 #'
 #' @export
 #'
-lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
+lbt05_1_pre <- function(adam_db, armvar = "ACTARM", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   lbt05_1_check(adam_db, armvar = armvar, req_tables = "adlb", ...)
@@ -119,11 +120,6 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
 
   db <- dunlin::apply_reformat(db, new_format)
 
-  db %>%
-    dm_zoom_to("adlb") %>%
-    filter(AVALCAT1 != "<Missing>") %>%
-    filter(abn_dir %in% c("Low", "High")) %>%
-    dm_update_zoomed()
 }
 
 #' @describeIn lbt05_1 Checks
