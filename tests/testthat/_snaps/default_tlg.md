@@ -57,286 +57,286 @@
     Code
       res
     Output
-        MedDRA System Organ Class                                    A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term                                       (N=134)       (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one adverse event     122 (91%)    123 (91.8%)    120 (90.9%)  
-        Overall total number of events                                  609           622            703      
-        cl A.1                                                                                                
-          Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  
-          Total number of events                                        132           130            160      
-          dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  
-          dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  
-        cl B.2                                                                                                
-          Total number of patients with at least one adverse event    79 (59%)    74 (55.2%)      85 (64.4%)  
-          Total number of events                                        129           138            143      
-          dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  
-          dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  
-        cl D.1                                                                                                
-          Total number of patients with at least one adverse event    79 (59%)     67 (50%)       80 (60.6%)  
-          Total number of events                                        127           106            135      
-          dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
-        cl D.2                                                                                                
-          Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          Total number of events                                         62           72              74      
-          dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-        cl B.1                                                                                                
-          Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-          Total number of events                                         56           60              62      
-          dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
-        cl C.2                                                                                                
-          Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          Total number of events                                         48           53              65      
-          dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
-        cl C.1                                                                                                
-          Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  
-          Total number of events                                         55           63              64      
-          dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
+        MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                   609           622            703      
+        cl A.1                                                                                                 
+          Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          Total number of events                                         132           130            160      
+          dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
+          dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        cl B.2                                                                                                 
+          Total number of patients with at least one adverse event   79 (59.0%)    74 (55.2%)      85 (64.4%)  
+          Total number of events                                         129           138            143      
+          dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        cl D.1                                                                                                 
+          Total number of patients with at least one adverse event   79 (59.0%)    67 (50.0%)      80 (60.6%)  
+          Total number of events                                         127           106            135      
+          dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        cl D.2                                                                                                 
+          Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          Total number of events                                         62            72              74      
+          dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        cl B.1                                                                                                 
+          Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          Total number of events                                         56            60              62      
+          dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        cl C.2                                                                                                 
+          Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          Total number of events                                         48            53              65      
+          dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        cl C.1                                                                                                 
+          Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          Total number of events                                         55            63              64      
+          dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
 # aet02_2 functions with default argument value return expected result with test data
 
     Code
       res
     Output
-        MedDRA System Organ Class                                                                               
-          MedDRA High-Level Term                                       A: Drug X    B: Placebo    C: Combination
-            MedDRA Preferred Term                                       (N=134)       (N=134)        (N=132)    
-        ————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one adverse event       122 (91%)    123 (91.8%)    120 (90.9%)  
-        Overall total number of events                                    609           622            703      
-        cl A.1                                                                                                  
-          Total number of patients with at least one adverse event     78 (58.2%)    75 (56%)       89 (67.4%)  
-          Total number of events                                          132           130            160      
-          hlt A.1.1.1                                                                                           
-            Total number of patients with at least one adverse event   78 (58.2%)    75 (56%)       89 (67.4%)  
-            Total number of events                                        132           130            160      
-            dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  
-            dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  
-        cl B.2                                                                                                  
-          Total number of patients with at least one adverse event      79 (59%)    74 (55.2%)      85 (64.4%)  
-          Total number of events                                          129           138            143      
-          hlt B.2.2.3                                                                                           
-            Total number of patients with at least one adverse event   48 (35.8%)   54 (40.3%)      51 (38.6%)  
-            Total number of events                                         64           76              77      
-            dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  
-          hlt B.2.1.2                                                                                           
-            Total number of patients with at least one adverse event   49 (36.6%)   44 (32.8%)      52 (39.4%)  
-            Total number of events                                         65           62              66      
-            dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  
-        cl D.1                                                                                                  
-          Total number of patients with at least one adverse event      79 (59%)     67 (50%)       80 (60.6%)  
-          Total number of events                                          127           106            135      
-          hlt D.1.1.1                                                                                           
-            Total number of patients with at least one adverse event   50 (37.3%)   42 (31.3%)      51 (38.6%)  
-            Total number of events                                         61           51              71      
-            dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
-          hlt D.1.1.4                                                                                           
-            Total number of patients with at least one adverse event   48 (35.8%)   42 (31.3%)      50 (37.9%)  
-            Total number of events                                         66           55              64      
-            dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
-        cl D.2                                                                                                  
-          Total number of patients with at least one adverse event     47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          Total number of events                                           62           72              74      
-          hlt D.2.1.5                                                                                           
-            Total number of patients with at least one adverse event   47 (35.1%)   58 (43.3%)      57 (43.2%)  
-            Total number of events                                         62           72              74      
-            dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-        cl B.1                                                                                                  
-          Total number of patients with at least one adverse event     47 (35.1%)   49 (36.6%)      43 (32.6%)  
-          Total number of events                                           56           60              62      
-          hlt B.1.1.1                                                                                           
-            Total number of patients with at least one adverse event   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-            Total number of events                                         56           60              62      
-            dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
-        cl C.2                                                                                                  
-          Total number of patients with at least one adverse event     35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          Total number of events                                           48           53              65      
-          hlt C.2.1.2                                                                                           
-            Total number of patients with at least one adverse event   35 (26.1%)   48 (35.8%)      55 (41.7%)  
-            Total number of events                                         48           53              65      
-            dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
-        cl C.1                                                                                                  
-          Total number of patients with at least one adverse event     43 (32.1%)   46 (34.3%)      43 (32.6%)  
-          Total number of events                                           55           63              64      
-          hlt C.1.1.1                                                                                           
-            Total number of patients with at least one adverse event   43 (32.1%)   46 (34.3%)      43 (32.6%)  
-            Total number of events                                         55           63              64      
-            dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
+        MedDRA System Organ Class                                                                                
+          MedDRA High-Level Term                                        A: Drug X    B: Placebo    C: Combination
+            MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event       122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                     609           622            703      
+        cl A.1                                                                                                   
+          Total number of patients with at least one adverse event     78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          Total number of events                                           132           130            160      
+          hlt A.1.1.1                                                                                            
+            Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
+            Total number of events                                         132           130            160      
+            dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
+            dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        cl B.2                                                                                                   
+          Total number of patients with at least one adverse event     79 (59.0%)    74 (55.2%)      85 (64.4%)  
+          Total number of events                                           129           138            143      
+          hlt B.2.2.3                                                                                            
+            Total number of patients with at least one adverse event   48 (35.8%)    54 (40.3%)      51 (38.6%)  
+            Total number of events                                         64            76              77      
+            dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          hlt B.2.1.2                                                                                            
+            Total number of patients with at least one adverse event   49 (36.6%)    44 (32.8%)      52 (39.4%)  
+            Total number of events                                         65            62              66      
+            dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        cl D.1                                                                                                   
+          Total number of patients with at least one adverse event     79 (59.0%)    67 (50.0%)      80 (60.6%)  
+          Total number of events                                           127           106            135      
+          hlt D.1.1.1                                                                                            
+            Total number of patients with at least one adverse event   50 (37.3%)    42 (31.3%)      51 (38.6%)  
+            Total number of events                                         61            51              71      
+            dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          hlt D.1.1.4                                                                                            
+            Total number of patients with at least one adverse event   48 (35.8%)    42 (31.3%)      50 (37.9%)  
+            Total number of events                                         66            55              64      
+            dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        cl D.2                                                                                                   
+          Total number of patients with at least one adverse event     47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          Total number of events                                           62            72              74      
+          hlt D.2.1.5                                                                                            
+            Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  
+            Total number of events                                         62            72              74      
+            dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        cl B.1                                                                                                   
+          Total number of patients with at least one adverse event     47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          Total number of events                                           56            60              62      
+          hlt B.1.1.1                                                                                            
+            Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  
+            Total number of events                                         56            60              62      
+            dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        cl C.2                                                                                                   
+          Total number of patients with at least one adverse event     35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          Total number of events                                           48            53              65      
+          hlt C.2.1.2                                                                                            
+            Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  
+            Total number of events                                         48            53              65      
+            dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        cl C.1                                                                                                   
+          Total number of patients with at least one adverse event     43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          Total number of events                                           55            63              64      
+          hlt C.1.1.1                                                                                            
+            Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
+            Total number of events                                         55            63              64      
+            dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
 # aet02_3 functions with default argument value return expected result with test data
 
     Code
       res
     Output
-        MedDRA Preferred Term                                      A: Drug X    B: Placebo    C: Combination
-                                                                    (N=134)       (N=134)        (N=132)    
-        ————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one adverse event   122 (91%)    123 (91.8%)    120 (90.9%)  
-        Total number of events                                        609           622            703      
-        dcd D.2.1.5.3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-        dcd A.1.1.1.1                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  
-        dcd B.2.2.3.1                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  
-        dcd A.1.1.1.2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  
-        dcd B.2.1.2.1                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  
-        dcd D.1.1.1.1                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
-        dcd D.1.1.4.2                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
-        dcd B.1.1.1.1                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
-        dcd C.2.1.2.1                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
-        dcd C.1.1.1.3                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
+        MedDRA Preferred Term                                       A: Drug X    B: Placebo    C: Combination
+                                                                     (N=134)       (N=134)        (N=132)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event   122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Total number of events                                         609           622            703      
+        dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
+        dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
+        dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
+        dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
 # aet03_1 functions with default argument value return expected result with test data
 
     Code
       res
     Output
-        MedDRA System Organ Class   A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term      (N=134)       (N=134)        (N=132)    
-        —————————————————————————————————————————————————————————————————————
-        - Any Intensity -           122 (91%)    123 (91.8%)    120 (90.9%)  
-        MILD                         7 (5.2%)     9 (6.7%)         4 (3%)    
-        MODERATE                    24 (17.9%)   24 (17.9%)      23 (17.4%)  
-        SEVERE                      91 (67.9%)   90 (67.2%)      93 (70.5%)  
-        cl A.1                                                               
-          - Any Intensity -         78 (58.2%)    75 (56%)       89 (67.4%)  
-          MILD                      30 (22.4%)   27 (20.1%)      39 (29.5%)  
-          MODERATE                  48 (35.8%)   48 (35.8%)      50 (37.9%)  
-          dcd A.1.1.1.1                                                      
-            - Any Intensity -       50 (37.3%)   45 (33.6%)      63 (47.7%)  
-            MILD                    50 (37.3%)   45 (33.6%)      63 (47.7%)  
-          dcd A.1.1.1.2                                                      
-            - Any Intensity -       48 (35.8%)   48 (35.8%)      50 (37.9%)  
-            MODERATE                48 (35.8%)   48 (35.8%)      50 (37.9%)  
-        cl B.2                                                               
-          - Any Intensity -          79 (59%)    74 (55.2%)      85 (64.4%)  
-          MILD                      30 (22.4%)   30 (22.4%)       33 (25%)   
-          MODERATE                  49 (36.6%)   44 (32.8%)      52 (39.4%)  
-          dcd B.2.2.3.1                                                      
-            - Any Intensity -       48 (35.8%)   54 (40.3%)      51 (38.6%)  
-            MILD                    48 (35.8%)   54 (40.3%)      51 (38.6%)  
-          dcd B.2.1.2.1                                                      
-            - Any Intensity -       49 (36.6%)   44 (32.8%)      52 (39.4%)  
-            MODERATE                49 (36.6%)   44 (32.8%)      52 (39.4%)  
-        cl D.1                                                               
-          - Any Intensity -          79 (59%)     67 (50%)       80 (60.6%)  
-          MODERATE                  29 (21.6%)   25 (18.7%)       29 (22%)   
-          SEVERE                    50 (37.3%)   42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.1.1                                                      
-            - Any Intensity -       50 (37.3%)   42 (31.3%)      51 (38.6%)  
-            SEVERE                  50 (37.3%)   42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.4.2                                                      
-            - Any Intensity -       48 (35.8%)   42 (31.3%)      50 (37.9%)  
-            MODERATE                48 (35.8%)   42 (31.3%)      50 (37.9%)  
-        cl D.2                                                               
-          - Any Intensity -         47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          MILD                      47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          dcd D.2.1.5.3                                                      
-            - Any Intensity -       47 (35.1%)   58 (43.3%)      57 (43.2%)  
-            MILD                    47 (35.1%)   58 (43.3%)      57 (43.2%)  
-        cl B.1                                                               
-          - Any Intensity -         47 (35.1%)   49 (36.6%)      43 (32.6%)  
-          SEVERE                    47 (35.1%)   49 (36.6%)      43 (32.6%)  
-          dcd B.1.1.1.1                                                      
-            - Any Intensity -       47 (35.1%)   49 (36.6%)      43 (32.6%)  
-            SEVERE                  47 (35.1%)   49 (36.6%)      43 (32.6%)  
-        cl C.2                                                               
-          - Any Intensity -         35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          MODERATE                  35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          dcd C.2.1.2.1                                                      
-            - Any Intensity -       35 (26.1%)   48 (35.8%)      55 (41.7%)  
-            MODERATE                35 (26.1%)   48 (35.8%)      55 (41.7%)  
-        cl C.1                                                               
-          - Any Intensity -         43 (32.1%)   46 (34.3%)      43 (32.6%)  
-          SEVERE                    43 (32.1%)   46 (34.3%)      43 (32.6%)  
-          dcd C.1.1.1.3                                                      
-            - Any Intensity -       43 (32.1%)   46 (34.3%)      43 (32.6%)  
-            SEVERE                  43 (32.1%)   46 (34.3%)      43 (32.6%)  
+        MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————
+        - Any Intensity -           122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        MILD                         7 (5.2%)      9 (6.7%)        4 (3.0%)   
+        MODERATE                    24 (17.9%)    24 (17.9%)      23 (17.4%)  
+        SEVERE                      91 (67.9%)    90 (67.2%)      93 (70.5%)  
+        cl A.1                                                                
+          - Any Intensity -         78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          MILD                      30 (22.4%)    27 (20.1%)      39 (29.5%)  
+          MODERATE                  48 (35.8%)    48 (35.8%)      50 (37.9%)  
+          dcd A.1.1.1.1                                                       
+            - Any Intensity -       50 (37.3%)    45 (33.6%)      63 (47.7%)  
+            MILD                    50 (37.3%)    45 (33.6%)      63 (47.7%)  
+          dcd A.1.1.1.2                                                       
+            - Any Intensity -       48 (35.8%)    48 (35.8%)      50 (37.9%)  
+            MODERATE                48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        cl B.2                                                                
+          - Any Intensity -         79 (59.0%)    74 (55.2%)      85 (64.4%)  
+          MILD                      30 (22.4%)    30 (22.4%)      33 (25.0%)  
+          MODERATE                  49 (36.6%)    44 (32.8%)      52 (39.4%)  
+          dcd B.2.2.3.1                                                       
+            - Any Intensity -       48 (35.8%)    54 (40.3%)      51 (38.6%)  
+            MILD                    48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          dcd B.2.1.2.1                                                       
+            - Any Intensity -       49 (36.6%)    44 (32.8%)      52 (39.4%)  
+            MODERATE                49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        cl D.1                                                                
+          - Any Intensity -         79 (59.0%)    67 (50.0%)      80 (60.6%)  
+          MODERATE                  29 (21.6%)    25 (18.7%)      29 (22.0%)  
+          SEVERE                    50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          dcd D.1.1.1.1                                                       
+            - Any Intensity -       50 (37.3%)    42 (31.3%)      51 (38.6%)  
+            SEVERE                  50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          dcd D.1.1.4.2                                                       
+            - Any Intensity -       48 (35.8%)    42 (31.3%)      50 (37.9%)  
+            MODERATE                48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        cl D.2                                                                
+          - Any Intensity -         47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          MILD                      47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          dcd D.2.1.5.3                                                       
+            - Any Intensity -       47 (35.1%)    58 (43.3%)      57 (43.2%)  
+            MILD                    47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        cl B.1                                                                
+          - Any Intensity -         47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          SEVERE                    47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          dcd B.1.1.1.1                                                       
+            - Any Intensity -       47 (35.1%)    49 (36.6%)      43 (32.6%)  
+            SEVERE                  47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        cl C.2                                                                
+          - Any Intensity -         35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          MODERATE                  35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          dcd C.2.1.2.1                                                       
+            - Any Intensity -       35 (26.1%)    48 (35.8%)      55 (41.7%)  
+            MODERATE                35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        cl C.1                                                                
+          - Any Intensity -         43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          SEVERE                    43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          dcd C.1.1.1.3                                                       
+            - Any Intensity -       43 (32.1%)    46 (34.3%)      43 (32.6%)  
+            SEVERE                  43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
 # aet04_1 functions with default argument value return expected result with test data
 
     Code
       res
     Output
-        MedDRA System Organ Class   A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term      (N=134)       (N=134)        (N=132)    
-        —————————————————————————————————————————————————————————————————————
-        Any Grade                   122 (91%)    123 (91.8%)    120 (90.9%)  
-        Grade 1-2                   13 (9.7%)    19 (14.2%)      11 (8.3%)   
-        1                            7 (5.2%)     9 (6.7%)         4 (3%)    
-        2                            6 (4.5%)     10 (7.5%)       7 (5.3%)   
-        Grade 3-4                   33 (24.6%)   34 (25.4%)      34 (25.8%)  
-        3                           18 (13.4%)   14 (10.4%)      16 (12.1%)  
-        4                           15 (11.2%)   20 (14.9%)      18 (13.6%)  
-        Grade 5                     76 (56.7%)   70 (52.2%)      75 (56.8%)  
-        cl A.1                                                               
-          Any Grade                 78 (58.2%)    75 (56%)       89 (67.4%)  
-          Grade 1-2                 78 (58.2%)    75 (56%)       89 (67.4%)  
-          1                         30 (22.4%)   27 (20.1%)      39 (29.5%)  
-          2                         48 (35.8%)   48 (35.8%)      50 (37.9%)  
-          dcd A.1.1.1.1                                                      
-            Any Grade               50 (37.3%)   45 (33.6%)      63 (47.7%)  
-            Grade 1-2               50 (37.3%)   45 (33.6%)      63 (47.7%)  
-            1                       50 (37.3%)   45 (33.6%)      63 (47.7%)  
-          dcd A.1.1.1.2                                                      
-            Any Grade               48 (35.8%)   48 (35.8%)      50 (37.9%)  
-            Grade 1-2               48 (35.8%)   48 (35.8%)      50 (37.9%)  
-            2                       48 (35.8%)   48 (35.8%)      50 (37.9%)  
-        cl B.2                                                               
-          Any Grade                  79 (59%)    74 (55.2%)      85 (64.4%)  
-          Grade 1-2                 30 (22.4%)   30 (22.4%)       33 (25%)   
-          1                         30 (22.4%)   30 (22.4%)       33 (25%)   
-          Grade 3-4                 49 (36.6%)   44 (32.8%)      52 (39.4%)  
-          3                         49 (36.6%)   44 (32.8%)      52 (39.4%)  
-          dcd B.2.2.3.1                                                      
-            Any Grade               48 (35.8%)   54 (40.3%)      51 (38.6%)  
-            Grade 1-2               48 (35.8%)   54 (40.3%)      51 (38.6%)  
-            1                       48 (35.8%)   54 (40.3%)      51 (38.6%)  
-          dcd B.2.1.2.1                                                      
-            Any Grade               49 (36.6%)   44 (32.8%)      52 (39.4%)  
-            Grade 3-4               49 (36.6%)   44 (32.8%)      52 (39.4%)  
-            3                       49 (36.6%)   44 (32.8%)      52 (39.4%)  
-        cl D.1                                                               
-          Any Grade                  79 (59%)     67 (50%)       80 (60.6%)  
-          Grade 3-4                 29 (21.6%)   25 (18.7%)       29 (22%)   
-          3                         29 (21.6%)   25 (18.7%)       29 (22%)   
-          Grade 5                   50 (37.3%)   42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.1.1                                                      
-            Any Grade               50 (37.3%)   42 (31.3%)      51 (38.6%)  
-            Grade 5                 50 (37.3%)   42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.4.2                                                      
-            Any Grade               48 (35.8%)   42 (31.3%)      50 (37.9%)  
-            Grade 3-4               48 (35.8%)   42 (31.3%)      50 (37.9%)  
-            3                       48 (35.8%)   42 (31.3%)      50 (37.9%)  
-        cl D.2                                                               
-          Any Grade                 47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          Grade 1-2                 47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          1                         47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          dcd D.2.1.5.3                                                      
-            Any Grade               47 (35.1%)   58 (43.3%)      57 (43.2%)  
-            Grade 1-2               47 (35.1%)   58 (43.3%)      57 (43.2%)  
-            1                       47 (35.1%)   58 (43.3%)      57 (43.2%)  
-        cl B.1                                                               
-          Any Grade                 47 (35.1%)   49 (36.6%)      43 (32.6%)  
-          Grade 5                   47 (35.1%)   49 (36.6%)      43 (32.6%)  
-          dcd B.1.1.1.1                                                      
-            Any Grade               47 (35.1%)   49 (36.6%)      43 (32.6%)  
-            Grade 5                 47 (35.1%)   49 (36.6%)      43 (32.6%)  
-        cl C.2                                                               
-          Any Grade                 35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          Grade 1-2                 35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          2                         35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          dcd C.2.1.2.1                                                      
-            Any Grade               35 (26.1%)   48 (35.8%)      55 (41.7%)  
-            Grade 1-2               35 (26.1%)   48 (35.8%)      55 (41.7%)  
-            2                       35 (26.1%)   48 (35.8%)      55 (41.7%)  
-        cl C.1                                                               
-          Any Grade                 43 (32.1%)   46 (34.3%)      43 (32.6%)  
-          Grade 3-4                 43 (32.1%)   46 (34.3%)      43 (32.6%)  
-          4                         43 (32.1%)   46 (34.3%)      43 (32.6%)  
-          dcd C.1.1.1.3                                                      
-            Any Grade               43 (32.1%)   46 (34.3%)      43 (32.6%)  
-            Grade 3-4               43 (32.1%)   46 (34.3%)      43 (32.6%)  
-            4                       43 (32.1%)   46 (34.3%)      43 (32.6%)  
+        MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————
+        Any Grade                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Grade 1-2                    13 (9.7%)    19 (14.2%)      11 (8.3%)   
+        1                            7 (5.2%)      9 (6.7%)        4 (3.0%)   
+        2                            6 (4.5%)      10 (7.5%)       7 (5.3%)   
+        Grade 3-4                   33 (24.6%)    34 (25.4%)      34 (25.8%)  
+        3                           18 (13.4%)    14 (10.4%)      16 (12.1%)  
+        4                           15 (11.2%)    20 (14.9%)      18 (13.6%)  
+        Grade 5                     76 (56.7%)    70 (52.2%)      75 (56.8%)  
+        cl A.1                                                                
+          Any Grade                 78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          Grade 1-2                 78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          1                         30 (22.4%)    27 (20.1%)      39 (29.5%)  
+          2                         48 (35.8%)    48 (35.8%)      50 (37.9%)  
+          dcd A.1.1.1.1                                                       
+            Any Grade               50 (37.3%)    45 (33.6%)      63 (47.7%)  
+            Grade 1-2               50 (37.3%)    45 (33.6%)      63 (47.7%)  
+            1                       50 (37.3%)    45 (33.6%)      63 (47.7%)  
+          dcd A.1.1.1.2                                                       
+            Any Grade               48 (35.8%)    48 (35.8%)      50 (37.9%)  
+            Grade 1-2               48 (35.8%)    48 (35.8%)      50 (37.9%)  
+            2                       48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        cl B.2                                                                
+          Any Grade                 79 (59.0%)    74 (55.2%)      85 (64.4%)  
+          Grade 1-2                 30 (22.4%)    30 (22.4%)      33 (25.0%)  
+          1                         30 (22.4%)    30 (22.4%)      33 (25.0%)  
+          Grade 3-4                 49 (36.6%)    44 (32.8%)      52 (39.4%)  
+          3                         49 (36.6%)    44 (32.8%)      52 (39.4%)  
+          dcd B.2.2.3.1                                                       
+            Any Grade               48 (35.8%)    54 (40.3%)      51 (38.6%)  
+            Grade 1-2               48 (35.8%)    54 (40.3%)      51 (38.6%)  
+            1                       48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          dcd B.2.1.2.1                                                       
+            Any Grade               49 (36.6%)    44 (32.8%)      52 (39.4%)  
+            Grade 3-4               49 (36.6%)    44 (32.8%)      52 (39.4%)  
+            3                       49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        cl D.1                                                                
+          Any Grade                 79 (59.0%)    67 (50.0%)      80 (60.6%)  
+          Grade 3-4                 29 (21.6%)    25 (18.7%)      29 (22.0%)  
+          3                         29 (21.6%)    25 (18.7%)      29 (22.0%)  
+          Grade 5                   50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          dcd D.1.1.1.1                                                       
+            Any Grade               50 (37.3%)    42 (31.3%)      51 (38.6%)  
+            Grade 5                 50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          dcd D.1.1.4.2                                                       
+            Any Grade               48 (35.8%)    42 (31.3%)      50 (37.9%)  
+            Grade 3-4               48 (35.8%)    42 (31.3%)      50 (37.9%)  
+            3                       48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        cl D.2                                                                
+          Any Grade                 47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          Grade 1-2                 47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          1                         47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          dcd D.2.1.5.3                                                       
+            Any Grade               47 (35.1%)    58 (43.3%)      57 (43.2%)  
+            Grade 1-2               47 (35.1%)    58 (43.3%)      57 (43.2%)  
+            1                       47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        cl B.1                                                                
+          Any Grade                 47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          Grade 5                   47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          dcd B.1.1.1.1                                                       
+            Any Grade               47 (35.1%)    49 (36.6%)      43 (32.6%)  
+            Grade 5                 47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        cl C.2                                                                
+          Any Grade                 35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          Grade 1-2                 35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          2                         35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          dcd C.2.1.2.1                                                       
+            Any Grade               35 (26.1%)    48 (35.8%)      55 (41.7%)  
+            Grade 1-2               35 (26.1%)    48 (35.8%)      55 (41.7%)  
+            2                       35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        cl C.1                                                                
+          Any Grade                 43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          Grade 3-4                 43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          4                         43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          dcd C.1.1.1.3                                                       
+            Any Grade               43 (32.1%)    46 (34.3%)      43 (32.6%)  
+            Grade 3-4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
+            4                       43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
 # cmt01a_1 functions with default argument value return expected result with test data
 
@@ -346,7 +346,7 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         ATCCLAS2 A                                                                                         
           Total number of patients with at least one treatment   97 (72.4%)    98 (73.1%)     102 (77.3%)  
@@ -362,19 +362,19 @@
           Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
           Total number of treatments                                 264           275            306      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
           medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
           medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
         ATCCLAS2 B p2                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 B p3                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 C                                                                                         
           Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
           Total number of treatments                                 140           140            155      
@@ -398,13 +398,13 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         ATCCLAS2 B                                                                                         
           Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
           Total number of treatments                                 264           275            306      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
           medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
           medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
         ATCCLAS2 A                                                                                         
@@ -417,12 +417,12 @@
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 B p3                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           Total number of treatments                                 139           155            159      
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 C                                                                                         
           Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
           Total number of treatments                                 140           140            155      
@@ -450,7 +450,7 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         ATCCLAS2 A                                                                                         
           Total number of patients with at least one treatment   97 (72.4%)    98 (73.1%)     102 (77.3%)  
@@ -463,17 +463,17 @@
         ATCCLAS2 B                                                                                         
           Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
           medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
           medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
         ATCCLAS2 B p2                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 B p3                                                                                      
           Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
           medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)     55 (41%)       56 (42.4%)  
+          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
         ATCCLAS2 C                                                                                         
           Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
           medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
@@ -491,20 +491,20 @@
     Code
       res
     Output
-        Other Treatment                                        A: Drug X    B: Placebo    C: Combination
-                                                                (N=134)       (N=134)        (N=132)    
-        ————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment   122 (91%)    123 (91.8%)    120 (90.9%)  
-        Total number of treatments                                609           622            703      
-          medname A_1/3                                        54 (40.3%)   49 (36.6%)      69 (52.3%)  
-          medname C_2/2                                        52 (38.8%)   58 (43.3%)      60 (45.5%)  
-          medname B_1/4                                        52 (38.8%)   57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                        52 (38.8%)    55 (41%)       56 (42.4%)  
-          medname A_2/3                                        53 (39.6%)   50 (37.3%)      56 (42.4%)  
-          medname C_1/2                                        51 (38.1%)   50 (37.3%)      56 (42.4%)  
-          medname B_4/4                                        50 (37.3%)   45 (33.6%)      55 (41.7%)  
-          medname A_3/3                                        45 (33.6%)   54 (40.3%)      48 (36.4%)  
-          medname B_3/4                                        47 (35.1%)   47 (35.1%)      52 (39.4%)  
+        Other Treatment                                         A: Drug X    B: Placebo    C: Combination
+                                                                 (N=134)       (N=134)        (N=132)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Total number of treatments                                 609           622            703      
+          medname A_1/3                                        54 (40.3%)    49 (36.6%)      69 (52.3%)  
+          medname C_2/2                                        52 (38.8%)    58 (43.3%)      60 (45.5%)  
+          medname B_1/4                                        52 (38.8%)    57 (42.5%)      59 (44.7%)  
+          medname B_2/4                                        52 (38.8%)    55 (41.0%)      56 (42.4%)  
+          medname A_2/3                                        53 (39.6%)    50 (37.3%)      56 (42.4%)  
+          medname C_1/2                                        51 (38.1%)    50 (37.3%)      56 (42.4%)  
+          medname B_4/4                                        50 (37.3%)    45 (33.6%)      55 (41.7%)  
+          medname A_3/3                                        45 (33.6%)    54 (40.3%)      48 (36.4%)  
+          medname B_3/4                                        47 (35.1%)    47 (35.1%)      52 (39.4%)  
 
 # dmt01_1 functions with default argument value return expected result with test data
 
@@ -913,33 +913,33 @@
     Code
       res
     Output
-        MedDRA System Organ Class                                A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term                                   (N=134)       (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one condition     122 (91%)    123 (91.8%)    120 (90.9%)  
-        Total number of conditions                                  609           622            703      
-        cl A                                                                                              
-          Total number of patients with at least one condition   78 (58.2%)    75 (56%)       89 (67.4%)  
-          Total number of conditions                                132           130            160      
-          trm A_1/2                                              50 (37.3%)   45 (33.6%)      63 (47.7%)  
-          trm A_2/2                                              48 (35.8%)   48 (35.8%)      50 (37.9%)  
-        cl B                                                                                              
-          Total number of patients with at least one condition   96 (71.6%)   89 (66.4%)      97 (73.5%)  
-          Total number of conditions                                185           198            205      
-          trm B_3/3                                              48 (35.8%)   54 (40.3%)      51 (38.6%)  
-          trm B_2/3                                              49 (36.6%)   44 (32.8%)      52 (39.4%)  
-          trm B_1/3                                              47 (35.1%)   49 (36.6%)      43 (32.6%)  
-        cl C                                                                                              
-          Total number of patients with at least one condition    67 (50%)     75 (56%)       79 (59.8%)  
-          Total number of conditions                                103           116            129      
-          trm C_2/2                                              35 (26.1%)   48 (35.8%)      55 (41.7%)  
-          trm C_1/2                                              43 (32.1%)   46 (34.3%)      43 (32.6%)  
-        cl D                                                                                              
-          Total number of patients with at least one condition   96 (71.6%)   90 (67.2%)      98 (74.2%)  
-          Total number of conditions                                189           178            209      
-          trm D_3/3                                              47 (35.1%)   58 (43.3%)      57 (43.2%)  
-          trm D_1/3                                              50 (37.3%)   42 (31.3%)      51 (38.6%)  
-          trm D_2/3                                              48 (35.8%)   42 (31.3%)      50 (37.9%)  
+        MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one condition     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Total number of conditions                                   609           622            703      
+        cl A                                                                                               
+          Total number of patients with at least one condition   78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          Total number of conditions                                 132           130            160      
+          trm A_1/2                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
+          trm A_2/2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        cl B                                                                                               
+          Total number of patients with at least one condition   96 (71.6%)    89 (66.4%)      97 (73.5%)  
+          Total number of conditions                                 185           198            205      
+          trm B_3/3                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          trm B_2/3                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
+          trm B_1/3                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        cl C                                                                                               
+          Total number of patients with at least one condition   67 (50.0%)    75 (56.0%)      79 (59.8%)  
+          Total number of conditions                                 103           116            129      
+          trm C_2/2                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          trm C_1/2                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        cl D                                                                                               
+          Total number of patients with at least one condition   96 (71.6%)    90 (67.2%)      98 (74.2%)  
+          Total number of conditions                                 189           178            209      
+          trm D_3/3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          trm D_1/3                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          trm D_2/3                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
 
 # vst01_1 functions with default argument value return expected result with test data
 

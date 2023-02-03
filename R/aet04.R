@@ -39,6 +39,7 @@ aet04_1_main <- function(adam_db,
 
   checkmate::assert_class(grade_groups, "list")
   invisible(lapply(grade_groups, function(x) checkmate::assert_character(x)))
+  checkmate::assert(all(levels(dbsel$adae[["ATOXGR"]]) %in% c("1", "2", "3", "4", "5", "Missing")))
 
   lyt <- aet04_1_lyt(
     armvar = armvar,
@@ -47,7 +48,6 @@ aet04_1_main <- function(adam_db,
     deco = deco,
     ... = ...
   )
-  # %>% append_varlabels(df = dbsel$adae, vars = "ATOXGR", indent = 2L)
 
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
 
@@ -78,16 +78,14 @@ aet04_1_lyt <- function(armvar,
 
   all_grade_groups <- c(list(`Any Grade` = unique(unlist(grade_groups))), grade_groups)
 
-  checkmate::assert(all(all_grade_groups$`Any Grade` %in% c("1", "2", "3", "4", "5")))
-  # checkmate::assert(all(levels(dbsel$adae[["ATOXGR"]]) %in% all_grade_groups$`Any Grade`))
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = all_grade_groups
+      grade_groups = all_grade_groups,
+      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEBODSYS",
@@ -99,7 +97,8 @@ aet04_1_lyt <- function(armvar,
     ) %>%
     summarize_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = all_grade_groups
+      grade_groups = all_grade_groups,
+      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEDECOD",
