@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9029</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9032</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -106,11 +97,15 @@ a specific class: <code>chevron_t</code> for tables,
 graphs.</p>
 <p>Each standard output is associated with one
 <em><code>chevron_tlg</code> object</em>. They contain the following
-objects in separate slots: * A <code>main</code> function also refereed
-to as <em>TLG-function</em>. * A <code>preprocess</code> function. * A
-<code>postprocess</code> function * A <code>adam_dataset</code>
-character vector of the name of the <code>AdAM</code> datasets required
-to create the output.</p>
+objects in separate slots:</p>
+<ul>
+<li>A <code>main</code> function also refereed to as
+<em>TLG-function</em>.</li>
+<li>A <code>preprocess</code> function.</li>
+<li>A <code>postprocess</code> function</li>
+<li>A <code>adam_dataset</code> character vector of the name of the
+<code>AdAM</code> datasets required to create the output.</li>
+</ul>
 <div class="section level4">
 <h4 id="tlg-functions">
 <em>TLG-functions</em><a class="anchor" aria-label="anchor" href="#tlg-functions"></a>
@@ -156,15 +151,20 @@ checks that will ensure that the <code>dm</code> input can be later
 processed by the <em>TLG-functions</em>.</p>
 <p><em>pre-process</em> in chevron such as <code>dmt01_1_pre</code>,
 <code>aet02_1_pre</code>, <code>aet02_2_pre</code> have the following
-properties: 1. they return a <code>dm</code> object amenable to
-processing by a <em>TLG-functions</em> or return rapidly an
-understandable error message. 1. have very few arguments to modify the
-standard. 1. have always the first argument <code>adam_db</code> which
-is the collection of <code>ADaM</code> datasets (<code>ADSL</code>,
+properties:</p>
+<ol style="list-style-type: decimal">
+<li>they return a <code>dm</code> object amenable to processing by a
+<em>TLG-functions</em> or return rapidly an understandable error
+message.</li>
+<li>have very few arguments to modify the standard.</li>
+<li>have always the first argument <code>adam_db</code> which is the
+collection of <code>ADaM</code> datasets (<code>ADSL</code>,
 <code>ADAE</code>, <code>ADRS</code>, etc.). Please read the <em>The
 <code>adam_db</code> Argument</em> vignette in this package for more
-details. 1. must have the <code>...</code> argument to facilitate their
-incorporation in a workflow.</p>
+details.</li>
+<li>must have the <code>...</code> argument to facilitate their
+incorporation in a workflow.</li>
+</ol>
 </div>
 <div class="section level4">
 <h4 id="post-processing">
@@ -282,7 +282,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562242186a10&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x558080fc5118&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
