@@ -4,7 +4,6 @@
 \name{egt03_2_main}
 \alias{egt03_2_main}
 \alias{egt03_2_lyt}
-\alias{egt03_2_check}
 \alias{egt03_2_pre}
 \alias{egt03_2_post}
 \alias{egt03_2}
@@ -33,9 +32,7 @@ egt03_2_lyt(
   ...
 )
 
-egt03_2_check(adam_db, req_tables = c("adeg"), visitvar = "AVISIT", ...)
-
-egt03_2_pre(adam_db, ...)
+egt03_2_pre(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...)
 
 egt03_2_post(tlg, prune_0 = FALSE, ...)
 
@@ -64,10 +61,6 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{lbl_summaryvars}{(\code{character}) label of the \code{summaryvar} variable.}
 
-\item{req_tables}{(\code{character}) names of the required tables.}
-
-\item{visitvar}{Analysis Visit variable, \code{AVISIT} by default}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
@@ -92,8 +85,6 @@ patient's last observation prior to initiation of study drug.
 \item \code{egt03_2_main()}: Main TLG function
 
 \item \code{egt03_2_lyt()}: Layout
-
-\item \code{egt03_2_check()}: Checks
 
 \item \code{egt03_2_pre()}: Preprocessing
 

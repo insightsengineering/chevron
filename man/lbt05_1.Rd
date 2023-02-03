@@ -24,9 +24,9 @@ lbt05_1_main(
 
 lbt05_1_lyt(armvar, lbl_param, lbl_anrind, map, deco, ...)
 
-lbt05_1_pre(adam_db, ...)
+lbt05_1_pre(adam_db, arm_var = "ACTARM", ...)
 
-lbt05_1_check(adam_db, req_tables = c("adsl", "adlb"), armvar = "ACTARM", ...)
+lbt05_1_check(adam_db, req_tables, armvar, ...)
 
 lbt05_1_post(tlg, ...)
 

@@ -33,9 +33,9 @@ egt03_1_lyt(
   ...
 )
 
-egt03_1_check(adam_db, req_tables = c("adeg"), visitvar = "AVISIT", ...)
+egt03_1_check(adam_db, req_tables, visit_var, paramcd_value, visit_value, ...)
 
-egt03_1_pre(adam_db, ...)
+egt03_1_pre(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...)
 
 egt03_1_post(tlg, prune_0 = FALSE, ...)
 
@@ -66,7 +66,9 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
-\item{visitvar}{Analysis Visit variable, \code{AVISIT} by default}
+\item{visit_var}{Analysis Visit variable, \code{AVISIT} by default}
+
+\item{paramcd_value}{Value of PARAMCD variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

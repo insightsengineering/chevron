@@ -108,12 +108,12 @@ egt03_1_check <- function(adam_db,
   adeg_layout_col <- "USUBJID"
 
   msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visit_var)))
-
-  if (!visit_value %in% adam_db$adeg$AVISIT) {
-    warning(sprintf("No record available in [ADEG] with condition [ADEG.%s] = %s.", visit_var, visit_value))
-  }
-  if (!paramcd_value %in% adam_db$adeg$PARAMCD) {
-    warning(sprintf("No record available in [ADEG] with condition [ADEG.PARAMCD] = %s.", paramcd_value))
+  msg_warn <- c(
+    check_col_contains(adam_db$adeg, visit_value, visit_var, "ADEG"),
+    check_col_contains(adam_db$adeg, paramcd_value, "PARAMCD", "ADEG")
+  )
+  if (!is.null(msg_warn)) {
+    warning(paste(msg_warn, collapse = "\n"), .call = FALSE)
   }
   if (is.null(msg)) {
     TRUE
