@@ -1,4 +1,4 @@
-test_that("aet03 can handle all NA values", {
+test_that("aet03 can handle NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adae") %>%
     mutate(

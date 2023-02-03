@@ -77,7 +77,7 @@ aet03_1_lyt <- function(armvar,
       "AEBODSYS",
       child_labels = "visible",
       nested = TRUE,
-      split_fun = trim_levels_in_group("ASEV"),
+      split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_aebodsys
     ) %>%
@@ -91,7 +91,7 @@ aet03_1_lyt <- function(armvar,
       child_labels = "visible",
       nested = TRUE,
       indent_mod = -1L,
-      split_fun = trim_levels_in_group("ASEV"),
+      split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_aedecod
     ) %>%
