@@ -177,6 +177,8 @@ test_that("lbt07_1 functions with default argument value return expected result 
   pre_data <- lbt07_1_pre(syn_data)
   raw_res <- lbt07_1_main(pre_data)
   res <- lbt07_1_post(raw_res)
+})
+
 test_that("lbt14_1 functions with default argument value return expected result with test data", {
   pre_data <- lbt14_1_pre(syn_data)
   raw_res <- lbt14_1_main(pre_data)
