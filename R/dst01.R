@@ -116,7 +116,7 @@ dst01_1_lyt <- function(armvar,
       vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
     )
 
   layout_table_other <-
@@ -125,7 +125,7 @@ dst01_1_lyt <- function(armvar,
       vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       status_var,
@@ -133,13 +133,13 @@ dst01_1_lyt <- function(armvar,
     ) %>%
     summarize_row_groups(
       label_fstr = "Discontinued Study",
-      format = "xx (xx.x%)"
+      format = format_count_fraction_fixed_dp
     ) %>%
     summarize_vars(
       disc_reason_var,
       .stats = "count_fraction",
       denom = "N_col",
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
     )
 
   list(layout_table_completed, layout_table_other)
@@ -337,7 +337,7 @@ dst01_2_lyt <- function(armvar,
       vars = status_var,
       values = completed_lbl,
       .labels = c(count_fraction = "Completed Study"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
     )
 
   layout_table_other <- layout_table %>%
@@ -345,7 +345,7 @@ dst01_2_lyt <- function(armvar,
       vars = status_var,
       values = ongoing_lbl,
       .labels = c(count_fraction = "Ongoing"),
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       var = status_var,
@@ -353,18 +353,18 @@ dst01_2_lyt <- function(armvar,
     ) %>%
     summarize_row_groups(
       label_fstr = "Discontinued Study",
-      format = "xx (xx.x%)"
+      format = format_count_fraction_fixed_dp
     ) %>%
     split_rows_by(
       "reasonGP",
       split_fun = reorder_split_levels(neworder = c("Safety", "Non-Safety"))
     ) %>%
-    summarize_row_groups(format = "xx (xx.x%)") %>%
+    summarize_row_groups(format = format_count_fraction_fixed_dp) %>%
     summarize_vars(
       disc_reason_var,
       .stats = "count_fraction",
       denom = "N_col",
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
     )
 
 
@@ -586,21 +586,21 @@ dst01_3_lyt <- function(armvar,
       vars = status_treatment_var,
       values = completed_trt_lbl,
       .labels = c(count_fraction = "Completed Treatment"),
-      .formats = list(count_fraction = "xx (xx.x%)"),
+      .formats = list(count_fraction = format_count_fraction_fixed_dp),
       table_names = c("COMPLETED")
     ) %>%
     count_values(
       vars = status_treatment_var,
       values = ongoing_trt_lbl,
       .labels = c(count_fraction = "Ongoing Treatment"),
-      .formats = list(count_fraction = "xx (xx.x%)"),
+      .formats = list(count_fraction = format_count_fraction_fixed_dp),
       table_names = c("ONGOING")
     ) %>%
     count_values(
       vars = status_treatment_var,
       values = discontinued_trt_lbl,
       .labels = c(count_fraction = "Discontinued Treatment"),
-      .formats = list(count_fraction = "xx (xx.x%)"),
+      .formats = list(count_fraction = format_count_fraction_fixed_dp),
       table_names = c("DISCONTINUED")
     )
 }

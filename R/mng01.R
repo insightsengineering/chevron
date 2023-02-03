@@ -125,9 +125,9 @@ mng01_1_main <- function(adam_db,
     )
   }
 
-  if (checkmate::check_names(line_col)) {
+  if (!is.null(names(line_col))) {
     color_lvl <- sort(unique(df[[armvar]]))
-    col <- line_col[color_lvl]
+    col <- line_col[as.character(color_lvl)]
 
     if (anyNA(col)) {
       missing_col <- setdiff(color_lvl, names(col))
@@ -198,10 +198,10 @@ mng01_1_post <- function(tlg, ...) {
 #' col <- c(
 #'   "A: Drug X" = "black",
 #'   "B: Placebo" = "blue",
-#'   "C: Combination" = "grey"
+#'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01_1, syn_data, dataset = "adlb", center_fun = "median", x_var = c("AVISIT"), line_col = col)
+#' run(mng01_1, syn_data, dataset = "adlb", line_col = col)
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,

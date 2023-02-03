@@ -88,7 +88,7 @@ aet01_1_lyt <- function(armvar,
         unique = "Total number of patients with at least one AE",
         nonunique = "Total number of AEs"
       ),
-      .formats = list(unique = "xx (xx.x%)", nonunique = "xx")
+      .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx")
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -97,8 +97,7 @@ aet01_1_lyt <- function(armvar,
       var_labels = "Total number of patients with at least one",
       show_labels = "visible",
       table_names = "AllAE",
-      .indent_mods = 0L,
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .indent_mods = 0L
     )
 
   lyt_adsl <- basic_table_deco(deco) %>%
@@ -379,7 +378,7 @@ aet01_2_lyt <- function(armvar,
         unique = "Total number of patients with at least one AE",
         nonunique = "Total number of AEs"
       ),
-      .formats = list(unique = "xx (xx.x%)", nonunique = "xx")
+      .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx")
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -388,8 +387,7 @@ aet01_2_lyt <- function(armvar,
       var_labels = "Total number of patients with at least one",
       show_labels = "visible",
       table_names = "AllAE",
-      .indent_mods = 0L,
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .indent_mods = 0L
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -398,8 +396,7 @@ aet01_2_lyt <- function(armvar,
       var_labels = "Total number of patients with at least one",
       show_labels = "visible",
       table_names = "MedConcept",
-      .indent_mods = 0L,
-      .formats = list(count_fraction = "xx (xx.x%)")
+      .indent_mods = 0L
     )
 
   lyt_adsl <- basic_table_deco(deco) %>%
@@ -411,16 +408,14 @@ aet01_2_lyt <- function(armvar,
       filters = c("DTHFL" = "Y"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of deaths"),
-      table_names = "TotDeath",
-      .formats = list(count_fraction = "xx (xx.x%)")
+      table_names = "TotDeath"
     ) %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("DCSREAS" = "ADVERSE EVENT"),
       denom = "N_col",
       .labels = c(count_fraction = "Total number of patients withdrawn from study due to an AE"),
-      table_names = "TotWithdrawal",
-      .formats = list(count_fraction = "xx (xx.x%)")
+      table_names = "TotWithdrawal"
     )
 
   list(lyt_adae = lyt_adae, lyt_adsl = lyt_adsl)
