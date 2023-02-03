@@ -12,12 +12,12 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adlb` table with columns `"ONTRTFL"`, `"PARCAT2"`, `"PARAM"`, `"ANRIND"`,
-#'  `"AVALCAT1"`, and column specified by `armvar`.
+#'  `"AVALCAT1"`, and column specified by `arm_var`.
 #'
 #' @export
 #'
 lbt05_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_param = "Laboratory Test",
                          lbl_anrind = "Direction of Abnormality",
                          deco = std_deco("LBT05"),
@@ -31,11 +31,14 @@ lbt05_1_main <- function(adam_db,
     filter(abn_dir != "<Missing>")
   if (nrow(map) == 0) {
     map <- expand.grid(
-      PARAM = if (is.factor(adam_db$adlb$PARAM)) levels(adam_db$adlb$PARAM) else "Missing", abn_dir = c("Low", "High"), stringsAsFactors = FALSE
+      PARAM = if (is.factor(adam_db$adlb$PARAM))
+        levels(adam_db$adlb$PARAM) else "Missing",
+      abn_dir = c("Low", "High"),
+      stringsAsFactors = FALSE
     )
   }
   lyt <- lbt05_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_param = lbl_param,
     lbl_anrind = lbl_anrind,
     map = map,
@@ -60,14 +63,14 @@ lbt05_1_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt05_1_lyt <- function(armvar,
+lbt05_1_lyt <- function(arm_var,
                         lbl_param,
                         lbl_anrind,
                         map,
                         deco,
                         ...) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     split_rows_by(
       "PARAM",
       label_pos = "topleft",
@@ -90,10 +93,10 @@ lbt05_1_lyt <- function(armvar,
 #'
 #' @export
 #'
-lbt05_1_pre <- function(adam_db, armvar = "ACTARM", ...) {
+lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  lbt05_1_check(adam_db, armvar = armvar, req_tables = "adlb", ...)
+  lbt05_1_check(adam_db, arm_var = arm_var, req_tables = "adlb", ...)
 
   db <- adam_db %>%
     dm_zoom_to("adlb") %>%
@@ -129,7 +132,7 @@ lbt05_1_pre <- function(adam_db, armvar = "ACTARM", ...) {
 #'
 lbt05_1_check <- function(adam_db,
                           req_tables,
-                          armvar,
+                          arm_var,
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -138,7 +141,7 @@ lbt05_1_check <- function(adam_db,
   adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT2", "PARAM", "ANRIND", "AVALCAT1")
   adsl_layout_col <- c("USUBJID")
 
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
 
   if (is.null(msg)) {

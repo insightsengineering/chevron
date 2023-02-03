@@ -20,7 +20,7 @@
 #' @export
 #'
 aet04_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          group_grades = NULL,
                          lbl_overall = NULL,
                          deco = std_deco("AET04"),
@@ -41,7 +41,7 @@ aet04_1_main <- function(adam_db,
   }
 
   lyt <- aet04_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
@@ -70,7 +70,7 @@ aet04_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet04_1_lyt <- function(armvar,
+aet04_1_lyt <- function(arm_var,
                         lbl_aebodsys,
                         lbl_aedecod,
                         group_grades,
@@ -87,7 +87,7 @@ aet04_1_lyt <- function(armvar,
   }
 
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(
