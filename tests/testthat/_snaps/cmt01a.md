@@ -6,10 +6,10 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         No Coding available                                                                                
-          Total number of patients with at least one treatment    122 (91%)    123 (91.8%)    120 (90.9%)  
+          Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
           Total number of treatments                                 609           622            703      
           No Coding available                                    122 (91.0%)   123 (91.8%)    120 (90.9%)  
 
@@ -21,7 +21,7 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         ATCCLAS2 A                                                                                         
           Total number of patients with at least one treatment   97 (72.4%)    98 (73.1%)     102 (77.3%)  
@@ -77,10 +77,10 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         No Coding available                                                                                
-          Total number of patients with at least one treatment    122 (91%)    123 (91.8%)    120 (90.9%)  
+          Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
           Total number of treatments                                 609           622            703      
           No Coding available                                    122 (91.0%)   123 (91.8%)    120 (90.9%)  
 
@@ -92,7 +92,7 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         ATCCLAS2 B                                                                                         
           Total number of patients with at least one treatment   101 (75.4%)   101 (75.4%)    108 (81.8%)  
@@ -148,10 +148,10 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         No Coding available                                                                                
-          Total number of patients with at least one treatment    122 (91%)    123 (91.8%)    120 (90.9%)  
+          Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
           No Coding available                                    122 (91.0%)   123 (91.8%)    120 (90.9%)  
 
 # cmt01a_3 can handle some NA values
@@ -162,7 +162,7 @@
         ATC Class Level 2                                         A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment      122 (91%)    123 (91.8%)    120 (90.9%)  
+        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
         ATCCLAS2 A                                                                                         
           Total number of patients with at least one treatment   97 (72.4%)    98 (73.1%)     102 (77.3%)  
