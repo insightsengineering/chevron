@@ -75,8 +75,8 @@ to be displayed.}
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
-The \code{EGT05_QTCAT} table 1 summarizes
-several electrocardiogram parameters and their evolution throughout the study.
+The \code{EGT05_QTCAT} table 1 summarizes several electrocardiogram parameters and their evolution
+throughout the study.
 }
 \details{
 \itemize{
