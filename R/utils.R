@@ -63,7 +63,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #'
 #' get_db_data(db, "airports")
 #' }
-get_db_data <- function(db, ...) { # TODO: revisit
+get_db_data <- function(db, ...) {
   datasets <- c(...)
 
   if (length(datasets) == 0) {
@@ -129,13 +129,40 @@ syn_test_data <- function() {
       replace = TRUE
     )))
 
-  # useful for lbt04
-  set.seed(321)
-  sd$adlb <- sd$adlb %>%
+  # useful for lbt04, lbt05
+  qntls <- sd$adlb %>%
+    group_by(PARAMCD) %>%
+    summarise(as_tibble(t(quantile(AVAL, probs = c(0.1, 0.9)))), .groups = "drop_last") %>%
+    rename(q1 = 2, q2 = 3)
+
+  sd$adlb <- qntls %>%
+    left_join(sd$adlb, by = "PARAMCD") %>%
+    group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
-      PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), nrow(sd$adlb), replace = TRUE)),
-      PARCAT2 = as.factor(sample(c("LS", "CV", "SI"), nrow(sd$adlb), replace = TRUE))
-    )
+      ANRIND = factor(
+        case_when(
+          ANRIND == "LOW" & AVAL <= q1 ~ "LOW LOW",
+          ANRIND == "HIGH" & AVAL >= q2 ~ "HIGH HIGH",
+          TRUE ~ as.character(ANRIND)
+        ), levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
+      ),
+      AVALCAT1 = factor(
+        case_when(
+          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
+            sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
+          TRUE ~ ""
+        ), levels = c("", "LAST", "REPLICATED", "SINGLE")
+      )
+    ) %>%
+    ungroup() %>%
+    mutate(
+      PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE)),
+      PARCAT2 = as.factor(case_when(
+          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
+          TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+          ))
+      ) %>%
+    select(-q1, -q2)
 
   db <- new_dm(sd) %>%
     dm_add_pk("adsl", c("USUBJID", "STUDYID")) %>%
@@ -299,4 +326,37 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
   table_inset(res) <- ind
 
   res
+}
+
+# Special formats ----
+
+#' Decimal Formatting
+#'
+#' @param digits (`integer`) number of digits.
+#' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
+#'
+#' @return `function` formatting numbers with the defined format or `NULL` if the format is not defined.
+#'
+#' @export
+#'
+#' @examples
+#' fun <- h_format_dec(1, "%f - %f")
+#' fun(c(123, 567.89))
+#'
+h_format_dec <- function(digits = NA, format = NA) {
+  checkmate::assert_integerish(digits, lower = 0, len = 1)
+  checkmate::assert_string(format, na.ok = TRUE)
+
+  if (is.na(format)) {
+    NULL
+  } else {
+    function(x, ...) {
+      checkmate::assert_numeric(x)
+
+      digit_string <- ifelse(is.na(digits), "", paste0(".", digits))
+      new_format <- gsub("%([a-z])", paste0("%", digit_string, "\\1"), format)
+
+      formatters::sprintf_format(new_format)(x)
+    }
+  }
 }

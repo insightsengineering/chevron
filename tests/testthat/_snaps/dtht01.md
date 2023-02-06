@@ -30,7 +30,7 @@
                 MISSING                                              2 (8.0%)    3 (13.0%)       2 (9.1%)   
                 Post-study reporting of death                        1 (4.0%)     2 (8.7%)       1 (4.5%)   
                 SUICIDE                                              2 (8.0%)     2 (8.7%)       1 (4.5%)   
-                UNKNOWN                                              1 (4.0%)     1 (4.3%)       0 (0.0%)   
+                UNKNOWN                                              1 (4.0%)     1 (4.3%)          0       
         Days from last drug administration                                                                  
           n                                                             25           23             22      
           <=30                                                      14 (56.0%)   11 (47.8%)     14 (63.6%)  
@@ -65,7 +65,7 @@
                 MISSING                                              2 (8.0%)    3 (13.0%)       2 (9.1%)   
                 Post-study reporting of death                        1 (4.0%)     2 (8.7%)       1 (4.5%)   
                 SUICIDE                                              2 (8.0%)     2 (8.7%)       1 (4.5%)   
-                UNKNOWN                                              1 (4.0%)     1 (4.3%)       0 (0.0%)   
+                UNKNOWN                                              1 (4.0%)     1 (4.3%)          0       
         Days from last drug administration                                                                  
           n                                                             25           23             22      
           <=30                                                      14 (56.0%)   11 (47.8%)     14 (63.6%)  

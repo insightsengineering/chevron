@@ -6,8 +6,9 @@
 #' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
 #'
 #' @details
-#'  * The `Value at Visit` column, displays the categories of QT value for patients.
-#'  * The `Change from Baseline` column, displays the categories of QT value change from baseline for patients.
+#'  * The `Value at Visit` column, displays the categories of the specific `PARAMCD` value for patients.
+#'  * The `Change from Baseline` column, displays the categories of the specific `PARAMCD` value
+#'  change from baseline for patients.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
@@ -16,7 +17,6 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adeg` table with column specified in `visitvar`.
-#'  For `paramcdvar`, default as 'QT'. If other `PARAMCD` needed, please specify in `paramcdvar`.
 #'  For `summaryvars`, please make sure `AVALCAT1` and `CHGCAT1` columns existed in input data sets.
 #'
 #' @export
@@ -31,6 +31,7 @@ egt05_qtcat_1_main <- function(adam_db,
                                lbl_headvisit = "Analysis Visit",
                                ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
+  lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
   summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars)
 
@@ -41,6 +42,7 @@ egt05_qtcat_1_main <- function(adam_db,
     lbl_overall = lbl_overall,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
+    lbl_param = lbl_param,
     deco = deco,
     lbl_cat = lbl_cat,
     lbl_headvisit = lbl_headvisit,
@@ -51,7 +53,7 @@ egt05_qtcat_1_main <- function(adam_db,
     lyt,
     df = adam_db$adeg,
     alt_counts_df = adam_db$adsl
-    )
+  )
 }
 
 #' @describeIn egt05_qtcat_1 Layout
@@ -63,6 +65,7 @@ egt05_qtcat_1_main <- function(adam_db,
 #' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed.
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
+#' @param lbl_param (`character`) label of the `PARAM` variable.
 #' @param lbl_cat (`character`) label of the Category of `summaryvars` variable. Default as `Category`.
 #' @param lbl_headvisit (`character`) label of Visits in the header. Default as `Analysis Visit`.
 #' @param ... not used.
@@ -74,6 +77,7 @@ egt05_qtcat_1_lyt <- function(armvar,
                               lbl_overall = NULL,
                               visitvar,
                               lbl_avisit,
+                              lbl_param,
                               deco,
                               lbl_cat,
                               lbl_headvisit,
@@ -84,6 +88,13 @@ egt05_qtcat_1_lyt <- function(armvar,
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
+      var = "PARAMCD",
+      labels_var = "PARAM",
+      split_fun = drop_split_levels,
+      label_pos = "hidden",
+      split_label = paste(lbl_param)
+    ) %>%
+    split_rows_by(
       visitvar,
       split_fun = drop_split_levels,
       label_pos = "hidden",
@@ -93,6 +104,7 @@ egt05_qtcat_1_lyt <- function(armvar,
       vars = summaryvars,
       var_labels = summaryvars_lbls
     ) %>%
+    append_topleft(paste(lbl_param)) %>%
     append_topleft(lbl_headvisit) %>%
     append_topleft(paste0("  ", lbl_cat))
 }
@@ -100,29 +112,27 @@ egt05_qtcat_1_lyt <- function(armvar,
 #' @describeIn egt05_qtcat_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param paramcdvar (`string`) typically `"QT"` (Default).
 #'
 #' @export
 #'
-egt05_qtcat_1_pre <- function(adam_db, paramcdvar = "QT", ...) {
+egt05_qtcat_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      ANL01FL == "Y",
-      PARAMCD == paramcdvar
-      ) %>%
+      ANL01FL == "Y"
+    ) %>%
     mutate(
-      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else
-        warning("Please make sure 'AVALCAT1' is existed")
-      ) %>%
+      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) factor(AVALCAT1) else
+        stop("Please make sure 'AVALCAT1' is existed")
+    ) %>%
     mutate(
-      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else
-        warning("Please make sure 'CHGCAT1' is existed")
+      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) factor(CHGCAT1) else
+        stop("Please make sure 'CHGCAT1' is existed")
     ) %>%
     dm_update_zoomed()
-  }
+}
 
 #' @describeIn egt05_qtcat_1 Postprocessing
 #'

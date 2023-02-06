@@ -42,6 +42,7 @@ reference:
     contents:
       - aet01_1
       - aet01_2
+      - aet01_aesi_1
       - aet02_1
       - aet02_2
       - aet02_3
@@ -59,17 +60,24 @@ reference:
       - egt01_1
       - egt02_1
       - egt02_2
+      - egt03_1
+      - egt03_2
       - egt05_qtcat_1
       - ext01_1
       - ext01_2
       - lbt01_1
       - lbt04_1
+      - lbt05_1
+      - lbt07_1
+      - lbt14_1
+      - lbt14_2
       - mht01_1
       - mng01_1
       - vst01_1
       - vst02_1
       - vst02_2
       - pdt01_1
+      - pdt02_1
 
   - title: Utility Functions
     contents:
@@ -79,6 +87,7 @@ reference:
       - std_deco
       - syn_test_data
       - var_labels_for
+      - h_format_dec
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

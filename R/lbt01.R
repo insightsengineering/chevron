@@ -6,6 +6,10 @@
 #' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adlb` table of `adam_db` is used.
 #' @param visitvar (`character`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
+#' @param precision (named vector of `integer`) where names are values found in the `PARAMCD` column and the the values
+#'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
+#'   represented with one more decimal of precision.
+#' @param default_precision (`integer`) the default number of digits.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -27,8 +31,16 @@ lbt01_1_main <- function(adam_db,
                          armvar = "ACTARM",
                          summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
+                         precision = integer(),
+                         default_precision = 2,
                          deco = std_deco("LBT01"),
                          ...) {
+  assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
+  assert_colnames(adam_db$adlb, summaryvars)
+  assert_colnames(adam_db$adlb, armvar)
+  assert_colnames(adam_db$adlb, visitvar)
+  checkmate::assert_integerish(precision, lower = 0)
+
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
 
@@ -42,6 +54,8 @@ lbt01_1_main <- function(adam_db,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     deco = deco,
+    precision = precision,
+    default_precision = default_precision,
     ... = ...
   )
 
@@ -52,7 +66,7 @@ lbt01_1_main <- function(adam_db,
 
 #' @describeIn lbt01_1 Layout
 #'
-#' @inheritParams gen_args
+#' @inheritParams lbt01_1_main
 #'
 #' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
 #' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
@@ -71,14 +85,14 @@ lbt01_1_lyt <- function(armvar,
                         lbl_avisit,
                         lbl_param,
                         deco,
+                        precision,
+                        default_precision,
                         ...) {
-  # TODO solve the problem of the overall column
-  # remove change from baseline in BASELINE
-
   basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     split_rows_by(
-      "PARAM",
+      var = "PARAMCD",
+      labels_var = "PARAM",
       split_fun = drop_split_levels,
       label_pos = "hidden",
       split_label = paste(lbl_param)
@@ -94,7 +108,58 @@ lbt01_1_lyt <- function(armvar,
       varlabels = summaryvars_lbls,
       nested = TRUE
     ) %>%
-    summarize_colvars() %>%
+    analyze_colvars(
+      afun = function(x, .var, .spl_context, precision, default_precision, ...) {
+        param_val <- .spl_context$value[1]
+        pcs <- precision[param_val]
+
+        pcs <- ifelse(is.na(pcs), default_precision, pcs)
+
+        # Create context dependent function.
+        n_fun <- sum(!is.na(x), na.rm = TRUE)
+        if (n_fun == 0) {
+          mean_sd_fun <- c(NA, NA)
+          median_fun <- NA
+          min_max_fun <- c(NA, NA)
+        } else {
+          mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+          median_fun <- median(x, na.rm = TRUE)
+          min_max_fun <- c(min(x), max(x))
+        }
+
+        # Identify context-
+        is_chg <- .var == "CHG"
+
+        is_baseline <- .spl_context$value[which(.spl_context$split == "AVISIT")] == "BASELINE"
+
+        if (is_baseline && is_chg) {
+          n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
+        }
+
+        in_rows(
+          "n" = n_fun,
+          "Mean (SD)" = mean_sd_fun,
+          "Median" = median_fun,
+          "Min - Max" = min_max_fun,
+          .formats = list(
+            "n" = "xx",
+            "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
+            "Median" = h_format_dec(format = "%f", digits = pcs + 1),
+            "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
+          ),
+          .format_na_strs = list(
+            "n" = "NE",
+            "Mean (SD)" = "NE (NE)",
+            "Median" = "NE",
+            "Min - Max" = "NE - NE"
+          )
+        )
+      },
+      extra_args = list(
+        precision = precision,
+        default_precision = default_precision
+      )
+    ) %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
@@ -136,7 +201,10 @@ lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(lbt01_1, syn_data)
+#' run(lbt01_1, syn_data, precision = c(
+#'   "ALT" = 0,
+#'   "CRP" = 1
+#' ))
 lbt01_1 <- chevron_t(
   main = lbt01_1_main,
   preprocess = lbt01_1_pre,

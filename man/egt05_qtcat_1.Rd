@@ -31,13 +31,14 @@ egt05_qtcat_1_lyt(
   lbl_overall = NULL,
   visitvar,
   lbl_avisit,
+  lbl_param,
   deco,
   lbl_cat,
   lbl_headvisit,
   ...
 )
 
-egt05_qtcat_1_pre(adam_db, paramcdvar = "QT", ...)
+egt05_qtcat_1_pre(adam_db, ...)
 
 egt05_qtcat_1_post(tlg, prune_0 = TRUE, ...)
 
@@ -67,7 +68,7 @@ to be displayed.}
 
 \item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
 
-\item{paramcdvar}{(\code{string}) typically \code{"QT"} (Default).}
+\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -79,8 +80,9 @@ several electrocardiogram parameters and their evolution throughout the study.
 }
 \details{
 \itemize{
-\item The \verb{Value at Visit} column, displays the categories of QT value for patients.
-\item The \verb{Change from Baseline} column, displays the categories of QT value change from baseline for patients.
+\item The \verb{Value at Visit} column, displays the categories of the specific \code{PARAMCD} value for patients.
+\item The \verb{Change from Baseline} column, displays the categories of the specific \code{PARAMCD} value
+change from baseline for patients.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
@@ -102,7 +104,6 @@ Re-level to customize order.
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adeg} table with column specified in \code{visitvar}.
-For \code{paramcdvar}, default as 'QT'. If other \code{PARAMCD} needed, please specify in \code{paramcdvar}.
 For \code{summaryvars}, please make sure \code{AVALCAT1} and \code{CHGCAT1} columns existed in input data sets.
 }
 }
