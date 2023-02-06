@@ -113,6 +113,14 @@ lbt07_1_lyt <- function(armvar,
 lbt07_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
+  new_format <- list(
+    adlb = list(
+      ATOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding available"))
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
   db <- adam_db %>%
     dm_zoom_to("adlb") %>%
     filter(
