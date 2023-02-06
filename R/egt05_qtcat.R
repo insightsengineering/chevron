@@ -147,8 +147,8 @@ egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE, ...) {
 
 #' `EGT05_QTCAT` Table 1 (Default) ECG Actual Values and Changes from Baseline by Visit Table 1.
 #'
-#' The `EGT05_QTCAT` table 1 summarizes
-#' several electrocardiogram parameters and their evolution throughout the study.
+#' The `EGT05_QTCAT` table 1 summarizes several electrocardiogram parameters and their evolution
+#' throughout the study.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
