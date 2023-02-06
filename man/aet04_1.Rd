@@ -27,6 +27,7 @@ aet04_1_lyt(
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
   grade_groups,
+  all_grade_groups,
   deco,
   ...
 )

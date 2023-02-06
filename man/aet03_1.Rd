@@ -15,7 +15,6 @@ An object of class \code{chevron_t} of length 1.
 aet03_1_main(
   adam_db,
   armvar = "ACTARM",
-  intensity_grade = c("MILD", "MODERATE", "SEVERE"),
   lbl_overall = NULL,
   deco = std_deco("AET03"),
   ...
@@ -42,8 +41,6 @@ aet03_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{intensity_grade}{(\verb{vector of character}) describing the intensity levels present in the dataset.}
-
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
@@ -53,6 +50,8 @@ aet03_1
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{intensity_grade}{(\verb{vector of character}) describing the intensity levels present in the dataset.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
