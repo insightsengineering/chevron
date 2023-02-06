@@ -26,7 +26,6 @@ aet04_1_main <- function(adam_db,
                          deco = std_deco("AET04"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
 
   if (is.null(grade_groups)) {
@@ -37,14 +36,15 @@ aet04_1_main <- function(adam_db,
     )
   }
 
-  checkmate::assert_class(grade_groups, "list")
-  invisible(lapply(grade_groups, function(x) checkmate::assert_character(x)))
-  checkmate::assert(all(levels(dbsel$adae[["ATOXGR"]]) %in% c("1", "2", "3", "4", "5", "Missing")))
+  checkmate::assert_list(grade_groups, types = "character")
+  all_grade_groups <- c(list(`Any Grade` = unique(unlist(grade_groups))), grade_groups)
+  checkmate::assert(all(dbsel$adae[["ATOXGR"]] %in% all_grade_groups$`Any Grade`))
 
   lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
     grade_groups = grade_groups,
+    all_grade_groups = all_grade_groups,
     deco = deco,
     ... = ...
   )
@@ -70,14 +70,9 @@ aet04_1_lyt <- function(armvar,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aedecod = "MedDRA Preferred Term",
                         grade_groups,
+                        all_grade_groups,
                         deco,
                         ...) {
-  grade_groups <- lapply(grade_groups, function(x) {
-    return(x[order(nchar(x), x)])
-  })
-
-  all_grade_groups <- c(list(`Any Grade` = unique(unlist(grade_groups))), grade_groups)
-
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -91,7 +86,7 @@ aet04_1_lyt <- function(armvar,
       "AEBODSYS",
       child_labels = "visible",
       nested = TRUE,
-      split_fun = trim_levels_in_group("ATOXGR"),
+      split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_aebodsys
     ) %>%
@@ -105,7 +100,7 @@ aet04_1_lyt <- function(armvar,
       child_labels = "visible",
       nested = TRUE,
       indent_mod = -1L,
-      split_fun = trim_levels_in_group("ATOXGR"),
+      split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_aedecod
     ) %>%
@@ -146,7 +141,7 @@ aet04_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ATOXGR != "No Grading Available") %>%
     mutate(ATOXGR = droplevels(.data$ATOXGR, "No Grading Available")) %>%
-    mutate(ATOXGR = if (length(levels(.data$ATOXGR)) > 0L) .data$ATOXGR else factor(.data$ATOXGR, "Missing")) %>%
+    mutate(ATOXGR = if (length(levels(.data$ATOXGR)) > 0L) .data$ATOXGR else factor(.data$ATOXGR, c("1", "2", "3", "4", "5"))) %>%
     dm_update_zoomed()
 }
 

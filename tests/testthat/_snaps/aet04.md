@@ -1,4 +1,4 @@
-# aet04 can handle all NA values
+# aet04 can handle NA values
 
     Code
       res1

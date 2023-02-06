@@ -20,16 +20,15 @@
 #'
 aet03_1_main <- function(adam_db,
                          armvar = "ACTARM",
-                         intensity_grade = c("MILD", "MODERATE", "SEVERE"),
                          lbl_overall = NULL,
                          deco = std_deco("AET03"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
+  intensity_grade <- levels(dbsel$adae[["ASEV"]])
   checkmate::assert_character(intensity_grade)
-  checkmate::assert(all(levels(dbsel$adae[["ASEV"]]) %in% c("MILD", "MODERATE", "SEVERE", "Missing")))
+  checkmate::assert(all(dbsel$adae[["ASEV"]] %in% intensity_grade))
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
@@ -129,8 +128,7 @@ aet03_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ASEV != "<Missing>") %>%
-    mutate(ASEV = droplevels(.data$ASEV, "<Missing>")) %>%
-    mutate(ASEV = if (length(levels(.data$ASEV)) > 0L) .data$ASEV else factor(.data$ASEV, "Missing")) %>%
+    mutate(ASEV = if (length(levels(.data$ASEV)) > 0L) .data$ASEV else factor(.data$ASEV, c("MILD", "MODERATE", "SEVERE"))) %>%
     dm_update_zoomed()
 }
 
