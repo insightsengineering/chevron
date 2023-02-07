@@ -22,7 +22,7 @@
 #' @export
 #'
 lbt07_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
@@ -43,7 +43,7 @@ lbt07_1_main <- function(adam_db,
 
 
   lyt <- lbt07_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     grade_var = grade_var,
     lbl_grade_var = lbl_grade_var,
@@ -68,7 +68,7 @@ lbt07_1_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt07_1_lyt <- function(armvar,
+lbt07_1_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_gradedir,
                         lbl_param,
@@ -80,7 +80,7 @@ lbt07_1_lyt <- function(armvar,
   names(lbl_grade_var) <- grade_var
 
   basic_table_deco(deco, show_colcount = TRUE) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",

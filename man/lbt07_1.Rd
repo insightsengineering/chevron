@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 lbt07_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   lbl_overall = NULL,
   grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
   deco = std_deco("LBT07"),
@@ -24,7 +24,7 @@ lbt07_1_main(
 )
 
 lbt07_1_lyt(
-  armvar,
+  arm_var,
   lbl_overall,
   lbl_gradedir,
   lbl_param,
