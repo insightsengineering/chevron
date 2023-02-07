@@ -28,7 +28,6 @@ aet03_1_main <- function(adam_db,
 
   checkmate::assert_factor(dbsel$adae[["ASEV"]], any.missing = FALSE)
   intensity_grade <- levels(dbsel$adae[["ASEV"]])
-  checkmate::assert_character(intensity_grade)
 
   lyt <- aet03_1_lyt(
     arm_var = arm_var,
