@@ -20,7 +20,7 @@
 #' @export
 #'
 aet04_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          grade_groups = NULL,
                          lbl_overall = NULL,
                          deco = std_deco("AET04"),
@@ -42,7 +42,7 @@ aet04_1_main <- function(adam_db,
   checkmate::assert_list(grade_groups, types = "character")
 
   lyt <- aet04_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     toxicity_grade = toxicity_grade,
     grade_groups = grade_groups,
@@ -67,7 +67,7 @@ aet04_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet04_1_lyt <- function(armvar,
+aet04_1_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aedecod = "MedDRA Preferred Term",
@@ -78,7 +78,7 @@ aet04_1_lyt <- function(armvar,
   all_grade_groups <- c(list(`Any Grade` = toxicity_grade), grade_groups)
 
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_occurrences_by_grade(

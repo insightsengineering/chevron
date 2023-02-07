@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 aet04_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   grade_groups = NULL,
   lbl_overall = NULL,
   deco = std_deco("AET04"),
@@ -22,7 +22,7 @@ aet04_1_main(
 )
 
 aet04_1_lyt(
-  armvar,
+  arm_var,
   lbl_overall,
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
@@ -41,7 +41,7 @@ aet04_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 

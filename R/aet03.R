@@ -19,7 +19,7 @@
 #' @export
 #'
 aet03_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET03"),
                          ...) {
@@ -31,7 +31,7 @@ aet03_1_main <- function(adam_db,
   checkmate::assert_character(intensity_grade)
 
   lyt <- aet03_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     intensity_grade = intensity_grade,
     deco = deco,
@@ -54,7 +54,7 @@ aet03_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet03_1_lyt <- function(armvar,
+aet03_1_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aedecod = "MedDRA Preferred Term",
@@ -64,7 +64,7 @@ aet03_1_lyt <- function(armvar,
   all_grade_groups <- list("- Any Intensity -" = intensity_grade)
 
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_occurrences_by_grade(

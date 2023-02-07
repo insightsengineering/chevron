@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 dmt01_1_main(
   adam_db,
-  armvar = "ARM",
+  arm_var = "ARM",
   summaryvars = c(`Age (yr)` = "AAGE", `Age group (yr)` = "AGEGR1", "SEX", "ETHNIC",
     "RACE"),
   lbl_overall = "All Patients",
@@ -22,7 +22,7 @@ dmt01_1_main(
   ...
 )
 
-dmt01_1_lyt(armvar, summaryvars, summaryvars_lbls, lbl_overall, deco, ...)
+dmt01_1_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall, deco, ...)
 
 dmt01_1_pre(adam_db, ...)
 
@@ -33,7 +33,7 @@ dmt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(named vector of \code{character}) variables summarized in demographic table. Names are used as
 subtitles. For values where no name is provided, the label attribute of the corresponding column in \code{adsl} table of

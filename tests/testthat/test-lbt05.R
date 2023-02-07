@@ -1,15 +1,13 @@
-test_that("lbt05 displays correct error message when ANRIND contains all NA values", {
+test_that("lbt05 give all 0 count if ANRIND are all missing", {
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
     mutate(
       ANRIND = factor(NA)
     ) %>%
     dm_update_zoomed()
-
-  expect_error(
-    run(lbt05_1, proc_data),
-    "Abnormality mapping cannot be constructed if all values of ANRIND or AVALCAT1 are missing."
-  )
+  res <- run(lbt05_1, proc_data)
+  res <- smart_prune(res)
+  expect_identical(nrow(res), 0L)
 })
 
 test_that("lbt05 can handle some NA values", {

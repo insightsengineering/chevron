@@ -18,7 +18,7 @@
 #' @export
 #'
 aet01_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET01"),
                          safety_var = c(
@@ -39,7 +39,7 @@ aet01_1_main <- function(adam_db,
   }
 
   lyt <- aet01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     safety_var = safety_var,
@@ -69,7 +69,7 @@ aet01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet01_1_lyt <- function(armvar,
+aet01_1_lyt <- function(arm_var,
                         lbl_overall,
                         deco,
                         safety_var,
@@ -78,7 +78,7 @@ aet01_1_lyt <- function(armvar,
   names(lbl_safety_var) <- safety_var
 
   lyt_adae <- basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -101,7 +101,7 @@ aet01_1_lyt <- function(armvar,
     )
 
   lyt_adsl <- basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_patients_with_event(
@@ -197,7 +197,7 @@ aet01_1_pre <- function(adam_db, ...) {
 #'
 aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           safety_var = c(
                             "FATAL", "SER", "SERWD", "SERDSM",
                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
@@ -226,13 +226,13 @@ aet01_1_check <- function(adam_db,
     CQ01 = "CQ01NAM"
   )
 
-  native_col <- setdiff(c(armvar, safety_var), names(corresponding_col))
-  new_col <- unique(unlist(corresponding_col[c(armvar, safety_var)]))
+  native_col <- setdiff(c(arm_var, safety_var), names(corresponding_col))
+  new_col <- unique(unlist(corresponding_col[c(arm_var, safety_var)]))
   adae_layout_col <- "USUBJID"
   adsl_layout_col <- c("USUBJID", "DTHFL", "DCSREAS")
 
   msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, adae_layout_col)))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, adsl_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, adsl_layout_col)))
 
   if (is.null(msg)) {
     TRUE
@@ -261,7 +261,7 @@ aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...) {
 #' @export
 #'
 #' @examples
-#' run(aet01_1, syn_data, armvar = "ARM")
+#' run(aet01_1, syn_data, arm_var = "ARM")
 aet01_1 <- chevron_t(
   main = aet01_1_main,
   preprocess = aet01_1_pre,
@@ -294,7 +294,7 @@ aet01_1 <- chevron_t(
 #' @export
 #'
 aet01_2_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET01"),
                          safety_var = c(
@@ -323,7 +323,7 @@ aet01_2_main <- function(adam_db,
   }
 
   lyt <- aet01_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     safety_var = safety_var,
@@ -356,7 +356,7 @@ aet01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-aet01_2_lyt <- function(armvar,
+aet01_2_lyt <- function(arm_var,
                         lbl_overall,
                         deco,
                         safety_var,
@@ -368,7 +368,7 @@ aet01_2_lyt <- function(armvar,
   names(lbl_medconcept_var) <- medconcept_var
 
   lyt_adae <- basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -400,7 +400,7 @@ aet01_2_lyt <- function(armvar,
     )
 
   lyt_adsl <- basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_patients_with_event(
@@ -510,7 +510,7 @@ aet01_2_pre <- function(adam_db, ...) {
 #'
 aet01_2_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           safety_var = c(
                             "FATAL", "SER", "SERWD", "SERDSM",
                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
@@ -540,13 +540,13 @@ aet01_2_check <- function(adam_db,
     CQ01 = "CQ01NAM"
   )
 
-  native_col <- setdiff(c(armvar, safety_var, medconcept_var), names(corresponding_col))
-  new_col <- unique(unlist(corresponding_col[c(armvar, safety_var)]))
+  native_col <- setdiff(c(arm_var, safety_var, medconcept_var), names(corresponding_col))
+  new_col <- unique(unlist(corresponding_col[c(arm_var, safety_var)]))
   adae_layout_col <- "USUBJID"
   adsl_layout_col <- c("USUBJID", "DTHFL", "DCSREAS")
 
   msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, new_col, adae_layout_col)))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, adsl_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, adsl_layout_col)))
 
   if (is.null(msg)) {
     TRUE
