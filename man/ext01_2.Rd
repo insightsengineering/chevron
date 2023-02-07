@@ -15,14 +15,14 @@ An object of class \code{chevron_t} of length 1.
 ext01_2_main(
   adam_db,
   summaryvars = c("AVAL", "AVALCAT1"),
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("EXT01"),
   ...
 )
 
 ext01_2_lyt(
-  armvar,
+  arm_var,
   summaryvars,
   summaryvars_lbls,
   lbl_overall,
@@ -41,7 +41,7 @@ ext01_2
 
 \item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

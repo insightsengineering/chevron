@@ -17,12 +17,12 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"ATOXGR"`,
-#'  `"ONTRTFL"` and column specified by `armvar`.
+#'  `"ONTRTFL"` and column specified by `arm_var`.
 #'
 #' @export
 #'
 lbt07_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
@@ -42,7 +42,7 @@ lbt07_1_main <- function(adam_db,
 
 
   lyt <- lbt07_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     grade_var = grade_var,
     lbl_grade_var = lbl_grade_var,
     deco = deco,
@@ -66,7 +66,7 @@ lbt07_1_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt07_1_lyt <- function(armvar,
+lbt07_1_lyt <- function(arm_var,
                         lbl_gradedir,
                         lbl_param,
                         grade_var,
@@ -77,7 +77,7 @@ lbt07_1_lyt <- function(armvar,
   names(lbl_grade_var) <- grade_var
 
   basic_table_deco(deco, show_colcount = TRUE) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     split_rows_by(
       "PARAM",
       label_pos = "topleft",
@@ -146,7 +146,7 @@ lbt07_1_pre <- function(adam_db, ...) {
 #'
 lbt07_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -155,7 +155,7 @@ lbt07_1_check <- function(adam_db,
   adlb_layout_col <- c("USUBJID", "ATOXGR", "ONTRTFL")
   adsl_layout_col <- c("USUBJID")
 
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
 
   if (is.null(msg)) {

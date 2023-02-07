@@ -25,7 +25,7 @@
 #' @export
 #'
 pdt02_1_main <- function(adam_db,
-                         armvar = "ARM",
+                         arm_var = "ARM",
                          dvreas_var = "DVREAS",
                          lbl_dvreas_var = "Primary Reason",
                          dvterm_var = "DVTERM",
@@ -38,7 +38,7 @@ pdt02_1_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "addv")
 
   lyt <- pdt02_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     dvreas_var = dvreas_var,
     lbl_dvreas_var = lbl_dvreas_var,
@@ -64,7 +64,7 @@ pdt02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-pdt02_1_lyt <- function(armvar,
+pdt02_1_lyt <- function(arm_var,
                         lbl_overall,
                         dvreas_var,
                         lbl_dvreas_var,
@@ -73,7 +73,7 @@ pdt02_1_lyt <- function(armvar,
                         deco,
                         ...) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",

@@ -17,18 +17,18 @@
 #'
 #' @note
 #'   * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"PARAM"`, `"BTOXGR"`, `"ATOXGR"`,
-#'   and the column specified by `armvar`.
+#'   and the column specified by `arm_var`.
 #'
 #' @export
 #'
 lbt14_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - Low Direction",
                          deco = std_deco("LBT14"),
                          ...) {
   lyt <- lbt14_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     gr_missing = gr_missing,
     title = title,
     deco = deco,
@@ -47,7 +47,7 @@ lbt14_1_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt14_1_lyt <- function(armvar,
+lbt14_1_lyt <- function(arm_var,
                         gr_missing,
                         title,
                         deco,
@@ -60,7 +60,7 @@ lbt14_1_lyt <- function(armvar,
   }
 
   lyt <- basic_table_deco(deco, show_colcounts = TRUE) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels,
@@ -160,7 +160,7 @@ lbt14_1_pre <- function(adam_db,
 #'
 lbt14_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -169,7 +169,7 @@ lbt14_1_check <- function(adam_db,
   adlb_layout_col <- c("USUBJID", "PARAM", "BTOXGR", "ATOXGR")
   adsl_layout_col <- c("USUBJID")
 
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
 
   if (is.null(msg)) {
@@ -225,18 +225,18 @@ lbt14_1 <- chevron_t(
 #'
 #' @note
 #'   * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"PARAM"`, `"BTOXGR"`, `"ATOXGR"`,
-#'   and the column specified by `armvar`.
+#'   and the column specified by `arm_var`.
 #'
 #' @export
 #'
 lbt14_2_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - High Direction",
                          deco = std_deco("LBT14"),
                          ...) {
   lyt <- lbt14_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     gr_missing = gr_missing,
     title = title,
     deco = deco,
@@ -255,7 +255,7 @@ lbt14_2_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt14_2_lyt <- function(armvar,
+lbt14_2_lyt <- function(arm_var,
                         gr_missing,
                         title,
                         deco,
@@ -268,7 +268,7 @@ lbt14_2_lyt <- function(armvar,
   }
 
   lyt <- basic_table_deco(deco, show_colcounts = TRUE) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels,
@@ -368,7 +368,7 @@ lbt14_2_pre <- function(adam_db,
 #'
 lbt14_2_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -377,7 +377,7 @@ lbt14_2_check <- function(adam_db,
   adlb_layout_col <- c("USUBJID", "PARAM", "BTOXGR", "ATOXGR")
   adsl_layout_col <- c("USUBJID")
 
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
 
   if (is.null(msg)) {

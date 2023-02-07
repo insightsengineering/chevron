@@ -15,14 +15,14 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 aet02_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("AET02"),
   ...
 )
 
 aet02_1_lyt(
-  armvar,
+  arm_var,
   lbl_overall,
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
@@ -32,7 +32,7 @@ aet02_1_lyt(
 
 aet02_1_pre(adam_db, ...)
 
-aet02_1_check(adam_db, req_tables = c("adsl", "adae"), armvar = "ACTARM", ...)
+aet02_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM", ...)
 
 aet02_1_post(tlg, prune_0 = TRUE, ...)
 
@@ -41,7 +41,7 @@ aet02_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

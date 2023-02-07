@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 pdt02_1_main(
   adam_db,
-  armvar = "ARM",
+  arm_var = "ARM",
   dvreas_var = "DVREAS",
   lbl_dvreas_var = "Primary Reason",
   dvterm_var = "DVTERM",
@@ -25,7 +25,7 @@ pdt02_1_main(
 )
 
 pdt02_1_lyt(
-  armvar,
+  arm_var,
   lbl_overall,
   dvreas_var,
   lbl_dvreas_var,
@@ -50,7 +50,7 @@ pdt02_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{dvreas_var}{(\code{character}) the variable defining the reason for deviation. By default \code{DVREAS}.}
 
