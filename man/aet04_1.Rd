@@ -26,8 +26,8 @@ aet04_1_lyt(
   lbl_overall,
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
+  toxicity_grade,
   grade_groups,
-  all_grade_groups,
   deco,
   ...
 )
@@ -43,7 +43,7 @@ aet04_1
 
 \item{armvar}{(\code{character}) variable used for column splitting}
 
-\item{grade_groups}{(\code{list}) putting in correspondence severity levels and labels.}
+\item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -54,6 +54,8 @@ aet04_1
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{toxicity_grade}{(\verb{vector of character}) putting in correspondence toxicity levels.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

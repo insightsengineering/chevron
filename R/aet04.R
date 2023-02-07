@@ -3,7 +3,7 @@
 #' @describeIn aet04_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param grade_groups (`list`) putting in correspondence severity levels and labels.
+#' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -36,15 +36,17 @@ aet04_1_main <- function(adam_db,
     )
   }
 
+  checkmate::assert_factor(dbsel$adae[["ATOXGR"]], any.missing = FALSE)
+  toxicity_grade <- levels(dbsel$adae[["ATOXGR"]])
+  checkmate::assert_character(toxicity_grade)
+
   checkmate::assert_list(grade_groups, types = "character")
-  all_grade_groups <- c(list(`Any Grade` = unique(unlist(grade_groups))), grade_groups)
-  checkmate::assert(all(dbsel$adae[["ATOXGR"]] %in% all_grade_groups$`Any Grade`))
 
   lyt <- aet04_1_lyt(
     armvar = armvar,
     lbl_overall = lbl_overall,
+    toxicity_grade = toxicity_grade,
     grade_groups = grade_groups,
-    all_grade_groups = all_grade_groups,
     deco = deco,
     ... = ...
   )
@@ -60,7 +62,8 @@ aet04_1_main <- function(adam_db,
 #'
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param grade_groups (`list`) putting in correspondence severity levels and labels.
+#' @param toxicity_grade (`vector of character`) putting in correspondence toxicity levels.
+#' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
 #' @param ... not used.
 #'
 #' @export
@@ -69,10 +72,12 @@ aet04_1_lyt <- function(armvar,
                         lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aedecod = "MedDRA Preferred Term",
+                        toxicity_grade,
                         grade_groups,
-                        all_grade_groups,
                         deco,
                         ...) {
+  all_grade_groups <- c(list(`Any Grade` = toxicity_grade), grade_groups)
+
   basic_table_deco(deco) %>%
     split_cols_by(var = armvar) %>%
     add_colcounts() %>%
@@ -141,7 +146,7 @@ aet04_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ATOXGR != "No Grading Available") %>%
     mutate(ATOXGR = droplevels(.data$ATOXGR, "No Grading Available")) %>%
-    mutate(ATOXGR = if (length(levels(.data$ATOXGR)) > 0L) {
+    mutate(ATOXGR = if (length(.data$ATOXGR) > 0L) {
       .data$ATOXGR
     } else {
       factor(.data$ATOXGR, c("1", "2", "3", "4", "5"))

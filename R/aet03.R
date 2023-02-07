@@ -26,9 +26,9 @@ aet03_1_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
+  checkmate::assert_factor(dbsel$adae[["ASEV"]], any.missing = FALSE)
   intensity_grade <- levels(dbsel$adae[["ASEV"]])
   checkmate::assert_character(intensity_grade)
-  checkmate::assert(all(dbsel$adae[["ASEV"]] %in% intensity_grade))
 
   lyt <- aet03_1_lyt(
     armvar = armvar,
@@ -128,7 +128,7 @@ aet03_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ASEV != "<Missing>") %>%
-    mutate(ASEV = if (length(levels(.data$ASEV)) > 0L) {
+    mutate(ASEV = if (length(.data$ASEV) > 0L) {
       .data$ASEV
     } else {
       factor(.data$ASEV, c("MILD", "MODERATE", "SEVERE"))
