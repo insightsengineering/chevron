@@ -128,11 +128,9 @@ aet03_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ASEV != "<Missing>") %>%
-    mutate(ASEV = if (length(.data$ASEV) > 0L) {
-      .data$ASEV
-    } else {
-      factor(.data$ASEV, c("MILD", "MODERATE", "SEVERE"))
-    }) %>%
+    mutate(ASEV = factor(.data$ASEV,
+      levels = setdiff(levels(.data$ASEV), "<Missing>")
+    )) %>%
     dm_update_zoomed()
 }
 

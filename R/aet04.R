@@ -38,7 +38,6 @@ aet04_1_main <- function(adam_db,
 
   checkmate::assert_factor(dbsel$adae[["ATOXGR"]], any.missing = FALSE)
   toxicity_grade <- levels(dbsel$adae[["ATOXGR"]])
-  checkmate::assert_character(toxicity_grade)
 
   checkmate::assert_list(grade_groups, types = "character")
 
@@ -145,12 +144,9 @@ aet04_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ATOXGR != "No Grading Available") %>%
-    mutate(ATOXGR = droplevels(.data$ATOXGR, "No Grading Available")) %>%
-    mutate(ATOXGR = if (length(.data$ATOXGR) > 0L) {
-      .data$ATOXGR
-    } else {
-      factor(.data$ATOXGR, c("1", "2", "3", "4", "5"))
-    }) %>%
+    mutate(ATOXGR = factor(.data$ATOXGR,
+      levels = setdiff(levels(.data$ATOXGR), "No Grading Available")
+    )) %>%
     dm_update_zoomed()
 }
 
