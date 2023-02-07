@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 dtht01_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   time_since_last_dose = FALSE,
   other_category = FALSE,
   lbl_overall = NULL,
@@ -23,9 +23,9 @@ dtht01_1_main(
   ...
 )
 
-dtht01_1_lyt(armvar, lbl_overall, other_category, deco, ...)
+dtht01_1_lyt(arm_var, lbl_overall, other_category, deco, ...)
 
-dtht01_1_opt_lyt(armvar, lbl_overall, deco, ...)
+dtht01_1_opt_lyt(arm_var, lbl_overall, deco, ...)
 
 dtht01_1_pre(adam_db, ...)
 
@@ -36,7 +36,7 @@ dtht01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{time_since_last_dose}{(\code{logical}) should the time to event information be displayed.}
 

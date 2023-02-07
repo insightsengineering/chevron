@@ -18,7 +18,7 @@
 #' @export
 #'
 aet03_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET03"),
                          ...) {
@@ -30,7 +30,7 @@ aet03_1_main <- function(adam_db,
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
   lyt <- aet03_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
@@ -60,7 +60,7 @@ aet03_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet03_1_lyt <- function(armvar,
+aet03_1_lyt <- function(arm_var,
                         lbl_aebodsys,
                         lbl_aedecod,
                         severity_grade,
@@ -68,7 +68,7 @@ aet03_1_lyt <- function(armvar,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_occurrences_by_grade(

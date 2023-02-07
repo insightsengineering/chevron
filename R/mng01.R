@@ -23,12 +23,12 @@
 #' @param show_v_grid (`flag`) should vertical grid be displayed.
 #' @param legend_pos (`string`) the position of the legend.
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` vector associating
-#'   values of `armvar` with color names.
+#'   values of `arm_var` with color names.
 #' @param ... not used.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
-#'  `y_name`, `y_unit` and `armvar`.
+#'  `y_name`, `y_unit` and `arm_var`.
 #'
 #' @return a list of `ggplot` objects.
 #' @export
@@ -38,7 +38,7 @@ mng01_1_main <- function(adam_db,
                          y_var = "AVAL",
                          y_name = "PARAM",
                          y_unit = NA,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          center_fun = c("mean", "median"),
                          interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
                          show_table = TRUE,
@@ -94,7 +94,7 @@ mng01_1_main <- function(adam_db,
   variables <- c(
     x = x_var,
     y = y_var,
-    strata = armvar,
+    strata = arm_var,
     paramcd = y_name,
     y_unit = y_unit
   )
@@ -126,7 +126,7 @@ mng01_1_main <- function(adam_db,
   }
 
   if (!is.null(names(line_col))) {
-    color_lvl <- sort(unique(df[[armvar]]))
+    color_lvl <- sort(unique(df[[arm_var]]))
     col <- line_col[as.character(color_lvl)]
 
     if (anyNA(col)) {

@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 mht01_1_main(
   adam_db,
-  armvar = "ARM",
+  arm_var = "ARM",
   lbl_overall = NULL,
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA Preferred Term",
@@ -22,7 +22,7 @@ mht01_1_main(
   ...
 )
 
-mht01_1_lyt(armvar, lbl_overall, lbl_mhbodsys, lbl_mhdecod, deco, ...)
+mht01_1_lyt(arm_var, lbl_overall, lbl_mhbodsys, lbl_mhdecod, deco, ...)
 
 mht01_1_pre(adam_db, ...)
 
@@ -33,7 +33,7 @@ mht01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

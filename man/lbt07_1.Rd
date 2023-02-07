@@ -37,7 +37,7 @@ lbt07_1_lyt(
 
 lbt07_1_pre(adam_db, ...)
 
-lbt07_1_check(adam_db, req_tables = c("adsl", "adlb"), armvar = "ACTARM", ...)
+lbt07_1_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM", ...)
 
 lbt07_1_post(tlg, prune_0 = TRUE, ...)
 
@@ -46,7 +46,7 @@ lbt07_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -102,7 +102,7 @@ overview of the analysis values and its change from baseline of each respective 
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adlb} table with columns \code{"USUBJID"}, \code{"ATOXGR"},
-\code{"ONTRTFL"} and column specified by \code{armvar}.
+\code{"ONTRTFL"} and column specified by \code{arm_var}.
 }
 }
 \examples{

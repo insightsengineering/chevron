@@ -15,18 +15,18 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 lbt05_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   lbl_param = "Laboratory Test",
   lbl_anrind = "Direction of Abnormality",
   deco = std_deco("LBT05"),
   ...
 )
 
-lbt05_1_lyt(armvar, lbl_param, lbl_anrind, map, deco, ...)
+lbt05_1_lyt(arm_var, lbl_param, lbl_anrind, map, deco, ...)
 
-lbt05_1_pre(adam_db, ...)
+lbt05_1_pre(adam_db, arm_var = "ACTARM", ...)
 
-lbt05_1_check(adam_db, req_tables = c("adsl", "adlb"), armvar = "ACTARM", ...)
+lbt05_1_check(adam_db, req_tables, arm_var, ...)
 
 lbt05_1_post(tlg, ...)
 
@@ -35,7 +35,7 @@ lbt05_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 
@@ -76,7 +76,7 @@ lbt05_1
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adlb} table with columns \code{"ONTRTFL"}, \code{"PARCAT2"}, \code{"PARAM"}, \code{"ANRIND"},
-\code{"AVALCAT1"}, and column specified by \code{armvar}.
+\code{"AVALCAT1"}, and column specified by \code{arm_var}.
 }
 }
 \examples{

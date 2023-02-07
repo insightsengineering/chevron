@@ -17,7 +17,7 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adlb` table with columns `"USUBJID"`, `"ATOXGR"`,
-#'  `"ONTRTFL"` and column specified by `armvar`.
+#'  `"ONTRTFL"` and column specified by `arm_var`.
 #'
 #' @export
 #'
@@ -158,7 +158,7 @@ lbt07_1_pre <- function(adam_db, ...) {
 #'
 lbt07_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -167,7 +167,7 @@ lbt07_1_check <- function(adam_db,
   adlb_layout_col <- c("USUBJID", "ATOXGR", "ONTRTFL")
   adsl_layout_col <- c("USUBJID")
 
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
 
   if (is.null(msg)) {

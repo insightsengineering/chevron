@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 lbt01_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
   precision = integer(),
@@ -24,7 +24,7 @@ lbt01_1_main(
 )
 
 lbt01_1_lyt(
-  armvar,
+  arm_var,
   summaryvars,
   summaryvars_lbls,
   visitvar,
@@ -45,7 +45,7 @@ lbt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 

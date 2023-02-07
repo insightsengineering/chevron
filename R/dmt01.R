@@ -30,7 +30,7 @@
 #' dmt01_1_main(db, lbl_overall = NULL)
 #' dmt01_1_main(db, summaryvars = c("Age" = "AGE", "RACE", "SEX"))
 dmt01_1_main <- function(adam_db,
-                         armvar = "ARM",
+                         arm_var = "ARM",
                          summaryvars = c(
                            "Age (yr)" = "AAGE",
                            "Age group (yr)" = "AGEGR1",
@@ -46,7 +46,7 @@ dmt01_1_main <- function(adam_db,
   summaryvars_lbls <- get_labels(adam_db$adsl, summaryvars)
 
   lyt <- dmt01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
@@ -66,14 +66,14 @@ dmt01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-dmt01_1_lyt <- function(armvar,
+dmt01_1_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         lbl_overall,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%

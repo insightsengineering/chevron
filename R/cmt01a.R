@@ -24,7 +24,7 @@
 #' @export
 #'
 cmt01a_1_main <- function(adam_db,
-                          armvar = "ARM",
+                          arm_var = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
                           medname_var = "CMDECOD",
@@ -37,7 +37,7 @@ cmt01a_1_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
@@ -63,7 +63,7 @@ cmt01a_1_main <- function(adam_db,
 #'
 #' @export
 #'
-cmt01a_1_lyt <- function(armvar,
+cmt01a_1_lyt <- function(arm_var,
                          lbl_overall,
                          medcat_var,
                          lbl_medcat_var,
@@ -72,7 +72,7 @@ cmt01a_1_lyt <- function(armvar,
                          deco,
                          ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -218,7 +218,7 @@ cmt01a_1 <- chevron_t(
 #' @export
 #'
 cmt01a_2_main <- function(adam_db,
-                          armvar = "ARM",
+                          arm_var = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
                           medname_var = "CMDECOD",
@@ -232,7 +232,7 @@ cmt01a_2_main <- function(adam_db,
 
   # The same layout can be used.
   lyt <- cmt01a_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
@@ -357,7 +357,7 @@ cmt01a_2 <- chevron_t(
 #' @export
 #'
 cmt01a_3_main <- function(adam_db,
-                          armvar = "ARM",
+                          arm_var = "ARM",
                           medcat_var = "ATC2", # Anatomical therapeutic category
                           lbl_medcat_var = "ATC Class Level 2",
                           medname_var = "CMDECOD",
@@ -370,7 +370,7 @@ cmt01a_3_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt01a_3_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
@@ -391,7 +391,7 @@ cmt01a_3_main <- function(adam_db,
 #'
 #' @export
 #'
-cmt01a_3_lyt <- function(armvar = "ARM",
+cmt01a_3_lyt <- function(arm_var = "ARM",
                          lbl_overall = NULL,
                          medcat_var = "ATC2",
                          lbl_medcat_var = "ATC Class Level 2",
@@ -400,7 +400,7 @@ cmt01a_3_lyt <- function(armvar = "ARM",
                          deco = std_deco("CMT01A"),
                          ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(

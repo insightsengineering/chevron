@@ -12,7 +12,7 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet02_3_lyt(
-  armvar,
+  arm_var,
   lbl_overall,
   lbl_aedecod = "MedDRA Preferred Term",
   deco,
@@ -26,7 +26,7 @@ aet02_3_post(tlg, prune_0 = TRUE, ...)
 aet02_3
 }
 \arguments{
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
