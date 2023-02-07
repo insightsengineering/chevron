@@ -23,6 +23,7 @@
 #'
 lbt07_1_main <- function(adam_db,
                          armvar = "ACTARM",
+                         lbl_overall = NULL,
                          grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
@@ -43,6 +44,7 @@ lbt07_1_main <- function(adam_db,
 
   lyt <- lbt07_1_lyt(
     armvar = armvar,
+    lbl_overall = lbl_overall,
     grade_var = grade_var,
     lbl_grade_var = lbl_grade_var,
     deco = deco,
@@ -67,6 +69,7 @@ lbt07_1_main <- function(adam_db,
 #' @export
 #'
 lbt07_1_lyt <- function(armvar,
+                        lbl_overall,
                         lbl_gradedir,
                         lbl_param,
                         grade_var,
@@ -78,6 +81,7 @@ lbt07_1_lyt <- function(armvar,
 
   basic_table_deco(deco, show_colcount = TRUE) %>%
     split_cols_by(armvar) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       label_pos = "topleft",
