@@ -105,6 +105,26 @@ syn_test_data <- function() {
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
   sd$adex$AVALCAT1 <- forcats::fct_explicit_na(sd$adex$AVALCAT1, na_level = "<Missing>") # nolint
 
+  # Add AVALCAT1 CHGCAT1 for adeg
+  sd$adeg <- sd$adeg %>%
+    mutate(
+      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else
+        case_when(
+          PARAMCD == "QT" & AVAL <= 450 ~ "<=450",
+          PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ ">450 to <=480",
+          PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ ">480 to <=500",
+          PARAMCD == "QT" & AVAL > 500 ~ ">500"
+        ),
+      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else
+        case_when(
+          PARAMCD == "QT" & CHG <= 30 ~ "<=30",
+          PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ ">30 to <=60",
+          PARAMCD == "QT" & CHG > 60 ~ ">60"
+        ),
+      AVALCAT1 = factor(paste(AVALCAT1,' ',AVALU)),
+      CHGCAT1 = factor(paste(CHGCAT1,' ',AVALU))
+      )
+
   # useful for dmt01
   adsub <- sd$adsub
   adsub_wide_ls <- dunlin::poly_pivot_wider(

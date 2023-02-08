@@ -4,13 +4,14 @@
 #'
 #' @inheritParams gen_args
 #' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
+#' @param paramvar (`string`) typically `"QT"` (Default). It should come from `"PARAMCD"`.
 #'
 #' @details
-#'  * The `Value at Visit` column, displays the categories of the specific `PARAMCD` value for patients.
-#'  * The `Change from Baseline` column, displays the categories of the specific `PARAMCD` value
+#'  * The `Value at Visit` column, displays the categories of the specific `"PARAMCD"` value for patients.
+#'  * The `Change from Baseline` column, displays the categories of the specific `"PARAMCD"` value
 #'  change from baseline for patients.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
-#'  * Split columns by arm, typically `ACTARM`.
+#'  * Split columns by arm, typically `"ACTARM"`.
 #'  * Does not include a total column by default.
 #'  * Sorted based on factor level; by chronological time point given by one of `"AVISIT"` (Default) or `"ATPTN"`.
 #'  Re-level to customize order.
@@ -24,16 +25,16 @@
 egt05_qtcat_1_main <- function(adam_db,
                                armvar = "ACTARM",
                                summaryvars = c("Value at Visit" = "AVALCAT1", "Change from Baseline" = "CHGCAT1"),
+                               summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
                                lbl_overall = NULL,
                                visitvar = "AVISIT",
+                               lbl_avisit = var_labels_for(adam_db$adeg, visitvar),
+                               paramvar = "QT",
+                               lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
                                deco = std_deco("EGT05_QTCAT"),
                                lbl_cat = "Category",
                                lbl_headvisit = "Analysis Visit",
                                ...) {
-  lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
-  lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
-
-  summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars)
 
   lyt <- egt05_qtcat_1_lyt(
     armvar = armvar,
@@ -41,6 +42,7 @@ egt05_qtcat_1_main <- function(adam_db,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
     visitvar = visitvar,
+    paramvar = paramvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     deco = deco,
@@ -51,7 +53,7 @@ egt05_qtcat_1_main <- function(adam_db,
 
   tbl <- build_table(
     lyt,
-    df = adam_db$adeg,
+    df = adam_db$adeg %>% filter(PARAMCD %in% paramvar),
     alt_counts_df = adam_db$adsl
   )
 }
@@ -105,8 +107,8 @@ egt05_qtcat_1_lyt <- function(armvar,
       var_labels = summaryvars_lbls
     ) %>%
     append_topleft(paste(lbl_param)) %>%
-    append_topleft(lbl_headvisit) %>%
-    append_topleft(paste0("  ", lbl_cat))
+    append_topleft(paste0("  ", lbl_headvisit)) %>%
+    append_topleft(paste0("    ", lbl_cat))
 }
 
 #' @describeIn egt05_qtcat_1 Preprocessing
@@ -117,6 +119,7 @@ egt05_qtcat_1_lyt <- function(armvar,
 #'
 egt05_qtcat_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
+  assert_colnames(adam_db$adeg, c("AVALCAT1", "CHGCAT1"))
 
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -124,12 +127,8 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
       ANL01FL == "Y"
     ) %>%
     mutate(
-      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) factor(AVALCAT1) else
-        stop("Please make sure 'AVALCAT1' is existed")
-    ) %>%
-    mutate(
-      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) factor(CHGCAT1) else
-        stop("Please make sure 'CHGCAT1' is existed")
+      AVALCAT1 = factor(AVALCAT1),
+      CHGCAT1 = factor(CHGCAT1)
     ) %>%
     dm_update_zoomed()
 }

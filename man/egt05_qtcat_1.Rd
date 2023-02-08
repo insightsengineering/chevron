@@ -16,8 +16,12 @@ egt05_qtcat_1_main(
   adam_db,
   armvar = "ACTARM",
   summaryvars = c(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
+  summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
   lbl_overall = NULL,
   visitvar = "AVISIT",
+  lbl_avisit = var_labels_for(adam_db$adeg, visitvar),
+  paramvar = "QT",
+  lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
   deco = std_deco("EGT05_QTCAT"),
   lbl_cat = "Category",
   lbl_headvisit = "Analysis Visit",
@@ -51,10 +55,18 @@ egt05_qtcat_1
 
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
 
+\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
+
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
+
+\item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
+
+\item{paramvar}{(\code{string}) typically \code{"QT"} (Default). It should come from \code{"PARAMCD"}.}
+
+\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -63,12 +75,6 @@ to be displayed.}
 \item{lbl_headvisit}{(\code{character}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 
 \item{...}{not used.}
-
-\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
-
-\item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
-
-\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -80,11 +86,11 @@ throughout the study.
 }
 \details{
 \itemize{
-\item The \verb{Value at Visit} column, displays the categories of the specific \code{PARAMCD} value for patients.
-\item The \verb{Change from Baseline} column, displays the categories of the specific \code{PARAMCD} value
+\item The \verb{Value at Visit} column, displays the categories of the specific \code{"PARAMCD"} value for patients.
+\item The \verb{Change from Baseline} column, displays the categories of the specific \code{"PARAMCD"} value
 change from baseline for patients.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
-\item Split columns by arm, typically \code{ACTARM}.
+\item Split columns by arm, typically \code{"ACTARM"}.
 \item Does not include a total column by default.
 \item Sorted based on factor level; by chronological time point given by one of \code{"AVISIT"} (Default) or \code{"ATPTN"}.
 Re-level to customize order.
