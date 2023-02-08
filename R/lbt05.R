@@ -31,8 +31,11 @@ lbt05_1_main <- function(adam_db,
     filter(abn_dir != "<Missing>")
   if (nrow(map) == 0) {
     map <- expand.grid(
-      PARAM = if (is.factor(adam_db$adlb$PARAM))
-        levels(adam_db$adlb$PARAM) else "Missing",
+      PARAM = if (is.factor(adam_db$adlb$PARAM)) {
+        levels(adam_db$adlb$PARAM)
+      } else {
+        "Missing"
+      },
       abn_dir = c("Low", "High"),
       stringsAsFactors = FALSE
     )
@@ -122,7 +125,6 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
   )
 
   db <- dunlin::apply_reformat(db, new_format)
-
 }
 
 #' @describeIn lbt05_1 Checks

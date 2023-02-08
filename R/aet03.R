@@ -3,6 +3,7 @@
 #' @describeIn aet03_1 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param intensity_grade (`vector of character`) putting in correspondence intensity levels.
 #'
 #' @details
 #'  * Default Adverse Events by Greatest Intensity table.
@@ -13,7 +14,7 @@
 #'  * Sort by Body System or Organ Class (`SOC`) and Dictionary-Derived Term (`PT`).
 #'
 #' @note
-#'  * `adam_db` object must contain an `adae` table with the columns `"AESEV"`, `"AEBODSYS"` and `"AEDECOD"`.
+#'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"`, `"AEDECOD"` and `"ASEV"`.
 #'
 #' @export
 #'
@@ -22,29 +23,21 @@ aet03_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          deco = std_deco("AET03"),
                          ...) {
-  assert_colnames(adam_db$adae, c("AESEV", "AEBODSYS", "AEDECOD"))
+  dbsel <- get_db_data(adam_db, "adsl", "adae")
+  assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
-  # specific to AET03: avoid error if some severity levels are not present
-  severity_grade <- levels(adam_db$adae[["AESEV"]])
-  lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
-  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
+  checkmate::assert_factor(dbsel$adae[["ASEV"]], any.missing = FALSE)
+  intensity_grade <- levels(dbsel$adae[["ASEV"]])
 
   lyt <- aet03_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    lbl_aebodsys = lbl_aebodsys,
-    lbl_aedecod = lbl_aedecod,
-    severity_grade = severity_grade,
+    intensity_grade = intensity_grade,
     deco = deco,
     ... = ...
   )
 
-  # build table
-  tbl <- build_table(
-    lyt,
-    df = adam_db$adae,
-    alt_counts_df = adam_db$adsl
-  )
+  tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
 
   tbl
 }
@@ -55,38 +48,41 @@ aet03_1_main <- function(adam_db,
 #'
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param severity_grade (`vector of character`) describing the severity levels present in the dataset.
+#' @param intensity_grade (`vector of character`) describing the intensity levels present in the dataset.
 #' @param ... not used.
 #'
 #' @export
 #'
 aet03_1_lyt <- function(arm_var,
-                        lbl_aebodsys,
-                        lbl_aedecod,
-                        severity_grade,
                         lbl_overall,
+                        lbl_aebodsys = "MedDRA System Organ Class",
+                        lbl_aedecod = "MedDRA Preferred Term",
+                        intensity_grade,
                         deco,
                         ...) {
+  all_grade_groups <- list("- Any Intensity -" = intensity_grade)
+
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    summarize_occurrences_by_grade(
-      var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade)
+    count_occurrences_by_grade(
+      var = "ASEV",
+      grade_groups = all_grade_groups,
+      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEBODSYS",
       child_labels = "visible",
-      nested = FALSE,
-      indent_mod = -1L,
+      nested = TRUE,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_aebodsys
     ) %>%
     summarize_occurrences_by_grade(
-      var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade)
+      var = "ASEV",
+      grade_groups = all_grade_groups,
+      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by(
       "AEDECOD",
@@ -97,9 +93,14 @@ aet03_1_lyt <- function(arm_var,
       label_pos = "topleft",
       split_label = lbl_aedecod
     ) %>%
-    summarize_occurrences_by_grade(
-      var = "AESEV",
-      grade_groups = list("- Any Intensity -" = severity_grade)
+    summarize_num_patients(
+      var = "USUBJID",
+      .stats = "unique",
+      .labels = c("- Any Intensity -")
+    ) %>%
+    count_occurrences_by_grade(
+      var = "ASEV",
+      .indent_mods = -1L
     )
 }
 
@@ -115,23 +116,20 @@ aet03_1_pre <- function(adam_db, ...) {
 
   new_format <- list(
     adae = list(
-      AEDECOD = list(
-        "No Coding available" = c("", NA, "<Missing>")
-      ),
-      AEBODSYS = list(
-        "No Coding available" = c("", NA, "<Missing>")
-      ),
-      AESEV = list(
-        "<Missing>" = c("", NA)
-      )
+      AEBODSYS = list("No Coding available" = c("", NA, "<Missing>")),
+      AEDECOD = list("No Coding available" = c("", NA, "<Missing>")),
+      ASEV = list("<Missing>" = c("", NA, "<Missing>"))
     )
   )
-
   adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    filter(.data$ASEV != "<Missing>") %>%
+    mutate(ASEV = factor(.data$ASEV,
+      levels = setdiff(levels(.data$ASEV), "<Missing>")
+    )) %>%
     dm_update_zoomed()
 }
 
@@ -147,7 +145,7 @@ aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
 
   tbl_sorted <- tlg %>%
     sort_at_path(
-      path = "AEBODSYS",
+      path = c("AEBODSYS"),
       scorefun = cont_n_allcols,
       decreasing = TRUE
     ) %>%
@@ -163,7 +161,7 @@ aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
 #'
 #' An adverse events table categorized by System
-#' Organ Class, Dictionary-Derived Term  and Greatest intensity.
+#' Organ Class, Dictionary-Derived Term and Greatest intensity.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -172,7 +170,6 @@ aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' run(aet03_1, syn_data)
 aet03_1 <- chevron_t(
   main = aet03_1_main,
-  lyt = aet03_1_lyt,
   preprocess = aet03_1_pre,
   postprocess = aet03_1_post,
   adam_datasets = c("adsl", "adae")
