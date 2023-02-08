@@ -129,7 +129,9 @@ lbt07_1_pre <- function(adam_db, ...) {
     dm_zoom_to("adlb") %>%
     filter(
       .data$ATOXGR != "<Missing>",
-      .data$ONTRTFL == "Y"
+      .data$ONTRTFL == "Y",
+      .data$WGRLOFL == "Y" | .data$WGRHIFL == "Y",
+      !.data$AVISIT %in% c("SCREENING", "BASELINE")
     ) %>%
     mutate(
       GRADE_DIR = factor(
@@ -186,6 +188,9 @@ lbt07_1_check <- function(adam_db,
 #' @export
 #'
 lbt07_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
   std_postprocess(tlg)
 }
 
