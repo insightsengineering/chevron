@@ -103,7 +103,7 @@ syn_test_data <- function() {
   attr(sd$adsl$AAGE, "label") <- "Age (yr)"
   sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
-  sd$adex$AVALCAT1 <- forcats::fct_explicit_na(sd$adex$AVALCAT1, na_level = "<Missing>") # nolint
+  sd$adex$AVALCAT1 <- tern::explicit_na(sd$adex$AVALCAT1, label = "<Missing>") # nolint
 
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
