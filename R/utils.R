@@ -121,8 +121,8 @@ syn_test_data <- function() {
           PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ ">30 to <=60",
           PARAMCD == "QT" & CHG > 60 ~ ">60"
         ),
-      AVALCAT1 = factor(paste(AVALCAT1,' ',AVALU)),
-      CHGCAT1 = factor(paste(CHGCAT1,' ',AVALU))
+      AVALCAT1 = factor(paste(AVALCAT1, " ", AVALU)),
+      CHGCAT1 = factor(paste(CHGCAT1, " ", AVALU))
       )
 
   # useful for dmt01
