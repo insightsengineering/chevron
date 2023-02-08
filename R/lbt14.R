@@ -111,8 +111,11 @@ lbt14_1_pre <- function(adam_db,
   } else if (gr_missing == "gr_0") {
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
-      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) factor(BTOXGR, levels = c("0", "<Missing>"))
-             else BTOXGR) %>%
+      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
+        factor(BTOXGR, levels = c("0", "<Missing>"))
+      } else {
+        BTOXGR
+      }) %>%
       mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }
@@ -319,8 +322,11 @@ lbt14_2_pre <- function(adam_db,
   } else if (gr_missing == "gr_0") {
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
-      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) factor(BTOXGR, levels = c("0", "<Missing>"))
-             else BTOXGR) %>%
+      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
+        factor(BTOXGR, levels = c("0", "<Missing>"))
+      } else {
+        BTOXGR
+      }) %>%
       mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }

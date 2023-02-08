@@ -28,7 +28,6 @@ lbt07_1_main <- function(adam_db,
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
                          ...) {
-
   lbt07_1_check(adam_db, ...)
 
   lbl_grade_var <- if (is.null(lbl_grade_var)) {
