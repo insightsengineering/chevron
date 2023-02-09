@@ -59,11 +59,10 @@ setMethod(
   f = "args",
   signature = "chevron_tlg",
   definition = function(x, simplify = FALSE, omit = NULL) {
-
     checkmate::assert_flag(simplify)
     checkmate::assert_character(omit, null.ok = TRUE)
 
-    x_sel <- lapply(x@args, function(y)  y[!names(y) %in% omit])
+    x_sel <- lapply(x@args, function(y) y[!names(y) %in% omit])
 
     res <- if (simplify) {
       Reduce(fuse_sequentially, x_sel)
@@ -262,7 +261,7 @@ setMethod(
 #'
 #' @rdname script
 #' @export
-setGeneric("script", function(x,  dict = NULL, details = FALSE) standardGeneric("script"))
+setGeneric("script", function(x, dict = NULL, details = FALSE) standardGeneric("script"))
 
 #' @rdname script
 #' @export
@@ -270,7 +269,6 @@ setMethod(
   f = "script",
   signature = "chevron_tlg",
   definition = function(x, dict = NULL, details = FALSE) {
-
     checkmate::assert_list(dict, null.ok = TRUE)
     checkmate::assert_flag(details)
 
@@ -281,13 +279,13 @@ setMethod(
     val_args <- unname(simple_arg)
 
     res <- alist()
-    for(i in seq_along(simple_arg)){
+    for (i in seq_along(simple_arg)) {
       val <- val_args[[i]]
       id <- names_args[[i]]
 
       if (missing(val)) {
         res[[id]] <- "# enter custom value"
-      } else{
+      } else {
         res[[id]] <- val
       }
     }
@@ -350,7 +348,7 @@ setMethod(
       fun_exec
     )
 
-      unlist(spt)
+    unlist(spt)
   }
 )
 

@@ -24,7 +24,7 @@ library(dplyr)
 
 # Introduction
 
-In addition of the embedded `run()` method to create a `tlg`, chevron offers a script-based approach that allow the user to quickly edit a chevron workflow without the need for modifying a `chevron_tlg` object. The script is generated based on the default value of the arguments but can be edit either manually after creation or programmatically with the `dict` argument. By default, only the script corresponding to the pre processing function is detailed in the script. However, the main and post processing functions can also be exposed in the script with the `details = TRUE` argument.
+In addition of the embedded `run()` method to create a `tlg`, chevron offers a script-based approach that allow the user to quickly edit a chevron workflow without the need for modifying a `chevron_tlg` object. The script is generated based on the default value of the arguments but can be edit either manually after creation or using the `dict` argument. By default, only the script corresponding to the pre processing function is detailed in the script. However, the main and post processing functions can also be exposed in the script with the `details = TRUE` argument.
 
 
 # Using a chevron-defined object
@@ -53,7 +53,7 @@ writeLines(res)
 
 # With custom argument definition
 
-To programmatically define the value of an argument, pass it to a named list. Existing values will be overwritten.
+To define the value of an argument in the directly in the `script` method, pass it to a named list. Existing values will be overwritten.
 
 Note: variables (in this case the `dm` object `syn_data`), have to be passed as symbol, using for instance `rlang::sym`.
 
@@ -81,7 +81,7 @@ source(tmp, local = knitr::knit_global())
 print(final_tlg[[1]])
 ```
 
-# Exploring Main and Postprocess functions
+# Exploring Main and Post process functions
 
 By specifying `details = TRUE` the main and post processing functions are also exposed.
 
@@ -98,5 +98,3 @@ res <- script(dmt01_1, dict = dict, details = TRUE)
 ```{r, comment = "", echo = FALSE}
 writeLines(res)
 ```
-
-
