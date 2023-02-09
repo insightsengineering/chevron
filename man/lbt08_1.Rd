@@ -32,6 +32,8 @@ lbt08_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
+\item{armvar}{(\code{character}) variable describing arm splits.}
+
 \item{lbl_param}{(\code{character}) label of the \code{PARAMCD} variable.}
 
 \item{lbl_grade}{(\code{character}) label of the \code{GRADDR} variable.}

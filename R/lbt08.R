@@ -3,8 +3,9 @@
 #' @describeIn lbt08_1 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param armvar (`character`) variable describing arm splits.
 #' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_grade (`character`) label of the `GRADDR` variable;
+#' @param lbl_grade (`character`) label of the `GRADDR` variable.
 #' directionality of the grade derived from the `PARAMCD` variable.
 #'
 #' @details
