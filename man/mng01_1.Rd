@@ -18,7 +18,7 @@ mng01_1_main(
   y_var = "AVAL",
   y_name = "PARAM",
   y_unit = NA,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   center_fun = c("mean", "median"),
   interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
   show_table = TRUE,
@@ -51,7 +51,7 @@ mng01_1
 \item{y_unit}{(\code{string}) the name of the variable with the units of \code{y}. Used for plot's subtitle. if \code{NA}, only
 \code{y_name} is displayed as subtitle.}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{center_fun}{(\code{string}) the function to compute the estimate value.}
 
@@ -70,7 +70,7 @@ mng01_1
 \item{legend_pos}{(\code{string}) the position of the legend.}
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} vector associating
-values of \code{armvar} with color names.}
+values of \code{arm_var} with color names.}
 
 \item{...}{not used.}
 
@@ -100,7 +100,7 @@ Overview of a summary statistics across time and arm for a selected data set.
 \note{
 \itemize{
 \item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by \code{x_var}, \code{y_var},
-\code{y_name}, \code{y_unit} and \code{armvar}.
+\code{y_name}, \code{y_unit} and \code{arm_var}.
 }
 }
 \examples{

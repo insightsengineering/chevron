@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 vst02_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
@@ -24,7 +24,7 @@ vst02_1_main(
 )
 
 vst02_1_lyt(
-  armvar,
+  arm_var,
   lbl_vs_assessment,
   lbl_vs_abnormality,
   lbl_overall,
@@ -41,7 +41,7 @@ vst02_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_vs_assessment}{(\code{character}) the label of the assessment variable.}
 

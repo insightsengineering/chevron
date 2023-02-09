@@ -15,20 +15,20 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 aet01_aesi_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   aesi_vars = NA,
   deco = std_deco("AET01_AESI"),
   ...
 )
 
-aet01_aesi_1_lyt(armvar, aesi_vars, deco, lbl_aesi_vars, ...)
+aet01_aesi_1_lyt(arm_var, aesi_vars, deco, lbl_aesi_vars, ...)
 
 aet01_aesi_1_pre(adam_db, ...)
 
 aet01_aesi_1_check(
   adam_db,
   req_tables = c("adsl", "adae"),
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   ...
 )
 
@@ -39,7 +39,7 @@ aet01_aesi_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{aesi_vars}{(\code{character}) the AESI variables to be included in the summary. Defaults to \code{NA}.}
 
@@ -79,7 +79,7 @@ aet01_aesi_1
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adae} table with columns \code{"AEOUT"}, \code{"AEACN"}, \code{"AECONTRT"}, \code{"AESER"},
-\code{"AREL"}, and the column specified by \code{armvar}.
+\code{"AREL"}, and the column specified by \code{arm_var}.
 \item \code{aesi_vars} may contain any/all of the following variables to display: \code{"ALLRESWD"}, \code{"ALLRESDSM"},
 \code{"ALLRESCONTRT"}, \code{"NOTRESWD"}, \code{"NOTRESDSM"}, \code{"NOTRESCONTRT"}, \code{"SERWD"}, \code{"SERDSM"}, \code{"SERCONTRT"},
 \code{"RELWD"}, \code{"RELDSM"}, \code{"RELCONTRT"}, \code{"RELSER"}.

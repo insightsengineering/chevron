@@ -28,7 +28,7 @@
 #' @export
 #'
 lbt01_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
                          precision = integer(),
@@ -37,7 +37,7 @@ lbt01_1_main <- function(adam_db,
                          ...) {
   assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
   assert_colnames(adam_db$adlb, summaryvars)
-  assert_colnames(adam_db$adlb, armvar)
+  assert_colnames(adam_db$adlb, arm_var)
   assert_colnames(adam_db$adlb, visitvar)
   checkmate::assert_integerish(precision, lower = 0)
 
@@ -47,7 +47,7 @@ lbt01_1_main <- function(adam_db,
   summaryvars_lbls <- get_labels(adam_db$adlb, summaryvars)
 
   lyt <- lbt01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
@@ -78,7 +78,7 @@ lbt01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt01_1_lyt <- function(armvar,
+lbt01_1_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         visitvar,
@@ -89,7 +89,7 @@ lbt01_1_lyt <- function(armvar,
                         default_precision,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",

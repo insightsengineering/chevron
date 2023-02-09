@@ -4,7 +4,7 @@
 #' @describeIn dst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param armvar (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
+#' @param arm_var (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
 #' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
@@ -35,7 +35,7 @@
 #'
 #' dst01_1_main(db)
 dst01_1_main <- function(adam_db,
-                         armvar = "ARM",
+                         arm_var = "ARM",
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
@@ -49,7 +49,7 @@ dst01_1_main <- function(adam_db,
   checkmate::assert_factor(adam_db$adsl[[status_var]])
 
   lyt <- dst01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     status_var = status_var,
@@ -95,7 +95,7 @@ dst01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-dst01_1_lyt <- function(armvar,
+dst01_1_lyt <- function(arm_var,
                         status_var,
                         disc_reason_var,
                         completed_lbl = "COMPLETED",
@@ -105,7 +105,7 @@ dst01_1_lyt <- function(armvar,
                         deco,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden")
@@ -255,7 +255,7 @@ dst01_1 <- chevron_t(
 #' dst01_2_main(db)
 #' dst01_2_main(db, lbl_overall = NULL)
 dst01_2_main <- function(adam_db,
-                         armvar = "ARM",
+                         arm_var = "ARM",
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
@@ -269,7 +269,7 @@ dst01_2_main <- function(adam_db,
   checkmate::assert_factor(adam_db$adsl[[status_var]])
 
   lyt <- dst01_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     status_var = status_var,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lvl,
@@ -315,7 +315,7 @@ dst01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-dst01_2_lyt <- function(armvar,
+dst01_2_lyt <- function(arm_var,
                         status_var,
                         disc_reason_var,
                         completed_lbl,
@@ -326,7 +326,7 @@ dst01_2_lyt <- function(armvar,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(
-      armvar,
+      arm_var,
       split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
     ) %>%
     add_colcounts() %>%
@@ -496,7 +496,7 @@ dst01_2 <- chevron_t(
 #' dst01_3_main(db)
 #' dst01_3_main(db, lbl_overall = NULL)
 dst01_3_main <- function(adam_db,
-                         armvar = "ARM",
+                         arm_var = "ARM",
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          status_treatment_var = "EOTSTT",
@@ -511,7 +511,7 @@ dst01_3_main <- function(adam_db,
   checkmate::assert_factor(adam_db$adsl[[status_treatment_var]])
 
   lyt <- dst01_3_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     completed_trt_lbl = completed_lvl,
@@ -527,7 +527,7 @@ dst01_3_main <- function(adam_db,
   )
 
   lyt <- dst01_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     completed_lbl = completed_lvl,
@@ -569,7 +569,7 @@ dst01_3_main <- function(adam_db,
 #'
 #' @export
 #'
-dst01_3_lyt <- function(armvar,
+dst01_3_lyt <- function(arm_var,
                         status_treatment_var,
                         completed_trt_lbl,
                         discontinued_trt_lbl,
@@ -578,7 +578,7 @@ dst01_3_lyt <- function(armvar,
                         deco,
                         ...) {
   layout_table <- basic_table_deco(deco) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
