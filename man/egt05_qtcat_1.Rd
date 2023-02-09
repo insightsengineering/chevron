@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 egt05_qtcat_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   summaryvars = c(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
   summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
   lbl_overall = NULL,
@@ -29,7 +29,7 @@ egt05_qtcat_1_main(
 )
 
 egt05_qtcat_1_lyt(
-  armvar,
+  arm_var,
   summaryvars,
   summaryvars_lbls,
   lbl_overall = NULL,
@@ -50,6 +50,8 @@ egt05_qtcat_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
 

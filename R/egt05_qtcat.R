@@ -23,7 +23,7 @@
 #' @export
 #'
 egt05_qtcat_1_main <- function(adam_db,
-                               armvar = "ACTARM",
+                               arm_var = "ACTARM",
                                summaryvars = c("Value at Visit" = "AVALCAT1", "Change from Baseline" = "CHGCAT1"),
                                summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
                                lbl_overall = NULL,
@@ -36,7 +36,7 @@ egt05_qtcat_1_main <- function(adam_db,
                                lbl_headvisit = "Analysis Visit",
                                ...) {
   lyt <- egt05_qtcat_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
@@ -72,7 +72,7 @@ egt05_qtcat_1_main <- function(adam_db,
 #' @param ... not used.
 #'
 #' @export
-egt05_qtcat_1_lyt <- function(armvar,
+egt05_qtcat_1_lyt <- function(arm_var,
                               summaryvars,
                               summaryvars_lbls,
                               lbl_overall = NULL,
@@ -84,7 +84,7 @@ egt05_qtcat_1_lyt <- function(armvar,
                               lbl_headvisit,
                               ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
