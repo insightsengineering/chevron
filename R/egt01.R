@@ -26,7 +26,7 @@
 #' @export
 #'
 egt01_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT", # or ATPTN
                          deco = std_deco("EGT01"),
@@ -37,7 +37,7 @@ egt01_1_main <- function(adam_db,
   summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars)
 
   lyt <- egt01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
@@ -66,7 +66,7 @@ egt01_1_main <- function(adam_db,
 #' @param ... not used.
 #'
 #' @export
-egt01_1_lyt <- function(armvar,
+egt01_1_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         visitvar,
@@ -78,7 +78,7 @@ egt01_1_lyt <- function(armvar,
   # remove change from baseline in BASELINE
 
   basic_table_deco(deco) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels,

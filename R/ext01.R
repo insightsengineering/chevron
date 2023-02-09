@@ -22,7 +22,7 @@
 #' @export
 #'
 ext01_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          summaryvars = "AVAL",
                          lbl_overall = NULL,
                          deco = std_deco("EXT01"),
@@ -32,7 +32,7 @@ ext01_1_main <- function(adam_db,
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
 
   lyt <- ext01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
@@ -55,14 +55,14 @@ ext01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-ext01_1_lyt <- function(armvar,
+ext01_1_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         lbl_overall,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
@@ -157,7 +157,7 @@ ext01_1 <- chevron_t(
 #'
 ext01_2_main <- function(adam_db,
                          summaryvars = c("AVAL", "AVALCAT1"),
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("EXT01"),
                          ...) {
@@ -166,7 +166,7 @@ ext01_2_main <- function(adam_db,
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
 
   lyt <- ext01_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
@@ -189,14 +189,14 @@ ext01_2_main <- function(adam_db,
 #'
 #' @export
 #'
-ext01_2_lyt <- function(armvar,
+ext01_2_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         lbl_overall,
                         deco = std_deco("EXT01"),
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(

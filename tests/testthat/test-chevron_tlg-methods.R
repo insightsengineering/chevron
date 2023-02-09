@@ -64,7 +64,7 @@ test_that("datasets setter works as expected", {
 
 test_that("main works as expected", {
   skip_if_not(interactive())
-  res <- get_main(aet04_1)
+  res <- main(aet04_1)
   expect_identical(res, aet04_1_main)
 })
 
@@ -72,7 +72,7 @@ test_that("main works as expected", {
 
 test_that("preprocess works as expected", {
   skip_if_not(interactive())
-  res <- get_preprocess(aet04_1)
+  res <- preprocess(aet04_1)
   expect_identical(res, aet04_1_pre)
 })
 

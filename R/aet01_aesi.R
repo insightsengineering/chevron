@@ -11,7 +11,7 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adae` table with columns `"AEOUT"`, `"AEACN"`, `"AECONTRT"`, `"AESER"`,
-#'  `"AREL"`, and the column specified by `armvar`.
+#'  `"AREL"`, and the column specified by `arm_var`.
 #'  * `aesi_vars` may contain any/all of the following variables to display: `"ALLRESWD"`, `"ALLRESDSM"`,
 #'  `"ALLRESCONTRT"`, `"NOTRESWD"`, `"NOTRESDSM"`, `"NOTRESCONTRT"`, `"SERWD"`, `"SERDSM"`, `"SERCONTRT"`,
 #'  `"RELWD"`, `"RELDSM"`, `"RELCONTRT"`, `"RELSER"`.
@@ -32,7 +32,7 @@
 #' @export
 #'
 aet01_aesi_1_main <- function(adam_db,
-                              armvar = "ACTARM",
+                              arm_var = "ACTARM",
                               aesi_vars = NA,
                               deco = std_deco("AET01_AESI"),
                               ...) {
@@ -54,7 +54,7 @@ aet01_aesi_1_main <- function(adam_db,
   lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
   lyt <- aet01_aesi_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     aesi_vars = all_aesi_vars,
     deco = deco,
     lbl_aesi_vars = lbl_aesi_vars,
@@ -74,14 +74,14 @@ aet01_aesi_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet01_aesi_1_lyt <- function(armvar,
+aet01_aesi_1_lyt <- function(arm_var,
                              aesi_vars,
                              deco,
                              lbl_aesi_vars,
                              ...) {
   names(lbl_aesi_vars) <- aesi_vars
   basic_table_deco(deco, show_colcounts = TRUE) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     count_patients_with_event(
       vars = "USUBJID",
       filters = c("ANL01FL" = "Y"),
@@ -230,7 +230,7 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
 #'
 aet01_aesi_1_check <- function(adam_db,
                                req_tables = c("adsl", "adae"),
-                               armvar = "ACTARM",
+                               arm_var = "ACTARM",
                                ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -259,12 +259,12 @@ aet01_aesi_1_check <- function(adam_db,
     RELSER = c("AREL", "AESER")
   )
 
-  native_col <- c(armvar, unique(unlist(corresponding_col)))
+  native_col <- c(arm_var, unique(unlist(corresponding_col)))
   filter_col <- "ANL01FL"
   layout_col <- "USUBJID"
 
   msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, filter_col, layout_col)))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, layout_col)))
 
   if (is.null(msg)) {
     TRUE

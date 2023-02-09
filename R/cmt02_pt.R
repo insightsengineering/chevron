@@ -15,14 +15,14 @@
 #' @export
 #'
 cmt02_pt_1_main <- function(adam_db,
-                            armvar = "ARM",
+                            arm_var = "ARM",
                             lbl_overall = NULL,
                             deco = std_deco("CMT02_PT"),
                             ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt02_pt_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...
@@ -40,12 +40,12 @@ cmt02_pt_1_main <- function(adam_db,
 #'
 #' @export
 #'
-cmt02_pt_1_lyt <- function(armvar,
+cmt02_pt_1_lyt <- function(arm_var,
                            lbl_overall,
                            deco,
                            ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(

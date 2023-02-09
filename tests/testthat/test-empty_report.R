@@ -3,30 +3,7 @@
 test_that("tlg functions return null reports when domain table is empty", {
   dat_empty <- syn_data %>%
     dunlin::dm_explicit_na() %>%
-    dm_zoom_to(adsl) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to(adae) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to(adcm) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to(adeg) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to(adex) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to(admh) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to(adlb) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to(advs) %>%
-    filter(STUDYID == "") %>%
-    dm_update_zoomed()
+    dm_filter(adsl = (USUBJID == ""))
 
   empty_report <- rtables::rtable(
     header = "",
@@ -39,6 +16,9 @@ test_that("tlg functions return null reports when domain table is empty", {
   expect_identical(res, empty_report)
 
   res <- run(aet01_2, dat_empty, prune_0 = TRUE)
+  expect_identical(res, empty_report)
+
+  res <- run(aet01_aesi_1, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
 
   res <- run(aet02_1, dat_empty)
@@ -92,6 +72,12 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(egt02_2, dat_empty)
   expect_identical(res, empty_report)
 
+  res <- suppressWarnings(run(egt03_1, dat_empty))
+  expect_identical(res, empty_report)
+
+  res <- suppressWarnings(run(egt03_2, dat_empty))
+  expect_identical(res, empty_report)
+
   res <- run(ext01_1, dat_empty)
   expect_identical(res, empty_report)
 
@@ -101,7 +87,13 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(lbt01_1, dat_empty)
   expect_identical(res, empty_report)
 
+  res <- run(lbt05_1, dat_empty)
+  expect_identical(std_postprocess(smart_prune(res)), empty_report)
+
   res <- run(mht01_1, dat_empty)
+  expect_identical(res, empty_report)
+
+  res <- run(pdt01_1, dat_empty)
   expect_identical(res, empty_report)
 
   res <- run(vst01_1, dat_empty)

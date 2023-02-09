@@ -18,7 +18,7 @@
 #' @export
 #'
 vst02_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
@@ -28,7 +28,7 @@ vst02_1_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
     lbl_overall = lbl_overall,
@@ -54,14 +54,14 @@ vst02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-vst02_1_lyt <- function(armvar,
+vst02_1_lyt <- function(arm_var,
                         lbl_vs_assessment,
                         lbl_vs_abnormality,
                         lbl_overall,
                         deco = std_deco("VST02"),
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
@@ -160,7 +160,7 @@ vst02_1 <- chevron_t(
 #' @export
 #'
 vst02_2_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
@@ -169,7 +169,7 @@ vst02_2_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
     lbl_overall = lbl_overall,
@@ -191,14 +191,14 @@ vst02_2_main <- function(adam_db,
 #'
 #' @export
 #'
-vst02_2_lyt <- function(armvar,
+vst02_2_lyt <- function(arm_var,
                         lbl_vs_assessment,
                         lbl_vs_abnormality,
                         lbl_overall,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%

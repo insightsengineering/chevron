@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 dst01_1_main(
   adam_db,
-  armvar = "ARM",
+  arm_var = "ARM",
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
   lbl_overall = "All Patients",
@@ -23,7 +23,7 @@ dst01_1_main(
 )
 
 dst01_1_lyt(
-  armvar,
+  arm_var,
   status_var,
   disc_reason_var,
   completed_lbl = "COMPLETED",
@@ -43,7 +43,7 @@ dst01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
+\item{arm_var}{(\code{character}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
 \item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
