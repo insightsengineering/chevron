@@ -32,8 +32,6 @@ lbt08_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
-
 \item{lbl_param}{(\code{character}) label of the \code{PARAMCD} variable.}
 
 \item{lbl_grade}{(\code{character}) label of the \code{GRADDR} variable.}
@@ -52,7 +50,7 @@ lbt08_1
 \item Split columns by arm, typically \code{ARMCD}.
 \item Baseline grade variable described by \code{BTOXGR}.
 \item Patient counts of Laboratory Events (Worsen by Baseline) by Highest Grade
-Post-Baseline flags described by \code{WGRLOFL} (ie. "LOW") and \code{WGRHIFL}(ie. "HIGH").
+Post-Baseline flags described by \code{WGRLOFL} ("LOW") and \code{WGRHIFL}("HIGH").
 }
 }
 \section{Functions}{

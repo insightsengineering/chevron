@@ -11,7 +11,7 @@
 #'  * Split columns by arm, typically `ARMCD`.
 #'  * Baseline grade variable described by `BTOXGR`.
 #'  * Patient counts of Laboratory Events (Worsen by Baseline) by Highest Grade
-#'  Post-Baseline flags described by `WGRLOFL` (ie. "LOW") and `WGRHIFL`(ie. "HIGH").
+#'  Post-Baseline flags described by `WGRLOFL` ("LOW") and `WGRHIFL`("HIGH").
 #'
 #' @note
 #'  * `adam_db` object must contain an `adlb` table with columns `"ONTRTFL"`,
@@ -73,8 +73,8 @@ lbt08_1_lyt <- function(armvar,
         id = "USUBJID",
         baseline_var = "BTOXGR",
         direction_var = "GRADDR"
-        )
-      ) %>%
+      )
+    ) %>%
     append_topleft(paste("   ", "    Highest NCI CTCAE Grade"))
 }
 
@@ -98,9 +98,9 @@ lbt08_1_pre <- function(adam_db, ...) {
 
   adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
-
   adsl <- adam_db$adsl
-  db <- adam_db$adlb %>%
+  db <- adam_db %>%
+    dm_zoom_to("adlb") %>%
     mutate(
       GRADDR = case_when(
         .data$PARAMCD == "ALT" ~ "B",
@@ -108,10 +108,11 @@ lbt08_1_pre <- function(adam_db, ...) {
         .data$PARAMCD == "IGA" ~ "L"
       )
     ) %>%
-    filter(.data$ATOXGR != "" & .data$ONTRTFL == "Y" & .data$GRADDR != "" & .data$SAFFL != "")
+    filter(.data$ATOXGR != "" & .data$ONTRTFL == "Y" & .data$GRADDR != "" & .data$SAFFL != "") %>%
+    dm_update_zoomed()
 
   df <- h_adlb_worsen(
-    db,
+    db$adlb,
     worst_flag_low = c("WGRLOFL" = "Y"),
     worst_flag_high = c("WGRHIFL" = "Y"),
     direction_var = "GRADDR"
