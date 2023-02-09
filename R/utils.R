@@ -154,7 +154,11 @@ syn_test_data <- function() {
           TRUE ~ ""
         ),
         levels = c("", "LAST", "REPLICATED", "SINGLE")
-      )
+      ),
+      ONTRTFL = factor(case_when(
+        AVISIT %in% c("SCREENING", "BASELINE") ~ "N",
+        TRUE ~ "Y"
+      ))
     ) %>%
     ungroup() %>%
     mutate(
