@@ -35,7 +35,6 @@ egt05_qtcat_1_main <- function(adam_db,
                                lbl_cat = "Category",
                                lbl_headvisit = "Analysis Visit",
                                ...) {
-
   lyt <- egt05_qtcat_1_lyt(
     armvar = armvar,
     summaryvars = summaryvars,
@@ -84,7 +83,6 @@ egt05_qtcat_1_lyt <- function(armvar,
                               lbl_cat,
                               lbl_headvisit,
                               ...) {
-
   basic_table_deco(deco) %>%
     split_cols_by(armvar) %>%
     add_colcounts() %>%

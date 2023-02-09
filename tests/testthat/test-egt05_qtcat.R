@@ -13,7 +13,6 @@ test_that("egt05_qtcat can handle all NA values", {
 })
 
 test_that("egt05_qtcat can handle some NA values", {
-
   proc_data <- syn_data %>%
     dm_zoom_to("adeg") %>%
     filter(PARAMCD == "QT") %>%

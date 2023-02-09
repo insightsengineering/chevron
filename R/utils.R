@@ -108,22 +108,28 @@ syn_test_data <- function() {
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
     mutate(
-      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) AVALCAT1 else
+      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) {
+        AVALCAT1
+      } else {
         case_when(
           PARAMCD == "QT" & AVAL <= 450 ~ "<=450",
           PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ ">450 to <=480",
           PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ ">480 to <=500",
           PARAMCD == "QT" & AVAL > 500 ~ ">500"
-        ),
-      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) CHGCAT1 else
+        )
+      },
+      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) {
+        CHGCAT1
+      } else {
         case_when(
           PARAMCD == "QT" & CHG <= 30 ~ "<=30",
           PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ ">30 to <=60",
           PARAMCD == "QT" & CHG > 60 ~ ">60"
-        ),
+        )
+      },
       AVALCAT1 = factor(paste(AVALCAT1, " ", AVALU)),
       CHGCAT1 = factor(paste(CHGCAT1, " ", AVALU))
-      )
+    )
 
   # useful for dmt01
   adsub <- sd$adsub
@@ -164,24 +170,26 @@ syn_test_data <- function() {
           ANRIND == "LOW" & AVAL <= q1 ~ "LOW LOW",
           ANRIND == "HIGH" & AVAL >= q2 ~ "HIGH HIGH",
           TRUE ~ as.character(ANRIND)
-        ), levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
+        ),
+        levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
       ),
       AVALCAT1 = factor(
         case_when(
           ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
             sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
           TRUE ~ ""
-        ), levels = c("", "LAST", "REPLICATED", "SINGLE")
+        ),
+        levels = c("", "LAST", "REPLICATED", "SINGLE")
       )
     ) %>%
     ungroup() %>%
     mutate(
       PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE)),
       PARCAT2 = as.factor(case_when(
-          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
-          TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
-          ))
-      ) %>%
+        ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
+        TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+      ))
+    ) %>%
     select(-q1, -q2)
 
   db <- new_dm(sd) %>%
