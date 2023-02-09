@@ -26,19 +26,12 @@ library(dplyr)
 
 In addition of the embedded `run()` method to create a `tlg`, chevron offers a script-based approach that allow the user to quickly edit a chevron workflow without the need for modifying a `chevron_tlg` object. The script is generated based on the default value of the arguments but can be edit either manually after creation or programmatically with the `dict` argument. By default, only the script corresponding to the pre processing function is detailed in the script. However, the main and post processing functions can also be exposed in the script with the `details = TRUE` argument.
 
-By default, the generated script is printed in the console but it can also be saved in a file whose address in passed to the `con` argument. 
 
 # Using a chevron-defined object
-The script is stored in a temporary R file.
-```{r}
-# saving in a temporary file
-tmp <- tempfile("my_script", fileext = "R")
-script(aet01_1, con = tmp)
-```
-
-Print the generated script:
-```{r, comment = "", echo = FALSE}
-cat(readLines(tmp), sep = '\n')
+The object returned by the `script` method is a vector of character with one element per line of the script, that can be easily rendered.
+```{r, comment = ""}
+res <- script(aet01_1)
+writeLines(res)
 ```
 
 
@@ -50,13 +43,12 @@ preprocess(aet01_1) <- function(adam_db, new_format, ...) {
   dunlin::apply_reformat(adam_db, new_format)
 }
 
-tmp <- tempfile("my_script", fileext = "R")
-script(aet01_1, con = tmp)
+res <- script(aet01_1)
 ```
 
 Print the first 20 lines of the generated script. Note that a new argument `new_format` has been added and the pre processing function has been modified.
 ```{r, comment = "", echo = FALSE}
-cat(readLines(tmp, n = 20), sep = '\n')
+writeLines(res)
 ```
 
 # With custom argument definition
@@ -72,17 +64,19 @@ dict <- list(
   some_vector = c("A", "B")
 )
 
-tmp <- tempfile("my_script", fileext = "R")
-script(mng01_1, con = tmp, dict = dict)
+res <- script(mng01_1, dict = dict)
 ```
 
 Print the first 10 lines of the generated script.
 ```{r, comment = "", echo = FALSE}
-cat(readLines(tmp, n = 10), sep = '\n')
+writeLines(res)
 ```
 
-Source the generated script and inspect the result stored in `final_tlg`.
+If saved in a `.R` file, the generated script can be executed. The result is stored in the `final_tlg` object, as described in the script.
 ```{r, fig.width=7, fig.height=7}
+tmp <- tempfile("my_script", fileext = "R")
+writeLines(res, con = tmp)
+
 source(tmp, local = knitr::knit_global())
 print(final_tlg[[1]])
 ```
@@ -98,12 +92,11 @@ dict <- list(
   some_vector = c("A", "B")
 )
 
-tmp <- tempfile("my_script", fileext = "R")
-script(dmt01_1, con = tmp, dict = dict, details = TRUE)
+res <- script(dmt01_1, dict = dict, details = TRUE)
 ```
 
 ```{r, comment = "", echo = FALSE}
-cat(readLines(tmp), sep = '\n')
+writeLines(res)
 ```
 
 

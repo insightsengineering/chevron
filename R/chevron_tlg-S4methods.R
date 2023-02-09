@@ -60,6 +60,9 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, simplify = FALSE, omit = NULL) {
 
+    checkmate::assert_flag(simplify)
+    checkmate::assert_character(omit, null.ok = TRUE)
+
     x_sel <- lapply(x@args, function(y)  y[!names(y) %in% omit])
 
     res <- if (simplify) {
@@ -254,19 +257,22 @@ setMethod(
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param dct (`list`) with the name and value of custom arguments.
-#' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the prepocessing step is printed.
-#' @param con (`connection` or `string`) to store the resulting script.
+#' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the
+#'   prepossessing step is printed.
 #'
 #' @rdname script
 #' @export
-setGeneric("script", function(x,  dict = list(), details = FALSE, con = NULL) standardGeneric("script"))
+setGeneric("script", function(x,  dict = NULL, details = FALSE) standardGeneric("script"))
 
 #' @rdname script
 #' @export
 setMethod(
   f = "script",
   signature = "chevron_tlg",
-  definition = function(x, dict = list(), details = FALSE, con = NULL) {
+  definition = function(x, dict = NULL, details = FALSE) {
+
+    checkmate::assert_list(dict, null.ok = TRUE)
+    checkmate::assert_flag(details)
 
     # Construct call for attribution of all arguments
     simple_arg <- args(x, omit = c("tlg", "..."), simplify = TRUE)
@@ -291,6 +297,7 @@ setMethod(
     # Construct argument list for each function.
     all_arg <- args(x, omit = c("...", "tlg"), simplify = FALSE)
 
+    # Construct argument list of pre function.
     arg_pre <- lapply(names(all_arg$preprocess), sym)
     names(arg_pre) <- arg_pre
 
@@ -331,6 +338,7 @@ setMethod(
       )
     }
 
+    # Generate the script.
     spt <- c(
       "\n# Arguments definition ----\n",
       lapply(arg_calls, deparse),
@@ -342,12 +350,7 @@ setMethod(
       fun_exec
     )
 
-    if (is.null(con)) {
       unlist(spt)
-    } else {
-      writeLines(unlist(spt), con = con)
-    }
-
   }
 )
 
