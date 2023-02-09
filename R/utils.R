@@ -144,30 +144,33 @@ syn_test_data <- function() {
           ANRIND == "LOW" & AVAL <= q1 ~ "LOW LOW",
           ANRIND == "HIGH" & AVAL >= q2 ~ "HIGH HIGH",
           TRUE ~ as.character(ANRIND)
-        ), levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
+        ),
+        levels = c("", "HIGH", "HIGH HIGH", "LOW", "LOW LOW", "NORMAL")
       ),
       AVALCAT1 = factor(
         case_when(
           ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
             sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
           TRUE ~ ""
-        ), levels = c("", "LAST", "REPLICATED", "SINGLE")
+        ),
+        levels = c("", "LAST", "REPLICATED", "SINGLE")
       )
     ) %>%
     ungroup() %>%
     mutate(
       PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE)),
       PARCAT2 = as.factor(case_when(
-          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
-          TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
-          ))
-      ) %>%
+        ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
+        TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+      ))
+    ) %>%
     select(-q1, -q2)
 
   db <- new_dm(sd) %>%
-    dm_add_pk("adsl", c("USUBJID", "STUDYID")) %>%
-    dm_add_fk("adae", c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
-    dm_add_pk("adae", "AESEQ")
+    dm_add_pk("adsl", c("USUBJID", "STUDYID"))
+  for (k in setdiff(names(sd), "adsl")) {
+    db <- eval(bquote(dm_add_fk(db, .(k), c("USUBJID", "STUDYID"), ref_table = "adsl")))
+  }
 
   db <- db %>%
     dm_zoom_to("adsl") %>%

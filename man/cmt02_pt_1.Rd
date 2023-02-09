@@ -14,13 +14,13 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 cmt02_pt_1_main(
   adam_db,
-  armvar = "ARM",
+  arm_var = "ARM",
   lbl_overall = NULL,
   deco = std_deco("CMT02_PT"),
   ...
 )
 
-cmt02_pt_1_lyt(armvar, lbl_overall, deco, ...)
+cmt02_pt_1_lyt(arm_var, lbl_overall, deco, ...)
 
 cmt02_pt_1_pre(adam_db, ...)
 
@@ -31,7 +31,7 @@ cmt02_pt_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

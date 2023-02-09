@@ -18,7 +18,7 @@
 #' @export
 #'
 dtht01_1_main <- function(adam_db,
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
                           lbl_overall = NULL,
@@ -33,7 +33,7 @@ dtht01_1_main <- function(adam_db,
 
 
   lyt <- dtht01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...
@@ -52,7 +52,7 @@ dtht01_1_main <- function(adam_db,
     checkmate::assert_factor(dbsel$adsl$LDDTHGR1, any.missing = FALSE)
 
     lyt2 <- dtht01_1_opt_lyt(
-      armvar = armvar,
+      arm_var = arm_var,
       lbl_overall = lbl_overall,
       deco = deco,
       ... = ...
@@ -74,14 +74,14 @@ dtht01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-dtht01_1_lyt <- function(armvar,
+dtht01_1_lyt <- function(arm_var,
                          lbl_overall,
                          other_category,
                          deco,
                          ...) {
   tab <-
     basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_values(
@@ -98,7 +98,7 @@ dtht01_1_lyt <- function(armvar,
 
   tab2 <-
     basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by("DTHCAT", split_fun = keep_split_levels("OTHER"), child_labels = "hidden") %>%
@@ -120,12 +120,12 @@ dtht01_1_lyt <- function(armvar,
 #'
 #' @export
 #'
-dtht01_1_opt_lyt <- function(armvar,
+dtht01_1_opt_lyt <- function(arm_var,
                              lbl_overall,
                              deco,
                              ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(

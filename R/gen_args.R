@@ -10,7 +10,7 @@
 #' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` data set required for `tlg`
 #'   creation.
 #' @param type (`string`) indicating the subclass.
-#' @param armvar (`character`) variable used for column splitting
+#' @param arm_var (`character`) variable used for column splitting
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content
 #' @param lbl_overall (`character`) label used for overall column, if set to `NULL` the overall column is omitted
 #' @param prune_0 (`logical`) remove 0 count rows
@@ -18,11 +18,14 @@
 #' @param tlg (`TableTree`, `Listing` or `ggplot`) object typically produced by a `main` function.
 #' @param tlgfname (`character`) function name of TLG function
 #' @param group (`list of lists`) for group-dependent data binning
+#' @param visit_var Analysis Visit variable.
+#' @param paramcd_value Value of PARAMCD variable.
+#' @param visit_value Value of visit variable.
 #'
-#' @details the following arguments are better provided through the study object: `lbl_overall`, `armvar`.
+#' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.
 #'
 gen_args <- function(adam_db, main, preprocess, postprocess, adam_datasets,
-                     type, armvar, lbl_overall, prune_0, req_tables, deco, group,
-                     tlg, tlgfname) {
+                     type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
+                     tlg, tlgfname, visit_var, visit_value, paramcd_value) {
   NULL
 }

@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 pdt01_1_main(
   adam_db,
-  armvar = "ARM",
+  arm_var = "ARM",
   dvcode_var = "DVDECOD",
   lbl_dvcode_var = "Protocol Deviation Coded Term",
   dvterm_var = "DVTERM",
@@ -25,7 +25,7 @@ pdt01_1_main(
 )
 
 pdt01_1_lyt(
-  armvar,
+  arm_var,
   lbl_overall,
   dvcode_var,
   lbl_dvcode_var,
@@ -50,7 +50,7 @@ pdt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{dvcode_var}{(\code{character}) the variable defining the protocol deviation coded term. By default \code{DVDECOD}.}
 

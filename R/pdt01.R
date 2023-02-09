@@ -24,7 +24,7 @@
 #' @export
 #'
 pdt01_1_main <- function(adam_db,
-                         armvar = "ARM",
+                         arm_var = "ARM",
                          dvcode_var = "DVDECOD",
                          lbl_dvcode_var = "Protocol Deviation Coded Term",
                          dvterm_var = "DVTERM",
@@ -37,7 +37,7 @@ pdt01_1_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "addv")
 
   lyt <- pdt01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     dvcode_var = dvcode_var,
     lbl_dvcode_var = lbl_dvcode_var,
@@ -63,7 +63,7 @@ pdt01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-pdt01_1_lyt <- function(armvar,
+pdt01_1_lyt <- function(arm_var,
                         lbl_overall,
                         dvcode_var,
                         lbl_dvcode_var,
@@ -72,7 +72,7 @@ pdt01_1_lyt <- function(armvar,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     summarize_num_patients(
       var = "USUBJID",

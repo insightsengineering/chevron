@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 cmt01a_2_main(
   adam_db,
-  armvar = "ARM",
+  arm_var = "ARM",
   medcat_var = "ATC2",
   lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
@@ -39,7 +39,7 @@ cmt01a_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{medcat_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
