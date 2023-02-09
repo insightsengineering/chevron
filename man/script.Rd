@@ -12,10 +12,10 @@ script(x, dict = NULL, details = FALSE)
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
+\item{dict}{(\code{list}) with the name and value of custom arguments.}
+
 \item{details}{(\code{flag}) whether to show the code of all function. By default, only the detail of the code of the
 prepossessing step is printed.}
-
-\item{dct}{(\code{list}) with the name and value of custom arguments.}
 }
 \description{
 Create Pre Processing Script

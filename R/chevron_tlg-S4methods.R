@@ -255,7 +255,7 @@ setMethod(
 #' Create Pre Processing Script
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param dct (`list`) with the name and value of custom arguments.
+#' @param dict (`list`) with the name and value of custom arguments.
 #' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the
 #'   prepossessing step is printed.
 #'

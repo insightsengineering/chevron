@@ -28,6 +28,7 @@ reference:
 
   - title: Methods
     contents:
+      - args
       - run
       - main
       - preprocess
