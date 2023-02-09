@@ -30,16 +30,15 @@ lbt07_1_main <- function(adam_db,
                          ...) {
   lbt07_1_check(adam_db, ...)
 
-  lbl_grade_var <- if (is.null(lbl_grade_var)) {
-    var_labels_for(adam_db$adlb, grade_var)
-  } else {
-    lbl_grade_var
-  }
-  map <- unique(adam_db$adlb[adam_db$adlb$GRADE_DIR != "ZERO", c("PARAM", "GRADE_DIR", "GRADE_ANL")]) %>%
-    lapply(as.character) %>%
-    as.data.frame() %>%
-    arrange(PARAM, desc(GRADE_DIR), GRADE_ANL)
+  lbl_grade_var <- if (is.null(lbl_grade_var)) var_labels_for(adam_db$adlb, grade_var) else lbl_grade_var
 
+  map <- expand.grid(
+    PARAM = levels(adam_db$adlb$PARAM),
+    GRADE_DIR = c("LOW", "HIGH"),
+    GRADE_ANL = as.character(1:4),
+    stringsAsFactors = FALSE
+  ) %>%
+    arrange(PARAM, desc(GRADE_DIR), GRADE_ANL)
 
   lyt <- lbt07_1_lyt(
     arm_var = arm_var,
@@ -103,7 +102,7 @@ lbt07_1_lyt <- function(arm_var,
       .formats = list(count_fraction = tern::format_count_fraction_fixed_dp),
       .indent_mods = 4L
     ) %>%
-    append_topleft("    Highest NCI CTCAE Grade")
+    append_topleft("            Highest NCI CTCAE Grade")
 }
 
 #' @describeIn lbt07_1 Preprocessing
@@ -124,13 +123,12 @@ lbt07_1_pre <- function(adam_db, ...) {
 
   adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
-  db <- adam_db %>%
+  adam_db %>%
     dm_zoom_to("adlb") %>%
     filter(
       .data$ATOXGR != "<Missing>",
       .data$ONTRTFL == "Y",
-      .data$WGRLOFL == "Y" | .data$WGRHIFL == "Y",
-      !.data$AVISIT %in% c("SCREENING", "BASELINE")
+      .data$WGRLOFL == "Y" | .data$WGRHIFL == "Y"
     ) %>%
     mutate(
       GRADE_DIR = factor(
