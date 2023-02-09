@@ -51,8 +51,6 @@ egt05_qtcat_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
-
 \item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
 
 \item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
