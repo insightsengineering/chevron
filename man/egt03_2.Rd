@@ -4,7 +4,6 @@
 \name{egt03_2_main}
 \alias{egt03_2_main}
 \alias{egt03_2_lyt}
-\alias{egt03_2_check}
 \alias{egt03_2_pre}
 \alias{egt03_2_post}
 \alias{egt03_2}
@@ -15,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 egt03_2_main(
   adam_db,
-  armvar = "ARMCD",
+  arm_var = "ARMCD",
   summaryvar = c(`Baseline Reference Range Indicator` = "BNRIND"),
   splitvar = c(`Analysis Reference Range Indicator` = "ANRIND"),
   deco = std_deco("EGT03"),
@@ -23,7 +22,7 @@ egt03_2_main(
 )
 
 egt03_2_lyt(
-  armvar,
+  arm_var,
   splitvar,
   summaryvar,
   lbl_armvar,
@@ -33,9 +32,7 @@ egt03_2_lyt(
   ...
 )
 
-egt03_2_check(adam_db, req_tables = c("adeg"), visitvar = "AVISIT", ...)
-
-egt03_2_pre(adam_db, ...)
+egt03_2_pre(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...)
 
 egt03_2_post(tlg, prune_0 = FALSE, ...)
 
@@ -44,7 +41,7 @@ egt03_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\verb{vector of character}) the arm variables used for row split, typically \code{"ARMCD"}.}
+\item{arm_var}{(\verb{vector of character}) the arm variables used for row split, typically \code{"ARMCD"}.}
 
 \item{summaryvar}{(named vector of \code{character}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
 subtitles. For values
@@ -58,15 +55,15 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{...}{not used.}
 
-\item{lbl_armvar}{(\code{character}) label of the \code{armvar} variable.}
+\item{lbl_armvar}{(\code{character}) label of the \code{arm_var} variable.}
 
 \item{lbl_splitvar}{(\code{character}) label of the \code{splitvar} variable.}
 
 \item{lbl_summaryvars}{(\code{character}) label of the \code{summaryvar} variable.}
 
-\item{req_tables}{(\code{character}) names of the required tables.}
+\item{visit_var}{Analysis Visit variable.}
 
-\item{visitvar}{Analysis Visit variable, \code{AVISIT} by default}
+\item{paramcd_value}{Value of PARAMCD variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -92,8 +89,6 @@ patient's last observation prior to initiation of study drug.
 \item \code{egt03_2_main()}: Main TLG function
 
 \item \code{egt03_2_lyt()}: Layout
-
-\item \code{egt03_2_check()}: Checks
 
 \item \code{egt03_2_pre()}: Preprocessing
 

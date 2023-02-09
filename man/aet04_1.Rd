@@ -14,19 +14,20 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 aet04_1_main(
   adam_db,
-  armvar = "ACTARM",
-  group_grades = NULL,
+  arm_var = "ACTARM",
+  grade_groups = NULL,
   lbl_overall = NULL,
   deco = std_deco("AET04"),
   ...
 )
 
 aet04_1_lyt(
-  armvar,
-  lbl_aebodsys,
-  lbl_aedecod,
-  group_grades,
+  arm_var,
   lbl_overall,
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
+  toxicity_grade,
+  grade_groups,
   deco,
   ...
 )
@@ -40,9 +41,9 @@ aet04_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
-\item{group_grades}{(\code{list}) putting in correspondence severity levels and labels.}
+\item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -53,6 +54,8 @@ aet04_1
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{toxicity_grade}{(\verb{vector of character}) putting in correspondence toxicity levels.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -86,16 +89,21 @@ Grade is sorted by severity.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AETOXGR"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"}, \code{"AEDECOD"} and \code{"ATOXGR"}.
 }
 }
 \examples{
-group_grades <- list(
-  "Any Grade" = c("1", "2", "3", "4", "5"),
+grade_groups <- list(
+  "Grade 1-2" = c("1", "2"),
+  "Grade 3-4" = c("3", "4"),
+  "Grade 5" = c("5")
+)
+
+grade_groups <- list(
   "Grade 1-2" = c("1", "2"),
   "Grade 3-5" = c("3", "4", "5")
 )
 
-run(aet04_1, syn_data, group_grades = group_grades)
+run(aet04_1, syn_data, grade_groups = grade_groups)
 }
 \keyword{datasets}

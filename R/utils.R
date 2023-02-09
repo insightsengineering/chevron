@@ -193,9 +193,10 @@ syn_test_data <- function() {
     select(-q1, -q2)
 
   db <- new_dm(sd) %>%
-    dm_add_pk("adsl", c("USUBJID", "STUDYID")) %>%
-    dm_add_fk("adae", c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
-    dm_add_pk("adae", "AESEQ")
+    dm_add_pk("adsl", c("USUBJID", "STUDYID"))
+  for (k in setdiff(names(sd), "adsl")) {
+    db <- eval(bquote(dm_add_fk(db, .(k), c("USUBJID", "STUDYID"), ref_table = "adsl")))
+  }
 
   db <- db %>%
     dm_zoom_to("adsl") %>%

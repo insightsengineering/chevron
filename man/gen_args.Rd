@@ -11,14 +11,17 @@ gen_args(
   postprocess,
   adam_datasets,
   type,
-  armvar,
+  arm_var,
   lbl_overall,
   prune_0,
   req_tables,
   deco,
   group,
   tlg,
-  tlgfname
+  tlgfname,
+  visit_var,
+  visit_value,
+  paramcd_value
 )
 }
 \arguments{
@@ -37,7 +40,7 @@ creation.}
 
 \item{type}{(\code{string}) indicating the subclass.}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -52,10 +55,16 @@ creation.}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{tlgfname}{(\code{character}) function name of TLG function}
+
+\item{visit_var}{Analysis Visit variable.}
+
+\item{visit_value}{Value of visit variable.}
+
+\item{paramcd_value}{Value of PARAMCD variable.}
 }
 \description{
 General Argument Name Convention
 }
 \details{
-the following arguments are better provided through the study object: \code{lbl_overall}, \code{armvar}.
+the following arguments are better provided through the study object: \code{lbl_overall}, \code{arm_var}.
 }

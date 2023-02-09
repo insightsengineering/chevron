@@ -14,14 +14,14 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 ext01_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   summaryvars = "AVAL",
   lbl_overall = NULL,
   deco = std_deco("EXT01"),
   ...
 )
 
-ext01_1_lyt(armvar, summaryvars, summaryvars_lbls, lbl_overall, deco, ...)
+ext01_1_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall, deco, ...)
 
 ext01_1_pre(
   adam_db,
@@ -36,7 +36,7 @@ ext01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
 

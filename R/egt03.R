@@ -1,7 +1,7 @@
 # egt03_1 ----
 #' @describeIn egt03_1 Main TLG function
 #'
-#' @param armvar (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
+#' @param arm_var (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
 #' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
@@ -24,17 +24,17 @@
 #' @export
 #'
 egt03_1_main <- function(adam_db,
-                         armvar = "ARMCD",
+                         arm_var = "ARMCD",
                          summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
                          ...) {
-  lbl_armvar <- var_labels_for(adam_db$adeg, armvar)
+  lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
 
   lyt <- egt03_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     splitvar = splitvar,
     summaryvar = summaryvar,
     lbl_armvar = lbl_armvar,
@@ -56,14 +56,15 @@ egt03_1_main <- function(adam_db,
 #' @describeIn egt03_1 Layout
 #'
 #' @inheritParams gen_args
+#' @inheritParams egt03_1_main
 #'
-#' @param lbl_armvar (`character`) label of the `armvar` variable.
+#' @param lbl_armvar (`character`) label of the `arm_var` variable.
 #' @param lbl_splitvar (`character`) label of the `splitvar` variable.
 #' @param lbl_summaryvars (`character`) label of the `summaryvar` variable.
 #' @param ... not used.
 #'
 #' @export
-egt03_1_lyt <- function(armvar,
+egt03_1_lyt <- function(arm_var,
                         splitvar,
                         summaryvar,
                         lbl_armvar,
@@ -78,7 +79,7 @@ egt03_1_lyt <- function(armvar,
   basic_table_deco(deco) %>%
     split_cols_by("min_label") %>%
     split_cols_by(splitvar) %>%
-    split_rows_by(armvar,
+    split_rows_by(arm_var,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_armvar
@@ -91,45 +92,55 @@ egt03_1_lyt <- function(armvar,
 #' @describeIn egt03_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param visitvar Analysis Visit variable, `AVISIT` by default
 #' @param ... not used.
 #'
 egt03_1_check <- function(adam_db,
-                          req_tables = c("adeg"),
-                          visitvar = "AVISIT",
+                          req_tables,
+                          visit_var,
+                          paramcd_value,
+                          visit_value,
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
+  checkmate::assert_subset(c(visit_var, "PARAMCD"), colnames(adam_db$adeg))
   msg <- NULL
 
   adeg_layout_col <- "USUBJID"
 
-  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visitvar)))
-
+  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visit_var)))
+  msg_warn <- c(
+    check_col_contains(adam_db$adeg, visit_value, visit_var, "ADEG"),
+    check_col_contains(adam_db$adeg, paramcd_value, "PARAMCD", "ADEG")
+  )
+  if (!is.null(msg_warn)) {
+    warning(paste(msg_warn, collapse = "\n"), .call = FALSE)
+  }
   if (is.null(msg)) {
     TRUE
   } else {
-    stop(paste(msg))
+    stop(paste(msg, sep = "\n"))
   }
-  checkmate::assert_true(c("POST-BASELINE MINIMUM") %in% adam_db$adeg$AVISIT)
-  checkmate::assert_true(c("HR") %in% adam_db$adeg$PARAMCD)
 }
 
 #' @describeIn egt03_1 Preprocessing
 #'
 #' @inheritParams gen_args
+#' @inheritParams egt03_1_main
 #' @param ... not used.
 #'
 #' @export
-#'
-egt03_1_pre <- function(adam_db, ...) {
+egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
   checkmate::assert_class(adam_db, "dm")
-  egt03_1_check(adam_db, ...)
+  visit_value <- "POST-BASELINE MINIMUM"
+  egt03_1_check(
+    adam_db,
+    req_tables = "adeg", visit_var = "AVISIT",
+    paramcd_value = paramcd_value, visit_value = visit_value, ...
+  )
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      PARAMCD == "HR" & # Heart Rate
-        ONTRTFL == "Y" & # "On Treatment Record Flag"
-        AVISIT == "POST-BASELINE MINIMUM" # "Analysis Visit"
+      PARAMCD == paramcd_value &
+        !!sym(visit_var) == visit_value # "Analysis Visit"
     ) %>%
     mutate(min_label = "Minimum Post-Baseline Assessment") %>%
     mutate(BNRIND = factor(
@@ -181,7 +192,7 @@ egt03_1 <- chevron_t(
 #' @describeIn egt03_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param armvar (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
+#' @param arm_var (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
 #' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
@@ -204,17 +215,17 @@ egt03_1 <- chevron_t(
 #' @export
 #'
 egt03_2_main <- function(adam_db,
-                         armvar = "ARMCD",
+                         arm_var = "ARMCD",
                          summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
                          ...) {
-  lbl_armvar <- var_labels_for(adam_db$adeg, armvar)
+  lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
 
   lyt <- egt03_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     splitvar = splitvar,
     summaryvar = summaryvar,
     lbl_armvar = lbl_armvar,
@@ -236,14 +247,14 @@ egt03_2_main <- function(adam_db,
 #' @describeIn egt03_2 Layout
 #'
 #' @inheritParams gen_args
-#'
-#' @param lbl_armvar (`character`) label of the `armvar` variable.
+#' @inheritParams egt03_2_main
+#' @param lbl_armvar (`character`) label of the `arm_var` variable.
 #' @param lbl_splitvar (`character`) label of the `splitvar` variable.
 #' @param lbl_summaryvars (`character`) label of the `summaryvar` variable.
 #' @param ... not used.
 #'
 #' @export
-egt03_2_lyt <- function(armvar,
+egt03_2_lyt <- function(arm_var,
                         splitvar,
                         summaryvar,
                         lbl_armvar,
@@ -258,7 +269,7 @@ egt03_2_lyt <- function(armvar,
   basic_table_deco(deco) %>%
     split_cols_by("max_label") %>%
     split_cols_by(splitvar) %>%
-    split_rows_by(armvar,
+    split_rows_by(arm_var,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_armvar
@@ -268,32 +279,6 @@ egt03_2_lyt <- function(armvar,
     append_topleft(lbl_summaryvars)
 }
 
-#' @describeIn egt03_2 Checks
-#'
-#' @inheritParams gen_args
-#' @param visitvar Analysis Visit variable, `AVISIT` by default
-#' @param ... not used.
-#'
-egt03_2_check <- function(adam_db,
-                          req_tables = c("adeg"),
-                          visitvar = "AVISIT",
-                          ...) {
-  assert_all_tablenames(adam_db, req_tables)
-  msg <- NULL
-
-  adeg_layout_col <- "USUBJID"
-
-  msg <- c(msg, check_all_colnames(adam_db$adeg, c(adeg_layout_col, visitvar)))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg))
-  }
-  checkmate::assert_true(c("POST-BASELINE MAXIMUM") %in% adam_db$adeg$AVISIT)
-  checkmate::assert_true(c("HR") %in% adam_db$adeg$PARAMCD)
-}
-
 #' @describeIn egt03_2 Preprocessing
 #'
 #' @inheritParams gen_args
@@ -301,17 +286,19 @@ egt03_2_check <- function(adam_db,
 #'
 #' @export
 #'
-egt03_2_pre <- function(adam_db, ...) {
+egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
   checkmate::assert_class(adam_db, "dm")
-  egt03_2_check(adam_db, ...)
-
+  visit_value <- "POST-BASELINE MAXIMUM"
+  egt03_1_check(
+    adam_db,
+    req_tables = "adeg", visit_var = "AVISIT",
+    paramcd_value = paramcd_value, visit_value = visit_value, ...
+  )
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      PARAMCD == "HR" & # Heart Rate
-        SAFFL == "Y" & # "Safety Population Flag"
-        ONTRTFL == "Y" & # "On Treatment Record Flag"
-        AVISIT == "POST-BASELINE MAXIMUM" # "Analysis Visit"
+      PARAMCD == paramcd_value &
+        !!sym(visit_var) == visit_value # "Analysis Visit"
     ) %>%
     mutate(max_label = "Maximum Post-Baseline Assessment") %>%
     mutate(BNRIND = factor(

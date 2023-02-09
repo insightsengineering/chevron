@@ -22,7 +22,7 @@
 #' @export
 #'
 mht01_1_main <- function(adam_db,
-                         armvar = "ARM",
+                         arm_var = "ARM",
                          lbl_overall = NULL,
                          lbl_mhbodsys = "MedDRA System Organ Class",
                          lbl_mhdecod = "MedDRA Preferred Term",
@@ -34,7 +34,7 @@ mht01_1_main <- function(adam_db,
   if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
   lyt <- mht01_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
     lbl_mhdecod = lbl_mhdecod,
@@ -54,14 +54,14 @@ mht01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-mht01_1_lyt <- function(armvar,
+mht01_1_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_mhbodsys,
                         lbl_mhdecod,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(

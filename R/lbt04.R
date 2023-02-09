@@ -14,18 +14,18 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adlb` table with columns `"PARCAT1"`, `"PARCAT2"`, `"PARAM"`, `"ANRIND"`,
-#'  and column specified by `armvar`.
+#'  and column specified by `arm_var`.
 #'
 #' @export
 #'
 lbt04_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_param = "Laboratory Test",
                          lbl_anrind = "Direction of Abnormality",
                          deco = std_deco("LBT04"),
                          ...) {
   lyt <- lbt04_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_param = lbl_param,
     lbl_anrind = lbl_anrind,
     deco = deco,
@@ -48,13 +48,13 @@ lbt04_1_main <- function(adam_db,
 #'
 #' @export
 #'
-lbt04_1_lyt <- function(armvar,
+lbt04_1_lyt <- function(arm_var,
                         lbl_param,
                         lbl_anrind,
                         deco,
                         ...) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
-    split_cols_by(armvar) %>%
+    split_cols_by(arm_var) %>%
     split_rows_by("PARCAT1") %>%
     split_rows_by(
       "PARAM",
@@ -109,7 +109,7 @@ lbt04_1_pre <- function(adam_db, ...) {
 #'
 lbt04_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
@@ -118,7 +118,7 @@ lbt04_1_check <- function(adam_db,
   adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT1", "PARCAT2", "PARAM", "ANRIND")
   adsl_layout_col <- c("USUBJID")
 
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(armvar, adlb_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
 
   if (is.null(msg)) {

@@ -14,18 +14,18 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 aet03_1_main(
   adam_db,
-  armvar = "ACTARM",
+  arm_var = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("AET03"),
   ...
 )
 
 aet03_1_lyt(
-  armvar,
-  lbl_aebodsys,
-  lbl_aedecod,
-  severity_grade,
+  arm_var,
   lbl_overall,
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
+  intensity_grade,
   deco,
   ...
 )
@@ -39,7 +39,7 @@ aet03_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{armvar}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{character}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -51,7 +51,7 @@ aet03_1
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
-\item{severity_grade}{(\verb{vector of character}) describing the severity levels present in the dataset.}
+\item{intensity_grade}{(\verb{vector of character}) describing the intensity levels present in the dataset.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -59,7 +59,7 @@ aet03_1
 }
 \description{
 An adverse events table categorized by System
-Organ Class, Dictionary-Derived Term  and Greatest intensity.
+Organ Class, Dictionary-Derived Term and Greatest intensity.
 }
 \details{
 \itemize{
@@ -84,7 +84,7 @@ Organ Class, Dictionary-Derived Term  and Greatest intensity.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AESEV"}, \code{"AEBODSYS"} and \code{"AEDECOD"}.
+\item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"}, \code{"AEDECOD"} and \code{"ASEV"}.
 }
 }
 \examples{

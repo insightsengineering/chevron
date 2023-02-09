@@ -19,7 +19,7 @@
 #' @export
 #'
 aet02_1_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET02"),
                          ...) {
@@ -28,7 +28,7 @@ aet02_1_main <- function(adam_db,
   assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))
 
   lyt <- aet02_1_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...
@@ -48,14 +48,14 @@ aet02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet02_1_lyt <- function(armvar,
+aet02_1_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aedecod = "MedDRA Preferred Term",
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -122,13 +122,13 @@ aet02_1_pre <- function(adam_db, ...) {
 #'
 aet02_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          armvar = "ACTARM",
+                          arm_var = "ACTARM",
                           ...) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
-  msg <- c(msg, check_all_colnames(adam_db$adae, c(armvar, "USUBJID", "AEBODSYS", "AEDECOD")))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(armvar, "USUBJID")))
+  msg <- c(msg, check_all_colnames(adam_db$adae, c(arm_var, "USUBJID", "AEBODSYS", "AEDECOD")))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, "USUBJID")))
 
   if (is.null(msg)) {
     TRUE
@@ -200,7 +200,7 @@ aet02_1 <- chevron_t(
 #' @export
 #'
 aet02_2_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET02"),
                          ...) {
@@ -209,7 +209,7 @@ aet02_2_main <- function(adam_db,
   assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD", "AEHLT"))
 
   lyt <- aet02_2_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...
@@ -231,7 +231,7 @@ aet02_2_main <- function(adam_db,
 #'
 #' @export
 #'
-aet02_2_lyt <- function(armvar,
+aet02_2_lyt <- function(arm_var,
                         lbl_overall = NULL,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aehlt = "MedDRA High-Level Term",
@@ -239,7 +239,7 @@ aet02_2_lyt <- function(armvar,
                         deco,
                         ...) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -381,14 +381,14 @@ aet02_2 <- chevron_t(
 #' @export
 #'
 aet02_3_main <- function(adam_db,
-                         armvar = "ACTARM",
+                         arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET02"),
                          ...) {
   assert_colnames(adam_db$adae, c("AEDECOD"))
 
   lyt <- aet02_3_lyt(
-    armvar = armvar,
+    arm_var = arm_var,
     lbl_overall = lbl_overall,
     deco = deco,
     ... = ...
@@ -411,13 +411,13 @@ aet02_3_main <- function(adam_db,
 #'
 #' @export
 #'
-aet02_3_lyt <- function(armvar,
+aet02_3_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aedecod = "MedDRA Preferred Term",
                         deco,
                         ...) {
   lyt_top <- basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -431,7 +431,7 @@ aet02_3_lyt <- function(armvar,
     append_topleft(lbl_aedecod)
 
   lyt_bottom <- basic_table_deco(deco) %>%
-    split_cols_by(var = armvar) %>%
+    split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     # needed to handle empty df.
