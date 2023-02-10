@@ -108,27 +108,21 @@ syn_test_data <- function() {
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
     mutate(
-      AVALCAT1 = if ("AVALCAT1" %in% colnames(.)) {
-        AVALCAT1
-      } else {
-        case_when(
-          PARAMCD == "QT" & AVAL <= 450 ~ "<=450",
-          PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ ">450 to <=480",
-          PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ ">480 to <=500",
-          PARAMCD == "QT" & AVAL > 500 ~ ">500"
-        )
-      },
-      CHGCAT1 = if ("CHGCAT1" %in% colnames(.)) {
-        CHGCAT1
-      } else {
-        case_when(
-          PARAMCD == "QT" & CHG <= 30 ~ "<=30",
-          PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ ">30 to <=60",
-          PARAMCD == "QT" & CHG > 60 ~ ">60"
-        )
-      },
-      AVALCAT1 = factor(paste(AVALCAT1, " ", AVALU)),
-      CHGCAT1 = factor(paste(CHGCAT1, " ", AVALU))
+      AVALCAT1 =  case_when(
+        PARAMCD == "QT" & AVAL <= 450 ~ paste("<=450", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ paste(">450 to <=480", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ paste(">480 to <=500", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 500 ~ paste(">500", " ", AVALU),
+        PARAMCD == "QT" & is.na(AVAL) ~ "<Missing>"
+        ),
+      CHGCAT1 = case_when(
+        PARAMCD == "QT" & CHG <= 30 ~ paste("<=30", " ", AVALU),
+        PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ paste(">30 to <=60", " ", AVALU),
+        PARAMCD == "QT" & CHG > 60 ~ paste(">60", " ", AVALU),
+        PARAMCD == "QT" & is.na(CHG) ~ "<Missing>"
+        ),
+      AVALCAT1 = factor(AVALCAT1),
+      CHGCAT1 = factor(CHGCAT1)
     )
 
   # useful for dmt01
