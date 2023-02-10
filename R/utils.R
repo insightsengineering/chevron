@@ -136,7 +136,7 @@ syn_test_data <- function() {
     rename(q1 = 2, q2 = 3)
 
   sd$adlb <- qntls %>%
-    left_join(sd$adlb, by = "PARAMCD") %>%
+    left_join(sd$adlb, by = "PARAMCD", multiple = "all") %>%
     group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
       ANRIND = factor(

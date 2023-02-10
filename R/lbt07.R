@@ -139,12 +139,7 @@ lbt07_1_pre <- function(adam_db, ...) {
         ),
         levels = c("LOW", "ZERO", "HIGH")
       ),
-      GRADE_ANL = fct_relevel(
-        forcats::fct_recode(ATOXGR,
-          `1` = "-1", `2` = "-2", `3` = "-3", `4` = "-4"
-        ),
-        c("0", "1", "2", "3", "4")
-      ),
+      GRADE_ANL = factor(ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
       PARAM = as.factor(.data$PARAM)
     ) %>%
     dm_update_zoomed()
