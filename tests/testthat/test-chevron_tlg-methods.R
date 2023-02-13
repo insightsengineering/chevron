@@ -21,6 +21,32 @@ test_that("main setter works as expected", {
   expect_identical(aet04_1@main, func)
 })
 
+# args ----
+
+test_that("args works as expected", {
+  res <- expect_silent(args(aet04_1))
+  expect_list(res, len = 3, names = "named")
+  expect_names(names(res), identical.to = c("main", "preprocess", "postprocess"))
+})
+
+test_that("args works as expected when simplify is TRUE", {
+  res <- expect_silent(args(aet04_1, simplify = TRUE))
+  expect_list(res, len = 8, names = "named")
+  expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "tlg", "prune_0"))
+})
+
+test_that("args works as expected with custom chevron_tlg object", {
+  obj <- aet04_1
+  preprocess(obj) <- function(adam_db, arm_var = "overwritten", new_arg = "NEW", ...) {
+    adam_db
+  }
+
+  res <- expect_silent(args(obj, simplify = TRUE))
+  expect_list(res, len = 9, names = "named")
+  expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "new_arg", "tlg", "prune_0"))
+  expect_identical(res$arm_var, "ACTARM")
+})
+
 # preprocess ----
 
 test_that("preprocess works as expected", {
@@ -60,26 +86,26 @@ test_that("datasets setter works as expected", {
   expect_identical(aet04_1@adam_datasets, c("adsl", "adxx"))
 })
 
-# main ----
+# script
 
-test_that("main works as expected", {
-  skip_if_not(interactive())
-  res <- main(aet04_1)
-  expect_identical(res, aet04_1_main)
+test_that("script works as expected", {
+  expect_silent(res <- script(aet04_1))
+  expect_character(res, len = 24)
+  expect_subset("adam_db <- \"# enter custom value\"", res)
+  expect_subset("    adam_db <- dunlin::apply_reformat(adam_db, new_format)", res)
 })
 
-# preprocess ----
-
-test_that("preprocess works as expected", {
-  skip_if_not(interactive())
-  res <- preprocess(aet04_1)
-  expect_identical(res, aet04_1_pre)
+test_that("script works as expected with dictionary of arguments", {
+  expect_silent(res <- script(aet04_1, dict = list(adam_db = sym("x"), new_arg = "NEW")))
+  expect_character(res, len = 25)
+  expect_subset("adam_db <- x", res)
+  expect_subset("new_arg <- \"NEW\"", res)
+  expect_subset("    adam_db <- dunlin::apply_reformat(adam_db, new_format)", res)
 })
 
-# postprocess ----
-
-test_that("postprocess works as expected", {
-  skip_if_not(interactive())
-  res <- postprocess(aet04_1)
-  expect_identical(res, aet04_1_post)
+test_that("script works as expected with dictionary of arguments", {
+  expect_silent(res <- script(aet04_1, details = TRUE))
+  expect_character(res, len = 25)
+  expect_subset("adam_db <- x", res)
+  expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", grade_groups = NULL, ", res)
 })
