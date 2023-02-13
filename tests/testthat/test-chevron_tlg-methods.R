@@ -32,7 +32,10 @@ test_that("args works as expected", {
 test_that("args works as expected when simplify is TRUE", {
   res <- expect_silent(args(aet04_1, simplify = TRUE))
   checkmate::expect_list(res, len = 8, names = "named")
-  checkmate::expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "tlg", "prune_0"))
+  checkmate::expect_names(
+    names(res),
+    identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "tlg", "prune_0")
+  )
 })
 
 test_that("args works as expected with custom chevron_tlg object", {
@@ -43,7 +46,10 @@ test_that("args works as expected with custom chevron_tlg object", {
 
   res <- expect_silent(args(obj, simplify = TRUE))
   checkmate::expect_list(res, len = 9, names = "named")
-  checkmate::expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "new_arg", "tlg", "prune_0"))
+  checkmate::expect_names(
+    names(res),
+    identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "new_arg", "tlg", "prune_0")
+  )
   expect_identical(res$arm_var, "ACTARM")
 })
 
