@@ -19,7 +19,7 @@ Imports:
     dm (>= 1.0),
     dplyr,
     dunlin (> 0.1.1),
-    forcats,
+    forcats (>= 1.0.0),
     formatters (> 0.3.4),
     ggplot2,
     magrittr,
