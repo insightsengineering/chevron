@@ -25,14 +25,14 @@ test_that("main setter works as expected", {
 
 test_that("args works as expected", {
   res <- expect_silent(args(aet04_1))
-  expect_list(res, len = 3, names = "named")
-  expect_names(names(res), identical.to = c("main", "preprocess", "postprocess"))
+  checkmate::expect_list(res, len = 3, names = "named")
+  checkmate::expect_names(names(res), identical.to = c("main", "preprocess", "postprocess"))
 })
 
 test_that("args works as expected when simplify is TRUE", {
   res <- expect_silent(args(aet04_1, simplify = TRUE))
-  expect_list(res, len = 8, names = "named")
-  expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "tlg", "prune_0"))
+  checkmate::expect_list(res, len = 8, names = "named")
+  checkmate::expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "tlg", "prune_0"))
 })
 
 test_that("args works as expected with custom chevron_tlg object", {
@@ -42,8 +42,8 @@ test_that("args works as expected with custom chevron_tlg object", {
   }
 
   res <- expect_silent(args(obj, simplify = TRUE))
-  expect_list(res, len = 9, names = "named")
-  expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "new_arg", "tlg", "prune_0"))
+  checkmate::expect_list(res, len = 9, names = "named")
+  checkmate::expect_names(names(res), identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "...", "new_arg", "tlg", "prune_0"))
   expect_identical(res$arm_var, "ACTARM")
 })
 
@@ -89,23 +89,22 @@ test_that("datasets setter works as expected", {
 # script
 
 test_that("script works as expected", {
-  expect_silent(res <- script(aet04_1))
-  expect_character(res, len = 24)
-  expect_subset("adam_db <- \"# enter custom value\"", res)
-  expect_subset("    adam_db <- dunlin::apply_reformat(adam_db, new_format)", res)
+  res <- expect_silent(script(aet04_1))
+  checkmate::expect_character(res, len = 24)
+  checkmate::expect_subset("adam_db <- \"# enter custom value\"", res)
+  checkmate::expect_subset("    adam_db <- dunlin::apply_reformat(adam_db, new_format)", res)
 })
 
 test_that("script works as expected with dictionary of arguments", {
-  expect_silent(res <- script(aet04_1, dict = list(adam_db = sym("x"), new_arg = "NEW")))
-  expect_character(res, len = 25)
-  expect_subset("adam_db <- x", res)
-  expect_subset("new_arg <- \"NEW\"", res)
-  expect_subset("    adam_db <- dunlin::apply_reformat(adam_db, new_format)", res)
+  res <- expect_silent(script(aet04_1, dict = list(adam_db = sym("x"), new_arg = "NEW")))
+  checkmate::expect_character(res, len = 25)
+  checkmate::expect_subset("adam_db <- x", res)
+  checkmate::expect_subset("new_arg <- \"NEW\"", res)
+  checkmate::expect_subset("    adam_db <- dunlin::apply_reformat(adam_db, new_format)", res)
 })
 
-test_that("script works as expected with dictionary of arguments", {
-  expect_silent(res <- script(aet04_1, details = TRUE))
-  expect_character(res, len = 25)
-  expect_subset("adam_db <- x", res)
-  expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", grade_groups = NULL, ", res)
+test_that("script works as expected with details set to TRUE", {
+  res <- expect_silent(script(aet04_1, details = TRUE))
+  checkmate::expect_character(res, len = 51)
+  checkmate::expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", grade_groups = NULL, ", res)
 })
