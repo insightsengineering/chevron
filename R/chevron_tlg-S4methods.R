@@ -41,28 +41,35 @@ setMethod(
   }
 )
 
-# args ----
+# args_ls ----
 
 #' Get Arguments List
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param simplify (`flag`) whether to simplify the output.
+#' @param simplify (`flag`) whether to simplify the output, coalescing the values of the parameters. The order of
+#'   priority for the value of the parameters is: `main`, `preprocess` and `postprocess`.
 #' @param omit (`character`) the names of the argument to omit from the output.
 #'
-#' @rdname args
+#' @rdname args_ls
 #' @export
-setGeneric("args", function(x, simplify = FALSE, omit = NULL) standardGeneric("args"))
+setGeneric("args_ls", function(x, simplify = FALSE, omit = NULL) standardGeneric("args_ls"))
 
-#' @rdname args
+#' @rdname args_ls
 #' @export
 setMethod(
-  f = "args",
+  f = "args_ls",
   signature = "chevron_tlg",
   definition = function(x, simplify = FALSE, omit = NULL) {
     checkmate::assert_flag(simplify)
     checkmate::assert_character(omit, null.ok = TRUE)
 
-    x_sel <- lapply(x@args, function(y) y[!names(y) %in% omit])
+    x_ls <- list(
+      main = formals(x@main),
+      preprocess = formals(x@preprocess),
+      postprocess = formals(x@postprocess)
+    )
+
+    x_sel <- lapply(x_ls, function(y) y[!names(y) %in% omit])
 
     res <- if (simplify) {
       Reduce(fuse_sequentially, x_sel)
@@ -112,7 +119,6 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, value) {
     x@main <- value
-    x@args[["main"]] <- formals(value)
     validObject(x)
     x
   }
@@ -157,7 +163,6 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, value) {
     x@preprocess <- value
-    x@args[["preprocess"]] <- formals(value)
     validObject(x)
     x
   }
@@ -201,7 +206,6 @@ setMethod(
   signature = "chevron_tlg",
   definition = function(x, value) {
     x@postprocess <- value
-    x@args[["postprocess"]] <- formals(value)
     validObject(x)
     x
   }
@@ -252,28 +256,35 @@ setMethod(
 
 # script ----
 
-#' Create Pre Processing Script
+#' Create Script for Parameters Assignment
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param dict (`list`) with the name and value of custom arguments.
 #' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the
 #'   prepossessing step is printed.
 #'
+#' @name script
 #' @rdname script
-#' @export
-setGeneric("script", function(x, dict = NULL, details = FALSE) standardGeneric("script"))
+NULL
 
 #' @rdname script
 #' @export
+setGeneric("script_args", function(x, dict = NULL) standardGeneric("script_args"))
+
+#' @rdname script
+#' @export
+#'
+#' @examples
+#' script_args(aet04_1)
+#'
 setMethod(
-  f = "script",
+  f = "script_args",
   signature = "chevron_tlg",
-  definition = function(x, dict = NULL, details = FALSE) {
+  definition = function(x, dict = NULL) {
     checkmate::assert_list(dict, null.ok = TRUE)
-    checkmate::assert_flag(details)
 
     # Construct call for attribution of all arguments
-    simple_arg <- args(x, omit = c("tlg", "..."), simplify = TRUE)
+    simple_arg <- args_ls(x, omit = c("tlg", "..."), simplify = TRUE)
     simple_arg <- fuse_sequentially(dict, simple_arg)
     names_args <- names(simple_arg)
     val_args <- unname(simple_arg)
@@ -284,7 +295,7 @@ setMethod(
       id <- names_args[[i]]
 
       if (missing(val)) {
-        res[[id]] <- "# enter custom value"
+        res[[id]] <- rlang::call2("stop", "enter dataset")
       } else {
         res[[id]] <- val
       }
@@ -292,19 +303,41 @@ setMethod(
 
     arg_calls <- mapply(function(x, y) rlang::call2("<-", sym(x), y), as.list(names(res)), res)
 
-    # Construct argument list for each function.
-    all_arg <- args(x, omit = c("...", "tlg"), simplify = FALSE)
+    c(
+      "\n# Arguments definition ----\n",
+      unlist(lapply(arg_calls, deparse))
+    )
+  }
+)
 
-    # Construct argument list of pre function.
+#' Create Script for `TLG` Generation
+#'
+#' @rdname script
+#' @export
+setGeneric("script_funs", function(x, details = FALSE) standardGeneric("script_funs"))
+
+#' @rdname script
+#' @export
+#'
+#' @examples
+#' script_funs(aet04_1)
+#'
+setMethod(
+  f = "script_funs",
+  signature = "chevron_tlg",
+  definition = function(x, details = FALSE) {
+    checkmate::assert_flag(details)
+
+    # Construct argument list for each function.
+    all_arg <- args_ls(x, omit = c("...", "tlg"), simplify = FALSE)
+
     arg_pre <- lapply(names(all_arg$preprocess), sym)
     names(arg_pre) <- arg_pre
 
-    # Construct argument list of main function.
     arg_main <- lapply(names(all_arg$main), sym)
     names(arg_main) <- arg_main
     arg_main$adam_db <- sym("proc_data")
 
-    # Construct argument list of postprocess function.
     arg_post <- lapply(names(all_arg$post), sym)
     names(arg_post) <- arg_post
 
@@ -338,8 +371,6 @@ setMethod(
 
     # Generate the script.
     spt <- c(
-      "\n# Arguments definition ----\n",
-      lapply(arg_calls, deparse),
       "\n# Functions definition ----\n",
       deparse(rlang::call2("<-", sym("preprocess_fun"), x@preprocess)),
       fun_def,

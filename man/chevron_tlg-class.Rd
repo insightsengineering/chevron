@@ -75,8 +75,6 @@ creation.}
 
 \item{\code{adam_datasets}}{(\code{character}) representing the name of the tables from an \code{AdAM} dataset required for \code{tlg}
 creation.}
-
-\item{\code{args}}{(\code{list}) storing the arguments of function and their default values.}
 }}
 
 \note{

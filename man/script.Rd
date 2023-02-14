@@ -2,12 +2,19 @@
 % Please edit documentation in R/chevron_tlg-S4methods.R
 \name{script}
 \alias{script}
-\alias{script,chevron_tlg-method}
-\title{Create Pre Processing Script}
+\alias{script_args}
+\alias{script_args,chevron_tlg-method}
+\alias{script_funs}
+\alias{script_funs,chevron_tlg-method}
+\title{Create Script for Parameters Assignment}
 \usage{
-script(x, dict = NULL, details = FALSE)
+script_args(x, dict = NULL)
 
-\S4method{script}{chevron_tlg}(x, dict = NULL, details = FALSE)
+\S4method{script_args}{chevron_tlg}(x, dict = NULL)
+
+script_funs(x, details = FALSE)
+
+\S4method{script_funs}{chevron_tlg}(x, details = FALSE)
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
@@ -18,5 +25,13 @@ script(x, dict = NULL, details = FALSE)
 prepossessing step is printed.}
 }
 \description{
-Create Pre Processing Script
+Create Script for Parameters Assignment
+
+Create Script for \code{TLG} Generation
+}
+\examples{
+script_args(aet04_1)
+
+script_funs(aet04_1)
+
 }
