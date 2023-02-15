@@ -113,7 +113,10 @@ assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' assert_args(aet01_1, list(lbl_ = "xxx", "lbl_overall" = "All Patient", armvar = "ACTARM", "_var" = "ACT", "xxxx" = 12))
+#' assert_args(
+#'   aet01_1,
+#'   list(lbl_ = "xxx", "lbl_overall" = "All Patient", armvar = "ACTARM", "_var" = "ACT", "xxxx" = 12)
+#' )
 #' assert_args(aet01_1, list("lbl_overall" = "All Patient"))
 #' }
 assert_args <- function(object, args_names) {
