@@ -100,3 +100,54 @@ assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
     )
   }
 }
+
+
+#' Assert Validity of Arguments
+#'
+#' @param object (`chevron_tlg`) defining the valid arguments.
+#' @param args_names (`character`) to assert.
+#'
+#' @keywords internal
+#'
+#' @return invisible `NULL` if all `args_names` are valid argument for the `chevron_tlg` object or an error otherwise.
+#'
+#' @examples
+#' \dontrun{
+#' assert_args(aet01_1, list(lbl_ = "xxx", "lbl_overall" = "All Patient", armvar = "ACTARM", "_var" = "ACT", "xxxx" = 12))
+#' assert_args(aet01_1, list("lbl_overall" = "All Patient"))
+#' }
+assert_args <- function(object, args_names) {
+  all_args <- names(args_ls(object, simplify = TRUE, omit = "..."))
+  missing_args <- setdiff(args_names, all_args)
+
+  if (length(missing_args) == 0) {
+    return(invisible(NULL))
+  }
+
+  supp_args <- setdiff(all_args, args_names)
+  matching_args <- lapply(missing_args, function(x) supp_args[agrep(x, supp_args)])
+
+  msg <- mapply(
+    function(x, y) {
+      paste(
+        paste0(
+          "\n",
+          y,
+          " is not a valid argument."
+        ),
+        if (length(x) > 0) {
+          paste0(
+            "Do you mean: ",
+            toString(x),
+            " ?"
+          )
+        }
+      )
+    },
+    matching_args,
+    missing_args
+  )
+
+
+  stop(msg)
+}

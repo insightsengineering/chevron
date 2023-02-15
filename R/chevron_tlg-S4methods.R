@@ -28,6 +28,7 @@ setMethod(
     checkmate::assert_flag(auto_pre)
 
     optional_arg <- list(...)
+    assert_args(object, names(optional_arg))
 
     proc_data <- if (auto_pre) {
       list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
@@ -40,6 +41,7 @@ setMethod(
     do.call(object@postprocess, c(res_tlg, optional_arg))
   }
 )
+
 
 # args_ls ----
 

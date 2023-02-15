@@ -91,3 +91,36 @@ test_that("assert_all_tablenames works as expected", {
     "first test: Expected table names: haha, hoho not in dm::dm_nycflights13()"
   )
 })
+
+# assert_args ----
+
+test_that("assert_args works as expected", {
+  args_names <- c(
+    "lbl_overall",
+    "lbl_",
+    "armvar",
+    "xxxx"
+  )
+
+  object <- chevron_t(
+    main = function(adam_db, arm_var, lbl_overall, lbl_x, lbl_y, ...) {
+      adam_db
+    }
+  )
+
+  expect_error(
+    assert_args(object, args_names),
+    "lbl_ is not a valid argument. Do you mean: lbl_x, lbl_y ?
+armvar is not a valid argument. Do you mean: arm_var ?
+xxxx is not a valid argument. ",
+    fixed = TRUE
+  )
+
+  args_names_ok <- c(
+    "lbl_overall",
+    "arm_var"
+  )
+
+  expect_silent(res <- assert_args(object, args_names_ok))
+  expect_null(res)
+})

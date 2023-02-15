@@ -5,6 +5,10 @@ test_that("run works as expected for chevron_t object", {
   expect_snapshot(res)
 })
 
+test_that("run returns an error if provided invalid arguments", {
+  expect_error(run(aet04_1, syn_data, xyz = TRUE), "xyz is not a valid argument.")
+})
+
 # main ----
 
 test_that("main works as expected", {
