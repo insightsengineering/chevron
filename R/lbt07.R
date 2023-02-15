@@ -133,11 +133,12 @@ lbt07_1_pre <- function(adam_db, ...) {
     mutate(
       GRADE_DIR = factor(
         case_when(
-          ATOXGR %in% c("-1", "-2", "-3", "-4") ~ "LOW",
+          ATOXGR %in% c("-1", "-2", "-3", "-4") & .data$WGRLOFL == "Y" ~ "LOW",
           ATOXGR == "0" ~ "ZERO",
-          ATOXGR %in% c("1", "2", "3", "4") ~ "HIGH"
+          ATOXGR %in% c("1", "2", "3", "4") & .data$WGRHIFL == "Y" ~ "HIGH",
+          TRUE ~ "NONE"
         ),
-        levels = c("LOW", "ZERO", "HIGH")
+        levels = c("LOW", "ZERO", "HIGH", "NONE")
       ),
       GRADE_ANL = factor(ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
       PARAM = as.factor(.data$PARAM)
