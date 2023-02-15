@@ -1,4 +1,3 @@
-
 # assert_colnames ----
 
 test_that("assert_colnames works as expected", {
