@@ -363,3 +363,21 @@ h_format_dec <- function(digits = NA, format = NA) {
     }
   }
 }
+
+#' Fuse list elements
+#'
+#' @param x (`list`) to fuse.
+#' @param y (`list`) to fuse. Elements with names already existing in `x` are discarded.
+#'
+#' @keywords internal
+#'
+fuse_sequentially <- function(x, y) {
+  if (missing(y)) {
+    return(x)
+  }
+
+  names_x <- names(x)
+  sel_names_y <- setdiff(names(y), names_x)
+
+  c(x, y[sel_names_y])
+}

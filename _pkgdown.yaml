@@ -16,6 +16,7 @@ articles:
       - adam_db_argument
       - layouts
       - Adding_new_TLGs_to_Chevron
+      - Script_Generator
 
 reference:
   - title: Package Overview
@@ -28,11 +29,13 @@ reference:
 
   - title: Methods
     contents:
+      - args_ls
       - run
       - main
       - preprocess
       - postprocess
       - datasets
+      - script
       - get_main
       - get_preprocess
       - get_postprocess
