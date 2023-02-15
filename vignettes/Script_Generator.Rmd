@@ -1,0 +1,113 @@
+---
+title: "Script Generator"
+date: "2023-01-24"
+author: Benoit Falquet
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Script_Generator}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(chevron)
+library(dm)
+library(dplyr)
+```
+
+# Introduction
+
+In addition of the embedded `run()` method to create a `tlg`, chevron offers a script-based approach that allows the user to quickly edit a chevron workflow without the need for modifying a `chevron_tlg` object. The script is generated as two separate components:
+
+- `script_args` method generates a script for parameters assignment based on the default value of the arguments but can be edit either manually after creation or using the `dict` argument. 
+
+- `script_funs` methods expose by default only the script corresponding to the pre processing function in the generated script. However, the main and post processing functions can also be exposed in the script with the `details = TRUE` argument.
+
+
+# Using a chevron-defined object
+The object returned by the `script` methods are vectors of character with one element per line of the script, that can be easily rendered.
+```{r}
+res <- script_args(aet01_1)
+writeLines(res)
+```
+
+
+```{r}
+res <- script_funs(aet01_1)
+writeLines(res)
+```
+
+
+# With a modified chevron object
+
+The script generator depends on the functions actually stored in the object. Modifying the `chevron_tlg` object can lead to a different script.
+```{r}
+preprocess(aet01_1) <- function(adam_db, new_format, ...) {
+  dunlin::apply_reformat(adam_db, new_format)
+}
+
+res_args <- script_args(aet01_1)
+res_funs <- script_funs(aet01_1)
+```
+
+Print the generated scripts. Note that a new argument `new_format` has been added and the pre processing function has been modified.
+
+```{r}
+writeLines(res_args)
+writeLines(res_funs)
+```
+
+# With custom argument definition
+
+To define the value of an argument in the directly in the `script_args` method, pass it to a named list. Existing values will be overwritten.
+
+Note: variables (in this case the `dm` object `syn_data`), have to be passed as symbol, using for instance `rlang::sym`.
+
+```{r}
+dict <- list(
+  adam_db = rlang::sym("syn_data"),
+  some_character = "A",
+  some_vector = c("A", "B")
+)
+
+res_args <- script_args(mng01_1, dict = dict)
+res_funs <- script_funs(mng01_1)
+```
+
+```{r}
+writeLines(res_args)
+writeLines(res_funs)
+```
+
+If saved in a `.R` file, the generated script can be executed. The result is stored in the `final_tlg` object, as described in the script.
+```{r, fig.width=7, fig.height=7}
+tmp_args <- tempfile("my_script_args", fileext = "R")
+writeLines(res_args, con = tmp_args)
+
+tmp_funs <- tempfile("my_script_funs", fileext = "R")
+writeLines(res_funs, con = tmp_funs)
+
+source(tmp_args, local = knitr::knit_global())
+source(tmp_funs, local = knitr::knit_global())
+
+print(final_tlg[[1]])
+```
+
+# Exploring Main and Post process functions
+
+By specifying `details = TRUE` the main and post processing functions are also exposed.
+
+```{r}
+res_fun <- script_funs(mng01_1, details = TRUE)
+```
+
+```{r}
+writeLines(res_fun)
+```

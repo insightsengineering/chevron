@@ -103,7 +103,7 @@ syn_test_data <- function() {
   attr(sd$adsl$AAGE, "label") <- "Age (yr)"
   sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
-  sd$adex$AVALCAT1 <- tern::explicit_na(factor(sd$adex$AVALCAT1), label = "<Missing>")
+  sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
 
   # useful for dmt01
   adsub <- sd$adsub
@@ -366,4 +366,22 @@ h_format_dec <- function(digits = NA, format = NA) {
       formatters::sprintf_format(new_format)(x)
     }
   }
+}
+
+#' Fuse list elements
+#'
+#' @param x (`list`) to fuse.
+#' @param y (`list`) to fuse. Elements with names already existing in `x` are discarded.
+#'
+#' @keywords internal
+#'
+fuse_sequentially <- function(x, y) {
+  if (missing(y)) {
+    return(x)
+  }
+
+  names_x <- names(x)
+  sel_names_y <- setdiff(names(y), names_x)
+
+  c(x, y[sel_names_y])
 }
