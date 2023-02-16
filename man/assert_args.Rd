@@ -2,7 +2,7 @@
 % Please edit documentation in R/assertions.R
 \name{assert_args}
 \alias{assert_args}
-\title{Assert Validity of Arguments}
+\title{Assert that names are valid arguments for the \code{run} method of a \code{chevron_tlg} object.}
 \usage{
 assert_args(object, args_names)
 }
@@ -12,18 +12,18 @@ assert_args(object, args_names)
 \item{args_names}{(\code{character}) to assert.}
 }
 \value{
-invisible \code{NULL} if all \code{args_names} are valid argument for the \code{chevron_tlg} object or an error otherwise.
+invisible \code{NULL} if all \code{args_names} are valid argument for the \code{chevron_tlg} object or an warning otherwise.
 }
 \description{
-Assert Validity of Arguments
+Assert that names are valid arguments for the \code{run} method of a \code{chevron_tlg} object.
 }
 \examples{
 \dontrun{
+assert_args(aet01_1, "lbl_overall")
 assert_args(
   aet01_1,
-  list(lbl_ = "xxx", "lbl_overall" = "All Patient", armvar = "ACTARM", "_var" = "ACT", "xxxx" = 12)
+  c("lbl_", "lbl_overall", "armvar", "_var", "xxxx")
 )
-assert_args(aet01_1, list("lbl_overall" = "All Patient"))
 }
 }
 \keyword{internal}

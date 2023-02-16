@@ -107,7 +107,7 @@ test_that("assert_args works as expected", {
     }
   )
 
-  expect_error(
+  expect_warning(
     assert_args(object, args_names),
     "lbl_ is not a valid argument. Do you mean: lbl_x, lbl_y ?
 armvar is not a valid argument. Do you mean: arm_var ?

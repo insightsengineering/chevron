@@ -102,33 +102,36 @@ assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 }
 
 
-#' Assert Validity of Arguments
+#' Assert that names are valid arguments for the `run` method of a `chevron_tlg` object.
 #'
 #' @param object (`chevron_tlg`) defining the valid arguments.
 #' @param args_names (`character`) to assert.
 #'
 #' @keywords internal
 #'
-#' @return invisible `NULL` if all `args_names` are valid argument for the `chevron_tlg` object or an error otherwise.
+#' @return invisible `NULL` if all `args_names` are valid argument for the `chevron_tlg` object or an warning otherwise.
 #'
 #' @examples
 #' \dontrun{
+#' assert_args(aet01_1, "lbl_overall")
 #' assert_args(
 #'   aet01_1,
-#'   list(lbl_ = "xxx", "lbl_overall" = "All Patient", armvar = "ACTARM", "_var" = "ACT", "xxxx" = 12)
+#'   c("lbl_", "lbl_overall", "armvar", "_var", "xxxx")
 #' )
-#' assert_args(aet01_1, list("lbl_overall" = "All Patient"))
 #' }
 assert_args <- function(object, args_names) {
-  all_args <- names(args_ls(object, simplify = TRUE, omit = "..."))
-  missing_args <- setdiff(args_names, all_args)
+  checkmate::assert_class(object, "chevron_tlg")
+  checkmate::assert_character(args_names, null.ok = TRUE)
 
-  if (length(missing_args) == 0) {
+  all_args <- names(args_ls(object, simplify = TRUE, omit = "..."))
+  invalid_args <- setdiff(args_names, all_args)
+
+  if (length(invalid_args) == 0) {
     return(invisible(NULL))
   }
 
   supp_args <- setdiff(all_args, args_names)
-  matching_args <- lapply(missing_args, function(x) supp_args[agrep(x, supp_args)])
+  matching_args <- lapply(invalid_args, function(x) supp_args[agrep(x, supp_args)])
 
   msg <- mapply(
     function(x, y) {
@@ -148,9 +151,9 @@ assert_args <- function(object, args_names) {
       )
     },
     matching_args,
-    missing_args
+    invalid_args
   )
 
 
-  stop(msg)
+  warning(msg)
 }
