@@ -16,6 +16,7 @@ An object of class \code{chevron_t} of length 1.
 lbt07_1_main(
   adam_db,
   arm_var = "ACTARM",
+  lbl_overall = NULL,
   grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
   deco = std_deco("LBT07"),
   lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
@@ -24,6 +25,7 @@ lbt07_1_main(
 
 lbt07_1_lyt(
   arm_var,
+  lbl_overall,
   lbl_gradedir,
   lbl_param,
   grade_var,
@@ -45,6 +47,8 @@ lbt07_1
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{character}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{grade_var}{(\code{character}) \code{PARAM} and variables derived from the standard lab grade variable \code{ATOXGR}:
 \itemize{
