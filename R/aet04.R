@@ -78,7 +78,8 @@ aet04_1_lyt <- function(arm_var,
   all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
   combodf <- tribble(
     ~valname, ~label, ~levelcombo, ~exargs,
-    "ALL", "- Any adverse events -", toxicity_grade, list())
+    "ALL", "- Any adverse events -", toxicity_grade, list()
+  )
 
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
@@ -167,11 +168,11 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (tbl_empty) {
     tbl_sorted <- basic_table() %>% build_table(matrix(""))
   } else {
-    score_all_sum <- function (tt) {
+    score_all_sum <- function(tt) {
       cleaf <- collect_leaves(tt)[[1]]
-      if (NROW(cleaf) == 0)
-        stop("score_all_sum score function used at subtable [",
-             obj_name(tt), "] that has no content.")
+      if (NROW(cleaf) == 0) {
+        stop("score_all_sum score function used at subtable [", obj_name(tt), "] that has no content.")
+      }
       sum(sapply(row_values(cleaf), function(cv) cv[1]))
     }
 
