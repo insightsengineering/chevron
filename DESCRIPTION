@@ -74,6 +74,7 @@ Collate:
     'egt01.R'
     'egt02.R'
     'egt03.R'
+    'egt05_qtcat.R'
     'ext01.R'
     'gen_args.R'
     'lbt01.R'

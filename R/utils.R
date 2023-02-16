@@ -103,7 +103,27 @@ syn_test_data <- function() {
   attr(sd$adsl$AAGE, "label") <- "Age (yr)"
   sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
-  sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
+  sd$adex$AVALCAT1 <- tern::explicit_na(factor(sd$adex$AVALCAT1), label = "<Missing>") # nolint
+
+  # Add AVALCAT1 CHGCAT1 for adeg
+  sd$adeg <- sd$adeg %>%
+    mutate(
+      AVALCAT1 = case_when(
+        PARAMCD == "QT" & AVAL <= 450 ~ paste("<=450", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ paste(">450 to <=480", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ paste(">480 to <=500", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 500 ~ paste(">500", " ", AVALU),
+        PARAMCD == "QT" & is.na(AVAL) ~ "<Missing>"
+      ),
+      CHGCAT1 = case_when(
+        PARAMCD == "QT" & CHG <= 30 ~ paste("<=30", " ", AVALU),
+        PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ paste(">30 to <=60", " ", AVALU),
+        PARAMCD == "QT" & CHG > 60 ~ paste(">60", " ", AVALU),
+        PARAMCD == "QT" & is.na(CHG) ~ "<Missing>"
+      ),
+      AVALCAT1 = factor(AVALCAT1),
+      CHGCAT1 = factor(CHGCAT1)
+    )
 
   # useful for dmt01
   adsub <- sd$adsub
