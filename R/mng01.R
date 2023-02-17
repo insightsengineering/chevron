@@ -46,7 +46,7 @@ mng01_1_main <- function(adam_db,
                          show_h_grid = TRUE,
                          show_v_grid = FALSE,
                          legend_pos = "top",
-                         line_col = NULL,
+                         line_col = nestcolor::color_palette(),
                          ...) {
   df <- adam_db[[dataset]]
 

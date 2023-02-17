@@ -15,6 +15,7 @@
 #' @importFrom ggplot2 theme
 #' @importFrom magrittr %>%
 #' @importFrom methods is setValidity
+#' @importFrom nestcolor color_palette
 #' @importFrom rlang sym .data .env
 #' @importFrom stats setNames median sd quantile
 #' @importFrom tibble tribble

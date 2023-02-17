@@ -24,6 +24,7 @@ Imports:
     ggplot2 (>= 3.4.0),
     magrittr,
     methods,
+    nestcolor (>= 0.1.0),
     rlang,
     rlistings (> 0.1.1),
     rtables (> 0.5.3),
@@ -35,8 +36,7 @@ Imports:
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,
-    knitr,
-    nestcolor (>= 0.1.0),
+    knitr,    
     purrr,
     rmarkdown,
     testthat (>= 3.0.0),
