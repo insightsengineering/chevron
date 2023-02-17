@@ -1,4 +1,3 @@
-
 #' `chevron` package
 #'
 #' @import dm
