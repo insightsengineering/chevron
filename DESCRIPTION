@@ -21,7 +21,7 @@ Imports:
     dunlin (> 0.1.1),
     forcats (>= 1.0.0),
     formatters (> 0.3.4),
-    ggplot2,
+    ggplot2 (> 3.4.0),
     magrittr,
     methods,
     rlang,
