@@ -1,4 +1,3 @@
-
 # mng01_1 ----
 
 #' @describeIn mng01_1 Main TLG Function
@@ -24,7 +23,6 @@
 #' @param legend_pos (`string`) the position of the legend.
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` vector associating
 #'   values of `arm_var` with color names.
-#' @param ... not used.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
@@ -47,8 +45,7 @@ mng01_1_main <- function(adam_db,
                          show_h_grid = TRUE,
                          show_v_grid = FALSE,
                          legend_pos = "top",
-                         line_col = nestcolor::color_palette(),
-                         ...) {
+                         line_col = nestcolor::color_palette()) {
   df <- adam_db[[dataset]]
 
   data_ls <- split(df, df$PARAM, drop = TRUE)
@@ -159,10 +156,9 @@ mng01_1_main <- function(adam_db,
 #' @describeIn mng01_1 Preprocessing
 #'
 #' @inheritParams mng01_1_main
-#' @param ... not used.
 #'
 #' @export
-mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
+mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT") {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -176,9 +172,8 @@ mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #' @describeIn mng01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
-mng01_1_post <- function(tlg, ...) {
+mng01_1_post <- function(tlg) {
   tlg
 }
 

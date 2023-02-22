@@ -18,17 +18,16 @@ lbt04_1_main(
   arm_var = "ACTARM",
   lbl_param = "Laboratory Test",
   lbl_anrind = "Direction of Abnormality",
-  deco = std_deco("LBT04"),
-  ...
+  deco = std_deco("LBT04")
 )
 
-lbt04_1_lyt(arm_var, lbl_param, lbl_anrind, deco, ...)
+lbt04_1_lyt(arm_var, lbl_param, lbl_anrind, deco)
 
-lbt04_1_pre(adam_db, ...)
+lbt04_1_pre(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM")
 
-lbt04_1_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM", ...)
+lbt04_1_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM")
 
-lbt04_1_post(tlg, ...)
+lbt04_1_post(tlg)
 
 lbt04_1
 }
@@ -42,8 +41,6 @@ lbt04_1
 \item{lbl_anrind}{(\code{character}) label of the \code{ANRIND} variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 

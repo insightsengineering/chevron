@@ -27,18 +27,28 @@ setMethod(
     checkmate::assert_class(adam_db, "dm")
     checkmate::assert_flag(auto_pre)
 
-    optional_arg <- list(...)
-    assert_args(object, names(optional_arg))
+    # Assert validity of provided arguments.
+    user_args <- list(...)
+    arg_pre_name <- if (auto_pre) rlang::fn_fmls_names(preprocess(object))
+    arg_main_name <- rlang::fn_fmls_names(main(object))
+    arg_post_name <- rlang::fn_fmls_names(postprocess(object))
+
+    all_args_names <- unique(c(arg_pre_name, arg_main_name, arg_post_name))
+    assert_subset_suggest(names(user_args), all_args_names)
 
     proc_data <- if (auto_pre) {
-      list(adam_db = do.call(object@preprocess, c(list(adam_db), optional_arg)))
+      arg_pre <- user_args[names(user_args) %in% arg_pre_name]
+      list(adam_db = do.call(object@preprocess, c(list(adam_db), arg_pre)))
     } else {
       list(adam_db = adam_db)
     }
 
-    res_tlg <- list(tlg = do.call(object@main, c(proc_data, optional_arg)))
+    arg_main <- user_args[names(user_args) %in% arg_main_name]
+    arg_post <- user_args[names(user_args) %in% arg_post_name]
 
-    do.call(object@postprocess, c(res_tlg, optional_arg))
+    res_tlg <- list(tlg = do.call(object@main, c(proc_data, arg_main)))
+
+    do.call(object@postprocess, c(res_tlg, arg_post))
   }
 )
 

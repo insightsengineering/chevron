@@ -102,36 +102,35 @@ assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 }
 
 
-#' Assert that names are valid arguments for the `run` method of a `chevron_tlg` object.
+#' Assert Subset and Provide Suggestions
 #'
-#' @param object (`chevron_tlg`) defining the valid arguments.
-#' @param args_names (`character`) to assert.
+#' @param x (`character`) to be asserted
+#' @param choices (`character`) set of possible values.
 #'
 #' @keywords internal
 #'
-#' @return invisible `NULL` if all `args_names` are valid argument for the `chevron_tlg` object or an warning otherwise.
+#' @return invisible `NULL` if all `x` are subset of `choices` or an informative warning otherwise.
 #'
 #' @examples
 #' \dontrun{
-#' assert_args(aet01_1, "lbl_overall")
-#' assert_args(
-#'   aet01_1,
-#'   c("lbl_", "lbl_overall", "armvar", "_var", "xxxx")
+#' assert_subset_suggest(c("lbl_overall"), "lbl_overall")
+#' assert_subset_suggest(
+#'   c("lbl_", "xxx", "arm_var"),
+#'   c("lbl_overall", "arm_var")
 #' )
 #' }
-assert_args <- function(object, args_names) {
-  checkmate::assert_class(object, "chevron_tlg")
-  checkmate::assert_character(args_names, null.ok = TRUE)
+assert_subset_suggest <- function(x, choices) {
+  checkmate::assert_character(choices)
+  checkmate::assert_character(x, null.ok = TRUE)
 
-  all_args <- names(args_ls(object, simplify = TRUE, omit = "..."))
-  invalid_args <- setdiff(args_names, all_args)
+  invalid_args <- setdiff(x, choices)
 
   if (length(invalid_args) == 0) {
     return(invisible(NULL))
   }
 
-  supp_args <- setdiff(all_args, args_names)
-  matching_args <- lapply(invalid_args, function(x) supp_args[agrep(x, supp_args)])
+  supp_args <- setdiff(choices, x)
+  matching_args <- lapply(invalid_args, function(choices) supp_args[agrep(choices, supp_args)])
 
   msg <- mapply(
     function(x, y) {

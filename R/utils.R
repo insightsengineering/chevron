@@ -243,13 +243,12 @@ set_decoration <- function(x, deco) {
 #' @rdname report_null
 #' @aliases null_report
 #' @param tlg (`TableTree`) object.
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
-report_null <- function(tlg, ...) {
+report_null <- function(tlg) {
   if (nrow(tlg) == 0L) {
     null_report
   } else {
@@ -313,6 +312,7 @@ get_labels <- function(df, x) {
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
+#' @param ... not used at the moment.
 #'
 #' @note Standard post processing includes:
 #' * `NULL` report creation if necessary

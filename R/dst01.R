@@ -1,4 +1,3 @@
-
 # dst01_1 ----
 
 #' @describeIn dst01_1 Main TLG function
@@ -39,8 +38,7 @@ dst01_1_main <- function(adam_db,
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01"),
-                         ...) {
+                         deco = std_deco("DST01")) {
   # Standard values defined in GDSR.
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
@@ -56,8 +54,7 @@ dst01_1_main <- function(adam_db,
     disc_reason_var = disc_reason_var,
     completed_lbl = completed_lvl,
     ongoing_lbl = ongoing_lvl,
-    discontinued_lbl = discontinued_lvl,
-    ... = ...
+    discontinued_lbl = discontinued_lvl
   )
 
   tbl_completed <- build_table(
@@ -88,7 +85,7 @@ dst01_1_main <- function(adam_db,
 #'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
-#' @param ... not used.
+#'
 #'
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
@@ -102,8 +99,7 @@ dst01_1_lyt <- function(arm_var,
                         ongoing_lbl = "ONGOING",
                         discontinued_lbl = "DISCONTINUED",
                         lbl_overall,
-                        deco,
-                        ...) {
+                        deco) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%
@@ -148,7 +144,7 @@ dst01_1_lyt <- function(arm_var,
 #' @describeIn dst01_1 Preprocessing
 #'
 #' @inheritParams dst01_1_main
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
@@ -156,8 +152,7 @@ dst01_1_lyt <- function(arm_var,
 #' dst01_1_pre(syn_data)
 dst01_1_pre <- function(adam_db,
                         status_var = "EOSSTT",
-                        disc_reason_var = "DCSREAS",
-                        ...) {
+                        disc_reason_var = "DCSREAS") {
   new_format <- list(
     adsl = list(
       list("<Missing>" = c("", NA)),
@@ -183,10 +178,10 @@ dst01_1_pre <- function(adam_db,
 #' @describeIn dst01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
-dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
+dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
   if (prune_0) tbl_other <- tbl_other %>% trim_rows()
@@ -259,8 +254,7 @@ dst01_2_main <- function(adam_db,
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01"),
-                         ...) {
+                         deco = std_deco("DST01")) {
   # Standard values defined in GDSR.
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
@@ -276,8 +270,7 @@ dst01_2_main <- function(adam_db,
     discontinued_lbl = discontinued_lvl,
     lbl_overall = lbl_overall,
     ongoing_lbl = ongoing_lvl,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl_completed <- build_table(
@@ -308,7 +301,7 @@ dst01_2_main <- function(adam_db,
 #'   By Default `ONGOING.
 #' @param discontinued_lbl (`string`) associated with discontinued study and found in the columns given by `status`. By
 #'   Default `DISCONTINUED`.
-#' @param ... not used.
+#'
 #'
 #' @details Since the two parts of the tables are pruned differently, the layout function returns a list of layouts,
 #'   which allows the tables to be constructed and pruned separately before binding.
@@ -322,8 +315,7 @@ dst01_2_lyt <- function(arm_var,
                         ongoing_lbl,
                         discontinued_lbl,
                         lbl_overall,
-                        deco = std_deco("DST01"),
-                        ...) {
+                        deco = std_deco("DST01")) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(
       arm_var,
@@ -375,7 +367,7 @@ dst01_2_lyt <- function(arm_var,
 #' @describeIn dst01_2 Preprocessing
 #'
 #' @inheritParams dst01_2_main
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
@@ -383,8 +375,7 @@ dst01_2_lyt <- function(arm_var,
 #' dst01_2_pre(syn_data)
 dst01_2_pre <- function(adam_db,
                         status_var = "EOSSTT",
-                        disc_reason_var = "DCSREAS",
-                        ...) {
+                        disc_reason_var = "DCSREAS") {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -419,10 +410,10 @@ dst01_2_pre <- function(adam_db,
 #' @describeIn dst01_2 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
-dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
+dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
   if (prune_0) tbl_other <- tbl_other %>% trim_rows()
@@ -501,8 +492,7 @@ dst01_3_main <- function(adam_db,
                          disc_reason_var = "DCSREAS",
                          status_treatment_var = "EOTSTT",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01"),
-                         ...) {
+                         deco = std_deco("DST01")) {
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
   ongoing_lvl <- "ONGOING"
@@ -517,8 +507,7 @@ dst01_3_main <- function(adam_db,
     completed_trt_lbl = completed_lvl,
     ongoing_trt_lbl = ongoing_lvl,
     discontinued_trt_lbl = discontinued_lvl,
-    status_treatment_var = status_treatment_var,
-    ... = ...
+    status_treatment_var = status_treatment_var
   )
 
   tbl <- build_table(
@@ -534,8 +523,7 @@ dst01_3_main <- function(adam_db,
     ongoing_lbl = ongoing_lvl,
     discontinued_lbl = discontinued_lvl,
     status_var = status_var,
-    disc_reason_var = disc_reason_var,
-    ... = ...
+    disc_reason_var = disc_reason_var
   )
 
 
@@ -565,7 +553,7 @@ dst01_3_main <- function(adam_db,
 #'   `status_treatment_var`. By Default `DISCONTINUED`.
 #' @param ongoing_trt_lbl (`string`) associated with ongoing treatment and found in the columns given by
 #'   `status_treatment_var`. By Default `ONGOING.
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
@@ -575,8 +563,7 @@ dst01_3_lyt <- function(arm_var,
                         discontinued_trt_lbl,
                         ongoing_trt_lbl,
                         lbl_overall,
-                        deco,
-                        ...) {
+                        deco) {
   layout_table <- basic_table_deco(deco) %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%
@@ -608,15 +595,13 @@ dst01_3_lyt <- function(arm_var,
 #' @describeIn dst01_3 Preprocessing
 #'
 #' @inheritParams dst01_3_main
-#' @param ... not used.
 #'
 #' @export
 #'
 dst01_3_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
-                        status_treatment_var = "EOTSTT",
-                        ...) {
+                        status_treatment_var = "EOTSTT") {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -657,10 +642,9 @@ dst01_3_pre <- function(adam_db,
 #'
 #' @inheritParams dst01_3_main
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
-dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
+dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
   tbl <- tlg[[1]]
   tbl_completed <- tlg[[2]]
   tbl_other <- tlg[[3]]

@@ -19,7 +19,7 @@ lbt07_1_main(
   grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
   deco = std_deco("LBT07"),
   lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
-  ...
+  req_tables = c("adsl", "adlb")
 )
 
 lbt07_1_lyt(
@@ -29,15 +29,14 @@ lbt07_1_lyt(
   grade_var,
   lbl_grade_var,
   deco,
-  map,
-  ...
+  map
 )
 
-lbt07_1_pre(adam_db, ...)
+lbt07_1_pre(adam_db)
 
-lbt07_1_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM", ...)
+lbt07_1_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM")
 
-lbt07_1_post(tlg, prune_0 = TRUE, ...)
+lbt07_1_post(tlg, prune_0 = TRUE)
 
 lbt07_1
 }
@@ -59,15 +58,13 @@ the correct denominators when building the layout as it is used to define row sp
 \item{lbl_grade_var}{(\code{character}) label of the variables in \code{grade_var}. If \code{NULL}, uses the label
 attribute of the columns selected in \code{grade_var}.}
 
-\item{...}{not used.}
+\item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{lbl_gradedir}{(\code{character}) label of the \code{GRADE_DIR} variable.}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 
 \item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
-
-\item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

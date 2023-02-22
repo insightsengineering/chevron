@@ -4,7 +4,6 @@
 #'
 #' @inheritParams gen_args
 #' @param aesi_vars (`character`) the AESI variables to be included in the summary. Defaults to `NA`.
-#' @param ... not used.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -34,8 +33,7 @@
 aet01_aesi_1_main <- function(adam_db,
                               arm_var = "ACTARM",
                               aesi_vars = NA,
-                              deco = std_deco("AET01_AESI"),
-                              ...) {
+                              deco = std_deco("AET01_AESI")) {
   if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
   if (any(grepl("^ALL_", aesi_vars))) {
     aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(
@@ -57,8 +55,7 @@ aet01_aesi_1_main <- function(adam_db,
     arm_var = arm_var,
     aesi_vars = all_aesi_vars,
     deco = deco,
-    lbl_aesi_vars = lbl_aesi_vars,
-    ... = ...
+    lbl_aesi_vars = lbl_aesi_vars
   )
 
   tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
@@ -70,15 +67,13 @@ aet01_aesi_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param lbl_aesi_vars (`character`) the labels of the AESI variables to be summarized.
-#' @param ... not used
 #'
 #' @export
 #'
 aet01_aesi_1_lyt <- function(arm_var,
                              aesi_vars,
                              deco,
-                             lbl_aesi_vars,
-                             ...) {
+                             lbl_aesi_vars) {
   names(lbl_aesi_vars) <- aesi_vars
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
@@ -110,14 +105,15 @@ aet01_aesi_1_lyt <- function(arm_var,
 #' @describeIn aet01_aesi_1 Preprocessing
 #'
 #' @inheritParams aet01_aesi_1_main
-#' @param ... not used.
 #'
 #' @export
 #'
-aet01_aesi_1_pre <- function(adam_db, ...) {
+aet01_aesi_1_pre <- function(adam_db,
+                             req_tables = c("adsl", "adae"),
+                             arm_var = "ACTARM") {
   checkmate::assert_class(adam_db, "dm")
 
-  aet01_aesi_1_check(adam_db, ...)
+  aet01_aesi_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
@@ -226,12 +222,10 @@ aet01_aesi_1_pre <- function(adam_db, ...) {
 #' @describeIn aet01_aesi_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 aet01_aesi_1_check <- function(adam_db,
                                req_tables = c("adsl", "adae"),
-                               arm_var = "ACTARM",
-                               ...) {
+                               arm_var = "ACTARM") {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -276,10 +270,9 @@ aet01_aesi_1_check <- function(adam_db,
 #' @describeIn aet01_aesi_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used
 #'
 #' @export
-aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"), ...) {
+aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI")) {
   tbl <- set_decoration(tlg, deco)
   if (prune_0) {
     tbl <- smart_prune(tbl)
