@@ -172,7 +172,7 @@ lbt07_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt07_1_post <- function(tlg, prune_0 = TRUE, ...) {
+lbt07_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

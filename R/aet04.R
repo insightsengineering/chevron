@@ -70,8 +70,7 @@ aet04_1_lyt <- function(arm_var,
                         lbl_aedecod = "MedDRA Preferred Term",
                         toxicity_grade,
                         grade_groups,
-                        deco,
-                        ...) {
+                        deco) {
   all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
   combodf <- tribble(
     ~valname, ~label, ~levelcombo, ~exargs,
