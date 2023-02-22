@@ -63,6 +63,7 @@ Collate:
     'aet02.R'
     'aet03.R'
     'aet04.R'
+    'aet10.R'
     'assertions.R'
     'checks.R'
     'chevron_tlg-S4methods.R'
