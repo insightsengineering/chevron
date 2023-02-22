@@ -8,8 +8,8 @@ upstream_repos:
   insightsengineering/dunlin:
     repo: insightsengineering/dunlin
     host: https://github.com
-  Roche/rtables:
-    repo: Roche/rtables
+  insightsengineering/rtables:
+    repo: insightsengineering/rtables
     host: https://github.com
   insightsengineering/rlistings:
     repo: insightsengineering/rlistings
