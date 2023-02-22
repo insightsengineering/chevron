@@ -277,7 +277,7 @@ report_null <- function(tlg, ...) {
   if (nrow(tlg) == 0L) {
     null_report
   } else {
-    checkmate::assert_multi_class(tlg, c("TableTree"))
+    checkmate::assert_multi_class(tlg, c("TableTree", "ElementaryTable"))
     tlg
   }
 }
