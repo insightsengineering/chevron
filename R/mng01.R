@@ -61,7 +61,7 @@ mng01_1_main <- function(adam_db,
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
   checkmate::assert_flag(show_v_grid)
-  checkmate::assert_character(line_col)
+  checkmate::assert_character(line_col, null.ok = TRUE)
 
   interval_title <- switch(interval_fun,
     "mean_ci" = "95% Confidence Intervals",
