@@ -59,7 +59,7 @@ mng01_1_main <- function(adam_db,
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
   checkmate::assert_flag(show_v_grid)
-  checkmate::assert_character(line_col)
+  checkmate::assert_character(line_col, null.ok = TRUE)
 
   interval_title <- switch(interval_fun,
     "mean_ci" = "95% Confidence Intervals",
@@ -107,7 +107,7 @@ mng01_1_main <- function(adam_db,
   ggtheme <- if (!show_v_grid) {
     ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
   } else {
-    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(size = 1))
+    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))
   }
 
   ggtheme <- if (!show_h_grid) {
@@ -117,8 +117,8 @@ mng01_1_main <- function(adam_db,
     )
   } else {
     ggtheme + ggplot2::theme(
-      panel.grid.minor.y = ggplot2::element_line(size = 1),
-      panel.grid.major.y = ggplot2::element_line(size = 1)
+      panel.grid.minor.y = ggplot2::element_line(linewidth = 1),
+      panel.grid.major.y = ggplot2::element_line(linewidth = 1)
     )
   }
 

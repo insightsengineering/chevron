@@ -22,25 +22,26 @@
 #'
 lbt07_1_main <- function(adam_db,
                          arm_var = "ACTARM",
+                         lbl_overall = NULL,
                          grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
                          req_tables = c("adsl", "adlb")) {
   lbt07_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
-  lbl_grade_var <- if (is.null(lbl_grade_var)) {
-    var_labels_for(adam_db$adlb, grade_var)
-  } else {
-    lbl_grade_var
-  }
-  map <- unique(adam_db$adlb[adam_db$adlb$GRADE_DIR != "ZERO", c("PARAM", "GRADE_DIR", "GRADE_ANL")]) %>%
-    lapply(as.character) %>%
-    as.data.frame() %>%
-    arrange(PARAM, desc(GRADE_DIR), GRADE_ANL)
+  lbl_grade_var <- if (is.null(lbl_grade_var)) var_labels_for(adam_db$adlb, grade_var) else lbl_grade_var
 
+  map <- expand.grid(
+    PARAM = levels(adam_db$adlb$PARAM),
+    GRADE_DIR = c("LOW", "HIGH"),
+    GRADE_ANL = as.character(1:4),
+    stringsAsFactors = FALSE
+  ) %>%
+    arrange(PARAM, desc(GRADE_DIR), GRADE_ANL)
 
   lyt <- lbt07_1_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     grade_var = grade_var,
     lbl_grade_var = lbl_grade_var,
     deco = deco,
@@ -63,6 +64,7 @@ lbt07_1_main <- function(adam_db,
 #' @export
 #'
 lbt07_1_lyt <- function(arm_var,
+                        lbl_overall,
                         lbl_gradedir,
                         lbl_param,
                         grade_var,
@@ -73,6 +75,7 @@ lbt07_1_lyt <- function(arm_var,
 
   basic_table_deco(deco, show_colcount = TRUE) %>%
     split_cols_by(arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       label_pos = "topleft",
@@ -95,7 +98,7 @@ lbt07_1_lyt <- function(arm_var,
       .formats = list(count_fraction = tern::format_count_fraction_fixed_dp),
       .indent_mods = 4L
     ) %>%
-    append_topleft("    Highest NCI CTCAE Grade")
+    append_topleft("            Highest NCI CTCAE Grade")
 }
 
 #' @describeIn lbt07_1 Preprocessing
@@ -107,27 +110,32 @@ lbt07_1_lyt <- function(arm_var,
 lbt07_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
-  db <- adam_db %>%
+  new_format <- list(
+    adlb = list(
+      ATOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding available"))
+    )
+  )
+
+  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+
+  adam_db %>%
     dm_zoom_to("adlb") %>%
     filter(
       .data$ATOXGR != "<Missing>",
-      .data$ONTRTFL == "Y"
+      .data$ONTRTFL == "Y",
+      .data$WGRLOFL == "Y" | .data$WGRHIFL == "Y"
     ) %>%
     mutate(
       GRADE_DIR = factor(
         case_when(
-          ATOXGR %in% c("-1", "-2", "-3", "-4") ~ "LOW",
+          ATOXGR %in% c("-1", "-2", "-3", "-4") & .data$WGRLOFL == "Y" ~ "LOW",
           ATOXGR == "0" ~ "ZERO",
-          ATOXGR %in% c("1", "2", "3", "4") ~ "HIGH"
+          ATOXGR %in% c("1", "2", "3", "4") & .data$WGRHIFL == "Y" ~ "HIGH",
+          TRUE ~ "NONE"
         ),
-        levels = c("LOW", "ZERO", "HIGH")
+        levels = c("LOW", "ZERO", "HIGH", "NONE")
       ),
-      GRADE_ANL = fct_relevel(
-        forcats::fct_recode(ATOXGR,
-          `1` = "-1", `2` = "-2", `3` = "-3", `4` = "-4"
-        ),
-        c("0", "1", "2", "3", "4")
-      ),
+      GRADE_ANL = factor(ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
       PARAM = as.factor(.data$PARAM)
     ) %>%
     dm_update_zoomed()
@@ -164,7 +172,10 @@ lbt07_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt07_1_post <- function(tlg, prune_0 = TRUE) {
+lbt07_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
   std_postprocess(tlg)
 }
 

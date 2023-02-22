@@ -70,50 +70,54 @@ aet04_1_lyt <- function(arm_var,
                         lbl_aedecod = "MedDRA Preferred Term",
                         toxicity_grade,
                         grade_groups,
-                        deco) {
-  all_grade_groups <- c(list(`Any Grade` = toxicity_grade), grade_groups)
+                        deco,
+                        ...) {
+  all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
+  combodf <- tribble(
+    ~valname, ~label, ~levelcombo, ~exargs,
+    "ALL", "- Any adverse events -", toxicity_grade, list()
+  )
 
-  basic_table_deco(deco) %>%
+  basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    count_occurrences_by_grade(
-      var = "ATOXGR",
-      grade_groups = all_grade_groups,
-      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
-    ) %>%
     split_rows_by(
-      "AEBODSYS",
+      "ATOXGR",
       child_labels = "visible",
-      nested = TRUE,
-      split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_aebodsys
+      split_fun = add_combo_levels(combodf, keep_levels = "ALL")
     ) %>%
     summarize_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = all_grade_groups,
-      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
+      .indent_mods = 13L
+    ) %>%
+    split_rows_by(
+      "AEBODSYS",
+      child_labels = "visible",
+      nested = FALSE,
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_aebodsys
     ) %>%
     split_rows_by(
       "AEDECOD",
       child_labels = "visible",
-      nested = TRUE,
-      indent_mod = -1L,
-      split_fun = drop_split_levels,
+      split_fun = add_overall_level("- Overall -", trim = TRUE),
       label_pos = "topleft",
       split_label = lbl_aedecod
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = "unique",
-      .labels = "Any Grade"
+      .labels = "- Any Grade -",
+      indent_mod = 6L
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = grade_groups,
-      .indent_mods = -1L
-    )
+      .indent_mods = 5L
+    ) %>%
+    append_topleft("                            Grade")
 }
 
 #' @describeIn aet04_1 Preprocessing
@@ -154,17 +158,30 @@ aet04_1_pre <- function(adam_db) {
 aet04_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
-  tbl_sorted <- tlg %>%
-    sort_at_path(
-      path = c("AEBODSYS"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    )
+  tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")
+  if (tbl_empty) {
+    tbl_sorted <- basic_table() %>% build_table(matrix(""))
+  } else {
+    score_all_sum <- function(tt) {
+      cleaf <- collect_leaves(tt)[[1]]
+      if (NROW(cleaf) == 0) {
+        stop("score_all_sum score function used at subtable [", obj_name(tt), "] that has no content.")
+      }
+      sum(sapply(row_values(cleaf), function(cv) cv[1]))
+    }
+
+    tbl_sorted <- tlg %>%
+      sort_at_path(
+        path = c("AEBODSYS"),
+        scorefun = score_all_sum,
+        decreasing = TRUE
+      ) %>%
+      sort_at_path(
+        path = c("AEBODSYS", "*", "AEDECOD"),
+        scorefun = score_all_sum,
+        decreasing = TRUE
+      )
+  }
 
   std_postprocess(tbl_sorted)
 }

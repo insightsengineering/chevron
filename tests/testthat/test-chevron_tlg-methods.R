@@ -148,6 +148,6 @@ test_that("script_funs works as expected", {
 
 test_that("script_funs works as expected with details set to TRUE", {
   res <- expect_silent(script_funs(aet04_1, details = TRUE))
-  checkmate::expect_character(res, len = 46)
+  checkmate::expect_character(res, len = 61)
   checkmate::expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", grade_groups = NULL, ", res)
 })
