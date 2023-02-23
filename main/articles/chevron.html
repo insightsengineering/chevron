@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9041</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9043</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -144,8 +135,6 @@ collection of <code>ADaM</code> datasets (<code>ADSL</code>,
 <code>ADAE</code>, <code>ADRS</code>, etc.). Please read the <em>The
 <code>adam_db</code> Argument</em> vignette in this package for more
 details.</li>
-<li>have the <code>...</code> argument to facilitate their incorporation
-in a workflow including pre and post processing.</li>
 </ol>
 </div>
 <div class="section level4">
@@ -171,8 +160,6 @@ collection of <code>ADaM</code> datasets (<code>ADSL</code>,
 <code>ADAE</code>, <code>ADRS</code>, etc.). Please read the <em>The
 <code>adam_db</code> Argument</em> vignette in this package for more
 details.</li>
-<li>must have the <code>...</code> argument to facilitate their
-incorporation in a workflow.</li>
 </ol>
 </div>
 <div class="section level4">
@@ -182,8 +169,8 @@ incorporation in a workflow.</li>
 <p>By default, the Post-processing function returns its input or a
 <code>NULL</code> report if the input has no rows.
 <em><code>post-processing</code></em> function of a
-<code>chevron_tlg</code> object must have at least <code>tlg</code> and
-<code>...</code> as formal arguments.</p>
+<code>chevron_tlg</code> object must have at least <code>tlg</code> as
+formal arguments.</p>
 </div>
 <div class="section level4">
 <h4 id="adam-dataset">
@@ -281,17 +268,16 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <code>datasets</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/main.html">main</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function (adam_db, arm_var = "ACTARM", lbl_overall = NULL, deco = std_deco("AET02"), </span></span>
-<span><span class="co">#&gt;     ...) </span></span>
+<span><span class="co">#&gt; function (adam_db, arm_var = "ACTARM", lbl_overall = NULL, deco = std_deco("AET02")) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     dbsel &lt;- get_db_data(adam_db, "adsl", "adae")</span></span>
 <span><span class="co">#&gt;     assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))</span></span>
 <span><span class="co">#&gt;     lyt &lt;- aet02_1_lyt(arm_var = arm_var, lbl_overall = lbl_overall, </span></span>
-<span><span class="co">#&gt;         deco = deco, ... = ...)</span></span>
+<span><span class="co">#&gt;         deco = deco)</span></span>
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55ebf983cb58&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55c9337c7310&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -324,9 +310,9 @@ argument names and compatibility with downstream functions.</p>
 <code>chevron_tlg</code> object (accessible with
 <code><a href="../reference/aet01_1.html">chevron::aet01_1</a></code>) remains unchanged.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span> <span class="va">adam_db</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span><span class="op">)</span> <span class="va">adam_db</span></span>
 <span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function(adam_db, ...) adam_db</span></span></code></pre></div>
+<span><span class="co">#&gt; function(adam_db) adam_db</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="custom-chevron_tlg-object-creation">Custom <code>chevron_tlg</code> object creation<a class="anchor" aria-label="anchor" href="#custom-chevron_tlg-object-creation"></a>
@@ -342,14 +328,14 @@ provided constructors corresponding to the desired output:</p>
 <code><a href="../reference/chevron_tlg-class.html">chevron_g()</a></code> for graphs.</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/roche/rtables" class="external-link">rtables</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/insightsengineering/rtables" class="external-link">rtables</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: magrittr</span></span>
 <span><span class="co">#&gt; Loading required package: formatters</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/insightsengineering/tern" class="external-link">tern</a></span><span class="op">)</span></span>
 <span><span class="va">my_template</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chevron_tlg-class.html">chevron_t</a></span><span class="op">(</span></span>
 <span>  main <span class="op">=</span> <span class="va">aet02_1_main</span>,</span>
 <span>  preprocess <span class="op">=</span> <span class="va">aet02_1_pre</span>,</span>
-<span>  postprocess <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  postprocess <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">tlg</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">tbl_sorted</span> <span class="op">&lt;-</span> <span class="va">tlg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/pkg/rtables/man/sort_at_path.html" class="external-link">sort_at_path</a></span><span class="op">(</span></span>
 <span>        path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AEBODSYS"</span><span class="op">)</span>,</span>

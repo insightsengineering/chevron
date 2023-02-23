@@ -14,7 +14,7 @@ patient's last observation prior to initiation of study drug."><!-- mathjax --><
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9041</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9043</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,15 +34,6 @@ patient's last observation prior to initiation of study drug."><!-- mathjax --><
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -77,8 +68,7 @@ patient's last observation prior to initiation of study drug.</p>
 <span>  arm_var <span class="op">=</span> <span class="st">"ARMCD"</span>,</span>
 <span>  summaryvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>`Baseline Reference Range Indicator` <span class="op">=</span> <span class="st">"BNRIND"</span><span class="op">)</span>,</span>
 <span>  splitvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>`Analysis Reference Range Indicator` <span class="op">=</span> <span class="st">"ANRIND"</span><span class="op">)</span>,</span>
-<span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"EGT03"</span><span class="op">)</span>,</span>
-<span>  <span class="va">...</span></span>
+<span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"EGT03"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">egt03_2_lyt</span><span class="op">(</span></span>
@@ -88,13 +78,12 @@ patient's last observation prior to initiation of study drug.</p>
 <span>  <span class="va">lbl_armvar</span>,</span>
 <span>  <span class="va">lbl_splitvar</span>,</span>
 <span>  <span class="va">lbl_summaryvars</span>,</span>
-<span>  <span class="va">deco</span>,</span>
-<span>  <span class="va">...</span></span>
+<span>  <span class="va">deco</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">egt03_2_pre</span><span class="op">(</span><span class="va">adam_db</span>, visit_var <span class="op">=</span> <span class="st">"AVISIT"</span>, paramcd_value <span class="op">=</span> <span class="st">"HR"</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">egt03_2_pre</span><span class="op">(</span><span class="va">adam_db</span>, visit_var <span class="op">=</span> <span class="st">"AVISIT"</span>, paramcd_value <span class="op">=</span> <span class="st">"HR"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">egt03_2_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">egt03_2_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">egt03_2</span></span></code></pre></div>
     </div>
@@ -127,10 +116,6 @@ where no name is provided, the label attribute of the corresponding column in <c
 
 <dt>deco</dt>
 <dd><p>(<code>character</code>) decoration with <code>title</code>, <code>subtitles</code> and <code>main_footer</code> content</p></dd>
-
-
-<dt>...</dt>
-<dd><p>not used.</p></dd>
 
 
 <dt>lbl_armvar</dt>

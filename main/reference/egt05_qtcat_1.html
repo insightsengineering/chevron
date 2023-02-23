@@ -12,7 +12,7 @@ throughout the study."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9041</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9043</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,15 +32,6 @@ throughout the study."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -81,8 +72,7 @@ throughout the study.</p>
 <span>  lbl_param <span class="op">=</span> <span class="fu"><a href="var_labels_for.html">var_labels_for</a></span><span class="op">(</span><span class="va">adam_db</span><span class="op">$</span><span class="va">adeg</span>, <span class="st">"PARAM"</span><span class="op">)</span>,</span>
 <span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"EGT05_QTCAT"</span><span class="op">)</span>,</span>
 <span>  lbl_cat <span class="op">=</span> <span class="st">"Category"</span>,</span>
-<span>  lbl_headvisit <span class="op">=</span> <span class="st">"Analysis Visit"</span>,</span>
-<span>  <span class="va">...</span></span>
+<span>  lbl_headvisit <span class="op">=</span> <span class="st">"Analysis Visit"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">egt05_qtcat_1_lyt</span><span class="op">(</span></span>
@@ -95,13 +85,12 @@ throughout the study.</p>
 <span>  <span class="va">lbl_param</span>,</span>
 <span>  <span class="va">deco</span>,</span>
 <span>  <span class="va">lbl_cat</span>,</span>
-<span>  <span class="va">lbl_headvisit</span>,</span>
-<span>  <span class="va">...</span></span>
+<span>  <span class="va">lbl_headvisit</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">egt05_qtcat_1_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">egt05_qtcat_1_pre</span><span class="op">(</span><span class="va">adam_db</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">egt05_qtcat_1_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">egt05_qtcat_1_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">egt05_qtcat_1</span></span></code></pre></div>
     </div>
@@ -159,10 +148,6 @@ to be displayed.</p></dd>
 
 <dt>lbl_headvisit</dt>
 <dd><p>(<code>character</code>) label of Visits in the header. Default as <code>Analysis Visit</code>.</p></dd>
-
-
-<dt>...</dt>
-<dd><p>not used.</p></dd>
 
 
 <dt>tlg</dt>
