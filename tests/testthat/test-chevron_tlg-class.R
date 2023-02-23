@@ -1,4 +1,3 @@
-
 # chevron_t ----
 
 test_that("chevron_t object can be constructed with default values", {

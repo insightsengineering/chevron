@@ -1,4 +1,3 @@
-
 #' General Argument Name Convention
 #'
 #' @param adam_db (`dm`) object containing the `ADaM` datasets

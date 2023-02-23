@@ -363,7 +363,7 @@ aet02_2 <- chevron_t(
 
 # aet02_3 ----
 
-#' @describeIn aet02_2 Main TLG function
+#' @describeIn aet02_3 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
