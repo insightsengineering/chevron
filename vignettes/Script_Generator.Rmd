@@ -49,7 +49,7 @@ writeLines(res)
 
 The script generator depends on the functions actually stored in the object. Modifying the `chevron_tlg` object can lead to a different script.
 ```{r}
-preprocess(aet01_1) <- function(adam_db, new_format, ...) {
+preprocess(aet01_1) <- function(adam_db, new_format) {
   dunlin::apply_reformat(adam_db, new_format)
 }
 

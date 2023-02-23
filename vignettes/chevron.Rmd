@@ -47,7 +47,6 @@ used to create listings and tables, and `ggplot2`, `lattice`, and `grid` are use
 variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
-1. have the `...` argument to facilitate their incorporation in a workflow including pre and post processing.
 
 ### *pre-processing*
 The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
@@ -61,10 +60,9 @@ message.
 1. have very few arguments to modify the standard.
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
-1. must have the `...` argument to facilitate their incorporation in a workflow.
 
 ### *post-processing*
-By default, the Post-processing function returns its input or a `NULL` report if the input has no rows. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` and `...` as formal arguments.
+By default, the Post-processing function returns its input or a `NULL` report if the input has no rows. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
 
 ### *ADaM dataset*
 The `adam_dataset` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
@@ -125,7 +123,7 @@ Note that this operation creates a local version of the `chevron_tlg` object. Th
 object (accessible with `chevron::aet01_1`) remains unchanged.
 
 ```{r}
-preprocess(aet02_1) <- function(adam_db, ...) adam_db
+preprocess(aet02_1) <- function(adam_db) adam_db
 preprocess(aet02_1)
 ```
 
@@ -143,7 +141,7 @@ library(tern)
 my_template <- chevron_t(
   main = aet02_1_main,
   preprocess = aet02_1_pre,
-  postprocess = function(tlg, ...) {
+  postprocess = function(tlg) {
     tbl_sorted <- tlg %>%
       sort_at_path(
         path = c("AEBODSYS"),

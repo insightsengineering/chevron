@@ -22,8 +22,7 @@ dtht01_1_main <- function(adam_db,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
                           lbl_overall = NULL,
-                          deco = std_deco("DTHT01"),
-                          ...) {
+                          deco = std_deco("DTHT01")) {
   dbsel <- get_db_data(adam_db, "adsl")
 
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
@@ -35,8 +34,7 @@ dtht01_1_main <- function(adam_db,
   lyt <- dtht01_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt[[1]], dbsel$adsl)
@@ -54,8 +52,7 @@ dtht01_1_main <- function(adam_db,
     lyt2 <- dtht01_1_opt_lyt(
       arm_var = arm_var,
       lbl_overall = lbl_overall,
-      deco = deco,
-      ... = ...
+      deco = deco
     )
 
     tbl_opt <- build_table(lyt2, dbsel$adsl)
@@ -70,15 +67,13 @@ dtht01_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
-#' @param ... not used.
 #'
 #' @export
 #'
 dtht01_1_lyt <- function(arm_var,
                          lbl_overall,
                          other_category,
-                         deco,
-                         ...) {
+                         deco) {
   tab <-
     basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
@@ -116,14 +111,12 @@ dtht01_1_lyt <- function(arm_var,
 #' @describeIn dtht01_1 Optional Layout
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 dtht01_1_opt_lyt <- function(arm_var,
                              lbl_overall,
-                             deco,
-                             ...) {
+                             deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -149,11 +142,10 @@ dtht01_1_opt_lyt <- function(arm_var,
 #' @describeIn dtht01_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-dtht01_1_pre <- function(adam_db, ...) {
+dtht01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -188,11 +180,10 @@ dtht01_1_pre <- function(adam_db, ...) {
 #' @describeIn dtht01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-dtht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+dtht01_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) {
     tbl <- smart_prune(tlg)
   }

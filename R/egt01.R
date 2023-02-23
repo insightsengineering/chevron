@@ -29,8 +29,7 @@ egt01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT", # or ATPTN
-                         deco = std_deco("EGT01"),
-                         ...) {
+                         deco = std_deco("EGT01")) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
@@ -43,8 +42,7 @@ egt01_1_main <- function(adam_db,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(
@@ -63,7 +61,6 @@ egt01_1_main <- function(adam_db,
 #'   to be displayed.
 #' @param lbl_avisit (`character`) label of the `visitvar` variable.
 #' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param ... not used.
 #'
 #' @export
 egt01_1_lyt <- function(arm_var,
@@ -72,8 +69,7 @@ egt01_1_lyt <- function(arm_var,
                         visitvar,
                         lbl_avisit,
                         lbl_param,
-                        deco,
-                        ...) {
+                        deco) {
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
 
@@ -104,11 +100,10 @@ egt01_1_lyt <- function(arm_var,
 #' @describeIn egt01_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-egt01_1_pre <- function(adam_db, ...) {
+egt01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -120,10 +115,9 @@ egt01_1_pre <- function(adam_db, ...) {
 #' @describeIn egt01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
-egt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+egt01_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- smart_prune(tlg)
 
   std_postprocess(tlg)

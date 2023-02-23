@@ -1,4 +1,3 @@
-
 # assert_colnames ----
 
 test_that("assert_colnames works as expected", {
@@ -90,4 +89,33 @@ test_that("assert_all_tablenames works as expected", {
     ),
     "first test: Expected table names: haha, hoho not in dm::dm_nycflights13()"
   )
+})
+
+# assert_subset_suggest ----
+
+test_that("assert_args works as expected", {
+  x <- c(
+    "lbl_overall",
+    "lbl_",
+    "armvar",
+    "xxxx"
+  )
+
+  choices <- c("adam_db", "arm_var", "lbl_overall", "lbl_x", "lbl_y")
+
+  expect_error(
+    assert_subset_suggest(x, choices),
+    "lbl_ is not a valid argument. Do you mean: lbl_x, lbl_y ?
+armvar is not a valid argument. Do you mean: arm_var ?
+xxxx is not a valid argument. ",
+    fixed = TRUE
+  )
+
+  x_ok <- c(
+    "lbl_overall",
+    "arm_var"
+  )
+
+  expect_silent(res <- assert_subset_suggest(x_ok, choices))
+  expect_null(res)
 })

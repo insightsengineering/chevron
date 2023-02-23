@@ -95,3 +95,4 @@ reference:
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
       - gen_args
+      - fuse_sequentially
