@@ -6,7 +6,7 @@ test_that("run works as expected for chevron_t object", {
 })
 
 test_that("run returns a warning if provided with invalid arguments", {
-  expect_warning(run(aet04_1, syn_data, xyz = TRUE), "xyz is not a valid argument.")
+  expect_error(run(aet04_1, syn_data, xyz = TRUE), "xyz is not a valid argument.")
 })
 
 # args_ls ----

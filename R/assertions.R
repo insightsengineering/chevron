@@ -153,6 +153,5 @@ assert_subset_suggest <- function(x, choices) {
     invalid_args
   )
 
-
-  warning(msg)
+  stop(msg, call. = FALSE)
 }
