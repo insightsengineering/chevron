@@ -123,7 +123,8 @@ aet01_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet01_1_pre <- function(adam_db, req_tables = c("adsl", "adae"),
+aet01_1_pre <- function(adam_db,
+                        req_tables = c("adsl", "adae"),
                         arm_var = "ACTARM",
                         safety_var = c(
                           "FATAL", "SER", "SERWD", "SERDSM",
