@@ -96,14 +96,14 @@ dmt01_1_pre <- function(adam_db) {
 
   new_format <- list(
     adsl = list(
-      SEX = list(
+      SEX = rule(
         "Female" = "F",
         "Male" = "M"
       )
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format)
 
   adam_db <- dunlin::dm_explicit_na(adam_db)
 

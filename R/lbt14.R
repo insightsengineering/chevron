@@ -92,12 +92,12 @@ lbt14_1_pre <- function(adam_db,
 
   new_format <- list(
     adlb = list(
-      BTOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      ATOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      BTOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
+      ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
     adam_db <- adam_db %>%
@@ -296,12 +296,12 @@ lbt14_2_pre <- function(adam_db,
 
   new_format <- list(
     adlb = list(
-      BTOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      ATOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      BTOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
+      ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
     adam_db <- adam_db %>%

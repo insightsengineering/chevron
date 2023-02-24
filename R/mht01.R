@@ -109,16 +109,16 @@ mht01_1_pre <- function(adam_db) {
 
   new_format <- list(
     admh = list(
-      MHBODSYS = list(
+      MHBODSYS = rule(
         "No Coding available" = c("", NA)
       ),
-      MHDECOD = list(
+      MHDECOD = rule(
         "No Coding available" = c("", NA)
       )
     )
   )
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn mht01_1 Postprocessing

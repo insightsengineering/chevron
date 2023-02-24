@@ -71,23 +71,24 @@ cmt02_pt_1_pre <- function(adam_db) {
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
+      CMDECOD = as.factor(.data$CMDECOD),
       CMSEQ = as.factor(.data$CMSEQ),
       DOMAIN = "CM"
     ) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(
-    CMDECOD = list(
+    CMDECOD = rule(
       "No Coding available" = c("", NA)
     ),
-    CMSEQ = list(
+    CMSEQ = rule(
       "<Missing>" = c("", NA)
     )
   )
 
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt02_pt_1 Postprocessing

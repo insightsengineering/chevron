@@ -155,8 +155,8 @@ dst01_1_pre <- function(adam_db,
                         disc_reason_var = "DCSREAS") {
   new_format <- list(
     adsl = list(
-      list("<Missing>" = c("", NA)),
-      list(
+      rule("<Missing>" = c("", NA)),
+      rule(
         "COMPLETED" = "Completed",
         "DISCONTINUED" = "Discontinued",
         "ONGOING" = "Ongoing",
@@ -167,11 +167,20 @@ dst01_1_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(!!disc_reason_var := as.factor(.data[[disc_reason_var]])) %>%
+    mutate(!!status_var := as.factor(.data[[status_var]])) %>%
+    dm_update_zoomed()
+
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(DOMAIN = "ADSL") %>%
+    mutate(
+      !!status_var := factor(.data[[status_var]], levels = c("COMPLETED", "DISCONTINUED", "ONGOING", "<Missing>"))
+    ) %>%
     dm_update_zoomed()
 }
 
@@ -380,8 +389,8 @@ dst01_2_pre <- function(adam_db,
 
   new_format <- list(
     adsl = list(
-      list("<Missing>" = c("", NA)),
-      list(
+      rule("<Missing>" = c("", NA)),
+      rule(
         "COMPLETED" = "Completed",
         "DISCONTINUED" = "Discontinued",
         "ONGOING" = "Ongoing",
@@ -392,10 +401,19 @@ dst01_2_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(!!disc_reason_var := as.factor(.data[[disc_reason_var]])) %>%
+    mutate(!!status_var := as.factor(.data[[status_var]])) %>%
+    dm_update_zoomed()
+
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
+    mutate(
+      !!status_var := factor(.data[[status_var]], levels = c("COMPLETED", "DISCONTINUED", "ONGOING", "<Missing>"))
+    ) %>%
     mutate(reasonGP = case_when(
       .data[[disc_reason_var]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       (.data[[disc_reason_var]] != "<Missing>" &
@@ -606,14 +624,14 @@ dst01_3_pre <- function(adam_db,
 
   new_format <- list(
     adsl = list(
-      list("<Missing>" = c("", NA)),
-      list(
+      rule("<Missing>" = c("", NA)),
+      rule(
         "COMPLETED" = "Completed",
         "DISCONTINUED" = "Discontinued",
         "ONGOING" = "Ongoing",
         "<Missing>" = c("", NA)
       ),
-      list(
+      rule(
         "COMPLETED" = "Completed",
         "DISCONTINUED" = "Discontinued",
         "ONGOING" = "Ongoing",
@@ -624,10 +642,20 @@ dst01_3_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var, status_treatment_var)
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- adam_db %>%
+    dm_zoom_to("adsl") %>%
+    mutate(!!disc_reason_var := as.factor(.data[[disc_reason_var]])) %>%
+    mutate(!!status_var := as.factor(.data[[status_var]])) %>%
+    mutate(!!status_treatment_var := as.factor(.data[[status_treatment_var]])) %>%
+    dm_update_zoomed()
+
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adsl") %>%
+    mutate(
+      !!status_var := factor(.data[[status_var]], levels = c("COMPLETED", "DISCONTINUED", "ONGOING", "<Missing>"))
+    ) %>%
     mutate(reasonGP = case_when(
       .data[[disc_reason_var]] %in% c("ADVERSE EVENT", "DEATH") ~ "Safety",
       .data[[disc_reason_var]] == "<Missing>" ~ "<Missing>",

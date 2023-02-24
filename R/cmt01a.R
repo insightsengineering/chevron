@@ -119,13 +119,15 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    mutate(!!medcat_var := as.factor(.data[[medcat_var]])) %>%
+    mutate(!!medname_var := as.factor(.data[[medname_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(
-    medcat_var = list(
+    medcat_var = rule(
       "No Coding available" = c("", NA)
     ),
-    medname_var = list(
+    medname_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -133,7 +135,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
   names(fmt_ls) <- c(medcat_var, medname_var)
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_1 Postprocessing
@@ -252,13 +254,15 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    mutate(!!medcat_var := as.factor(.data[[medcat_var]])) %>%
+    mutate(!!medname_var := as.factor(.data[[medname_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(
-    medcat_var = list(
+    medcat_var = rule(
       "No Coding available" = c("", NA)
     ),
-    medname_var = list(
+    medname_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -266,7 +270,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
   names(fmt_ls) <- c(medcat_var, medname_var)
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_2 Postprocessing
@@ -437,13 +441,15 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
+    mutate(!!medcat_var := as.factor(.data[[medcat_var]])) %>%
+    mutate(!!medname_var := as.factor(.data[[medname_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(
-    medcat_var = list(
+    medcat_var = rule(
       "No Coding available" = c("", NA)
     ),
-    medname_var = list(
+    medname_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -451,7 +457,7 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
   names(fmt_ls) <- c(medcat_var, medname_var)
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_3 Preprocessing

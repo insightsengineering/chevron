@@ -104,13 +104,15 @@ pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") 
   adam_db <- adam_db %>%
     dm_zoom_to("addv") %>%
     mutate(DVSEQ = as.factor(.data$DVSEQ)) %>%
+    mutate(!!dvcode_var := as.factor(.data[[dvcode_var]])) %>%
+    mutate(!!dvterm_var := as.factor(.data[[dvterm_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(
-    dvcode_var = list(
+    dvcode_var = rule(
       "No Coding available" = c("", NA)
     ),
-    dvterm_var = list(
+    dvterm_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -118,7 +120,7 @@ pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") 
   names(fmt_ls) <- c(dvcode_var, dvterm_var)
   new_format <- list(addv = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn pdt01_1 Postprocessing

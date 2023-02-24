@@ -142,12 +142,12 @@ test_that("script works as expected with dictionary of arguments", {
 
 test_that("script_funs works as expected", {
   res <- expect_silent(script_funs(aet04_1))
-  checkmate::expect_character(res, len = 19)
-  checkmate::expect_subset("    adam_db <- dunlin::apply_reformat(adam_db, new_format)", res)
+  checkmate::expect_character(res, len = 22)
+  checkmate::expect_subset("    adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)", res)
 })
 
 test_that("script_funs works as expected with details set to TRUE", {
   res <- expect_silent(script_funs(aet04_1, details = TRUE))
-  checkmate::expect_character(res, len = 61)
+  checkmate::expect_character(res, len = 64)
   checkmate::expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", grade_groups = NULL, ", res)
 })

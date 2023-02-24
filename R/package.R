@@ -9,7 +9,7 @@
 #' @import tern
 #' @importFrom rtables drop_split_levels
 #' @importFrom checkmate check_class
-#' @importFrom dunlin poly_pivot_wider
+#' @importFrom dunlin rule
 #' @importFrom forcats fct_relevel
 #' @importFrom ggplot2 theme
 #' @importFrom magrittr %>%
