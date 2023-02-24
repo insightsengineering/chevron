@@ -407,20 +407,25 @@ fuse_sequentially <- function(x, y) {
 }
 
 #' List of grob object
-#' @param ... (`grob`) or (`ggplot`) object
+#' @param ... (`grob`) objects
 #' @export
 grob_list <- function(...) {
   ret <- list(...)
-  checkmate::assert_list(ret, types = c("grob", "ggplot"))
-  ret <- lapply(ret, function(x) {
-    if (is(x, "ggplot")) {
-      ggplot2::ggplotGrob(x)
-    } else {
-      x
-    }
-  })
+  checkmate::assert_list(ret, types = c("grob"))
   structure(
     ret,
-    class = c("grob_list")
+    class = c("grob_list", "list")
+  )
+}
+
+#' List of gg object
+#' @param ... (`ggplot`) objects
+#' @export
+gg_list <- function(...) {
+  ret <- list(...)
+  checkmate::assert_list(ret, types = c("ggplot"))
+  structure(
+    ret,
+    class = c("gg_list", "list")
   )
 }
