@@ -25,7 +25,7 @@
 #' @export
 #'
 pdt02_1_main <- function(adam_db,
-                         arm_var = "ARM",
+                         arm_var = "ACTARM",
                          dvreas_var = "DVREAS",
                          lbl_dvreas_var = "Primary Reason",
                          dvterm_var = "DVTERM",
@@ -105,11 +105,12 @@ pdt02_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM") {
+pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", arm_var = "ACTARM") {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
     dm_zoom_to("addv") %>%
+    mutate(!!arm_var := as.factor(.data[[arm_var]])) %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
     mutate(DVSEQ = as.factor(.data$DVSEQ)) %>%
     dm_update_zoomed()
