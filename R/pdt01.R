@@ -30,8 +30,7 @@ pdt01_1_main <- function(adam_db,
                          dvterm_var = "DVTERM",
                          lbl_dvterm_var = "Category",
                          lbl_overall = NULL,
-                         deco = std_deco("pdt01_1"),
-                         ...) {
+                         deco = std_deco("pdt01_1")) {
   assert_colnames(adam_db$addv, c(dvcode_var, dvterm_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
@@ -43,8 +42,7 @@ pdt01_1_main <- function(adam_db,
     lbl_dvcode_var = lbl_dvcode_var,
     dvterm_var = dvterm_var,
     lbl_dvterm_var = lbl_dvterm_var,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, dbsel$addv, alt_counts_df = dbsel$adsl)
@@ -59,7 +57,6 @@ pdt01_1_main <- function(adam_db,
 #' @param lbl_dvcode_var (`character`) label for the variable defining the protocol deviation coded term.
 #' @param dvterm_var (`character`) the variable defining the protocol deviation term. By default `DVTERM`.
 #' @param lbl_dvterm_var (`character`) label for the variable defining the protocol deviation term.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -69,8 +66,7 @@ pdt01_1_lyt <- function(arm_var,
                         lbl_dvcode_var,
                         dvterm_var,
                         lbl_dvterm_var,
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -100,11 +96,9 @@ pdt01_1_lyt <- function(arm_var,
 #'
 #' @inheritParams pdt01_1_main
 #'
-#' @param ... not used.
-#'
 #' @export
 #'
-pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
+pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -132,11 +126,9 @@ pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", 
 #' @inheritParams pdt01_1_main
 #' @inheritParams gen_args
 #'
-#' @param ... not used.
-#'
 #' @export
 #'
-pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
+pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

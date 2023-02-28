@@ -27,8 +27,7 @@ egt03_1_main <- function(adam_db,
                          arm_var = "ARMCD",
                          summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
-                         deco = std_deco("EGT03"),
-                         ...) {
+                         deco = std_deco("EGT03")) {
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
@@ -40,8 +39,7 @@ egt03_1_main <- function(adam_db,
     lbl_armvar = lbl_armvar,
     lbl_splitvar = lbl_splitvar,
     lbl_summaryvars = lbl_summaryvars,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(
@@ -61,7 +59,6 @@ egt03_1_main <- function(adam_db,
 #' @param lbl_armvar (`character`) label of the `arm_var` variable.
 #' @param lbl_splitvar (`character`) label of the `splitvar` variable.
 #' @param lbl_summaryvars (`character`) label of the `summaryvar` variable.
-#' @param ... not used.
 #'
 #' @export
 egt03_1_lyt <- function(arm_var,
@@ -70,8 +67,7 @@ egt03_1_lyt <- function(arm_var,
                         lbl_armvar,
                         lbl_splitvar,
                         lbl_summaryvars,
-                        deco,
-                        ...) {
+                        deco) {
   indent <- 1L
   space <- paste(rep(" ", indent * 2), collapse = "")
   lbl_summaryvars <- paste0(space, lbl_summaryvars)
@@ -92,14 +88,12 @@ egt03_1_lyt <- function(arm_var,
 #' @describeIn egt03_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 egt03_1_check <- function(adam_db,
                           req_tables,
                           visit_var,
                           paramcd_value,
-                          visit_value,
-                          ...) {
+                          visit_value) {
   assert_all_tablenames(adam_db, req_tables)
   checkmate::assert_subset(c(visit_var, "PARAMCD"), colnames(adam_db$adeg))
   msg <- NULL
@@ -125,16 +119,15 @@ egt03_1_check <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @inheritParams egt03_1_main
-#' @param ... not used.
 #'
 #' @export
-egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
+egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR") {
   checkmate::assert_class(adam_db, "dm")
   visit_value <- "POST-BASELINE MINIMUM"
   egt03_1_check(
     adam_db,
     req_tables = "adeg", visit_var = "AVISIT",
-    paramcd_value = paramcd_value, visit_value = visit_value, ...
+    paramcd_value = paramcd_value, visit_value = visit_value
   )
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -159,10 +152,9 @@ egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...
 #' @describeIn egt03_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
-egt03_1_post <- function(tlg, prune_0 = FALSE, ...) {
+egt03_1_post <- function(tlg, prune_0 = FALSE) {
   if (prune_0) tlg <- smart_prune(tlg)
 
   std_postprocess(tlg)
@@ -218,8 +210,7 @@ egt03_2_main <- function(adam_db,
                          arm_var = "ARMCD",
                          summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
                          splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
-                         deco = std_deco("EGT03"),
-                         ...) {
+                         deco = std_deco("EGT03")) {
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
@@ -231,8 +222,7 @@ egt03_2_main <- function(adam_db,
     lbl_armvar = lbl_armvar,
     lbl_splitvar = lbl_splitvar,
     lbl_summaryvars = lbl_summaryvars,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(
@@ -251,7 +241,6 @@ egt03_2_main <- function(adam_db,
 #' @param lbl_armvar (`character`) label of the `arm_var` variable.
 #' @param lbl_splitvar (`character`) label of the `splitvar` variable.
 #' @param lbl_summaryvars (`character`) label of the `summaryvar` variable.
-#' @param ... not used.
 #'
 #' @export
 egt03_2_lyt <- function(arm_var,
@@ -260,8 +249,7 @@ egt03_2_lyt <- function(arm_var,
                         lbl_armvar,
                         lbl_splitvar,
                         lbl_summaryvars,
-                        deco,
-                        ...) {
+                        deco) {
   indent <- 1L
   space <- paste(rep(" ", indent * 2), collapse = "")
   lbl_summaryvars <- paste0(space, lbl_summaryvars)
@@ -282,17 +270,16 @@ egt03_2_lyt <- function(arm_var,
 #' @describeIn egt03_2 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
+egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR") {
   checkmate::assert_class(adam_db, "dm")
   visit_value <- "POST-BASELINE MAXIMUM"
   egt03_1_check(
     adam_db,
     req_tables = "adeg", visit_var = "AVISIT",
-    paramcd_value = paramcd_value, visit_value = visit_value, ...
+    paramcd_value = paramcd_value, visit_value = visit_value
   )
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -317,10 +304,10 @@ egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...
 #' @describeIn egt03_2 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
-egt03_2_post <- function(tlg, prune_0 = FALSE, ...) {
+egt03_2_post <- function(tlg, prune_0 = FALSE) {
   if (prune_0) tlg <- smart_prune(tlg)
 
   std_postprocess(tlg)

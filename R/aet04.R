@@ -23,8 +23,7 @@ aet04_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          grade_groups = NULL,
                          lbl_overall = NULL,
-                         deco = std_deco("AET04"),
-                         ...) {
+                         deco = std_deco("AET04")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
 
@@ -46,8 +45,7 @@ aet04_1_main <- function(adam_db,
     lbl_overall = lbl_overall,
     toxicity_grade = toxicity_grade,
     grade_groups = grade_groups,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -63,7 +61,6 @@ aet04_1_main <- function(adam_db,
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param toxicity_grade (`vector of character`) putting in correspondence toxicity levels.
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -73,8 +70,7 @@ aet04_1_lyt <- function(arm_var,
                         lbl_aedecod = "MedDRA Preferred Term",
                         toxicity_grade,
                         grade_groups,
-                        deco,
-                        ...) {
+                        deco) {
   all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
   combodf <- tribble(
     ~valname, ~label, ~levelcombo, ~exargs,
@@ -126,11 +122,10 @@ aet04_1_lyt <- function(arm_var,
 #' @describeIn aet04_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-aet04_1_pre <- function(adam_db, ...) {
+aet04_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -157,11 +152,9 @@ aet04_1_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #'
-#' @param ... not used.
-#'
 #' @export
 #'
-aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
+aet04_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
   tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")

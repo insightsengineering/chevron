@@ -25,8 +25,7 @@ ext01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          summaryvars = "AVAL",
                          lbl_overall = NULL,
-                         deco = std_deco("EXT01"),
-                         ...) {
+                         deco = std_deco("EXT01")) {
   assert_colnames(adam_db$adex, summaryvars)
 
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
@@ -36,8 +35,7 @@ ext01_1_main <- function(adam_db,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
@@ -51,7 +49,7 @@ ext01_1_main <- function(adam_db,
 #'
 #' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
@@ -59,8 +57,7 @@ ext01_1_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         lbl_overall,
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -76,13 +73,12 @@ ext01_1_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
 ext01_1_pre <- function(adam_db,
-                        paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
-                        ...) {
+                        paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -106,10 +102,10 @@ ext01_1_pre <- function(adam_db,
 #' @describeIn ext01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
-ext01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+ext01_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)
 }
@@ -159,8 +155,7 @@ ext01_2_main <- function(adam_db,
                          summaryvars = c("AVAL", "AVALCAT1"),
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         deco = std_deco("EXT01"),
-                         ...) {
+                         deco = std_deco("EXT01")) {
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adam_db$adex, summaryvars)
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
@@ -170,8 +165,7 @@ ext01_2_main <- function(adam_db,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
@@ -185,7 +179,7 @@ ext01_2_main <- function(adam_db,
 #'
 #' @param summaryvars (`string`) the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls (`string`) the label associated with the analyzed variable.
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
@@ -193,8 +187,7 @@ ext01_2_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         lbl_overall,
-                        deco = std_deco("EXT01"),
-                        ...) {
+                        deco = std_deco("EXT01")) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -219,14 +212,13 @@ ext01_2_lyt <- function(arm_var,
 #'
 #' @param show_bins (`vector of character`) providing the name of the parameters whose categorical summary should be
 #'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
 ext01_2_pre <- function(adam_db,
                         show_stats = c("ALL"),
-                        show_bins = c("ALL"),
-                        ...) {
+                        show_bins = c("ALL")) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -254,11 +246,11 @@ ext01_2_pre <- function(adam_db,
 #' @describeIn ext01_2 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
-ext01_2_post <- function(tlg, prune_0 = TRUE, ...) {
+ext01_2_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)
 }

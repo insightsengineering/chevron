@@ -1,10 +1,10 @@
 #' General Argument Name Convention
 #'
 #' @param adam_db (`dm`) object containing the `ADaM` datasets
-#' @param main (`function`) returning a `tlg`, with `adam_db` as first argument and `...` as last argument. Typically
-#'   one of the `_main` function of `chevron`.
-#' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument and `...` as
-#'   last argument. Typically one of the `_pre` function of `chevron`.
+#' @param main (`function`) returning a `tlg`, with `adam_db` as first argument. Typically one of the `_main` function
+#'   of `chevron`.
+#' @param preprocess (`function`) returning a pre-processed `dm` object, with `adam_db` as first argument. Typically one
+#'   of the `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
 #' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` data set required for `tlg`
 #'   creation.

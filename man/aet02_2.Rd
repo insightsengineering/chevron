@@ -16,8 +16,7 @@ aet02_2_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("AET02"),
-  ...
+  deco = std_deco("AET02")
 )
 
 aet02_2_lyt(
@@ -26,13 +25,12 @@ aet02_2_lyt(
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aehlt = "MedDRA High-Level Term",
   lbl_aedecod = "MedDRA Preferred Term",
-  deco,
-  ...
+  deco
 )
 
-aet02_2_pre(adam_db, ...)
+aet02_2_pre(adam_db)
 
-aet02_2_post(tlg, prune_0 = TRUE, ...)
+aet02_2_post(tlg, prune_0 = TRUE)
 
 aet02_2
 }
@@ -44,8 +42,6 @@ aet02_2
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
@@ -69,7 +65,7 @@ adverse events categorized by Body System, High Level Term and Dictionary-Derive
 \item Does not include a total column by default.
 \item Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 frequencies.
-\item Missing values of \code{AEBODSYS}, \code{AEHLT} and \code{AEDECOD} in \code{adae} are labeled by \verb{No Coding available}.
+\item Missing values of \code{AEBODSYS}, \code{AEDECOD} and \code{AEHLT} in \code{adae} are labeled by \verb{No Coding available}.
 }
 }
 \section{Functions}{

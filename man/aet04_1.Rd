@@ -17,8 +17,7 @@ aet04_1_main(
   arm_var = "ACTARM",
   grade_groups = NULL,
   lbl_overall = NULL,
-  deco = std_deco("AET04"),
-  ...
+  deco = std_deco("AET04")
 )
 
 aet04_1_lyt(
@@ -28,13 +27,12 @@ aet04_1_lyt(
   lbl_aedecod = "MedDRA Preferred Term",
   toxicity_grade,
   grade_groups,
-  deco,
-  ...
+  deco
 )
 
-aet04_1_pre(adam_db, ...)
+aet04_1_pre(adam_db)
 
-aet04_1_post(tlg, prune_0 = TRUE, ...)
+aet04_1_post(tlg, prune_0 = TRUE)
 
 aet04_1
 }
@@ -48,8 +46,6 @@ aet04_1
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 

@@ -20,8 +20,7 @@ pdt02_1_main(
   dvterm_var = "DVTERM",
   lbl_dvterm_var = "Description",
   lbl_overall = NULL,
-  deco = std_deco("pdt02_1"),
-  ...
+  deco = std_deco("pdt02_1")
 )
 
 pdt02_1_lyt(
@@ -31,19 +30,12 @@ pdt02_1_lyt(
   lbl_dvreas_var,
   dvterm_var,
   lbl_dvterm_var,
-  deco,
-  ...
+  deco
 )
 
-pdt02_1_pre(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...)
+pdt02_1_pre(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM")
 
-pdt02_1_post(
-  tlg,
-  prune_0 = TRUE,
-  dvreas_var = "DVREAS",
-  dvterm_var = "DVTERM",
-  ...
-)
+pdt02_1_post(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = "DVTERM")
 
 pdt02_1
 }
@@ -63,8 +55,6 @@ pdt02_1
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

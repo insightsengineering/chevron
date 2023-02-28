@@ -103,7 +103,7 @@ syn_test_data <- function() {
   attr(sd$adsl$AAGE, "label") <- "Age (yr)"
   sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
-  sd$adex$AVALCAT1 <- tern::explicit_na(factor(sd$adex$AVALCAT1), label = "<Missing>") # nolint
+  sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
 
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
@@ -156,7 +156,7 @@ syn_test_data <- function() {
     rename(q1 = 2, q2 = 3)
 
   sd$adlb <- qntls %>%
-    left_join(sd$adlb, by = "PARAMCD", multiple = "all") %>%
+    left_join(sd$adlb, by = "PARAMCD") %>%
     group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
       ANRIND = factor(
@@ -174,11 +174,7 @@ syn_test_data <- function() {
           TRUE ~ ""
         ),
         levels = c("", "LAST", "REPLICATED", "SINGLE")
-      ),
-      ONTRTFL = factor(case_when(
-        AVISIT %in% c("SCREENING", "BASELINE") ~ "N",
-        TRUE ~ "Y"
-      ))
+      )
     ) %>%
     ungroup() %>%
     mutate(
@@ -267,13 +263,12 @@ set_decoration <- function(x, deco) {
 #' @rdname report_null
 #' @aliases null_report
 #' @param tlg (`TableTree`) object.
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
-report_null <- function(tlg, ...) {
+report_null <- function(tlg) {
   if (nrow(tlg) == 0L) {
     null_report
   } else {
@@ -337,6 +332,7 @@ get_labels <- function(df, x) {
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
+#' @param ... not used at the moment.
 #'
 #' @note Standard post processing includes:
 #' * `NULL` report creation if necessary
