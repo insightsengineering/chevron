@@ -110,11 +110,6 @@ lbt07_1_lyt <- function(arm_var,
 lbt07_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adlb") %>%
-    mutate(ATOXGR = as.factor(ATOXGR)) %>%
-    dm_update_zoomed()
-
   new_format <- list(
     adlb = list(
       ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding available"))

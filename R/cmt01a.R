@@ -119,8 +119,6 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
-    mutate(!!medcat_var := as.factor(.data[[medcat_var]])) %>%
-    mutate(!!medname_var := as.factor(.data[[medname_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(
@@ -254,8 +252,6 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
-    mutate(!!medcat_var := as.factor(.data[[medcat_var]])) %>%
-    mutate(!!medname_var := as.factor(.data[[medname_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(
@@ -441,8 +437,6 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
-    mutate(!!medcat_var := as.factor(.data[[medcat_var]])) %>%
-    mutate(!!medname_var := as.factor(.data[[medname_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(

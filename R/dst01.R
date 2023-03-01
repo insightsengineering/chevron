@@ -167,12 +167,6 @@ dst01_1_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adsl") %>%
-    mutate(!!disc_reason_var := as.factor(.data[[disc_reason_var]])) %>%
-    mutate(!!status_var := as.factor(.data[[status_var]])) %>%
-    dm_update_zoomed()
-
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
@@ -400,12 +394,6 @@ dst01_2_pre <- function(adam_db,
   )
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
-
-  adam_db <- adam_db %>%
-    dm_zoom_to("adsl") %>%
-    mutate(!!disc_reason_var := as.factor(.data[[disc_reason_var]])) %>%
-    mutate(!!status_var := as.factor(.data[[status_var]])) %>%
-    dm_update_zoomed()
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
@@ -641,13 +629,6 @@ dst01_3_pre <- function(adam_db,
   )
 
   names(new_format$adsl) <- c(disc_reason_var, status_var, status_treatment_var)
-
-  adam_db <- adam_db %>%
-    dm_zoom_to("adsl") %>%
-    mutate(!!disc_reason_var := as.factor(.data[[disc_reason_var]])) %>%
-    mutate(!!status_var := as.factor(.data[[status_var]])) %>%
-    mutate(!!status_treatment_var := as.factor(.data[[status_treatment_var]])) %>%
-    dm_update_zoomed()
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 

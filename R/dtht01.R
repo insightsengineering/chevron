@@ -164,8 +164,6 @@ dtht01_1_pre <- function(adam_db) {
     mutate(DTHFL = as.factor(.data$DTHFL)) %>%
     mutate(DTHCAT = as.factor(DTHCAT)) %>%
     mutate(DTHCAT = factor(DTHCAT, levels = c(setdiff(levels(DTHCAT), "OTHER"), "OTHER"))) %>%
-    mutate(DTHCAUS = as.factor(DTHCAUS)) %>%
-    mutate(LDDTHGR1 = as.factor(LDDTHGR1)) %>%
     dm_update_zoomed()
 
   dunlin::reformat(adam_db, new_formats, na_last = TRUE)

@@ -104,8 +104,6 @@ pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") 
   adam_db <- adam_db %>%
     dm_zoom_to("addv") %>%
     mutate(DVSEQ = as.factor(.data$DVSEQ)) %>%
-    mutate(!!dvcode_var := as.factor(.data[[dvcode_var]])) %>%
-    mutate(!!dvterm_var := as.factor(.data[[dvterm_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(

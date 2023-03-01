@@ -31,8 +31,8 @@ test_that("cmt01a_2 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adcm") %>%
     mutate(
-      ATC2 = NA,
-      CMDECOD = NA,
+      ATC2 = NA_character_,
+      CMDECOD = NA_character_,
     ) %>%
     dm_update_zoomed()
 
@@ -60,8 +60,8 @@ test_that("cmt01a_3 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adcm") %>%
     mutate(
-      ATC2 = NA,
-      CMDECOD = NA,
+      ATC2 = NA_character_,
+      CMDECOD = NA_character_,
     ) %>%
     dm_update_zoomed()
 

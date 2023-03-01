@@ -71,7 +71,6 @@ cmt02_pt_1_pre <- function(adam_db) {
     dm_zoom_to("adcm") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      CMDECOD = as.factor(.data$CMDECOD),
       CMSEQ = as.factor(.data$CMSEQ),
       DOMAIN = "CM"
     ) %>%

@@ -112,8 +112,6 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM") {
     dm_zoom_to("addv") %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
     mutate(DVSEQ = as.factor(.data$DVSEQ)) %>%
-    mutate(!!dvreas_var := as.factor(.data[[dvreas_var]])) %>%
-    mutate(!!dvterm_var := as.factor(.data[[dvterm_var]])) %>%
     dm_update_zoomed()
 
   fmt_ls <- list(

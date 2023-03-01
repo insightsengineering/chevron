@@ -136,15 +136,6 @@ aet04_1_pre <- function(adam_db) {
     )
   )
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adae") %>%
-    mutate(
-      AEBODSYS = as.factor(.data$AEBODSYS),
-      AEDECOD = as.factor(.data$AEDECOD),
-      ATOXGR = as.factor(.data$ATOXGR)
-    ) %>%
-    dm_update_zoomed()
-
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
