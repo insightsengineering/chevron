@@ -18,29 +18,20 @@
 #'
 lbt05_1_main <- function(adam_db,
                          arm_var = "ACTARM",
+                         lbl_overall = NULL,
                          lbl_param = "Laboratory Test",
                          lbl_anrind = "Direction of Abnormality",
                          deco = std_deco("LBT05")) {
-  map <- adam_db %>%
-    pull_tbl(adlb) %>%
-    select(PARAM, abn_dir) %>%
-    unique() %>%
-    arrange(PARAM, abn_dir) %>%
-    mutate_all(as.character) %>%
-    filter(abn_dir != "<Missing>")
-  if (nrow(map) == 0) {
-    map <- expand.grid(
-      PARAM = if (is.factor(adam_db$adlb$PARAM)) {
-        levels(adam_db$adlb$PARAM)
-      } else {
-        "Missing"
-      },
-      abn_dir = c("Low", "High"),
-      stringsAsFactors = FALSE
-    )
-  }
+  map <- expand.grid(
+    PARAM = levels(adam_db$adlb$PARAM),
+    abn_dir = c("Low", "High"),
+    stringsAsFactors = FALSE
+  ) %>%
+    arrange(PARAM, desc(abn_dir))
+
   lyt <- lbt05_1_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     lbl_param = lbl_param,
     lbl_anrind = lbl_anrind,
     map = map,
@@ -64,12 +55,14 @@ lbt05_1_main <- function(adam_db,
 #' @export
 #'
 lbt05_1_lyt <- function(arm_var,
+                        lbl_overall,
                         lbl_param,
                         lbl_anrind,
                         map,
                         deco) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       label_pos = "topleft",
@@ -105,11 +98,14 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM") {
     ) %>%
     dm_update_zoomed() %>%
     dm_zoom_to("adlb") %>%
-    mutate(abn_dir = factor(case_when(
-      ANRIND == "LOW LOW" ~ "Low",
-      ANRIND == "HIGH HIGH" ~ "High",
-      TRUE ~ ""
-    ), levels = c("Low", "High"))) %>%
+    mutate(
+      abn_dir = factor(case_when(
+        ANRIND == "LOW LOW" ~ "Low",
+        ANRIND == "HIGH HIGH" ~ "High",
+        TRUE ~ ""
+      ), levels = c("Low", "High")),
+      PARAM = as.factor(.data$PARAM)
+    ) %>%
     dm_update_zoomed()
 
   new_format <- list(
@@ -152,7 +148,10 @@ lbt05_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt05_1_post <- function(tlg) {
+lbt05_1_post <- function(tlg, prune_0 = FALSE) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
   std_postprocess(tlg)
 }
 
