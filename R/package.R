@@ -3,11 +3,9 @@
 #' @import dm
 #' @import dplyr
 #' @import methods
-#' @import rlistings
 #' @import rtables
 #' @import scda.2022
 #' @import tern
-#' @importFrom rtables drop_split_levels
 #' @importFrom checkmate check_class
 #' @importFrom dunlin rule
 #' @importFrom forcats fct_relevel
@@ -16,6 +14,7 @@
 #' @importFrom methods is setValidity
 #' @importFrom nestcolor color_palette
 #' @importFrom rlang sym .data .env
+#' @importFrom rlistings as_listing
 #' @importFrom stats setNames median sd quantile
 #' @importFrom tibble tribble
 #' @importFrom yaml read_yaml
