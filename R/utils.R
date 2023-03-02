@@ -105,6 +105,26 @@ syn_test_data <- function() {
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
   sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
 
+  # Add AVALCAT1 CHGCAT1 for adeg
+  sd$adeg <- sd$adeg %>%
+    mutate(
+      AVALCAT1 = case_when(
+        PARAMCD == "QT" & AVAL <= 450 ~ paste("<=450", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ paste(">450 to <=480", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ paste(">480 to <=500", " ", AVALU),
+        PARAMCD == "QT" & AVAL > 500 ~ paste(">500", " ", AVALU),
+        PARAMCD == "QT" & is.na(AVAL) ~ "<Missing>"
+      ),
+      CHGCAT1 = case_when(
+        PARAMCD == "QT" & CHG <= 30 ~ paste("<=30", " ", AVALU),
+        PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ paste(">30 to <=60", " ", AVALU),
+        PARAMCD == "QT" & CHG > 60 ~ paste(">60", " ", AVALU),
+        PARAMCD == "QT" & is.na(CHG) ~ "<Missing>"
+      ),
+      AVALCAT1 = factor(AVALCAT1),
+      CHGCAT1 = factor(CHGCAT1)
+    )
+
   # useful for dmt01
   adsub <- sd$adsub
   adsub_wide_ls <- dunlin::poly_pivot_wider(
@@ -243,13 +263,12 @@ set_decoration <- function(x, deco) {
 #' @rdname report_null
 #' @aliases null_report
 #' @param tlg (`TableTree`) object.
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
-report_null <- function(tlg, ...) {
+report_null <- function(tlg) {
   if (nrow(tlg) == 0L) {
     null_report
   } else {
@@ -313,6 +332,7 @@ get_labels <- function(df, x) {
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
+#' @param ... not used at the moment.
 #'
 #' @note Standard post processing includes:
 #' * `NULL` report creation if necessary
@@ -362,4 +382,22 @@ h_format_dec <- function(digits = NA, format = NA) {
       formatters::sprintf_format(new_format)(x)
     }
   }
+}
+
+#' Fuse list elements
+#'
+#' @param x (`list`) to fuse.
+#' @param y (`list`) to fuse. Elements with names already existing in `x` are discarded.
+#'
+#' @keywords internal
+#'
+fuse_sequentially <- function(x, y) {
+  if (missing(y)) {
+    return(x)
+  }
+
+  names_x <- names(x)
+  sel_names_y <- setdiff(names(y), names_x)
+
+  c(x, y[sel_names_y])
 }

@@ -10,6 +10,8 @@ std_postprocess(tlg, ind = 2L, ...)
 \item{tlg}{(\code{TableTree}) object.}
 
 \item{ind}{(\code{integer}) the indentation of the table.}
+
+\item{...}{not used at the moment.}
 }
 \value{
 a post-processed \code{tlg}.

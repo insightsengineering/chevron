@@ -23,8 +23,7 @@ aet04_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          grade_groups = NULL,
                          lbl_overall = NULL,
-                         deco = std_deco("AET04"),
-                         ...) {
+                         deco = std_deco("AET04")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
 
@@ -46,8 +45,7 @@ aet04_1_main <- function(adam_db,
     lbl_overall = lbl_overall,
     toxicity_grade = toxicity_grade,
     grade_groups = grade_groups,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -63,7 +61,6 @@ aet04_1_main <- function(adam_db,
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param toxicity_grade (`vector of character`) putting in correspondence toxicity levels.
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -73,61 +70,62 @@ aet04_1_lyt <- function(arm_var,
                         lbl_aedecod = "MedDRA Preferred Term",
                         toxicity_grade,
                         grade_groups,
-                        deco,
-                        ...) {
-  all_grade_groups <- c(list(`Any Grade` = toxicity_grade), grade_groups)
+                        deco) {
+  all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
+  combodf <- tribble(
+    ~valname, ~label, ~levelcombo, ~exargs,
+    "ALL", "- Any adverse events -", toxicity_grade, list()
+  )
 
-  basic_table_deco(deco) %>%
+  basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    count_occurrences_by_grade(
-      var = "ATOXGR",
-      grade_groups = all_grade_groups,
-      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
-    ) %>%
     split_rows_by(
-      "AEBODSYS",
+      "ATOXGR",
       child_labels = "visible",
-      nested = TRUE,
-      split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_aebodsys
+      split_fun = add_combo_levels(combodf, keep_levels = "ALL")
     ) %>%
     summarize_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = all_grade_groups,
-      .formats = c("count_fraction" = format_count_fraction_fixed_dp)
+      .indent_mods = 13L
+    ) %>%
+    split_rows_by(
+      "AEBODSYS",
+      child_labels = "visible",
+      nested = FALSE,
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_aebodsys
     ) %>%
     split_rows_by(
       "AEDECOD",
       child_labels = "visible",
-      nested = TRUE,
-      indent_mod = -1L,
-      split_fun = drop_split_levels,
+      split_fun = add_overall_level("- Overall -", trim = TRUE),
       label_pos = "topleft",
       split_label = lbl_aedecod
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = "unique",
-      .labels = "Any Grade"
+      .labels = "- Any Grade -",
+      indent_mod = 6L
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = grade_groups,
-      .indent_mods = -1L
-    )
+      .indent_mods = 5L
+    ) %>%
+    append_topleft("                            Grade")
 }
 
 #' @describeIn aet04_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-aet04_1_pre <- function(adam_db, ...) {
+aet04_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -154,24 +152,35 @@ aet04_1_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #'
-#' @param ... not used.
-#'
 #' @export
 #'
-aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
+aet04_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
-  tbl_sorted <- tlg %>%
-    sort_at_path(
-      path = c("AEBODSYS"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    )
+  tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")
+  if (tbl_empty) {
+    tbl_sorted <- basic_table() %>% build_table(matrix(""))
+  } else {
+    score_all_sum <- function(tt) {
+      cleaf <- collect_leaves(tt)[[1]]
+      if (NROW(cleaf) == 0) {
+        stop("score_all_sum score function used at subtable [", obj_name(tt), "] that has no content.")
+      }
+      sum(sapply(row_values(cleaf), function(cv) cv[1]))
+    }
+
+    tbl_sorted <- tlg %>%
+      sort_at_path(
+        path = c("AEBODSYS"),
+        scorefun = score_all_sum,
+        decreasing = TRUE
+      ) %>%
+      sort_at_path(
+        path = c("AEBODSYS", "*", "AEDECOD"),
+        scorefun = score_all_sum,
+        decreasing = TRUE
+      )
+  }
 
   std_postprocess(tbl_sorted)
 }

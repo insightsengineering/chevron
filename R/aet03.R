@@ -21,8 +21,7 @@
 aet03_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         deco = std_deco("AET03"),
-                         ...) {
+                         deco = std_deco("AET03")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
@@ -33,8 +32,7 @@ aet03_1_main <- function(adam_db,
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     intensity_grade = intensity_grade,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -49,7 +47,6 @@ aet03_1_main <- function(adam_db,
 #' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #' @param intensity_grade (`vector of character`) describing the intensity levels present in the dataset.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -58,8 +55,7 @@ aet03_1_lyt <- function(arm_var,
                         lbl_aebodsys = "MedDRA System Organ Class",
                         lbl_aedecod = "MedDRA Preferred Term",
                         intensity_grade,
-                        deco,
-                        ...) {
+                        deco) {
   all_grade_groups <- list("- Any Intensity -" = intensity_grade)
 
   basic_table_deco(deco) %>%
@@ -107,11 +103,10 @@ aet03_1_lyt <- function(arm_var,
 #' @describeIn aet03_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-aet03_1_pre <- function(adam_db, ...) {
+aet03_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -137,10 +132,8 @@ aet03_1_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #'
-#' @param ... not used.
-#'
 #' @export
-aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
+aet03_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
   tbl_sorted <- tlg %>%

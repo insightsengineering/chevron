@@ -26,8 +26,7 @@ mht01_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          lbl_mhbodsys = "MedDRA System Organ Class",
                          lbl_mhdecod = "MedDRA Preferred Term",
-                         deco = std_deco("MHT01"),
-                         ...) {
+                         deco = std_deco("MHT01")) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
@@ -38,8 +37,7 @@ mht01_1_main <- function(adam_db,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
     lbl_mhdecod = lbl_mhdecod,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
@@ -50,7 +48,6 @@ mht01_1_main <- function(adam_db,
 #' @describeIn mht01_1 Layout
 #'
 #' @inheritParams mht01_1_main
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -58,8 +55,7 @@ mht01_1_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_mhbodsys,
                         lbl_mhdecod,
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -100,11 +96,10 @@ mht01_1_lyt <- function(arm_var,
 #' @describeIn mht01_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-mht01_1_pre <- function(adam_db, ...) {
+mht01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -129,11 +124,10 @@ mht01_1_pre <- function(adam_db, ...) {
 #' @describeIn mht01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+mht01_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

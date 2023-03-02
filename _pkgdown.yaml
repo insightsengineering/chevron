@@ -16,6 +16,7 @@ articles:
       - adam_db_argument
       - layouts
       - Adding_new_TLGs_to_Chevron
+      - Script_Generator
 
 reference:
   - title: Package Overview
@@ -28,11 +29,13 @@ reference:
 
   - title: Methods
     contents:
+      - args_ls
       - run
       - main
       - preprocess
       - postprocess
       - datasets
+      - script
       - get_main
       - get_preprocess
       - get_postprocess
@@ -62,6 +65,7 @@ reference:
       - egt02_2
       - egt03_1
       - egt03_2
+      - egt05_qtcat_1
       - ext01_1
       - ext01_2
       - lbt01_1
@@ -92,3 +96,4 @@ reference:
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
       - gen_args
+      - fuse_sequentially

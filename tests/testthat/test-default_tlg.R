@@ -117,7 +117,7 @@ test_that("dtht01_1 functions with default argument value return expected result
   expect_snapshot(res)
 })
 
-test_that("gt01_1 functions with default argument value return expected result with test data", {
+test_that("egt01_1 functions with default argument value return expected result with test data", {
   pre_data <- egt01_1_pre(syn_data)
   raw_res <- egt01_1_main(pre_data)
   res <- egt01_1_post(raw_res)
@@ -135,6 +135,27 @@ test_that("egt02_2 functions with default argument value return expected result 
   pre_data <- egt02_2_pre(syn_data)
   raw_res <- egt02_2_main(pre_data)
   res <- egt02_2_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("egt03_1 functions with default argument value return expected result with test data", {
+  pre_data <- egt03_1_pre(syn_data)
+  raw_res <- egt03_1_main(pre_data)
+  res <- egt03_1_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("egt03_2 functions with default argument value return expected result with test data", {
+  pre_data <- egt03_2_pre(syn_data)
+  raw_res <- egt03_2_main(pre_data)
+  res <- egt03_2_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("egt05_qtcat_1 functions with default argument value return expected result with test data", {
+  pre_data <- egt05_qtcat_1_pre(syn_data)
+  raw_res <- egt05_qtcat_1_main(pre_data)
+  res <- egt05_qtcat_1_post(raw_res)
   expect_snapshot(res)
 })
 

@@ -9,14 +9,12 @@
 An object of class \code{TableTree} with 1 rows and 1 columns.
 }
 \usage{
-report_null(tlg, ...)
+report_null(tlg)
 
 null_report
 }
 \arguments{
 \item{tlg}{(\code{TableTree}) object.}
-
-\item{...}{not used.}
 }
 \value{
 original \code{TableTree} or a null report if no observation are found in the table.
