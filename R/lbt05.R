@@ -7,6 +7,7 @@
 #' @param lbl_anrind (`character`) label of the `ANRIND` variable.
 #'
 #' @details
+#'  * Does not remove rows with zero counts by default.
 #'  * Lab test results with missing `AVAL` values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
 #'
