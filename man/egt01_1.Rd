@@ -17,8 +17,7 @@ egt01_1_main(
   arm_var = "ACTARM",
   summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
-  deco = std_deco("EGT01"),
-  ...
+  deco = std_deco("EGT01")
 )
 
 egt01_1_lyt(
@@ -28,13 +27,12 @@ egt01_1_lyt(
   visitvar,
   lbl_avisit,
   lbl_param,
-  deco,
-  ...
+  deco
 )
 
-egt01_1_pre(adam_db, ...)
+egt01_1_pre(adam_db)
 
-egt01_1_post(tlg, prune_0 = TRUE, ...)
+egt01_1_post(tlg, prune_0 = TRUE)
 
 egt01_1
 }
@@ -49,8 +47,6 @@ egt01_1
 to be displayed.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
 

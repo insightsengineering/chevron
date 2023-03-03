@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.1.9040
-Date: 2023-02-17
+Version: 0.1.1.9044
+Date: 2023-02-23
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
@@ -21,9 +21,10 @@ Imports:
     dunlin (> 0.1.1),
     forcats (>= 1.0.0),
     formatters (> 0.3.4),
-    ggplot2,
+    ggplot2 (>= 3.4.0),
     magrittr,
     methods,
+    nestcolor (>= 0.1.0),
     rlang,
     rlistings (> 0.1.1),
     rtables (> 0.5.3),
@@ -36,7 +37,6 @@ Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     knitr,
-    nestcolor (>= 0.1.0),
     purrr,
     rmarkdown,
     testthat (>= 3.0.0),

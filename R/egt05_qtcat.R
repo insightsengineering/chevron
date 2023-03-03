@@ -33,21 +33,18 @@ egt05_qtcat_1_main <- function(adam_db,
                                lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
                                deco = std_deco("EGT05_QTCAT"),
                                lbl_cat = "Category",
-                               lbl_headvisit = "Analysis Visit",
-                               ...) {
+                               lbl_headvisit = "Analysis Visit") {
   lyt <- egt05_qtcat_1_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
     visitvar = visitvar,
-    paramvar = paramvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     deco = deco,
     lbl_cat = lbl_cat,
-    lbl_headvisit = lbl_headvisit,
-    ... = ...
+    lbl_headvisit = lbl_headvisit
   )
 
   tbl <- build_table(
@@ -69,7 +66,6 @@ egt05_qtcat_1_main <- function(adam_db,
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #' @param lbl_cat (`character`) label of the Category of `summaryvars` variable. Default as `Category`.
 #' @param lbl_headvisit (`character`) label of Visits in the header. Default as `Analysis Visit`.
-#' @param ... not used.
 #'
 #' @export
 egt05_qtcat_1_lyt <- function(arm_var,
@@ -81,8 +77,7 @@ egt05_qtcat_1_lyt <- function(arm_var,
                               lbl_param,
                               deco,
                               lbl_cat,
-                              lbl_headvisit,
-                              ...) {
+                              lbl_headvisit) {
   basic_table_deco(deco) %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%
@@ -115,7 +110,7 @@ egt05_qtcat_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-egt05_qtcat_1_pre <- function(adam_db, ...) {
+egt05_qtcat_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
   assert_colnames(adam_db$adeg, c("AVALCAT1", "CHGCAT1"))
 
@@ -134,10 +129,9 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
 #' @describeIn egt05_qtcat_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
-egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE, ...) {
+egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)
 }

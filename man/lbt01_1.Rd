@@ -19,8 +19,7 @@ lbt01_1_main(
   visitvar = "AVISIT",
   precision = integer(),
   default_precision = 2,
-  deco = std_deco("LBT01"),
-  ...
+  deco = std_deco("LBT01")
 )
 
 lbt01_1_lyt(
@@ -32,13 +31,12 @@ lbt01_1_lyt(
   lbl_param,
   deco,
   precision,
-  default_precision,
-  ...
+  default_precision
 )
 
-lbt01_1_pre(adam_db, ...)
+lbt01_1_pre(adam_db)
 
-lbt01_1_post(tlg, prune_0 = TRUE, ...)
+lbt01_1_post(tlg, prune_0 = TRUE)
 
 lbt01_1
 }
@@ -59,8 +57,6 @@ represented with one more decimal of precision.}
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
 

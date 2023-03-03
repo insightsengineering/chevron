@@ -19,42 +19,42 @@
 \title{\code{chevron_t}}
 \usage{
 chevron_t(
-  main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
-  preprocess = function(adam_db, ...) adam_db,
+  main = function(adam_db) build_table(basic_table(), adam_db[[1]]),
+  preprocess = function(adam_db) adam_db,
   postprocess = report_null,
   adam_datasets = NA_character_,
   ...
 )
 
 chevron_l(
-  main = function(adam_db, ...) data.frame(),
-  preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) tlg,
+  main = function(adam_db) data.frame(),
+  preprocess = function(adam_db) adam_db,
+  postprocess = function(tlg) tlg,
   adam_datasets = NA_character_,
   ...
 )
 
 chevron_g(
-  main = function(adam_db, ...) ggplot2::ggplot(),
-  preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) tlg,
+  main = function(adam_db) ggplot2::ggplot(),
+  preprocess = function(adam_db) adam_db,
+  postprocess = function(tlg) tlg,
   adam_datasets = NA_character_,
   ...
 )
 }
 \arguments{
-\item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument and \code{...} as last argument. Typically
-one of the \verb{_main} function of \code{chevron}.}
+\item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument. Typically one of the \verb{_main} function
+of \code{chevron}.}
 
-\item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument and \code{...} as
-last argument. Typically one of the \verb{_pre} function of \code{chevron}.}
+\item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument. Typically one
+of the \verb{_pre} function of \code{chevron}.}
 
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
 \item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
 creation.}
 
-\item{...}{not used.}
+\item{...}{not used}
 }
 \description{
 \code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle table creation
@@ -80,16 +80,17 @@ creation.}
 \note{
 To ensure the correct execution of the workflow additional validation criteria are:
 \itemize{
-\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. In addition, it
-must possess the \code{...} argument.
+\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. The \code{...}
+argument is not allowed.
 \item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{dm} object to create \code{tlg} output.
-In addition, it must possess the \code{...} argument.
-\item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process.
+The \code{...} argument is not allowed.
+\item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process. The
+\code{...} argument is not allowed.
 }
 }
 \examples{
 chevron_t_obj <- chevron_t()
-chevron_t_obj <- chevron_t(postprocess = function(tlg, indent, ...) {
+chevron_t_obj <- chevron_t(postprocess = function(tlg, indent) {
   rtables::table_inset(tlg) <- indent
   tlg
 })
@@ -98,7 +99,7 @@ chevron_l_obj <- chevron_l()
 
 chevron_g_obj <- chevron_g()
 chevron_g_obj <- chevron_g(
-  postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title)
+  postprocess = function(tlg, title) tlg + ggplot2::labs(main = title)
 )
 
 }

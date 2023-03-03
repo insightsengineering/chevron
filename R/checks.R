@@ -1,4 +1,3 @@
-
 #' Check that all names are among column names
 #'
 #' @param df (`data.frame`)

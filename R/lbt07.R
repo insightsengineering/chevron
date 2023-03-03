@@ -10,7 +10,6 @@
 #'   `ATOXGR` are replaced by their absolute values.
 #' @param lbl_grade_var (`character`) label of the variables in `grade_var`. If `NULL`, uses the label
 #'   attribute of the columns selected in `grade_var`.
-#' @param ... not used.
 #'
 #' @details
 #'  * Split columns by arm, typically `ACTARM`.
@@ -27,8 +26,8 @@ lbt07_1_main <- function(adam_db,
                          grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
-                         ...) {
-  lbt07_1_check(adam_db, ...)
+                         req_tables = c("adsl", "adlb")) {
+  lbt07_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
   lbl_grade_var <- if (is.null(lbl_grade_var)) var_labels_for(adam_db$adlb, grade_var) else lbl_grade_var
 
@@ -46,8 +45,7 @@ lbt07_1_main <- function(adam_db,
     grade_var = grade_var,
     lbl_grade_var = lbl_grade_var,
     deco = deco,
-    map = map,
-    ... = ...
+    map = map
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -62,7 +60,6 @@ lbt07_1_main <- function(adam_db,
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #' @param lbl_gradedir (`character`) label of the `GRADE_DIR` variable.
 #' @param map (`data.frame`) mapping of `PARAM`s to directions of abnormality.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -73,8 +70,7 @@ lbt07_1_lyt <- function(arm_var,
                         grade_var,
                         lbl_grade_var,
                         deco,
-                        map,
-                        ...) {
+                        map) {
   names(lbl_grade_var) <- grade_var
 
   basic_table_deco(deco, show_colcount = TRUE) %>%
@@ -108,11 +104,10 @@ lbt07_1_lyt <- function(arm_var,
 #' @describeIn lbt07_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt07_1_pre <- function(adam_db, ...) {
+lbt07_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -149,12 +144,10 @@ lbt07_1_pre <- function(adam_db, ...) {
 #' @describeIn lbt07_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 lbt07_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          arm_var = "ACTARM",
-                          ...) {
+                          arm_var = "ACTARM") {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -176,11 +169,10 @@ lbt07_1_check <- function(adam_db,
 #' @describeIn lbt07_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt07_1_post <- function(tlg, prune_0 = TRUE, ...) {
+lbt07_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

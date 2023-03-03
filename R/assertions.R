@@ -100,3 +100,58 @@ assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
     )
   }
 }
+
+
+#' Assert Subset and Provide Suggestions
+#'
+#' @param x (`character`) to be asserted
+#' @param choices (`character`) set of possible values.
+#'
+#' @keywords internal
+#'
+#' @return invisible `NULL` if all `x` are subset of `choices` or an informative warning otherwise.
+#'
+#' @examples
+#' \dontrun{
+#' assert_subset_suggest(c("lbl_overall"), "lbl_overall")
+#' assert_subset_suggest(
+#'   c("lbl_", "xxx", "arm_var"),
+#'   c("lbl_overall", "arm_var")
+#' )
+#' }
+assert_subset_suggest <- function(x, choices) {
+  checkmate::assert_character(choices)
+  checkmate::assert_character(x, null.ok = TRUE)
+
+  invalid_args <- setdiff(x, choices)
+
+  if (length(invalid_args) == 0) {
+    return(invisible(NULL))
+  }
+
+  supp_args <- setdiff(choices, x)
+  matching_args <- lapply(invalid_args, function(choices) supp_args[agrep(choices, supp_args)])
+
+  msg <- mapply(
+    function(x, y) {
+      paste(
+        paste0(
+          "\n",
+          y,
+          " is not a valid argument."
+        ),
+        if (length(x) > 0) {
+          paste0(
+            "Do you mean: ",
+            toString(x),
+            " ?"
+          )
+        }
+      )
+    },
+    matching_args,
+    invalid_args
+  )
+
+  stop(msg, call. = FALSE)
+}

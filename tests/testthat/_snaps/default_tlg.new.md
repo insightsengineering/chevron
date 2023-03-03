@@ -842,84 +842,6 @@
           HIGH                                  0      5 (3.8%)      5 (3.8%)       0   
           Missing                               0          0            0           0   
 
-# egt05_qtcat_1 functions with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-        Parameter                                                              
-          Analysis Visit              A: Drug X    B: Placebo    C: Combination
-            Category                   (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————
-        QT Duration                                                            
-          BASELINE                                                             
-            Value at Visit                                                     
-              n                          134           134            132      
-              <=450 msec             115 (85.8%)   117 (87.3%)    104 (78.8%)  
-              >450 to <=480 msec      6 (4.5%)      10 (7.5%)       9 (6.8%)   
-              >480 to <=500 msec       4 (3%)       3 (2.2%)        6 (4.5%)   
-              >500 msec               9 (6.7%)       4 (3%)        13 (9.8%)   
-          WEEK 1 DAY 8                                                         
-            Value at Visit                                                     
-              n                          134           134            132      
-              <=450 msec             113 (84.3%)   106 (79.1%)    106 (80.3%)  
-              >450 to <=480 msec      10 (7.5%)     10 (7.5%)      11 (8.3%)   
-              >480 to <=500 msec       4 (3%)        4 (3%)         3 (2.3%)   
-              >500 msec               7 (5.2%)     14 (10.4%)      12 (9.1%)   
-            Change from Baseline                                               
-              n                          134           134            132      
-              <=30 msec              76 (56.7%)     75 (56%)       75 (56.8%)  
-              >30 to <=60 msec        7 (5.2%)      13 (9.7%)      11 (8.3%)   
-              >60 msec               51 (38.1%)    46 (34.3%)      46 (34.8%)  
-          WEEK 2 DAY 15                                                        
-            Value at Visit                                                     
-              n                          134           134            132      
-              <=450 msec             111 (82.8%)   114 (85.1%)    112 (84.8%)  
-              >450 to <=480 msec      10 (7.5%)     9 (6.7%)        9 (6.8%)   
-              >480 to <=500 msec      7 (5.2%)      2 (1.5%)        5 (3.8%)   
-              >500 msec               6 (4.5%)      9 (6.7%)        6 (4.5%)   
-            Change from Baseline                                               
-              n                          134           134            132      
-              <=30 msec               71 (53%)     87 (64.9%)      89 (67.4%)  
-              >30 to <=60 msec        11 (8.2%)     9 (6.7%)        9 (6.8%)   
-              >60 msec               52 (38.8%)    38 (28.4%)      34 (25.8%)  
-          WEEK 3 DAY 22                                                        
-            Value at Visit                                                     
-              n                          134           134            132      
-              <=450 msec             106 (79.1%)   112 (83.6%)    118 (89.4%)  
-              >450 to <=480 msec      13 (9.7%)     7 (5.2%)        3 (2.3%)   
-              >480 to <=500 msec       4 (3%)       5 (3.7%)        2 (1.5%)   
-              >500 msec               11 (8.2%)     10 (7.5%)       9 (6.8%)   
-            Change from Baseline                                               
-              n                          134           134            132      
-              <=30 msec               63 (47%)     80 (59.7%)      81 (61.4%)  
-              >30 to <=60 msec       14 (10.4%)      8 (6%)        11 (8.3%)   
-              >60 msec               57 (42.5%)    46 (34.3%)      40 (30.3%)  
-          WEEK 4 DAY 29                                                        
-            Value at Visit                                                     
-              n                          134           134            132      
-              <=450 msec             117 (87.3%)   103 (76.9%)    114 (86.4%)  
-              >450 to <=480 msec      7 (5.2%)     14 (10.4%)       6 (4.5%)   
-              >480 to <=500 msec       4 (3%)       7 (5.2%)        3 (2.3%)   
-              >500 msec               6 (4.5%)      10 (7.5%)       9 (6.8%)   
-            Change from Baseline                                               
-              n                          134           134            132      
-              <=30 msec               79 (59%)     80 (59.7%)      79 (59.8%)  
-              >30 to <=60 msec        11 (8.2%)     7 (5.2%)       10 (7.6%)   
-              >60 msec               44 (32.8%)    47 (35.1%)      43 (32.6%)  
-          WEEK 5 DAY 36                                                        
-            Value at Visit                                                     
-              n                          134           134            132      
-              <=450 msec             107 (79.9%)   117 (87.3%)    112 (84.8%)  
-              >450 to <=480 msec     16 (11.9%)     5 (3.7%)       13 (9.8%)   
-              >480 to <=500 msec      5 (3.7%)      9 (6.7%)        3 (2.3%)   
-              >500 msec               6 (4.5%)      3 (2.2%)         4 (3%)    
-            Change from Baseline                                               
-              n                          134           134            132      
-              <=30 msec              72 (53.7%)    82 (61.2%)      73 (55.3%)  
-              >30 to <=60 msec        10 (7.5%)     11 (8.2%)      11 (8.3%)   
-              >60 msec               52 (38.8%)    41 (30.6%)      48 (36.4%)  
-
 # ext01_1 functions with default argument value return expected result with test data
 
     Code
@@ -1077,34 +999,34 @@
         ———————————————————————————————————————————————————————————————————————————————————————
         CHEMISTRY                                                                              
           Alanine Aminotransferase Measurement                                                 
-            Low                                   4/54 (7.4%)    6/54 (11.1%)     6/50 (12.0%) 
-            High                                 6/55 (10.9%)    10/54 (18.5%)    8/48 (16.7%) 
+            Low                                  7/70 (10.0%)    8/64 (12.5%)     7/65 (10.8%) 
+            High                                  6/71 (8.5%)    11/66 (16.7%)    9/63 (14.3%) 
           C-Reactive Protein Measurement                                                       
-            Low                                  8/50 (16.0%)    7/52 (13.5%)     5/50 (10.0%) 
-            High                                 7/46 (15.2%)     3/49 (6.1%)     3/49 (6.1%)  
+            Low                                  9/67 (13.4%)    9/68 (13.2%)     7/61 (11.5%) 
+            High                                 7/61 (11.5%)     3/63 (4.8%)     5/57 (8.8%)  
           Immunoglobulin A Measurement                                                         
-            Low                                   4/51 (7.8%)     3/54 (5.6%)     9/61 (14.8%) 
-            High                                 5/48 (10.4%)    8/56 (14.3%)     9/60 (15.0%) 
+            Low                                  7/64 (10.9%)     6/69 (8.7%)     9/72 (12.5%) 
+            High                                  6/64 (9.4%)    10/72 (13.9%)   11/69 (15.9%) 
         COAGULATION                                                                            
           Alanine Aminotransferase Measurement                                                 
-            Low                                   5/55 (9.1%)     4/54 (7.4%)     7/50 (14.0%) 
-            High                                  4/53 (7.5%)     3/52 (5.8%)     8/52 (15.4%) 
+            Low                                   5/72 (6.9%)     6/69 (8.7%)     9/62 (14.5%) 
+            High                                  6/70 (8.6%)     4/65 (6.2%)     9/63 (14.3%) 
           C-Reactive Protein Measurement                                                       
-            Low                                  7/55 (12.7%)    5/47 (10.6%)    11/68 (16.2%) 
-            High                                 8/55 (14.5%)    7/44 (15.9%)     7/64 (10.9%) 
+            Low                                  8/66 (12.1%)    7/65 (10.8%)    12/76 (15.8%) 
+            High                                 10/64 (15.6%)   7/60 (11.7%)     9/73 (12.3%) 
           Immunoglobulin A Measurement                                                         
-            Low                                   2/46 (4.3%)    10/55 (18.2%)    5/48 (10.4%) 
-            High                                 8/48 (16.7%)    6/59 (10.2%)     6/47 (12.8%) 
+            Low                                   3/60 (5.0%)    10/68 (14.7%)    5/62 (8.1%)  
+            High                                 9/61 (14.8%)     6/70 (8.6%)     7/61 (11.5%) 
         HEMATOLOGY                                                                             
           Alanine Aminotransferase Measurement                                                 
-            Low                                  5/43 (11.6%)     3/49 (6.1%)     3/52 (5.8%)  
-            High                                 7/41 (17.1%)     2/43 (4.7%)     7/58 (12.1%) 
+            Low                                  7/58 (12.1%)     4/67 (6.0%)     6/65 (9.2%)  
+            High                                 8/57 (14.0%)     3/59 (5.1%)     8/71 (11.3%) 
           C-Reactive Protein Measurement                                                       
-            Low                                  9/48 (18.8%)     6/63 (9.5%)     3/48 (6.2%)  
-            High                                  3/49 (6.1%)    7/55 (12.7%)     2/50 (4.0%)  
+            Low                                  9/62 (14.5%)     7/71 (9.9%)     3/63 (4.8%)  
+            High                                  5/64 (7.8%)    9/62 (14.5%)     5/63 (7.9%)  
           Immunoglobulin A Measurement                                                         
-            Low                                   6/61 (9.8%)    10/54 (18.5%)    6/52 (11.5%) 
-            High                                 13/60 (21.7%)    4/58 (6.9%)     6/53 (11.3%) 
+            Low                                   6/72 (8.3%)    10/70 (14.3%)    7/64 (10.9%) 
+            High                                 13/72 (18.1%)    5/74 (6.8%)     9/66 (13.6%) 
 
 # lbt05_1 functions with default argument value return expected result with test data
 
@@ -1114,33 +1036,33 @@
         Laboratory Test                            A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality                (N=134)     (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————————————————
-        Alanine Aminotransferase Measurement (n)      119         118            112      
+        Alanine Aminotransferase Measurement (n)      128         123            126      
           Low                                                                             
-            Single, not last                           0        1 (0.8%)          0       
-            Last or replicated                     3 (2.5%)     8 (6.8%)       2 (1.8%)   
-            Any Abnormality                        3 (2.5%)     9 (7.6%)       2 (1.8%)   
-          High                                                                            
             Single, not last                       1 (0.8%)     1 (0.8%)          0       
-            Last or replicated                     5 (4.2%)     8 (6.8%)       5 (4.5%)   
-            Any Abnormality                        6 (5.0%)     9 (7.6%)       5 (4.5%)   
-        C-Reactive Protein Measurement (n)            121         116            116      
-          Low                                                                             
-            Single, not last                       2 (1.7%)     1 (0.9%)          0       
-            Last or replicated                     4 (3.3%)     5 (4.3%)       5 (4.3%)   
-            Any Abnormality                        6 (5.0%)     6 (5.2%)       5 (4.3%)   
+            Last or replicated                     4 (3.1%)    12 (9.8%)       5 (4.0%)   
+            Any Abnormality                        5 (3.9%)    13 (10.6%)      5 (4.0%)   
           High                                                                            
-            Single, not last                           0        1 (0.9%)       1 (0.9%)   
-            Last or replicated                     7 (5.8%)     5 (4.3%)       6 (5.2%)   
-            Any Abnormality                        7 (5.8%)     6 (5.2%)       7 (6.0%)   
-        Immunoglobulin A Measurement (n)              109         124            114      
+            Single, not last                       1 (0.8%)     1 (0.8%)       1 (0.8%)   
+            Last or replicated                     8 (6.2%)    11 (8.9%)       6 (4.8%)   
+            Any Abnormality                        9 (7.0%)    12 (9.8%)       7 (5.6%)   
+        C-Reactive Protein Measurement (n)            129         125            125      
           Low                                                                             
-            Single, not last                       1 (0.9%)        0           1 (0.9%)   
-            Last or replicated                     4 (3.7%)     6 (4.8%)       5 (4.4%)   
-            Any Abnormality                        5 (4.6%)     6 (4.8%)       6 (5.3%)   
+            Single, not last                       2 (1.6%)     2 (1.6%)          0       
+            Last or replicated                     10 (7.8%)    5 (4.0%)       7 (5.6%)   
+            Any Abnormality                        12 (9.3%)    7 (5.6%)       7 (5.6%)   
           High                                                                            
-            Single, not last                           0           0           1 (0.9%)   
-            Last or replicated                     2 (1.8%)     6 (4.8%)       4 (3.5%)   
-            Any Abnormality                        2 (1.8%)     6 (4.8%)       5 (4.4%)   
+            Single, not last                           0        1 (0.8%)       1 (0.8%)   
+            Last or replicated                     11 (8.5%)   10 (8.0%)      12 (9.6%)   
+            Any Abnormality                        11 (8.5%)   11 (8.8%)      13 (10.4%)  
+        Immunoglobulin A Measurement (n)              127         130            125      
+          Low                                                                             
+            Single, not last                       1 (0.8%)     1 (0.8%)       1 (0.8%)   
+            Last or replicated                     6 (4.7%)     8 (6.2%)      10 (8.0%)   
+            Any Abnormality                        7 (5.5%)     9 (6.9%)      11 (8.8%)   
+          High                                                                            
+            Single, not last                       1 (0.8%)        0           1 (0.8%)   
+            Last or replicated                     3 (2.4%)     9 (6.9%)       5 (4.0%)   
+            Any Abnormality                        4 (3.1%)     9 (6.9%)       6 (4.8%)   
 
 # lbt07_1 functions with default argument value return expected result with test data
 
@@ -1151,19 +1073,19 @@
           Direction of Abnormality                 A: Drug X    B: Placebo   C: Combination
                     Highest NCI CTCAE Grade         (N=134)      (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————
-        Alanine Aminotransferase Measurement (n)      134          134            132      
+        Alanine Aminotransferase Measurement (n)      134          133            132      
           LOW                                                                              
-                    1                              14 (10.4%)   15 (11.2%)     10 (7.6%)   
-                    2                              13 (9.7%)    18 (13.4%)     11 (8.3%)   
+                    1                              14 (10.4%)   15 (11.3%)     10 (7.6%)   
+                    2                              13 (9.7%)    18 (13.5%)     11 (8.3%)   
                     3                              20 (14.9%)   12 (9.0%)      10 (7.6%)   
                     4                               7 (5.2%)     8 (6.0%)      10 (7.6%)   
-                    Any                            54 (40.3%)   53 (39.6%)     41 (31.1%)  
+                    Any                            54 (40.3%)   53 (39.8%)     41 (31.1%)  
           HIGH                                                                             
-                    1                              18 (13.4%)   16 (11.9%)     18 (13.6%)  
-                    2                              15 (11.2%)   13 (9.7%)      18 (13.6%)  
-                    3                              10 (7.5%)    16 (11.9%)     13 (9.8%)   
-                    4                              12 (9.0%)    11 (8.2%)      13 (9.8%)   
-                    Any                            55 (41.0%)   56 (41.8%)     62 (47.0%)  
+                    1                              18 (13.4%)   16 (12.0%)     18 (13.6%)  
+                    2                              15 (11.2%)   13 (9.8%)      17 (12.9%)  
+                    3                              10 (7.5%)    16 (12.0%)     13 (9.8%)   
+                    4                              12 (9.0%)    11 (8.3%)      13 (9.8%)   
+                    Any                            55 (41.0%)   56 (42.1%)     61 (46.2%)  
         C-Reactive Protein Measurement (n)            134          134            132      
           LOW                                                                              
                     1                              16 (11.9%)   19 (14.2%)     15 (11.4%)  
@@ -1177,19 +1099,19 @@
                     3                              16 (11.9%)   12 (9.0%)      14 (10.6%)  
                     4                              12 (9.0%)    12 (9.0%)      10 (7.6%)   
                     Any                            60 (44.8%)   55 (41.0%)     46 (34.8%)  
-        Immunoglobulin A Measurement (n)              134          134            132      
+        Immunoglobulin A Measurement (n)              133          133            132      
           LOW                                                                              
-                    1                              17 (12.7%)   23 (17.2%)     17 (12.9%)  
-                    2                              12 (9.0%)    15 (11.2%)     14 (10.6%)  
-                    3                              15 (11.2%)   11 (8.2%)      14 (10.6%)  
-                    4                              10 (7.5%)    16 (11.9%)     10 (7.6%)   
-                    Any                            54 (40.3%)   65 (48.5%)     55 (41.7%)  
+                    1                              17 (12.8%)   23 (17.3%)     17 (12.9%)  
+                    2                              12 (9.0%)    15 (11.3%)     14 (10.6%)  
+                    3                              15 (11.3%)   11 (8.3%)      14 (10.6%)  
+                    4                              10 (7.5%)    16 (12.0%)     10 (7.6%)   
+                    Any                            54 (40.6%)   65 (48.9%)     55 (41.7%)  
           HIGH                                                                             
-                    1                              25 (18.7%)   14 (10.4%)     13 (9.8%)   
-                    2                              14 (10.4%)   20 (14.9%)     16 (12.1%)  
-                    3                              12 (9.0%)    13 (9.7%)      17 (12.9%)  
-                    4                              11 (8.2%)    13 (9.7%)       4 (3.0%)   
-                    Any                            62 (46.3%)   60 (44.8%)     50 (37.9%)  
+                    1                              25 (18.8%)   14 (10.5%)     13 (9.8%)   
+                    2                              14 (10.5%)   19 (14.3%)     16 (12.1%)  
+                    3                              12 (9.0%)    12 (9.0%)      17 (12.9%)  
+                    4                              11 (8.3%)    13 (9.8%)       4 (3.0%)   
+                    Any                            62 (46.6%)   58 (43.6%)     50 (37.9%)  
 
 # lbt14_1 functions with default argument value return expected result with test data
 

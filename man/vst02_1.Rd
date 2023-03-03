@@ -19,8 +19,7 @@ vst02_1_main(
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
   prune_0 = FALSE,
-  deco = std_deco("VST02"),
-  ...
+  deco = std_deco("VST02")
 )
 
 vst02_1_lyt(
@@ -28,13 +27,12 @@ vst02_1_lyt(
   lbl_vs_assessment,
   lbl_vs_abnormality,
   lbl_overall,
-  deco = std_deco("VST02"),
-  ...
+  deco = std_deco("VST02")
 )
 
-vst02_1_pre(adam_db, ...)
+vst02_1_pre(adam_db)
 
-vst02_1_post(tlg, prune_0 = FALSE, ...)
+vst02_1_post(tlg, prune_0 = FALSE)
 
 vst02_1
 }
@@ -52,8 +50,6 @@ vst02_1
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
