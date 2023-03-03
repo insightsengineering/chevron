@@ -3,10 +3,10 @@
 #' @import dm
 #' @import dplyr
 #' @import methods
-#' @import rlistings
 #' @import rtables
 #' @import scda.2022
 #' @import tern
+#' @importFrom rlistings as_listing
 #' @importFrom rtables drop_split_levels
 #' @importFrom checkmate check_class
 #' @importFrom dunlin poly_pivot_wider
