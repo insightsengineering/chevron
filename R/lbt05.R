@@ -154,7 +154,7 @@ lbt05_1_post <- function(tlg, prune_0 = FALSE) {
     has_lbl <- function(lbl) CombinationFunction(function(tr) obj_label(tr) == lbl)
     tlg <- prune_table(tlg, keep_rows(has_lbl("Any Abnormality")))
 
-    if (is.null(tlg %>% prune_table)) {
+    if (is.null(prune_table(tlg))) {
       tlg <- build_table(rtables::basic_table(), df = data.frame())
       col_info(tlg) <- col_info(tlg)
     }
