@@ -19,8 +19,7 @@
 aet10_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         deco = std_deco("AET10"),
-                         ...) {
+                         deco = std_deco("AET10")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(adam_db$adae, c("AEDECOD"))
@@ -28,8 +27,7 @@ aet10_1_main <- function(adam_db,
   lyt <- aet10_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -48,8 +46,7 @@ aet10_1_main <- function(adam_db,
 aet10_1_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aedecod = "MedDRA Preferred Term",
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -70,16 +67,14 @@ aet10_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet10_1_pre <- function(adam_db, ...) {
+aet10_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
-  aet10_1_check(adam_db, ...)
+  aet10_1_check(adam_db)
 
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adae") %>%
     mutate(
       AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
     ) %>%
@@ -93,8 +88,7 @@ aet10_1_pre <- function(adam_db, ...) {
 #'
 aet10_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          arm_var = "ACTARM",
-                          ...) {
+                          arm_var = "ACTARM") {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -115,7 +109,7 @@ aet10_1_check <- function(adam_db,
 #'
 #' @export
 #'
-aet10_1_post <- function(tlg, prune_0 = TRUE, atleast = 0.05, ...) {
+aet10_1_post <- function(tlg, prune_0 = TRUE, atleast = 0.05) {
   if (prune_0) {
 
     tlg <- prune_table(
