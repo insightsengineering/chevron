@@ -269,7 +269,7 @@ set_decoration <- function(x, deco) {
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
 report_null <- function(tlg) {
-  if (nrow(tlg) == 0L) {
+  if (is.null(tlg) || nrow(tlg) == 0L) {
     null_report
   } else {
     checkmate::assert_multi_class(tlg, c("TableTree", "ElementaryTable"))
