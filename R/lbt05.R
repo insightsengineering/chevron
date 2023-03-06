@@ -151,8 +151,15 @@ lbt05_1_check <- function(adam_db,
 #'
 lbt05_1_post <- function(tlg, prune_0 = FALSE) {
   if (prune_0) {
-    tlg <- smart_prune(tlg)
+    has_lbl <- function(lbl) CombinationFunction(function(tr) obj_label(tr) == lbl)
+    tlg <- prune_table(tlg, keep_rows(has_lbl("Any Abnormality")))
+
+    if (is.null(tlg %>% prune_table)) {
+      tlg <- build_table(rtables::basic_table(), df = data.frame())
+      col_info(tlg) <- col_info(tlg)
+    }
   }
+
   std_postprocess(tlg)
 }
 
