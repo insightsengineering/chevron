@@ -90,10 +90,12 @@ lbt14_1_pre <- function(adam_db,
 
   lbt14_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+
   new_format <- list(
     adlb = list(
-      BTOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      BTOXGR = missing_rule,
+      ATOXGR = missing_rule
     )
   )
 
@@ -294,10 +296,12 @@ lbt14_2_pre <- function(adam_db,
 
   lbt14_2_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+
   new_format <- list(
     adlb = list(
-      BTOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      BTOXGR = missing_rule,
+      ATOXGR = missing_rule
     )
   )
 

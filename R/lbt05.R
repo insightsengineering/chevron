@@ -110,10 +110,12 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM") {
     ), levels = c("Low", "High"))) %>%
     dm_update_zoomed()
 
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+
   new_format <- list(
     adlb = list(
-      AVALCAT1 = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      abn_dir = rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      AVALCAT1 = missing_rule,
+      abn_dir = missing_rule
     )
   )
 
