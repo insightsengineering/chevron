@@ -1,5 +1,7 @@
 # aet10_1 ----
 
+#' @describeIn aet10_1 Main TLG function
+#'
 #' @inheritParams gen_args
 #'
 #' @details
@@ -12,7 +14,6 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adae` table with the columns `"AEDECOD"`.
-#'
 #'
 #' @export
 #'
