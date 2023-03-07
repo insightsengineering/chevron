@@ -12,19 +12,13 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-aet10_1_lyt(
-  arm_var,
-  lbl_overall,
-  lbl_aedecod = "MedDRA Preferred Term",
-  deco,
-  ...
-)
+aet10_1_lyt(arm_var, lbl_overall, lbl_aedecod = "MedDRA Preferred Term", deco)
 
-aet10_1_pre(adam_db, ...)
+aet10_1_pre(adam_db)
 
-aet10_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM", ...)
+aet10_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 
-aet10_1_post(tlg, prune_0 = TRUE, atleast = 0.05, ...)
+aet10_1_post(tlg, prune_0 = TRUE, atleast = 0.05)
 
 aet10_1
 }
@@ -37,8 +31,6 @@ aet10_1
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{...}{not used.}
-
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
@@ -46,6 +38,8 @@ aet10_1
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
+
+\item{...}{not used.}
 }
 \description{
 The \code{AET10} table Include AEs occurring with user-specified threshold X\% in at least
