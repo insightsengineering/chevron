@@ -6,6 +6,8 @@
 #' @import rtables
 #' @import scda.2022
 #' @import tern
+#' @importFrom rlistings as_listing
+#' @importFrom rtables drop_split_levels
 #' @importFrom checkmate check_class
 #' @importFrom dunlin rule
 #' @importFrom forcats fct_relevel
