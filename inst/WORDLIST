@@ -3,7 +3,6 @@ ADaM
 AESI
 CTCAE
 Hoffmann
-PARAMCD
 NCI
 PARAMCD
 Postprocessing
@@ -13,7 +12,6 @@ SSO
 TLG
 TLGs
 funder
-msec
 pre
 repo
 reproducibility

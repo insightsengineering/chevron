@@ -39,7 +39,6 @@ aet10_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -56,14 +55,11 @@ aet10_1_lyt <- function(arm_var,
       .indent_mods = -1L
     ) %>%
     append_topleft(paste0("\n", lbl_aedecod))
-
-
 }
 
 #' @describeIn aet10_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -84,7 +80,6 @@ aet10_1_pre <- function(adam_db) {
 #' @describeIn aet10_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 aet10_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
@@ -105,13 +100,12 @@ aet10_1_check <- function(adam_db,
 #' @describeIn aet10_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#' @param atleast given cut-off default is `0.05`
 #'
 #' @export
 #'
 aet10_1_post <- function(tlg, prune_0 = TRUE, atleast = 0.05) {
   if (prune_0) {
-
     tlg <- prune_table(
       tt = tlg,
       prune_func = keep_rows(
@@ -133,7 +127,7 @@ aet10_1_post <- function(tlg, prune_0 = TRUE, atleast = 0.05) {
 
 #' `AET10` Table 1 (Default) Most Common (xx%) Adverse Events Preferred Terms Table 1
 #'
-#' The `AET10` table Include AEs occurring with user-specified threshold X% in at least
+#' The `AET10` table Include Adverse Events occurring with user-specified threshold X% in at least
 #'  one of the treatment groups. Standard table summarized by preferred term (PT).
 #' Order the data by total column frequency from most to least frequently reported PT (regardless of SOC).
 #'

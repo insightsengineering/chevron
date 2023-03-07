@@ -278,7 +278,7 @@ report_null <- function(tlg) {
   if (is.null(tlg) || nrow(tlg) == 0L) {
     null_report
   } else {
-    checkmate::assert_multi_class(tlg, c("TableTree", "ElementaryTable"))
+    checkmate::assert_true(rtables::is_rtable(tlg))
     tlg
   }
 }

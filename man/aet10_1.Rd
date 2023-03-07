@@ -39,10 +39,10 @@ aet10_1
 
 \item{prune_0}{(\code{logical}) remove 0 count rows}
 
-\item{...}{not used.}
+\item{atleast}{given cut-off default is \code{0.05}}
 }
 \description{
-The \code{AET10} table Include AEs occurring with user-specified threshold X\% in at least
+The \code{AET10} table Include Adverse Events occurring with user-specified threshold X\% in at least
 one of the treatment groups. Standard table summarized by preferred term (PT).
 Order the data by total column frequency from most to least frequently reported PT (regardless of SOC).
 }
