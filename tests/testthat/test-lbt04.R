@@ -2,7 +2,7 @@ test_that("lbt04 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
     mutate(
-      ANRIND = factor(NA)
+      ANRIND = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -11,12 +11,12 @@ test_that("lbt04 can handle all NA values", {
 })
 
 test_that("lbt04 can handle some NA values", {
-  new_anrind <- c(NA, "", as.character(syn_data$adlb$ANRIND[-c(1, 2)]))
+  new_anrind <- c(NA_character_, "", as.character(syn_data$adlb$ANRIND[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
     mutate(
-      ANRIND = factor(.env$new_anrind),
+      ANRIND = .env$new_anrind,
     ) %>%
     dm_update_zoomed()
 

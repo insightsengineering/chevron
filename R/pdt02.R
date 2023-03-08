@@ -115,10 +115,10 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM") {
     dm_update_zoomed()
 
   fmt_ls <- list(
-    dvreas_var = list(
+    dvreas_var = rule(
       "No Coding available" = c("", NA)
     ),
-    dvterm_var = list(
+    dvterm_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -126,7 +126,7 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM") {
   names(fmt_ls) <- c(dvreas_var, dvterm_var)
   new_format <- list(addv = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn pdt02_1 Postprocessing

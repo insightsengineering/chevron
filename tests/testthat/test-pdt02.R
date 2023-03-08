@@ -2,8 +2,8 @@ test_that("pdt02_1 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("addv") %>%
     mutate(
-      DVREAS = NA,
-      DVTERM = NA,
+      DVREAS = NA_character_,
+      DVTERM = NA_character_,
     ) %>%
     dm_update_zoomed()
 
@@ -12,8 +12,8 @@ test_that("pdt02_1 can handle all NA values", {
 })
 
 test_that("pdt02_1 can handle some NA values", {
-  new_dvreas <- c(NA, "", as.character(syn_data$addv$DVREAS[-c(1, 2)]))
-  new_dvterm <- c(NA, "", as.character(syn_data$addv$DVTERM[-c(1, 2)]))
+  new_dvreas <- c(NA_character_, "", as.character(syn_data$addv$DVREAS[-c(1, 2)]))
+  new_dvterm <- c(NA_character_, "", as.character(syn_data$addv$DVTERM[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("addv") %>%
