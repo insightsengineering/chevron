@@ -103,8 +103,6 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM") {
       .data$PARCAT2 == "LS",
       !is.na(.data$AVAL)
     ) %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adlb") %>%
     mutate(abn_dir = factor(case_when(
       ANRIND == "LOW LOW" ~ "Low",
       ANRIND == "HIGH HIGH" ~ "High",
@@ -112,14 +110,16 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM") {
     ), levels = c("Low", "High"))) %>%
     dm_update_zoomed()
 
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+
   new_format <- list(
     adlb = list(
-      AVALCAT1 = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      abn_dir = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      AVALCAT1 = missing_rule,
+      abn_dir = missing_rule
     )
   )
 
-  db <- dunlin::apply_reformat(db, new_format)
+  db <- dunlin::reformat(db, new_format, na_last = TRUE)
 }
 
 #' @describeIn lbt05_1 Checks
