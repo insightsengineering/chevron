@@ -16,10 +16,11 @@ aet02_3_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
+  lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02")
 )
 
-aet02_3_lyt(arm_var, lbl_overall, lbl_aedecod = "MedDRA Preferred Term", deco)
+aet02_3_lyt(arm_var, lbl_overall, lbl_aedecod, deco)
 
 aet02_3_pre(adam_db)
 
@@ -34,9 +35,9 @@ aet02_3
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

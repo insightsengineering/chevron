@@ -21,6 +21,8 @@
 aet02_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
                          deco = std_deco("AET02")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD"))
@@ -28,6 +30,8 @@ aet02_1_main <- function(adam_db,
   lyt <- aet02_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     deco = deco
   )
 
@@ -46,8 +50,8 @@ aet02_1_main <- function(adam_db,
 #'
 aet02_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
                         deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
@@ -188,6 +192,9 @@ aet02_1 <- chevron_t(
 aet02_2_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
+                         lbl_aehlt = "MedDRA High-Level Term",
                          deco = std_deco("AET02")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "AEHLT"))
@@ -195,6 +202,9 @@ aet02_2_main <- function(adam_db,
   lyt <- aet02_2_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
+    lbl_aehlt = lbl_aehlt,
     deco = deco
   )
 
@@ -215,9 +225,9 @@ aet02_2_main <- function(adam_db,
 #'
 aet02_2_lyt <- function(arm_var,
                         lbl_overall = NULL,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aehlt = "MedDRA High-Level Term",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
+                        lbl_aehlt,
                         deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
@@ -285,8 +295,8 @@ aet02_2_pre <- function(adam_db) {
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
-      AEHLT = tern::explicit_na(tern::sas_na(.data$AEHLT), label = "No Coding available"),
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available"),
+      AEHLT = tern::explicit_na(tern::sas_na(.data$AEHLT), label = "No Coding available")
     ) %>%
     dm_update_zoomed()
 }
@@ -358,6 +368,7 @@ aet02_2 <- chevron_t(
 aet02_3_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aedecod = "MedDRA Preferred Term",
                          deco = std_deco("AET02")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEDECOD"))
@@ -365,15 +376,13 @@ aet02_3_main <- function(adam_db,
   lyt <- aet02_3_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aedecod = lbl_aedecod,
     deco = deco
   )
 
-  tbl_top <- build_table(lyt$lyt_top, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
 
-  tbl_bottom <- build_table(lyt$lyt_bottom, dbsel$adae, alt_counts_df = dbsel$adsl)
-
-
-  list(tbl_top, tbl_bottom)
+  tbl
 }
 
 #' @describeIn aet02_3 Layout
@@ -386,9 +395,9 @@ aet02_3_main <- function(adam_db,
 #'
 aet02_3_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aedecod,
                         deco) {
-  lyt_top <- basic_table_deco(deco) %>%
+  basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -400,19 +409,11 @@ aet02_3_lyt <- function(arm_var,
         nonunique = "Total number of events"
       )
     ) %>%
+    count_occurrences(
+      vars = "AEDECOD",
+      .indent_mods = c(count_fraction = -1L)
+    ) %>%
     append_topleft(lbl_aedecod)
-
-  lyt_bottom <- basic_table_deco(deco) %>%
-    split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
-    # needed to handle empty df.
-    split_rows_by(var = "DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
-    count_occurrences(vars = "AEDECOD", .indent_mods = -2L) %>%
-    append_topleft(lbl_aedecod)
-
-
-  list(lyt_top = lyt_top, lyt_bottom = lyt_bottom)
 }
 
 #' @describeIn aet02_3 Preprocessing
@@ -428,8 +429,7 @@ aet02_3_pre <- function(adam_db) {
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available"),
-      DOMAIN = "AE" # necessary to handle empty tables
+      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
     ) %>%
     dm_update_zoomed()
 }
@@ -441,26 +441,17 @@ aet02_3_pre <- function(adam_db) {
 #' @export
 #'
 aet02_3_post <- function(tlg, prune_0 = TRUE) {
-  tbl_top <- tlg[[1]]
-  tbl_bottom <- tlg[[2]]
+  if (prune_0) {
+    tlg <- trim_rows(tlg)
+  }
 
-  # needed to handle empty adae tables.
-  tbl_bottom <- tbl_bottom %>%
+  tbl_sorted <- tlg %>%
     sort_at_path(
-      c("DOMAIN", "*", "AEDECOD"),
-      scorefun = score_occurrences # score_occurrences
+      path = c("AEDECOD"),
+      scorefun = score_occurrences
     )
 
-  res <- if (nrow(tbl_bottom) > 0L) {
-    rbind(tbl_top, tbl_bottom)
-  } else {
-    tbl_top
-  }
-
-  if (prune_0) {
-    res <- trim_rows(res)
-  }
-  std_postprocess(res)
+  std_postprocess(tbl_sorted)
 }
 
 #' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.
