@@ -17,15 +17,13 @@
 cmt02_pt_1_main <- function(adam_db,
                             arm_var = "ARM",
                             lbl_overall = NULL,
-                            deco = std_deco("CMT02_PT"),
-                            ...) {
+                            deco = std_deco("CMT02_PT")) {
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
   lyt <- cmt02_pt_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -36,14 +34,12 @@ cmt02_pt_1_main <- function(adam_db,
 #' @describeIn cmt02_pt_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
 cmt02_pt_1_lyt <- function(arm_var,
                            lbl_overall,
-                           deco,
-                           ...) {
+                           deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -65,11 +61,10 @@ cmt02_pt_1_lyt <- function(arm_var,
 #' @describeIn cmt02_pt_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt02_pt_1_pre <- function(adam_db, ...) {
+cmt02_pt_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -82,27 +77,26 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
     dm_update_zoomed()
 
   fmt_ls <- list(
-    CMDECOD = list(
+    CMDECOD = rule(
       "No Coding available" = c("", NA)
     ),
-    CMSEQ = list(
+    CMSEQ = rule(
       "<Missing>" = c("", NA)
     )
   )
 
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt02_pt_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt02_pt_1_post <- function(tlg, prune_0 = TRUE, ...) {
+cmt02_pt_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

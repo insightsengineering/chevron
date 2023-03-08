@@ -6,7 +6,6 @@
 #' @param safety_var (`character`) the safety variables to be summarized.
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, uses the label
 #'   attribute of the columns selected in `safety_var`.
-#' @param ... not used.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -25,8 +24,7 @@ aet01_1_main <- function(adam_db,
                            "FATAL", "SER", "SERWD", "SERDSM",
                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          ),
-                         lbl_safety_var = NULL,
-                         ...) {
+                         lbl_safety_var = NULL) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -43,8 +41,7 @@ aet01_1_main <- function(adam_db,
     lbl_overall = lbl_overall,
     deco = deco,
     safety_var = safety_var,
-    lbl_safety_var = lbl_safety_var,
-    ... = ...
+    lbl_safety_var = lbl_safety_var
   )
 
   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -65,7 +62,6 @@ aet01_1_main <- function(adam_db,
 #'
 #' @inheritParams aet01_1_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
-#' @param ... not used
 #'
 #' @export
 #'
@@ -73,8 +69,7 @@ aet01_1_lyt <- function(arm_var,
                         lbl_overall,
                         deco,
                         safety_var,
-                        lbl_safety_var,
-                        ...) {
+                        lbl_safety_var) {
   names(lbl_safety_var) <- safety_var
 
   lyt_adae <- basic_table_deco(deco) %>%
@@ -125,14 +120,19 @@ aet01_1_lyt <- function(arm_var,
 #' @describeIn aet01_1 Preprocessing
 #'
 #' @inheritParams aet01_1_main
-#' @param ... not used.
 #'
 #' @export
 #'
-aet01_1_pre <- function(adam_db, ...) {
+aet01_1_pre <- function(adam_db,
+                        req_tables = c("adsl", "adae"),
+                        arm_var = "ACTARM",
+                        safety_var = c(
+                          "FATAL", "SER", "SERWD", "SERDSM",
+                          "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                        )) {
   checkmate::assert_class(adam_db, "dm")
 
-  aet01_1_check(adam_db, ...)
+  aet01_1_check(adam_db, req_tables = req_tables, arm_var = arm_var, safety_var = safety_var)
 
   db <- adam_db %>%
     dm_zoom_to("adae") %>%
@@ -177,15 +177,15 @@ aet01_1_pre <- function(adam_db, ...) {
     ) %>%
     dm_update_zoomed()
 
-  missing_list <- list("<Missing>" = c("", NA))
+  missing_rule <- rule("<Missing>" = c("", NA))
 
   new_format <- list(
     adsl = list(
-      DCSREAS = missing_list
+      DCSREAS = missing_rule
     )
   )
 
-  db <- dunlin::apply_reformat(db, new_format)
+  db <- dunlin::reformat(db, new_format, na_last = TRUE)
 
   db
 }
@@ -193,7 +193,6 @@ aet01_1_pre <- function(adam_db, ...) {
 #' @describeIn aet01_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
@@ -201,8 +200,7 @@ aet01_1_check <- function(adam_db,
                           safety_var = c(
                             "FATAL", "SER", "SERWD", "SERDSM",
                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                          ),
-                          ...) {
+                          )) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -244,10 +242,9 @@ aet01_1_check <- function(adam_db,
 #' @describeIn aet01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used
 #'
 #' @export
-aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...) {
+aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01")) {
   tbl <- set_decoration(tlg, deco)
   if (prune_0) {
     tbl <- smart_prune(tbl)
@@ -303,8 +300,7 @@ aet01_2_main <- function(adam_db,
                          ),
                          lbl_safety_var = NULL,
                          medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-                         lbl_medconcept_var = NULL,
-                         ...) {
+                         lbl_medconcept_var = NULL) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -329,8 +325,7 @@ aet01_2_main <- function(adam_db,
     safety_var = safety_var,
     lbl_safety_var = lbl_safety_var,
     medconcept_var = medconcept_var,
-    lbl_medconcept_var = lbl_medconcept_var,
-    ... = ...
+    lbl_medconcept_var = lbl_medconcept_var
   )
 
   tbl_adae <- build_table(lyt$lyt_adae, dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -352,7 +347,6 @@ aet01_2_main <- function(adam_db,
 #' @inheritParams aet01_2_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #' @param lbl_medconcept_var (`character`) the label of the medical concept variables to be summarized.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -362,8 +356,7 @@ aet01_2_lyt <- function(arm_var,
                         safety_var,
                         lbl_safety_var,
                         medconcept_var,
-                        lbl_medconcept_var,
-                        ...) {
+                        lbl_medconcept_var) {
   names(lbl_safety_var) <- safety_var
   names(lbl_medconcept_var) <- medconcept_var
 
@@ -424,14 +417,13 @@ aet01_2_lyt <- function(arm_var,
 #' @describeIn aet01_2 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-aet01_2_pre <- function(adam_db, ...) {
+aet01_2_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
-  aet01_2_check(adam_db, ...)
+  aet01_2_check(adam_db)
 
   df <- adam_db$adae
   labs <- formatters::var_labels(df)
@@ -490,15 +482,15 @@ aet01_2_pre <- function(adam_db, ...) {
     ) %>%
     dm_update_zoomed()
 
-  missing_list <- list("<Missing>" = c("", NA))
+  missing_rule <- rule("<Missing>" = c("", NA))
 
   new_format <- list(
     adsl = list(
-      DCSREAS = missing_list
+      DCSREAS = missing_rule
     )
   )
 
-  db <- dunlin::apply_reformat(db, new_format)
+  db <- dunlin::reformat(db, new_format, na_last = TRUE)
 
   db
 }
@@ -506,7 +498,6 @@ aet01_2_pre <- function(adam_db, ...) {
 #' @describeIn aet01_2 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 aet01_2_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
@@ -515,8 +506,7 @@ aet01_2_check <- function(adam_db,
                             "FATAL", "SER", "SERWD", "SERDSM",
                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                           ),
-                          medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-                          ...) {
+                          medconcept_var = c("SMQ01", "SMQ02", "CQ01")) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL

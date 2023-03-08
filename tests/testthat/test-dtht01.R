@@ -4,8 +4,8 @@ test_that("dtht01 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      DTHCAT = NA,
-      DTHCAUS = NA
+      DTHCAT = NA_character_,
+      DTHCAUS = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -14,8 +14,8 @@ test_that("dtht01 can handle all NA values", {
 })
 
 test_that("dtht01 can handle some NA values", {
-  new_dthcat <- c(NA, "", as.character(syn_data$adsl$DTHCAT[-c(1, 2)]))
-  new_dthcaus <- c(NA, "", as.character(syn_data$adsl$DTHCAUS[-c(1, 2)]))
+  new_dthcat <- c(NA_character_, "", as.character(syn_data$adsl$DTHCAT[-c(1, 2)]))
+  new_dthcaus <- c(NA_character_, "", as.character(syn_data$adsl$DTHCAUS[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%

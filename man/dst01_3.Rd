@@ -19,8 +19,7 @@ dst01_3_main(
   disc_reason_var = "DCSREAS",
   status_treatment_var = "EOTSTT",
   lbl_overall = "All Patients",
-  deco = std_deco("DST01"),
-  ...
+  deco = std_deco("DST01")
 )
 
 dst01_3_lyt(
@@ -30,19 +29,17 @@ dst01_3_lyt(
   discontinued_trt_lbl,
   ongoing_trt_lbl,
   lbl_overall,
-  deco,
-  ...
+  deco
 )
 
 dst01_3_pre(
   adam_db,
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
-  status_treatment_var = "EOTSTT",
-  ...
+  status_treatment_var = "EOTSTT"
 )
 
-dst01_3_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
+dst01_3_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"))
 
 dst01_3
 }
@@ -66,8 +63,6 @@ referring to the analysis period.}
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{completed_trt_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
 \code{status_treatment_var}. By Default \code{COMPLETED}.}

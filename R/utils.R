@@ -103,7 +103,7 @@ syn_test_data <- function() {
   attr(sd$adsl$AAGE, "label") <- "Age (yr)"
   sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
-  sd$adex$AVALCAT1 <- tern::explicit_na(factor(sd$adex$AVALCAT1), label = "<Missing>") # nolint
+  sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
 
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
@@ -141,13 +141,11 @@ syn_test_data <- function() {
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
 
-  set.seed(321)
   sd$adsl <- sd$adsl %>%
-    mutate(EOTSTT = as.factor(sample(
-      c("ONGOING", "COMPLETED", "DISCONTINUED"),
-      nrow(sd$adsl),
-      replace = TRUE
-    )))
+    mutate(EOTSTT = {
+      set.seed(321)
+      as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"), nrow(sd$adsl), replace = TRUE))
+    })
 
   # useful for lbt04, lbt05
   qntls <- sd$adlb %>%
@@ -156,7 +154,7 @@ syn_test_data <- function() {
     rename(q1 = 2, q2 = 3)
 
   sd$adlb <- qntls %>%
-    left_join(sd$adlb, by = "PARAMCD", multiple = "all") %>%
+    left_join(sd$adlb, by = "PARAMCD") %>%
     group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
       ANRIND = factor(
@@ -169,23 +167,27 @@ syn_test_data <- function() {
       ),
       AVALCAT1 = factor(
         case_when(
-          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
-            sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
+          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ {
+            set.seed(1)
+            sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1))
+          },
           TRUE ~ ""
         ),
         levels = c("", "LAST", "REPLICATED", "SINGLE")
-      ),
-      ONTRTFL = factor(case_when(
-        AVISIT %in% c("SCREENING", "BASELINE") ~ "N",
-        TRUE ~ "Y"
-      ))
+      )
     ) %>%
     ungroup() %>%
     mutate(
-      PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE)),
+      PARCAT1 = {
+        set.seed(2)
+        as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE))
+      },
       PARCAT2 = as.factor(case_when(
         ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
-        TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+        TRUE ~ {
+          set.seed(3)
+          sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+        }
       ))
     ) %>%
     select(-q1, -q2)
@@ -267,13 +269,12 @@ set_decoration <- function(x, deco) {
 #' @rdname report_null
 #' @aliases null_report
 #' @param tlg (`TableTree`) object.
-#' @param ... not used.
 #'
 #' @export
 #'
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
-report_null <- function(tlg, ...) {
+report_null <- function(tlg) {
   if (nrow(tlg) == 0L) {
     null_report
   } else {
@@ -337,6 +338,7 @@ get_labels <- function(df, x) {
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
+#' @param ... not used at the moment.
 #'
 #' @note Standard post processing includes:
 #' * `NULL` report creation if necessary

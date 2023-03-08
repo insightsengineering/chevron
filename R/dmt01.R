@@ -39,8 +39,7 @@ dmt01_1_main <- function(adam_db,
                            "RACE"
                          ),
                          lbl_overall = "All Patients",
-                         deco = std_deco("DMT01"),
-                         ...) {
+                         deco = std_deco("DMT01")) {
   assert_colnames(adam_db$adsl, summaryvars)
 
   summaryvars_lbls <- get_labels(adam_db$adsl, summaryvars)
@@ -62,7 +61,7 @@ dmt01_1_main <- function(adam_db,
 #' @param summaryvars_lbls (`vector of character`) labels corresponding to the analyzed variables.
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
@@ -70,8 +69,7 @@ dmt01_1_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         lbl_overall,
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -87,25 +85,14 @@ dmt01_1_lyt <- function(arm_var,
 #' @describeIn dmt01_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
 #'
 #' @examples
 #' dmt01_1_pre(syn_data)
-dmt01_1_pre <- function(adam_db, ...) {
+dmt01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
-
-  new_format <- list(
-    adsl = list(
-      SEX = list(
-        "Female" = "F",
-        "Male" = "M"
-      )
-    )
-  )
-
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
 
   adam_db <- dunlin::dm_explicit_na(adam_db)
 
@@ -119,10 +106,10 @@ dmt01_1_pre <- function(adam_db, ...) {
 #' @describeIn dmt01_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
+#'
 #'
 #' @export
-dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+dmt01_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

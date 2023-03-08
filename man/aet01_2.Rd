@@ -22,8 +22,7 @@ aet01_2_main(
     "RELWD", "RELDSM", "SEV"),
   lbl_safety_var = NULL,
   medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-  lbl_medconcept_var = NULL,
-  ...
+  lbl_medconcept_var = NULL
 )
 
 aet01_2_lyt(
@@ -33,11 +32,10 @@ aet01_2_lyt(
   safety_var,
   lbl_safety_var,
   medconcept_var,
-  lbl_medconcept_var,
-  ...
+  lbl_medconcept_var
 )
 
-aet01_2_pre(adam_db, ...)
+aet01_2_pre(adam_db)
 
 aet01_2_check(
   adam_db,
@@ -45,8 +43,7 @@ aet01_2_check(
   arm_var = "ACTARM",
   safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
-  medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-  ...
+  medconcept_var = c("SMQ01", "SMQ02", "CQ01")
 )
 
 aet01_2
@@ -67,8 +64,6 @@ aet01_2
 \item{medconcept_var}{(\code{character}) the medical concept variables to be summarized.}
 
 \item{lbl_medconcept_var}{(\code{character}) the label of the medical concept variables to be summarized.}
-
-\item{...}{not used.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 }

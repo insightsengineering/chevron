@@ -25,14 +25,12 @@ lbt14_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - Low Direction",
-                         deco = std_deco("LBT14"),
-                         ...) {
+                         deco = std_deco("LBT14")) {
   lyt <- lbt14_1_lyt(
     arm_var = arm_var,
     gr_missing = gr_missing,
     title = title,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -43,15 +41,13 @@ lbt14_1_main <- function(adam_db,
 #' @describeIn lbt14_1 Layout
 #'
 #' @inheritParams lbt14_1_main
-#' @param ... not used.
 #'
 #' @export
 #'
 lbt14_1_lyt <- function(arm_var,
                         gr_missing,
                         title,
-                        deco,
-                        ...) {
+                        deco) {
   deco$title <- title
   if (gr_missing == "excl") {
     deco$main_footer <- "Patients with missing baseline values are excluded from the analysis."
@@ -82,26 +78,28 @@ lbt14_1_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @inheritParams lbt14_1_main
-#' @param ... not used.
 #'
 #' @export
 #'
 lbt14_1_pre <- function(adam_db,
                         gr_missing = "incl",
-                        ...) {
+                        req_tables = c("adsl", "adlb"),
+                        arm_var = "ACTARM") {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
-  lbt14_1_check(adam_db, ...)
+  lbt14_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
+
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
 
   new_format <- list(
     adlb = list(
-      BTOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      ATOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      BTOXGR = missing_rule,
+      ATOXGR = missing_rule
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
     adam_db <- adam_db %>%
@@ -159,12 +157,10 @@ lbt14_1_pre <- function(adam_db,
 #' @describeIn lbt14_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 lbt14_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          arm_var = "ACTARM",
-                          ...) {
+                          arm_var = "ACTARM") {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -185,11 +181,10 @@ lbt14_1_check <- function(adam_db,
 #' @describeIn lbt14_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt14_1_post <- function(tlg, prune_0 = TRUE, ...) {
+lbt14_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }
@@ -236,14 +231,12 @@ lbt14_2_main <- function(adam_db,
                          arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - High Direction",
-                         deco = std_deco("LBT14"),
-                         ...) {
+                         deco = std_deco("LBT14")) {
   lyt <- lbt14_2_lyt(
     arm_var = arm_var,
     gr_missing = gr_missing,
     title = title,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -254,15 +247,13 @@ lbt14_2_main <- function(adam_db,
 #' @describeIn lbt14_2 Layout
 #'
 #' @inheritParams lbt14_2_main
-#' @param ... not used.
 #'
 #' @export
 #'
 lbt14_2_lyt <- function(arm_var,
                         gr_missing,
                         title,
-                        deco,
-                        ...) {
+                        deco) {
   deco$title <- title
   if (gr_missing == "excl") {
     deco$main_footer <- "Patients with missing baseline values are excluded from the analysis."
@@ -293,26 +284,28 @@ lbt14_2_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @inheritParams lbt14_2_main
-#' @param ... not used.
 #'
 #' @export
 #'
 lbt14_2_pre <- function(adam_db,
                         gr_missing = "incl",
-                        ...) {
+                        req_tables = c("adsl", "adlb"),
+                        arm_var = "ACTARM") {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
-  lbt14_2_check(adam_db, ...)
+  lbt14_2_check(adam_db, req_tables = req_tables, arm_var = arm_var)
+
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
 
   new_format <- list(
     adlb = list(
-      BTOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      ATOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      BTOXGR = missing_rule,
+      ATOXGR = missing_rule
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
     adam_db <- adam_db %>%
@@ -370,12 +363,10 @@ lbt14_2_pre <- function(adam_db,
 #' @describeIn lbt14_2 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 lbt14_2_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          arm_var = "ACTARM",
-                          ...) {
+                          arm_var = "ACTARM") {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -396,11 +387,10 @@ lbt14_2_check <- function(adam_db,
 #' @describeIn lbt14_2 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt14_2_post <- function(tlg, prune_0 = TRUE, ...) {
+lbt14_2_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }

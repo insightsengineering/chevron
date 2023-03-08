@@ -30,8 +30,7 @@ cmt01a_1_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          deco = std_deco("CMT01A"),
-                          ...) {
+                          deco = std_deco("CMT01A")) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -43,8 +42,7 @@ cmt01a_1_main <- function(adam_db,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -59,7 +57,6 @@ cmt01a_1_main <- function(adam_db,
 #' @param lbl_medcat_var (`character`) the label for the medication category.
 #' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
 #' @param lbl_medname_var (`character`) the label for the medication name.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -69,8 +66,7 @@ cmt01a_1_lyt <- function(arm_var,
                          lbl_medcat_var,
                          medname_var,
                          lbl_medname_var,
-                         deco,
-                         ...) {
+                         deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -113,11 +109,10 @@ cmt01a_1_lyt <- function(arm_var,
 #'
 #' @inheritParams cmt01a_1_main
 #'
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -127,10 +122,10 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
     dm_update_zoomed()
 
   fmt_ls <- list(
-    medcat_var = list(
+    medcat_var = rule(
       "No Coding available" = c("", NA)
     ),
-    medname_var = list(
+    medname_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -138,7 +133,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   names(fmt_ls) <- c(medcat_var, medname_var)
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_1 Postprocessing
@@ -146,11 +141,10 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 #' @inheritParams cmt01a_1_main
 #' @inheritParams gen_args
 #'
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD") {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -224,8 +218,7 @@ cmt01a_2_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          deco = std_deco("CMT01A"),
-                          ...) {
+                          deco = std_deco("CMT01A")) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -249,11 +242,10 @@ cmt01a_2_main <- function(adam_db,
 #' @describeIn cmt01a_2 Preprocessing
 #'
 #' @inheritParams cmt01a_2_main
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -263,10 +255,10 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
     dm_update_zoomed()
 
   fmt_ls <- list(
-    medcat_var = list(
+    medcat_var = rule(
       "No Coding available" = c("", NA)
     ),
-    medname_var = list(
+    medname_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -274,18 +266,17 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   names(fmt_ls) <- c(medcat_var, medname_var)
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_2 Postprocessing
 #'
 #' @inheritParams cmt01a_main
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD") {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -363,8 +354,7 @@ cmt01a_3_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          deco = std_deco("CMT01A"),
-                          ...) {
+                          deco = std_deco("CMT01A")) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -376,8 +366,7 @@ cmt01a_3_main <- function(adam_db,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -397,8 +386,7 @@ cmt01a_3_lyt <- function(arm_var = "ARM",
                          lbl_medcat_var = "ATC Class Level 2",
                          medname_var = "CMDECOD",
                          lbl_medname_var = "Other Treatment",
-                         deco = std_deco("CMT01A"),
-                         ...) {
+                         deco = std_deco("CMT01A")) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -439,11 +427,10 @@ cmt01a_3_lyt <- function(arm_var = "ARM",
 #' @describeIn cmt01a_3 Preprocessing
 #'
 #' @inheritParams cmt01a_3_main
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -453,10 +440,10 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
     dm_update_zoomed()
 
   fmt_ls <- list(
-    medcat_var = list(
+    medcat_var = rule(
       "No Coding available" = c("", NA)
     ),
-    medname_var = list(
+    medname_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -464,18 +451,17 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   names(fmt_ls) <- c(medcat_var, medname_var)
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_3 Preprocessing
 #'
 #' @inheritParams cmt01a_3_main
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD") {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

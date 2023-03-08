@@ -22,14 +22,12 @@ lbt04_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_param = "Laboratory Test",
                          lbl_anrind = "Direction of Abnormality",
-                         deco = std_deco("LBT04"),
-                         ...) {
+                         deco = std_deco("LBT04")) {
   lyt <- lbt04_1_lyt(
     arm_var = arm_var,
     lbl_param = lbl_param,
     lbl_anrind = lbl_anrind,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -44,15 +42,13 @@ lbt04_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #' @param lbl_anrind (`character`) label of the `ANRIND` variable.
-#' @param ... not used.
 #'
 #' @export
 #'
 lbt04_1_lyt <- function(arm_var,
                         lbl_param,
                         lbl_anrind,
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by("PARCAT1") %>%
@@ -75,22 +71,21 @@ lbt04_1_lyt <- function(arm_var,
 #' @describeIn lbt04_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt04_1_pre <- function(adam_db, ...) {
+lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM") {
   checkmate::assert_class(adam_db, "dm")
 
-  lbt04_1_check(adam_db, ...)
+  lbt04_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
   new_format <- list(
     adlb = list(
-      ANRIND = list("<Missing>" = c("", NA, "<Missing>"))
+      ANRIND = rule("<Missing>" = c("", NA, "<Missing>"))
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adlb") %>%
@@ -105,12 +100,10 @@ lbt04_1_pre <- function(adam_db, ...) {
 #' @describeIn lbt04_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 lbt04_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
-                          arm_var = "ACTARM",
-                          ...) {
+                          arm_var = "ACTARM") {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -131,11 +124,10 @@ lbt04_1_check <- function(adam_db,
 #' @describeIn lbt04_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt04_1_post <- function(tlg, ...) {
+lbt04_1_post <- function(tlg) {
   std_postprocess(tlg)
 }
 

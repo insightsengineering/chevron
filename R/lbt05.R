@@ -20,8 +20,7 @@ lbt05_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_param = "Laboratory Test",
                          lbl_anrind = "Direction of Abnormality",
-                         deco = std_deco("LBT05"),
-                         ...) {
+                         deco = std_deco("LBT05")) {
   map <- adam_db %>%
     pull_tbl(adlb) %>%
     select(PARAM, abn_dir) %>%
@@ -45,8 +44,7 @@ lbt05_1_main <- function(adam_db,
     lbl_param = lbl_param,
     lbl_anrind = lbl_anrind,
     map = map,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -62,7 +60,6 @@ lbt05_1_main <- function(adam_db,
 #' @param lbl_param (`character`) label of the `PARAM` variable.
 #' @param lbl_anrind (`character`) label of the `ANRIND` variable.
 #' @param map (`data.frame`) mapping of `PARAM`s to directions of abnormality.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -70,8 +67,7 @@ lbt05_1_lyt <- function(arm_var,
                         lbl_param,
                         lbl_anrind,
                         map,
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
@@ -92,14 +88,13 @@ lbt05_1_lyt <- function(arm_var,
 #' @describeIn lbt05_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
+lbt05_1_pre <- function(adam_db, arm_var = "ACTARM") {
   checkmate::assert_class(adam_db, "dm")
 
-  lbt05_1_check(adam_db, arm_var = arm_var, req_tables = "adlb", ...)
+  lbt05_1_check(adam_db, arm_var = arm_var, req_tables = "adlb")
 
   db <- adam_db %>%
     dm_zoom_to("adlb") %>%
@@ -108,8 +103,6 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
       .data$PARCAT2 == "LS",
       !is.na(.data$AVAL)
     ) %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adlb") %>%
     mutate(abn_dir = factor(case_when(
       ANRIND == "LOW LOW" ~ "Low",
       ANRIND == "HIGH HIGH" ~ "High",
@@ -117,25 +110,25 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
     ), levels = c("Low", "High"))) %>%
     dm_update_zoomed()
 
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+
   new_format <- list(
     adlb = list(
-      AVALCAT1 = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available")),
-      abn_dir = list("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
+      AVALCAT1 = missing_rule,
+      abn_dir = missing_rule
     )
   )
 
-  db <- dunlin::apply_reformat(db, new_format)
+  db <- dunlin::reformat(db, new_format, na_last = TRUE)
 }
 
 #' @describeIn lbt05_1 Checks
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 lbt05_1_check <- function(adam_db,
                           req_tables,
-                          arm_var,
-                          ...) {
+                          arm_var) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
@@ -156,11 +149,10 @@ lbt05_1_check <- function(adam_db,
 #' @describeIn lbt05_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param ... not used.
 #'
 #' @export
 #'
-lbt05_1_post <- function(tlg, ...) {
+lbt05_1_post <- function(tlg) {
   std_postprocess(tlg)
 }
 

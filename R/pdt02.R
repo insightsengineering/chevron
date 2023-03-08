@@ -31,8 +31,7 @@ pdt02_1_main <- function(adam_db,
                          dvterm_var = "DVTERM",
                          lbl_dvterm_var = "Description",
                          lbl_overall = NULL,
-                         deco = std_deco("pdt02_1"),
-                         ...) {
+                         deco = std_deco("pdt02_1")) {
   assert_colnames(adam_db$addv, c(dvreas_var, dvterm_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
@@ -44,8 +43,7 @@ pdt02_1_main <- function(adam_db,
     lbl_dvreas_var = lbl_dvreas_var,
     dvterm_var = dvterm_var,
     lbl_dvterm_var = lbl_dvterm_var,
-    deco = deco,
-    ... = ...
+    deco = deco
   )
 
   tbl <- build_table(lyt, dbsel$addv, alt_counts_df = dbsel$adsl)
@@ -60,7 +58,6 @@ pdt02_1_main <- function(adam_db,
 #' @param lbl_dvreas_var (`character`) label for the variable defining the reason for deviation.
 #' @param dvterm_var (`character`) the variable defining the protocol deviation term. By default `DVTERM`.
 #' @param lbl_dvterm_var (`character`) label for the variable defining the protocol deviation term.
-#' @param ... not used.
 #'
 #' @export
 #'
@@ -70,8 +67,7 @@ pdt02_1_lyt <- function(arm_var,
                         lbl_dvreas_var,
                         dvterm_var,
                         lbl_dvterm_var,
-                        deco,
-                        ...) {
+                        deco) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -107,11 +103,9 @@ pdt02_1_lyt <- function(arm_var,
 #'
 #' @inheritParams pdt02_1_main
 #'
-#' @param ... not used.
-#'
 #' @export
 #'
-pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {
+pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM") {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -121,10 +115,10 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", .
     dm_update_zoomed()
 
   fmt_ls <- list(
-    dvreas_var = list(
+    dvreas_var = rule(
       "No Coding available" = c("", NA)
     ),
-    dvterm_var = list(
+    dvterm_var = rule(
       "No Coding available" = c("", NA)
     )
   )
@@ -132,7 +126,7 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", .
   names(fmt_ls) <- c(dvreas_var, dvterm_var)
   new_format <- list(addv = fmt_ls)
 
-  dunlin::apply_reformat(adam_db, new_format)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn pdt02_1 Postprocessing
@@ -140,11 +134,9 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", .
 #' @inheritParams pdt02_1_main
 #' @inheritParams gen_args
 #'
-#' @param ... not used.
-#'
 #' @export
 #'
-pdt02_1_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {
+pdt02_1_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = "DVTERM") {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
