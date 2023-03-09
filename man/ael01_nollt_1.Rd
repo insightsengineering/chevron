@@ -29,6 +29,8 @@ ael01_nollt_1
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{vars}{(\code{character}) variables to be included in the listing.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{

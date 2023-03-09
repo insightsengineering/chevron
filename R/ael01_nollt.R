@@ -74,6 +74,7 @@ ael01_nollt_1_pre <- function(adam_db, dataset = "adae") {
 #' @describeIn ael01_nollt_1 Checks
 #'
 #' @inheritParams gen_args
+#' @param vars (`character`) variables to be included in the listing.
 #'
 ael01_nollt_1_check <- function(adam_db,
                                 dataset = "adae",
