@@ -22,8 +22,10 @@ test_that("args_ls works as expected when simplify is TRUE", {
   checkmate::expect_list(res, len = 9, names = "named")
   checkmate::expect_names(
     names(res),
-    identical.to = c("adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
-                     "grade_groups", "deco", "tlg", "prune_0")
+    identical.to = c(
+      "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
+      "grade_groups", "deco", "tlg", "prune_0"
+    )
   )
 })
 
@@ -37,8 +39,10 @@ test_that("args_ls works as expected with custom chevron_tlg object", {
   checkmate::expect_list(res, len = 10, names = "named")
   checkmate::expect_names(
     names(res),
-    identical.to = c("adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
-                     "grade_groups", "deco", "new_arg", "tlg", "prune_0")
+    identical.to = c(
+      "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
+      "grade_groups", "deco", "new_arg", "tlg", "prune_0"
+    )
   )
   expect_identical(res$arm_var, "ACTARM")
 })
