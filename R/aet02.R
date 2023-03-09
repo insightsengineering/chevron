@@ -143,6 +143,7 @@ aet02_1_post <- function(tlg, prune_0 = TRUE) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
+
   tbl_sorted <- tlg %>%
     sort_at_path(
       path = c("AEBODSYS"),
@@ -152,8 +153,10 @@ aet02_1_post <- function(tlg, prune_0 = TRUE) {
       path = c("AEBODSYS", "*", "AEDECOD"),
       scorefun = score_occurrences
     )
+
   std_postprocess(tbl_sorted)
 }
+
 #' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
 #'
 #' The `AET02` table provides an overview of the number of subjects experiencing adverse events and the number of advert
@@ -355,7 +358,6 @@ aet02_2 <- chevron_t(
 
 
 # aet02_3 ----
-
 #' @describeIn aet02_3 Main TLG function
 #'
 #' @inheritParams gen_args
@@ -388,9 +390,11 @@ aet02_3_main <- function(adam_db,
     deco = deco
   )
 
-  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl_top <- build_table(lyt$lyt_top, dbsel$adae, alt_counts_df = dbsel$adsl)
 
-  tbl
+  tbl_bottom <- build_table(lyt$lyt_bottom, dbsel$adae, alt_counts_df = dbsel$adsl)
+
+  list(tbl_top, tbl_bottom)
 }
 
 #' @describeIn aet02_3 Layout
@@ -405,7 +409,7 @@ aet02_3_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aedecod,
                         deco) {
-  basic_table_deco(deco) %>%
+  lyt_top <- basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -417,11 +421,25 @@ aet02_3_lyt <- function(arm_var,
         nonunique = "Total number of events"
       )
     ) %>%
+    append_topleft(lbl_aedecod)
+
+  lyt_bottom <- basic_table_deco(deco) %>%
+    split_cols_by(var = arm_var) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
+    # needed to handle empty df.
+    split_rows_by(
+      var = "DOMAIN",
+      split_fun = drop_split_levels,
+      child_labels = "hidden"
+    ) %>%
     count_occurrences(
       vars = "AEDECOD",
-      .indent_mods = c(count_fraction = -1L)
+      .indent_mods = -2L
     ) %>%
     append_topleft(lbl_aedecod)
+
+  list(lyt_top = lyt_top, lyt_bottom = lyt_bottom)
 }
 
 #' @describeIn aet02_3 Preprocessing
@@ -443,6 +461,9 @@ aet02_3_pre <- function(adam_db) {
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
+    mutate(
+      DOMAIN = "AE" # necessary to handle empty tables
+    ) %>%
     dm_update_zoomed()
 }
 
@@ -453,17 +474,25 @@ aet02_3_pre <- function(adam_db) {
 #' @export
 #'
 aet02_3_post <- function(tlg, prune_0 = TRUE) {
-  if (prune_0) {
-    tlg <- trim_rows(tlg)
-  }
-
-  tbl_sorted <- tlg %>%
+  tbl_top <- tlg[[1]]
+  tbl_bottom <- tlg[[2]]
+  # needed to handle empty adae tables.
+  tbl_bottom <- tbl_bottom %>%
     sort_at_path(
-      path = c("AEDECOD"),
-      scorefun = score_occurrences
+      c("DOMAIN", "*", "AEDECOD"),
+      scorefun = score_occurrences # score_occurrences
     )
 
-  std_postprocess(tbl_sorted)
+  res <- if (nrow(tbl_bottom) > 0L) {
+    rbind(tbl_top, tbl_bottom)
+  } else {
+    tbl_top
+  }
+  if (prune_0) {
+    res <- trim_rows(res)
+  }
+
+  std_postprocess(res)
 }
 
 #' `AET02` Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.
