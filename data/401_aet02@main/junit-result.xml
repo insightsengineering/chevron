@@ -1,540 +1,540 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="aet01" timestamp="2023-03-09T09:17:17Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="2.689">
-    <testcase time="1.764" classname="aet01" name="aet01_can_handle_all_NA_values"/>
-    <testcase time="0.143" classname="aet01" name="aet01_can_handle_all_NA_values">
+  <testsuite name="aet01" timestamp="2023-03-09T10:08:39Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="2.633">
+    <testcase time="1.72" classname="aet01" name="aet01_can_handle_all_NA_values"/>
+    <testcase time="0.141" classname="aet01" name="aet01_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01.R:13')"/>
     </testcase>
-    <testcase time="0.641" classname="aet01" name="aet01_can_handle_some_NA_values"/>
-    <testcase time="0.141" classname="aet01" name="aet01_can_handle_some_NA_values">
+    <testcase time="0.633" classname="aet01" name="aet01_can_handle_some_NA_values"/>
+    <testcase time="0.139" classname="aet01" name="aet01_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01.R:29')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet01_aesi" timestamp="2023-03-09T09:17:20Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="1.024">
-    <testcase time="0.472" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
-    <testcase time="0.0629999999999997" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values">
+  <testsuite name="aet01_aesi" timestamp="2023-03-09T10:08:41Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="0.998">
+    <testcase time="0.464" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
+    <testcase time="0.0609999999999999" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01_aesi.R:18')"/>
     </testcase>
-    <testcase time="0.426" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
-    <testcase time="0.0629999999999997" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values">
+    <testcase time="0.411" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
+    <testcase time="0.0620000000000003" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01_aesi.R:30')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet02" timestamp="2023-03-09T09:17:21Z" hostname="51dfeb9dc374" tests="12" skipped="6" failures="0" errors="0" time="4.213">
-    <testcase time="0.396" classname="aet02" name="aet02_1_can_handle_NA_values"/>
+  <testsuite name="aet02" timestamp="2023-03-09T10:08:42Z" hostname="8db99f313edb" tests="12" skipped="6" failures="0" errors="0" time="4.094">
+    <testcase time="0.393999999999999" classname="aet02" name="aet02_1_can_handle_NA_values"/>
     <testcase time="0.0369999999999999" classname="aet02" name="aet02_1_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet02.R:11')"/>
     </testcase>
-    <testcase time="0.833" classname="aet02" name="aet02_1_can_handle_some_NA_values"/>
-    <testcase time="0.132" classname="aet02" name="aet02_1_can_handle_some_NA_values">
+    <testcase time="0.816000000000001" classname="aet02" name="aet02_1_can_handle_some_NA_values"/>
+    <testcase time="0.129" classname="aet02" name="aet02_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet02.R:27')"/>
     </testcase>
-    <testcase time="0.4" classname="aet02" name="aet02_2_can_handle_NA_values"/>
-    <testcase time="0.0469999999999997" classname="aet02" name="aet02_2_can_handle_NA_values">
+    <testcase time="0.390000000000001" classname="aet02" name="aet02_2_can_handle_NA_values"/>
+    <testcase time="0.0459999999999994" classname="aet02" name="aet02_2_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet02.R:41')"/>
     </testcase>
-    <testcase time="1.239" classname="aet02" name="aet02_2_can_handle_some_NA_values"/>
-    <testcase time="0.218" classname="aet02" name="aet02_2_can_handle_some_NA_values">
+    <testcase time="1.187" classname="aet02" name="aet02_2_can_handle_some_NA_values"/>
+    <testcase time="0.214" classname="aet02" name="aet02_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet02.R:59')"/>
     </testcase>
-    <testcase time="0.379" classname="aet02" name="aet02_3_can_handle_NA_values"/>
-    <testcase time="0.0299999999999994" classname="aet02" name="aet02_3_can_handle_NA_values">
+    <testcase time="0.366" classname="aet02" name="aet02_3_can_handle_NA_values"/>
+    <testcase time="0.0289999999999999" classname="aet02" name="aet02_3_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet02.R:71')"/>
     </testcase>
-    <testcase time="0.435" classname="aet02" name="aet02_3_can_handle_some_NA_values"/>
-    <testcase time="0.0670000000000002" classname="aet02" name="aet02_3_can_handle_some_NA_values">
+    <testcase time="0.420999999999999" classname="aet02" name="aet02_3_can_handle_some_NA_values"/>
+    <testcase time="0.0650000000000013" classname="aet02" name="aet02_3_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet02.R:85')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet03" timestamp="2023-03-09T09:17:25Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="2.549">
-    <testcase time="0.545" classname="aet03" name="aet03_can_handle_NA_values"/>
-    <testcase time="0.072000000000001" classname="aet03" name="aet03_can_handle_NA_values">
+  <testsuite name="aet03" timestamp="2023-03-09T10:08:46Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="2.404">
+    <testcase time="0.522" classname="aet03" name="aet03_can_handle_NA_values"/>
+    <testcase time="0.0689999999999991" classname="aet03" name="aet03_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet03.R:11')"/>
     </testcase>
-    <testcase time="1.714" classname="aet03" name="aet03_can_handle_some_NA_values"/>
-    <testcase time="0.218" classname="aet03" name="aet03_can_handle_some_NA_values">
+    <testcase time="1.61" classname="aet03" name="aet03_can_handle_some_NA_values"/>
+    <testcase time="0.203000000000001" classname="aet03" name="aet03_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet03.R:29')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet04" timestamp="2023-03-09T09:17:28Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="3.864">
-    <testcase time="0.794" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="0.105" classname="aet04" name="aet04_can_handle_NA_values">
+  <testsuite name="aet04" timestamp="2023-03-09T10:08:49Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="3.558">
+    <testcase time="0.716999999999999" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.0990000000000002" classname="aet04" name="aet04_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet04.R:11')"/>
     </testcase>
-    <testcase time="2.684" classname="aet04" name="aet04_can_handle_some_NA_values"/>
-    <testcase time="0.280999999999999" classname="aet04" name="aet04_can_handle_some_NA_values">
+    <testcase time="2.482" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="0.259999999999998" classname="aet04" name="aet04_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet04.R:44')"/>
     </testcase>
   </testsuite>
-  <testsuite name="assertions" timestamp="2023-03-09T09:17:32Z" hostname="51dfeb9dc374" tests="14" skipped="0" failures="0" errors="0" time="1.487">
-    <testcase time="0.017000000000003" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.0129999999999981" classname="assertions" name="assert_colnames_works_as_expected"/>
+  <testsuite name="assertions" timestamp="2023-03-09T10:08:52Z" hostname="8db99f313edb" tests="14" skipped="0" failures="0" errors="0" time="1.295">
+    <testcase time="0.0210000000000008" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.0120000000000005" classname="assertions" name="assert_colnames_works_as_expected"/>
     <testcase time="0.00199999999999889" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.198" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.207000000000001" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.195" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.201999999999998" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.243000000000002" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.187999999999999" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.195" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.177999999999997" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.189" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.175000000000001" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.173999999999999" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.175000000000001" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.167999999999999" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.175000000000001" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
     <testcase time="0.00900000000000034" classname="assertions" name="assert_args_works_as_expected"/>
     <testcase time="0.00199999999999889" classname="assertions" name="assert_args_works_as_expected"/>
-    <testcase time="0.00999999999999801" classname="assertions" name="assert_args_works_as_expected"/>
+    <testcase time="0.0100000000000016" classname="assertions" name="assert_args_works_as_expected"/>
   </testsuite>
-  <testsuite name="checks" timestamp="2023-03-09T09:17:33Z" hostname="51dfeb9dc374" tests="8" skipped="0" failures="0" errors="0" time="0.031">
-    <testcase time="0.00800000000000267" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00399999999999778" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00199999999999889" classname="checks" name="check_all_colnames_works_as_expected"/>
+  <testsuite name="checks" timestamp="2023-03-09T10:08:54Z" hostname="8db99f313edb" tests="8" skipped="0" failures="0" errors="0" time="0.029">
+    <testcase time="0.00700000000000145" classname="checks" name="check_all_colnames_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="checks" name="check_one_colnames_works_as_expected"/>
-    <testcase time="0.00399999999999778" classname="checks" name="check_one_colnames_works_as_expected"/>
-    <testcase time="0.00200000000000244" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00199999999999889" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00399999999999778" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00400000000000134" classname="checks" name="check_one_colnames_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00199999999999889" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00400000000000134" classname="checks" name="check_one_colnames_works_as_expected"/>
   </testsuite>
-  <testsuite name="chevron_tlg-class" timestamp="2023-03-09T09:17:33Z" hostname="51dfeb9dc374" tests="24" skipped="0" failures="0" errors="0" time="0.096">
-    <testcase time="0.0179999999999971" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+  <testsuite name="chevron_tlg-class" timestamp="2023-03-09T10:08:54Z" hostname="8db99f313edb" tests="24" skipped="0" failures="0" errors="0" time="0.082">
+    <testcase time="0.0150000000000006" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00399999999999778" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
     <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00599999999999667" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00399999999999778" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00399999999999778" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00700000000000145" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00599999999999667" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
     <testcase time="0.00400000000000134" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.0069999999999979" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00400000000000134" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00599999999999667" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
   </testsuite>
-  <testsuite name="chevron_tlg-methods" timestamp="2023-03-09T09:17:33Z" hostname="51dfeb9dc374" tests="36" skipped="1" failures="0" errors="0" time="3.02">
-    <testcase time="2.854" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object">
+  <testsuite name="chevron_tlg-methods" timestamp="2023-03-09T10:08:54Z" hostname="8db99f313edb" tests="36" skipped="1" failures="0" errors="0" time="2.726">
+    <testcase time="2.575" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object">
       <skipped message="Reason: On CRAN ('test-chevron_tlg-methods.R:5')"/>
     </testcase>
-    <testcase time="0.0150000000000006" classname="chevron_tlg_methods" name="run_returns_a_warning_if_provided_with_invalid_arguments"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.00200000000000244" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+    <testcase time="0.014999999999997" classname="chevron_tlg_methods" name="run_returns_a_warning_if_provided_with_invalid_arguments"/>
+    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.00399999999999778" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="main_works_as_expected"/>
     <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="main_setter_works_as_expected"/>
-    <testcase time="0.0119999999999969" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
+    <testcase time="0.00999999999999801" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="preprocess_works_as_expected"/>
-    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="preprocess_setter_works_as_expected"/>
-    <testcase time="0.0109999999999992" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
-    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="postprocess_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="preprocess_setter_works_as_expected"/>
+    <testcase time="0.0100000000000016" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="postprocess_works_as_expected"/>
     <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="postprocess_setter_works_as_expected"/>
-    <testcase time="0.0110000000000028" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
-    <testcase time="0.00799999999999912" classname="chevron_tlg_methods" name="datasets_works_as_expected"/>
-    <testcase time="0.00799999999999912" classname="chevron_tlg_methods" name="datasets_setter_works_as_expected"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.00200000000000244" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00199999999999889" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.0100000000000016" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
+    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="datasets_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="datasets_setter_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
-    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
   </testsuite>
-  <testsuite name="cmt01a" timestamp="2023-03-09T09:17:36Z" hostname="51dfeb9dc374" tests="12" skipped="6" failures="0" errors="0" time="4.592">
-    <testcase time="0.393000000000001" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
-    <testcase time="0.0489999999999995" classname="cmt01a" name="cmt01a_can_handle_all_NA_values">
+  <testsuite name="cmt01a" timestamp="2023-03-09T10:08:57Z" hostname="8db99f313edb" tests="12" skipped="6" failures="0" errors="0" time="4.218">
+    <testcase time="0.360000000000003" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
+    <testcase time="0.0439999999999969" classname="cmt01a" name="cmt01a_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:11')"/>
     </testcase>
-    <testcase time="0.949999999999999" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
-    <testcase time="0.167000000000002" classname="cmt01a" name="cmt01a_can_handle_some_NA_values">
+    <testcase time="0.864000000000001" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
+    <testcase time="0.158999999999999" classname="cmt01a" name="cmt01a_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:27')"/>
     </testcase>
-    <testcase time="0.393999999999998" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values"/>
-    <testcase time="0.0510000000000019" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values">
+    <testcase time="0.353000000000002" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values"/>
+    <testcase time="0.0459999999999994" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:40')"/>
     </testcase>
-    <testcase time="0.937999999999999" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values"/>
-    <testcase time="0.167999999999999" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values">
+    <testcase time="0.864000000000001" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values"/>
+    <testcase time="0.158999999999999" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:56')"/>
     </testcase>
-    <testcase time="0.394000000000002" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values"/>
-    <testcase time="0.0359999999999978" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values">
+    <testcase time="0.367000000000001" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values"/>
+    <testcase time="0.0350000000000001" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:69')"/>
     </testcase>
-    <testcase time="0.908000000000001" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values"/>
-    <testcase time="0.143999999999998" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values">
+    <testcase time="0.832000000000001" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values"/>
+    <testcase time="0.134999999999998" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:85')"/>
     </testcase>
   </testsuite>
-  <testsuite name="cmt02_pt" timestamp="2023-03-09T09:17:41Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="0.88">
-    <testcase time="0.357000000000003" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values"/>
-    <testcase time="0.032" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values">
+  <testsuite name="cmt02_pt" timestamp="2023-03-09T10:09:01Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="0.797">
+    <testcase time="0.323" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values"/>
+    <testcase time="0.0300000000000011" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt02_pt.R:11')"/>
     </testcase>
-    <testcase time="0.417999999999999" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values"/>
-    <testcase time="0.0730000000000004" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values">
+    <testcase time="0.376000000000001" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values"/>
+    <testcase time="0.0679999999999978" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt02_pt.R:27')"/>
     </testcase>
   </testsuite>
-  <testsuite name="default_tlg" timestamp="2023-03-09T09:17:42Z" hostname="51dfeb9dc374" tests="37" skipped="37" failures="0" errors="0" time="46.151">
-    <testcase time="0.745999999999999" classname="default_tlg" name="aet01_1_function_with_default_argument_value_return_expected_result_with_test_data">
+  <testsuite name="default_tlg" timestamp="2023-03-09T10:09:02Z" hostname="8db99f313edb" tests="37" skipped="37" failures="0" errors="0" time="42.42">
+    <testcase time="0.693999999999999" classname="default_tlg" name="aet01_1_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:5')"/>
     </testcase>
-    <testcase time="0.853999999999999" classname="default_tlg" name="aet01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.756" classname="default_tlg" name="aet01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:12')"/>
     </testcase>
-    <testcase time="0.512" classname="default_tlg" name="aet01_aesi_1_function_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.477" classname="default_tlg" name="aet01_aesi_1_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:19')"/>
     </testcase>
-    <testcase time="0.914999999999999" classname="default_tlg" name="aet02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.837" classname="default_tlg" name="aet02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:26')"/>
     </testcase>
-    <testcase time="1.473" classname="default_tlg" name="aet02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.347" classname="default_tlg" name="aet02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:33')"/>
     </testcase>
-    <testcase time="0.529999999999998" classname="default_tlg" name="aet02_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.490000000000002" classname="default_tlg" name="aet02_3_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:40')"/>
     </testcase>
-    <testcase time="2.095" classname="default_tlg" name="aet03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.87" classname="default_tlg" name="aet03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:47')"/>
     </testcase>
-    <testcase time="3.103" classname="default_tlg" name="aet04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.82" classname="default_tlg" name="aet04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:54')"/>
     </testcase>
-    <testcase time="1.269" classname="default_tlg" name="cmt01a_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.16" classname="default_tlg" name="cmt01a_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:61')"/>
     </testcase>
-    <testcase time="0.976999999999997" classname="default_tlg" name="cmt01a_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.918000000000006" classname="default_tlg" name="cmt01a_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:68')"/>
     </testcase>
-    <testcase time="0.934000000000005" classname="default_tlg" name="cmt01a_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.863" classname="default_tlg" name="cmt01a_3_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:75')"/>
     </testcase>
-    <testcase time="0.415999999999997" classname="default_tlg" name="cmt02_pt_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.390999999999998" classname="default_tlg" name="cmt02_pt_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:82')"/>
     </testcase>
-    <testcase time="2.178" classname="default_tlg" name="dmt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.061" classname="default_tlg" name="dmt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:89')"/>
     </testcase>
-    <testcase time="0.550999999999995" classname="default_tlg" name="dst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.515999999999998" classname="default_tlg" name="dst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:96')"/>
     </testcase>
-    <testcase time="0.694000000000003" classname="default_tlg" name="dst01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.654000000000003" classname="default_tlg" name="dst01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:103')"/>
     </testcase>
-    <testcase time="0.889000000000003" classname="default_tlg" name="dst01_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.815999999999995" classname="default_tlg" name="dst01_3_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:110')"/>
     </testcase>
-    <testcase time="0.349999999999994" classname="default_tlg" name="dtht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.329000000000001" classname="default_tlg" name="dtht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:117')"/>
     </testcase>
-    <testcase time="2.791" classname="default_tlg" name="egt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.602" classname="default_tlg" name="egt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:124')"/>
     </testcase>
-    <testcase time="0.286999999999999" classname="default_tlg" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.268000000000001" classname="default_tlg" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:131')"/>
     </testcase>
-    <testcase time="0.25" classname="default_tlg" name="egt02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.233999999999995" classname="default_tlg" name="egt02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:138')"/>
     </testcase>
-    <testcase time="0.362000000000002" classname="default_tlg" name="egt03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.340000000000003" classname="default_tlg" name="egt03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:145')"/>
     </testcase>
-    <testcase time="0.359999999999999" classname="default_tlg" name="egt03_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.338000000000001" classname="default_tlg" name="egt03_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:152')"/>
     </testcase>
-    <testcase time="0.849000000000004" classname="default_tlg" name="egt05_qtcat_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.75" classname="default_tlg" name="egt05_qtcat_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:159')"/>
     </testcase>
-    <testcase time="0.238999999999997" classname="default_tlg" name="ext01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.217999999999996" classname="default_tlg" name="ext01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:166')"/>
     </testcase>
-    <testcase time="0.512" classname="default_tlg" name="ext01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.480000000000004" classname="default_tlg" name="ext01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:173')"/>
     </testcase>
-    <testcase time="1.909" classname="default_tlg" name="lbt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.80399999999999" classname="default_tlg" name="lbt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:180')"/>
     </testcase>
-    <testcase time="0.755000000000003" classname="default_tlg" name="lbt04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.700000000000003" classname="default_tlg" name="lbt04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:187')"/>
     </testcase>
-    <testcase time="0.823999999999998" classname="default_tlg" name="lbt05_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.765999999999998" classname="default_tlg" name="lbt05_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:194')"/>
     </testcase>
-    <testcase time="1.123" classname="default_tlg" name="lbt07_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.009" classname="default_tlg" name="lbt07_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:201')"/>
     </testcase>
-    <testcase time="2.04199999999999" classname="default_tlg" name="lbt14_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.883" classname="default_tlg" name="lbt14_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:208')"/>
     </testcase>
-    <testcase time="2.161" classname="default_tlg" name="lbt14_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.935" classname="default_tlg" name="lbt14_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:215')"/>
     </testcase>
-    <testcase time="0.692" classname="default_tlg" name="mht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.630000000000003" classname="default_tlg" name="mht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:222')"/>
     </testcase>
-    <testcase time="5.671" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="5.201" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:229')"/>
     </testcase>
-    <testcase time="5.547" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="5.087" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:236')"/>
     </testcase>
-    <testcase time="0.438000000000002" classname="default_tlg" name="vst02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.396000000000001" classname="default_tlg" name="vst02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:243')"/>
     </testcase>
-    <testcase time="0.435000000000002" classname="default_tlg" name="vst02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.393000000000001" classname="default_tlg" name="vst02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:250')"/>
     </testcase>
-    <testcase time="0.417999999999992" classname="default_tlg" name="pdt02_1_function_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.387" classname="default_tlg" name="pdt02_1_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:257')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dmt01" timestamp="2023-03-09T09:18:28Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="4.256">
-    <testcase time="1.997" classname="dmt01" name="dmt01_1_can_handle_NA_values"/>
-    <testcase time="0.0930000000000035" classname="dmt01" name="dmt01_1_can_handle_NA_values">
+  <testsuite name="dmt01" timestamp="2023-03-09T10:09:44Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="3.946">
+    <testcase time="1.846" classname="dmt01" name="dmt01_1_can_handle_NA_values"/>
+    <testcase time="0.0870000000000033" classname="dmt01" name="dmt01_1_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-dmt01.R:11')"/>
     </testcase>
-    <testcase time="2.04300000000001" classname="dmt01" name="dmt01_1_can_handle_some_NA_values"/>
-    <testcase time="0.12299999999999" classname="dmt01" name="dmt01_1_can_handle_some_NA_values">
+    <testcase time="1.89999999999999" classname="dmt01" name="dmt01_1_can_handle_some_NA_values"/>
+    <testcase time="0.113" classname="dmt01" name="dmt01_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-dmt01.R:24')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dst01" timestamp="2023-03-09T09:18:32Z" hostname="51dfeb9dc374" tests="26" skipped="13" failures="0" errors="0" time="8.731">
-    <testcase time="0.465000000000003" classname="dst01" name="dst01_can_handle_all_NA_values"/>
-    <testcase time="0.034000000000006" classname="dst01" name="dst01_can_handle_all_NA_values">
+  <testsuite name="dst01" timestamp="2023-03-09T10:09:48Z" hostname="8db99f313edb" tests="26" skipped="13" failures="0" errors="0" time="7.763">
+    <testcase time="0.424000000000007" classname="dst01" name="dst01_can_handle_all_NA_values"/>
+    <testcase time="0.0309999999999917" classname="dst01" name="dst01_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:13')"/>
     </testcase>
-    <testcase time="0.5" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var"/>
-    <testcase time="0.0409999999999968" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var">
+    <testcase time="0.429000000000002" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var"/>
+    <testcase time="0.0370000000000061" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:25')"/>
     </testcase>
-    <testcase time="0.518000000000001" classname="dst01" name="dst01_1_can_handle_some_NA_values"/>
-    <testcase time="0.078000000000003" classname="dst01" name="dst01_1_can_handle_some_NA_values">
+    <testcase time="0.471000000000004" classname="dst01" name="dst01_1_can_handle_some_NA_values"/>
+    <testcase time="0.0719999999999885" classname="dst01" name="dst01_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:38')"/>
     </testcase>
-    <testcase time="0.483999999999995" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var"/>
-    <testcase time="0.0450000000000017" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var">
+    <testcase time="0.440000000000012" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var"/>
+    <testcase time="0.0419999999999874" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:50')"/>
     </testcase>
-    <testcase time="0.471000000000004" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var"/>
-    <testcase time="0.0439999999999969" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var">
+    <testcase time="0.426000000000002" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var"/>
+    <testcase time="0.0400000000000063" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:62')"/>
     </testcase>
-    <testcase time="0.478999999999999" classname="dst01" name="dst01_2_can_handle_all_NA_values"/>
-    <testcase time="0.0289999999999964" classname="dst01" name="dst01_2_can_handle_all_NA_values">
+    <testcase time="0.424999999999997" classname="dst01" name="dst01_2_can_handle_all_NA_values"/>
+    <testcase time="0.0259999999999962" classname="dst01" name="dst01_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:78')"/>
     </testcase>
-    <testcase time="0.471999999999994" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var"/>
-    <testcase time="0.0499999999999972" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var">
+    <testcase time="0.419000000000011" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var"/>
+    <testcase time="0.0479999999999876" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:90')"/>
     </testcase>
-    <testcase time="0.722000000000008" classname="dst01" name="dst01_2_can_handle_some_NA_values"/>
-    <testcase time="0.0900000000000034" classname="dst01" name="dst01_2_can_handle_some_NA_values">
+    <testcase time="0.602000000000004" classname="dst01" name="dst01_2_can_handle_some_NA_values"/>
+    <testcase time="0.0820000000000078" classname="dst01" name="dst01_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:103')"/>
     </testcase>
-    <testcase time="0.569999999999993" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var"/>
-    <testcase time="0.0619999999999976" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var">
+    <testcase time="0.481999999999999" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var"/>
+    <testcase time="0.0510000000000019" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:115')"/>
     </testcase>
-    <testcase time="0.624000000000009" classname="dst01" name="dst01_3_can_handle_all_NA_values"/>
-    <testcase time="0.0299999999999869" classname="dst01" name="dst01_3_can_handle_all_NA_values">
+    <testcase time="0.558999999999997" classname="dst01" name="dst01_3_can_handle_all_NA_values"/>
+    <testcase time="0.027000000000001" classname="dst01" name="dst01_3_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:131')"/>
     </testcase>
-    <testcase time="0.853999999999999" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var"/>
-    <testcase time="0.0890000000000128" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var">
+    <testcase time="0.769999999999996" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var"/>
+    <testcase time="0.0819999999999936" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:143')"/>
     </testcase>
-    <testcase time="1.00699999999999" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var"/>
-    <testcase time="0.0900000000000034" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var">
+    <testcase time="0.909000000000006" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var"/>
+    <testcase time="0.0859999999999985" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:155')"/>
     </testcase>
-    <testcase time="0.807000000000002" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var"/>
-    <testcase time="0.0759999999999934" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var">
+    <testcase time="0.712000000000003" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var"/>
+    <testcase time="0.070999999999998" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:167')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dtht01" timestamp="2023-03-09T09:18:41Z" hostname="51dfeb9dc374" tests="5" skipped="3" failures="0" errors="0" time="2">
-    <testcase time="0.549000000000007" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
-    <testcase time="0.0369999999999919" classname="dtht01" name="dtht01_can_handle_all_NA_values">
+  <testsuite name="dtht01" timestamp="2023-03-09T10:09:56Z" hostname="8db99f313edb" tests="5" skipped="3" failures="0" errors="0" time="1.799">
+    <testcase time="0.498000000000005" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
+    <testcase time="0.0330000000000013" classname="dtht01" name="dtht01_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dtht01.R:13')"/>
     </testcase>
-    <testcase time="0.597999999999999" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
-    <testcase time="0.0949999999999989" classname="dtht01" name="dtht01_can_handle_some_NA_values">
+    <testcase time="0.547999999999988" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
+    <testcase time="0.0900000000000034" classname="dtht01" name="dtht01_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-dtht01.R:29')"/>
     </testcase>
-    <testcase time="0.721000000000004" classname="dtht01" name="dtht01_can_be_parametrize_as_expected">
+    <testcase time="0.629999999999995" classname="dtht01" name="dtht01_can_be_parametrize_as_expected">
       <skipped message="Reason: On CRAN ('test-dtht01.R:38')"/>
     </testcase>
   </testsuite>
-  <testsuite name="egt03" timestamp="2023-03-09T09:18:43Z" hostname="51dfeb9dc374" tests="8" skipped="4" failures="0" errors="0" time="1.484">
-    <testcase time="0.298000000000002" classname="egt03" name="egt03_1_can_handle_all_NA_values"/>
-    <testcase time="0.070999999999998" classname="egt03" name="egt03_1_can_handle_all_NA_values">
+  <testsuite name="egt03" timestamp="2023-03-09T10:09:57Z" hostname="8db99f313edb" tests="8" skipped="4" failures="0" errors="0" time="1.406">
+    <testcase time="0.275000000000006" classname="egt03" name="egt03_1_can_handle_all_NA_values"/>
+    <testcase time="0.0679999999999978" classname="egt03" name="egt03_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:11')"/>
     </testcase>
-    <testcase time="0.298000000000002" classname="egt03" name="egt03_1_can_handle_some_NA_values"/>
-    <testcase time="0.0720000000000027" classname="egt03" name="egt03_1_can_handle_some_NA_values">
+    <testcase time="0.275000000000006" classname="egt03" name="egt03_1_can_handle_some_NA_values"/>
+    <testcase time="0.0690000000000026" classname="egt03" name="egt03_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:27')"/>
     </testcase>
-    <testcase time="0.289000000000001" classname="egt03" name="egt03_2_can_handle_all_NA_values"/>
-    <testcase time="0.0820000000000078" classname="egt03" name="egt03_2_can_handle_all_NA_values">
+    <testcase time="0.266999999999996" classname="egt03" name="egt03_2_can_handle_all_NA_values"/>
+    <testcase time="0.0759999999999934" classname="egt03" name="egt03_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:40')"/>
     </testcase>
-    <testcase time="0.290999999999997" classname="egt03" name="egt03_2_can_handle_some_NA_values"/>
-    <testcase time="0.0829999999999984" classname="egt03" name="egt03_2_can_handle_some_NA_values">
+    <testcase time="0.299000000000007" classname="egt03" name="egt03_2_can_handle_some_NA_values"/>
+    <testcase time="0.0769999999999982" classname="egt03" name="egt03_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:56')"/>
     </testcase>
   </testsuite>
-  <testsuite name="egt05_qtcat" timestamp="2023-03-09T09:18:44Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="0.932">
-    <testcase time="0.108000000000004" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values"/>
-    <testcase time="0.012999999999991" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values">
+  <testsuite name="egt05_qtcat" timestamp="2023-03-09T10:09:59Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="0.855">
+    <testcase time="0.0969999999999942" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values"/>
+    <testcase time="0.0130000000000052" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt05_qtcat.R:12')"/>
     </testcase>
-    <testcase time="0.596000000000004" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
-    <testcase time="0.215000000000003" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values">
+    <testcase time="0.542000000000002" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
+    <testcase time="0.203000000000003" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt05_qtcat.R:35')"/>
     </testcase>
   </testsuite>
-  <testsuite name="empty_report" timestamp="2023-03-09T09:18:45Z" hostname="51dfeb9dc374" tests="33" skipped="0" failures="0" errors="0" time="12.249">
-    <testcase time="3.55499999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.694000000000003" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.384" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.298999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.307000000000002" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.326999999999998" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.317999999999998" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.375" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.298000000000002" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.322000000000003" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.301999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.315000000000012" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.682999999999993" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.382999999999996" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.359000000000009" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.429999999999993" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.346000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.070999999999998" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0690000000000026" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0799999999999983" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0559999999999974" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0570000000000022" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0889999999999986" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0580000000000069" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.436999999999998" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0619999999999976" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.638000000000005" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.295000000000002" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.296999999999997" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0739999999999981" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+  <testsuite name="empty_report" timestamp="2023-03-09T10:10:00Z" hostname="8db99f313edb" tests="33" skipped="0" failures="0" errors="0" time="11.341">
+    <testcase time="3.24799999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.657000000000011" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.36099999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.282000000000011" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.274999999999991" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.299000000000007" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.287999999999997" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.350999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.290000000000006" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.289999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.281000000000006" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.289999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.64200000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.35799999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.337000000000003" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.403000000000006" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.319000000000003" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0679999999999978" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.063999999999993" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0760000000000076" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0510000000000019" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0509999999999877" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0800000000000125" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0509999999999877" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.411000000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
     <testcase time="0.0589999999999975" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.111000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0990000000000038" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.594000000000008" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.277000000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.269999999999996" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0690000000000026" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0559999999999974" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.102999999999994" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0900000000000034" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
   </testsuite>
-  <testsuite name="lbt01" timestamp="2023-03-09T09:18:57Z" hostname="51dfeb9dc374" tests="2" skipped="1" failures="0" errors="0" time="1.692">
-    <testcase time="1.503" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
-    <testcase time="0.188999999999993" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs">
+  <testsuite name="lbt01" timestamp="2023-03-09T10:10:11Z" hostname="8db99f313edb" tests="2" skipped="1" failures="0" errors="0" time="1.553">
+    <testcase time="1.38000000000001" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+    <testcase time="0.172999999999988" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs">
       <skipped message="Reason: On CRAN ('test-lbt01.R:11')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt04" timestamp="2023-03-09T09:18:59Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="1.149">
-    <testcase time="0.314999999999998" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
-    <testcase time="0.027000000000001" classname="lbt04" name="lbt04_can_handle_all_NA_values">
+  <testsuite name="lbt04" timestamp="2023-03-09T10:10:13Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="1.06">
+    <testcase time="0.293000000000006" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
+    <testcase time="0.0250000000000057" classname="lbt04" name="lbt04_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt04.R:10')"/>
     </testcase>
-    <testcase time="0.698999999999998" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
-    <testcase time="0.108000000000004" classname="lbt04" name="lbt04_can_handle_some_NA_values">
+    <testcase time="0.640000000000001" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
+    <testcase time="0.10199999999999" classname="lbt04" name="lbt04_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt04.R:24')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt05" timestamp="2023-03-09T09:19:00Z" hostname="51dfeb9dc374" tests="3" skipped="1" failures="0" errors="0" time="1.485">
-    <testcase time="0.694999999999993" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing"/>
-    <testcase time="0.683999999999997" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
-    <testcase time="0.106000000000009" classname="lbt05" name="lbt05_can_handle_some_NA_values">
+  <testsuite name="lbt05" timestamp="2023-03-09T10:10:14Z" hostname="8db99f313edb" tests="3" skipped="1" failures="0" errors="0" time="1.355">
+    <testcase time="0.628" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing"/>
+    <testcase time="0.626000000000005" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
+    <testcase time="0.100999999999999" classname="lbt05" name="lbt05_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt05.R:24')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt07" timestamp="2023-03-09T09:19:02Z" hostname="51dfeb9dc374" tests="2" skipped="1" failures="0" errors="0" time="1.17">
-    <testcase time="1.00999999999999" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
-    <testcase time="0.160000000000011" classname="lbt07" name="lbt07_can_handle_some_NA_values">
+  <testsuite name="lbt07" timestamp="2023-03-09T10:10:15Z" hostname="8db99f313edb" tests="2" skipped="1" failures="0" errors="0" time="1.029">
+    <testcase time="0.881" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
+    <testcase time="0.147999999999996" classname="lbt07" name="lbt07_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt07.R:12')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt14" timestamp="2023-03-09T09:19:03Z" hostname="51dfeb9dc374" tests="8" skipped="4" failures="0" errors="0" time="8.157">
-    <testcase time="1.892" classname="lbt14" name="lbt14_1_can_handle_all_NA_values"/>
-    <testcase time="0.0499999999999972" classname="lbt14" name="lbt14_1_can_handle_all_NA_values">
+  <testsuite name="lbt14" timestamp="2023-03-09T10:10:16Z" hostname="8db99f313edb" tests="8" skipped="4" failures="0" errors="0" time="7.547">
+    <testcase time="1.75700000000001" classname="lbt14" name="lbt14_1_can_handle_all_NA_values"/>
+    <testcase time="0.0480000000000018" classname="lbt14" name="lbt14_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:11')"/>
     </testcase>
-    <testcase time="1.92" classname="lbt14" name="lbt14_1_can_handle_some_NA_values"/>
-    <testcase time="0.290999999999997" classname="lbt14" name="lbt14_1_can_handle_some_NA_values">
+    <testcase time="1.765" classname="lbt14" name="lbt14_1_can_handle_some_NA_values"/>
+    <testcase time="0.274999999999991" classname="lbt14" name="lbt14_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:30')"/>
     </testcase>
-    <testcase time="1.639" classname="lbt14" name="lbt14_2_can_handle_all_NA_values"/>
-    <testcase time="0.0500000000000114" classname="lbt14" name="lbt14_2_can_handle_all_NA_values">
+    <testcase time="1.524" classname="lbt14" name="lbt14_2_can_handle_all_NA_values"/>
+    <testcase time="0.0460000000000065" classname="lbt14" name="lbt14_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:43')"/>
     </testcase>
-    <testcase time="2.008" classname="lbt14" name="lbt14_2_can_handle_some_NA_values"/>
-    <testcase time="0.306999999999988" classname="lbt14" name="lbt14_2_can_handle_some_NA_values">
+    <testcase time="1.84099999999999" classname="lbt14" name="lbt14_2_can_handle_some_NA_values"/>
+    <testcase time="0.290999999999997" classname="lbt14" name="lbt14_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:62')"/>
     </testcase>
   </testsuite>
-  <testsuite name="mng01" timestamp="2023-03-09T09:19:11Z" hostname="51dfeb9dc374" tests="2" skipped="0" failures="0" errors="0" time="2.474">
-    <testcase time="1.298" classname="mng01" name="mng01_1_works_as_expected"/>
-    <testcase time="1.176" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
+  <testsuite name="mng01" timestamp="2023-03-09T10:10:24Z" hostname="8db99f313edb" tests="2" skipped="0" failures="0" errors="0" time="2.356">
+    <testcase time="1.239" classname="mng01" name="mng01_1_works_as_expected"/>
+    <testcase time="1.117" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
   </testsuite>
-  <testsuite name="pdt01" timestamp="2023-03-09T09:19:14Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="1.114">
-    <testcase time="0.363" classname="pdt01" name="pdt01_1_can_handle_all_NA_values"/>
-    <testcase time="0.0390000000000015" classname="pdt01" name="pdt01_1_can_handle_all_NA_values">
+  <testsuite name="pdt01" timestamp="2023-03-09T10:10:26Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="0.995">
+    <testcase time="0.329999999999998" classname="pdt01" name="pdt01_1_can_handle_all_NA_values"/>
+    <testcase time="0.0360000000000014" classname="pdt01" name="pdt01_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt01.R:11')"/>
     </testcase>
-    <testcase time="0.585999999999999" classname="pdt01" name="pdt01_1_can_handle_some_NA_values"/>
-    <testcase time="0.126000000000005" classname="pdt01" name="pdt01_1_can_handle_some_NA_values">
+    <testcase time="0.510999999999996" classname="pdt01" name="pdt01_1_can_handle_some_NA_values"/>
+    <testcase time="0.118000000000009" classname="pdt01" name="pdt01_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt01.R:27')"/>
     </testcase>
   </testsuite>
-  <testsuite name="pdt02" timestamp="2023-03-09T09:19:15Z" hostname="51dfeb9dc374" tests="4" skipped="2" failures="0" errors="0" time="0.932">
-    <testcase time="0.387999999999991" classname="pdt02" name="pdt02_1_can_handle_all_NA_values"/>
-    <testcase time="0.034000000000006" classname="pdt02" name="pdt02_1_can_handle_all_NA_values">
+  <testsuite name="pdt02" timestamp="2023-03-09T10:10:27Z" hostname="8db99f313edb" tests="4" skipped="2" failures="0" errors="0" time="0.856">
+    <testcase time="0.35499999999999" classname="pdt02" name="pdt02_1_can_handle_all_NA_values"/>
+    <testcase time="0.0330000000000013" classname="pdt02" name="pdt02_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt02.R:11')"/>
     </testcase>
-    <testcase time="0.459000000000003" classname="pdt02" name="pdt02_1_can_handle_some_NA_values"/>
-    <testcase time="0.0509999999999877" classname="pdt02" name="pdt02_1_can_handle_some_NA_values">
+    <testcase time="0.420000000000002" classname="pdt02" name="pdt02_1_can_handle_some_NA_values"/>
+    <testcase time="0.0480000000000018" classname="pdt02" name="pdt02_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt02.R:27')"/>
     </testcase>
   </testsuite>
-  <testsuite name="utils" timestamp="2023-03-09T09:19:16Z" hostname="51dfeb9dc374" tests="17" skipped="0" failures="0" errors="0" time="0.097">
-    <testcase time="0.0170000000000101" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_exected"/>
+  <testsuite name="utils" timestamp="2023-03-09T10:10:28Z" hostname="8db99f313edb" tests="17" skipped="0" failures="0" errors="0" time="0.086">
+    <testcase time="0.0159999999999911" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00100000000000477" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.0109999999999957" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00199999999999534" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.0120000000000005" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00499999999999545" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00500000000000966" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00199999999999534" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00499999999999545" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00799999999999557" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
+    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00499999999999545" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
     <testcase time="0.00400000000000489" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
-    <testcase time="0.007000000000005" classname="utils" name="h_format_dec_works_returns_null_with_NA_format"/>
-    <testcase time="0.00699999999999079" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
-    <testcase time="0.007000000000005" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_returns_null_with_NA_format"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
   </testsuite>
 </testsuites>
