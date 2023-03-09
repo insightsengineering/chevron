@@ -99,13 +99,17 @@ aet02_1_pre <- function(adam_db) {
 
   aet02_1_check(adam_db)
 
+  new_format <- list(
+    adae = list(
+      AEBODSYS = rule("No Coding available" = c("", NA, "<Missing>")),
+      AEDECOD = rule("No Coding available" = c("", NA, "<Missing>"))
+    )
+  )
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(
-      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
-    ) %>%
     dm_update_zoomed()
 }
 
@@ -290,14 +294,18 @@ aet02_2_lyt <- function(arm_var,
 aet02_2_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
+  new_format <- list(
+    adae = list(
+      AEBODSYS = rule("No Coding available" = c("", NA, "<Missing>")),
+      AEDECOD = rule("No Coding available" = c("", NA, "<Missing>")),
+      AEHLT = rule("No Coding available" = c("", NA, "<Missing>"))
+    )
+  )
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(
-      AEBODSYS = tern::explicit_na(tern::sas_na(.data$AEBODSYS), label = "No Coding available"),
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available"),
-      AEHLT = tern::explicit_na(tern::sas_na(.data$AEHLT), label = "No Coding available")
-    ) %>%
     dm_update_zoomed()
 }
 
@@ -425,12 +433,16 @@ aet02_3_lyt <- function(arm_var,
 aet02_3_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
+  new_format <- list(
+    adae = list(
+      AEDECOD = rule("No Coding available" = c("", NA, "<Missing>"))
+    )
+  )
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
-    ) %>%
     dm_update_zoomed()
 }
 
