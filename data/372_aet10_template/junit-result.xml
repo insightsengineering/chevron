@@ -1,745 +1,524 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="aet01" timestamp="2023-03-09T09:49:31Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="1.204">
-    <testcase time="1.032" classname="aet01" name="aet01_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-aet01.R:12')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(aet01_1, proc_data))
-       at test-aet01.R:12:2
- 10. chevron::run(aet01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="aet01" timestamp="2023-03-09T15:16:07Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="2.515">
+    <testcase time="1.636" classname="aet01" name="aet01_can_handle_all_NA_values"/>
+    <testcase time="0.132" classname="aet01" name="aet01_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-aet01.R:13')"/>
     </testcase>
-    <testcase time="0.172" classname="aet01" name="aet01_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-aet01.R:28')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(aet01_1, proc_data))
-       at test-aet01.R:28:2
- 10. chevron::run(aet01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.612" classname="aet01" name="aet01_can_handle_some_NA_values"/>
+    <testcase time="0.135" classname="aet01" name="aet01_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-aet01.R:29')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet01_aesi" timestamp="2023-03-09T09:49:32Z" hostname="c931ffc10241" tests="4" skipped="2" failures="0" errors="0" time="1.315">
-    <testcase time="0.64" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
-    <testcase time="0.111" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values">
+  <testsuite name="aet01_aesi" timestamp="2023-03-09T15:16:09Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="0.963">
+    <testcase time="0.449" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
+    <testcase time="0.0590000000000002" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01_aesi.R:18')"/>
     </testcase>
-    <testcase time="0.435" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
-    <testcase time="0.129" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values">
+    <testcase time="0.396" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
+    <testcase time="0.0590000000000002" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01_aesi.R:30')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet03" timestamp="2023-03-09T09:49:33Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.088">
-    <testcase time="0.0519999999999996" classname="aet03" name="aet03_can_handle_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-aet03.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(aet03_1, proc_data))
-       at test-aet03.R:10:2
- 10. chevron::run(aet03_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="aet03" timestamp="2023-03-09T15:16:10Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="2.372">
+    <testcase time="0.573" classname="aet03" name="aet03_can_handle_NA_values"/>
+    <testcase time="0.0599999999999996" classname="aet03" name="aet03_can_handle_NA_values">
+      <skipped message="Reason: On CRAN ('test-aet03.R:11')"/>
     </testcase>
-    <testcase time="0.0360000000000005" classname="aet03" name="aet03_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-aet03.R:28')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(aet03_1, proc_data))
-       at test-aet03.R:28:2
- 10. chevron::run(aet03_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="1.552" classname="aet03" name="aet03_can_handle_some_NA_values"/>
+    <testcase time="0.186999999999999" classname="aet03" name="aet03_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-aet03.R:29')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet04" timestamp="2023-03-09T09:49:33Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.066">
-    <testcase time="0.0359999999999996" classname="aet04" name="aet04_can_handle_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-aet04.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(aet04_1, proc_data))
-       at test-aet04.R:10:2
- 10. chevron::run(aet04_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="aet04" timestamp="2023-03-09T15:16:12Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="3.378">
+    <testcase time="0.685" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.103" classname="aet04" name="aet04_can_handle_NA_values">
+      <skipped message="Reason: On CRAN ('test-aet04.R:11')"/>
     </testcase>
-    <testcase time="0.0300000000000002" classname="aet04" name="aet04_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-aet04.R:43')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(aet04_1, proc_data))
-       at test-aet04.R:43:2
- 10. chevron::run(aet04_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="2.315" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="0.275" classname="aet04" name="aet04_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-aet04.R:44')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet10" timestamp="2023-03-09T09:49:33Z" hostname="c931ffc10241" tests="4" skipped="2" failures="0" errors="0" time="0.354">
-    <testcase time="0.143" classname="aet10" name="aet10_1_can_handle_NA_values"/>
-    <testcase time="0.0250000000000004" classname="aet10" name="aet10_1_can_handle_NA_values">
+  <testsuite name="aet10" timestamp="2023-03-09T15:16:16Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="0.332">
+    <testcase time="0.125" classname="aet10" name="aet10_1_can_handle_NA_values"/>
+    <testcase time="0.0240000000000009" classname="aet10" name="aet10_1_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet10.R:11')"/>
     </testcase>
-    <testcase time="0.138" classname="aet10" name="aet10_1_can_handle_some_NA_values"/>
-    <testcase time="0.048" classname="aet10" name="aet10_1_can_handle_some_NA_values">
+    <testcase time="0.135999999999999" classname="aet10" name="aet10_1_can_handle_some_NA_values"/>
+    <testcase time="0.0470000000000006" classname="aet10" name="aet10_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet10.R:25')"/>
     </testcase>
   </testsuite>
-  <testsuite name="assertions" timestamp="2023-03-09T09:49:34Z" hostname="c931ffc10241" tests="14" skipped="0" failures="0" errors="0" time="1.36">
-    <testcase time="0.016" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.0110000000000001" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.00199999999999978" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.202999999999999" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.194" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.175000000000001" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.189" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.181" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.181999999999999" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.18" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.00900000000000034" classname="assertions" name="assert_args_works_as_expected"/>
-    <testcase time="0.00199999999999978" classname="assertions" name="assert_args_works_as_expected"/>
-    <testcase time="0.0100000000000007" classname="assertions" name="assert_args_works_as_expected"/>
+  <testsuite name="assertions" timestamp="2023-03-09T15:16:16Z" hostname="c02958803a7f" tests="14" skipped="0" failures="0" errors="0" time="1.297">
+    <testcase time="0.0149999999999988" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.0120000000000005" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.00200000000000067" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.00499999999999901" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.186" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.185" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.177" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.168000000000001" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.176" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.176" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.174999999999999" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.0080000000000009" classname="assertions" name="assert_args_works_as_expected"/>
+    <testcase time="0.00199999999999889" classname="assertions" name="assert_args_works_as_expected"/>
+    <testcase time="0.00999999999999979" classname="assertions" name="assert_args_works_as_expected"/>
   </testsuite>
-  <testsuite name="checks" timestamp="2023-03-09T09:49:35Z" hostname="c931ffc10241" tests="8" skipped="0" failures="0" errors="0" time="0.028">
-    <testcase time="0.00699999999999967" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00399999999999956" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00100000000000033" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00400000000000045" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00399999999999956" classname="checks" name="check_one_colnames_works_as_expected"/>
+  <testsuite name="checks" timestamp="2023-03-09T15:16:17Z" hostname="c02958803a7f" tests="8" skipped="0" failures="0" errors="0" time="0.028">
+    <testcase time="0.00700000000000145" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00299999999999834" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00200000000000067" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00300000000000011" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00500000000000078" classname="checks" name="check_one_colnames_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="checks" name="check_one_colnames_works_as_expected"/>
-    <testcase time="0.00199999999999978" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00199999999999889" classname="checks" name="check_one_colnames_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="checks" name="check_one_colnames_works_as_expected"/>
   </testsuite>
-  <testsuite name="chevron_tlg-class" timestamp="2023-03-09T09:49:35Z" hostname="c931ffc10241" tests="24" skipped="0" failures="0" errors="0" time="0.079">
-    <testcase time="0.00899999999999945" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00400000000000045" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00399999999999956" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+  <testsuite name="chevron_tlg-class" timestamp="2023-03-09T15:16:17Z" hostname="c02958803a7f" tests="24" skipped="0" failures="0" errors="0" time="0.086">
+    <testcase time="0.00900000000000034" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00399999999999956" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00400000000000045" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00199999999999978" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00399999999999956" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00500000000000078" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00599999999999934" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00400000000000045" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00399999999999956" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00399999999999956" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00399999999999956" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00400000000000134" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.0119999999999987" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000067" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00199999999999978" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000067" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000067" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
   </testsuite>
-  <testsuite name="chevron_tlg-methods" timestamp="2023-03-09T09:49:35Z" hostname="c931ffc10241" tests="36" skipped="0" failures="0" errors="1" time="0.207">
-    <testcase time="0.0140000000000002" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-chevron_tlg-methods.R:4')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::run(aet04_1, syn_data, prune_0 = TRUE)
-      at test-chevron_tlg-methods.R:4:2
- 2. chevron::run(aet04_1, syn_data, prune_0 = TRUE)
- 4. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="chevron_tlg-methods" timestamp="2023-03-09T15:16:18Z" hostname="c02958803a7f" tests="36" skipped="1" failures="0" errors="0" time="2.802">
+    <testcase time="2.646" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object">
+      <skipped message="Reason: On CRAN ('test-chevron_tlg-methods.R:5')"/>
     </testcase>
-    <testcase time="0.0209999999999999" classname="chevron_tlg_methods" name="run_returns_a_warning_if_provided_with_invalid_arguments"/>
-    <testcase time="0.00399999999999956" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.00200000000000067" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.0140000000000011" classname="chevron_tlg_methods" name="run_returns_a_warning_if_provided_with_invalid_arguments"/>
+    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
     <testcase time="0.000999999999999446" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.00500000000000078" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+    <testcase time="0.000999999999999446" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+    <testcase time="0.000999999999999446" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+    <testcase time="0.00500000000000078" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
     <testcase time="0.000999999999999446" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
-    <testcase time="0.00399999999999956" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.000999999999999446" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.00300000000000011" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="main_works_as_expected"/>
-    <testcase time="0.0369999999999999" classname="chevron_tlg_methods" name="main_setter_works_as_expected"/>
-    <testcase time="0.0110000000000001" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="preprocess_works_as_expected"/>
-    <testcase time="0.00699999999999967" classname="chevron_tlg_methods" name="preprocess_setter_works_as_expected"/>
-    <testcase time="0.00999999999999979" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
+    <testcase time="0.00699999999999967" classname="chevron_tlg_methods" name="main_setter_works_as_expected"/>
+    <testcase time="0.0100000000000016" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
+    <testcase time="0.00599999999999845" classname="chevron_tlg_methods" name="preprocess_works_as_expected"/>
+    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="preprocess_setter_works_as_expected"/>
+    <testcase time="0.00899999999999856" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="postprocess_works_as_expected"/>
-    <testcase time="0.00700000000000056" classname="chevron_tlg_methods" name="postprocess_setter_works_as_expected"/>
-    <testcase time="0.0109999999999992" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="datasets_works_as_expected"/>
-    <testcase time="0.00700000000000056" classname="chevron_tlg_methods" name="datasets_setter_works_as_expected"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.00199999999999978" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.000999999999999446" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00199999999999978" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
-    <testcase time="0.00199999999999978" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
-    <testcase time="0.00499999999999989" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
-    <testcase time="0.00199999999999978" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
-    <testcase time="0.00100000000000033" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
+    <testcase time="0.00699999999999967" classname="chevron_tlg_methods" name="postprocess_setter_works_as_expected"/>
+    <testcase time="0.0100000000000016" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
+    <testcase time="0.0119999999999987" classname="chevron_tlg_methods" name="datasets_works_as_expected"/>
+    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="datasets_setter_works_as_expected"/>
+    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.00500000000000256" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
+    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
   </testsuite>
-  <testsuite name="cmt01a" timestamp="2023-03-09T09:49:35Z" hostname="c931ffc10241" tests="6" skipped="0" failures="0" errors="6" time="0.276">
-    <testcase time="0.0380000000000003" classname="cmt01a" name="cmt01a_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt01a.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt01a_1, proc_data))
-       at test-cmt01a.R:10:2
- 10. chevron::run(cmt01a_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="cmt01a" timestamp="2023-03-09T15:16:20Z" hostname="c02958803a7f" tests="12" skipped="6" failures="0" errors="0" time="4.033">
+    <testcase time="0.344000000000001" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
+    <testcase time="0.0410000000000004" classname="cmt01a" name="cmt01a_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt01a.R:11')"/>
     </testcase>
-    <testcase time="0.0510000000000002" classname="cmt01a" name="cmt01a_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt01a.R:26')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt01a_1, proc_data))
-       at test-cmt01a.R:26:2
- 10. chevron::run(cmt01a_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.828999999999997" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
+    <testcase time="0.154000000000003" classname="cmt01a" name="cmt01a_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt01a.R:27')"/>
     </testcase>
-    <testcase time="0.0499999999999998" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt01a.R:39')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt01a_2, proc_data))
-       at test-cmt01a.R:39:2
- 10. chevron::run(cmt01a_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.340999999999998" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values"/>
+    <testcase time="0.0440000000000005" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt01a.R:40')"/>
     </testcase>
-    <testcase time="0.0460000000000003" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt01a.R:55')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt01a_2, proc_data))
-       at test-cmt01a.R:55:2
- 10. chevron::run(cmt01a_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.824999999999999" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values"/>
+    <testcase time="0.154" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt01a.R:56')"/>
     </testcase>
-    <testcase time="0.0429999999999993" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt01a.R:68')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt01a_3, proc_data))
-       at test-cmt01a.R:68:2
- 10. chevron::run(cmt01a_3, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.339000000000002" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values"/>
+    <testcase time="0.0329999999999977" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt01a.R:69')"/>
     </testcase>
-    <testcase time="0.048" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt01a.R:84')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt01a_3, proc_data))
-       at test-cmt01a.R:84:2
- 10. chevron::run(cmt01a_3, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.797000000000001" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values"/>
+    <testcase time="0.132000000000001" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt01a.R:85')"/>
     </testcase>
   </testsuite>
-  <testsuite name="cmt02_pt" timestamp="2023-03-09T09:49:36Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.105">
-    <testcase time="0.0570000000000004" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt02_pt.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt02_pt_1, proc_data))
-       at test-cmt02_pt.R:10:2
- 10. chevron::run(cmt02_pt_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="cmt02_pt" timestamp="2023-03-09T15:16:24Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="0.777">
+    <testcase time="0.326000000000001" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values"/>
+    <testcase time="0.0279999999999987" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt02_pt.R:11')"/>
     </testcase>
-    <testcase time="0.048" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-cmt02_pt.R:26')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(cmt02_pt_1, proc_data))
-       at test-cmt02_pt.R:26:2
- 10. chevron::run(cmt02_pt_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.370000000000001" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values"/>
+    <testcase time="0.0529999999999973" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-cmt02_pt.R:27')"/>
     </testcase>
   </testsuite>
-  <testsuite name="default_tlg" timestamp="2023-03-09T09:49:36Z" hostname="c931ffc10241" tests="37" skipped="17" failures="0" errors="20" time="22.332">
-    <testcase time="0.117999999999999" classname="default_tlg" name="aet01_1_function_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:2')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::aet01_1_pre(syn_data)
-      at test-default_tlg.R:2:2</error>
+  <testsuite name="default_tlg" timestamp="2023-03-09T15:16:25Z" hostname="c02958803a7f" tests="37" skipped="37" failures="0" errors="0" time="40.643">
+    <testcase time="0.672000000000001" classname="default_tlg" name="aet01_1_function_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:5')"/>
     </testcase>
-    <testcase time="0.100000000000001" classname="default_tlg" name="aet01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:9')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::aet01_2_pre(syn_data)
-      at test-default_tlg.R:9:2</error>
+    <testcase time="0.710999999999999" classname="default_tlg" name="aet01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:12')"/>
     </testcase>
-    <testcase time="0.475" classname="default_tlg" name="aet01_aesi_1_function_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.453000000000003" classname="default_tlg" name="aet01_aesi_1_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:19')"/>
     </testcase>
-    <testcase time="0.676" classname="default_tlg" name="aet02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.616999999999997" classname="default_tlg" name="aet02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:26')"/>
     </testcase>
-    <testcase time="1.173" classname="default_tlg" name="aet02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.088" classname="default_tlg" name="aet02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:33')"/>
     </testcase>
-    <testcase time="0.302" classname="default_tlg" name="aet02_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.271999999999998" classname="default_tlg" name="aet02_3_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:40')"/>
     </testcase>
-    <testcase time="0.0140000000000011" classname="default_tlg" name="aet03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:44')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::aet03_1_pre(syn_data)
-      at test-default_tlg.R:44:2</error>
+    <testcase time="1.775" classname="default_tlg" name="aet03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:47')"/>
     </testcase>
-    <testcase time="0.0190000000000001" classname="default_tlg" name="aet04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:51')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::aet04_1_pre(syn_data)
-      at test-default_tlg.R:51:2</error>
+    <testcase time="2.654" classname="default_tlg" name="aet04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:54')"/>
     </testcase>
-    <testcase time="0.0339999999999989" classname="default_tlg" name="cmt01a_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:58')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::cmt01a_1_pre(syn_data)
-      at test-default_tlg.R:58:2</error>
+    <testcase time="0.937999999999999" classname="default_tlg" name="cmt01a_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:61')"/>
     </testcase>
-    <testcase time="0.0340000000000007" classname="default_tlg" name="cmt01a_2_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:65')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::cmt01a_2_pre(syn_data)
-      at test-default_tlg.R:65:2</error>
+    <testcase time="0.941000000000003" classname="default_tlg" name="cmt01a_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:68')"/>
     </testcase>
-    <testcase time="0.0429999999999993" classname="default_tlg" name="cmt01a_3_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:72')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::cmt01a_3_pre(syn_data)
-      at test-default_tlg.R:72:2</error>
+    <testcase time="0.91" classname="default_tlg" name="cmt01a_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:75')"/>
     </testcase>
-    <testcase time="0.0330000000000013" classname="default_tlg" name="cmt02_pt_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:79')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::cmt02_pt_1_pre(syn_data)
-      at test-default_tlg.R:79:2</error>
+    <testcase time="0.402999999999999" classname="default_tlg" name="cmt02_pt_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:82')"/>
     </testcase>
-    <testcase time="0.0189999999999984" classname="default_tlg" name="dmt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:86')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::dmt01_1_pre(syn_data)
-      at test-default_tlg.R:86:2</error>
+    <testcase time="2.085" classname="default_tlg" name="dmt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:89')"/>
     </testcase>
-    <testcase time="0.0190000000000001" classname="default_tlg" name="dst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:93')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::dst01_1_pre(syn_data)
-      at test-default_tlg.R:93:2</error>
+    <testcase time="0.518999999999998" classname="default_tlg" name="dst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:96')"/>
     </testcase>
-    <testcase time="0.0200000000000014" classname="default_tlg" name="dst01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:100')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::dst01_2_pre(syn_data)
-      at test-default_tlg.R:100:2</error>
+    <testcase time="0.798000000000002" classname="default_tlg" name="dst01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:103')"/>
     </testcase>
-    <testcase time="0.0199999999999996" classname="default_tlg" name="dst01_3_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:107')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::dst01_3_pre(syn_data)
-      at test-default_tlg.R:107:2</error>
+    <testcase time="0.771000000000001" classname="default_tlg" name="dst01_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:110')"/>
     </testcase>
-    <testcase time="0.0259999999999998" classname="default_tlg" name="dtht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:114')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::dtht01_1_pre(syn_data)
-      at test-default_tlg.R:114:2</error>
+    <testcase time="0.314999999999998" classname="default_tlg" name="dtht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:117')"/>
     </testcase>
-    <testcase time="2.754" classname="default_tlg" name="egt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.479" classname="default_tlg" name="egt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:124')"/>
     </testcase>
-    <testcase time="0.291" classname="default_tlg" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.255000000000003" classname="default_tlg" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:131')"/>
     </testcase>
-    <testcase time="0.254" classname="default_tlg" name="egt02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.222999999999999" classname="default_tlg" name="egt02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:138')"/>
     </testcase>
-    <testcase time="0.546000000000001" classname="default_tlg" name="egt03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.323" classname="default_tlg" name="egt03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:145')"/>
     </testcase>
-    <testcase time="0.337999999999999" classname="default_tlg" name="egt03_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.323999999999998" classname="default_tlg" name="egt03_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:152')"/>
     </testcase>
-    <testcase time="0.746" classname="default_tlg" name="egt05_qtcat_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.716000000000001" classname="default_tlg" name="egt05_qtcat_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:159')"/>
     </testcase>
-    <testcase time="0.209999999999999" classname="default_tlg" name="ext01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.198999999999998" classname="default_tlg" name="ext01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:166')"/>
     </testcase>
-    <testcase time="0.470000000000002" classname="default_tlg" name="ext01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.466999999999999" classname="default_tlg" name="ext01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:173')"/>
     </testcase>
-    <testcase time="1.755" classname="default_tlg" name="lbt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.709" classname="default_tlg" name="lbt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:180')"/>
     </testcase>
-    <testcase time="0.0150000000000006" classname="default_tlg" name="lbt04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:184')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::lbt04_1_pre(syn_data)
-      at test-default_tlg.R:184:2</error>
+    <testcase time="0.668999999999997" classname="default_tlg" name="lbt04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:187')"/>
     </testcase>
-    <testcase time="0.0569999999999986" classname="default_tlg" name="lbt05_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:191')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::lbt05_1_pre(syn_data)
-      at test-default_tlg.R:191:2</error>
+    <testcase time="0.707000000000001" classname="default_tlg" name="lbt05_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:194')"/>
     </testcase>
-    <testcase time="0.0199999999999996" classname="default_tlg" name="lbt07_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:198')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::lbt07_1_pre(syn_data)
-      at test-default_tlg.R:198:2</error>
+    <testcase time="0.963999999999999" classname="default_tlg" name="lbt07_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:201')"/>
     </testcase>
-    <testcase time="0.0210000000000008" classname="default_tlg" name="lbt14_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:205')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::lbt14_1_pre(syn_data)
-      at test-default_tlg.R:205:2</error>
+    <testcase time="1.809" classname="default_tlg" name="lbt14_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:208')"/>
     </testcase>
-    <testcase time="0.0199999999999996" classname="default_tlg" name="lbt14_2_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:212')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::lbt14_2_pre(syn_data)
-      at test-default_tlg.R:212:2</error>
+    <testcase time="1.865" classname="default_tlg" name="lbt14_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:215')"/>
     </testcase>
-    <testcase time="0.0289999999999999" classname="default_tlg" name="mht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:219')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::mht01_1_pre(syn_data)
-      at test-default_tlg.R:219:2</error>
+    <testcase time="0.607999999999997" classname="default_tlg" name="mht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:222')"/>
     </testcase>
-    <testcase time="5.36" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="5.37" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:229')"/>
     </testcase>
-    <testcase time="5.422" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="4.904" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:236')"/>
     </testcase>
-    <testcase time="0.446999999999999" classname="default_tlg" name="vst02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.380000000000003" classname="default_tlg" name="vst02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:243')"/>
     </testcase>
-    <testcase time="0.419" classname="default_tlg" name="vst02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.386000000000003" classname="default_tlg" name="vst02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:250')"/>
     </testcase>
-    <testcase time="0.0330000000000013" classname="default_tlg" name="pdt02_1_function_with_default_argument_value_return_expected_result_with_test_data">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-default_tlg.R:254')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::pdt02_1_pre(syn_data)
-      at test-default_tlg.R:254:2</error>
+    <testcase time="0.363999999999997" classname="default_tlg" name="pdt02_1_function_with_default_argument_value_return_expected_result_with_test_data">
+      <skipped message="Reason: On CRAN ('test-default_tlg.R:257')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dmt01" timestamp="2023-03-09T09:49:58Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.081">
-    <testcase time="0.0519999999999996" classname="dmt01" name="dmt01_1_can_handle_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dmt01.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dmt01_1, proc_data))
-       at test-dmt01.R:10:2
- 10. chevron::run(dmt01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="dmt01" timestamp="2023-03-09T15:17:06Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="3.843">
+    <testcase time="1.807" classname="dmt01" name="dmt01_1_can_handle_NA_values"/>
+    <testcase time="0.0820000000000007" classname="dmt01" name="dmt01_1_can_handle_NA_values">
+      <skipped message="Reason: On CRAN ('test-dmt01.R:11')"/>
     </testcase>
-    <testcase time="0.0289999999999999" classname="dmt01" name="dmt01_1_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dmt01.R:23')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dmt01_1, proc_data))
-       at test-dmt01.R:23:2
- 10. chevron::run(dmt01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="1.845" classname="dmt01" name="dmt01_1_can_handle_some_NA_values"/>
+    <testcase time="0.108999999999995" classname="dmt01" name="dmt01_1_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-dmt01.R:24')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dst01" timestamp="2023-03-09T09:49:58Z" hostname="c931ffc10241" tests="13" skipped="0" failures="0" errors="13" time="0.411">
-    <testcase time="0.0350000000000001" classname="dst01" name="dst01_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:12')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_1, proc_data))
-       at test-dst01.R:12:2
- 10. chevron::run(dst01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="dst01" timestamp="2023-03-09T15:17:10Z" hostname="c02958803a7f" tests="26" skipped="13" failures="0" errors="0" time="7.382">
+    <testcase time="0.412999999999997" classname="dst01" name="dst01_can_handle_all_NA_values"/>
+    <testcase time="0.027000000000001" classname="dst01" name="dst01_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-dst01.R:13')"/>
     </testcase>
-    <testcase time="0.0279999999999987" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:24')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_1, proc_data))
-       at test-dst01.R:24:2
- 10. chevron::run(dst01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.414000000000001" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var"/>
+    <testcase time="0.0360000000000014" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:25')"/>
     </testcase>
-    <testcase time="0.0300000000000011" classname="dst01" name="dst01_1_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:37')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_1, proc_data))
-       at test-dst01.R:37:2
- 10. chevron::run(dst01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.454000000000008" classname="dst01" name="dst01_1_can_handle_some_NA_values"/>
+    <testcase time="0.0679999999999978" classname="dst01" name="dst01_1_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-dst01.R:38')"/>
     </testcase>
-    <testcase time="0.0380000000000003" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:49')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_1, proc_data))
-       at test-dst01.R:49:2
- 10. chevron::run(dst01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.423999999999992" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var"/>
+    <testcase time="0.0320000000000107" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:50')"/>
     </testcase>
-    <testcase time="0.0330000000000013" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:61')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_1, proc_data))
-       at test-dst01.R:61:2
- 10. chevron::run(dst01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.416999999999987" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var"/>
+    <testcase time="0.0400000000000063" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:62')"/>
     </testcase>
-    <testcase time="0.0289999999999999" classname="dst01" name="dst01_2_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:77')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_2, proc_data))
-       at test-dst01.R:77:2
- 10. chevron::run(dst01_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.400000000000006" classname="dst01" name="dst01_2_can_handle_all_NA_values"/>
+    <testcase time="0.0249999999999915" classname="dst01" name="dst01_2_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-dst01.R:78')"/>
     </testcase>
-    <testcase time="0.0279999999999987" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:89')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_2, proc_data))
-       at test-dst01.R:89:2
- 10. chevron::run(dst01_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.411000000000001" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var"/>
+    <testcase time="0.0360000000000014" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:90')"/>
     </testcase>
-    <testcase time="0.0289999999999999" classname="dst01" name="dst01_2_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:102')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_2, proc_data))
-       at test-dst01.R:102:2
- 10. chevron::run(dst01_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.587999999999994" classname="dst01" name="dst01_2_can_handle_some_NA_values"/>
+    <testcase time="0.0760000000000076" classname="dst01" name="dst01_2_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-dst01.R:103')"/>
     </testcase>
-    <testcase time="0.0289999999999999" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:114')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_2, proc_data))
-       at test-dst01.R:114:2
- 10. chevron::run(dst01_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.453999999999994" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var"/>
+    <testcase time="0.0550000000000068" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:115')"/>
     </testcase>
-    <testcase time="0.0360000000000014" classname="dst01" name="dst01_3_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:130')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. dst01_3_pre(proc_data) %&gt;% dst01_3_main()
-      at test-dst01.R:130:2
- 7. chevron::dst01_3_pre(proc_data)</error>
+    <testcase time="0.529999999999987" classname="dst01" name="dst01_3_can_handle_all_NA_values"/>
+    <testcase time="0.027000000000001" classname="dst01" name="dst01_3_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-dst01.R:131')"/>
     </testcase>
-    <testcase time="0.0380000000000003" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:144')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_3, proc_data))
-       at test-dst01.R:144:2
- 10. chevron::run(dst01_3, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.728000000000009" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var"/>
+    <testcase time="0.0669999999999931" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:143')"/>
     </testcase>
-    <testcase time="0.0289999999999999" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:156')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_3, proc_data))
-       at test-dst01.R:156:2
- 10. chevron::run(dst01_3, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.748000000000005" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var"/>
+    <testcase time="0.0919999999999987" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:155')"/>
     </testcase>
-    <testcase time="0.0289999999999999" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dst01.R:168')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(dst01_3, proc_data))
-       at test-dst01.R:168:2
- 10. chevron::run(dst01_3, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.736000000000004" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var"/>
+    <testcase time="0.0840000000000032" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var">
+      <skipped message="Reason: On CRAN ('test-dst01.R:167')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dtht01" timestamp="2023-03-09T09:49:58Z" hostname="c931ffc10241" tests="3" skipped="0" failures="0" errors="3" time="0.12">
-    <testcase time="0.0410000000000004" classname="dtht01" name="dtht01_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dtht01.R:12')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(...)
-       at test-dtht01.R:12:2
- 10. chevron::run(...)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="dtht01" timestamp="2023-03-09T15:17:17Z" hostname="c02958803a7f" tests="5" skipped="3" failures="0" errors="0" time="1.864">
+    <testcase time="0.515999999999991" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
+    <testcase time="0.0330000000000013" classname="dtht01" name="dtht01_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-dtht01.R:13')"/>
     </testcase>
-    <testcase time="0.0489999999999995" classname="dtht01" name="dtht01_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dtht01.R:28')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(...)
-       at test-dtht01.R:28:2
- 10. chevron::run(...)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.573999999999998" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
+    <testcase time="0.0889999999999986" classname="dtht01" name="dtht01_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-dtht01.R:29')"/>
     </testcase>
-    <testcase time="0.0300000000000011" classname="dtht01" name="dtht01_can_be_parametrize_as_expected">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-dtht01.R:35')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::dtht01_1_pre(syn_data)
-      at test-dtht01.R:35:2</error>
+    <testcase time="0.652000000000001" classname="dtht01" name="dtht01_can_be_parametrize_as_expected">
+      <skipped message="Reason: On CRAN ('test-dtht01.R:38')"/>
     </testcase>
   </testsuite>
-  <testsuite name="egt03" timestamp="2023-03-09T09:49:59Z" hostname="c931ffc10241" tests="8" skipped="4" failures="0" errors="0" time="1.492">
-    <testcase time="0.300999999999998" classname="egt03" name="egt03_1_can_handle_all_NA_values"/>
-    <testcase time="0.0710000000000015" classname="egt03" name="egt03_1_can_handle_all_NA_values">
+  <testsuite name="egt03" timestamp="2023-03-09T15:17:19Z" hostname="c02958803a7f" tests="8" skipped="4" failures="0" errors="0" time="1.513">
+    <testcase time="0.272000000000006" classname="egt03" name="egt03_1_can_handle_all_NA_values"/>
+    <testcase time="0.254999999999995" classname="egt03" name="egt03_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:11')"/>
     </testcase>
-    <testcase time="0.302" classname="egt03" name="egt03_1_can_handle_some_NA_values"/>
-    <testcase time="0.0710000000000015" classname="egt03" name="egt03_1_can_handle_some_NA_values">
+    <testcase time="0.265000000000001" classname="egt03" name="egt03_1_can_handle_some_NA_values"/>
+    <testcase time="0.0670000000000073" classname="egt03" name="egt03_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:27')"/>
     </testcase>
-    <testcase time="0.291" classname="egt03" name="egt03_2_can_handle_all_NA_values"/>
-    <testcase time="0.0869999999999997" classname="egt03" name="egt03_2_can_handle_all_NA_values">
+    <testcase time="0.259" classname="egt03" name="egt03_2_can_handle_all_NA_values"/>
+    <testcase time="0.0659999999999883" classname="egt03" name="egt03_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:40')"/>
     </testcase>
-    <testcase time="0.297000000000001" classname="egt03" name="egt03_2_can_handle_some_NA_values"/>
-    <testcase time="0.0720000000000027" classname="egt03" name="egt03_2_can_handle_some_NA_values">
+    <testcase time="0.262" classname="egt03" name="egt03_2_can_handle_some_NA_values"/>
+    <testcase time="0.0670000000000073" classname="egt03" name="egt03_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:56')"/>
     </testcase>
   </testsuite>
-  <testsuite name="egt05_qtcat" timestamp="2023-03-09T09:50:00Z" hostname="c931ffc10241" tests="4" skipped="2" failures="0" errors="0" time="0.957">
-    <testcase time="0.122" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values"/>
-    <testcase time="0.0129999999999981" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values">
+  <testsuite name="egt05_qtcat" timestamp="2023-03-09T15:17:20Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="0.828">
+    <testcase time="0.100999999999999" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values"/>
+    <testcase time="0.0120000000000005" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt05_qtcat.R:12')"/>
     </testcase>
-    <testcase time="0.591000000000001" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
-    <testcase time="0.231000000000002" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values">
+    <testcase time="0.513999999999996" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
+    <testcase time="0.201000000000008" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt05_qtcat.R:35')"/>
     </testcase>
   </testsuite>
-  <testsuite name="empty_report" timestamp="2023-03-09T09:50:01Z" hostname="c931ffc10241" tests="1" skipped="0" failures="0" errors="1" time="3.158">
-    <testcase time="3.15799999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-empty_report.R:15')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::run(aet01_1, dat_empty, prune_0 = TRUE)
-      at test-empty_report.R:15:2
- 2. chevron::run(aet01_1, dat_empty, prune_0 = TRUE)
- 4. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
-    </testcase>
+  <testsuite name="empty_report" timestamp="2023-03-09T15:17:21Z" hostname="c02958803a7f" tests="33" skipped="0" failures="0" errors="0" time="10.201">
+    <testcase time="3.119" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.620000000000005" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.346000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.102000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.10499999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.103999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.278000000000006" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.331000000000003" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.265000000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.272999999999996" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.263999999999996" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.280999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.596000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.335000000000008" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.313999999999993" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.370999999999995" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.286000000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0730000000000075" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0579999999999927" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0580000000000069" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0570000000000022" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0480000000000018" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0619999999999976" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0559999999999974" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.375" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.063999999999993" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.529000000000011" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.277999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.256" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0550000000000068" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0630000000000024" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.083999999999989" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0949999999999989" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
   </testsuite>
-  <testsuite name="lbt01" timestamp="2023-03-09T09:50:04Z" hostname="c931ffc10241" tests="2" skipped="1" failures="0" errors="0" time="1.492">
-    <testcase time="1.325" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
-    <testcase time="0.167000000000002" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs">
+  <testsuite name="lbt01" timestamp="2023-03-09T15:17:31Z" hostname="c02958803a7f" tests="2" skipped="1" failures="0" errors="0" time="1.46">
+    <testcase time="1.298" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+    <testcase time="0.162000000000006" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs">
       <skipped message="Reason: On CRAN ('test-lbt01.R:11')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt04" timestamp="2023-03-09T09:50:06Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.064">
-    <testcase time="0.0279999999999987" classname="lbt04" name="lbt04_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt04.R:9')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt04_1, proc_data))
-       at test-lbt04.R:9:2
- 10. chevron::run(lbt04_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="lbt04" timestamp="2023-03-09T15:17:33Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="0.987">
+    <testcase time="0.269000000000005" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
+    <testcase time="0.0249999999999915" classname="lbt04" name="lbt04_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt04.R:10')"/>
     </testcase>
-    <testcase time="0.0360000000000014" classname="lbt04" name="lbt04_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt04.R:23')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt04_1, proc_data))
-       at test-lbt04.R:23:2
- 10. chevron::run(lbt04_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.585000000000008" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
+    <testcase time="0.10799999999999" classname="lbt04" name="lbt04_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt04.R:24')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt05" timestamp="2023-03-09T09:50:06Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.112">
-    <testcase time="0.0570000000000022" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt05.R:8')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
- 1. chevron::run(lbt05_1, proc_data)
-      at test-lbt05.R:8:2
- 2. chevron::run(lbt05_1, proc_data)
- 4. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
-    </testcase>
-    <testcase time="0.0549999999999997" classname="lbt05" name="lbt05_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt05.R:23')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt05_1, proc_data))
-       at test-lbt05.R:23:2
- 10. chevron::run(lbt05_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="lbt05" timestamp="2023-03-09T15:17:34Z" hostname="c02958803a7f" tests="3" skipped="1" failures="0" errors="0" time="1.278">
+    <testcase time="0.585000000000008" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing"/>
+    <testcase time="0.586999999999989" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
+    <testcase time="0.106000000000009" classname="lbt05" name="lbt05_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt05.R:24')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt07" timestamp="2023-03-09T09:50:06Z" hostname="c931ffc10241" tests="1" skipped="0" failures="0" errors="1" time="0.034">
-    <testcase time="0.0339999999999989" classname="lbt07" name="lbt07_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt07.R:11')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt07_1, proc_data))
-       at test-lbt07.R:11:2
- 10. chevron::run(lbt07_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="lbt07" timestamp="2023-03-09T15:17:35Z" hostname="c02958803a7f" tests="2" skipped="1" failures="0" errors="0" time="0.953">
+    <testcase time="0.813999999999993" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
+    <testcase time="0.13900000000001" classname="lbt07" name="lbt07_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt07.R:12')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt14" timestamp="2023-03-09T09:50:06Z" hostname="c931ffc10241" tests="4" skipped="0" failures="0" errors="4" time="0.135">
-    <testcase time="0.0439999999999969" classname="lbt14" name="lbt14_1_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt14.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt14_1, proc_data))
-       at test-lbt14.R:10:2
- 10. chevron::run(lbt14_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="lbt14" timestamp="2023-03-09T15:17:36Z" hostname="c02958803a7f" tests="8" skipped="4" failures="0" errors="0" time="7.346">
+    <testcase time="1.541" classname="lbt14" name="lbt14_1_can_handle_all_NA_values"/>
+    <testcase time="0.0480000000000018" classname="lbt14" name="lbt14_1_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt14.R:11')"/>
     </testcase>
-    <testcase time="0.0309999999999988" classname="lbt14" name="lbt14_1_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt14.R:29')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt14_1, proc_data))
-       at test-lbt14.R:29:2
- 10. chevron::run(lbt14_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="1.809" classname="lbt14" name="lbt14_1_can_handle_some_NA_values"/>
+    <testcase time="0.278000000000006" classname="lbt14" name="lbt14_1_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt14.R:30')"/>
     </testcase>
-    <testcase time="0.0300000000000011" classname="lbt14" name="lbt14_2_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt14.R:42')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt14_2, proc_data))
-       at test-lbt14.R:42:2
- 10. chevron::run(lbt14_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="1.648" classname="lbt14" name="lbt14_2_can_handle_all_NA_values"/>
+    <testcase time="0.0450000000000017" classname="lbt14" name="lbt14_2_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt14.R:43')"/>
     </testcase>
-    <testcase time="0.0300000000000011" classname="lbt14" name="lbt14_2_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-lbt14.R:61')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(lbt14_2, proc_data))
-       at test-lbt14.R:61:2
- 10. chevron::run(lbt14_2, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="1.699" classname="lbt14" name="lbt14_2_can_handle_some_NA_values"/>
+    <testcase time="0.277999999999992" classname="lbt14" name="lbt14_2_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-lbt14.R:62')"/>
     </testcase>
   </testsuite>
-  <testsuite name="mng01" timestamp="2023-03-09T09:50:06Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="0" time="2.34">
-    <testcase time="1.24" classname="mng01" name="mng01_1_works_as_expected"/>
-    <testcase time="1.1" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
+  <testsuite name="mng01" timestamp="2023-03-09T15:17:43Z" hostname="c02958803a7f" tests="2" skipped="0" failures="0" errors="0" time="2.2">
+    <testcase time="1.164" classname="mng01" name="mng01_1_works_as_expected"/>
+    <testcase time="1.036" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
   </testsuite>
-  <testsuite name="pdt01" timestamp="2023-03-09T09:50:08Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.074">
-    <testcase time="0.0349999999999966" classname="pdt01" name="pdt01_1_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-pdt01.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(pdt01_1, proc_data))
-       at test-pdt01.R:10:2
- 10. chevron::run(pdt01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="pdt01" timestamp="2023-03-09T15:17:46Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="0.926">
+    <testcase time="0.296000000000006" classname="pdt01" name="pdt01_1_can_handle_all_NA_values"/>
+    <testcase time="0.0300000000000011" classname="pdt01" name="pdt01_1_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-pdt01.R:11')"/>
     </testcase>
-    <testcase time="0.0390000000000015" classname="pdt01" name="pdt01_1_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-pdt01.R:26')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(pdt01_1, proc_data))
-       at test-pdt01.R:26:2
- 10. chevron::run(pdt01_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.495999999999995" classname="pdt01" name="pdt01_1_can_handle_some_NA_values"/>
+    <testcase time="0.103999999999999" classname="pdt01" name="pdt01_1_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-pdt01.R:27')"/>
     </testcase>
   </testsuite>
-  <testsuite name="pdt02" timestamp="2023-03-09T09:50:08Z" hostname="c931ffc10241" tests="2" skipped="0" failures="0" errors="2" time="0.105">
-    <testcase time="0.0499999999999972" classname="pdt02" name="pdt02_1_can_handle_all_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-pdt02.R:10')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(pdt02_1, proc_data))
-       at test-pdt02.R:10:2
- 10. chevron::run(pdt02_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+  <testsuite name="pdt02" timestamp="2023-03-09T15:17:47Z" hostname="c02958803a7f" tests="4" skipped="2" failures="0" errors="0" time="0.815">
+    <testcase time="0.335000000000008" classname="pdt02" name="pdt02_1_can_handle_all_NA_values"/>
+    <testcase time="0.0409999999999968" classname="pdt02" name="pdt02_1_can_handle_all_NA_values">
+      <skipped message="Reason: On CRAN ('test-pdt02.R:11')"/>
     </testcase>
-    <testcase time="0.0549999999999997" classname="pdt02" name="pdt02_1_can_handle_some_NA_values">
-      <error type="error" message="Error: 'apply_reformat' is not an exported object from 'namespace:dunlin' ('test-pdt02.R:26')">Error: 'apply_reformat' is not an exported object from 'namespace:dunlin'
-Backtrace:
-  1. testthat::expect_silent(run(pdt02_1, proc_data))
-       at test-pdt02.R:26:2
- 10. chevron::run(pdt02_1, proc_data)
- 12. chevron (local) `&lt;fn&gt;`(`&lt;dm&gt;`)</error>
+    <testcase time="0.382999999999996" classname="pdt02" name="pdt02_1_can_handle_some_NA_values"/>
+    <testcase time="0.0559999999999974" classname="pdt02" name="pdt02_1_can_handle_some_NA_values">
+      <skipped message="Reason: On CRAN ('test-pdt02.R:27')"/>
     </testcase>
   </testsuite>
-  <testsuite name="utils" timestamp="2023-03-09T09:50:09Z" hostname="c931ffc10241" tests="17" skipped="0" failures="0" errors="0" time="0.081">
-    <testcase time="0.0230000000000032" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
+  <testsuite name="utils" timestamp="2023-03-09T15:17:47Z" hostname="c02958803a7f" tests="17" skipped="0" failures="0" errors="0" time="0.071">
+    <testcase time="0.01400000000001" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00100000000000477" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00400000000000489" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.000999999999990564" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00400000000000489" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00100000000000477" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00199999999999534" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.000999999999997669" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00399999999999778" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00200000000000244" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00399999999999778" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00100000000000477" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00399999999999778" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00200000000000244" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.0069999999999979" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
-    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
+    <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
     <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_returns_null_with_NA_format"/>
     <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
-    <testcase time="0.0069999999999979" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
   </testsuite>
 </testsuites>
