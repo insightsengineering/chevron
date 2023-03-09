@@ -26,7 +26,7 @@ aet10_1_pre(adam_db)
 
 aet10_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 
-aet10_1_post(tlg, prune_0 = TRUE, atleast = 0.05)
+aet10_1_post(tlg, atleast = 0.05)
 
 aet10_1
 }
@@ -45,9 +45,7 @@ aet10_1
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
-
-\item{atleast}{given cut-off default is \code{0.05}}
+\item{atleast}{given cut-off in numeric format, default is \code{0.05}}
 }
 \description{
 The \code{AET10} table Include Adverse Events occurring with user-specified threshold X\% in at least
