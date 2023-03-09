@@ -120,7 +120,7 @@ aet10_1_post <- function(tlg, atleast = 0.05) {
 
   if (is.null(tlg)) {
     tbl_sorted <- NULL
-  }else {
+  } else {
     tbl_sorted <- tlg %>%
       sort_at_path(
         path = c("AEDECOD"),
