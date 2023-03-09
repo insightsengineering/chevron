@@ -2,8 +2,8 @@ test_that("pdt01_1 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("addv") %>%
     mutate(
-      DVDECOD = NA,
-      DVTERM = NA,
+      DVDECOD = NA_character_,
+      DVTERM = NA_character_,
     ) %>%
     dm_update_zoomed()
 
@@ -12,8 +12,8 @@ test_that("pdt01_1 can handle all NA values", {
 })
 
 test_that("pdt01_1 can handle some NA values", {
-  new_dvdecod <- c(NA, "", as.character(syn_data$addv$DVDECOD[-c(1, 2)]))
-  new_dvterm <- c(NA, "", as.character(syn_data$addv$DVTERM[-c(1, 2)]))
+  new_dvdecod <- c(NA_character_, "", as.character(syn_data$addv$DVDECOD[-c(1, 2)]))
+  new_dvterm <- c(NA_character_, "", as.character(syn_data$addv$DVTERM[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("addv") %>%

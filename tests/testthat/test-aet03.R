@@ -2,8 +2,8 @@ test_that("aet03 can handle NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adae") %>%
     mutate(
-      AEBODSYS = NA,
-      AEDECOD = NA
+      AEBODSYS = NA_character_,
+      AEDECOD = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -28,3 +28,5 @@ test_that("aet03 can handle some NA values", {
   res1 <- expect_silent(run(aet03_1, proc_data))
   expect_snapshot(res1)
 })
+
+preprocess(aet03_1)

@@ -81,11 +81,11 @@ lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTA
 
   new_format <- list(
     adlb = list(
-      ANRIND = list("<Missing>" = c("", NA, "<Missing>"))
+      ANRIND = rule("<Missing>" = c("", NA, "<Missing>"))
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adlb") %>%
