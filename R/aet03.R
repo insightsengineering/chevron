@@ -115,20 +115,18 @@ aet03_1_pre <- function(adam_db) {
 
   new_format <- list(
     adae = list(
-      AEBODSYS = list("No Coding available" = c("", NA, "<Missing>")),
-      AEDECOD = list("No Coding available" = c("", NA, "<Missing>")),
-      ASEV = list("<Missing>" = c("", NA, "<Missing>"))
+      AEBODSYS = rule("No Coding available" = c("", NA, "<Missing>")),
+      AEDECOD = rule("No Coding available" = c("", NA, "<Missing>")),
+      ASEV = rule("<Missing>" = c("", NA, "<Missing>"))
     )
   )
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ASEV != "<Missing>") %>%
-    mutate(ASEV = factor(.data$ASEV,
-      levels = setdiff(levels(.data$ASEV), "<Missing>")
-    )) %>%
+    mutate(ASEV = factor(.data$ASEV, levels = setdiff(levels(.data$ASEV), "<Missing>"))) %>%
     dm_update_zoomed()
 }
 

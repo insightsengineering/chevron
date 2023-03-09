@@ -177,15 +177,15 @@ aet01_1_pre <- function(adam_db,
     ) %>%
     dm_update_zoomed()
 
-  missing_list <- list("<Missing>" = c("", NA))
+  missing_rule <- rule("<Missing>" = c("", NA))
 
   new_format <- list(
     adsl = list(
-      DCSREAS = missing_list
+      DCSREAS = missing_rule
     )
   )
 
-  db <- dunlin::apply_reformat(db, new_format)
+  db <- dunlin::reformat(db, new_format, na_last = TRUE)
 
   db
 }
@@ -482,15 +482,15 @@ aet01_2_pre <- function(adam_db) {
     ) %>%
     dm_update_zoomed()
 
-  missing_list <- list("<Missing>" = c("", NA))
+  missing_rule <- rule("<Missing>" = c("", NA))
 
   new_format <- list(
     adsl = list(
-      DCSREAS = missing_list
+      DCSREAS = missing_rule
     )
   )
 
-  db <- dunlin::apply_reformat(db, new_format)
+  db <- dunlin::reformat(db, new_format, na_last = TRUE)
 
   db
 }
