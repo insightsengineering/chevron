@@ -2,8 +2,8 @@ test_that("egt03_1 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adeg") %>%
     mutate(
-      BNRIND = NA,
-      ANRIND = NA,
+      BNRIND = NA_character_,
+      ANRIND = NA_character_,
     ) %>%
     dm_update_zoomed()
 
@@ -12,8 +12,8 @@ test_that("egt03_1 can handle all NA values", {
 })
 
 test_that("egt03_1 can handle some NA values", {
-  new_bnrind <- c(NA, "", as.character(syn_data$adeg$BNRIND[-c(1, 2)]))
-  new_anrind <- c(NA, "", as.character(syn_data$adeg$ANRIND[-c(1, 2)]))
+  new_bnrind <- c(NA_character_, "", as.character(syn_data$adeg$BNRIND[-c(1, 2)]))
+  new_anrind <- c(NA_character_, "", as.character(syn_data$adeg$ANRIND[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("adeg") %>%
@@ -31,8 +31,8 @@ test_that("egt03_2 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adeg") %>%
     mutate(
-      BNRIND = NA,
-      ANRIND = NA,
+      BNRIND = NA_character_,
+      ANRIND = NA_character_,
     ) %>%
     dm_update_zoomed()
 
@@ -41,8 +41,8 @@ test_that("egt03_2 can handle all NA values", {
 })
 
 test_that("egt03_2 can handle some NA values", {
-  new_bnrind <- c(NA, "", as.character(syn_data$adeg$BNRIND[-c(1, 2)]))
-  new_anrind <- c(NA, "", as.character(syn_data$adeg$ANRIND[-c(1, 2)]))
+  new_bnrind <- c(NA_character_, "", as.character(syn_data$adeg$BNRIND[-c(1, 2)]))
+  new_anrind <- c(NA_character_, "", as.character(syn_data$adeg$ANRIND[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("adeg") %>%

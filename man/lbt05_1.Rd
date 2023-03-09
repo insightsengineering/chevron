@@ -16,18 +16,19 @@ An object of class \code{chevron_t} of length 1.
 lbt05_1_main(
   adam_db,
   arm_var = "ACTARM",
+  lbl_overall = NULL,
   lbl_param = "Laboratory Test",
   lbl_anrind = "Direction of Abnormality",
   deco = std_deco("LBT05")
 )
 
-lbt05_1_lyt(arm_var, lbl_param, lbl_anrind, map, deco)
+lbt05_1_lyt(arm_var, lbl_overall, lbl_param, lbl_anrind, map, deco)
 
 lbt05_1_pre(adam_db, arm_var = "ACTARM")
 
 lbt05_1_check(adam_db, req_tables, arm_var)
 
-lbt05_1_post(tlg)
+lbt05_1_post(tlg, prune_0 = FALSE)
 
 lbt05_1
 }
@@ -35,6 +36,8 @@ lbt05_1
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{character}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
 
@@ -47,12 +50,15 @@ lbt05_1
 \item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{logical}) remove 0 count rows}
 }
 \description{
 \code{LBT05} Table 1 (Default) Laboratory Abnormalities with Single and Replicated Marked.
 }
 \details{
 \itemize{
+\item Does not remove rows with zero counts by default.
 \item Lab test results with missing \code{AVAL} values are excluded.
 \item Split columns by arm, typically \code{ACTARM}.
 }
