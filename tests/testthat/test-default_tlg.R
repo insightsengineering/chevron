@@ -256,3 +256,10 @@ test_that("pdt02_1 function with default argument value return expected result w
   res <- pdt02_1_post(raw_res)
   expect_snapshot(res)
 })
+
+test_that("ael01_nollt_1 function with default argument value return expected result with test data", {
+  pre_data <- ael01_nollt_1_pre(syn_data)
+  raw_res <- ael01_nollt_1_main(pre_data)
+  res <- ael01_nollt_1_post(raw_res)
+  expect_snapshot(res)
+})
