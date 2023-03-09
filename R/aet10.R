@@ -101,28 +101,32 @@ aet10_1_check <- function(adam_db,
 #' @describeIn aet10_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#' @param atleast given cut-off default is `0.05`
+#' @param atleast given cut-off in numeric format, default is `0.05`
 #'
 #' @export
 #'
-aet10_1_post <- function(tlg, prune_0 = TRUE, atleast = 0.05) {
-  if (prune_0) {
-    tlg <- prune_table(
-      tt = tlg,
-      prune_func = keep_rows(
-        has_fraction_in_any_col(
-          atleast = atleast, # specify threshold
-          col_names = names(tlg)
-        )
+aet10_1_post <- function(tlg, atleast = 0.05) {
+  checkmate::assert_true(is.numeric(atleast))
+
+  tlg <- prune_table(
+    tt = tlg,
+    prune_func = keep_rows(
+      has_fraction_in_any_col(
+        atleast = atleast, # specify threshold
+        col_names = names(tlg)
       )
     )
-  }
+  )
 
-  tbl_sorted <- tlg %>%
-    sort_at_path(
-      path = c("AEDECOD"),
-      scorefun = score_occurrences
-    )
+  if (is.null(tlg)) {
+    tbl_sorted <- NULL
+  }else {
+    tbl_sorted <- tlg %>%
+      sort_at_path(
+        path = c("AEDECOD"),
+        scorefun = score_occurrences
+      )
+  }
   std_postprocess(tbl_sorted)
 }
 
