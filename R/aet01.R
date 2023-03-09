@@ -24,7 +24,8 @@ aet01_1_main <- function(adam_db,
                            "FATAL", "SER", "SERWD", "SERDSM",
                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          ),
-                         lbl_safety_var = NULL) {
+                         lbl_safety_var = NULL,
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -129,7 +130,8 @@ aet01_1_pre <- function(adam_db,
                         safety_var = c(
                           "FATAL", "SER", "SERWD", "SERDSM",
                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                        )) {
+                        ),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet01_1_check(adam_db, req_tables = req_tables, arm_var = arm_var, safety_var = safety_var)
@@ -244,7 +246,7 @@ aet01_1_check <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
-aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01")) {
+aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...) {
   tbl <- set_decoration(tlg, deco)
   if (prune_0) {
     tbl <- smart_prune(tbl)
@@ -300,7 +302,8 @@ aet01_2_main <- function(adam_db,
                          ),
                          lbl_safety_var = NULL,
                          medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-                         lbl_medconcept_var = NULL) {
+                         lbl_medconcept_var = NULL,
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -420,7 +423,7 @@ aet01_2_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet01_2_pre <- function(adam_db) {
+aet01_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet01_2_check(adam_db)

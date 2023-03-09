@@ -20,6 +20,7 @@
 #' @param visit_var Analysis Visit variable.
 #' @param paramcd_value Value of PARAMCD variable.
 #' @param visit_value Value of visit variable.
+#' @param ... not used.
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.
 #'

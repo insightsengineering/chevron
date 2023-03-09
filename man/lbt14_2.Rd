@@ -19,7 +19,8 @@ lbt14_2_main(
   arm_var = "ACTARM",
   gr_missing = "incl",
   title = "LBT14 - High Direction",
-  deco = std_deco("LBT14")
+  deco = std_deco("LBT14"),
+  ...
 )
 
 lbt14_2_lyt(arm_var, gr_missing, title, deco)
@@ -28,12 +29,13 @@ lbt14_2_pre(
   adam_db,
   gr_missing = "incl",
   req_tables = c("adsl", "adlb"),
-  arm_var = "ACTARM"
+  arm_var = "ACTARM",
+  ...
 )
 
 lbt14_2_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM")
 
-lbt14_2_post(tlg, prune_0 = TRUE)
+lbt14_2_post(tlg, prune_0 = TRUE, ...)
 
 lbt14_2
 }
@@ -49,6 +51,8 @@ baseline grades to grade 0.}
 \item{title}{table title to display. Defaults to \code{"LBT14 - High Direction"}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 

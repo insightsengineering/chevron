@@ -18,11 +18,11 @@
 #'
 #' @note To ensure the correct execution of the workflow additional validation criteria are:
 #' * the first argument of the `main` function must be `adam_db`, the input `dm` object to pre-process. The `...`
-#' argument is not allowed.
+#' argument is mandatory.
 #' * the first argument of the `preprocess` function must be `adam_db`, the input `dm` object to create `tlg` output.
-#' The `...` argument is not allowed.
+#' The `...` argument is mandatory.
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post-process. The
-#' `...` argument is not allowed.
+#' `...` argument is mandatory.
 #'
 #' @name chevron_tlg-class
 #' @exportClass chevron_tlg
@@ -42,11 +42,11 @@
 methods::setValidity("chevron_tlg", function(object) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::assert_disjunct(rlang::fn_fmls_names(object@main), "...", add = coll)
+  checkmate::assert_function(object@main, args = "...", add = coll)
   checkmate::assert_function(object@preprocess, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::assert_disjunct(rlang::fn_fmls_names(object@preprocess), "...", add = coll)
+  checkmate::assert_function(object@preprocess, args = "...", add = coll)
   checkmate::assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
-  checkmate::assert_disjunct(rlang::fn_fmls_names(object@postprocess), "...", add = coll)
+  checkmate::assert_function(object@postprocess, args = "...", add = coll)
   checkmate::reportAssertions(coll)
 })
 

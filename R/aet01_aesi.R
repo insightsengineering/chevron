@@ -33,7 +33,8 @@
 aet01_aesi_1_main <- function(adam_db,
                               arm_var = "ACTARM",
                               aesi_vars = NA,
-                              deco = std_deco("AET01_AESI")) {
+                              deco = std_deco("AET01_AESI"),
+                              ...) {
   if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
   if (any(grepl("^ALL_", aesi_vars))) {
     aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(
@@ -110,7 +111,8 @@ aet01_aesi_1_lyt <- function(arm_var,
 #'
 aet01_aesi_1_pre <- function(adam_db,
                              req_tables = c("adsl", "adae"),
-                             arm_var = "ACTARM") {
+                             arm_var = "ACTARM",
+                             ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet01_aesi_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
@@ -272,7 +274,7 @@ aet01_aesi_1_check <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
-aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI")) {
+aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"), ...) {
   tbl <- set_decoration(tlg, deco)
   if (prune_0) {
     tbl <- smart_prune(tbl)

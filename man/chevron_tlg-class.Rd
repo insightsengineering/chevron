@@ -81,11 +81,11 @@ creation.}
 To ensure the correct execution of the workflow additional validation criteria are:
 \itemize{
 \item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. The \code{...}
-argument is not allowed.
+argument is mandatory.
 \item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{dm} object to create \code{tlg} output.
-The \code{...} argument is not allowed.
+The \code{...} argument is mandatory.
 \item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process. The
-\code{...} argument is not allowed.
+\code{...} argument is mandatory.
 }
 }
 \examples{

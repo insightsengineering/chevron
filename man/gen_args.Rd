@@ -61,6 +61,8 @@ creation.}
 \item{visit_value}{Value of visit variable.}
 
 \item{paramcd_value}{Value of PARAMCD variable.}
+
+\item{...}{not used.}
 }
 \description{
 General Argument Name Convention

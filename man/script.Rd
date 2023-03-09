@@ -12,9 +12,9 @@ script_args(x, dict = NULL)
 
 \S4method{script_args}{chevron_tlg}(x, dict = NULL)
 
-script_funs(x, details = FALSE)
+script_funs(x, details = FALSE, path)
 
-\S4method{script_funs}{chevron_tlg}(x, details = FALSE)
+\S4method{script_funs}{chevron_tlg}(x, details = FALSE, path)
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
@@ -23,6 +23,8 @@ script_funs(x, details = FALSE)
 
 \item{details}{(\code{flag}) whether to show the code of all function. By default, only the detail of the code of the
 prepossessing step is printed.}
+
+\item{path}{(\code{string}) argument file location.}
 }
 \description{
 Create Script for Parameters Assignment

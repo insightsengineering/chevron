@@ -33,7 +33,8 @@ lbt01_1_main <- function(adam_db,
                          visitvar = "AVISIT",
                          precision = integer(),
                          default_precision = 2,
-                         deco = std_deco("LBT01")) {
+                         deco = std_deco("LBT01"),
+                         ...) {
   assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
   assert_colnames(adam_db$adlb, summaryvars)
   assert_colnames(adam_db$adlb, arm_var)
@@ -167,7 +168,7 @@ lbt01_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-lbt01_1_pre <- function(adam_db) {
+lbt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -182,7 +183,7 @@ lbt01_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-lbt01_1_post <- function(tlg, prune_0 = TRUE) {
+lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }

@@ -17,7 +17,8 @@ aet02_2_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("AET02")
+  deco = std_deco("AET02"),
+  ...
 )
 
 aet02_2_lyt(
@@ -29,9 +30,9 @@ aet02_2_lyt(
   deco
 )
 
-aet02_2_pre(adam_db)
+aet02_2_pre(adam_db, ...)
 
-aet02_2_post(tlg, prune_0 = TRUE)
+aet02_2_post(tlg, prune_0 = TRUE, ...)
 
 aet02_2
 
@@ -39,7 +40,8 @@ aet02_3_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("AET02")
+  deco = std_deco("AET02"),
+  ...
 )
 }
 \arguments{
@@ -50,6 +52,8 @@ aet02_3_main(
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 

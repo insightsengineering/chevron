@@ -10,10 +10,11 @@
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
+#' @param check_arg (`flag`) whether to check if all arguments are used.
 #'
 #' @name run
 #' @export
-setGeneric("run", function(object, adam_db, auto_pre = TRUE, ...) standardGeneric("run"))
+setGeneric("run", function(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE) standardGeneric("run"))
 
 #' Run the pipeline
 #' @rdname run
@@ -23,18 +24,21 @@ setGeneric("run", function(object, adam_db, auto_pre = TRUE, ...) standardGeneri
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, ...) {
+  definition = function(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE) {
     checkmate::assert_class(adam_db, "dm")
     checkmate::assert_flag(auto_pre)
+    checkmate::assert_flag(check_arg)
+
+    user_args <- list(...)
 
     # Assert validity of provided arguments.
-    user_args <- list(...)
-    arg_pre_name <- if (auto_pre) rlang::fn_fmls_names(preprocess(object))
-    arg_main_name <- rlang::fn_fmls_names(main(object))
-    arg_post_name <- rlang::fn_fmls_names(postprocess(object))
-
-    all_args_names <- unique(c(arg_pre_name, arg_main_name, arg_post_name))
-    assert_subset_suggest(names(user_args), all_args_names)
+    if (check_arg) {
+      arg_pre_name <- if (auto_pre) rlang::fn_fmls_names(preprocess(object))
+      arg_main_name <- rlang::fn_fmls_names(main(object))
+      arg_post_name <- rlang::fn_fmls_names(postprocess(object))
+      all_args_names <- setdiff(c(arg_pre_name, arg_main_name, arg_post_name), "...")
+      assert_subset_suggest(names(user_args), all_args_names)
+    }
 
     proc_data <- if (auto_pre) {
       arg_pre <- user_args[names(user_args) %in% arg_pre_name]
@@ -274,10 +278,13 @@ setMethod(
 #' @param dict (`list`) with the name and value of custom arguments.
 #' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the
 #'   prepossessing step is printed.
+#' @param path (`string`) argument file location.
 #'
 #' @name script
 #' @rdname script
 NULL
+
+## script_args ----
 
 #' @rdname script
 #' @export
@@ -322,11 +329,13 @@ setMethod(
   }
 )
 
+## script_funs ----
+
 #' Create Script for `TLG` Generation
 #'
 #' @rdname script
 #' @export
-setGeneric("script_funs", function(x, details = FALSE) standardGeneric("script_funs"))
+setGeneric("script_funs", function(x, details = FALSE, path) standardGeneric("script_funs"))
 
 #' @rdname script
 #' @export
@@ -337,61 +346,41 @@ setGeneric("script_funs", function(x, details = FALSE) standardGeneric("script_f
 setMethod(
   f = "script_funs",
   signature = "chevron_tlg",
-  definition = function(x, details = FALSE) {
+  definition = function(x, details = FALSE, path) {
     checkmate::assert_flag(details)
+    checkmate::assert_file_exists(path)
 
-    # Construct argument list for each function.
-    all_arg <- args_ls(x, omit = c("...", "tlg"), simplify = FALSE)
-
-    arg_pre <- lapply(names(all_arg$preprocess), sym)
-    names(arg_pre) <- arg_pre
-
-    arg_main <- lapply(names(all_arg$main), sym)
-    names(arg_main) <- arg_main
-    arg_main$adam_db <- sym("proc_data")
-
-    arg_post <- lapply(names(all_arg$post), sym)
-    names(arg_post) <- arg_post
-
-    # Construct the call for the main and post process function.
-    fun_def <- if (details) {
+    if (details) {
       c(
-        deparse(rlang::call2("<-", sym("main_fun"), x@main)),
-        deparse(rlang::call2("<-", sym("postprocess_fun"), x@postprocess))
+        "# Load arguments.",
+        glue::glue("args <- yaml::read_yaml({path})"),
+        "",
+        "# Edit Functions.",
+        capture.output(rlang::call2("<-", sym("pre_fun"), preprocess(x))),
+        "",
+        capture.output(rlang::call2("<-", sym("main_fun"), main(x))),
+        "",
+        capture.output(rlang::call2("<-", sym("post_fun"), postprocess(x))),
+        "",
+        "# Create TLG.",
+        glue::glue("pre_fun(!!!args) %>%"),
+        glue::glue("main_fun(!!!args) %>%"),
+        glue::glue("post_fun(!!!args)")
       )
     } else {
-      NULL
-    }
-
-    # Execute either the main and post function separately or together using `run`.
-    fun_exec <- if (details) {
-      arg_post$tlg <- sym("tlg")
+      tlg_name <- substitute(x)
       c(
-        deparse(rlang::call2("<-", sym("tlg"), rlang::call2("main_fun", !!!arg_main))),
-        deparse(rlang::call2("<-", sym("final_tlg"), rlang::call2("postprocess_fun", !!!arg_post)))
-      )
-    } else {
-      main_post_arg <- fuse_sequentially(arg_main, arg_post)
-      deparse(
-        rlang::call2(
-          "<-",
-          sym("final_tlg"),
-          rlang::call2("run", substitute(x), auto_pre = FALSE, !!!main_post_arg)
-        )
+        "# Load arguments.",
+        glue::glue("args <- yaml::read_yaml({path})"),
+        "",
+        "# Edit Preprocessing Functions.",
+        capture.output(rlang::call2("<-", sym("pre_fun"), preprocess(x))),
+        "",
+        "# Create TLG.",
+        glue::glue("pre_fun(!!!args) %>%"),
+        glue::glue("  run({tlg_name} auto_pre = FALSE, !!!args, check_arg = FALSE)")
       )
     }
-
-    # Generate the script.
-    spt <- c(
-      "\n# Functions definition ----\n",
-      deparse(rlang::call2("<-", sym("preprocess_fun"), x@preprocess)),
-      fun_def,
-      "\n# Functions execution ----\n",
-      deparse(rlang::call2("<-", sym("proc_data"), rlang::call2("preprocess_fun", !!!arg_pre))),
-      fun_exec
-    )
-
-    unlist(spt)
   }
 )
 

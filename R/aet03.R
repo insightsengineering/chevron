@@ -21,7 +21,8 @@
 aet03_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         deco = std_deco("AET03")) {
+                         deco = std_deco("AET03"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
@@ -106,7 +107,7 @@ aet03_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet03_1_pre <- function(adam_db) {
+aet03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -131,7 +132,7 @@ aet03_1_pre <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 #' @export
-aet03_1_post <- function(tlg, prune_0 = TRUE) {
+aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
   tbl_sorted <- tlg %>%

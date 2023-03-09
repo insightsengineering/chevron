@@ -27,12 +27,13 @@ mng01_1_main(
   show_h_grid = TRUE,
   show_v_grid = FALSE,
   legend_pos = "top",
-  line_col = nestcolor::color_palette()
+  line_col = nestcolor::color_palette(),
+  ...
 )
 
-mng01_1_pre(adam_db, dataset, x_var = "AVISIT")
+mng01_1_pre(adam_db, dataset, x_var = "AVISIT", ...)
 
-mng01_1_post(tlg)
+mng01_1_post(tlg, ...)
 
 mng01_1
 }
@@ -70,6 +71,8 @@ mng01_1
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} vector associating
 values of \code{arm_var} with color names.}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }

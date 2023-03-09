@@ -17,7 +17,8 @@ aet02_1_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("AET02")
+  deco = std_deco("AET02"),
+  ...
 )
 
 aet02_1_lyt(
@@ -28,11 +29,11 @@ aet02_1_lyt(
   deco
 )
 
-aet02_1_pre(adam_db)
+aet02_1_pre(adam_db, ...)
 
 aet02_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 
-aet02_1_post(tlg, prune_0 = TRUE)
+aet02_1_post(tlg, prune_0 = TRUE, ...)
 
 aet02_1
 }
@@ -44,6 +45,8 @@ aet02_1
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 

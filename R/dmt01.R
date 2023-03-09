@@ -39,7 +39,8 @@ dmt01_1_main <- function(adam_db,
                            "RACE"
                          ),
                          lbl_overall = "All Patients",
-                         deco = std_deco("DMT01")) {
+                         deco = std_deco("DMT01"),
+                         ...) {
   assert_colnames(adam_db$adsl, summaryvars)
 
   summaryvars_lbls <- get_labels(adam_db$adsl, summaryvars)
@@ -91,7 +92,7 @@ dmt01_1_lyt <- function(arm_var,
 #'
 #' @examples
 #' dmt01_1_pre(syn_data)
-dmt01_1_pre <- function(adam_db) {
+dmt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- dunlin::dm_explicit_na(adam_db)
@@ -109,7 +110,7 @@ dmt01_1_pre <- function(adam_db) {
 #'
 #'
 #' @export
-dmt01_1_post <- function(tlg, prune_0 = TRUE) {
+dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

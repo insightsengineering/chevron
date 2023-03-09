@@ -17,16 +17,22 @@ aet01_aesi_1_main(
   adam_db,
   arm_var = "ACTARM",
   aesi_vars = NA,
-  deco = std_deco("AET01_AESI")
+  deco = std_deco("AET01_AESI"),
+  ...
 )
 
 aet01_aesi_1_lyt(arm_var, aesi_vars, deco, lbl_aesi_vars)
 
-aet01_aesi_1_pre(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
+aet01_aesi_1_pre(
+  adam_db,
+  req_tables = c("adsl", "adae"),
+  arm_var = "ACTARM",
+  ...
+)
 
 aet01_aesi_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 
-aet01_aesi_post(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"))
+aet01_aesi_post(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"), ...)
 
 aet01_aesi_1
 }
@@ -38,6 +44,8 @@ aet01_aesi_1
 \item{aesi_vars}{(\code{character}) the AESI variables to be included in the summary. Defaults to \code{NA}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{lbl_aesi_vars}{(\code{character}) the labels of the AESI variables to be summarized.}
 

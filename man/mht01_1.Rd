@@ -18,14 +18,15 @@ mht01_1_main(
   lbl_overall = NULL,
   lbl_mhbodsys = "MedDRA System Organ Class",
   lbl_mhdecod = "MedDRA Preferred Term",
-  deco = std_deco("MHT01")
+  deco = std_deco("MHT01"),
+  ...
 )
 
 mht01_1_lyt(arm_var, lbl_overall, lbl_mhbodsys, lbl_mhdecod, deco)
 
-mht01_1_pre(adam_db)
+mht01_1_pre(adam_db, ...)
 
-mht01_1_post(tlg, prune_0 = TRUE)
+mht01_1_post(tlg, prune_0 = TRUE, ...)
 
 mht01_1
 }
@@ -43,6 +44,8 @@ of the corresponding column in the \code{admh} table.}
 the corresponding column in the \code{admh} table.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
