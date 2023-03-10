@@ -53,15 +53,17 @@ test_that("main setter works as expected", {
   func <- function(adam_db, ...) {
     build_table(basic_table(), adam_db)
   }
-  main(aet04_1) <- func
-  expect_identical(aet04_1@main, func)
+  obj <- aet04_1
+  main(obj) <- func
+  expect_identical(obj@main, func)
 })
 
 test_that("main setter throw an error as expected", {
   func <- function(adam_db) {
     build_table(basic_table(), adam_db)
   }
-  expect_error(main(aet04_1) <- func, "Variable 'object@main': Must have formal arguments: ....",
+  obj <- aet04_1
+  expect_error(main(obj) <- func, "Variable 'object@main': Must have formal arguments: ....",
     fixed = TRUE
   )
 })
@@ -76,13 +78,15 @@ test_that("preprocess works as expected", {
 
 test_that("preprocess setter works as expected", {
   func <- function(adam_db, ...) adam_db
-  preprocess(aet04_1) <- func
-  expect_identical(aet04_1@preprocess, func)
+  obj <- aet04_1
+  preprocess(obj) <- func
+  expect_identical(obj@preprocess, func)
 })
 
 test_that("preprocess sends an error as expected", {
   func <- function(adam_db) adam_db
-  expect_error(preprocess(aet04_1) <- func, "Variable 'object@preprocess': Must have formal arguments: ....",
+  obj <- aet04_1
+  expect_error(preprocess(obj) <- func, "Variable 'object@preprocess': Must have formal arguments: ....",
     fixed = TRUE
   )
 })
@@ -97,13 +101,15 @@ test_that("postprocess works as expected", {
 
 test_that("postprocess setter works as expected", {
   func <- function(tlg, ...) tlg
-  postprocess(aet04_1) <- func
-  expect_identical(aet04_1@postprocess, func)
+  obj <- aet04_1
+  postprocess(obj) <- func
+  expect_identical(obj@postprocess, func)
 })
 
 test_that("postprocess sends an error as expected", {
   func <- function(tlg) tlg
-  expect_error(postprocess(aet04_1) <- func, "Variable 'object@postprocess': Must have formal arguments: ....",
+  obj <- aet04_1
+  expect_error(postprocess(obj) <- func, "Variable 'object@postprocess': Must have formal arguments: ....",
     fixed = TRUE
   )
 })
@@ -116,8 +122,9 @@ test_that("datasets works as expected", {
 })
 
 test_that("datasets setter works as expected", {
-  datasets(aet04_1) <- c("adsl", "adxx")
-  expect_identical(aet04_1@adam_datasets, c("adsl", "adxx"))
+  obj <- aet04_1
+  datasets(obj) <- c("adsl", "adxx")
+  expect_identical(obj@adam_datasets, c("adsl", "adxx"))
 })
 
 # script_args ----

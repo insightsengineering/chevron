@@ -102,6 +102,7 @@ args_list <- list(
 source(tmp_args, local = knitr::knit_global(), echo = TRUE)
 source(tmp_funs, local = knitr::knit_global())
 tlg_output
+
 ```
 
 # Exploring Main and Post process functions
