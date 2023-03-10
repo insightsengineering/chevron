@@ -12,7 +12,7 @@ Create Script for TLG Generation"><!-- mathjax --><script src="https://cdnjs.clo
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9048</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9049</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,15 +32,6 @@ Create Script for TLG Generation"><!-- mathjax --><script src="https://cdnjs.clo
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -99,9 +90,13 @@ prepossessing step is printed.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">script_args</span><span class="op">(</span><span class="va">aet04_1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "\n# Arguments definition ----\n"    "adam_db &lt;- stop(\"enter dataset\")"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "arm_var &lt;- \"ACTARM\""              "deco &lt;- std_deco(\"AET04\")"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "prune_0 &lt;- TRUE"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "\n# Arguments definition ----\n"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "adam_db &lt;- stop(\"enter dataset\")"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "arm_var &lt;- \"ACTARM\""                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "lbl_aebodsys &lt;- \"MedDRA System Organ Class\""</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "lbl_aedecod &lt;- \"MedDRA Preferred Term\""     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "deco &lt;- std_deco(\"AET04\")"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "prune_0 &lt;- TRUE"                              </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">script_funs</span><span class="op">(</span><span class="va">aet04_1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "\n# Functions definition ----\n"                                                     </span>
@@ -121,8 +116,9 @@ prepossessing step is printed.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [15] "\n# Functions execution ----\n"                                                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [16] "proc_data &lt;- preprocess_fun(adam_db = adam_db)"                                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [17] "final_tlg &lt;- run(aet04_1, auto_pre = FALSE, adam_db = proc_data, "                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "    arm_var = arm_var, grade_groups = grade_groups, lbl_overall = lbl_overall, "     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "    deco = deco, prune_0 = prune_0)"                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "    arm_var = arm_var, lbl_overall = lbl_overall, lbl_aebodsys = lbl_aebodsys, "     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "    lbl_aedecod = lbl_aedecod, grade_groups = grade_groups, deco = deco, "           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "    prune_0 = prune_0)"                                                              </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
