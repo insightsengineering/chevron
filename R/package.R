@@ -18,5 +18,4 @@
 #' @importFrom rlang sym .data .env
 #' @importFrom stats setNames median sd quantile
 #' @importFrom tibble tribble
-#' @importFrom yaml read_yaml
 "_PACKAGE"

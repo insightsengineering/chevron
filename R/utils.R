@@ -152,7 +152,7 @@ syn_test_data <- function() {
   # useful for lbt04, lbt05
   qntls <- sd$adlb %>%
     group_by(PARAMCD) %>%
-    summarise(as_tibble(t(quantile(AVAL, probs = c(0.1, 0.9)))), .groups = "drop_last") %>%
+    summarise(tibble::as_tibble(t(quantile(AVAL, probs = c(0.1, 0.9)))), .groups = "drop_last") %>%
     rename(q1 = 2, q2 = 3)
 
   sd$adlb <- qntls %>%

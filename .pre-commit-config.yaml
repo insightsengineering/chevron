@@ -16,25 +16,22 @@ repos:
         name: Regenerate package documentation
         additional_dependencies:
           - checkmate
-          - digest
+          - dm
           - dplyr
+          - insightsengineering/dunlin
+          - forcats
+          - formatters
           - ggplot2
-          - glue
-          - grDevices
-          - lifecycle
-          - logger
           - magrittr
           - methods
-          - bioc::MultiAssayExperiment
-          - R6
+          - insightsengineering/nestcolor
           - rlang
+          - insightsengineering/rlistings
           - rtables
-          - shinyjs
-          - shinyWidgets
-          - stats
-          - bioc::SummarizedExperiment
-          - utils
-          - yaml
+          - insightsengineering/scda
+          - insightsengineering/scda.2022
+          - insightsengineering/tern
+          - tibble
       - id: spell-check
         name: Check spelling with `spelling`
         exclude: >
@@ -64,6 +61,7 @@ repos:
           (.*/|)DESCRIPTION|
           (.*/|)LICENSE|
           (.*/|)NAMESPACE|
+          .*\-package.Rd|
           (.*/|)staged_dependencies\.yaml|
           (.*/|)WORDLIST|
           \.github/.*\.yaml|
