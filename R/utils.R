@@ -420,7 +420,7 @@ grob_list <- function(...) {
   )
 }
 
-#' List of gg object
+#' List of `gg` object
 #' @param ... (`ggplot`) objects
 #' @export
 gg_list <- function(...) {
