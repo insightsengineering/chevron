@@ -408,7 +408,7 @@ fuse_sequentially <- function(x, y) {
   c(x, y[sel_names_y])
 }
 
-#' List of grob object
+#' List of `grob` object
 #' @param ... (`grob`) objects
 #' @export
 grob_list <- function(...) {
