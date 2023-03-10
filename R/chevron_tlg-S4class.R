@@ -131,8 +131,8 @@ methods::setValidity("chevron_g", function(object) {
 #'   tlg
 #' })
 #'
-chevron_t <- function(main = function(adam_db) build_table(basic_table(), adam_db[[1]]),
-                      preprocess = function(adam_db) adam_db,
+chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
+                      preprocess = function(adam_db, ...) adam_db,
                       postprocess = report_null,
                       adam_datasets = NA_character_,
                       ...) {
@@ -158,9 +158,9 @@ chevron_t <- function(main = function(adam_db) build_table(basic_table(), adam_d
 #' @examples
 #' chevron_l_obj <- chevron_l()
 #'
-chevron_l <- function(main = function(adam_db) data.frame(),
-                      preprocess = function(adam_db) adam_db,
-                      postprocess = function(tlg) tlg,
+chevron_l <- function(main = function(adam_db, ...) data.frame(),
+                      preprocess = function(adam_db, ...) adam_db,
+                      postprocess = function(tlg, ...) tlg,
                       adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_l(
@@ -188,9 +188,9 @@ chevron_l <- function(main = function(adam_db) data.frame(),
 #'   postprocess = function(tlg, title) tlg + ggplot2::labs(main = title)
 #' )
 #'
-chevron_g <- function(main = function(adam_db) ggplot2::ggplot(),
-                      preprocess = function(adam_db) adam_db,
-                      postprocess = function(tlg) tlg,
+chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
+                      preprocess = function(adam_db, ...) adam_db,
+                      postprocess = function(tlg, ...) tlg,
                       adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_g(
