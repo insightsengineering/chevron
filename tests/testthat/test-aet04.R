@@ -2,8 +2,8 @@ test_that("aet04 can handle NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adae") %>%
     mutate(
-      AEBODSYS = factor(NA),
-      AEDECOD = factor(NA),
+      AEBODSYS = NA_character_,
+      AEDECOD = NA_character_
     ) %>%
     dm_update_zoomed()
 

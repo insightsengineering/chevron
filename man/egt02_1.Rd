@@ -23,10 +23,10 @@ egt02_1_main(
 
 egt02_1_lyt(
   arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
-  lbl_overall = NULL,
-  deco = std_deco("EGT02")
+  lbl_vs_assessment,
+  lbl_vs_abnormality,
+  lbl_overall,
+  deco
 )
 
 egt02_1_pre(adam_db)
