@@ -137,7 +137,7 @@ mng01_1_main <- function(adam_db,
     col <- line_col
   }
 
-  lapply(
+  ret <- lapply(
     data_ls,
     tern::g_lineplot,
     alt_count = adam_db[["adsl"]],
@@ -152,6 +152,7 @@ mng01_1_main <- function(adam_db,
     col = col,
     subtitle_add_unit = !is.na(y_unit)
   )
+  do.call(gg_list, ret)
 }
 
 #' @describeIn mng01_1 Preprocessing
