@@ -141,13 +141,11 @@ syn_test_data <- function() {
   # useful for dst01
   sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
 
-  set.seed(321)
   sd$adsl <- sd$adsl %>%
-    mutate(EOTSTT = as.factor(sample(
-      c("ONGOING", "COMPLETED", "DISCONTINUED"),
-      nrow(sd$adsl),
-      replace = TRUE
-    )))
+    mutate(EOTSTT = {
+      set.seed(321)
+      as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"), nrow(sd$adsl), replace = TRUE))
+    })
 
   # useful for lbt04, lbt05
   qntls <- sd$adlb %>%
@@ -169,8 +167,10 @@ syn_test_data <- function() {
       ),
       AVALCAT1 = factor(
         case_when(
-          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~
-            sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1)),
+          ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ {
+            set.seed(1)
+            sample(x = c("LAST", "REPLICATED", "SINGLE"), size = n(), replace = TRUE, prob = c(0.3, 0.6, 0.1))
+          },
           TRUE ~ ""
         ),
         levels = c("", "LAST", "REPLICATED", "SINGLE")
@@ -178,10 +178,16 @@ syn_test_data <- function() {
     ) %>%
     ungroup() %>%
     mutate(
-      PARCAT1 = as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE)),
+      PARCAT1 = {
+        set.seed(2)
+        as.factor(sample(c("CHEMISTRY", "COAGULATION", "HEMATOLOGY"), n(), replace = TRUE))
+      },
       PARCAT2 = as.factor(case_when(
         ANRIND %in% c("HIGH HIGH", "LOW LOW") ~ "LS",
-        TRUE ~ sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+        TRUE ~ {
+          set.seed(3)
+          sample(c("LS", "CV", "SI"), size = n(), replace = TRUE)
+        }
       ))
     ) %>%
     select(-q1, -q2)
@@ -400,4 +406,28 @@ fuse_sequentially <- function(x, y) {
   sel_names_y <- setdiff(names(y), names_x)
 
   c(x, y[sel_names_y])
+}
+
+#' List of `grob` object
+#' @param ... (`grob`) objects
+#' @export
+grob_list <- function(...) {
+  ret <- list(...)
+  checkmate::assert_list(ret, types = c("grob"))
+  structure(
+    ret,
+    class = c("grob_list", "list")
+  )
+}
+
+#' List of `gg` object
+#' @param ... (`ggplot`) objects
+#' @export
+gg_list <- function(...) {
+  ret <- list(...)
+  checkmate::assert_list(ret, types = c("ggplot"))
+  structure(
+    ret,
+    class = c("gg_list", "list")
+  )
 }

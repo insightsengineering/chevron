@@ -4,8 +4,8 @@ test_that("dst01 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      EOSSTT = NA,
-      DCSREAS = NA
+      EOSSTT = NA_character_,
+      DCSREAS = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -17,7 +17,7 @@ test_that("dst01_1 can handle all NA values in disc_reason_var", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      DCSREAS = NA
+      DCSREAS = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -29,8 +29,8 @@ test_that("dst01_1 can handle some NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      EOSSTT = c(NA, "", as.character(.data$EOSSTT[-c(1, 2)])),
-      DCSREAS = c(NA, "", as.character(.data$DCSREAS[-c(1, 2)]))
+      EOSSTT = c(NA_character_, "", as.character(.data$EOSSTT[-c(1, 2)])),
+      DCSREAS = c(NA_character_, "", as.character(.data$DCSREAS[-c(1, 2)]))
     ) %>%
     dm_update_zoomed()
 
@@ -69,8 +69,8 @@ test_that("dst01_2 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      EOSSTT = NA,
-      DCSREAS = NA
+      EOSSTT = NA_character_,
+      DCSREAS = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -82,7 +82,7 @@ test_that("dst01_2 can handle all NA values in disc_reason_var", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      DCSREAS = NA
+      DCSREAS = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -94,8 +94,8 @@ test_that("dst01_2 can handle some NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      EOSSTT = c(NA, "", as.character(.data$EOSSTT[-c(1, 2)])),
-      DCSREAS = c(NA, "", as.character(.data$DCSREAS[-c(1, 2)]))
+      EOSSTT = c(NA_character_, "", as.character(.data$EOSSTT[-c(1, 2)])),
+      DCSREAS = c(NA_character_, "", as.character(.data$DCSREAS[-c(1, 2)]))
     ) %>%
     dm_update_zoomed()
 
@@ -121,13 +121,11 @@ test_that("dst01_3 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      EOSSTT = NA,
-      DCSREAS = NA,
-      EOTSTT = NA,
+      EOSSTT = NA_character_,
+      DCSREAS = NA_character_,
+      EOTSTT = NA_character_,
     ) %>%
     dm_update_zoomed()
-
-  dst01_3_pre(proc_data) %>% dst01_3_main()
 
   res <- expect_silent(run(dst01_3, proc_data))
   expect_snapshot(res)
@@ -137,7 +135,7 @@ test_that("dst01_3 can handle all NA values in status_treatment_var", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      EOTSTT = NA
+      EOTSTT = NA_character_
     ) %>%
     dm_update_zoomed()
 
@@ -149,7 +147,7 @@ test_that("dst01_3 can handle some NA values in status_treatment_var", {
   proc_data <- syn_data %>%
     dm_zoom_to("adsl") %>%
     mutate(
-      EOTSTT = c(NA, "", as.character(.data$EOTSTT[-c(1, 2)]))
+      EOTSTT = c(NA_character_, "", as.character(.data$EOTSTT[-c(1, 2)]))
     ) %>%
     dm_update_zoomed()
 
