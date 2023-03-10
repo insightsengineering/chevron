@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{gg_list}
 \alias{gg_list}
-\title{List of gg object}
+\title{List of \code{gg} object}
 \usage{
 gg_list(...)
 }
@@ -10,5 +10,5 @@ gg_list(...)
 \item{...}{(\code{ggplot}) objects}
 }
 \description{
-List of gg object
+List of \code{gg} object
 }

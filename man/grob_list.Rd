@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{grob_list}
 \alias{grob_list}
-\title{List of grob object}
+\title{List of \code{grob} object}
 \usage{
 grob_list(...)
 }
@@ -10,5 +10,5 @@ grob_list(...)
 \item{...}{(\code{grob}) objects}
 }
 \description{
-List of grob object
+List of \code{grob} object
 }
