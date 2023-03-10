@@ -86,7 +86,7 @@ writeLines(res_args)
 writeLines(res_funs)
 ```
 
-If saved in a `.R` file, the generated script can be executed.
+If saved in a `.R` file, the generated script can be executed. The result stored in `tlg_output` can be printed.
 ```{r, fig.width=7, fig.height=7}
 tmp_args <- tempfile("my_script_args", fileext = "R")
 writeLines(res_args, con = tmp_args)
@@ -100,7 +100,8 @@ args_list <- list(
 )
 
 source(tmp_args, local = knitr::knit_global(), echo = TRUE)
-source(tmp_funs, local = knitr::knit_global(), echo = TRUE)
+source(tmp_funs, local = knitr::knit_global())
+tlg_output
 ```
 
 # Exploring Main and Post process functions

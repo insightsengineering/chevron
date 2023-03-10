@@ -362,7 +362,7 @@ setMethod(
         capture.output(rlang::call2("<-", sym("post_fun"), postprocess(x))),
         "",
         "# Create TLG.",
-        glue::glue("rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
+        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
         glue::glue("rlang::exec(.fn = main_fun, !!!{args}) |>"),
         glue::glue("rlang::exec(.fn = post_fun, !!!{args})")
       )
@@ -373,7 +373,7 @@ setMethod(
         capture.output(rlang::call2("<-", sym("pre_fun"), preprocess(x))),
         "",
         "# Create TLG.",
-        glue::glue("rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
+        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
         glue::glue("rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE, check_arg = FALSE)")
       )
     }
