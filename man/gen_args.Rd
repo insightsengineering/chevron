@@ -21,7 +21,8 @@ gen_args(
   tlgfname,
   visit_var,
   visit_value,
-  paramcd_value
+  paramcd_value,
+  ...
 )
 }
 \arguments{

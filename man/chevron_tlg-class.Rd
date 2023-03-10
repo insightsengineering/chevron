@@ -90,7 +90,7 @@ The \code{...} argument is mandatory.
 }
 \examples{
 chevron_t_obj <- chevron_t()
-chevron_t_obj <- chevron_t(postprocess = function(tlg, indent) {
+chevron_t_obj <- chevron_t(postprocess = function(tlg, indent, ...) {
   rtables::table_inset(tlg) <- indent
   tlg
 })
@@ -99,7 +99,7 @@ chevron_l_obj <- chevron_l()
 
 chevron_g_obj <- chevron_g()
 chevron_g_obj <- chevron_g(
-  postprocess = function(tlg, title) tlg + ggplot2::labs(main = title)
+  postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title)
 )
 
 }
