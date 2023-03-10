@@ -40,7 +40,7 @@ writeLines(res)
 
 
 ```{r}
-res <- script_funs(aet01_1, adam_db = syn_data, args_spec = "args.yaml")
+res <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
 writeLines(res)
 ```
 
@@ -54,7 +54,7 @@ preprocess(aet01_1) <- function(adam_db, new_format, ...) {
 }
 
 res_args <- script_args(aet01_1)
-res_funs <- script_funs(aet01_1, adam_db = syn_data, args_spec = "args.yaml")
+res_funs <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
 ```
 
 Print the generated scripts. Note that a new argument `new_format` has been added and the pre processing function has been modified.
@@ -78,7 +78,7 @@ dict <- list(
 )
 
 res_args <- script_args(mng01_1, dict = dict)
-res_funs <- script_funs(mng01_1, adam_db = syn_data, args_spec = "args.yaml")
+res_funs <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list")
 ```
 
 ```{r}
@@ -94,8 +94,13 @@ writeLines(res_args, con = tmp_args)
 tmp_funs <- tempfile("my_script_funs", fileext = "R")
 writeLines(res_funs, con = tmp_funs)
 
-source(tmp_args, local = knitr::knit_global())
-source(tmp_funs, local = knitr::knit_global())
+args_list <- list(
+  dataset = "adlb",
+  arm_var = "ARM"
+)
+
+source(tmp_args, local = knitr::knit_global(), echo = TRUE)
+source(tmp_funs, local = knitr::knit_global(), echo = TRUE)
 ```
 
 # Exploring Main and Post process functions
@@ -103,7 +108,7 @@ source(tmp_funs, local = knitr::knit_global())
 By specifying `details = TRUE` the main and post processing functions are also exposed.
 
 ```{r}
-res_fun <- script_funs(mng01_1, adam_db = syn_data, args_spec = "args.yaml", details = TRUE)
+res_fun <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list", details = TRUE)
 ```
 
 ```{r}

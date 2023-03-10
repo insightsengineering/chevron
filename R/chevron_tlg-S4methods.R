@@ -32,10 +32,11 @@ setMethod(
     user_args <- list(...)
 
     # Assert validity of provided arguments.
+    arg_pre_name <- if (auto_pre) rlang::fn_fmls_names(preprocess(object))
+    arg_main_name <- rlang::fn_fmls_names(main(object))
+    arg_post_name <- rlang::fn_fmls_names(postprocess(object))
+
     if (check_arg) {
-      arg_pre_name <- if (auto_pre) rlang::fn_fmls_names(preprocess(object))
-      arg_main_name <- rlang::fn_fmls_names(main(object))
-      arg_post_name <- rlang::fn_fmls_names(postprocess(object))
       all_args_names <- setdiff(c(arg_pre_name, arg_main_name, arg_post_name), "...")
       assert_subset_suggest(names(user_args), all_args_names)
     }
@@ -275,11 +276,11 @@ setMethod(
 #' Create Script for Parameters Assignment
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param adam_db (`expression`) the dataset.
+#' @param adam_db (`string`) the name of the dataset.
 #' @param dict (`list`) with the name and value of custom arguments.
 #' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the
 #'   prepossessing step is printed.
-#' @param args_spec (`string`) argument file location.
+#' @param args (`string`) the name of argument list.
 #'
 #' @name script
 #' @rdname script
@@ -336,30 +337,23 @@ setMethod(
 #'
 #' @rdname script
 #' @export
-setGeneric("script_funs", function(x, adam_db, args_spec, details = FALSE) standardGeneric("script_funs"))
+setGeneric("script_funs", function(x, adam_db, args, details = FALSE) standardGeneric("script_funs"))
 
 #' @rdname script
 #' @export
 #'
 #' @examples
-#' script_funs(aet04_1)
-#'
+#' script_funs(aet04_1, adam_db = "syn_data", args = "args")
 setMethod(
   f = "script_funs",
   signature = "chevron_tlg",
-  definition = function(x, adam_db, args_spec, details = FALSE) {
+  definition = function(x, adam_db, args, details = FALSE) {
     checkmate::assert_flag(details)
-    checkmate::assert_string(args_spec)
-    adam_db <- substitute(adam_db)
+    checkmate::assert_string(adam_db)
+    checkmate::assert_string(args)
 
     if (details) {
       c(
-        "# Load data.",
-        glue::glue("adam_db <- {adam_db}"),
-        "",
-        "# Load arguments.",
-        glue::glue("args <- yaml::read_yaml('{args_spec}')"),
-        "",
         "# Edit Functions.",
         capture.output(rlang::call2("<-", sym("pre_fun"), preprocess(x))),
         "",
@@ -368,25 +362,19 @@ setMethod(
         capture.output(rlang::call2("<-", sym("post_fun"), postprocess(x))),
         "",
         "# Create TLG.",
-        glue::glue("pre_fun(adam_db = adam_db, !!!args) %>%"),
-        glue::glue("main_fun(!!!args) %>%"),
-        glue::glue("post_fun(!!!args)")
+        glue::glue("rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
+        glue::glue("rlang::exec(.fn = main_fun, !!!{args}) |>"),
+        glue::glue("rlang::exec(.fn = post_fun, !!!{args})")
       )
     } else {
       tlg_name <- substitute(x)
       c(
-        "# Load data.",
-        glue::glue("adam_db <- {adam_db}"),
-        "",
-        "# Load arguments.",
-        glue::glue("args <- yaml::read_yaml('{args_spec}')"),
-        "",
-        "# Edit Preprocessing Functions.",
+        "# Edit Preprocessing Function.",
         capture.output(rlang::call2("<-", sym("pre_fun"), preprocess(x))),
         "",
         "# Create TLG.",
-        glue::glue("pre_fun(adam_db = adam_db, !!!args) %>%"),
-        glue::glue("  run({tlg_name}, auto_pre = FALSE, !!!args, check_arg = FALSE)")
+        glue::glue("rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
+        glue::glue("rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE, check_arg = FALSE)")
       )
     }
   }

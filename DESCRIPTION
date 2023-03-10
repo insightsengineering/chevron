@@ -22,6 +22,7 @@ Imports:
     forcats (>= 1.0.0),
     formatters (> 0.3.4),
     ggplot2 (>= 3.4.0),
+    glue,
     magrittr,
     methods,
     nestcolor (>= 0.1.0),
@@ -68,6 +69,7 @@ Collate:
     'chevron_tlg-S4methods.R'
     'cmt01a.R'
     'cmt02_pt.R'
+    'data.R'
     'dmt01.R'
     'dst01.R'
     'dtht01.R'

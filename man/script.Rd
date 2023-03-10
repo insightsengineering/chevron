@@ -12,18 +12,18 @@ script_args(x, dict = NULL)
 
 \S4method{script_args}{chevron_tlg}(x, dict = NULL)
 
-script_funs(x, adam_db, args_spec, details = FALSE)
+script_funs(x, adam_db, args, details = FALSE)
 
-\S4method{script_funs}{chevron_tlg}(x, adam_db, args_spec, details = FALSE)
+\S4method{script_funs}{chevron_tlg}(x, adam_db, args, details = FALSE)
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
 \item{dict}{(\code{list}) with the name and value of custom arguments.}
 
-\item{adam_db}{(\code{expression}) the dataset.}
+\item{adam_db}{(\code{string}) the name of the dataset.}
 
-\item{args_spec}{(\code{string}) argument file location.}
+\item{args}{(\code{string}) the name of argument list.}
 
 \item{details}{(\code{flag}) whether to show the code of all function. By default, only the detail of the code of the
 prepossessing step is printed.}
@@ -36,6 +36,5 @@ Create Script for \code{TLG} Generation
 \examples{
 script_args(aet04_1)
 
-script_funs(aet04_1)
-
+script_funs(aet04_1, adam_db = "syn_data", args = "args")
 }
