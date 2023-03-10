@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.917392610393512" branch-rate="0" lines-covered="3054" lines-valid="3329" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-03-09 06:26:06">
+<coverage line-rate="0.915918611609814" branch-rate="0" lines-covered="3061" lines-valid="3342" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-03-10 17:00:14">
   <sources/>
   <packages>
-    <package name="chevron" line-rate="0.917392610393512" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.915918611609814" branch-rate="0" complexity="0">
       <classes>
         <class name="aet01_aesi.R" filename="R/aet01_aesi.R" line-rate="0.957219251336898" branch-rate="0" complexity="0">
           <methods>
@@ -6356,9 +6356,9 @@
             <line number="141" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="mng01.R" filename="R/mng01.R" line-rate="0.870967741935484" branch-rate="0" complexity="0">
+        <class name="mng01.R" filename="R/mng01.R" line-rate="0.872340425531915" branch-rate="0" complexity="0">
           <methods>
-            <method name="mng01_1_main" signature="" line-rate="0.872093023255814" branch-rate="0">
+            <method name="mng01_1_main" signature="" line-rate="0.873563218390805" branch-rate="0">
               <lines>
                 <line number="49" hits="1" branch="false"/>
                 <line number="51" hits="1" branch="false"/>
@@ -6446,21 +6446,22 @@
                 <line number="151" hits="1" branch="false"/>
                 <line number="152" hits="1" branch="false"/>
                 <line number="153" hits="1" branch="false"/>
+                <line number="154" hits="1" branch="false"/>
               </lines>
             </method>
             <method name="mng01_1_pre" signature="" line-rate="1" branch-rate="0">
               <lines>
-                <line number="162" hits="1" branch="false"/>
-                <line number="164" hits="1" branch="false"/>
+                <line number="163" hits="1" branch="false"/>
                 <line number="165" hits="1" branch="false"/>
                 <line number="166" hits="1" branch="false"/>
                 <line number="167" hits="1" branch="false"/>
-                <line number="169" hits="1" branch="false"/>
+                <line number="168" hits="1" branch="false"/>
+                <line number="170" hits="1" branch="false"/>
               </lines>
             </method>
             <method name="mng01_1_post" signature="" line-rate="0" branch-rate="0">
               <lines>
-                <line number="177" hits="0" branch="false"/>
+                <line number="178" hits="0" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -6551,13 +6552,14 @@
             <line number="151" hits="1" branch="false"/>
             <line number="152" hits="1" branch="false"/>
             <line number="153" hits="1" branch="false"/>
-            <line number="162" hits="1" branch="false"/>
-            <line number="164" hits="1" branch="false"/>
+            <line number="154" hits="1" branch="false"/>
+            <line number="163" hits="1" branch="false"/>
             <line number="165" hits="1" branch="false"/>
             <line number="166" hits="1" branch="false"/>
             <line number="167" hits="1" branch="false"/>
-            <line number="169" hits="1" branch="false"/>
-            <line number="177" hits="0" branch="false"/>
+            <line number="168" hits="1" branch="false"/>
+            <line number="170" hits="1" branch="false"/>
+            <line number="178" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="pdt01.R" filename="R/pdt01.R" line-rate="0.383333333333333" branch-rate="0" complexity="0">
@@ -6858,7 +6860,7 @@
             <line number="150" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="utils.R" filename="R/utils.R" line-rate="0.298969072164948" branch-rate="0" complexity="0">
+        <class name="utils.R" filename="R/utils.R" line-rate="0.310679611650485" branch-rate="0" complexity="0">
           <methods>
             <method name="var_labels_for" signature="" line-rate="1" branch-rate="0">
               <lines>
@@ -7110,6 +7112,26 @@
                 <line number="408" hits="11" branch="false"/>
               </lines>
             </method>
+            <method name="grob_list" signature="" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="415" hits="0" branch="false"/>
+                <line number="416" hits="0" branch="false"/>
+                <line number="417" hits="0" branch="false"/>
+                <line number="418" hits="0" branch="false"/>
+                <line number="419" hits="0" branch="false"/>
+                <line number="420" hits="0" branch="false"/>
+              </lines>
+            </method>
+            <method name="gg_list" signature="" line-rate="1" branch-rate="0">
+              <lines>
+                <line number="427" hits="2" branch="false"/>
+                <line number="428" hits="2" branch="false"/>
+                <line number="429" hits="2" branch="false"/>
+                <line number="430" hits="2" branch="false"/>
+                <line number="431" hits="2" branch="false"/>
+                <line number="432" hits="2" branch="false"/>
+              </lines>
+            </method>
           </methods>
           <lines>
             <line number="11" hits="85" branch="false"/>
@@ -7306,6 +7328,18 @@
             <line number="405" hits="11" branch="false"/>
             <line number="406" hits="11" branch="false"/>
             <line number="408" hits="11" branch="false"/>
+            <line number="415" hits="0" branch="false"/>
+            <line number="416" hits="0" branch="false"/>
+            <line number="417" hits="0" branch="false"/>
+            <line number="418" hits="0" branch="false"/>
+            <line number="419" hits="0" branch="false"/>
+            <line number="420" hits="0" branch="false"/>
+            <line number="427" hits="2" branch="false"/>
+            <line number="428" hits="2" branch="false"/>
+            <line number="429" hits="2" branch="false"/>
+            <line number="430" hits="2" branch="false"/>
+            <line number="431" hits="2" branch="false"/>
+            <line number="432" hits="2" branch="false"/>
           </lines>
         </class>
         <class name="vst01.R" filename="R/vst01.R" line-rate="1" branch-rate="0" complexity="0">
