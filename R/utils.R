@@ -408,3 +408,27 @@ fuse_sequentially <- function(x, y) {
 
   c(x, y[sel_names_y])
 }
+
+#' List of `grob` object
+#' @param ... (`grob`) objects
+#' @export
+grob_list <- function(...) {
+  ret <- list(...)
+  checkmate::assert_list(ret, types = c("grob"))
+  structure(
+    ret,
+    class = c("grob_list", "list")
+  )
+}
+
+#' List of `gg` object
+#' @param ... (`ggplot`) objects
+#' @export
+gg_list <- function(...) {
+  ret <- list(...)
+  checkmate::assert_list(ret, types = c("ggplot"))
+  structure(
+    ret,
+    class = c("gg_list", "list")
+  )
+}
