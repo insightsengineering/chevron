@@ -21,7 +21,6 @@ library(DiagrammeRsvg)
 library(DiagrammeR)
 
 library(chevron)
-force(syn_data)
 library(dm)
 library(dplyr)
 ```
@@ -99,6 +98,7 @@ writeLines(res_args, con = tmp_args)
 tmp_funs <- tempfile("my_script_funs", fileext = "R")
 writeLines(res_funs, con = tmp_funs)
 
+force(syn_data)
 source(tmp_args, local = knitr::knit_global())
 source(tmp_funs, local = knitr::knit_global())
 
