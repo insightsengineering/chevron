@@ -94,17 +94,6 @@ dmt01_1_lyt <- function(arm_var,
 dmt01_1_pre <- function(adam_db) {
   checkmate::assert_class(adam_db, "dm")
 
-  new_format <- list(
-    adsl = list(
-      SEX = list(
-        "Female" = "F",
-        "Male" = "M"
-      )
-    )
-  )
-
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
-
   adam_db <- dunlin::dm_explicit_na(adam_db)
 
   db <- adam_db %>%

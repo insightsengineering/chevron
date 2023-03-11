@@ -2,7 +2,7 @@ test_that("lbt05 give all 0 count if ANRIND are all missing", {
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
     mutate(
-      ANRIND = factor(NA)
+      ANRIND = NA_character_
     ) %>%
     dm_update_zoomed()
   res <- run(lbt05_1, proc_data)

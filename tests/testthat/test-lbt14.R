@@ -2,8 +2,8 @@ test_that("lbt14_1 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
     mutate(
-      BTOXGR = factor(NA),
-      ATOXGR = factor(NA)
+      BTOXGR = NA_character_,
+      ATOXGR = NA_character_
     ) %>%
     dm_update_zoomed()
 

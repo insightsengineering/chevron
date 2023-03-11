@@ -25,9 +25,9 @@ dst01_1_lyt(
   arm_var,
   status_var,
   disc_reason_var,
-  completed_lbl = "COMPLETED",
-  ongoing_lbl = "ONGOING",
-  discontinued_lbl = "DISCONTINUED",
+  completed_lbl,
+  ongoing_lbl,
+  discontinued_lbl,
   lbl_overall,
   deco
 )

@@ -1,5 +1,5 @@
 test_that("lbt07 can handle some NA values", {
-  new_grade_dir <- c(NA, "", as.character(syn_data$adlb$ATOXGR[-c(1, 2)]))
+  new_grade_dir <- c(NA_character_, "", as.character(syn_data$adlb$ATOXGR[-c(1, 2)]))
 
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%

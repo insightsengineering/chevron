@@ -112,11 +112,11 @@ lbt07_1_pre <- function(adam_db) {
 
   new_format <- list(
     adlb = list(
-      ATOXGR = list("<Missing>" = c("", NA, "<Missing>", "No Coding available"))
+      ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding available"))
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adlb") %>%

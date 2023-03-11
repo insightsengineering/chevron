@@ -21,8 +21,10 @@
 #'
 aet04_1_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         grade_groups = NULL,
                          lbl_overall = NULL,
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
+                         grade_groups = NULL,
                          deco = std_deco("AET04")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
@@ -43,6 +45,8 @@ aet04_1_main <- function(adam_db,
   lyt <- aet04_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     toxicity_grade = toxicity_grade,
     grade_groups = grade_groups,
     deco = deco
@@ -66,8 +70,8 @@ aet04_1_main <- function(adam_db,
 #'
 aet04_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
                         toxicity_grade,
                         grade_groups,
                         deco) {
@@ -130,13 +134,13 @@ aet04_1_pre <- function(adam_db) {
 
   new_format <- list(
     adae = list(
-      AEBODSYS = list("No Coding Available" = c("", NA, "<Missing>")),
-      AEDECOD = list("No Coding Available" = c("", NA, "<Missing>")),
-      ATOXGR = list("No Grading Available" = c("", NA, "<Missing>"))
+      AEBODSYS = rule("No Coding Available" = c("", NA, "<Missing>")),
+      AEDECOD = rule("No Coding Available" = c("", NA, "<Missing>")),
+      ATOXGR = rule("No Grading Available" = c("", NA, "<Missing>"))
     )
   )
 
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adae") %>%

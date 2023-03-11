@@ -21,6 +21,8 @@
 aet03_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
                          deco = std_deco("AET03")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
@@ -31,6 +33,8 @@ aet03_1_main <- function(adam_db,
   lyt <- aet03_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     intensity_grade = intensity_grade,
     deco = deco
   )
@@ -52,8 +56,8 @@ aet03_1_main <- function(adam_db,
 #'
 aet03_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
                         intensity_grade,
                         deco) {
   all_grade_groups <- list("- Any Intensity -" = intensity_grade)
@@ -111,20 +115,18 @@ aet03_1_pre <- function(adam_db) {
 
   new_format <- list(
     adae = list(
-      AEBODSYS = list("No Coding available" = c("", NA, "<Missing>")),
-      AEDECOD = list("No Coding available" = c("", NA, "<Missing>")),
-      ASEV = list("<Missing>" = c("", NA, "<Missing>"))
+      AEBODSYS = rule("No Coding available" = c("", NA, "<Missing>")),
+      AEDECOD = rule("No Coding available" = c("", NA, "<Missing>")),
+      ASEV = rule("<Missing>" = c("", NA, "<Missing>"))
     )
   )
-  adam_db <- dunlin::apply_reformat(adam_db, new_format)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db %>%
     dm_zoom_to("adae") %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ASEV != "<Missing>") %>%
-    mutate(ASEV = factor(.data$ASEV,
-      levels = setdiff(levels(.data$ASEV), "<Missing>")
-    )) %>%
+    mutate(ASEV = factor(.data$ASEV, levels = setdiff(levels(.data$ASEV), "<Missing>"))) %>%
     dm_update_zoomed()
 }
 

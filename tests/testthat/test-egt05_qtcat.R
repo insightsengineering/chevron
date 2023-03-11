@@ -4,7 +4,7 @@ test_that("egt05_qtcat can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adeg") %>%
     mutate(
-      AVISIT = factor(NA),
+      AVISIT = NA_character_,
     ) %>%
     dm_update_zoomed()
 
@@ -18,9 +18,9 @@ test_that("egt05_qtcat can handle some NA values", {
     filter(PARAMCD == "QT") %>%
     dm_update_zoomed()
 
-  new_avisit <- c(NA, NA, as.character(proc_data$adeg$AVISIT[-c(1, 2)]))
-  new_avalcat1 <- c(NA, NA, as.character(proc_data$adeg$AVALCAT1[-c(1, 2)]))
-  new_chgcat1 <- c(NA, NA, as.character(proc_data$adeg$CHGCAT1[-c(1, 2)]))
+  new_avisit <- c(NA_character_, NA_character_, as.character(proc_data$adeg$AVISIT[-c(1, 2)]))
+  new_avalcat1 <- c(NA_character_, NA_character_, as.character(proc_data$adeg$AVALCAT1[-c(1, 2)]))
+  new_chgcat1 <- c(NA_character_, NA_character_, as.character(proc_data$adeg$CHGCAT1[-c(1, 2)]))
 
   proc_data <- proc_data %>%
     dm_zoom_to("adeg") %>%
