@@ -17,15 +17,18 @@ aet02_2_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
+  lbl_aehlt = "MedDRA High-Level Term",
   deco = std_deco("AET02")
 )
 
 aet02_2_lyt(
   arm_var,
   lbl_overall = NULL,
-  lbl_aebodsys = "MedDRA System Organ Class",
-  lbl_aehlt = "MedDRA High-Level Term",
-  lbl_aedecod = "MedDRA Preferred Term",
+  lbl_aebodsys,
+  lbl_aedecod,
+  lbl_aehlt,
   deco
 )
 
@@ -39,6 +42,7 @@ aet02_3_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
+  lbl_aedecod = "MedDRA Preferred Term",
   deco = std_deco("AET02")
 )
 }
@@ -49,13 +53,13 @@ aet02_3_main(
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
+
+\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{lbl_aehlt}{(\code{character}) text label for \code{AEHLT}.}
 
-\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

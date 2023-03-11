@@ -15,16 +15,18 @@ An object of class \code{chevron_t} of length 1.
 aet04_1_main(
   adam_db,
   arm_var = "ACTARM",
-  grade_groups = NULL,
   lbl_overall = NULL,
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
+  grade_groups = NULL,
   deco = std_deco("AET04")
 )
 
 aet04_1_lyt(
   arm_var,
   lbl_overall,
-  lbl_aebodsys = "MedDRA System Organ Class",
-  lbl_aedecod = "MedDRA Preferred Term",
+  lbl_aebodsys,
+  lbl_aedecod,
   toxicity_grade,
   grade_groups,
   deco
@@ -41,15 +43,15 @@ aet04_1
 
 \item{arm_var}{(\code{character}) variable used for column splitting}
 
-\item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
-
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
+
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{toxicity_grade}{(\verb{vector of character}) putting in correspondence toxicity levels.}
 

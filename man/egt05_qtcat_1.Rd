@@ -31,7 +31,7 @@ egt05_qtcat_1_lyt(
   arm_var,
   summaryvars,
   summaryvars_lbls,
-  lbl_overall = NULL,
+  lbl_overall,
   visitvar,
   lbl_avisit,
   lbl_param,

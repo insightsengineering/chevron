@@ -47,10 +47,10 @@ egt02_1_main <- function(adam_db,
 #' @export
 #'
 egt02_1_lyt <- function(arm_var = "ACTARM",
-                        lbl_vs_assessment = "Assessment",
-                        lbl_vs_abnormality = "Abnormality",
-                        lbl_overall = NULL,
-                        deco = std_deco("EGT02")) {
+                        lbl_vs_assessment,
+                        lbl_vs_abnormality,
+                        lbl_overall,
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%

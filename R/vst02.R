@@ -55,7 +55,7 @@ vst02_1_lyt <- function(arm_var,
                         lbl_vs_assessment,
                         lbl_vs_abnormality,
                         lbl_overall,
-                        deco = std_deco("VST02")) {
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
