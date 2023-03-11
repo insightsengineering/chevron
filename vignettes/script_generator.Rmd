@@ -21,6 +21,7 @@ library(DiagrammeRsvg)
 library(DiagrammeR)
 
 library(chevron)
+force(syn_data)
 library(dm)
 library(dplyr)
 ```
