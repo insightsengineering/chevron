@@ -355,11 +355,25 @@ setMethod(
     if (details) {
       c(
         "# Edit Functions.",
-        capture.output(rlang::call2("<-", sym("pre_fun"), preprocess(x))),
+        utils::capture.output(
+          print(rlang::call2("<-", sym("pre_fun"), preprocess(x)),
+            useSource = TRUE
+          )
+        ),
         "",
-        capture.output(rlang::call2("<-", sym("main_fun"), main(x))),
+        utils::capture.output(
+          print(
+            rlang::call2("<-", sym("main_fun"), main(x)),
+            useSource = TRUE
+          )
+        ),
         "",
-        capture.output(rlang::call2("<-", sym("post_fun"), postprocess(x))),
+        utils::capture.output(
+          print(
+            rlang::call2("<-", sym("post_fun"), postprocess(x)),
+            useSource = TRUE
+          )
+        ),
         "",
         "# Create TLG.",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
@@ -367,10 +381,15 @@ setMethod(
         glue::glue("rlang::exec(.fn = post_fun, !!!{args})")
       )
     } else {
-      tlg_name <- substitute(x)
+      tlg_name <- deparse(substitute(x))
       c(
         "# Edit Preprocessing Function.",
-        capture.output(rlang::call2("<-", sym("pre_fun"), preprocess(x))),
+        utils::capture.output(
+          print(
+            rlang::call2("<-", sym("pre_fun"), preprocess(x)),
+            useSource = TRUE
+          )
+        ),
         "",
         "# Create TLG.",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
@@ -379,8 +398,6 @@ setMethod(
     }
   }
 )
-
-
 
 # get_main ----
 

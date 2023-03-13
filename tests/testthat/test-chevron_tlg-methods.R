@@ -144,14 +144,24 @@ test_that("script works as expected with dictionary of arguments", {
 
 # script_funs ----
 
+test_that("script_funs works as expected in interactive mode", {
+  skip_if(!interactive())
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls"))
+  expect_snapshot(res)
+})
+
 test_that("script_funs works as expected", {
   res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls"))
-  checkmate::expect_character(res, len = 27)
-  checkmate::expect_subset("  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)", res)
+  checkmate::expect_character(res)
+})
+
+test_that("script_funs works as expected with details set to TRUE", {
+  skip_if(!interactive())
+  res <- expect_silent(script_funs(aet04_1, details = TRUE, adam_db = "data", args = "args_ls"))
+  expect_snapshot(res)
 })
 
 test_that("script_funs works as expected with details set to TRUE", {
   res <- expect_silent(script_funs(aet04_1, details = TRUE, adam_db = "data", args = "args_ls"))
-  checkmate::expect_character(res, len = 94)
-  checkmate::expect_subset("main_fun <- function(adam_db,", res)
+  checkmate::expect_character(res)
 })
