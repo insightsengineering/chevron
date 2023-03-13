@@ -17,7 +17,8 @@ egt03_2_main(
   arm_var = "ARMCD",
   summaryvar = c(`Baseline Reference Range Indicator` = "BNRIND"),
   splitvar = c(`Analysis Reference Range Indicator` = "ANRIND"),
-  deco = std_deco("EGT03")
+  deco = std_deco("EGT03"),
+  ...
 )
 
 egt03_2_lyt(
@@ -30,9 +31,9 @@ egt03_2_lyt(
   deco
 )
 
-egt03_2_pre(adam_db, visit_var = "AVISIT", paramcd_value = "HR")
+egt03_2_pre(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...)
 
-egt03_2_post(tlg, prune_0 = FALSE)
+egt03_2_post(tlg, prune_0 = FALSE, ...)
 
 egt03_2
 }
@@ -50,6 +51,8 @@ subtitles. For values
 where no name is provided, the label attribute of the corresponding column in \code{adeg} table of \code{adam_db} is used.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{lbl_armvar}{(\code{character}) label of the \code{arm_var} variable.}
 

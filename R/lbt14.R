@@ -25,7 +25,8 @@ lbt14_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - Low Direction",
-                         deco = std_deco("LBT14")) {
+                         deco = std_deco("LBT14"),
+                         ...) {
   lyt <- lbt14_1_lyt(
     arm_var = arm_var,
     gr_missing = gr_missing,
@@ -84,7 +85,8 @@ lbt14_1_lyt <- function(arm_var,
 lbt14_1_pre <- function(adam_db,
                         gr_missing = "incl",
                         req_tables = c("adsl", "adlb"),
-                        arm_var = "ACTARM") {
+                        arm_var = "ACTARM",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
@@ -184,7 +186,7 @@ lbt14_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt14_1_post <- function(tlg, prune_0 = TRUE) {
+lbt14_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }
@@ -231,7 +233,8 @@ lbt14_2_main <- function(adam_db,
                          arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - High Direction",
-                         deco = std_deco("LBT14")) {
+                         deco = std_deco("LBT14"),
+                         ...) {
   lyt <- lbt14_2_lyt(
     arm_var = arm_var,
     gr_missing = gr_missing,
@@ -290,7 +293,8 @@ lbt14_2_lyt <- function(arm_var,
 lbt14_2_pre <- function(adam_db,
                         gr_missing = "incl",
                         req_tables = c("adsl", "adlb"),
-                        arm_var = "ACTARM") {
+                        arm_var = "ACTARM",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
@@ -390,7 +394,7 @@ lbt14_2_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt14_2_post <- function(tlg, prune_0 = TRUE) {
+lbt14_2_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }

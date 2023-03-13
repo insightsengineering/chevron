@@ -20,11 +20,12 @@
 #' @param visit_var Analysis Visit variable.
 #' @param paramcd_value Value of PARAMCD variable.
 #' @param visit_value Value of visit variable.
+#' @param ... not used.
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.
 #'
 gen_args <- function(adam_db, main, preprocess, postprocess, adam_datasets,
                      type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
-                     tlg, tlgfname, visit_var, visit_value, paramcd_value) {
+                     tlg, tlgfname, visit_var, visit_value, paramcd_value, ...) {
   NULL
 }

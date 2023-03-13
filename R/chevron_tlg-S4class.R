@@ -18,11 +18,11 @@
 #'
 #' @note To ensure the correct execution of the workflow additional validation criteria are:
 #' * the first argument of the `main` function must be `adam_db`, the input `dm` object to pre-process. The `...`
-#' argument is not allowed.
+#' argument is mandatory.
 #' * the first argument of the `preprocess` function must be `adam_db`, the input `dm` object to create `tlg` output.
-#' The `...` argument is not allowed.
+#' The `...` argument is mandatory.
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post-process. The
-#' `...` argument is not allowed.
+#' `...` argument is mandatory.
 #'
 #' @name chevron_tlg-class
 #' @exportClass chevron_tlg
@@ -42,11 +42,11 @@
 methods::setValidity("chevron_tlg", function(object) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::assert_disjunct(rlang::fn_fmls_names(object@main), "...", add = coll)
+  checkmate::assert_function(object@main, args = "...", add = coll)
   checkmate::assert_function(object@preprocess, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::assert_disjunct(rlang::fn_fmls_names(object@preprocess), "...", add = coll)
+  checkmate::assert_function(object@preprocess, args = "...", add = coll)
   checkmate::assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
-  checkmate::assert_disjunct(rlang::fn_fmls_names(object@postprocess), "...", add = coll)
+  checkmate::assert_function(object@postprocess, args = "...", add = coll)
   checkmate::reportAssertions(coll)
 })
 
@@ -126,13 +126,13 @@ methods::setValidity("chevron_g", function(object) {
 #'
 #' @examples
 #' chevron_t_obj <- chevron_t()
-#' chevron_t_obj <- chevron_t(postprocess = function(tlg, indent) {
+#' chevron_t_obj <- chevron_t(postprocess = function(tlg, indent, ...) {
 #'   rtables::table_inset(tlg) <- indent
 #'   tlg
 #' })
 #'
-chevron_t <- function(main = function(adam_db) build_table(basic_table(), adam_db[[1]]),
-                      preprocess = function(adam_db) adam_db,
+chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
+                      preprocess = function(adam_db, ...) adam_db,
                       postprocess = report_null,
                       adam_datasets = NA_character_,
                       ...) {
@@ -158,9 +158,9 @@ chevron_t <- function(main = function(adam_db) build_table(basic_table(), adam_d
 #' @examples
 #' chevron_l_obj <- chevron_l()
 #'
-chevron_l <- function(main = function(adam_db) data.frame(),
-                      preprocess = function(adam_db) adam_db,
-                      postprocess = function(tlg) tlg,
+chevron_l <- function(main = function(adam_db, ...) data.frame(),
+                      preprocess = function(adam_db, ...) adam_db,
+                      postprocess = function(tlg, ...) tlg,
                       adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_l(
@@ -185,12 +185,12 @@ chevron_l <- function(main = function(adam_db) data.frame(),
 #' @examples
 #' chevron_g_obj <- chevron_g()
 #' chevron_g_obj <- chevron_g(
-#'   postprocess = function(tlg, title) tlg + ggplot2::labs(main = title)
+#'   postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title)
 #' )
 #'
-chevron_g <- function(main = function(adam_db) ggplot2::ggplot(),
-                      preprocess = function(adam_db) adam_db,
-                      postprocess = function(tlg) tlg,
+chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
+                      preprocess = function(adam_db, ...) adam_db,
+                      postprocess = function(tlg, ...) tlg,
                       adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_g(

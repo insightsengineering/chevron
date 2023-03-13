@@ -18,7 +18,8 @@ egt02_2_main(
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
-  deco = std_deco("EGT02_2")
+  deco = std_deco("EGT02_2"),
+  ...
 )
 
 egt02_2_lyt(
@@ -29,9 +30,9 @@ egt02_2_lyt(
   deco = std_deco("EGT02_2")
 )
 
-egt02_2_pre(adam_db)
+egt02_2_pre(adam_db, ...)
 
-egt02_2_post(tlg)
+egt02_2_post(tlg, ...)
 
 egt02_2
 }
@@ -47,6 +48,8 @@ egt02_2
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }

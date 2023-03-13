@@ -24,7 +24,8 @@ egt05_qtcat_1_main(
   lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
   deco = std_deco("EGT05_QTCAT"),
   lbl_cat = "Category",
-  lbl_headvisit = "Analysis Visit"
+  lbl_headvisit = "Analysis Visit",
+  ...
 )
 
 egt05_qtcat_1_lyt(
@@ -40,9 +41,9 @@ egt05_qtcat_1_lyt(
   lbl_headvisit
 )
 
-egt05_qtcat_1_pre(adam_db)
+egt05_qtcat_1_pre(adam_db, ...)
 
-egt05_qtcat_1_post(tlg, prune_0 = TRUE)
+egt05_qtcat_1_post(tlg, prune_0 = TRUE, ...)
 
 egt05_qtcat_1
 }
@@ -71,6 +72,8 @@ to be displayed.}
 \item{lbl_cat}{(\code{character}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
 
 \item{lbl_headvisit}{(\code{character}) label of Visits in the header. Default as \verb{Analysis Visit}.}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

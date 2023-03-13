@@ -25,7 +25,8 @@ ext01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          summaryvars = "AVAL",
                          lbl_overall = NULL,
-                         deco = std_deco("EXT01")) {
+                         deco = std_deco("EXT01"),
+                         ...) {
   assert_colnames(adam_db$adex, summaryvars)
 
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
@@ -78,7 +79,8 @@ ext01_1_lyt <- function(arm_var,
 #' @export
 #'
 ext01_1_pre <- function(adam_db,
-                        paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE")) {
+                        paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -105,7 +107,7 @@ ext01_1_pre <- function(adam_db,
 #'
 #'
 #' @export
-ext01_1_post <- function(tlg, prune_0 = TRUE) {
+ext01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)
 }
@@ -155,7 +157,8 @@ ext01_2_main <- function(adam_db,
                          summaryvars = c("AVAL", "AVALCAT1"),
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         deco = std_deco("EXT01")) {
+                         deco = std_deco("EXT01"),
+                         ...) {
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adam_db$adex, summaryvars)
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
@@ -218,7 +221,8 @@ ext01_2_lyt <- function(arm_var,
 #'
 ext01_2_pre <- function(adam_db,
                         show_stats = c("ALL"),
-                        show_bins = c("ALL")) {
+                        show_bins = c("ALL"),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   db <- adam_db %>%
@@ -250,7 +254,7 @@ ext01_2_pre <- function(adam_db,
 #'
 #' @export
 #'
-ext01_2_post <- function(tlg, prune_0 = TRUE) {
+ext01_2_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)
 }

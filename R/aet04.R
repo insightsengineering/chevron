@@ -25,7 +25,8 @@ aet04_1_main <- function(adam_db,
                          lbl_aebodsys = "MedDRA System Organ Class",
                          lbl_aedecod = "MedDRA Preferred Term",
                          grade_groups = NULL,
-                         deco = std_deco("AET04")) {
+                         deco = std_deco("AET04"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
 
@@ -129,7 +130,7 @@ aet04_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet04_1_pre <- function(adam_db) {
+aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -158,7 +159,7 @@ aet04_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-aet04_1_post <- function(tlg, prune_0 = TRUE) {
+aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
   tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")

@@ -30,7 +30,8 @@ pdt01_1_main <- function(adam_db,
                          dvterm_var = "DVTERM",
                          lbl_dvterm_var = "Category",
                          lbl_overall = NULL,
-                         deco = std_deco("pdt01_1")) {
+                         deco = std_deco("pdt01_1"),
+                         ...) {
   assert_colnames(adam_db$addv, c(dvcode_var, dvterm_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
@@ -98,7 +99,7 @@ pdt01_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") {
+pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -128,7 +129,7 @@ pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") 
 #'
 #' @export
 #'
-pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM") {
+pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

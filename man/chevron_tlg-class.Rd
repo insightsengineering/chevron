@@ -19,25 +19,25 @@
 \title{\code{chevron_t}}
 \usage{
 chevron_t(
-  main = function(adam_db) build_table(basic_table(), adam_db[[1]]),
-  preprocess = function(adam_db) adam_db,
+  main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
+  preprocess = function(adam_db, ...) adam_db,
   postprocess = report_null,
   adam_datasets = NA_character_,
   ...
 )
 
 chevron_l(
-  main = function(adam_db) data.frame(),
-  preprocess = function(adam_db) adam_db,
-  postprocess = function(tlg) tlg,
+  main = function(adam_db, ...) data.frame(),
+  preprocess = function(adam_db, ...) adam_db,
+  postprocess = function(tlg, ...) tlg,
   adam_datasets = NA_character_,
   ...
 )
 
 chevron_g(
-  main = function(adam_db) ggplot2::ggplot(),
-  preprocess = function(adam_db) adam_db,
-  postprocess = function(tlg) tlg,
+  main = function(adam_db, ...) ggplot2::ggplot(),
+  preprocess = function(adam_db, ...) adam_db,
+  postprocess = function(tlg, ...) tlg,
   adam_datasets = NA_character_,
   ...
 )
@@ -81,16 +81,16 @@ creation.}
 To ensure the correct execution of the workflow additional validation criteria are:
 \itemize{
 \item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. The \code{...}
-argument is not allowed.
+argument is mandatory.
 \item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{dm} object to create \code{tlg} output.
-The \code{...} argument is not allowed.
+The \code{...} argument is mandatory.
 \item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process. The
-\code{...} argument is not allowed.
+\code{...} argument is mandatory.
 }
 }
 \examples{
 chevron_t_obj <- chevron_t()
-chevron_t_obj <- chevron_t(postprocess = function(tlg, indent) {
+chevron_t_obj <- chevron_t(postprocess = function(tlg, indent, ...) {
   rtables::table_inset(tlg) <- indent
   tlg
 })
@@ -99,7 +99,7 @@ chevron_l_obj <- chevron_l()
 
 chevron_g_obj <- chevron_g()
 chevron_g_obj <- chevron_g(
-  postprocess = function(tlg, title) tlg + ggplot2::labs(main = title)
+  postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title)
 )
 
 }

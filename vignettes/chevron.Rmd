@@ -123,7 +123,7 @@ Note that this operation creates a local version of the `chevron_tlg` object. Th
 object (accessible with `chevron::aet01_1`) remains unchanged.
 
 ```{r}
-preprocess(aet02_1) <- function(adam_db) adam_db
+preprocess(aet02_1) <- function(adam_db, ...) adam_db
 preprocess(aet02_1)
 ```
 
@@ -141,7 +141,7 @@ library(tern)
 my_template <- chevron_t(
   main = aet02_1_main,
   preprocess = aet02_1_pre,
-  postprocess = function(tlg) {
+  postprocess = function(tlg, ...) {
     tbl_sorted <- tlg %>%
       sort_at_path(
         path = c("AEBODSYS"),
