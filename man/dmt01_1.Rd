@@ -18,14 +18,15 @@ dmt01_1_main(
   summaryvars = c(`Age (yr)` = "AAGE", `Age group (yr)` = "AGEGR1", "SEX", "ETHNIC",
     "RACE"),
   lbl_overall = "All Patients",
-  deco = std_deco("DMT01")
+  deco = std_deco("DMT01"),
+  ...
 )
 
 dmt01_1_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall, deco)
 
-dmt01_1_pre(adam_db)
+dmt01_1_pre(adam_db, ...)
 
-dmt01_1_post(tlg, prune_0 = TRUE)
+dmt01_1_post(tlg, prune_0 = TRUE, ...)
 
 dmt01_1
 }
@@ -41,6 +42,8 @@ subtitles. For values where no name is provided, the label attribute of the corr
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{summaryvars_lbls}{(\verb{vector of character}) labels corresponding to the analyzed variables.}
 

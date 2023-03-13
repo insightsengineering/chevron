@@ -20,7 +20,8 @@ aet02_2_main(
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
   lbl_aehlt = "MedDRA High-Level Term",
-  deco = std_deco("AET02")
+  deco = std_deco("AET02"),
+  ...
 )
 
 aet02_2_lyt(
@@ -32,9 +33,9 @@ aet02_2_lyt(
   deco
 )
 
-aet02_2_pre(adam_db)
+aet02_2_pre(adam_db, ...)
 
-aet02_2_post(tlg, prune_0 = TRUE)
+aet02_2_post(tlg, prune_0 = TRUE, ...)
 
 aet02_2
 
@@ -43,7 +44,8 @@ aet02_3_main(
   arm_var = "ACTARM",
   lbl_overall = NULL,
   lbl_aedecod = "MedDRA Preferred Term",
-  deco = std_deco("AET02")
+  deco = std_deco("AET02"),
+  ...
 )
 }
 \arguments{
@@ -60,6 +62,8 @@ aet02_3_main(
 \item{lbl_aehlt}{(\code{character}) text label for \code{AEHLT}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

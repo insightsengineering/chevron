@@ -18,7 +18,8 @@ aet03_1_main(
   lbl_overall = NULL,
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
-  deco = std_deco("AET03")
+  deco = std_deco("AET03"),
+  ...
 )
 
 aet03_1_lyt(
@@ -30,9 +31,9 @@ aet03_1_lyt(
   deco
 )
 
-aet03_1_pre(adam_db)
+aet03_1_pre(adam_db, ...)
 
-aet03_1_post(tlg, prune_0 = TRUE)
+aet03_1_post(tlg, prune_0 = TRUE, ...)
 
 aet03_1
 }
@@ -48,6 +49,8 @@ aet03_1
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{intensity_grade}{(\verb{vector of character}) describing the intensity levels present in the dataset.}
 

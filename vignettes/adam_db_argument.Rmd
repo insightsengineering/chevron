@@ -34,8 +34,6 @@ We remove the `ADSL` variables in the database of the non-`ADSL` datasets and me
 library(chevron)
 library(dm)
 
-syn_data <- syn_test_data()[c("adsl", "adae", "adlb", "adrs", "adsub")]
-
 drop_adsl_vars <- function(df, adsl) {
   df[c("USUBJID", "STUDYID", setdiff(names(df), names(adsl)))]
 }

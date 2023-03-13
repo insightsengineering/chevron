@@ -21,7 +21,8 @@ gen_args(
   tlgfname,
   visit_var,
   visit_value,
-  paramcd_value
+  paramcd_value,
+  ...
 )
 }
 \arguments{
@@ -61,6 +62,8 @@ creation.}
 \item{visit_value}{Value of visit variable.}
 
 \item{paramcd_value}{Value of PARAMCD variable.}
+
+\item{...}{not used.}
 }
 \description{
 General Argument Name Convention

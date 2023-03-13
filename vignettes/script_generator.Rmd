@@ -43,7 +43,7 @@ writeLines(res)
 ```
 
 ```{r}
-res <- script_funs(aet01_1)
+res <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
 writeLines(res)
 ```
 
@@ -52,12 +52,12 @@ writeLines(res)
 The script generator depends on the functions actually stored in the object. Modifying the `chevron_tlg` object can lead to a different script.
 
 ```{r}
-preprocess(aet01_1) <- function(adam_db, new_format) {
-  dunlin::apply_reformat(adam_db, new_format)
+preprocess(aet01_1) <- function(adam_db, new_format, ...) {
+  dunlin::reformat(adam_db, new_format)
 }
 
 res_args <- script_args(aet01_1)
-res_funs <- script_funs(aet01_1)
+res_funs <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
 ```
 
 Print the generated scripts. Note that a new argument `new_format` has been added and the pre processing function has been modified.
@@ -81,7 +81,7 @@ dict <- list(
 )
 
 res_args <- script_args(mng01_1, dict = dict)
-res_funs <- script_funs(mng01_1)
+res_funs <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list")
 ```
 
 ```{r}
@@ -89,7 +89,7 @@ writeLines(res_args)
 writeLines(res_funs)
 ```
 
-If saved in a `.R` file, the generated script can be executed. The result is stored in the `final_tlg` object, as described in the script.
+If saved in a `.R` file, the generated script can be executed. The result stored in `tlg_output` can be printed.
 
 ```{r, fig.width=7, fig.height=7}
 tmp_args <- tempfile("my_script_args", fileext = "R")
@@ -98,11 +98,14 @@ writeLines(res_args, con = tmp_args)
 tmp_funs <- tempfile("my_script_funs", fileext = "R")
 writeLines(res_funs, con = tmp_funs)
 
-force(syn_data)
-source(tmp_args, local = knitr::knit_global())
-source(tmp_funs, local = knitr::knit_global())
+args_list <- list(
+  dataset = "adlb",
+  arm_var = "ARM"
+)
 
-print(final_tlg[[1]])
+source(tmp_args, local = knitr::knit_global(), echo = TRUE)
+source(tmp_funs, local = knitr::knit_global())
+tlg_output
 ```
 
 ## Exploring Main and Post process functions
@@ -110,7 +113,7 @@ print(final_tlg[[1]])
 By specifying `details = TRUE` the main and post processing functions are also exposed.
 
 ```{r}
-res_fun <- script_funs(mng01_1, details = TRUE)
+res_fun <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list", details = TRUE)
 ```
 
 ```{r}

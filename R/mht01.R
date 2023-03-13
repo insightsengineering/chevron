@@ -26,7 +26,8 @@ mht01_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          lbl_mhbodsys = "MedDRA System Organ Class",
                          lbl_mhdecod = "MedDRA Preferred Term",
-                         deco = std_deco("MHT01")) {
+                         deco = std_deco("MHT01"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
@@ -99,7 +100,7 @@ mht01_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-mht01_1_pre <- function(adam_db) {
+mht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -127,7 +128,7 @@ mht01_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-mht01_1_post <- function(tlg, prune_0 = TRUE) {
+mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
