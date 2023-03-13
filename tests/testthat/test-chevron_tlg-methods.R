@@ -19,24 +19,30 @@ test_that("args_ls works as expected", {
 
 test_that("args_ls works as expected when simplify is TRUE", {
   res <- expect_silent(args_ls(aet04_1, simplify = TRUE))
-  checkmate::expect_list(res, len = 7, names = "named")
+  checkmate::expect_list(res, len = 10, names = "named")
   checkmate::expect_names(
     names(res),
-    identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "tlg", "prune_0")
+    identical.to = c(
+      "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
+      "grade_groups", "deco", "...", "tlg", "prune_0"
+    )
   )
 })
 
 test_that("args_ls works as expected with custom chevron_tlg object", {
   obj <- aet04_1
-  preprocess(obj) <- function(adam_db, arm_var = "overwritten", new_arg = "NEW") {
+  preprocess(obj) <- function(adam_db, arm_var = "overwritten", new_arg = "NEW", ...) {
     adam_db
   }
 
   res <- expect_silent(args_ls(obj, simplify = TRUE))
-  checkmate::expect_list(res, len = 8, names = "named")
+  checkmate::expect_list(res, len = 11, names = "named")
   checkmate::expect_names(
     names(res),
-    identical.to = c("adam_db", "arm_var", "grade_groups", "lbl_overall", "deco", "new_arg", "tlg", "prune_0")
+    identical.to = c(
+      "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
+      "grade_groups", "deco", "...", "new_arg", "tlg", "prune_0"
+    )
   )
   expect_identical(res$arm_var, "ACTARM")
 })
@@ -50,19 +56,20 @@ test_that("main works as expected", {
 })
 
 test_that("main setter works as expected", {
-  func <- function(adam_db) {
-    build_table(basic_table(), adam_db)
-  }
-  main(aet04_1) <- func
-  expect_identical(aet04_1@main, func)
-})
-
-test_that("main setter throw an error as expected", {
   func <- function(adam_db, ...) {
     build_table(basic_table(), adam_db)
   }
-  expect_error(main(aet04_1) <- func, "Variable 'rlang::fn_fmls_names(object@main)': Must be disjunct from
- * {'...'}, but has elements {'...'}.",
+  obj <- aet04_1
+  main(obj) <- func
+  expect_identical(obj@main, func)
+})
+
+test_that("main setter throw an error as expected", {
+  func <- function(adam_db) {
+    build_table(basic_table(), adam_db)
+  }
+  obj <- aet04_1
+  expect_error(main(obj) <- func, "Variable 'object@main': Must have formal arguments: ....",
     fixed = TRUE
   )
 })
@@ -76,15 +83,16 @@ test_that("preprocess works as expected", {
 })
 
 test_that("preprocess setter works as expected", {
-  func <- function(adam_db) adam_db
-  preprocess(aet04_1) <- func
-  expect_identical(aet04_1@preprocess, func)
+  func <- function(adam_db, ...) adam_db
+  obj <- aet04_1
+  preprocess(obj) <- func
+  expect_identical(obj@preprocess, func)
 })
 
 test_that("preprocess sends an error as expected", {
-  func <- function(adam_db, ...) adam_db
-  expect_error(preprocess(aet04_1) <- func, "Variable 'rlang::fn_fmls_names(object@preprocess)': Must be disjunct
- * from {'...'}, but has elements {'...'}.",
+  func <- function(adam_db) adam_db
+  obj <- aet04_1
+  expect_error(preprocess(obj) <- func, "Variable 'object@preprocess': Must have formal arguments: ....",
     fixed = TRUE
   )
 })
@@ -98,15 +106,16 @@ test_that("postprocess works as expected", {
 })
 
 test_that("postprocess setter works as expected", {
-  func <- function(tlg) tlg
-  postprocess(aet04_1) <- func
-  expect_identical(aet04_1@postprocess, func)
+  func <- function(tlg, ...) tlg
+  obj <- aet04_1
+  postprocess(obj) <- func
+  expect_identical(obj@postprocess, func)
 })
 
 test_that("postprocess sends an error as expected", {
-  func <- function(tlg, ...) tlg
-  expect_error(postprocess(aet04_1) <- func, "Variable 'rlang::fn_fmls_names(object@postprocess)': Must be
- * disjunct from {'...'}, but has elements {'...'}.",
+  func <- function(tlg) tlg
+  obj <- aet04_1
+  expect_error(postprocess(obj) <- func, "Variable 'object@postprocess': Must have formal arguments: ....",
     fixed = TRUE
   )
 })
@@ -119,35 +128,47 @@ test_that("datasets works as expected", {
 })
 
 test_that("datasets setter works as expected", {
-  datasets(aet04_1) <- c("adsl", "adxx")
-  expect_identical(aet04_1@adam_datasets, c("adsl", "adxx"))
+  obj <- aet04_1
+  datasets(obj) <- c("adsl", "adxx")
+  expect_identical(obj@adam_datasets, c("adsl", "adxx"))
 })
 
 # script_args ----
 
 test_that("script works as expected", {
   res <- expect_silent(script_args(aet04_1))
-  checkmate::expect_character(res, len = 5)
-  checkmate::expect_subset("adam_db <- stop(\"enter dataset\")", res)
+  checkmate::expect_character(res, len = 7)
+  checkmate::expect_subset("adam_db <- stop(\"missing value\")", res)
 })
 
 test_that("script works as expected with dictionary of arguments", {
   res <- expect_silent(script_args(aet04_1, dict = list(adam_db = sym("x"), new_arg = "NEW")))
-  checkmate::expect_character(res, len = 6)
+  checkmate::expect_character(res, len = 8)
   checkmate::expect_subset("adam_db <- x", res)
   checkmate::expect_subset("new_arg <- \"NEW\"", res)
 })
 
 # script_funs ----
 
+test_that("script_funs works as expected in interactive mode", {
+  skip_if(!interactive())
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls"))
+  expect_snapshot(res)
+})
+
 test_that("script_funs works as expected", {
-  res <- expect_silent(script_funs(aet04_1))
-  checkmate::expect_character(res, len = 19)
-  checkmate::expect_subset("    adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)", res)
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls"))
+  checkmate::expect_character(res)
+})
+
+test_that("script_funs works as expected with details set to TRUE in interactive mode", {
+  skip_if(!interactive())
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls", details = TRUE))
+  checkmate::expect_character(res, len = 64)
+  checkmate::expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", lbl_overall = NULL, ", res)
 })
 
 test_that("script_funs works as expected with details set to TRUE", {
-  res <- expect_silent(script_funs(aet04_1, details = TRUE))
-  checkmate::expect_character(res, len = 61)
-  checkmate::expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", grade_groups = NULL, ", res)
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls", details = TRUE))
+  checkmate::expect_character(res)
 })

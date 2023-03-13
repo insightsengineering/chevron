@@ -19,16 +19,17 @@ lbt05_1_main(
   lbl_overall = NULL,
   lbl_param = "Laboratory Test",
   lbl_anrind = "Direction of Abnormality",
-  deco = std_deco("LBT05")
+  deco = std_deco("LBT05"),
+  ...
 )
 
 lbt05_1_lyt(arm_var, lbl_overall, lbl_param, lbl_anrind, map, deco)
 
-lbt05_1_pre(adam_db, arm_var = "ACTARM")
+lbt05_1_pre(adam_db, arm_var = "ACTARM", ...)
 
 lbt05_1_check(adam_db, req_tables, arm_var)
 
-lbt05_1_post(tlg, prune_0 = FALSE)
+lbt05_1_post(tlg, prune_0 = FALSE, ...)
 
 lbt05_1
 }
@@ -44,6 +45,8 @@ lbt05_1
 \item{lbl_anrind}{(\code{character}) label of the \code{ANRIND} variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
 

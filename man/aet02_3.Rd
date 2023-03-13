@@ -11,11 +11,11 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-aet02_3_lyt(arm_var, lbl_overall, lbl_aedecod = "MedDRA Preferred Term", deco)
+aet02_3_lyt(arm_var, lbl_overall, lbl_aedecod, deco)
 
-aet02_3_pre(adam_db)
+aet02_3_pre(adam_db, ...)
 
-aet02_3_post(tlg, prune_0 = TRUE)
+aet02_3_post(tlg, prune_0 = TRUE, ...)
 
 aet02_3
 }
@@ -29,6 +29,8 @@ aet02_3
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

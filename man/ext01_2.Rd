@@ -17,7 +17,8 @@ ext01_2_main(
   summaryvars = c("AVAL", "AVALCAT1"),
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("EXT01")
+  deco = std_deco("EXT01"),
+  ...
 )
 
 ext01_2_lyt(
@@ -28,9 +29,9 @@ ext01_2_lyt(
   deco = std_deco("EXT01")
 )
 
-ext01_2_pre(adam_db, show_stats = c("ALL"), show_bins = c("ALL"))
+ext01_2_pre(adam_db, show_stats = c("ALL"), show_bins = c("ALL"), ...)
 
-ext01_2_post(tlg, prune_0 = TRUE)
+ext01_2_post(tlg, prune_0 = TRUE, ...)
 
 ext01_2
 }
@@ -44,6 +45,8 @@ ext01_2
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
 

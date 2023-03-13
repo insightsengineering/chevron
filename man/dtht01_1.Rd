@@ -19,16 +19,17 @@ dtht01_1_main(
   time_since_last_dose = FALSE,
   other_category = FALSE,
   lbl_overall = NULL,
-  deco = std_deco("DTHT01")
+  deco = std_deco("DTHT01"),
+  ...
 )
 
 dtht01_1_lyt(arm_var, lbl_overall, other_category, deco)
 
 dtht01_1_opt_lyt(arm_var, lbl_overall, deco)
 
-dtht01_1_pre(adam_db)
+dtht01_1_pre(adam_db, ...)
 
-dtht01_1_post(tlg, prune_0 = TRUE)
+dtht01_1_post(tlg, prune_0 = TRUE, ...)
 
 dtht01_1
 }
@@ -44,6 +45,8 @@ dtht01_1
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

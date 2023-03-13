@@ -20,7 +20,8 @@ aet01_1_main(
   deco = std_deco("AET01"),
   safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
-  lbl_safety_var = NULL
+  lbl_safety_var = NULL,
+  ...
 )
 
 aet01_1_lyt(arm_var, lbl_overall, deco, safety_var, lbl_safety_var)
@@ -30,7 +31,8 @@ aet01_1_pre(
   req_tables = c("adsl", "adae"),
   arm_var = "ACTARM",
   safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-    "RELWD", "RELDSM", "SEV")
+    "RELWD", "RELDSM", "SEV"),
+  ...
 )
 
 aet01_1_check(
@@ -41,7 +43,7 @@ aet01_1_check(
     "RELWD", "RELDSM", "SEV")
 )
 
-aet01_post(tlg, prune_0 = FALSE, deco = std_deco("AET01"))
+aet01_post(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...)
 
 aet01_1
 }
@@ -57,6 +59,8 @@ aet01_1
 \item{safety_var}{(\code{character}) the safety variables to be summarized.}
 
 \item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
+
+\item{...}{not used.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 

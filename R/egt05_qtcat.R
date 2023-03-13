@@ -33,7 +33,8 @@ egt05_qtcat_1_main <- function(adam_db,
                                lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
                                deco = std_deco("EGT05_QTCAT"),
                                lbl_cat = "Category",
-                               lbl_headvisit = "Analysis Visit") {
+                               lbl_headvisit = "Analysis Visit",
+                               ...) {
   lyt <- egt05_qtcat_1_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
@@ -71,7 +72,7 @@ egt05_qtcat_1_main <- function(adam_db,
 egt05_qtcat_1_lyt <- function(arm_var,
                               summaryvars,
                               summaryvars_lbls,
-                              lbl_overall = NULL,
+                              lbl_overall,
                               visitvar,
                               lbl_avisit,
                               lbl_param,
@@ -110,7 +111,7 @@ egt05_qtcat_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-egt05_qtcat_1_pre <- function(adam_db) {
+egt05_qtcat_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   assert_colnames(adam_db$adeg, c("AVALCAT1", "CHGCAT1"))
 
@@ -131,7 +132,7 @@ egt05_qtcat_1_pre <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 #' @export
-egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE) {
+egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)
 }

@@ -23,7 +23,8 @@ vst02_1_main <- function(adam_db,
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
                          prune_0 = FALSE,
-                         deco = std_deco("VST02")) {
+                         deco = std_deco("VST02"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_1_lyt(
@@ -55,7 +56,7 @@ vst02_1_lyt <- function(arm_var,
                         lbl_vs_assessment,
                         lbl_vs_abnormality,
                         lbl_overall,
-                        deco = std_deco("VST02")) {
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -76,7 +77,7 @@ vst02_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-vst02_1_pre <- function(adam_db) {
+vst02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("advs") %>%
@@ -109,7 +110,7 @@ vst02_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-vst02_1_post <- function(tlg, prune_0 = FALSE) {
+vst02_1_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -158,7 +159,8 @@ vst02_2_main <- function(adam_db,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
-                         deco = std_deco("VST02_2")) {
+                         deco = std_deco("VST02_2"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "advs")
 
   lyt <- vst02_2_lyt(
@@ -207,7 +209,7 @@ vst02_2_lyt <- function(arm_var,
 #'
 #' @export
 #'
-vst02_2_pre <- function(adam_db) {
+vst02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("advs") %>%
@@ -240,7 +242,7 @@ vst02_2_pre <- function(adam_db) {
 #'
 #' @export
 #'
-vst02_2_post <- function(tlg, prune_0 = FALSE) {
+vst02_2_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

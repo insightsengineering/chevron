@@ -82,16 +82,19 @@ reference:
       - vst02_2
       - pdt01_1
       - pdt02_1
-
+  - title: Data
+    contents:
+      - syn_data
   - title: Utility Functions
     contents:
       - get_db_data
       - report_null
       - smart_prune
       - std_deco
-      - syn_test_data
       - var_labels_for
       - h_format_dec
+      - gg_list
+      - grob_list
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

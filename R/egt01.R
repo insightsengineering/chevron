@@ -29,7 +29,8 @@ egt01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT", # or ATPTN
-                         deco = std_deco("EGT01")) {
+                         deco = std_deco("EGT01"),
+                         ...) {
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
@@ -103,7 +104,7 @@ egt01_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-egt01_1_pre <- function(adam_db) {
+egt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db %>%
@@ -117,7 +118,7 @@ egt01_1_pre <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 #' @export
-egt01_1_post <- function(tlg, prune_0 = TRUE) {
+egt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
 
   std_postprocess(tlg)

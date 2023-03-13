@@ -30,7 +30,8 @@ cmt01a_1_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          deco = std_deco("CMT01A")) {
+                          deco = std_deco("CMT01A"),
+                          ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -112,7 +113,7 @@ cmt01a_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") {
+cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -144,7 +145,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
 #'
 #' @export
 #'
-cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD") {
+cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -218,7 +219,8 @@ cmt01a_2_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          deco = std_deco("CMT01A")) {
+                          deco = std_deco("CMT01A"),
+                          ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -245,7 +247,7 @@ cmt01a_2_main <- function(adam_db,
 #'
 #' @export
 #'
-cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") {
+cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -276,7 +278,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
 #'
 #' @export
 #'
-cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD") {
+cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -354,7 +356,8 @@ cmt01a_3_main <- function(adam_db,
                           medname_var = "CMDECOD",
                           lbl_medname_var = "Other Treatment",
                           lbl_overall = NULL,
-                          deco = std_deco("CMT01A")) {
+                          deco = std_deco("CMT01A"),
+                          ...) {
   assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
@@ -430,7 +433,7 @@ cmt01a_3_lyt <- function(arm_var = "ARM",
 #'
 #' @export
 #'
-cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") {
+cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -461,7 +464,7 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD") 
 #'
 #' @export
 #'
-cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD") {
+cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

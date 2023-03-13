@@ -18,23 +18,24 @@ dst01_1_main(
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
   lbl_overall = "All Patients",
-  deco = std_deco("DST01")
+  deco = std_deco("DST01"),
+  ...
 )
 
 dst01_1_lyt(
   arm_var,
   status_var,
   disc_reason_var,
-  completed_lbl = "COMPLETED",
-  ongoing_lbl = "ONGOING",
-  discontinued_lbl = "DISCONTINUED",
+  completed_lbl,
+  ongoing_lbl,
+  discontinued_lbl,
   lbl_overall,
   deco
 )
 
-dst01_1_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS")
+dst01_1_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
-dst01_1_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"))
+dst01_1_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
 
 dst01_1
 }
@@ -54,6 +55,8 @@ the analysis period.}
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}

@@ -38,7 +38,8 @@ dst01_1_main <- function(adam_db,
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01")) {
+                         deco = std_deco("DST01"),
+                         ...) {
   # Standard values defined in GDSR.
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
@@ -95,9 +96,9 @@ dst01_1_main <- function(adam_db,
 dst01_1_lyt <- function(arm_var,
                         status_var,
                         disc_reason_var,
-                        completed_lbl = "COMPLETED",
-                        ongoing_lbl = "ONGOING",
-                        discontinued_lbl = "DISCONTINUED",
+                        completed_lbl,
+                        ongoing_lbl,
+                        discontinued_lbl,
                         lbl_overall,
                         deco) {
   layout_table <- basic_table_deco(deco) %>%
@@ -152,7 +153,8 @@ dst01_1_lyt <- function(arm_var,
 #' dst01_1_pre(syn_data)
 dst01_1_pre <- function(adam_db,
                         status_var = "EOSSTT",
-                        disc_reason_var = "DCSREAS") {
+                        disc_reason_var = "DCSREAS",
+                        ...) {
   new_format <- list(
     adsl = list(
       rule("<Missing>" = c("", NA)),
@@ -184,7 +186,7 @@ dst01_1_pre <- function(adam_db,
 #'
 #'
 #' @export
-dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
+dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
   if (prune_0) tbl_other <- tbl_other %>% trim_rows()
@@ -257,7 +259,8 @@ dst01_2_main <- function(adam_db,
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01")) {
+                         deco = std_deco("DST01"),
+                         ...) {
   # Standard values defined in GDSR.
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
@@ -378,7 +381,8 @@ dst01_2_lyt <- function(arm_var,
 #' dst01_2_pre(syn_data)
 dst01_2_pre <- function(adam_db,
                         status_var = "EOSSTT",
-                        disc_reason_var = "DCSREAS") {
+                        disc_reason_var = "DCSREAS",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -419,7 +423,7 @@ dst01_2_pre <- function(adam_db,
 #'
 #'
 #' @export
-dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
+dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
   if (prune_0) tbl_other <- tbl_other %>% trim_rows()
@@ -498,7 +502,8 @@ dst01_3_main <- function(adam_db,
                          disc_reason_var = "DCSREAS",
                          status_treatment_var = "EOTSTT",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01")) {
+                         deco = std_deco("DST01"),
+                         ...) {
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
   ongoing_lvl <- "ONGOING"
@@ -607,7 +612,8 @@ dst01_3_lyt <- function(arm_var,
 dst01_3_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
-                        status_treatment_var = "EOTSTT") {
+                        status_treatment_var = "EOTSTT",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -653,7 +659,7 @@ dst01_3_pre <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
-dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
+dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl <- tlg[[1]]
   tbl_completed <- tlg[[2]]
   tbl_other <- tlg[[3]]
