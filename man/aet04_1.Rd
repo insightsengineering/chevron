@@ -19,7 +19,8 @@ aet04_1_main(
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
   grade_groups = NULL,
-  deco = std_deco("AET04")
+  deco = std_deco("AET04"),
+  ...
 )
 
 aet04_1_lyt(
@@ -52,6 +53,8 @@ aet04_1
 \item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{toxicity_grade}{(\verb{vector of character}) putting in correspondence toxicity levels.}
 

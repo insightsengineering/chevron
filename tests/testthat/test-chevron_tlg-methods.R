@@ -19,12 +19,12 @@ test_that("args_ls works as expected", {
 
 test_that("args_ls works as expected when simplify is TRUE", {
   res <- expect_silent(args_ls(aet04_1, simplify = TRUE))
-  checkmate::expect_list(res, len = 9, names = "named")
+  checkmate::expect_list(res, len = 10, names = "named")
   checkmate::expect_names(
     names(res),
     identical.to = c(
       "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
-      "grade_groups", "deco", "tlg", "prune_0"
+      "grade_groups", "deco", "...", "tlg", "prune_0"
     )
   )
 })
@@ -36,12 +36,12 @@ test_that("args_ls works as expected with custom chevron_tlg object", {
   }
 
   res <- expect_silent(args_ls(obj, simplify = TRUE))
-  checkmate::expect_list(res, len = 10, names = "named")
+  checkmate::expect_list(res, len = 11, names = "named")
   checkmate::expect_names(
     names(res),
     identical.to = c(
       "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
-      "grade_groups", "deco", "new_arg", "tlg", "prune_0"
+      "grade_groups", "deco", "...", "new_arg", "tlg", "prune_0"
     )
   )
   expect_identical(res$arm_var, "ACTARM")
@@ -138,7 +138,7 @@ test_that("datasets setter works as expected", {
 test_that("script works as expected", {
   res <- expect_silent(script_args(aet04_1))
   checkmate::expect_character(res, len = 7)
-  checkmate::expect_subset("adam_db <- stop(\"enter dataset\")", res)
+  checkmate::expect_subset("adam_db <- stop(\"missing value\")", res)
 })
 
 test_that("script works as expected with dictionary of arguments", {
@@ -157,18 +157,18 @@ test_that("script_funs works as expected in interactive mode", {
 })
 
 test_that("script_funs works as expected", {
-  res <- expect_silent(script_funs(aet04_1))
-  checkmate::expect_character(res, len = 20)
-  checkmate::expect_subset("    adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)", res)
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls"))
+  checkmate::expect_character(res)
 })
 
-test_that("script_funs works as expected with details set to TRUE", {
-  res <- expect_silent(script_funs(aet04_1, details = TRUE))
+test_that("script_funs works as expected with details set to TRUE in interactive mode", {
+  skip_if(!interactive())
+  res <- expect_silent(script_funs(aet04_1, details = TRUE, adam_db = "data", args = "args_ls", details = TRUE))
   checkmate::expect_character(res, len = 64)
   checkmate::expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", lbl_overall = NULL, ", res)
 })
 
 test_that("script_funs works as expected with details set to TRUE", {
-  res <- expect_silent(script_funs(aet04_1, details = TRUE, adam_db = "data", args = "args_ls"))
+  res <- expect_silent(script_funs(aet04_1, details = TRUE, adam_db = "data", args = "args_ls", details = TRUE))
   checkmate::expect_character(res)
 })

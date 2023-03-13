@@ -19,12 +19,13 @@ aet02_1_main(
   lbl_overall = NULL,
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
-  deco = std_deco("AET02")
+  deco = std_deco("AET02"),
+  ...
 )
 
 aet02_1_lyt(arm_var, lbl_overall, lbl_aebodsys, lbl_aedecod, deco)
 
-aet02_1_pre(adam_db)
+aet02_1_pre(adam_db, ...)
 
 aet02_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 
@@ -44,6 +45,8 @@ aet02_1
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
