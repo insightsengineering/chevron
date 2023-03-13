@@ -163,12 +163,12 @@ test_that("script_funs works as expected", {
 
 test_that("script_funs works as expected with details set to TRUE in interactive mode", {
   skip_if(!interactive())
-  res <- expect_silent(script_funs(aet04_1, details = TRUE, adam_db = "data", args = "args_ls", details = TRUE))
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls", details = TRUE))
   checkmate::expect_character(res, len = 64)
   checkmate::expect_subset("main_fun <- function (adam_db, arm_var = \"ACTARM\", lbl_overall = NULL, ", res)
 })
 
 test_that("script_funs works as expected with details set to TRUE", {
-  res <- expect_silent(script_funs(aet04_1, details = TRUE, adam_db = "data", args = "args_ls", details = TRUE))
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls", details = TRUE))
   checkmate::expect_character(res)
 })
