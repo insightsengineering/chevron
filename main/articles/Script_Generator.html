@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9051</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9052</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -125,7 +116,7 @@ rendered.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Arguments definition ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; adam_db &lt;- stop("enter dataset")</span></span>
+<span><span class="co">#&gt; adam_db &lt;- stop("missing value")</span></span>
 <span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
 <span><span class="co">#&gt; deco &lt;- std_deco("AET01")</span></span>
 <span><span class="co">#&gt; safety_var &lt;- c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", </span></span>
@@ -133,15 +124,13 @@ rendered.</p>
 <span><span class="co">#&gt; req_tables &lt;- c("adsl", "adae")</span></span>
 <span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions definition ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; preprocess_fun &lt;- function (adam_db, req_tables = c("adsl", "adae"), </span></span>
+<span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
+<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, req_tables = c("adsl", "adae"), </span></span>
 <span><span class="co">#&gt;     arm_var = "ACTARM", safety_var = c("FATAL", "SER", "SERWD", </span></span>
 <span><span class="co">#&gt;         "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", </span></span>
-<span><span class="co">#&gt;         "SEV")) </span></span>
+<span><span class="co">#&gt;         "SEV"), ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     checkmate::assert_class(adam_db, "dm")</span></span>
 <span><span class="co">#&gt;     aet01_1_check(adam_db, req_tables = req_tables, arm_var = arm_var, </span></span>
@@ -196,14 +185,9 @@ rendered.</p>
 <span><span class="co">#&gt;     db</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions execution ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; proc_data &lt;- preprocess_fun(adam_db = adam_db, req_tables = req_tables, </span></span>
-<span><span class="co">#&gt;     arm_var = arm_var, safety_var = safety_var)</span></span>
-<span><span class="co">#&gt; final_tlg &lt;- run(aet01_1, auto_pre = FALSE, adam_db = proc_data, </span></span>
-<span><span class="co">#&gt;     arm_var = arm_var, lbl_overall = lbl_overall, deco = deco, </span></span>
-<span><span class="co">#&gt;     safety_var = safety_var, lbl_safety_var = lbl_safety_var, </span></span>
-<span><span class="co">#&gt;     prune_0 = prune_0)</span></span></code></pre></div>
+<span><span class="co">#&gt; # Create TLG.</span></span>
+<span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) |&gt;</span></span>
+<span><span class="co">#&gt; rlang::exec(.fn = run, object = aet01_1, !!!args_list, auto_pre = FALSE, check_arg = FALSE)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="with-a-modified-chevron-object">With a modified chevron object<a class="anchor" aria-label="anchor" href="#with-a-modified-chevron-object"></a>
@@ -212,12 +196,12 @@ rendered.</p>
 object. Modifying the <code>chevron_tlg</code> object can lead to a
 different script.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">dunlin</span><span class="fu">::</span><span class="fu">apply_reformat</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">dunlin</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/reformat.html" class="external-link">reformat</a></span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span></span>
-<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
 <p>Print the generated scripts. Note that a new argument
 <code>new_format</code> has been added and the pre processing function
 has been modified.</p>
@@ -226,29 +210,22 @@ has been modified.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Arguments definition ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; adam_db &lt;- stop("enter dataset")</span></span>
+<span><span class="co">#&gt; adam_db &lt;- stop("missing value")</span></span>
 <span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
 <span><span class="co">#&gt; deco &lt;- std_deco("AET01")</span></span>
 <span><span class="co">#&gt; safety_var &lt;- c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", </span></span>
 <span><span class="co">#&gt;     "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")</span></span>
-<span><span class="co">#&gt; new_format &lt;- stop("enter dataset")</span></span>
+<span><span class="co">#&gt; new_format &lt;- stop("missing value")</span></span>
 <span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions definition ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; preprocess_fun &lt;- function (adam_db, new_format) </span></span>
-<span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     dunlin::apply_reformat(adam_db, new_format)</span></span>
+<span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
+<span><span class="co">#&gt; pre_fun &lt;- function(adam_db, new_format, ...) {</span></span>
+<span><span class="co">#&gt;   dunlin::reformat(adam_db, new_format)</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions execution ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; proc_data &lt;- preprocess_fun(adam_db = adam_db, new_format = new_format)</span></span>
-<span><span class="co">#&gt; final_tlg &lt;- run(aet01_1, auto_pre = FALSE, adam_db = proc_data, </span></span>
-<span><span class="co">#&gt;     arm_var = arm_var, lbl_overall = lbl_overall, deco = deco, </span></span>
-<span><span class="co">#&gt;     safety_var = safety_var, lbl_safety_var = lbl_safety_var, </span></span>
-<span><span class="co">#&gt;     prune_0 = prune_0)</span></span></code></pre></div>
+<span><span class="co">#&gt; # Create TLG.</span></span>
+<span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) |&gt;</span></span>
+<span><span class="co">#&gt; rlang::exec(.fn = run, object = aet01_1, !!!args_list, auto_pre = FALSE, check_arg = FALSE)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="with-custom-argument-definition">With custom argument definition<a class="anchor" aria-label="anchor" href="#with-custom-argument-definition"></a>
@@ -267,7 +244,7 @@ values will be overwritten.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">mng01_1</span>, dict <span class="op">=</span> <span class="va">dict</span><span class="op">)</span></span>
-<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -293,10 +270,8 @@ values will be overwritten.</p>
 <span><span class="co">#&gt; legend_pos &lt;- "top"</span></span>
 <span><span class="co">#&gt; line_col &lt;- nestcolor::color_palette()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions definition ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; preprocess_fun &lt;- function (adam_db, dataset, x_var = "AVISIT") </span></span>
+<span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
+<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     checkmate::assert_class(adam_db, "dm")</span></span>
 <span><span class="co">#&gt;     adam_db &lt;- adam_db %&gt;% dm_zoom_to(!!dataset) %&gt;% filter(.data$ANL01FL == </span></span>
@@ -304,19 +279,12 @@ values will be overwritten.</p>
 <span><span class="co">#&gt;     dunlin::dm_unite(adam_db, dataset, x_var, "_")</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions execution ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; proc_data &lt;- preprocess_fun(adam_db = adam_db, dataset = dataset, </span></span>
-<span><span class="co">#&gt;     x_var = x_var)</span></span>
-<span><span class="co">#&gt; final_tlg &lt;- run(mng01_1, auto_pre = FALSE, adam_db = proc_data, </span></span>
-<span><span class="co">#&gt;     dataset = dataset, x_var = x_var, y_var = y_var, y_name = y_name, </span></span>
-<span><span class="co">#&gt;     y_unit = y_unit, arm_var = arm_var, center_fun = center_fun, </span></span>
-<span><span class="co">#&gt;     interval_fun = interval_fun, show_table = show_table, jitter = jitter, </span></span>
-<span><span class="co">#&gt;     show_n = show_n, show_h_grid = show_h_grid, show_v_grid = show_v_grid, </span></span>
-<span><span class="co">#&gt;     legend_pos = legend_pos, line_col = line_col)</span></span></code></pre></div>
+<span><span class="co">#&gt; # Create TLG.</span></span>
+<span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) |&gt;</span></span>
+<span><span class="co">#&gt; rlang::exec(.fn = run, object = mng01_1, !!!args_list, auto_pre = FALSE, check_arg = FALSE)</span></span></code></pre></div>
 <p>If saved in a <code>.R</code> file, the generated script can be
-executed. The result is stored in the <code>final_tlg</code> object, as
-described in the script.</p>
+executed. The result stored in <code>tlg_output</code> can be
+printed.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"my_script_args"</span>, fileext <span class="op">=</span> <span class="st">"R"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span>, con <span class="op">=</span> <span class="va">tmp_args</span><span class="op">)</span></span>
@@ -324,37 +292,88 @@ described in the script.</p>
 <span><span class="va">tmp_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"my_script_funs"</span>, fileext <span class="op">=</span> <span class="st">"R"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span>, con <span class="op">=</span> <span class="va">tmp_funs</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_args</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_funs</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">args_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  dataset <span class="op">=</span> <span class="st">"adlb"</span>,</span>
+<span>  arm_var <span class="op">=</span> <span class="st">"ARM"</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">final_tlg</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_args</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span>, echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; adam_db &lt;- syn_data</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; some_character &lt;- "A"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; some_vector &lt;- c("A", "B")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; dataset &lt;- "adlb"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; x_var &lt;- "AVISIT"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; y_var &lt;- "AVAL"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; y_name &lt;- "PARAM"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; y_unit &lt;- NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; arm_var &lt;- "ACTARM"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; center_fun &lt;- c("mean", "median")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; interval_fun &lt;- c("mean_ci", "mean_sei", "mean_sdi", </span></span>
+<span><span class="co">#&gt; +     "median_ci", "quantiles", "range")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; show_table &lt;- TRUE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; jitter &lt;- TRUE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; show_n &lt;- TRUE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; show_h_grid &lt;- TRUE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; show_v_grid &lt;- FALSE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; legend_pos &lt;- "top"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &gt; line_col &lt;- nestcolor::color_palette()</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_funs</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tlg_output</span></span>
+<span><span class="co">#&gt; $`Alanine Aminotransferase Measurement`</span></span></code></pre></div>
 <p><img src="Script_Generator_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`C-Reactive Protein Measurement`</span></span></code></pre>
+<p><img src="Script_Generator_files/figure-html/unnamed-chunk-8-2.png" width="672"></p>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`Immunoglobulin A Measurement`</span></span></code></pre>
+<p><img src="Script_Generator_files/figure-html/unnamed-chunk-8-3.png" width="672"></p>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; attr(,"class")</span></span>
+<span><span class="co">#&gt; [1] "gg_list" "list"</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="exploring-main-and-post-process-functions">Exploring Main and Post process functions<a class="anchor" aria-label="anchor" href="#exploring-main-and-post-process-functions"></a>
 </h2>
 <p>By specifying <code>details = TRUE</code> the main and post
 processing functions are also exposed.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res_fun</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res_fun</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_fun</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions definition ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; preprocess_fun &lt;- function (adam_db, dataset, x_var = "AVISIT") </span></span>
+<span><span class="co">#&gt; # Edit Functions.</span></span>
+<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     checkmate::assert_class(adam_db, "dm")</span></span>
 <span><span class="co">#&gt;     adam_db &lt;- adam_db %&gt;% dm_zoom_to(!!dataset) %&gt;% filter(.data$ANL01FL == </span></span>
 <span><span class="co">#&gt;         "Y") %&gt;% dm_update_zoomed()</span></span>
 <span><span class="co">#&gt;     dunlin::dm_unite(adam_db, dataset, x_var, "_")</span></span>
 <span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; main_fun &lt;- function (adam_db, dataset = "adlb", x_var = "AVISIT", </span></span>
 <span><span class="co">#&gt;     y_var = "AVAL", y_name = "PARAM", y_unit = NA, arm_var = "ACTARM", </span></span>
 <span><span class="co">#&gt;     center_fun = c("mean", "median"), interval_fun = c("mean_ci", </span></span>
 <span><span class="co">#&gt;         "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"), </span></span>
 <span><span class="co">#&gt;     show_table = TRUE, jitter = TRUE, show_n = TRUE, show_h_grid = TRUE, </span></span>
-<span><span class="co">#&gt;     show_v_grid = FALSE, legend_pos = "top", line_col = nestcolor::color_palette()) </span></span>
+<span><span class="co">#&gt;     show_v_grid = FALSE, legend_pos = "top", line_col = nestcolor::color_palette(), </span></span>
+<span><span class="co">#&gt;     ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     df &lt;- adam_db[[dataset]]</span></span>
 <span><span class="co">#&gt;     data_ls &lt;- split(df, df$PARAM, drop = TRUE)</span></span>
@@ -421,21 +440,16 @@ processing functions are also exposed.</p>
 <span><span class="co">#&gt;         col = col, subtitle_add_unit = !is.na(y_unit))</span></span>
 <span><span class="co">#&gt;     do.call(gg_list, ret)</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; postprocess_fun &lt;- function (tlg) </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; post_fun &lt;- function (tlg, ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     tlg</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Functions execution ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; proc_data &lt;- preprocess_fun(adam_db = adam_db, dataset = dataset, </span></span>
-<span><span class="co">#&gt;     x_var = x_var)</span></span>
-<span><span class="co">#&gt; tlg &lt;- main_fun(adam_db = proc_data, dataset = dataset, x_var = x_var, </span></span>
-<span><span class="co">#&gt;     y_var = y_var, y_name = y_name, y_unit = y_unit, arm_var = arm_var, </span></span>
-<span><span class="co">#&gt;     center_fun = center_fun, interval_fun = interval_fun, show_table = show_table, </span></span>
-<span><span class="co">#&gt;     jitter = jitter, show_n = show_n, show_h_grid = show_h_grid, </span></span>
-<span><span class="co">#&gt;     show_v_grid = show_v_grid, legend_pos = legend_pos, line_col = line_col)</span></span>
-<span><span class="co">#&gt; final_tlg &lt;- postprocess_fun(tlg = tlg)</span></span></code></pre></div>
+<span><span class="co">#&gt; # Create TLG.</span></span>
+<span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) |&gt;</span></span>
+<span><span class="co">#&gt; rlang::exec(.fn = main_fun, !!!args_list) |&gt;</span></span>
+<span><span class="co">#&gt; rlang::exec(.fn = post_fun, !!!args_list)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
