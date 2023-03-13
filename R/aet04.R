@@ -21,8 +21,10 @@
 #'
 aet04_1_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         grade_groups = NULL,
                          lbl_overall = NULL,
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
+                         grade_groups = NULL,
                          deco = std_deco("AET04"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -44,6 +46,8 @@ aet04_1_main <- function(adam_db,
   lyt <- aet04_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     toxicity_grade = toxicity_grade,
     grade_groups = grade_groups,
     deco = deco
@@ -67,8 +71,8 @@ aet04_1_main <- function(adam_db,
 #'
 aet04_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
                         toxicity_grade,
                         grade_groups,
                         deco) {

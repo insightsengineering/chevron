@@ -16,15 +16,16 @@ aet03_1_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("AET03"),
-  ...
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
+  deco = std_deco("AET03")
 )
 
 aet03_1_lyt(
   arm_var,
   lbl_overall,
-  lbl_aebodsys = "MedDRA System Organ Class",
-  lbl_aedecod = "MedDRA Preferred Term",
+  lbl_aebodsys,
+  lbl_aedecod,
   intensity_grade,
   deco
 )
@@ -42,13 +43,11 @@ aet03_1
 
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
-
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+
+\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{intensity_grade}{(\verb{vector of character}) describing the intensity levels present in the dataset.}
 

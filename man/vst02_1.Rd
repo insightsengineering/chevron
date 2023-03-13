@@ -23,13 +23,7 @@ vst02_1_main(
   ...
 )
 
-vst02_1_lyt(
-  arm_var,
-  lbl_vs_assessment,
-  lbl_vs_abnormality,
-  lbl_overall,
-  deco = std_deco("VST02")
-)
+vst02_1_lyt(arm_var, lbl_vs_assessment, lbl_vs_abnormality, lbl_overall, deco)
 
 vst02_1_pre(adam_db, ...)
 

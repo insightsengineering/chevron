@@ -96,9 +96,9 @@ dst01_1_main <- function(adam_db,
 dst01_1_lyt <- function(arm_var,
                         status_var,
                         disc_reason_var,
-                        completed_lbl = "COMPLETED",
-                        ongoing_lbl = "ONGOING",
-                        discontinued_lbl = "DISCONTINUED",
+                        completed_lbl,
+                        ongoing_lbl,
+                        discontinued_lbl,
                         lbl_overall,
                         deco) {
   layout_table <- basic_table_deco(deco) %>%

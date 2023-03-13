@@ -11,7 +11,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-aet02_3_lyt(arm_var, lbl_overall, lbl_aedecod = "MedDRA Preferred Term", deco)
+aet02_3_lyt(arm_var, lbl_overall, lbl_aedecod, deco)
 
 aet02_3_pre(adam_db, ...)
 

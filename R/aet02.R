@@ -21,6 +21,8 @@
 aet02_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
                          deco = std_deco("AET02"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -30,6 +32,8 @@ aet02_1_main <- function(adam_db,
   lyt <- aet02_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     deco = deco
   )
 
@@ -48,8 +52,8 @@ aet02_1_main <- function(adam_db,
 #'
 aet02_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
                         deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
@@ -195,6 +199,9 @@ aet02_1 <- chevron_t(
 aet02_2_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
+                         lbl_aehlt = "MedDRA High-Level Term",
                          deco = std_deco("AET02"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
@@ -204,6 +211,9 @@ aet02_2_main <- function(adam_db,
   lyt <- aet02_2_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
+    lbl_aehlt = lbl_aehlt,
     deco = deco
   )
 
@@ -224,9 +234,9 @@ aet02_2_main <- function(adam_db,
 #'
 aet02_2_lyt <- function(arm_var,
                         lbl_overall = NULL,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aehlt = "MedDRA High-Level Term",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
+                        lbl_aehlt,
                         deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
@@ -371,6 +381,7 @@ aet02_2 <- chevron_t(
 aet02_3_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aedecod = "MedDRA Preferred Term",
                          deco = std_deco("AET02"),
                          ...) {
   assert_colnames(adam_db$adae, c("AEDECOD"))
@@ -378,6 +389,7 @@ aet02_3_main <- function(adam_db,
   lyt <- aet02_3_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aedecod = lbl_aedecod,
     deco = deco
   )
 
@@ -399,7 +411,7 @@ aet02_3_main <- function(adam_db,
 #'
 aet02_3_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aedecod,
                         deco) {
   lyt_top <- basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
