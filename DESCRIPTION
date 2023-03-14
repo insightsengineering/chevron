@@ -5,7 +5,9 @@ Version: 0.1.1.9053
 Date: 2023-03-13
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
+    person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
+    person("Lena", "Wang", , "wang.xinyue@gene.com", role = "aut"),
     person("Heng", "Wang", , "wang.heng@gene.com", role = "aut"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
@@ -32,13 +34,11 @@ Imports:
     scda (>= 0.1.6),
     scda.2022 (>= 0.1.4),
     tern (>= 0.8.0),
-    tibble,
-    yaml
+    tibble
 Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     knitr,
-    purrr,
     rmarkdown,
     testthat (>= 3.0.0),
     tidyr
@@ -46,6 +46,7 @@ VignetteBuilder:
     knitr
 Remotes:
     insightsengineering/dunlin@*release,
+    insightsengineering/nestcolor@*release,
     insightsengineering/rlistings@*release,
     insightsengineering/scda.2022@*release,
     insightsengineering/scda@*release,

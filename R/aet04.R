@@ -77,7 +77,7 @@ aet04_1_lyt <- function(arm_var,
                         grade_groups,
                         deco) {
   all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
-  combodf <- tribble(
+  combodf <- tibble::tribble(
     ~valname, ~label, ~levelcombo, ~exargs,
     "ALL", "- Any adverse events -", toxicity_grade, list()
   )

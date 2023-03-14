@@ -27,31 +27,13 @@
 
 ## Installation
 
-### Clone and install manually
+It is recommended that you [create and use a GitHub PAT](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) to install the latest version of this package. Once you have the PAT, run the following:
 
-1. Clone the repository
-
-1. Install `staged.dependencies` with
-
-   ```r
-   devtools::install_github("openpharma/staged.dependencies")
-   ```
-
-   and setup your GitHub tokens following the instructions on the `staged.dependencies` [website](https://github.com/openpharma/staged.dependencies).  Make sure that you enable SSO for the token.
-
-1. Install the `chevron` package dependencies with (make sure the working directory is set to the root of `chevron`)
-
-   ```r
-   library(staged.dependencies)
-      x <- dependency_table(
-      project = "insightsengineering/chevron",
-      project_type = "repo@host",
-      ref = "main",
-      verbose = 1
-   )
-
-   install_deps(x, install_direction = "upstream", install_project = TRUE)
-   ```
+```r
+Sys.setenv(GITHUB_PAT = "your_access_token_here")
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("insightsengineering/chevron@*release")
+```
 
 ## Usage
 

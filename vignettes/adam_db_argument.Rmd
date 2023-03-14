@@ -1,6 +1,5 @@
 ---
 title: "The `adam_db` argument"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{The `adam_db` argument}
@@ -15,8 +14,11 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
+# need to load additional hidden dm dependencies for pkgdown - https://github.com/cynkra/dm/blob/v1.0.0/R/pkgdown.R#L17
+library(DiagrammeRsvg)
+library(DiagrammeR)
+```
 
 ## Introduction
 
@@ -61,6 +63,7 @@ Note that the keys are defined in the data analysis plan at Roche.
 ## Work With `dm` Object
 
 List the keys
+
 ```{r}
 dm::dm_get_all_fks(adam_study_data)
 dm::dm_get_all_pks(adam_study_data)
@@ -119,7 +122,6 @@ adam_study_data %>%
   select(USUBJID, STUDYID, SEX) %>%
   head()
 ```
-
 
 ### Mutate Data
 
