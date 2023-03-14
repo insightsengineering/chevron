@@ -40,9 +40,6 @@ The object returned by the `script` methods are vectors of character with one el
 ```{r}
 res <- script_args(aet01_1)
 writeLines(res)
-```
-
-```{r}
 res <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
 writeLines(res)
 ```

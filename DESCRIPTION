@@ -7,6 +7,9 @@ Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
     person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
+    person("Emily", "de la Rua", , "emily.de_la_rua@contractors.roche.com", role = "aut"),
+    person("Joe", "Zhue", , "joe.zhu@roche.com", role = "aut"),
+    person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "aut"),
     person("Lena", "Wang", , "wang.xinyue@gene.com", role = "aut"),
     person("Heng", "Wang", , "wang.heng@gene.com", role = "aut"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))

@@ -38,6 +38,7 @@ drop_adsl_vars <- function(df, adsl) {
   df[c("USUBJID", "STUDYID", setdiff(names(df), names(adsl)))]
 }
 
+data(syn_data)
 dbl <- c(list(adsl = syn_data$adsl), lapply(syn_data[-1], drop_adsl_vars, adsl = syn_data$adsl))
 
 ### Define primary and foreign keys
@@ -55,7 +56,7 @@ adam_study_data <- new_dm(dbl) %>%
   dm_add_fk(adsub, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
   dm_add_pk(adsub, c("USUBJID", "STUDYID", "PARAMCD"))
 
-validate_dm(adam_study_data)
+dm_validate(adam_study_data)
 ```
 
 Note that the keys are defined in the data analysis plan at Roche.
@@ -66,6 +67,9 @@ List the keys
 
 ```{r}
 dm::dm_get_all_fks(adam_study_data)
+```
+
+```{r}
 dm::dm_get_all_pks(adam_study_data)
 ```
 
@@ -80,10 +84,10 @@ Further we can subset the data:
 
 ```{r}
 db <- adam_study_data %>%
-  dm_filter(adsl, SEX == "F")
+  dm_filter(adsl = (SEX == "F"))
 ```
 
-which adds the filter information to the `dm` object but does not apply the filtering
+The dataset "adsl" is filtered
 
 ```{r}
 db %>%
@@ -92,26 +96,7 @@ db %>%
   head()
 ```
 
-In order to get the filtered data one has to use the `dm_apply_filters()` function
-
-```{r}
-db %>%
-  dm_apply_filters() %>%
-  pull_tbl(adsl) %>%
-  select(USUBJID, STUDYID, SEX) %>%
-  head()
-```
-
-or
-
-```{r}
-db %>%
-  dm_apply_filters_to_tbl(adsl) %>%
-  select(USUBJID, STUDYID, SEX) %>%
-  head()
-```
-
-If one does not need the lazy filtering feature then one can also zoom to the desired table and use `filter`
+If one does not need the relational filtering feature then one can also zoom to the desired table and use `filter`
 
 ```{r}
 adam_study_data %>%
@@ -148,7 +133,7 @@ as per relation specification:
 adam_study_data %>%
   dm_filter(adsl, SEX == "F") %>%
   dm_apply_filters() %>%
-  dm_join_to_tbl(adae, adsl) %>%
+  dm_flatten_to_tbl(adae, adsl) %>%
   select(USUBJID, SEX, AESEQ, AETERM, AESEQ) %>%
   head()
 ```
@@ -177,7 +162,7 @@ adsub_wide <- adam_study_data$adsub %>%
   select(USUBJID, STUDYID, PARAMCD, AVAL, AVALU) %>%
   pivot_wider(names_from = PARAMCD, values_from = c(AVAL, AVALU))
 
-dm_add_tbl(adam_study_data, adsub_wide) %>%
+dm(adam_study_data, adsub_wide) %>%
   dm_add_fk(adsub_wide, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
   dm_add_pk(adsub_wide, c("USUBJID", "STUDYID")) %>%
   dm_join_to_tbl(adsl, adsub_wide)

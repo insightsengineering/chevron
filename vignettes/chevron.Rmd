@@ -34,12 +34,13 @@ Each standard output is associated with one  *`chevron_tlg` object*. They contai
 * A `main` function also refereed to as *TLG-function*.
 * A `preprocess` function.
 * A `postprocess` function
-* A `adam_dataset` character vector of the name of the `AdAM` datasets required to create the output.
+* A `adam_datasets` character vector of the name of the `AdAM` datasets required to create the output.
 
 ### *TLG-functions*
 
 The *TLG-functions* in `chevron` use other packages to produce the final outputs, for example `rtables` and `tern` are
-used to create listings and tables, and `ggplot2`, `lattice`, and `grid` are used to create graphs.
+used to create tables, `ggplot2`, `lattice`, and `grid` are used to create graphs, `rlistings` to create
+listings.
 
 *TLG-functions* in `chevron` such as `dmt01_1_main`, `aet02_1_main`, `aet02_2_main` have the following properties:
 
@@ -52,13 +53,13 @@ variable, which variables are summarized) but not parameterize the cell content 
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 
-### *pre-processing*
+### *preprocessing*
 
-The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
-suitable input for *TLG-functions*. The pre-processing step typically includes checks that will ensure that the `dm`
+The *preprocess* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
+suitable input for *TLG-functions*. The preprocessing step typically includes checks that will ensure that the `dm`
 input can be later processed by the *TLG-functions*.
 
-*pre-process* in chevron such as `dmt01_1_pre`, `aet02_1_pre`, `aet02_2_pre` have the following properties:
+*preprocess* in chevron such as `dmt01_1_pre`, `aet02_1_pre`, `aet02_2_pre` have the following properties:
 
 1. they return a `dm` object amenable to processing by a *TLG-functions* or return rapidly an understandable error
 message.
@@ -66,13 +67,13 @@ message.
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 
-### *post-processing*
+### *postprocessing*
 
-By default, the Post-processing function returns its input or a `NULL` report if the input has no rows. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
+By default, the Postprocessing function returns its input or a `NULL` report if the input has no rows. *`postprocessing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
 
-### *ADaM dataset*
+### *ADaM datasets*
 
-The `adam_dataset` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
+The `adam_datasets` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
 information is important when the `chevropn_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
 such as `citril`.
 
