@@ -1,7 +1,7 @@
 # chevron 0.1.1.9054
 
 * Add more templates: `AET01_AESI`, `EGT03`, `EGT05_QTCAT`, `LBT04`, `LBT05`, `LBT07`, `LBT14`, `PDT01`, `PDT02`.
-* Deprecation of previous getter function like `get_main` to `main` and `main<-`.
+* Deprecation of previous `getter` function like `get_main` to `main` and `main<-`.
 * Add `chevron_t`, `chevron_l` and `chevron_g` subclass of `chevron_tlg`.
 * Add `script_funs` and `script_args` to obtain string representation of the full code.
 * Update to current templates.

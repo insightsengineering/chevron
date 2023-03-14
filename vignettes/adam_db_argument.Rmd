@@ -87,7 +87,7 @@ db <- adam_study_data %>%
   dm_filter(adsl = (SEX == "F"))
 ```
 
-The dataset "adsl" is filtered
+The dataset `adsl` is filtered
 
 ```{r}
 db %>%
