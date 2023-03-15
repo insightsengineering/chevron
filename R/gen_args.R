@@ -27,5 +27,4 @@
 gen_args <- function(adam_db, main, preprocess, postprocess, adam_datasets,
                      type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
                      tlg, tlgfname, visit_var, visit_value, paramcd_value, ...) {
-  NULL
 }
