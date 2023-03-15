@@ -375,7 +375,7 @@ setMethod(
           )
         ),
         "",
-        "# Create TLG.",
+        "# Create TLG",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
         rlang::exec(.fn = main_fun, !!!{args}) %>% \
         rlang::exec(.fn = post_fun, !!!{args})")
@@ -391,7 +391,7 @@ setMethod(
           )
         ),
         "",
-        "# Create TLG.",
+        "# Create TLG",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
         rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE, check_arg = FALSE)")
       )
