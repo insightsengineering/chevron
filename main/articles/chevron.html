@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9053</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9054</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -112,7 +103,7 @@ objects in separate slots:</p>
 <em>TLG-function</em>.</li>
 <li>A <code>preprocess</code> function.</li>
 <li>A <code>postprocess</code> function</li>
-<li>A <code>adam_dataset</code> character vector of the name of the
+<li>A <code>adam_datasets</code> character vector of the name of the
 <code>AdAM</code> datasets required to create the output.</li>
 </ul>
 <div class="section level3">
@@ -121,9 +112,9 @@ objects in separate slots:</p>
 </h3>
 <p>The <em>TLG-functions</em> in <code>chevron</code> use other packages
 to produce the final outputs, for example <code>rtables</code> and
-<code>tern</code> are used to create listings and tables, and
-<code>ggplot2</code>, <code>lattice</code>, and <code>grid</code> are
-used to create graphs.</p>
+<code>tern</code> are used to create tables, <code>ggplot2</code>,
+<code>lattice</code>, and <code>grid</code> are used to create graphs,
+<code>rlistings</code> to create listings.</p>
 <p><em>TLG-functions</em> in <code>chevron</code> such as
 <code>dmt01_1_main</code>, <code>aet02_1_main</code>,
 <code>aet02_2_main</code> have the following properties:</p>
@@ -147,16 +138,16 @@ details.</li>
 </ol>
 </div>
 <div class="section level3">
-<h3 id="pre-processing">
-<em>pre-processing</em><a class="anchor" aria-label="anchor" href="#pre-processing"></a>
+<h3 id="preprocessing">
+<em>preprocessing</em><a class="anchor" aria-label="anchor" href="#preprocessing"></a>
 </h3>
-<p>The <em>pre-process</em> functions in <code>chevron</code> use
+<p>The <em>preprocess</em> functions in <code>chevron</code> use
 <code>dm</code> and <code>dunlin</code> packages to process
 <code>dm</code> object and turn them into a suitable input for
-<em>TLG-functions</em>. The pre-processing step typically includes
-checks that will ensure that the <code>dm</code> input can be later
-processed by the <em>TLG-functions</em>.</p>
-<p><em>pre-process</em> in chevron such as <code>dmt01_1_pre</code>,
+<em>TLG-functions</em>. The preprocessing step typically includes checks
+that will ensure that the <code>dm</code> input can be later processed
+by the <em>TLG-functions</em>.</p>
+<p><em>preprocess</em> in chevron such as <code>dmt01_1_pre</code>,
 <code>aet02_1_pre</code>, <code>aet02_2_pre</code> have the following
 properties:</p>
 <ol style="list-style-type: decimal">
@@ -172,25 +163,24 @@ details.</li>
 </ol>
 </div>
 <div class="section level3">
-<h3 id="post-processing">
-<em>post-processing</em><a class="anchor" aria-label="anchor" href="#post-processing"></a>
+<h3 id="postprocessing">
+<em>postprocessing</em><a class="anchor" aria-label="anchor" href="#postprocessing"></a>
 </h3>
-<p>By default, the Post-processing function returns its input or a
+<p>By default, the Postprocessing function returns its input or a
 <code>NULL</code> report if the input has no rows.
-<em><code>post-processing</code></em> function of a
+<em><code>postprocessing</code></em> function of a
 <code>chevron_tlg</code> object must have at least <code>tlg</code> as
 formal arguments.</p>
 </div>
 <div class="section level3">
-<h3 id="adam-dataset">
-<em>ADaM dataset</em><a class="anchor" aria-label="anchor" href="#adam-dataset"></a>
+<h3 id="adam-datasets">
+<em>ADaM datasets</em><a class="anchor" aria-label="anchor" href="#adam-datasets"></a>
 </h3>
-<p>The <code>adam_dataset</code> stores the name(s) of the data sets in
+<p>The <code>adam_datasets</code> stores the name(s) of the data sets in
 the <code>AdAM</code> <code>dm</code> object that will be used in the
-process. This information is important when the
-<code>chevropn_tlg</code> object is interfaced with other processes from
-the <code>chevron</code> ecosystem of packages such as
-<code>citril</code>.</p>
+process. This information is important when the <code>chevron_tlg</code>
+object is interfaced with other processes from the <code>chevron</code>
+ecosystem of packages such as <code>citril</code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -289,7 +279,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d21c07ea58&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55a17aa36198&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">

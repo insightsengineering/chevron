@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9053</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9054</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -130,9 +121,8 @@ rendered.</p>
 <span><span class="co">#&gt; safety_var &lt;- c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", </span></span>
 <span><span class="co">#&gt;     "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")</span></span>
 <span><span class="co">#&gt; req_tables &lt;- c("adsl", "adae")</span></span>
-<span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
 <span><span class="co">#&gt; pre_fun &lt;- function (adam_db, req_tables = c("adsl", "adae"), </span></span>
@@ -203,7 +193,7 @@ rendered.</p>
 <p>The script generator depends on the functions actually stored in the
 object. Modifying the <code>chevron_tlg</code> object can lead to a
 different script.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">dunlin</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/reformat.html" class="external-link">reformat</a></span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -213,7 +203,7 @@ different script.</p>
 <p>Print the generated scripts. Note that a new argument
 <code>new_format</code> has been added and the pre processing function
 has been modified.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Arguments definition ----</span></span>
@@ -244,7 +234,7 @@ values will be overwritten.</p>
 <p>Note: variables (in this case the <code>dm</code> object
 <code>syn_data</code>), have to be passed as symbol, using for instance
 <code><a href="https://rlang.r-lib.org/reference/sym.html" class="external-link">rlang::sym</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  adam_db <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/sym.html" class="external-link">sym</a></span><span class="op">(</span><span class="st">"syn_data"</span><span class="op">)</span>,</span>
 <span>  some_character <span class="op">=</span> <span class="st">"A"</span>,</span>
@@ -253,7 +243,7 @@ values will be overwritten.</p>
 <span></span>
 <span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">mng01_1</span>, dict <span class="op">=</span> <span class="va">dict</span><span class="op">)</span></span>
 <span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Arguments definition ----</span></span>
@@ -293,7 +283,7 @@ values will be overwritten.</p>
 <p>If saved in a <code>.R</code> file, the generated script can be
 executed. The result stored in <code>tlg_output</code> can be
 printed.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"my_script_args"</span>, fileext <span class="op">=</span> <span class="st">"R"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span>, con <span class="op">=</span> <span class="va">tmp_args</span><span class="op">)</span></span>
 <span></span>
@@ -348,13 +338,13 @@ printed.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_funs</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tlg_output</span></span>
 <span><span class="co">#&gt; $`Alanine Aminotransferase Measurement`</span></span></code></pre></div>
-<p><img src="script_generator_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<p><img src="script_generator_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $`C-Reactive Protein Measurement`</span></span></code></pre>
-<p><img src="script_generator_files/figure-html/unnamed-chunk-8-2.png" width="672"></p>
+<p><img src="script_generator_files/figure-html/unnamed-chunk-7-2.png" width="672"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $`Immunoglobulin A Measurement`</span></span></code></pre>
-<p><img src="script_generator_files/figure-html/unnamed-chunk-8-3.png" width="672"></p>
+<p><img src="script_generator_files/figure-html/unnamed-chunk-7-3.png" width="672"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; attr(,"class")</span></span>
 <span><span class="co">#&gt; [1] "gg_list" "list"</span></span></code></pre>
@@ -364,9 +354,9 @@ printed.</p>
 </h2>
 <p>By specifying <code>details = TRUE</code> the main and post
 processing functions are also exposed.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res_fun</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_fun</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Functions.</span></span>
 <span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
