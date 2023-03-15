@@ -82,5 +82,5 @@ which returns
   cl C.1                                                                                                 
     Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
     Total number of events                                         55            63              64      
-    dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  ```
+    dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
 ```
