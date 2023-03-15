@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9054</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9055</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -129,12 +120,12 @@ can be used and reused for different data</p>
 <span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/build_table.html" class="external-link">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             ARM A              ARM B      </span></span>
 <span><span class="co">#&gt; ——————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; mean   59.3867830749686   53.5424222287515</span></span>
+<span><span class="co">#&gt; mean   56.4339714531568   52.3615595778184</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/build_table.html" class="external-link">build_table</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl</span><span class="op">[</span><span class="va">adsl</span><span class="op">$</span><span class="va">COUNTRY</span> <span class="op">==</span> <span class="st">"RUS"</span>, <span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             ARM A              ARM B      </span></span>
 <span><span class="co">#&gt; ——————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; mean   48.8819982330703   60.4959406696726</span></span></code></pre></div>
+<span><span class="co">#&gt; mean   60.9546467866032   46.0500605262092</span></span></code></pre></div>
 <p>Hence these layouts define a table pre-data. That is, the layout
 functions in <code>chevron</code> do never take any data as an argument.
 Note that pruning and sorting are currently not performed in the layout
@@ -169,7 +160,7 @@ example for <code>aet02_1</code> we have the layout function:</p>
 <span><span class="co">#&gt;             nonunique = "Total number of events")) %&gt;% count_occurrences(vars = "AEDECOD", </span></span>
 <span><span class="co">#&gt;         .indent_mods = -1L) %&gt;% append_topleft(paste0("  ", lbl_aedecod))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fe764bff38&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560c90b73aa8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>Note that the <code>aet02_1_lyt</code> function returns a concise
 description on how <code>tern</code> and <code>rtables</code> can be
@@ -191,7 +182,7 @@ the table using <code>build_table</code> and the data given in
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fe76634270&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560c90ce7de0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
