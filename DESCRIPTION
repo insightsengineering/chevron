@@ -23,7 +23,7 @@ Imports:
     checkmate (>= 2.0),
     dm (>= 1.0),
     dplyr,
-    dunlin (> 0.1.1),
+    dunlin (>= 0.1.2),
     forcats (>= 1.0.0),
     formatters (>= 0.4.0),
     ggplot2 (>= 3.4.0),
