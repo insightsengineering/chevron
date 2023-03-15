@@ -74,7 +74,7 @@ By default, the Postprocessing function returns its input or a `NULL` report if 
 ### *ADaM datasets*
 
 The `adam_datasets` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
-information is important when the `chevropn_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
+information is important when the `chevron_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
 such as `citril`.
 
 ## Example `AET02`
