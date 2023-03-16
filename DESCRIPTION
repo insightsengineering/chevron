@@ -32,7 +32,7 @@ Imports:
     methods,
     nestcolor (>= 0.1.1),
     rlang,
-    rlistings (> 0.1.1),
+    rlistings (>= 0.2.0),
     rtables (>= 0.6.0),
     scda (>= 0.1.6),
     scda.2022 (>= 0.1.4),
