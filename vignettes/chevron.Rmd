@@ -86,10 +86,10 @@ in the `_1` implementation.
 We first define the data and put it in a `dm` object, you can find more details about this in the *`adam_db`* vignette.
 
 ```{r}
+library(chevron)
 library(dm)
-library(scda)
 
-syn_data <- synthetic_cdisc_data("latest")
+syn_data <- data(syn_data)
 
 adam_study_data <- dm(adsl = syn_data$adsl, adae = syn_data$adae) %>%
   dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
@@ -102,7 +102,6 @@ dm_validate(adam_study_data)
 A the `aet02_1` output is then created as follows:
 
 ```{r}
-library(chevron)
 run(aet02_1, adam_study_data)
 ```
 
