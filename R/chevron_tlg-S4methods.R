@@ -375,10 +375,10 @@ setMethod(
           )
         ),
         "",
-        "# Create TLG.",
-        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
-        glue::glue("rlang::exec(.fn = main_fun, !!!{args}) |>"),
-        glue::glue("rlang::exec(.fn = post_fun, !!!{args})")
+        "# Create TLG",
+        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
+        rlang::exec(.fn = main_fun, !!!{args}) %>% \
+        rlang::exec(.fn = post_fun, !!!{args})")
       )
     } else {
       tlg_name <- deparse(substitute(x))
@@ -391,9 +391,9 @@ setMethod(
           )
         ),
         "",
-        "# Create TLG.",
-        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) |>"),
-        glue::glue("rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE, check_arg = FALSE)")
+        "# Create TLG",
+        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
+        rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE, check_arg = FALSE)")
       )
     }
   }
