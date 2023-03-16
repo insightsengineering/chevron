@@ -54,6 +54,13 @@ test_that("aet04_1 functions with default argument value return expected result 
   expect_snapshot(res)
 })
 
+test_that("aet10_1 functions with default argument value return expected result with test data", {
+  pre_data <- aet10_1_pre(syn_data)
+  raw_res <- aet10_1_main(pre_data)
+  res <- aet10_1_post(raw_res)
+  expect_snapshot(res)
+})
+
 test_that("cmt01a_1 functions with default argument value return expected result with test data", {
   pre_data <- cmt01a_1_pre(syn_data)
   raw_res <- cmt01a_1_main(pre_data)
