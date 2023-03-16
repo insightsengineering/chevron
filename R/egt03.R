@@ -2,10 +2,10 @@
 #' @describeIn egt03_1 Main TLG function
 #'
 #' @param arm_var (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
-#' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' @param summaryvar (`list`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
-#' @param splitvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' @param splitvar (`list`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
 #'
@@ -25,10 +25,13 @@
 #'
 egt03_1_main <- function(adam_db,
                          arm_var = "ARMCD",
-                         summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
-                         splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
+                         summaryvar = list("Baseline Reference Range Indicator" = "BNRIND"),
+                         splitvar = list("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
                          ...) {
+  summaryvar <- unlist(summaryvar)
+  splitvar <- unlist(splitvar)
+
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
@@ -185,11 +188,11 @@ egt03_1 <- chevron_t(
 #' @describeIn egt03_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param arm_var (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
-#' @param summaryvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' @param arm_var (`character`) the arm variables used for row split, typically `"ARMCD"`.
+#' @param summaryvar (`list`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
-#' @param splitvar (named vector of `character`) variables to be analyzed, typically `"BNRIND"`. Names are used as
+#' @param splitvar (`list`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
 #'
@@ -209,10 +212,13 @@ egt03_1 <- chevron_t(
 #'
 egt03_2_main <- function(adam_db,
                          arm_var = "ARMCD",
-                         summaryvar = c("Baseline Reference Range Indicator" = "BNRIND"),
-                         splitvar = c("Analysis Reference Range Indicator" = "ANRIND"),
+                         summaryvar = list("Baseline Reference Range Indicator" = "BNRIND"),
+                         splitvar = list("Analysis Reference Range Indicator" = "ANRIND"),
                          deco = std_deco("EGT03"),
                          ...) {
+  summaryvar <- unlist(summaryvar)
+  splitvar <- unlist(splitvar)
+
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
   lbl_splitvar <- get_labels(adam_db$adeg, splitvar)

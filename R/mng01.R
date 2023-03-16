@@ -21,8 +21,8 @@
 #' @param show_h_grid (`flag`) should horizontal grid be displayed.
 #' @param show_v_grid (`flag`) should vertical grid be displayed.
 #' @param legend_pos (`string`) the position of the legend.
-#' @param line_col (`character`) describing the colors to use for the lines or a named `character` vector associating
-#'   values of `arm_var` with color names.
+#' @param line_col (`list`) describing the colors to use for the lines or a named `list` associating values of `arm_var`
+#'   with color names.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
@@ -45,9 +45,10 @@ mng01_1_main <- function(adam_db,
                          show_h_grid = TRUE,
                          show_v_grid = FALSE,
                          legend_pos = "top",
-                         line_col = nestcolor::color_palette(),
+                         line_col = as.list(nestcolor::color_palette()),
                          ...) {
   df <- adam_db[[dataset]]
+  line_col <- unlist(line_col)
 
   data_ls <- split(df, df$PARAM, drop = TRUE)
   x_var <- paste(x_var, collapse = "_")
