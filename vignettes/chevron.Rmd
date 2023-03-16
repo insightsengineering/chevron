@@ -89,7 +89,7 @@ We first define the data and put it in a `dm` object, you can find more details 
 library(chevron)
 library(dm)
 
-syn_data <- data(syn_data)
+syn_data <- data("syn_data")
 
 adam_study_data <- dm(adsl = syn_data$adsl, adae = syn_data$adae) %>%
   dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
