@@ -37,7 +37,7 @@ lbt01_1_main <- function(adam_db,
                          ...) {
   summaryvars <- unlist(summaryvars)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
-  vapply(precision, checkmate::assert_integerish, FUN.VALUE = logical(1), lower = 0)
+  vapply(precision, checkmate::assert_integerish, FUN.VALUE = numeric(1), lower = 0)
 
   assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
   assert_colnames(adam_db$adlb, summaryvars)
