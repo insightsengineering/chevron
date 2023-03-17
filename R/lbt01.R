@@ -6,7 +6,7 @@
 #' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adlb` table of `adam_db` is used.
 #' @param visitvar (`character`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
-#' @param precision (`list` of `integer`) where names are values found in the `PARAMCD` column and the the values
+#' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
 #' @param default_precision (`integer`) the default number of digits.
@@ -31,20 +31,18 @@ lbt01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          summaryvars = list("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
-                         precision = list(param = integer()),
+                         precision = list(),
                          default_precision = 2,
                          deco = std_deco("LBT01"),
                          ...) {
   summaryvars <- unlist(summaryvars)
-  checkmate::assert_list(precision, types = "integerish")
-  checkmate::assert_named(precision)
-  precision <- unlist(precision)
+  checkmate::assert_list(precision, types = "integerish", names = "unique")
+  vapply(precision, checkmate::assert_integerish, FUN.VALUE = logical(1), lower = 0)
 
   assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
   assert_colnames(adam_db$adlb, summaryvars)
   assert_colnames(adam_db$adlb, arm_var)
   assert_colnames(adam_db$adlb, visitvar)
-  checkmate::assert_integerish(precision, lower = 0, null.ok = TRUE)
 
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
@@ -114,9 +112,8 @@ lbt01_1_lyt <- function(arm_var,
     analyze_colvars(
       afun = function(x, .var, .spl_context, precision, default_precision, ...) {
         param_val <- .spl_context$value[1]
-        pcs <- precision[param_val]
 
-        pcs <- ifelse(is.na(pcs), default_precision, pcs)
+        pcs <- precision[[param_val]] %||% default_precision
 
         # Create context dependent function.
         n_fun <- sum(!is.na(x), na.rm = TRUE)
