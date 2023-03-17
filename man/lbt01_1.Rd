@@ -17,7 +17,7 @@ lbt01_1_main(
   arm_var = "ACTARM",
   summaryvars = list(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
-  precision = list(integer()),
+  precision = list(),
   default_precision = 2,
   deco = std_deco("LBT01"),
   ...
@@ -51,7 +51,7 @@ lbt01_1
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{precision}{(\code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
+\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
