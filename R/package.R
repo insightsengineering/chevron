@@ -4,7 +4,6 @@
 #' @import dplyr
 #' @import methods
 #' @import rtables
-#' @import scda.2022
 #' @import tern
 #' @importFrom rlistings as_listing
 #' @importFrom rtables drop_split_levels

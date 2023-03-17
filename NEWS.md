@@ -1,4 +1,4 @@
-# chevron 0.1.1.9059
+# chevron 0.1.1.9060
 
 * Add more templates: `AET01_AESI`, `EGT03`, `EGT05_QTCAT`, `LBT04`, `LBT05`, `LBT07`, `LBT14`, `PDT01`, `PDT02`.
 * Deprecation of previous `getter` function like `get_main` to `main` and `main<-`.

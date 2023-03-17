@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.pre-commit-config\.yaml$
+^data-raw
 ^temp$
 ^.github$
 ^staged_dependencies.yaml$

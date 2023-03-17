@@ -38,7 +38,7 @@ drop_adsl_vars <- function(df, adsl) {
   df[c("USUBJID", "STUDYID", setdiff(names(df), names(adsl)))]
 }
 
-data(syn_data)
+data(syn_data, package = "chevron")
 dbl <- c(list(adsl = syn_data$adsl), lapply(syn_data[-1], drop_adsl_vars, adsl = syn_data$adsl))
 
 ### Define primary and foreign keys

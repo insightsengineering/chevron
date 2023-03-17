@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
-Title: Standard TLGs For Clinical Trials Reporting
-Version: 0.1.1.9059
-Date: 2023-03-16
+Title: Standard TLGs for Clinical Trials Reporting
+Version: 0.1.1.9060
+Date: 2023-03-17
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
@@ -34,8 +34,6 @@ Imports:
     rlang,
     rlistings (>= 0.2.0),
     rtables (>= 0.6.0),
-    scda (>= 0.1.6),
-    scda.2022 (>= 0.1.4),
     tern (>= 0.8.0),
     tibble
 Suggests:
@@ -51,8 +49,6 @@ Remotes:
     insightsengineering/dunlin@*release,
     insightsengineering/nestcolor@*release,
     insightsengineering/rlistings@*release,
-    insightsengineering/scda.2022@*release,
-    insightsengineering/scda@*release,
     insightsengineering/tern@*release
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
