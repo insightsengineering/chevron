@@ -31,18 +31,20 @@ lbt01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          summaryvars = list("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
-                         precision = list(integer()),
+                         precision = list(param = integer()),
                          default_precision = 2,
                          deco = std_deco("LBT01"),
                          ...) {
   summaryvars <- unlist(summaryvars)
+  checkmate::assert_list(precision, types = "integerish")
+  checkmate::assert_named(precision)
   precision <- unlist(precision)
 
   assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
   assert_colnames(adam_db$adlb, summaryvars)
   assert_colnames(adam_db$adlb, arm_var)
   assert_colnames(adam_db$adlb, visitvar)
-  checkmate::assert_integerish(precision, lower = 0)
+  checkmate::assert_integerish(precision, lower = 0, null.ok = TRUE)
 
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")

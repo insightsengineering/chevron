@@ -17,7 +17,7 @@ lbt01_1_main(
   arm_var = "ACTARM",
   summaryvars = list(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
-  precision = list(integer()),
+  precision = list(param = integer()),
   default_precision = 2,
   deco = std_deco("LBT01"),
   ...
