@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9057</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9059</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -205,16 +196,18 @@ e.g. <code><a href="../reference/aet02_1.html">help('aet02_1')</a></code> docum
 can find more details about this in the <em><code>adam_db</code></em>
 vignette.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dm.cynkra.com/" class="external-link">dm</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Registered S3 method overwritten by 'tern':</span></span>
+<span><span class="co">#&gt;   method   from </span></span>
+<span><span class="co">#&gt;   tidy.glm broom</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dm.cynkra.com/" class="external-link">dm</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'dm'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     filter</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scda</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
 <span></span>
-<span><span class="va">syn_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scda/man/synthetic_cdisc_data.html" class="external-link">synthetic_cdisc_data</a></span><span class="op">(</span><span class="st">"latest"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">syn_data</span>, package <span class="op">=</span> <span class="st">"chevron"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">adam_study_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dm.cynkra.com/reference/dm.html" class="external-link">dm</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span>, adae <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adae</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dm.cynkra.com/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -224,52 +217,43 @@ vignette.</p>
 <span><span class="fu"><a href="https://dm.cynkra.com/reference/dm_validate.html" class="external-link">dm_validate</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span></code></pre></div>
 <p>A the <code>aet02_1</code> output is then created as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Registered S3 method overwritten by 'tern':</span></span>
-<span><span class="co">#&gt;   method   from </span></span>
-<span><span class="co">#&gt;   tidy.glm broom</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'chevron'</span></span>
-<span><span class="co">#&gt; The following object is masked _by_ '.GlobalEnv':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     syn_data</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet02_1</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   MedDRA System Organ Class                                     A: Drug X    B: Placebo   C: Combination</span></span>
-<span><span class="co">#&gt;     MedDRA Preferred Term                                        (N=134)      (N=134)        (N=132)    </span></span>
-<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event     100 (74.6%)   98 (73.1%)    103 (78.0%)  </span></span>
-<span><span class="co">#&gt;   Overall total number of events                                   502          480            604      </span></span>
-<span><span class="co">#&gt;   cl A.1                                                                                                </span></span>
-<span><span class="co">#&gt;     Total number of patients with at least one adverse event   68 (50.7%)    58 (43.3%)     76 (57.6%)  </span></span>
-<span><span class="co">#&gt;     Total number of events                                         115           99            137      </span></span>
-<span><span class="co">#&gt;     dcd A.1.1.1.1                                              45 (33.6%)    31 (23.1%)     52 (39.4%)  </span></span>
-<span><span class="co">#&gt;     dcd A.1.1.1.2                                              41 (30.6%)    39 (29.1%)     42 (31.8%)  </span></span>
-<span><span class="co">#&gt;   cl B.2                                                                                                </span></span>
-<span><span class="co">#&gt;     Total number of patients with at least one adverse event   62 (46.3%)    56 (41.8%)     74 (56.1%)  </span></span>
-<span><span class="co">#&gt;     Total number of events                                         102          106            127      </span></span>
-<span><span class="co">#&gt;     dcd B.2.2.3.1                                              38 (28.4%)    40 (29.9%)     45 (34.1%)  </span></span>
-<span><span class="co">#&gt;     dcd B.2.1.2.1                                              39 (29.1%)    34 (25.4%)     46 (34.8%)  </span></span>
-<span><span class="co">#&gt;   cl D.1                                                                                                </span></span>
-<span><span class="co">#&gt;     Total number of patients with at least one adverse event   64 (47.8%)    54 (40.3%)     68 (51.5%)  </span></span>
-<span><span class="co">#&gt;     Total number of events                                         106           84            114      </span></span>
-<span><span class="co">#&gt;     dcd D.1.1.1.1                                              42 (31.3%)    32 (23.9%)     46 (34.8%)  </span></span>
-<span><span class="co">#&gt;     dcd D.1.1.4.2                                              38 (28.4%)    34 (25.4%)     40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   cl D.2                                                                                                </span></span>
-<span><span class="co">#&gt;     Total number of patients with at least one adverse event   37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
-<span><span class="co">#&gt;     Total number of events                                         49            57             65      </span></span>
-<span><span class="co">#&gt;     dcd D.2.1.5.3                                              37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
-<span><span class="co">#&gt;   cl C.2                                                                                                </span></span>
-<span><span class="co">#&gt;     Total number of patients with at least one adverse event   28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
-<span><span class="co">#&gt;     Total number of events                                         39            40             57      </span></span>
-<span><span class="co">#&gt;     dcd C.2.1.2.1                                              28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
-<span><span class="co">#&gt;   cl B.1                                                                                                </span></span>
-<span><span class="co">#&gt;     Total number of patients with at least one adverse event   38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt;     Total number of events                                         44            43             50      </span></span>
-<span><span class="co">#&gt;     dcd B.1.1.1.1                                              38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt;   cl C.1                                                                                                </span></span>
-<span><span class="co">#&gt;     Total number of patients with at least one adverse event   36 (26.9%)    34 (25.4%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt;     Total number of events                                         47            51             54      </span></span>
-<span><span class="co">#&gt;     dcd C.1.1.1.3                                              36 (26.9%)    34 (25.4%)     36 (27.3%)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet02_1</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination</span></span>
+<span><span class="co">#&gt;     MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  </span></span>
+<span><span class="co">#&gt;   Overall total number of events                                   609           622            703      </span></span>
+<span><span class="co">#&gt;   cl A.1                                                                                                 </span></span>
+<span><span class="co">#&gt;     Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  </span></span>
+<span><span class="co">#&gt;     Total number of events                                         132           130            160      </span></span>
+<span><span class="co">#&gt;     dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  </span></span>
+<span><span class="co">#&gt;     dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  </span></span>
+<span><span class="co">#&gt;   cl B.2                                                                                                 </span></span>
+<span><span class="co">#&gt;     Total number of patients with at least one adverse event   79 (59.0%)    74 (55.2%)      85 (64.4%)  </span></span>
+<span><span class="co">#&gt;     Total number of events                                         129           138            143      </span></span>
+<span><span class="co">#&gt;     dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  </span></span>
+<span><span class="co">#&gt;     dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  </span></span>
+<span><span class="co">#&gt;   cl D.1                                                                                                 </span></span>
+<span><span class="co">#&gt;     Total number of patients with at least one adverse event   79 (59.0%)    67 (50.0%)      80 (60.6%)  </span></span>
+<span><span class="co">#&gt;     Total number of events                                         127           106            135      </span></span>
+<span><span class="co">#&gt;     dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  </span></span>
+<span><span class="co">#&gt;     dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  </span></span>
+<span><span class="co">#&gt;   cl D.2                                                                                                 </span></span>
+<span><span class="co">#&gt;     Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  </span></span>
+<span><span class="co">#&gt;     Total number of events                                         62            72              74      </span></span>
+<span><span class="co">#&gt;     dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  </span></span>
+<span><span class="co">#&gt;   cl B.1                                                                                                 </span></span>
+<span><span class="co">#&gt;     Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  </span></span>
+<span><span class="co">#&gt;     Total number of events                                         56            60              62      </span></span>
+<span><span class="co">#&gt;     dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  </span></span>
+<span><span class="co">#&gt;   cl C.2                                                                                                 </span></span>
+<span><span class="co">#&gt;     Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  </span></span>
+<span><span class="co">#&gt;     Total number of events                                         48            53              65      </span></span>
+<span><span class="co">#&gt;     dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  </span></span>
+<span><span class="co">#&gt;   cl C.1                                                                                                 </span></span>
+<span><span class="co">#&gt;     Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  </span></span>
+<span><span class="co">#&gt;     Total number of events                                         55            63              64      </span></span>
+<span><span class="co">#&gt;     dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)</span></span></code></pre></div>
 <p>The function associated with a particular slot can be retrieved with
 the corresponding method: <code>main</code>, <code>lyt</code>,
 <code>preprocess</code> <code>postprocess</code> and
@@ -288,14 +272,14 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55797dcf10b8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5585349f6270&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; Tables: `adsl`, `adae`</span></span>
-<span><span class="co">#&gt; Columns: 148</span></span>
+<span><span class="co">#&gt; Columns: 159</span></span>
 <span><span class="co">#&gt; Primary keys: 2</span></span>
 <span><span class="co">#&gt; Foreign keys: 1</span></span>
 <span></span>
@@ -304,7 +288,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="fu">foo</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; Tables: `adsl`, `adae`</span></span>
-<span><span class="co">#&gt; Columns: 148</span></span>
+<span><span class="co">#&gt; Columns: 159</span></span>
 <span><span class="co">#&gt; Primary keys: 2</span></span>
 <span><span class="co">#&gt; Foreign keys: 1</span></span></code></pre></div>
 </div>
@@ -362,42 +346,42 @@ provided constructors corresponding to the desired output:</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_template</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; MedDRA System Organ Class                                     A: Drug X    B: Placebo   C: Combination</span></span>
-<span><span class="co">#&gt;   MedDRA Preferred Term                                        (N=134)      (N=134)        (N=132)    </span></span>
-<span><span class="co">#&gt; ——————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt; Total number of patients with at least one adverse event     100 (74.6%)   98 (73.1%)    103 (78.0%)  </span></span>
-<span><span class="co">#&gt; Overall total number of events                                   502          480            604      </span></span>
-<span><span class="co">#&gt; cl A.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   68 (50.7%)    58 (43.3%)     76 (57.6%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         115           99            137      </span></span>
-<span><span class="co">#&gt;   dcd A.1.1.1.1                                              45 (33.6%)    31 (23.1%)     52 (39.4%)  </span></span>
-<span><span class="co">#&gt;   dcd A.1.1.1.2                                              41 (30.6%)    39 (29.1%)     42 (31.8%)  </span></span>
-<span><span class="co">#&gt; cl B.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   62 (46.3%)    56 (41.8%)     74 (56.1%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         102          106            127      </span></span>
-<span><span class="co">#&gt;   dcd B.2.2.3.1                                              38 (28.4%)    40 (29.9%)     45 (34.1%)  </span></span>
-<span><span class="co">#&gt;   dcd B.2.1.2.1                                              39 (29.1%)    34 (25.4%)     46 (34.8%)  </span></span>
-<span><span class="co">#&gt; cl D.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   64 (47.8%)    54 (40.3%)     68 (51.5%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         106           84            114      </span></span>
-<span><span class="co">#&gt;   dcd D.1.1.1.1                                              42 (31.3%)    32 (23.9%)     46 (34.8%)  </span></span>
-<span><span class="co">#&gt;   dcd D.1.1.4.2                                              38 (28.4%)    34 (25.4%)     40 (30.3%)  </span></span>
-<span><span class="co">#&gt; cl D.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         49            57             65      </span></span>
-<span><span class="co">#&gt;   dcd D.2.1.5.3                                              37 (27.6%)    46 (34.3%)     50 (37.9%)  </span></span>
-<span><span class="co">#&gt; cl C.2                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         39            40             57      </span></span>
-<span><span class="co">#&gt;   dcd C.2.1.2.1                                              28 (20.9%)    36 (26.9%)     48 (36.4%)  </span></span>
-<span><span class="co">#&gt; cl B.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         44            43             50      </span></span>
-<span><span class="co">#&gt;   dcd B.1.1.1.1                                              38 (28.4%)    37 (27.6%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt; cl C.1                                                                                                </span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event   36 (26.9%)    34 (25.4%)     36 (27.3%)  </span></span>
-<span><span class="co">#&gt;   Total number of events                                         47            51             54      </span></span>
-<span><span class="co">#&gt;   dcd C.1.1.1.3                                              36 (26.9%)    34 (25.4%)     36 (27.3%)</span></span></code></pre></div>
+<span><span class="co">#&gt; MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination</span></span>
+<span><span class="co">#&gt;   MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    </span></span>
+<span><span class="co">#&gt; ———————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  </span></span>
+<span><span class="co">#&gt; Overall total number of events                                   609           622            703      </span></span>
+<span><span class="co">#&gt; cl A.1                                                                                                 </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         132           130            160      </span></span>
+<span><span class="co">#&gt;   dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  </span></span>
+<span><span class="co">#&gt;   dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  </span></span>
+<span><span class="co">#&gt; cl B.2                                                                                                 </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   79 (59.0%)    74 (55.2%)      85 (64.4%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         129           138            143      </span></span>
+<span><span class="co">#&gt;   dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  </span></span>
+<span><span class="co">#&gt;   dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  </span></span>
+<span><span class="co">#&gt; cl D.1                                                                                                 </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   79 (59.0%)    67 (50.0%)      80 (60.6%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         127           106            135      </span></span>
+<span><span class="co">#&gt;   dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  </span></span>
+<span><span class="co">#&gt;   dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  </span></span>
+<span><span class="co">#&gt; cl D.2                                                                                                 </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         62            72              74      </span></span>
+<span><span class="co">#&gt;   dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  </span></span>
+<span><span class="co">#&gt; cl C.2                                                                                                 </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         48            53              65      </span></span>
+<span><span class="co">#&gt;   dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  </span></span>
+<span><span class="co">#&gt; cl B.1                                                                                                 </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         56            60              62      </span></span>
+<span><span class="co">#&gt;   dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  </span></span>
+<span><span class="co">#&gt; cl C.1                                                                                                 </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  </span></span>
+<span><span class="co">#&gt;   Total number of events                                         55            63              64      </span></span>
+<span><span class="co">#&gt;   dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)</span></span></code></pre></div>
 <p>Note that to ensure the correct execution of the <code>run</code>
 function, the name of the first argument of the <code>main</code>
 function must be <code>adam_db</code>; the input <code>dm</code> object
