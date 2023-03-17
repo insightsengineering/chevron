@@ -160,12 +160,9 @@ aet04_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
-  if (prune_0) tlg <- tlg %>% trim_rows()
-
-  tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")
-  if (tbl_empty) {
-    tbl_sorted <- basic_table() %>% build_table(matrix(""))
-  } else {
+  if (prune_0) tlg <- smart_prune(tlg)
+  tbl_empty <- is.null(tlg) || nrow(tlg) == 0
+  if (!tbl_empty) {
     score_all_sum <- function(tt) {
       cleaf <- collect_leaves(tt)[[1]]
       if (NROW(cleaf) == 0) {
@@ -174,7 +171,7 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
       sum(sapply(row_values(cleaf), function(cv) cv[1]))
     }
 
-    tbl_sorted <- tlg %>%
+    tlg <- tlg %>%
       sort_at_path(
         path = c("AEBODSYS"),
         scorefun = score_all_sum,
@@ -187,7 +184,7 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
       )
   }
 
-  std_postprocess(tbl_sorted)
+  std_postprocess(tlg)
 }
 
 #' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.

@@ -1,3 +1,5 @@
+# lbt04 ----
+
 test_that("lbt04 can handle all NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adlb") %>%
@@ -22,4 +24,12 @@ test_that("lbt04 can handle some NA values", {
 
   res <- expect_silent(run(lbt04_1, proc_data))
   expect_snapshot(res)
+})
+
+test_that("lbt04 fails on incomlete date", {
+  syn_data <- syn_data %>%
+    dm_zoom_to("adlb") %>%
+    mutate(PARCAT1 = NULL) %>%
+    dm_update_zoomed()
+  expect_error(run(lbt04_1, syn_data))
 })
