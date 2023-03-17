@@ -163,8 +163,8 @@ dtht01_1_pre <- function(adam_db, ...) {
   adam_db <- adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(DTHFL = as.factor(.data$DTHFL)) %>%
-    mutate(DTHCAT = as.factor(DTHCAT)) %>%
-    mutate(DTHCAT = factor(DTHCAT, levels = c(setdiff(levels(DTHCAT), "OTHER"), "OTHER"))) %>%
+    mutate(DTHCAT = as.factor(.data$DTHCAT)) %>%
+    mutate(DTHCAT = factor(.data$DTHCAT, levels = c(setdiff(levels(.data$DTHCAT), "OTHER"), "OTHER"))) %>%
     dm_update_zoomed()
 
   dunlin::reformat(adam_db, new_formats, na_last = TRUE)

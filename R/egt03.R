@@ -133,17 +133,17 @@ egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      PARAMCD == paramcd_value &
+      .data$PARAMCD == paramcd_value &
         !!sym(visit_var) == visit_value # "Analysis Visit"
     ) %>%
     mutate(min_label = "Minimum Post-Baseline Assessment") %>%
     mutate(BNRIND = factor(
-      BNRIND,
+      .data$BNRIND,
       levels = c("LOW", "NORMAL", "HIGH", "Missing"),
       labels = c("LOW", "NORMAL", "HIGH", "Missing")
     )) %>%
     mutate(ANRIND = factor(
-      ANRIND,
+      .data$ANRIND,
       levels = c("LOW", "NORMAL", "HIGH", "Missing"),
       labels = c("LOW", "NORMAL", "HIGH", "Missing")
     )) %>%
@@ -286,17 +286,17 @@ egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      PARAMCD == paramcd_value &
+      .data$PARAMCD == paramcd_value &
         !!sym(visit_var) == visit_value # "Analysis Visit"
     ) %>%
     mutate(max_label = "Maximum Post-Baseline Assessment") %>%
     mutate(BNRIND = factor(
-      BNRIND,
+      .data$BNRIND,
       levels = c("LOW", "NORMAL", "HIGH", "Missing"),
       labels = c("LOW", "NORMAL", "HIGH", "Missing")
     )) %>%
     mutate(ANRIND = factor(
-      ANRIND,
+      .data$ANRIND,
       levels = c("LOW", "NORMAL", "HIGH", "Missing"),
       labels = c("LOW", "NORMAL", "HIGH", "Missing")
     )) %>%

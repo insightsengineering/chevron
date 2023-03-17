@@ -50,7 +50,7 @@ egt05_qtcat_1_main <- function(adam_db,
 
   tbl <- build_table(
     lyt,
-    df = adam_db$adeg %>% filter(PARAMCD %in% paramvar),
+    df = adam_db$adeg %>% filter(.data$PARAMCD %in% paramvar),
     alt_counts_df = adam_db$adsl
   )
 }
@@ -118,11 +118,11 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
   adam_db %>%
     dm_zoom_to("adeg") %>%
     filter(
-      ANL01FL == "Y"
+      .data$ANL01FL == "Y"
     ) %>%
     mutate(
-      AVALCAT1 = factor(AVALCAT1),
-      CHGCAT1 = factor(CHGCAT1)
+      AVALCAT1 = factor(.data$AVALCAT1),
+      CHGCAT1 = factor(.data$CHGCAT1)
     ) %>%
     dm_update_zoomed()
 }
