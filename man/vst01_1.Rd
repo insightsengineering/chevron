@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 vst01_1_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
+  summaryvars = list(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
   deco = std_deco("VST01"),
   ...

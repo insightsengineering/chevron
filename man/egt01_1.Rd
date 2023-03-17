@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 egt01_1_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
+  summaryvars = list(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
   deco = std_deco("EGT01"),
   ...
@@ -98,6 +98,6 @@ by \code{AVISIT}. Re-level to customize order.
 \examples{
 db <- syn_data
 run(egt01_1, db)
-run(egt01_1, db, summaryvars = c("AVAL", "Change" = "CHG"))
+run(egt01_1, db, summaryvars = list("AVAL", "Change" = "CHG"))
 }
 \keyword{datasets}

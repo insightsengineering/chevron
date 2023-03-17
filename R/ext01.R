@@ -3,7 +3,7 @@
 #' @describeIn ext01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
 #'
 #' @details
@@ -27,6 +27,7 @@ ext01_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          deco = std_deco("EXT01"),
                          ...) {
+  summaryvars <- unlist(summaryvars)
   assert_colnames(adam_db$adex, summaryvars)
 
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
@@ -135,7 +136,7 @@ ext01_1 <- chevron_t(
 #' @describeIn ext01_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
 #'
 #' @details
@@ -154,11 +155,12 @@ ext01_1 <- chevron_t(
 #' @export
 #'
 ext01_2_main <- function(adam_db,
-                         summaryvars = c("AVAL", "AVALCAT1"),
+                         summaryvars = list("AVAL", "AVALCAT1"),
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("EXT01"),
                          ...) {
+  summaryvars <- unlist(summaryvars)
   # Provide a clearer error message in the case of missing variable.
   assert_colnames(adam_db$adex, summaryvars)
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
