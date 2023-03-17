@@ -5,7 +5,7 @@
 #' Provides a clearer error message in the case of missing variable.
 #'
 #' @param df (`data.frame`) input to check for the presence of column names.
-#' @param x (vector of `character`) the names of the columns to be checked.
+#' @param x (`character`) the names of the columns to be checked.
 #' @param null_ok (`logical`) can `x` be NULL.
 #'
 #' @keywords internal

@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 ext01_2_main(
   adam_db,
-  summaryvars = c("AVAL", "AVALCAT1"),
+  summaryvars = list("AVAL", "AVALCAT1"),
   arm_var = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("EXT01"),

@@ -3,10 +3,10 @@
 #' @describeIn lbt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adlb` table of `adam_db` is used.
 #' @param visitvar (`character`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
-#' @param precision (named vector of `integer`) where names are values found in the `PARAMCD` column and the the values
+#' @param precision (`list` of `integer`) where names are values found in the `PARAMCD` column and the the values
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
 #' @param default_precision (`integer`) the default number of digits.
@@ -29,12 +29,15 @@
 #'
 lbt01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
+                         summaryvars = list("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
-                         precision = integer(),
+                         precision = list(integer()),
                          default_precision = 2,
                          deco = std_deco("LBT01"),
                          ...) {
+  summaryvars <- unlist(summaryvars)
+  precision <- unlist(precision)
+
   assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
   assert_colnames(adam_db$adlb, summaryvars)
   assert_colnames(adam_db$adlb, arm_var)
@@ -197,7 +200,7 @@ lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(lbt01_1, syn_data, precision = c(
+#' run(lbt01_1, syn_data, precision = list(
 #'   "ALT" = 0,
 #'   "CRP" = 1
 #' ))

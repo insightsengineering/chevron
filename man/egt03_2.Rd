@@ -15,8 +15,8 @@ An object of class \code{chevron_t} of length 1.
 egt03_2_main(
   adam_db,
   arm_var = "ARMCD",
-  summaryvar = c(`Baseline Reference Range Indicator` = "BNRIND"),
-  splitvar = c(`Analysis Reference Range Indicator` = "ANRIND"),
+  summaryvar = list(`Baseline Reference Range Indicator` = "BNRIND"),
+  splitvar = list(`Analysis Reference Range Indicator` = "ANRIND"),
   deco = std_deco("EGT03"),
   ...
 )
@@ -40,13 +40,13 @@ egt03_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\verb{vector of character}) the arm variables used for row split, typically \code{"ARMCD"}.}
+\item{arm_var}{(\code{character}) the arm variables used for row split, typically \code{"ARMCD"}.}
 
-\item{summaryvar}{(named vector of \code{character}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
+\item{summaryvar}{(\code{list}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
 subtitles. For values
 where no name is provided, the label attribute of the corresponding column in \code{adeg} table of \code{adam_db} is used.}
 
-\item{splitvar}{(named vector of \code{character}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
+\item{splitvar}{(\code{list}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
 subtitles. For values
 where no name is provided, the label attribute of the corresponding column in \code{adeg} table of \code{adam_db} is used.}
 
