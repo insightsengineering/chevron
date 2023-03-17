@@ -160,8 +160,8 @@ aet04_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
-  if (prune_0) tlg <- smart_prune(tlg)
-  tbl_empty <- is.null(tlg) || nrow(tlg) == 0
+  if (prune_0) tlg <- trim_rows(tlg)
+  tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")
   if (!tbl_empty) {
     score_all_sum <- function(tt) {
       cleaf <- collect_leaves(tt)[[1]]
@@ -182,6 +182,8 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
         scorefun = score_all_sum,
         decreasing = TRUE
       )
+  } else {
+    tlg <- null_report
   }
 
   std_postprocess(tlg)
