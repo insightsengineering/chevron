@@ -5,12 +5,24 @@ test_that("mng01_1 works as expected", {
 })
 
 test_that("mng01_1 works as expected with custom color set", {
-  col <- c(
+  col <- list(
     "A: Drug X" = "black",
     "B: Placebo" = "blue",
     "C: Combination" = "gray"
   )
 
   res <- run(mng01_1, syn_data, dataset = "adlb", line_col = col)
+  checkmate::expect_list(res, len = 3, types = "ggplot")
+  res <- run(mng01_1, syn_data, dataset = "adlb", line_col = unname(col))
+  checkmate::expect_list(res, len = 3, types = "ggplot")
+})
+
+test_that("mng01_1 works if show_v_grid/show_h_grid is TRUE", {
+  res <- run(mng01_1, syn_data, dataset = "adlb", show_v_grid = TRUE, show_h_grid = TRUE)
+  checkmate::expect_list(res, len = 3, types = "ggplot")
+})
+
+test_that("mng01_1 works on custom color with named line_col", {
+  res <- run(mng01_1, syn_data, dataset = "adlb", show_v_grid = TRUE, show_h_grid = TRUE)
   checkmate::expect_list(res, len = 3, types = "ggplot")
 })

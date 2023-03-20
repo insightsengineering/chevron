@@ -22,6 +22,15 @@
           HIGH                                   0          0          0          0     
           Missing                                0          0          0          0     
 
+---
+
+    Code
+      res
+    Output
+                                                                                                
+        ————————————————————————————————————————————————————————————————————————————————————————
+        Null Report: No observations met the reporting criteria for inclusion in this output.   
+
 # egt03_1 can handle some NA values
 
     Code

@@ -11,6 +11,8 @@ test_that("aet01 can handle all NA values", {
 
   res <- expect_silent(run(aet01_1, proc_data))
   expect_snapshot(res)
+  res <- expect_silent(run(aet01_1, proc_data, prune_0 = TRUE))
+  expect_snapshot(res)
 })
 
 test_that("aet01 can handle some NA values", {
@@ -26,5 +28,26 @@ test_that("aet01 can handle some NA values", {
     dm_update_zoomed()
 
   res <- expect_silent(run(aet01_1, proc_data))
+  expect_snapshot(res)
+})
+
+test_that("aet01 can use custom lbl_safety_var", {
+  res <- expect_silent(run(aet01_1, syn_data, safety_var = "FATAL", lbl_safety_var = "Fatal AE"))
+  expect_snapshot(res)
+})
+
+test_that("aet01 fails on incomplete data input", {
+  syn_data <- syn_data %>%
+    dm_zoom_to("adae") %>%
+    mutate(AESER = NULL) %>%
+    dm_update_zoomed()
+  expect_error(
+    run(aet01_1, syn_data),
+    "AESER not in adam_db"
+  )
+})
+# aet01_2 ----
+test_that("aet01_2 can use custom medconcept_var", {
+  res <- expect_silent(run(aet01_2, syn_data, medconcept_var = "SMQ01", lbl_medconcept_var = "SMQ 01"))
   expect_snapshot(res)
 })
