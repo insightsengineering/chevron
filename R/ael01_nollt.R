@@ -56,7 +56,6 @@ ael01_nollt_1_pre <- function(adam_db, dataset = "adae", ...) {
       !!vars[2] := formatters::with_label(.data[[vars[2]]], "MedDRA Preferred Term"),
       !!vars[3] := formatters::with_label(.data[[vars[3]]], paste("Investigator-Specified\n", desc, "Term"))
     ) %>%
-    arrange(pick(vars)) %>%
     dm_update_zoomed()
 
   missing_rule <- rule("No Coding Available" = c("", NA))
@@ -69,6 +68,11 @@ ael01_nollt_1_pre <- function(adam_db, dataset = "adae", ...) {
   names(new_format[[dataset]]) <- vars[1:2]
 
   db <- dunlin::reformat(db, new_format, na_last = TRUE)
+
+  db <- db %>%
+    dm_zoom_to(!!dataset) %>%
+    arrange(pick(vars)) %>%
+    dm_update_zoomed()
 
   db
 }
