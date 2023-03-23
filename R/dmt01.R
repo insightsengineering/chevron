@@ -3,7 +3,7 @@
 #' @describeIn dmt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (named vector of `character`) variables summarized in demographic table. Names are used as
+#' @param summaryvars (`list`) variables summarized in demographic table. Names are used as
 #'   subtitles. For values where no name is provided, the label attribute of the corresponding column in `adsl` table of
 #'   `adam_db` is used.
 #'
@@ -31,7 +31,7 @@
 #' dmt01_1_main(db, summaryvars = c("Age" = "AGE", "RACE", "SEX"))
 dmt01_1_main <- function(adam_db,
                          arm_var = "ARM",
-                         summaryvars = c(
+                         summaryvars = list(
                            "Age (yr)" = "AAGE",
                            "Age group (yr)" = "AGEGR1",
                            "SEX",
@@ -41,6 +41,7 @@ dmt01_1_main <- function(adam_db,
                          lbl_overall = "All Patients",
                          deco = std_deco("DMT01"),
                          ...) {
+  summaryvars <- unlist(summaryvars)
   assert_colnames(adam_db$adsl, summaryvars)
 
   summaryvars_lbls <- get_labels(adam_db$adsl, summaryvars)

@@ -77,7 +77,7 @@ aet04_1_lyt <- function(arm_var,
                         grade_groups,
                         deco) {
   all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
-  combodf <- tribble(
+  combodf <- tibble::tribble(
     ~valname, ~label, ~levelcombo, ~exargs,
     "ALL", "- Any adverse events -", toxicity_grade, list()
   )
@@ -160,12 +160,9 @@ aet04_1_pre <- function(adam_db, ...) {
 #' @export
 #'
 aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
-  if (prune_0) tlg <- tlg %>% trim_rows()
-
+  if (prune_0) tlg <- trim_rows(tlg)
   tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")
-  if (tbl_empty) {
-    tbl_sorted <- basic_table() %>% build_table(matrix(""))
-  } else {
+  if (!tbl_empty) {
     score_all_sum <- function(tt) {
       cleaf <- collect_leaves(tt)[[1]]
       if (NROW(cleaf) == 0) {
@@ -174,7 +171,7 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
       sum(sapply(row_values(cleaf), function(cv) cv[1]))
     }
 
-    tbl_sorted <- tlg %>%
+    tlg <- tlg %>%
       sort_at_path(
         path = c("AEBODSYS"),
         scorefun = score_all_sum,
@@ -185,9 +182,11 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
         scorefun = score_all_sum,
         decreasing = TRUE
       )
+  } else {
+    tlg <- null_report
   }
 
-  std_postprocess(tbl_sorted)
+  std_postprocess(tlg)
 }
 
 #' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.

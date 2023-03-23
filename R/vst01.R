@@ -3,7 +3,7 @@
 #' @describeIn vst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (named vector of `character`) variables to be analyzed. Names are used as subtitles. For values
+#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `advs` table of `adam_db` is used.
 #' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed
@@ -26,10 +26,11 @@
 #'
 vst01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
+                         summaryvars = list("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT", # or ATPTN
                          deco = std_deco("VST01"),
                          ...) {
+  summaryvars <- unlist(summaryvars)
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 

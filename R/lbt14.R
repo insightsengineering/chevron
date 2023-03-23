@@ -112,11 +112,11 @@ lbt14_1_pre <- function(adam_db,
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
       mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
-        factor(BTOXGR, levels = c("0", "<Missing>"))
+        factor(.data$BTOXGR, levels = c("0", "<Missing>"))
       } else {
-        BTOXGR
+        .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
+      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }
 
@@ -146,7 +146,7 @@ lbt14_1_pre <- function(adam_db,
           BTOXGR == -4 ~ "4",
           BTOXGR == "<Missing>" ~ "Missing"
         ),
-        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>")) {
+        levels = if (gr_missing == "incl" & any(.data$BTOXGR == "<Missing>")) {
           c("Not Low", "1", "2", "3", "4", "Missing")
         } else {
           c("Not Low", "1", "2", "3", "4")
@@ -320,11 +320,11 @@ lbt14_2_pre <- function(adam_db,
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
       mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
-        factor(BTOXGR, levels = c("0", "<Missing>"))
+        factor(.data$BTOXGR, levels = c("0", "<Missing>"))
       } else {
-        BTOXGR
+        .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
+      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }
 
@@ -354,7 +354,7 @@ lbt14_2_pre <- function(adam_db,
           BTOXGR == 4 ~ "4",
           BTOXGR == "<Missing>" ~ "Missing"
         ),
-        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>")) {
+        levels = if (gr_missing == "incl" & any(.data$BTOXGR == "<Missing>")) {
           c("Not High", "1", "2", "3", "4", "Missing")
         } else {
           c("Not High", "1", "2", "3", "4")

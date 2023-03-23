@@ -123,26 +123,26 @@ aet01_aesi_1_pre <- function(adam_db,
     dm_update_zoomed() %>%
     dm_zoom_to("adae") %>%
     mutate(
-      ALL_RESOLVED = !AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN", "FATAL"),
-      NOT_RESOLVED = AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN"),
-      WD = AEACN == "DRUG WITHDRAWN",
-      DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      CONTRT = AECONTRT == "Y",
-      SER = AESER == "Y",
-      REL = AREL == "Y",
-      ALLRESWD = WD == TRUE & ALL_RESOLVED == TRUE,
-      ALLRESDSM = DSM == TRUE & ALL_RESOLVED == TRUE,
-      ALLRESCONTRT = CONTRT == TRUE & ALL_RESOLVED == TRUE,
-      NOTRESWD = WD == TRUE & NOT_RESOLVED == TRUE,
-      NOTRESDSM = DSM == TRUE & NOT_RESOLVED == TRUE,
-      NOTRESCONTRT = CONTRT == TRUE & NOT_RESOLVED == TRUE,
-      SERWD = AESER == "Y" & AEACN == "DRUG WITHDRAWN",
-      SERCONTRT = AECONTRT == "Y" & AESER == "Y",
-      SERDSM = AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      RELWD = AREL == "Y" & AEACN == "DRUG WITHDRAWN",
-      RELDSM = AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      RELCONTRT = AECONTRT == "Y" & AREL == "Y",
-      RELSER = AESER == "Y" & AREL == "Y"
+      ALL_RESOLVED = !.data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN", "FATAL"),
+      NOT_RESOLVED = .data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN"),
+      WD = .data$AEACN == "DRUG WITHDRAWN",
+      DSM = .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      CONTRT = .data$AECONTRT == "Y",
+      SER = .data$AESER == "Y",
+      REL = .data$AREL == "Y",
+      ALLRESWD = .data$WD == TRUE & .data$ALL_RESOLVED == TRUE,
+      ALLRESDSM = .data$DSM == TRUE & .data$ALL_RESOLVED == TRUE,
+      ALLRESCONTRT = .data$CONTRT == TRUE & .data$ALL_RESOLVED == TRUE,
+      NOTRESWD = .data$WD == TRUE & .data$NOT_RESOLVED == TRUE,
+      NOTRESDSM = .data$DSM == TRUE & .data$NOT_RESOLVED == TRUE,
+      NOTRESCONTRT = .data$CONTRT == TRUE & .data$NOT_RESOLVED == TRUE,
+      SERWD = .data$AESER == "Y" & .data$AEACN == "DRUG WITHDRAWN",
+      SERCONTRT = .data$AECONTRT == "Y" & .data$AESER == "Y",
+      SERDSM = .data$AESER == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      RELWD = .data$AREL == "Y" & .data$AEACN == "DRUG WITHDRAWN",
+      RELDSM = .data$AREL == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      RELCONTRT = .data$AECONTRT == "Y" & .data$AREL == "Y",
+      RELSER = .data$AESER == "Y" & .data$AREL == "Y"
     ) %>%
     mutate(
       ALL_RESOLVED = formatters::with_label(
@@ -208,7 +208,7 @@ aet01_aesi_1_pre <- function(adam_db,
     ) %>%
     mutate(
       ATOXGR = forcats::fct_recode(
-        ATOXGR,
+        .data$ATOXGR,
         "Grade 1" = "1",
         "Grade 2" = "2",
         "Grade 3" = "3",

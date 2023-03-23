@@ -11,3 +11,11 @@ test_that("lbt07 can handle some NA values", {
   res <- expect_silent(run(lbt07_1, proc_data))
   expect_snapshot(res)
 })
+
+test_that("lbt07 fails on incomlete data", {
+  syn_data <- syn_data %>%
+    dm_zoom_to("adlb") %>%
+    mutate(ATOXGR = NULL) %>%
+    dm_update_zoomed()
+  expect_error(run(lbt07_1, syn_data))
+})

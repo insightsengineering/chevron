@@ -98,17 +98,18 @@ set_decoration <- function(x, deco) {
 #' @rdname report_null
 #' @aliases null_report
 #' @param tlg (`TableTree`) object.
-#' @param ... not used.
+#' @param ... not used. Important to be used directly as post processing function.
 #'
 #' @export
 #'
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
 report_null <- function(tlg, ...) {
-  if (nrow(tlg) == 0L) {
+  checkmate::assert_true(is.null(tlg) || rtables::is_rtable(tlg))
+
+  if (is.null(tlg) || nrow(tlg) == 0L) {
     null_report
   } else {
-    checkmate::assert_multi_class(tlg, c("TableTree"))
     tlg
   }
 }

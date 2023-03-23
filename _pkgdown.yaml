@@ -15,8 +15,8 @@ articles:
       - chevron
       - adam_db_argument
       - layouts
-      - Adding_new_TLGs_to_Chevron
-      - Script_Generator
+      - adding_new_tlgs_to_chevron
+      - script_generator
 
 reference:
   - title: Package Overview

@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 dmt01_1_main(
   adam_db,
   arm_var = "ARM",
-  summaryvars = c(`Age (yr)` = "AAGE", `Age group (yr)` = "AGEGR1", "SEX", "ETHNIC",
+  summaryvars = list(`Age (yr)` = "AAGE", `Age group (yr)` = "AGEGR1", "SEX", "ETHNIC",
     "RACE"),
   lbl_overall = "All Patients",
   deco = std_deco("DMT01"),
@@ -35,7 +35,7 @@ dmt01_1
 
 \item{arm_var}{(\code{character}) variable used for column splitting}
 
-\item{summaryvars}{(named vector of \code{character}) variables summarized in demographic table. Names are used as
+\item{summaryvars}{(\code{list}) variables summarized in demographic table. Names are used as
 subtitles. For values where no name is provided, the label attribute of the corresponding column in \code{adsl} table of
 \code{adam_db} is used.}
 

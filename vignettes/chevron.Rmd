@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# need to load additional hidden dm dependencies for pkgdown - https://github.com/cynkra/dm/blob/v1.0.0/R/pkgdown.R#L17
+library(DiagrammeRsvg)
+library(DiagrammeR)
 ```
 
 
@@ -30,12 +34,13 @@ Each standard output is associated with one  *`chevron_tlg` object*. They contai
 * A `main` function also refereed to as *TLG-function*.
 * A `preprocess` function.
 * A `postprocess` function
-* A `adam_dataset` character vector of the name of the `AdAM` datasets required to create the output.
-
+* A `adam_datasets` character vector of the name of the `AdAM` datasets required to create the output.
 
 ### *TLG-functions*
+
 The *TLG-functions* in `chevron` use other packages to produce the final outputs, for example `rtables` and `tern` are
-used to create listings and tables, and `ggplot2`, `lattice`, and `grid` are used to create graphs.
+used to create tables, `ggplot2`, `lattice`, and `grid` are used to create graphs, `rlistings` to create
+listings.
 
 *TLG-functions* in `chevron` such as `dmt01_1_main`, `aet02_1_main`, `aet02_2_main` have the following properties:
 
@@ -48,12 +53,13 @@ variable, which variables are summarized) but not parameterize the cell content 
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 
-### *pre-processing*
-The *pre-process* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
-suitable input for *TLG-functions*. The pre-processing step typically includes checks that will ensure that the `dm`
+### *preprocessing*
+
+The *preprocess* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
+suitable input for *TLG-functions*. The preprocessing step typically includes checks that will ensure that the `dm`
 input can be later processed by the *TLG-functions*.
 
-*pre-process* in chevron such as `dmt01_1_pre`, `aet02_1_pre`, `aet02_2_pre` have the following properties:
+*preprocess* in chevron such as `dmt01_1_pre`, `aet02_1_pre`, `aet02_2_pre` have the following properties:
 
 1. they return a `dm` object amenable to processing by a *TLG-functions* or return rapidly an understandable error
 message.
@@ -61,14 +67,15 @@ message.
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 
-### *post-processing*
-By default, the Post-processing function returns its input or a `NULL` report if the input has no rows. *`post-processing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
+### *postprocessing*
 
-### *ADaM dataset*
-The `adam_dataset` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
-information is important when the `chevropn_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
+By default, the Postprocessing function returns its input or a `NULL` report if the input has no rows. *`postprocessing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
+
+### *ADaM datasets*
+
+The `adam_datasets` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
+information is important when the `chevron_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
 such as `citril`.
-
 
 ## Example `AET02`
 
@@ -79,10 +86,10 @@ in the `_1` implementation.
 We first define the data and put it in a `dm` object, you can find more details about this in the *`adam_db`* vignette.
 
 ```{r}
+library(chevron)
 library(dm)
-library(scda)
 
-syn_data <- synthetic_cdisc_data("latest")
+data(syn_data, package = "chevron")
 
 adam_study_data <- dm(adsl = syn_data$adsl, adae = syn_data$adae) %>%
   dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
@@ -95,7 +102,6 @@ dm_validate(adam_study_data)
 A the `aet02_1` output is then created as follows:
 
 ```{r}
-library(chevron)
 run(aet02_1, adam_study_data)
 ```
 
@@ -115,7 +121,7 @@ foo <- aet02_1@preprocess
 foo(adam_study_data)
 ```
 
-# `chevron_tlg` object customization
+## `chevron_tlg` object customization
 
 In some instances it is useful to customize the `chevron_tlg` object, for example by changing the pre processing functions. Be aware that you have to think carefully about argument names and compatibility with downstream functions.
 
@@ -127,7 +133,7 @@ preprocess(aet02_1) <- function(adam_db, ...) adam_db
 preprocess(aet02_1)
 ```
 
-# Custom `chevron_tlg` object creation
+## Custom `chevron_tlg` object creation
 
 To create a `chevron_tlg` object from scratch, use the provided constructors corresponding to the desired output:
 
@@ -158,7 +164,6 @@ my_template <- chevron_t(
 
 run(my_template, adam_study_data)
 ```
-
 
 Note that to ensure the correct execution of the `run` function, the name of the first argument of the `main` function
 must be `adam_db`; the input `dm` object to pre-process. The name of the first argument of the `preprocess` function must

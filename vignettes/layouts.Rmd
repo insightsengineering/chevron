@@ -1,6 +1,5 @@
 ---
 title: "Layouts in Chevron"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Layouts in Chevron}
@@ -15,8 +14,11 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
+# need to load additional hidden dm dependencies for pkgdown - https://github.com/cynkra/dm/blob/v1.0.0/R/pkgdown.R#L17
+library(DiagrammeRsvg)
+library(DiagrammeR)
+```
 
 ## Introduction
 
@@ -66,7 +68,6 @@ Note that the `aet02_1_lyt` function returns a concise description on how `tern`
 ```{r}
 aet02_1_main
 ```
-
 
 ## Summary
 

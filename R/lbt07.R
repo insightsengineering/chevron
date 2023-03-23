@@ -38,7 +38,7 @@ lbt07_1_main <- function(adam_db,
     GRADE_ANL = as.character(1:4),
     stringsAsFactors = FALSE
   ) %>%
-    arrange(PARAM, desc(GRADE_DIR), GRADE_ANL)
+    arrange(.data$PARAM, desc(.data$GRADE_DIR), .data$GRADE_ANL)
 
   lyt <- lbt07_1_lyt(
     arm_var = arm_var,
@@ -136,7 +136,7 @@ lbt07_1_pre <- function(adam_db, ...) {
         ),
         levels = c("LOW", "ZERO", "HIGH", "NONE")
       ),
-      GRADE_ANL = factor(ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
+      GRADE_ANL = factor(.data$ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
       PARAM = as.factor(.data$PARAM)
     ) %>%
     dm_update_zoomed()

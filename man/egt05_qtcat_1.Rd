@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 egt05_qtcat_1_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
+  summaryvars = list(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
   summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
   lbl_overall = NULL,
   visitvar = "AVISIT",
@@ -115,6 +115,6 @@ For \code{summaryvars}, please make sure \code{AVALCAT1} and \code{CHGCAT1} colu
 \examples{
 db <- syn_data
 run(egt05_qtcat_1, db)
-run(egt05_qtcat_1, db, summaryvars = c("AVALCAT1", "Change" = "CHGCAT1"))
+run(egt05_qtcat_1, db, summaryvars = list("AVALCAT1", "Change" = "CHGCAT1"))
 }
 \keyword{datasets}

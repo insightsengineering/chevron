@@ -15,9 +15,9 @@ An object of class \code{chevron_t} of length 1.
 lbt01_1_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
+  summaryvars = list(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
-  precision = integer(),
+  precision = list(),
   default_precision = 2,
   deco = std_deco("LBT01"),
   ...
@@ -51,7 +51,7 @@ lbt01_1
 \item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{precision}{(named vector of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
+\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
@@ -105,7 +105,7 @@ by \code{AVISIT}. Re-level to customize order.
 }
 }
 \examples{
-run(lbt01_1, syn_data, precision = c(
+run(lbt01_1, syn_data, precision = list(
   "ALT" = 0,
   "CRP" = 1
 ))

@@ -21,7 +21,7 @@ null_listing
 \arguments{
 \item{tlg}{(\code{TableTree}) object.}
 
-\item{...}{not used.}
+\item{...}{not used. Important to be used directly as post processing function.}
 }
 \value{
 original \code{TableTree} or a null report if no observation are found in the table.
