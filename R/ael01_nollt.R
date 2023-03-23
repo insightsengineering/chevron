@@ -71,7 +71,7 @@ ael01_nollt_1_pre <- function(adam_db, dataset = "adae", ...) {
 
   db <- db %>%
     dm_zoom_to(!!dataset) %>%
-    arrange(pick(vars)) %>%
+    arrange(pick(all_of(vars))) %>%
     dm_update_zoomed()
 
   db
