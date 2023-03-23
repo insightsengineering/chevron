@@ -12,13 +12,18 @@
 An object of class \code{chevron_l} of length 1.
 }
 \usage{
-ael01_nollt_1_main(adam_db, dataset = "adae", deco = std_deco("AEL01_NOLLT"))
+ael01_nollt_1_main(
+  adam_db,
+  dataset = "adae",
+  deco = std_deco("AEL01_NOLLT"),
+  ...
+)
 
-ael01_nollt_1_pre(adam_db, dataset = "adae")
+ael01_nollt_1_pre(adam_db, dataset = "adae", ...)
 
 ael01_nollt_1_check(adam_db, dataset = "adae", vars)
 
-ael01_nollt_1_post(tlg)
+ael01_nollt_1_post(tlg, ...)
 
 ael01_nollt_1
 }
@@ -28,6 +33,8 @@ ael01_nollt_1
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{vars}{(\code{character}) variables to be included in the listing.}
 

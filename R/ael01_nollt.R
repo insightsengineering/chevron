@@ -18,7 +18,8 @@
 #'
 ael01_nollt_1_main <- function(adam_db,
                                dataset = "adae",
-                               deco = std_deco("AEL01_NOLLT")) {
+                               deco = std_deco("AEL01_NOLLT"),
+                               ...) {
   vars <- paste0(ifelse(dataset == "adae", "AE", "MH"), c("BODSYS", "DECOD", "TERM"))
 
   df <- adam_db[[dataset]]
@@ -28,7 +29,7 @@ ael01_nollt_1_main <- function(adam_db,
     df,
     key_cols = vars[1:2],
     disp_cols = vars[-c(1:2)]
-  ) %>% suppressMessages()
+  )
 
   lsting
 }
@@ -39,7 +40,7 @@ ael01_nollt_1_main <- function(adam_db,
 #'
 #' @export
 #'
-ael01_nollt_1_pre <- function(adam_db, dataset = "adae") {
+ael01_nollt_1_pre <- function(adam_db, dataset = "adae", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   vars <- paste0(ifelse(dataset == "adae", "AE", "MH"), c("BODSYS", "DECOD", "TERM"))
@@ -55,6 +56,7 @@ ael01_nollt_1_pre <- function(adam_db, dataset = "adae") {
       !!vars[2] := formatters::with_label(.data[[vars[2]]], "MedDRA Preferred Term"),
       !!vars[3] := formatters::with_label(.data[[vars[3]]], paste("Investigator-Specified\n", desc, "Term"))
     ) %>%
+    arrange(pick(vars)) %>%
     dm_update_zoomed()
 
   missing_rule <- rule("No Coding Available" = c("", NA))
@@ -95,7 +97,7 @@ ael01_nollt_1_check <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-ael01_nollt_1_post <- function(tlg) {
+ael01_nollt_1_post <- function(tlg, ...) {
   if (nrow(tlg) == 0) tlg <- null_listing
 
   tlg
