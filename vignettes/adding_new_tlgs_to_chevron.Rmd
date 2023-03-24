@@ -1,6 +1,5 @@
 ---
 title: "Adding new TLGs to Chevron"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Adding new TLGs to Chevron}
@@ -15,11 +14,16 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# need to load additional hidden dm dependencies for pkgdown - https://github.com/cynkra/dm/blob/v1.0.0/R/pkgdown.R#L17
+library(DiagrammeRsvg)
+library(DiagrammeR)
 ```
 
 ## Acknowledgments
 
 ## Introduction
+
 The `chevron` package is a collection of function to create standard tables, listings, and graphs for clinical trials
 reporting. Here we present the logic to request new tables for the end users and how to construct new `chevron_tlg` objects
 for the programmers. The list of the already available functions is available
@@ -29,6 +33,7 @@ functions that determine the underlying structure of a table. One table function
 function. The naming convention for layout is  `<table name>_<design number>_lyt`. ex: `aet02_2_lyt`.
 
 ## How to request a table
+
 In order to request a function that will generate a new table, please create an issue in the "TLG (ordered priority)" of
 the [chevron backlog](https://github.com/orgs/insightsengineering/projects/34). Private repositories on GitHub do not
 support issue templates but you can use the format below to accurately describe your requirements. Adding images of
@@ -94,22 +99,25 @@ the required table (without confidential information) is also very useful. Sever
 >_ex. Some additional details_
 
 ## How to create a new table function for developers
+
 The current practice is to use the body of the table-creating function to isolate the variable names that are used to
 construct the table layout. The function then calls the corresponding layout function to create the structure of the
 table. It then builds the table by combining the clinical data and the layout. Finally, it modifies the table based on
 the aggregated results, for instance removing the rows with no counts, and returns the table.
 
 ### Data preprocessing
+
 Data processing and standardization should be performed before feeding the data to `chevron`. Beware of levels that are
 not present in the test data but could appear in real data sets.
 
 ### Arguments
+
 To enhance the reproducibility, it is advised to reduce the parametrization of the table-constructing function. Some
 arguments are used in multiple tables, for instance the choice of the variable used to specify the arm of the study
 (should it be `ARM` or `ACTARM`?). For these type of arguments, try to stick to the arguments available in `gen_args`.
 
-
 ### Tests
+
 Use snapshot test to control the output of the run method for each `TLG`. In addition, create tests to check how the
 function behaves when confronted with missing values. It is also recommended to check that the run method returns a
 `NULL` report when appropriate.

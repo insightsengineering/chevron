@@ -3,7 +3,7 @@
 #' @describeIn dmt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (named vector of `character`) variables summarized in demographic table. Names are used as
+#' @param summaryvars (`list`) variables summarized in demographic table. Names are used as
 #'   subtitles. For values where no name is provided, the label attribute of the corresponding column in `adsl` table of
 #'   `adam_db` is used.
 #'
@@ -31,7 +31,7 @@
 #' dmt01_1_main(db, summaryvars = c("Age" = "AGE", "RACE", "SEX"))
 dmt01_1_main <- function(adam_db,
                          arm_var = "ARM",
-                         summaryvars = c(
+                         summaryvars = list(
                            "Age (yr)" = "AAGE",
                            "Age group (yr)" = "AGEGR1",
                            "SEX",
@@ -39,7 +39,9 @@ dmt01_1_main <- function(adam_db,
                            "RACE"
                          ),
                          lbl_overall = "All Patients",
-                         deco = std_deco("DMT01")) {
+                         deco = std_deco("DMT01"),
+                         ...) {
+  summaryvars <- unlist(summaryvars)
   assert_colnames(adam_db$adsl, summaryvars)
 
   summaryvars_lbls <- get_labels(adam_db$adsl, summaryvars)
@@ -91,7 +93,7 @@ dmt01_1_lyt <- function(arm_var,
 #'
 #' @examples
 #' dmt01_1_pre(syn_data)
-dmt01_1_pre <- function(adam_db) {
+dmt01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- dunlin::dm_explicit_na(adam_db)
@@ -109,7 +111,7 @@ dmt01_1_pre <- function(adam_db) {
 #'
 #'
 #' @export
-dmt01_1_post <- function(tlg, prune_0 = TRUE) {
+dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

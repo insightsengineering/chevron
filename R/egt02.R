@@ -22,7 +22,8 @@ egt02_1_main <- function(adam_db,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
-                         deco = std_deco("EGT02")) {
+                         deco = std_deco("EGT02"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
   lyt <- egt02_1_lyt(
@@ -47,10 +48,10 @@ egt02_1_main <- function(adam_db,
 #' @export
 #'
 egt02_1_lyt <- function(arm_var = "ACTARM",
-                        lbl_vs_assessment = "Assessment",
-                        lbl_vs_abnormality = "Abnormality",
-                        lbl_overall = NULL,
-                        deco = std_deco("EGT02")) {
+                        lbl_vs_assessment,
+                        lbl_vs_abnormality,
+                        lbl_overall,
+                        deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -71,7 +72,7 @@ egt02_1_lyt <- function(arm_var = "ACTARM",
 #'
 #' @export
 #'
-egt02_1_pre <- function(adam_db) {
+egt02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -86,7 +87,7 @@ egt02_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-egt02_1_post <- function(tlg) {
+egt02_1_post <- function(tlg, ...) {
   std_postprocess(tlg)
 }
 
@@ -131,7 +132,8 @@ egt02_2_main <- function(adam_db,
                          lbl_vs_assessment = "Assessment",
                          lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
-                         deco = std_deco("EGT02_2")) {
+                         deco = std_deco("EGT02_2"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adeg")
 
   lyt <- egt02_2_lyt(
@@ -180,7 +182,7 @@ egt02_2_lyt <- function(arm_var = "ACTARM",
 #'
 #' @export
 #'
-egt02_2_pre <- function(adam_db) {
+egt02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   adam_db %>%
     dm_zoom_to("adeg") %>%
@@ -193,7 +195,7 @@ egt02_2_pre <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 #' @export
-egt02_2_post <- function(tlg) {
+egt02_2_post <- function(tlg, ...) {
   std_postprocess(tlg)
 }
 

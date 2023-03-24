@@ -20,16 +20,18 @@ cmt01a_2_main(
   medname_var = "CMDECOD",
   lbl_medname_var = "Other Treatment",
   lbl_overall = NULL,
-  deco = std_deco("CMT01A")
+  deco = std_deco("CMT01A"),
+  ...
 )
 
-cmt01a_2_pre(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD")
+cmt01a_2_pre(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...)
 
 cmt01a_2_post(
   tlg,
   prune_0 = TRUE,
   medcat_var = "ATC2",
-  medname_var = "CMDECOD"
+  medname_var = "CMDECOD",
+  ...
 )
 
 cmt01a_2
@@ -50,6 +52,8 @@ cmt01a_2
 \item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

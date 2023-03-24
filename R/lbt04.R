@@ -22,7 +22,8 @@ lbt04_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_param = "Laboratory Test",
                          lbl_anrind = "Direction of Abnormality",
-                         deco = std_deco("LBT04")) {
+                         deco = std_deco("LBT04"),
+                         ...) {
   lyt <- lbt04_1_lyt(
     arm_var = arm_var,
     lbl_param = lbl_param,
@@ -74,7 +75,7 @@ lbt04_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM") {
+lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   lbt04_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
@@ -127,7 +128,7 @@ lbt04_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt04_1_post <- function(tlg) {
+lbt04_1_post <- function(tlg, ...) {
   std_postprocess(tlg)
 }
 

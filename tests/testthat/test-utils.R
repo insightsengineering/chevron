@@ -52,3 +52,41 @@ test_that("h_format_dec works as expected with NA digits", {
   res <- fun(c(123, 222.21))
   expect_identical(res, "123.000 - 222.210000")
 })
+
+# get_db_data ----
+test_that("get_db_data works", {
+  dfs <- list(iris = iris, mtcars = mtcars)
+  expect_identical(
+    get_db_data(dfs, "iris"),
+    list(iris = iris)
+  )
+  expect_identical(
+    get_db_data(dfs),
+    list()
+  )
+})
+
+# fuse_sequentially ----
+
+test_that("fuse_sequentially works", {
+  expect_identical(
+    fuse_sequentially(list(a = 1)),
+    list(a = 1)
+  )
+  expect_identical(
+    fuse_sequentially(list(a = 1), list(b = 2)),
+    list(a = 1, b = 2)
+  )
+})
+
+# grob_list ----
+
+test_that("grob_list works", {
+  grob <- grid::grob()
+  grobs <- expect_silent(
+    grob_list(grob, grob, grob)
+  )
+  expect_s3_class(grobs, "grob_list")
+  expect_identical(length(grobs), 3L)
+  expect_identical(grobs[[1]], grob)
+})

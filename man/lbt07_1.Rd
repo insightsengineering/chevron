@@ -20,7 +20,8 @@ lbt07_1_main(
   grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
   deco = std_deco("LBT07"),
   lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
-  req_tables = c("adsl", "adlb")
+  req_tables = c("adsl", "adlb"),
+  ...
 )
 
 lbt07_1_lyt(
@@ -34,11 +35,11 @@ lbt07_1_lyt(
   map
 )
 
-lbt07_1_pre(adam_db)
+lbt07_1_pre(adam_db, ...)
 
 lbt07_1_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM")
 
-lbt07_1_post(tlg, prune_0 = TRUE)
+lbt07_1_post(tlg, prune_0 = TRUE, ...)
 
 lbt07_1
 }
@@ -63,6 +64,8 @@ the correct denominators when building the layout as it is used to define row sp
 attribute of the columns selected in \code{grade_var}.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
+
+\item{...}{not used.}
 
 \item{lbl_gradedir}{(\code{character}) label of the \code{GRADE_DIR} variable.}
 

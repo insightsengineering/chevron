@@ -26,7 +26,8 @@ lbt07_1_main <- function(adam_db,
                          grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
                          lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
-                         req_tables = c("adsl", "adlb")) {
+                         req_tables = c("adsl", "adlb"),
+                         ...) {
   lbt07_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
   lbl_grade_var <- if (is.null(lbl_grade_var)) var_labels_for(adam_db$adlb, grade_var) else lbl_grade_var
@@ -37,7 +38,7 @@ lbt07_1_main <- function(adam_db,
     GRADE_ANL = as.character(1:4),
     stringsAsFactors = FALSE
   ) %>%
-    arrange(PARAM, desc(GRADE_DIR), GRADE_ANL)
+    arrange(.data$PARAM, desc(.data$GRADE_DIR), .data$GRADE_ANL)
 
   lyt <- lbt07_1_lyt(
     arm_var = arm_var,
@@ -107,7 +108,7 @@ lbt07_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-lbt07_1_pre <- function(adam_db) {
+lbt07_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -135,7 +136,7 @@ lbt07_1_pre <- function(adam_db) {
         ),
         levels = c("LOW", "ZERO", "HIGH", "NONE")
       ),
-      GRADE_ANL = factor(ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
+      GRADE_ANL = factor(.data$ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
       PARAM = as.factor(.data$PARAM)
     ) %>%
     dm_update_zoomed()
@@ -172,7 +173,7 @@ lbt07_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt07_1_post <- function(tlg, prune_0 = TRUE) {
+lbt07_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }

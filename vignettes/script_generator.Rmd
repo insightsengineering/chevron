@@ -1,6 +1,5 @@
 ---
 title: "Script_Generator"
-date: "2023-01-24"
 author: Benoit Falquet
 output: rmarkdown::html_vignette
 vignette: >
@@ -17,44 +16,45 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+# need to load additional hidden dm dependencies for pkgdown - https://github.com/cynkra/dm/blob/v1.0.0/R/pkgdown.R#L17
+library(DiagrammeRsvg)
+library(DiagrammeR)
+
 library(chevron)
 library(dm)
 library(dplyr)
 ```
 
-# Introduction
+## Introduction
 
 In addition of the embedded `run()` method to create a `tlg`, chevron offers a script-based approach that allows the user to quickly edit a chevron workflow without the need for modifying a `chevron_tlg` object. The script is generated as two separate components:
 
-- `script_args` method generates a script for parameters assignment based on the default value of the arguments but can be edit either manually after creation or using the `dict` argument. 
+- `script_args` method generates a script for parameters assignment based on the default value of the arguments but can be edit either manually after creation or using the `dict` argument.
 
 - `script_funs` methods expose by default only the script corresponding to the pre processing function in the generated script. However, the main and post processing functions can also be exposed in the script with the `details = TRUE` argument.
 
+## Using a chevron-defined object
 
-# Using a chevron-defined object
 The object returned by the `script` methods are vectors of character with one element per line of the script, that can be easily rendered.
+
 ```{r}
 res <- script_args(aet01_1)
 writeLines(res)
-```
-
-
-```{r}
-res <- script_funs(aet01_1)
+res <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
 writeLines(res)
 ```
 
-
-# With a modified chevron object
+## With a modified chevron object
 
 The script generator depends on the functions actually stored in the object. Modifying the `chevron_tlg` object can lead to a different script.
+
 ```{r}
-preprocess(aet01_1) <- function(adam_db, new_format) {
-  dunlin::apply_reformat(adam_db, new_format)
+preprocess(aet01_1) <- function(adam_db, new_format, ...) {
+  dunlin::reformat(adam_db, new_format)
 }
 
 res_args <- script_args(aet01_1)
-res_funs <- script_funs(aet01_1)
+res_funs <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
 ```
 
 Print the generated scripts. Note that a new argument `new_format` has been added and the pre processing function has been modified.
@@ -64,7 +64,7 @@ writeLines(res_args)
 writeLines(res_funs)
 ```
 
-# With custom argument definition
+## With custom argument definition
 
 To define the value of an argument in the directly in the `script_args` method, pass it to a named list. Existing values will be overwritten.
 
@@ -78,7 +78,7 @@ dict <- list(
 )
 
 res_args <- script_args(mng01_1, dict = dict)
-res_funs <- script_funs(mng01_1)
+res_funs <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list")
 ```
 
 ```{r}
@@ -86,7 +86,8 @@ writeLines(res_args)
 writeLines(res_funs)
 ```
 
-If saved in a `.R` file, the generated script can be executed. The result is stored in the `final_tlg` object, as described in the script.
+If saved in a `.R` file, the generated script can be executed. The result stored in `tlg_output` can be printed.
+
 ```{r, fig.width=7, fig.height=7}
 tmp_args <- tempfile("my_script_args", fileext = "R")
 writeLines(res_args, con = tmp_args)
@@ -94,18 +95,24 @@ writeLines(res_args, con = tmp_args)
 tmp_funs <- tempfile("my_script_funs", fileext = "R")
 writeLines(res_funs, con = tmp_funs)
 
-source(tmp_args, local = knitr::knit_global())
-source(tmp_funs, local = knitr::knit_global())
+args_list <- list(
+  dataset = "adlb",
+  arm_var = "ARM"
+)
 
-print(final_tlg[[1]])
+data(syn_data, package = "chevron")
+
+source(tmp_args, local = knitr::knit_global(), echo = TRUE)
+source(tmp_funs, local = knitr::knit_global())
+tlg_output
 ```
 
-# Exploring Main and Post process functions
+## Exploring Main and Post process functions
 
 By specifying `details = TRUE` the main and post processing functions are also exposed.
 
 ```{r}
-res_fun <- script_funs(mng01_1, details = TRUE)
+res_fun <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list", details = TRUE)
 ```
 
 ```{r}

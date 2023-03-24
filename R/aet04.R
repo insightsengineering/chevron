@@ -21,9 +21,12 @@
 #'
 aet04_1_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         grade_groups = NULL,
                          lbl_overall = NULL,
-                         deco = std_deco("AET04")) {
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
+                         grade_groups = NULL,
+                         deco = std_deco("AET04"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
 
@@ -43,6 +46,8 @@ aet04_1_main <- function(adam_db,
   lyt <- aet04_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     toxicity_grade = toxicity_grade,
     grade_groups = grade_groups,
     deco = deco
@@ -66,13 +71,13 @@ aet04_1_main <- function(adam_db,
 #'
 aet04_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
                         toxicity_grade,
                         grade_groups,
                         deco) {
   all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
-  combodf <- tribble(
+  combodf <- tibble::tribble(
     ~valname, ~label, ~levelcombo, ~exargs,
     "ALL", "- Any adverse events -", toxicity_grade, list()
   )
@@ -125,7 +130,7 @@ aet04_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet04_1_pre <- function(adam_db) {
+aet04_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -154,13 +159,10 @@ aet04_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-aet04_1_post <- function(tlg, prune_0 = TRUE) {
-  if (prune_0) tlg <- tlg %>% trim_rows()
-
+aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) tlg <- trim_rows(tlg)
   tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")
-  if (tbl_empty) {
-    tbl_sorted <- basic_table() %>% build_table(matrix(""))
-  } else {
+  if (!tbl_empty) {
     score_all_sum <- function(tt) {
       cleaf <- collect_leaves(tt)[[1]]
       if (NROW(cleaf) == 0) {
@@ -169,7 +171,7 @@ aet04_1_post <- function(tlg, prune_0 = TRUE) {
       sum(sapply(row_values(cleaf), function(cv) cv[1]))
     }
 
-    tbl_sorted <- tlg %>%
+    tlg <- tlg %>%
       sort_at_path(
         path = c("AEBODSYS"),
         scorefun = score_all_sum,
@@ -180,9 +182,11 @@ aet04_1_post <- function(tlg, prune_0 = TRUE) {
         scorefun = score_all_sum,
         decreasing = TRUE
       )
+  } else {
+    tlg <- null_report
   }
 
-  std_postprocess(tbl_sorted)
+  std_postprocess(tlg)
 }
 
 #' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.

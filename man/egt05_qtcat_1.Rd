@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 egt05_qtcat_1_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
+  summaryvars = list(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
   summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
   lbl_overall = NULL,
   visitvar = "AVISIT",
@@ -24,14 +24,15 @@ egt05_qtcat_1_main(
   lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
   deco = std_deco("EGT05_QTCAT"),
   lbl_cat = "Category",
-  lbl_headvisit = "Analysis Visit"
+  lbl_headvisit = "Analysis Visit",
+  ...
 )
 
 egt05_qtcat_1_lyt(
   arm_var,
   summaryvars,
   summaryvars_lbls,
-  lbl_overall = NULL,
+  lbl_overall,
   visitvar,
   lbl_avisit,
   lbl_param,
@@ -40,9 +41,9 @@ egt05_qtcat_1_lyt(
   lbl_headvisit
 )
 
-egt05_qtcat_1_pre(adam_db)
+egt05_qtcat_1_pre(adam_db, ...)
 
-egt05_qtcat_1_post(tlg, prune_0 = TRUE)
+egt05_qtcat_1_post(tlg, prune_0 = TRUE, ...)
 
 egt05_qtcat_1
 }
@@ -71,6 +72,8 @@ to be displayed.}
 \item{lbl_cat}{(\code{character}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
 
 \item{lbl_headvisit}{(\code{character}) label of Visits in the header. Default as \verb{Analysis Visit}.}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -112,6 +115,6 @@ For \code{summaryvars}, please make sure \code{AVALCAT1} and \code{CHGCAT1} colu
 \examples{
 db <- syn_data
 run(egt05_qtcat_1, db)
-run(egt05_qtcat_1, db, summaryvars = c("AVALCAT1", "Change" = "CHGCAT1"))
+run(egt05_qtcat_1, db, summaryvars = list("AVALCAT1", "Change" = "CHGCAT1"))
 }
 \keyword{datasets}

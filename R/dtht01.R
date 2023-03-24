@@ -22,7 +22,8 @@ dtht01_1_main <- function(adam_db,
                           time_since_last_dose = FALSE,
                           other_category = FALSE,
                           lbl_overall = NULL,
-                          deco = std_deco("DTHT01")) {
+                          deco = std_deco("DTHT01"),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl")
 
   checkmate::assert_factor(dbsel$adsl$DTHFL, any.missing = FALSE)
@@ -145,7 +146,7 @@ dtht01_1_opt_lyt <- function(arm_var,
 #'
 #' @export
 #'
-dtht01_1_pre <- function(adam_db) {
+dtht01_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   missing_rule <- rule("<Missing>" = c("", NA))
@@ -162,8 +163,8 @@ dtht01_1_pre <- function(adam_db) {
   adam_db <- adam_db %>%
     dm_zoom_to("adsl") %>%
     mutate(DTHFL = as.factor(.data$DTHFL)) %>%
-    mutate(DTHCAT = as.factor(DTHCAT)) %>%
-    mutate(DTHCAT = factor(DTHCAT, levels = c(setdiff(levels(DTHCAT), "OTHER"), "OTHER"))) %>%
+    mutate(DTHCAT = as.factor(.data$DTHCAT)) %>%
+    mutate(DTHCAT = factor(.data$DTHCAT, levels = c(setdiff(levels(.data$DTHCAT), "OTHER"), "OTHER"))) %>%
     dm_update_zoomed()
 
   dunlin::reformat(adam_db, new_formats, na_last = TRUE)
@@ -176,7 +177,7 @@ dtht01_1_pre <- function(adam_db) {
 #'
 #' @export
 #'
-dtht01_1_post <- function(tlg, prune_0 = TRUE) {
+dtht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tbl <- smart_prune(tlg)
   }
