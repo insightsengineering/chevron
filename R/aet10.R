@@ -21,7 +21,8 @@ aet10_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
                          lbl_aedecod = "MedDRA Preferred Term",
-                         deco = std_deco("AET10")) {
+                         deco = std_deco("AET10"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(adam_db$adae, c("AEDECOD"))
@@ -29,6 +30,7 @@ aet10_1_main <- function(adam_db,
   lyt <- aet10_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aedecod = "MedDRA Preferred Term",
     deco = deco
   )
 
@@ -65,7 +67,7 @@ aet10_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet10_1_pre <- function(adam_db) {
+aet10_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet10_1_check(adam_db)
@@ -106,7 +108,7 @@ aet10_1_check <- function(adam_db,
 #'
 #' @export
 #'
-aet10_1_post <- function(tlg, atleast = 0.05) {
+aet10_1_post <- function(tlg, atleast = 0.05, ...) {
   checkmate::assert_true(is.numeric(atleast))
 
   tlg <- prune_table(
