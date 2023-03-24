@@ -20,6 +20,7 @@
 aet10_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         lbl_aedecod = "MedDRA Preferred Term",
                          deco = std_deco("AET10")) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
