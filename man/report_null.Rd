@@ -9,7 +9,7 @@
 An object of class \code{TableTree} with 1 rows and 1 columns.
 }
 \usage{
-report_null(tlg)
+report_null(tlg, ...)
 
 null_report
 }
