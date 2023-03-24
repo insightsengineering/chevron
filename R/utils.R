@@ -274,7 +274,7 @@ set_decoration <- function(x, deco) {
 #'
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
-report_null <- function(tlg) {
+report_null <- function(tlg, ...) {
   checkmate::assert_true(is.null(tlg) || rtables::is_rtable(tlg))
 
   if (is.null(tlg) || nrow(tlg) == 0L) {
