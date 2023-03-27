@@ -28,15 +28,15 @@
 #'   dmt01_1_pre()
 #'
 #' dmt01_1_main(db, lbl_overall = NULL)
-#' dmt01_1_main(db, summaryvars = c("Age" = "AGE", "RACE", "SEX"))
+#' dmt01_1_main(db, summaryvars = c("Age" = "AGE", "Race" = "RACE", "Gender" = "SEX"))
 dmt01_1_main <- function(adam_db,
                          arm_var = "ARM",
                          summaryvars = list(
                            "Age (yr)" = "AAGE",
                            "Age group (yr)" = "AGEGR1",
-                           "SEX",
-                           "ETHNIC",
-                           "RACE"
+                           "Sex" = "SEX",
+                           "Ethnicity" = "ETHNIC",
+                           "Race" = "RACE"
                          ),
                          lbl_overall = "All Patients",
                          deco = std_deco("DMT01"),
@@ -60,7 +60,7 @@ dmt01_1_main <- function(adam_db,
 }
 
 #' @describeIn dmt01_1 Layout
-#' @param summaryvars_lbls (`vector of character`) labels corresponding to the analyzed variables.
+#' @param summaryvars_lbls (`character`) labels corresponding to the analyzed variables.
 #'
 #' @inheritParams gen_args
 #'

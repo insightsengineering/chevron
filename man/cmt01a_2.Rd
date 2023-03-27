@@ -39,17 +39,17 @@ cmt01a_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{medcat_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
+\item{medcat_var}{(\code{string}) the variable defining the medication category. By default \code{ATC2}.}
 
-\item{lbl_medcat_var}{(\code{character}) label for the variable defining the medication category.}
+\item{lbl_medcat_var}{(\code{string}) label for the variable defining the medication category.}
 
-\item{medname_var}{(\code{character}) the variable defining the medication name. By default \code{CMDECOD}.}
+\item{medname_var}{(\code{string}) the variable defining the medication name. By default \code{CMDECOD}.}
 
-\item{lbl_medname_var}{(\code{character}) label for the variable defining the medication name.}
+\item{lbl_medname_var}{(\code{string}) label for the variable defining the medication name.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -57,7 +57,7 @@ cmt01a_2
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 A concomitant medication table with the number of subjects and the total number of treatments by

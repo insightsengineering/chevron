@@ -42,13 +42,13 @@ aet04_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
+\item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
 
-\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
 
 \item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 
@@ -56,11 +56,11 @@ aet04_1
 
 \item{...}{not used.}
 
-\item{toxicity_grade}{(\verb{vector of character}) putting in correspondence toxicity levels.}
+\item{toxicity_grade}{(\code{character}) putting in correspondence toxicity levels.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{AET04} table provides an

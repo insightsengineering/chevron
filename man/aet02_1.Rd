@@ -36,13 +36,13 @@ aet02_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
+\item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
 
-\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -52,7 +52,7 @@ aet02_1
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{AET02} table provides an overview of the number of subjects experiencing adverse events and the number of advert

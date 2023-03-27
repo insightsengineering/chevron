@@ -50,34 +50,34 @@ egt05_qtcat_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
+\item{summaryvars}{(\code{character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
 
-\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
+\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
+\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
 
 \item{paramvar}{(\code{string}) typically \code{"QT"} (Default). It should come from \code{"PARAMCD"}.}
 
-\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{lbl_cat}{(\code{character}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
+\item{lbl_cat}{(\code{string}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
 
-\item{lbl_headvisit}{(\code{character}) label of Visits in the header. Default as \verb{Analysis Visit}.}
+\item{lbl_headvisit}{(\code{string}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{EGT05_QTCAT} table 1 summarizes several electrocardiogram parameters and their evolution

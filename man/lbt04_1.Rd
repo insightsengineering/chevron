@@ -35,11 +35,11 @@ lbt04_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
-\item{lbl_anrind}{(\code{character}) label of the \code{ANRIND} variable.}
+\item{lbl_anrind}{(\code{string}) label of the \code{ANRIND} variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 

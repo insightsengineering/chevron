@@ -43,7 +43,7 @@ egt03_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\verb{vector of character}) the arm variables used for row split, typically \code{"ARMCD"}.}
+\item{arm_var}{(\code{character}) the arm variables used for row split, typically \code{"ARMCD"}.}
 
 \item{summaryvar}{(\code{list}) variables to be analyzed, typically \code{"BNRIND"}. Names are used as
 subtitles. For values
@@ -57,11 +57,11 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{...}{not used.}
 
-\item{lbl_armvar}{(\code{character}) label of the \code{arm_var} variable.}
+\item{lbl_armvar}{(\code{string}) label of the \code{arm_var} variable.}
 
-\item{lbl_splitvar}{(\code{character}) label of the \code{splitvar} variable.}
+\item{lbl_splitvar}{(\code{string}) label of the \code{splitvar} variable.}
 
-\item{lbl_summaryvars}{(\code{character}) label of the \code{summaryvar} variable.}
+\item{lbl_summaryvars}{(\code{string}) label of the \code{summaryvar} variable.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
@@ -73,7 +73,7 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{EGT03} Table entries provide the number of patients by baseline assessment and minimum post-baseline

@@ -45,8 +45,8 @@ aet02_1_main <- function(adam_db,
 #' @describeIn aet02_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
-#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #'
 #' @export
 #'

@@ -49,17 +49,17 @@ pdt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{dvcode_var}{(\code{character}) the variable defining the protocol deviation coded term. By default \code{DVDECOD}.}
+\item{dvcode_var}{(\code{string}) the variable defining the protocol deviation coded term. By default \code{DVDECOD}.}
 
-\item{lbl_dvcode_var}{(\code{character}) label for the variable defining the protocol deviation coded term.}
+\item{lbl_dvcode_var}{(\code{string}) label for the variable defining the protocol deviation coded term.}
 
-\item{dvterm_var}{(\code{character}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
+\item{dvterm_var}{(\code{string}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
 
-\item{lbl_dvterm_var}{(\code{character}) label for the variable defining the protocol deviation term.}
+\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -67,7 +67,7 @@ pdt01_1
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 A major protocol deviations

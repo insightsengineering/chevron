@@ -3,8 +3,8 @@
 #' @describeIn lbt04_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_anrind (`character`) label of the `ANRIND` variable.
+#' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #'
 #' @details
 #'  * Only count LOW or HIGH values.
@@ -41,8 +41,8 @@ lbt04_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @inheritParams gen_args
-#' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_anrind (`character`) label of the `ANRIND` variable.
+#' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #'
 #' @export
 #'
