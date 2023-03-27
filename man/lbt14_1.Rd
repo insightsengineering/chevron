@@ -42,7 +42,7 @@ lbt14_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{gr_missing}{how missing baseline grades should be handled. Defaults to \code{"incl"} to include the \code{"Missing"}
 level. Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing
@@ -58,7 +58,7 @@ baseline grades to grade 0.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 \code{LBT14} Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by

@@ -3,10 +3,10 @@
 #' @describeIn pdt02_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param dvreas_var (`character`) the variable defining the reason for deviation. By default `DVREAS`.
-#' @param lbl_dvreas_var (`character`) label for the variable defining the reason for deviation.
-#' @param dvterm_var (`character`) the variable defining the protocol deviation term. By default `DVTERM`.
-#' @param lbl_dvterm_var (`character`) label for the variable defining the protocol deviation term.
+#' @param dvreas_var (`string`) the variable defining the reason for deviation. By default `DVREAS`.
+#' @param lbl_dvreas_var (`string`) label for the variable defining the reason for deviation.
+#' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
+#' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
 #' @details
 #'  * Data should be filtered for major protocol deviations related to epidemic/pandemic.
@@ -55,10 +55,10 @@ pdt02_1_main <- function(adam_db,
 #' @describeIn pdt02_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param dvreas_var (`character`) the variable defining the reason for deviation. By default `DVREAS`.
-#' @param lbl_dvreas_var (`character`) label for the variable defining the reason for deviation.
-#' @param dvterm_var (`character`) the variable defining the protocol deviation term. By default `DVTERM`.
-#' @param lbl_dvterm_var (`character`) label for the variable defining the protocol deviation term.
+#' @param dvreas_var (`string`) the variable defining the reason for deviation. By default `DVREAS`.
+#' @param lbl_dvreas_var (`string`) label for the variable defining the reason for deviation.
+#' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
+#' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
 #' @export
 #'

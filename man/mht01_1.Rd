@@ -33,9 +33,9 @@ mht01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_mhbodsys}{(\code{string}) text label for \code{MHBODSYS}. If \code{NULL}, the value of the argument defaults to the label
 of the corresponding column in the \code{admh} table.}
@@ -49,7 +49,7 @@ the corresponding column in the \code{admh} table.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{MHT01} table provides an overview of the subjects medical

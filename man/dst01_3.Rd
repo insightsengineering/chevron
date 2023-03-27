@@ -48,13 +48,13 @@ dst01_3
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+\item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{disc_reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
+\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
@@ -62,7 +62,7 @@ the analysis period.}
 \code{EOTSTT}, however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits
 referring to the analysis period.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -79,7 +79,7 @@ referring to the analysis period.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued

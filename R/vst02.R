@@ -3,8 +3,8 @@
 #' @describeIn vst02_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
+#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -42,8 +42,8 @@ vst02_1_main <- function(adam_db,
 #' @describeIn vst02_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
+#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
+#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
 #'
 #' @export
 #'

@@ -3,8 +3,8 @@
 #' @describeIn dtht01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param time_since_last_dose (`logical`) should the time to event information be displayed.
-#' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
+#' @param time_since_last_dose (`flag`) should the time to event information be displayed.
+#' @param other_category (`flag`) should the breakdown of the `OTHER` category be displayed.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
@@ -67,7 +67,7 @@ dtht01_1_main <- function(adam_db,
 #' @describeIn dtht01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param other_category (`logical`) should the breakdown of the `OTHER` category be displayed.
+#' @param other_category (`flag`) should the breakdown of the `OTHER` category be displayed.
 #'
 #' @export
 #'

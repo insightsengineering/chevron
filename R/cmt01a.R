@@ -3,10 +3,10 @@
 #' @describeIn cmt01a_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`character`) label for the variable defining the medication category.
-#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`character`) label for the variable defining the medication name.
+#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
+#' @param lbl_medcat_var (`string`) label for the variable defining the medication category.
+#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
+#' @param lbl_medname_var (`string`) label for the variable defining the medication name.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
@@ -54,10 +54,10 @@ cmt01a_1_main <- function(adam_db,
 #' @describeIn cmt01a_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`character`) the label for the medication category.
-#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`character`) the label for the medication name.
+#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
+#' @param lbl_medcat_var (`string`) the label for the medication category.
+#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
+#' @param lbl_medname_var (`string`) the label for the medication name.
 #'
 #' @export
 #'
@@ -192,10 +192,10 @@ cmt01a_1 <- chevron_t(
 #' @describeIn cmt01a_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`character`) label for the variable defining the medication category.
-#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`character`) label for the variable defining the medication name.
+#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
+#' @param lbl_medcat_var (`string`) label for the variable defining the medication category.
+#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
+#' @param lbl_medname_var (`string`) label for the variable defining the medication name.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
@@ -329,10 +329,10 @@ cmt01a_2 <- chevron_t(
 #' @describeIn cmt01a_3 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param medcat_var (`character`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`character`) the label for the medication category.
-#' @param medname_var (`character`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`character`) the label for the medication name.
+#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
+#' @param lbl_medcat_var (`string`) the label for the medication category.
+#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
+#' @param lbl_medname_var (`string`) the label for the medication name.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
