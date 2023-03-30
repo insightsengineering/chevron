@@ -288,7 +288,7 @@ egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...
     req_tables = "adeg", visit_var = "AVISIT",
     paramcd_value = paramcd_value, visit_value = visit_value
   )
-adam_db$adeg <- adam_db$adeg %>%
+  adam_db$adeg <- adam_db$adeg %>%
     filter(
       .data$PARAMCD == paramcd_value &
         !!sym(visit_var) == visit_value # "Analysis Visit"
@@ -305,7 +305,7 @@ adam_db$adeg <- adam_db$adeg %>%
       labels = c("LOW", "NORMAL", "HIGH", "Missing")
     ))
 
-adam_db
+  adam_db
 }
 
 #' @describeIn egt03_2 Postprocessing

@@ -82,7 +82,6 @@ ext01_1_lyt <- function(arm_var,
 ext01_1_pre <- function(adam_db,
                         paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
                         ...) {
-
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARCAT1 == "OVERALL")
 
@@ -91,7 +90,7 @@ ext01_1_pre <- function(adam_db,
       dplyr::select("PARAM", "PARAMCD") %>%
       dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
-     adam_db$adex <- adam_db$adex %>%
+    adam_db$adex <- adam_db$adex %>%
       mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD)
   }
 
@@ -220,7 +219,6 @@ ext01_2_pre <- function(adam_db,
                         show_stats = c("ALL"),
                         show_bins = c("ALL"),
                         ...) {
-
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARCAT1 == "OVERALL")
 
@@ -230,7 +228,7 @@ ext01_2_pre <- function(adam_db,
   }
 
   if (!"ALL" %in% show_bins) {
-     adam_db$adex <- adam_db$adex %>%
+    adam_db$adex <- adam_db$adex %>%
       mutate(AVALCAT1 = ifelse(.data$PARAM %in% show_bins, .data$AVALCAT1, NA))
   }
 

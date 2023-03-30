@@ -171,7 +171,6 @@ lbt01_1_lyt <- function(arm_var,
 #' @export
 #'
 lbt01_1_pre <- function(adam_db, ...) {
-
   adam_db$adlb <- adam_db$adlb %>%
     filter(.data$ANL01FL == "Y")
 

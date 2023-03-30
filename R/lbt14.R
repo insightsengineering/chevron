@@ -115,7 +115,7 @@ lbt14_1_pre <- function(adam_db,
       mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>")))
   }
 
-adam_db$adlb <- adam_db$adlb %>%
+  adam_db$adlb <- adam_db$adlb %>%
     filter(.data$WGRLOFL == "Y") %>%
     mutate(
       ATOXGR_GRP = factor(
@@ -146,7 +146,7 @@ adam_db$adlb <- adam_db$adlb %>%
       ),
     )
 
-adam_db
+  adam_db
 }
 
 #' @describeIn lbt14_1 Checks
@@ -316,7 +316,7 @@ lbt14_2_pre <- function(adam_db,
       mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>")))
   }
 
-adam_db$adlb <- adam_db$adlb %>%
+  adam_db$adlb <- adam_db$adlb %>%
     filter(.data$WGRHIFL == "Y") %>%
     mutate(
       ATOXGR_GRP = factor(
@@ -347,7 +347,7 @@ adam_db$adlb <- adam_db$adlb %>%
       )
     )
 
-adam_db
+  adam_db
 }
 
 #' @describeIn lbt14_2 Checks

@@ -32,8 +32,7 @@ test_that("lbt14_1 can handle some NA values", {
 })
 
 test_that("lbt14_1 can accept different gr_missing", {
-
-    proc_data <- as.list(syn_data)
+  proc_data <- as.list(syn_data)
 
   expect_snapshot(run(lbt14_1, proc_data, gr_missing = "incl"))
   expect_snapshot(run(lbt14_1, proc_data, gr_missing = "excl"))
@@ -83,8 +82,7 @@ test_that("lbt14_2 can handle some NA values", {
 })
 
 test_that("lbt14_2 can accept different gr_missing", {
-
-    proc_data <- as.list(syn_data)
+  proc_data <- as.list(syn_data)
 
 
   expect_snapshot(run(lbt14_2, proc_data, gr_missing = "incl"))

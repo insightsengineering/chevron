@@ -76,7 +76,6 @@ lbt04_1_lyt <- function(arm_var,
 #' @export
 #'
 lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM", ...) {
-
   lbt04_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
   new_format <- list(

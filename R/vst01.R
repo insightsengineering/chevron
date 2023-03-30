@@ -109,7 +109,6 @@ vst01_1_lyt <- function(arm_var,
 #' @export
 #'
 vst01_1_pre <- function(adam_db, ...) {
-
   adam_db$advs <- adam_db$advs %>%
     filter(.data$ANL01FL == "Y")
 

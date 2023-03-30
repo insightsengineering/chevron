@@ -87,10 +87,9 @@ lbt05_1_lyt <- function(arm_var,
 #' @export
 #'
 lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
-
   lbt05_1_check(adam_db, arm_var = arm_var, req_tables = "adlb")
 
-adam_db$adlb <- adam_db$adlb %>%
+  adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ONTRTFL == "Y",
       .data$PARCAT2 == "LS",

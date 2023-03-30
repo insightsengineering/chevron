@@ -1,7 +1,6 @@
 # vst02_1 ----
 
 test_that("vst02_1 works", {
-
   proc_data <- as.list(syn_data)
 
   expect_snapshot(run(vst02_1, proc_data))
@@ -11,7 +10,6 @@ test_that("vst02_1 works", {
 # vst02_2 ----
 
 test_that("vst02_2 works", {
-
   proc_data <- as.list(syn_data)
 
   expect_snapshot(run(vst02_2, proc_data))

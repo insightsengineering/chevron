@@ -164,8 +164,7 @@ mng01_1_main <- function(adam_db,
 #'
 #' @export
 mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
-
-  sep = "_"
+  sep <- "_"
 
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y")
@@ -175,19 +174,24 @@ mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   x_interaction <- paste(x_var, collapse = sep)
   x_df <- adam_db[[dataset]][, x_var, drop = FALSE]
   lvl <- lapply(x_df, function(y) {
-        uni <- if (is.factor(y))
-            levels(y)
-        else unique(y)
-        factor(uni, levels = uni)
+    uni <- if (is.factor(y)) {
+      levels(y)
+    } else {
+      unique(y)
+    }
+    factor(uni, levels = uni)
   })
 
   all_lvl_df <- expand.grid(lvl)
 
-  all_lvl <- all_lvl_df %>% arrange(across(all_of(x_var))) %>%
-        unite("res", all_of(x_var), sep = sep) %>% pull("res")
+  all_lvl <- all_lvl_df %>%
+    arrange(across(all_of(x_var))) %>%
+    unite("res", all_of(x_var), sep = sep) %>%
+    pull("res")
 
-  x_vec <- x_df %>% unite("res", all_of(x_var), sep = sep) %>%
-        pull(.data$res)
+  x_vec <- x_df %>%
+    unite("res", all_of(x_var), sep = sep) %>%
+    pull(.data$res)
 
   existing_lvl <- intersect(all_lvl, x_vec)
   x_fact <- factor(x_vec, existing_lvl)

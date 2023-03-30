@@ -73,9 +73,7 @@ vst02_1_lyt <- function(arm_var,
 #' @export
 #'
 vst02_1_pre <- function(adam_db, ...) {
-
-    adam_db$advs <- adam_db$advs %>%
-
+  adam_db$advs <- adam_db$advs %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y") %>%
     mutate(
@@ -95,7 +93,7 @@ vst02_1_pre <- function(adam_db, ...) {
       BNRIND = as.factor(.data$BNRIND)
     )
 
-    adam_db
+  adam_db
 }
 
 #' @describeIn vst02_1 Postprocessing
@@ -204,9 +202,7 @@ vst02_2_lyt <- function(arm_var,
 #' @export
 #'
 vst02_2_pre <- function(adam_db, ...) {
-
-      adam_db$advs <- adam_db$advs %>%
-
+  adam_db$advs <- adam_db$advs %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y") %>%
     mutate(
@@ -226,7 +222,7 @@ vst02_2_pre <- function(adam_db, ...) {
       BNRIND = as.factor(.data$BNRIND)
     )
 
-      adam_db
+  adam_db
 }
 
 #' @describeIn vst02_2 Postprocessing

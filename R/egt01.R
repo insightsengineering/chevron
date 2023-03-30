@@ -106,7 +106,6 @@ egt01_1_lyt <- function(arm_var,
 #' @export
 #'
 egt01_1_pre <- function(adam_db, ...) {
-
   adam_db$adeg <- adam_db$adeg %>%
     filter(.data$ANL01FL == "Y")
 
