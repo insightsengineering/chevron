@@ -117,16 +117,16 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
   assert_colnames(adam_db$adeg, c("AVALCAT1", "CHGCAT1"))
 
-  adam_db %>%
-    dm_zoom_to("adeg") %>%
+adam_db$adeg <- adam_db$adeg %>%
     filter(
       .data$ANL01FL == "Y"
     ) %>%
     mutate(
       AVALCAT1 = factor(.data$AVALCAT1),
       CHGCAT1 = factor(.data$CHGCAT1)
-    ) %>%
-    dm_update_zoomed()
+    )
+
+adam_db
 }
 
 #' @describeIn egt05_qtcat_1 Postprocessing

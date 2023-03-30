@@ -147,7 +147,10 @@ dtht01_1_opt_lyt <- function(arm_var,
 #' @export
 #'
 dtht01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  # checkmate::assert_class(adam_db, "dm")
+
+  assert_colnames(adam_db$adsl, c("DTHFL", "DTHCAT"))
+
 
   missing_rule <- rule("<Missing>" = c("", NA))
 
@@ -160,12 +163,10 @@ dtht01_1_pre <- function(adam_db, ...) {
   )
 
   # Reorder factors to have "OTHER" last.
-  adam_db <- adam_db %>%
-    dm_zoom_to("adsl") %>%
+  adam_db$adsl <- adam_db$adsl %>%
     mutate(DTHFL = as.factor(.data$DTHFL)) %>%
     mutate(DTHCAT = as.factor(.data$DTHCAT)) %>%
-    mutate(DTHCAT = factor(.data$DTHCAT, levels = c(setdiff(levels(.data$DTHCAT), "OTHER"), "OTHER"))) %>%
-    dm_update_zoomed()
+    mutate(DTHCAT = factor(.data$DTHCAT, levels = c(setdiff(levels(.data$DTHCAT), "OTHER"), "OTHER")))
 
   dunlin::reformat(adam_db, new_formats, na_last = TRUE)
 }

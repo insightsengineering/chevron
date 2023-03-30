@@ -76,7 +76,6 @@ lbt04_1_lyt <- function(arm_var,
 #' @export
 #'
 lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM", ...) {
-  checkmate::assert_class(adam_db, "dm")
 
   lbt04_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
@@ -88,14 +87,14 @@ lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTA
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adlb") %>%
+  adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ONTRTFL == "Y",
       .data$PARCAT2 == "SI",
       .data$ANRIND != "<Missing>"
-    ) %>%
-    dm_update_zoomed()
+    )
+
+  adam_db
 }
 
 #' @describeIn lbt04_1 Checks

@@ -115,7 +115,6 @@ lbt07_1_lyt <- function(arm_var,
 #' @export
 #'
 lbt07_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
     adlb = list(
@@ -125,8 +124,7 @@ lbt07_1_pre <- function(adam_db, ...) {
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adlb") %>%
+  adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ATOXGR != "<Missing>",
       .data$ONTRTFL == "Y",
@@ -144,8 +142,9 @@ lbt07_1_pre <- function(adam_db, ...) {
       ),
       GRADE_ANL = factor(.data$ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
       PARAM = as.factor(.data$PARAM)
-    ) %>%
-    dm_update_zoomed()
+    )
+
+  adam_db
 }
 
 #' @describeIn lbt07_1 Checks

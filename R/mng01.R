@@ -164,14 +164,36 @@ mng01_1_main <- function(adam_db,
 #'
 #' @export
 mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
-  checkmate::assert_class(adam_db, "dm")
 
-  adam_db <- adam_db %>%
-    dm_zoom_to(!!dataset) %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+  sep = "_"
 
-  dunlin::dm_unite(adam_db, dataset, x_var, "_")
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
+    filter(.data$ANL01FL == "Y")
+
+  # dunlin::dm_unite(adam_db, dataset, x_var, "_")
+
+  x_interaction <- paste(x_var, collapse = sep)
+  x_df <- adam_db[[dataset]][, x_var, drop = FALSE]
+  lvl <- lapply(x_df, function(y) {
+        uni <- if (is.factor(y))
+            levels(y)
+        else unique(y)
+        factor(uni, levels = uni)
+  })
+
+  all_lvl_df <- expand.grid(lvl)
+
+  all_lvl <- all_lvl_df %>% arrange(across(all_of(x_var))) %>%
+        unite("res", all_of(x_var), sep = sep) %>% pull("res")
+
+  x_vec <- x_df %>% unite("res", all_of(x_var), sep = sep) %>%
+        pull(.data$res)
+
+  existing_lvl <- intersect(all_lvl, x_vec)
+  x_fact <- factor(x_vec, existing_lvl)
+
+  adam_db[[dataset]][, x_interaction] <- x_fact
+  adam_db
 }
 
 #' @describeIn mng01_1 Postprocessing

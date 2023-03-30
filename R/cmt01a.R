@@ -114,13 +114,11 @@ cmt01a_1_lyt <- function(arm_var,
 #' @export
 #'
 cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  checkmate::assert_class(adam_db, "dm")
+  # checkmate::assert_class(adam_db, "dm")
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adcm") %>%
+  adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
-    dm_update_zoomed()
+    mutate(CMSEQ = as.factor(.data$CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(
@@ -248,13 +246,11 @@ cmt01a_2_main <- function(adam_db,
 #' @export
 #'
 cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  checkmate::assert_class(adam_db, "dm")
+  # checkmate::assert_class(adam_db, "dm")
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adcm") %>%
+  adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
-    dm_update_zoomed()
+    mutate(CMSEQ = as.factor(.data$CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(
@@ -434,13 +430,11 @@ cmt01a_3_lyt <- function(arm_var = "ARM",
 #' @export
 #'
 cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  checkmate::assert_class(adam_db, "dm")
+  # checkmate::assert_class(adam_db, "dm")
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adcm") %>%
+  adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ)) %>%
-    dm_update_zoomed()
+    mutate(CMSEQ = as.factor(.data$CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(

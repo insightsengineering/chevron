@@ -107,13 +107,10 @@ pdt02_1_lyt <- function(arm_var,
 #' @export
 #'
 pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {
-  checkmate::assert_class(adam_db, "dm")
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("addv") %>%
+  adam_db$addv <- adam_db$addv %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
-    mutate(DVSEQ = as.factor(.data$DVSEQ)) %>%
-    dm_update_zoomed()
+    mutate(DVSEQ = as.factor(.data$DVSEQ))
 
   fmt_ls <- list(
     dvreas_var = rule(

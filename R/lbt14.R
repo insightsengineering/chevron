@@ -87,7 +87,6 @@ lbt14_1_pre <- function(adam_db,
                         req_tables = c("adsl", "adlb"),
                         arm_var = "ACTARM",
                         ...) {
-  checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
   lbt14_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
@@ -104,27 +103,20 @@ lbt14_1_pre <- function(adam_db,
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
-    adam_db <- adam_db %>%
-      dm_zoom_to("adlb") %>%
-      filter(.data$BTOXGR != "<Missing>") %>%
-      dm_update_zoomed()
+    adam_db$adlb <- adam_db$adlb %>%
+      filter(.data$BTOXGR != "<Missing>")
   } else if (gr_missing == "gr_0") {
-    adam_db <- adam_db %>%
-      dm_zoom_to("adlb") %>%
+    adam_db$adlb <- adam_db$adlb %>%
       mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
         factor(.data$BTOXGR, levels = c("0", "<Missing>"))
       } else {
         .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>"))) %>%
-      dm_update_zoomed()
+      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>")))
   }
 
-  adam_db %>%
-    dm_zoom_to("adlb") %>%
+adam_db$adlb <- adam_db$adlb %>%
     filter(.data$WGRLOFL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adlb") %>%
     mutate(
       ATOXGR_GRP = factor(
         case_when(
@@ -152,8 +144,9 @@ lbt14_1_pre <- function(adam_db,
           c("Not Low", "1", "2", "3", "4")
         }
       ),
-    ) %>%
-    dm_update_zoomed()
+    )
+
+adam_db
 }
 
 #' @describeIn lbt14_1 Checks
@@ -295,7 +288,6 @@ lbt14_2_pre <- function(adam_db,
                         req_tables = c("adsl", "adlb"),
                         arm_var = "ACTARM",
                         ...) {
-  checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
   lbt14_2_check(adam_db, req_tables = req_tables, arm_var = arm_var)
@@ -312,27 +304,20 @@ lbt14_2_pre <- function(adam_db,
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
-    adam_db <- adam_db %>%
-      dm_zoom_to("adlb") %>%
-      filter(.data$BTOXGR != "<Missing>") %>%
-      dm_update_zoomed()
+    adam_db$adlb <- adam_db$adlb %>%
+      filter(.data$BTOXGR != "<Missing>")
   } else if (gr_missing == "gr_0") {
-    adam_db <- adam_db %>%
-      dm_zoom_to("adlb") %>%
+    adam_db$adlb <- adam_db$adlb %>%
       mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
         factor(.data$BTOXGR, levels = c("0", "<Missing>"))
       } else {
         .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>"))) %>%
-      dm_update_zoomed()
+      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>")))
   }
 
-  adam_db %>%
-    dm_zoom_to("adlb") %>%
+adam_db$adlb <- adam_db$adlb %>%
     filter(.data$WGRHIFL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adlb") %>%
     mutate(
       ATOXGR_GRP = factor(
         case_when(
@@ -360,8 +345,9 @@ lbt14_2_pre <- function(adam_db,
           c("Not High", "1", "2", "3", "4")
         }
       )
-    ) %>%
-    dm_update_zoomed()
+    )
+
+adam_db
 }
 
 #' @describeIn lbt14_2 Checks

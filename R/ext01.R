@@ -82,25 +82,20 @@ ext01_1_lyt <- function(arm_var,
 ext01_1_pre <- function(adam_db,
                         paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
                         ...) {
-  checkmate::assert_class(adam_db, "dm")
 
-  db <- adam_db %>%
-    dm_zoom_to("adex") %>%
-    filter(.data$PARCAT1 == "OVERALL") %>%
-    dm_update_zoomed()
+  adam_db$adex <- adam_db$adex %>%
+    filter(.data$PARCAT1 == "OVERALL")
 
-  if (nrow(db$adex) > 0L) {
-    param_vars <- db$adex %>%
+  if (nrow(adam_db$adex) > 0L) {
+    param_vars <- adam_db$adex %>%
       dplyr::select("PARAM", "PARAMCD") %>%
       dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
-    db <- db %>%
-      dm_zoom_to("adex") %>%
-      mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD) %>%
-      dm_update_zoomed()
+     adam_db$adex <- adam_db$adex %>%
+      mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD)
   }
 
-  db
+  adam_db
 }
 #' @describeIn ext01_1 Postprocessing
 #'
@@ -225,28 +220,21 @@ ext01_2_pre <- function(adam_db,
                         show_stats = c("ALL"),
                         show_bins = c("ALL"),
                         ...) {
-  checkmate::assert_class(adam_db, "dm")
 
-  db <- adam_db %>%
-    dm_zoom_to("adex") %>%
-    filter(.data$PARCAT1 == "OVERALL") %>%
-    dm_update_zoomed()
+  adam_db$adex <- adam_db$adex %>%
+    filter(.data$PARCAT1 == "OVERALL")
 
   if (!"ALL" %in% show_stats) {
-    db <- db %>%
-      dm_zoom_to("adex") %>%
-      mutate(AVAL = ifelse(.data$PARAM %in% show_stats, .data$AVAL, NA)) %>%
-      dm_update_zoomed()
+    adam_db$adex <- adam_db$adex %>%
+      mutate(AVAL = ifelse(.data$PARAM %in% show_stats, .data$AVAL, NA))
   }
 
   if (!"ALL" %in% show_bins) {
-    db <- db %>%
-      dm_zoom_to("adex") %>%
-      mutate(AVALCAT1 = ifelse(.data$PARAM %in% show_bins, .data$AVALCAT1, NA)) %>%
-      dm_update_zoomed()
+     adam_db$adex <- adam_db$adex %>%
+      mutate(AVALCAT1 = ifelse(.data$PARAM %in% show_bins, .data$AVALCAT1, NA))
   }
 
-  db
+  adam_db
 }
 
 #' @describeIn ext01_2 Postprocessing

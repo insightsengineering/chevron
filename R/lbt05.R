@@ -87,12 +87,10 @@ lbt05_1_lyt <- function(arm_var,
 #' @export
 #'
 lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
-  checkmate::assert_class(adam_db, "dm")
 
   lbt05_1_check(adam_db, arm_var = arm_var, req_tables = "adlb")
 
-  db <- adam_db %>%
-    dm_zoom_to("adlb") %>%
+adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ONTRTFL == "Y",
       .data$PARCAT2 == "LS",
@@ -102,8 +100,7 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
       ANRIND == "LOW LOW" ~ "Low",
       ANRIND == "HIGH HIGH" ~ "High",
       TRUE ~ ""
-    ), levels = c("Low", "High"))) %>%
-    dm_update_zoomed()
+    ), levels = c("Low", "High")))
 
   missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
 
@@ -114,7 +111,7 @@ lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
     )
   )
 
-  db <- dunlin::reformat(db, new_format, na_last = TRUE)
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn lbt05_1 Checks

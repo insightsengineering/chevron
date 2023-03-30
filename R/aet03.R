@@ -111,7 +111,9 @@ aet03_1_lyt <- function(arm_var,
 #' @export
 #'
 aet03_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  # checkmate::assert_class(adam_db, "dm")
+
+  assert_colnames(adam_db$adae, c("ANL01FL", "ASEV"))
 
   new_format <- list(
     adae = list(
@@ -122,12 +124,12 @@ aet03_1_pre <- function(adam_db, ...) {
   )
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adae") %>%
+  adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ASEV != "<Missing>") %>%
-    mutate(ASEV = factor(.data$ASEV, levels = setdiff(levels(.data$ASEV), "<Missing>"))) %>%
-    dm_update_zoomed()
+    mutate(ASEV = factor(.data$ASEV, levels = setdiff(levels(.data$ASEV), "<Missing>")))
+
+  adam_db
 }
 
 #' @describeIn aet03_1 Postprocessing

@@ -57,13 +57,9 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
 #' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
 #' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")
-#'
-#' db <- dm::dm_nycflights13() %>%
-#'   dm_filter(airports, name == "John F Kennedy Intl")
-#'
-#' get_db_data(db, "airports")
 #' }
 get_db_data <- function(db, ...) {
+  checkmate::assert_list(db, types = "data.frame")
   datasets <- c(...)
 
   if (length(datasets) == 0) {

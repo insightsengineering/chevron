@@ -25,7 +25,7 @@ setMethod(
   f = "run",
   signature = "chevron_tlg",
   definition = function(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE) {
-    checkmate::assert_class(adam_db, "dm")
+    # checkmate::assert_class(adam_db, "dm")
     checkmate::assert_flag(auto_pre)
     checkmate::assert_flag(check_arg)
 
@@ -47,6 +47,8 @@ setMethod(
     } else {
       list(adam_db = adam_db)
     }
+
+    proc_data <- as.list(proc_data)
 
     arg_main <- user_args[names(user_args) %in% arg_main_name]
     arg_post <- user_args[names(user_args) %in% arg_post_name]

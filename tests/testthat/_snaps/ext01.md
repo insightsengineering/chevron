@@ -39,7 +39,7 @@
 # ext02_1 works for selected parameters
 
     Code
-      run(ext01_2, syn_data, prune_0 = TRUE)
+      run(ext01_2, proc_data, prune_0 = TRUE)
     Output
                                      A: Drug X        B: Placebo      C: Combination 
                                       (N=134)           (N=134)           (N=132)    

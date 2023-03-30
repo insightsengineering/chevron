@@ -66,16 +66,14 @@ cmt02_pt_1_lyt <- function(arm_var,
 #' @export
 #'
 cmt02_pt_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  # checkmate::assert_class(adam_db, "dm")
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adcm") %>%
+  adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       CMSEQ = as.factor(.data$CMSEQ),
       DOMAIN = "CM"
-    ) %>%
-    dm_update_zoomed()
+    )
 
   fmt_ls <- list(
     CMDECOD = rule(
