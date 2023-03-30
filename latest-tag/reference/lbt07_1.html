@@ -12,7 +12,7 @@ overview of the analysis values and its change from baseline of each respective 
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@ overview of the analysis values and its change from baseline of each respective 
           aria-expanded="false" aria-haspopup="true"
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
@@ -74,9 +75,9 @@ overview of the analysis values and its change from baseline of each respective 
 <span>  <span class="va">adam_db</span>,</span>
 <span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
 <span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  grade_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PARAM"</span>, <span class="st">"GRADE_DIR"</span>, <span class="st">"GRADE_ANL"</span><span class="op">)</span>,</span>
+<span>  grade_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"PARAM"</span>, <span class="st">"GRADE_DIR"</span>, <span class="st">"GRADE_ANL"</span><span class="op">)</span>,</span>
 <span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"LBT07"</span><span class="op">)</span>,</span>
-<span>  lbl_grade_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Parameter"</span>, <span class="st">"Direction of Abnormality"</span>, <span class="st">"Toxicity Grade"</span><span class="op">)</span>,</span>
+<span>  lbl_grade_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Parameter"</span>, <span class="st">"Direction of Abnormality"</span>, <span class="st">"Toxicity Grade"</span><span class="op">)</span>,</span>
 <span>  req_tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adlb"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
@@ -112,15 +113,15 @@ overview of the analysis values and its change from baseline of each respective 
 
 
 <dt>arm_var</dt>
-<dd><p>(<code>character</code>) variable used for column splitting</p></dd>
+<dd><p>(<code>string</code>) variable used for column splitting</p></dd>
 
 
 <dt>lbl_overall</dt>
-<dd><p>(<code>character</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
+<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
 
 
 <dt>grade_var</dt>
-<dd><p>(<code>character</code>) <code>PARAM</code> and variables derived from the standard lab grade variable <code>ATOXGR</code>:</p><ul><li><p>A grade direction variable (<code>GRADE_DIR</code>) is required in order to obtain
+<dd><p>(<code>list</code>) <code>PARAM</code> and variables derived from the standard lab grade variable <code>ATOXGR</code>:</p><ul><li><p>A grade direction variable (<code>GRADE_DIR</code>) is required in order to obtain
 the correct denominators when building the layout as it is used to define row splitting.</p></li>
 <li><p>A toxicity grade variable (e.g. <code>GRADE_ANL</code>) where all negative values from
 <code>ATOXGR</code> are replaced by their absolute values.</p></li>
@@ -132,7 +133,7 @@ the correct denominators when building the layout as it is used to define row sp
 
 
 <dt>lbl_grade_var</dt>
-<dd><p>(<code>character</code>) label of the variables in <code>grade_var</code>. If <code>NULL</code>, uses the label
+<dd><p>(<code>list</code>) label of the variables in <code>grade_var</code>. If <code>NULL</code>, uses the label
 attribute of the columns selected in <code>grade_var</code>.</p></dd>
 
 
@@ -145,11 +146,11 @@ attribute of the columns selected in <code>grade_var</code>.</p></dd>
 
 
 <dt>lbl_gradedir</dt>
-<dd><p>(<code>character</code>) label of the <code>GRADE_DIR</code> variable.</p></dd>
+<dd><p>(<code>string</code>) label of the <code>GRADE_DIR</code> variable.</p></dd>
 
 
 <dt>lbl_param</dt>
-<dd><p>(<code>character</code>) label of the <code>PARAM</code> variable.</p></dd>
+<dd><p>(<code>string</code>) label of the <code>PARAM</code> variable.</p></dd>
 
 
 <dt>map</dt>
@@ -161,7 +162,7 @@ attribute of the columns selected in <code>grade_var</code>.</p></dd>
 
 
 <dt>prune_0</dt>
-<dd><p>(<code>logical</code>) remove 0 count rows</p></dd>
+<dd><p>(<code>flag</code>) remove 0 count rows</p></dd>
 
 </dl></div>
     <div class="section level2">
