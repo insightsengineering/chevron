@@ -13,7 +13,6 @@ articles:
   - title: All vignettes
     contents:
       - chevron
-      - adam_db_argument
       - layouts
       - adding_new_tlgs_to_chevron
       - script_generator
