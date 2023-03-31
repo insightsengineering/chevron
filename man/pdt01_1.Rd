@@ -105,9 +105,10 @@ as \code{"DVSEQ"}.
 \examples{
 library(dplyr)
 
-db <- syn_data \%>\%
-  filter(.data$DVCAT == "MAJOR")
+proc_data <- syn_data
+proc_data$addv <- proc_data$addv \%>\%
+  filter(DVCAT == "MAJOR")
 
-run(pdt01_1, db)
+run(pdt01_1, proc_data)
 }
 \keyword{datasets}

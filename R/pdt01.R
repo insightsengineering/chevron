@@ -151,10 +151,11 @@ pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var
 #' @examples
 #' library(dplyr)
 #'
-#' db <- syn_data %>%
-#'   filter(.data$DVCAT == "MAJOR")
+#' proc_data <- syn_data
+#' proc_data$addv <- proc_data$addv %>%
+#'   filter(DVCAT == "MAJOR")
 #'
-#' run(pdt01_1, db)
+#' run(pdt01_1, proc_data)
 pdt01_1 <- chevron_t(
   main = pdt01_1_main,
   lyt = pdt01_1_lyt,
