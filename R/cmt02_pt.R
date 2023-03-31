@@ -66,7 +66,7 @@ cmt02_pt_1_lyt <- function(arm_var,
 #' @export
 #'
 cmt02_pt_1_pre <- function(adam_db, ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%

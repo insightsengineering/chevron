@@ -21,7 +21,6 @@
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -94,7 +93,7 @@ dmt01_1_lyt <- function(arm_var,
 #' @examples
 #' dmt01_1_pre(syn_data)
 dmt01_1_pre <- function(adam_db, ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   adam_db <- lapply(adam_db, tern::df_explicit_na)
 

@@ -26,7 +26,6 @@
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -246,7 +245,6 @@ dst01_1 <- chevron_t(
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -383,7 +381,7 @@ dst01_2_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   new_format <- list(
     adsl = list(
@@ -488,7 +486,6 @@ dst01_2 <- chevron_t(
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -614,7 +611,7 @@ dst01_3_pre <- function(adam_db,
                         disc_reason_var = "DCSREAS",
                         status_treatment_var = "EOTSTT",
                         ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   new_format <- list(
     adsl = list(

@@ -1,7 +1,6 @@
 # ext01_1 ----
 test_that("ext01 works", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   tlg <- expect_silent(run(ext01_1, proc_data))
   expect_snapshot(tlg)
 
@@ -11,7 +10,7 @@ test_that("ext01 works", {
 
 # ext02_1 ----
 test_that("ext02_1 works for selected parameters", {
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adex <- proc_data$adex %>%
     filter(PARAMCD == "TDOSE")
 

@@ -46,7 +46,7 @@ dst01_3_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
 dst01_3
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
@@ -115,7 +115,6 @@ the study, the reason provided is categorized as "Safety" or "Non-Safety" issue.
 }
 }
 \examples{
-library(dm)
 library(magrittr)
 
 db <- syn_data \%>\%

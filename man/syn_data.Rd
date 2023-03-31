@@ -5,7 +5,7 @@
 \alias{syn_data}
 \title{Example \code{adam} Synthetic Data}
 \format{
-A \code{\link[dm:dm]{dm::dm()}} object containing 19 Tables:
+A named \code{list} of 19 \code{data.frames}:
 - \code{adsl}
 - \code{adab}
 - \code{adae}

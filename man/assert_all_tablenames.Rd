@@ -2,12 +2,12 @@
 % Please edit documentation in R/assertions.R
 \name{assert_all_tablenames}
 \alias{assert_all_tablenames}
-\title{Assert that all names are among table names of a \code{dm} object}
+\title{Assert that all names are among names of a \code{list} of \code{data.frame}.}
 \usage{
 assert_all_tablenames(db, tab, null_ok = TRUE, qualifier = NULL)
 }
 \arguments{
-\item{db}{(\code{dm}) input to check for the presence of tables.}
+\item{db}{(\code{list} of \code{data.frame}) input to check for the presence of tables.}
 
 \item{tab}{(\code{character}) the names of the tables to be checked.}
 
@@ -16,11 +16,17 @@ assert_all_tablenames(db, tab, null_ok = TRUE, qualifier = NULL)
 \item{qualifier}{(\code{string}) to be returned if the check fails.}
 }
 \description{
-Assert that all names are among table names of a \code{dm} object
+Assert that all names are among names of a \code{list} of \code{data.frame}.
 }
 \examples{
 \dontrun{
-assert_all_tablenames(dm::dm_nycflights13(), c("mpg", "new", "hoho"), qualifier = "first test:")
+
+lsd <- list(
+  mtcars = mtcars,
+  iris = iris
+)
+
+assert_all_tablenames(lsd, c("mtcars", "iris", "x"), qualifier = "first test:")
 }
 }
 \keyword{internal}

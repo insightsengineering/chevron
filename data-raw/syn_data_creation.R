@@ -114,53 +114,29 @@ syn_test_data <- function() {
     ) %>%
     select(-q1, -q2)
 
-  db <- new_dm(sd) %>%
-    dm_add_pk("adsl", c("USUBJID", "STUDYID"))
-  for (k in setdiff(names(sd), "adsl")) {
-    db <- eval(bquote(dm_add_fk(db, .(k), c("USUBJID", "STUDYID"), ref_table = "adsl")))
-  }
+  sd$adsl <- sd$adsl %>%
+    mutate(ANL01FL = "Y")
 
-  db <- db %>%
-    dm_zoom_to("adsl") %>%
-    mutate(ANL01FL = "Y") %>%
-    dm_update_zoomed()
-
-  db <- db %>%
-    dm_zoom_to("adae") %>%
+  sd$adae <- sd$adae %>%
     mutate(AEBODSYS = formatters::with_label(.data$AEBODSYS, "MedDRA System Organ Class")) %>%
     mutate(AEDECOD = formatters::with_label(.data$AEDECOD, "MedDRA Preferred Term")) %>%
-    dm_update_zoomed()
-
-  db <- db %>%
-    dm_zoom_to("admh") %>%
-    mutate(MHBODSYS = formatters::with_label(.data$MHBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(MHDECOD = formatters::with_label(.data$MHDECOD, "MedDRA Preferred Term")) %>%
-    dm_update_zoomed()
-
-  db <- db %>%
-    dm_zoom_to("adae") %>%
     mutate(ANL01FL = "Y") %>%
     mutate(ASEV = .data$AESEV) %>%
     mutate(AREL = .data$AEREL) %>%
-    mutate(ATOXGR = .data$AETOXGR) %>%
-    dm_update_zoomed()
+    mutate(ATOXGR = .data$AETOXGR)
 
-  db <- db %>%
-    dm_zoom_to("advs") %>%
+  sd$admh <- sd$admh %>%
     mutate(ANL01FL = "Y") %>%
-    dm_update_zoomed()
+    mutate(MHBODSYS = formatters::with_label(.data$MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = formatters::with_label(.data$MHDECOD, "MedDRA Preferred Term"))
 
-  db <- db %>%
-    dm_zoom_to("adcm") %>%
-    mutate(ANL01FL = "Y") %>%
-    dm_update_zoomed()
+  sd$advs <- sd$advs %>%
+    mutate(ANL01FL = "Y")
 
-  db <- db %>%
-    dm_zoom_to("admh") %>%
-    mutate(ANL01FL = "Y") %>%
-    dm_update_zoomed()
+  sd$adcm <- sd$adcm %>%
+    mutate(ANL01FL = "Y")
 
-  db
+  sd
 }
 
 #' example data generated with syn_test_data()
@@ -168,6 +144,4 @@ syn_test_data <- function() {
 #' @rdname syn_test_data
 syn_data <- syn_test_data()
 
-
-
-usethis::use_data(syn_data)
+usethis::use_data(syn_data, overwrite = TRUE)

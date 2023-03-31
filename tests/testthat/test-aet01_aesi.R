@@ -1,8 +1,7 @@
 # aet01_aesi_1 ----
 
 test_that("aet01_aesi can handle all NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
       AETOXGR = factor(NA, levels = 1:5),
@@ -21,10 +20,7 @@ test_that("aet01_aesi can handle all NA values", {
 })
 
 test_that("aet01_aesi can handle some NA values", {
-  proc_data <- as.list(syn_data)
-
-
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
       AEACN = c(NA, as.character(syn_data$adae$AEACN)[-1])
@@ -35,15 +31,13 @@ test_that("aet01_aesi can handle some NA values", {
 })
 
 test_that("aet01_aesi works with `ALL` argument", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   res <- expect_silent(run(aet01_aesi_1, proc_data, aesi_vars = list("ALL")))
   expect_snapshot(res)
 })
 
 test_that("aet01_aesi_1_check fails on incomplete data input", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(AEOUT = NULL)
 

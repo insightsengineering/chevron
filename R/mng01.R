@@ -169,8 +169,6 @@ mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y")
 
-  # dunlin::dm_unite(adam_db, dataset, x_var, "_")
-
   x_interaction <- paste(x_var, collapse = sep)
   x_df <- adam_db[[dataset]][, x_var, drop = FALSE]
   lvl <- lapply(x_df, function(y) {
@@ -184,14 +182,12 @@ mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 
   all_lvl_df <- expand.grid(lvl)
 
-  all_lvl <- all_lvl_df %>%
+  all_lvl <- all_lvl_df[, x_var, drop = FALSE] %>%
     arrange(across(all_of(x_var))) %>%
-    unite("res", all_of(x_var), sep = sep) %>%
-    pull("res")
+    apply(1, paste, collapse = sep)
 
-  x_vec <- x_df %>%
-    unite("res", all_of(x_var), sep = sep) %>%
-    pull(.data$res)
+  x_vec <- x_df[, x_var, drop = FALSE] %>%
+    apply(1, paste, collapse = sep)
 
   existing_lvl <- intersect(all_lvl, x_vec)
   x_fact <- factor(x_vec, existing_lvl)
@@ -218,7 +214,6 @@ mng01_1_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(dplyr)
 #'
 #' col <- c(

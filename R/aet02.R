@@ -99,7 +99,7 @@ aet02_1_lyt <- function(arm_var,
 #' @export
 #'
 aet02_1_pre <- function(adam_db, ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   aet02_1_check(adam_db)
 
@@ -296,7 +296,7 @@ aet02_2_lyt <- function(arm_var,
 #' @export
 #'
 aet02_2_pre <- function(adam_db, ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   assert_colnames(adam_db$adae, c("AEBODSYS", "AEHLT", "AEDECOD"))
 
@@ -445,7 +445,7 @@ aet02_3_lyt <- function(arm_var,
 #' @export
 #'
 aet02_3_pre <- function(adam_db, ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   assert_colnames(adam_db$adae, c("AEDECOD"))
 

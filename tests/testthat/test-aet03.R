@@ -1,6 +1,5 @@
 test_that("aet03 can handle NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
       AEBODSYS = NA_character_,
@@ -16,8 +15,7 @@ test_that("aet03 can handle some NA values", {
   new_aedecod <- c(NA, "", as.character(syn_data$adae$AEDECOD[-c(1, 2)]))
   new_asev <- c(NA, "", as.character(syn_data$adae$ASEV[-c(1, 2)]))
 
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
       AEBODSYS = .env$new_aebodsys,

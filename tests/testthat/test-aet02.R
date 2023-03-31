@@ -1,8 +1,7 @@
 # aet02 ----
 
 test_that("aet02 fails on incomplete data input", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
       AEDECOD = NULL
@@ -16,8 +15,7 @@ test_that("aet02 fails on incomplete data input", {
 })
 
 test_that("aet02 handle empty data input", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     filter(
       AEDECOD == ""
@@ -29,8 +27,7 @@ test_that("aet02 handle empty data input", {
 # aet02_2 ----
 
 test_that("aet02_2 fails on incomplete data input", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
       AEDECOD = NULL
@@ -42,8 +39,7 @@ test_that("aet02_2 fails on incomplete data input", {
 })
 
 test_that("aet02_2 handle empty data input", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     filter(
       AEDECOD == ""

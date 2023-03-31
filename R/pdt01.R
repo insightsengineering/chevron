@@ -149,13 +149,10 @@ pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var
 #' @export
 #'
 #' @examples
-#' library(magrittr)
-#' library(dm)
+#' library(dplyr)
 #'
 #' db <- syn_data %>%
-#'   dm_zoom_to("addv") %>%
-#'   filter(.data$DVCAT == "MAJOR") %>%
-#'   dm_update_zoomed()
+#'   filter(.data$DVCAT == "MAJOR")
 #'
 #' run(pdt01_1, db)
 pdt01_1 <- chevron_t(

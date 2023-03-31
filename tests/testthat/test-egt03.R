@@ -1,6 +1,6 @@
 # egt03_1 ----
 test_that("egt03_1 can handle all NA values", {
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(
       BNRIND = NA_character_,
@@ -18,7 +18,7 @@ test_that("egt03_1 can handle some NA values", {
   new_bnrind <- c(NA_character_, "", as.character(syn_data$adeg$BNRIND[-c(1, 2)]))
   new_anrind <- c(NA_character_, "", as.character(syn_data$adeg$ANRIND[-c(1, 2)]))
 
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(
       BNRIND = .env$new_bnrind,
@@ -31,7 +31,7 @@ test_that("egt03_1 can handle some NA values", {
 
 # egt03_2 ----
 test_that("egt03_2 can handle all NA values", {
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(
       BNRIND = NA_character_,
@@ -46,7 +46,7 @@ test_that("egt03_2 can handle some NA values", {
   new_bnrind <- c(NA_character_, "", as.character(syn_data$adeg$BNRIND[-c(1, 2)]))
   new_anrind <- c(NA_character_, "", as.character(syn_data$adeg$ANRIND[-c(1, 2)]))
 
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(
       BNRIND = .env$new_bnrind,
@@ -60,7 +60,7 @@ test_that("egt03_2 can handle some NA values", {
 # egt03 checks ----
 
 test_that("egt03_1 fails on incomplete data", {
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(PARAMCD = NULL)
 

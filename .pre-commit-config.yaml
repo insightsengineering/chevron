@@ -16,7 +16,6 @@ repos:
         name: Regenerate package documentation
         additional_dependencies:
           - checkmate
-          - dm
           - dplyr
           - insightsengineering/dunlin
           - forcats

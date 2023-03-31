@@ -1,8 +1,7 @@
 # NA values ----
 
 test_that("dst01 can handle all NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOSSTT = NA_character_,
@@ -14,8 +13,7 @@ test_that("dst01 can handle all NA values", {
 })
 
 test_that("dst01_1 can handle all NA values in disc_reason_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       DCSREAS = NA_character_
@@ -26,8 +24,7 @@ test_that("dst01_1 can handle all NA values in disc_reason_var", {
 })
 
 test_that("dst01_1 can handle some NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOSSTT = c(NA_character_, "", as.character(.data$EOSSTT[-c(1, 2)])),
@@ -39,8 +36,7 @@ test_that("dst01_1 can handle some NA values", {
 })
 
 test_that("dst01_1 can handle missing levels in status_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOSSTT = factor(.data$EOSSTT, levels = "ONGOING"),
@@ -51,8 +47,7 @@ test_that("dst01_1 can handle missing levels in status_var", {
 })
 
 test_that("dst01_1 can handle missing levels in disc_reason_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       DCSREAS = factor(.data$DCSREAS, levels = "DEATH")
@@ -66,8 +61,7 @@ test_that("dst01_1 can handle missing levels in disc_reason_var", {
 # dst01_2 ----
 
 test_that("dst01_2 can handle all NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOSSTT = NA_character_,
@@ -79,8 +73,7 @@ test_that("dst01_2 can handle all NA values", {
 })
 
 test_that("dst01_2 can handle all NA values in disc_reason_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       DCSREAS = NA_character_
@@ -91,8 +84,7 @@ test_that("dst01_2 can handle all NA values in disc_reason_var", {
 })
 
 test_that("dst01_2 can handle some NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOSSTT = c(NA_character_, "", as.character(.data$EOSSTT[-c(1, 2)])),
@@ -104,8 +96,7 @@ test_that("dst01_2 can handle some NA values", {
 })
 
 test_that("dst01_2 can handle missing levels in disc_reason_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       DCSREAS = factor(.data$DCSREAS, levels = "DEATH")
@@ -118,8 +109,7 @@ test_that("dst01_2 can handle missing levels in disc_reason_var", {
 # dst01_3 ----
 
 test_that("dst01_3 can handle all NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOSSTT = NA_character_,
@@ -132,8 +122,7 @@ test_that("dst01_3 can handle all NA values", {
 })
 
 test_that("dst01_3 can handle all NA values in status_treatment_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOTSTT = NA_character_
@@ -144,8 +133,7 @@ test_that("dst01_3 can handle all NA values in status_treatment_var", {
 })
 
 test_that("dst01_3 can handle some NA values in status_treatment_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOTSTT = c(NA_character_, "", as.character(.data$EOTSTT[-c(1, 2)]))
@@ -156,8 +144,7 @@ test_that("dst01_3 can handle some NA values in status_treatment_var", {
 })
 
 test_that("dst01_3 can handle missing levels in status_treatment_var", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOTSTT = factor(.data$EOTSTT, levels = "ONGOING")

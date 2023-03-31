@@ -47,7 +47,7 @@ pdt01_1_post(
 pdt01_1
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
@@ -103,13 +103,10 @@ as \code{"DVSEQ"}.
 }
 }
 \examples{
-library(magrittr)
-library(dm)
+library(dplyr)
 
 db <- syn_data \%>\%
-  dm_zoom_to("addv") \%>\%
-  filter(.data$DVCAT == "MAJOR") \%>\%
-  dm_update_zoomed()
+  filter(.data$DVCAT == "MAJOR")
 
 run(pdt01_1, db)
 }

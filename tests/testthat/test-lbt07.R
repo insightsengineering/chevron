@@ -1,8 +1,7 @@
 test_that("lbt07 can handle some NA values", {
   new_grade_dir <- c(NA_character_, "", as.character(syn_data$adlb$ATOXGR[-c(1, 2)]))
 
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
       GRADE_DIR = factor(.env$new_grade_dir),
@@ -13,8 +12,7 @@ test_that("lbt07 can handle some NA values", {
 })
 
 test_that("lbt07 fails on incomlete data", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(ATOXGR = NULL)
 

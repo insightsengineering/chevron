@@ -1,6 +1,5 @@
 test_that("pdt01_1 can handle all NA values", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$addv <- proc_data$addv %>%
     mutate(
       DVDECOD = NA_character_,
@@ -15,8 +14,7 @@ test_that("pdt01_1 can handle some NA values", {
   new_dvdecod <- c(NA_character_, "", as.character(syn_data$addv$DVDECOD[-c(1, 2)]))
   new_dvterm <- c(NA_character_, "", as.character(syn_data$addv$DVTERM[-c(1, 2)]))
 
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$addv <- proc_data$addv %>%
     mutate(
       DVDECOD = .env$new_dvdecod,

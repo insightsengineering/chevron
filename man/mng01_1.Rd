@@ -38,7 +38,7 @@ mng01_1_post(tlg, ...)
 mng01_1
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
@@ -104,7 +104,6 @@ Overview of a summary statistics across time and arm for a selected data set.
 }
 }
 \examples{
-library(dm)
 library(dplyr)
 
 col <- c(

@@ -1,7 +1,7 @@
 # egt05_qtcat_1 ----
 
 test_that("egt05_qtcat can handle all NA values", {
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(
       AVISIT = NA_character_,
@@ -12,7 +12,7 @@ test_that("egt05_qtcat can handle all NA values", {
 })
 
 test_that("egt05_qtcat can handle some NA values", {
-  proc_data <- as.list(syn_data)
+  proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     filter(PARAMCD == "QT")
 

@@ -1,9 +1,8 @@
 # NULL report ----
 
 test_that("tlg functions return null reports when domain table is empty", {
-  dat_empty <- syn_data %>%
-    dunlin::dm_explicit_na() %>%
-    dm_filter(adsl = (USUBJID == ""))
+  dat_empty <- lapply(syn_data, tern::df_explicit_na) %>%
+    lapply(filter, USUBJID == "")
 
   empty_report <- rtables::rtable(
     header = "",

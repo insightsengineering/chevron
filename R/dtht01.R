@@ -147,7 +147,7 @@ dtht01_1_opt_lyt <- function(arm_var,
 #' @export
 #'
 dtht01_1_pre <- function(adam_db, ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   assert_colnames(adam_db$adsl, c("DTHFL", "DTHCAT"))
 

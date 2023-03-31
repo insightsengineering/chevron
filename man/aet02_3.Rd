@@ -28,7 +28,7 @@ aet02_3
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{...}{not used.}
 

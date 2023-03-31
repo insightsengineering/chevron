@@ -1,6 +1,5 @@
 test_that("lbt01_1 can handle n = 0 and outputs NE instead of infs and NAs", {
-  proc_data <- as.list(syn_data)
-
+  proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     filter(PARAM != "ALT" & ACTARM != "A: Drug X")
 

@@ -114,7 +114,7 @@ cmt01a_1_lyt <- function(arm_var,
 #' @export
 #'
 cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -167,15 +167,13 @@ cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var 
 #' @export
 #'
 #' @examples
-#' library(magrittr)
-#' library(dm)
+#' library(dplyr)
 #'
-#' db <- syn_data %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(.data$ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed()
+#' proc_data <- syn_data
+#' proc_data$adcm <- proc_data$adcm %>%
+#'   filter(ATIREL == "CONCOMITANT")
 #'
-#' run(cmt01a_1, db)
+#' run(cmt01a_1, proc_data)
 cmt01a_1 <- chevron_t(
   main = cmt01a_1_main,
   lyt = cmt01a_1_lyt,
@@ -246,7 +244,7 @@ cmt01a_2_main <- function(adam_db,
 #' @export
 #'
 cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -303,15 +301,13 @@ cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var 
 #' @export
 #'
 #' @examples
-#' library(magrittr)
-#' library(dm)
+#' library(dplyr)
 #'
-#' db <- syn_data %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(.data$ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed()
+#' proc_data <- syn_data
+#' proc_data$adcm <- proc_data$adcm %>%
+#'   filter(ATIREL == "CONCOMITANT")
 #'
-#' run(cmt01a_2, db)
+#' run(cmt01a_2, proc_data)
 cmt01a_2 <- chevron_t(
   main = cmt01a_2_main,
   preprocess = cmt01a_2_pre,
@@ -430,7 +426,7 @@ cmt01a_3_lyt <- function(arm_var = "ARM",
 #' @export
 #'
 cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -482,15 +478,13 @@ cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var 
 #' @export
 #'
 #' @examples
-#' library(magrittr)
-#' library(dm)
+#' library(dplyr)
 #'
-#' db <- syn_data %>%
-#'   dm_zoom_to("adcm") %>%
-#'   filter(.data$ATIREL == "CONCOMITANT") %>%
-#'   dm_update_zoomed()
+#' proc_data <- syn_data
+#' proc_data$adcm <- proc_data$adcm %>%
+#'   filter(ATIREL == "CONCOMITANT")
 #'
-#' run(cmt01a_3, db)
+#' run(cmt01a_3, proc_data)
 cmt01a_3 <- chevron_t(
   main = cmt01a_3_main,
   preprocess = cmt01a_3_pre,

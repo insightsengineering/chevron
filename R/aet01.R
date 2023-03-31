@@ -437,7 +437,7 @@ aet01_2_lyt <- function(arm_var,
 #' @export
 #'
 aet01_2_pre <- function(adam_db, ...) {
-  # checkmate::assert_class(adam_db, "dm")
+  checkmate::assert_list(adam_db, types = "list")
 
   aet01_2_check(adam_db)
 
