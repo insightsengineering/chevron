@@ -15,13 +15,22 @@ An object of class \code{chevron_l} of length 1.
 ael01_nollt_1_main(
   adam_db,
   dataset = "adae",
+  key_cols = c("AEBODSYS", "AEDECOD"),
+  disp_cols = "AETERM",
   deco = std_deco("AEL01_NOLLT"),
   ...
 )
 
-ael01_nollt_1_pre(adam_db, dataset = "adae", ...)
+ael01_nollt_1_pre(
+  adam_db,
+  dataset = "adae",
+  key_cols = c("AEBODSYS", "AEDECOD"),
+  disp_cols = "AETERM",
+  new_lbls = list(AETERM = "Investigator-Specified\\n Adverse Event Term"),
+  ...
+)
 
-ael01_nollt_1_check(adam_db, dataset = "adae", vars)
+ael01_nollt_1_check(adam_db, dataset, vars)
 
 ael01_nollt_1_post(tlg, ...)
 
@@ -30,11 +39,19 @@ ael01_nollt_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+\item{dataset}{(\code{character}) the name of a table in the \code{adam_db} object.}
+
+\item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
+Key columns allow you to group repeat occurrences.}
+
+\item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{new_lbls}{(named \code{list} of \code{strings}) list where names correspond to variable names in \code{dataset} and
+strings to the new labels to apply to the named variables. Set to \code{NULL} to use default labels.}
 
 \item{vars}{(\code{character}) variables to be included in the listing.}
 
@@ -46,8 +63,9 @@ ael01_nollt_1
 \details{
 \itemize{
 \item Removes duplicate rows.
-\item Using dataset \code{adae}, sorts by key columns \code{AEBODSYS} and \code{AEDECOD}.
-\item Using dataset \code{admh}, sorts by key columns \code{MHBODSYS} and \code{MHDECOD}.
+\item By default, uses dataset \code{adae}, sorting by key columns \code{AEBODSYS} and \code{AEDECOD}.
+\item If using with a dataset other than \code{adae}, be sure to specify the desired labels for variables in
+\code{key_cols} and \code{disp_cols}, and pre-process missing data.
 }
 }
 \section{Functions}{
@@ -63,11 +81,10 @@ ael01_nollt_1
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adae} table with columns \code{AEBODSYS}, \code{AEDECOD}, and \code{AETERM}.
-\item \code{adam_db} object must contain an \code{admh} table with columns \code{MHBODSYS}, \code{MHDECOD}, and \code{MHTERM}.
+\item \code{adam_db} object must contain the \code{dataset} table with columns specified by \code{key_cols} and \code{disp_cols}.
 }
 }
 \examples{
-run(ael01_nollt_1, syn_data, dataset = "adae")
+run(ael01_nollt_1, syn_data)
 }
 \keyword{datasets}

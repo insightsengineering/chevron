@@ -20,6 +20,9 @@
 #' @param visit_var Analysis Visit variable.
 #' @param paramcd_value Value of PARAMCD variable.
 #' @param visit_value Value of visit variable.
+#' @param key_cols (`character`) names of columns that should be treated as key columns when rendering the listing.
+#'   Key columns allow you to group repeat occurrences.
+#' @param disp_cols (`character`) names of non-key columns which should be displayed when the listing is rendered.
 #' @param ... not used.
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.

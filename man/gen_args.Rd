@@ -64,6 +64,11 @@ creation.}
 \item{paramcd_value}{Value of PARAMCD variable.}
 
 \item{...}{not used.}
+
+\item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
+Key columns allow you to group repeat occurrences.}
+
+\item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 }
 \description{
 General Argument Name Convention
