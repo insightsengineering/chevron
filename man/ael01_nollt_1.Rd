@@ -26,7 +26,7 @@ ael01_nollt_1_pre(
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
-  new_lbls = list(AETERM = "Investigator-Specified\\n Adverse Event Term"),
+  new_lbls = NULL,
   ...
 )
 
@@ -85,6 +85,6 @@ strings to the new labels to apply to the named variables. Set to \code{NULL} to
 }
 }
 \examples{
-run(ael01_nollt_1, syn_data)
+run(ael01_nollt_1, syn_data, new_lbls = list(AETERM = "Investigator-Specified\n Adverse Event Term"))
 }
 \keyword{datasets}

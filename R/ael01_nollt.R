@@ -76,8 +76,7 @@ ael01_nollt_1_pre <- function(adam_db,
 #'
 ael01_nollt_1_check <- function(adam_db,
                                 dataset,
-                                vars
-                                ) {
+                                vars) {
   assert_all_tablenames(adam_db, dataset)
 
   msg <- c(NULL, check_all_colnames(adam_db[[dataset]], vars))
