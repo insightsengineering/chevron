@@ -1,7 +1,7 @@
 # egt03_1 ----
 #' @describeIn egt03_1 Main TLG function
 #'
-#' @param arm_var (`vector of character`) the arm variables used for row split, typically `"ARMCD"`.
+#' @param arm_var (`character`) the arm variables used for row split, typically `"ARMCD"`.
 #' @param summaryvar (`list`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
@@ -60,9 +60,9 @@ egt03_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @inheritParams egt03_1_main
 #'
-#' @param lbl_armvar (`character`) label of the `arm_var` variable.
-#' @param lbl_splitvar (`character`) label of the `splitvar` variable.
-#' @param lbl_summaryvars (`character`) label of the `summaryvar` variable.
+#' @param lbl_armvar (`string`) label of the `arm_var` variable.
+#' @param lbl_splitvar (`string`) label of the `splitvar` variable.
+#' @param lbl_summaryvars (`string`) label of the `summaryvar` variable.
 #'
 #' @export
 egt03_1_lyt <- function(arm_var,
@@ -188,7 +188,7 @@ egt03_1 <- chevron_t(
 #' @describeIn egt03_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param arm_var (`character`) the arm variables used for row split, typically `"ARMCD"`.
+#' @param arm_var (`string`) the arm variables used for row split, typically `"ARMCD"`.
 #' @param summaryvar (`list`) variables to be analyzed, typically `"BNRIND"`. Names are used as
 #' subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
@@ -246,9 +246,9 @@ egt03_2_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @inheritParams egt03_2_main
-#' @param lbl_armvar (`character`) label of the `arm_var` variable.
-#' @param lbl_splitvar (`character`) label of the `splitvar` variable.
-#' @param lbl_summaryvars (`character`) label of the `summaryvar` variable.
+#' @param lbl_armvar (`string`) label of the `arm_var` variable.
+#' @param lbl_splitvar (`string`) label of the `splitvar` variable.
+#' @param lbl_summaryvars (`string`) label of the `summaryvar` variable.
 #'
 #' @export
 egt03_2_lyt <- function(arm_var,

@@ -3,7 +3,7 @@
 #' @describeIn aet01_aesi_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param aesi_vars (`character`) the AESI variables to be included in the summary. Defaults to `NA`.
+#' @param aesi_vars (`list`) the AESI variables to be included in the summary. Defaults to `NA`.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -32,9 +32,11 @@
 #'
 aet01_aesi_1_main <- function(adam_db,
                               arm_var = "ACTARM",
-                              aesi_vars = NA,
+                              aesi_vars = list(NA_character_),
                               deco = std_deco("AET01_AESI"),
                               ...) {
+  checkmate::assert_list(aesi_vars, types = "character")
+  aesi_vars <- unlist(aesi_vars)
   if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
   if (any(grepl("^ALL_", aesi_vars))) {
     aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(

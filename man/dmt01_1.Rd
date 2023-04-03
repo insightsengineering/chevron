@@ -15,8 +15,8 @@ An object of class \code{chevron_t} of length 1.
 dmt01_1_main(
   adam_db,
   arm_var = "ARM",
-  summaryvars = list(`Age (yr)` = "AAGE", `Age group (yr)` = "AGEGR1", "SEX", "ETHNIC",
-    "RACE"),
+  summaryvars = list(`Age (yr)` = "AAGE", `Age group (yr)` = "AGEGR1", Sex = "SEX",
+    Ethnicity = "ETHNIC", Race = "RACE"),
   lbl_overall = "All Patients",
   deco = std_deco("DMT01"),
   ...
@@ -33,23 +33,23 @@ dmt01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{summaryvars}{(\code{list}) variables summarized in demographic table. Names are used as
 subtitles. For values where no name is provided, the label attribute of the corresponding column in \code{adsl} table of
 \code{adam_db} is used.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
 
-\item{summaryvars_lbls}{(\verb{vector of character}) labels corresponding to the analyzed variables.}
+\item{summaryvars_lbls}{(\code{character}) labels corresponding to the analyzed variables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 For each variable, summary statistics are
@@ -89,7 +89,7 @@ db <- syn_data \%>\%
   dmt01_1_pre()
 
 dmt01_1_main(db, lbl_overall = NULL)
-dmt01_1_main(db, summaryvars = c("Age" = "AGE", "RACE", "SEX"))
+dmt01_1_main(db, summaryvars = c("Age" = "AGE", "Race" = "RACE", "Gender" = "SEX"))
 dmt01_1_pre(syn_data)
 run(dmt01_1, syn_data)
 }

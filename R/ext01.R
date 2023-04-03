@@ -212,10 +212,10 @@ ext01_2_lyt <- function(arm_var,
 #' @describeIn ext01_2 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param show_stats (`vector of character`) providing the name of the parameters whose statistical summary should be
+#' @param show_stats (`character`) providing the name of the parameters whose statistical summary should be
 #'   presented. To analyze all, provide `show_stats = "ALL"` (Default), to analyze none, provide `show_stats = ""`.
 #'
-#' @param show_bins (`vector of character`) providing the name of the parameters whose categorical summary should be
+#' @param show_bins (`character`) providing the name of the parameters whose categorical summary should be
 #'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
 #'
 #'

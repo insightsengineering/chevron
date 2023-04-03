@@ -17,9 +17,9 @@ lbt07_1_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
+  grade_var = list("PARAM", "GRADE_DIR", "GRADE_ANL"),
   deco = std_deco("LBT07"),
-  lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
+  lbl_grade_var = list("Parameter", "Direction of Abnormality", "Toxicity Grade"),
   req_tables = c("adsl", "adlb"),
   ...
 )
@@ -46,11 +46,11 @@ lbt07_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{grade_var}{(\code{character}) \code{PARAM} and variables derived from the standard lab grade variable \code{ATOXGR}:
+\item{grade_var}{(\code{list}) \code{PARAM} and variables derived from the standard lab grade variable \code{ATOXGR}:
 \itemize{
 \item A grade direction variable (\code{GRADE_DIR}) is required in order to obtain
 the correct denominators when building the layout as it is used to define row splitting.
@@ -60,22 +60,22 @@ the correct denominators when building the layout as it is used to define row sp
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{lbl_grade_var}{(\code{character}) label of the variables in \code{grade_var}. If \code{NULL}, uses the label
+\item{lbl_grade_var}{(\code{list}) label of the variables in \code{grade_var}. If \code{NULL}, uses the label
 attribute of the columns selected in \code{grade_var}.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{...}{not used.}
 
-\item{lbl_gradedir}{(\code{character}) label of the \code{GRADE_DIR} variable.}
+\item{lbl_gradedir}{(\code{string}) label of the \code{GRADE_DIR} variable.}
 
-\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{LBT07} table provides an

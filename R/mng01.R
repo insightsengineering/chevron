@@ -8,7 +8,7 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param x_var (`character`) the name of a column in the `dataset` to represent on the x-axis.
+#' @param x_var (`string`) the name of a column in the `dataset` to represent on the x-axis.
 #' @param y_var (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
 #' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NA`, only
@@ -37,8 +37,8 @@ mng01_1_main <- function(adam_db,
                          y_name = "PARAM",
                          y_unit = NA,
                          arm_var = "ACTARM",
-                         center_fun = c("mean", "median"),
-                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                         center_fun = "mean",
+                         interval_fun = "mean_ci",
                          show_table = TRUE,
                          jitter = TRUE,
                          show_n = TRUE,
@@ -48,13 +48,15 @@ mng01_1_main <- function(adam_db,
                          line_col = as.list(nestcolor::color_palette()),
                          ...) {
   df <- adam_db[[dataset]]
+  checkmate::assert_string(center_fun)
+  checkmate::assert_string(interval_fun)
   line_col <- unlist(line_col)
 
   data_ls <- split(df, df$PARAM, drop = TRUE)
   x_var <- paste(x_var, collapse = "_")
 
-  center_fun <- match.arg(center_fun)
-  interval_fun <- match.arg(interval_fun)
+  checkmate::assert_subset(center_fun, c("mean", "median"))
+  checkmate::assert_subset(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
 
   checkmate::assert_flag(show_table)
   checkmate::assert_flag(jitter)

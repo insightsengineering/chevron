@@ -9,10 +9,10 @@
 #' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` data set required for `tlg`
 #'   creation.
 #' @param type (`string`) indicating the subclass.
-#' @param arm_var (`character`) variable used for column splitting
+#' @param arm_var (`string`) variable used for column splitting
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content
-#' @param lbl_overall (`character`) label used for overall column, if set to `NULL` the overall column is omitted
-#' @param prune_0 (`logical`) remove 0 count rows
+#' @param lbl_overall (`string`) label used for overall column, if set to `NULL` the overall column is omitted
+#' @param prune_0 (`flag`) remove 0 count rows
 #' @param req_tables (`character`) names of the required tables.
 #' @param tlg (`TableTree`, `Listing` or `ggplot`) object typically produced by a `main` function.
 #' @param tlgfname (`character`) function name of TLG function

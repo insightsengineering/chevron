@@ -3,11 +3,11 @@
 #' @describeIn dst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param arm_var (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
-#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param arm_var (`string`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
 #'
@@ -223,10 +223,10 @@ dst01_1 <- chevron_t(
 #' @describeIn dst01_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
 #'
@@ -461,13 +461,13 @@ dst01_2 <- chevron_t(
 #' @describeIn dst01_3 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
-#' @param status_treatment_var (`character`) variable used to define the treatment status of the patients. Default is
+#' @param status_treatment_var (`string`) variable used to define the treatment status of the patients. Default is
 #'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
 #'   referring to the analysis period.
 #'

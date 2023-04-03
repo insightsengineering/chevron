@@ -18,10 +18,10 @@ aet01_2_main(
   arm_var = "ACTARM",
   lbl_overall = NULL,
   deco = std_deco("AET01"),
-  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+  safety_var = list("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
   lbl_safety_var = NULL,
-  medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
+  medconcept_var = list("SMQ01", "SMQ02", "CQ01"),
   lbl_medconcept_var = NULL,
   ...
 )
@@ -42,9 +42,9 @@ aet01_2_check(
   adam_db,
   req_tables = c("adsl", "adae"),
   arm_var = "ACTARM",
-  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+  safety_var = list("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
-  medconcept_var = c("SMQ01", "SMQ02", "CQ01")
+  medconcept_var = list("SMQ01", "SMQ02", "CQ01")
 )
 
 aet01_2
@@ -52,9 +52,9 @@ aet01_2
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
