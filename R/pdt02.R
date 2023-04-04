@@ -109,10 +109,8 @@ pdt02_1_lyt <- function(arm_var,
 pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {
   assert_all_tablenames(adam_db, c("adsl", "addv"))
 
-
   adam_db$addv <- adam_db$addv %>%
-    filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
-    mutate(DVSEQ = as.factor(.data$DVSEQ))
+    filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y")
 
   fmt_ls <- list(
     dvreas_var = rule(
@@ -120,10 +118,11 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", .
     ),
     dvterm_var = rule(
       "No Coding available" = c("", NA)
-    )
+    ),
+    DVSEQ = rule()
   )
 
-  names(fmt_ls) <- c(dvreas_var, dvterm_var)
+  names(fmt_ls) <- c(dvreas_var, dvterm_var, "DVSEQ")
   new_format <- list(addv = fmt_ls)
 
   dunlin::reformat(adam_db, new_format, na_last = TRUE)

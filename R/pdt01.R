@@ -102,20 +102,17 @@ pdt01_1_lyt <- function(arm_var,
 pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
   assert_all_tablenames(adam_db, c("adsl", "addv"))
 
-
-  adam_db$addv <- adam_db$addv %>%
-    mutate(DVSEQ = as.factor(.data$DVSEQ))
-
   fmt_ls <- list(
     dvcode_var = rule(
       "No Coding available" = c("", NA)
     ),
     dvterm_var = rule(
       "No Coding available" = c("", NA)
-    )
+    ),
+    DVSEQ = rule()
   )
 
-  names(fmt_ls) <- c(dvcode_var, dvterm_var)
+  names(fmt_ls) <- c(dvcode_var, dvterm_var, "DVSEQ")
   new_format <- list(addv = fmt_ls)
 
   dunlin::reformat(adam_db, new_format, na_last = TRUE)

@@ -120,13 +120,16 @@ egt05_qtcat_1_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(
       .data$ANL01FL == "Y"
-    ) %>%
-    mutate(
-      AVALCAT1 = factor(.data$AVALCAT1),
-      CHGCAT1 = factor(.data$CHGCAT1)
     )
 
-  adam_db
+  new_format <- list(
+    adeg = list(
+      AVALCAT1 = rule(),
+      CHGCAT1 = rule()
+    )
+  )
+
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn egt05_qtcat_1 Postprocessing

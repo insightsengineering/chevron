@@ -71,7 +71,6 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      CMSEQ = as.factor(.data$CMSEQ),
       DOMAIN = "CM"
     )
 

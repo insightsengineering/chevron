@@ -118,7 +118,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ))
+    mutate(CMSEQ = as.character(CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(
@@ -126,10 +126,11 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
     ),
     medname_var = rule(
       "No Coding available" = c("", NA)
-    )
+    ),
+    CMSEQ = rule()
   )
 
-  names(fmt_ls) <- c(medcat_var, medname_var)
+  names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
   new_format <- list(adcm = fmt_ls)
 
   dunlin::reformat(adam_db, new_format, na_last = TRUE)
@@ -248,7 +249,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ))
+    mutate(CMSEQ = as.character(CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(
@@ -256,10 +257,11 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
     ),
     medname_var = rule(
       "No Coding available" = c("", NA)
-    )
+    ),
+    CMSEQ = rule()
   )
 
-  names(fmt_ls) <- c(medcat_var, medname_var)
+  names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
   new_format <- list(adcm = fmt_ls)
 
   dunlin::reformat(adam_db, new_format, na_last = TRUE)
@@ -430,7 +432,7 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.factor(.data$CMSEQ))
+    mutate(CMSEQ = as.character(CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(
@@ -438,10 +440,11 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
     ),
     medname_var = rule(
       "No Coding available" = c("", NA)
-    )
+    ),
+    CMSEQ = rule()
   )
 
-  names(fmt_ls) <- c(medcat_var, medname_var)
+  names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
   new_format <- list(adcm = fmt_ls)
 
   dunlin::reformat(adam_db, new_format, na_last = TRUE)
