@@ -5,7 +5,7 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `advs` table of `adam_db` is used.
-#' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
+#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed
 #'
 #' @details
@@ -59,12 +59,12 @@ vst01_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars (`vector of character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`vector of character`) the label of the variables to be analyzed.
-#' @param visitvar (`character`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
+#' @param summaryvars (`character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
+#' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed.
-#' @param lbl_avisit (`character`) label of the `visitvar` variable.
-#' @param lbl_param (`character`) label of the `PARAM` variable.
+#' @param lbl_avisit (`string`) label of the `visitvar` variable.
+#' @param lbl_param (`string`) label of the `PARAM` variable.
 #'
 #' @export
 #'

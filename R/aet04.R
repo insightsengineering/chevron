@@ -62,9 +62,9 @@ aet04_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
-#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param toxicity_grade (`vector of character`) putting in correspondence toxicity levels.
+#' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`string`) text label for `AEDECOD`.
+#' @param toxicity_grade (`character`) putting in correspondence toxicity levels.
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
 #'
 #' @export

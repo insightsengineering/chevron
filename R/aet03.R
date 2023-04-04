@@ -3,7 +3,6 @@
 #' @describeIn aet03_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param intensity_grade (`vector of character`) putting in correspondence intensity levels.
 #'
 #' @details
 #'  * Default Adverse Events by Greatest Intensity table.
@@ -49,9 +48,9 @@ aet03_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
-#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param intensity_grade (`vector of character`) describing the intensity levels present in the dataset.
+#' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`string`) text label for `AEDECOD`.
+#' @param intensity_grade (`character`) describing the intensity levels present in the dataset.
 #'
 #' @export
 #'

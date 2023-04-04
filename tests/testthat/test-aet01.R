@@ -32,7 +32,7 @@ test_that("aet01 can handle some NA values", {
 })
 
 test_that("aet01 can use custom lbl_safety_var", {
-  res <- expect_silent(run(aet01_1, syn_data, safety_var = "FATAL", lbl_safety_var = "Fatal AE"))
+  res <- expect_silent(run(aet01_1, syn_data, safety_var = list("FATAL"), lbl_safety_var = list("Fatal AE")))
   expect_snapshot(res)
 })
 
@@ -48,6 +48,6 @@ test_that("aet01 fails on incomplete data input", {
 })
 # aet01_2 ----
 test_that("aet01_2 can use custom medconcept_var", {
-  res <- expect_silent(run(aet01_2, syn_data, medconcept_var = "SMQ01", lbl_medconcept_var = "SMQ 01"))
+  res <- expect_silent(run(aet01_2, syn_data, medconcept_var = list("SMQ01"), lbl_medconcept_var = list("SMQ 01")))
   expect_snapshot(res)
 })

@@ -3,10 +3,10 @@
 #' @describeIn pdt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param dvcode_var (`character`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
-#' @param lbl_dvcode_var (`character`) label for the variable defining the protocol deviation coded term.
-#' @param dvterm_var (`character`) the variable defining the protocol deviation term. By default `DVTERM`.
-#' @param lbl_dvterm_var (`character`) label for the variable defining the protocol deviation term.
+#' @param dvcode_var (`string`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
+#' @param lbl_dvcode_var (`string`) label for the variable defining the protocol deviation coded term.
+#' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
+#' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
 #' @details
 #'  * Data should be filtered for major protocol deviations. `(DVCAT == "MAJOR")`.
@@ -54,10 +54,10 @@ pdt01_1_main <- function(adam_db,
 #' @describeIn pdt01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param dvcode_var (`character`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
-#' @param lbl_dvcode_var (`character`) label for the variable defining the protocol deviation coded term.
-#' @param dvterm_var (`character`) the variable defining the protocol deviation term. By default `DVTERM`.
-#' @param lbl_dvterm_var (`character`) label for the variable defining the protocol deviation term.
+#' @param dvcode_var (`string`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
+#' @param lbl_dvcode_var (`string`) label for the variable defining the protocol deviation coded term.
+#' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
+#' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
 #' @export
 #'

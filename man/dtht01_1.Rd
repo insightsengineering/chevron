@@ -36,13 +36,13 @@ dtht01_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{time_since_last_dose}{(\code{logical}) should the time to event information be displayed.}
+\item{time_since_last_dose}{(\code{flag}) should the time to event information be displayed.}
 
-\item{other_category}{(\code{logical}) should the breakdown of the \code{OTHER} category be displayed.}
+\item{other_category}{(\code{flag}) should the breakdown of the \code{OTHER} category be displayed.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -50,7 +50,7 @@ dtht01_1
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 A description of the causes of death optionally with the breakdown of the

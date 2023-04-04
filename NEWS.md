@@ -1,4 +1,8 @@
-# chevron 0.1.3.9000
+# chevron 0.1.4.9000
+
+* Use `list` to replace `character` in template arguments.
+
+# chevron 0.1.3
 
 * Add more templates: `AET01_AESI`, `EGT03`, `EGT05_QTCAT`, `LBT04`, `LBT05`, `LBT07`, `LBT14`, `PDT01`, `PDT02`.
 * Deprecation of previous `getter` function like `get_main` to `main` and `main<-`.

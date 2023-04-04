@@ -3,12 +3,12 @@
 #' @describeIn lbt07_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param grade_var (`character`) `PARAM` and variables derived from the standard lab grade variable `ATOXGR`:
+#' @param grade_var (`list`) `PARAM` and variables derived from the standard lab grade variable `ATOXGR`:
 #' * A grade direction variable (`GRADE_DIR`) is required in order to obtain
 #'   the correct denominators when building the layout as it is used to define row splitting.
 #' * A toxicity grade variable (e.g. `GRADE_ANL`) where all negative values from
 #'   `ATOXGR` are replaced by their absolute values.
-#' @param lbl_grade_var (`character`) label of the variables in `grade_var`. If `NULL`, uses the label
+#' @param lbl_grade_var (`list`) label of the variables in `grade_var`. If `NULL`, uses the label
 #'   attribute of the columns selected in `grade_var`.
 #'
 #' @details
@@ -23,12 +23,18 @@
 lbt07_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         grade_var = c("PARAM", "GRADE_DIR", "GRADE_ANL"),
+                         grade_var = list("PARAM", "GRADE_DIR", "GRADE_ANL"),
                          deco = std_deco("LBT07"),
-                         lbl_grade_var = c("Parameter", "Direction of Abnormality", "Toxicity Grade"),
+                         lbl_grade_var = list("Parameter", "Direction of Abnormality", "Toxicity Grade"),
                          req_tables = c("adsl", "adlb"),
                          ...) {
   lbt07_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
+
+  checkmate::assert_list(grade_var, types = "character")
+  grade_var <- unlist(grade_var)
+  checkmate::assert_list(lbl_grade_var, types = "character", null.ok = TRUE)
+  lbl_grade_var <- unlist(lbl_grade_var)
+  checkmate::assert_character(lbl_grade_var, len = length(grade_var), null.ok = TRUE)
 
   lbl_grade_var <- if (is.null(lbl_grade_var)) var_labels_for(adam_db$adlb, grade_var) else lbl_grade_var
 
@@ -58,8 +64,8 @@ lbt07_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_gradedir (`character`) label of the `GRADE_DIR` variable.
+#' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param lbl_gradedir (`string`) label of the `GRADE_DIR` variable.
 #' @param map (`data.frame`) mapping of `PARAM`s to directions of abnormality.
 #'
 #' @export

@@ -22,6 +22,8 @@ gen_args(
   visit_var,
   visit_value,
   paramcd_value,
+  key_cols,
+  disp_cols,
   ...
 )
 }
@@ -41,11 +43,11 @@ creation.}
 
 \item{type}{(\code{string}) indicating the subclass.}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
@@ -62,6 +64,11 @@ creation.}
 \item{visit_value}{Value of visit variable.}
 
 \item{paramcd_value}{Value of PARAMCD variable.}
+
+\item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
+Key columns allow you to group repeat occurrences.}
+
+\item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{...}{not used.}
 }
