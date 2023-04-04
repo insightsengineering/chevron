@@ -22,6 +22,8 @@ gen_args(
   visit_var,
   visit_value,
   paramcd_value,
+  key_cols,
+  disp_cols,
   ...
 )
 }
@@ -62,6 +64,11 @@ creation.}
 \item{visit_value}{Value of visit variable.}
 
 \item{paramcd_value}{Value of PARAMCD variable.}
+
+\item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
+Key columns allow you to group repeat occurrences.}
+
+\item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{...}{not used.}
 }

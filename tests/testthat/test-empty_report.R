@@ -9,6 +9,12 @@ test_that("tlg functions return null reports when domain table is empty", {
     rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
   )
 
+  empty_listing <- rlistings::as_listing(
+    df = data.frame(x = formatters::with_label(
+      "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
+    ))
+  )
+
   rtables::table_inset(empty_report) <- 2L
 
   res <- run(aet01_1, dat_empty, prune_0 = TRUE)
@@ -109,4 +115,7 @@ test_that("tlg functions return null reports when domain table is empty", {
 
   res <- run(vst02_2, dat_empty)
   expect_identical(res, empty_report)
+
+  res <- run(ael01_nollt_1, dat_empty)
+  expect_identical(res, empty_listing)
 })

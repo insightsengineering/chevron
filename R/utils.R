@@ -117,6 +117,14 @@ null_report <- rtables::rtable(
   rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
 )
 
+#' @export
+#' @rdname report_null
+null_listing <- rlistings::as_listing(
+  df = data.frame(x = formatters::with_label(
+    "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
+  ))
+)
+
 #' Prune Table up to an `ElementaryTable`
 #'
 #' Avoid returning `NULL` when the `table` is empty.
