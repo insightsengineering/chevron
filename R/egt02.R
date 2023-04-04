@@ -73,6 +73,8 @@ egt02_1_lyt <- function(arm_var = "ACTARM",
 #' @export
 #'
 egt02_1_pre <- function(adam_db, ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
+
   adam_db$adeg <- adam_db$adeg %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y")
@@ -182,6 +184,8 @@ egt02_2_lyt <- function(arm_var = "ACTARM",
 #' @export
 #'
 egt02_2_pre <- function(adam_db, ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
+
   adam_db$adeg <- adam_db$adeg %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y")

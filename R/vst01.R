@@ -109,6 +109,10 @@ vst01_1_lyt <- function(arm_var,
 #' @export
 #'
 vst01_1_pre <- function(adam_db, ...) {
+
+          assert_all_tablenames(adam_db, c("adsl", "advs"))
+
+
   adam_db$advs <- adam_db$advs %>%
     filter(.data$ANL01FL == "Y")
 

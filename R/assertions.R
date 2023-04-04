@@ -61,7 +61,7 @@ assert_colnames <- function(df, x, null_ok = TRUE) {
 #' assert_all_tablenames(lsd, c("mtcars", "iris", "x"), qualifier = "first test:")
 #' }
 assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_list(db, types = "data.frame")
+  checkmate::assert_list(db, types = "data.frame", names = "unique")
   checkmate::assert_character(tab, null.ok = null_ok)
   checkmate::assert_string(qualifier, null.ok = TRUE)
 
@@ -96,7 +96,7 @@ assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 #' assert_one_tablenames(lsd, c("mtcars", "x", "y"), qualifier = "first test:")
 #' }
 assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_list(db, types = "data.frame")
+  checkmate::assert_list(db, types = "data.frame", names = "unique")
   checkmate::assert_character(tab, null.ok = null_ok)
   checkmate::assert_string(qualifier, null.ok = TRUE)
 

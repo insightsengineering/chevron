@@ -82,6 +82,8 @@ ext01_1_lyt <- function(arm_var,
 ext01_1_pre <- function(adam_db,
                         paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
                         ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adex"))
+
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARCAT1 == "OVERALL")
 
@@ -219,6 +221,8 @@ ext01_2_pre <- function(adam_db,
                         show_stats = c("ALL"),
                         show_bins = c("ALL"),
                         ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adex"))
+
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARCAT1 == "OVERALL")
 

@@ -99,8 +99,7 @@ aet02_1_lyt <- function(arm_var,
 #' @export
 #'
 aet02_1_pre <- function(adam_db, ...) {
-  checkmate::assert_list(adam_db, types = "list")
-
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
   aet02_1_check(adam_db)
 
   adam_db$adae <- adam_db$adae %>%
@@ -296,8 +295,8 @@ aet02_2_lyt <- function(arm_var,
 #' @export
 #'
 aet02_2_pre <- function(adam_db, ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
   checkmate::assert_list(adam_db, types = "list")
-
   assert_colnames(adam_db$adae, c("AEBODSYS", "AEHLT", "AEDECOD"))
 
   adam_db$adae <- adam_db$adae %>%
@@ -445,10 +444,9 @@ aet02_3_lyt <- function(arm_var,
 #' @export
 #'
 aet02_3_pre <- function(adam_db, ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
   checkmate::assert_list(adam_db, types = "list")
-
   assert_colnames(adam_db$adae, c("AEDECOD"))
-
 
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%

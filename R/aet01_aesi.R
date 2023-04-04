@@ -115,7 +115,7 @@ aet01_aesi_1_pre <- function(adam_db,
                              req_tables = c("adsl", "adae"),
                              arm_var = "ACTARM",
                              ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
 
   aet01_aesi_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 

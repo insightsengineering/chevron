@@ -126,6 +126,8 @@ egt03_1_check <- function(adam_db,
 #'
 #' @export
 egt03_1_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
+
   visit_value <- "POST-BASELINE MINIMUM"
   egt03_1_check(
     adam_db,
@@ -282,6 +284,8 @@ egt03_2_lyt <- function(arm_var,
 #' @export
 #'
 egt03_2_pre <- function(adam_db, visit_var = "AVISIT", paramcd_value = "HR", ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
+
   visit_value <- "POST-BASELINE MAXIMUM"
   egt03_1_check(
     adam_db,

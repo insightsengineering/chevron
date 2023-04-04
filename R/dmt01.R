@@ -93,9 +93,9 @@ dmt01_1_lyt <- function(arm_var,
 #' @examples
 #' dmt01_1_pre(syn_data)
 dmt01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl"))
 
-  adam_db <- lapply(adam_db, tern::df_explicit_na)
+  adam_db$adsl <- tern::df_explicit_na(adam_db$adsl)
 
   adam_db$adsl <- adam_db$adsl %>%
     mutate(DOMAIN = "ADSL")

@@ -114,6 +114,7 @@ egt05_qtcat_1_lyt <- function(arm_var,
 #' @export
 #'
 egt05_qtcat_1_pre <- function(adam_db, ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
   assert_colnames(adam_db$adeg, c("AVALCAT1", "CHGCAT1"))
 
   adam_db$adeg <- adam_db$adeg %>%

@@ -35,6 +35,7 @@ dtht01_1_main <- function(adam_db,
   lyt <- dtht01_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    breakdown = ifelse("OTHER" %in% levels(adam_db$adsl$DTHCAT), "OTHER", NULL),
     deco = deco
   )
 
@@ -67,13 +68,13 @@ dtht01_1_main <- function(adam_db,
 #' @describeIn dtht01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param other_category (`flag`) should the breakdown of the `OTHER` category be displayed.
+#' @param breakdown (`character`) the levels of `DTHCAT` to be split. If `NULL`, this section is ommitted.
 #'
 #' @export
 #'
 dtht01_1_lyt <- function(arm_var,
                          lbl_overall,
-                         other_category,
+                         breakdown,
                          deco) {
   tab <-
     basic_table_deco(deco) %>%
@@ -97,7 +98,7 @@ dtht01_1_lyt <- function(arm_var,
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    split_rows_by("DTHCAT", split_fun = keep_split_levels("OTHER"), child_labels = "hidden") %>%
+    split_rows_by("DTHCAT", split_fun = keep_split_levels(breakdown), child_labels = "hidden") %>% # OTHER
     summarize_vars(
       "DTHCAUS",
       .stats = "count_fraction",
@@ -147,28 +148,26 @@ dtht01_1_opt_lyt <- function(arm_var,
 #' @export
 #'
 dtht01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_list(adam_db, types = "list")
-
+  assert_all_tablenames(adam_db, c("adsl"))
   assert_colnames(adam_db$adsl, c("DTHFL", "DTHCAT"))
 
 
   missing_rule <- rule("<Missing>" = c("", NA))
-
-  new_formats <- list(
-    adsl = list(
-      DTHCAT = missing_rule,
-      DTHCAUS = missing_rule,
-      LDDTHGR1 = missing_rule
+  missing_rule_other <- rule("<Missing>" = c("", NA), "OTHER" = "OTHER")
+  as_fct <- rule()
+    new_formats <- list(
+      adsl = list(
+        DTHCAT = missing_rule_other,
+        DTHCAUS = missing_rule,
+        LDDTHGR1 = missing_rule,
+        DTHFL = as_fct
+      )
     )
-  )
 
-  # Reorder factors to have "OTHER" last.
-  adam_db$adsl <- adam_db$adsl %>%
-    mutate(DTHFL = as.factor(.data$DTHFL)) %>%
-    mutate(DTHCAT = as.factor(.data$DTHCAT)) %>%
-    mutate(DTHCAT = factor(.data$DTHCAT, levels = c(setdiff(levels(.data$DTHCAT), "OTHER"), "OTHER")))
+  adam_db <- dunlin::reformat(adam_db, new_formats, na_last = TRUE)
 
-  dunlin::reformat(adam_db, new_formats, na_last = TRUE)
+  adam_db$adsl$DTHCAT <- forcats::fct_relevel(adam_db$adsl$DTHCAT, "OTHER", after = Inf)
+  adam_db
 }
 
 

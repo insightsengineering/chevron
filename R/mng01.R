@@ -164,6 +164,8 @@ mng01_1_main <- function(adam_db,
 #'
 #' @export
 mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
+  assert_all_tablenames(adam_db, c("adsl", dataset))
+
   sep <- "_"
 
   adam_db[[dataset]] <- adam_db[[dataset]] %>%

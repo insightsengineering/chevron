@@ -154,6 +154,8 @@ dst01_1_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
+  assert_all_tablenames(adam_db, c("adsl"))
+
   new_format <- list(
     adsl = list(
       rule("<Missing>" = c("", NA)),
@@ -381,7 +383,7 @@ dst01_2_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl"))
 
   new_format <- list(
     adsl = list(
@@ -611,7 +613,7 @@ dst01_3_pre <- function(adam_db,
                         disc_reason_var = "DCSREAS",
                         status_treatment_var = "EOTSTT",
                         ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl"))
 
   new_format <- list(
     adsl = list(

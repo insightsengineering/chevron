@@ -115,6 +115,8 @@ lbt07_1_lyt <- function(arm_var,
 #' @export
 #'
 lbt07_1_pre <- function(adam_db, ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adlb"))
+
   new_format <- list(
     adlb = list(
       ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding available"))

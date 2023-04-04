@@ -114,7 +114,7 @@ cmt01a_1_lyt <- function(arm_var,
 #' @export
 #'
 cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl", "adcm"))
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -244,7 +244,7 @@ cmt01a_2_main <- function(adam_db,
 #' @export
 #'
 cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl", "adcm"))
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -426,7 +426,7 @@ cmt01a_3_lyt <- function(arm_var = "ARM",
 #' @export
 #'
 cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl", "adcm"))
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%

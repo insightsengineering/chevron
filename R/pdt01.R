@@ -100,6 +100,10 @@ pdt01_1_lyt <- function(arm_var,
 #' @export
 #'
 pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
+
+        assert_all_tablenames(adam_db, c("adsl", "addv"))
+
+
   adam_db$addv <- adam_db$addv %>%
     mutate(DVSEQ = as.factor(.data$DVSEQ))
 

@@ -87,6 +87,8 @@ lbt14_1_pre <- function(adam_db,
                         req_tables = c("adsl", "adlb"),
                         arm_var = "ACTARM",
                         ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adlb"))
+
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
   lbt14_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
@@ -288,6 +290,8 @@ lbt14_2_pre <- function(adam_db,
                         req_tables = c("adsl", "adlb"),
                         arm_var = "ACTARM",
                         ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adlb"))
+
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
   lbt14_2_check(adam_db, req_tables = req_tables, arm_var = arm_var)

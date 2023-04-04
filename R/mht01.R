@@ -101,6 +101,9 @@ mht01_1_lyt <- function(arm_var,
 #' @export
 #'
 mht01_1_pre <- function(adam_db, ...) {
+  assert_all_tablenames(adam_db, c("adsl", "admh"))
+
+
   adam_db$admh <- adam_db$admh %>%
     filter(.data$ANL01FL == "Y")
 

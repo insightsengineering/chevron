@@ -131,7 +131,7 @@ aet04_1_lyt <- function(arm_var,
 #' @export
 #'
 aet04_1_pre <- function(adam_db, ...) {
-  checkmate::assert_list(adam_db, types = "list")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
 
   new_format <- list(
     adae = list(
