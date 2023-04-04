@@ -31,11 +31,12 @@ dtht01_1_main <- function(adam_db,
   checkmate::assert_flag(time_since_last_dose)
   checkmate::assert_flag(other_category)
 
+  breakdown <- if ("OTHER" %in% levels(adam_db$adsl$DTHCAT) && other_category) "OTHER"
 
   lyt <- dtht01_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    breakdown = ifelse("OTHER" %in% levels(adam_db$adsl$DTHCAT), "OTHER", NULL),
+    breakdown = breakdown,
     deco = deco
   )
 
@@ -68,7 +69,7 @@ dtht01_1_main <- function(adam_db,
 #' @describeIn dtht01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param breakdown (`character`) the levels of `DTHCAT` to be split. If `NULL`, this section is ommitted.
+#' @param breakdown (`character`) the levels of `DTHCAT` to be split. If `NULL`, this section is omitted.
 #'
 #' @export
 #'
@@ -151,22 +152,23 @@ dtht01_1_pre <- function(adam_db, ...) {
   assert_all_tablenames(adam_db, c("adsl"))
   assert_colnames(adam_db$adsl, c("DTHFL", "DTHCAT"))
 
-
   missing_rule <- rule("<Missing>" = c("", NA))
-  missing_rule_other <- rule("<Missing>" = c("", NA), "OTHER" = "OTHER")
   as_fct <- rule()
-    new_formats <- list(
-      adsl = list(
-        DTHCAT = missing_rule_other,
-        DTHCAUS = missing_rule,
-        LDDTHGR1 = missing_rule,
-        DTHFL = as_fct
-      )
+  new_formats <- list(
+    adsl = list(
+      DTHCAT = missing_rule,
+      DTHCAUS = missing_rule,
+      LDDTHGR1 = missing_rule,
+      DTHFL = as_fct
     )
+  )
 
   adam_db <- dunlin::reformat(adam_db, new_formats, na_last = TRUE)
 
-  adam_db$adsl$DTHCAT <- forcats::fct_relevel(adam_db$adsl$DTHCAT, "OTHER", after = Inf)
+  if ("OTHER" %in% levels(adam_db$adsl$DTHCAT)) {
+    adam_db$adsl$DTHCAT <- forcats::fct_relevel(adam_db$adsl$DTHCAT, "OTHER", after = Inf)
+  }
+
   adam_db
 }
 

@@ -23,7 +23,7 @@ dtht01_1_main(
   ...
 )
 
-dtht01_1_lyt(arm_var, lbl_overall, deco)
+dtht01_1_lyt(arm_var, lbl_overall, breakdown, deco)
 
 dtht01_1_opt_lyt(arm_var, lbl_overall, deco)
 
@@ -48,11 +48,11 @@ dtht01_1
 
 \item{...}{not used.}
 
+\item{breakdown}{(\code{character}) the levels of \code{DTHCAT} to be split. If \code{NULL}, this section is omitted.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{breakdown}{(\code{character}) the levels of \code{DTHCAT} to be split. If \code{NULL}, this section is ommitted.}
 }
 \description{
 A description of the causes of death optionally with the breakdown of the

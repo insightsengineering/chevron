@@ -75,7 +75,6 @@ vst02_1_lyt <- function(arm_var,
 vst02_1_pre <- function(adam_db, ...) {
   assert_all_tablenames(adam_db, c("adsl", "advs"))
 
-
   adam_db$advs <- adam_db$advs %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y") %>%
