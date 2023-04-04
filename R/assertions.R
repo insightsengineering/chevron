@@ -8,7 +8,7 @@
 #' @param x (`character`) the names of the columns to be checked.
 #' @param null_ok (`logical`) can `x` be NULL.
 #'
-#' @keywords internal
+#' @export
 #'
 #' @examples
 #' \dontrun{
@@ -48,7 +48,7 @@ assert_colnames <- function(df, x, null_ok = TRUE) {
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @keywords internal
+#' @export
 #'
 #' @examples
 #' \dontrun{

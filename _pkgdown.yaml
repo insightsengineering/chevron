@@ -86,6 +86,8 @@ reference:
       - syn_data
   - title: Utility Functions
     contents:
+      - assert_colnames
+      - assert_all_tablenames
       - get_db_data
       - report_null
       - smart_prune

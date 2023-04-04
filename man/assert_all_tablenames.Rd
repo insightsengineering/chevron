@@ -29,4 +29,3 @@ lsd <- list(
 assert_all_tablenames(lsd, c("mtcars", "iris", "x"), qualifier = "first test:")
 }
 }
-\keyword{internal}
