@@ -1958,3 +1958,21 @@
           Dose missed or significantly out of window                                                       2 (1.5%)        0           1 (0.8%)   
           Missed 2 or more efficacy assessments                                                            2 (1.5%)        0           1 (0.8%)   
 
+# ael01_nollt_1 function with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+      MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
+      ———————————————————————————————————————————————————————————————————————————————————————
+      cl A.1                      dcd A.1.1.1.1                      trm A.1.1.1.1           
+                                  dcd A.1.1.1.2                      trm A.1.1.1.2           
+      cl B.1                      dcd B.1.1.1.1                      trm B.1.1.1.1           
+      cl B.2                      dcd B.2.1.2.1                      trm B.2.1.2.1           
+                                  dcd B.2.2.3.1                      trm B.2.2.3.1           
+      cl C.1                      dcd C.1.1.1.3                      trm C.1.1.1.3           
+      cl C.2                      dcd C.2.1.2.1                      trm C.2.1.2.1           
+      cl D.1                      dcd D.1.1.1.1                      trm D.1.1.1.1           
+                                  dcd D.1.1.4.2                      trm D.1.1.4.2           
+      cl D.2                      dcd D.2.1.5.3                      trm D.2.1.5.3           
+
