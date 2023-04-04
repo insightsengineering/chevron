@@ -30,7 +30,7 @@ aet10_1_main <- function(adam_db,
   lyt <- aet10_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    lbl_aedecod = "MedDRA Preferred Term",
+    lbl_aedecod = lbl_aedecod,
     deco = deco
   )
 
@@ -48,7 +48,7 @@ aet10_1_main <- function(adam_db,
 #'
 aet10_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aedecod,
                         deco) {
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
@@ -111,8 +111,14 @@ aet10_1_check <- function(adam_db,
 aet10_1_post <- function(tlg, atleast = 0.05, ...) {
   checkmate::assert_true(is.numeric(atleast))
 
-  tlg <- prune_table(
-    tt = tlg,
+  tbl_sorted <- tlg %>%
+    sort_at_path(
+      path = c("AEDECOD"),
+      scorefun = score_occurrences
+    )
+
+  tlg_prune <- prune_table(
+    tt = tbl_sorted,
     prune_func = keep_rows(
       has_fraction_in_any_col(
         atleast = atleast, # specify threshold
@@ -121,16 +127,7 @@ aet10_1_post <- function(tlg, atleast = 0.05, ...) {
     )
   )
 
-  if (is.null(tlg)) {
-    tbl_sorted <- NULL
-  } else {
-    tbl_sorted <- tlg %>%
-      sort_at_path(
-        path = c("AEDECOD"),
-        scorefun = score_occurrences
-      )
-  }
-  std_postprocess(tbl_sorted)
+  std_postprocess(tlg_prune)
 }
 
 #' `AET10` Table 1 (Default) Most Common (xx%) Adverse Events Preferred Terms Table 1

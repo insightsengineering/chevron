@@ -22,7 +22,7 @@ aet10_1_main(
   ...
 )
 
-aet10_1_lyt(arm_var, lbl_overall, lbl_aedecod = "MedDRA Preferred Term", deco)
+aet10_1_lyt(arm_var, lbl_overall, lbl_aedecod, deco)
 
 aet10_1_pre(adam_db, ...)
 
@@ -35,9 +35,9 @@ aet10_1
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
