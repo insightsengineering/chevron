@@ -5,7 +5,6 @@ CTCAE
 gg
 gg_list
 Hoffmann
-PARAMCD
 NCI
 PARAMCD
 Postprocessing
@@ -17,7 +16,6 @@ SSO
 TLG
 TLGs
 funder
-msec
 pre
 repo
 reproducibility
