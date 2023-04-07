@@ -25,6 +25,22 @@ test_that("aet02_1 handle empty data input", {
   expect_silent(run(aet02_1, proc_data))
 })
 
+test_that("aet02_1 can handle correct ordering", {
+  new_aebodsys <- c("cl YZ.1", "cl YY.1", as.character(syn_data$adae$AEBODSYS[-c(1, 2)]))
+  new_aedecod <- c("dcd YZ.1.1.1.1", "dcd YY.1.1.1.1", as.character(syn_data$adae$AEDECOD[-c(1, 2)]))
+
+  proc_data <- syn_data %>%
+    dm_zoom_to("adae") %>%
+    mutate(
+      AEBODSYS = .env$new_aebodsys,
+      AEDECOD = .env$new_aedecod
+    ) %>%
+    dm_update_zoomed()
+
+  res <- expect_silent(run(aet02_1, proc_data))
+  expect_snapshot(res)
+})
+
 test_that("aet02_1 can handle NA values", {
   proc_data <- syn_data %>%
     dm_zoom_to("adae") %>%
