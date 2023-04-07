@@ -3,8 +3,8 @@
 #' @describeIn aet01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, uses the label
+#' @param safety_var (`list`) the safety variables to be summarized.
+#' @param lbl_safety_var (`list`) the labels of the safety variables to be summarized. If `NULL`, uses the label
 #'   attribute of the columns selected in `safety_var`.
 #'
 #' @details
@@ -20,13 +20,18 @@ aet01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET01"),
-                         safety_var = c(
+                         safety_var = list(
                            "FATAL", "SER", "SERWD", "SERDSM",
                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          ),
-                         lbl_safety_var = NULL) {
+                         lbl_safety_var = NULL,
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-
+  checkmate::assert_list(safety_var, types = "character")
+  safety_var <- unlist(safety_var)
+  checkmate::assert_list(lbl_safety_var, types = "character", null.ok = TRUE)
+  lbl_safety_var <- unlist(lbl_safety_var)
+  checkmate::assert_character(lbl_safety_var, len = length(safety_var), null.ok = TRUE)
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
   assert_colnames(dbsel$adae, safety_var)
 
@@ -126,12 +131,14 @@ aet01_1_lyt <- function(arm_var,
 aet01_1_pre <- function(adam_db,
                         req_tables = c("adsl", "adae"),
                         arm_var = "ACTARM",
-                        safety_var = c(
+                        safety_var = list(
                           "FATAL", "SER", "SERWD", "SERDSM",
                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                        )) {
+                        ),
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
-
+  checkmate::assert_list(safety_var, types = "character")
+  safety_var <- unlist(safety_var)
   aet01_1_check(adam_db, req_tables = req_tables, arm_var = arm_var, safety_var = safety_var)
 
   db <- adam_db %>%
@@ -244,7 +251,7 @@ aet01_1_check <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
-aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01")) {
+aet01_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01"), ...) {
   tbl <- set_decoration(tlg, deco)
   if (prune_0) {
     tbl <- smart_prune(tbl)
@@ -294,13 +301,26 @@ aet01_2_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
                          deco = std_deco("AET01"),
-                         safety_var = c(
+                         safety_var = list(
                            "FATAL", "SER", "SERWD", "SERDSM",
                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          ),
                          lbl_safety_var = NULL,
-                         medconcept_var = c("SMQ01", "SMQ02", "CQ01"),
-                         lbl_medconcept_var = NULL) {
+                         medconcept_var = list("SMQ01", "SMQ02", "CQ01"),
+                         lbl_medconcept_var = NULL,
+                         ...) {
+  checkmate::assert_list(safety_var, types = "character")
+  safety_var <- unlist(safety_var)
+  checkmate::assert_list(lbl_safety_var, types = "character", null.ok = TRUE)
+  safety_var <- unlist(safety_var)
+  checkmate::assert_character(lbl_safety_var, len = length(safety_var), null.ok = TRUE)
+
+  checkmate::assert_list(medconcept_var, types = "character")
+  medconcept_var <- unlist(medconcept_var)
+  checkmate::assert_list(lbl_medconcept_var, types = "character", null.ok = TRUE)
+  lbl_medconcept_var <- unlist(lbl_medconcept_var)
+  checkmate::assert_character(lbl_medconcept_var, len = length(medconcept_var), null.ok = TRUE)
+
   dbsel <- get_db_data(adam_db, "adsl", "adae")
 
   assert_colnames(dbsel$adsl, c("DTHFL", "DCSREAS"))
@@ -420,7 +440,7 @@ aet01_2_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet01_2_pre <- function(adam_db) {
+aet01_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet01_2_check(adam_db)
@@ -502,12 +522,17 @@ aet01_2_pre <- function(adam_db) {
 aet01_2_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           arm_var = "ACTARM",
-                          safety_var = c(
+                          safety_var = list(
                             "FATAL", "SER", "SERWD", "SERDSM",
                             "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                           ),
-                          medconcept_var = c("SMQ01", "SMQ02", "CQ01")) {
+                          medconcept_var = list("SMQ01", "SMQ02", "CQ01")) {
   assert_all_tablenames(adam_db, req_tables)
+  checkmate::assert_list(safety_var, types = "character")
+  safety_var <- unlist(safety_var)
+
+  checkmate::assert_list(medconcept_var, types = "character")
+  medconcept_var <- unlist(medconcept_var)
 
   msg <- NULL
 

@@ -16,28 +16,36 @@ An object of class \code{chevron_t} of length 1.
 aet01_aesi_1_main(
   adam_db,
   arm_var = "ACTARM",
-  aesi_vars = NA,
-  deco = std_deco("AET01_AESI")
+  aesi_vars = list(NA_character_),
+  deco = std_deco("AET01_AESI"),
+  ...
 )
 
 aet01_aesi_1_lyt(arm_var, aesi_vars, deco, lbl_aesi_vars)
 
-aet01_aesi_1_pre(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
+aet01_aesi_1_pre(
+  adam_db,
+  req_tables = c("adsl", "adae"),
+  arm_var = "ACTARM",
+  ...
+)
 
 aet01_aesi_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 
-aet01_aesi_post(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"))
+aet01_aesi_post(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"), ...)
 
 aet01_aesi_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{aesi_vars}{(\code{character}) the AESI variables to be included in the summary. Defaults to \code{NA}.}
+\item{aesi_vars}{(\code{list}) the AESI variables to be included in the summary. Defaults to \code{NA}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{lbl_aesi_vars}{(\code{character}) the labels of the AESI variables to be summarized.}
 
@@ -45,7 +53,7 @@ aet01_aesi_1
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 \code{AET01_AESI} Table 1 (Default) Adverse Event of Special Interest Summary Table.

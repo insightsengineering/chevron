@@ -15,9 +15,10 @@ An object of class \code{chevron_t} of length 1.
 egt01_1_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
+  summaryvars = list(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
   visitvar = "AVISIT",
-  deco = std_deco("EGT01")
+  deco = std_deco("EGT01"),
+  ...
 )
 
 egt01_1_lyt(
@@ -30,33 +31,35 @@ egt01_1_lyt(
   deco
 )
 
-egt01_1_pre(adam_db)
+egt01_1_pre(adam_db, ...)
 
-egt01_1_post(tlg, prune_0 = TRUE)
+egt01_1_post(tlg, prune_0 = TRUE, ...)
 
 egt01_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+\item{summaryvars}{(\code{character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
-\item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
+\item{...}{not used.}
 
-\item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
+\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
 
-\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
+
+\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{EGT01} table 1 summarizes
@@ -95,6 +98,6 @@ by \code{AVISIT}. Re-level to customize order.
 \examples{
 db <- syn_data
 run(egt01_1, db)
-run(egt01_1, db, summaryvars = c("AVAL", "Change" = "CHG"))
+run(egt01_1, db, summaryvars = list("AVAL", "Change" = "CHG"))
 }
 \keyword{datasets}

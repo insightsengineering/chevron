@@ -15,8 +15,8 @@ articles:
       - chevron
       - adam_db_argument
       - layouts
-      - Adding_new_TLGs_to_Chevron
-      - Script_Generator
+      - adding_new_tlgs_to_chevron
+      - script_generator
 
 reference:
   - title: Package Overview
@@ -43,6 +43,7 @@ reference:
 
   - title: chevron_tlg objects
     contents:
+      - ael01_nollt_1
       - aet01_1
       - aet01_2
       - aet01_aesi_1
@@ -51,6 +52,7 @@ reference:
       - aet02_3
       - aet03_1
       - aet04_1
+      - aet10_1
       - cmt01a_1
       - cmt01a_2
       - cmt01a_3
@@ -81,16 +83,19 @@ reference:
       - vst02_2
       - pdt01_1
       - pdt02_1
-
+  - title: Data
+    contents:
+      - syn_data
   - title: Utility Functions
     contents:
       - get_db_data
       - report_null
       - smart_prune
       - std_deco
-      - syn_test_data
       - var_labels_for
       - h_format_dec
+      - gg_list
+      - grob_list
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

@@ -3,7 +3,6 @@
 #' @describeIn aet03_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param intensity_grade (`vector of character`) putting in correspondence intensity levels.
 #'
 #' @details
 #'  * Default Adverse Events by Greatest Intensity table.
@@ -21,7 +20,10 @@
 aet03_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         deco = std_deco("AET03")) {
+                         lbl_aebodsys = "MedDRA System Organ Class",
+                         lbl_aedecod = "MedDRA Preferred Term",
+                         deco = std_deco("AET03"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
 
@@ -31,6 +33,8 @@ aet03_1_main <- function(adam_db,
   lyt <- aet03_1_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
+    lbl_aebodsys = lbl_aebodsys,
+    lbl_aedecod = lbl_aedecod,
     intensity_grade = intensity_grade,
     deco = deco
   )
@@ -44,16 +48,16 @@ aet03_1_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
-#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#' @param intensity_grade (`vector of character`) describing the intensity levels present in the dataset.
+#' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`string`) text label for `AEDECOD`.
+#' @param intensity_grade (`character`) describing the intensity levels present in the dataset.
 #'
 #' @export
 #'
 aet03_1_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aebodsys = "MedDRA System Organ Class",
-                        lbl_aedecod = "MedDRA Preferred Term",
+                        lbl_aebodsys,
+                        lbl_aedecod,
                         intensity_grade,
                         deco) {
   all_grade_groups <- list("- Any Intensity -" = intensity_grade)
@@ -106,7 +110,7 @@ aet03_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet03_1_pre <- function(adam_db) {
+aet03_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -131,7 +135,7 @@ aet03_1_pre <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 #' @export
-aet03_1_post <- function(tlg, prune_0 = TRUE) {
+aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
   tbl_sorted <- tlg %>%

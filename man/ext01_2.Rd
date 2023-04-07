@@ -14,10 +14,11 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 ext01_2_main(
   adam_db,
-  summaryvars = c("AVAL", "AVALCAT1"),
+  summaryvars = list("AVAL", "AVALCAT1"),
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("EXT01")
+  deco = std_deco("EXT01"),
+  ...
 )
 
 ext01_2_lyt(
@@ -28,9 +29,9 @@ ext01_2_lyt(
   deco = std_deco("EXT01")
 )
 
-ext01_2_pre(adam_db, show_stats = c("ALL"), show_bins = c("ALL"))
+ext01_2_pre(adam_db, show_stats = c("ALL"), show_bins = c("ALL"), ...)
 
-ext01_2_post(tlg, prune_0 = TRUE)
+ext01_2_post(tlg, prune_0 = TRUE, ...)
 
 ext01_2
 }
@@ -39,23 +40,25 @@ ext01_2
 
 \item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{...}{not used.}
+
 \item{summaryvars_lbls}{(\code{string}) the label associated with the analyzed variable.}
 
-\item{show_stats}{(\verb{vector of character}) providing the name of the parameters whose statistical summary should be
+\item{show_stats}{(\code{character}) providing the name of the parameters whose statistical summary should be
 presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{show_stats = ""}.}
 
-\item{show_bins}{(\verb{vector of character}) providing the name of the parameters whose categorical summary should be
+\item{show_bins}{(\code{character}) providing the name of the parameters whose categorical summary should be
 presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options

@@ -19,20 +19,21 @@ mng01_1_main(
   y_name = "PARAM",
   y_unit = NA,
   arm_var = "ACTARM",
-  center_fun = c("mean", "median"),
-  interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+  center_fun = "mean",
+  interval_fun = "mean_ci",
   show_table = TRUE,
   jitter = TRUE,
   show_n = TRUE,
   show_h_grid = TRUE,
   show_v_grid = FALSE,
   legend_pos = "top",
-  line_col = nestcolor::color_palette()
+  line_col = as.list(nestcolor::color_palette()),
+  ...
 )
 
-mng01_1_pre(adam_db, dataset, x_var = "AVISIT")
+mng01_1_pre(adam_db, dataset, x_var = "AVISIT", ...)
 
-mng01_1_post(tlg)
+mng01_1_post(tlg, ...)
 
 mng01_1
 }
@@ -41,7 +42,7 @@ mng01_1
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
-\item{x_var}{(\code{character}) the name of a column in the \code{dataset} to represent on the x-axis.}
+\item{x_var}{(\code{string}) the name of a column in the \code{dataset} to represent on the x-axis.}
 
 \item{y_var}{(\code{string}) the name of the variable to be represented on the y-axis.}
 
@@ -50,7 +51,7 @@ mng01_1
 \item{y_unit}{(\code{string}) the name of the variable with the units of \code{y}. Used for plot's subtitle. if \code{NA}, only
 \code{y_name} is displayed as subtitle.}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{center_fun}{(\code{string}) the function to compute the estimate value.}
 
@@ -68,8 +69,10 @@ mng01_1
 
 \item{legend_pos}{(\code{string}) the position of the legend.}
 
-\item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} vector associating
-values of \code{arm_var} with color names.}
+\item{line_col}{(\code{list}) describing the colors to use for the lines or a named \code{list} associating values of \code{arm_var}
+with color names.}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }

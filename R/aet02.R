@@ -23,7 +23,8 @@ aet02_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          lbl_aebodsys = "MedDRA System Organ Class",
                          lbl_aedecod = "MedDRA Preferred Term",
-                         deco = std_deco("AET02")) {
+                         deco = std_deco("AET02"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD"))
 
@@ -43,8 +44,8 @@ aet02_1_main <- function(adam_db,
 #' @describeIn aet02_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param lbl_aebodsys (`character`) text label for `AEBODSYS`.
-#' @param lbl_aedecod (`character`) text label for `AEDECOD`.
+#' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
+#' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #'
 #' @export
 #'
@@ -94,7 +95,7 @@ aet02_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet02_1_pre <- function(adam_db) {
+aet02_1_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet02_1_check(adam_db)
@@ -139,7 +140,7 @@ aet02_1_check <- function(adam_db,
 #'
 #' @export
 #'
-aet02_1_post <- function(tlg, prune_0 = TRUE) {
+aet02_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -202,7 +203,8 @@ aet02_2_main <- function(adam_db,
                          lbl_aebodsys = "MedDRA System Organ Class",
                          lbl_aedecod = "MedDRA Preferred Term",
                          lbl_aehlt = "MedDRA High-Level Term",
-                         deco = std_deco("AET02")) {
+                         deco = std_deco("AET02"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "AEHLT"))
 
@@ -294,7 +296,7 @@ aet02_2_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet02_2_pre <- function(adam_db) {
+aet02_2_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -317,7 +319,7 @@ aet02_2_pre <- function(adam_db) {
 #' @inheritParams gen_args
 #'
 #' @export
-aet02_2_post <- function(tlg, prune_0 = TRUE) {
+aet02_2_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -379,7 +381,8 @@ aet02_3_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
                          lbl_aedecod = "MedDRA Preferred Term",
-                         deco = std_deco("AET02")) {
+                         deco = std_deco("AET02"),
+                         ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   assert_colnames(dbsel$adae, c("AEDECOD"))
 
@@ -448,7 +451,7 @@ aet02_3_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet02_3_pre <- function(adam_db) {
+aet02_3_pre <- function(adam_db, ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -473,7 +476,7 @@ aet02_3_pre <- function(adam_db) {
 #'
 #' @export
 #'
-aet02_3_post <- function(tlg, prune_0 = TRUE) {
+aet02_3_post <- function(tlg, prune_0 = TRUE, ...) {
   tbl_top <- tlg[[1]]
   tbl_bottom <- tlg[[2]]
   # needed to handle empty adae tables.

@@ -3,11 +3,11 @@
 #' @describeIn dst01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param arm_var (`character`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
-#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param arm_var (`string`) variable. Usually one of `ARM`, `ACTARM`, `TRT01A`, or `TRT01A`.
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
 #'
@@ -38,7 +38,8 @@ dst01_1_main <- function(adam_db,
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01")) {
+                         deco = std_deco("DST01"),
+                         ...) {
   # Standard values defined in GDSR.
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
@@ -95,9 +96,9 @@ dst01_1_main <- function(adam_db,
 dst01_1_lyt <- function(arm_var,
                         status_var,
                         disc_reason_var,
-                        completed_lbl = "COMPLETED",
-                        ongoing_lbl = "ONGOING",
-                        discontinued_lbl = "DISCONTINUED",
+                        completed_lbl,
+                        ongoing_lbl,
+                        discontinued_lbl,
                         lbl_overall,
                         deco) {
   layout_table <- basic_table_deco(deco) %>%
@@ -152,7 +153,8 @@ dst01_1_lyt <- function(arm_var,
 #' dst01_1_pre(syn_data)
 dst01_1_pre <- function(adam_db,
                         status_var = "EOSSTT",
-                        disc_reason_var = "DCSREAS") {
+                        disc_reason_var = "DCSREAS",
+                        ...) {
   new_format <- list(
     adsl = list(
       rule("<Missing>" = c("", NA)),
@@ -184,7 +186,7 @@ dst01_1_pre <- function(adam_db,
 #'
 #'
 #' @export
-dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
+dst01_1_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
   if (prune_0) tbl_other <- tbl_other %>% trim_rows()
@@ -221,10 +223,10 @@ dst01_1 <- chevron_t(
 #' @describeIn dst01_2 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
 #'
@@ -257,7 +259,8 @@ dst01_2_main <- function(adam_db,
                          status_var = "EOSSTT",
                          disc_reason_var = "DCSREAS",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01")) {
+                         deco = std_deco("DST01"),
+                         ...) {
   # Standard values defined in GDSR.
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
@@ -378,7 +381,8 @@ dst01_2_lyt <- function(arm_var,
 #' dst01_2_pre(syn_data)
 dst01_2_pre <- function(adam_db,
                         status_var = "EOSSTT",
-                        disc_reason_var = "DCSREAS") {
+                        disc_reason_var = "DCSREAS",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -419,7 +423,7 @@ dst01_2_pre <- function(adam_db,
 #'
 #'
 #' @export
-dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
+dst01_2_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl_completed <- tlg[[1]]
   tbl_other <- tlg[[2]]
   if (prune_0) tbl_other <- tbl_other %>% trim_rows()
@@ -457,13 +461,13 @@ dst01_2 <- chevron_t(
 #' @describeIn dst01_3 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param status_var (`character`) variable used to define patient status. Default is `EOSSTT`, however can also be a
+#' @param status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
-#' @param disc_reason_var (`character`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
+#' @param disc_reason_var (`string`) variable used to define reason for patient withdrawal. Default is `DCSREAS`,
 #'   however can also be a variable with the pattern `DCPxxRS` where `xx` must be substituted by 2 digits referring to
 #'   the analysis period.
-#' @param status_treatment_var (`character`) variable used to define the treatment status of the patients. Default is
+#' @param status_treatment_var (`string`) variable used to define the treatment status of the patients. Default is
 #'   `EOTSTT`, however can also be a variable with the pattern `EOTxxSTT` where `xx` must be substituted by 2 digits
 #'   referring to the analysis period.
 #'
@@ -498,7 +502,8 @@ dst01_3_main <- function(adam_db,
                          disc_reason_var = "DCSREAS",
                          status_treatment_var = "EOTSTT",
                          lbl_overall = "All Patients",
-                         deco = std_deco("DST01")) {
+                         deco = std_deco("DST01"),
+                         ...) {
   completed_lvl <- "COMPLETED"
   discontinued_lvl <- "DISCONTINUED"
   ongoing_lvl <- "ONGOING"
@@ -607,7 +612,8 @@ dst01_3_lyt <- function(arm_var,
 dst01_3_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
-                        status_treatment_var = "EOTSTT") {
+                        status_treatment_var = "EOTSTT",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
 
   new_format <- list(
@@ -653,7 +659,7 @@ dst01_3_pre <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
-dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01")) {
+dst01_3_post <- function(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...) {
   tbl <- tlg[[1]]
   tbl_completed <- tlg[[2]]
   tbl_other <- tlg[[3]]

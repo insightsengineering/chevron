@@ -3,8 +3,8 @@
 #' @describeIn lbt05_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_anrind (`character`) label of the `ANRIND` variable.
+#' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -22,13 +22,14 @@ lbt05_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          lbl_param = "Laboratory Test",
                          lbl_anrind = "Direction of Abnormality",
-                         deco = std_deco("LBT05")) {
+                         deco = std_deco("LBT05"),
+                         ...) {
   map <- expand.grid(
     PARAM = levels(adam_db$adlb$PARAM),
     abn_dir = c("Low", "High"),
     stringsAsFactors = FALSE
   ) %>%
-    arrange(PARAM, desc(abn_dir))
+    arrange(.data$PARAM, desc(.data$abn_dir))
 
   lyt <- lbt05_1_lyt(
     arm_var = arm_var,
@@ -49,8 +50,8 @@ lbt05_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @inheritParams gen_args
-#' @param lbl_param (`character`) label of the `PARAM` variable.
-#' @param lbl_anrind (`character`) label of the `ANRIND` variable.
+#' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #' @param map (`data.frame`) mapping of `PARAM`s to directions of abnormality.
 #'
 #' @export
@@ -85,7 +86,7 @@ lbt05_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-lbt05_1_pre <- function(adam_db, arm_var = "ACTARM") {
+lbt05_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   lbt05_1_check(adam_db, arm_var = arm_var, req_tables = "adlb")
@@ -146,7 +147,7 @@ lbt05_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt05_1_post <- function(tlg, prune_0 = FALSE) {
+lbt05_1_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     has_lbl <- function(lbl) CombinationFunction(function(tr) obj_label(tr) == lbl)
     tlg <- prune_table(tlg, keep_rows(has_lbl("Any Abnormality")))

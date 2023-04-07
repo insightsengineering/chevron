@@ -16,42 +16,47 @@ aet03_1_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("AET03")
+  lbl_aebodsys = "MedDRA System Organ Class",
+  lbl_aedecod = "MedDRA Preferred Term",
+  deco = std_deco("AET03"),
+  ...
 )
 
 aet03_1_lyt(
   arm_var,
   lbl_overall,
-  lbl_aebodsys = "MedDRA System Organ Class",
-  lbl_aedecod = "MedDRA Preferred Term",
+  lbl_aebodsys,
+  lbl_aedecod,
   intensity_grade,
   deco
 )
 
-aet03_1_pre(adam_db)
+aet03_1_pre(adam_db, ...)
 
-aet03_1_post(tlg, prune_0 = TRUE)
+aet03_1_post(tlg, prune_0 = TRUE, ...)
 
 aet03_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
+
+\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
+\item{...}{not used.}
 
-\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
-
-\item{intensity_grade}{(\verb{vector of character}) describing the intensity levels present in the dataset.}
+\item{intensity_grade}{(\code{character}) describing the intensity levels present in the dataset.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 An adverse events table categorized by System

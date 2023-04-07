@@ -18,33 +18,36 @@ vst02_2_main(
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
-  deco = std_deco("VST02_2")
+  deco = std_deco("VST02_2"),
+  ...
 )
 
 vst02_2_lyt(arm_var, lbl_vs_assessment, lbl_vs_abnormality, lbl_overall, deco)
 
-vst02_2_pre(adam_db)
+vst02_2_pre(adam_db, ...)
 
-vst02_2_post(tlg, prune_0 = FALSE)
+vst02_2_post(tlg, prune_0 = FALSE, ...)
 
 vst02_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_vs_assessment}{(\code{character}) the label of the assessment variable.}
 
 \item{lbl_vs_abnormality}{(\code{character}) the label of the abnormality variable.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{...}{not used.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 Assessments Outside Normal Limits Among Subject

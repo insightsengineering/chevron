@@ -25,7 +25,8 @@ lbt14_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - Low Direction",
-                         deco = std_deco("LBT14")) {
+                         deco = std_deco("LBT14"),
+                         ...) {
   lyt <- lbt14_1_lyt(
     arm_var = arm_var,
     gr_missing = gr_missing,
@@ -84,7 +85,8 @@ lbt14_1_lyt <- function(arm_var,
 lbt14_1_pre <- function(adam_db,
                         gr_missing = "incl",
                         req_tables = c("adsl", "adlb"),
-                        arm_var = "ACTARM") {
+                        arm_var = "ACTARM",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
@@ -110,11 +112,11 @@ lbt14_1_pre <- function(adam_db,
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
       mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
-        factor(BTOXGR, levels = c("0", "<Missing>"))
+        factor(.data$BTOXGR, levels = c("0", "<Missing>"))
       } else {
-        BTOXGR
+        .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
+      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }
 
@@ -144,7 +146,7 @@ lbt14_1_pre <- function(adam_db,
           BTOXGR == -4 ~ "4",
           BTOXGR == "<Missing>" ~ "Missing"
         ),
-        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>")) {
+        levels = if (gr_missing == "incl" & any(.data$BTOXGR == "<Missing>")) {
           c("Not Low", "1", "2", "3", "4", "Missing")
         } else {
           c("Not Low", "1", "2", "3", "4")
@@ -184,7 +186,7 @@ lbt14_1_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt14_1_post <- function(tlg, prune_0 = TRUE) {
+lbt14_1_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }
@@ -231,7 +233,8 @@ lbt14_2_main <- function(adam_db,
                          arm_var = "ACTARM",
                          gr_missing = "incl",
                          title = "LBT14 - High Direction",
-                         deco = std_deco("LBT14")) {
+                         deco = std_deco("LBT14"),
+                         ...) {
   lyt <- lbt14_2_lyt(
     arm_var = arm_var,
     gr_missing = gr_missing,
@@ -290,7 +293,8 @@ lbt14_2_lyt <- function(arm_var,
 lbt14_2_pre <- function(adam_db,
                         gr_missing = "incl",
                         req_tables = c("adsl", "adlb"),
-                        arm_var = "ACTARM") {
+                        arm_var = "ACTARM",
+                        ...) {
   checkmate::assert_class(adam_db, "dm")
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
 
@@ -316,11 +320,11 @@ lbt14_2_pre <- function(adam_db,
     adam_db <- adam_db %>%
       dm_zoom_to("adlb") %>%
       mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
-        factor(BTOXGR, levels = c("0", "<Missing>"))
+        factor(.data$BTOXGR, levels = c("0", "<Missing>"))
       } else {
-        BTOXGR
+        .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(BTOXGR, "0" = c("0", "<Missing>"))) %>%
+      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>"))) %>%
       dm_update_zoomed()
   }
 
@@ -350,7 +354,7 @@ lbt14_2_pre <- function(adam_db,
           BTOXGR == 4 ~ "4",
           BTOXGR == "<Missing>" ~ "Missing"
         ),
-        levels = if (gr_missing == "incl" & any(BTOXGR == "<Missing>")) {
+        levels = if (gr_missing == "incl" & any(.data$BTOXGR == "<Missing>")) {
           c("Not High", "1", "2", "3", "4", "Missing")
         } else {
           c("Not High", "1", "2", "3", "4")
@@ -390,7 +394,7 @@ lbt14_2_check <- function(adam_db,
 #'
 #' @export
 #'
-lbt14_2_post <- function(tlg, prune_0 = TRUE) {
+lbt14_2_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }

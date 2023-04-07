@@ -9,7 +9,7 @@ assert_colnames(df, x, null_ok = TRUE)
 \arguments{
 \item{df}{(\code{data.frame}) input to check for the presence of column names.}
 
-\item{x}{(vector of \code{character}) the names of the columns to be checked.}
+\item{x}{(\code{character}) the names of the columns to be checked.}
 
 \item{null_ok}{(\code{logical}) can \code{x} be NULL.}
 }

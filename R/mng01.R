@@ -8,7 +8,7 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param x_var (`character`) the name of a column in the `dataset` to represent on the x-axis.
+#' @param x_var (`string`) the name of a column in the `dataset` to represent on the x-axis.
 #' @param y_var (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
 #' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NA`, only
@@ -21,8 +21,8 @@
 #' @param show_h_grid (`flag`) should horizontal grid be displayed.
 #' @param show_v_grid (`flag`) should vertical grid be displayed.
 #' @param legend_pos (`string`) the position of the legend.
-#' @param line_col (`character`) describing the colors to use for the lines or a named `character` vector associating
-#'   values of `arm_var` with color names.
+#' @param line_col (`list`) describing the colors to use for the lines or a named `list` associating values of `arm_var`
+#'   with color names.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
@@ -37,22 +37,26 @@ mng01_1_main <- function(adam_db,
                          y_name = "PARAM",
                          y_unit = NA,
                          arm_var = "ACTARM",
-                         center_fun = c("mean", "median"),
-                         interval_fun = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"),
+                         center_fun = "mean",
+                         interval_fun = "mean_ci",
                          show_table = TRUE,
                          jitter = TRUE,
                          show_n = TRUE,
                          show_h_grid = TRUE,
                          show_v_grid = FALSE,
                          legend_pos = "top",
-                         line_col = nestcolor::color_palette()) {
+                         line_col = as.list(nestcolor::color_palette()),
+                         ...) {
   df <- adam_db[[dataset]]
+  checkmate::assert_string(center_fun)
+  checkmate::assert_string(interval_fun)
+  line_col <- unlist(line_col)
 
   data_ls <- split(df, df$PARAM, drop = TRUE)
   x_var <- paste(x_var, collapse = "_")
 
-  center_fun <- match.arg(center_fun)
-  interval_fun <- match.arg(interval_fun)
+  checkmate::assert_subset(center_fun, c("mean", "median"))
+  checkmate::assert_subset(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
 
   checkmate::assert_flag(show_table)
   checkmate::assert_flag(jitter)
@@ -136,7 +140,7 @@ mng01_1_main <- function(adam_db,
     col <- line_col
   }
 
-  lapply(
+  ret <- lapply(
     data_ls,
     tern::g_lineplot,
     alt_count = adam_db[["adsl"]],
@@ -151,6 +155,7 @@ mng01_1_main <- function(adam_db,
     col = col,
     subtitle_add_unit = !is.na(y_unit)
   )
+  do.call(gg_list, ret)
 }
 
 #' @describeIn mng01_1 Preprocessing
@@ -158,7 +163,7 @@ mng01_1_main <- function(adam_db,
 #' @inheritParams mng01_1_main
 #'
 #' @export
-mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT") {
+mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   checkmate::assert_class(adam_db, "dm")
 
   adam_db <- adam_db %>%
@@ -173,7 +178,7 @@ mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT") {
 #'
 #' @inheritParams gen_args
 #'
-mng01_1_post <- function(tlg) {
+mng01_1_post <- function(tlg, ...) {
   tlg
 }
 

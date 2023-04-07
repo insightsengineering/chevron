@@ -19,7 +19,8 @@ lbt14_2_main(
   arm_var = "ACTARM",
   gr_missing = "incl",
   title = "LBT14 - High Direction",
-  deco = std_deco("LBT14")
+  deco = std_deco("LBT14"),
+  ...
 )
 
 lbt14_2_lyt(arm_var, gr_missing, title, deco)
@@ -28,19 +29,20 @@ lbt14_2_pre(
   adam_db,
   gr_missing = "incl",
   req_tables = c("adsl", "adlb"),
-  arm_var = "ACTARM"
+  arm_var = "ACTARM",
+  ...
 )
 
 lbt14_2_check(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM")
 
-lbt14_2_post(tlg, prune_0 = TRUE)
+lbt14_2_post(tlg, prune_0 = TRUE, ...)
 
 lbt14_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{gr_missing}{how missing baseline grades should be handled. Defaults to \code{"incl"} to include the \code{"Missing"}
 level. Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing
@@ -50,11 +52,13 @@ baseline grades to grade 0.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{...}{not used.}
+
 \item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 \code{LBT14} Table 2 (High Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by

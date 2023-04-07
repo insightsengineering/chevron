@@ -19,7 +19,8 @@ dst01_3_main(
   disc_reason_var = "DCSREAS",
   status_treatment_var = "EOTSTT",
   lbl_overall = "All Patients",
-  deco = std_deco("DST01")
+  deco = std_deco("DST01"),
+  ...
 )
 
 dst01_3_lyt(
@@ -36,23 +37,24 @@ dst01_3_pre(
   adam_db,
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
-  status_treatment_var = "EOTSTT"
+  status_treatment_var = "EOTSTT",
+  ...
 )
 
-dst01_3_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"))
+dst01_3_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
 
 dst01_3
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{status_var}{(\code{character}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
+\item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
 
-\item{disc_reason_var}{(\code{character}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
+\item{disc_reason_var}{(\code{string}) variable used to define reason for patient withdrawal. Default is \code{DCSREAS},
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
@@ -60,9 +62,11 @@ the analysis period.}
 \code{EOTSTT}, however can also be a variable with the pattern \code{EOTxxSTT} where \code{xx} must be substituted by 2 digits
 referring to the analysis period.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{completed_trt_lbl}{(\code{string}) associated with completed treatment and found in the columns given by
 \code{status_treatment_var}. By Default \code{COMPLETED}.}
@@ -75,7 +79,7 @@ referring to the analysis period.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The DST01_3 Disposition Table provides an overview of patients study treatment status. For patients who discontinued

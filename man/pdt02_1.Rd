@@ -20,7 +20,8 @@ pdt02_1_main(
   dvterm_var = "DVTERM",
   lbl_dvterm_var = "Description",
   lbl_overall = NULL,
-  deco = std_deco("pdt02_1")
+  deco = std_deco("pdt02_1"),
+  ...
 )
 
 pdt02_1_lyt(
@@ -33,32 +34,40 @@ pdt02_1_lyt(
   deco
 )
 
-pdt02_1_pre(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM")
+pdt02_1_pre(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...)
 
-pdt02_1_post(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = "DVTERM")
+pdt02_1_post(
+  tlg,
+  prune_0 = TRUE,
+  dvreas_var = "DVREAS",
+  dvterm_var = "DVTERM",
+  ...
+)
 
 pdt02_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{dvreas_var}{(\code{character}) the variable defining the reason for deviation. By default \code{DVREAS}.}
+\item{dvreas_var}{(\code{string}) the variable defining the reason for deviation. By default \code{DVREAS}.}
 
-\item{lbl_dvreas_var}{(\code{character}) label for the variable defining the reason for deviation.}
+\item{lbl_dvreas_var}{(\code{string}) label for the variable defining the reason for deviation.}
 
-\item{dvterm_var}{(\code{character}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
+\item{dvterm_var}{(\code{string}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
 
-\item{lbl_dvterm_var}{(\code{character}) label for the variable defining the protocol deviation term.}
+\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{...}{not used.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 A major protocol deviations

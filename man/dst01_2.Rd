@@ -18,7 +18,8 @@ dst01_2_main(
   status_var = "EOSSTT",
   disc_reason_var = "DCSREAS",
   lbl_overall = "All Patients",
-  deco = std_deco("DST01")
+  deco = std_deco("DST01"),
+  ...
 )
 
 dst01_2_lyt(
@@ -32,16 +33,16 @@ dst01_2_lyt(
   deco = std_deco("DST01")
 )
 
-dst01_2_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS")
+dst01_2_pre(adam_db, status_var = "EOSSTT", disc_reason_var = "DCSREAS", ...)
 
-dst01_2_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"))
+dst01_2_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
 
 dst01_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
@@ -51,9 +52,11 @@ period.}
 however can also be a variable with the pattern \code{DCPxxRS} where \code{xx} must be substituted by 2 digits referring to
 the analysis period.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{...}{not used.}
 
 \item{completed_lbl}{(\code{string}) associated with completed study and found in the columns given by \code{status}. By
 Default \code{COMPLETED}.}
@@ -66,7 +69,7 @@ Default \code{DISCONTINUED}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The DST01_2 Disposition Table provides an overview of

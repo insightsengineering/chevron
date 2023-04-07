@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 egt05_qtcat_1_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
+  summaryvars = list(`Value at Visit` = "AVALCAT1", `Change from Baseline` = "CHGCAT1"),
   summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
   lbl_overall = NULL,
   visitvar = "AVISIT",
@@ -24,14 +24,15 @@ egt05_qtcat_1_main(
   lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
   deco = std_deco("EGT05_QTCAT"),
   lbl_cat = "Category",
-  lbl_headvisit = "Analysis Visit"
+  lbl_headvisit = "Analysis Visit",
+  ...
 )
 
 egt05_qtcat_1_lyt(
   arm_var,
   summaryvars,
   summaryvars_lbls,
-  lbl_overall = NULL,
+  lbl_overall,
   visitvar,
   lbl_avisit,
   lbl_param,
@@ -40,41 +41,43 @@ egt05_qtcat_1_lyt(
   lbl_headvisit
 )
 
-egt05_qtcat_1_pre(adam_db)
+egt05_qtcat_1_pre(adam_db, ...)
 
-egt05_qtcat_1_post(tlg, prune_0 = TRUE)
+egt05_qtcat_1_post(tlg, prune_0 = TRUE, ...)
 
 egt05_qtcat_1
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\verb{vector of character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
+\item{summaryvars}{(\code{character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
 
-\item{summaryvars_lbls}{(\verb{vector of character}) the label of the variables to be analyzed.}
+\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{visitvar}{(\code{character}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}
 
-\item{lbl_avisit}{(\code{character}) label of the \code{visitvar} variable.}
+\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
 
 \item{paramvar}{(\code{string}) typically \code{"QT"} (Default). It should come from \code{"PARAMCD"}.}
 
-\item{lbl_param}{(\code{character}) label of the \code{PARAM} variable.}
+\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
-\item{lbl_cat}{(\code{character}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
+\item{lbl_cat}{(\code{string}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
 
-\item{lbl_headvisit}{(\code{character}) label of Visits in the header. Default as \verb{Analysis Visit}.}
+\item{lbl_headvisit}{(\code{string}) label of Visits in the header. Default as \verb{Analysis Visit}.}
+
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{EGT05_QTCAT} table 1 summarizes several electrocardiogram parameters and their evolution
@@ -112,6 +115,6 @@ For \code{summaryvars}, please make sure \code{AVALCAT1} and \code{CHGCAT1} colu
 \examples{
 db <- syn_data
 run(egt05_qtcat_1, db)
-run(egt05_qtcat_1, db, summaryvars = c("AVALCAT1", "Change" = "CHGCAT1"))
+run(egt05_qtcat_1, db, summaryvars = list("AVALCAT1", "Change" = "CHGCAT1"))
 }
 \keyword{datasets}

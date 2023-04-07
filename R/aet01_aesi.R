@@ -3,7 +3,7 @@
 #' @describeIn aet01_aesi_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param aesi_vars (`character`) the AESI variables to be included in the summary. Defaults to `NA`.
+#' @param aesi_vars (`list`) the AESI variables to be included in the summary. Defaults to `NA`.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -32,8 +32,11 @@
 #'
 aet01_aesi_1_main <- function(adam_db,
                               arm_var = "ACTARM",
-                              aesi_vars = NA,
-                              deco = std_deco("AET01_AESI")) {
+                              aesi_vars = list(NA_character_),
+                              deco = std_deco("AET01_AESI"),
+                              ...) {
+  checkmate::assert_list(aesi_vars, types = "character")
+  aesi_vars <- unlist(aesi_vars)
   if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
   if (any(grepl("^ALL_", aesi_vars))) {
     aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(
@@ -110,7 +113,8 @@ aet01_aesi_1_lyt <- function(arm_var,
 #'
 aet01_aesi_1_pre <- function(adam_db,
                              req_tables = c("adsl", "adae"),
-                             arm_var = "ACTARM") {
+                             arm_var = "ACTARM",
+                             ...) {
   checkmate::assert_class(adam_db, "dm")
 
   aet01_aesi_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
@@ -121,26 +125,26 @@ aet01_aesi_1_pre <- function(adam_db,
     dm_update_zoomed() %>%
     dm_zoom_to("adae") %>%
     mutate(
-      ALL_RESOLVED = !AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN", "FATAL"),
-      NOT_RESOLVED = AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN"),
-      WD = AEACN == "DRUG WITHDRAWN",
-      DSM = AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      CONTRT = AECONTRT == "Y",
-      SER = AESER == "Y",
-      REL = AREL == "Y",
-      ALLRESWD = WD == TRUE & ALL_RESOLVED == TRUE,
-      ALLRESDSM = DSM == TRUE & ALL_RESOLVED == TRUE,
-      ALLRESCONTRT = CONTRT == TRUE & ALL_RESOLVED == TRUE,
-      NOTRESWD = WD == TRUE & NOT_RESOLVED == TRUE,
-      NOTRESDSM = DSM == TRUE & NOT_RESOLVED == TRUE,
-      NOTRESCONTRT = CONTRT == TRUE & NOT_RESOLVED == TRUE,
-      SERWD = AESER == "Y" & AEACN == "DRUG WITHDRAWN",
-      SERCONTRT = AECONTRT == "Y" & AESER == "Y",
-      SERDSM = AESER == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      RELWD = AREL == "Y" & AEACN == "DRUG WITHDRAWN",
-      RELDSM = AREL == "Y" & AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      RELCONTRT = AECONTRT == "Y" & AREL == "Y",
-      RELSER = AESER == "Y" & AREL == "Y"
+      ALL_RESOLVED = !.data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN", "FATAL"),
+      NOT_RESOLVED = .data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN"),
+      WD = .data$AEACN == "DRUG WITHDRAWN",
+      DSM = .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      CONTRT = .data$AECONTRT == "Y",
+      SER = .data$AESER == "Y",
+      REL = .data$AREL == "Y",
+      ALLRESWD = .data$WD == TRUE & .data$ALL_RESOLVED == TRUE,
+      ALLRESDSM = .data$DSM == TRUE & .data$ALL_RESOLVED == TRUE,
+      ALLRESCONTRT = .data$CONTRT == TRUE & .data$ALL_RESOLVED == TRUE,
+      NOTRESWD = .data$WD == TRUE & .data$NOT_RESOLVED == TRUE,
+      NOTRESDSM = .data$DSM == TRUE & .data$NOT_RESOLVED == TRUE,
+      NOTRESCONTRT = .data$CONTRT == TRUE & .data$NOT_RESOLVED == TRUE,
+      SERWD = .data$AESER == "Y" & .data$AEACN == "DRUG WITHDRAWN",
+      SERCONTRT = .data$AECONTRT == "Y" & .data$AESER == "Y",
+      SERDSM = .data$AESER == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      RELWD = .data$AREL == "Y" & .data$AEACN == "DRUG WITHDRAWN",
+      RELDSM = .data$AREL == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      RELCONTRT = .data$AECONTRT == "Y" & .data$AREL == "Y",
+      RELSER = .data$AESER == "Y" & .data$AREL == "Y"
     ) %>%
     mutate(
       ALL_RESOLVED = formatters::with_label(
@@ -206,7 +210,7 @@ aet01_aesi_1_pre <- function(adam_db,
     ) %>%
     mutate(
       ATOXGR = forcats::fct_recode(
-        ATOXGR,
+        .data$ATOXGR,
         "Grade 1" = "1",
         "Grade 2" = "2",
         "Grade 3" = "3",
@@ -272,7 +276,7 @@ aet01_aesi_1_check <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
-aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI")) {
+aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"), ...) {
   tbl <- set_decoration(tlg, deco)
   if (prune_0) {
     tbl <- smart_prune(tbl)

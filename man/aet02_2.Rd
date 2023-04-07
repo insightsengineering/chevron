@@ -19,7 +19,8 @@ aet02_2_main(
   lbl_aebodsys = "MedDRA System Organ Class",
   lbl_aedecod = "MedDRA Preferred Term",
   lbl_aehlt = "MedDRA High-Level Term",
-  deco = std_deco("AET02")
+  deco = std_deco("AET02"),
+  ...
 )
 
 aet02_2_lyt(
@@ -31,18 +32,18 @@ aet02_2_lyt(
   deco
 )
 
-aet02_2_pre(adam_db)
+aet02_2_pre(adam_db, ...)
 
-aet02_2_post(tlg, prune_0 = TRUE)
+aet02_2_post(tlg, prune_0 = TRUE, ...)
 
 aet02_2
 }
 \arguments{
 \item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{character}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_aebodsys}{(\code{character}) text label for \code{AEBODSYS}.}
 
@@ -52,9 +53,11 @@ aet02_2
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
+\item{...}{not used.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{prune_0}{(\code{logical}) remove 0 count rows}
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{AET02_2} table provides an overview of the number of patients experiencing adverse events and the number of
