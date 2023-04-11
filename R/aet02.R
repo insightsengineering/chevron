@@ -445,7 +445,6 @@ aet02_3_lyt <- function(arm_var,
 #'
 aet02_3_pre <- function(adam_db, ...) {
   assert_all_tablenames(adam_db, c("adsl", "adae"))
-  checkmate::assert_list(adam_db, types = "list")
   assert_colnames(adam_db$adae, c("AEDECOD"))
 
   adam_db$adae <- adam_db$adae %>%

@@ -104,14 +104,12 @@ Overview of a summary statistics across time and arm for a selected data set.
 }
 }
 \examples{
-library(dplyr)
-
 col <- c(
   "A: Drug X" = "black",
   "B: Placebo" = "blue",
   "C: Combination" = "gray"
 )
 
-run(mng01_1, syn_data, dataset = "adlb", line_col = col)
+run(mng01_1, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 }
 \keyword{datasets}
