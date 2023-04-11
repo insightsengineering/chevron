@@ -166,36 +166,10 @@ mng01_1_main <- function(adam_db,
 mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
 
-  sep <- "_"
-
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y")
 
-  x_interaction <- paste(x_var, collapse = sep)
-  x_df <- adam_db[[dataset]][, x_var, drop = FALSE]
-  lvl <- lapply(x_df, function(y) {
-    uni <- if (is.factor(y)) {
-      levels(y)
-    } else {
-      unique(y)
-    }
-    factor(uni, levels = uni)
-  })
-
-  all_lvl_df <- expand.grid(lvl)
-
-  all_lvl <- all_lvl_df[, x_var, drop = FALSE] %>%
-    arrange(across(all_of(x_var))) %>%
-    apply(1, paste, collapse = sep)
-
-  x_vec <- x_df[, x_var, drop = FALSE] %>%
-    apply(1, paste, collapse = sep)
-
-  existing_lvl <- intersect(all_lvl, x_vec)
-  x_fact <- factor(x_vec, existing_lvl)
-
-  adam_db[[dataset]][, x_interaction] <- x_fact
-  adam_db
+  dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
 }
 
 #' @describeIn mng01_1 Postprocessing
@@ -216,15 +190,13 @@ mng01_1_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' library(dplyr)
-#'
 #' col <- c(
 #'   "A: Drug X" = "black",
 #'   "B: Placebo" = "blue",
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01_1, syn_data, dataset = "adlb", line_col = col)
+#' run(mng01_1, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,
