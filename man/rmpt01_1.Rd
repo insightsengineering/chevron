@@ -15,14 +15,12 @@ An object of class \code{chevron_t} of length 1.
 rmpt01_1_main(
   adam_db,
   arm_var = "ACTARM",
-  lbl_overall = NULL,
   lbl_aval = "Duration of exposure",
-  prune_0 = FALSE,
   deco = std_deco("RMPT01"),
   ...
 )
 
-rmpt01_1_lyt(arm_var, lbl_overall, lbl_aval, deco)
+rmpt01_1_lyt(arm_var, lbl_aval, deco)
 
 rmpt01_1_pre(adam_db, ...)
 
@@ -35,26 +33,24 @@ rmpt01_1
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{lbl_aval}{(\code{string}) the label of the time variable.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-Duration of Exposure: Safety-Evaluable Patients
+The \code{MHT01} table provides an overview of duration of exposure for SE patients
 }
 \details{
 \itemize{
-\item Person time is the sum of exposure across all patients in unit: <days, months, or years>.
-\item Summary statistics are by default based on the number of patients in the
-corresponding \code{N} row (number of non-missing values).
+\item Person time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
+\item Summary statistics are by default based on the number of patients in the corresponding \code{N} row
+(number of non-missing values).
 \item Does not include a total column by default.
 \item Does not remove zero-count rows unless overridden with \code{prune_0 = TRUE}.
 }
@@ -72,8 +68,7 @@ corresponding \code{N} row (number of non-missing values).
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adex} table with the \code{"AVAL"}, \code{"AVALCAT1"},
-"PARAMCD"\verb{, }PARCAT2\verb{, and }SAFFL` columns.
+\item \code{adam_db} object must contain an \code{adex} table with the \code{"AVAL"} column.
 }
 }
 \examples{
