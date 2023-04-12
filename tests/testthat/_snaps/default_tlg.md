@@ -76,6 +76,24 @@
         Total number of patients with at least one serious AE                           104 (77.6%)   101 (75.4%)     99 (75.0%)  
         Total number of patients with at least one related AE                           105 (78.4%)   108 (80.6%)    109 (82.6%)  
 
+# ael01_nollt_1 function with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+      MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
+      ———————————————————————————————————————————————————————————————————————————————————————
+      cl A.1                      dcd A.1.1.1.1                      trm A.1.1.1.1           
+                                  dcd A.1.1.1.2                      trm A.1.1.1.2           
+      cl B.1                      dcd B.1.1.1.1                      trm B.1.1.1.1           
+      cl B.2                      dcd B.2.1.2.1                      trm B.2.1.2.1           
+                                  dcd B.2.2.3.1                      trm B.2.2.3.1           
+      cl C.1                      dcd C.1.1.1.3                      trm C.1.1.1.3           
+      cl C.2                      dcd C.2.1.2.1                      trm C.2.1.2.1           
+      cl D.1                      dcd D.1.1.1.1                      trm D.1.1.1.1           
+                                  dcd D.1.1.4.2                      trm D.1.1.4.2           
+      cl D.2                      dcd D.2.1.5.3                      trm D.2.1.5.3           
+
 # aet02_1 functions with default argument value return expected result with test data
 
     Code
@@ -370,6 +388,25 @@
                                     - Any Grade -   43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     Grade 3-4       43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
+
+# aet10_1 functions with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+                                A: Drug X    B: Placebo   C: Combination
+        MedDRA Preferred Term    (N=134)      (N=134)        (N=132)    
+        ————————————————————————————————————————————————————————————————
+        dcd D.2.1.5.3           47 (35.1%)   58 (43.3%)     57 (43.2%)  
+        dcd A.1.1.1.1           50 (37.3%)   45 (33.6%)     63 (47.7%)  
+        dcd B.2.2.3.1           48 (35.8%)   54 (40.3%)     51 (38.6%)  
+        dcd A.1.1.1.2           48 (35.8%)   48 (35.8%)     50 (37.9%)  
+        dcd B.2.1.2.1           49 (36.6%)   44 (32.8%)     52 (39.4%)  
+        dcd D.1.1.1.1           50 (37.3%)   42 (31.3%)     51 (38.6%)  
+        dcd D.1.1.4.2           48 (35.8%)   42 (31.3%)     50 (37.9%)  
+        dcd B.1.1.1.1           47 (35.1%)   49 (36.6%)     43 (32.6%)  
+        dcd C.2.1.2.1           35 (26.1%)   48 (35.8%)     55 (41.7%)  
+        dcd C.1.1.1.3           43 (32.1%)   46 (34.3%)     43 (32.6%)  
 
 # cmt01a_1 functions with default argument value return expected result with test data
 
@@ -1399,6 +1436,73 @@
           trm D_1/3                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
           trm D_2/3                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
 
+# pdt01_1 function with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Category                                                              A: Drug X    B: Placebo   C: Combination
+          Description                                                          (N=134)      (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one major protocol deviation   22 (16.4%)   23 (17.2%)     13 (9.8%)   
+        Total number of major protocol deviations                                 40           42             21      
+        EXCLUSION CRITERIA                                                                                            
+          Active or untreated or other excluded cns metastases                 5 (3.7%)     3 (2.2%)          0       
+          Pregnancy criteria                                                   2 (1.5%)     4 (3.0%)          0       
+          History of other malignancies within the last 5 years                3 (2.2%)     2 (1.5%)          0       
+          Uncontrolled concurrent condition                                    3 (2.2%)     1 (0.7%)          0       
+          Other exclusion criteria                                                0            0           3 (2.3%)   
+          Received prior prohibited therapy or medication                         0         2 (1.5%)       1 (0.8%)   
+        INCLUSION CRITERIA                                                                                            
+          No signed ICF at study entry                                         6 (4.5%)     4 (3.0%)          0       
+          Ineligible cancer type or current cancer stage                       6 (4.5%)     1 (0.7%)       1 (0.8%)   
+          Inclusion lab values outside allowed limits                             0         3 (2.2%)          0       
+          Does not meet prior therapy requirements                             1 (0.7%)        0              0       
+          Inclusion-related test not done/out of window                           0            0           1 (0.8%)   
+        MEDICATION                                                                                                    
+          Significant deviation from planned dose                              3 (2.2%)     1 (0.7%)       2 (1.5%)   
+          Received incorrect study medication                                  1 (0.7%)     2 (1.5%)       1 (0.8%)   
+          Discontinued study drug for unspecified reason                       1 (0.7%)     1 (0.7%)       1 (0.8%)   
+          Dose missed or significantly out of window                           2 (1.5%)        0           1 (0.8%)   
+          Received prohibited concomitant medication                              0         2 (1.5%)          0       
+        PROCEDURAL                                                                                                    
+          Eligibility-related test not done/out of window                      1 (0.7%)     6 (4.5%)       1 (0.8%)   
+          Omission of screening tumor assessment                                  0         4 (3.0%)       3 (2.3%)   
+          Missed assessment affecting safety/study outcomes                    1 (0.7%)     2 (1.5%)       2 (1.5%)   
+          Failure to sign updated ICF within two visits                        2 (1.5%)     1 (0.7%)       1 (0.8%)   
+          Missed 2 or more efficacy assessments                                2 (1.5%)        0           1 (0.8%)   
+          Omission of complete lab panel required by protocol                     0         1 (0.7%)       1 (0.8%)   
+
+# pdt02_1 function with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Primary Reason                                                                                     A: Drug X   B: Placebo   C: Combination
+          Description                                                                                       (N=134)     (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one major protocol deviation related to epidemic/pandemic   9 (6.7%)     2 (1.5%)       5 (3.8%)   
+        Total number of major protocol deviations related to epidemic/pandemic                                 9           2              6       
+        Site action due to epidemic/pandemic                                                               9 (6.7%)     2 (1.5%)       5 (3.8%)   
+          Significant deviation from planned dose                                                          3 (2.2%)     1 (0.7%)       2 (1.5%)   
+          Failure to sign updated ICF within two visits                                                    2 (1.5%)     1 (0.7%)       1 (0.8%)   
+          Dose missed or significantly out of window                                                       2 (1.5%)        0           1 (0.8%)   
+          Missed 2 or more efficacy assessments                                                            2 (1.5%)        0           1 (0.8%)   
+
+# rmpt01_1 function with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Duration of exposure                        Number of Patients   Patient Time*
+                                                         (N=400)            (N=400)   
+        ——————————————————————————————————————————————————————————————————————————————
+        Total Number of Patients and Patient Time      217 (54.2%)           19991    
+          < 1 month                                     43 (10.8%)            701     
+          1 to <3 months                                67 (16.8%)           3973     
+          3 to <6 months                                89 (22.2%)           11839    
+          >=6 months                                    18 (4.5%)            3478     
+
 # vst01_1 functions with default argument value return expected result with test data
 
     Code
@@ -1904,75 +2008,4 @@
         Weight                                                                     
           Low                      59/120 (49.2%)   54/117 (46.2%)   63/119 (52.9%)
           High                     58/123 (47.2%)   61/121 (50.4%)   55/113 (48.7%)
-
-# pdt01_1 function with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-        Category                                                              A: Drug X    B: Placebo   C: Combination
-          Description                                                          (N=134)      (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one major protocol deviation   22 (16.4%)   23 (17.2%)     13 (9.8%)   
-        Total number of major protocol deviations                                 40           42             21      
-        EXCLUSION CRITERIA                                                                                            
-          Active or untreated or other excluded cns metastases                 5 (3.7%)     3 (2.2%)          0       
-          Pregnancy criteria                                                   2 (1.5%)     4 (3.0%)          0       
-          History of other malignancies within the last 5 years                3 (2.2%)     2 (1.5%)          0       
-          Uncontrolled concurrent condition                                    3 (2.2%)     1 (0.7%)          0       
-          Other exclusion criteria                                                0            0           3 (2.3%)   
-          Received prior prohibited therapy or medication                         0         2 (1.5%)       1 (0.8%)   
-        INCLUSION CRITERIA                                                                                            
-          No signed ICF at study entry                                         6 (4.5%)     4 (3.0%)          0       
-          Ineligible cancer type or current cancer stage                       6 (4.5%)     1 (0.7%)       1 (0.8%)   
-          Inclusion lab values outside allowed limits                             0         3 (2.2%)          0       
-          Does not meet prior therapy requirements                             1 (0.7%)        0              0       
-          Inclusion-related test not done/out of window                           0            0           1 (0.8%)   
-        MEDICATION                                                                                                    
-          Significant deviation from planned dose                              3 (2.2%)     1 (0.7%)       2 (1.5%)   
-          Received incorrect study medication                                  1 (0.7%)     2 (1.5%)       1 (0.8%)   
-          Discontinued study drug for unspecified reason                       1 (0.7%)     1 (0.7%)       1 (0.8%)   
-          Dose missed or significantly out of window                           2 (1.5%)        0           1 (0.8%)   
-          Received prohibited concomitant medication                              0         2 (1.5%)          0       
-        PROCEDURAL                                                                                                    
-          Eligibility-related test not done/out of window                      1 (0.7%)     6 (4.5%)       1 (0.8%)   
-          Omission of screening tumor assessment                                  0         4 (3.0%)       3 (2.3%)   
-          Missed assessment affecting safety/study outcomes                    1 (0.7%)     2 (1.5%)       2 (1.5%)   
-          Failure to sign updated ICF within two visits                        2 (1.5%)     1 (0.7%)       1 (0.8%)   
-          Missed 2 or more efficacy assessments                                2 (1.5%)        0           1 (0.8%)   
-          Omission of complete lab panel required by protocol                     0         1 (0.7%)       1 (0.8%)   
-
-# pdt02_1 function with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-        Primary Reason                                                                                     A: Drug X   B: Placebo   C: Combination
-          Description                                                                                       (N=134)     (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one major protocol deviation related to epidemic/pandemic   9 (6.7%)     2 (1.5%)       5 (3.8%)   
-        Total number of major protocol deviations related to epidemic/pandemic                                 9           2              6       
-        Site action due to epidemic/pandemic                                                               9 (6.7%)     2 (1.5%)       5 (3.8%)   
-          Significant deviation from planned dose                                                          3 (2.2%)     1 (0.7%)       2 (1.5%)   
-          Failure to sign updated ICF within two visits                                                    2 (1.5%)     1 (0.7%)       1 (0.8%)   
-          Dose missed or significantly out of window                                                       2 (1.5%)        0           1 (0.8%)   
-          Missed 2 or more efficacy assessments                                                            2 (1.5%)        0           1 (0.8%)   
-
-# ael01_nollt_1 function with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-      MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
-      ———————————————————————————————————————————————————————————————————————————————————————
-      cl A.1                      dcd A.1.1.1.1                      trm A.1.1.1.1           
-                                  dcd A.1.1.1.2                      trm A.1.1.1.2           
-      cl B.1                      dcd B.1.1.1.1                      trm B.1.1.1.1           
-      cl B.2                      dcd B.2.1.2.1                      trm B.2.1.2.1           
-                                  dcd B.2.2.3.1                      trm B.2.2.3.1           
-      cl C.1                      dcd C.1.1.1.3                      trm C.1.1.1.3           
-      cl C.2                      dcd C.2.1.2.1                      trm C.2.1.2.1           
-      cl D.1                      dcd D.1.1.1.1                      trm D.1.1.1.1           
-                                  dcd D.1.1.4.2                      trm D.1.1.4.2           
-      cl D.2                      dcd D.2.1.5.3                      trm D.2.1.5.3           
 

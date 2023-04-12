@@ -5,6 +5,7 @@
 \alias{rmpt01_1_main}
 \alias{rmpt01_1_lyt}
 \alias{rmpt01_1_pre}
+\alias{rmpt01_1_check}
 \alias{rmpt01_1_post}
 \alias{rmpt01_1}
 \title{\code{RMPT01} Table 1 (Default) Duration of Exposure for Risk Management Plan Table 1.}
@@ -24,6 +25,8 @@ rmpt01_1_lyt(arm_var, lbl_aval, deco)
 
 rmpt01_1_pre(adam_db, ...)
 
+rmpt01_1_check(adam_db, req_tables = c("adsl", "adex"), arm_var = "ACTARM")
+
 rmpt01_1_post(tlg, prune_0 = FALSE, ...)
 
 rmpt01_1
@@ -39,12 +42,14 @@ rmpt01_1
 
 \item{...}{not used.}
 
+\item{req_tables}{(\code{character}) names of the required tables.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-The \code{MHT01} table provides an overview of duration of exposure for SE patients
+The \code{RMPT01} table provides an overview of duration of exposure for SE patients
 }
 \details{
 \itemize{
@@ -63,6 +68,8 @@ The \code{MHT01} table provides an overview of duration of exposure for SE patie
 
 \item \code{rmpt01_1_pre()}: Preprocessing
 
+\item \code{rmpt01_1_check()}: Checks
+
 \item \code{rmpt01_1_post()}: Postprocessing
 
 }}
@@ -72,6 +79,20 @@ The \code{MHT01} table provides an overview of duration of exposure for SE patie
 }
 }
 \examples{
-run(rmpt01_1, syn_data)
+set.seed(1, kind = "Mersenne-Twister")
+proc_data <- syn_data \%>\%
+  dm_zoom_to("adex") \%>\%
+  group_by(USUBJID) \%>\%
+  mutate(
+    id = seq_along(AVAL),
+    PARAMCD = case_when(
+      id == 1 ~ "TDURD",
+      TRUE ~ PARAMCD
+    ),
+    AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
+  ) \%>\%
+  dm_update_zoomed()
+
+run(rmpt01_1, proc_data)
 }
 \keyword{datasets}

@@ -87,7 +87,7 @@ rmpt01_1_pre <- function(adam_db, ...) {
       !is.na(.data$AVAL)
     ) %>%
     mutate(
-      aval_months = day2month(.data$AVAL),
+      aval_months = ifelse(length(.data$AVAL) > 0, day2month(.data$AVAL), numeric(0)),
       aval_months_cat = factor(case_when(
         aval_months < 1 ~ "< 1 month",
         aval_months >= 1 & aval_months < 3 ~ "1 to <3 months",
@@ -137,12 +137,26 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 
 #' `RMPT01` Table 1 (Default) Duration of Exposure for Risk Management Plan Table 1.
 #'
-#' The `MHT01` table provides an overview of duration of exposure for SE patients
+#' The `RMPT01` table provides an overview of duration of exposure for SE patients
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
+#' set.seed(1, kind = "Mersenne-Twister")
+#' proc_data <- syn_data %>%
+#'   dm_zoom_to("adex") %>%
+#'   group_by(USUBJID) %>%
+#'   mutate(
+#'     id = seq_along(AVAL),
+#'     PARAMCD = case_when(
+#'       id == 1 ~ "TDURD",
+#'       TRUE ~ PARAMCD
+#'     ),
+#'     AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
+#'   ) %>%
+#'   dm_update_zoomed()
+#'
 #' run(rmpt01_1, proc_data)
 rmpt01_1 <- chevron_t(
   main = rmpt01_1_main,

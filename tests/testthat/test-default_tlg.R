@@ -19,6 +19,13 @@ test_that("aet01_aesi_1 function with default argument value return expected res
   expect_snapshot(res)
 })
 
+test_that("ael01_nollt_1 function with default argument value return expected result with test data", {
+  pre_data <- ael01_nollt_1_pre(syn_data)
+  raw_res <- ael01_nollt_1_main(pre_data)
+  res <- ael01_nollt_1_post(raw_res)
+  expect_snapshot(res)
+})
+
 test_that("aet02_1 functions with default argument value return expected result with test data", {
   pre_data <- aet02_1_pre(syn_data)
   raw_res <- aet02_1_main(pre_data)
@@ -229,6 +236,42 @@ test_that("mht01_1 functions with default argument value return expected result 
   expect_snapshot(res)
 })
 
+test_that("pdt01_1 function with default argument value return expected result with test data", {
+  pre_data <- pdt01_1_pre(syn_data)
+  raw_res <- pdt01_1_main(pre_data)
+  res <- pdt01_1_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("pdt02_1 function with default argument value return expected result with test data", {
+  pre_data <- pdt02_1_pre(syn_data)
+  raw_res <- pdt02_1_main(pre_data)
+  res <- pdt02_1_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("rmpt01_1 function with default argument value return expected result with test data", {
+  # Simulate ADEX records with PARAMCD == "TDURD" as they are not in sample dataset.
+  set.seed(1, kind = "Mersenne-Twister")
+  proc_data <- syn_data %>%
+    dm_zoom_to("adex") %>%
+    group_by(USUBJID) %>%
+    mutate(
+      id = seq_along(AVAL),
+      PARAMCD = case_when(
+        id == 1 ~ "TDURD",
+        TRUE ~ PARAMCD
+      ),
+      AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
+    ) %>%
+    dm_update_zoomed()
+
+  pre_data <- rmpt01_1_pre(proc_data)
+  raw_res <- rmpt01_1_main(pre_data)
+  res <- rmpt01_1_post(raw_res)
+  expect_snapshot(res)
+})
+
 test_that("vst01_1 functions with default argument value return expected result with test data", {
   pre_data <- vst01_1_pre(syn_data)
   raw_res <- vst01_1_main(pre_data)
@@ -254,27 +297,5 @@ test_that("vst02_2 functions with default argument value return expected result 
   pre_data <- vst02_2_pre(syn_data)
   raw_res <- vst02_2_main(pre_data)
   res <- vst02_2_post(raw_res)
-  expect_snapshot(res)
-})
-
-
-test_that("pdt01_1 function with default argument value return expected result with test data", {
-  pre_data <- pdt01_1_pre(syn_data)
-  raw_res <- pdt01_1_main(pre_data)
-  res <- pdt01_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("pdt02_1 function with default argument value return expected result with test data", {
-  pre_data <- pdt02_1_pre(syn_data)
-  raw_res <- pdt02_1_main(pre_data)
-  res <- pdt02_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("ael01_nollt_1 function with default argument value return expected result with test data", {
-  pre_data <- ael01_nollt_1_pre(syn_data)
-  raw_res <- ael01_nollt_1_main(pre_data)
-  res <- ael01_nollt_1_post(raw_res)
   expect_snapshot(res)
 })
