@@ -143,6 +143,10 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
+#' library(dm)
+#' library(dplyr)
+#' library(magrittr)
+#'
 #' set.seed(1, kind = "Mersenne-Twister")
 #' proc_data <- syn_data %>%
 #'   dm_zoom_to("adex") %>%

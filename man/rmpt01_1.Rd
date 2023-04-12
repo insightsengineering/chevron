@@ -79,6 +79,10 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 }
 }
 \examples{
+library(dm)
+library(dplyr)
+library(magrittr)
+
 set.seed(1, kind = "Mersenne-Twister")
 proc_data <- syn_data \%>\%
   dm_zoom_to("adex") \%>\%
