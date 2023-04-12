@@ -15,12 +15,16 @@ An object of class \code{chevron_t} of length 1.
 coxt02_1_main(
   adam_db,
   arm_var = "ARM",
-  lbl_ = "",
+  lbl_term = "Effect/Covariate Included in the Model",
+  time = "AVAL",
+  event = "event",
+  covariates = c("AGE", "SEX", "RACE"),
+  conf_level = 0.95,
   deco = std_deco("COXT02"),
   ...
 )
 
-coxt02_1_lyt(arm_var, lbl_, conf_level, deco)
+coxt02_1_lyt(lbl_term, conf_level, deco)
 
 coxt02_1_pre(adam_db, ...)
 
@@ -33,9 +37,6 @@ coxt02_1
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_}{(\code{string}) text label for ``. If \code{NULL}, the value of the argument defaults to the label of
-the corresponding column in the `ad` table.}
-
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -43,6 +44,9 @@ the corresponding column in the `ad` table.}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{lbl_}{(\code{string}) text label for ``. If \code{NULL}, the value of the argument defaults to the label of
+the corresponding column in the `ad` table.}
 }
 \description{
 The \code{COXT02} table follows the same principles as the general Cox model analysis

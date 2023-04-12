@@ -3,36 +3,40 @@
 #' @describeIn coxt02_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_ (`string`) text label for ``. If `NULL`, the value of the argument defaults to the label
-#'   of the corresponding column in the `ad` table.
-#' @param lbl_ (`string`) text label for ``. If `NULL`, the value of the argument defaults to the label of
-#'   the corresponding column in the `ad` table.
+#' @param time (`flag`) time variable in a Cox proportional hazards regression model.
+#' @param event (`flag`) event variable in a Cox proportional hazards regression model.
+#' @param covariates (`character`) will be fitted and the corresponding effect estimates will be.
 #'
 #' @details
-#'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
-#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
-#'  * Split columns by arm.
-#'  * Does not include a total column by default.
-#'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
-#'  patients with the specific condition.
+#'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
+#'  * The stratified analysis is with DISCRETE tie handling.
+#'  * Model includes treatment plus specified covariate(s) as factor(s), with `"AGE"`, `"RACE"` and `"SEX"` as default.
+#'  * The selection of the covariates and whether or not there is a selection process
+#'  (vs. a fixed, pre-specified list) needs to be specified in the DAP.
+#'  * For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
+#'  * Keep zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `ad` table with columns `""` and `""`.
+#'   * `adam_db` object must contain an `adtte` table with columns `"AVAL"` and `"CNSR"`.
 #'
 #' @export
 #'
 coxt02_1_main <- function(adam_db,
-                         arm_var = "ARM",
-                         lbl_ = "",
-                         conf_level = .95,
-                         deco = std_deco("COXT02"),
-                         ...) {
+                          arm_var = "ARM",
+                          lbl_term = "Effect/Covariate Included in the Model",
+                          time = "AVAL",
+                          event = "event",
+                          covariates = c("AGE", "SEX", "RACE"),
+                          conf_level = .95,
+                          deco = std_deco("COXT02"),
+                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adtte")
+  assert_colnames(adam_db$adtte, c(time, event, covariates))
 
   multivar_model <- fit_coxreg_multivar(
     variables = list(
-      time = "AVAL", event = "event", arm = "ARMCD",
-      covariates = c("SEX", "AGE")
+      time = time, event = event, arm = arm_var,
+      covariates = covariates
     ),
     data = dbsel$adtte
   )
@@ -40,8 +44,7 @@ coxt02_1_main <- function(adam_db,
   df <- tidy(multivar_model)
 
   lyt <- coxt02_1_lyt(
-    arm_var = arm_var,
-    lbl_mhbodsys = lbl_mhbodsys,
+    lbl_term = lbl_term,
     conf_level = conf_level,
     deco = deco
   )
@@ -53,25 +56,25 @@ coxt02_1_main <- function(adam_db,
 
 #' @describeIn coxt02_1 Layout
 #'
-#' @inheritParams coxt02_1_main
+#' @inheritParams gen_args
+#'
+#' @param lbl_term (`string`) text label for the `term` variable.
+#' @param conf_level (`string`) confidence level of the interval when fitting a Cox regression model
+#' and estimating hazard ratio to describe the effect size in a survival analysis.
 #'
 #' @export
 #'
-coxt02_1_lyt <- function(arm_var,
-                        lbl_,
-                        conf_level,
-                        deco) {
+coxt02_1_lyt <- function(lbl_term,
+                         conf_level,
+                         deco) {
   basic_table_deco(deco) %>%
-    split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     split_rows_by("term",
-                  child_labels = "hidden",
-                  split_fun = drop_split_levels,
-                  label_pos = "topleft",
-                  split_label = obj_label(df$term)
+      child_labels = "hidden",
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = obj_label(lbl_term)
     ) %>%
-    summarize_coxreg(multivar = TRUE, conf_level = conf_level) %>%
-    append_topleft(paste0("  ", lbl_))
+    summarize_coxreg(multivar = TRUE, conf_level = conf_level)
 }
 
 #' @describeIn coxt02_1 Preprocessing
@@ -81,36 +84,36 @@ coxt02_1_lyt <- function(arm_var,
 #' @export
 #'
 coxt02_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adtte"))
+  assert_colnames(adam_db$adtte, c("AVAL", "CNSR"))
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("adtte") %>%
+  adam_db$adtte <- adam_db$adtte %>%
     filter(
-      .data$PARAMCD == "OS",
-      .data$SEX %in% c("F", "M"),
-      .data$RACE %in% c("ASIAN", "BLACK OR AFRICAN AMERICAN", "WHITE")
+      .data$PARAMCD == "CRSD"
     ) %>%
     mutate(
       ARM = droplevels(relevel(.data$ARM, "B: Placebo")),
-      SEX = droplevels(.data$SEX),
-      RACE = droplevels(.data$RACE)
+      RACE = droplevels(.data$RACE),
+      SEX = droplevels(.data$SEX)
     ) %>%
     mutate(event = 1 - .data$CNSR) %>%
     var_relabel(
       ARM = "Planned Arm",
-      SEX = "Sex",
+      AGE = "Age",
       RACE = "Race",
-      AGE = "Age"
+      SEX = "Sex"
     )
-    dm_update_zoomed()
 
   new_format <- list(
-    admh = list(
-      MHBODSYS = rule(
-        "No Coding available" = c("", NA)
+    adtte = list(
+      ARM = rule(
+        "No Coding available" = c("", NA, "<Missing>")
       ),
-      MHDECOD = rule(
-        "No Coding available" = c("", NA)
+      RACE = rule(
+        "No Coding available" = c("", NA, "<Missing>")
+      ),
+      SEX = rule(
+        "No Coding available" = c("", NA, "<Missing>")
       )
     )
   )
