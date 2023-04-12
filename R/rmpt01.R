@@ -147,14 +147,9 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' proc_data <- syn_data %>%
 #'   dm_zoom_to("adex") %>%
 #'   group_by(USUBJID) %>%
-#'   mutate(
-#'     id = seq_along(AVAL),
-#'     PARAMCD = case_when(
-#'       id == 1 ~ "TDURD",
-#'       TRUE ~ PARAMCD
-#'     ),
-#'     AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
-#'   ) %>%
+#'   mutate(id = seq_along(AVAL)) %>%
+#'   mutate(PARAMCD = case_when(id == 1 ~ "TDURD", TRUE ~ PARAMCD)) %>%
+#'   mutate(AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)) %>%
 #'   dm_update_zoomed()
 #'
 #' run(rmpt01_1, proc_data)
