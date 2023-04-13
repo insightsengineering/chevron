@@ -16,7 +16,8 @@
 #' @param conf_level (`numeric`) should the censor flag be displayed.
 #' @param legend_pos (`string`) the position of the legend.
 #' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
-#' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating median survival time per group.
+#' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
+#'   median survival time per group.
 #' @param line_col (`list`) describing the colors to use for the lines or a named `list` associating values of `arm_var`
 #'   with color names.
 #'
