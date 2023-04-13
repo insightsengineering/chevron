@@ -63,6 +63,8 @@ with color names.}
 
 \item{...}{not used.}
 
+\item{paramcd}{(\code{string}) PARAMCD of the endpoint need to be analysis}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{

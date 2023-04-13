@@ -15,6 +15,8 @@
 #' @param ties (`string`) should the censor flag be displayed.
 #' @param conf_level (`number`) should the censor flag be displayed.
 #' @param legend_pos (`string`) the position of the legend.
+#' @param position_coxph
+#' @param position_surv_med
 #' @param line_col (`list`) describing the colors to use for the lines or a named `list` associating values of `arm_var`
 #'   with color names.
 #'
@@ -54,7 +56,7 @@ kmg01_1_main <- function(adam_db,
     ggplot2::theme(legend.position = legend_pos)
 
   if (!is.null(names(line_col))) {
-    color_lvl <- sort(unique(df[[arm_var]]))
+    color_lvl <- sort(unique(anl[[arm_var]]))
     col <- line_col[as.character(color_lvl)]
 
     if (anyNA(col)) {
@@ -99,6 +101,7 @@ kmg01_1_main <- function(adam_db,
 #' @describeIn kmg01_1 Preprocessing
 #'
 #' @inheritParams kmg01_1_main
+#' @param paramcd (`string`) PARAMCD of the endpoint need to be analysis
 #'
 #' @export
 kmg01_1_pre <- function(adam_db, dataset, paramcd = "OS", ...) {
