@@ -83,6 +83,7 @@ Collate:
     'egt05_qtcat.R'
     'ext01.R'
     'gen_args.R'
+    'kmg01.R'
     'lbt01.R'
     'lbt04.R'
     'lbt05.R'
