@@ -25,7 +25,7 @@
 #' @export
 kmg01_1_main <- function(adam_db,
                          dataset = "adtte",
-                         arm_var = "ARMCD",
+                         arm_var = "ARM",
                          x_name = "Time (Days)",
                          y_name = "Survival Probability",
                          show_statis = TRUE,
@@ -45,6 +45,7 @@ kmg01_1_main <- function(adam_db,
   checkmate::assert_flag(show_statis)
   checkmate::assert_flag(show_censor)
 
+  line_col <- unlist(line_col)
   checkmate::assert_character(line_col, null.ok = TRUE)
 
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
@@ -93,7 +94,6 @@ kmg01_1_main <- function(adam_db,
       position_surv_med = position_surv_med
     )
   }
-
 }
 
 #' @describeIn kmg01_1 Preprocessing

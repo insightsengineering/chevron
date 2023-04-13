@@ -14,7 +14,7 @@ An object of class \code{chevron_g} of length 1.
 kmg01_1_main(
   adam_db,
   dataset = "adtte",
-  arm_var = "ARMCD",
+  arm_var = "ARM",
   x_name = "Time (Days)",
   y_name = "Survival Probability",
   show_statis = TRUE,

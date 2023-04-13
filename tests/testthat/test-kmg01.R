@@ -23,4 +23,3 @@ test_that("kmg01_1 works if show_statis/show_censor is FALSE", {
   res <- expect_silent(run(kmg01_1, syn_data, dataset = "adtte", show_statis = FALSE, show_censor = FALSE))
   checkmate::assert_true(grid::is.grob(res))
 })
-
