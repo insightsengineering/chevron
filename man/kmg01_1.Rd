@@ -54,9 +54,13 @@ kmg01_1
 
 \item{ties}{(\code{string}) should the censor flag be displayed.}
 
-\item{conf_level}{(\code{number}) should the censor flag be displayed.}
+\item{conf_level}{(\code{numeric}) should the censor flag be displayed.}
 
 \item{legend_pos}{(\code{string}) the position of the legend.}
+
+\item{position_coxph}{(\code{numeric}) x and y positions for plotting survival::coxph() model.}
+
+\item{position_surv_med}{(\code{numeric}) x and y positions for plotting annotation table estimating median survival time per group.}
 
 \item{line_col}{(\code{list}) describing the colors to use for the lines or a named \code{list} associating values of \code{arm_var}
 with color names.}

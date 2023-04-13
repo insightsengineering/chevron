@@ -13,10 +13,10 @@
 #' @param show_censor (`flag`) should the censor flag be displayed.
 #' @param pval_method (`string`) should the censor flag be displayed.
 #' @param ties (`string`) should the censor flag be displayed.
-#' @param conf_level (`number`) should the censor flag be displayed.
+#' @param conf_level (`numeric`) should the censor flag be displayed.
 #' @param legend_pos (`string`) the position of the legend.
-#' @param position_coxph
-#' @param position_surv_med
+#' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
+#' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating median survival time per group.
 #' @param line_col (`list`) describing the colors to use for the lines or a named `list` associating values of `arm_var`
 #'   with color names.
 #'
@@ -106,6 +106,7 @@ kmg01_1_main <- function(adam_db,
 #' @export
 kmg01_1_pre <- function(adam_db, dataset, paramcd = "OS", ...) {
   checkmate::assert_class(adam_db, "dm")
+  assert_colnames(adam_db[[dataset]], c("PARAMCD", "CNSR"))
 
   adam_db <- adam_db %>%
     dm_zoom_to(!!dataset) %>%
