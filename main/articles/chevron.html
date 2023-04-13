@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9001</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,17 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -276,14 +265,14 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     dbsel &lt;- get_db_data(adam_db, "adsl", "adae")</span></span>
-<span><span class="co">#&gt;     assert_colnames(adam_db$adae, c("AEBODSYS", "AEDECOD"))</span></span>
+<span><span class="co">#&gt;     assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD"))</span></span>
 <span><span class="co">#&gt;     lyt &lt;- aet02_1_lyt(arm_var = arm_var, lbl_overall = lbl_overall, </span></span>
 <span><span class="co">#&gt;         lbl_aebodsys = lbl_aebodsys, lbl_aedecod = lbl_aedecod, </span></span>
 <span><span class="co">#&gt;         deco = deco)</span></span>
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x559f3d9971f8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e1bb561df8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">

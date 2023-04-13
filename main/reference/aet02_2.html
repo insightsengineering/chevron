@@ -12,7 +12,7 @@ adverse events categorized by Body System, High Level Term and Dictionary-Derive
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9001</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,17 +32,6 @@ adverse events categorized by Body System, High Level Term and Dictionary-Derive
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -95,16 +84,7 @@ adverse events categorized by Body System, High Level Term and Dictionary-Derive
 <span></span>
 <span><span class="fu">aet02_2_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">aet02_2</span></span>
-<span></span>
-<span><span class="fu">aet02_3_main</span><span class="op">(</span></span>
-<span>  <span class="va">adam_db</span>,</span>
-<span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
-<span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  lbl_aedecod <span class="op">=</span> <span class="st">"MedDRA Preferred Term"</span>,</span>
-<span>  deco <span class="op">=</span> <span class="fu"><a href="std_deco.html">std_deco</a></span><span class="op">(</span><span class="st">"AET02"</span><span class="op">)</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">aet02_2</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -162,13 +142,7 @@ adverse events categorized by Body System, High Level Term and Dictionary-Derive
 <li><p>Does not include a total column by default.</p></li>
 <li><p>Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 frequencies.</p></li>
-<li><p>Missing values of <code>AEBODSYS</code>, <code>AEHLT</code> and <code>AEDECOD</code> in <code>adae</code> are labeled by <code>No Coding available</code>.</p></li>
-</ul><ul><li><p>Numbers represent absolute numbers of patients and fraction of <code>N</code>, or absolute number of event when specified.</p></li>
-<li><p>Remove zero-count rows unless overridden with <code>prune_0 = FALSE</code>.</p></li>
-<li><p>Split columns by arm.</p></li>
-<li><p>Does not include a total column by default.</p></li>
-<li><p>Sort Dictionary-Derived Code by highest overall frequencies.</p></li>
-<li><p>Missing values of <code>AEDECOD</code> in <code>aead</code> are labeled by <code>No Coding available</code>.</p></li>
+<li><p>Missing values of <code>AEBODSYS</code>, <code>AEDECOD</code> and <code>AEHLT</code> in <code>adae</code> are labeled by <code>No Coding available</code>.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
@@ -177,13 +151,11 @@ frequencies.</p></li>
 <li><p><code>aet02_2_lyt()</code>: Layout</p></li>
 <li><p><code>aet02_2_pre()</code>: Preprocessing</p></li>
 <li><p><code>aet02_2_post()</code>: Postprocessing</p></li>
-<li><p><code>aet02_3_main()</code>: Main TLG function</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     
 <ul><li><p><code>adam_db</code> object must contain an <code>adae</code> table with the columns <code>"AEBODSYS"</code>, <code>"AEHLT"</code> and <code>"AEDECOD"</code>.</p></li>
-</ul><ul><li><p><code>adam_db</code> object must contain an <code>adae</code> table with the column <code>"AEDECOD"</code>.</p></li>
 </ul></div>
 
     <div class="section level2">
