@@ -13,7 +13,7 @@
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adex` table with the `"AVAL"` column.
+#'   * `adam_db` object must contain an `adex` table with the `"AVAL"` and `"PARAMCD"` columns.
 #'
 #' @export
 #'
@@ -74,16 +74,11 @@ rmpt01_1_lyt <- function(arm_var,
 #' @export
 #'
 rmpt01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
-
   rmpt01_1_check(adam_db)
 
-  adam_db %>%
-    dm_zoom_to("adex") %>%
+  adam_db$adex <- adam_db$adex %>%
     filter(
       .data$PARAMCD == "TDURD",
-      .data$PARCAT2 == "Drug A",
-      .data$SAFFL == "Y",
       !is.na(.data$AVAL)
     ) %>%
     mutate(
@@ -94,8 +89,9 @@ rmpt01_1_pre <- function(adam_db, ...) {
         aval_months >= 3 & aval_months < 6 ~ "3 to <6 months",
         TRUE ~ ">=6 months"
       ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
-    ) %>%
-    dm_update_zoomed()
+    )
+
+  adam_db
 }
 
 #' @describeIn rmpt01_1 Checks
@@ -109,11 +105,11 @@ rmpt01_1_check <- function(adam_db,
 
   msg <- NULL
 
-  adex_layout_col <- c("USUBJID", "PARAMCD", "PARCAT2", "SAFFL", "AVAL", "AVALCAT1")
+  adex_layout_col <- c("USUBJID", "PARAMCD", "AVAL")
   adsl_layout_col <- c("USUBJID")
 
-  msg <- c(msg, check_all_colnames(adam_db$adex, c(arm_var, adex_layout_col)))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
+  msg <- c(msg, assert_colnames(adam_db$adex, c(arm_var, adex_layout_col)))
+  msg <- c(msg, assert_colnames(adam_db$adsl, c(adsl_layout_col)))
 
   if (is.null(msg)) {
     TRUE
@@ -143,18 +139,17 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(dplyr)
-#' library(magrittr)
 #'
 #' set.seed(1, kind = "Mersenne-Twister")
-#' proc_data <- syn_data %>%
-#'   dm_zoom_to("adex") %>%
+#' proc_data <- syn_data
+#' proc_data$adex <- proc_data$adex %>%
 #'   group_by(USUBJID) %>%
-#'   mutate(id = seq_along(AVAL)) %>%
-#'   mutate(PARAMCD = case_when(id == 1 ~ "TDURD", TRUE ~ PARAMCD)) %>%
-#'   mutate(AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)) %>%
-#'   dm_update_zoomed()
+#'   mutate(
+#'     id = seq_along(AVAL),
+#'     PARAMCD = case_when(id == 1 ~ "TDURD", TRUE ~ PARAMCD),
+#'     AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
+#'   )
 #'
 #' run(rmpt01_1, proc_data)
 rmpt01_1 <- chevron_t(

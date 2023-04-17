@@ -75,22 +75,21 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adex} table with the \code{"AVAL"} column.
+\item \code{adam_db} object must contain an \code{adex} table with the \code{"AVAL"} and \code{"PARAMCD"} columns.
 }
 }
 \examples{
-library(dm)
 library(dplyr)
-library(magrittr)
 
 set.seed(1, kind = "Mersenne-Twister")
-proc_data <- syn_data \%>\%
-  dm_zoom_to("adex") \%>\%
+proc_data <- syn_data
+proc_data$adex <- proc_data$adex \%>\%
   group_by(USUBJID) \%>\%
-  mutate(id = seq_along(AVAL)) \%>\%
-  mutate(PARAMCD = case_when(id == 1 ~ "TDURD", TRUE ~ PARAMCD)) \%>\%
-  mutate(AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)) \%>\%
-  dm_update_zoomed()
+  mutate(
+    id = seq_along(AVAL),
+    PARAMCD = case_when(id == 1 ~ "TDURD", TRUE ~ PARAMCD),
+    AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
+  )
 
 run(rmpt01_1, proc_data)
 }
