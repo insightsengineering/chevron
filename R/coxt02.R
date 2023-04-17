@@ -131,6 +131,8 @@ coxt02_1_pre <- function(adam_db, ...) {
       RACE = "Race",
       AGE = "Age"
     )
+
+  adam_db
 }
 
 #' @describeIn coxt02_1 Checks
