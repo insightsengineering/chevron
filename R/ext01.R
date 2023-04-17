@@ -80,10 +80,11 @@ ext01_1_lyt <- function(arm_var,
 #' @export
 #'
 ext01_1_pre <- function(adam_db,
-                        paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
+                        paramcd_order = list("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
                         ...) {
   checkmate::assert_class(adam_db, "dm")
-
+  checkmate::assert_list(paramcd_order)
+  paramcd_order <- unlist(paramcd_order)
   db <- adam_db %>%
     dm_zoom_to("adex") %>%
     filter(.data$PARCAT1 == "OVERALL") %>%
