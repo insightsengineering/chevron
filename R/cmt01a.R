@@ -118,7 +118,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.character(CMSEQ))
+    mutate(CMSEQ = as.character(.data$CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(
@@ -249,7 +249,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.character(CMSEQ))
+    mutate(CMSEQ = as.character(.data$CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(
@@ -432,7 +432,7 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.character(CMSEQ))
+    mutate(CMSEQ = as.character(.data$CMSEQ))
 
   fmt_ls <- list(
     medcat_var = rule(

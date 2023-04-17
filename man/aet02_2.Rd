@@ -7,7 +7,6 @@
 \alias{aet02_2_pre}
 \alias{aet02_2_post}
 \alias{aet02_2}
-\alias{aet02_3_main}
 \title{\code{AET02} Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.}
 \format{
 An object of class \code{chevron_t} of length 1.
@@ -38,15 +37,6 @@ aet02_2_pre(adam_db, ...)
 aet02_2_post(tlg, prune_0 = TRUE, ...)
 
 aet02_2
-
-aet02_3_main(
-  adam_db,
-  arm_var = "ACTARM",
-  lbl_overall = NULL,
-  lbl_aedecod = "MedDRA Preferred Term",
-  deco = std_deco("AET02"),
-  ...
-)
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
@@ -81,16 +71,7 @@ adverse events categorized by Body System, High Level Term and Dictionary-Derive
 \item Does not include a total column by default.
 \item Sort Body System or Organ Class, High Level Term and Dictionary-Derived Term hierarchically by highest overall
 frequencies.
-\item Missing values of \code{AEBODSYS}, \code{AEHLT} and \code{AEDECOD} in \code{adae} are labeled by \verb{No Coding available}.
-}
-
-\itemize{
-\item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
-\item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
-\item Split columns by arm.
-\item Does not include a total column by default.
-\item Sort Dictionary-Derived Code by highest overall frequencies.
-\item Missing values of \code{AEDECOD} in \code{aead} are labeled by \verb{No Coding available}.
+\item Missing values of \code{AEBODSYS}, \code{AEDECOD} and \code{AEHLT} in \code{adae} are labeled by \verb{No Coding available}.
 }
 }
 \section{Functions}{
@@ -103,16 +84,10 @@ frequencies.
 
 \item \code{aet02_2_post()}: Postprocessing
 
-\item \code{aet02_3_main()}: Main TLG function
-
 }}
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adae} table with the columns \code{"AEBODSYS"}, \code{"AEHLT"} and \code{"AEDECOD"}.
-}
-
-\itemize{
-\item \code{adam_db} object must contain an \code{adae} table with the column \code{"AEDECOD"}.
 }
 }
 \examples{

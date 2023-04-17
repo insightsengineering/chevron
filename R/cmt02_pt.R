@@ -72,7 +72,7 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       DOMAIN = "CM",
-      CMSEQ = as.character(CMSEQ)
+      CMSEQ = as.character(.data$CMSEQ)
     )
 
   fmt_ls <- list(
