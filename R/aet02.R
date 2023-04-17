@@ -117,7 +117,7 @@ aet02_1_pre <- function(adam_db, ...) {
 #' @describeIn aet02_1 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 aet02_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           arm_var = "ACTARM") {

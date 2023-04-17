@@ -73,7 +73,7 @@ ael01_nollt_1_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param vars (`character`) variables to be included in the listing.
-#'
+#' @export
 ael01_nollt_1_check <- function(adam_db,
                                 dataset,
                                 vars) {

@@ -92,7 +92,7 @@ egt03_1_lyt <- function(arm_var,
 #' @describeIn egt03_1 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 egt03_1_check <- function(adam_db,
                           req_tables,
                           visit_var,
