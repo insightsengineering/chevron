@@ -25,7 +25,7 @@ ext01_1_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall, deco)
 
 ext01_1_pre(
   adam_db,
-  paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
+  paramcd_order = list("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
   ...
 )
 
