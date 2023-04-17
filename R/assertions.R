@@ -9,6 +9,7 @@
 #' @param null_ok (`logical`) can `x` be NULL.
 #'
 #' @keywords internal
+#' @export
 #'
 #' @examples
 #' \dontrun{
