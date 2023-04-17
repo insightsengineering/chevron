@@ -5,6 +5,7 @@
 \alias{coxt02_1_main}
 \alias{coxt02_1_lyt}
 \alias{coxt02_1_pre}
+\alias{coxt02_1_check}
 \alias{coxt02_1_post}
 \alias{coxt02_1}
 \title{\code{COXT02} Table 1 (Default) Multi-Variable Cox Regression Model Table 1.}
@@ -28,6 +29,8 @@ coxt02_1_lyt(lbl_term, conf_level, deco)
 
 coxt02_1_pre(adam_db, ...)
 
+coxt02_1_check(adam_db, req_tables = c("adsl", "adtte"), arm_var = "ARM")
+
 coxt02_1_post(tlg, prune_0 = FALSE, ...)
 
 coxt02_1
@@ -37,16 +40,26 @@ coxt02_1
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_term}{(\code{string}) text label for the \code{term} variable.}
+
+\item{time}{(\code{flag}) time variable in a Cox proportional hazards regression model.}
+
+\item{event}{(\code{flag}) event variable in a Cox proportional hazards regression model.}
+
+\item{covariates}{(\code{character}) will be fitted and the corresponding effect estimates will be.}
+
+\item{conf_level}{(\code{string}) confidence level of the interval when fitting a Cox regression model
+and estimating hazard ratio to describe the effect size in a survival analysis.}
+
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
 
+\item{req_tables}{(\code{character}) names of the required tables.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{lbl_}{(\code{string}) text label for ``. If \code{NULL}, the value of the argument defaults to the label of
-the corresponding column in the `ad` table.}
 }
 \description{
 The \code{COXT02} table follows the same principles as the general Cox model analysis
@@ -55,12 +68,13 @@ and produces the estimates for each of the covariates included in the model
 }
 \details{
 \itemize{
-\item Numbers represent absolute numbers of patients and fraction of \code{N}, or absolute number of event when specified.
-\item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
-\item Split columns by arm.
-\item Does not include a total column by default.
-\item Order by body system alphabetically and within body system and medical condition by decreasing total number of
-patients with the specific condition.
+\item The table allows confidence level to be adjusted, default is 2-sided 5\%.
+\item The stratified analysis is with DISCRETE tie handling.
+\item Model includes treatment plus specified covariate(s) as factor(s), with \code{"AGE"}, \code{"RACE"} and \code{"SEX"} as default.
+\item The selection of the covariates and whether or not there is a selection process
+(vs. a fixed, pre-specified list) needs to be specified in the DAP.
+\item For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
+\item Keep zero-count rows unless overridden with \code{prune_0 = TRUE}.
 }
 }
 \section{Functions}{
@@ -71,15 +85,19 @@ patients with the specific condition.
 
 \item \code{coxt02_1_pre()}: Preprocessing
 
+\item \code{coxt02_1_check()}: Checks
+
 \item \code{coxt02_1_post()}: Postprocessing
 
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{ad} table with columns \code{""} and \code{""}.
+\item \code{adam_db} object must contain an \code{adtte} table with columns, \code{"AVAL"}, \code{"CNSR"}, and \code{"PARAMCD"}.
 }
 }
 \examples{
 run(coxt02_1, syn_data)
+
+run(coxt02_1, syn_data, conf_level = .90)
 }
 \keyword{datasets}

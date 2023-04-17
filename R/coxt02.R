@@ -17,7 +17,7 @@
 #'  * Keep zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adtte` table with columns `"AVAL"` and `"CNSR"`.
+#'   * `adam_db` object must contain an `adtte` table with columns, `"AVAL"`, `"CNSR"`, and `"PARAMCD"`.
 #'
 #' @export
 #'
@@ -31,7 +31,9 @@ coxt02_1_main <- function(adam_db,
                           deco = std_deco("COXT02"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adtte")
-  assert_colnames(adam_db$adtte, c(time, event, covariates))
+  checkmate::assert_subset(covariates, c("AGE", "SEX", "RACE"))
+  checkmate::assert_true(is.numeric(conf_level))
+  checkmate::assert_true(conf_level >= 0 && conf_level <= 1)
 
   multivar_model <- fit_coxreg_multivar(
     variables = list(
@@ -42,6 +44,7 @@ coxt02_1_main <- function(adam_db,
   )
 
   df <- tidy(multivar_model)
+  assert_colnames(df, c("term"))
 
   lyt <- coxt02_1_lyt(
     lbl_term = lbl_term,
@@ -84,41 +87,74 @@ coxt02_1_lyt <- function(lbl_term,
 #' @export
 #'
 coxt02_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adtte"))
-  assert_colnames(adam_db$adtte, c("AVAL", "CNSR"))
-
-  adam_db$adtte <- adam_db$adtte %>%
-    filter(
-      .data$PARAMCD == "CRSD"
-    ) %>%
-    mutate(
-      ARM = droplevels(relevel(.data$ARM, "B: Placebo")),
-      RACE = droplevels(.data$RACE),
-      SEX = droplevels(.data$SEX)
-    ) %>%
-    mutate(event = 1 - .data$CNSR) %>%
-    var_relabel(
-      ARM = "Planned Arm",
-      AGE = "Age",
-      RACE = "Race",
-      SEX = "Sex"
-    )
+  coxt02_1_check(adam_db)
 
   new_format <- list(
     adtte = list(
       ARM = rule(
         "No Coding available" = c("", NA, "<Missing>")
       ),
-      RACE = rule(
+      SEX = rule(
         "No Coding available" = c("", NA, "<Missing>")
       ),
-      SEX = rule(
+      RACE = rule(
         "No Coding available" = c("", NA, "<Missing>")
       )
     )
   )
 
   dunlin::reformat(adam_db, new_format, na_last = TRUE)
+
+  adam_db$adtte <- adam_db$adtte %>%
+    filter(
+      .data$PARAMCD == "CRSD",
+      .data$ARM != "No Grading Available",
+      .data$SEX != "No Grading Available",
+      .data$RACE != "No Grading Available",
+      !is.na(.data$CNSR),
+      !is.na(.data$AVAL),
+      !is.na(.data$AGE)
+    ) %>%
+    mutate(
+      ARM = droplevels(relevel(.data$ARM, "B: Placebo")),
+      SEX = factor(.data$SEX,
+        levels = setdiff(levels(.data$SEX), "No Grading Available")
+      ),
+      RACE = factor(.data$RACE,
+        levels = setdiff(levels(.data$RACE), "No Grading Available")
+      )
+    ) %>%
+    mutate(event = 1 - .data$CNSR) %>%
+    var_relabel(
+      ARM = "Planned Arm",
+      SEX = "Sex",
+      RACE = "Race",
+      AGE = "Age"
+    )
+}
+
+#' @describeIn coxt02_1 Checks
+#'
+#' @inheritParams gen_args
+#'
+coxt02_1_check <- function(adam_db,
+                           req_tables = c("adsl", "adtte"),
+                           arm_var = "ARM") {
+  assert_all_tablenames(adam_db, req_tables)
+
+  msg <- NULL
+
+  adex_layout_col <- c("USUBJID", "PARAMCD", "AVAL", "CNSR", "SEX", "RACE", "AGE")
+  adsl_layout_col <- c("USUBJID")
+
+  msg <- c(msg, assert_colnames(adam_db$adex, c(arm_var, adex_layout_col)))
+  msg <- c(msg, assert_colnames(adam_db$adsl, c(adsl_layout_col)))
+
+  if (is.null(msg)) {
+    TRUE
+  } else {
+    stop(paste(msg, collapse = "\n  "))
+  }
 }
 
 #' @describeIn coxt02_1 Postprocessing
@@ -145,6 +181,8 @@ coxt02_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' @examples
 #' run(coxt02_1, syn_data)
+#'
+#' run(coxt02_1, syn_data, conf_level = .90)
 coxt02_1 <- chevron_t(
   main = coxt02_1_main,
   preprocess = coxt02_1_pre,
