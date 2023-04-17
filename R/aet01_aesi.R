@@ -209,13 +209,16 @@ aet01_aesi_1_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      ATOXGR = forcats::fct_recode(
+      ATOXGR = reformat(
         .data$ATOXGR,
-        "Grade 1" = "1",
-        "Grade 2" = "2",
-        "Grade 3" = "3",
-        "Grade 4" = "4",
-        "Grade 5 (fatal outcome)" = "5"
+        dunlin::rule(
+          "Missing" = c("", NA_character_),
+          "Grade 1" = "1",
+          "Grade 2" = "2",
+          "Grade 3" = "3",
+          "Grade 4" = "4",
+          "Grade 5 (fatal outcome)" = "5"
+        )
       )
     ) %>%
     dm_update_zoomed()
