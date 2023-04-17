@@ -440,10 +440,10 @@ aet01_2_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet01_2_pre <- function(adam_db, ...) {
+aet01_2_pre <- function(adam_db, arm_var, safety_var, medconcept_var, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  aet01_2_check(adam_db)
+  aet01_2_check(adam_db, arm_var = arm_var, safety_var = safety_var, medconcept_var = medconcept_var)
 
   df <- adam_db$adae
   labs <- formatters::var_labels(df)

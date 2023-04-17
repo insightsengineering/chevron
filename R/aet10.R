@@ -67,10 +67,10 @@ aet10_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet10_1_pre <- function(adam_db, ...) {
+aet10_1_pre <- function(adam_db, arm_var, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  aet10_1_check(adam_db)
+  aet10_1_check(adam_db, arm_var = arm_var)
 
   adam_db %>%
     dm_zoom_to("adae") %>%

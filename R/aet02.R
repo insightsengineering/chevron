@@ -95,10 +95,10 @@ aet02_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet02_1_pre <- function(adam_db, ...) {
+aet02_1_pre <- function(adam_db, arm_var, ...) {
   checkmate::assert_class(adam_db, "dm")
 
-  aet02_1_check(adam_db)
+  aet02_1_check(adam_db, arm_var = arm_var)
 
   new_format <- list(
     adae = list(

@@ -36,7 +36,7 @@ aet01_2_lyt(
   lbl_medconcept_var
 )
 
-aet01_2_pre(adam_db, ...)
+aet01_2_pre(adam_db, arm_var, safety_var, medconcept_var, ...)
 
 aet01_2_check(
   adam_db,
