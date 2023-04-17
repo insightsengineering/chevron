@@ -53,7 +53,7 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 }
 \details{
 \itemize{
-\item Person time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
+\item Patient time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
 \item Summary statistics are by default based on the number of patients in the corresponding \code{N} row
 (number of non-missing values).
 \item Does not include a total column by default.

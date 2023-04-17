@@ -6,7 +6,7 @@
 #' @param lbl_aval (`string`) the label of the time variable.
 #'
 #' @details
-#'   * Person time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
+#'   * Patient time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
 #'   * Summary statistics are by default based on the number of patients in the corresponding `N` row
 #'   (number of non-missing values).
 #'   * Does not include a total column by default.
@@ -85,8 +85,8 @@ rmpt01_1_pre <- function(adam_db, ...) {
       aval_months = ifelse(length(.data$AVAL) > 0, day2month(.data$AVAL), numeric(0)),
       aval_months_cat = factor(case_when(
         aval_months < 1 ~ "< 1 month",
-        aval_months >= 1 & aval_months < 3 ~ "1 to <3 months",
-        aval_months >= 3 & aval_months < 6 ~ "3 to <6 months",
+        aval_months < 3 ~ "1 to <3 months",
+        aval_months < 6 ~ "3 to <6 months",
         TRUE ~ ">=6 months"
       ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
     )
