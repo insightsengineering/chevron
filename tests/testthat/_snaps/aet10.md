@@ -6,7 +6,7 @@
                                  A: Drug X    B: Placebo    C: Combination
         MedDRA Preferred Term     (N=134)       (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————
-        No Coding available     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        No Coding Available     122 (91.0%)   123 (91.8%)    120 (90.9%)  
 
 # aet10_1 can handle some NA values
 

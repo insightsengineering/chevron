@@ -27,67 +27,71 @@ test_that("assert_colnames works as expected", {
 # assert_one_tablenames ----
 
 test_that("assert_one_tablenames works as expected", {
+  df <- list(mtcars = mtcars, iris = iris)
+
   expect_silent(
     assert_one_tablenames(
-      dm::dm_nycflights13(),
-      c("airlines"),
+      df,
+      c("mtcars"),
       qualifier = "first test:"
     )
   )
 
   expect_silent(
     assert_one_tablenames(
-      dm::dm_nycflights13(),
-      c("airlines", "haha"),
+      df,
+      c("iris", "haha"),
       qualifier = "first test:"
     )
   )
 
   expect_error(
     assert_one_tablenames(
-      dm::dm_nycflights13(),
+      df,
       c("haha", "hoho"),
       qualifier = "first test:"
     ),
-    "first test: At least one of: haha, hoho is expected to be a table name of dm::dm_nycflights13()"
+    "first test: At least one of: haha, hoho is expected to be a table name of df"
   )
 
   expect_error(
     assert_one_tablenames(
-      dm::dm_nycflights13(),
+      df,
       c("haha", "hoho")
     ),
-    "At least one of: haha, hoho is expected to be a table name of dm::dm_nycflights13()"
+    "At least one of: haha, hoho is expected to be a table name of df"
   )
 })
 
 # assert_all_tablenames ----
 
 test_that("assert_all_tablenames works as expected", {
+  df <- list(mtcars = mtcars, iris = iris)
+
   expect_silent(
     assert_all_tablenames(
-      dm::dm_nycflights13(),
-      c("airlines"),
+      df,
+      c("mtcars"),
       qualifier = "first test:"
     )
   )
 
   expect_error(
     assert_all_tablenames(
-      dm::dm_nycflights13(),
-      c("airlines", "haha"),
+      df,
+      c("iris", "haha"),
       qualifier = "first test:"
     ),
-    "first test: Expected table names: haha not in dm::dm_nycflights13()"
+    "first test: Expected table names: haha not in df"
   )
 
   expect_error(
     assert_all_tablenames(
-      dm::dm_nycflights13(),
+      df,
       c("haha", "hoho"),
       qualifier = "first test:"
     ),
-    "first test: Expected table names: haha, hoho not in dm::dm_nycflights13()"
+    "first test: Expected table names: haha, hoho not in df"
   )
 })
 

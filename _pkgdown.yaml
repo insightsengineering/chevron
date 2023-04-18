@@ -13,7 +13,6 @@ articles:
   - title: All vignettes
     contents:
       - chevron
-      - adam_db_argument
       - layouts
       - adding_new_tlgs_to_chevron
       - script_generator
@@ -89,6 +88,8 @@ reference:
       - syn_data
   - title: Utility Functions
     contents:
+      - assert_colnames
+      - assert_all_tablenames
       - get_db_data
       - report_null
       - smart_prune

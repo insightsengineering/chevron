@@ -164,14 +164,12 @@ mng01_1_main <- function(adam_db,
 #'
 #' @export
 mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", dataset))
 
-  adam_db <- adam_db %>%
-    dm_zoom_to(!!dataset) %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
+    filter(.data$ANL01FL == "Y")
 
-  dunlin::dm_unite(adam_db, dataset, x_var, "_")
+  dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
 }
 
 #' @describeIn mng01_1 Postprocessing
@@ -192,16 +190,13 @@ mng01_1_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' library(dm)
-#' library(dplyr)
-#'
 #' col <- c(
 #'   "A: Drug X" = "black",
 #'   "B: Placebo" = "blue",
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01_1, syn_data, dataset = "adlb", line_col = col)
+#' run(mng01_1, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 mng01_1 <- chevron_g(
   main = mng01_1_main,
   preproces = mng01_1_pre,

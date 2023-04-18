@@ -1,7 +1,7 @@
 # vst02_1 works
 
     Code
-      run(vst02_1, syn_data)
+      run(vst02_1, proc_data)
     Output
         Assessment                   A: Drug X        B: Placebo     C: Combination
          Abnormality                  (N=134)          (N=134)          (N=132)    
@@ -28,7 +28,7 @@
 ---
 
     Code
-      run(vst02_1, syn_data, prune_0 = TRUE)
+      run(vst02_1, proc_data, prune_0 = TRUE)
     Output
         Assessment                   A: Drug X        B: Placebo     C: Combination
          Abnormality                  (N=134)          (N=134)          (N=132)    
@@ -55,7 +55,7 @@
 # vst02_2 works
 
     Code
-      run(vst02_2, syn_data)
+      run(vst02_2, proc_data)
     Output
         Assessment                   A: Drug X        B: Placebo     C: Combination
           Abnormality                 (N=134)          (N=134)          (N=132)    
@@ -82,7 +82,7 @@
 ---
 
     Code
-      run(vst02_2, syn_data, prune_0 = TRUE)
+      run(vst02_2, proc_data, prune_0 = TRUE)
     Output
         Assessment                   A: Drug X        B: Placebo     C: Combination
           Abnormality                 (N=134)          (N=134)          (N=132)    

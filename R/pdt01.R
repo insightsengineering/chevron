@@ -100,12 +100,7 @@ pdt01_1_lyt <- function(arm_var,
 #' @export
 #'
 pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
-  checkmate::assert_class(adam_db, "dm")
-
-  adam_db <- adam_db %>%
-    dm_zoom_to("addv") %>%
-    mutate(DVSEQ = as.factor(.data$DVSEQ)) %>%
-    dm_update_zoomed()
+  assert_all_tablenames(adam_db, c("adsl", "addv"))
 
   fmt_ls <- list(
     dvcode_var = rule(
@@ -113,10 +108,11 @@ pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", 
     ),
     dvterm_var = rule(
       "No Coding available" = c("", NA)
-    )
+    ),
+    DVSEQ = rule()
   )
 
-  names(fmt_ls) <- c(dvcode_var, dvterm_var)
+  names(fmt_ls) <- c(dvcode_var, dvterm_var, "DVSEQ")
   new_format <- list(addv = fmt_ls)
 
   dunlin::reformat(adam_db, new_format, na_last = TRUE)
@@ -153,15 +149,13 @@ pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var
 #' @export
 #'
 #' @examples
-#' library(magrittr)
-#' library(dm)
+#' library(dplyr)
 #'
-#' db <- syn_data %>%
-#'   dm_zoom_to("addv") %>%
-#'   filter(.data$DVCAT == "MAJOR") %>%
-#'   dm_update_zoomed()
+#' proc_data <- syn_data
+#' proc_data$addv <- proc_data$addv %>%
+#'   filter(DVCAT == "MAJOR")
 #'
-#' run(pdt01_1, db)
+#' run(pdt01_1, proc_data)
 pdt01_1 <- chevron_t(
   main = pdt01_1_main,
   lyt = pdt01_1_lyt,

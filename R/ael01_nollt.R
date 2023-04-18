@@ -47,8 +47,6 @@ ael01_nollt_1_pre <- function(adam_db,
                               disp_cols = "AETERM",
                               new_lbls = NULL,
                               ...) {
-  checkmate::assert_class(adam_db, "dm")
-
   ael01_nollt_1_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols, names(new_lbls)))
 
   missing_rule <- rule("No Coding Available" = c("", NA))
@@ -58,13 +56,11 @@ ael01_nollt_1_pre <- function(adam_db,
 
   db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  db <- db %>%
-    dm_zoom_to(!!dataset) %>%
+  db[[dataset]] <- db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
     distinct() %>%
     arrange(pick(all_of(c(key_cols, disp_cols)))) %>%
-    mutate(across(names(new_lbls), function(x) formatters::with_label(x, new_lbls[[cur_column()]]))) %>%
-    dm_update_zoomed()
+    mutate(across(names(new_lbls), function(x) formatters::with_label(x, new_lbls[[cur_column()]])))
 
   db
 }
@@ -78,7 +74,6 @@ ael01_nollt_1_check <- function(adam_db,
                                 dataset,
                                 vars) {
   assert_all_tablenames(adam_db, dataset)
-
   msg <- c(NULL, check_all_colnames(adam_db[[dataset]], vars))
 
   if (is.null(msg)) {

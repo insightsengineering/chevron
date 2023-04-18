@@ -21,7 +21,6 @@
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -94,15 +93,14 @@ dmt01_1_lyt <- function(arm_var,
 #' @examples
 #' dmt01_1_pre(syn_data)
 dmt01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl"))
 
-  adam_db <- dunlin::dm_explicit_na(adam_db)
+  adam_db$adsl <- tern::df_explicit_na(adam_db$adsl)
 
-  db <- adam_db %>%
-    dm_zoom_to("adsl") %>%
-    mutate(DOMAIN = "ADSL") %>%
-    dm_update_zoomed()
-  db
+  adam_db$adsl <- adam_db$adsl %>%
+    mutate(DOMAIN = "ADSL")
+
+  adam_db
 }
 
 #' @describeIn dmt01_1 Postprocessing
