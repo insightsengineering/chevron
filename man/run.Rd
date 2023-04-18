@@ -12,7 +12,7 @@ run(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE)
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
 
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{auto_pre}{(\code{flag}) whether to perform the default pre processing step.}
 

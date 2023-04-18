@@ -1,11 +1,10 @@
 test_that("aet04 can handle NA values", {
-  proc_data <- syn_data %>%
-    dm_zoom_to("adae") %>%
+  proc_data <- syn_data
+  proc_data$adae <- proc_data$adae %>%
     mutate(
       AEBODSYS = NA_character_,
       AEDECOD = NA_character_
-    ) %>%
-    dm_update_zoomed()
+    )
 
   res1 <- expect_silent(run(aet04_1, proc_data))
   expect_snapshot(res1)
@@ -31,14 +30,13 @@ test_that("aet04 can handle some NA values", {
   new_aedecod <- c(NA, "", as.character(syn_data$adae$AEDECOD[-c(1, 2)]))
   new_atoxgr <- c(NA, "", as.character(syn_data$adae$ATOXGR[-c(1, 2)]))
 
-  proc_data <- syn_data %>%
-    dm_zoom_to("adae") %>%
+  proc_data <- syn_data
+  proc_data$adae <- proc_data$adae %>%
     mutate(
       AEBODSYS = factor(.env$new_aebodsys),
       AEDECOD = factor(.env$new_aedecod),
       ATOXGR = factor(.env$new_atoxgr)
-    ) %>%
-    dm_update_zoomed()
+    )
 
   res1 <- expect_silent(run(aet04_1, proc_data))
   expect_snapshot(res1)

@@ -40,7 +40,7 @@ dst01_1_post(tlg, prune_0 = TRUE, deco = std_deco("DST01"), ...)
 dst01_1
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
@@ -105,7 +105,6 @@ which allows the tables to be constructed and pruned separately before binding.
 }
 }
 \examples{
-library(dm)
 library(magrittr)
 
 db <- syn_data \%>\%

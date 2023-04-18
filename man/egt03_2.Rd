@@ -38,7 +38,7 @@ egt03_2_post(tlg, prune_0 = FALSE, ...)
 egt03_2
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) the arm variables used for row split, typically \code{"ARMCD"}.}
 

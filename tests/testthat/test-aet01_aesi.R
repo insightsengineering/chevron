@@ -1,8 +1,8 @@
 # aet01_aesi_1 ----
 
 test_that("aet01_aesi can handle all NA values", {
-  proc_data <- syn_data %>%
-    dm_zoom_to("adae") %>%
+  proc_data <- syn_data
+  proc_data$adae <- proc_data$adae %>%
     mutate(
       AETOXGR = factor(NA, levels = 1:5),
       ALL_RESOLVED = NA,
@@ -11,8 +11,7 @@ test_that("aet01_aesi can handle all NA values", {
       AECONTRT = NA,
       AEREL = NA,
       AESER = NA
-    ) %>%
-    dm_update_zoomed()
+    )
 
   res <- expect_silent(run(aet01_aesi_1, proc_data))
   expect_snapshot(res)
@@ -21,29 +20,30 @@ test_that("aet01_aesi can handle all NA values", {
 })
 
 test_that("aet01_aesi can handle some NA values", {
-  proc_data <- syn_data %>%
-    dm_zoom_to("adae") %>%
+  proc_data <- syn_data
+  proc_data$adae <- proc_data$adae %>%
     mutate(
       AEACN = c(NA, as.character(syn_data$adae$AEACN)[-1])
-    ) %>%
-    dm_update_zoomed()
+    )
 
   res <- expect_silent(run(aet01_aesi_1, proc_data))
   expect_snapshot(res)
 })
 
 test_that("aet01_aesi works with `ALL` argument", {
-  res <- expect_silent(run(aet01_aesi_1, syn_data, aesi_vars = list("ALL")))
+  proc_data <- syn_data
+  res <- expect_silent(run(aet01_aesi_1, proc_data, aesi_vars = list("ALL")))
   expect_snapshot(res)
 })
 
 test_that("aet01_aesi_1_check fails on incomplete data input", {
-  syn_data <- syn_data %>%
-    dm_zoom_to("adae") %>%
-    mutate(AEOUT = NULL) %>%
-    dm_update_zoomed()
+  proc_data <- syn_data
+  proc_data$adae <- proc_data$adae %>%
+    mutate(AEOUT = NULL)
+
   expect_error(
-    run(aet01_aesi_1, syn_data, aesi_vars = list("ALL")),
-    "AEOUT not in adam_db"
+    run(aet01_aesi_1, proc_data, aesi_vars = list("ALL")),
+    "AEOUT not in adam_db$adae",
+    fixed = TRUE
   )
 })
