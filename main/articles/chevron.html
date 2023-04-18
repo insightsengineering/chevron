@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9002</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,17 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -203,32 +192,17 @@ objects that have the name <code>aet02_*</code>. The object
 documentation which is accessible with the <code>help</code> function,
 e.g. <code><a href="../reference/aet02_1.html">help('aet02_1')</a></code> documents what is particular in the
 <code>_1</code> implementation.</p>
-<p>We first define the data and put it in a <code>dm</code> object, you
-can find more details about this in the <em><code>adam_db</code></em>
-vignette.</p>
+<p>We first load the data as a <code>list</code> of
+<code>data.frame</code>, where each table represents a domain.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">chevron</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Registered S3 method overwritten by 'tern':</span></span>
 <span><span class="co">#&gt;   method   from </span></span>
 <span><span class="co">#&gt;   tidy.glm broom</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dm.cynkra.com/" class="external-link">dm</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dm'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">syn_data</span>, package <span class="op">=</span> <span class="st">"chevron"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">adam_study_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dm.cynkra.com/reference/dm.html" class="external-link">dm</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adsl</span>, adae <span class="op">=</span> <span class="va">syn_data</span><span class="op">$</span><span class="va">adae</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dm.cynkra.com/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dm.cynkra.com/reference/dm_add_fk.html" class="external-link">dm_add_fk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span><span class="op">)</span>, ref_table <span class="op">=</span> <span class="st">"adsl"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dm.cynkra.com/reference/dm_add_pk.html" class="external-link">dm_add_pk</a></span><span class="op">(</span><span class="va">adae</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"STUDYID"</span>, <span class="st">"ASTDTM"</span>, <span class="st">"AETERM"</span>, <span class="st">"AESEQ"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://dm.cynkra.com/reference/dm_validate.html" class="external-link">dm_validate</a></span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">syn_data</span>, package <span class="op">=</span> <span class="st">"chevron"</span><span class="op">)</span></span></code></pre></div>
 <p>A the <code>aet02_1</code> output is then created as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet02_1</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet02_1</span>, <span class="va">syn_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination</span></span>
 <span><span class="co">#&gt;     MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
@@ -283,25 +257,18 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e1bb561df8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55beb54a7b40&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; Tables: `adsl`, `adae`</span></span>
-<span><span class="co">#&gt; Columns: 159</span></span>
-<span><span class="co">#&gt; Primary keys: 2</span></span>
-<span><span class="co">#&gt; Foreign keys: 1</span></span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet02_1</span><span class="op">)</span><span class="op">(</span><span class="va">syn_data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># or</span></span>
 <span><span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">aet02_1</span><span class="op">@</span><span class="va">preprocess</span></span>
-<span><span class="fu">foo</span><span class="op">(</span><span class="va">adam_study_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #FFAFFF;">──</span> <span style="color: #FFAFFF;">Metadata</span> <span style="color: #FFAFFF;">────────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; Tables: `adsl`, `adae`</span></span>
-<span><span class="co">#&gt; Columns: 159</span></span>
-<span><span class="co">#&gt; Primary keys: 2</span></span>
-<span><span class="co">#&gt; Foreign keys: 1</span></span></code></pre></div>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">foo</span><span class="op">(</span><span class="va">syn_data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">res</span>, max.level <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 19</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="chevron_tlg-object-customization">
@@ -356,7 +323,7 @@ provided constructors corresponding to the desired output:</p>
 <span>  adam_datasets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_template</span>, <span class="va">adam_study_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_template</span>, <span class="va">syn_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination</span></span>
 <span><span class="co">#&gt;   MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt; ———————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
