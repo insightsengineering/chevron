@@ -46,8 +46,8 @@ chevron_g(
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument. Typically one of the \verb{_main} function
 of \code{chevron}.}
 
-\item{preprocess}{(\code{function}) returning a pre-processed \code{dm} object, with \code{adam_db} as first argument. Typically one
-of the \verb{_pre} function of \code{chevron}.}
+\item{preprocess}{(\code{function}) returning a pre-processed \code{list} of \code{data.frames}, with \code{adam_db} as first argument.
+Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
@@ -68,8 +68,8 @@ creation.}
 \describe{
 \item{\code{main}}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{*_main} function from \code{chevron}.}
 
-\item{\code{preprocess}}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
-\verb{*_pre} function from \code{chevron}.}
+\item{\code{preprocess}}{(\code{function}) returning a pre-processed \code{list} of \code{data.frames} amenable to \code{tlg} creation. Typically
+one of the \verb{*_pre} function from \code{chevron}.}
 
 \item{\code{postprocess}}{(\code{function}) returning a post-processed \code{tlg}.}
 
@@ -80,10 +80,10 @@ creation.}
 \note{
 To ensure the correct execution of the workflow additional validation criteria are:
 \itemize{
-\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{dm} object to pre-process. The \code{...}
-argument is mandatory.
-\item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{dm} object to create \code{tlg} output.
-The \code{...} argument is mandatory.
+\item the first argument of the \code{main} function must be \code{adam_db}, the input \code{list} of \code{data.frames} to pre-process. The
+\code{...} argument is mandatory.
+\item the first argument of the \code{preprocess} function must be \code{adam_db}, the input \code{list} of \code{data.frames} to create
+\code{tlg} output. The \code{...} argument is mandatory.
 \item the first argument of the \code{postprocess} function must be \code{tlg}, the input \code{TableTree} object to post-process. The
 \code{...} argument is mandatory.
 }

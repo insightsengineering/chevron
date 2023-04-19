@@ -1,7 +1,7 @@
 # mht01_1 works
 
     Code
-      run(mht01_1, syn_data)
+      run(mht01_1, proc_data)
     Output
         MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    
@@ -34,7 +34,7 @@
 # mht01_1 works on NULL in lbl_mhbodsys or lbl_mhdecod
 
     Code
-      run(mht01_1, syn_data, lbl_mhbodsys = NULL, lbl_mhdecod = NULL)
+      run(mht01_1, proc_data, lbl_mhbodsys = NULL, lbl_mhdecod = NULL)
     Output
         MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    

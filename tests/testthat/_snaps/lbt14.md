@@ -116,7 +116,7 @@
 # lbt14_1 can accept different gr_missing
 
     Code
-      run(lbt14_1, syn_data, gr_missing = "incl")
+      run(lbt14_1, proc_data, gr_missing = "incl")
     Output
       LBT14 - Low Direction
       
@@ -201,7 +201,7 @@
 ---
 
     Code
-      run(lbt14_1, syn_data, gr_missing = "excl")
+      run(lbt14_1, proc_data, gr_missing = "excl")
     Output
       LBT14 - Low Direction
       
@@ -289,7 +289,7 @@
 ---
 
     Code
-      run(lbt14_1, syn_data, gr_missing = "gr_0")
+      run(lbt14_1, proc_data, gr_missing = "gr_0")
     Output
       LBT14 - Low Direction
       
@@ -497,7 +497,7 @@
 # lbt14_2 can accept different gr_missing
 
     Code
-      run(lbt14_2, syn_data, gr_missing = "incl")
+      run(lbt14_2, proc_data, gr_missing = "incl")
     Output
       LBT14 - High Direction
       
@@ -587,7 +587,7 @@
 ---
 
     Code
-      run(lbt14_2, syn_data, gr_missing = "excl")
+      run(lbt14_2, proc_data, gr_missing = "excl")
     Output
       LBT14 - High Direction
       
@@ -680,7 +680,7 @@
 ---
 
     Code
-      run(lbt14_2, syn_data, gr_missing = "gr_0")
+      run(lbt14_2, proc_data, gr_missing = "gr_0")
     Output
       LBT14 - High Direction
       

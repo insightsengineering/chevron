@@ -26,7 +26,6 @@
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -155,6 +154,8 @@ dst01_1_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
+  assert_all_tablenames(adam_db, c("adsl"))
+
   new_format <- list(
     adsl = list(
       rule("<Missing>" = c("", NA)),
@@ -171,13 +172,13 @@ dst01_1_pre <- function(adam_db,
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adsl") %>%
+  adam_db$adsl <- adam_db$adsl %>%
     mutate(DOMAIN = "ADSL") %>%
     mutate(
       !!status_var := factor(.data[[status_var]], levels = c("COMPLETED", "DISCONTINUED", "ONGOING", "<Missing>"))
-    ) %>%
-    dm_update_zoomed()
+    )
+
+  adam_db
 }
 
 #' @describeIn dst01_1 Postprocessing
@@ -246,7 +247,6 @@ dst01_1 <- chevron_t(
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -383,7 +383,7 @@ dst01_2_pre <- function(adam_db,
                         status_var = "EOSSTT",
                         disc_reason_var = "DCSREAS",
                         ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl"))
 
   new_format <- list(
     adsl = list(
@@ -401,8 +401,7 @@ dst01_2_pre <- function(adam_db,
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adsl") %>%
+  adam_db$adsl <- adam_db$adsl %>%
     mutate(
       !!status_var := factor(.data[[status_var]], levels = c("COMPLETED", "DISCONTINUED", "ONGOING", "<Missing>"))
     ) %>%
@@ -413,8 +412,9 @@ dst01_2_pre <- function(adam_db,
       .data[[disc_reason_var]] == "<Missing>" ~ "<Missing>",
     )) %>%
     mutate(reasonGP = as.factor(.data$reasonGP)) %>%
-    mutate(DOMAIN = "ADSL") %>%
-    dm_update_zoomed()
+    mutate(DOMAIN = "ADSL")
+
+  adam_db
 }
 
 #' @describeIn dst01_2 Postprocessing
@@ -488,7 +488,6 @@ dst01_2 <- chevron_t(
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
@@ -614,7 +613,7 @@ dst01_3_pre <- function(adam_db,
                         disc_reason_var = "DCSREAS",
                         status_treatment_var = "EOTSTT",
                         ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl"))
 
   new_format <- list(
     adsl = list(
@@ -638,8 +637,7 @@ dst01_3_pre <- function(adam_db,
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adsl") %>%
+  adam_db$adsl <- adam_db$adsl %>%
     mutate(
       !!status_var := factor(.data[[status_var]], levels = c("COMPLETED", "DISCONTINUED", "ONGOING", "<Missing>"))
     ) %>%
@@ -649,8 +647,9 @@ dst01_3_pre <- function(adam_db,
       TRUE ~ "Non-Safety"
     )) %>%
     mutate(reasonGP = factor(.data$reasonGP, levels = c("Safety", "Non-Safety", "<Missing>"))) %>%
-    mutate(DOMAIN = "ADSL") %>%
-    dm_update_zoomed()
+    mutate(DOMAIN = "ADSL")
+
+  adam_db
 }
 
 #' @describeIn dst01_3 Postprocessing

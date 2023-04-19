@@ -73,13 +73,11 @@ vst02_1_lyt <- function(arm_var,
 #' @export
 #'
 vst02_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
-  adam_db %>%
-    dm_zoom_to("advs") %>%
+  assert_all_tablenames(adam_db, c("adsl", "advs"))
+
+  adam_db$advs <- adam_db$advs %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("advs") %>%
     mutate(
       ANRIND = case_when(
         .data$ANRIND == "HIGH HIGH" ~ "HIGH",
@@ -95,8 +93,9 @@ vst02_1_pre <- function(adam_db, ...) {
     mutate(
       ANRIND = as.factor(.data$ANRIND),
       BNRIND = as.factor(.data$BNRIND)
-    ) %>%
-    dm_update_zoomed()
+    )
+
+  adam_db
 }
 
 #' @describeIn vst02_1 Postprocessing
@@ -205,13 +204,11 @@ vst02_2_lyt <- function(arm_var,
 #' @export
 #'
 vst02_2_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
-  adam_db %>%
-    dm_zoom_to("advs") %>%
+  assert_all_tablenames(adam_db, c("adsl", "advs"))
+
+  adam_db$advs <- adam_db$advs %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("advs") %>%
     mutate(
       ANRIND = case_when(
         .data$ANRIND == "HIGH HIGH" ~ "HIGH",
@@ -227,8 +224,9 @@ vst02_2_pre <- function(adam_db, ...) {
     mutate(
       ANRIND = as.factor(.data$ANRIND),
       BNRIND = as.factor(.data$BNRIND)
-    ) %>%
-    dm_update_zoomed()
+    )
+
+  adam_db
 }
 
 #' @describeIn vst02_2 Postprocessing

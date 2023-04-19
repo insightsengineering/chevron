@@ -25,7 +25,7 @@ setMethod(
   f = "run",
   signature = "chevron_tlg",
   definition = function(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE) {
-    checkmate::assert_class(adam_db, "dm")
+    checkmate::assert_list(adam_db, types = "list")
     checkmate::assert_flag(auto_pre)
     checkmate::assert_flag(check_arg)
 
@@ -166,8 +166,8 @@ setMethod(
 #' Set Preprocess Function
 #'
 #' @param x (`chevron_tlg`) input.
-#' @param value  (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
-#'   `_pre` function of `chevron`.
+#' @param value  (`function`) returning a pre-processed `list` of `data.frames` amenable to `tlg` creation. Typically
+#'   one of the `_pre` function of `chevron`.
 #'
 #' @rdname preprocess
 #' @export

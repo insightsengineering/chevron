@@ -36,7 +36,7 @@ ext01_2_post(tlg, prune_0 = TRUE, ...)
 ext01_2
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{summaryvars}{(\code{string}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
