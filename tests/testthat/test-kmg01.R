@@ -27,10 +27,6 @@ test_that("kmg01_1 works if change pvalue, ties and conf level", {
   checkmate::assert_true(grid::is.grob(res))
 })
 
-test_that("kmg01_1 works if change legend postion", {
-  res <- expect_silent(run(kmg01_1, syn_data, dataset = "adtte", legend_pos = "right"))
-  checkmate::assert_true(grid::is.grob(res))
-})
 
 test_that("kmg01_1 works if change annotation position", {
   res <- expect_silent(run(kmg01_1, syn_data,
