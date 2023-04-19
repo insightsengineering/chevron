@@ -23,7 +23,7 @@ dtht01_1_main(
   ...
 )
 
-dtht01_1_lyt(arm_var, lbl_overall, other_category, deco)
+dtht01_1_lyt(arm_var, lbl_overall, breakdown, deco)
 
 dtht01_1_opt_lyt(arm_var, lbl_overall, deco)
 
@@ -34,7 +34,7 @@ dtht01_1_post(tlg, prune_0 = TRUE, ...)
 dtht01_1
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
@@ -47,6 +47,8 @@ dtht01_1
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{breakdown}{(\code{character}) the levels of \code{DTHCAT} to be split. If \code{NULL}, this section is omitted.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

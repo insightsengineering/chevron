@@ -7,12 +7,12 @@
 get_db_data(db, ...)
 }
 \arguments{
-\item{db}{a named list or a \code{dm} object.}
+\item{db}{(named \code{list}) to extract elements form.}
 
 \item{...}{not used.}
 }
 \value{
-named list of datasets
+named list of data sets.
 }
 \description{
 Get Data from a DB
@@ -22,10 +22,5 @@ Get Data from a DB
 get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
 get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
 get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")
-
-db <- dm::dm_nycflights13() \%>\%
-  dm_filter(airports, name == "John F Kennedy Intl")
-
-get_db_data(db, "airports")
 }
 }

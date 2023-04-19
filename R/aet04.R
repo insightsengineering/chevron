@@ -131,7 +131,7 @@ aet04_1_lyt <- function(arm_var,
 #' @export
 #'
 aet04_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
 
   new_format <- list(
     adae = list(
@@ -143,14 +143,14 @@ aet04_1_pre <- function(adam_db, ...) {
 
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adae") %>%
+  adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$ATOXGR != "No Grading Available") %>%
     mutate(ATOXGR = factor(.data$ATOXGR,
       levels = setdiff(levels(.data$ATOXGR), "No Grading Available")
-    )) %>%
-    dm_update_zoomed()
+    ))
+
+  adam_db
 }
 
 #' @describeIn aet04_1 Postprocessing

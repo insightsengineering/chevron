@@ -37,7 +37,7 @@ cmt01a_2_post(
 cmt01a_2
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
@@ -90,14 +90,12 @@ as \code{"CMSEQ"}.
 }
 }
 \examples{
-library(magrittr)
-library(dm)
+library(dplyr)
 
-db <- syn_data \%>\%
-  dm_zoom_to("adcm") \%>\%
-  filter(.data$ATIREL == "CONCOMITANT") \%>\%
-  dm_update_zoomed()
+proc_data <- syn_data
+proc_data$adcm <- proc_data$adcm \%>\%
+  filter(ATIREL == "CONCOMITANT")
 
-run(cmt01a_2, db)
+run(cmt01a_2, proc_data)
 }
 \keyword{datasets}

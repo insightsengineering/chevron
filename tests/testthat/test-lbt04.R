@@ -1,12 +1,11 @@
 # lbt04 ----
 
 test_that("lbt04 can handle all NA values", {
-  proc_data <- syn_data %>%
-    dm_zoom_to("adlb") %>%
+  proc_data <- syn_data
+  proc_data$adlb <- proc_data$adlb %>%
     mutate(
       ANRIND = NA_character_
-    ) %>%
-    dm_update_zoomed()
+    )
 
   res <- expect_silent(run(lbt04_1, proc_data))
   expect_snapshot(res)
@@ -15,21 +14,20 @@ test_that("lbt04 can handle all NA values", {
 test_that("lbt04 can handle some NA values", {
   new_anrind <- c(NA_character_, "", as.character(syn_data$adlb$ANRIND[-c(1, 2)]))
 
-  proc_data <- syn_data %>%
-    dm_zoom_to("adlb") %>%
+  proc_data <- syn_data
+  proc_data$adlb <- proc_data$adlb %>%
     mutate(
       ANRIND = .env$new_anrind,
-    ) %>%
-    dm_update_zoomed()
+    )
 
   res <- expect_silent(run(lbt04_1, proc_data))
   expect_snapshot(res)
 })
 
 test_that("lbt04 fails on incomlete date", {
-  syn_data <- syn_data %>%
-    dm_zoom_to("adlb") %>%
-    mutate(PARCAT1 = NULL) %>%
-    dm_update_zoomed()
-  expect_error(run(lbt04_1, syn_data))
+  proc_data <- syn_data
+  proc_data$adlb <- proc_data$adlb %>%
+    mutate(PARCAT1 = NULL)
+
+  expect_error(run(lbt04_1, proc_data))
 })
