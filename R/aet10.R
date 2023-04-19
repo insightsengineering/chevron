@@ -123,8 +123,7 @@ aet10_1_post <- function(tlg, atleast = 0.05, ...) {
     tt = tbl_sorted,
     prune_func = keep_rows(
       has_fraction_in_any_col(
-        atleast = atleast, # specify threshold
-        col_names = names(tlg)
+        atleast = atleast
       )
     )
   )
