@@ -17,8 +17,8 @@
 #' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
 #' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
 #'   median survival time per group.
-#' @param line_col (`list`) describing the colors to use for the lines or a named `list` associating values of `arm_var`
-#'   with color names.
+#' @param line_col (`list`) describing the colors to use for the lines or a named `list`
+#'  associating values of `arm_var` with color names.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by  `arm_var`.

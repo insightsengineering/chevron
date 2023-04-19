@@ -60,8 +60,8 @@ kmg01_1
 \item{position_surv_med}{(\code{numeric}) x and y positions for plotting annotation table estimating
 median survival time per group.}
 
-\item{line_col}{(\code{list}) describing the colors to use for the lines or a named \code{list} associating values of \code{arm_var}
-with color names.}
+\item{line_col}{(\code{list}) describing the colors to use for the lines or a named \code{list}
+associating values of \code{arm_var} with color names.}
 
 \item{...}{not used.}
 
