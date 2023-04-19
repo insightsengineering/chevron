@@ -23,16 +23,16 @@ rmpt01_1_main(
 
 rmpt01_1_lyt(arm_var, lbl_aval, deco)
 
-rmpt01_1_pre(adam_db, ...)
+rmpt01_1_pre(adam_db, arm_var = "ACTARM", ...)
 
-rmpt01_1_check(adam_db, req_tables = c("adsl", "adex"), arm_var = "ACTARM")
+rmpt01_1_check(adam_db, arm_var, req_tables = c("adsl", "adex"))
 
 rmpt01_1_post(tlg, prune_0 = FALSE, ...)
 
 rmpt01_1
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
@@ -75,21 +75,26 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adex} table with the \code{"AVAL"} and \code{"PARAMCD"} columns.
+\item \code{adam_db} object must contain an \code{adex} table with the \code{"PARAMCD"}, \code{"AVAL"} and \code{"AVALU"} columns.
 }
 }
 \examples{
 library(dplyr)
 
-set.seed(1, kind = "Mersenne-Twister")
+set.seed(1)
 proc_data <- syn_data
 proc_data$adex <- proc_data$adex \%>\%
   group_by(USUBJID) \%>\%
   mutate(
     id = seq_along(AVAL),
-    PARAMCD = case_when(id == 1 ~ "TDURD", TRUE ~ PARAMCD),
     AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
-  )
+  ) \%>\%
+  ungroup() \%>\%
+  mutate(
+    PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
+    AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU))
+  ) \%>\%
+  filter(.data$PARAMCD == "TDURD")
 
 run(rmpt01_1, proc_data)
 }

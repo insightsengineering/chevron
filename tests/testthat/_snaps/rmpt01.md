@@ -1,3 +1,17 @@
+# rmpt01 can handle different time units
+
+    Code
+      res
+    Output
+        Duration of exposure                        Number of Patients   Patient Time*
+                                                         (N=400)            (N=400)   
+        ——————————————————————————————————————————————————————————————————————————————
+        Total Number of Patients and Patient Time      400 (100.0%)       61088.0625  
+          < 1 month                                     37 (9.2%)              0      
+          1 to <3 months                                69 (17.2%)         3256.8125  
+          3 to <6 months                               113 (28.2%)        14031.6875  
+          >=6 months                                   181 (45.2%)        43799.5625  
+
 # rmpt01 can handle NA values
 
     Code
@@ -20,9 +34,9 @@
         Duration of exposure                        Number of Patients   Patient Time*
                                                          (N=400)            (N=400)   
         ——————————————————————————————————————————————————————————————————————————————
-        Total Number of Patients and Patient Time       97 (24.2%)           14341    
+        Total Number of Patients and Patient Time      188 (47.0%)           28381    
           < 1 month                                      0 (0.0%)              0      
           1 to <3 months                                 0 (0.0%)              0      
-          3 to <6 months                                79 (19.8%)           10863    
-          >=6 months                                    18 (4.5%)            3478     
+          3 to <6 months                               153 (38.2%)           21657    
+          >=6 months                                    35 (8.8%)            6724     
 

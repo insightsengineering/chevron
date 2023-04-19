@@ -1497,11 +1497,11 @@
         Duration of exposure                        Number of Patients   Patient Time*
                                                          (N=400)            (N=400)   
         ——————————————————————————————————————————————————————————————————————————————
-        Total Number of Patients and Patient Time      217 (54.2%)           19991    
-          < 1 month                                     43 (10.8%)            701     
-          1 to <3 months                                67 (16.8%)           3973     
-          3 to <6 months                                89 (22.2%)           11839    
-          >=6 months                                    18 (4.5%)            3478     
+        Total Number of Patients and Patient Time      400 (100.0%)          38167    
+          < 1 month                                     78 (19.5%)           1278     
+          1 to <3 months                               121 (30.2%)           7237     
+          3 to <6 months                               166 (41.5%)           22928    
+          >=6 months                                    35 (8.8%)            6724     
 
 # vst01_1 functions with default argument value return expected result with test data
 

@@ -13,7 +13,7 @@
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adex` table with the `"AVAL"` and `"PARAMCD"` columns.
+#'   * `adam_db` object must contain an `adex` table with the `"PARAMCD"`, `"AVAL"` and `"AVALU"` columns.
 #'
 #' @export
 #'
@@ -23,8 +23,9 @@ rmpt01_1_main <- function(adam_db,
                           deco = std_deco("RMPT01"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
-  assert_colnames(dbsel$adex, c("AVAL"))
-  checkmate::assert_numeric(dbsel$adex[["AVAL"]], any.missing = FALSE)
+  assert_colnames(dbsel$adex, c("aval_days", "aval_months_cat"))
+  checkmate::assert_numeric(dbsel$adex[["aval_days"]], any.missing = FALSE)
+  checkmate::assert_class(dbsel$adex[["aval_months_cat"]], "factor", null.ok = FALSE)
 
   lyt <- rmpt01_1_lyt(
     arm_var = arm_var,
@@ -49,7 +50,7 @@ rmpt01_1_lyt <- function(arm_var,
   basic_table_deco(deco) %>%
     add_colcounts() %>%
     summarize_patients_exposure_in_cols(
-      var = "AVAL",
+      var = "aval_days",
       col_split = TRUE,
       .labels = c(
         n_patients = "Number of Patients",
@@ -62,7 +63,7 @@ rmpt01_1_lyt <- function(arm_var,
       split_label = lbl_aval
     ) %>%
     summarize_patients_exposure_in_cols(
-      var = "AVAL",
+      var = "aval_days",
       col_split = FALSE
     )
 }
@@ -73,22 +74,40 @@ rmpt01_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-rmpt01_1_pre <- function(adam_db, ...) {
-  rmpt01_1_check(adam_db)
+rmpt01_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
+  rmpt01_1_check(adam_db, arm_var = arm_var)
+
+  new_format <- list(
+    adex = list(
+      AVALU = rule("<Missing>" = c("", NA, "<Missing>"))
+    )
+  )
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db$adex <- adam_db$adex %>%
-    filter(
-      .data$PARAMCD == "TDURD",
-      !is.na(.data$AVAL)
-    ) %>%
     mutate(
-      aval_months = ifelse(length(.data$AVAL) > 0, day2month(.data$AVAL), numeric(0)),
+      aval_months = case_when(
+        .data$AVALU == "DAYS" ~ day2month(.data$AVAL),
+        .data$AVALU == "MONTHS" ~ .data$AVAL,
+        .data$AVALU == "YEARS" ~ (.data$AVAL) * 12,
+        TRUE ~ NA
+      ),
+      aval_days = case_when(
+        .data$AVALU == "DAYS" ~ .data$AVAL,
+        .data$AVALU == "MONTHS" ~ (.data$AVAL) * 30.4375,
+        .data$AVALU == "YEARS" ~ (.data$AVAL) * 365,
+        TRUE ~ NA
+      ),
       aval_months_cat = factor(case_when(
         aval_months < 1 ~ "< 1 month",
         aval_months < 3 ~ "1 to <3 months",
         aval_months < 6 ~ "3 to <6 months",
         TRUE ~ ">=6 months"
       ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
+    ) %>%
+    filter(
+      !is.na(.data$AVAL),
+      .data$AVALU != "<Missing>"
     )
 
   adam_db
@@ -97,19 +116,15 @@ rmpt01_1_pre <- function(adam_db, ...) {
 #' @describeIn rmpt01_1 Checks
 #'
 #' @inheritParams gen_args
-#'
-rmpt01_1_check <- function(adam_db,
-                           req_tables = c("adsl", "adex"),
-                           arm_var = "ACTARM") {
+#' @export
+rmpt01_1_check <- function(adam_db, arm_var,
+                           req_tables = c("adsl", "adex")) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
 
-  adex_layout_col <- c("USUBJID", "PARAMCD", "AVAL")
-  adsl_layout_col <- c("USUBJID")
-
-  msg <- c(msg, assert_colnames(adam_db$adex, c(arm_var, adex_layout_col)))
-  msg <- c(msg, assert_colnames(adam_db$adsl, c(adsl_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adex, c(arm_var, "USUBJID", "PARAMCD", "AVAL", "AVALU")))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, "USUBJID")))
 
   if (is.null(msg)) {
     TRUE
@@ -141,15 +156,20 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @examples
 #' library(dplyr)
 #'
-#' set.seed(1, kind = "Mersenne-Twister")
+#' set.seed(1)
 #' proc_data <- syn_data
 #' proc_data$adex <- proc_data$adex %>%
 #'   group_by(USUBJID) %>%
 #'   mutate(
 #'     id = seq_along(AVAL),
-#'     PARAMCD = case_when(id == 1 ~ "TDURD", TRUE ~ PARAMCD),
 #'     AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
-#'   )
+#'   ) %>%
+#'   ungroup() %>%
+#'   mutate(
+#'     PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
+#'     AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU))
+#'   ) %>%
+#'   filter(.data$PARAMCD == "TDURD")
 #'
 #' run(rmpt01_1, proc_data)
 rmpt01_1 <- chevron_t(
