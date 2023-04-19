@@ -18,10 +18,12 @@ test_that("kmg01_1 works as expected with custom color set", {
 })
 
 test_that("kmg01_1 works if change pvalue, ties and conf level", {
-  res <- expect_silent(run(kmg01_1, syn_data, dataset = "adtte",
-                           pval_method = "log-rank",
-                           ties = "efron",
-                           conf_level = 0.99))
+  res <- expect_silent(run(kmg01_1, syn_data,
+    dataset = "adtte",
+    pval_method = "log-rank",
+    ties = "efron",
+    conf_level = 0.99
+  ))
   checkmate::assert_true(grid::is.grob(res))
 })
 
@@ -31,7 +33,9 @@ test_that("kmg01_1 works if change legend postion", {
 })
 
 test_that("kmg01_1 works if change annotation position", {
-  res <- expect_silent(run(kmg01_1, syn_data, dataset = "adtte", show_statis = FALSE,
-                           position_coxph = c(0.4, 0.5), position_surv_med = c(1, 0.7)))
+  res <- expect_silent(run(kmg01_1, syn_data,
+    dataset = "adtte", show_statis = FALSE,
+    position_coxph = c(0.4, 0.5), position_surv_med = c(1, 0.7)
+  ))
   checkmate::assert_true(grid::is.grob(res))
 })
