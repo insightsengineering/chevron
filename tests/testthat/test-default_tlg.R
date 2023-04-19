@@ -263,7 +263,8 @@ test_that("rmpt01_1 function with default argument value return expected result 
     ungroup() %>%
     mutate(
       PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-      AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU))
+      AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU)),
+      AVALCAT1 = ""
     ) %>%
     filter(.data$PARAMCD == "TDURD")
 

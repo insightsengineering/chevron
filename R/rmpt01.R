@@ -19,6 +19,7 @@
 #'
 rmpt01_1_main <- function(adam_db,
                           arm_var = "ACTARM",
+                          avalcat1_var = "AVALCAT1",
                           lbl_aval = "Duration of exposure",
                           deco = std_deco("RMPT01"),
                           ...) {
@@ -29,6 +30,7 @@ rmpt01_1_main <- function(adam_db,
 
   lyt <- rmpt01_1_lyt(
     arm_var = arm_var,
+    avalcat1_var = avalcat1_var,
     lbl_aval = lbl_aval,
     deco = deco
   )
@@ -45,6 +47,7 @@ rmpt01_1_main <- function(adam_db,
 #' @export
 #'
 rmpt01_1_lyt <- function(arm_var,
+                         avalcat1_var,
                          lbl_aval,
                          deco) {
   basic_table_deco(deco) %>%
@@ -58,6 +61,7 @@ rmpt01_1_lyt <- function(arm_var,
       ),
       custom_label = "Total Number of Patients and Patient Time"
     ) %>%
+    split_rows_by(var = avalcat1_var) %>%
     split_rows_by("aval_months_cat",
       label_pos = "topleft",
       split_label = lbl_aval
@@ -79,7 +83,8 @@ rmpt01_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
 
   new_format <- list(
     adex = list(
-      AVALU = rule("<Missing>" = c("", NA, "<Missing>"))
+      AVALU = rule("<Missing>" = c("", NA, "<Missing>")),
+      AVALCAT1 = rule(" " = c("", NA, "<Missing>"))
     )
   )
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
@@ -107,8 +112,10 @@ rmpt01_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
     ) %>%
     filter(
       !is.na(.data$AVAL),
-      .data$AVALU != "<Missing>"
-    )
+      .data$AVALU != "<Missing>",
+      .data$AVALCAT1 == " "
+    ) %>%
+    mutate(AVALCAT1 = droplevels(.data$AVALCAT1))
 
   adam_db
 }
@@ -167,7 +174,8 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #'   ungroup() %>%
 #'   mutate(
 #'     PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-#'     AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU))
+#'     AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU)),
+#'     AVALCAT1 = ""
 #'   ) %>%
 #'   filter(.data$PARAMCD == "TDURD")
 #'

@@ -11,7 +11,8 @@ test_that("rmpt01 can handle different time units", {
     ungroup() %>%
     mutate(
       PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-      AVALU = factor(case_when(PARAMCD == "TDURD" ~ "MONTHS", TRUE ~ .data$AVALU))
+      AVALU = factor(case_when(PARAMCD == "TDURD" ~ "MONTHS", TRUE ~ .data$AVALU)),
+      AVALCAT1 = ""
     ) %>%
     filter(.data$PARAMCD == "TDURD")
 
@@ -31,7 +32,8 @@ test_that("rmpt01 can handle NA values", {
     mutate(
       PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
       AVAL = NA,
-      AVALU = NA_character_
+      AVALU = NA_character_,
+      AVALCAT1 = ""
     ) %>%
     filter(.data$PARAMCD == "TDURD")
 
@@ -53,7 +55,8 @@ test_that("rmpt01 can handle some NA values", {
     ungroup() %>%
     mutate(
       PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-      AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU))
+      AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU)),
+      AVALCAT1 = ""
     ) %>%
     filter(.data$PARAMCD == "TDURD")
 

@@ -16,12 +16,13 @@ An object of class \code{chevron_t} of length 1.
 rmpt01_1_main(
   adam_db,
   arm_var = "ACTARM",
+  avalcat1_var = "AVALCAT1",
   lbl_aval = "Duration of exposure",
   deco = std_deco("RMPT01"),
   ...
 )
 
-rmpt01_1_lyt(arm_var, lbl_aval, deco)
+rmpt01_1_lyt(arm_var, avalcat1_var, lbl_aval, deco)
 
 rmpt01_1_pre(adam_db, arm_var = "ACTARM", ...)
 
@@ -92,7 +93,8 @@ proc_data$adex <- proc_data$adex \%>\%
   ungroup() \%>\%
   mutate(
     PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-    AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU))
+    AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU)),
+    AVALCAT1 = ""
   ) \%>\%
   filter(.data$PARAMCD == "TDURD")
 
