@@ -22,7 +22,6 @@ kmg01_1_main(
   pval_method = "wald",
   ties = "exact",
   conf_level = 0.95,
-  legend_pos = "bottom",
   position_coxph = c(0, 0.05),
   position_surv_med = c(0.9, 0.9),
   line_col = as.list(nestcolor::color_palette()),
@@ -36,7 +35,7 @@ kmg01_1_post(tlg, ...)
 kmg01_1
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
@@ -55,8 +54,6 @@ kmg01_1
 \item{ties}{(\code{string}) should the censor flag be displayed.}
 
 \item{conf_level}{(\code{numeric}) should the censor flag be displayed.}
-
-\item{legend_pos}{(\code{string}) the position of the legend.}
 
 \item{position_coxph}{(\code{numeric}) x and y positions for plotting survival::coxph() model.}
 

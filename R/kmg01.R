@@ -14,7 +14,6 @@
 #' @param pval_method (`string`) should the censor flag be displayed.
 #' @param ties (`string`) should the censor flag be displayed.
 #' @param conf_level (`numeric`) should the censor flag be displayed.
-#' @param legend_pos (`string`) the position of the legend.
 #' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
 #' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
 #'   median survival time per group.
@@ -36,15 +35,14 @@ kmg01_1_main <- function(adam_db,
                          pval_method = "wald",
                          ties = "exact",
                          conf_level = 0.95,
-                         legend_pos = "bottom",
                          position_coxph = c(0, 0.05),
                          position_surv_med = c(0.9, 0.9),
                          line_col = as.list(nestcolor::color_palette()),
                          ...) {
   anl <- adam_db[[dataset]]
   checkmate::assert_true(length(unique(anl$PARAMCD)) == 1)
-  checkmate::assert_character(x_name)
-  checkmate::assert_character(y_name)
+  checkmate::assert_string(x_name)
+  checkmate::assert_string(y_name)
   checkmate::assert_flag(show_statis)
   checkmate::assert_flag(show_censor)
 
@@ -53,8 +51,6 @@ kmg01_1_main <- function(adam_db,
 
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
 
-  ggtheme <- ggplot2::theme_bw() +
-    ggplot2::theme(legend.position = legend_pos)
 
   if (!is.null(names(line_col))) {
     color_lvl <- sort(unique(anl[[arm_var]]))
@@ -70,33 +66,18 @@ kmg01_1_main <- function(adam_db,
     col <- line_col
   }
 
-  gkm_plot <- if (!show_statis) {
-    g_km(
-      df = anl,
-      variables = variables,
-      censor_show = show_censor,
-      xlab = x_name,
-      ylab = y_name,
-      annot_surv_med = TRUE,
-      control_coxph = control_coxph(pval_method = pval_method, ties = ties, conf_level = conf_level),
-      ggtheme = ggtheme,
-      position_coxph = position_coxph,
-      position_surv_med = position_surv_med
-    )
-  } else {
-    g_km(
-      df = anl,
-      variables = variables,
-      censor_show = show_censor,
-      xlab = x_name,
-      ylab = y_name,
-      annot_coxph = TRUE,
-      control_coxph = control_coxph(pval_method = pval_method, ties = ties, conf_level = conf_level),
-      ggtheme = ggtheme,
-      position_coxph = position_coxph,
-      position_surv_med = position_surv_med
-    )
-  }
+  gkm_plot <- g_km(
+    df = anl,
+    variables = variables,
+    censor_show = show_censor,
+    xlab = x_name,
+    ylab = y_name,
+    annot_surv_med = !show_statis,
+    annot_coxph = show_statis,
+    control_coxph = control_coxph(pval_method = pval_method, ties = ties, conf_level = conf_level),
+    position_coxph = position_coxph,
+    position_surv_med = position_surv_med
+  )
 }
 
 #' @describeIn kmg01_1 Preprocessing
@@ -106,20 +87,21 @@ kmg01_1_main <- function(adam_db,
 #'
 #' @export
 kmg01_1_pre <- function(adam_db, dataset, paramcd = "OS", ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adtte"))
   assert_colnames(adam_db[[dataset]], c("PARAMCD", "CNSR"))
 
-  adam_db <- adam_db %>%
-    dm_zoom_to(!!dataset) %>%
+  adam_db$adtte <- adam_db$adtte %>%
     filter(.data$PARAMCD == paramcd) %>%
-    mutate(is_event = CNSR == 0) %>%
-    dm_update_zoomed()
+    mutate(is_event = CNSR == 0)
+
+  adam_db
 }
 
 #' @describeIn kmg01_1 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
+#' @export
 kmg01_1_post <- function(tlg, ...) {
   tlg
 }
