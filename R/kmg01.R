@@ -115,7 +115,6 @@ kmg01_1_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' library(dm)
 #' library(dplyr)
 #'
 #' col <- c(

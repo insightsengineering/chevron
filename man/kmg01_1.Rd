@@ -95,7 +95,6 @@ a list of \code{ggplot} objects.
 }
 }
 \examples{
-library(dm)
 library(dplyr)
 
 col <- c(
