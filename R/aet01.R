@@ -136,16 +136,13 @@ aet01_1_pre <- function(adam_db,
                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                         ),
                         ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
   checkmate::assert_list(safety_var, types = "character")
   safety_var <- unlist(safety_var)
   aet01_1_check(adam_db, req_tables = req_tables, arm_var = arm_var, safety_var = safety_var)
 
-  db <- adam_db %>%
-    dm_zoom_to("adae") %>%
+  adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adae") %>%
     mutate(
       FATAL = .data$AESDTH == "Y",
       SER = .data$AESER == "Y",
@@ -181,8 +178,7 @@ aet01_1_pre <- function(adam_db,
       RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"),
       CTC35 = if ("CTC35" %in% colnames(.)) formatters::with_label(.data$CTC35, "Grade 3-5 AE"),
       CTC45 = if ("CTC45" %in% colnames(.)) formatters::with_label(.data$CTC45, "Grade 4/5 AE")
-    ) %>%
-    dm_update_zoomed()
+    )
 
   missing_rule <- rule("<Missing>" = c("", NA))
 
@@ -192,9 +188,9 @@ aet01_1_pre <- function(adam_db,
     )
   )
 
-  db <- dunlin::reformat(db, new_format, na_last = TRUE)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  db
+  adam_db
 }
 
 #' @describeIn aet01_1 Checks
@@ -441,15 +437,13 @@ aet01_2_lyt <- function(arm_var,
 #' @export
 #'
 aet01_2_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
 
   aet01_2_check(adam_db)
 
-  df <- adam_db$adae
-  labs <- formatters::var_labels(df)
+  labs <- formatters::var_labels(adam_db$adae)
 
-  db <- adam_db %>%
-    dm_zoom_to("adae") %>%
+  adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       FATAL = .data$AESDTH == "Y",
@@ -499,8 +493,7 @@ aet01_2_pre <- function(adam_db, ...) {
         )
       },
       CQ01 = if ("CQ01" %in% colnames(.)) formatters::with_label(.data$CQ01, .env$labs["CQ01NAM"])
-    ) %>%
-    dm_update_zoomed()
+    )
 
   missing_rule <- rule("<Missing>" = c("", NA))
 
@@ -510,9 +503,9 @@ aet01_2_pre <- function(adam_db, ...) {
     )
   )
 
-  db <- dunlin::reformat(db, new_format, na_last = TRUE)
+  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  db
+  adam_db
 }
 
 #' @describeIn aet01_2 Checks

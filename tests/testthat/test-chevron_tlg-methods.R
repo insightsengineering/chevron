@@ -10,11 +10,10 @@ test_that("run returns a warning if provided with invalid arguments", {
 })
 
 test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
-  syn_data <- syn_data %>%
-    dm_zoom_to("adsl") %>%
-    mutate(DOMAIN = "ADSL") %>%
-    dm_update_zoomed()
-  res <- run(dmt01_1, syn_data, auto_pre = FALSE)
+  proc_data <- syn_data
+  proc_data$adsl <- proc_data$adsl %>%
+    mutate(DOMAIN = "ADSL")
+  res <- run(dmt01_1, proc_data, auto_pre = FALSE)
   expect_snapshot(res)
 })
 
@@ -199,6 +198,12 @@ test_that("script works as expected with dictionary of arguments", {
 
 test_that("script_funs works as expected in interactive mode", {
   skip_if(!interactive())
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls"))
+  expect_snapshot(res)
+})
+
+test_that("script_funs works as expected in non interactive mode", {
+  skip_if(interactive())
   res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls"))
   expect_snapshot(res)
 })

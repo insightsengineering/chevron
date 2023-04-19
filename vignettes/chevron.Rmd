@@ -16,10 +16,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
-# need to load additional hidden dm dependencies for pkgdown - https://github.com/cynkra/dm/blob/v1.0.0/R/pkgdown.R#L17
-library(DiagrammeRsvg)
-library(DiagrammeR)
 ```
 
 
@@ -83,26 +79,17 @@ For example, the `GDS` template `aet02` is implemented in `chevron` with the `ch
 object documentation which is accessible with the `help` function, e.g. `help('aet02_1')` documents what is particular
 in the `_1` implementation.
 
-We first define the data and put it in a `dm` object, you can find more details about this in the *`adam_db`* vignette.
+We first load the data as a `list` of `data.frame`, where each table represents a domain.
 
 ```{r}
 library(chevron)
-library(dm)
-
 data(syn_data, package = "chevron")
-
-adam_study_data <- dm(adsl = syn_data$adsl, adae = syn_data$adae) %>%
-  dm_add_pk(adsl, c("USUBJID", "STUDYID")) %>%
-  dm_add_fk(adae, c("USUBJID", "STUDYID"), ref_table = "adsl") %>%
-  dm_add_pk(adae, c("USUBJID", "STUDYID", "ASTDTM", "AETERM", "AESEQ"))
-
-dm_validate(adam_study_data)
 ```
 
 A the `aet02_1` output is then created as follows:
 
 ```{r}
-run(aet02_1, adam_study_data)
+run(aet02_1, syn_data)
 ```
 
 The function associated with a particular slot can be retrieved with the corresponding method: `main`, `lyt`, `preprocess` `postprocess` and `datasets`.
@@ -114,11 +101,13 @@ main(aet02_1)
 These are standard functions that can be used on their own.
 
 ```{r}
-preprocess(aet02_1)(adam_study_data)
+res <- preprocess(aet02_1)(syn_data)
 
 # or
 foo <- aet02_1@preprocess
-foo(adam_study_data)
+res <- foo(syn_data)
+
+str(res, max.level = 0)
 ```
 
 ## `chevron_tlg` object customization
@@ -162,7 +151,7 @@ my_template <- chevron_t(
   adam_datasets = c("adsl", "adae")
 )
 
-run(my_template, adam_study_data)
+run(my_template, syn_data)
 ```
 
 Note that to ensure the correct execution of the `run` function, the name of the first argument of the `main` function

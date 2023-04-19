@@ -68,17 +68,19 @@ aet10_1_lyt <- function(arm_var,
 #' @export
 #'
 aet10_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
-
   aet10_1_check(adam_db)
 
-  adam_db %>%
-    dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y") %>%
-    mutate(
-      AEDECOD = tern::explicit_na(tern::sas_na(.data$AEDECOD), label = "No Coding available")
-    ) %>%
-    dm_update_zoomed()
+  adam_db$adae <- adam_db$adae %>%
+    filter(.data$ANL01FL == "Y")
+
+
+  new_format <- list(
+    adae = list(
+      AEDECOD = rule("No Coding Available" = c("", NA, "<Missing>"))
+    )
+  )
+
+  dunlin::reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn aet10_1 Checks

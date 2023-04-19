@@ -73,12 +73,13 @@ egt02_1_lyt <- function(arm_var = "ACTARM",
 #' @export
 #'
 egt02_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
-  adam_db %>%
-    dm_zoom_to("adeg") %>%
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
+
+  adam_db$adeg <- adam_db$adeg %>%
     filter(.data$ANRIND != "<Missing>") %>%
-    filter(.data$ONTRTFL == "Y") %>%
-    dm_update_zoomed()
+    filter(.data$ONTRTFL == "Y")
+
+  adam_db
 }
 
 #' @describeIn egt02_1 Postprocessing
@@ -183,12 +184,13 @@ egt02_2_lyt <- function(arm_var = "ACTARM",
 #' @export
 #'
 egt02_2_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
-  adam_db %>%
-    dm_zoom_to("adeg") %>%
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
+
+  adam_db$adeg <- adam_db$adeg %>%
     filter(.data$ANRIND != "<Missing>") %>%
-    filter(.data$ONTRTFL == "Y") %>%
-    dm_update_zoomed()
+    filter(.data$ONTRTFL == "Y")
+
+  adam_db
 }
 #' @describeIn egt02_2 Postprocessing
 #'

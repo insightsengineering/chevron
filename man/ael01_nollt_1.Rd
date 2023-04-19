@@ -37,7 +37,7 @@ ael01_nollt_1_post(tlg, ...)
 ael01_nollt_1
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{character}) the name of a table in the \code{adam_db} object.}
 

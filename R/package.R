@@ -1,6 +1,5 @@
 #' `chevron` package
 #'
-#' @import dm
 #' @import dplyr
 #' @import methods
 #' @import rtables

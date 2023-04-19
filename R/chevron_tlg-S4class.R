@@ -8,8 +8,8 @@
 #' optionally a `postprocess` function.
 #'
 #' @slot main (`function`) returning a `tlg`. Typically one of the `*_main` function from `chevron`.
-#' @slot preprocess (`function`) returning a pre-processed `dm` object amenable to `tlg` creation. Typically one of the
-#'   `*_pre` function from `chevron`.
+#' @slot preprocess (`function`) returning a pre-processed `list` of `data.frames` amenable to `tlg` creation. Typically
+#'   one of the `*_pre` function from `chevron`.
 #' @slot postprocess (`function`) returning a post-processed `tlg`.
 #' @slot adam_datasets (`character`) representing the name of the tables from an `AdAM` dataset required for `tlg`
 #'   creation.
@@ -17,10 +17,10 @@
 #' @format NULL
 #'
 #' @note To ensure the correct execution of the workflow additional validation criteria are:
-#' * the first argument of the `main` function must be `adam_db`, the input `dm` object to pre-process. The `...`
-#' argument is mandatory.
-#' * the first argument of the `preprocess` function must be `adam_db`, the input `dm` object to create `tlg` output.
-#' The `...` argument is mandatory.
+#' * the first argument of the `main` function must be `adam_db`, the input `list` of `data.frames` to pre-process. The
+#' `...` argument is mandatory.
+#' * the first argument of the `preprocess` function must be `adam_db`, the input `list` of `data.frames` to create
+#' `tlg` output. The `...` argument is mandatory.
 #' * the first argument of the `postprocess` function must be `tlg`, the input `TableTree` object to post-process. The
 #' `...` argument is mandatory.
 #'

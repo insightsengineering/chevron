@@ -47,23 +47,19 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 
 #' Get Data from a DB
 #'
-#' @param db a named list or a `dm` object.
+#' @param db (named `list`) to extract elements form.
 #' @param ... not used.
 #'
-#' @return named list of datasets
+#' @return named list of data sets.
 #'
 #' @examples
 #' \dontrun{
 #' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2))
 #' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris")
 #' get_db_data(list(iris = iris, mtcars = mtcars, CO2 = CO2), "iris", "CO2")
-#'
-#' db <- dm::dm_nycflights13() %>%
-#'   dm_filter(airports, name == "John F Kennedy Intl")
-#'
-#' get_db_data(db, "airports")
 #' }
 get_db_data <- function(db, ...) {
+  checkmate::assert_list(db, types = "data.frame")
   datasets <- c(...)
 
   if (length(datasets) == 0) {

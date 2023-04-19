@@ -109,12 +109,13 @@ vst01_1_lyt <- function(arm_var,
 #' @export
 #'
 vst01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "advs"))
 
-  adam_db %>%
-    dm_zoom_to("advs") %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+
+  adam_db$advs <- adam_db$advs %>%
+    filter(.data$ANL01FL == "Y")
+
+  adam_db
 }
 
 #' @describeIn vst01_1 Postprocessing
