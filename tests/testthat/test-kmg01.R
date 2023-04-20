@@ -1,5 +1,5 @@
 test_that("kmg01_1 works as expected", {
-  filter_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
   pre_data <- expect_silent(kmg01_1_pre(filter_data, dataset = "adtte"))
   raw_res <- expect_silent(kmg01_1_main(pre_data, dataset = "adtte"))
   checkmate::assert_true(grid::is.grob(raw_res))
@@ -12,7 +12,7 @@ test_that("kmg01_1 works as expected with custom color set", {
     "C: Combination" = "gray"
   )
 
-  filter_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
   res <- expect_silent(run(kmg01_1, filter_data, dataset = "adtte", line_col = col))
   checkmate::assert_true(grid::is.grob(res))
   res <- expect_silent(run(kmg01_1, filter_data, dataset = "adtte", line_col = unname(col)))
@@ -20,7 +20,7 @@ test_that("kmg01_1 works as expected with custom color set", {
 })
 
 test_that("kmg01_1 works if change pvalue, ties and conf level", {
-  filter_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
   res <- expect_silent(run(kmg01_1, filter_data,
     dataset = "adtte",
     pval_method = "log-rank",
@@ -32,7 +32,7 @@ test_that("kmg01_1 works if change pvalue, ties and conf level", {
 
 
 test_that("kmg01_1 works if change annotation position", {
-  filter_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
   res <- expect_silent(run(kmg01_1, filter_data,
     dataset = "adtte", show_statis = FALSE,
     position_coxph = c(0.4, 0.5), position_surv_med = c(1, 0.7)
