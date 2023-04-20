@@ -266,3 +266,12 @@ gg_list <- function(...) {
     class = c("gg_list", "list")
   )
 }
+
+#' Check to have only one PARAMCD in the analysis dataset
+#' @param param_val
+#' @export
+assert_only_one_paramcd <- function(param_val) {
+  if (length(param_val) > 1) {
+    stop(paste0("More than one parameters:", paste(param_val, collapse = ", "), ", Only one suppose to have."))
+  }
+}
