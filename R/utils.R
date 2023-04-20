@@ -272,6 +272,10 @@ gg_list <- function(...) {
 #' @export
 assert_only_one_paramcd <- function(param_val) {
   if (length(param_val) > 1) {
-    stop(paste0("More than one parameters:", paste(param_val, collapse = ", "), ", Only one suppose to have."))
+    stop(paste0(
+      "More than one parameters:",
+      paste(param_val, collapse = ", "),
+      ", Only one suppose to have."
+    ))
   }
 }
