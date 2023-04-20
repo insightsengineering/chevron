@@ -28,7 +28,7 @@ kmg01_1_main(
   ...
 )
 
-kmg01_1_pre(adam_db, dataset, paramcd = "OS", ...)
+kmg01_1_pre(adam_db, dataset = "adtte", ...)
 
 kmg01_1_post(tlg, ...)
 
@@ -65,9 +65,9 @@ associating values of \code{arm_var} with color names.}
 
 \item{...}{not used.}
 
-\item{paramcd}{(\code{string}) PARAMCD of the endpoint need to be analysis}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{paramcd}{(\code{string}) PARAMCD of the endpoint need to be analysis}
 }
 \value{
 a list of \code{ggplot} objects.
@@ -103,6 +103,7 @@ col <- c(
   "C: Combination" = "gray"
 )
 
-run(kmg01_1, syn_data, dataset = "adtte", line_col = col)
+syn_data2 <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+run(kmg01_1, syn_data2, dataset = "adtte", line_col = col)
 }
 \keyword{datasets}

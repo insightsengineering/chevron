@@ -87,12 +87,11 @@ kmg01_1_main <- function(adam_db,
 #' @param paramcd (`string`) PARAMCD of the endpoint need to be analysis
 #'
 #' @export
-kmg01_1_pre <- function(adam_db, dataset, paramcd = "OS", ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adtte"))
-  assert_colnames(adam_db[[dataset]], c("PARAMCD", "CNSR"))
+kmg01_1_pre <- function(adam_db, dataset = "adtte", ...) {
+  assert_all_tablenames(adam_db, c("adsl", dataset))
+  assert_colnames(adam_db[[dataset]], "CNSR")
 
   adam_db$adtte <- adam_db$adtte %>%
-    filter(.data$PARAMCD == paramcd) %>%
     mutate(is_event = .data$CNSR == 0)
 
   adam_db
@@ -124,7 +123,8 @@ kmg01_1_post <- function(tlg, ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(kmg01_1, syn_data, dataset = "adtte", line_col = col)
+#' syn_data2 <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+#' run(kmg01_1, syn_data2, dataset = "adtte", line_col = col)
 kmg01_1 <- chevron_g(
   main = kmg01_1_main,
   preproces = kmg01_1_pre,
