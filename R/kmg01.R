@@ -49,6 +49,7 @@ kmg01_1_main <- function(adam_db,
   line_col <- unlist(line_col)
   checkmate::assert_character(line_col, null.ok = TRUE)
 
+  assert_colnames(adam_db[[dataset]], "AVAL")
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
 
 
@@ -92,7 +93,7 @@ kmg01_1_pre <- function(adam_db, dataset, paramcd = "OS", ...) {
 
   adam_db$adtte <- adam_db$adtte %>%
     filter(.data$PARAMCD == paramcd) %>%
-    mutate(is_event = CNSR == 0)
+    mutate(is_event = .data$CNSR == 0)
 
   adam_db
 }
