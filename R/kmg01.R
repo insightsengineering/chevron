@@ -41,7 +41,8 @@ kmg01_1_main <- function(adam_db,
                          ...) {
   anl <- adam_db[[dataset]]
   checkmate::assert_true(length(unique(anl$PARAMCD)) == 1,
-                         msg = "Only one parameter should be used in the analysis dataset")
+    msg = "Only one parameter should be used in the analysis dataset"
+  )
   checkmate::assert_string(x_name)
   checkmate::assert_string(y_name)
   checkmate::assert_flag(show_statis)
