@@ -96,6 +96,7 @@ a list of \code{ggplot} objects.
 }
 \examples{
 library(dplyr)
+library(dunlin)
 
 col <- c(
   "A: Drug X" = "black",
