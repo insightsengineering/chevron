@@ -39,4 +39,3 @@ test_that("kmg01_1 works if change annotation position", {
   ))
   checkmate::assert_true(grid::is.grob(res))
 })
-
