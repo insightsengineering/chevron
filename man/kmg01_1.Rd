@@ -66,8 +66,6 @@ associating values of \code{arm_var} with color names.}
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{paramcd}{(\code{string}) PARAMCD of the endpoint need to be analysis}
 }
 \value{
 a list of \code{ggplot} objects.

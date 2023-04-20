@@ -40,7 +40,7 @@ kmg01_1_main <- function(adam_db,
                          line_col = as.list(nestcolor::color_palette()),
                          ...) {
   anl <- adam_db[[dataset]]
-  checkmate::assert_true(length(unique(anl$PARAMCD)) == 1)
+  checkmate::assert_true(length(unique(anl$PARAMCD)) == 1, msg = "Only one parameter should be used in the analysis dataset")
   checkmate::assert_string(x_name)
   checkmate::assert_string(y_name)
   checkmate::assert_flag(show_statis)
@@ -84,7 +84,6 @@ kmg01_1_main <- function(adam_db,
 #' @describeIn kmg01_1 Preprocessing
 #'
 #' @inheritParams kmg01_1_main
-#' @param paramcd (`string`) PARAMCD of the endpoint need to be analysis
 #'
 #' @export
 kmg01_1_pre <- function(adam_db, dataset = "adtte", ...) {
