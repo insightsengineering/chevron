@@ -75,7 +75,7 @@ kmg01_1_main <- function(adam_db,
     ylab = y_name,
     annot_surv_med = !show_statis,
     annot_coxph = show_statis,
-    control_coxph = control_coxph(pval_method = pval_method, ties = ties, conf_level = conf_level),
+    control_coxph_pw = control_coxph(pval_method = pval_method, ties = ties, conf_level = conf_level),
     position_coxph = position_coxph,
     position_surv_med = position_surv_med
   )
