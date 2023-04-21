@@ -266,5 +266,3 @@ gg_list <- function(...) {
     class = c("gg_list", "list")
   )
 }
-
-
