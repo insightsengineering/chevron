@@ -50,7 +50,7 @@ kmg01_1_main <- function(adam_db,
   line_col <- unlist(line_col)
   checkmate::assert_character(line_col, null.ok = TRUE)
 
-  assert_colnames(adam_db[[dataset]], "AVAL")
+  assert_colnames(anl, "AVAL")
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
 
 
