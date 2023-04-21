@@ -96,7 +96,7 @@ a list of \code{ggplot} objects.
 library(dplyr)
 library(dunlin)
 
-col <- c(
+col <- list(
   "A: Drug X" = "black",
   "B: Placebo" = "blue",
   "C: Combination" = "gray"
@@ -104,5 +104,8 @@ col <- c(
 
 syn_data2 <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(kmg01_1, syn_data2, dataset = "adtte", line_col = col)
+
+syn_data3 <- log_filter(syn_data, PARAMCD == "AEREPTTE", "adaette")
+run(kmg01_1, syn_data3, dataset = "adaette")
 }
 \keyword{datasets}

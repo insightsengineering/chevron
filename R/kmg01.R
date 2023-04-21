@@ -40,7 +40,8 @@ kmg01_1_main <- function(adam_db,
                          line_col = as.list(nestcolor::color_palette()),
                          ...) {
   anl <- adam_db[[dataset]]
-  assert_only_one_paramcd(unique(anl$PARAMCD))
+  assert_colnames(anl, "PARAMCD")
+  assert_only_one_paramcd(anl$PARAMCD)
   checkmate::assert_string(x_name)
   checkmate::assert_string(y_name)
   checkmate::assert_flag(show_statis)
@@ -67,7 +68,7 @@ kmg01_1_main <- function(adam_db,
     col <- line_col
   }
 
-  gkm_plot <- g_km(
+  g_km(
     df = anl,
     variables = variables,
     censor_show = show_censor,
@@ -90,7 +91,7 @@ kmg01_1_pre <- function(adam_db, dataset = "adtte", ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   assert_colnames(adam_db[[dataset]], "CNSR")
 
-  adam_db$adtte <- adam_db$adtte %>%
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(is_event = .data$CNSR == 0)
 
   adam_db
@@ -117,7 +118,7 @@ kmg01_1_post <- function(tlg, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' col <- c(
+#' col <- list(
 #'   "A: Drug X" = "black",
 #'   "B: Placebo" = "blue",
 #'   "C: Combination" = "gray"
@@ -125,9 +126,12 @@ kmg01_1_post <- function(tlg, ...) {
 #'
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 #' run(kmg01_1, syn_data2, dataset = "adtte", line_col = col)
+#'
+#' syn_data3 <- log_filter(syn_data, PARAMCD == "AEREPTTE", "adaette")
+#' run(kmg01_1, syn_data3, dataset = "adaette")
 kmg01_1 <- chevron_g(
   main = kmg01_1_main,
   preproces = kmg01_1_pre,
   postprocess = kmg01_1_post,
-  adam_datasets = c("adsl", "adtte")
+  adam_datasets = c("adsl")
 )
