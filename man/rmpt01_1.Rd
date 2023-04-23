@@ -23,9 +23,9 @@ rmpt01_1_main(
 
 rmpt01_1_lyt(anl_vars, lbl_vars, deco)
 
-rmpt01_1_pre(adam_db, ...)
+rmpt01_1_pre(adam_db, anl_vars, ...)
 
-rmpt01_1_check(adam_db, arm_var, req_tables = c("adsl", "adex"))
+rmpt01_1_check(adam_db, anl_vars, req_tables = c("adsl", "adex"))
 
 rmpt01_1_post(tlg, prune_0 = FALSE, ...)
 
@@ -37,8 +37,6 @@ rmpt01_1
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
-
-\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 

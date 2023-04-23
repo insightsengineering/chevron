@@ -73,9 +73,10 @@ rmpt01_1_lyt <- function(anl_vars,
 #'
 #' @export
 #'
-rmpt01_1_pre <- function(adam_db, ...) {
+rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...) {
   adam_db <- dunlin::log_filter(adam_db, PARAMCD == "TDURD", "adex")
   adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
+  rmpt01_1_check(adam_db, anl_vars = anl_vars)
   adam_db
 }
 
@@ -83,14 +84,15 @@ rmpt01_1_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #' @export
-rmpt01_1_check <- function(adam_db, arm_var,
+rmpt01_1_check <- function(adam_db,
+                           anl_vars,
                            req_tables = c("adsl", "adex")) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
 
-  msg <- c(msg, check_all_colnames(adam_db$adex, c(arm_var, "USUBJID", "PARAMCD", "AVAL")))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, "USUBJID")))
+  msg <- c(msg, check_all_colnames(adam_db$adex, c("USUBJID", "PARAMCD", anl_vars)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
 
   if (is.null(msg)) {
     TRUE
