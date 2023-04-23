@@ -74,9 +74,9 @@ rmpt01_1_lyt <- function(anl_vars,
 #' @export
 #'
 rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...) {
-  adam_db <- dunlin::log_filter(adam_db, PARAMCD == "TDURD", "adex")
-  adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
   rmpt01_1_check(adam_db, anl_vars = anl_vars)
+  adam_db <- dunlin::log_filter(adam_db, PARAMCD == "TDURD", "adex")
+  adam_db$adex[[anl_vars[1]]] <- droplevels(adam_db$adex[[anl_vars[1]]])
   adam_db
 }
 
