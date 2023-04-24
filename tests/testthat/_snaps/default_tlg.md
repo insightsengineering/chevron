@@ -1494,15 +1494,14 @@
     Code
       res
     Output
-          Duration of exposure                      Number of Patients   Patient Time*
-                                                         (N=400)            (N=400)   
-        ——————————————————————————————————————————————————————————————————————————————
-        Total Number of Patients and Patient Time      400 (100.0%)          38167    
-                                                                                      
-            < 1 month                                   78 (19.5%)           1278     
-            1 to <3 months                             121 (30.2%)           7237     
-            3 to <6 months                             166 (41.5%)           22928    
-            >=6 months                                  35 (8.8%)            6724     
+        Duration of exposure                         Patients     Person time*
+                                                     (N=400)        (N=400)   
+        ——————————————————————————————————————————————————————————————————————
+        Total Number of Patients and Person Time   400 (100.0%)      49700    
+          < 1 month                                 39 (9.8%)         728     
+          1 to <3 months                           111 (27.8%)        6418    
+          3 to <6 months                           136 (34.0%)       17645    
+          >=6 months                               114 (28.5%)       24909    
 
 # vst01_1 functions with default argument value return expected result with test data
 

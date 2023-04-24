@@ -251,24 +251,7 @@ test_that("pdt02_1 function with default argument value return expected result w
 })
 
 test_that("rmpt01_1 function with default argument value return expected result with test data", {
-  # Simulate ADEX records with PARAMCD == "TDURD" as they are not in sample dataset.
-  set.seed(1)
-  proc_data <- syn_data
-  proc_data$adex <- proc_data$adex %>%
-    group_by(USUBJID) %>%
-    mutate(
-      id = seq_along(AVAL),
-      AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
-    ) %>%
-    ungroup() %>%
-    mutate(
-      PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-      AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU)),
-      AVALCAT1 = ""
-    ) %>%
-    filter(.data$PARAMCD == "TDURD")
-
-  pre_data <- rmpt01_1_pre(proc_data)
+  pre_data <- rmpt01_1_pre(syn_data)
   raw_res <- rmpt01_1_main(pre_data)
   res <- rmpt01_1_post(raw_res)
   expect_snapshot(res)

@@ -16,14 +16,14 @@ An object of class \code{chevron_t} of length 1.
 rmpt01_1_main(
   adam_db,
   anl_vars = c("AVALCAT1", "AVAL"),
-  lbl_vars = c("Number of Patients", "Duration of Exposure"),
+  lbl_vars = c("Patients", "Person time*"),
   deco = std_deco("RMPT01"),
   ...
 )
 
 rmpt01_1_lyt(anl_vars, lbl_vars, deco)
 
-rmpt01_1_pre(adam_db, anl_vars, ...)
+rmpt01_1_pre(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...)
 
 rmpt01_1_check(adam_db, anl_vars, req_tables = c("adsl", "adex"))
 
@@ -34,6 +34,10 @@ rmpt01_1
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
+\item{anl_vars}{(\code{character}) the variables to be analyzed.}
+
+\item{lbl_vars}{(\code{character}) the labels of the patient toll and time variables.}
+
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
@@ -43,15 +47,13 @@ rmpt01_1
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{lbl_aval}{(\code{string}) the label of the time variable.}
 }
 \description{
 The \code{RMPT01} table provides an overview of duration of exposure for SE patients
 }
 \details{
 \itemize{
-\item Patient time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
+\item Person time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
 \item Summary statistics are by default based on the number of patients in the corresponding \code{N} row
 (number of non-missing values).
 \item Does not include a total column by default.
@@ -73,28 +75,10 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adex} table with the \code{"PARAMCD"}, \code{"AVAL"} and \code{"AVALU"} columns.
+\item \code{adam_db} object must contain an \code{adex} table with the \code{"PARAMCD"}, \code{"AVAL"} and \code{"AVALCAT1"} columns.
 }
 }
 \examples{
-library(dplyr)
-
-set.seed(1)
-proc_data <- syn_data
-proc_data$adex <- proc_data$adex \%>\%
-  group_by(USUBJID) \%>\%
-  mutate(
-    id = seq_along(AVAL),
-    AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
-  ) \%>\%
-  ungroup() \%>\%
-  mutate(
-    PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-    AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU)),
-    AVALCAT1 = ""
-  ) \%>\%
-  filter(.data$PARAMCD == "TDURD")
-
-run(rmpt01_1, proc_data)
+run(rmpt01_1, syn_data)
 }
 \keyword{datasets}

@@ -1,40 +1,28 @@
-# rmpt01 can handle different time units
-
-    Code
-      res
-    Output
-          Duration of exposure                      Number of Patients   Patient Time*
-                                                         (N=400)            (N=400)   
-        ——————————————————————————————————————————————————————————————————————————————
-        Total Number of Patients and Patient Time      400 (100.0%)       61088.0625  
-                                                                                      
-            < 1 month                                   37 (9.2%)              0      
-            1 to <3 months                              69 (17.2%)         3256.8125  
-            3 to <6 months                             113 (28.2%)        14031.6875  
-            >=6 months                                 181 (45.2%)        43799.5625  
-
 # rmpt01 can handle NA values
 
     Code
       res
     Output
-          Duration of exposure                      Number of Patients   Patient Time*
-                                                         (N=400)            (N=400)   
-        ——————————————————————————————————————————————————————————————————————————————
-        Total Number of Patients and Patient Time        0 (0.0%)              0      
+        Duration of exposure                       Patients   Person time*
+                                                   (N=400)      (N=400)   
+        ——————————————————————————————————————————————————————————————————
+        Total Number of Patients and Person Time   0 (0.0%)        0      
+          < 1 month                                0 (0.0%)        0      
+          1 to <3 months                           0 (0.0%)        0      
+          3 to <6 months                           0 (0.0%)        0      
+          >=6 months                               0 (0.0%)        0      
 
 # rmpt01 can handle some NA values
 
     Code
       res
     Output
-          Duration of exposure                      Number of Patients   Patient Time*
-                                                         (N=400)            (N=400)   
-        ——————————————————————————————————————————————————————————————————————————————
-        Total Number of Patients and Patient Time      188 (47.0%)           28381    
-                                                                                      
-            < 1 month                                    0 (0.0%)              0      
-            1 to <3 months                               0 (0.0%)              0      
-            3 to <6 months                             153 (38.2%)           21657    
-            >=6 months                                  35 (8.8%)            6724     
+        Duration of exposure                        Patients     Person time*
+                                                     (N=400)       (N=400)   
+        —————————————————————————————————————————————————————————————————————
+        Total Number of Patients and Person Time   204 (51.0%)      25560    
+          < 1 month                                 20 (5.0%)        356     
+          1 to <3 months                           56 (14.0%)        3128    
+          3 to <6 months                           63 (15.8%)        8013    
+          >=6 months                               65 (16.2%)       14063    
 

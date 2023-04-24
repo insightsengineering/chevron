@@ -3,23 +3,23 @@
 #' @describeIn rmpt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_aval (`string`) the label of the time variable.
+#' @param anl_vars (`character`) the variables to be analyzed.
 #'
 #' @details
-#'   * Patient time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
+#'   * Person time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
 #'   * Summary statistics are by default based on the number of patients in the corresponding `N` row
 #'   (number of non-missing values).
 #'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adex` table with the `"PARAMCD"`, `"AVAL"` and `"AVALU"` columns.
+#'   * `adam_db` object must contain an `adex` table with the `"PARAMCD"`, `"AVAL"` and `"AVALCAT1"` columns.
 #'
 #' @export
 #'
 rmpt01_1_main <- function(adam_db,
                           anl_vars = c("AVALCAT1", "AVAL"),
-                          lbl_vars = c("Number of Patients", "Duration of Exposure"),
+                          lbl_vars = c("Patients", "Person time*"),
                           deco = std_deco("RMPT01"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
@@ -38,7 +38,7 @@ rmpt01_1_main <- function(adam_db,
 #' @describeIn rmpt01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param lbl_aval (`string`) the label of the time variable.
+#' @param lbl_vars (`character`) the labels of the patient toll and time variables.
 #'
 #' @export
 #'
@@ -54,7 +54,7 @@ rmpt01_1_lyt <- function(anl_vars,
         n_patients = lbl_vars[1],
         sum_exposure = lbl_vars[2]
       ),
-      custom_label = "Total Number of Patients and Patient Time"
+      custom_label = "Total Number of Patients and Person Time"
     ) %>%
     split_rows_by(
       var = anl_vars[1],
@@ -83,7 +83,9 @@ rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...) {
 #' @describeIn rmpt01_1 Checks
 #'
 #' @inheritParams gen_args
+#'
 #' @export
+#'
 rmpt01_1_check <- function(adam_db,
                            anl_vars,
                            req_tables = c("adsl", "adex")) {
@@ -122,25 +124,7 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' library(dplyr)
-#'
-#' set.seed(1)
-#' proc_data <- syn_data
-#' proc_data$adex <- proc_data$adex %>%
-#'   group_by(USUBJID) %>%
-#'   mutate(
-#'     id = seq_along(AVAL),
-#'     AVAL = sample(x = seq(1, 200), size = n(), replace = TRUE)
-#'   ) %>%
-#'   ungroup() %>%
-#'   mutate(
-#'     PARAMCD = factor(case_when(id == 1 ~ "TDURD", TRUE ~ .data$PARAMCD)),
-#'     AVALU = factor(case_when(PARAMCD == "TDURD" ~ "DAYS", TRUE ~ .data$AVALU)),
-#'     AVALCAT1 = ""
-#'   ) %>%
-#'   filter(.data$PARAMCD == "TDURD")
-#'
-#' run(rmpt01_1, proc_data)
+#' run(rmpt01_1, syn_data)
 rmpt01_1 <- chevron_t(
   main = rmpt01_1_main,
   preprocess = rmpt01_1_pre,
