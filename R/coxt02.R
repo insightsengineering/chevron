@@ -88,7 +88,9 @@ coxt02_1_pre <- function(adam_db, adtte_vars = c("AVAL", "CNSR"),
                          coxreg_vars = c("ARM", covariates), ...) {
   coxt02_1_check(adam_db, adtte_vars = adtte_vars, coxreg_vars = coxreg_vars)
   adam_db <- dunlin::log_filter(adam_db, PARAMCD == "CRSD", "adtte")
-  adam_db$adtte[[anl_vars[xx]]] <- droplevels(adam_db$adtte[[anl_vars[xx]]])
+  lapply(setdiff(coxreg_vars, "AGE"), function(x) {
+    adam_db$adtte[[x]] <- droplevels(adam_db$adtte[[x]])
+  })
 
   adam_db$adtte <- adam_db$adtte %>%
     mutate(EVENT = 1 - .data$CNSR)
