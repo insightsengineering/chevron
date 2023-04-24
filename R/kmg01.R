@@ -40,7 +40,7 @@ kmg01_1_main <- function(adam_db,
                          line_col = as.list(nestcolor::color_palette()),
                          ...) {
   anl <- adam_db[[dataset]]
-  assert_colnames(anl, "PARAMCD")
+  assert_colnames(anl, c("PARAMCD", "is_event", arm_var))
   assert_only_one_paramcd(anl$PARAMCD)
   checkmate::assert_string(x_name)
   checkmate::assert_string(y_name)
