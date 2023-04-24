@@ -7,7 +7,7 @@
 assert_only_one_paramcd(param_val)
 }
 \arguments{
-\item{param_val}{(\code{character}) value of PARAMCD}
+\item{param_val}{value of PARAMCD}
 }
 \description{
 Check to have only one PARAMCD in the analysis dataset
