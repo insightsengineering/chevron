@@ -3,42 +3,39 @@
 #' @describeIn coxt02_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param time (`flag`) time variable in a Cox proportional hazards regression model.
-#' @param event (`flag`) event variable in a Cox proportional hazards regression model.
-#' @param covariates (`character`) will be fitted and the corresponding effect estimates will be.
+#' @param adtte_vars (`character`) event and time variables in a Cox proportional hazards regression model.
+#' @param coxreg_vars (`character`) will be fitted and the corresponding effect will be estimated.
 #'
 #' @details
 #'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
 #'  * The stratified analysis is with DISCRETE tie handling.
-#'  * Model includes treatment plus specified covariate(s) as factor(s), with `"AGE"`, `"RACE"` and `"SEX"` as default.
+#'  * Model includes treatment plus specified covariate(s) as factor(s), with `"SEX"`, `"RACE"` and `"AGE"` as default.
 #'  * The selection of the covariates and whether or not there is a selection process
 #'  (vs. a fixed, pre-specified list) needs to be specified in the DAP.
 #'  * For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
 #'  * Keep zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adtte` table with columns, `"AVAL"`, `"CNSR"`, and `"PARAMCD"`.
+#'   * `adam_db` object must contain an `adtte` table with columns `"ARM"`, `"AVAL"`, `"CNSR"`, and `"PARAMCD"`.
 #'
 #' @export
 #'
 coxt02_1_main <- function(adam_db,
-                          arm_var = "ARM",
+                          adtte_vars = c("AVAL", "EVENT"),
+                          coxreg_vars = c("ARM", covariates),
                           lbl_term = "Effect/Covariate Included in the Model",
-                          time = "AVAL",
-                          event = "event",
-                          covariates = c("AGE", "SEX", "RACE"),
                           conf_level = .95,
                           deco = std_deco("COXT02"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adtte")
-  checkmate::assert_subset(covariates, c("AGE", "SEX", "RACE"))
   checkmate::assert_true(is.numeric(conf_level))
   checkmate::assert_true(conf_level >= 0 && conf_level <= 1)
+  assert_colnames(dbsel$adtte, c(adtte_vars, coxreg_vars))
 
   multivar_model <- fit_coxreg_multivar(
     variables = list(
-      time = time, event = event, arm = arm_var,
-      covariates = covariates
+      time = adtte_vars[1], event = adtte_vars[2], arm = coxreg_vars[1],
+      covariates = coxreg_vars[-1]
     ),
     data = dbsel$adtte
   )
@@ -86,51 +83,15 @@ coxt02_1_lyt <- function(lbl_term,
 #'
 #' @export
 #'
-coxt02_1_pre <- function(adam_db, ...) {
-  coxt02_1_check(adam_db)
-
-  new_format <- list(
-    adtte = list(
-      ARM = rule(
-        "No Coding available" = c("", NA, "<Missing>")
-      ),
-      SEX = rule(
-        "No Coding available" = c("", NA, "<Missing>")
-      ),
-      RACE = rule(
-        "No Coding available" = c("", NA, "<Missing>")
-      )
-    )
-  )
-
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+coxt02_1_pre <- function(adam_db, adtte_vars = c("AVAL", "CNSR"),
+                         covariates = c("SEX", "RACE", "AGE"),
+                         coxreg_vars = c("ARM", covariates), ...) {
+  coxt02_1_check(adam_db, adtte_vars = adtte_vars, coxreg_vars = coxreg_vars)
+  adam_db <- dunlin::log_filter(adam_db, PARAMCD == "CRSD", "adtte")
+  adam_db$adtte[[anl_vars[xx]]] <- droplevels(adam_db$adtte[[anl_vars[xx]]])
 
   adam_db$adtte <- adam_db$adtte %>%
-    filter(
-      .data$PARAMCD == "CRSD",
-      .data$ARM != "No Grading Available",
-      .data$SEX != "No Grading Available",
-      .data$RACE != "No Grading Available",
-      !is.na(.data$CNSR),
-      !is.na(.data$AVAL),
-      !is.na(.data$AGE)
-    ) %>%
-    mutate(
-      ARM = droplevels(relevel(.data$ARM, "B: Placebo")),
-      SEX = factor(.data$SEX,
-        levels = setdiff(levels(.data$SEX), "No Grading Available")
-      ),
-      RACE = factor(.data$RACE,
-        levels = setdiff(levels(.data$RACE), "No Grading Available")
-      )
-    ) %>%
-    mutate(event = 1 - .data$CNSR) %>%
-    var_relabel(
-      ARM = "Planned Arm",
-      SEX = "Sex",
-      RACE = "Race",
-      AGE = "Age"
-    )
+    mutate(EVENT = 1 - .data$CNSR)
 
   adam_db
 }
@@ -139,18 +100,18 @@ coxt02_1_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #'
+#' @export
+#'
 coxt02_1_check <- function(adam_db,
-                           req_tables = c("adsl", "adtte"),
-                           arm_var = "ARM") {
+                           adtte_vars,
+                           coxreg_vars,
+                           req_tables = c("adsl", "adtte"), ...) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
 
-  adex_layout_col <- c("USUBJID", "PARAMCD", "AVAL", "CNSR", "SEX", "RACE", "AGE")
-  adsl_layout_col <- c("USUBJID")
-
-  msg <- c(msg, assert_colnames(adam_db$adex, c(arm_var, adex_layout_col)))
-  msg <- c(msg, assert_colnames(adam_db$adsl, c(adsl_layout_col)))
+  msg <- c(msg, check_all_colnames(adam_db$adtte, c("USUBJID", "PARAMCD", adtte_vars, coxreg_vars)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
 
   if (is.null(msg)) {
     TRUE
@@ -184,7 +145,7 @@ coxt02_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @examples
 #' run(coxt02_1, syn_data)
 #'
-#' run(coxt02_1, syn_data, conf_level = .90)
+#' run(coxt02_1, syn_data, covariates = c("SEX", "RACE", "AGE"), conf_level = .90)
 coxt02_1 <- chevron_t(
   main = coxt02_1_main,
   preprocess = coxt02_1_pre,
