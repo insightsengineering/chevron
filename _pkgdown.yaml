@@ -5,8 +5,19 @@ template:
   package: nesttemplate
 
 navbar:
-  right:
-    - icon: fa-github
+  structure:
+    left: [intro, reference, articles, tutorials, news, reports]
+    right: [search, github]
+  components:
+    reports:
+      text: Reports
+      menu:
+      - text: Coverage report
+        href: coverage-report/
+      - text: Unit test report
+        href: unit-test-report/
+    github:
+      icon: fa-github
       href: https://github.com/insightsengineering/chevron
 
 articles:
@@ -69,6 +80,7 @@ reference:
       - egt05_qtcat_1
       - ext01_1
       - ext01_2
+      - kmg01_1
       - lbt01_1
       - lbt04_1
       - lbt05_1
@@ -98,6 +110,7 @@ reference:
       - h_format_dec
       - gg_list
       - grob_list
+      - assert_only_one_paramcd
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

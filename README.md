@@ -3,9 +3,9 @@
 # Chevron: Standard TLGs for clinical trials reporting <a href='https://github.com/insightsengineering/chevron'><img src="man/figures/chevron.png" align="right" height="139" style="max-width: 100%;"/></a>
 
 <!-- start badges -->
-[![Check 🛠](https://github.com/insightsengineering/chevron/actions/workflows/check.yaml/badge.svg)](https://github.com/insightsengineering/chevron/actions/workflows/check.yaml)
+[![Check 🛠](https://github.com/insightsengineering/chevron/actions/workflows/check.yaml/badge.svg)](https://insightsengineering.github.io/chevron/main/unit-test-report/)
 [![Docs 📚](https://github.com/insightsengineering/chevron/actions/workflows/docs.yaml/badge.svg)](https://insightsengineering.github.io/chevron/)
-[![Code Coverage 📔](https://raw.githubusercontent.com/insightsengineering/chevron/_xml_coverage_reports/data/main/badge.svg)](https://raw.githubusercontent.com/insightsengineering/chevron/_xml_coverage_reports/data/main/coverage.xml)
+[![Code Coverage 📔](https://raw.githubusercontent.com/insightsengineering/chevron/_xml_coverage_reports/data/main/badge.svg)](https://insightsengineering.github.io/chevron/main/coverage-report/)
 
 ![GitHub forks](https://img.shields.io/github/forks/insightsengineering/chevron?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/insightsengineering/chevron?style=social)

@@ -85,6 +85,8 @@ strings to the new labels to apply to the named variables. Set to \code{NULL} to
 }
 }
 \examples{
-run(ael01_nollt_1, syn_data, new_lbls = list(AETERM = "Investigator-Specified\n Adverse Event Term"))
+run(ael01_nollt_1, syn_data, new_lbls = list(
+  AETERM = "Investigator-Specified\n Adverse Event Term"
+))
 }
 \keyword{datasets}
