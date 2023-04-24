@@ -18,20 +18,16 @@
 #' @export
 #'
 rmpt01_1_main <- function(adam_db,
-                          arm_var = "ACTARM",
-                          avalcat1_var = "AVALCAT1",
-                          lbl_aval = "Duration of exposure",
+                          anl_vars = c("AVALCAT1", "AVAL"),
+                          lbl_vars = c("Number of Patients", "Duration of Exposure"),
                           deco = std_deco("RMPT01"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
-  assert_colnames(dbsel$adex, c("aval_days", "aval_months_cat"))
-  checkmate::assert_numeric(dbsel$adex[["aval_days"]], any.missing = FALSE)
-  checkmate::assert_class(dbsel$adex[["aval_months_cat"]], "factor", null.ok = FALSE)
+  assert_colnames(dbsel$adex, anl_vars)
 
   lyt <- rmpt01_1_lyt(
-    arm_var = arm_var,
-    avalcat1_var = avalcat1_var,
-    lbl_aval = lbl_aval,
+    anl_vars = anl_vars,
+    lbl_vars = lbl_vars,
     deco = deco
   )
 
@@ -46,28 +42,27 @@ rmpt01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-rmpt01_1_lyt <- function(arm_var,
-                         avalcat1_var,
-                         lbl_aval,
+rmpt01_1_lyt <- function(anl_vars,
+                         lbl_vars,
                          deco) {
   basic_table_deco(deco) %>%
     add_colcounts() %>%
     summarize_patients_exposure_in_cols(
-      var = "aval_days",
+      var = anl_vars[2],
       col_split = TRUE,
       .labels = c(
-        n_patients = "Number of Patients",
-        sum_exposure = "Patient Time*"
+        n_patients = lbl_vars[1],
+        sum_exposure = lbl_vars[2]
       ),
       custom_label = "Total Number of Patients and Patient Time"
     ) %>%
-    split_rows_by(var = avalcat1_var) %>%
-    split_rows_by("aval_months_cat",
+    split_rows_by(
+      var = anl_vars[1],
       label_pos = "topleft",
-      split_label = lbl_aval
+      split_label = "Duration of exposure"
     ) %>%
     summarize_patients_exposure_in_cols(
-      var = "aval_days",
+      var = anl_vars[2],
       col_split = FALSE
     )
 }
@@ -78,45 +73,10 @@ rmpt01_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-rmpt01_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
-  rmpt01_1_check(adam_db, arm_var = arm_var)
-
-  new_format <- list(
-    adex = list(
-      AVALU = rule("<Missing>" = c("", NA, "<Missing>")),
-      AVALCAT1 = rule(" " = c("", NA, "<Missing>"))
-    )
-  )
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
-
-  adam_db$adex <- adam_db$adex %>%
-    mutate(
-      aval_months = case_when(
-        .data$AVALU == "DAYS" ~ day2month(.data$AVAL),
-        .data$AVALU == "MONTHS" ~ .data$AVAL,
-        .data$AVALU == "YEARS" ~ (.data$AVAL) * 12,
-        TRUE ~ NA
-      ),
-      aval_days = case_when(
-        .data$AVALU == "DAYS" ~ .data$AVAL,
-        .data$AVALU == "MONTHS" ~ (.data$AVAL) * 30.4375,
-        .data$AVALU == "YEARS" ~ (.data$AVAL) * 365,
-        TRUE ~ NA
-      ),
-      aval_months_cat = factor(case_when(
-        aval_months < 1 ~ "< 1 month",
-        aval_months < 3 ~ "1 to <3 months",
-        aval_months < 6 ~ "3 to <6 months",
-        TRUE ~ ">=6 months"
-      ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
-    ) %>%
-    filter(
-      !is.na(.data$AVAL),
-      .data$AVALU != "<Missing>",
-      .data$AVALCAT1 == " "
-    ) %>%
-    mutate(AVALCAT1 = droplevels(.data$AVALCAT1))
-
+rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...) {
+  rmpt01_1_check(adam_db, anl_vars = anl_vars)
+  adam_db <- dunlin::log_filter(adam_db, PARAMCD == "TDURD", "adex")
+  adam_db$adex[[anl_vars[1]]] <- droplevels(adam_db$adex[[anl_vars[1]]])
   adam_db
 }
 
@@ -124,14 +84,15 @@ rmpt01_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
 #'
 #' @inheritParams gen_args
 #' @export
-rmpt01_1_check <- function(adam_db, arm_var,
+rmpt01_1_check <- function(adam_db,
+                           anl_vars,
                            req_tables = c("adsl", "adex")) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
 
-  msg <- c(msg, check_all_colnames(adam_db$adex, c(arm_var, "USUBJID", "PARAMCD", "AVAL", "AVALU")))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, "USUBJID")))
+  msg <- c(msg, check_all_colnames(adam_db$adex, c("USUBJID", "PARAMCD", anl_vars)))
+  msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
 
   if (is.null(msg)) {
     TRUE

@@ -15,18 +15,17 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 rmpt01_1_main(
   adam_db,
-  arm_var = "ACTARM",
-  avalcat1_var = "AVALCAT1",
-  lbl_aval = "Duration of exposure",
+  anl_vars = c("AVALCAT1", "AVAL"),
+  lbl_vars = c("Number of Patients", "Duration of Exposure"),
   deco = std_deco("RMPT01"),
   ...
 )
 
-rmpt01_1_lyt(arm_var, avalcat1_var, lbl_aval, deco)
+rmpt01_1_lyt(anl_vars, lbl_vars, deco)
 
-rmpt01_1_pre(adam_db, arm_var = "ACTARM", ...)
+rmpt01_1_pre(adam_db, anl_vars, ...)
 
-rmpt01_1_check(adam_db, arm_var, req_tables = c("adsl", "adex"))
+rmpt01_1_check(adam_db, anl_vars, req_tables = c("adsl", "adex"))
 
 rmpt01_1_post(tlg, prune_0 = FALSE, ...)
 
@@ -34,10 +33,6 @@ rmpt01_1
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
-
-\item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{lbl_aval}{(\code{string}) the label of the time variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -48,6 +43,8 @@ rmpt01_1
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{lbl_aval}{(\code{string}) the label of the time variable.}
 }
 \description{
 The \code{RMPT01} table provides an overview of duration of exposure for SE patients

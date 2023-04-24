@@ -266,3 +266,8 @@ gg_list <- function(...) {
     class = c("gg_list", "list")
   )
 }
+
+#' @export
+droplevels.character <- function(x, ...) {
+  x
+}
