@@ -206,7 +206,7 @@ aet01_aesi_1_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      ATOXGR = reformat(
+      ATOXGR = dunlin::reformat(
         .data$ATOXGR,
         dunlin::rule(
           "Missing" = c("", NA_character_),

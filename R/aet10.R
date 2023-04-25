@@ -67,7 +67,7 @@ aet10_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet10_1_pre <- function(adam_db, arm_var, ...) {
+aet10_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
   aet10_1_check(adam_db, arm_var = arm_var)
 
   adam_db$adae <- adam_db$adae %>%

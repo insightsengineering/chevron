@@ -90,7 +90,7 @@ ext01_1_pre <- function(adam_db,
   if (nrow(adam_db$adex) > 0L) {
     param_vars <- adam_db$adex %>%
       dplyr::select("PARAM", "PARAMCD") %>%
-      dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
+      dunlin::co_relevels("PARAMCD", "PARAM", unlist(paramcd_order))
 
     adam_db$adex <- adam_db$adex %>%
       mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD)
