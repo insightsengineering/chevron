@@ -16,7 +16,7 @@ An object of class \code{chevron_t} of length 1.
 rmpt01_1_main(
   adam_db,
   anl_vars = c("AVALCAT1", "AVAL"),
-  lbl_vars = c("Patients", "Person time*"),
+  lbl_vars = c("Patients", "Person time*", "Actual Treatment"),
   deco = std_deco("RMPT01"),
   ...
 )
@@ -34,9 +34,9 @@ rmpt01_1
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{anl_vars}{(\code{character}) the variables to be analyzed.}
+\item{anl_vars}{(\code{character}) the names of variables to be analyzed.}
 
-\item{lbl_vars}{(\code{character}) the labels of the patient toll and time variables.}
+\item{lbl_vars}{(\code{character}) the labels of the patient toll, time and treatment variables.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -53,10 +53,9 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 }
 \details{
 \itemize{
-\item Person time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
+\item Person time is the sum of exposure across all patients.
 \item Summary statistics are by default based on the number of patients in the corresponding \code{N} row
 (number of non-missing values).
-\item Does not include a total column by default.
 \item Does not remove zero-count rows unless overridden with \code{prune_0 = TRUE}.
 }
 }
@@ -75,7 +74,8 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adex} table with the \code{"PARAMCD"}, \code{"AVAL"} and \code{"AVALCAT1"} columns.
+\item \code{adam_db} object must contain an \code{adex} table with \code{"PARAMCD"} and the columns specified by \code{anl_vars} which
+is denoted as \code{c("AVALCAT1", "AVAL")} by default.
 }
 }
 \examples{

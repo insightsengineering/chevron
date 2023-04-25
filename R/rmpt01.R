@@ -3,7 +3,7 @@
 #' @describeIn rmpt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param anl_vars (`character`) the variables to be analyzed.
+#' @param anl_vars (`character`) the names of variables to be analyzed.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -12,13 +12,14 @@
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adex` table with the `"PARAMCD"`, `"AVAL"` and `"AVALCAT1"` columns.
+#'   * `adam_db` object must contain an `adex` table with `"PARAMCD"` and the columns specified by `anl_vars` which
+#'   is denoted as `c("AVALCAT1", "AVAL")` by default.
 #'
 #' @export
 #'
 rmpt01_1_main <- function(adam_db,
                           anl_vars = c("AVALCAT1", "AVAL"),
-                          lbl_vars = c("Patients", "Person time*"),
+                          lbl_vars = c("Patients", "Person time*", "Actual Treatment"),
                           deco = std_deco("RMPT01"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
@@ -37,7 +38,7 @@ rmpt01_1_main <- function(adam_db,
 #' @describeIn rmpt01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param lbl_vars (`character`) the labels of the patient toll and time variables.
+#' @param lbl_vars (`character`) the labels of the patient toll, time and treatment variables.
 #'
 #' @export
 #'
@@ -46,6 +47,10 @@ rmpt01_1_lyt <- function(anl_vars,
                          deco) {
   basic_table_deco(deco) %>%
     add_colcounts() %>%
+    split_rows_by("PARCAT2",
+      label_pos = "topleft",
+      split_label = lbl_vars[3]
+    ) %>%
     summarize_patients_exposure_in_cols(
       var = anl_vars[2],
       col_split = TRUE,
@@ -76,6 +81,7 @@ rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...) {
   rmpt01_1_check(adam_db, anl_vars = anl_vars)
   adam_db <- dunlin::log_filter(adam_db, PARAMCD == "TDURD", "adex")
   adam_db$adex[[anl_vars[1]]] <- droplevels(adam_db$adex[[anl_vars[1]]])
+
   adam_db
 }
 
