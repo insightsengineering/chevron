@@ -9,7 +9,6 @@
 #'   * Person time is the sum of exposure across all patients.
 #'   * Summary statistics are by default based on the number of patients in the corresponding `N` row
 #'   (number of non-missing values).
-#'   * Does not include a total column by default.
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
