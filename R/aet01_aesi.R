@@ -70,7 +70,7 @@ aet01_aesi_1_main <- function(adam_db,
     aesi_vars = all_aesi_vars,
     deco = deco,
     lbl_aesi_vars = lbl_aesi_vars,
-    grade_groups
+    grade_groups = grade_groups
   )
 
   tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
