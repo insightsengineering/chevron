@@ -36,15 +36,21 @@ aet01_2_lyt(
   lbl_medconcept_var
 )
 
-aet01_2_pre(adam_db, arm_var, safety_var, medconcept_var, ...)
+aet01_2_pre(
+  adam_db,
+  arm_var = "ACTARM",
+  safety_var = list("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
+    "RELWD", "RELDSM", "SEV"),
+  medconcept_var = list("SMQ01", "SMQ02", "CQ01"),
+  ...
+)
 
 aet01_2_check(
   adam_db,
   req_tables = c("adsl", "adae"),
-  arm_var = "ACTARM",
-  safety_var = list("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-    "RELWD", "RELDSM", "SEV"),
-  medconcept_var = list("SMQ01", "SMQ02", "CQ01")
+  arm_var,
+  safety_var,
+  medconcept_var
 )
 
 aet01_2
