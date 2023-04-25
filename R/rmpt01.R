@@ -6,7 +6,7 @@
 #' @param anl_vars (`character`) the variables to be analyzed.
 #'
 #' @details
-#'   * Person time is the sum of exposure across all patients in unit: days, months, or years (days only at this time).
+#'   * Person time is the sum of exposure across all patients.
 #'   * Summary statistics are by default based on the number of patients in the corresponding `N` row
 #'   (number of non-missing values).
 #'   * Does not include a total column by default.
