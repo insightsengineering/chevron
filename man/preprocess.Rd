@@ -18,8 +18,8 @@ preprocess(x) <- value
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
-\item{value}{(\code{function}) returning a pre-processed \code{dm} object amenable to \code{tlg} creation. Typically one of the
-\verb{_pre} function of \code{chevron}.}
+\item{value}{(\code{function}) returning a pre-processed \code{list} of \code{data.frames} amenable to \code{tlg} creation. Typically
+one of the \verb{_pre} function of \code{chevron}.}
 }
 \description{
 retrieve or set \code{preprocess} function.

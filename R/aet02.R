@@ -96,10 +96,8 @@ aet02_1_lyt <- function(arm_var,
 #' @export
 #'
 aet02_1_pre <- function(adam_db, arm_var, ...) {
-  checkmate::assert_class(adam_db, "dm")
-
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
   aet02_1_check(adam_db, arm_var = arm_var)
-
   new_format <- list(
     adae = list(
       AEBODSYS = rule("No Coding available" = c("", NA, "<Missing>")),
@@ -108,10 +106,10 @@ aet02_1_pre <- function(adam_db, arm_var, ...) {
   )
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+  adam_db$adae <- adam_db$adae %>%
+    filter(.data$ANL01FL == "Y")
+
+  adam_db
 }
 
 #' @describeIn aet02_1 Checks
@@ -297,7 +295,9 @@ aet02_2_lyt <- function(arm_var,
 #' @export
 #'
 aet02_2_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
+  checkmate::assert_list(adam_db, types = "list")
+  assert_colnames(adam_db$adae, c("AEBODSYS", "AEHLT", "AEDECOD"))
 
   new_format <- list(
     adae = list(
@@ -308,10 +308,10 @@ aet02_2_pre <- function(adam_db, ...) {
   )
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adae") %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+  adam_db$adae <- adam_db$adae %>%
+    filter(.data$ANL01FL == "Y")
+
+  adam_db
 }
 
 #' @describeIn aet02_2 Postprocessing
@@ -452,7 +452,8 @@ aet02_3_lyt <- function(arm_var,
 #' @export
 #'
 aet02_3_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
+  assert_colnames(adam_db$adae, c("AEDECOD"))
 
   new_format <- list(
     adae = list(
@@ -461,13 +462,13 @@ aet02_3_pre <- function(adam_db, ...) {
   )
   adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
 
-  adam_db %>%
-    dm_zoom_to("adae") %>%
+  adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       DOMAIN = "AE" # necessary to handle empty tables
-    ) %>%
-    dm_update_zoomed()
+    )
+
+  adam_db
 }
 
 #' @describeIn aet02_3 Postprocessing

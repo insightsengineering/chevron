@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.1.4.9002
-Date: 2023-04-13
+Version: 0.1.4.9006
+Date: 2023-04-24
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
@@ -21,7 +21,6 @@ Depends:
     R (>= 4.0.0)
 Imports:
     checkmate (>= 2.0),
-    dm (>= 1.0),
     dplyr,
     dunlin (>= 0.1.2),
     forcats (>= 1.0.0),
@@ -37,8 +36,6 @@ Imports:
     tern (>= 0.8.1),
     tibble
 Suggests:
-    DiagrammeR,
-    DiagrammeRsvg,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
@@ -83,6 +80,7 @@ Collate:
     'egt05_qtcat.R'
     'ext01.R'
     'gen_args.R'
+    'kmg01.R'
     'lbt01.R'
     'lbt04.R'
     'lbt05.R'

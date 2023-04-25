@@ -2,7 +2,7 @@
 
 #' Example `adam` Synthetic Data
 #'
-#' @format A [`dm::dm()`] object containing 19 Tables:
+#' @format A named `list` of 19 `data.frames`:
 #'     - `adsl`
 #'     - `adab`
 #'     - `adae`

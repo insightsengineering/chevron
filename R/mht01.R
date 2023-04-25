@@ -101,12 +101,11 @@ mht01_1_lyt <- function(arm_var,
 #' @export
 #'
 mht01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "admh"))
 
-  adam_db <- adam_db %>%
-    dm_zoom_to("admh") %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+
+  adam_db$admh <- adam_db$admh %>%
+    filter(.data$ANL01FL == "Y")
 
   new_format <- list(
     admh = list(

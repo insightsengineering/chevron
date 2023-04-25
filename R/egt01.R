@@ -106,12 +106,12 @@ egt01_1_lyt <- function(arm_var,
 #' @export
 #'
 egt01_1_pre <- function(adam_db, ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
 
-  adam_db %>%
-    dm_zoom_to("adeg") %>%
-    filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed()
+  adam_db$adeg <- adam_db$adeg %>%
+    filter(.data$ANL01FL == "Y")
+
+  adam_db
 }
 
 #' @describeIn egt01_1 Postprocessing

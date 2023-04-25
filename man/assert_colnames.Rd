@@ -24,4 +24,3 @@ my_colnames <- NULL
 assert_colnames(mtcars, my_colnames, null_ok = FALSE)
 }
 }
-\keyword{internal}

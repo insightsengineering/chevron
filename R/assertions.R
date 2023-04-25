@@ -8,7 +8,6 @@
 #' @param x (`character`) the names of the columns to be checked.
 #' @param null_ok (`logical`) can `x` be NULL.
 #'
-#' @keywords internal
 #' @export
 #'
 #' @examples
@@ -42,21 +41,27 @@ assert_colnames <- function(df, x, null_ok = TRUE) {
   }
 }
 
-#' Assert that all names are among table names of a `dm` object
+#' Assert that all names are among names of a `list` of `data.frame`.
 #'
-#' @param db (`dm`) input to check for the presence of tables.
+#' @param db (`list` of `data.frame`) input to check for the presence of tables.
 #' @param tab (`character`) the names of the tables to be checked.
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
 #'
-#' @keywords internal
+#' @export
 #'
 #' @examples
 #' \dontrun{
-#' assert_all_tablenames(dm::dm_nycflights13(), c("mpg", "new", "hoho"), qualifier = "first test:")
+#'
+#' lsd <- list(
+#'   mtcars = mtcars,
+#'   iris = iris
+#' )
+#'
+#' assert_all_tablenames(lsd, c("mtcars", "iris", "x"), qualifier = "first test:")
 #' }
 assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_class(db, "dm")
+  checkmate::assert_list(db, types = "data.frame", names = "unique")
   checkmate::assert_character(tab, null.ok = null_ok)
   checkmate::assert_string(qualifier, null.ok = TRUE)
 
@@ -71,9 +76,9 @@ assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
   }
 }
 
-#' Assert that at least one name is among table names of a `dm` object
+#' Assert that at least one name is among table names of a `list` of `data.frame`.
 #'
-#' @param db (`dm`) input to check for the presence or tables.
+#' @param db (`list` of `data.frame`) input to check for the presence or tables.
 #' @param tab (`character`) the names of the tables to be checked.
 #' @param null_ok (`flag`) can `x` be NULL.
 #' @param qualifier (`string`) to be returned if the check fails.
@@ -82,10 +87,16 @@ assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' assert_one_tablenames(dm::dm_nycflights13(), c("mpg", "new", "hoho"), qualifier = "first test:")
+#'
+#' lsd <- list(
+#'   mtcars = mtcars,
+#'   iris = iris
+#' )
+#'
+#' assert_one_tablenames(lsd, c("mtcars", "x", "y"), qualifier = "first test:")
 #' }
 assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_class(db, "dm")
+  checkmate::assert_list(db, types = "data.frame", names = "unique")
   checkmate::assert_character(tab, null.ok = null_ok)
   checkmate::assert_string(qualifier, null.ok = TRUE)
 
@@ -155,4 +166,19 @@ assert_subset_suggest <- function(x, choices) {
   )
 
   stop(msg, call. = FALSE)
+}
+
+
+#' Check to have only one PARAMCD in the analysis dataset
+#' @param param_val value of PARAMCD
+#' @export
+assert_only_one_paramcd <- function(param_val) {
+  unique_param_val <- unique(param_val)
+  if (length(unique_param_val) > 1) {
+    stop(paste0(
+      "More than one parameters:",
+      toString(unique_param_val),
+      ", only one suppose to have."
+    ))
+  }
 }

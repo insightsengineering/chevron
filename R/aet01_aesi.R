@@ -115,15 +115,12 @@ aet01_aesi_1_pre <- function(adam_db,
                              req_tables = c("adsl", "adae"),
                              arm_var = "ACTARM",
                              ...) {
-  checkmate::assert_class(adam_db, "dm")
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
 
   aet01_aesi_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
-  db <- adam_db %>%
-    dm_zoom_to("adae") %>%
+  adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
-    dm_update_zoomed() %>%
-    dm_zoom_to("adae") %>%
     mutate(
       ALL_RESOLVED = !.data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN", "FATAL"),
       NOT_RESOLVED = .data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN"),
@@ -220,10 +217,9 @@ aet01_aesi_1_pre <- function(adam_db,
           "Grade 5 (fatal outcome)" = "5"
         )
       )
-    ) %>%
-    dm_update_zoomed()
+    )
 
-  db
+  adam_db
 }
 
 #' @describeIn aet01_aesi_1 Checks

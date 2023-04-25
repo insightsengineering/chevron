@@ -30,7 +30,7 @@ aet02_3_post(tlg, prune_0 = TRUE, ...)
 aet02_3
 }
 \arguments{
-\item{adam_db}{(\code{dm}) object containing the \code{ADaM} datasets}
+\item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
