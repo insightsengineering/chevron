@@ -20,7 +20,7 @@ test_that("rmpt01 can handle some NA values", {
   expect_snapshot(res)
 })
 
-test_that("rmpt01 fails on incomlete date", {
+test_that("rmpt01 fails on incomlete data", {
   proc_data <- syn_data
   proc_data$adex <- proc_data$adex %>%
     mutate(
