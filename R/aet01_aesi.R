@@ -4,7 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param aesi_vars (`list`) the AESI variables to be included in the summary. Defaults to `NA`.
-#'
+#' @param grade_groups (`list`) the grade groups to be displayed.
 #' @details
 #'  * Does not remove rows with zero counts by default.
 #'
@@ -34,8 +34,19 @@ aet01_aesi_1_main <- function(adam_db,
                               arm_var = "ACTARM",
                               aesi_vars = list(NA_character_),
                               deco = std_deco("AET01_AESI"),
+                              grade_groups = NULL,
                               ...) {
   checkmate::assert_list(aesi_vars, types = "character")
+  checkmate::assert_list(grade_groups, null.ok = TRUE)
+  if (is.null(grade_groups)) {
+    grade_groups <- list(
+      "Grade 1" = "1",
+      "Grade 2" = "2",
+      "Grade 3" = "3",
+      "Grade 4" = "4",
+      "Grade 5 (fatal outcome)" = "5"
+    )
+  }
   aesi_vars <- unlist(aesi_vars)
   if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
   if (any(grepl("^ALL_", aesi_vars))) {
@@ -58,7 +69,8 @@ aet01_aesi_1_main <- function(adam_db,
     arm_var = arm_var,
     aesi_vars = all_aesi_vars,
     deco = deco,
-    lbl_aesi_vars = lbl_aesi_vars
+    lbl_aesi_vars = lbl_aesi_vars,
+    grade_groups = grade_groups
   )
 
   tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
@@ -76,7 +88,8 @@ aet01_aesi_1_main <- function(adam_db,
 aet01_aesi_1_lyt <- function(arm_var,
                              aesi_vars,
                              deco,
-                             lbl_aesi_vars) {
+                             lbl_aesi_vars,
+                             grade_groups) {
   names(lbl_aesi_vars) <- aesi_vars
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
@@ -96,7 +109,8 @@ aet01_aesi_1_lyt <- function(arm_var,
     count_occurrences_by_grade(
       var = "ATOXGR",
       var_labels = "Total number of patients with at least one AE by worst grade",
-      show_labels = "visible"
+      show_labels = "visible",
+      grade_groups = grade_groups
     ) %>%
     count_patients_with_flags(
       "USUBJID",
@@ -206,14 +220,7 @@ aet01_aesi_1_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      ATOXGR = forcats::fct_recode(
-        .data$ATOXGR,
-        "Grade 1" = "1",
-        "Grade 2" = "2",
-        "Grade 3" = "3",
-        "Grade 4" = "4",
-        "Grade 5 (fatal outcome)" = "5"
-      )
+      ATOXGR = factor(ATOXGR, levels = 1:5)
     )
 
   adam_db
@@ -222,7 +229,7 @@ aet01_aesi_1_pre <- function(adam_db,
 #' @describeIn aet01_aesi_1 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 aet01_aesi_1_check <- function(adam_db,
                                req_tables = c("adsl", "adae"),
                                arm_var = "ACTARM") {

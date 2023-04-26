@@ -18,10 +18,11 @@ aet01_aesi_1_main(
   arm_var = "ACTARM",
   aesi_vars = list(NA_character_),
   deco = std_deco("AET01_AESI"),
+  grade_groups = NULL,
   ...
 )
 
-aet01_aesi_1_lyt(arm_var, aesi_vars, deco, lbl_aesi_vars)
+aet01_aesi_1_lyt(arm_var, aesi_vars, deco, lbl_aesi_vars, grade_groups)
 
 aet01_aesi_1_pre(
   adam_db,
@@ -44,6 +45,8 @@ aet01_aesi_1
 \item{aesi_vars}{(\code{list}) the AESI variables to be included in the summary. Defaults to \code{NA}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+
+\item{grade_groups}{(\code{list}) the grade groups to be displayed.}
 
 \item{...}{not used.}
 

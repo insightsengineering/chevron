@@ -151,7 +151,7 @@ lbt07_1_pre <- function(adam_db, ...) {
 #' @describeIn lbt07_1 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 lbt07_1_check <- function(adam_db,
                           req_tables = c("adsl", "adlb"),
                           arm_var = "ACTARM") {
