@@ -29,6 +29,7 @@ rmpt01_1_main <- function(adam_db,
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
   assert_colnames(dbsel$adex, anl_vars)
+  if (!is.null(parcat)) checkmate::assert_class(parcat, "character")
 
   lyt <- rmpt01_1_lyt(
     anl_vars = anl_vars,
@@ -40,21 +41,6 @@ rmpt01_1_main <- function(adam_db,
 
   tbl <- build_table(lyt, dbsel$adex, alt_counts_df = dbsel$adsl)
   tbl
-}
-
-#' @describeIn rmpt01_1 Helper function to add a row split if specified
-#'
-#' @keywords internal
-#'
-split_if_not_null <- function(lyt, parcat, lbl_parcat) {
-  if (is.null(parcat)) {
-    lyt
-  } else {
-    split_rows_by(lyt, parcat,
-      label_pos = "topleft",
-      split_label = lbl_parcat
-    )
-  }
 }
 
 #' @describeIn rmpt01_1 Layout
@@ -70,7 +56,7 @@ rmpt01_1_lyt <- function(anl_vars,
                          deco) {
   basic_table_deco(deco) %>%
     add_colcounts() %>%
-    split_if_not_null(parcat, lbl_parcat) %>%
+    ifneeded_split_row(parcat, lbl_parcat) %>%
     summarize_patients_exposure_in_cols(
       var = anl_vars[2],
       col_split = TRUE,

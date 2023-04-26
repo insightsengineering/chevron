@@ -3,7 +3,6 @@
 \docType{data}
 \name{rmpt01_1_main}
 \alias{rmpt01_1_main}
-\alias{split_if_not_null}
 \alias{rmpt01_1_lyt}
 \alias{rmpt01_1_pre}
 \alias{rmpt01_1_check}
@@ -23,8 +22,6 @@ rmpt01_1_main(
   deco = std_deco("RMPT01"),
   ...
 )
-
-split_if_not_null(lyt, parcat, lbl_parcat)
 
 rmpt01_1_lyt(anl_vars, lbl_vars, parcat, lbl_parcat, deco)
 
@@ -72,8 +69,6 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 \itemize{
 \item \code{rmpt01_1_main()}: Main TLG function
 
-\item \code{split_if_not_null()}: Helper function to add a row split if specified
-
 \item \code{rmpt01_1_lyt()}: Layout
 
 \item \code{rmpt01_1_pre()}: Preprocessing
@@ -95,4 +90,3 @@ run(rmpt01_1, syn_data)
 run(rmpt01_1, syn_data, parcat = "PARCAT2")
 }
 \keyword{datasets}
-\keyword{internal}
