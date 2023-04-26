@@ -3,7 +3,7 @@
 #' @describeIn aet01_aesi_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param aesi_vars (`list`) the AESI variables to be included in the summary. Defaults to `NA`.
+#' @param aesi_vars (`character`) the AESI variables to be included in the summary. Defaults to `NA`.
 #' @param grade_groups (`list`) the grade groups to be displayed.
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -32,11 +32,11 @@
 #'
 aet01_aesi_1_main <- function(adam_db,
                               arm_var = "ACTARM",
-                              aesi_vars = list(NA_character_),
-                              deco = std_deco("AET01_AESI"),
+                              aesi_vars = NULL,
                               grade_groups = NULL,
                               ...) {
-  checkmate::assert_list(aesi_vars, types = "character")
+  checkmate::assert_string(arm_var)
+  checkmate::assert_character(aesi_vars, null.ok = TRUE)
   checkmate::assert_list(grade_groups, null.ok = TRUE)
   if (is.null(grade_groups)) {
     grade_groups <- list(
@@ -47,7 +47,6 @@ aet01_aesi_1_main <- function(adam_db,
       "Grade 5 (fatal outcome)" = "5"
     )
   }
-  aesi_vars <- unlist(aesi_vars)
   if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
   if (any(grepl("^ALL_", aesi_vars))) {
     aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(
@@ -279,7 +278,7 @@ aet01_aesi_1_check <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
-aet01_aesi_post <- function(tlg, prune_0 = FALSE, deco = std_deco("AET01_AESI"), ...) {
+aet01_aesi_post <- function(tlg, prune_0 = FALSE, ...) {
   tbl <- set_decoration(tlg, deco)
   if (prune_0) {
     tbl <- smart_prune(tbl)

@@ -20,8 +20,8 @@ ael01_nollt_1_main <- function(adam_db,
                                dataset = "adae",
                                key_cols = c("AEBODSYS", "AEDECOD"),
                                disp_cols = "AETERM",
-                               deco = std_deco("AEL01_NOLLT"),
                                ...) {
+  assert_all_tablenames(adam_db, dataset)
   df <- adam_db[[dataset]]
 
   lsting <- as_listing(
@@ -47,22 +47,18 @@ ael01_nollt_1_pre <- function(adam_db,
                               disp_cols = "AETERM",
                               new_lbls = NULL,
                               ...) {
-  ael01_nollt_1_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols, names(new_lbls)))
-
-  missing_rule <- rule("No Coding Available" = c("", NA))
-  new_format <- list()
-  new_format[[dataset]] <- rep(list(missing_rule), length(c(key_cols, disp_cols)))
-  names(new_format[[dataset]]) <- c(key_cols, disp_cols)
-
-  db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
-
-  db[[dataset]] <- db[[dataset]] %>%
+  ael01_nollt_1_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols))
+  checkmate
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
     distinct() %>%
     arrange(pick(all_of(c(key_cols, disp_cols)))) %>%
-    mutate(across(names(new_lbls), function(x) formatters::with_label(x, new_lbls[[cur_column()]])))
+    mutate(
+      across(any_of(names(new_lbls)), ~ formatters::with_label(.x, new_lbls[[cur_column()]])),
+      across(all_of(key_cols), ~ dunlin::reformat(.x, nocoding))
+    )
 
-  db
+  adam_db
 }
 
 #' @describeIn ael01_nollt_1 Checks

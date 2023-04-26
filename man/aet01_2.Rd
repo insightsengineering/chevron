@@ -17,7 +17,6 @@ aet01_2_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  deco = std_deco("AET01"),
   safety_var = list("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
   lbl_safety_var = NULL,
@@ -29,7 +28,6 @@ aet01_2_main(
 aet01_2_lyt(
   arm_var,
   lbl_overall,
-  deco,
   safety_var,
   lbl_safety_var,
   medconcept_var,
@@ -61,8 +59,6 @@ aet01_2
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{safety_var}{(\code{character}) the safety variables to be summarized.}
 

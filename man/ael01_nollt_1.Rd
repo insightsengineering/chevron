@@ -17,7 +17,6 @@ ael01_nollt_1_main(
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
-  deco = std_deco("AEL01_NOLLT"),
   ...
 )
 
@@ -45,8 +44,6 @@ ael01_nollt_1
 Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
 

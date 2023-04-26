@@ -91,5 +91,6 @@ Collate:
     'package.R'
     'pdt01.R'
     'pdt02.R'
+    'standard_rules.R'
     'vst01.R'
     'vst02.R'
