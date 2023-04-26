@@ -51,8 +51,8 @@ split_if_not_null <- function(lyt, parcat, lbl_parcat) {
     lyt
   } else {
     split_rows_by(lyt, parcat,
-                  label_pos = "topleft",
-                  split_label = lbl_parcat
+      label_pos = "topleft",
+      split_label = lbl_parcat
     )
   }
 }
