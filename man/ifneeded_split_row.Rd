@@ -14,7 +14,7 @@ ifneeded_split_row(lyt, var, lbl_var)
 \item{lbl_var}{(\code{string})the label of the variable \code{var}.}
 }
 \value{
-\code{rtables} lyt object.
+\code{rtables} object.
 }
 \description{
 Helper function to add a row split if specified

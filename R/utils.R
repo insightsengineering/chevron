@@ -177,7 +177,7 @@ get_labels <- function(df, x) {
 #'
 #' @keywords internal
 #'
-#' @return `rtables` lyt object.
+#' @return `rtables` object.
 #'
 ifneeded_split_row <- function(lyt, var, lbl_var) {
   if (is.null(var)) {
