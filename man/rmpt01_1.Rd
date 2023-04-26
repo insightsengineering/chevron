@@ -19,7 +19,7 @@ rmpt01_1_main(
   anl_vars = c("AVALCAT1", "AVAL"),
   lbl_vars = c("Patients", "Person time*"),
   parcat = NULL,
-  lbl_parcat = "Actual Treatment",
+  lbl_parcat = "Parameter Category",
   deco = std_deco("RMPT01"),
   ...
 )
@@ -28,9 +28,9 @@ split_if_not_null(lyt, parcat, lbl_parcat)
 
 rmpt01_1_lyt(anl_vars, lbl_vars, parcat, lbl_parcat, deco)
 
-rmpt01_1_pre(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...)
+rmpt01_1_pre(adam_db, anl_vars = c("AVALCAT1", "AVAL"), parcat = NULL, ...)
 
-rmpt01_1_check(adam_db, anl_vars, req_tables = c("adsl", "adex"))
+rmpt01_1_check(adam_db, anl_vars, parcat, req_tables = c("adsl", "adex"))
 
 rmpt01_1_post(tlg, prune_0 = FALSE, ...)
 

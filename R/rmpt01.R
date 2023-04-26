@@ -24,7 +24,7 @@ rmpt01_1_main <- function(adam_db,
                           anl_vars = c("AVALCAT1", "AVAL"),
                           lbl_vars = c("Patients", "Person time*"),
                           parcat = NULL,
-                          lbl_parcat = "Actual Treatment",
+                          lbl_parcat = "Parameter Category",
                           deco = std_deco("RMPT01"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
@@ -97,10 +97,12 @@ rmpt01_1_lyt <- function(anl_vars,
 #'
 #' @export
 #'
-rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...) {
-  rmpt01_1_check(adam_db, anl_vars = anl_vars)
+rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"),
+                         parcat = NULL, ...) {
+  rmpt01_1_check(adam_db, anl_vars = anl_vars, parcat = parcat)
   adam_db <- dunlin::log_filter(adam_db, PARAMCD == "TDURD", "adex")
   adam_db$adex[[anl_vars[1]]] <- droplevels(adam_db$adex[[anl_vars[1]]])
+  if (!is.null(parcat)) adam_db$adex[[parcat]] <- droplevels(adam_db$adex[[parcat]])
 
   adam_db
 }
@@ -113,12 +115,13 @@ rmpt01_1_pre <- function(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...) {
 #'
 rmpt01_1_check <- function(adam_db,
                            anl_vars,
+                           parcat,
                            req_tables = c("adsl", "adex")) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
 
-  msg <- c(msg, check_all_colnames(adam_db$adex, c("USUBJID", "PARAMCD", anl_vars)))
+  msg <- c(msg, check_all_colnames(adam_db$adex, c("USUBJID", "PARAMCD", anl_vars, parcat)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
 
   if (is.null(msg)) {

@@ -17,7 +17,7 @@
     Code
       res2
     Output
-        Actual Treatment         Patients   Person time*
+        Parameter Category       Patients   Person time*
           Duration of exposure   (N=400)      (N=400)   
         ————————————————————————————————————————————————
         Drug A                   0 (0.0%)        0      
@@ -50,7 +50,7 @@
     Code
       res2
     Output
-        Actual Treatment          Patients     Person time*
+        Parameter Category        Patients     Person time*
           Duration of exposure     (N=400)       (N=400)   
         ———————————————————————————————————————————————————
         Drug A                   111 (27.8%)      14593    
