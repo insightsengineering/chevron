@@ -25,7 +25,7 @@ aet02_1_main(
 
 aet02_1_lyt(arm_var, lbl_overall, lbl_aebodsys, lbl_aedecod, deco)
 
-aet02_1_pre(adam_db, ...)
+aet02_1_pre(adam_db, arm_var = "ACTARM", ...)
 
 aet02_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 

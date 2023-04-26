@@ -67,8 +67,8 @@ aet10_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet10_1_pre <- function(adam_db, ...) {
-  aet10_1_check(adam_db)
+aet10_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
+  aet10_1_check(adam_db, arm_var = arm_var)
 
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y")
@@ -86,7 +86,7 @@ aet10_1_pre <- function(adam_db, ...) {
 #' @describeIn aet10_1 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 aet10_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           arm_var = "ACTARM") {

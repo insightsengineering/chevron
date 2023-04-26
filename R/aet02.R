@@ -95,10 +95,9 @@ aet02_1_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet02_1_pre <- function(adam_db, ...) {
+aet02_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
   assert_all_tablenames(adam_db, c("adsl", "adae"))
-  aet02_1_check(adam_db)
-
+  aet02_1_check(adam_db, arm_var = arm_var)
   new_format <- list(
     adae = list(
       AEBODSYS = rule("No Coding available" = c("", NA, "<Missing>")),
@@ -116,7 +115,7 @@ aet02_1_pre <- function(adam_db, ...) {
 #' @describeIn aet02_1 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 aet02_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           arm_var = "ACTARM") {
