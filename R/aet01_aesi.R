@@ -44,7 +44,7 @@ aet01_aesi_1_main <- function(adam_db,
       "Grade 2" = "2",
       "Grade 3" = "3",
       "Grade 4" = "4",
-      "Grade 5" = "5"
+      "Grade 5 (fatal outcome)" = "5"
     )
   }
   aesi_vars <- unlist(aesi_vars)
@@ -220,10 +220,7 @@ aet01_aesi_1_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      ATOXGR = dunlin::reformat(
-        .data$ATOXGR,
-        dunlin::rule("Missing" = c("", NA_character_))
-      )
+      ATOXGR = factor(ATOXGR, levels = 1:5)
     )
 
   adam_db
