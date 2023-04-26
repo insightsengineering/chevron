@@ -14,7 +14,7 @@ of adverse events with medical concepts."><!-- mathjax --><script src="https://c
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9006</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,17 +34,6 @@ of adverse events with medical concepts."><!-- mathjax --><script src="https://c
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -104,15 +93,21 @@ of adverse events with medical concepts.</p>
 <span>  <span class="va">lbl_medconcept_var</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">aet01_2_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">aet01_2_pre</span><span class="op">(</span></span>
+<span>  <span class="va">adam_db</span>,</span>
+<span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
+<span>  safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>, <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>,</span>
+<span>    <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"SEV"</span><span class="op">)</span>,</span>
+<span>  medconcept_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"SMQ01"</span>, <span class="st">"SMQ02"</span>, <span class="st">"CQ01"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">aet01_2_check</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
 <span>  req_tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span>, <span class="st">"adae"</span><span class="op">)</span>,</span>
-<span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
-<span>  safety_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"FATAL"</span>, <span class="st">"SER"</span>, <span class="st">"SERWD"</span>, <span class="st">"SERDSM"</span>, <span class="st">"RELSER"</span>, <span class="st">"WD"</span>, <span class="st">"DSM"</span>, <span class="st">"REL"</span>,</span>
-<span>    <span class="st">"RELWD"</span>, <span class="st">"RELDSM"</span>, <span class="st">"SEV"</span><span class="op">)</span>,</span>
-<span>  medconcept_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"SMQ01"</span>, <span class="st">"SMQ02"</span>, <span class="st">"CQ01"</span><span class="op">)</span></span>
+<span>  <span class="va">arm_var</span>,</span>
+<span>  <span class="va">safety_var</span>,</span>
+<span>  <span class="va">medconcept_var</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">aet01_2</span></span></code></pre></div>
