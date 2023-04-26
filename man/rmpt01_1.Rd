@@ -3,6 +3,7 @@
 \docType{data}
 \name{rmpt01_1_main}
 \alias{rmpt01_1_main}
+\alias{split_if_not_null}
 \alias{rmpt01_1_lyt}
 \alias{rmpt01_1_pre}
 \alias{rmpt01_1_check}
@@ -16,12 +17,16 @@ An object of class \code{chevron_t} of length 1.
 rmpt01_1_main(
   adam_db,
   anl_vars = c("AVALCAT1", "AVAL"),
-  lbl_vars = c("Patients", "Person time*", "Actual Treatment"),
+  lbl_vars = c("Patients", "Person time*"),
+  parcat = NULL,
+  lbl_parcat = "Actual Treatment",
   deco = std_deco("RMPT01"),
   ...
 )
 
-rmpt01_1_lyt(anl_vars, lbl_vars, deco)
+split_if_not_null(lyt, parcat, lbl_parcat)
+
+rmpt01_1_lyt(anl_vars, lbl_vars, parcat, lbl_parcat, deco)
 
 rmpt01_1_pre(adam_db, anl_vars = c("AVALCAT1", "AVAL"), ...)
 
@@ -36,7 +41,11 @@ rmpt01_1
 
 \item{anl_vars}{(\code{character}) the names of variables to be analyzed.}
 
-\item{lbl_vars}{(\code{character}) the labels of the patient toll, time and treatment variables.}
+\item{lbl_vars}{(\code{character}) the labels of the patient toll and time variables.}
+
+\item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
+
+\item{lbl_parcat}{(\code{string}) the label of the variable \code{parcat}.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -63,6 +72,8 @@ The \code{RMPT01} table provides an overview of duration of exposure for SE pati
 \itemize{
 \item \code{rmpt01_1_main()}: Main TLG function
 
+\item \code{split_if_not_null()}: Helper function to add a row split if specified
+
 \item \code{rmpt01_1_lyt()}: Layout
 
 \item \code{rmpt01_1_pre()}: Preprocessing
@@ -80,5 +91,8 @@ is denoted as \code{c("AVALCAT1", "AVAL")} by default.
 }
 \examples{
 run(rmpt01_1, syn_data)
+
+run(rmpt01_1, syn_data, parcat = "PARCAT2")
 }
 \keyword{datasets}
+\keyword{internal}

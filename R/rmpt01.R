@@ -4,6 +4,9 @@
 #'
 #' @inheritParams gen_args
 #' @param anl_vars (`character`) the names of variables to be analyzed.
+#' @param lbl_vars (`character`) the labels of the patient toll and time variables.
+#' @param parcat (`string`) the name of the variable initiating a new row split.
+#' @param lbl_parcat (`string`) the label of the variable `parcat`.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -19,7 +22,9 @@
 #'
 rmpt01_1_main <- function(adam_db,
                           anl_vars = c("AVALCAT1", "AVAL"),
-                          lbl_vars = c("Patients", "Person time*", "Actual Treatment"),
+                          lbl_vars = c("Patients", "Person time*"),
+                          parcat = NULL,
+                          lbl_parcat = "Actual Treatment",
                           deco = std_deco("RMPT01"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
@@ -28,6 +33,8 @@ rmpt01_1_main <- function(adam_db,
   lyt <- rmpt01_1_lyt(
     anl_vars = anl_vars,
     lbl_vars = lbl_vars,
+    parcat = parcat,
+    lbl_parcat = lbl_parcat,
     deco = deco
   )
 
@@ -35,22 +42,35 @@ rmpt01_1_main <- function(adam_db,
   tbl
 }
 
+#' @describeIn rmpt01_1 Helper function to add a row split if specified
+#'
+#' @keywords internal
+#'
+split_if_not_null <- function(lyt, parcat, lbl_parcat) {
+  if (is.null(parcat)) {
+    lyt
+  } else {
+    split_rows_by(lyt, parcat,
+                  label_pos = "topleft",
+                  split_label = lbl_parcat
+    )
+  }
+}
+
 #' @describeIn rmpt01_1 Layout
 #'
 #' @inheritParams gen_args
-#' @param lbl_vars (`character`) the labels of the patient toll, time and treatment variables.
 #'
 #' @export
 #'
 rmpt01_1_lyt <- function(anl_vars,
                          lbl_vars,
+                         parcat,
+                         lbl_parcat,
                          deco) {
   basic_table_deco(deco) %>%
     add_colcounts() %>%
-    split_rows_by("PARCAT2",
-      label_pos = "topleft",
-      split_label = lbl_vars[3]
-    ) %>%
+    split_if_not_null(parcat, lbl_parcat) %>%
     summarize_patients_exposure_in_cols(
       var = anl_vars[2],
       col_split = TRUE,
@@ -130,6 +150,8 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' @examples
 #' run(rmpt01_1, syn_data)
+#'
+#' run(rmpt01_1, syn_data, parcat = "PARCAT2")
 rmpt01_1 <- chevron_t(
   main = rmpt01_1_main,
   preprocess = rmpt01_1_pre,
