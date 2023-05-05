@@ -10,7 +10,7 @@ test_that("tlg functions return null reports when domain table is empty", {
   )
 
   empty_listing <- rlistings::as_listing(
-    df = data.frame(x = formatters::with_label(
+    df = data.frame(x = with_label(
       "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
     ))
   )

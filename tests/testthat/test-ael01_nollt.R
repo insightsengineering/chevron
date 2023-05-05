@@ -22,9 +22,9 @@ test_that("ael01_nollt can handle all missing values", {
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
-      AEBODSYS = formatters::with_label("", formatters::var_labels(syn_data$adae)[["AEBODSYS"]]),
-      AEDECOD = formatters::with_label("", formatters::var_labels(syn_data$adae)[["AEDECOD"]]),
-      AETERM = formatters::with_label("", formatters::var_labels(syn_data$adae)[["AETERM"]])
+      AEBODSYS = with_label("", formatters::var_labels(syn_data$adae)[["AEBODSYS"]]),
+      AEDECOD = with_label("", formatters::var_labels(syn_data$adae)[["AEDECOD"]]),
+      AETERM = with_label("", formatters::var_labels(syn_data$adae)[["AETERM"]])
     )
 
   res <- expect_silent(run(ael01_nollt_1, proc_data))
@@ -38,8 +38,8 @@ test_that("ael01_nollt can handle some missing values", {
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
-      AEBODSYS = formatters::with_label(.env$new_aebodsys, formatters::var_labels(syn_data$adae)[["AEBODSYS"]]),
-      AEDECOD = formatters::with_label(.env$new_aedecod, formatters::var_labels(syn_data$adae)[["AEDECOD"]])
+      AEBODSYS = with_label(.env$new_aebodsys, formatters::var_labels(syn_data$adae)[["AEBODSYS"]]),
+      AEDECOD = with_label(.env$new_aedecod, formatters::var_labels(syn_data$adae)[["AEDECOD"]])
     )
 
   res <- expect_silent(run(ael01_nollt_1, proc_data))

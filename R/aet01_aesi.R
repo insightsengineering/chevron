@@ -123,67 +123,67 @@ aet01_aesi_1_pre <- function(adam_db,
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      NOT_RESOLVED = formatters::with_label(
+      NOT_RESOLVED = with_label(
         .data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN", "FATAL"),
         "Total number of patients with at least one unresolved or ongoing non-fatal AE"
       ),
-      ALL_RESOLVED = formatters::with_label(
+      ALL_RESOLVED = with_label(
         !.data$NOT_RESOLVED, "Total number of patients with all non-fatal AEs resolved"
       ),
-      WD = formatters::with_label(
+      WD = with_label(
         .data$AEACN == "DRUG WITHDRAWN", "Total number of patients with study drug withdrawn due to AE"
       ),
-      DSM = formatters::with_label(
+      DSM = with_label(
         .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
         "Total number of patients with dose modified/interrupted due to AE"
       ),
-      CONTRT = formatters::with_label(
+      CONTRT = with_label(
         .data$AECONTRT == "Y", "Total number of patients with treatment received for AE"
       ),
-      SER = formatters::with_label(
+      SER = with_label(
         .data$AESER == "Y", "Total number of patients with at least one serious AE"
       ),
-      REL = formatters::with_label(
+      REL = with_label(
         .data$AREL == "Y", "Total number of patients with at least one related AE"
       ),
-      ALLRESWD = formatters::with_label(
+      ALLRESWD = with_label(
         .data$WD & .data$ALL_RESOLVED, "  No. of patients with study drug withdrawn due to resolved AE"
       ),
-      ALLRESDSM = formatters::with_label(
+      ALLRESDSM = with_label(
         .data$DSM & .data$ALL_RESOLVED, "  No. of patients with dose modified/interrupted due to resolved AE"
       ),
-      ALLRESCONTRT = formatters::with_label(
+      ALLRESCONTRT = with_label(
         .data$CONTRT & .data$ALL_RESOLVED, "  No. of patients with treatment received for resolved AE"
       ),
-      NOTRESWD = formatters::with_label(
+      NOTRESWD = with_label(
         .data$WD & .data$NOT_RESOLVED, "  No. of patients with study drug withdrawn due to unresolved or ongoing AE"
       ),
-      NOTRESDSM = formatters::with_label(
+      NOTRESDSM = with_label(
         .data$DSM & .data$NOT_RESOLVED,
         "  No. of patients with dose modified/interrupted due to unresolved or ongoing AE"
       ),
-      NOTRESCONTRT = formatters::with_label(
+      NOTRESCONTRT = with_label(
         .data$CONTRT & .data$NOT_RESOLVED, "  No. of patients with treatment received for unresolved/ongoing AE"
       ),
-      SERWD = formatters::with_label(
+      SERWD = with_label(
         .data$SER & .data$WD, "  No. of patients with study drug withdrawn due to serious AE"
       ),
-      SERDSM = formatters::with_label(
+      SERDSM = with_label(
         .data$SER & .data$DSM, "  No. of patients with dose modified/interrupted due to serious AE"
       ),
-      SERCONTRT = formatters::with_label(
+      SERCONTRT = with_label(
         .data$SER & .data$CONTRT, "  No. of patients with treatment received for serious AE"
       ),
-      RELWD = formatters::with_label(
+      RELWD = with_label(
         .data$REL & .data$WD, "  No. of patients with study drug withdrawn due to related AE"
       ),
-      RELDSM = formatters::with_label(
+      RELDSM = with_label(
         .data$REL & .data$DSM, "  No. of patients with dose modified/interrupted due to related AE"
       ),
-      RELCONTRT = formatters::with_label(
+      RELCONTRT = with_label(
         .data$REL & .data$CONTRT, "  No. of patients with treatment received for related AE"
       ),
-      RELSER = formatters::with_label(
+      RELSER = with_label(
         .data$REL & .data$SER, "  No. of patients with serious, related AE"
       )
     ) %>%

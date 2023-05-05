@@ -25,7 +25,6 @@ ael01_nollt_1_pre(
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
-  new_lbls = NULL,
   ...
 )
 
@@ -46,9 +45,6 @@ Key columns allow you to group repeat occurrences.}
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{...}{not used.}
-
-\item{new_lbls}{(named \code{list} of \code{strings}) list where names correspond to variable names in \code{dataset} and
-strings to the new labels to apply to the named variables. Set to \code{NULL} to use default labels.}
 
 \item{vars}{(\code{character}) variables to be included in the listing.}
 

@@ -121,8 +121,8 @@ syn_test_data <- function() {
     mutate(ANL01FL = "Y")
 
   sd$adae <- sd$adae %>%
-    mutate(AEBODSYS = formatters::with_label(.data$AEBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(AEDECOD = formatters::with_label(.data$AEDECOD, "MedDRA Preferred Term")) %>%
+    mutate(AEBODSYS = with_label(.data$AEBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(AEDECOD = with_label(.data$AEDECOD, "MedDRA Preferred Term")) %>%
     mutate(ANL01FL = "Y") %>%
     mutate(ASEV = .data$AESEV) %>%
     mutate(AREL = .data$AEREL) %>%
@@ -130,8 +130,8 @@ syn_test_data <- function() {
 
   sd$admh <- sd$admh %>%
     mutate(ANL01FL = "Y") %>%
-    mutate(MHBODSYS = formatters::with_label(.data$MHBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(MHDECOD = formatters::with_label(.data$MHDECOD, "MedDRA Preferred Term"))
+    mutate(MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term"))
 
   sd$advs <- sd$advs %>%
     mutate(ANL01FL = "Y")

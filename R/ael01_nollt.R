@@ -36,8 +36,6 @@ ael01_nollt_1_main <- function(adam_db,
 #' @describeIn ael01_nollt_1 Preprocessing
 #'
 #' @inheritParams ael01_nollt_1_main
-#' @param new_lbls (named `list` of `strings`) list where names correspond to variable names in `dataset` and
-#'   strings to the new labels to apply to the named variables. Set to `NULL` to use default labels.
 #'
 #' @export
 #'
@@ -45,14 +43,12 @@ ael01_nollt_1_pre <- function(adam_db,
                               dataset = "adae",
                               key_cols = c("AEBODSYS", "AEDECOD"),
                               disp_cols = "AETERM",
-                              new_lbls = NULL,
                               ...) {
   ael01_nollt_1_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols))
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
     distinct() %>%
     mutate(
-      across(any_of(names(new_lbls)), ~ formatters::with_label(.x, new_lbls[[cur_column()]])),
       across(all_of(key_cols), ~ dunlin::reformat(.x, nocoding))
     ) %>%
     arrange(pick(all_of(c(key_cols, disp_cols))))
