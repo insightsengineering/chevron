@@ -51,21 +51,7 @@ aet01_aesi_1_main <- function(adam_db,
       "Grade 5 (fatal outcome)" = "5"
     )
   }
-  if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
-  if (any(grepl("^ALL_", aesi_vars))) {
-    aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(
-      c("WD", "DSM", "CONTRT"),
-      function(x) sub("^(ALL_)(.*)", paste0("\\2", x), grep("^ALL_", aesi_vars, value = TRUE))
-    ))
-    if ("ALL_REL" %in% aesi_vars) aesi <- c(aesi, "RELSER")
-  } else {
-    aesi <- aesi_vars
-  }
-  all_aesi_vars <- c(
-    "WD", "DSM", "CONTRT", "ALL_RESOLVED", grep("^ALLRES", aesi, value = TRUE),
-    "NOT_RESOLVED", grep("^NOTRES", aesi, value = TRUE), "SER", grep("^SER", aesi, value = TRUE),
-    "REL", grep("^REL", aesi, value = TRUE)
-  )
+  all_aesi_vars <- get_aesi_vars(aesi_vars)
   checkmate::assert_names(names(adam_db$adae), must.include = all_aesi_vars)
   lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
@@ -252,3 +238,22 @@ aet01_aesi_1 <- chevron_t(
   postprocess = aet01_aesi_post,
   adam_datasets = c("adsl", "adae")
 )
+
+get_aesi_vars <- function(aesi_vars) {
+  if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
+  if (any(grepl("^ALL_", aesi_vars))) {
+    aesi <- c(grep("^ALL_", aesi_vars, value = TRUE, invert = TRUE), sapply(
+      c("WD", "DSM", "CONTRT"),
+      function(x) sub("^(ALL_)(.*)", paste0("\\2", x), grep("^ALL_", aesi_vars, value = TRUE))
+    ))
+    if ("ALL_REL" %in% aesi_vars) aesi <- c(aesi, "RELSER")
+  } else {
+    aesi <- aesi_vars
+  }
+  all_aesi_vars <- c(
+    "WD", "DSM", "CONTRT", "ALL_RESOLVED", grep("^ALLRES", aesi, value = TRUE),
+    "NOT_RESOLVED", grep("^NOTRES", aesi, value = TRUE), "SER", grep("^SER", aesi, value = TRUE),
+    "REL", grep("^REL", aesi, value = TRUE)
+  )
+  return(all_aesi_vars)
+}
