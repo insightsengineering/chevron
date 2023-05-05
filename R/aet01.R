@@ -127,35 +127,22 @@ aet01_1_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      FATAL = .data$AESDTH == "Y",
-      SER = .data$AESER == "Y",
-      SERWD = (.data$AESER == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
-      SERDSM = (.data$AESER == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-      RELSER = (.data$AESER == "Y" & .data$AREL == "Y"),
-      WD = .data$AEACN == "DRUG WITHDRAWN",
-      DSM = .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-      REL = .data$AREL == "Y",
-      RELWD = (.data$AREL == "Y" & .data$AEACN == "DRUG WITHDRAWN"),
-      RELDSM = (.data$AREL == "Y" & .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED")),
-      CTC35 = .data$ATOXGR %in% c("3", "4", "5"),
-      CTC45 = .data$ATOXGR %in% c("4", "5"),
-      SEV = .data$ASEV == "SEVERE"
-    ) %>%
-    mutate(
-      AEDECOD = formatters::with_label(.data$AEDECOD, "Dictionary-Derived Term"),
-      FATAL = formatters::with_label(.data$FATAL, "AE with fatal outcome"),
-      SER = formatters::with_label(.data$SER, "Serious AE"),
-      SEV = formatters::with_label(.data$SEV, "Severe AE (at greatest intensity)"),
-      SERWD = formatters::with_label(.data$SERWD, "Serious AE leading to withdrawal from treatment"),
-      SERDSM = formatters::with_label(.data$SERDSM, "Serious AE leading to dose modification/interruption"),
-      RELSER = formatters::with_label(.data$RELSER, "Related Serious AE"),
-      WD = formatters::with_label(.data$WD, "AE leading to withdrawal from treatment"),
-      DSM = formatters::with_label(.data$DSM, "AE leading to dose modification/interruption"),
-      REL = formatters::with_label(.data$REL, "Related AE"),
-      RELWD = formatters::with_label(.data$RELWD, "Related AE leading to withdrawal from treatment"),
-      RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"),
-      CTC35 = formatters::with_label(.data$CTC35, "Grade 3-5 AE"),
-      CTC45 = formatters::with_label(.data$CTC45, "Grade 4/5 AE")
+      FATAL = formatters::with_label(.data$AESDTH == "Y", "AE with fatal outcome"),
+      SER = formatters::with_label(.data$AESER == "Y", "Serious AE"),
+      SEV = formatters::with_label(.data$ASEV == "SEVERE", "Severe AE (at greatest intensity)"),
+      REL = formatters::with_label(.data$AREL == "Y", "Related AE"),
+      WD = formatters::with_label(.data$AEACN == "DRUG WITHDRAWN", "AE leading to withdrawal from treatment"),
+      DSM = formatters::with_label(
+        .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+        "AE leading to dose modification/interruption"
+      ),
+      SERWD = formatters::with_label(.data$SER & .data$WD, "Serious AE leading to withdrawal from treatment"),
+      SERDSM = formatters::with_label(.data$SER & .data$DSM, "Serious AE leading to dose modification/interruption"),
+      RELSER = formatters::with_label(.data$SER & .data$REL, "Related Serious AE"),
+      RELWD = formatters::with_label(.data$REL & .data$WD, "Related AE leading to withdrawal from treatment"),
+      RELDSM = formatters::with_label(.data$REL & .data$DSM, "Related AE leading to dose modification/interruption"),
+      CTC35 = formatters::with_label(.data$ATOXGR %in% c("3", "4", "5"), "Grade 3-5 AE"),
+      CTC45 = formatters::with_label(.data$ATOXGR %in% c("4", "5"), "Grade 4/5 AE")
     )
 
   adam_db$adae <- adam_db$adae %>%
