@@ -60,8 +60,7 @@ aet01_1_lyt <- function(arm_var,
                         safety_var,
                         lbl_safety_var,
                         medconcept_var,
-                        lbl_medconcept_var
-                        ) {
+                        lbl_medconcept_var) {
   names(lbl_safety_var) <- safety_var
   if (!is.null(medconcept_var)) {
     names(lbl_medconcept_var) <- medconcept_var
