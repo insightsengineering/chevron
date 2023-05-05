@@ -115,8 +115,6 @@ aet01_aesi_1_lyt <- function(arm_var,
 #' @export
 #'
 aet01_aesi_1_pre <- function(adam_db,
-                             req_tables = c("adsl", "adae"),
-                             arm_var = "ACTARM",
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adae"))
 
