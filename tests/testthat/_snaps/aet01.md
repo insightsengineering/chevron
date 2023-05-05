@@ -8,7 +8,7 @@
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of AEs                                              609           622            703      
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
+        Total number of deaths                                       24 (17.9%)    19 (14.2%)      20 (15.2%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
           AE with fatal outcome                                           0             0              0       
@@ -31,7 +31,9 @@
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
+        Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Total number of AEs                                              609           622            703      
+        Total number of deaths                                       24 (17.9%)    19 (14.2%)      20 (15.2%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
           AE leading to withdrawal from treatment                    27 (20.1%)    26 (19.4%)      30 (22.7%)  
@@ -51,7 +53,7 @@
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of AEs                                              609           622            703      
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
+        Total number of deaths                                       24 (17.9%)    19 (14.2%)      20 (15.2%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
           AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
@@ -76,10 +78,10 @@
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of AEs                                              609           622            703      
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
+        Total number of deaths                                       24 (17.9%)    19 (14.2%)      20 (15.2%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
-          Fatal AE                                                   76 (56.7%)    70 (52.2%)      75 (56.8%)  
+          AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
 
 # aet01_2 can use custom medconcept_var
 
@@ -91,7 +93,7 @@
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of AEs                                              609           622            703      
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
+        Total number of deaths                                       24 (17.9%)    19 (14.2%)      20 (15.2%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
           AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
@@ -106,5 +108,5 @@
           Related AE leading to dose modification/interruption       29 (21.6%)    38 (28.4%)      38 (28.8%)  
           Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
         Total number of patients with at least one                                                             
-          SMQ 01                                                     72 (53.7%)    79 (59.0%)      75 (56.8%)  
+          SMQ01                                                      72 (53.7%)    79 (59.0%)      75 (56.8%)  
 

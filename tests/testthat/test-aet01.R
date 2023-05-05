@@ -31,7 +31,7 @@ test_that("aet01 can handle some NA values", {
 
 test_that("aet01 can use custom lbl_safety_var", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01_1, proc_data, safety_var = list("FATAL"), lbl_safety_var = list("Fatal AE")))
+  res <- expect_silent(run(aet01_1, proc_data, safety_var = "FATAL"))
   expect_snapshot(res)
 })
 
@@ -42,13 +42,14 @@ test_that("aet01 fails on incomplete data input", {
 
   expect_error(
     run(aet01_1, proc_data),
-    "Expected column names: AESER not in adam_db$adae",
+    "Column `AESER` not found",
     fixed = TRUE
   )
 })
 # aet01_2 ----
 test_that("aet01_2 can use custom medconcept_var", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01_2, proc_data, medconcept_var = list("SMQ01"), lbl_medconcept_var = list("SMQ 01")))
+  proc_data$adae$SMQ01 <- proc_data$adae$SMQ01NAM != ""
+  res <- expect_silent(run(aet01_1, proc_data, medconcept_var = "SMQ01"))
   expect_snapshot(res)
 })

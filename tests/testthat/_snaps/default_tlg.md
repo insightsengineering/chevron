@@ -8,7 +8,7 @@
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of AEs                                              609           622            703      
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
+        Total number of deaths                                       24 (17.9%)    19 (14.2%)      20 (15.2%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
           AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
@@ -22,35 +22,6 @@
           Related AE leading to withdrawal from treatment             6 (4.5%)      12 (9.0%)       8 (6.1%)   
           Related AE leading to dose modification/interruption       29 (21.6%)    38 (28.4%)      38 (28.8%)  
           Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
-
-# aet01_2 functions with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-                                                                      A: Drug X    B: Placebo    C: Combination
-                                                                       (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of AEs                                              609           622            703      
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
-        Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
-        Total number of patients with at least one                                                             
-          AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
-          Serious AE                                                 104 (77.6%)   101 (75.4%)     99 (75.0%)  
-          Serious AE leading to withdrawal from treatment             9 (6.7%)      6 (4.5%)       11 (8.3%)   
-          Serious AE leading to dose modification/interruption       22 (16.4%)    26 (19.4%)      29 (22.0%)  
-          Related Serious AE                                         76 (56.7%)    70 (52.2%)      75 (56.8%)  
-          AE leading to withdrawal from treatment                    27 (20.1%)    26 (19.4%)      30 (22.7%)  
-          AE leading to dose modification/interruption               66 (49.3%)    76 (56.7%)      74 (56.1%)  
-          Related AE                                                 105 (78.4%)   108 (80.6%)    109 (82.6%)  
-          Related AE leading to withdrawal from treatment             6 (4.5%)      12 (9.0%)       8 (6.1%)   
-          Related AE leading to dose modification/interruption       29 (21.6%)    38 (28.4%)      38 (28.8%)  
-          Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
-        Total number of patients with at least one                                                             
-          SMQ 01 Reference Name                                      72 (53.7%)    79 (59.0%)      75 (56.8%)  
-          SMQ 02 Scope                                                    0             0              0       
-          CQ 01 Reference Name                                       74 (55.2%)    80 (59.7%)      87 (65.9%)  
 
 # aet01_aesi_1 function with default argument value return expected result with test data
 
@@ -963,24 +934,19 @@
     Code
       res
     Output
-                                                A: Drug X        B: Placebo      C: Combination 
-                                                 (N=134)           (N=134)           (N=132)    
-        ————————————————————————————————————————————————————————————————————————————————————————
-        Total dose administered                                                                 
-          n                                        134               134               132      
-          Mean (SD)                          6655.5 (1209.6)   6401.2 (1269.9)   6776.4 (1212.5)
-          Median                                 6720.0            6360.0            6720.0     
-          Min - Max                          4320.0 - 9360.0   4080.0 - 9360.0   4320.0 - 9360.0
-          n                                        134               134               132      
-          <5000                                 10 (7.5%)        18 (13.4%)         7 (5.3%)    
-          >9000                                 2 (1.5%)          3 (2.2%)          3 (2.3%)    
-          5000-7000                            72 (53.7%)        71 (53.0%)        71 (53.8%)   
-          7000-9000                            50 (37.3%)        42 (31.3%)        51 (38.6%)   
-        Total number of doses administered                                                      
-          n                                        134               134               132      
-          Mean (SD)                             7.0 (0.0)         7.0 (0.0)         7.0 (0.0)   
-          Median                                   7.0               7.0               7.0      
-          Min - Max                             7.0 - 7.0         7.0 - 7.0         7.0 - 7.0   
+                                     A: Drug X        B: Placebo      C: Combination 
+                                      (N=134)           (N=134)           (N=132)    
+        —————————————————————————————————————————————————————————————————————————————
+        Total dose administered                                                      
+          n                             134               134               132      
+          Mean (SD)               6655.5 (1209.6)   6401.2 (1269.9)   6776.4 (1212.5)
+          Median                      6720.0            6360.0            6720.0     
+          Min - Max               4320.0 - 9360.0   4080.0 - 9360.0   4320.0 - 9360.0
+          n                             134               134               132      
+          <5000                      10 (7.5%)        18 (13.4%)         7 (5.3%)    
+          5000-7000                 72 (53.7%)        71 (53.0%)        71 (53.8%)   
+          7000-9000                 50 (37.3%)        42 (31.3%)        51 (38.6%)   
+          >9000                      2 (1.5%)          3 (2.2%)          3 (2.3%)    
 
 # lbt01_1 functions with default argument value return expected result with test data
 

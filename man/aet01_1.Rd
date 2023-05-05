@@ -5,7 +5,6 @@
 \alias{aet01_1_main}
 \alias{aet01_1_lyt}
 \alias{aet01_1_pre}
-\alias{aet01_1_check}
 \alias{aet01_post}
 \alias{aet01_1}
 \title{\code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.}
@@ -19,28 +18,20 @@ aet01_1_main(
   lbl_overall = NULL,
   safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
     "RELWD", "RELDSM", "SEV"),
-  lbl_safety_var = NULL,
+  medconcept_var = NULL,
   ...
 )
 
-aet01_1_lyt(arm_var, lbl_overall, safety_var, lbl_safety_var)
-
-aet01_1_pre(
-  adam_db,
-  req_tables = c("adsl", "adae"),
-  arm_var = "ACTARM",
-  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-    "RELWD", "RELDSM", "SEV"),
-  ...
+aet01_1_lyt(
+  arm_var,
+  lbl_overall,
+  safety_var,
+  lbl_safety_var,
+  medconcept_var,
+  lbl_medconcept_var
 )
 
-aet01_1_check(
-  adam_db,
-  req_tables = c("adsl", "adae"),
-  arm_var = "ACTARM",
-  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-    "RELWD", "RELDSM", "SEV")
-)
+aet01_1_pre(adam_db, ...)
 
 aet01_post(tlg, prune_0 = FALSE, ...)
 
@@ -55,11 +46,9 @@ aet01_1
 
 \item{safety_var}{(\code{character}) the safety variables to be summarized.}
 
-\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
-
 \item{...}{not used.}
 
-\item{req_tables}{(\code{character}) names of the required tables.}
+\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -80,8 +69,6 @@ aet01_1
 \item \code{aet01_1_lyt()}: Layout
 
 \item \code{aet01_1_pre()}: Preprocessing
-
-\item \code{aet01_1_check()}: Checks
 
 \item \code{aet01_post()}: Postprocessing
 

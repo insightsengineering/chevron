@@ -48,15 +48,14 @@ ael01_nollt_1_pre <- function(adam_db,
                               new_lbls = NULL,
                               ...) {
   ael01_nollt_1_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols))
-  checkmate
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
     distinct() %>%
-    arrange(pick(all_of(c(key_cols, disp_cols)))) %>%
     mutate(
       across(any_of(names(new_lbls)), ~ formatters::with_label(.x, new_lbls[[cur_column()]])),
       across(all_of(key_cols), ~ dunlin::reformat(.x, nocoding))
-    )
+    ) %>%
+    arrange(pick(all_of(c(key_cols, disp_cols))))
 
   adam_db
 }

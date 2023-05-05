@@ -25,7 +25,10 @@ syn_test_data <- function() {
   attr(sd$adsl$AAGE, "label") <- "Age (yr)"
   sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
-  sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
+  sd$adex$AVALCAT1 <- factor(
+    sd$adex$AVALCAT1,
+    levels = c("<700", "700-900", "900-1200", ">1200", "<5000", "5000-7000", "7000-9000", ">9000")
+  )
 
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
@@ -76,7 +79,7 @@ syn_test_data <- function() {
     rename(q1 = 2, q2 = 3)
 
   sd$adlb <- qntls %>%
-    left_join(sd$adlb, by = "PARAMCD") %>%
+    left_join(sd$adlb, by = "PARAMCD", multiple = "all") %>%
     group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
       ANRIND = factor(

@@ -32,7 +32,7 @@ test_that("aet01_aesi can handle some NA values", {
 
 test_that("aet01_aesi works with `ALL` argument", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01_aesi_1, proc_data, aesi_vars = list("ALL")))
+  res <- expect_silent(run(aet01_aesi_1, proc_data, aesi_vars = c("ALL")))
   expect_snapshot(res)
 })
 
@@ -42,8 +42,8 @@ test_that("aet01_aesi_1_check fails on incomplete data input", {
     mutate(AEOUT = NULL)
 
   expect_error(
-    run(aet01_aesi_1, proc_data, aesi_vars = list("ALL")),
-    "AEOUT not in adam_db$adae",
+    run(aet01_aesi_1, proc_data, aesi_vars = c("ALL")),
+    "Column `AEOUT` not found in",
     fixed = TRUE
   )
 })

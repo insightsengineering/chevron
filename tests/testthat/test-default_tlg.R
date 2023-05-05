@@ -5,13 +5,6 @@ test_that("aet01_1 function with default argument value return expected result w
   expect_snapshot(res)
 })
 
-test_that("aet01_2 functions with default argument value return expected result with test data", {
-  pre_data <- aet01_2_pre(syn_data)
-  raw_res <- aet01_2_main(pre_data)
-  res <- aet01_post(raw_res)
-  expect_snapshot(res)
-})
-
 test_that("aet01_aesi_1 function with default argument value return expected result with test data", {
   pre_data <- aet01_aesi_1_pre(syn_data)
   raw_res <- aet01_aesi_1_main(pre_data)
@@ -174,7 +167,8 @@ test_that("ext01_1 functions with default argument value return expected result 
 })
 
 test_that("ext01_2 functions with default argument value return expected result with test data", {
-  pre_data <- ext01_2_pre(syn_data)
+  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "TDOSE", "adex")
+  pre_data <- ext01_2_pre(proc_data)
   raw_res <- ext01_2_main(pre_data)
   res <- ext01_2_post(raw_res)
   expect_snapshot(res)

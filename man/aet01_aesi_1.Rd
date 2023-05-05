@@ -5,7 +5,6 @@
 \alias{aet01_aesi_1_main}
 \alias{aet01_aesi_1_lyt}
 \alias{aet01_aesi_1_pre}
-\alias{aet01_aesi_1_check}
 \alias{aet01_aesi_post}
 \alias{aet01_aesi_1}
 \title{\code{AET01_AESI} Table 1 (Default) Adverse Event of Special Interest Summary Table.}
@@ -21,7 +20,7 @@ aet01_aesi_1_main(
   ...
 )
 
-aet01_aesi_1_lyt(arm_var, aesi_vars, deco, lbl_aesi_vars, grade_groups)
+aet01_aesi_1_lyt(arm_var, aesi_vars, lbl_aesi_vars, grade_groups)
 
 aet01_aesi_1_pre(
   adam_db,
@@ -29,8 +28,6 @@ aet01_aesi_1_pre(
   arm_var = "ACTARM",
   ...
 )
-
-aet01_aesi_1_check(adam_db, req_tables = c("adsl", "adae"), arm_var = "ACTARM")
 
 aet01_aesi_post(tlg, prune_0 = FALSE, ...)
 
@@ -46,8 +43,6 @@ aet01_aesi_1
 \item{grade_groups}{(\code{list}) the grade groups to be displayed.}
 
 \item{...}{not used.}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{lbl_aesi_vars}{(\code{character}) the labels of the AESI variables to be summarized.}
 
@@ -72,8 +67,6 @@ aet01_aesi_1
 \item \code{aet01_aesi_1_lyt()}: Layout
 
 \item \code{aet01_aesi_1_pre()}: Preprocessing
-
-\item \code{aet01_aesi_1_check()}: Checks
 
 \item \code{aet01_aesi_post()}: Postprocessing
 

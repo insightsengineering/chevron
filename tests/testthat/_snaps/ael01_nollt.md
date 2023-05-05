@@ -42,7 +42,7 @@
     Output
       MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
       ———————————————————————————————————————————————————————————————————————————————————————
-      No Coding Available         No Coding Available             No Coding Available        
+      No Coding Available         No Coding Available                                        
 
 # ael01_nollt can handle some missing values
 

@@ -182,3 +182,37 @@ assert_only_one_paramcd <- function(param_val) {
     ))
   }
 }
+
+#' Check col_split var is valid
+#' @param x value of col_split variable
+#' @param label (`string`) hints.
+#' @export
+assert_valid_col_var <- function(x, label = "variable") {
+  checkmate::assert_string(label)
+  lvl <- lvls(x)
+  if (is.null(lvl)) {
+    stop(label, " must be of class `character` or `factor`")
+  }
+  if ("" %in% lvl) {
+    stop(label, " should not contain empty string!")
+  }
+  if (length(lvl) == 0) {
+    stop(label, " should at least contain one valid level!")
+  }
+}
+
+#' Check col_split vars are of same levels
+#' @param x value of col_split variable 1.
+#' @param y value of col_split variable 2.
+#' @param lab1 (`string`) label hint for variable 1.
+#' @param lab2 (`string`) label hint for variable 2.
+assert_valid_col_var_pair <- function(x, y, lab1 = "var1", lab2 = "var2") {
+  checkmate::assert_class(x, classes = class(y))
+  assert_valid_col_var(x)
+  assert_valid_col_var(y)
+  lvl_x <- lvls(x)
+  lvl_y <- lvls(y)
+  if (!identical(lvl_x, lvl_y)) {
+    stop(lab1, " and ", lab2, " should contain the same levels!")
+  }
+}

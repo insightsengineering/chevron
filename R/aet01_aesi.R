@@ -38,6 +38,10 @@ aet01_aesi_1_main <- function(adam_db,
   checkmate::assert_string(arm_var)
   checkmate::assert_character(aesi_vars, null.ok = TRUE)
   checkmate::assert_list(grade_groups, null.ok = TRUE)
+  assert_all_tablenames(adam_db, c("adsl", "adae"))
+  assert_colnames(adam_db$adsl, arm_var)
+  assert_colnames(adam_db$adae, arm_var)
+  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
   if (is.null(grade_groups)) {
     grade_groups <- list(
       "Grade 1" = "1",
@@ -62,12 +66,12 @@ aet01_aesi_1_main <- function(adam_db,
     "NOT_RESOLVED", grep("^NOTRES", aesi, value = TRUE), "SER", grep("^SER", aesi, value = TRUE),
     "REL", grep("^REL", aesi, value = TRUE)
   )
+  checkmate::assert_names(names(adam_db$adae), must.include = all_aesi_vars)
   lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
   lyt <- aet01_aesi_1_lyt(
     arm_var = arm_var,
     aesi_vars = all_aesi_vars,
-    deco = deco,
     lbl_aesi_vars = lbl_aesi_vars,
     grade_groups = grade_groups
   )
@@ -86,11 +90,11 @@ aet01_aesi_1_main <- function(adam_db,
 #'
 aet01_aesi_1_lyt <- function(arm_var,
                              aesi_vars,
-                             deco,
                              lbl_aesi_vars,
                              grade_groups) {
   names(lbl_aesi_vars) <- aesi_vars
-  basic_table_deco(deco, show_colcounts = TRUE) %>%
+  basic_table() %>%
+    add_colcounts() %>%
     split_cols_by(var = arm_var) %>%
     count_patients_with_event(
       vars = "USUBJID",
@@ -129,8 +133,6 @@ aet01_aesi_1_pre <- function(adam_db,
                              arm_var = "ACTARM",
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adae"))
-
-  aet01_aesi_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
 
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
@@ -225,65 +227,16 @@ aet01_aesi_1_pre <- function(adam_db,
   adam_db
 }
 
-#' @describeIn aet01_aesi_1 Checks
-#'
-#' @inheritParams gen_args
-#' @export
-aet01_aesi_1_check <- function(adam_db,
-                               req_tables = c("adsl", "adae"),
-                               arm_var = "ACTARM") {
-  assert_all_tablenames(adam_db, req_tables)
-
-  msg <- NULL
-
-  corresponding_col <- list(
-    ALL_RESOLVED = "AEOUT",
-    NOT_RESOLVED = "AEOUT",
-    WD = "AEACN",
-    DSM = "AEACN",
-    CONTRT = "AECONTRT",
-    SER = "AESER",
-    REL = "AREL",
-    ALLRESWD = "AEACN",
-    ALLRESDSM = "AEACN",
-    ALLRESCONTRT = "AECONTRT",
-    NOTRESWD = "AEACN",
-    NOTRESDSM = "AEACN",
-    NOTRESCONTRT = "AECONTRT",
-    SERWD = c("AESER", "AEACN"),
-    SERDSM = c("AESER", "AEACN"),
-    SERCONTRT = c("AESER", "AECONTRT"),
-    RELWD = c("AREL", "AEACN"),
-    RELDSM = c("AREL", "AEACN"),
-    RELCONTRT = c("AREL", "AECONTRT"),
-    RELSER = c("AREL", "AESER")
-  )
-
-  native_col <- c(arm_var, unique(unlist(corresponding_col)))
-  filter_col <- "ANL01FL"
-  layout_col <- "USUBJID"
-
-  msg <- c(msg, check_all_colnames(adam_db$adae, c(native_col, filter_col, layout_col)))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, layout_col)))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
-}
-
 #' @describeIn aet01_aesi_1 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 aet01_aesi_post <- function(tlg, prune_0 = FALSE, ...) {
-  tbl <- set_decoration(tlg, deco)
   if (prune_0) {
-    tbl <- smart_prune(tbl)
+    tlg <- smart_prune(tlg)
   }
-  std_postprocess(tbl)
+  std_postprocess(tlg)
 }
 
 #' `AET01_AESI` Table 1 (Default) Adverse Event of Special Interest Summary Table.
