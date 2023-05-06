@@ -75,7 +75,11 @@ use the first level or value of \code{arm_var}.}
 
 \item{strat_analysis}{(\code{flag}) should the stratified analysis be performed,}
 
+\item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
+
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
+
+\item{methods}{(\code{list}) a named list, see more details in \code{tern}}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 

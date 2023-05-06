@@ -10,7 +10,9 @@
 #' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
 #' @param strat_analysis (`flag`) should the stratified analysis be performed,
 #' default is FALSE
+#' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
+#' @param methods (`list`) a named list, see more details in `tern`
 #'
 #' @details
 #' * No overall value.
@@ -58,7 +60,6 @@ rspt01_1_main <- function(adam_db,
 }
 
 #' @describeIn rspt01_1 Layout
-#' @param
 #'
 #' @inheritParams gen_args
 #'
@@ -73,7 +74,6 @@ rspt01_1_lyt <- function(arm_var,
                          conf_level,
                          methods,
                          deco) {
-
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var, ref_group = ref_group) %>%
     estimate_proportion(
@@ -85,21 +85,25 @@ rspt01_1_lyt <- function(arm_var,
 
   if (strat_analysis) {
     lyt <- lyt01 %>%
-      proportion_lyt(arm_var = arm_var,
-                     odds_ratio = odds_ratio,
-                     strat_analysis = strat_analysis,
-                     strata = strata,
-                     conf_level = conf_level,
-                     methods = methods)
+      proportion_lyt(
+        arm_var = arm_var,
+        odds_ratio = odds_ratio,
+        strat_analysis = strat_analysis,
+        strata = strata,
+        conf_level = conf_level,
+        methods = methods
+      )
   }
 
   lyt <- lyt %>%
-    proportion_lyt(arm_var = arm_var,
-                   odds_ratio = odds_ratio,
-                   strat_analysis = FALSE,
-                   strata = NULL,
-                   conf_level = conf_level,
-                   methods = methods) %>%
+    proportion_lyt(
+      arm_var = arm_var,
+      odds_ratio = odds_ratio,
+      strat_analysis = FALSE,
+      strata = NULL,
+      conf_level = conf_level,
+      methods = methods
+    ) %>%
     estimate_multinomial_response(
       var = "rsp_lab",
       conf_level = conf_level,
@@ -180,13 +184,15 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
       show_labels = "visible",
       var_labels = if (!strat_analysis) "Unstratified Analysis" else "Stratified Analysis",
       conf_level = conf_level,
-      method = if (!strat_analysis) methods[["diff_conf_method"]] %||% "waldcc" else methods[["strat_diff_conf_method"]] %||% "cmh",
+      method = if (!strat_analysis) methods[["diff_conf_method"]] %||% "waldcc" else
+        methods[["strat_diff_conf_method"]] %||% "cmh",
       variables = list(strata = strata),
       table_names = if (!strat_analysis) "est_prop_diff" else "est_prop_diff_strat"
     ) %>%
     test_proportion_diff(
       vars = "is_rsp",
-      method = if (!strat_analysis) methods[["diff_pval_method"]] %||% "chisq" else methods[["strat_diff_pval_method"]] %||% "cmh",
+      method = if (!strat_analysis) methods[["diff_pval_method"]] %||% "chisq" else
+        methods[["strat_diff_pval_method"]] %||% "cmh",
       variables = list(strata = strata),
       table_names = if (!strat_analysis) "test_prop_diff" else "test_prop_diff_strat"
     )
