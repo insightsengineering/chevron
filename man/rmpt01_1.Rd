@@ -55,7 +55,7 @@ rmpt01_1
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-The \code{RMPT01} table provides an overview of duration of exposure for SE patients.
+The \code{RMPT01} table provides an overview of duration of exposure.
 }
 \details{
 \itemize{
