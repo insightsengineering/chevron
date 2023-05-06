@@ -15,8 +15,10 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 coxt02_1_main(
   adam_db,
-  anl_vars = c("CNSR", "ARM", "AVAL"),
+  arm_var = "ARM",
+  anl_vars = c("CNSR", "AVAL"),
   covariates = NULL,
+  with_strata = NULL,
   lbl_vars = "Effect/Covariate Included in the Model",
   conf_level = 0.95,
   deco = std_deco("COXT02"),
@@ -27,12 +29,21 @@ coxt02_1_lyt(variables, lbl_vars, conf_level, deco)
 
 coxt02_1_pre(
   adam_db,
-  anl_vars = c("CNSR", "ARM", "AVAL"),
+  arm_var = "ARM",
+  anl_vars = c("CNSR", "AVAL"),
   covariates = NULL,
+  with_strata = NULL,
   ...
 )
 
-coxt02_1_check(adam_db, anl_vars, covariates, req_tables = c("adsl", "adtte"))
+coxt02_1_check(
+  adam_db,
+  arm_var,
+  anl_vars,
+  covariates,
+  with_strata,
+  req_tables = c("adsl", "adtte")
+)
 
 coxt02_1_post(tlg, prune_0 = FALSE, ...)
 
@@ -41,9 +52,13 @@ coxt02_1
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
+\item{arm_var}{(\code{string}) the arm variables used for arm splitting.}
+
 \item{anl_vars}{(\code{character}) variables in a Cox proportional hazards regression model.}
 
 \item{covariates}{(\code{character}) will be fitted and the corresponding effect will be estimated.}
+
+\item{with_strata}{(\code{character}) will be fitted for the stratified analysis.}
 
 \item{lbl_vars}{(\code{string}) text label for the a Cox regression model variables.}
 
@@ -53,6 +68,8 @@ and estimating hazard ratio to describe the effect size in a survival analysis.}
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
+
+\item{variables}{(\code{list}) list of variables in a Cox proportional hazards regression model.}
 
 \item{req_tables}{(\code{character}) names of the required tables.}
 
@@ -68,7 +85,7 @@ and produces the estimates for each of the covariates included in the model
 \details{
 \itemize{
 \item The table allows confidence level to be adjusted, default is 2-sided 5\%.
-\item The stratified analysis is with DISCRETE tie handling.
+\item The stratified analysis is with DISCRETE tie handling (equivalent to \code{tern::control_coxreg(ties = "exact")} in R).
 \item Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 with \code{"SEX"}, \code{"RACE"} and \code{"AGE"} as default candidates.
 \item The selection of the covariates and whether or not there is a selection process
@@ -92,13 +109,18 @@ with \code{"SEX"}, \code{"RACE"} and \code{"AGE"} as default candidates.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adtte} table with with \code{"PARAMCD"}, the columns specified by \code{"anl_vars"} which
-is denoted as \code{c("CNSR", "ARM", "AVAL")} by default.
+\item \code{adam_db} object must contain an \code{adtte} table with with \code{"PARAMCD"}, \code{"ARM"}, and the columns specified by
+\code{"anl_vars"} which is denoted as \code{c("CNSR", "AVAL")} by default.
 }
 }
 \examples{
-run(coxt02_1, syn_data)
+library(dplyr)
+library(dunlin)
 
-run(coxt02_1, syn_data, covariates = c("SEX", "AGE"), conf_level = 0.90)
+proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+
+run(coxt02_1, proc_data)
+
+run(coxt02_1, proc_data, covariates = c("SEX", "AGE"), with_strata = c("RACE"), conf_level = 0.90)
 }
 \keyword{datasets}

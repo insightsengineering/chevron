@@ -110,7 +110,7 @@ reference:
       - h_format_dec
       - gg_list
       - grob_list
-      - assert_only_one_paramcd
+      - assert_single_paramcd
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

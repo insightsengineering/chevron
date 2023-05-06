@@ -1,17 +1,19 @@
 test_that("coxt02 can handle some NA values", {
+  proc_data <- syn_data
+  proc_data <- dunlin::log_filter(proc_data, PARAMCD == "CRSD", "adtte")
+
   set.seed(1)
-  new_sex <- as.character(syn_data$adtte$SEX)
+  new_sex <- as.character(proc_data$adtte$SEX)
   new_sex[sample(seq_along(new_sex), 20)] <- NA
-  new_race <- as.character(syn_data$adtte$RACE)
+  new_race <- as.character(proc_data$adtte$RACE)
   new_race[sample(seq_along(new_race), 15)] <- NA
-  new_cnsr <- syn_data$adtte$CNSR
+  new_cnsr <- proc_data$adtte$CNSR
   new_cnsr[sample(seq_along(new_cnsr), 10)] <- NA
-  new_aval <- syn_data$adtte$AVAL
+  new_aval <- proc_data$adtte$AVAL
   new_aval[sample(seq_along(new_aval), 15)] <- NA
-  new_age <- syn_data$adtte$AGE
+  new_age <- proc_data$adtte$AGE
   new_age[sample(seq_along(new_age), 15)] <- NA
 
-  proc_data <- syn_data
   proc_data$adtte <- proc_data$adtte %>%
     mutate(
       SEX = factor(.env$new_sex),

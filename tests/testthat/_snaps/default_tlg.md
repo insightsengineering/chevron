@@ -567,8 +567,8 @@
         ————————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                                  
           Description of Planned Arm (reference = A: Drug X)                                 <0.0001
-            B: Placebo                                             1.44       (1.06, 1.96)   0.0181 
-            C: Combination                                         2.42       (1.79, 3.27)   <0.0001
+            B: Placebo                                             1.27       (1.11, 1.45)   0.0006 
+            C: Combination                                         1.91       (1.67, 2.18)   <0.0001
 
 # dmt01_1 functions with default argument value return expected result with test data
 

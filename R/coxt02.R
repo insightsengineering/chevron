@@ -3,15 +3,17 @@
 #' @describeIn coxt02_1 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param arm_var (`string`) the arm variables used for arm splitting.
 #' @param anl_vars (`character`) variables in a Cox proportional hazards regression model.
 #' @param covariates (`character`) will be fitted and the corresponding effect will be estimated.
+#' @param with_strata (`character`) will be fitted for the stratified analysis.
 #' @param lbl_vars (`string`) text label for the a Cox regression model variables.
 #' @param conf_level (`string`) confidence level of the interval when fitting a Cox regression model
 #' and estimating hazard ratio to describe the effect size in a survival analysis.
 #'
 #' @details
 #'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
-#'  * The stratified analysis is with DISCRETE tie handling.
+#'  * The stratified analysis is with DISCRETE tie handling (equivalent to `tern::control_coxreg(ties = "exact")` in R).
 #'  * Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 #'  with `"SEX"`, `"RACE"` and `"AGE"` as default candidates.
 #'  * The selection of the covariates and whether or not there is a selection process
@@ -20,33 +22,37 @@
 #'  * Keep zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adtte` table with with `"PARAMCD"`, the columns specified by `"anl_vars"` which
-#'   is denoted as `c("CNSR", "ARM", "AVAL")` by default.
+#'   * `adam_db` object must contain an `adtte` table with with `"PARAMCD"`, `"ARM"`, and the columns specified by
+#'   `"anl_vars"` which is denoted as `c("CNSR", "AVAL")` by default.
 #'
 #' @export
 #'
 coxt02_1_main <- function(adam_db,
-                          anl_vars = c("CNSR", "ARM", "AVAL"),
+                          arm_var = "ARM",
+                          anl_vars = c("CNSR", "AVAL"),
                           covariates = NULL,
+                          with_strata = NULL,
                           lbl_vars = "Effect/Covariate Included in the Model",
                           conf_level = .95,
                           deco = std_deco("COXT02"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adtte")
-  assert_colnames(dbsel$adtte, c(anl_vars, covariates))
-  checkmate::assert_character(covariates, null.ok = TRUE, any.missing = FALSE)
+  assert_colnames(dbsel$adtte, c(arm_var, anl_vars, covariates, with_strata))
 
+  checkmate::assert_character(covariates, null.ok = TRUE, any.missing = FALSE)
+  checkmate::assert_character(with_strata, null.ok = TRUE, any.missing = FALSE)
   checkmate::assert_number(conf_level, null.ok = FALSE, lower = 0, upper = 1)
 
   dbsel$adtte <- dbsel$adtte %>%
     mutate(EVENT = 1 - .data$CNSR)
 
   variables <- list(
-    time = anl_vars[3],
+    time = anl_vars[2],
     event = "EVENT",
-    arm = anl_vars[2]
+    arm = arm_var
   )
   if (!is.null(covariates)) variables <- c(variables, list(covariates = covariates))
+  if (!is.null(with_strata)) variables <- c(variables, list(with_strata = with_strata))
 
   lyt <- coxt02_1_lyt(
     variables = variables,
@@ -63,6 +69,7 @@ coxt02_1_main <- function(adam_db,
 #' @describeIn coxt02_1 Layout
 #'
 #' @inheritParams gen_args
+#' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
 #'
 #' @export
 #'
@@ -73,7 +80,10 @@ coxt02_1_lyt <- function(variables,
   basic_table_deco(deco) %>%
     summarize_coxreg(
       variables = variables,
-      control = control_coxreg(conf_level = conf_level),
+      control = control_coxreg(
+        conf_level = conf_level,
+        ties = "exact"
+      ),
       multivar = TRUE
     ) %>%
     append_topleft(lbl_vars)
@@ -85,10 +95,15 @@ coxt02_1_lyt <- function(variables,
 #'
 #' @export
 #'
-coxt02_1_pre <- function(adam_db, anl_vars = c("CNSR", "ARM", "AVAL"),
-                         covariates = NULL, ...) {
-  coxt02_1_check(adam_db, anl_vars = anl_vars, covariates = covariates)
-  adam_db <- dunlin::log_filter(adam_db, PARAMCD == "CRSD", "adtte")
+coxt02_1_pre <- function(adam_db, arm_var = "ARM", anl_vars = c("CNSR", "AVAL"),
+                         covariates = NULL, with_strata = NULL, ...) {
+  coxt02_1_check(adam_db,
+    arm_var = arm_var, anl_vars = anl_vars,
+    covariates = covariates, with_strata = with_strata
+  )
+
+  assert_single_paramcd(adam_db$PARAMCD)
+
   lapply(covariates, function(x) {
     if (is.factor(adam_db$adtte[[x]])) adam_db$adtte[[x]] <- droplevels(adam_db$adtte[[x]])
   })
@@ -103,14 +118,16 @@ coxt02_1_pre <- function(adam_db, anl_vars = c("CNSR", "ARM", "AVAL"),
 #' @export
 #'
 coxt02_1_check <- function(adam_db,
+                           arm_var,
                            anl_vars,
                            covariates,
+                           with_strata,
                            req_tables = c("adsl", "adtte")) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
 
-  msg <- c(msg, check_all_colnames(adam_db$adtte, c("USUBJID", "PARAMCD", anl_vars, covariates)))
+  msg <- c(msg, check_all_colnames(adam_db$adtte, c("USUBJID", "PARAMCD", arm_var, anl_vars, covariates, with_strata)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
 
   if (is.null(msg)) {
@@ -143,9 +160,14 @@ coxt02_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(coxt02_1, syn_data)
+#' library(dplyr)
+#' library(dunlin)
 #'
-#' run(coxt02_1, syn_data, covariates = c("SEX", "AGE"), conf_level = 0.90)
+#' proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+#'
+#' run(coxt02_1, proc_data)
+#'
+#' run(coxt02_1, proc_data, covariates = c("SEX", "AGE"), with_strata = c("RACE"), conf_level = 0.90)
 coxt02_1 <- chevron_t(
   main = coxt02_1_main,
   preprocess = coxt02_1_pre,
