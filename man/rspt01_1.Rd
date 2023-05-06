@@ -8,7 +8,7 @@
 \alias{rspt01_1_post}
 \alias{rspt01_1}
 \alias{proportion_lyt}
-\title{\code{RSPT01} Table 1 (Default) Demographics and Baseline Characteristics Table 1.}
+\title{\code{RSPT01} Binary Outcomes Summary}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -79,7 +79,13 @@ use the first level or value of \code{arm_var}.}
 
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
 
-\item{methods}{(\code{list}) a named list, see more details in \code{tern}}
+\item{methods}{(\code{list}) a named list, use a named list to control, for example:
+methods = list(prop_conf_method = "wald",
+diff_conf_method = "wald",
+strat_diff_conf_method = "ha",
+diff_pval_method = "fisher",
+strat_diff_pval_method = "schouten")
+see more details in \code{tern}}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
@@ -92,8 +98,8 @@ use the first level or value of \code{arm_var}.}
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-For each variable, summary statistics are
-by default based on the number of patients in the corresponding \code{n} row.
+RSPT01 template may be used to summarize any binary outcome or response variable at
+a single time point. Typical application for oncology
 }
 \details{
 \itemize{
@@ -120,6 +126,7 @@ library(dunlin)
 
 syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 run(rspt01_1, syn_data2)
-run(rspt01_1, syn_data2, odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"))
+run(rspt01_1, syn_data2, odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"),
+ methods = list(diff_pval_method = "fisher"))
 }
 \keyword{datasets}

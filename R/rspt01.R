@@ -12,7 +12,13 @@
 #' default is FALSE
 #' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
-#' @param methods (`list`) a named list, see more details in `tern`
+#' @param methods (`list`) a named list, use a named list to control, for example:
+#' methods = list(prop_conf_method = "wald",
+#'                diff_conf_method = "wald",
+#'                strat_diff_conf_method = "ha",
+#'                diff_pval_method = "fisher",
+#'                strat_diff_pval_method = "schouten")
+#' see more details in `tern`
 #'
 #' @details
 #' * No overall value.
@@ -84,18 +90,18 @@ rspt01_1_lyt <- function(arm_var,
     )
 
   if (strat_analysis) {
-    lyt <- lyt01 %>%
+    lyt01 <- lyt01 %>%
       proportion_lyt(
         arm_var = arm_var,
         odds_ratio = odds_ratio,
-        strat_analysis = strat_analysis,
+        strat_analysis = TRUE,
         strata = strata,
         conf_level = conf_level,
         methods = methods
       )
   }
 
-  lyt <- lyt %>%
+  lyt <- lyt01 %>%
     proportion_lyt(
       arm_var = arm_var,
       odds_ratio = odds_ratio,
@@ -148,10 +154,10 @@ rspt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `RSPT01` Table 1 (Default) Demographics and Baseline Characteristics Table 1.
+#' `RSPT01` Binary Outcomes Summary
 #'
-#' For each variable, summary statistics are
-#' by default based on the number of patients in the corresponding `n` row.
+#' RSPT01 template may be used to summarize any binary outcome or response variable at
+#' a single time point. Typical application for oncology
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -162,7 +168,8 @@ rspt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 #' run(rspt01_1, syn_data2)
-#' run(rspt01_1, syn_data2, odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"))
+#' run(rspt01_1, syn_data2, odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"),
+#'  methods = list(diff_pval_method = "fisher"))
 rspt01_1 <- chevron_t(
   main = rspt01_1_main,
   preprocess = rspt01_1_pre,
