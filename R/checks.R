@@ -60,6 +60,7 @@ check_one_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
 #' @param df_name (`string`) name of the data frame
 #'
 #' @keywords internal
+#' @export
 #'
 #' @examples
 #' \dontrun{
