@@ -30,6 +30,22 @@ syn_test_data <- function() {
     levels = c("<700", "700-900", "900-1200", ">1200", "<5000", "5000-7000", "7000-9000", ">9000")
   )
 
+  set.seed(1, kind = "Mersenne-Twister")
+  sd$adex <- sd$adex %>%
+    distinct(USUBJID, .keep_all = TRUE) %>%
+    mutate(
+      PARAMCD = "TDURD",
+      PARAM = "Overall duration (days)",
+      AVAL = sample(x = seq(1, 250), size = n(), replace = TRUE),
+      AVALCAT1 = factor(case_when(
+        AVAL < 30 ~ "< 1 month",
+        AVAL < 90 ~ "1 to <3 months",
+        AVAL < 180 ~ "3 to <6 months",
+        TRUE ~ ">=6 months"
+      ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
+    ) %>%
+    bind_rows(sd$adex)
+
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
     mutate(
