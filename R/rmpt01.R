@@ -132,7 +132,7 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 
 #' `RMPT01` Table 1 (Default) Duration of Exposure for Risk Management Plan Table 1.
 #'
-#' The `RMPT01` table provides an overview of duration of exposure for SE patients.
+#' The `RMPT01` table provides an overview of duration of exposure.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
