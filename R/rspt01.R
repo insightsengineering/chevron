@@ -6,7 +6,7 @@
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param ref_group (`string`) The name of the reference group, the value should
 #'  be identical to the values in `arm_var`, if not speficied, it will by default
-#'  use the first level of.
+#'  use the first level or value of `arm_var`.
 #' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
 #' @param strat_analysis (`flag`) should the stratified analysis be performed,
 #' default is FALSE
@@ -26,12 +26,13 @@ rspt01_1_main <- function(adam_db,
                           ref_group = NULL,
                           odds_ratio = TRUE,
                           strat_analysis = FALSE,
+                          strata = NULL,
                           conf_level = 0.95,
                           methods = list(),
                           deco = std_deco("RSPT01"),
                           ...) {
   anl <- adam_db[[dataset]]
-  assert_colnames(anl, c(arm_var, "PARAMCD", "is_rsp", "rsp_lab"))
+  assert_colnames(anl, c(arm_var, strata, "PARAMCD", "is_rsp", "rsp_lab"))
   assert_only_one_paramcd(anl$PARAMCD)
   checkmate::assert_string(ref_group, null.ok = TRUE)
   checkmate::assert_flag(odds_ratio)
@@ -45,6 +46,7 @@ rspt01_1_main <- function(adam_db,
     ref_group = ref_group,
     odds_ratio = odds_ratio,
     strat_analysis = strat_analysis,
+    strata = strata,
     conf_level = conf_level,
     methods = methods,
     deco = deco
@@ -71,122 +73,26 @@ rspt01_1_lyt <- function(arm_var,
                          conf_level,
                          methods,
                          deco) {
-  if (!strat_analysis) {
-    lyt01 <- basic_table(show_colcounts = TRUE) %>%
-      split_cols_by(var = arm_var, ref_group = ref_group) %>%
-      estimate_proportion(
-        vars = "is_rsp",
-        conf_level = conf_level,
-        method = methods$prop_conf_method %||% "waldcc",
-        table_names = "est_prop"
-      ) %>%
-      estimate_proportion_diff(
-        vars = "is_rsp",
-        show_labels = "visible",
-        var_labels = "Unstratified Analysis",
-        conf_level = conf_level,
-        method = methods$diff_conf_method %||% "waldcc",
-        table_names = "est_prop_diff"
-      ) %>%
-      test_proportion_diff(
-        vars = "is_rsp",
-        method = methods$diff_pval_method %||% "chisq",
-        table_names = "test_prop_diff"
-      )
 
-    if (odds_ratio) {
-      lyt <- lyt01 %>%
-        estimate_odds_ratio(
-          vars = "is_rsp",
-          table_names = "est_or"
-        ) %>%
-        estimate_multinomial_response(
-          var = "rsp_lab",
-          conf_level = conf_level,
-          method = methods$prop_conf_method %||% "waldcc"
-        )
-    } else {
-      lyt <- lyt01 %>%
-        estimate_multinomial_response(
-          var = "rsp_lab",
-          conf_level = conf_level,
-          method = methods$prop_conf_method %||% "waldcc"
-        )
-    }
-  } else {
-    lyt02 <- basic_table(show_colcounts = TRUE) %>%
-      split_cols_by(var = "ARM", ref_group = "A: Drug X") %>%
-      estimate_proportion(
-        vars = "is_rsp",
-        conf_level = conf_level,
-        method = methods$prop_conf_method %||% "waldcc",
-        table_names = "est_prop"
-      ) %>%
-      estimate_proportion_diff(
-        vars = "is_rsp",
-        show_labels = "visible",
-        var_labels = "Unstratified Analysis",
-        conf_level = conf_level,
-        method = methods$diff_conf_method %||% "waldcc",
-        table_names = "est_prop_diff"
-      ) %>%
-      test_proportion_diff(
-        vars = "is_rsp",
-        method = methods$diff_pval_method %||% "chisq",
-        table_names = "test_prop"
-      )
-
-    if (odds_ratio) {
-      lyt <- lyt02 %>%
-        estimate_odds_ratio(
-          vars = "is_rsp",
-          table_names = "est_or"
-        ) %>%
-        estimate_proportion_diff(
-          vars = "is_rsp",
-          show_labels = "visible",
-          var_labels = "Stratified Analysis",
-          method = methods$strat_diff_conf_method %||% "cmh",
-          variables = list(strata = strata),
-          table_names = "est_prop_diff_strat"
-        ) %>%
-        test_proportion_diff(
-          vars = "is_rsp",
-          method = methods$strat_diff_pval_method %||% "cmh",
-          variables = list(strata = strata),
-          table_names = "test_prop_strat"
-        ) %>%
-        estimate_odds_ratio(
-          vars = "is_rsp",
-          variables = list(strata = strata, arm = arm_var),
-          table_names = "est_or_strat"
-        ) %>%
-        estimate_multinomial_response(
-          conf_level = conf_level,
-          method = methods$prop_conf_method %||% "waldcc"
-        )
-    } else {
-      lyt <- lyt02 %>%
-        estimate_proportion_diff(
-          vars = "is_rsp",
-          show_labels = "visible",
-          var_labels = "Stratified Analysis",
-          method = methods$strat_diff_conf_method %||% "cmh",
-          variables = list(strata = strata),
-          table_names = "est_prop_diff_strat"
-        ) %>%
-        test_proportion_diff(
-          vars = "is_rsp",
-          method = methods$strat_diff_pval_method %||% "cmh",
-          variables = list(strata = strata),
-          table_names = "test_prop_strat"
-        ) %>%
-        estimate_multinomial_response(
-          conf_level = conf_level,
-          method = methods$prop_conf_method %||% "waldcc"
-        )
-    }
-  }
+  lyt <- basic_table(show_colcounts = TRUE) %>%
+    split_cols_by(var = arm_var, ref_group = ref_group) %>%
+    estimate_proportion(
+      vars = "is_rsp",
+      conf_level = conf_level,
+      method = methods[["prop_conf_method"]] %||% "waldcc",
+      table_names = "est_prop"
+    ) %>%
+    proportion_lyt(arm_var = arm_var,
+                   odds_ratio = odds_ratio,
+                   strat_analysis = strat_analysis,
+                   strata = strata,
+                   conf_level = conf_level,
+                   methods = methods) %>%
+    estimate_multinomial_response(
+      var = "rsp_lab",
+      conf_level = conf_level,
+      method = methods[["prop_conf_method"]] %||% "waldcc"
+    )
 
   return(lyt)
 }
@@ -240,9 +146,47 @@ rspt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 #' run(rspt01_1, syn_data2)
+#' run(rspt01_1, syn_data2, odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"))
 rspt01_1 <- chevron_t(
   main = rspt01_1_main,
   preprocess = rspt01_1_pre,
   postprocess = rspt01_1_post,
   adam_datasets = c("adsl")
 )
+
+#' @describeIn rspt01_1 get proportion layout
+#'
+#' @inheritParams gen_args
+#' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
+#' @param strat_analysis (`flag`) should the stratified analysis be performed,
+#'
+#' @export
+proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio = TRUE, strat_analysis = FALSE) {
+  lyt <- lyt %>%
+    estimate_proportion_diff(
+      vars = "is_rsp",
+      show_labels = "visible",
+      var_labels = if (!strat_analysis) "Unstratified Analysis" else "Stratified Analysis",
+      conf_level = conf_level,
+      method = if (!strat_analysis) methods[["diff_conf_method"]] %||% "waldcc" else methods[["strat_diff_conf_method"]] %||% "cmh",
+      variables = list(strata = strata),
+      table_names = if (!strat_analysis) "est_prop_diff" else "est_prop_diff_strat"
+    ) %>%
+    test_proportion_diff(
+      vars = "is_rsp",
+      method = if (!strat_analysis) methods[["diff_pval_method"]] %||% "chisq" else methods[["strat_diff_pval_method"]] %||% "cmh",
+      variables = list(strata = strata),
+      table_names = if (!strat_analysis) "test_prop_diff" else "test_prop_diff_strat"
+    )
+
+  if (odds_ratio) {
+    lyt <- lyt %>%
+      estimate_odds_ratio(
+        vars = "is_rsp",
+        variables = if (!strat_analysis) list(strata = NULL, arm = NULL) else list(strata = strata, arm = arm_var),
+        table_names = if (!strat_analysis) "est_or" else "est_or_strat"
+      )
+  }
+
+  lyt
+}

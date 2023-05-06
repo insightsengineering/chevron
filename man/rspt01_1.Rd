@@ -7,6 +7,7 @@
 \alias{rspt01_1_pre}
 \alias{rspt01_1_post}
 \alias{rspt01_1}
+\alias{proportion_lyt}
 \title{\code{RSPT01} Table 1 (Default) Demographics and Baseline Characteristics Table 1.}
 \format{
 An object of class \code{chevron_t} of length 1.
@@ -19,6 +20,7 @@ rspt01_1_main(
   ref_group = NULL,
   odds_ratio = TRUE,
   strat_analysis = FALSE,
+  strata = NULL,
   conf_level = 0.95,
   methods = list(),
   deco = std_deco("RSPT01"),
@@ -47,6 +49,16 @@ rspt01_1_pre(
 rspt01_1_post(tlg, prune_0 = TRUE, ...)
 
 rspt01_1
+
+proportion_lyt(
+  lyt,
+  arm_var,
+  methods,
+  strata,
+  conf_level,
+  odds_ratio = TRUE,
+  strat_analysis = FALSE
+)
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
@@ -57,12 +69,11 @@ rspt01_1
 
 \item{ref_group}{(\code{string}) The name of the reference group, the value should
 be identical to the values in \code{arm_var}, if not speficied, it will by default
-use the first level of.}
+use the first level or value of \code{arm_var}.}
 
 \item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is TRUE}
 
-\item{strat_analysis}{(\code{flag}) should the stratified analysis be performed,
-default is FALSE}
+\item{strat_analysis}{(\code{flag}) should the stratified analysis be performed,}
 
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
 
@@ -95,6 +106,8 @@ by default based on the number of patients in the corresponding \code{n} row.
 
 \item \code{rspt01_1_post()}: Postprocessing
 
+\item \code{proportion_lyt()}: get proportion layout
+
 }}
 \examples{
 rspt01_1_pre(syn_data)
@@ -103,5 +116,6 @@ library(dunlin)
 
 syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 run(rspt01_1, syn_data2)
+run(rspt01_1, syn_data2, odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"))
 }
 \keyword{datasets}
