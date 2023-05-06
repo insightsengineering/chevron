@@ -15,8 +15,8 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 coxt02_1_main(
   adam_db,
-  adtte_vars = c("AVAL", "EVENT"),
-  coxreg_vars = c("ARM", covariates),
+  anl_vars = c("CNSR", "ARM", "AVAL"),
+  covariates = c("SEX", "RACE", "AGE"),
   lbl_term = "Effect/Covariate Included in the Model",
   conf_level = 0.95,
   deco = std_deco("COXT02"),
@@ -27,18 +27,12 @@ coxt02_1_lyt(lbl_term, conf_level, deco)
 
 coxt02_1_pre(
   adam_db,
-  adtte_vars = c("AVAL", "CNSR"),
-  coxreg_vars = c("ARM", covariates),
+  anl_vars = c("CNSR", "ARM", "AVAL"),
+  covariates = c("SEX", "RACE", "AGE"),
   ...
 )
 
-coxt02_1_check(
-  adam_db,
-  adtte_vars,
-  coxreg_vars,
-  req_tables = c("adsl", "adtte"),
-  ...
-)
+coxt02_1_check(adam_db, anl_vars, covariates, req_tables = c("adsl", "adtte"))
 
 coxt02_1_post(tlg, prune_0 = FALSE, ...)
 
@@ -46,10 +40,6 @@ coxt02_1
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
-
-\item{adtte_vars}{(\code{character}) event and time variables in a Cox proportional hazards regression model.}
-
-\item{coxreg_vars}{(\code{character}) will be fitted and the corresponding effect will be estimated.}
 
 \item{lbl_term}{(\code{string}) text label for the \code{term} variable.}
 
@@ -65,6 +55,10 @@ and estimating hazard ratio to describe the effect size in a survival analysis.}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{adtte_vars}{(\code{character}) event and time variables in a Cox proportional hazards regression model.}
+
+\item{coxreg_vars}{(\code{character}) will be fitted and the corresponding effect will be estimated.}
 }
 \description{
 The \code{COXT02} table follows the same principles as the general Cox model analysis
@@ -103,6 +97,6 @@ and produces the estimates for each of the covariates included in the model
 \examples{
 run(coxt02_1, syn_data)
 
-run(coxt02_1, syn_data, covariates = c("SEX", "RACE", "AGE"), conf_level = .90)
+run(coxt02_1, syn_data, covariates = c("SEX", "RACE"), conf_level = .90)
 }
 \keyword{datasets}

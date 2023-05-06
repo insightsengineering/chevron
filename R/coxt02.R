@@ -21,21 +21,26 @@
 #' @export
 #'
 coxt02_1_main <- function(adam_db,
-                          adtte_vars = c("AVAL", "EVENT"),
-                          coxreg_vars = c("ARM", covariates),
+                          anl_vars = c("CNSR", "ARM", "AVAL"),
+                          covariates = c("SEX", "RACE", "AGE"),
                           lbl_term = "Effect/Covariate Included in the Model",
                           conf_level = .95,
                           deco = std_deco("COXT02"),
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adtte")
+  assert_colnames(dbsel$adtte, c(adtte_vars, coxreg_vars))
+  checkmate::assert_character(covariates, null.ok = FALSE)
+
   checkmate::assert_true(is.numeric(conf_level))
   checkmate::assert_true(conf_level >= 0 && conf_level <= 1)
-  assert_colnames(dbsel$adtte, c(adtte_vars, coxreg_vars))
+
+  dbsel$adtte <- dbsel$adtte %>%
+    mutate(EVENT = 1 - .data$CNSR)
 
   multivar_model <- fit_coxreg_multivar(
     variables = list(
-      time = adtte_vars[1], event = adtte_vars[2], arm = coxreg_vars[1],
-      covariates = coxreg_vars[-1]
+      time = anl_vars[3], event = EVENT, arm = anl_vars[2],
+      covariates = covariates
     ),
     data = dbsel$adtte
   )
@@ -83,17 +88,13 @@ coxt02_1_lyt <- function(lbl_term,
 #'
 #' @export
 #'
-coxt02_1_pre <- function(adam_db, adtte_vars = c("AVAL", "CNSR"),
-                         covariates = c("SEX", "RACE", "AGE"),
-                         coxreg_vars = c("ARM", covariates), ...) {
-  coxt02_1_check(adam_db, adtte_vars = adtte_vars, coxreg_vars = coxreg_vars)
+coxt02_1_pre <- function(adam_db, anl_vars = c("CNSR", "ARM", "AVAL"),
+                         covariates = c("SEX", "RACE", "AGE"), ...) {
+  coxt02_1_check(adam_db, anl_vars = anl_vars, covariates = covariates)
   adam_db <- dunlin::log_filter(adam_db, PARAMCD == "CRSD", "adtte")
-  lapply(setdiff(coxreg_vars, "AGE"), function(x) {
+  lapply(setdiff(covariates, "AGE"), function(x) {
     adam_db$adtte[[x]] <- droplevels(adam_db$adtte[[x]])
   })
-
-  adam_db$adtte <- adam_db$adtte %>%
-    mutate(EVENT = 1 - .data$CNSR)
 
   adam_db
 }
@@ -105,14 +106,14 @@ coxt02_1_pre <- function(adam_db, adtte_vars = c("AVAL", "CNSR"),
 #' @export
 #'
 coxt02_1_check <- function(adam_db,
-                           adtte_vars,
-                           coxreg_vars,
-                           req_tables = c("adsl", "adtte"), ...) {
+                           anl_vars,
+                           covariates,
+                           req_tables = c("adsl", "adtte")) {
   assert_all_tablenames(adam_db, req_tables)
 
   msg <- NULL
 
-  msg <- c(msg, check_all_colnames(adam_db$adtte, c("USUBJID", "PARAMCD", adtte_vars, coxreg_vars)))
+  msg <- c(msg, check_all_colnames(adam_db$adtte, c("USUBJID", "PARAMCD", anl_vars, covariates)))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
 
   if (is.null(msg)) {
@@ -147,7 +148,7 @@ coxt02_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @examples
 #' run(coxt02_1, syn_data)
 #'
-#' run(coxt02_1, syn_data, covariates = c("SEX", "RACE", "AGE"), conf_level = .90)
+#' run(coxt02_1, syn_data, covariates = c("SEX", "RACE"), conf_level = .90)
 coxt02_1 <- chevron_t(
   main = coxt02_1_main,
   preprocess = coxt02_1_pre,
