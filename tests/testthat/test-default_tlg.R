@@ -90,6 +90,7 @@ test_that("cmt02_pt_1 functions with default argument value return expected resu
 })
 
 test_that("coxt02_1 functions with default argument value return expected result with test data", {
+  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
   pre_data <- coxt02_1_pre(syn_data)
   raw_res <- coxt02_1_main(pre_data)
   res <- coxt02_1_post(raw_res)

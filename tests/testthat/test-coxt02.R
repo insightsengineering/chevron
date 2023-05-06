@@ -1,6 +1,5 @@
 test_that("coxt02 can handle some NA values", {
-  proc_data <- syn_data
-  proc_data <- dunlin::log_filter(proc_data, PARAMCD == "CRSD", "adtte")
+  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
 
   set.seed(1)
   new_sex <- as.character(proc_data$adtte$SEX)
@@ -31,6 +30,9 @@ test_that("coxt02 can handle some NA values", {
 
   res3 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AGE")))
   expect_snapshot(res3)
+
+  res4 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AGE"), with_strata = c("RACE")))
+  expect_snapshot(res4)
 })
 
 test_that("coxt02 fails on incomlete date", {
