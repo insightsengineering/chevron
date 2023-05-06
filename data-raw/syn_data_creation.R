@@ -27,6 +27,22 @@ syn_test_data <- function() {
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
   sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
 
+  set.seed(1, kind = "Mersenne-Twister")
+  sd$adex <- sd$adex %>%
+    distinct(USUBJID, .keep_all = TRUE) %>%
+    mutate(
+      PARAMCD = "TDURD",
+      PARAM = "Overall duration (days)",
+      AVAL = sample(x = seq(1, 250), size = n(), replace = TRUE),
+      AVALCAT1 = factor(case_when(
+        AVAL < 30 ~ "< 1 month",
+        AVAL < 90 ~ "1 to <3 months",
+        AVAL < 180 ~ "3 to <6 months",
+        TRUE ~ ">=6 months"
+      ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
+    ) %>%
+    bind_rows(sd$adex)
+
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
     mutate(
@@ -76,7 +92,7 @@ syn_test_data <- function() {
     rename(q1 = 2, q2 = 3)
 
   sd$adlb <- qntls %>%
-    left_join(sd$adlb, by = "PARAMCD") %>%
+    left_join(sd$adlb, by = "PARAMCD", multiple = "all") %>%
     group_by(USUBJID, PARAMCD, BASETYPE) %>%
     mutate(
       ANRIND = factor(
