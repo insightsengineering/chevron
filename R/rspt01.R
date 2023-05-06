@@ -74,18 +74,30 @@ rspt01_1_lyt <- function(arm_var,
                          methods,
                          deco) {
 
-  lyt <- basic_table(show_colcounts = TRUE) %>%
+  lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var, ref_group = ref_group) %>%
     estimate_proportion(
       vars = "is_rsp",
       conf_level = conf_level,
       method = methods[["prop_conf_method"]] %||% "waldcc",
       table_names = "est_prop"
-    ) %>%
+    )
+
+  if (strat_analysis) {
+    lyt <- lyt01 %>%
+      proportion_lyt(arm_var = arm_var,
+                     odds_ratio = odds_ratio,
+                     strat_analysis = strat_analysis,
+                     strata = strata,
+                     conf_level = conf_level,
+                     methods = methods)
+  }
+
+  lyt <- lyt %>%
     proportion_lyt(arm_var = arm_var,
                    odds_ratio = odds_ratio,
-                   strat_analysis = strat_analysis,
-                   strata = strata,
+                   strat_analysis = FALSE,
+                   strata = NULL,
                    conf_level = conf_level,
                    methods = methods) %>%
     estimate_multinomial_response(
