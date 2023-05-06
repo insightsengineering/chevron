@@ -29,7 +29,7 @@ rmpt01_1_main <- function(adam_db,
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
   assert_colnames(dbsel$adex, anl_vars)
-  if (!is.null(parcat)) checkmate::assert_class(parcat, "character")
+  if (!is.null(parcat)) checkmate::assert_string(parcat, null.ok = TRUE)
 
   lyt <- rmpt01_1_lyt(
     anl_vars = anl_vars,
