@@ -169,6 +169,27 @@ get_labels <- function(df, x) {
   }
 }
 
+#' Helper function to add a row split if specified
+#'
+#' @param lyt (`rtables`) object.
+#' @param var (`string`) the name of the variable initiating a new row split.
+#' @param lbl_var (`string`)the label of the variable `var`.
+#'
+#' @keywords internal
+#'
+#' @return `rtables` object.
+#'
+ifneeded_split_row <- function(lyt, var, lbl_var) {
+  if (is.null(var)) {
+    lyt
+  } else {
+    split_rows_by(lyt, var,
+      label_pos = "topleft",
+      split_label = lbl_var
+    )
+  }
+}
+
 #' Standard Post processing
 #'
 #' @param tlg (`TableTree`) object.
@@ -265,4 +286,9 @@ gg_list <- function(...) {
     ret,
     class = c("gg_list", "list")
   )
+}
+
+#' @export
+droplevels.character <- function(x, ...) {
+  x
 }

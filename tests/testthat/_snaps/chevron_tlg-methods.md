@@ -136,38 +136,6 @@
     Output
        [1] "# Edit Preprocessing Function."                                                                                                                                      
        [2] "pre_fun <- function(adam_db, ...) {"                                                                                                                                 
-       [3] "  checkmate::assert_class(adam_db, \"dm\")"                                                                                                                          
-       [4] ""                                                                                                                                                                    
-       [5] "  new_format <- list("                                                                                                                                               
-       [6] "    adae = list("                                                                                                                                                    
-       [7] "      AEBODSYS = rule(\"No Coding Available\" = c(\"\", NA, \"<Missing>\")),"                                                                                        
-       [8] "      AEDECOD = rule(\"No Coding Available\" = c(\"\", NA, \"<Missing>\")),"                                                                                         
-       [9] "      ATOXGR = rule(\"No Grading Available\" = c(\"\", NA, \"<Missing>\"))"                                                                                          
-      [10] "    )"                                                                                                                                                               
-      [11] "  )"                                                                                                                                                                 
-      [12] ""                                                                                                                                                                    
-      [13] "  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)"                                                                                                  
-      [14] ""                                                                                                                                                                    
-      [15] "  adam_db %>%"                                                                                                                                                       
-      [16] "    dm_zoom_to(\"adae\") %>%"                                                                                                                                        
-      [17] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                                              
-      [18] "    filter(.data$ATOXGR != \"No Grading Available\") %>%"                                                                                                            
-      [19] "    mutate(ATOXGR = factor(.data$ATOXGR,"                                                                                                                            
-      [20] "      levels = setdiff(levels(.data$ATOXGR), \"No Grading Available\")"                                                                                              
-      [21] "    )) %>%"                                                                                                                                                          
-      [22] "    dm_update_zoomed()"                                                                                                                                              
-      [23] "}"                                                                                                                                                                   
-      [24] ""                                                                                                                                                                    
-      [25] "# Create TLG"                                                                                                                                                        
-      [26] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04_1, !!!args_ls, auto_pre = FALSE, check_arg = FALSE)"
-
-# script_funs works as expected in non interactive mode
-
-    Code
-      res
-    Output
-       [1] "# Edit Preprocessing Function."                                                                                                                                      
-       [2] "pre_fun <- function(adam_db, ...) {"                                                                                                                                 
        [3] "  assert_all_tablenames(adam_db, c(\"adsl\", \"adae\"))"                                                                                                             
        [4] ""                                                                                                                                                                    
        [5] "  new_format <- list("                                                                                                                                               

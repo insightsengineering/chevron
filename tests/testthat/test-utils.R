@@ -90,3 +90,16 @@ test_that("grob_list works", {
   expect_identical(length(grobs), 3L)
   expect_identical(grobs[[1]], grob)
 })
+
+# ifneeded_split_row ----
+
+test_that("ifneeded_split_row works as expected", {
+  var <- "PARCAT2"
+  lyt <- rtables::basic_table() %>% ifneeded_split_row(var, lbl_var = "Parameter Category")
+  expect_identical(rtables::vars_in_layout(lyt), var)
+
+  var <- NULL
+  lyt <- rtables::basic_table() %>% ifneeded_split_row(var, lbl_var = "Parameter Category")
+
+  expect_null(rtables::vars_in_layout(lyt))
+})
