@@ -3,13 +3,18 @@
 #' @describeIn rspt01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param
+#' @param dataset (`string`) the name of a table in the `adam_db` object.
+#' @param ref_group (`string`) The name of the reference group, the value should
+#'  be identical to the values in `arm_var`, if not speficied, it will by default
+#'  use the first level of.
+#' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
+#' @param strat_analysis (`flag`) should the stratified analysis be performed,
+#' default is FALSE
+#' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
 #'
 #' @details
+#' * No overall value.
 #'
-#'
-#' @note
-#'  *
 #'
 #' @export
 #'
@@ -32,8 +37,6 @@ rspt01_1_main <- function(adam_db,
   checkmate::assert_flag(odds_ratio)
   checkmate::assert_flag(strat_analysis)
 
-  # checkmate::assert_subset(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
-
   arm_level <- unique(anl[[arm_var]])
   ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
 
@@ -53,7 +56,7 @@ rspt01_1_main <- function(adam_db,
 }
 
 #' @describeIn rspt01_1 Layout
-#' @param summaryvars_lbls (`character`) labels corresponding to the analyzed variables.
+#' @param
 #'
 #' @inheritParams gen_args
 #'
@@ -68,7 +71,7 @@ rspt01_1_lyt <- function(arm_var,
                          conf_level,
                          methods,
                          deco) {
-  if(!strat_analysis){
+  if (!strat_analysis) {
     lyt01 <- basic_table(show_colcounts = TRUE) %>%
       split_cols_by(var = arm_var, ref_group = ref_group) %>%
       estimate_proportion(
@@ -102,8 +105,7 @@ rspt01_1_lyt <- function(arm_var,
           conf_level = conf_level,
           method = methods$prop_conf_method %||% "waldcc"
         )
-    }
-    else{
+    } else {
       lyt <- lyt01 %>%
         estimate_multinomial_response(
           var = "rsp_lab",
@@ -111,8 +113,7 @@ rspt01_1_lyt <- function(arm_var,
           method = methods$prop_conf_method %||% "waldcc"
         )
     }
-  }
-  else{
+  } else {
     lyt02 <- basic_table(show_colcounts = TRUE) %>%
       split_cols_by(var = "ARM", ref_group = "A: Drug X") %>%
       estimate_proportion(
@@ -135,7 +136,7 @@ rspt01_1_lyt <- function(arm_var,
         table_names = "test_prop"
       )
 
-    if (odds_ratio){
+    if (odds_ratio) {
       lyt <- lyt02 %>%
         estimate_odds_ratio(
           vars = "is_rsp",
@@ -164,8 +165,7 @@ rspt01_1_lyt <- function(arm_var,
           conf_level = conf_level,
           method = methods$prop_conf_method %||% "waldcc"
         )
-    }
-    else{
+    } else {
       lyt <- lyt02 %>%
         estimate_proportion_diff(
           vars = "is_rsp",
@@ -194,7 +194,8 @@ rspt01_1_lyt <- function(arm_var,
 #' @describeIn rspt01_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @param dataset (`string`) the name of a table in the `adam_db` object.
+#' @param responder (`string`) responder defined in the table, by default use c("CR", "PR").
 #'
 #' @export
 #'

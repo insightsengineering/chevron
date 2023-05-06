@@ -13,7 +13,7 @@
 #' @param show_censor (`flag`) should the censor flag be displayed.
 #' @param pval_method (`string`) should the censor flag be displayed.
 #' @param ties (`string`) should the censor flag be displayed.
-#' @param conf_level (`numeric`) should the censor flag be displayed.
+#' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
 #' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
 #' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
 #'   median survival time per group.

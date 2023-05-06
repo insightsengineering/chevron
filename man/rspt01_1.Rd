@@ -51,21 +51,39 @@ rspt01_1
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
+\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{ref_group}{(\code{string}) The name of the reference group, the value should
+be identical to the values in \code{arm_var}, if not speficied, it will by default
+use the first level of.}
+
+\item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is TRUE}
+
+\item{strat_analysis}{(\code{flag}) should the stratified analysis be performed,
+default is FALSE}
+
+\item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
 
+\item{responder}{(\code{string}) responder defined in the table, by default use c("CR", "PR").}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{summaryvars_lbls}{(\code{character}) labels corresponding to the analyzed variables.}
 }
 \description{
 For each variable, summary statistics are
 by default based on the number of patients in the corresponding \code{n} row.
+}
+\details{
+\itemize{
+\item No overall value.
+}
 }
 \section{Functions}{
 \itemize{
@@ -78,11 +96,6 @@ by default based on the number of patients in the corresponding \code{n} row.
 \item \code{rspt01_1_post()}: Postprocessing
 
 }}
-\note{
-\itemize{
-\item 
-}
-}
 \examples{
 rspt01_1_pre(syn_data)
 library(dplyr)
