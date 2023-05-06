@@ -196,7 +196,7 @@ aet01_1_pre <- function(adam_db,
 #' @describeIn aet01_1 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 aet01_1_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
                           arm_var = "ACTARM",
@@ -436,10 +436,13 @@ aet01_2_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet01_2_pre <- function(adam_db, ...) {
+aet01_2_pre <- function(adam_db, arm_var = "ACTARM", safety_var = list(
+                          "FATAL", "SER", "SERWD", "SERDSM",
+                          "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                        ),
+                        medconcept_var = list("SMQ01", "SMQ02", "CQ01"), ...) {
   assert_all_tablenames(adam_db, c("adsl", "adae"))
-
-  aet01_2_check(adam_db)
+  aet01_2_check(adam_db, arm_var = arm_var, safety_var = safety_var, medconcept_var = medconcept_var)
 
   labs <- formatters::var_labels(adam_db$adae)
 
@@ -511,15 +514,12 @@ aet01_2_pre <- function(adam_db, ...) {
 #' @describeIn aet01_2 Checks
 #'
 #' @inheritParams gen_args
-#'
+#' @export
 aet01_2_check <- function(adam_db,
                           req_tables = c("adsl", "adae"),
-                          arm_var = "ACTARM",
-                          safety_var = list(
-                            "FATAL", "SER", "SERWD", "SERDSM",
-                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                          ),
-                          medconcept_var = list("SMQ01", "SMQ02", "CQ01")) {
+                          arm_var,
+                          safety_var,
+                          medconcept_var) {
   assert_all_tablenames(adam_db, req_tables)
   checkmate::assert_list(safety_var, types = "character")
   safety_var <- unlist(safety_var)
