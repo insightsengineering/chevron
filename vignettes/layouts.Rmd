@@ -52,17 +52,17 @@ Also, layouts allow for certain queries such as which variables are required to 
 rtables::vars_in_layout(lyt)
 ```
 
-So in `chevron` when creating tables we always do the explicit layout creation in the `*_lyt` functions. For example for `aet02_1` we have the layout function:
+So in `chevron` when creating tables we always do the explicit layout creation in the `*_lyt` functions. For example for `aet02` we have the layout function:
 
 ```{r}
 library(chevron)
-aet02_1_lyt
+aet02_lyt
 ```
 
-Note that the `aet02_1_lyt` function returns a concise description on how `tern` and `rtables` can be used to create the cell values of the tables. The table creation function then does then use the `*_lyt` function and builds the table using `build_table` and the data given in `adam_db` as shown next:
+Note that the `aet02_lyt` function returns a concise description on how `tern` and `rtables` can be used to create the cell values of the tables. The table creation function then does then use the `*_lyt` function and builds the table using `build_table` and the data given in `adam_db` as shown next:
 
 ```{r}
-aet02_1_main
+aet02_main
 ```
 
 ## Summary

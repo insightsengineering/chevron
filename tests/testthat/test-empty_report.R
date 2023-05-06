@@ -17,19 +17,13 @@ test_that("tlg functions return null reports when domain table is empty", {
 
   rtables::table_inset(empty_report) <- 2L
 
-  res <- run(aet01_1, dat_empty, prune_0 = TRUE)
+  res <- run(aet01, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
 
-  res <- run(aet01_aesi_1, dat_empty, prune_0 = TRUE)
+  res <- run(aet01_aesi, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
 
-  res <- run(aet02_1, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(aet02_2, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(aet02_3, dat_empty)
+  res <- run(aet02, dat_empty)
   expect_identical(res, empty_report)
 
   res <- run(aet03_1, dat_empty)
@@ -113,6 +107,6 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(vst02_2, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(ael01_nollt_1, dat_empty)
+  res <- run(ael01_nollt, dat_empty)
   expect_identical(res, empty_listing)
 })

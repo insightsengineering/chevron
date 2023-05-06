@@ -83,7 +83,7 @@
         Total number of patients with at least one                                                             
           AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
 
-# aet01_2 can use custom medconcept_var
+# aet01 can use custom medconcept_var
 
     Code
       res

@@ -146,7 +146,7 @@
       [10] "    )"                                                                                                                                                               
       [11] "  )"                                                                                                                                                                 
       [12] ""                                                                                                                                                                    
-      [13] "  adam_db <- reformat(adam_db, new_format, na_last = TRUE)"                                                                                                  
+      [13] "  adam_db <- reformat(adam_db, new_format, na_last = TRUE)"                                                                                                          
       [14] ""                                                                                                                                                                    
       [15] "  adam_db$adae <- adam_db$adae %>%"                                                                                                                                  
       [16] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                                              

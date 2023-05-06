@@ -4,6 +4,7 @@
 \name{reexports}
 \alias{reexports}
 \alias{with_label}
+\alias{reformat}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -11,6 +12,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{dunlin}{\code{\link[dunlin]{reformat}}}
+
   \item{formatters}{\code{\link[formatters]{with_label}}}
 }}
 

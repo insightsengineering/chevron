@@ -1,35 +1,21 @@
-test_that("aet01_1 function with default argument value return expected result with test data", {
-  pre_data <- aet01_1_pre(syn_data)
-  raw_res <- aet01_1_main(pre_data)
+test_that("aet01 function with default argument value return expected result with test data", {
+  pre_data <- aet01_pre(syn_data)
+  raw_res <- aet01_main(pre_data)
   res <- aet01_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet01_aesi_1 function with default argument value return expected result with test data", {
-  pre_data <- aet01_aesi_1_pre(syn_data)
-  raw_res <- aet01_aesi_1_main(pre_data)
+test_that("aet01_aesi function with default argument value return expected result with test data", {
+  pre_data <- aet01_aesi_pre(syn_data)
+  raw_res <- aet01_aesi_main(pre_data)
   res <- aet01_aesi_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet02_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet02_1_pre(syn_data)
-  raw_res <- aet02_1_main(pre_data)
-  res <- aet02_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("aet02_2 functions with default argument value return expected result with test data", {
-  pre_data <- aet02_2_pre(syn_data)
-  raw_res <- aet02_2_main(pre_data)
-  res <- aet02_2_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("aet02_3 functions with default argument value return expected result with test data", {
-  pre_data <- aet02_3_pre(syn_data)
-  raw_res <- aet02_3_main(pre_data)
-  res <- aet02_3_post(raw_res)
+test_that("aet02 functions with default argument value return expected result with test data", {
+  pre_data <- aet02_pre(syn_data)
+  raw_res <- aet02_main(pre_data)
+  res <- aet02_post(raw_res)
   expect_snapshot(res)
 })
 
@@ -266,9 +252,9 @@ test_that("pdt02_1 function with default argument value return expected result w
   expect_snapshot(res)
 })
 
-test_that("ael01_nollt_1 function with default argument value return expected result with test data", {
-  pre_data <- ael01_nollt_1_pre(syn_data)
-  raw_res <- ael01_nollt_1_main(pre_data)
-  res <- ael01_nollt_1_post(raw_res)
+test_that("ael01_nollt function with default argument value return expected result with test data", {
+  pre_data <- ael01_nollt_pre(syn_data)
+  raw_res <- ael01_nollt_main(pre_data)
+  res <- ael01_nollt_post(raw_res)
   expect_snapshot(res)
 })

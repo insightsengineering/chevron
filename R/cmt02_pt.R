@@ -86,7 +86,7 @@ cmt02_pt_1_pre <- function(adam_db, ...) {
 
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt02_pt_1 Postprocessing

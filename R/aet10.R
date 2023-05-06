@@ -80,7 +80,7 @@ aet10_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
     )
   )
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn aet10_1 Checks

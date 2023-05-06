@@ -33,9 +33,9 @@ In addition of the embedded `run()` method to create a `tlg`, chevron offers a s
 The object returned by the `script` methods are vectors of character with one element per line of the script, that can be easily rendered.
 
 ```{r}
-res <- script_args(aet01_1)
+res <- script_args(aet01)
 writeLines(res)
-res <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
+res <- script_funs(aet01, adam_db = "syn_data", args = "args_list")
 writeLines(res)
 ```
 
@@ -44,12 +44,12 @@ writeLines(res)
 The script generator depends on the functions actually stored in the object. Modifying the `chevron_tlg` object can lead to a different script.
 
 ```{r}
-preprocess(aet01_1) <- function(adam_db, new_format, ...) {
-  dunlin::reformat(adam_db, new_format)
+preprocess(aet01) <- function(adam_db, new_format, ...) {
+  reformat(adam_db, new_format)
 }
 
-res_args <- script_args(aet01_1)
-res_funs <- script_funs(aet01_1, adam_db = "syn_data", args = "args_list")
+res_args <- script_args(aet01)
+res_funs <- script_funs(aet01, adam_db = "syn_data", args = "args_list")
 ```
 
 Print the generated scripts. Note that a new argument `new_format` has been added and the pre processing function has been modified.

@@ -170,7 +170,7 @@ dst01_1_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db$adsl <- adam_db$adsl %>%
     mutate(DOMAIN = "ADSL") %>%
@@ -399,7 +399,7 @@ dst01_2_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var)
 
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db$adsl <- adam_db$adsl %>%
     mutate(
@@ -635,7 +635,7 @@ dst01_3_pre <- function(adam_db,
 
   names(new_format$adsl) <- c(disc_reason_var, status_var, status_treatment_var)
 
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db$adsl <- adam_db$adsl %>%
     mutate(

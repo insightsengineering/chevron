@@ -133,7 +133,7 @@ cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_1 Postprocessing
@@ -264,7 +264,7 @@ cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_2 Postprocessing
@@ -447,7 +447,7 @@ cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", 
   names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
   new_format <- list(adcm = fmt_ls)
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn cmt01a_3 Preprocessing

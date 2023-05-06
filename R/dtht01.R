@@ -163,7 +163,7 @@ dtht01_1_pre <- function(adam_db, ...) {
     )
   )
 
-  adam_db <- dunlin::reformat(adam_db, new_formats, na_last = TRUE)
+  adam_db <- reformat(adam_db, new_formats, na_last = TRUE)
 
   if ("OTHER" %in% levels(adam_db$adsl$DTHCAT)) {
     adam_db$adsl$DTHCAT <- forcats::fct_relevel(adam_db$adsl$DTHCAT, "OTHER", after = Inf)

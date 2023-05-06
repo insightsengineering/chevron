@@ -1,6 +1,6 @@
-# aet01_aesi_1 ----
+# aet01_aesi ----
 
-#' @describeIn aet01_aesi_1 Main TLG function
+#' @describeIn aet01_aesi Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param aesi_vars (`character`) the AESI variables to be included in the summary. Defaults to `NA`.
@@ -30,7 +30,7 @@
 #'
 #' @export
 #'
-aet01_aesi_1_main <- function(adam_db,
+aet01_aesi_main <- function(adam_db,
                               arm_var = "ACTARM",
                               aesi_vars = NULL,
                               grade_groups = NULL,
@@ -55,7 +55,7 @@ aet01_aesi_1_main <- function(adam_db,
   checkmate::assert_names(names(adam_db$adae), must.include = all_aesi_vars)
   lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
-  lyt <- aet01_aesi_1_lyt(
+  lyt <- aet01_aesi_lyt(
     arm_var = arm_var,
     aesi_vars = all_aesi_vars,
     lbl_aesi_vars = lbl_aesi_vars,
@@ -67,14 +67,14 @@ aet01_aesi_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet01_aesi_1 Layout
+#' @describeIn aet01_aesi Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_aesi_vars (`character`) the labels of the AESI variables to be summarized.
 #'
 #' @export
 #'
-aet01_aesi_1_lyt <- function(arm_var,
+aet01_aesi_lyt <- function(arm_var,
                              aesi_vars,
                              lbl_aesi_vars,
                              grade_groups) {
@@ -108,13 +108,13 @@ aet01_aesi_1_lyt <- function(arm_var,
     )
 }
 
-#' @describeIn aet01_aesi_1 Preprocessing
+#' @describeIn aet01_aesi Preprocessing
 #'
-#' @inheritParams aet01_aesi_1_main
+#' @inheritParams aet01_aesi_main
 #'
 #' @export
 #'
-aet01_aesi_1_pre <- function(adam_db,
+aet01_aesi_pre <- function(adam_db,
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adae"))
 
@@ -122,11 +122,12 @@ aet01_aesi_1_pre <- function(adam_db,
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       NOT_RESOLVED = with_label(
-        .data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN", "FATAL"),
+        .data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN"),
         "Total number of patients with at least one unresolved or ongoing non-fatal AE"
       ),
       ALL_RESOLVED = with_label(
-        !.data$NOT_RESOLVED, "Total number of patients with all non-fatal AEs resolved"
+        .data$AEOUT != "FATAL" & !NOT_RESOLVED,
+        "Total number of patients with all non-fatal AEs resolved"
       ),
       WD = with_label(
         .data$AEACN == "DRUG WITHDRAWN", "Total number of patients with study drug withdrawn due to AE"
@@ -192,7 +193,7 @@ aet01_aesi_1_pre <- function(adam_db,
   adam_db
 }
 
-#' @describeIn aet01_aesi_1 Postprocessing
+#' @describeIn aet01_aesi Postprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -210,10 +211,10 @@ aet01_aesi_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(aet01_aesi_1, syn_data)
-aet01_aesi_1 <- chevron_t(
-  main = aet01_aesi_1_main,
-  preprocess = aet01_aesi_1_pre,
+#' run(aet01_aesi, syn_data)
+aet01_aesi <- chevron_t(
+  main = aet01_aesi_main,
+  preprocess = aet01_aesi_pre,
   postprocess = aet01_aesi_post,
   adam_datasets = c("adsl", "adae")
 )

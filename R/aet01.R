@@ -1,6 +1,6 @@
-# aet01_1 ----
+# aet01 ----
 
-#' @describeIn aet01_1 Main TLG function
+#' @describeIn aet01 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
@@ -16,7 +16,7 @@
 #'
 #' @export
 #'
-aet01_1_main <- function(adam_db,
+aet01_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
                          safety_var = c(
@@ -34,7 +34,7 @@ aet01_1_main <- function(adam_db,
   assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
   lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
   lbl_medconcept_var <- var_labels_for(adam_db$adae, medconcept_var)
-  lyt <- aet01_1_lyt(
+  lyt <- aet01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     safety_var = safety_var,
@@ -48,14 +48,14 @@ aet01_1_main <- function(adam_db,
   return(tbl)
 }
 
-#' @describeIn aet01_1 Layout
+#' @describeIn aet01 Layout
 #'
-#' @inheritParams aet01_1_main
+#' @inheritParams aet01_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #'
 #' @export
 #'
-aet01_1_lyt <- function(arm_var,
+aet01_lyt <- function(arm_var,
                         lbl_overall,
                         safety_var,
                         lbl_safety_var,
@@ -117,13 +117,13 @@ aet01_1_lyt <- function(arm_var,
   return(lyt)
 }
 
-#' @describeIn aet01_1 Preprocessing
+#' @describeIn aet01 Preprocessing
 #'
-#' @inheritParams aet01_1_main
+#' @inheritParams aet01_main
 #'
 #' @export
 #'
-aet01_1_pre <- function(adam_db, ...) {
+aet01_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
@@ -146,12 +146,12 @@ aet01_1_pre <- function(adam_db, ...) {
     )
 
   adam_db$adae <- adam_db$adae %>%
-    mutate(DCSREAS = dunlin::reformat(DCSREAS, missing_rule))
+    mutate(DCSREAS = reformat(DCSREAS, missing_rule))
 
   adam_db
 }
 
-#' @describeIn aet01_1 Postprocessing
+#' @describeIn aet01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -169,10 +169,10 @@ aet01_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(aet01_1, syn_data, arm_var = "ARM")
-aet01_1 <- chevron_t(
-  main = aet01_1_main,
-  preprocess = aet01_1_pre,
+#' run(aet01, syn_data, arm_var = "ARM")
+aet01 <- chevron_t(
+  main = aet01_main,
+  preprocess = aet01_pre,
   postprocess = aet01_post,
   adam_datasets = c("adsl", "adae")
 )

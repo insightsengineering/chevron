@@ -1,4 +1,4 @@
-# aet01_1 ----
+# aet01 ----
 
 test_that("aet01 can handle all NA values", {
   proc_data <- syn_data
@@ -8,9 +8,9 @@ test_that("aet01 can handle all NA values", {
       AESER = NA
     )
 
-  res <- expect_silent(run(aet01_1, proc_data))
+  res <- expect_silent(run(aet01, proc_data))
   expect_snapshot(res)
-  res <- expect_silent(run(aet01_1, proc_data, prune_0 = TRUE))
+  res <- expect_silent(run(aet01, proc_data, prune_0 = TRUE))
   expect_snapshot(res)
 })
 
@@ -25,13 +25,13 @@ test_that("aet01 can handle some NA values", {
       AESER = .env$new_aeser
     )
 
-  res <- expect_silent(run(aet01_1, proc_data))
+  res <- expect_silent(run(aet01, proc_data))
   expect_snapshot(res)
 })
 
 test_that("aet01 can use custom lbl_safety_var", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01_1, proc_data, safety_var = "FATAL"))
+  res <- expect_silent(run(aet01, proc_data, safety_var = "FATAL"))
   expect_snapshot(res)
 })
 
@@ -41,15 +41,15 @@ test_that("aet01 fails on incomplete data input", {
     mutate(AESER = NULL)
 
   expect_error(
-    run(aet01_1, proc_data),
+    run(aet01, proc_data),
     "Column `AESER` not found",
     fixed = TRUE
   )
 })
-# aet01_2 ----
-test_that("aet01_2 can use custom medconcept_var", {
+
+test_that("aet01 can use custom medconcept_var", {
   proc_data <- syn_data
   proc_data$adae$SMQ01 <- proc_data$adae$SMQ01NAM != ""
-  res <- expect_silent(run(aet01_1, proc_data, medconcept_var = "SMQ01"))
+  res <- expect_silent(run(aet01, proc_data, medconcept_var = "SMQ01"))
   expect_snapshot(res)
 })

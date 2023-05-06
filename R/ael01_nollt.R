@@ -1,6 +1,6 @@
-# ael01_nollt_1 ----
+# ael01_nollt ----
 
-#' @describeIn ael01_nollt_1 Main TLG function
+#' @describeIn ael01_nollt Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param dataset (`character`) the name of a table in the `adam_db` object.
@@ -16,7 +16,7 @@
 #'
 #' @export
 #'
-ael01_nollt_1_main <- function(adam_db,
+ael01_nollt_main <- function(adam_db,
                                dataset = "adae",
                                key_cols = c("AEBODSYS", "AEDECOD"),
                                disp_cols = "AETERM",
@@ -33,35 +33,35 @@ ael01_nollt_1_main <- function(adam_db,
   lsting
 }
 
-#' @describeIn ael01_nollt_1 Preprocessing
+#' @describeIn ael01_nollt Preprocessing
 #'
-#' @inheritParams ael01_nollt_1_main
+#' @inheritParams ael01_nollt_main
 #'
 #' @export
 #'
-ael01_nollt_1_pre <- function(adam_db,
+ael01_nollt_pre <- function(adam_db,
                               dataset = "adae",
                               key_cols = c("AEBODSYS", "AEDECOD"),
                               disp_cols = "AETERM",
                               ...) {
-  ael01_nollt_1_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols))
+  ael01_nollt_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols))
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
     distinct() %>%
     mutate(
-      across(all_of(key_cols), ~ dunlin::reformat(.x, nocoding))
+      across(all_of(key_cols), ~ reformat(.x, nocoding))
     ) %>%
     arrange(pick(all_of(c(key_cols, disp_cols))))
 
   adam_db
 }
 
-#' @describeIn ael01_nollt_1 Checks
+#' @describeIn ael01_nollt Checks
 #'
 #' @inheritParams gen_args
 #' @param vars (`character`) variables to be included in the listing.
 #' @export
-ael01_nollt_1_check <- function(adam_db,
+ael01_nollt_check <- function(adam_db,
                                 dataset,
                                 vars) {
   assert_all_tablenames(adam_db, dataset)
@@ -74,11 +74,11 @@ ael01_nollt_1_check <- function(adam_db,
   }
 }
 
-#' @describeIn ael01_nollt_1 Postprocessing
+#' @describeIn ael01_nollt Postprocessing
 #'
 #' @inheritParams gen_args
 #'
-ael01_nollt_1_post <- function(tlg, ...) {
+ael01_nollt_post <- function(tlg, ...) {
   if (nrow(tlg) == 0) tlg <- null_listing
 
   tlg
@@ -90,11 +90,11 @@ ael01_nollt_1_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' run(ael01_nollt_1, syn_data, new_lbls = list(
+#' run(ael01_nollt, syn_data, new_lbls = list(
 #'   AETERM = "Investigator-Specified\n Adverse Event Term"
 #' ))
-ael01_nollt_1 <- chevron_l(
-  main = ael01_nollt_1_main,
-  preprocess = ael01_nollt_1_pre,
-  postprocess = ael01_nollt_1_post
+ael01_nollt <- chevron_l(
+  main = ael01_nollt_main,
+  preprocess = ael01_nollt_pre,
+  postprocess = ael01_nollt_post
 )

@@ -141,7 +141,7 @@ aet04_1_pre <- function(adam_db, ...) {
     )
   )
 
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
 
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
