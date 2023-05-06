@@ -29,7 +29,7 @@ rmpt01_1_main <- function(adam_db,
                           ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adex")
   assert_colnames(dbsel$adex, anl_vars)
-  if (!is.null(parcat)) checkmate::assert_string(parcat, null.ok = TRUE)
+  checkmate::assert_string(parcat, null.ok = TRUE)
 
   lyt <- rmpt01_1_lyt(
     anl_vars = anl_vars,
@@ -132,7 +132,7 @@ rmpt01_1_post <- function(tlg, prune_0 = FALSE, ...) {
 
 #' `RMPT01` Table 1 (Default) Duration of Exposure for Risk Management Plan Table 1.
 #'
-#' The `RMPT01` table provides an overview of duration of exposure for SE patients
+#' The `RMPT01` table provides an overview of duration of exposure for SE patients.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
