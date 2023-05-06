@@ -184,15 +184,21 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
       show_labels = "visible",
       var_labels = if (!strat_analysis) "Unstratified Analysis" else "Stratified Analysis",
       conf_level = conf_level,
-      method = if (!strat_analysis) methods[["diff_conf_method"]] %||% "waldcc" else
-        methods[["strat_diff_conf_method"]] %||% "cmh",
+      method = if (!strat_analysis) {
+        methods[["diff_conf_method"]] %||% "waldcc"
+      } else {
+        methods[["strat_diff_conf_method"]] %||% "cmh"
+      },
       variables = list(strata = strata),
       table_names = if (!strat_analysis) "est_prop_diff" else "est_prop_diff_strat"
     ) %>%
     test_proportion_diff(
       vars = "is_rsp",
-      method = if (!strat_analysis) methods[["diff_pval_method"]] %||% "chisq" else
-        methods[["strat_diff_pval_method"]] %||% "cmh",
+      method = if (!strat_analysis) {
+        methods[["diff_pval_method"]] %||% "chisq"
+      } else {
+        methods[["strat_diff_pval_method"]] %||% "cmh"
+      },
       variables = list(strata = strata),
       table_names = if (!strat_analysis) "test_prop_diff" else "test_prop_diff_strat"
     )
