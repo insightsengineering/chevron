@@ -17,14 +17,14 @@
 #' @export
 #'
 aet01_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_overall = NULL,
-                         safety_var = c(
-                           "FATAL", "SER", "SERWD", "SERDSM",
-                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                         ),
-                         medconcept_var = NULL,
-                         ...) {
+                       arm_var = "ACTARM",
+                       lbl_overall = NULL,
+                       safety_var = c(
+                         "FATAL", "SER", "SERWD", "SERDSM",
+                         "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                       ),
+                       medconcept_var = NULL,
+                       ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_character(safety_var)
   checkmate::assert_character(medconcept_var, null.ok = TRUE)
@@ -56,11 +56,11 @@ aet01_main <- function(adam_db,
 #' @export
 #'
 aet01_lyt <- function(arm_var,
-                        lbl_overall,
-                        safety_var,
-                        lbl_safety_var,
-                        medconcept_var,
-                        lbl_medconcept_var) {
+                      lbl_overall,
+                      safety_var,
+                      lbl_safety_var,
+                      medconcept_var,
+                      lbl_medconcept_var) {
   names(lbl_safety_var) <- safety_var
   if (!is.null(medconcept_var)) {
     names(lbl_medconcept_var) <- medconcept_var

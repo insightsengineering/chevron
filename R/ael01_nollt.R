@@ -17,10 +17,10 @@
 #' @export
 #'
 ael01_nollt_main <- function(adam_db,
-                               dataset = "adae",
-                               key_cols = c("AEBODSYS", "AEDECOD"),
-                               disp_cols = "AETERM",
-                               ...) {
+                             dataset = "adae",
+                             key_cols = c("AEBODSYS", "AEDECOD"),
+                             disp_cols = "AETERM",
+                             ...) {
   assert_all_tablenames(adam_db, dataset)
   df <- adam_db[[dataset]]
 
@@ -40,10 +40,10 @@ ael01_nollt_main <- function(adam_db,
 #' @export
 #'
 ael01_nollt_pre <- function(adam_db,
-                              dataset = "adae",
-                              key_cols = c("AEBODSYS", "AEDECOD"),
-                              disp_cols = "AETERM",
-                              ...) {
+                            dataset = "adae",
+                            key_cols = c("AEBODSYS", "AEDECOD"),
+                            disp_cols = "AETERM",
+                            ...) {
   ael01_nollt_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols))
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
@@ -62,8 +62,8 @@ ael01_nollt_pre <- function(adam_db,
 #' @param vars (`character`) variables to be included in the listing.
 #' @export
 ael01_nollt_check <- function(adam_db,
-                                dataset,
-                                vars) {
+                              dataset,
+                              vars) {
   assert_all_tablenames(adam_db, dataset)
   msg <- c(NULL, check_all_colnames(adam_db[[dataset]], vars))
 

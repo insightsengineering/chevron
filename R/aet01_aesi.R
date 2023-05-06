@@ -31,10 +31,10 @@
 #' @export
 #'
 aet01_aesi_main <- function(adam_db,
-                              arm_var = "ACTARM",
-                              aesi_vars = NULL,
-                              grade_groups = NULL,
-                              ...) {
+                            arm_var = "ACTARM",
+                            aesi_vars = NULL,
+                            grade_groups = NULL,
+                            ...) {
   checkmate::assert_string(arm_var)
   checkmate::assert_character(aesi_vars, null.ok = TRUE)
   checkmate::assert_list(grade_groups, null.ok = TRUE)
@@ -75,9 +75,9 @@ aet01_aesi_main <- function(adam_db,
 #' @export
 #'
 aet01_aesi_lyt <- function(arm_var,
-                             aesi_vars,
-                             lbl_aesi_vars,
-                             grade_groups) {
+                           aesi_vars,
+                           lbl_aesi_vars,
+                           grade_groups) {
   names(lbl_aesi_vars) <- aesi_vars
   basic_table() %>%
     add_colcounts() %>%
@@ -115,7 +115,7 @@ aet01_aesi_lyt <- function(arm_var,
 #' @export
 #'
 aet01_aesi_pre <- function(adam_db,
-                             ...) {
+                           ...) {
   assert_all_tablenames(adam_db, c("adsl", "adae"))
 
   adam_db$adae <- adam_db$adae %>%

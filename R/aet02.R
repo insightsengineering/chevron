@@ -19,10 +19,10 @@
 #' @export
 #'
 aet02_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         row_split_var = "AEBODSYS",
-                         lbl_overall = NULL,
-                         ...) {
+                       arm_var = "ACTARM",
+                       row_split_var = "AEBODSYS",
+                       lbl_overall = NULL,
+                       ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   assert_colnames(dbsel$adae, c(row_split_var, "AEDECOD"))
@@ -54,11 +54,10 @@ aet02_main <- function(adam_db,
 #' @export
 #'
 aet02_lyt <- function(arm_var,
-                        lbl_overall,
-                        row_split_var,
-                        lbl_row_split,
-                        lbl_aedecod
-                        ) {
+                      lbl_overall,
+                      row_split_var,
+                      lbl_row_split,
+                      lbl_aedecod) {
   lyt <- basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -96,7 +95,7 @@ aet02_pre <- function(adam_db, row_split_var = "AEBODSYS", ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(AEDECOD = reformat(AEDECOD, nocoding)) %>%
-    mutate(across(all_of(row_split_var), ~reformat(.x, nocoding)))
+    mutate(across(all_of(row_split_var), ~ reformat(.x, nocoding)))
 
   adam_db
 }
