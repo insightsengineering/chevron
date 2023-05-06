@@ -126,7 +126,9 @@ library(dunlin)
 
 syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 run(rspt01_1, syn_data2)
-run(rspt01_1, syn_data2, odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"),
- methods = list(diff_pval_method = "fisher"))
+run(rspt01_1, syn_data2,
+  odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"),
+  methods = list(diff_pval_method = "fisher")
+)
 }
 \keyword{datasets}
