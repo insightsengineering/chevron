@@ -24,9 +24,6 @@ aet02_main <- function(adam_db,
                          lbl_overall = NULL,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-  if (nrow(dbsel$adae) == 0) {
-    return(null_report)
-  }
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   assert_colnames(dbsel$adae, c(row_split_var, "AEDECOD"))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
@@ -81,7 +78,7 @@ aet02_lyt <- function(arm_var,
   lyt %>%
     count_occurrences(
       vars = "AEDECOD",
-      drop = FALSE,
+      drop = length(row_split_var) > 1,
       .indent_mods = -1L
     ) %>%
     append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), lbl_aedecod))
@@ -111,14 +108,11 @@ aet02_pre <- function(adam_db, row_split_var = "AEBODSYS", ...) {
 #' @export
 #'
 aet02_post <- function(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) {
-  if (identical(tlg, null_report)) {
-    return(std_postprocess(tlg))
-  }
   for (i in seq_len(length(row_split_var))) {
     tlg <- tlg_sort_by_var(tlg, row_split_var[seq_len(i)], cont_n_allcols)
   }
   tlg <- tlg %>%
-    sort_at_path(
+    valid_sort_at_path(
       path = c(get_sort_path(c(row_split_var, "AEDECOD"))),
       scorefun = score_occurrences
     )
@@ -181,8 +175,26 @@ tlg_sort_by_var <- function(tlg, var, sort_fun = cont_n_allcols) {
   }
   var_path <- get_sort_path(var)
   tlg %>%
-    sort_at_path(
+    valid_sort_at_path(
       path = var_path,
       scorefun = sort_fun
     )
+}
+
+valid_sort_at_path <- function(tt, path, scorefun, ...) {
+  if (valid_row_path(tt, path)) {
+    sort_at_path(tt, path, scorefun, ...)
+  } else {
+    tt
+  }
+}
+
+valid_row_path <- function(tlg, row_path) {
+  if (nrow(tlg) == 0) {
+    return(TRUE)
+  }
+  rpaths <- row_paths(tlg)
+  non_star <- which(row_path != "*") + 1
+  rpaths_choice <- unique(lapply(rpaths, `[`, non_star))
+  any(vapply(rpaths_choice, identical, FUN.VALUE = TRUE, y = row_path[non_star - 1]))
 }
