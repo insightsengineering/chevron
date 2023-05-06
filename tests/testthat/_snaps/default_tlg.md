@@ -558,6 +558,18 @@
           medname A_3/3                                        45 (33.6%)    54 (40.3%)      48 (36.4%)  
           medname B_3/4                                        47 (35.1%)    47 (35.1%)      52 (39.4%)  
 
+# coxt02_1 functions with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Effect/Covariate Included in the Model                 Hazard Ratio      95% CI      p-value
+        ————————————————————————————————————————————————————————————————————————————————————————————
+        Treatment:                                                                                  
+          Description of Planned Arm (reference = A: Drug X)                                 <0.0001
+            B: Placebo                                             1.44       (1.06, 1.96)   0.0181 
+            C: Combination                                         2.42       (1.79, 3.27)   <0.0001
+
 # dmt01_1 functions with default argument value return expected result with test data
 
     Code

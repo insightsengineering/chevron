@@ -16,9 +16,9 @@ test_that("coxt02 can handle some NA values", {
     mutate(
       SEX = factor(.env$new_sex),
       RACE = factor(.env$new_race),
-      CNSR = factor(.env$new_cnsr),
-      AVAL = factor(.env$new_aval),
-      AGE = factor(.env$new_age),
+      CNSR = .env$new_cnsr,
+      AVAL = .env$new_aval,
+      AGE = .env$new_age
     )
 
   res1 <- expect_silent(run(coxt02_1, proc_data))
@@ -26,6 +26,9 @@ test_that("coxt02 can handle some NA values", {
 
   res2 <- expect_silent(run(coxt02_1, proc_data, conf_level = .90))
   expect_snapshot(res2)
+
+  res3 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AGE")))
+  expect_snapshot(res3)
 })
 
 test_that("coxt02 fails on incomlete date", {

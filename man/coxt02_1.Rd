@@ -16,19 +16,19 @@ An object of class \code{chevron_t} of length 1.
 coxt02_1_main(
   adam_db,
   anl_vars = c("CNSR", "ARM", "AVAL"),
-  covariates = c("SEX", "RACE", "AGE"),
-  lbl_term = "Effect/Covariate Included in the Model",
+  covariates = NULL,
+  lbl_vars = "Effect/Covariate Included in the Model",
   conf_level = 0.95,
   deco = std_deco("COXT02"),
   ...
 )
 
-coxt02_1_lyt(lbl_term, conf_level, deco)
+coxt02_1_lyt(variables, lbl_vars, conf_level, deco)
 
 coxt02_1_pre(
   adam_db,
   anl_vars = c("CNSR", "ARM", "AVAL"),
-  covariates = c("SEX", "RACE", "AGE"),
+  covariates = NULL,
   ...
 )
 
@@ -41,7 +41,11 @@ coxt02_1
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{lbl_term}{(\code{string}) text label for the \code{term} variable.}
+\item{anl_vars}{(\code{character}) variables in a Cox proportional hazards regression model.}
+
+\item{covariates}{(\code{character}) will be fitted and the corresponding effect will be estimated.}
+
+\item{lbl_vars}{(\code{string}) text label for the a Cox regression model variables.}
 
 \item{conf_level}{(\code{string}) confidence level of the interval when fitting a Cox regression model
 and estimating hazard ratio to describe the effect size in a survival analysis.}
@@ -55,10 +59,6 @@ and estimating hazard ratio to describe the effect size in a survival analysis.}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{adtte_vars}{(\code{character}) event and time variables in a Cox proportional hazards regression model.}
-
-\item{coxreg_vars}{(\code{character}) will be fitted and the corresponding effect will be estimated.}
 }
 \description{
 The \code{COXT02} table follows the same principles as the general Cox model analysis
@@ -69,7 +69,8 @@ and produces the estimates for each of the covariates included in the model
 \itemize{
 \item The table allows confidence level to be adjusted, default is 2-sided 5\%.
 \item The stratified analysis is with DISCRETE tie handling.
-\item Model includes treatment plus specified covariate(s) as factor(s), with \code{"SEX"}, \code{"RACE"} and \code{"AGE"} as default.
+\item Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
+with \code{"SEX"}, \code{"RACE"} and \code{"AGE"} as default candidates.
 \item The selection of the covariates and whether or not there is a selection process
 (vs. a fixed, pre-specified list) needs to be specified in the DAP.
 \item For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
@@ -91,12 +92,13 @@ and produces the estimates for each of the covariates included in the model
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adtte} table with columns \code{"ARM"}, \code{"AVAL"}, \code{"CNSR"}, and \code{"PARAMCD"}.
+\item \code{adam_db} object must contain an \code{adtte} table with with \code{"PARAMCD"}, the columns specified by \code{"anl_vars"} which
+is denoted as \code{c("CNSR", "ARM", "AVAL")} by default.
 }
 }
 \examples{
 run(coxt02_1, syn_data)
 
-run(coxt02_1, syn_data, covariates = c("SEX", "RACE"), conf_level = .90)
+run(coxt02_1, syn_data, covariates = c("SEX", "AGE"), conf_level = 0.90)
 }
 \keyword{datasets}
