@@ -73,7 +73,8 @@ use the first level or value of \code{arm_var}.}
 
 \item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is TRUE}
 
-\item{strat_analysis}{(\code{flag}) should the stratified analysis be performed,}
+\item{strat_analysis}{(\code{flag}) should the stratified analysis be performed,
+default is FALSE}
 
 \item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
 
@@ -96,6 +97,8 @@ see more details in \code{tern}}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{lyt}{layout created by \code{rtables}}
 }
 \description{
 RSPT01 template may be used to summarize any binary outcome or response variable at

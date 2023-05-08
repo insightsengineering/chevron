@@ -27,7 +27,6 @@
 #' @export
 #'
 #'
-#'
 rspt01_1_main <- function(adam_db,
                           dataset = "adrs",
                           arm_var = "ARM",
@@ -60,7 +59,7 @@ rspt01_1_main <- function(adam_db,
     deco = deco
   )
 
-  tbl <- build_table(lyt = lyt, df = anl)
+  tbl <- build_table(lyt, anl)
 
   tbl
 }
@@ -182,8 +181,7 @@ rspt01_1 <- chevron_t(
 #' @describeIn rspt01_1 get proportion layout
 #'
 #' @inheritParams gen_args
-#' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
-#' @param strat_analysis (`flag`) should the stratified analysis be performed,
+#' @param lyt layout created by `rtables`
 #'
 #' @export
 proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio = TRUE, strat_analysis = FALSE) {
