@@ -28,13 +28,14 @@ aet01_main <- function(adam_db,
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_character(safety_var)
   checkmate::assert_character(medconcept_var, null.ok = TRUE)
-  assert_colnames(dbsel$adae, c("DTHFL", "DCSREAS", safety_var, medconcept_var))
+  assert_colnames(dbsel$adsl, c(arm_var, "DTHFL", "DCSREAS"))
+  assert_colnames(dbsel$adae, c(arm_var, safety_var, medconcept_var))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
   assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
   lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
   lbl_medconcept_var <- var_labels_for(adam_db$adae, medconcept_var)
-  lyt <- aet01_lyt(
+  lyts <- aet01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     safety_var = safety_var,
@@ -43,9 +44,11 @@ aet01_main <- function(adam_db,
     lbl_medconcept_var = lbl_medconcept_var
   )
 
-  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
-
-  return(tbl)
+  rbind(
+    build_table(lyts$ae1, dbsel$adae, alt_counts_df = dbsel$adsl),
+    build_table(lyts$adsl, dbsel$adsl, alt_counts_df = dbsel$adsl),
+    build_table(lyts$ae2, dbsel$adae, alt_counts_df = dbsel$adsl)
+  )
 }
 
 #' @describeIn aet01 Layout
@@ -65,9 +68,10 @@ aet01_lyt <- function(arm_var,
   if (!is.null(medconcept_var)) {
     names(lbl_medconcept_var) <- medconcept_var
   }
-  lyt <- basic_table(show_colcounts = TRUE) %>%
+  lyt_base <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
+    ifneeded_add_overall_col(lbl_overall)
+  lyt_ae1 <- lyt_base %>%
     analyze_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
@@ -77,7 +81,8 @@ aet01_lyt <- function(arm_var,
       ),
       .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx"),
       show_labels = "hidden"
-    ) %>%
+    )
+  lyt_adsl <- lyt_base %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("DTHFL" = "Y"),
@@ -91,7 +96,8 @@ aet01_lyt <- function(arm_var,
       denom = "N_col",
       .labels = c(count_fraction = "Total number of patients withdrawn from study due to an AE"),
       table_names = "TotWithdrawal"
-    ) %>%
+    )
+  lyt_ae2 <- lyt_base %>%
     count_patients_with_flags(
       "USUBJID",
       flag_variables = lbl_safety_var,
@@ -102,7 +108,7 @@ aet01_lyt <- function(arm_var,
       .indent_mods = 0L
     )
   if (length(lbl_medconcept_var) > 0) {
-    lyt <- lyt %>%
+    lyt_ae2 <- lyt_ae2 %>%
       count_patients_with_flags(
         "USUBJID",
         flag_variables = lbl_medconcept_var,
@@ -113,7 +119,7 @@ aet01_lyt <- function(arm_var,
         .indent_mods = 0L
       )
   }
-  return(lyt)
+  return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
 }
 
 #' @describeIn aet01 Preprocessing
