@@ -150,7 +150,7 @@ aet01_pre <- function(adam_db, ...) {
       CTC45 = with_label(.data$ATOXGR %in% c("4", "5"), "Grade 4/5 AE")
     )
 
-  adam_db$adae <- adam_db$adae %>%
+  adam_db$adsl <- adam_db$adsl %>%
     mutate(DCSREAS = reformat(DCSREAS, missing_rule))
 
   adam_db
