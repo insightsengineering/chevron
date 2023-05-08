@@ -1,6 +1,6 @@
-# aet10_1 ----
+# aet10 ----
 
-#' @describeIn aet10_1 Main TLG function
+#' @describeIn aet10 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -17,21 +17,21 @@
 #'
 #' @export
 #'
-aet10_1_main <- function(adam_db,
+aet10_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         lbl_aedecod = "MedDRA Preferred Term",
-                         deco = std_deco("AET10"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-
-  assert_colnames(adam_db$adae, c("AEDECOD"))
-
-  lyt <- aet10_1_lyt(
+  checkmate::assert_string(arm_var)
+  assert_colnames(adam_db$adae, c(arm_var, "AEDECOD"))
+  assert_colnames(adam_db$adsl, c(arm_var))
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
+  lyt <- aet10_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    lbl_aedecod = lbl_aedecod,
-    deco = deco
+    lbl_aedecod = lbl_aedecod
   )
 
   tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -39,20 +39,18 @@ aet10_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet10_1 Layout
+#' @describeIn aet10 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #'
 #' @export
 #'
-aet10_1_lyt <- function(arm_var,
+aet10_lyt <- function(arm_var,
                         lbl_overall,
-                        lbl_aedecod,
-                        deco) {
-  basic_table_deco(deco) %>%
+                        lbl_aedecod) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_occurrences(
       vars = "AEDECOD",
@@ -61,58 +59,28 @@ aet10_1_lyt <- function(arm_var,
     append_topleft(paste0("\n", lbl_aedecod))
 }
 
-#' @describeIn aet10_1 Preprocessing
+#' @describeIn aet10 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-aet10_1_pre <- function(adam_db, arm_var = "ACTARM", ...) {
-  aet10_1_check(adam_db, arm_var = arm_var)
-
+aet10_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
-    filter(.data$ANL01FL == "Y")
-
-
-  new_format <- list(
-    adae = list(
-      AEDECOD = rule("No Coding Available" = c("", NA, "<Missing>"))
-    )
-  )
-
-  reformat(adam_db, new_format, na_last = TRUE)
+    filter(.data$ANL01FL == "Y") %>%
+    mutate(AEDECOD = reformat(.data$AEDECOD, nocoding))
+  return(adam_db)
 }
 
-#' @describeIn aet10_1 Checks
-#'
-#' @inheritParams gen_args
-#' @export
-aet10_1_check <- function(adam_db,
-                          req_tables = c("adsl", "adae"),
-                          arm_var = "ACTARM") {
-  assert_all_tablenames(adam_db, req_tables)
-
-  msg <- NULL
-  msg <- c(msg, check_all_colnames(adam_db$adae, c(arm_var, "USUBJID", "AEDECOD")))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(arm_var, "USUBJID")))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
-}
-
-#' @describeIn aet10_1 Postprocessing
+#' @describeIn aet10 Postprocessing
 #'
 #' @inheritParams gen_args
 #' @param atleast given cut-off in numeric format, default is `0.05`
 #'
 #' @export
 #'
-aet10_1_post <- function(tlg, atleast = 0.05, ...) {
-  checkmate::assert_true(is.numeric(atleast))
-
+aet10_post <- function(tlg, atleast = 0.05, ...) {
+  checkmate::assert_number(atleast, lower = 0, upper = 1)
   tbl_sorted <- tlg %>%
     sort_at_path(
       path = c("AEDECOD"),
@@ -141,11 +109,11 @@ aet10_1_post <- function(tlg, atleast = 0.05, ...) {
 #' @export
 #'
 #' @examples
-#' run(aet10_1, syn_data)
-aet10_1 <- chevron_t(
-  main = aet10_1_main,
-  lyt = aet10_1_lyt,
-  preprocess = aet10_1_pre,
-  postprocess = aet10_1_post,
+#' run(aet10, syn_data)
+aet10 <- chevron_t(
+  main = aet10_main,
+  lyt = aet10_lyt,
+  preprocess = aet10_pre,
+  postprocess = aet10_post,
   adam_datasets = c("adsl", "adae")
 )

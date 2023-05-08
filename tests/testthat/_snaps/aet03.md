@@ -10,12 +10,12 @@
         MILD                         7 (5.2%)      9 (6.7%)        4 (3.0%)   
         MODERATE                    24 (17.9%)    24 (17.9%)      23 (17.4%)  
         SEVERE                      91 (67.9%)    90 (67.2%)      93 (70.5%)  
-        No Coding available                                                   
+        No Coding Available                                                   
           - Any Intensity -         122 (91.0%)   123 (91.8%)    120 (90.9%)  
           MILD                       7 (5.2%)      9 (6.7%)        4 (3.0%)   
           MODERATE                  24 (17.9%)    24 (17.9%)      23 (17.4%)  
           SEVERE                    91 (67.9%)    90 (67.2%)      93 (70.5%)  
-          No Coding available                                                 
+          No Coding Available                                                 
             - Any Intensity -       122 (91.0%)   123 (91.8%)    120 (90.9%)  
             MILD                     7 (5.2%)      9 (6.7%)        4 (3.0%)   
             MODERATE                24 (17.9%)    24 (17.9%)      23 (17.4%)  

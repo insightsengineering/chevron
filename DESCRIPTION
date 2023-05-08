@@ -92,7 +92,7 @@ Collate:
     'pdt01.R'
     'pdt02.R'
     'reexports.R'
-    'standard_rules.R'
     'rmpt01.R'
+    'standard_rules.R'
     'vst01.R'
     'vst02.R'

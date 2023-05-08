@@ -296,7 +296,7 @@ setGeneric("script_args", function(x, dict = NULL) standardGeneric("script_args"
 #' @export
 #'
 #' @examples
-#' script_args(aet04_1)
+#' script_args(aet04)
 #'
 setMethod(
   f = "script_args",
@@ -343,7 +343,7 @@ setGeneric("script_funs", function(x, adam_db, args, details = FALSE) standardGe
 #' @export
 #'
 #' @examples
-#' script_funs(aet04_1, adam_db = "syn_data", args = "args")
+#' script_funs(aet04, adam_db = "syn_data", args = "args")
 setMethod(
   f = "script_funs",
   signature = "chevron_tlg",

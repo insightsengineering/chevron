@@ -58,9 +58,8 @@ aet02_lyt <- function(arm_var,
                       row_split_var,
                       lbl_row_split,
                       lbl_aedecod) {
-  lyt <- basic_table() %>%
+  lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     analyze_num_patients(
       vars = "USUBJID",
@@ -77,7 +76,7 @@ aet02_lyt <- function(arm_var,
   lyt %>%
     count_occurrences(
       vars = "AEDECOD",
-      drop = length(row_split_var) > 1,
+      drop = length(row_split_var) > 0,
       .indent_mods = -1L
     ) %>%
     append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), lbl_aedecod))
@@ -107,10 +106,8 @@ aet02_pre <- function(adam_db, row_split_var = "AEBODSYS", ...) {
 #' @export
 #'
 aet02_post <- function(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) {
-  for (i in seq_len(length(row_split_var))) {
-    tlg <- tlg_sort_by_var(tlg, row_split_var[seq_len(i)], cont_n_allcols)
-  }
   tlg <- tlg %>%
+    tlg_sort_by_vars(row_split_var, cont_n_allcols) %>%
     valid_sort_at_path(
       path = c(get_sort_path(c(row_split_var, "AEDECOD"))),
       scorefun = score_occurrences
@@ -167,7 +164,17 @@ get_sort_path <- function(x) {
   x2[-length(x2)]
 }
 
-tlg_sort_by_var <- function(tlg, var, sort_fun = cont_n_allcols) {
+tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
+  purrr::reduce(
+    .x = lapply(seq_len(length(vars)), function(i) vars[seq_len(i)]),
+    .f = tlg_sort_by_var,
+    .init = tlg,
+    scorefun = scorefun,
+    ...
+  )
+}
+
+tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
   checkmate::assert_character(var)
   if (length(var) == 0) {
     return(tlg)
@@ -176,7 +183,8 @@ tlg_sort_by_var <- function(tlg, var, sort_fun = cont_n_allcols) {
   tlg %>%
     valid_sort_at_path(
       path = var_path,
-      scorefun = sort_fun
+      scorefun = scorefun,
+      ...
     )
 }
 

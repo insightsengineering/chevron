@@ -1,6 +1,6 @@
-# aet04_1 ----
+# aet04 ----
 
-#' @describeIn aet04_1 Main TLG function
+#' @describeIn aet04 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
@@ -19,16 +19,19 @@
 #'
 #' @export
 #'
-aet04_1_main <- function(adam_db,
+aet04_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         lbl_aebodsys = "MedDRA System Organ Class",
-                         lbl_aedecod = "MedDRA Preferred Term",
                          grade_groups = NULL,
-                         deco = std_deco("AET04"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-  assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ATOXGR"))
+  checkmate::assert_string(arm_var)
+  assert_colnames(adam_db$adsl, c(arm_var))
+  assert_colnames(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD", "ATOXGR"))
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  lbl_aebodsys <- var_labels_for(dbsel$adae, "AEBODSYS")
+  lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
 
   if (is.null(grade_groups)) {
     grade_groups <- list(
@@ -38,27 +41,25 @@ aet04_1_main <- function(adam_db,
     )
   }
 
-  checkmate::assert_factor(dbsel$adae[["ATOXGR"]], any.missing = FALSE)
+  checkmate::assert_factor(dbsel$adae[["ATOXGR"]])
   toxicity_grade <- levels(dbsel$adae[["ATOXGR"]])
 
   checkmate::assert_list(grade_groups, types = "character")
 
-  lyt <- aet04_1_lyt(
+  lyt <- aet04_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
     toxicity_grade = toxicity_grade,
-    grade_groups = grade_groups,
-    deco = deco
+    grade_groups = grade_groups
   )
 
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
-
   tbl
 }
 
-#' @describeIn aet04_1 Layout
+#' @describeIn aet04 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -69,20 +70,19 @@ aet04_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet04_1_lyt <- function(arm_var,
+aet04_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aebodsys,
                         lbl_aedecod,
                         toxicity_grade,
-                        grade_groups,
-                        deco) {
+                        grade_groups) {
   all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
   combodf <- tibble::tribble(
     ~valname, ~label, ~levelcombo, ~exargs,
     "ALL", "- Any adverse events -", toxicity_grade, list()
   )
 
-  basic_table_deco(deco, show_colcounts = TRUE) %>%
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
@@ -90,7 +90,7 @@ aet04_1_lyt <- function(arm_var,
       child_labels = "visible",
       split_fun = add_combo_levels(combodf, keep_levels = "ALL")
     ) %>%
-    summarize_occurrences_by_grade(
+    count_occurrences_by_grade(
       var = "ATOXGR",
       grade_groups = all_grade_groups,
       .indent_mods = 13L
@@ -124,68 +124,34 @@ aet04_1_lyt <- function(arm_var,
     append_topleft("                            Grade")
 }
 
-#' @describeIn aet04_1 Preprocessing
+#' @describeIn aet04 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-aet04_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adae"))
-
-  new_format <- list(
-    adae = list(
-      AEBODSYS = rule("No Coding Available" = c("", NA, "<Missing>")),
-      AEDECOD = rule("No Coding Available" = c("", NA, "<Missing>")),
-      ATOXGR = rule("No Grading Available" = c("", NA, "<Missing>"))
-    )
-  )
-
-  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
-
+aet04_pre <- function(adam_db, ...) {
+  atoxgr_lvls <- c("1", "2", "3", "4", "5")
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
-    filter(.data$ATOXGR != "No Grading Available") %>%
-    mutate(ATOXGR = factor(.data$ATOXGR,
-      levels = setdiff(levels(.data$ATOXGR), "No Grading Available")
-    ))
-
+    mutate(
+      AEBODSYS = reformat(AEBODSYS, nocoding),
+      AEDECOD = reformat(AEDECOD, nocoding),
+      ATOXGR = factor(ATOXGR, levels = atoxgr_lvls)
+    )
   adam_db
 }
 
-#' @describeIn aet04_1 Postprocessing
+#' @describeIn aet04 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
+aet04_post <- function(tlg, prune_0 = TRUE, ...) {
+  tlg <- tlg %>%
+    tlg_sort_by_vars(c("AEBODSYS", "AEDECOD"), score_all_sum, decreasing = TRUE)
   if (prune_0) tlg <- trim_rows(tlg)
-  tbl_empty <- all(lapply(row_paths(tlg), `[[`, 3) == "ALL")
-  if (!tbl_empty) {
-    score_all_sum <- function(tt) {
-      cleaf <- collect_leaves(tt)[[1]]
-      if (NROW(cleaf) == 0) {
-        stop("score_all_sum score function used at subtable [", obj_name(tt), "] that has no content.")
-      }
-      sum(sapply(row_values(cleaf), function(cv) cv[1]))
-    }
-
-    tlg <- tlg %>%
-      sort_at_path(
-        path = c("AEBODSYS"),
-        scorefun = score_all_sum,
-        decreasing = TRUE
-      ) %>%
-      sort_at_path(
-        path = c("AEBODSYS", "*", "AEDECOD"),
-        scorefun = score_all_sum,
-        decreasing = TRUE
-      )
-  } else {
-    tlg <- null_report
-  }
-
   std_postprocess(tlg)
 }
 
@@ -209,10 +175,19 @@ aet04_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #'   "Grade 3-5" = c("3", "4", "5")
 #' )
 #'
-#' run(aet04_1, syn_data, grade_groups = grade_groups)
-aet04_1 <- chevron_t(
-  main = aet04_1_main,
-  preprocess = aet04_1_pre,
-  postprocess = aet04_1_post,
+#' run(aet04, syn_data, grade_groups = grade_groups)
+aet04 <- chevron_t(
+  main = aet04_main,
+  preprocess = aet04_pre,
+  postprocess = aet04_post,
   adam_datasets = c("adsl", "adae")
 )
+
+
+score_all_sum <- function(tt) {
+  cleaf <- collect_leaves(tt)[[1]]
+  if (NROW(cleaf) == 0) {
+    stop("score_all_sum score function used at subtable [", obj_name(tt), "] that has no content.")
+  }
+  sum(sapply(row_values(cleaf), function(cv) cv[1]))
+}

@@ -65,9 +65,8 @@ aet01_lyt <- function(arm_var,
   if (!is.null(medconcept_var)) {
     names(lbl_medconcept_var) <- medconcept_var
   }
-  lyt <- basic_table() %>%
+  lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     analyze_num_patients(
       var = "USUBJID",

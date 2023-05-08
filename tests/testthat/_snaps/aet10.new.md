@@ -3,10 +3,10 @@
     Code
       res
     Output
-                               A: Drug X    B: Placebo    C: Combination
-        AEDECOD                 (N=134)       (N=134)        (N=132)    
-        ————————————————————————————————————————————————————————————————
-        No Coding Available   122 (91.0%)   123 (91.8%)    120 (90.9%)  
+                                 A: Drug X    B: Placebo    C: Combination
+        MedDRA Preferred Term     (N=134)       (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————
+        No Coding Available     122 (91.0%)   123 (91.8%)    120 (90.9%)  
 
 # aet10 can handle some NA values
 

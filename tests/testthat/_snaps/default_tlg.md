@@ -47,25 +47,7 @@
         Total number of patients with at least one serious AE                           104 (77.6%)   101 (75.4%)     99 (75.0%)  
         Total number of patients with at least one related AE                           105 (78.4%)   108 (80.6%)    109 (82.6%)  
 
-# ael01_nollt_1 function with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-      MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
-      ———————————————————————————————————————————————————————————————————————————————————————
-      cl A.1                      dcd A.1.1.1.1                      trm A.1.1.1.1           
-                                  dcd A.1.1.1.2                      trm A.1.1.1.2           
-      cl B.1                      dcd B.1.1.1.1                      trm B.1.1.1.1           
-      cl B.2                      dcd B.2.1.2.1                      trm B.2.1.2.1           
-                                  dcd B.2.2.3.1                      trm B.2.2.3.1           
-      cl C.1                      dcd C.1.1.1.3                      trm C.1.1.1.3           
-      cl C.2                      dcd C.2.1.2.1                      trm C.2.1.2.1           
-      cl D.1                      dcd D.1.1.1.1                      trm D.1.1.1.1           
-                                  dcd D.1.1.4.2                      trm D.1.1.4.2           
-      cl D.2                      dcd D.2.1.5.3                      trm D.2.1.5.3           
-
-# aet02_1 functions with default argument value return expected result with test data
+# aet02 functions with default argument value return expected result with test data
 
     Code
       res
@@ -107,7 +89,7 @@
           Total number of events                                         55            63              64      
           dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
-# aet03_1 functions with default argument value return expected result with test data
+# aet03 functions with default argument value return expected result with test data
 
     Code
       res
@@ -174,7 +156,7 @@
             - Any Intensity -       43 (32.1%)    46 (34.3%)      43 (32.6%)  
             SEVERE                  43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
-# aet04_1 functions with default argument value return expected result with test data
+# aet04 functions with default argument value return expected result with test data
 
     Code
       res
@@ -269,7 +251,7 @@
                                     Grade 3-4       43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
-# aet10_1 functions with default argument value return expected result with test data
+# aet10 functions with default argument value return expected result with test data
 
     Code
       res

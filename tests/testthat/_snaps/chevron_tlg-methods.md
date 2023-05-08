@@ -159,5 +159,5 @@
       [23] "}"                                                                                                                                                                   
       [24] ""                                                                                                                                                                    
       [25] "# Create TLG"                                                                                                                                                        
-      [26] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04_1, !!!args_ls, auto_pre = FALSE, check_arg = FALSE)"
+      [26] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04, !!!args_ls, auto_pre = FALSE, check_arg = FALSE)"
 

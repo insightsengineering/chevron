@@ -79,8 +79,7 @@ aet01_aesi_lyt <- function(arm_var,
                            lbl_aesi_vars,
                            grade_groups) {
   names(lbl_aesi_vars) <- aesi_vars
-  basic_table() %>%
-    add_colcounts() %>%
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     count_patients_with_event(
       vars = "USUBJID",

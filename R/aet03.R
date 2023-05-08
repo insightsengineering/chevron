@@ -1,6 +1,6 @@
-# aet03_1 ----
+# aet03 ----
 
-#' @describeIn aet03_1 Main TLG function
+#' @describeIn aet03 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -17,26 +17,27 @@
 #'
 #' @export
 #'
-aet03_1_main <- function(adam_db,
+aet03_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
-                         lbl_aebodsys = "MedDRA System Organ Class",
-                         lbl_aedecod = "MedDRA Preferred Term",
-                         deco = std_deco("AET03"),
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-  assert_colnames(dbsel$adae, c("AEBODSYS", "AEDECOD", "ASEV"))
-
+  
   checkmate::assert_factor(dbsel$adae[["ASEV"]], any.missing = FALSE)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  checkmate::assert_string(arm_var)
+  assert_colnames(adam_db$adsl, c(arm_var))
+  assert_colnames(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD", "ASEV"))
+  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
   intensity_grade <- levels(dbsel$adae[["ASEV"]])
-
-  lyt <- aet03_1_lyt(
+  lbl_aebodsys <- var_labels_for(dbsel$adae, "AEBODSYS")
+  lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
+  lyt <- aet03_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
-    intensity_grade = intensity_grade,
-    deco = deco
+    intensity_grade = intensity_grade
   )
 
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
@@ -44,7 +45,7 @@ aet03_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet03_1 Layout
+#' @describeIn aet03 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -54,17 +55,15 @@ aet03_1_main <- function(adam_db,
 #'
 #' @export
 #'
-aet03_1_lyt <- function(arm_var,
+aet03_lyt <- function(arm_var,
                         lbl_overall,
                         lbl_aebodsys,
                         lbl_aedecod,
-                        intensity_grade,
-                        deco) {
+                        intensity_grade) {
   all_grade_groups <- list("- Any Intensity -" = intensity_grade)
 
-  basic_table_deco(deco) %>%
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_occurrences_by_grade(
       var = "ASEV",
@@ -104,54 +103,39 @@ aet03_1_lyt <- function(arm_var,
     )
 }
 
-#' @describeIn aet03_1 Preprocessing
+#' @describeIn aet03 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-aet03_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adae"))
-  assert_colnames(adam_db$adae, c("ANL01FL", "ASEV"))
-
-  new_format <- list(
-    adae = list(
-      AEBODSYS = rule("No Coding available" = c("", NA, "<Missing>")),
-      AEDECOD = rule("No Coding available" = c("", NA, "<Missing>")),
-      ASEV = rule("<Missing>" = c("", NA, "<Missing>"))
-    )
-  )
-  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
-
+aet03_pre <- function(adam_db, ...) {
+  asev_lvls <- c("MILD", "MODERATE", "SEVERE")
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
-    filter(.data$ASEV != "<Missing>") %>%
-    mutate(ASEV = factor(.data$ASEV, levels = setdiff(levels(.data$ASEV), "<Missing>")))
+    mutate(
+      AEBODSYS = reformat(AEBODSYS, nocoding),
+      AEDECOD = reformat(AEDECOD, nocoding),
+      ASEV = factor(ASEV, levels = asev_lvls)
+    ) %>%
+    filter(!is.na(ASEV))
 
   adam_db
 }
 
-#' @describeIn aet03_1 Postprocessing
+#' @describeIn aet03 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
-aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
-  if (prune_0) tlg <- tlg %>% trim_rows()
-
-  tbl_sorted <- tlg %>%
-    sort_at_path(
-      path = c("AEBODSYS"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
-    ) %>%
-    sort_at_path(
-      path = c("AEBODSYS", "*", "AEDECOD"),
-      scorefun = cont_n_allcols,
-      decreasing = TRUE
+aet03_post <- function(tlg, prune_0 = TRUE, ...) {
+  tlg <- tlg %>%
+    tlg_sort_by_vars(
+      c("AEBODSYS", "AEDECOD"),
+      scorefun = cont_n_allcols
     )
-
-  std_postprocess(tbl_sorted)
+  if (prune_0) tlg <- trim_rows(tlg)
+  std_postprocess(tlg)
 }
 
 #' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.
@@ -163,10 +147,10 @@ aet03_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(aet03_1, syn_data)
-aet03_1 <- chevron_t(
-  main = aet03_1_main,
-  preprocess = aet03_1_pre,
-  postprocess = aet03_1_post,
+#' run(aet03, syn_data)
+aet03 <- chevron_t(
+  main = aet03_main,
+  preprocess = aet03_pre,
+  postprocess = aet03_post,
   adam_datasets = c("adsl", "adae")
 )

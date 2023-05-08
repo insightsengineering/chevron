@@ -1,7 +1,7 @@
 test_that("ael01_nollt function with default argument value return expected result with test data", {
   pre_data <- ael01_nollt_pre(syn_data)
   raw_res <- ael01_nollt_main(pre_data)
-  res <- aael01_nollt_post(raw_res)
+  res <- ael01_nollt_post(raw_res)
   expect_snapshot(res)
 })
 
@@ -26,24 +26,24 @@ test_that("aet02 functions with default argument value return expected result wi
   expect_snapshot(res)
 })
 
-test_that("aet03_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet03_1_pre(syn_data)
-  raw_res <- aet03_1_main(pre_data)
-  res <- aet03_1_post(raw_res)
+test_that("aet03 functions with default argument value return expected result with test data", {
+  pre_data <- aet03_pre(syn_data)
+  raw_res <- aet03_main(pre_data)
+  res <- aet03_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet04_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet04_1_pre(syn_data)
-  raw_res <- aet04_1_main(pre_data)
-  res <- aet04_1_post(raw_res)
+test_that("aet04 functions with default argument value return expected result with test data", {
+  pre_data <- aet04_pre(syn_data)
+  raw_res <- aet04_main(pre_data)
+  res <- aet04_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet10_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet10_1_pre(syn_data)
-  raw_res <- aet10_1_main(pre_data)
-  res <- aet10_1_post(raw_res)
+test_that("aet10 functions with default argument value return expected result with test data", {
+  pre_data <- aet10_pre(syn_data)
+  raw_res <- aet10_main(pre_data)
+  res <- aet10_post(raw_res)
   expect_snapshot(res)
 })
 

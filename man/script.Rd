@@ -34,7 +34,7 @@ Create Script for Parameters Assignment
 Create Script for \code{TLG} Generation
 }
 \examples{
-script_args(aet04_1)
+script_args(aet04)
 
-script_funs(aet04_1, adam_db = "syn_data", args = "args")
+script_funs(aet04, adam_db = "syn_data", args = "args")
 }
