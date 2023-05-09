@@ -581,12 +581,21 @@
     Code
       res
     Output
-        Effect/Covariate Included in the Model                 Hazard Ratio      95% CI      p-value
-        ————————————————————————————————————————————————————————————————————————————————————————————
-        Treatment:                                                                                  
-          Description of Planned Arm (reference = A: Drug X)                                 <0.0001
-            B: Placebo                                             1.27       (1.11, 1.45)   0.0006 
-            C: Combination                                         1.91       (1.67, 2.18)   <0.0001
+        Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
+        —————————————————————————————————————————————————————————————————————————————————————————————
+        Treatment:                                                                                   
+          Description of Planned Arm (reference = A: Drug X)                                  0.4767 
+            B: Placebo                                              0.80       (0.53, 1.20)   0.2805 
+            C: Combination                                          0.80       (0.50, 1.29)   0.3609 
+        Covariate:                                                                                   
+          Sex (reference = F)                                                                        
+            M                                                       0.96       (0.66, 1.40)   0.8407 
+          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.0572 
+            ASIAN                                                   0.59       (0.30, 1.16)   0.1269 
+            BLACK OR AFRICAN AMERICAN                               0.55       (0.26, 1.16)   0.1143 
+            WHITE                                                   0.34       (0.15, 0.75)   0.0079 
+          Age (yr)                                                                                   
+            All                                                     0.99       (0.97, 1.02)   0.5202 
 
 # dmt01_1 functions with default argument value return expected result with test data
 
