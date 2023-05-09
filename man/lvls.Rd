@@ -6,6 +6,9 @@
 \usage{
 lvls(x)
 }
+\arguments{
+\item{x}{(\code{string}) the variable needs to get unique level}
+}
 \description{
 \code{lvls} objective to get unique level of variables
 }
