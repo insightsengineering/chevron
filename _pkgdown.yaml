@@ -90,11 +90,12 @@ reference:
       - lbt14_2
       - mht01_1
       - mng01_1
+      - pdt01_1
+      - pdt02_1
+      - rmpt01_1
       - vst01_1
       - vst02_1
       - vst02_2
-      - pdt01_1
-      - pdt02_1
   - title: Data
     contents:
       - syn_data
