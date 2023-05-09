@@ -306,4 +306,3 @@ lvls.character <- function(x) {
 lvls.factor <- function(x) {
   levels(x)
 }
-
