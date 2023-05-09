@@ -292,3 +292,17 @@ gg_list <- function(...) {
 droplevels.character <- function(x, ...) {
   x
 }
+
+#' @export
+lvls <- function(x) {
+  UseMethod("lvls")
+}
+#' @export
+lvls.character <- function(x) {
+  sort(unique(x))
+}
+#' @export
+lvls.factor <- function(x) {
+  levels(x)
+}
+

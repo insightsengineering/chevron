@@ -18,6 +18,11 @@
 #'                strat_diff_conf_method = "ha",
 #'                diff_pval_method = "fisher",
 #'                strat_diff_pval_method = "schouten")
+#' `prop_conf_method` controls the methods of calculating proportion confidence interval,
+#' `diff_conf_method` controls the methods of calculating unstratified difference confidence interval,
+#' `strat_diff_conf_method` controls the methods of calculating stratified difference confidence interval,
+#' `diff_pval_method` controls the methods of calculating unstratified p-value for odds ratio,
+#' `strat_diff_pval_method` controls the methods of calculating stratified p-value for odds ratio,
 #' see more details in `tern`
 #'
 #' @details
@@ -45,7 +50,8 @@ rspt01_1_main <- function(adam_db,
   checkmate::assert_flag(odds_ratio)
   checkmate::assert_flag(strat_analysis)
 
-  arm_level <- sort(unique(anl[[arm_var]]))
+  arm_level <- lvls(anl[[arm_var]])
+  # arm_level <- sort(unique((anl[[arm_var]])))
   ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
 
   lyt <- rspt01_1_lyt(
@@ -93,7 +99,6 @@ rspt01_1_lyt <- function(arm_var,
       proportion_lyt(
         arm_var = arm_var,
         odds_ratio = odds_ratio,
-        strat_analysis = TRUE,
         strata = strata,
         conf_level = conf_level,
         methods = methods
@@ -104,7 +109,6 @@ rspt01_1_lyt <- function(arm_var,
     proportion_lyt(
       arm_var = arm_var,
       odds_ratio = odds_ratio,
-      strat_analysis = FALSE,
       strata = NULL,
       conf_level = conf_level,
       methods = methods
@@ -184,38 +188,38 @@ rspt01_1 <- chevron_t(
 #' @param lyt layout created by `rtables`
 #'
 #' @export
-proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio = TRUE, strat_analysis = FALSE) {
+proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio = TRUE) {
   lyt <- lyt %>%
     estimate_proportion_diff(
       vars = "is_rsp",
       show_labels = "visible",
-      var_labels = if (!strat_analysis) "Unstratified Analysis" else "Stratified Analysis",
+      var_labels = if (is.null(strata)) "Unstratified Analysis" else "Stratified Analysis",
       conf_level = conf_level,
-      method = if (!strat_analysis) {
+      method = if (is.null(strata)) {
         methods[["diff_conf_method"]] %||% "waldcc"
       } else {
         methods[["strat_diff_conf_method"]] %||% "cmh"
       },
       variables = list(strata = strata),
-      table_names = if (!strat_analysis) "est_prop_diff" else "est_prop_diff_strat"
+      table_names = if (is.null(strata)) "est_prop_diff" else "est_prop_diff_strat"
     ) %>%
     test_proportion_diff(
       vars = "is_rsp",
-      method = if (!strat_analysis) {
+      method = if (is.null(strata)) {
         methods[["diff_pval_method"]] %||% "chisq"
       } else {
         methods[["strat_diff_pval_method"]] %||% "cmh"
       },
       variables = list(strata = strata),
-      table_names = if (!strat_analysis) "test_prop_diff" else "test_prop_diff_strat"
+      table_names = if (is.null(strata)) "test_prop_diff" else "test_prop_diff_strat"
     )
 
   if (odds_ratio) {
     lyt <- lyt %>%
       estimate_odds_ratio(
         vars = "is_rsp",
-        variables = if (!strat_analysis) list(strata = NULL, arm = NULL) else list(strata = strata, arm = arm_var),
-        table_names = if (!strat_analysis) "est_or" else "est_or_strat"
+        variables = if (is.null(strata)) list(strata = NULL, arm = NULL) else list(strata = strata, arm = arm_var),
+        table_names = if (is.null(strata)) "est_or" else "est_or_strat"
       )
   }
 

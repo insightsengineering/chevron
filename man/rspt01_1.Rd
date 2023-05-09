@@ -50,15 +50,7 @@ rspt01_1_post(tlg, prune_0 = TRUE, ...)
 
 rspt01_1
 
-proportion_lyt(
-  lyt,
-  arm_var,
-  methods,
-  strata,
-  conf_level,
-  odds_ratio = TRUE,
-  strat_analysis = FALSE
-)
+proportion_lyt(lyt, arm_var, methods, strata, conf_level, odds_ratio = TRUE)
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
@@ -86,6 +78,11 @@ diff_conf_method = "wald",
 strat_diff_conf_method = "ha",
 diff_pval_method = "fisher",
 strat_diff_pval_method = "schouten")
+\code{prop_conf_method} controls the methods of calculating proportion confidence interval,
+\code{diff_conf_method} controls the methods of calculating unstratified difference confidence interval,
+\code{strat_diff_conf_method} controls the methods of calculating stratified difference confidence interval,
+\code{diff_pval_method} controls the methods of calculating unstratified p-value for odds ratio,
+\code{strat_diff_pval_method} controls the methods of calculating stratified p-value for odds ratio,
 see more details in \code{tern}}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
