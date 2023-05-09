@@ -293,6 +293,7 @@ droplevels.character <- function(x, ...) {
   x
 }
 
+#' `lvls` objective to get unique level of variables
 #' @export
 lvls <- function(x) {
   UseMethod("lvls")

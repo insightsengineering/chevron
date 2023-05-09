@@ -51,7 +51,6 @@ rspt01_1_main <- function(adam_db,
   checkmate::assert_flag(strat_analysis)
 
   arm_level <- lvls(anl[[arm_var]])
-  # arm_level <- sort(unique((anl[[arm_var]])))
   ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
 
   lyt <- rspt01_1_lyt(
