@@ -28,10 +28,10 @@ test_that("coxt02 can handle some NA values", {
   res2 <- expect_silent(run(coxt02_1, proc_data, conf_level = .90))
   expect_snapshot(res2)
 
-  res3 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AGE")))
+  res3 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AAGE")))
   expect_snapshot(res3)
 
-  res4 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AGE"), with_strata = c("RACE")))
+  res4 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE")))
   expect_snapshot(res4)
 })
 
