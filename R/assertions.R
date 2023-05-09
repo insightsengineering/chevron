@@ -183,21 +183,26 @@ assert_only_one_paramcd <- function(param_val) {
   }
 }
 
-#' Check col_split var is valid
+#' Check whether var is valid
+#' @details
+#' This function checks the character or factor values are valid or not.
 #' @param x value of col_split variable
 #' @param label (`string`) hints.
 #' @export
-assert_valid_col_var <- function(x, label = "variable") {
+assert_valid_var <- function(x, label = "variable") {
   checkmate::assert_string(label)
+  if (!(is.factor(x) || is.character(x))) {
+    return()
+  }
   lvl <- lvls(x)
   if (is.null(lvl)) {
-    stop(label, " must be of class `character` or `factor`")
+    abort(label, " must be contain valid levels!")
   }
-  if ("" %in% lvl) {
-    stop(label, " should not contain empty string!")
+  if ("" %in% lvl || NA_character_ %in% x) {
+    abort(label, " should not contain empty string or NA!")
   }
   if (length(lvl) == 0) {
-    stop(label, " should at least contain one valid level!")
+    abort(label, " should at least contain one valid level!")
   }
 }
 
@@ -206,13 +211,20 @@ assert_valid_col_var <- function(x, label = "variable") {
 #' @param y value of col_split variable 2.
 #' @param lab1 (`string`) label hint for variable 1.
 #' @param lab2 (`string`) label hint for variable 2.
-assert_valid_col_var_pair <- function(x, y, lab1 = "var1", lab2 = "var2") {
+assert_valid_var_pair <- function(x, y, lab1 = "var1", lab2 = "var2") {
   checkmate::assert_class(x, classes = class(y))
-  assert_valid_col_var(x)
-  assert_valid_col_var(y)
+  assert_valid_var(x)
+  assert_valid_var(y)
   lvl_x <- lvls(x)
   lvl_y <- lvls(y)
   if (!identical(lvl_x, lvl_y)) {
-    stop(lab1, " and ", lab2, " should contain the same levels!")
+    abort(lab1, " and ", lab2, " should contain the same levels!")
   }
+}
+
+#' Abort without call information
+#' @param ... Pass to `stop`
+#' @export
+abort <- function(...) {
+  stop(..., call. = FALSE)
 }

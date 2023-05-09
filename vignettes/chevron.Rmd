@@ -38,46 +38,48 @@ The *TLG-functions* in `chevron` use other packages to produce the final outputs
 used to create tables, `ggplot2`, `lattice`, and `grid` are used to create graphs, `rlistings` to create
 listings.
 
-*TLG-functions* in `chevron` such as `dmt01_1_main`, `aet02_main`, `aet02_2_main` have the following properties:
+*TLG-functions* in `chevron` such as `dmt01_main`, `aet02_main`, `aet02_main` have the following properties:
 
 1. they produce a narrow defined output (currently standards in Roche `GDS`). Note, that the naming convention
-   `<gds template id>_<i>_main` indicates that a Roche `GDS` defined standard may have different implementations. Or,
+   `<gds template id>_main` indicates that a Roche `GDS` defined standard may have different implementations. Or,
     alternatively, a `GDS` template id can be regarded as a *guideline* and the function name in `chevron` as a
     *standard*.
 1. have, if possible, few arguments to modify the standard. Generally, arguments may change the structure of the table (arm
-variable, which variables are summarized) but not parameterize the cell content (i.e. alpha-level for p-value).
+variable, which variables are summarized) and also parameterize the cell content (i.e. alpha-level for p-value).
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 
 ### *preprocessing*
 
-The *preprocess* functions in `chevron` use `dm` and `dunlin` packages to process `dm` object and turn them into a
-suitable input for *TLG-functions*. The preprocessing step typically includes checks that will ensure that the `dm`
-input can be later processed by the *TLG-functions*.
+The *preprocess* functions in `chevron` use `base`, `dplyr` and `dunlin` packages to process input data object and turn them into a
+suitable input for *TLG-functions*.
 
-*preprocess* in chevron such as `dmt01_1_pre`, `aet02_pre`, `aet02_2_pre` have the following properties:
+*preprocess* in chevron such as `dmt01_pre`, `aet02_pre`, `aet02_pre` have the following properties:
 
-1. they return a `dm` object amenable to processing by a *TLG-functions* or return rapidly an understandable error
+1. they return a `list` of `data.frame` object amenable to processing by a *TLG-functions*.
 message.
 1. have very few arguments to modify the standard.
 1. have always the first argument `adam_db` which is the collection of `ADaM` datasets (`ADSL`, `ADAE`,
 `ADRS`, etc.). Please read the *The `adam_db` Argument* vignette in this package for more details.
 
+Please note that the ultimate responsible person of the preprocessing functions is the end user.
+The provided preprocessing function is only a template and users could modify depending on their need/data.
+This preprocessing function will be printed to allow modification in script generated in `citril`.
+
 ### *postprocessing*
 
-By default, the Postprocessing function returns its input or a `NULL` report if the input has no rows. *`postprocessing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
+By default, the Postprocessing function returns its input or a null report if the input has no rows.
+*`postprocessing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
 
 ### *ADaM datasets*
 
-The `adam_datasets` stores the name(s) of the data sets in the `AdAM` `dm` object that will be used in the process. This
+The `adam_datasets` stores the name(s) of the data sets in the `AdAM` `list` of `data.frame` object that will be used in the process. This
 information is important when the `chevron_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
 such as `citril`.
 
 ## Example `AET02`
 
-For example, the `GDS` template `aet02` is implemented in `chevron` with the `chevropn_tlg` objects that have the name `aet02_*`. The
-object documentation which is accessible with the `help` function, e.g. `help('aet02')` documents what is particular
-in the `_1` implementation.
+For example, the `GDS` template `aet02` is implemented in `chevron` with the `chevropn_tlg` objects that have the name `aet02`.
 
 We first load the data as a `list` of `data.frame`, where each table represents a domain.
 
@@ -112,50 +114,36 @@ str(res, max.level = 0)
 
 ## `chevron_tlg` object customization
 
-In some instances it is useful to customize the `chevron_tlg` object, for example by changing the pre processing functions. Be aware that you have to think carefully about argument names and compatibility with downstream functions.
-
-Note that this operation creates a local version of the `chevron_tlg` object. The package version of the `chevron_tlg`
-object (accessible with `chevron::aet01`) remains unchanged.
-
-```{r}
-preprocess(aet02) <- function(adam_db, ...) adam_db
-preprocess(aet02)
-```
+In some instances it is useful to customize the `chevron_tlg` object, for example by changing the pre processing functions in script generated.
+Please modify the code directly inside the `pre_fun`, and make sure the function returns a named list of data frames.
+Please be careful about the argument names. The default argument of `pre` functions will be override by the argument in spec.
 
 ## Custom `chevron_tlg` object creation
 
+In some cases, you may want to create a new `chevron_tlg` template.
 To create a `chevron_tlg` object from scratch, use the provided constructors corresponding to the desired output:
 
 * `chevron_t()` for tables.
 * `chevron_l()` for listings.
 * `chevron_g()` for graphs.
 
-```{r}
+```{r, eval = FALSE}
 library(rtables)
 library(tern)
 my_template <- chevron_t(
-  main = aet02_main,
-  preprocess = aet02_pre,
-  postprocess = function(tlg, ...) {
-    tbl_sorted <- tlg %>%
-      sort_at_path(
-        path = c("AEBODSYS"),
-        scorefun = cont_n_onecol(j = 3) # sort based on your chosen column
-      ) %>%
-      sort_at_path(
-        path = c("AEBODSYS", "*", "AEDECOD"),
-        scorefun = score_occurrences
-      )
-    tbl_sorted
-  },
-  adam_datasets = c("adsl", "adae")
+  main = <your main function to build the table>,
+  preprocess = <your pre function to process the data>,
+  postprocess = <your post function to add custom sorting>,
+  adam_datasets = c("adsl")
 )
 
 run(my_template, syn_data)
 ```
 
 Note that to ensure the correct execution of the `run` function, the name of the first argument of the `main` function
-must be `adam_db`; the input `dm` object to pre-process. The name of the first argument of the `preprocess` function must
-be `adam_db`; the input `dm` object to create `TLG` output and finally, the name of the first argument of the
-`postprocess` function must be `tlg`, the input `TableTree` object to post-process. Validation criteria enforce these
-rules upon creation of a `chevron_tlg` object.
+must be `adam_db`; the input `list` of `data.frame` object to pre-process.
+The name of the first argument of the `preprocess` function must be `adam_db`;
+the input `dm` object to create `TLG` output and finally,
+the name of the first argument of the `postprocess` function must be `tlg`,
+the input `TableTree` object to post-process.
+Validation criteria enforce thes rules upon creation of a `chevron_tlg` object.

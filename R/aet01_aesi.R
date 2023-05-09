@@ -41,7 +41,12 @@ aet01_aesi_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adae"))
   assert_colnames(adam_db$adsl, arm_var)
   assert_colnames(adam_db$adae, arm_var)
-  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  assert_valid_var_pair(
+    adam_db$adsl[[arm_var]],
+    adam_db$adae[[arm_var]],
+    sprintf("adsl.%s", arm_var),
+    sprintf("adae.%s", arm_var)
+  )
   if (is.null(grade_groups)) {
     grade_groups <- list(
       "Grade 1" = "1",

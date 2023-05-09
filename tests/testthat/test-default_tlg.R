@@ -75,10 +75,10 @@ test_that("cmt02_pt_1 functions with default argument value return expected resu
   expect_snapshot(res)
 })
 
-test_that("dmt01_1 functions with default argument value return expected result with test data", {
-  pre_data <- dmt01_1_pre(syn_data)
-  raw_res <- dmt01_1_main(pre_data)
-  res <- dmt01_1_post(raw_res)
+test_that("dmt01 functions with default argument value return expected result with test data", {
+  pre_data <- dmt01_pre(syn_data)
+  raw_res <- dmt01_main(pre_data)
+  res <- dmt01_post(raw_res)
   expect_snapshot(res)
 })
 

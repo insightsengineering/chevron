@@ -32,7 +32,7 @@ aet01_main <- function(adam_db,
   assert_colnames(dbsel$adae, c(arm_var, safety_var, medconcept_var))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
-  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
   lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
   lbl_medconcept_var <- var_labels_for(adam_db$adae, medconcept_var)
   lyts <- aet01_lyt(

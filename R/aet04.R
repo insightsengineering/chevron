@@ -29,7 +29,7 @@ aet04_main <- function(adam_db,
   assert_colnames(adam_db$adsl, c(arm_var))
   assert_colnames(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD", "ATOXGR"))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
   lbl_aebodsys <- var_labels_for(dbsel$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
 
@@ -135,9 +135,9 @@ aet04_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      AEBODSYS = reformat(AEBODSYS, nocoding),
-      AEDECOD = reformat(AEDECOD, nocoding),
-      ATOXGR = factor(ATOXGR, levels = atoxgr_lvls)
+      AEBODSYS = reformat(.data$AEBODSYS, nocoding),
+      AEDECOD = reformat(.data$AEDECOD, nocoding),
+      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)
     )
   adam_db
 }

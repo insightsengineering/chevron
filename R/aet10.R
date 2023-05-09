@@ -26,7 +26,7 @@ aet10_main <- function(adam_db,
   assert_colnames(adam_db$adae, c(arm_var, "AEDECOD"))
   assert_colnames(adam_db$adsl, c(arm_var))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_col_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
   lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
   lyt <- aet10_lyt(
     arm_var = arm_var,

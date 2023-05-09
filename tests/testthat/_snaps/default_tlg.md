@@ -1,3 +1,21 @@
+# ael01_nollt function with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+      MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
+      ———————————————————————————————————————————————————————————————————————————————————————
+      cl A.1                      dcd A.1.1.1.1                      trm A.1.1.1.1           
+                                  dcd A.1.1.1.2                      trm A.1.1.1.2           
+      cl B.1                      dcd B.1.1.1.1                      trm B.1.1.1.1           
+      cl B.2                      dcd B.2.1.2.1                      trm B.2.1.2.1           
+                                  dcd B.2.2.3.1                      trm B.2.2.3.1           
+      cl C.1                      dcd C.1.1.1.3                      trm C.1.1.1.3           
+      cl C.2                      dcd C.2.1.2.1                      trm C.2.1.2.1           
+      cl D.1                      dcd D.1.1.1.1                      trm D.1.1.1.1           
+                                  dcd D.1.1.4.2                      trm D.1.1.4.2           
+      cl D.2                      dcd D.2.1.5.3                      trm D.2.1.5.3           
+
 # aet01 function with default argument value return expected result with test data
 
     Code
@@ -8,7 +26,7 @@
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of AEs                                              609           622            703      
-        Total number of deaths                                       24 (17.9%)    19 (14.2%)      20 (15.2%)  
+        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
         Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
         Total number of patients with at least one                                                             
           AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
@@ -438,7 +456,7 @@
           medname A_3/3                                        45 (33.6%)    54 (40.3%)      48 (36.4%)  
           medname B_3/4                                        47 (35.1%)    47 (35.1%)      52 (39.4%)  
 
-# dmt01_1 functions with default argument value return expected result with test data
+# dmt01 functions with default argument value return expected result with test data
 
     Code
       res
@@ -451,14 +469,14 @@
           Mean (SD)                                   33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
           Median                                         33.0          35.0            35.0            34.0    
           Min - Max                                   21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
-        Age group (yr)                                                                                         
+        Age Group                                                                                              
           n                                               134           134            132             400     
           <65                                         134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
           >=65                                             0             0           1 (0.8%)        1 (0.2%)  
         Sex                                                                                                    
           n                                               134           134            132             400     
-          F                                           79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
-          M                                           55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
+          Male                                        55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
+          Female                                      79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
         Ethnicity                                                                                              
           n                                               134           134            132             400     
           NOT REPORTED                                 6 (4.5%)      10 (7.5%)      11 (8.3%)       27 (6.8%)  
