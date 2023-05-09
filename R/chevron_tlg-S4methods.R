@@ -355,24 +355,18 @@ setMethod(
     if (details) {
       c(
         "# Edit Functions.",
-        utils::capture.output(
-          print(rlang::call2("<-", sym("pre_fun"), preprocess(x)),
-            useSource = TRUE
-          )
+        deparse(rlang::call2("<-", sym("pre_fun"), preprocess(x)),
+          control = "useSource"
         ),
         "",
-        utils::capture.output(
-          print(
-            rlang::call2("<-", sym("main_fun"), main(x)),
-            useSource = TRUE
-          )
+        deparse(
+          rlang::call2("<-", sym("main_fun"), main(x)),
+          control = "useSource"
         ),
         "",
-        utils::capture.output(
-          print(
-            rlang::call2("<-", sym("post_fun"), postprocess(x)),
-            useSource = TRUE
-          )
+        deparse(
+          rlang::call2("<-", sym("post_fun"), postprocess(x)),
+          control = "useSource"
         ),
         "",
         "# Create TLG",

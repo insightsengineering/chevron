@@ -207,6 +207,12 @@ test_that("script_funs works as expected", {
   checkmate::expect_character(res)
 })
 
+test_that("script_funs works as expected with details set to TRUE in non interactive mode", {
+  skip_if(!interactive())
+  res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls", details = TRUE))
+  expect_snapshot(res)
+})
+
 test_that("script_funs works as expected with details set to TRUE", {
   res <- expect_silent(script_funs(aet04_1, adam_db = "data", args = "args_ls", details = TRUE))
   checkmate::expect_character(res)
