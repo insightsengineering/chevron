@@ -127,8 +127,10 @@ coxt02_1_check <- function(adam_db, arm_var, time, event, covariates, strata,
 
   msg <- NULL
 
-  msg <- c(msg, check_all_colnames(adam_db$adtte, c("USUBJID", "PARAMCD", arm_var, time, event,
-                                                    covariates, strata)))
+  msg <- c(msg, check_all_colnames(adam_db$adtte, c(
+    "USUBJID", "PARAMCD", arm_var, time, event,
+    covariates, strata
+  )))
   msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
 
   if (is.null(msg)) {
