@@ -1,6 +1,6 @@
-# mht01_1 ----
+# mht01 ----
 
-#' @describeIn mht01_1 Main TLG function
+#' @describeIn mht01 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param lbl_mhbodsys (`string`) text label for `MHBODSYS`. If `NULL`, the value of the argument defaults to the label
@@ -21,24 +21,32 @@
 #'
 #' @export
 #'
-mht01_1_main <- function(adam_db,
-                         arm_var = "ARM",
-                         lbl_overall = NULL,
-                         lbl_mhbodsys = "MedDRA System Organ Class",
-                         lbl_mhdecod = "MedDRA Preferred Term",
-                         deco = std_deco("MHT01"),
-                         ...) {
+mht01_main <- function(adam_db,
+                       arm_var = "ARM",
+                       lbl_overall = NULL,
+                       lbl_mhbodsys = "MedDRA System Organ Class",
+                       lbl_mhdecod = "MedDRA Preferred Term",
+                       ...) {
+  assert_all_tablenames(adam_db, c("admh", "adsl"))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  checkmate::assert_string(lbl_mhbodsys, null.ok = TRUE)
+  checkmate::assert_string(lbl_mhdecod, null.ok = TRUE)
+  assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), empty_ok = TRUE)
+  assert_valid_variable(adam_db$admh, "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, "USUBJID")
+  assert_valid_var_pair(adam_db$adsl, adam_db$admh, arm_var)
+
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- mht01_1_lyt(
+  lyt <- mht01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
-    lbl_mhdecod = lbl_mhdecod,
-    deco = deco
+    lbl_mhdecod = lbl_mhdecod
   )
 
   tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
@@ -46,18 +54,17 @@ mht01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn mht01_1 Layout
+#' @describeIn mht01 Layout
 #'
-#' @inheritParams mht01_1_main
+#' @inheritParams mht01_main
 #'
-#' @export
+#' @keywords internal
 #'
-mht01_1_lyt <- function(arm_var,
-                        lbl_overall,
-                        lbl_mhbodsys,
-                        lbl_mhdecod,
-                        deco) {
-  basic_table_deco(deco) %>%
+mht01_lyt <- function(arm_var,
+                      lbl_overall,
+                      lbl_mhbodsys,
+                      lbl_mhdecod) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -94,16 +101,13 @@ mht01_1_lyt <- function(arm_var,
     append_topleft(paste0("  ", lbl_mhdecod))
 }
 
-#' @describeIn mht01_1 Preprocessing
+#' @describeIn mht01 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-mht01_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "admh"))
-
-
+mht01_pre <- function(adam_db, ...) {
   adam_db$admh <- adam_db$admh %>%
     filter(.data$ANL01FL == "Y")
 
@@ -121,13 +125,13 @@ mht01_1_pre <- function(adam_db, ...) {
   reformat(adam_db, new_format, na_last = TRUE)
 }
 
-#' @describeIn mht01_1 Postprocessing
+#' @describeIn mht01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+mht01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -141,7 +145,7 @@ mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tbl_sorted)
 }
 
-#' `MHT01` Table 1 (Default) Medical History Table 1.
+#' `MHT01` Medical History Table.
 #'
 #' The `MHT01` table provides an overview of the subjects medical
 #' history by SOC and Preferred Term.
@@ -150,10 +154,10 @@ mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(mht01_1, syn_data)
-mht01_1 <- chevron_t(
-  main = mht01_1_main,
-  preprocess = mht01_1_pre,
-  postprocess = mht01_1_post,
+#' run(mht01, syn_data)
+mht01 <- chevron_t(
+  main = mht01_main,
+  preprocess = mht01_pre,
+  postprocess = mht01_post,
   adam_datasets = c("adsl", "admh")
 )

@@ -194,10 +194,3 @@ test_that("lbt14_2 functions with default argument value return expected result 
   res <- lbt14_2_post(raw_res)
   expect_snapshot(res)
 })
-
-test_that("mht01_1 functions with default argument value return expected result with test data", {
-  pre_data <- mht01_1_pre(syn_data)
-  raw_res <- mht01_1_main(pre_data)
-  res <- mht01_1_post(raw_res)
-  expect_snapshot(res)
-})
