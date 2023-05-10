@@ -5,9 +5,7 @@
 #' @inheritParams gen_args
 #' @param incl_n_treatment (`flag`) include total number of treatments per medication.
 #' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`string`) label for the variable defining the medication category.
 #' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`string`) label for the variable defining the medication name.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
@@ -28,26 +26,21 @@ cmt01a_main <- function(adam_db,
                         arm_var = "ARM",
                         incl_n_treatment = TRUE,
                         medcat_var = "ATC2",
-                        lbl_medcat_var = "ATC Class Level 2",
                         medname_var = "CMDECOD",
-                        lbl_medname_var = "Other Treatment",
                         lbl_overall = NULL,
                         ...) {
+  dbsel <- get_db_data(adam_db, "adsl", "adcm")
   checkmate::assert_string(arm_var)
   checkmate::assert_flag(incl_n_treatment)
   checkmate::assert_string(medcat_var)
-  checkmate::assert_string(lbl_medcat_var)
   checkmate::assert_string(medname_var)
-  checkmate::assert_string(lbl_medname_var)
-  assert_colnames(adam_db$adcm, c(medcat_var, medname_var, "CMSEQ"))
-  assert_valid_var_pair(
-    adam_db$adsl[[arm_var]],
-    adam_db$adcm[[arm_var]],
-    sprintf("adsl.%s", arm_var),
-    sprintf("adcm.%s", arm_var)
-  )
+  assert_valid_variable(dbsel$adcm, c(arm_var, medcat_var, medname_var))
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(dbsel$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE)
+  assert_valid_var_pair(dbsel$adsl, dbsel$adcm, arm_var)
 
-  dbsel <- get_db_data(adam_db, "adsl", "adcm")
+  lbl_medcat_var <- var_labels_for(dbsel$adcm, medcat_var)
+  lbl_medname_var <- var_labels_for(dbsel$adcm, medname_var)
 
   lyt <- cmt01a_lyt(
     arm_var = arm_var,
@@ -56,7 +49,7 @@ cmt01a_main <- function(adam_db,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
-    lbl_medname_var = lbl_medname_varo
+    lbl_medname_var = lbl_medname_var
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -64,12 +57,14 @@ cmt01a_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn cmt01a Layout
+#' cmt01a Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams cmt01a_main
+#' @param lbl_medname_var (`string`) label for the variable defining the medication name.
+#' @param lbl_medcat_var (`string`) label for the variable defining the medication category.
 #'
-#' @export
+#' @keywords internal
 #'
 cmt01a_lyt <- function(arm_var,
                        lbl_overall,
@@ -129,31 +124,14 @@ cmt01a_lyt <- function(arm_var,
 #' @export
 #'
 cmt01a_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adcm"))
-
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.character(.data$CMSEQ))
-
-  adam_db$adcm <- adam_db$adcm %>%
     mutate(
-      ATC2 = with_label(.data$ATC2, "ATC Class Level 2"),
-      CMDECOD = with_label(.data$CMDECOD, "Other Treatment")
+      CMDECOD = reformat(.data$CMDECOD, nocoding),
+      ATC2 = reformat(.data$ATC2, nocoding),
+      CMSEQ = as.character(.data$CMSEQ)
     )
-
-  fmt_ls <- list(
-    ATC2 = rule(
-      "No Coding available" = c("", NA)
-    ),
-    CMDECOD = rule(
-      "No Coding available" = c("", NA)
-    ),
-    CMSEQ = rule()
-  )
-
-  new_format <- list(adcm = fmt_ls)
-
-  reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
 #' @describeIn cmt01a Postprocessing
@@ -165,25 +143,22 @@ cmt01a_pre <- function(adam_db, ...) {
 #' @export
 #'
 cmt01a_post <- function(tlg, prune_0 = TRUE, sort_by_freq = FALSE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  if (prune_0) {
-    tlg <- smart_prune(tlg)
-  }
-
   if (sort_by_freq) {
     tlg <- tlg %>%
-      sort_at_path(
-        medcat_var,
+      tlg_sort_by_var(
+        var = medcat_var,
         scorefun = cont_n_onecol(ncol(tlg))
       )
   }
-
-  tbl_sorted <- tlg %>%
-    sort_at_path(
-      path = c(medcat_var, "*", medname_var),
+  tlg <- tlg %>%
+    tlg_sort_by_var(
+      var = c(medcat_var, medname_var),
       scorefun = score_occurrences
     )
-
-  std_postprocess(tbl_sorted)
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+  std_postprocess(tlg)
 }
 
 #' `CMT01A` Concomitant Medication by Medication Class and Preferred Name.

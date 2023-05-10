@@ -24,24 +24,18 @@ vst02_main <- function(adam_db,
                        lbl_vs_assessment = "Assessment",
                        lbl_vs_abnormality = "Abnormality",
                        lbl_overall = NULL,
-                       prune_0 = FALSE,
                        ...) {
-  assert_all_tablenames(adam_db, c("adsl", "advs"))
-  assert_valid_var_pair(
-    adam_db$adsl[[arm_var]],
-    adam_db$advs[[arm_var]],
-    sprintf("adsl.%s", arm_var),
-    sprintf("advs.%s", arm_var)
-  )
+  dbsel <- get_db_data(adam_db, "adsl", "advs")
+  checkmate::assert_string(arm_var)
   checkmate::assert_flag(exclude_base_abn)
   checkmate::assert_string(lbl_vs_assessment)
   checkmate::assert_string(lbl_vs_abnormality)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_flag(prune_0)
-  assert_colnames(adam_db$adsl, c(arm_var))
-  assert_colnames(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"))
 
-
+  assert_valid_variable(dbsel$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"))
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(dbsel$advs, "USUBJID", empty_ok = TRUE)
+  assert_valid_var_pair(dbsel$adsl, dbsel$advs, arm_var)
 
   lyt <- vst02_lyt(
     arm_var = arm_var,
@@ -89,26 +83,16 @@ vst02_lyt <- function(arm_var,
 #' @export
 #'
 vst02_pre <- function(adam_db, ...) {
+  high_low_format <- rule(
+    HIGH = c("HIGH HIGH", "HIGH"),
+    LOW = c("LOW LOW", "LOW")
+  )
   adam_db$advs <- adam_db$advs %>%
-    filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y") %>%
     mutate(
-      ANRIND = case_when(
-        .data$ANRIND == "HIGH HIGH" ~ "HIGH",
-        .data$ANRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(.data$ANRIND)
-      ),
-      BNRIND = case_when(
-        .data$BNRIND == "HIGH HIGH" ~ "HIGH",
-        .data$BNRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(.data$BNRIND)
-      )
-    ) %>%
-    mutate(
-      ANRIND = as.factor(.data$ANRIND),
-      BNRIND = as.factor(.data$BNRIND)
+      ANRIND = reformat(.data$ANRIND, high_low_format),
+      BNRIND = reformat(.data$BNRIND, high_low_format)
     )
-
   adam_db
 }
 
