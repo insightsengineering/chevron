@@ -1,152 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="ael01_nollt" timestamp="2023-05-09T08:49:57Z" hostname="6a63424e8ca3" tests="8" skipped="4" failures="0" errors="0" time="1.433">
-    <testcase time="0.999" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset"/>
-    <testcase time="0.0910000000000002" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset">
+  <testsuite name="ael01_nollt" timestamp="2023-05-10T06:20:22Z" hostname="8676ad11fa6c" tests="8" skipped="4" failures="0" errors="0" time="1.916">
+    <testcase time="1.331" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset"/>
+    <testcase time="0.119000000000001" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset">
       <skipped message="Reason: On CRAN ('test-ael01_nollt.R:7:3')"/>
     </testcase>
-    <testcase time="0.0499999999999998" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label"/>
-    <testcase time="0.159" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label">
+    <testcase time="0.069" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label"/>
+    <testcase time="0.218999999999999" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label">
       <skipped message="Reason: On CRAN ('test-ael01_nollt.R:19:3')"/>
     </testcase>
-    <testcase time="0.0600000000000001" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values"/>
-    <testcase time="0.0260000000000002" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values">
+    <testcase time="0.0750000000000002" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values"/>
+    <testcase time="0.0339999999999998" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values">
       <skipped message="Reason: On CRAN ('test-ael01_nollt.R:32:3')"/>
     </testcase>
-    <testcase time="0.0309999999999997" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values"/>
-    <testcase time="0.0169999999999999" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values">
+    <testcase time="0.0420000000000007" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values"/>
+    <testcase time="0.0269999999999992" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values">
       <skipped message="Reason: On CRAN ('test-ael01_nollt.R:47:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet01" timestamp="2023-05-09T08:49:58Z" hostname="6a63424e8ca3" tests="9" skipped="4" failures="0" errors="0" time="1.786">
-    <testcase time="0.502000000000001" classname="aet01" name="aet01_can_handle_all_NA_values"/>
-    <testcase time="0.085" classname="aet01" name="aet01_can_handle_all_NA_values">
+  <testsuite name="aet01" timestamp="2023-05-10T06:20:23Z" hostname="8676ad11fa6c" tests="9" skipped="4" failures="0" errors="0" time="2.59">
+    <testcase time="0.737" classname="aet01" name="aet01_can_handle_all_NA_values"/>
+    <testcase time="0.126" classname="aet01" name="aet01_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01.R:12:3')"/>
     </testcase>
-    <testcase time="0.324" classname="aet01" name="aet01_can_handle_some_NA_values"/>
-    <testcase time="0.0709999999999997" classname="aet01" name="aet01_can_handle_some_NA_values">
+    <testcase time="0.471" classname="aet01" name="aet01_can_handle_some_NA_values"/>
+    <testcase time="0.104" classname="aet01" name="aet01_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet01.R:29:3')"/>
     </testcase>
-    <testcase time="0.231" classname="aet01" name="aet01_can_use_custom_lbl_safety_var"/>
-    <testcase time="0.0419999999999998" classname="aet01" name="aet01_can_use_custom_lbl_safety_var">
+    <testcase time="0.326000000000001" classname="aet01" name="aet01_can_use_custom_lbl_safety_var"/>
+    <testcase time="0.0590000000000002" classname="aet01" name="aet01_can_use_custom_lbl_safety_var">
       <skipped message="Reason: On CRAN ('test-aet01.R:35:3')"/>
     </testcase>
-    <testcase time="0.117" classname="aet01" name="aet01_fails_on_incomplete_data_input"/>
-    <testcase time="0.336" classname="aet01" name="aet01_can_use_custom_medconcept_var"/>
-    <testcase time="0.0780000000000003" classname="aet01" name="aet01_can_use_custom_medconcept_var">
+    <testcase time="0.164" classname="aet01" name="aet01_fails_on_incomplete_data_input"/>
+    <testcase time="0.488" classname="aet01" name="aet01_can_use_custom_medconcept_var"/>
+    <testcase time="0.115" classname="aet01" name="aet01_can_use_custom_medconcept_var">
       <skipped message="Reason: On CRAN ('test-aet01.R:54:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet01_aesi" timestamp="2023-05-09T08:50:00Z" hostname="6a63424e8ca3" tests="7" skipped="3" failures="0" errors="0" time="1.231">
-    <testcase time="0.294" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
-    <testcase time="0.0760000000000005" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values">
-      <skipped message="Reason: On CRAN ('test-aet01_aesi.R:17:3')"/>
+  <testsuite name="aet01_aesi" timestamp="2023-05-10T06:20:26Z" hostname="8676ad11fa6c" tests="4" skipped="0" failures="0" errors="3" time="0.31">
+    <testcase time="0.0749999999999993" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values">
+      <error type="error" message="Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]],  ('test-aet01_aesi.R:16:3')">Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], 
+    sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))`: Assertion on 'df1' failed: Must be of type 'data.frame', not 'factor'.
+Backtrace:
+  1. testthat::expect_silent(run(aet01_aesi, proc_data))
+       at test-aet01_aesi.R:16:2
+ 10. chevron::run(aet01_aesi, proc_data)
+ 12. chevron (local) `&lt;fn&gt;`(adam_db = `&lt;named list&gt;`)
+ 13. chevron:::assert_valid_var_pair(...)
+ 14. checkmate::assert_data_frame(df1)
+ 15. checkmate::makeAssertion(x, res, .var.name, add)
+ 16. checkmate:::mstop(...)</error>
     </testcase>
-    <testcase time="0.253" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
-    <testcase time="0.0659999999999998" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values">
-      <skipped message="Reason: On CRAN ('test-aet01_aesi.R:30:3')"/>
+    <testcase time="0.0690000000000008" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values">
+      <error type="error" message="Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]],  ('test-aet01_aesi.R:29:3')">Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], 
+    sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))`: Assertion on 'df1' failed: Must be of type 'data.frame', not 'factor'.
+Backtrace:
+  1. testthat::expect_silent(run(aet01_aesi, proc_data))
+       at test-aet01_aesi.R:29:2
+ 10. chevron::run(aet01_aesi, proc_data)
+ 12. chevron (local) `&lt;fn&gt;`(adam_db = `&lt;named list&gt;`)
+ 13. chevron:::assert_valid_var_pair(...)
+ 14. checkmate::assert_data_frame(df1)
+ 15. checkmate::makeAssertion(x, res, .var.name, add)
+ 16. checkmate:::mstop(...)</error>
     </testcase>
-    <testcase time="0.348" classname="aet01_aesi" name="aet01_aesi_works_with_ALL_argument"/>
-    <testcase time="0.117" classname="aet01_aesi" name="aet01_aesi_works_with_ALL_argument">
-      <skipped message="Reason: On CRAN ('test-aet01_aesi.R:36:3')"/>
+    <testcase time="0.052999999999999" classname="aet01_aesi" name="aet01_aesi_works_with_ALL_argument">
+      <error type="error" message="Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]],  ('test-aet01_aesi.R:35:3')">Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], 
+    sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))`: Assertion on 'df1' failed: Must be of type 'data.frame', not 'factor'.
+Backtrace:
+  1. testthat::expect_silent(run(aet01_aesi, proc_data, aesi_vars = c("ALL")))
+       at test-aet01_aesi.R:35:2
+ 10. chevron::run(aet01_aesi, proc_data, aesi_vars = c("ALL"))
+ 12. chevron (local) `&lt;fn&gt;`(adam_db = `&lt;named list&gt;`, aesi_vars = "ALL")
+ 13. chevron:::assert_valid_var_pair(...)
+ 14. checkmate::assert_data_frame(df1)
+ 15. checkmate::makeAssertion(x, res, .var.name, add)
+ 16. checkmate:::mstop(...)</error>
     </testcase>
-    <testcase time="0.077" classname="aet01_aesi" name="aet01_aesi_check_fails_on_incomplete_data_input"/>
+    <testcase time="0.113" classname="aet01_aesi" name="aet01_aesi_check_fails_on_incomplete_data_input"/>
   </testsuite>
-  <testsuite name="aet02" timestamp="2023-05-09T08:50:01Z" hostname="6a63424e8ca3" tests="3" skipped="1" failures="0" errors="0" time="0.432">
-    <testcase time="0.0519999999999996" classname="aet02" name="aet02_fails_on_incomplete_data_input"/>
-    <testcase time="0.138000000000001" classname="aet02" name="aet02_handle_empty_data_input"/>
-    <testcase time="0.242" classname="aet02" name="aet02_can_have_different_levels_of_row_split">
+  <testsuite name="aet02" timestamp="2023-05-10T06:20:26Z" hostname="8676ad11fa6c" tests="3" skipped="1" failures="0" errors="1" time="0.526">
+    <testcase time="0.0680000000000014" classname="aet02" name="aet02_fails_on_incomplete_data_input"/>
+    <testcase time="0.0389999999999997" classname="aet02" name="aet02_handle_empty_data_input">
+      <error type="error" message="Error: Variable`dbsel$adae$Unique Subject Identifier` should at least contain one valid level! ('test-aet02.R:24:3')">Error: Variable`dbsel$adae$Unique Subject Identifier` should at least contain one valid level!
+Backtrace:
+  1. testthat::expect_silent(run(aet02, proc_data))
+       at test-aet02.R:24:2
+ 10. chevron::run(aet02, proc_data)
+ 12. chevron (local) `&lt;fn&gt;`(adam_db = `&lt;named list&gt;`)
+ 13. chevron::assert_valid_variable(...)
+ 14. base::mapply(...)
+ 16. chevron:::assert_valid_var.character(dots[[1L]][[1L]], dots[[2L]][[1L]])
+ 18. chevron:::assert_valid_var.factor(...)
+ 19. chevron::abort("Variable", quote_str(label), " should at least contain one valid level!")</error>
+    </testcase>
+    <testcase time="0.418999999999999" classname="aet02" name="aet02_can_have_different_levels_of_row_split">
       <skipped message="Reason: On CRAN ('test-aet02.R:28:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet03" timestamp="2023-05-09T08:50:02Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="2.633">
-    <testcase time="0.452" classname="aet03" name="aet03_can_handle_NA_values"/>
-    <testcase time="0.0750000000000002" classname="aet03" name="aet03_can_handle_NA_values">
+  <testsuite name="aet03" timestamp="2023-05-10T06:20:27Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="3.914">
+    <testcase time="0.709000000000001" classname="aet03" name="aet03_can_handle_NA_values"/>
+    <testcase time="0.0999999999999996" classname="aet03" name="aet03_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet03.R:10:3')"/>
     </testcase>
-    <testcase time="1.895" classname="aet03" name="aet03_can_handle_some_NA_values"/>
-    <testcase time="0.211" classname="aet03" name="aet03_can_handle_some_NA_values">
+    <testcase time="2.745" classname="aet03" name="aet03_can_handle_some_NA_values"/>
+    <testcase time="0.360000000000001" classname="aet03" name="aet03_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet03.R:27:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet04" timestamp="2023-05-09T08:50:04Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="4.26">
-    <testcase time="0.585000000000001" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="0.116999999999999" classname="aet04" name="aet04_can_handle_NA_values">
+  <testsuite name="aet04" timestamp="2023-05-10T06:20:31Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="6.273">
+    <testcase time="0.917999999999999" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.19" classname="aet04" name="aet04_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet04.R:10:3')"/>
     </testcase>
-    <testcase time="3.267" classname="aet04" name="aet04_can_handle_some_NA_values"/>
-    <testcase time="0.290999999999999" classname="aet04" name="aet04_can_handle_some_NA_values">
+    <testcase time="4.673" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="0.492000000000001" classname="aet04" name="aet04_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet04.R:42:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="aet10" timestamp="2023-05-09T08:50:09Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="0.271">
-    <testcase time="0.0790000000000006" classname="aet10" name="aet10_can_handle_NA_values"/>
-    <testcase time="0.0259999999999998" classname="aet10" name="aet10_can_handle_NA_values">
+  <testsuite name="aet10" timestamp="2023-05-10T06:20:37Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="0.426">
+    <testcase time="0.119" classname="aet10" name="aet10_can_handle_NA_values"/>
+    <testcase time="0.0509999999999984" classname="aet10" name="aet10_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-aet10.R:10:3')"/>
     </testcase>
-    <testcase time="0.115" classname="aet10" name="aet10_can_handle_some_NA_values"/>
-    <testcase time="0.0510000000000002" classname="aet10" name="aet10_can_handle_some_NA_values">
+    <testcase time="0.169" classname="aet10" name="aet10_can_handle_some_NA_values"/>
+    <testcase time="0.0869999999999997" classname="aet10" name="aet10_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-aet10.R:24:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="assertions" timestamp="2023-05-09T08:50:09Z" hostname="6a63424e8ca3" tests="14" skipped="0" failures="0" errors="0" time="0.083">
-    <testcase time="0.0179999999999989" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.00500000000000078" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.00200000000000067" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.00499999999999901" classname="assertions" name="assert_colnames_works_as_expected"/>
-    <testcase time="0.00500000000000078" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.00199999999999889" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.00500000000000078" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.00500000000000078" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
-    <testcase time="0.00499999999999901" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.00500000000000078" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.00499999999999901" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
-    <testcase time="0.0080000000000009" classname="assertions" name="assert_args_works_as_expected"/>
-    <testcase time="0.00199999999999889" classname="assertions" name="assert_args_works_as_expected"/>
-    <testcase time="0.011000000000001" classname="assertions" name="assert_args_works_as_expected"/>
+  <testsuite name="assertions" timestamp="2023-05-10T06:20:38Z" hostname="8676ad11fa6c" tests="14" skipped="0" failures="0" errors="0" time="0.131">
+    <testcase time="0.027000000000001" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.00700000000000145" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.00300000000000011" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.00799999999999912" classname="assertions" name="assert_colnames_works_as_expected"/>
+    <testcase time="0.00700000000000145" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.00299999999999656" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.00800000000000267" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.00900000000000034" classname="assertions" name="assert_one_tablenames_works_as_expected"/>
+    <testcase time="0.00799999999999912" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.00900000000000034" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.00900000000000034" classname="assertions" name="assert_all_tablenames_works_as_expected"/>
+    <testcase time="0.0139999999999993" classname="assertions" name="assert_args_works_as_expected"/>
+    <testcase time="0.00400000000000134" classname="assertions" name="assert_args_works_as_expected"/>
+    <testcase time="0.014999999999997" classname="assertions" name="assert_args_works_as_expected"/>
   </testsuite>
-  <testsuite name="checks" timestamp="2023-05-09T08:50:09Z" hostname="6a63424e8ca3" tests="8" skipped="0" failures="0" errors="0" time="0.031">
-    <testcase time="0.00799999999999912" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00400000000000134" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.000999999999999446" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00399999999999956" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00500000000000078" classname="checks" name="check_one_colnames_works_as_expected"/>
-    <testcase time="0.00399999999999956" classname="checks" name="check_one_colnames_works_as_expected"/>
-    <testcase time="0.00199999999999889" classname="checks" name="check_one_colnames_works_as_expected"/>
+  <testsuite name="checks" timestamp="2023-05-10T06:20:38Z" hostname="8676ad11fa6c" tests="8" skipped="0" failures="0" errors="0" time="0.066">
+    <testcase time="0.0289999999999999" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00200000000000244" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.0069999999999979" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.00700000000000145" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="checks" name="check_one_colnames_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="checks" name="check_one_colnames_works_as_expected"/>
   </testsuite>
-  <testsuite name="chevron_tlg-class" timestamp="2023-05-09T08:50:09Z" hostname="6a63424e8ca3" tests="24" skipped="0" failures="0" errors="0" time="0.093">
-    <testcase time="0.0100000000000016" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00500000000000078" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00399999999999956" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+  <testsuite name="chevron_tlg-class" timestamp="2023-05-10T06:20:38Z" hostname="8676ad11fa6c" tests="24" skipped="0" failures="0" errors="0" time="0.122">
+    <testcase time="0.014999999999997" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00799999999999912" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.0140000000000011" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00200000000000067" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00500000000000078" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00299999999999834" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00799999999999912" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00900000000000034" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00700000000000145" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00900000000000034" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.0069999999999979" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00400000000000134" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00200000000000067" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00999999999999801" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
     <testcase time="0.00100000000000122" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
     <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.000999999999999446" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
   </testsuite>
-  <testsuite name="chevron_tlg-methods" timestamp="2023-05-09T08:50:09Z" hostname="6a63424e8ca3" tests="46" skipped="3" failures="6" errors="1" time="3.313">
-    <testcase time="2.92" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object">
+  <testsuite name="chevron_tlg-methods" timestamp="2023-05-10T06:20:38Z" hostname="8676ad11fa6c" tests="46" skipped="3" failures="6" errors="1" time="5.36">
+    <testcase time="4.753" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object">
       <skipped message="Reason: On CRAN ('test-chevron_tlg-methods.R:5:3')"/>
     </testcase>
-    <testcase time="0.0169999999999995" classname="chevron_tlg_methods" name="run_returns_a_warning_if_provided_with_invalid_arguments"/>
-    <testcase time="0.0109999999999992" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object_when_auto_pre_FALSE">
+    <testcase time="0.0259999999999998" classname="chevron_tlg_methods" name="run_returns_a_warning_if_provided_with_invalid_arguments"/>
+    <testcase time="0.0280000000000022" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object_when_auto_pre_FALSE">
       <error type="error" message="Error in `h(simpleError(msg, call))`: error in evaluating the argument 'object' in selecting a method for function 'run': object 'dmt01_1' not found ('test-chevron_tlg-methods.R:16:3')">Error in `h(simpleError(msg, call))`: error in evaluating the argument 'object' in selecting a method for function 'run': object 'dmt01_1' not found
 Backtrace:
  1. chevron::run(dmt01_1, proc_data, auto_pre = FALSE)
@@ -154,1086 +193,529 @@ Backtrace:
  2. base::.handleSimpleError(...)
  3. base (local) h(simpleError(msg, call))</error>
     </testcase>
-    <testcase time="0.0229999999999997" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.0309999999999988" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00199999999999889" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
     <testcase time="0.00200000000000244" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE">
+    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE">
       <failure type="failure" message="Check on 'res' failed: Must have length 10, but has length 7 ('test-chevron_tlg-methods.R:30:3')">Check on 'res' failed: Must have length 10, but has length 7
 Backtrace:
  1. checkmate::expect_list(res, len = 10, names = "named")
       at test-chevron_tlg-methods.R:30:2
  2. checkmate::makeExpectation(x, res, info, label)</failure>
     </testcase>
-    <testcase time="0.0180000000000007" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE">
+    <testcase time="0.027000000000001" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE">
       <failure type="failure" message="Check on 'names(res)' failed: Names must be a identical to set {'adam_db','arm_var','lbl_overall','lbl_aebodsys','lbl_aedecod','grade_groups','deco','...','tlg','prune_0'}, but is {'adam_db','arm_var','lbl_overall','grade_groups','...','tlg','prune_0'} ('test-chevron_tlg-methods.R:31:3')">Check on 'names(res)' failed: Names must be a identical to set {'adam_db','arm_var','lbl_overall','lbl_aebodsys','lbl_aedecod','grade_groups','deco','...','tlg','prune_0'}, but is {'adam_db','arm_var','lbl_overall','grade_groups','...','tlg','prune_0'}
 Backtrace:
  1. checkmate::expect_names(...)
       at test-chevron_tlg-methods.R:31:2
  2. checkmate::makeExpectation(x, res, info, label)</failure>
     </testcase>
-    <testcase time="0.0199999999999996" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object">
+    <testcase time="0.032" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object">
       <failure type="failure" message="Check on 'res' failed: Must have length 11, but has length 8 ('test-chevron_tlg-methods.R:47:3')">Check on 'res' failed: Must have length 11, but has length 8
 Backtrace:
  1. checkmate::expect_list(res, len = 11, names = "named")
       at test-chevron_tlg-methods.R:47:2
  2. checkmate::makeExpectation(x, res, info, label)</failure>
     </testcase>
-    <testcase time="0.0179999999999971" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object">
+    <testcase time="0.0280000000000022" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object">
       <failure type="failure" message="Check on 'names(res)' failed: Names must be a identical to set {'adam_db','arm_var','lbl_overall','lbl_aebodsys','lbl_aedecod','grade_groups','deco','...','new_arg','tlg','prune_0'}, but is {'adam_db','arm_var','lbl_overall','grade_groups','...','new_arg','tlg','prune_0'} ('test-chevron_tlg-methods.R:48:3')">Check on 'names(res)' failed: Names must be a identical to set {'adam_db','arm_var','lbl_overall','lbl_aebodsys','lbl_aedecod','grade_groups','deco','...','new_arg','tlg','prune_0'}, but is {'adam_db','arm_var','lbl_overall','grade_groups','...','new_arg','tlg','prune_0'}
 Backtrace:
  1. checkmate::expect_names(...)
       at test-chevron_tlg-methods.R:48:2
  2. checkmate::makeExpectation(x, res, info, label)</failure>
     </testcase>
-    <testcase time="0.017000000000003" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
-    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="main_works_as_expected"/>
-    <testcase time="0.0100000000000016" classname="chevron_tlg_methods" name="get_main_works_as_expected"/>
-    <testcase time="0.00300000000000011" classname="chevron_tlg_methods" name="get_main_works_as_expected"/>
-    <testcase time="0.00799999999999912" classname="chevron_tlg_methods" name="main_setter_works_as_expected"/>
-    <testcase time="0.0120000000000005" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
-    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="preprocess_works_as_expected"/>
-    <testcase time="0.00900000000000034" classname="chevron_tlg_methods" name="get_preprocess_works_as_expected"/>
-    <testcase time="0.00300000000000011" classname="chevron_tlg_methods" name="get_preprocess_works_as_expected"/>
-    <testcase time="0.00800000000000267" classname="chevron_tlg_methods" name="preprocess_setter_works_as_expected"/>
-    <testcase time="0.0119999999999969" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
-    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="postprocess_works_as_expected"/>
-    <testcase time="0.00900000000000034" classname="chevron_tlg_methods" name="get_postprocess_works_as_expected"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="get_postprocess_works_as_expected"/>
-    <testcase time="0.0159999999999982" classname="chevron_tlg_methods" name="postprocess_setter_works_as_expected"/>
-    <testcase time="0.0120000000000005" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
-    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="datasets_works_as_expected"/>
-    <testcase time="0.00899999999999679" classname="chevron_tlg_methods" name="get_adam_datasets_works_as_expected"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="get_adam_datasets_works_as_expected"/>
-    <testcase time="0.00799999999999912" classname="chevron_tlg_methods" name="datasets_setter_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="script_works_as_expected">
+    <testcase time="0.0269999999999975" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.0120000000000005" classname="chevron_tlg_methods" name="main_works_as_expected"/>
+    <testcase time="0.0139999999999993" classname="chevron_tlg_methods" name="get_main_works_as_expected"/>
+    <testcase time="0.00700000000000145" classname="chevron_tlg_methods" name="get_main_works_as_expected"/>
+    <testcase time="0.0109999999999992" classname="chevron_tlg_methods" name="main_setter_works_as_expected"/>
+    <testcase time="0.0180000000000007" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
+    <testcase time="0.0109999999999992" classname="chevron_tlg_methods" name="preprocess_works_as_expected"/>
+    <testcase time="0.0130000000000017" classname="chevron_tlg_methods" name="get_preprocess_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="get_preprocess_works_as_expected"/>
+    <testcase time="0.00999999999999801" classname="chevron_tlg_methods" name="preprocess_setter_works_as_expected"/>
+    <testcase time="0.0190000000000019" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
+    <testcase time="0.0199999999999996" classname="chevron_tlg_methods" name="postprocess_works_as_expected"/>
+    <testcase time="0.0140000000000029" classname="chevron_tlg_methods" name="get_postprocess_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="get_postprocess_works_as_expected"/>
+    <testcase time="0.0109999999999992" classname="chevron_tlg_methods" name="postprocess_setter_works_as_expected"/>
+    <testcase time="0.0180000000000007" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
+    <testcase time="0.00999999999999801" classname="chevron_tlg_methods" name="datasets_works_as_expected"/>
+    <testcase time="0.0130000000000017" classname="chevron_tlg_methods" name="get_adam_datasets_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="get_adam_datasets_works_as_expected"/>
+    <testcase time="0.0119999999999969" classname="chevron_tlg_methods" name="datasets_setter_works_as_expected"/>
+    <testcase time="0.00800000000000267" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="script_works_as_expected">
       <failure type="failure" message="Check on 'res' failed: Must have length 7, but has length 4 ('test-chevron_tlg-methods.R:186:3')">Check on 'res' failed: Must have length 7, but has length 4
 Backtrace:
  1. checkmate::expect_character(res, len = 7)
       at test-chevron_tlg-methods.R:186:2
  2. checkmate::makeExpectation(x, res, info, label)</failure>
     </testcase>
-    <testcase time="0.0150000000000006" classname="chevron_tlg_methods" name="script_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00499999999999901" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments">
+    <testcase time="0.022000000000002" classname="chevron_tlg_methods" name="script_works_as_expected"/>
+    <testcase time="0.00799999999999912" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.00799999999999912" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments">
       <failure type="failure" message="Check on 'res' failed: Must have length 8, but has length 5 ('test-chevron_tlg-methods.R:192:3')">Check on 'res' failed: Must have length 8, but has length 5
 Backtrace:
  1. checkmate::expect_character(res, len = 8)
       at test-chevron_tlg-methods.R:192:2
  2. checkmate::makeExpectation(x, res, info, label)</failure>
     </testcase>
-    <testcase time="0.0139999999999993" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00199999999999889" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
-    <testcase time="0.00400000000000134" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_interactive_mode">
+    <testcase time="0.0229999999999997" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_methods" name="script_works_as_expected_with_dictionary_of_arguments"/>
+    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_interactive_mode">
       <skipped message="Reason: !interactive() is TRUE ('test-chevron_tlg-methods.R:200:3')"/>
     </testcase>
-    <testcase time="0.0139999999999993" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_non_interactive_mode"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_non_interactive_mode">
+    <testcase time="0.0240000000000009" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_non_interactive_mode"/>
+    <testcase time="0.00900000000000034" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_non_interactive_mode">
       <skipped message="Reason: On CRAN ('test-chevron_tlg-methods.R:208:3')"/>
     </testcase>
-    <testcase time="0.0130000000000017" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="0.0210000000000008" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
     <testcase time="0.00199999999999889" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
-    <testcase time="0.00100000000000122" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
+    <testcase time="0.0100000000000016" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
+    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_funs_works_as_expected_with_details_set_to_TRUE"/>
   </testsuite>
-  <testsuite name="cmt01a" timestamp="2023-05-09T08:50:12Z" hostname="6a63424e8ca3" tests="12" skipped="6" failures="0" errors="0" time="3.015">
-    <testcase time="0.162999999999997" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
-    <testcase time="0.0380000000000003" classname="cmt01a" name="cmt01a_can_handle_all_NA_values">
+  <testsuite name="cmt01a" timestamp="2023-05-10T06:20:43Z" hostname="8676ad11fa6c" tests="12" skipped="6" failures="0" errors="0" time="4.507">
+    <testcase time="0.227" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
+    <testcase time="0.0569999999999986" classname="cmt01a" name="cmt01a_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:10:3')"/>
     </testcase>
-    <testcase time="0.661000000000001" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
-    <testcase time="0.161999999999999" classname="cmt01a" name="cmt01a_can_handle_some_NA_values">
+    <testcase time="0.925000000000001" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
+    <testcase time="0.279" classname="cmt01a" name="cmt01a_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:25:3')"/>
     </testcase>
-    <testcase time="0.165000000000003" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values"/>
-    <testcase time="0.0389999999999979" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values">
+    <testcase time="0.233000000000001" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values"/>
+    <testcase time="0.0590000000000011" classname="cmt01a" name="cmt01a_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:37:3')"/>
     </testcase>
-    <testcase time="0.66" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values"/>
-    <testcase time="0.161000000000001" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values">
+    <testcase time="1.016" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values"/>
+    <testcase time="0.294" classname="cmt01a" name="cmt01a_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:52:3')"/>
     </testcase>
-    <testcase time="0.157999999999998" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values"/>
-    <testcase time="0.0360000000000014" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values">
+    <testcase time="0.224" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values"/>
+    <testcase time="0.0539999999999985" classname="cmt01a" name="cmt01a_3_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:64:3')"/>
     </testcase>
-    <testcase time="0.635000000000002" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values"/>
-    <testcase time="0.136999999999997" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values">
+    <testcase time="0.913" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values"/>
+    <testcase time="0.225999999999999" classname="cmt01a" name="cmt01a_3_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt01a.R:79:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="cmt02_pt" timestamp="2023-05-09T08:50:15Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="0.398">
-    <testcase time="0.142000000000003" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values"/>
-    <testcase time="0.0309999999999988" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values">
+  <testsuite name="cmt02_pt" timestamp="2023-05-10T06:20:48Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="0.59">
+    <testcase time="0.200000000000003" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values"/>
+    <testcase time="0.0499999999999972" classname="cmt02_pt" name="cmt02_pt_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt02_pt.R:10:3')"/>
     </testcase>
-    <testcase time="0.155000000000001" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values"/>
-    <testcase time="0.0700000000000003" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values">
+    <testcase time="0.23" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values"/>
+    <testcase time="0.109999999999999" classname="cmt02_pt" name="cmt02_pt_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-cmt02_pt.R:25:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="default_tlg" timestamp="2023-05-09T08:50:16Z" hostname="6a63424e8ca3" tests="38" skipped="38" failures="0" errors="0" time="36.385">
-    <testcase time="0.0699999999999967" classname="default_tlg" name="ael01_nollt_function_with_default_argument_value_return_expected_result_with_test_data">
+  <testsuite name="default_tlg" timestamp="2023-05-10T06:20:48Z" hostname="8676ad11fa6c" tests="38" skipped="37" failures="0" errors="1" time="54.112">
+    <testcase time="0.103000000000002" classname="default_tlg" name="ael01_nollt_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:5:3')"/>
     </testcase>
-    <testcase time="0.372" classname="default_tlg" name="aet01_function_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.558" classname="default_tlg" name="aet01_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:12:3')"/>
     </testcase>
-    <testcase time="0.318000000000001" classname="default_tlg" name="aet01_aesi_function_with_default_argument_value_return_expected_result_with_test_data">
-      <skipped message="Reason: On CRAN ('test-default_tlg.R:19:3')"/>
+    <testcase time="0.0420000000000016" classname="default_tlg" name="aet01_aesi_function_with_default_argument_value_return_expected_result_with_test_data">
+      <error type="error" message="Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]],  ('test-default_tlg.R:17:3')">Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], 
+    sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))`: Assertion on 'df1' failed: Must be of type 'data.frame', not 'factor'.
+Backtrace:
+ 1. chevron::aet01_aesi_main(pre_data)
+      at test-default_tlg.R:17:2
+ 2. chevron:::assert_valid_var_pair(...)
+ 3. checkmate::assert_data_frame(df1)
+ 4. checkmate::makeAssertion(x, res, .var.name, add)
+ 5. checkmate:::mstop(...)</error>
     </testcase>
-    <testcase time="0.766000000000002" classname="default_tlg" name="aet02_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.195" classname="default_tlg" name="aet02_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:26:3')"/>
     </testcase>
-    <testcase time="2.03" classname="default_tlg" name="aet03_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.995" classname="default_tlg" name="aet03_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:33:3')"/>
     </testcase>
-    <testcase time="3.072" classname="default_tlg" name="aet04_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="4.604" classname="default_tlg" name="aet04_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:40:3')"/>
     </testcase>
-    <testcase time="0.166999999999998" classname="default_tlg" name="aet10_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.219000000000001" classname="default_tlg" name="aet10_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:47:3')"/>
     </testcase>
-    <testcase time="0.777000000000001" classname="default_tlg" name="cmt01a_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.135" classname="default_tlg" name="cmt01a_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:54:3')"/>
     </testcase>
-    <testcase time="0.771000000000001" classname="default_tlg" name="cmt01a_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.124" classname="default_tlg" name="cmt01a_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:61:3')"/>
     </testcase>
-    <testcase time="0.727999999999998" classname="default_tlg" name="cmt01a_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.05" classname="default_tlg" name="cmt01a_3_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:68:3')"/>
     </testcase>
-    <testcase time="0.222000000000001" classname="default_tlg" name="cmt02_pt_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.315000000000005" classname="default_tlg" name="cmt02_pt_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:75:3')"/>
     </testcase>
-    <testcase time="0.469999999999999" classname="default_tlg" name="dmt01_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.709000000000003" classname="default_tlg" name="dmt01_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:82:3')"/>
     </testcase>
-    <testcase time="0.350000000000001" classname="default_tlg" name="dst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.545999999999999" classname="default_tlg" name="dst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:89:3')"/>
     </testcase>
-    <testcase time="0.485999999999997" classname="default_tlg" name="dst01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.745999999999995" classname="default_tlg" name="dst01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:96:3')"/>
     </testcase>
-    <testcase time="0.664999999999999" classname="default_tlg" name="dst01_3_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.976000000000006" classname="default_tlg" name="dst01_3_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:103:3')"/>
     </testcase>
-    <testcase time="0.138000000000005" classname="default_tlg" name="dtht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.215999999999994" classname="default_tlg" name="dtht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:110:3')"/>
     </testcase>
-    <testcase time="2.796" classname="default_tlg" name="egt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="4.21100000000001" classname="default_tlg" name="egt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:117:3')"/>
     </testcase>
-    <testcase time="0.268000000000001" classname="default_tlg" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.359999999999999" classname="default_tlg" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:124:3')"/>
     </testcase>
-    <testcase time="0.244" classname="default_tlg" name="egt02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.315999999999995" classname="default_tlg" name="egt02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:131:3')"/>
     </testcase>
-    <testcase time="0.359999999999999" classname="default_tlg" name="egt03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.550000000000004" classname="default_tlg" name="egt03_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:138:3')"/>
     </testcase>
-    <testcase time="0.353999999999999" classname="default_tlg" name="egt03_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.509" classname="default_tlg" name="egt03_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:145:3')"/>
     </testcase>
-    <testcase time="0.791000000000004" classname="default_tlg" name="egt05_qtcat_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.215" classname="default_tlg" name="egt05_qtcat_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:152:3')"/>
     </testcase>
-    <testcase time="0.216999999999999" classname="default_tlg" name="ext01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.337000000000003" classname="default_tlg" name="ext01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:159:3')"/>
     </testcase>
-    <testcase time="0.228000000000002" classname="default_tlg" name="ext01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.347999999999999" classname="default_tlg" name="ext01_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:167:3')"/>
     </testcase>
-    <testcase time="1.904" classname="default_tlg" name="lbt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.848" classname="default_tlg" name="lbt01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:174:3')"/>
     </testcase>
-    <testcase time="0.536999999999999" classname="default_tlg" name="lbt04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.774000000000001" classname="default_tlg" name="lbt04_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:181:3')"/>
     </testcase>
-    <testcase time="0.562000000000005" classname="default_tlg" name="lbt05_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.862000000000002" classname="default_tlg" name="lbt05_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:188:3')"/>
     </testcase>
-    <testcase time="0.787999999999997" classname="default_tlg" name="lbt07_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="1.162" classname="default_tlg" name="lbt07_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:195:3')"/>
     </testcase>
-    <testcase time="1.739" classname="default_tlg" name="lbt14_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.479" classname="default_tlg" name="lbt14_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:202:3')"/>
     </testcase>
-    <testcase time="1.84" classname="default_tlg" name="lbt14_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="2.575" classname="default_tlg" name="lbt14_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:209:3')"/>
     </testcase>
-    <testcase time="0.405999999999999" classname="default_tlg" name="mht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.956000000000003" classname="default_tlg" name="mht01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:216:3')"/>
     </testcase>
-    <testcase time="0.349000000000004" classname="default_tlg" name="pdt01_1_function_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.518000000000001" classname="default_tlg" name="pdt01_1_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:223:3')"/>
     </testcase>
-    <testcase time="0.177" classname="default_tlg" name="pdt02_1_function_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.251999999999995" classname="default_tlg" name="pdt02_1_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:230:3')"/>
     </testcase>
-    <testcase time="0.175000000000004" classname="default_tlg" name="rmpt01_1_function_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.244" classname="default_tlg" name="rmpt01_1_function_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:237:3')"/>
     </testcase>
-    <testcase time="5.193" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="7.96299999999999" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:244:3')"/>
     </testcase>
-    <testcase time="5.314" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="7.992" classname="default_tlg" name="vst01_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:251:3')"/>
     </testcase>
-    <testcase time="0.370000000000005" classname="default_tlg" name="vst02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.540999999999997" classname="default_tlg" name="vst02_1_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:258:3')"/>
     </testcase>
-    <testcase time="0.370999999999995" classname="default_tlg" name="vst02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
+    <testcase time="0.567000000000007" classname="default_tlg" name="vst02_2_functions_with_default_argument_value_return_expected_result_with_test_data">
       <skipped message="Reason: On CRAN ('test-default_tlg.R:265:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dmt01" timestamp="2023-05-09T08:50:52Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="0.78">
-    <testcase time="0.272000000000006" classname="dmt01" name="dmt01_can_handle_NA_values"/>
-    <testcase time="0.0929999999999964" classname="dmt01" name="dmt01_can_handle_NA_values">
+  <testsuite name="dmt01" timestamp="2023-05-10T06:21:42Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="1.141">
+    <testcase time="0.412999999999997" classname="dmt01" name="dmt01_can_handle_NA_values"/>
+    <testcase time="0.150999999999996" classname="dmt01" name="dmt01_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-dmt01.R:8:3')"/>
     </testcase>
-    <testcase time="0.301000000000002" classname="dmt01" name="dmt01_can_handle_numeric_NA_values"/>
-    <testcase time="0.113999999999997" classname="dmt01" name="dmt01_can_handle_numeric_NA_values">
+    <testcase time="0.403999999999996" classname="dmt01" name="dmt01_can_handle_numeric_NA_values"/>
+    <testcase time="0.173000000000002" classname="dmt01" name="dmt01_can_handle_numeric_NA_values">
       <skipped message="Reason: On CRAN ('test-dmt01.R:15:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dst01" timestamp="2023-05-09T08:50:53Z" hostname="6a63424e8ca3" tests="26" skipped="13" failures="0" errors="0" time="5.26">
-    <testcase time="0.240000000000002" classname="dst01" name="dst01_can_handle_all_NA_values"/>
-    <testcase time="0.0290000000000035" classname="dst01" name="dst01_can_handle_all_NA_values">
+  <testsuite name="dst01" timestamp="2023-05-10T06:21:44Z" hostname="8676ad11fa6c" tests="26" skipped="13" failures="0" errors="0" time="7.669">
+    <testcase time="0.344999999999999" classname="dst01" name="dst01_can_handle_all_NA_values"/>
+    <testcase time="0.0430000000000064" classname="dst01" name="dst01_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:12:3')"/>
     </testcase>
-    <testcase time="0.250999999999998" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var"/>
-    <testcase time="0.0399999999999991" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var">
+    <testcase time="0.355999999999995" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var"/>
+    <testcase time="0.0600000000000023" classname="dst01" name="dst01_1_can_handle_all_NA_values_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:23:3')"/>
     </testcase>
-    <testcase time="0.298999999999999" classname="dst01" name="dst01_1_can_handle_some_NA_values"/>
-    <testcase time="0.0710000000000051" classname="dst01" name="dst01_1_can_handle_some_NA_values">
+    <testcase time="0.430000000000007" classname="dst01" name="dst01_1_can_handle_some_NA_values"/>
+    <testcase time="0.0989999999999895" classname="dst01" name="dst01_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:35:3')"/>
     </testcase>
-    <testcase time="0.265999999999998" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var"/>
-    <testcase time="0.0339999999999989" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var">
+    <testcase time="0.38600000000001" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var"/>
+    <testcase time="0.0499999999999972" classname="dst01" name="dst01_1_can_handle_missing_levels_in_status_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:46:3')"/>
     </testcase>
-    <testcase time="0.247" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var"/>
-    <testcase time="0.0429999999999993" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var">
+    <testcase time="0.390000000000001" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var"/>
+    <testcase time="0.0660000000000025" classname="dst01" name="dst01_1_can_handle_missing_levels_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:57:3')"/>
     </testcase>
-    <testcase time="0.212000000000003" classname="dst01" name="dst01_2_can_handle_all_NA_values"/>
-    <testcase time="0.0289999999999964" classname="dst01" name="dst01_2_can_handle_all_NA_values">
+    <testcase time="0.313000000000002" classname="dst01" name="dst01_2_can_handle_all_NA_values"/>
+    <testcase time="0.0439999999999969" classname="dst01" name="dst01_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:72:3')"/>
     </testcase>
-    <testcase time="0.225000000000001" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var"/>
-    <testcase time="0.0409999999999968" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var">
+    <testcase time="0.326000000000008" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var"/>
+    <testcase time="0.0570000000000022" classname="dst01" name="dst01_2_can_handle_all_NA_values_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:83:3')"/>
     </testcase>
-    <testcase time="0.413000000000004" classname="dst01" name="dst01_2_can_handle_some_NA_values"/>
-    <testcase time="0.0739999999999981" classname="dst01" name="dst01_2_can_handle_some_NA_values">
+    <testcase time="0.625" classname="dst01" name="dst01_2_can_handle_some_NA_values"/>
+    <testcase time="0.120999999999995" classname="dst01" name="dst01_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:95:3')"/>
     </testcase>
-    <testcase time="0.288000000000004" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var"/>
-    <testcase time="0.046999999999997" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var">
+    <testcase time="0.402000000000001" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var"/>
+    <testcase time="0.0859999999999985" classname="dst01" name="dst01_2_can_handle_missing_levels_in_disc_reason_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:106:3')"/>
     </testcase>
-    <testcase time="0.349000000000004" classname="dst01" name="dst01_3_can_handle_all_NA_values"/>
-    <testcase time="0.0390000000000015" classname="dst01" name="dst01_3_can_handle_all_NA_values">
+    <testcase time="0.504999999999995" classname="dst01" name="dst01_3_can_handle_all_NA_values"/>
+    <testcase time="0.0460000000000065" classname="dst01" name="dst01_3_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dst01.R:121:3')"/>
     </testcase>
-    <testcase time="0.588999999999999" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var"/>
-    <testcase time="0.0749999999999957" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var">
+    <testcase time="0.817999999999998" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var"/>
+    <testcase time="0.114000000000004" classname="dst01" name="dst01_3_can_handle_all_NA_values_in_status_treatment_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:132:3')"/>
     </testcase>
-    <testcase time="0.588000000000001" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var"/>
-    <testcase time="0.0870000000000033" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var">
+    <testcase time="0.85799999999999" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var"/>
+    <testcase time="0.158000000000001" classname="dst01" name="dst01_3_can_handle_some_NA_values_in_status_treatment_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:143:3')"/>
     </testcase>
-    <testcase time="0.603999999999999" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var"/>
-    <testcase time="0.0799999999999983" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var">
+    <testcase time="0.831000000000003" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var"/>
+    <testcase time="0.140000000000001" classname="dst01" name="dst01_3_can_handle_missing_levels_in_status_treatment_var">
       <skipped message="Reason: On CRAN ('test-dst01.R:154:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="dtht01" timestamp="2023-05-09T08:50:58Z" hostname="6a63424e8ca3" tests="5" skipped="3" failures="0" errors="0" time="1.291">
-    <testcase time="0.292000000000002" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
-    <testcase time="0.0370000000000061" classname="dtht01" name="dtht01_can_handle_all_NA_values">
+  <testsuite name="dtht01" timestamp="2023-05-10T06:21:51Z" hostname="8676ad11fa6c" tests="5" skipped="3" failures="0" errors="0" time="1.836">
+    <testcase time="0.420000000000002" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
+    <testcase time="0.0559999999999974" classname="dtht01" name="dtht01_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-dtht01.R:12:3')"/>
     </testcase>
-    <testcase time="0.387999999999991" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
-    <testcase time="0.0990000000000038" classname="dtht01" name="dtht01_can_handle_some_NA_values">
+    <testcase time="0.524000000000001" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
+    <testcase time="0.156999999999996" classname="dtht01" name="dtht01_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-dtht01.R:27:3')"/>
     </testcase>
-    <testcase time="0.474999999999994" classname="dtht01" name="dtht01_can_be_parametrize_as_expected">
+    <testcase time="0.679000000000002" classname="dtht01" name="dtht01_can_be_parametrize_as_expected">
       <skipped message="Reason: On CRAN ('test-dtht01.R:38:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="egt03" timestamp="2023-05-09T08:51:00Z" hostname="6a63424e8ca3" tests="9" skipped="4" failures="0" errors="0" time="1.424">
-    <testcase time="0.278999999999996" classname="egt03" name="egt03_1_can_handle_all_NA_values"/>
-    <testcase time="0.0820000000000078" classname="egt03" name="egt03_1_can_handle_all_NA_values">
+  <testsuite name="egt03" timestamp="2023-05-10T06:21:53Z" hostname="8676ad11fa6c" tests="9" skipped="4" failures="0" errors="0" time="2.171">
+    <testcase time="0.376000000000005" classname="egt03" name="egt03_1_can_handle_all_NA_values"/>
+    <testcase time="0.117000000000004" classname="egt03" name="egt03_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:11:3')"/>
     </testcase>
-    <testcase time="0.263999999999996" classname="egt03" name="egt03_1_can_handle_some_NA_values"/>
-    <testcase time="0.0750000000000028" classname="egt03" name="egt03_1_can_handle_some_NA_values">
+    <testcase time="0.403999999999996" classname="egt03" name="egt03_1_can_handle_some_NA_values"/>
+    <testcase time="0.11399999999999" classname="egt03" name="egt03_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:29:3')"/>
     </testcase>
-    <testcase time="0.272999999999996" classname="egt03" name="egt03_2_can_handle_all_NA_values"/>
-    <testcase time="0.0810000000000031" classname="egt03" name="egt03_2_can_handle_all_NA_values">
+    <testcase time="0.432000000000002" classname="egt03" name="egt03_2_can_handle_all_NA_values"/>
+    <testcase time="0.117000000000004" classname="egt03" name="egt03_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:42:3')"/>
     </testcase>
-    <testcase time="0.268999999999991" classname="egt03" name="egt03_2_can_handle_some_NA_values"/>
-    <testcase time="0.0770000000000124" classname="egt03" name="egt03_2_can_handle_some_NA_values">
+    <testcase time="0.447000000000003" classname="egt03" name="egt03_2_can_handle_some_NA_values"/>
+    <testcase time="0.131999999999991" classname="egt03" name="egt03_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt03.R:57:3')"/>
     </testcase>
-    <testcase time="0.0240000000000009" classname="egt03" name="egt03_1_fails_on_incomplete_data"/>
+    <testcase time="0.0320000000000107" classname="egt03" name="egt03_1_fails_on_incomplete_data"/>
   </testsuite>
-  <testsuite name="egt05_qtcat" timestamp="2023-05-09T08:51:01Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="0.9">
-    <testcase time="0.097999999999999" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values"/>
-    <testcase time="0.0139999999999958" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values">
+  <testsuite name="egt05_qtcat" timestamp="2023-05-10T06:21:55Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="1.341">
+    <testcase time="0.10799999999999" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values"/>
+    <testcase time="0.0190000000000055" classname="egt05_qtcat" name="egt05_qtcat_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-egt05_qtcat.R:11:3')"/>
     </testcase>
-    <testcase time="0.555999999999997" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
-    <testcase time="0.231999999999999" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values">
+    <testcase time="0.850999999999999" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
+    <testcase time="0.363" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-egt05_qtcat.R:31:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="empty_report" timestamp="2023-05-09T08:51:02Z" hostname="6a63424e8ca3" tests="31" skipped="0" failures="1" errors="0" time="6.574">
-    <testcase time="1.759" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.218000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0949999999999989" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.116" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="1.29600000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty">
-      <failure type="failure" message="`res` (`actual`) not identical to `empty_report` (`expected`). ('test-empty_report.R:33:3')">`res` (`actual`) not identical to `empty_report` (`expected`).
-
-`actual@content@labelrow@col_info@tree_layout@display_columncounts`:   TRUE 
-`expected@content@labelrow@col_info@tree_layout@display_columncounts`: FALSE
-
-is(actual@content@labelrow@col_info@tree_layout@split) vs is(expected@content@labelrow@col_info@tree_layout@split)
-- "VarLevelSplit"
-- "CustomizableSplit"
-+ "AllSplit"
-  "Split"
-
-`actual@content@labelrow@col_info@tree_layout@split@value_label_var` is a character vector ('ACTARM')
-`expected@content@labelrow@col_info@tree_layout@split@value_label_var` is absent
-
-`actual@content@labelrow@col_info@tree_layout@split@value_order` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`expected@content@labelrow@col_info@tree_layout@split@value_order` is absent
-
-`actual@content@labelrow@col_info@tree_layout@split@split_fun` is NULL
-`expected@content@labelrow@col_info@tree_layout@split@split_fun` is absent
-
-`actual@content@labelrow@col_info@tree_layout@split@payload` is a character vector ('ACTARM')
-`expected@content@labelrow@col_info@tree_layout@split@payload` is NULL
-
-`actual@content@labelrow@col_info@tree_layout@split@name`:   "ACTARM" 
-`expected@content@labelrow@col_info@tree_layout@split@name`: "all obs"
-
-`actual@content@labelrow@col_info@tree_layout@split@split_label`:   "ACTARM"
-`expected@content@labelrow@col_info@tree_layout@split@split_label`: ""      
-
-actual@content@labelrow@col_info@tree_layout@split@split_label_position vs expected@content@labelrow@col_info@tree_layout@split@split_label_position
-- "topleft"
-- "hidden"
-- "visible"
-+ "hidden"
-
-`actual@content@labelrow@col_info@tree_layout@split@label_children`:   &lt;NA&gt; 
-`expected@content@labelrow@col_info@tree_layout@split@label_children`: FALSE
-
-`actual@content@labelrow@col_info@tree_layout@children` is length 3
-`expected@content@labelrow@col_info@tree_layout@children` is length 0
-
-`names(actual@content@labelrow@col_info@tree_layout@children)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@content@labelrow@col_info@tree_layout@children)` is absent
-
-`actual@content@labelrow@col_info@tree_layout@children$A: Drug X` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@content@labelrow@col_info@tree_layout@children$A: Drug X` is absent
-
-`actual@content@labelrow@col_info@tree_layout@children$B: Placebo` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@content@labelrow@col_info@tree_layout@children$B: Placebo` is absent
-
-`actual@content@labelrow@col_info@tree_layout@children$C: Combination` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@content@labelrow@col_info@tree_layout@children$C: Combination` is absent
-
-  `actual@content@labelrow@col_info@tree_layout@level`: 1
-`expected@content@labelrow@col_info@tree_layout@level`: 0
-
-`actual@content@labelrow@col_info@tree_layout@name`:   ""       
-`expected@content@labelrow@col_info@tree_layout@name`: "all obs"
-
-`actual@content@labelrow@col_info@subset_exprs` is length 3
-`expected@content@labelrow@col_info@subset_exprs` is length 0
-
-`names(actual@content@labelrow@col_info@subset_exprs)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@content@labelrow@col_info@subset_exprs)` is absent
-
-`actual@content@labelrow@col_info@subset_exprs$A: Drug X` is an expression vector
-`expected@content@labelrow@col_info@subset_exprs$A: Drug X` is absent
-
-`actual@content@labelrow@col_info@subset_exprs$B: Placebo` is an expression vector
-`expected@content@labelrow@col_info@subset_exprs$B: Placebo` is absent
-
-`actual@content@labelrow@col_info@subset_exprs$C: Combination` is an expression vector
-`expected@content@labelrow@col_info@subset_exprs$C: Combination` is absent
-
-`actual@content@labelrow@col_info@cextra_args` is length 3
-`expected@content@labelrow@col_info@cextra_args` is length 0
-
-`names(actual@content@labelrow@col_info@cextra_args)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@content@labelrow@col_info@cextra_args)` is absent
-
-`actual@content@labelrow@col_info@cextra_args$A: Drug X` is a list
-`expected@content@labelrow@col_info@cextra_args$A: Drug X` is absent
-
-`actual@content@labelrow@col_info@cextra_args$B: Placebo` is a list
-`expected@content@labelrow@col_info@cextra_args$B: Placebo` is absent
-
-`actual@content@labelrow@col_info@cextra_args$C: Combination` is a list
-`expected@content@labelrow@col_info@cextra_args$C: Combination` is absent
-
-  `actual@content@labelrow@col_info@counts`: 0 0 0
-`expected@content@labelrow@col_info@counts`:      
-
-  `actual@content@labelrow@col_info@total_count`:  0
-`expected@content@labelrow@col_info@total_count`: NA
-
-`actual@content@labelrow@col_info@display_columncounts`:   TRUE 
-`expected@content@labelrow@col_info@display_columncounts`: FALSE
-
-actual@content@labelrow@col_info@top_left vs expected@content@labelrow@col_info@top_left
-- "MedDRA System Organ Class"
-- "  MedDRA Preferred Term"
-- "                            Grade"
-
-`actual@content@col_info@tree_layout@display_columncounts`:   TRUE 
-`expected@content@col_info@tree_layout@display_columncounts`: FALSE
-
-is(actual@content@col_info@tree_layout@split) vs is(expected@content@col_info@tree_layout@split)
-- "VarLevelSplit"
-- "CustomizableSplit"
-+ "AllSplit"
-  "Split"
-
-`actual@content@col_info@tree_layout@split@value_label_var` is a character vector ('ACTARM')
-`expected@content@col_info@tree_layout@split@value_label_var` is absent
-
-`actual@content@col_info@tree_layout@split@value_order` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`expected@content@col_info@tree_layout@split@value_order` is absent
-
-`actual@content@col_info@tree_layout@split@split_fun` is NULL
-`expected@content@col_info@tree_layout@split@split_fun` is absent
-
-`actual@content@col_info@tree_layout@split@payload` is a character vector ('ACTARM')
-`expected@content@col_info@tree_layout@split@payload` is NULL
-
-`actual@content@col_info@tree_layout@split@name`:   "ACTARM" 
-`expected@content@col_info@tree_layout@split@name`: "all obs"
-
-`actual@content@col_info@tree_layout@split@split_label`:   "ACTARM"
-`expected@content@col_info@tree_layout@split@split_label`: ""      
-
-actual@content@col_info@tree_layout@split@split_label_position vs expected@content@col_info@tree_layout@split@split_label_position
-- "topleft"
-- "hidden"
-- "visible"
-+ "hidden"
-
-`actual@content@col_info@tree_layout@split@label_children`:   &lt;NA&gt; 
-`expected@content@col_info@tree_layout@split@label_children`: FALSE
-
-`actual@content@col_info@tree_layout@children` is length 3
-`expected@content@col_info@tree_layout@children` is length 0
-
-`names(actual@content@col_info@tree_layout@children)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@content@col_info@tree_layout@children)` is absent
-
-`actual@content@col_info@tree_layout@children$A: Drug X` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@content@col_info@tree_layout@children$A: Drug X` is absent
-
-`actual@content@col_info@tree_layout@children$B: Placebo` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@content@col_info@tree_layout@children$B: Placebo` is absent
-
-`actual@content@col_info@tree_layout@children$C: Combination` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@content@col_info@tree_layout@children$C: Combination` is absent
-
-  `actual@content@col_info@tree_layout@level`: 1
-`expected@content@col_info@tree_layout@level`: 0
-
-`actual@content@col_info@tree_layout@name`:   ""       
-`expected@content@col_info@tree_layout@name`: "all obs"
-
-`actual@content@col_info@subset_exprs` is length 3
-`expected@content@col_info@subset_exprs` is length 0
-
-`names(actual@content@col_info@subset_exprs)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@content@col_info@subset_exprs)` is absent
-
-`actual@content@col_info@subset_exprs$A: Drug X` is an expression vector
-`expected@content@col_info@subset_exprs$A: Drug X` is absent
-
-`actual@content@col_info@subset_exprs$B: Placebo` is an expression vector
-`expected@content@col_info@subset_exprs$B: Placebo` is absent
-
-`actual@content@col_info@subset_exprs$C: Combination` is an expression vector
-`expected@content@col_info@subset_exprs$C: Combination` is absent
-
-`actual@content@col_info@cextra_args` is length 3
-`expected@content@col_info@cextra_args` is length 0
-
-`names(actual@content@col_info@cextra_args)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@content@col_info@cextra_args)` is absent
-
-`actual@content@col_info@cextra_args$A: Drug X` is a list
-`expected@content@col_info@cextra_args$A: Drug X` is absent
-
-`actual@content@col_info@cextra_args$B: Placebo` is a list
-`expected@content@col_info@cextra_args$B: Placebo` is absent
-
-`actual@content@col_info@cextra_args$C: Combination` is a list
-`expected@content@col_info@cextra_args$C: Combination` is absent
-
-  `actual@content@col_info@counts`: 0 0 0
-`expected@content@col_info@counts`:      
-
-  `actual@content@col_info@total_count`:  0
-`expected@content@col_info@total_count`: NA
-
-`actual@content@col_info@display_columncounts`:   TRUE 
-`expected@content@col_info@display_columncounts`: FALSE
-
-    actual@content@col_info@top_left    | expected@content@col_info@top_left 
-[1] "MedDRA System Organ Class"         -                                    
-[2] "  MedDRA Preferred Term"           -                                    
-[3] "                            Grade" -                                    
-
-  `actual@content@level`: 0
-`expected@content@level`: 1
-
-`actual@content@name`:   "root@content"
-`expected@content@name`: ""            
-
-names(actual@children) vs names(expected@children)
-- "ATOXGR"
-+ "Null Report: No observations met the reporting criteria for inclusion in this output."
-
-`actual@children$ATOXGR` is an S4 object of class &lt;TableTree&gt;
-`expected@children$ATOXGR` is absent
-
-`actual@children$Null Report: No observations met the reporting criteria for inclusion in this output.` is absent
-`expected@children$Null Report: No observations met the reporting criteria for inclusion in this output.` is an S4 object of class &lt;LabelRow&gt;
-
-`actual@labelrow@col_info@tree_layout@display_columncounts`:   TRUE 
-`expected@labelrow@col_info@tree_layout@display_columncounts`: FALSE
-
-is(actual@labelrow@col_info@tree_layout@split) vs is(expected@labelrow@col_info@tree_layout@split)
-- "VarLevelSplit"
-+ "ManualSplit"
-- "CustomizableSplit"
-+ "AllSplit"
-  "Split"
-
-`actual@labelrow@col_info@tree_layout@split@value_label_var` is a character vector ('ACTARM')
-`expected@labelrow@col_info@tree_layout@split@value_label_var` is absent
-
-`actual@labelrow@col_info@tree_layout@split@value_order` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`expected@labelrow@col_info@tree_layout@split@value_order` is absent
-
-`actual@labelrow@col_info@tree_layout@split@split_fun` is NULL
-`expected@labelrow@col_info@tree_layout@split@split_fun` is absent
-
-`actual@labelrow@col_info@tree_layout@split@payload` is a character vector ('ACTARM')
-`expected@labelrow@col_info@tree_layout@split@payload` is NULL
-
-`actual@labelrow@col_info@tree_layout@split@name`:   "ACTARM"
-`expected@labelrow@col_info@tree_layout@split@name`: "manual"
-
-`actual@labelrow@col_info@tree_layout@split@split_label`:   "ACTARM"    
-`expected@labelrow@col_info@tree_layout@split@split_label`: "colsplit 1"
-
-actual@labelrow@col_info@tree_layout@split@split_label_position vs expected@labelrow@col_info@tree_layout@split@split_label_position
-- "topleft"
-- "hidden"
-  "visible"
-
-`actual@labelrow@col_info@tree_layout@split@content_na_str`:   NA
-`expected@labelrow@col_info@tree_layout@split@content_na_str`:   
-
-`actual@labelrow@col_info@tree_layout@split@label_children`:   &lt;NA&gt; 
-`expected@labelrow@col_info@tree_layout@split@label_children`: FALSE
-
-`actual@labelrow@col_info@tree_layout@split@levels` is absent
-`expected@labelrow@col_info@tree_layout@split@levels` is a character vector ('')
-
-`actual@labelrow@col_info@tree_layout@children` is length 3
-`expected@labelrow@col_info@tree_layout@children` is length 1
-
-names(actual@labelrow@col_info@tree_layout@children) vs names(expected@labelrow@col_info@tree_layout@children)
-- "A: Drug X"
-- "B: Placebo"
-- "C: Combination"
-+ ""
-
-is(actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]) vs is(expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]])
-- "VarLevelSplit"
-+ "ManualSplit"
-- "CustomizableSplit"
-+ "AllSplit"
-  "Split"
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_label_var` is a character vector ('ACTARM')
-`expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_label_var` is absent
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_order` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_order` is absent
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_fun` is NULL
-`expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_fun` is absent
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@payload` is a character vector ('ACTARM')
-`expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@payload` is NULL
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@name vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@name
-- "ACTARM"
-+ "manual"
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label
-- "ACTARM"
-+ "colsplit 1"
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label_position vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label_position
-- "topleft"
-- "hidden"
-  "visible"
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@content_na_str vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@content_na_str
-- NA
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@label_children vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@label_children
-- &lt;NA&gt;
-+ FALSE
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@levels` is absent
-`expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@levels` is a character vector ('')
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@value vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@value
-- "A: Drug X"
-+ ""
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@label vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@label
-- "A: Drug X"
-+ ""
-
-actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@sval_labels vs expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@sval_labels
-- "A: Drug X"
-+ ""
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@subset[[1]]` is a call
-`expected@labelrow@col_info@tree_layout@children[[1]]@pos_in_tree@subset[[1]]` is a logical vector (TRUE)
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@label`:   "A: Drug X"
-`expected@labelrow@col_info@tree_layout@children[[1]]@label`: ""         
-
-`actual@labelrow@col_info@tree_layout@children[[1]]@name`:   "A: Drug X"
-`expected@labelrow@col_info@tree_layout@children[[1]]@name`: ""         
-
-`actual@labelrow@col_info@tree_layout@children[[2]]` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@labelrow@col_info@tree_layout@children[[2]]` is absent
-
-`actual@labelrow@col_info@tree_layout@children[[3]]` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@labelrow@col_info@tree_layout@children[[3]]` is absent
-
-`actual@labelrow@col_info@subset_exprs` is length 3
-`expected@labelrow@col_info@subset_exprs` is length 1
-
-`names(actual@labelrow@col_info@subset_exprs)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@labelrow@col_info@subset_exprs)` is absent
-
-`actual@labelrow@col_info@subset_exprs[[1]][[1]]` is a call
-`expected@labelrow@col_info@subset_exprs[[1]][[1]]` is a logical vector (TRUE)
-
-`actual@labelrow@col_info@subset_exprs[[2]]` is an expression vector
-`expected@labelrow@col_info@subset_exprs[[2]]` is absent
-
-`actual@labelrow@col_info@subset_exprs[[3]]` is an expression vector
-`expected@labelrow@col_info@subset_exprs[[3]]` is absent
-
-`actual@labelrow@col_info@cextra_args` is length 3
-`expected@labelrow@col_info@cextra_args` is length 1
-
-`names(actual@labelrow@col_info@cextra_args)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@labelrow@col_info@cextra_args)` is absent
-
-`actual@labelrow@col_info@cextra_args[[2]]` is a list
-`expected@labelrow@col_info@cextra_args[[2]]` is absent
-
-`actual@labelrow@col_info@cextra_args[[3]]` is a list
-`expected@labelrow@col_info@cextra_args[[3]]` is absent
-
-  `actual@labelrow@col_info@counts`:  0 0 0
-`expected@labelrow@col_info@counts`: NA    
-
-  `actual@labelrow@col_info@total_count`:  0
-`expected@labelrow@col_info@total_count`: NA
-
-`actual@labelrow@col_info@display_columncounts`:   TRUE 
-`expected@labelrow@col_info@display_columncounts`: FALSE
-
-    actual@labelrow@col_info@top_left   | expected@labelrow@col_info@top_left 
-[1] "MedDRA System Organ Class"         -                                     
-[2] "  MedDRA Preferred Term"           -                                     
-[3] "                            Grade" -                                     
-
-`actual@col_info@tree_layout@display_columncounts`:   TRUE 
-`expected@col_info@tree_layout@display_columncounts`: FALSE
-
-is(actual@col_info@tree_layout@split) vs is(expected@col_info@tree_layout@split)
-- "VarLevelSplit"
-+ "ManualSplit"
-- "CustomizableSplit"
-+ "AllSplit"
-  "Split"
-
-`actual@col_info@tree_layout@split@value_label_var` is a character vector ('ACTARM')
-`expected@col_info@tree_layout@split@value_label_var` is absent
-
-`actual@col_info@tree_layout@split@value_order` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`expected@col_info@tree_layout@split@value_order` is absent
-
-`actual@col_info@tree_layout@split@split_fun` is NULL
-`expected@col_info@tree_layout@split@split_fun` is absent
-
-`actual@col_info@tree_layout@split@payload` is a character vector ('ACTARM')
-`expected@col_info@tree_layout@split@payload` is NULL
-
-`actual@col_info@tree_layout@split@name`:   "ACTARM"
-`expected@col_info@tree_layout@split@name`: "manual"
-
-`actual@col_info@tree_layout@split@split_label`:   "ACTARM"    
-`expected@col_info@tree_layout@split@split_label`: "colsplit 1"
-
-actual@col_info@tree_layout@split@split_label_position vs expected@col_info@tree_layout@split@split_label_position
-- "topleft"
-- "hidden"
-  "visible"
-
-`actual@col_info@tree_layout@split@content_na_str`:   NA
-`expected@col_info@tree_layout@split@content_na_str`:   
-
-`actual@col_info@tree_layout@split@label_children`:   &lt;NA&gt; 
-`expected@col_info@tree_layout@split@label_children`: FALSE
-
-`actual@col_info@tree_layout@split@levels` is absent
-`expected@col_info@tree_layout@split@levels` is a character vector ('')
-
-`actual@col_info@tree_layout@children` is length 3
-`expected@col_info@tree_layout@children` is length 1
-
-names(actual@col_info@tree_layout@children) vs names(expected@col_info@tree_layout@children)
-- "A: Drug X"
-- "B: Placebo"
-- "C: Combination"
-+ ""
-
-is(actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]) vs is(expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]])
-- "VarLevelSplit"
-+ "ManualSplit"
-- "CustomizableSplit"
-+ "AllSplit"
-  "Split"
-
-`actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_label_var` is a character vector ('ACTARM')
-`expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_label_var` is absent
-
-`actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_order` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@value_order` is absent
-
-`actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_fun` is NULL
-`expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_fun` is absent
-
-`actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@payload` is a character vector ('ACTARM')
-`expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@payload` is NULL
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@name vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@name
-- "ACTARM"
-+ "manual"
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label
-- "ACTARM"
-+ "colsplit 1"
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label_position vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@split_label_position
-- "topleft"
-- "hidden"
-  "visible"
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@content_na_str vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@content_na_str
-- NA
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@label_children vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@label_children
-- &lt;NA&gt;
-+ FALSE
-
-`actual@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@levels` is absent
-`expected@col_info@tree_layout@children[[1]]@pos_in_tree@splits[[1]]@levels` is a character vector ('')
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@value vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@value
-- "A: Drug X"
-+ ""
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@label vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@s_values[[1]]@label
-- "A: Drug X"
-+ ""
-
-actual@col_info@tree_layout@children[[1]]@pos_in_tree@sval_labels vs expected@col_info@tree_layout@children[[1]]@pos_in_tree@sval_labels
-- "A: Drug X"
-+ ""
-
-`actual@col_info@tree_layout@children[[1]]@pos_in_tree@subset[[1]]` is a call
-`expected@col_info@tree_layout@children[[1]]@pos_in_tree@subset[[1]]` is a logical vector (TRUE)
-
-`actual@col_info@tree_layout@children[[1]]@label`:   "A: Drug X"
-`expected@col_info@tree_layout@children[[1]]@label`: ""         
-
-`actual@col_info@tree_layout@children[[1]]@name`:   "A: Drug X"
-`expected@col_info@tree_layout@children[[1]]@name`: ""         
-
-`actual@col_info@tree_layout@children[[2]]` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@col_info@tree_layout@children[[2]]` is absent
-
-`actual@col_info@tree_layout@children[[3]]` is an S4 object of class &lt;LayoutColLeaf&gt;
-`expected@col_info@tree_layout@children[[3]]` is absent
-
-`actual@col_info@subset_exprs` is length 3
-`expected@col_info@subset_exprs` is length 1
-
-`names(actual@col_info@subset_exprs)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@col_info@subset_exprs)` is absent
-
-`actual@col_info@subset_exprs[[1]][[1]]` is a call
-`expected@col_info@subset_exprs[[1]][[1]]` is a logical vector (TRUE)
-
-`actual@col_info@subset_exprs[[2]]` is an expression vector
-`expected@col_info@subset_exprs[[2]]` is absent
-
-`actual@col_info@subset_exprs[[3]]` is an expression vector
-`expected@col_info@subset_exprs[[3]]` is absent
-
-`actual@col_info@cextra_args` is length 3
-`expected@col_info@cextra_args` is length 1
-
-`names(actual@col_info@cextra_args)` is a character vector ('A: Drug X', 'B: Placebo', 'C: Combination')
-`names(expected@col_info@cextra_args)` is absent
-
-`actual@col_info@cextra_args[[2]]` is a list
-`expected@col_info@cextra_args[[2]]` is absent
-
-`actual@col_info@cextra_args[[3]]` is a list
-`expected@col_info@cextra_args[[3]]` is absent
-
-  `actual@col_info@counts`:  0 0 0
-`expected@col_info@counts`: NA    
-
-  `actual@col_info@total_count`:  0
-`expected@col_info@total_count`: NA
-
-`actual@col_info@display_columncounts`:   TRUE 
-`expected@col_info@display_columncounts`: FALSE
-
-    actual@col_info@top_left            | expected@col_info@top_left 
-[1] "MedDRA System Organ Class"         -                            
-[2] "  MedDRA Preferred Term"           -                            
-[3] "                            Grade" -                            
-
-  `actual@level`: 0
-`expected@level`: 1
-
-`actual@name`:   "root"
-`expected@name`: ""    </failure>
+  <testsuite name="empty_report" timestamp="2023-05-10T06:21:57Z" hostname="8676ad11fa6c" tests="2" skipped="0" failures="0" errors="1" time="2.195">
+    <testcase time="2.15000000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0450000000000017" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty">
+      <error type="error" message="Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]],  ('test-empty_report.R:23:3')">Error in `assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], 
+    sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))`: Assertion on 'df1' failed: Must be of type 'data.frame', not 'factor'.
+Backtrace:
+ 1. chevron::run(aet01_aesi, dat_empty, prune_0 = TRUE)
+      at test-empty_report.R:23:2
+ 2. chevron::run(aet01_aesi, dat_empty, prune_0 = TRUE)
+ 4. chevron (local) `&lt;fn&gt;`(adam_db = `&lt;named list&gt;`)
+ 5. chevron:::assert_valid_var_pair(...)
+ 6. checkmate::assert_data_frame(df1)
+ 7. checkmate::makeAssertion(x, res, .var.name, add)
+ 8. checkmate:::mstop(...)</error>
     </testcase>
-    <testcase time="0.0949999999999989" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0969999999999942" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0759999999999934" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0770000000000124" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.108999999999995" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.197999999999993" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.125" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.215000000000003" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.119" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0649999999999977" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0370000000000061" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0460000000000065" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0449999999999875" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0370000000000061" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0570000000000022" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0480000000000018" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.600999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0720000000000027" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.617999999999995" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0720000000000027" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.070999999999998" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0529999999999973" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0600000000000023" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0420000000000016" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0390000000000015" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0160000000000053" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
   </testsuite>
-  <testsuite name="ext01" timestamp="2023-05-09T08:51:08Z" hostname="6a63424e8ca3" tests="3" skipped="2" failures="0" errors="0" time="0.412">
-    <testcase time="0.147999999999996" classname="ext01" name="ext01_works"/>
-    <testcase time="0.0490000000000066" classname="ext01" name="ext01_works">
+  <testsuite name="ext01" timestamp="2023-05-10T06:21:59Z" hostname="8676ad11fa6c" tests="3" skipped="2" failures="0" errors="0" time="0.666">
+    <testcase time="0.245999999999995" classname="ext01" name="ext01_works"/>
+    <testcase time="0.0879999999999939" classname="ext01" name="ext01_works">
       <skipped message="Reason: On CRAN ('test-ext01.R:5:3')"/>
     </testcase>
-    <testcase time="0.215000000000003" classname="ext01" name="ext02_1_works_for_selected_parameters">
+    <testcase time="0.332000000000008" classname="ext01" name="ext02_1_works_for_selected_parameters">
       <skipped message="Reason: On CRAN ('test-ext01.R:17:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="kmg01" timestamp="2023-05-09T08:51:09Z" hostname="6a63424e8ca3" tests="6" skipped="0" failures="0" errors="0" time="1.738">
-    <testcase time="0.0209999999999866" classname="kmg01" name="kmg01_1_works_as_expected"/>
-    <testcase time="0.412000000000006" classname="kmg01" name="kmg01_1_works_as_expected"/>
-    <testcase time="0.358999999999995" classname="kmg01" name="kmg01_1_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.317000000000007" classname="kmg01" name="kmg01_1_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.314999999999998" classname="kmg01" name="kmg01_1_works_if_change_pvalue_ties_and_conf_level"/>
-    <testcase time="0.314000000000007" classname="kmg01" name="kmg01_1_works_if_change_annotation_position"/>
+  <testsuite name="kmg01" timestamp="2023-05-10T06:21:59Z" hostname="8676ad11fa6c" tests="6" skipped="0" failures="0" errors="0" time="2.714">
+    <testcase time="0.0439999999999969" classname="kmg01" name="kmg01_1_works_as_expected"/>
+    <testcase time="0.591999999999999" classname="kmg01" name="kmg01_1_works_as_expected"/>
+    <testcase time="0.575999999999993" classname="kmg01" name="kmg01_1_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.52300000000001" classname="kmg01" name="kmg01_1_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.506" classname="kmg01" name="kmg01_1_works_if_change_pvalue_ties_and_conf_level"/>
+    <testcase time="0.472999999999999" classname="kmg01" name="kmg01_1_works_if_change_annotation_position"/>
   </testsuite>
-  <testsuite name="lbt01" timestamp="2023-05-09T08:51:11Z" hostname="6a63424e8ca3" tests="2" skipped="1" failures="0" errors="0" time="1.499">
-    <testcase time="1.318" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
-    <testcase time="0.180999999999997" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs">
+  <testsuite name="lbt01" timestamp="2023-05-10T06:22:02Z" hostname="8676ad11fa6c" tests="2" skipped="1" failures="0" errors="0" time="2.373">
+    <testcase time="2.10799999999999" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+    <testcase time="0.265000000000001" classname="lbt01" name="lbt01_1_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs">
       <skipped message="Reason: On CRAN ('test-lbt01.R:10:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="lbt04" timestamp="2023-05-09T08:51:12Z" hostname="6a63424e8ca3" tests="5" skipped="2" failures="0" errors="0" time="0.708">
-    <testcase time="0.0819999999999936" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
-    <testcase time="0.0739999999999981" classname="lbt04" name="lbt04_can_handle_all_NA_values">
+  <testsuite name="lbt04" timestamp="2023-05-10T06:22:05Z" hostname="8676ad11fa6c" tests="5" skipped="2" failures="0" errors="0" time="0.995">
+    <testcase time="0.135000000000005" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
+    <testcase time="0.0439999999999969" classname="lbt04" name="lbt04_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt04.R:11:3')"/>
     </testcase>
-    <testcase time="0.412000000000006" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
-    <testcase time="0.108000000000004" classname="lbt04" name="lbt04_can_handle_some_NA_values">
+    <testcase time="0.594999999999999" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
+    <testcase time="0.186999999999998" classname="lbt04" name="lbt04_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt04.R:24:3')"/>
     </testcase>
-    <testcase time="0.0319999999999965" classname="lbt04" name="lbt04_fails_on_incomlete_date"/>
+    <testcase time="0.034000000000006" classname="lbt04" name="lbt04_fails_on_incomlete_date"/>
   </testsuite>
-  <testsuite name="lbt05" timestamp="2023-05-09T08:51:13Z" hostname="6a63424e8ca3" tests="4" skipped="1" failures="0" errors="0" time="0.931">
-    <testcase time="0.399000000000001" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing"/>
-    <testcase time="0.403000000000006" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
-    <testcase time="0.10499999999999" classname="lbt05" name="lbt05_can_handle_some_NA_values">
+  <testsuite name="lbt05" timestamp="2023-05-10T06:22:05Z" hostname="8676ad11fa6c" tests="4" skipped="1" failures="0" errors="0" time="1.396">
+    <testcase time="0.590999999999994" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing"/>
+    <testcase time="0.582000000000008" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
+    <testcase time="0.190999999999988" classname="lbt05" name="lbt05_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt05.R:22:3')"/>
     </testcase>
-    <testcase time="0.0240000000000009" classname="lbt05" name="lbt05_fails_on_incomlete_date"/>
+    <testcase time="0.0320000000000107" classname="lbt05" name="lbt05_fails_on_incomlete_date"/>
   </testsuite>
-  <testsuite name="lbt07" timestamp="2023-05-09T08:51:14Z" hostname="6a63424e8ca3" tests="3" skipped="1" failures="0" errors="0" time="0.804">
-    <testcase time="0.597999999999999" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
-    <testcase time="0.154000000000011" classname="lbt07" name="lbt07_can_handle_some_NA_values">
+  <testsuite name="lbt07" timestamp="2023-05-10T06:22:07Z" hostname="8676ad11fa6c" tests="3" skipped="1" failures="0" errors="0" time="1.473">
+    <testcase time="1.17599999999999" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
+    <testcase time="0.224000000000004" classname="lbt07" name="lbt07_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt07.R:11:3')"/>
     </testcase>
-    <testcase time="0.0520000000000067" classname="lbt07" name="lbt07_fails_on_incomlete_data"/>
+    <testcase time="0.0730000000000075" classname="lbt07" name="lbt07_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="lbt14" timestamp="2023-05-09T08:51:15Z" hostname="6a63424e8ca3" tests="12" skipped="6" failures="0" errors="0" time="10.55">
-    <testcase time="1.36199999999999" classname="lbt14" name="lbt14_1_can_handle_all_NA_values"/>
-    <testcase time="0.0510000000000019" classname="lbt14" name="lbt14_1_can_handle_all_NA_values">
+  <testsuite name="lbt14" timestamp="2023-05-10T06:22:08Z" hostname="8676ad11fa6c" tests="12" skipped="6" failures="0" errors="0" time="14.662">
+    <testcase time="1.845" classname="lbt14" name="lbt14_1_can_handle_all_NA_values"/>
+    <testcase time="0.0879999999999939" classname="lbt14" name="lbt14_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:11:3')"/>
     </testcase>
-    <testcase time="1.669" classname="lbt14" name="lbt14_1_can_handle_some_NA_values"/>
-    <testcase time="0.314999999999998" classname="lbt14" name="lbt14_1_can_handle_some_NA_values">
+    <testcase time="2.212" classname="lbt14" name="lbt14_1_can_handle_some_NA_values"/>
+    <testcase time="0.444000000000003" classname="lbt14" name="lbt14_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:30:3')"/>
     </testcase>
-    <testcase time="1.742" classname="lbt14" name="lbt14_1_can_accept_different_gr_missing">
+    <testcase time="2.42" classname="lbt14" name="lbt14_1_can_accept_different_gr_missing">
       <skipped message="Reason: On CRAN ('test-lbt14.R:36:3')"/>
     </testcase>
-    <testcase time="0.0229999999999961" classname="lbt14" name="lbt14_1_fails_on_incomlete_data"/>
-    <testcase time="1.428" classname="lbt14" name="lbt14_2_can_handle_all_NA_values"/>
-    <testcase time="0.0550000000000068" classname="lbt14" name="lbt14_2_can_handle_all_NA_values">
+    <testcase time="0.0319999999999965" classname="lbt14" name="lbt14_1_fails_on_incomlete_data"/>
+    <testcase time="1.96899999999999" classname="lbt14" name="lbt14_2_can_handle_all_NA_values"/>
+    <testcase time="0.0759999999999934" classname="lbt14" name="lbt14_2_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:61:3')"/>
     </testcase>
-    <testcase time="1.696" classname="lbt14" name="lbt14_2_can_handle_some_NA_values"/>
-    <testcase time="0.334000000000003" classname="lbt14" name="lbt14_2_can_handle_some_NA_values">
+    <testcase time="2.47000000000001" classname="lbt14" name="lbt14_2_can_handle_some_NA_values"/>
+    <testcase time="0.509" classname="lbt14" name="lbt14_2_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-lbt14.R:80:3')"/>
     </testcase>
-    <testcase time="1.851" classname="lbt14" name="lbt14_2_can_accept_different_gr_missing">
+    <testcase time="2.56399999999999" classname="lbt14" name="lbt14_2_can_accept_different_gr_missing">
       <skipped message="Reason: On CRAN ('test-lbt14.R:85:3')"/>
     </testcase>
-    <testcase time="0.0240000000000009" classname="lbt14" name="lbt14_2_fails_on_incomlete_data"/>
+    <testcase time="0.0330000000000013" classname="lbt14" name="lbt14_2_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="mht01" timestamp="2023-05-09T08:51:25Z" hostname="6a63424e8ca3" tests="2" skipped="2" failures="0" errors="0" time="0.95">
-    <testcase time="0.481999999999999" classname="mht01" name="mht01_1_works">
+  <testsuite name="mht01" timestamp="2023-05-10T06:22:23Z" hostname="8676ad11fa6c" tests="2" skipped="2" failures="0" errors="0" time="1.349">
+    <testcase time="0.661999999999992" classname="mht01" name="mht01_1_works">
       <skipped message="Reason: On CRAN ('test-mht01.R:5:3')"/>
     </testcase>
-    <testcase time="0.468000000000004" classname="mht01" name="mht01_1_works_on_NULL_in_lbl_mhbodsys_or_lbl_mhdecod">
+    <testcase time="0.687000000000012" classname="mht01" name="mht01_1_works_on_NULL_in_lbl_mhbodsys_or_lbl_mhdecod">
       <skipped message="Reason: On CRAN ('test-mht01.R:10:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="mng01" timestamp="2023-05-09T08:51:26Z" hostname="6a63424e8ca3" tests="6" skipped="0" failures="0" errors="0" time="7.882">
-    <testcase time="1.328" classname="mng01" name="mng01_1_works_as_expected"/>
-    <testcase time="1.30199999999999" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
-    <testcase time="1.283" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
-    <testcase time="1.292" classname="mng01" name="mng01_1_works_if_show_v_grid_show_h_grid_is_TRUE"/>
-    <testcase time="1.52499999999999" classname="mng01" name="mng01_1_works_on_custom_color_with_named_line_col"/>
-    <testcase time="1.152" classname="mng01" name="mng01_1_works_with_combination_of_x_variables"/>
+  <testsuite name="mng01" timestamp="2023-05-10T06:22:24Z" hostname="8676ad11fa6c" tests="6" skipped="0" failures="0" errors="0" time="11.126">
+    <testcase time="1.86299999999999" classname="mng01" name="mng01_1_works_as_expected"/>
+    <testcase time="1.83100000000002" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
+    <testcase time="1.81199999999998" classname="mng01" name="mng01_1_works_as_expected_with_custom_color_set"/>
+    <testcase time="1.839" classname="mng01" name="mng01_1_works_if_show_v_grid_show_h_grid_is_TRUE"/>
+    <testcase time="1.88500000000002" classname="mng01" name="mng01_1_works_on_custom_color_with_named_line_col"/>
+    <testcase time="1.89599999999999" classname="mng01" name="mng01_1_works_with_combination_of_x_variables"/>
   </testsuite>
-  <testsuite name="pdt01" timestamp="2023-05-09T08:51:34Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="0.53">
-    <testcase time="0.0990000000000038" classname="pdt01" name="pdt01_1_can_handle_all_NA_values"/>
-    <testcase time="0.0330000000000013" classname="pdt01" name="pdt01_1_can_handle_all_NA_values">
+  <testsuite name="pdt01" timestamp="2023-05-10T06:22:35Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="0.921">
+    <testcase time="0.193000000000012" classname="pdt01" name="pdt01_1_can_handle_all_NA_values"/>
+    <testcase time="0.0550000000000068" classname="pdt01" name="pdt01_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt01.R:10:3')"/>
     </testcase>
-    <testcase time="0.286999999999992" classname="pdt01" name="pdt01_1_can_handle_some_NA_values"/>
-    <testcase time="0.111000000000004" classname="pdt01" name="pdt01_1_can_handle_some_NA_values">
+    <testcase time="0.482999999999976" classname="pdt01" name="pdt01_1_can_handle_some_NA_values"/>
+    <testcase time="0.189999999999998" classname="pdt01" name="pdt01_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt01.R:25:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="pdt02" timestamp="2023-05-09T08:51:34Z" hostname="6a63424e8ca3" tests="4" skipped="2" failures="0" errors="0" time="0.408">
-    <testcase time="0.126999999999995" classname="pdt02" name="pdt02_1_can_handle_all_NA_values"/>
-    <testcase time="0.0360000000000014" classname="pdt02" name="pdt02_1_can_handle_all_NA_values">
+  <testsuite name="pdt02" timestamp="2023-05-10T06:22:36Z" hostname="8676ad11fa6c" tests="4" skipped="2" failures="0" errors="0" time="0.665">
+    <testcase time="0.218999999999994" classname="pdt02" name="pdt02_1_can_handle_all_NA_values"/>
+    <testcase time="0.054000000000002" classname="pdt02" name="pdt02_1_can_handle_all_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt02.R:10:3')"/>
     </testcase>
-    <testcase time="0.192000000000007" classname="pdt02" name="pdt02_1_can_handle_some_NA_values"/>
-    <testcase time="0.0529999999999973" classname="pdt02" name="pdt02_1_can_handle_some_NA_values">
+    <testcase time="0.306000000000012" classname="pdt02" name="pdt02_1_can_handle_some_NA_values"/>
+    <testcase time="0.0860000000000127" classname="pdt02" name="pdt02_1_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-pdt02.R:25:3')"/>
     </testcase>
   </testsuite>
-  <testsuite name="rmpt01" timestamp="2023-05-09T08:51:35Z" hostname="6a63424e8ca3" tests="6" skipped="2" failures="0" errors="0" time="0.391">
-    <testcase time="0.152000000000001" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
-    <testcase time="0.0330000000000013" classname="rmpt01" name="rmpt01_can_handle_NA_values">
+  <testsuite name="rmpt01" timestamp="2023-05-10T06:22:37Z" hostname="8676ad11fa6c" tests="6" skipped="2" failures="0" errors="0" time="0.686">
+    <testcase time="0.263999999999982" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
+    <testcase time="0.054000000000002" classname="rmpt01" name="rmpt01_can_handle_NA_values">
       <skipped message="Reason: On CRAN ('test-rmpt01.R:9:3')"/>
     </testcase>
-    <testcase time="0.140000000000001" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
-    <testcase time="0.0339999999999918" classname="rmpt01" name="rmpt01_can_handle_some_NA_values">
+    <testcase time="0.24799999999999" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
+    <testcase time="0.0560000000000116" classname="rmpt01" name="rmpt01_can_handle_some_NA_values">
       <skipped message="Reason: On CRAN ('test-rmpt01.R:23:3')"/>
     </testcase>
-    <testcase time="0.0230000000000103" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
-    <testcase time="0.00900000000000034" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
+    <testcase time="0.0339999999999918" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
+    <testcase time="0.0300000000000011" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="utils" timestamp="2023-05-09T08:51:35Z" hostname="6a63424e8ca3" tests="27" skipped="0" failures="0" errors="0" time="0.14">
-    <testcase time="0.00899999999998613" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00400000000000489" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00199999999999534" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00400000000000489" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00199999999999534" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00400000000000489" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00100000000000477" classname="utils" name="h_format_dec_works_as_exected"/>
+  <testsuite name="utils" timestamp="2023-05-10T06:22:38Z" hostname="8676ad11fa6c" tests="27" skipped="0" failures="0" errors="0" time="0.215">
+    <testcase time="0.0169999999999959" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.007000000000005" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00399999999999068" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.007000000000005" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.0029999999999859" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.007000000000005" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00799999999998136" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.0109999999999957" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
     <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
-    <testcase time="0.00300000000000011" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
-    <testcase time="0.007000000000005" classname="utils" name="h_format_dec_works_returns_null_with_NA_format"/>
-    <testcase time="0.00699999999999079" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
-    <testcase time="0.007000000000005" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
-    <testcase time="0.007000000000005" classname="utils" name="get_db_data_works"/>
-    <testcase time="0.00399999999999068" classname="utils" name="get_db_data_works"/>
-    <testcase time="0.007000000000005" classname="utils" name="fuse_sequentially_works"/>
-    <testcase time="0.00400000000000489" classname="utils" name="fuse_sequentially_works"/>
-    <testcase time="0.00499999999999545" classname="utils" name="grob_list_works"/>
-    <testcase time="0.00199999999999534" classname="utils" name="grob_list_works"/>
-    <testcase time="0.00400000000000489" classname="utils" name="grob_list_works"/>
-    <testcase time="0.00400000000000489" classname="utils" name="grob_list_works"/>
-    <testcase time="0.012999999999991" classname="utils" name="ifneeded_split_row_works_as_expected"/>
-    <testcase time="0.0180000000000007" classname="utils" name="ifneeded_split_row_works_as_expected"/>
+    <testcase time="0.0109999999999957" classname="utils" name="h_format_dec_works_returns_null_with_NA_format"/>
+    <testcase time="0.0109999999999957" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
+    <testcase time="0.0109999999999957" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
+    <testcase time="0.0110000000000241" classname="utils" name="get_db_data_works"/>
+    <testcase time="0.00699999999997658" classname="utils" name="get_db_data_works"/>
+    <testcase time="0.0110000000000241" classname="utils" name="fuse_sequentially_works"/>
+    <testcase time="0.00699999999997658" classname="utils" name="fuse_sequentially_works"/>
+    <testcase time="0.00800000000000978" classname="utils" name="grob_list_works"/>
+    <testcase time="0.00200000000000955" classname="utils" name="grob_list_works"/>
+    <testcase time="0.00600000000000023" classname="utils" name="grob_list_works"/>
+    <testcase time="0.00600000000000023" classname="utils" name="grob_list_works"/>
+    <testcase time="0.0209999999999866" classname="utils" name="ifneeded_split_row_works_as_expected"/>
+    <testcase time="0.0120000000000005" classname="utils" name="ifneeded_split_row_works_as_expected"/>
   </testsuite>
-  <testsuite name="vst02" timestamp="2023-05-09T08:51:35Z" hostname="6a63424e8ca3" tests="2" skipped="2" failures="0" errors="0" time="0.699">
-    <testcase time="0.341999999999999" classname="vst02" name="vst02_1_works">
+  <testsuite name="vst02" timestamp="2023-05-10T06:22:38Z" hostname="8676ad11fa6c" tests="2" skipped="2" failures="0" errors="0" time="1.171">
+    <testcase time="0.581999999999994" classname="vst02" name="vst02_1_works">
       <skipped message="Reason: On CRAN ('test-vst02.R:5:3')"/>
     </testcase>
-    <testcase time="0.356999999999999" classname="vst02" name="vst02_2_works">
+    <testcase time="0.588999999999999" classname="vst02" name="vst02_2_works">
       <skipped message="Reason: On CRAN ('test-vst02.R:13:3')"/>
     </testcase>
   </testsuite>
