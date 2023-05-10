@@ -247,7 +247,7 @@ assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = 
 #' @param vars (`character`) variables to check.
 #' @param label (`string`) labels of the data frame.
 #' @param types Named (`list`) of type of the input.
-#' @param ... further arugments for `assert_valid_var`.
+#' @param ... further arguments for `assert_valid_var`.
 #'
 #' @export
 assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), types = NULL, ...) {
@@ -267,10 +267,13 @@ assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), typ
   }
   collection <- checkmate::makeAssertCollection()
   mapply(assert_valid_var, df[vars], labels, MoreArgs = list(..., add = collection), SIMPLIFY = FALSE)
-  reportAssertions(collection)
+  checkmate::reportAssertions(collection)
 }
 
 #' Check variable is of correct type
+#' @param x Object to check the type.
+#' @param types (`character`) possible types to check.
+#' @param label (`string`) label.
 assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
   if (!any(class(x) %in% types)) {
     abort(

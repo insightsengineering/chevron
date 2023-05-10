@@ -18,6 +18,11 @@ syn_test_data <- function() {
       "Total dose administered",
       c(-Inf, 5000, 7000, 9000, Inf),
       c("<5000", "5000-7000", "7000-9000", ">9000")
+    ),
+    list(
+      "Total number of doses administered",
+      c(6, 8),
+      "7"
     )
   )
   sd$adex <- dunlin::cut_by_group(as.data.frame(sd$adex), "AVAL", "PARAM", group, "AVALCAT1")
@@ -27,7 +32,7 @@ syn_test_data <- function() {
   attr(sd$adsl$AGEGR1, "label") <- "Age Group"
   sd$adex$AVALCAT1 <- factor(
     sd$adex$AVALCAT1,
-    levels = c("<700", "700-900", "900-1200", ">1200", "<5000", "5000-7000", "7000-9000", ">9000")
+    levels = c("<700", "700-900", "900-1200", ">1200", "<5000", "5000-7000", "7000-9000", ">9000", "7")
   )
 
   set.seed(1, kind = "Mersenne-Twister")
