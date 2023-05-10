@@ -29,18 +29,18 @@
 #' dmt01_main(db, lbl_overall = NULL)
 #' dmt01_main(db, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_main <- function(adam_db,
-                         arm_var = "ARM",
-                         summaryvars = c(
-                           "AAGE",
-                           "AGEGR1",
-                           "SEX",
-                           "ETHNIC",
-                           "RACE"
-                         ),
-                         lbl_overall = "All Patients",
-                         ...) {
+                       arm_var = "ARM",
+                       summaryvars = c(
+                         "AAGE",
+                         "AGEGR1",
+                         "SEX",
+                         "ETHNIC",
+                         "RACE"
+                       ),
+                       lbl_overall = "All Patients",
+                       ...) {
   assert_colnames(adam_db$adsl, c(arm_var, summaryvars))
-  
+
   summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
   lapply(
     summaryvars,
@@ -70,9 +70,9 @@ dmt01_main <- function(adam_db,
 #' @export
 #'
 dmt01_lyt <- function(arm_var,
-                        summaryvars,
-                        summaryvars_lbls,
-                        lbl_overall) {
+                      summaryvars,
+                      summaryvars_lbls,
+                      lbl_overall) {
   basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%

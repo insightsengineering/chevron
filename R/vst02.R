@@ -1,8 +1,9 @@
-# vst02_1 ----
+# vst02 ----
 
-#' @describeIn vst02_1 Main TLG function
+#' @describeIn vst02 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param exclude_base_abn (`flag`) whether to exclude subjects with baseline abnormality.
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
 #'
@@ -17,29 +18,44 @@
 #'
 #' @export
 #'
-vst02_1_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_vs_assessment = "Assessment",
-                         lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = NULL,
-                         prune_0 = FALSE,
-                         deco = std_deco("VST02"),
-                         ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "advs")
+vst02_main <- function(adam_db,
+                       arm_var = "ACTARM",
+                       exclude_base_abn = FALSE,
+                       lbl_vs_assessment = "Assessment",
+                       lbl_vs_abnormality = "Abnormality",
+                       lbl_overall = NULL,
+                       prune_0 = FALSE,
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", "advs"))
+  assert_valid_var_pair(
+    adam_db$adsl[[arm_var]],
+    adam_db$advs[[arm_var]],
+    sprintf("adsl.%s", arm_var),
+    sprintf("advs.%s", arm_var)
+  )
+  checkmate::assert_flag(exclude_base_abn)
+  checkmate::assert_string(lbl_vs_assessment)
+  checkmate::assert_string(lbl_vs_abnormality)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  checkmate::assert_flag(prune_0)
+  assert_colnames(adam_db$adsl, c(arm_var))
+  assert_colnames(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"))
 
-  lyt <- vst02_1_lyt(
+
+
+  lyt <- vst02_lyt(
     arm_var = arm_var,
+    exclude_base_abn = exclude_base_abn,
     lbl_vs_assessment = lbl_vs_assessment,
     lbl_vs_abnormality = lbl_vs_abnormality,
-    lbl_overall = lbl_overall,
-    deco = deco
+    lbl_overall = lbl_overall
   )
 
-  tbl <- build_table(lyt, dbsel$advs, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$advs, alt_counts_df = adam_db$adsl)
   tbl
 }
 
-#' @describeIn vst02_1 Layout
+#' @describeIn vst02 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
@@ -47,12 +63,12 @@ vst02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-vst02_1_lyt <- function(arm_var,
-                        lbl_vs_assessment,
-                        lbl_vs_abnormality,
-                        lbl_overall,
-                        deco) {
-  basic_table_deco(deco) %>%
+vst02_lyt <- function(arm_var,
+                      exclude_base_abn,
+                      lbl_vs_assessment,
+                      lbl_vs_abnormality,
+                      lbl_overall) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -61,20 +77,18 @@ vst02_1_lyt <- function(arm_var,
       "ANRIND",
       abnormal = list(Low = "LOW", High = "HIGH"),
       variables = list(id = "USUBJID", baseline = "BNRIND"),
-      exclude_base_abn = FALSE
+      exclude_base_abn = exclude_base_abn
     ) %>%
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn vst02_1 Preprocessing
+#' @describeIn vst02 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-vst02_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "advs"))
-
+vst02_pre <- function(adam_db, ...) {
   adam_db$advs <- adam_db$advs %>%
     filter(.data$ANRIND != "<Missing>") %>%
     filter(.data$ONTRTFL == "Y") %>%
@@ -98,163 +112,31 @@ vst02_1_pre <- function(adam_db, ...) {
   adam_db
 }
 
-#' @describeIn vst02_1 Postprocessing
+#' @describeIn vst02 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-vst02_1_post <- function(tlg, prune_0 = FALSE, ...) {
+vst02_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
   std_postprocess(tlg)
 }
 
-#' `VST02` Table 1 (Default) Vital Sign Abnormalities Table 1.
+#' `VST02` Vital Sign Abnormalities Table.
 #'
-#' Assessments Outside Normal Limits Regardless of
-#' Abnormality at Baseline Table.
+#' Assessments Outside Normal Limits.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
 #' run(vst02_1, syn_data)
-vst02_1 <- chevron_t(
-  main = vst02_1_main,
-  preprocess = vst02_1_pre,
-  postprocess = vst02_1_post,
-  adam_datasets = c("adsl", "advs")
-)
-
-
-# vst02_2 ----
-
-#' @describeIn vst02_2 Main TLG function
-#'
-#' @inheritParams gen_args
-#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
-#'
-#' @details
-#'   * Only count LOW or HIGH values.
-#'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
-#'   * Does not include a total column by default.
-#'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
-#'
-#' @note
-#'   * `adam_db` object must contain an `advs` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
-#'
-#' @export
-#'
-vst02_2_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_vs_assessment = "Assessment",
-                         lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = NULL,
-                         deco = std_deco("VST02_2"),
-                         ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "advs")
-
-  lyt <- vst02_2_lyt(
-    arm_var = arm_var,
-    lbl_vs_assessment = lbl_vs_assessment,
-    lbl_vs_abnormality = lbl_vs_abnormality,
-    lbl_overall = lbl_overall,
-    deco = deco
-  )
-
-  tbl <- build_table(lyt, dbsel$advs, alt_counts_df = dbsel$adsl)
-
-  tbl
-}
-
-#' @describeIn vst02_2 Layout
-#'
-#' @inheritParams gen_args
-#' @param lbl_vs_assessment (`character`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`character`) the label of the abnormality variable.
-#'
-#' @export
-#'
-vst02_2_lyt <- function(arm_var,
-                        lbl_vs_assessment,
-                        lbl_vs_abnormality,
-                        lbl_overall,
-                        deco) {
-  basic_table_deco(deco) %>%
-    split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
-    split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
-    count_abnormal(
-      "ANRIND",
-      abnormal = list(Low = "LOW", High = "HIGH"),
-      variables = list(id = "USUBJID", baseline = "BNRIND"),
-      exclude_base_abn = TRUE
-    ) %>%
-    append_topleft(paste0("  ", lbl_vs_abnormality))
-}
-
-#' @describeIn vst02_2 Preprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-vst02_2_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "advs"))
-
-  adam_db$advs <- adam_db$advs %>%
-    filter(.data$ANRIND != "<Missing>") %>%
-    filter(.data$ONTRTFL == "Y") %>%
-    mutate(
-      ANRIND = case_when(
-        .data$ANRIND == "HIGH HIGH" ~ "HIGH",
-        .data$ANRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(.data$ANRIND)
-      ),
-      BNRIND = case_when(
-        .data$BNRIND == "HIGH HIGH" ~ "HIGH",
-        .data$BNRIND == "LOW LOW" ~ "LOW",
-        TRUE ~ as.character(.data$BNRIND)
-      )
-    ) %>%
-    mutate(
-      ANRIND = as.factor(.data$ANRIND),
-      BNRIND = as.factor(.data$BNRIND)
-    )
-
-  adam_db
-}
-
-#' @describeIn vst02_2 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-vst02_2_post <- function(tlg, prune_0 = FALSE, ...) {
-  if (prune_0) {
-    tlg <- smart_prune(tlg)
-  }
-  std_postprocess(tlg)
-}
-
-#' `VST02` Table 2 (Supplementary) Vital Sign Abnormalities Table 2.
-#'
-#' Assessments Outside Normal Limits Among Subject
-#' Without Abnormality at Baseline.
-#'
-#' @include chevron_tlg-S4class.R
-#' @export
-#'
-#' @examples
-#' run(vst02_2, syn_data)
-vst02_2 <- chevron_t(
-  main = vst02_2_main,
-  preprocess = vst02_2_pre,
-  postprocess = vst02_2_post,
+vst02 <- chevron_t(
+  main = vst02_main,
+  preprocess = vst02_pre,
+  postprocess = vst02_post,
   adam_datasets = c("adsl", "advs")
 )
