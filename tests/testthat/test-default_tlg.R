@@ -201,5 +201,3 @@ test_that("mht01_1 functions with default argument value return expected result 
   res <- mht01_1_post(raw_res)
   expect_snapshot(res)
 })
-
-
