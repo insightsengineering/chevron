@@ -20,7 +20,7 @@ dmt01_main(
   ...
 )
 
-dmt01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall, deco)
+dmt01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
 
 dmt01_pre(adam_db, ...)
 
@@ -42,8 +42,6 @@ subtitles. For values where no name is provided, the label attribute of the corr
 \item{...}{not used.}
 
 \item{summaryvars_lbls}{(\code{character}) labels corresponding to the analyzed variables.}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -86,7 +84,7 @@ db <- syn_data \%>\%
   dmt01_pre()
 
 dmt01_main(db, lbl_overall = NULL)
-dmt01_main(db, summaryvars = c("Age" = "AGE", "Race" = "RACE", "Gender" = "SEX"))
+dmt01_main(db, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_pre(syn_data)
 run(dmt01, syn_data)
 }

@@ -186,39 +186,61 @@ assert_only_one_paramcd <- function(param_val) {
 #' Check whether var is valid
 #' @details
 #' This function checks the character or factor values are valid or not.
+#' Other types of data are all valid.
 #' @param x value of col_split variable
 #' @param label (`string`) hints.
 #' @export
-assert_valid_var <- function(x, label = "variable") {
-  checkmate::assert_string(label)
-  if (!(is.factor(x) || is.character(x))) {
-    return()
-  }
-  lvl <- lvls(x)
-  if (is.null(lvl)) {
-    abort(label, " must be contain valid levels!")
-  }
-  if ("" %in% lvl || NA_character_ %in% x) {
-    abort(label, " should not contain empty string or NA!")
-  }
+assert_valid_var <- function(x, label, ...) {
+  UseMethod("assert_valid_var")
+}
+#' @export
+assert_valid_var.character <- function(x, label = deparse(substitute(x)), na_ok = FALSE, ...) {
+  x_fct <- as.factor(x)
+  assert_valid_var(x_fct, label = label, na_ok = na_ok, ...)
+}
+#' @export
+assert_valid_var.factor <- function(x, label = deparse(substitute(x)), na_ok = FALSE, ...) {
+  lvl <- union(levels(x), unique(x))
   if (length(lvl) == 0) {
-    abort(label, " should at least contain one valid level!")
+    abort("Variable", quote_str(label), " should at least contain one valid level!")
+  }
+  if (!na_ok && any(is.na(lvl))) {
+    abort("Variable", quote_str(label), " should not contain NA!")
+  }
+  if ("" %in% lvl) {
+    abort("Variable", quote_str(label), " should not contain empty string")
   }
 }
+#' @export
+assert_valid_var.default <- function(x, label = deparse(substitute(x)), ...) {
+}
 
-#' Check col_split vars are of same levels
-#' @param x value of col_split variable 1.
-#' @param y value of col_split variable 2.
-#' @param lab1 (`string`) label hint for variable 1.
-#' @param lab2 (`string`) label hint for variable 2.
-assert_valid_var_pair <- function(x, y, lab1 = "var1", lab2 = "var2") {
-  checkmate::assert_class(x, classes = class(y))
-  assert_valid_var(x)
-  assert_valid_var(y)
-  lvl_x <- lvls(x)
-  lvl_y <- lvls(y)
+#' @export
+assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), ...) {
+  assert_colnames(df, vars, null_ok = TRUE)
+  labels <- sprintf("%s$%s", label, var_labels_for(df, vars))
+  mapply(assert_valid_var, df[vars], labels, MoreArgs = list(...), SIMPLIFY = FALSE)
+  invisible()
+}
+
+#' Check variables are of same levels
+#' @param df1 (`data.frame`) input.
+#' @param df2 (`data.frame`) input.
+#' @param var (`string`) variable to check.
+#' @param lab1 (`string`) label hint for df1.
+#' @param lab2 (`string`) label hint for df2.
+assert_valid_var_pair <- function(df1, df2, var, lab1 = deparse(substitute(df1)), lab2 = deparse(substitute(df2))) {
+  checkmate::assert_data_frame(df1)
+  checkmate::assert_data_frame(df2)
+  checkmate::assert_string(var)
+  lvl_x <- lvls(df1[[var]])
+  lvl_y <- lvls(df2[[var]])
   if (!identical(lvl_x, lvl_y)) {
-    abort(lab1, " and ", lab2, " should contain the same levels!")
+    abort(
+      quote_str(lab1), " and ",
+      quote_str(lab2), " should contain the same levels in variable ",
+      quote_str(var), "!"
+    )
   }
 }
 

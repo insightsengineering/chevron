@@ -26,13 +26,13 @@ aet01_main <- function(adam_db,
                        medconcept_var = NULL,
                        ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
+  checkmate::assert_string(arm_var)
   checkmate::assert_character(safety_var)
   checkmate::assert_character(medconcept_var, null.ok = TRUE)
-  assert_colnames(dbsel$adsl, c(arm_var, "DTHFL", "DCSREAS"))
-  assert_colnames(dbsel$adae, c(arm_var, safety_var, medconcept_var))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(arm_var)
-  assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var, "DTHFL", "DCSREAS"))
+  assert_valid_variable(dbsel$adae, c("USUBJID", arm_var, safety_var, medconcept_var))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
   lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
   lbl_medconcept_var <- var_labels_for(adam_db$adae, medconcept_var)
   lyts <- aet01_lyt(
@@ -51,12 +51,12 @@ aet01_main <- function(adam_db,
   )
 }
 
-#' @describeIn aet01 Layout
+#' aet01 Layout
 #'
 #' @inheritParams aet01_main
 #' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
 #'
-#' @export
+#' @keywords internal
 #'
 aet01_lyt <- function(arm_var,
                       lbl_overall,

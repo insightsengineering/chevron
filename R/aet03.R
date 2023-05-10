@@ -22,12 +22,12 @@ aet03_main <- function(adam_db,
                          lbl_overall = NULL,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-  checkmate::assert_factor(dbsel$adae[["ASEV"]], any.missing = FALSE)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
-  assert_colnames(adam_db$adsl, c(arm_var))
-  assert_colnames(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD", "ASEV"))
-  assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(dbsel$adae, c("USUBJID", arm_var, "AEBODSYS", "AEDECOD", "ASEV"))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+
   intensity_grade <- levels(dbsel$adae[["ASEV"]])
   lbl_aebodsys <- var_labels_for(dbsel$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")

@@ -25,10 +25,12 @@ aet02_main <- function(adam_db,
                        ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_character(row_split_var, null.ok = TRUE)
-  assert_colnames(dbsel$adae, c(row_split_var, "AEDECOD"))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
-  assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(dbsel$adae, c("USUBJID", arm_var, row_split_var, "AEDECOD"))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 

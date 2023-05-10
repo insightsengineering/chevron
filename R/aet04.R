@@ -25,14 +25,18 @@ aet04_main <- function(adam_db,
                          grade_groups = NULL,
                          ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
-  checkmate::assert_string(arm_var)
-  assert_colnames(adam_db$adsl, c(arm_var))
-  assert_colnames(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD", "ATOXGR"))
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_var_pair(adam_db$adsl[[arm_var]], adam_db$adae[[arm_var]], sprintf("adsl.%s", arm_var), sprintf("adae.%s", arm_var))
+  checkmate::assert_string(arm_var)
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(dbsel$adae, c("USUBJID", arm_var, "AEBODSYS", "AEDECOD"))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+  assert_valid_var.factor(dbsel$adae$ATOXGR, na_ok = TRUE)
+
   lbl_aebodsys <- var_labels_for(dbsel$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
 
+  toxicity_grade <- levels(dbsel$adae[["ATOXGR"]])
+  checkmate::assert_list(grade_groups, types = "character", null.ok = TRUE)
   if (is.null(grade_groups)) {
     grade_groups <- list(
       "Grade 1-2" = c("1", "2"),
@@ -41,20 +45,16 @@ aet04_main <- function(adam_db,
     )
   }
 
-  checkmate::assert_factor(dbsel$adae[["ATOXGR"]])
-  toxicity_grade <- levels(dbsel$adae[["ATOXGR"]])
-
-  checkmate::assert_list(grade_groups, types = "character")
-
   lyt <- aet04_lyt(
     arm_var = arm_var,
+    total_var = "TOTAL_VAR",
     lbl_overall = lbl_overall,
     lbl_aebodsys = lbl_aebodsys,
     lbl_aedecod = lbl_aedecod,
     toxicity_grade = toxicity_grade,
     grade_groups = grade_groups
   )
-
+  dbsel$adae$TOTAL_VAR <- "- Any adverse events - "
   tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
   tbl
 }
@@ -71,29 +71,31 @@ aet04_main <- function(adam_db,
 #' @export
 #'
 aet04_lyt <- function(arm_var,
+                      total_var,
                         lbl_overall,
                         lbl_aebodsys,
                         lbl_aedecod,
                         toxicity_grade,
                         grade_groups) {
-  all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
-  combodf <- tibble::tribble(
-    ~valname, ~label, ~levelcombo, ~exargs,
-    "ALL", "- Any adverse events -", toxicity_grade, list()
-  )
-
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
-      "ATOXGR",
+      total_var,
+      label_pos = "hidden",
       child_labels = "visible",
-      split_fun = add_combo_levels(combodf, keep_levels = "ALL")
+      indent_mod = -1L
+    ) %>%
+    summarize_num_patients(
+      var = "USUBJID",
+      .stats = "unique",
+      .labels = "- Any Grade -",
+      indent_mod = 7L
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
-      grade_groups = all_grade_groups,
-      .indent_mods = 13L
+      grade_groups = grade_groups,
+      .indent_mods = 6L
     ) %>%
     split_rows_by(
       "AEBODSYS",

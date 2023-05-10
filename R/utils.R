@@ -299,10 +299,20 @@ lvls <- function(x) {
   UseMethod("lvls")
 }
 #' @export
+lvls.default <- function(x) {
+  NULL
+}
+#' @export
 lvls.character <- function(x) {
   sort(unique(x))
 }
 #' @export
 lvls.factor <- function(x) {
   levels(x)
+}
+
+#' @keywords internal
+quote_str <- function(x) {
+  checkmate::assert_string(x)
+  paste0("`", x, "`")
 }

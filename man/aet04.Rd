@@ -22,6 +22,7 @@ aet04_main(
 
 aet04_lyt(
   arm_var,
+  total_var,
   lbl_overall,
   lbl_aebodsys,
   lbl_aedecod,

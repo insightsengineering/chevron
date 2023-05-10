@@ -2,9 +2,9 @@
 % Please edit documentation in R/assertions.R
 \name{assert_valid_var}
 \alias{assert_valid_var}
-\title{Check col_split var is valid}
+\title{Check whether var is valid}
 \usage{
-assert_valid_var(x, label = "variable")
+assert_valid_var(x, label, ...)
 }
 \arguments{
 \item{x}{value of col_split variable}
@@ -12,5 +12,9 @@ assert_valid_var(x, label = "variable")
 \item{label}{(\code{string}) hints.}
 }
 \description{
-Check col_split var is valid
+Check whether var is valid
+}
+\details{
+This function checks the character or factor values are valid or not.
+Other types of data are all valid.
 }

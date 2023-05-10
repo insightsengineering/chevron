@@ -3,7 +3,6 @@
 \docType{data}
 \name{aet01_main}
 \alias{aet01_main}
-\alias{aet01_lyt}
 \alias{aet01_pre}
 \alias{aet01_post}
 \alias{aet01}
@@ -20,15 +19,6 @@ aet01_main(
     "RELWD", "RELDSM", "SEV"),
   medconcept_var = NULL,
   ...
-)
-
-aet01_lyt(
-  arm_var,
-  lbl_overall,
-  safety_var,
-  lbl_safety_var,
-  medconcept_var,
-  lbl_medconcept_var
 )
 
 aet01_pre(adam_db, ...)
@@ -48,11 +38,12 @@ aet01
 
 \item{...}{not used.}
 
-\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized. If \code{NULL}, uses the label
+attribute of the columns selected in \code{safety_var}.}
 }
 \description{
 \code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.
@@ -65,8 +56,6 @@ aet01
 \section{Functions}{
 \itemize{
 \item \code{aet01_main()}: Main TLG function
-
-\item \code{aet01_lyt()}: Layout
 
 \item \code{aet01_pre()}: Preprocessing
 
