@@ -131,9 +131,9 @@ To create a `chevron_tlg` object from scratch, use the provided constructors cor
 library(rtables)
 library(tern)
 my_template <- chevron_t(
-  main = <your main function to build the table>,
-  preprocess = <your pre function to process the data>,
-  postprocess = <your post function to add custom sorting>,
+  main = "<your main function to build the table>",
+  preprocess = "<your pre function to process the data>",
+  postprocess = "<your post function to add custom sorting>",
   adam_datasets = c("adsl")
 )
 
