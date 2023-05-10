@@ -4,8 +4,10 @@
 \name{pdt02_main}
 \alias{pdt02_main}
 \alias{pdt02_lyt}
+\alias{pdt02_pre}
+\alias{pdt02_post}
 \alias{pdt02}
-\title{\code{pdt02_1} Table 1 (Default) Major Protocol Deviations Related to Epidemic/Pandemic.}
+\title{\code{pdt02} Major Protocol Deviations Related to Epidemic/Pandemic Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -30,6 +32,16 @@ pdt02_lyt(
   lbl_dvterm_var
 )
 
+pdt02_pre(adam_db, ...)
+
+pdt02_post(
+  tlg,
+  prune_0 = TRUE,
+  dvreas_var = "DVREAS",
+  dvterm_var = "DVTERM",
+  ...
+)
+
 pdt02
 }
 \arguments{
@@ -48,6 +60,10 @@ pdt02
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 A major protocol deviations
@@ -72,6 +88,10 @@ the specific deviation term.
 
 \item \code{pdt02_lyt()}: Layout
 
+\item \code{pdt02_pre()}: Preprocessing
+
+\item \code{pdt02_post()}: Postprocessing
+
 }}
 \note{
 \itemize{
@@ -80,6 +100,6 @@ as \code{"DVSEQ"}.
 }
 }
 \examples{
-run(pdt02_1, syn_data)
+run(pdt02, syn_data)
 }
 \keyword{datasets}

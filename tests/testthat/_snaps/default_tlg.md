@@ -1215,7 +1215,7 @@
           trm D_1/3                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
           trm D_2/3                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
 
-# pdt01_1 function with default argument value return expected result with test data
+# pdt01 function with default argument value return expected result with test data
 
     Code
       res
@@ -1252,7 +1252,7 @@
           Missed 2 or more efficacy assessments                                2 (1.5%)        0           1 (0.8%)   
           Omission of complete lab panel required by protocol                     0         1 (0.7%)       1 (0.8%)   
 
-# pdt02_1 function with default argument value return expected result with test data
+# pdt02 function with default argument value return expected result with test data
 
     Code
       res
@@ -1268,7 +1268,7 @@
           Dose missed or significantly out of window                                                       2 (1.5%)        0           1 (0.8%)   
           Missed 2 or more efficacy assessments                                                            2 (1.5%)        0           1 (0.8%)   
 
-# rmpt01_1 function with default argument value return expected result with test data
+# rmpt01 function with default argument value return expected result with test data
 
     Code
       res
@@ -1282,7 +1282,7 @@
           3 to <6 months                           136 (34.0%)       17645    
           >=6 months                               114 (28.5%)       24909    
 
-# vst01_1 functions with default argument value return expected result with test data
+# vst01 functions with default argument value return expected result with test data
 
     Code
       res

@@ -4,6 +4,8 @@
 \name{rmpt01_main}
 \alias{rmpt01_main}
 \alias{rmpt01_lyt}
+\alias{rmpt01_pre}
+\alias{rmpt01_post}
 \alias{rmpt01}
 \title{\code{RMPT01}Duration of Exposure for Risk Management Plan Table.}
 \format{
@@ -21,6 +23,10 @@ rmpt01_main(
 
 rmpt01_lyt(summaryvars, lbl_vars, parcat, lbl_parcat)
 
+rmpt01_pre(adam_db, parcat = NULL, ...)
+
+rmpt01_post(tlg, prune_0 = FALSE, ...)
+
 rmpt01
 }
 \arguments{
@@ -33,6 +39,10 @@ rmpt01
 \item{lbl_parcat}{(\code{string}) the label of the variable \code{parcat}.}
 
 \item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 
 \item{anl_vars}{(\code{character}) the names of variables to be analyzed.}
 }
@@ -52,6 +62,10 @@ The \code{RMPT01} table provides an overview of duration of exposure.
 \item \code{rmpt01_main()}: Main TLG function
 
 \item \code{rmpt01_lyt()}: Layout
+
+\item \code{rmpt01_pre()}: Preprocessing
+
+\item \code{rmpt01_post()}: Postprocessing
 
 }}
 \note{

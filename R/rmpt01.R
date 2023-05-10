@@ -78,7 +78,7 @@ rmpt01_lyt <- function(summaryvars,
     )
 }
 
-#' @describeIn rmpt01_1 Preprocessing
+#' @describeIn rmpt01 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -95,7 +95,7 @@ rmpt01_pre <- function(adam_db,
   adam_db
 }
 
-#' @describeIn rmpt01_1 Postprocessing
+#' @describeIn rmpt01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'

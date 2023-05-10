@@ -107,7 +107,7 @@ pdt02_lyt <- function(arm_var,
     append_topleft(paste(" ", lbl_dvterm_var))
 }
 
-#' @describeIn pdt02_1 Preprocessing
+#' @describeIn pdt02 Preprocessing
 #'
 #' @inheritParams pdt02_main
 #'
@@ -133,7 +133,7 @@ pdt02_pre <- function(adam_db,
   reformat(adam_db, new_format, na_last = TRUE)
 }
 
-#' @describeIn pdt02_1 Postprocessing
+#' @describeIn pdt02 Postprocessing
 #'
 #' @inheritParams pdt02_main
 #' @inheritParams gen_args
@@ -154,7 +154,7 @@ pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = 
   std_postprocess(tbl_sorted)
 }
 
-#' `pdt02_1` Table 1 (Default) Major Protocol Deviations Related to Epidemic/Pandemic.
+#' `pdt02` Major Protocol Deviations Related to Epidemic/Pandemic Table.
 #'
 #' A major protocol deviations
 #' table with the number of subjects and the total number of Major Protocol Deviations Related
@@ -164,7 +164,7 @@ pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = 
 #' @export
 #'
 #' @examples
-#' run(pdt02_1, syn_data)
+#' run(pdt02, syn_data)
 pdt02 <- chevron_t(
   main = pdt02_main,
   lyt = pdt02_lyt,
