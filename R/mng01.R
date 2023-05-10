@@ -103,7 +103,7 @@ mng01_main <- function(adam_db,
     "range" = c("min", "max")
   )
 
-  y_unit <- if(is.null(y_unit)) NA else y_unit
+  y_unit <- if (is.null(y_unit)) NA else y_unit
   variables <- c(
     x = x_var,
     y = y_var,
