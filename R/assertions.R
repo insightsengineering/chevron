@@ -215,6 +215,12 @@ assert_valid_var.factor <- function(x, label = deparse(substitute(x)), na_ok = F
 assert_valid_var.default <- function(x, label = deparse(substitute(x)), ...) {
 }
 
+#' Check variables in a data frame are valid
+#' @param df (`data.frame`) input dataset.
+#' @param vars (`character`) variables to check.
+#' @param label (`string`) labels of the data frame.
+#' @param ... further arugments for `assert_valid_var`.
+#'
 #' @export
 assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), ...) {
   assert_colnames(df, vars, null_ok = TRUE)

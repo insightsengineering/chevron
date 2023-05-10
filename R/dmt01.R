@@ -95,7 +95,7 @@ dmt01_lyt <- function(arm_var,
 #' dmt01_pre(syn_data)
 dmt01_pre <- function(adam_db, ...) {
   adam_db$adsl <- adam_db$adsl %>%
-    mutate(SEX = reformat(SEX, rule(Male = "M", Female = "F")))
+    mutate(SEX = reformat(.data$SEX, rule(Male = "M", Female = "F")))
   adam_db
 }
 

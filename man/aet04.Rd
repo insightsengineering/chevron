@@ -3,7 +3,6 @@
 \docType{data}
 \name{aet04_main}
 \alias{aet04_main}
-\alias{aet04_lyt}
 \alias{aet04_pre}
 \alias{aet04_post}
 \alias{aet04}
@@ -18,16 +17,6 @@ aet04_main(
   lbl_overall = NULL,
   grade_groups = NULL,
   ...
-)
-
-aet04_lyt(
-  arm_var,
-  total_var,
-  lbl_overall,
-  lbl_aebodsys,
-  lbl_aedecod,
-  toxicity_grade,
-  grade_groups
 )
 
 aet04_pre(adam_db, ...)
@@ -46,12 +35,6 @@ aet04
 \item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 
 \item{...}{not used.}
-
-\item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
-
-\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
-
-\item{toxicity_grade}{(\code{character}) putting in correspondence toxicity levels.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -75,8 +58,6 @@ Grade is sorted by severity.
 \section{Functions}{
 \itemize{
 \item \code{aet04_main()}: Main TLG function
-
-\item \code{aet04_lyt()}: Layout
 
 \item \code{aet04_pre()}: Preprocessing
 

@@ -132,7 +132,7 @@ aet01_aesi_pre <- function(adam_db,
         "Total number of patients with at least one unresolved or ongoing non-fatal AE"
       ),
       ALL_RESOLVED = with_label(
-        .data$AEOUT != "FATAL" & !NOT_RESOLVED,
+        .data$AEOUT != "FATAL" & !.data$NOT_RESOLVED,
         "Total number of patients with all non-fatal AEs resolved"
       ),
       WD = with_label(
@@ -193,7 +193,7 @@ aet01_aesi_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      ATOXGR = factor(ATOXGR, levels = 1:5)
+      ATOXGR = factor(.data$ATOXGR, levels = 1:5)
     )
 
   adam_db

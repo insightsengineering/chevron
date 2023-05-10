@@ -94,7 +94,7 @@ aet02_lyt <- function(arm_var,
 aet02_pre <- function(adam_db, row_split_var = "AEBODSYS", ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(AEDECOD = reformat(AEDECOD, nocoding)) %>%
+    mutate(AEDECOD = reformat(.data$AEDECOD, nocoding)) %>%
     mutate(across(all_of(row_split_var), ~ reformat(.x, nocoding)))
 
   adam_db

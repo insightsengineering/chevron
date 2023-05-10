@@ -3,7 +3,6 @@
 \docType{data}
 \name{aet03_main}
 \alias{aet03_main}
-\alias{aet03_lyt}
 \alias{aet03_pre}
 \alias{aet03_post}
 \alias{aet03}
@@ -13,8 +12,6 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet03_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
-
-aet03_lyt(arm_var, lbl_overall, lbl_aebodsys, lbl_aedecod, intensity_grade)
 
 aet03_pre(adam_db, ...)
 
@@ -30,12 +27,6 @@ aet03
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
-
-\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
-
-\item{intensity_grade}{(\code{character}) describing the intensity levels present in the dataset.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -58,8 +49,6 @@ Organ Class, Dictionary-Derived Term and Greatest intensity.
 \section{Functions}{
 \itemize{
 \item \code{aet03_main()}: Main TLG function
-
-\item \code{aet03_lyt()}: Layout
 
 \item \code{aet03_pre()}: Preprocessing
 

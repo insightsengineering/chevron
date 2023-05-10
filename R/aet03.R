@@ -114,11 +114,11 @@ aet03_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      AEBODSYS = reformat(AEBODSYS, nocoding),
-      AEDECOD = reformat(AEDECOD, nocoding),
-      ASEV = factor(ASEV, levels = asev_lvls)
+      AEBODSYS = reformat(.data$AEBODSYS, nocoding),
+      AEDECOD = reformat(.data$AEDECOD, nocoding),
+      ASEV = factor(.data$ASEV, levels = asev_lvls)
     ) %>%
-    filter(!is.na(ASEV))
+    filter(!is.na(.data$ASEV))
 
   adam_db
 }

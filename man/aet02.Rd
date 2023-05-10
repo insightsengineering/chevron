@@ -3,7 +3,6 @@
 \docType{data}
 \name{aet02_main}
 \alias{aet02_main}
-\alias{aet02_lyt}
 \alias{aet02_pre}
 \alias{aet02_post}
 \alias{aet02}
@@ -20,8 +19,6 @@ aet02_main(
   ...
 )
 
-aet02_lyt(arm_var, lbl_overall, row_split_var, lbl_row_split, lbl_aedecod)
-
 aet02_pre(adam_db, row_split_var = "AEBODSYS", ...)
 
 aet02_post(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...)
@@ -37,13 +34,9 @@ aet02
 
 \item{...}{not used.}
 
-\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
 }
 \description{
 The \code{AET02} table provides an overview of the number of subjects experiencing adverse events and the number of advert
@@ -62,8 +55,6 @@ events categorized by Body System and Dictionary-Derived Term.
 \section{Functions}{
 \itemize{
 \item \code{aet02_main()}: Main TLG function
-
-\item \code{aet02_lyt()}: Layout
 
 \item \code{aet02_pre()}: Preprocessing
 

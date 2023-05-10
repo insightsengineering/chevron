@@ -74,7 +74,7 @@ aet01_lyt <- function(arm_var,
     ifneeded_add_overall_col(lbl_overall)
   lyt_ae1 <- lyt_base %>%
     analyze_num_patients(
-      var = "USUBJID",
+      vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one AE",
@@ -152,7 +152,7 @@ aet01_pre <- function(adam_db, ...) {
     )
 
   adam_db$adsl <- adam_db$adsl %>%
-    mutate(DCSREAS = reformat(DCSREAS, missing_rule))
+    mutate(DCSREAS = reformat(.data$DCSREAS, missing_rule))
 
   adam_db
 }
