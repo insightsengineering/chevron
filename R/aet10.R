@@ -25,7 +25,8 @@ aet10_main <- function(adam_db,
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
   assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(dbsel$adae, c("USUBJID", arm_var, "AEBODSYS", "AEDECOD"))
+  assert_valid_variable(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD"))
+  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
 
   lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")

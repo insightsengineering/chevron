@@ -28,8 +28,9 @@ aet02_main <- function(adam_db,
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
   assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(dbsel$adae, c("USUBJID", arm_var, row_split_var, "AEDECOD"))
-  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+  assert_valid_variable(dbsel$adae, c(arm_var, row_split_var, "AEDECOD"))
+  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE)
+  assert_valid_var_pair(dbsel$adsl, dbsel$adae, arm_var)
 
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
@@ -91,8 +92,6 @@ aet02_lyt <- function(arm_var,
 #' @export
 #'
 aet02_pre <- function(adam_db, row_split_var = "AEBODSYS", ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adae"))
-
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(AEDECOD = reformat(AEDECOD, nocoding)) %>%

@@ -190,18 +190,18 @@ assert_only_one_paramcd <- function(param_val) {
 #' @param x value of col_split variable
 #' @param label (`string`) hints.
 #' @export
-assert_valid_var <- function(x, label, ...) {
+assert_valid_var <- function(x, label, na_ok, empty_ok, ...) {
   UseMethod("assert_valid_var")
 }
 #' @export
-assert_valid_var.character <- function(x, label = deparse(substitute(x)), na_ok = FALSE, ...) {
+assert_valid_var.character <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
   x_fct <- as.factor(x)
-  assert_valid_var(x_fct, label = label, na_ok = na_ok, ...)
+  assert_valid_var(x_fct, label = label, na_ok = na_ok, empty_ok = empty_ok, ...)
 }
 #' @export
-assert_valid_var.factor <- function(x, label = deparse(substitute(x)), na_ok = FALSE, ...) {
+assert_valid_var.factor <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
   lvl <- union(levels(x), unique(x))
-  if (length(lvl) == 0) {
+  if (!empty_ok && length(lvl) == 0) {
     abort("Variable", quote_str(label), " should at least contain one valid level!")
   }
   if (!na_ok && any(is.na(lvl))) {
@@ -218,7 +218,7 @@ assert_valid_var.default <- function(x, label = deparse(substitute(x)), ...) {
 #' @export
 assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), ...) {
   assert_colnames(df, vars, null_ok = TRUE)
-  labels <- sprintf("%s$%s", label, var_labels_for(df, vars))
+  labels <- sprintf("%s$%s", label, vars)
   mapply(assert_valid_var, df[vars], labels, MoreArgs = list(...), SIMPLIFY = FALSE)
   invisible()
 }

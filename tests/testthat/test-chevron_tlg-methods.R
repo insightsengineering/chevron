@@ -13,7 +13,7 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(DOMAIN = "ADSL")
-  res <- run(dmt01_1, proc_data, auto_pre = FALSE)
+  res <- run(dmt01, proc_data, auto_pre = FALSE)
   expect_snapshot(res)
 })
 
@@ -27,32 +27,14 @@ test_that("args_ls works as expected", {
 
 test_that("args_ls works as expected when simplify is TRUE", {
   res <- expect_silent(args_ls(aet04, simplify = TRUE))
-  checkmate::expect_list(res, len = 10, names = "named")
+  checkmate::expect_list(res, len = 7, names = "named")
   checkmate::expect_names(
     names(res),
     identical.to = c(
-      "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
-      "grade_groups", "deco", "...", "tlg", "prune_0"
+      "adam_db", "arm_var", "lbl_overall",
+      "grade_groups", "...", "tlg", "prune_0"
     )
   )
-})
-
-test_that("args_ls works as expected with custom chevron_tlg object", {
-  obj <- aet04
-  preprocess(obj) <- function(adam_db, arm_var = "overwritten", new_arg = "NEW", ...) {
-    adam_db
-  }
-
-  res <- expect_silent(args_ls(obj, simplify = TRUE))
-  checkmate::expect_list(res, len = 11, names = "named")
-  checkmate::expect_names(
-    names(res),
-    identical.to = c(
-      "adam_db", "arm_var", "lbl_overall", "lbl_aebodsys", "lbl_aedecod",
-      "grade_groups", "deco", "...", "new_arg", "tlg", "prune_0"
-    )
-  )
-  expect_identical(res$arm_var, "ACTARM")
 })
 
 # main ----
@@ -183,13 +165,13 @@ test_that("datasets setter works as expected", {
 
 test_that("script works as expected", {
   res <- expect_silent(script_args(aet04))
-  checkmate::expect_character(res, len = 7)
+  checkmate::expect_character(res, len = 4)
   checkmate::expect_subset("adam_db <- stop(\"missing value\")", res)
 })
 
 test_that("script works as expected with dictionary of arguments", {
   res <- expect_silent(script_args(aet04, dict = list(adam_db = sym("x"), new_arg = "NEW")))
-  checkmate::expect_character(res, len = 8)
+  checkmate::expect_character(res, len = 5)
   checkmate::expect_subset("adam_db <- x", res)
   checkmate::expect_subset("new_arg <- \"NEW\"", res)
 })

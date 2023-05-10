@@ -34,19 +34,18 @@ aet01_aesi_main <- function(adam_db,
                             arm_var = "ACTARM",
                             aesi_vars = NULL,
                             grade_groups = NULL,
+                            lbl_overall = NULL,
                             ...) {
+  dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)
   checkmate::assert_character(aesi_vars, null.ok = TRUE)
   checkmate::assert_list(grade_groups, null.ok = TRUE)
-  assert_all_tablenames(adam_db, c("adsl", "adae"))
-  assert_colnames(adam_db$adsl, arm_var)
-  assert_colnames(adam_db$adae, arm_var)
-  assert_valid_var_pair(
-    adam_db$adsl[[arm_var]],
-    adam_db$adae[[arm_var]],
-    sprintf("adsl.%s", arm_var),
-    sprintf("adae.%s", arm_var)
-  )
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(dbsel$adae, c(arm_var))
+  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE)
+  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+
   if (is.null(grade_groups)) {
     grade_groups <- list(
       "Grade 1" = "1",
@@ -57,13 +56,14 @@ aet01_aesi_main <- function(adam_db,
     )
   }
   all_aesi_vars <- get_aesi_vars(aesi_vars)
-  checkmate::assert_names(names(adam_db$adae), must.include = all_aesi_vars)
+  assert_valid_variable(dbsel$adae, c(all_aesi_vars))
   lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
   lyt <- aet01_aesi_lyt(
     arm_var = arm_var,
     aesi_vars = all_aesi_vars,
     lbl_aesi_vars = lbl_aesi_vars,
+    lbl_overall = lbl_overall,
     grade_groups = grade_groups
   )
 
@@ -81,11 +81,13 @@ aet01_aesi_main <- function(adam_db,
 #'
 aet01_aesi_lyt <- function(arm_var,
                            aesi_vars,
+                           lbl_overall,
                            lbl_aesi_vars,
                            grade_groups) {
   names(lbl_aesi_vars) <- aesi_vars
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     count_patients_with_event(
       vars = "USUBJID",
       filters = c("ANL01FL" = "Y"),
