@@ -189,6 +189,7 @@ assert_only_one_paramcd <- function(param_val) {
 #' Other types of data are all valid.
 #' @param x value of col_split variable
 #' @param label (`string`) hints.
+#' @param ... Not used.
 #' @export
 assert_valid_var <- function(x, label, na_ok, empty_ok, ...) {
   UseMethod("assert_valid_var")

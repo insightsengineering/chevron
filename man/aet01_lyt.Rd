@@ -21,6 +21,8 @@ aet01_lyt(
 \item{safety_var}{(\code{character}) the safety variables to be summarized.}
 
 \item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
+
+\item{medconcept_var}{(\code{character}) the medical concept variables to be summarized.}
 }
 \description{
 aet01 Layout

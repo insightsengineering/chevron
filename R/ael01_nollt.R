@@ -90,9 +90,7 @@ ael01_nollt_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' run(ael01_nollt, syn_data, new_lbls = list(
-#'   AETERM = "Investigator-Specified\n Adverse Event Term"
-#' ))
+#' run(ael01_nollt, syn_data)
 ael01_nollt <- chevron_l(
   main = ael01_nollt_main,
   preprocess = ael01_nollt_pre,

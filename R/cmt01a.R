@@ -56,8 +56,7 @@ cmt01a_main <- function(adam_db,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
     medname_var = medname_var,
-    lbl_medname_var = lbl_medname_var,
-    deco = deco
+    lbl_medname_var = lbl_medname_varo
   )
 
   tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
@@ -78,8 +77,7 @@ cmt01a_lyt <- function(arm_var,
                        medcat_var,
                        lbl_medcat_var,
                        medname_var,
-                       lbl_medname_var,
-                       deco) {
+                       lbl_medname_var) {
   if (incl_n_treatment) {
     stats <- c("unique", "nonunique")
     labels <- c(
@@ -89,7 +87,7 @@ cmt01a_lyt <- function(arm_var,
   }
 
 
-  basic_table_deco(deco) %>%
+  basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%

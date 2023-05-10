@@ -11,9 +11,11 @@ aet02_lyt(arm_var, lbl_overall, row_split_var, lbl_row_split, lbl_aedecod)
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
+\item{row_split_var}{(\code{character}) row split variables.}
 
-\item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
+\item{lbl_row_split}{(\code{character}) label for \code{row_split_var}.}
+
+\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
 }
 \description{
 aet02 Layout

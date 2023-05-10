@@ -36,14 +36,13 @@ aet01
 
 \item{safety_var}{(\code{character}) the safety variables to be summarized.}
 
+\item{medconcept_var}{(\code{character}) the medical concept variables to be summarized.}
+
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized. If \code{NULL}, uses the label
-attribute of the columns selected in \code{safety_var}.}
 }
 \description{
 \code{AET01} Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.

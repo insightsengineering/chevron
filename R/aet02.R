@@ -3,6 +3,7 @@
 #' @describeIn aet02 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param row_split_var (`character`) row split variables.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subject and fraction of `N`, or absolute number of event when specified.
@@ -50,8 +51,8 @@ aet02_main <- function(adam_db,
 
 #' aet02 Layout
 #'
-#' @inheritParams gen_args
-#' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
+#' @inheritParams aet02_main
+#' @param lbl_row_split (`character`) label for `row_split_var`.
 #' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #'
 #' @keywords internal

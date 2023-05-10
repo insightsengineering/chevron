@@ -9,7 +9,7 @@ test_that("aet02 fails on incomplete data input", {
 
   expect_error(
     run(aet02, proc_data),
-    "object 'AEDECOD' not found",
+    "Column `AEDECOD` not found",
     fixed = TRUE
   )
 })

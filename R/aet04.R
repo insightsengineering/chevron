@@ -62,27 +62,23 @@ aet04_main <- function(adam_db,
 
 #' aet04 Layout
 #'
-#' @inheritParams gen_args
+#' @inheritParams aet04_main
 #'
 #' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #' @param toxicity_grade (`character`) putting in correspondence toxicity levels.
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
+#' @param total_var (`string`) variable to create summary of all variables.
 #'
 #' @keywords internal
 #'
 aet04_lyt <- function(arm_var,
+                      total_var,
                       lbl_overall,
                       lbl_aebodsys,
                       lbl_aedecod,
                       toxicity_grade,
                       grade_groups) {
-  all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
-  combodf <- tibble::tribble(
-    ~valname, ~label, ~levelcombo, ~exargs,
-    "ALL", "- Any adverse events -", toxicity_grade, list()
-  )
-
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%

@@ -15,8 +15,10 @@
 #' @importFrom magrittr %>%
 #' @importFrom methods is setValidity
 #' @importFrom nestcolor color_palette
+#' @importFrom purrr reduce
 #' @importFrom rlang sym .data .env !!! %||%
 #' @importFrom rlistings as_listing
 #' @importFrom stats setNames median sd quantile
+#' @importFrom stringr str_dup
 #' @importFrom tibble tribble
 "_PACKAGE"

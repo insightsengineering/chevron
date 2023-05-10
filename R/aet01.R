@@ -4,8 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param safety_var (`character`) the safety variables to be summarized.
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized. If `NULL`, uses the label
-#'   attribute of the columns selected in `safety_var`.
+#' @param medconcept_var (`character`) the medical concept variables to be summarized.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.

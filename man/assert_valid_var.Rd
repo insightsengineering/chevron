@@ -10,6 +10,8 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
 \item{x}{value of col_split variable}
 
 \item{label}{(\code{string}) hints.}
+
+\item{...}{Not used.}
 }
 \description{
 Check whether var is valid
