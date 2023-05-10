@@ -208,10 +208,3 @@ test_that("pdt01_1 function with default argument value return expected result w
   res <- pdt01_1_post(raw_res)
   expect_snapshot(res)
 })
-
-test_that("pdt02_1 function with default argument value return expected result with test data", {
-  pre_data <- pdt02_1_pre(syn_data)
-  raw_res <- pdt02_1_main(pre_data)
-  res <- pdt02_1_post(raw_res)
-  expect_snapshot(res)
-})

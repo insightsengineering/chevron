@@ -1,6 +1,6 @@
-# pdt02_1 ----
+# pdt02 ----
 
-#' @describeIn pdt02_1 Main TLG function
+#' @describeIn pdt02 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param dvreas_var (`string`) the variable defining the reason for deviation. By default `DVREAS`.
@@ -24,27 +24,35 @@
 #'
 #' @export
 #'
-pdt02_1_main <- function(adam_db,
-                         arm_var = "ARM",
-                         dvreas_var = "DVREAS",
-                         lbl_dvreas_var = "Primary Reason",
-                         dvterm_var = "DVTERM",
-                         lbl_dvterm_var = "Description",
-                         lbl_overall = NULL,
-                         deco = std_deco("pdt02_1"),
-                         ...) {
-  assert_colnames(adam_db$addv, c(dvreas_var, dvterm_var))
+pdt02_main <- function(adam_db,
+                       arm_var = "ARM",
+                       dvreas_var = "DVREAS",
+                       lbl_dvreas_var = "Primary Reason",
+                       dvterm_var = "DVTERM",
+                       lbl_dvterm_var = "Description",
+                       lbl_overall = NULL,
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", "addv"))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(dvreas_var)
+  checkmate::assert_string(lbl_dvreas_var)
+  checkmate::assert_string(dvterm_var)
+  checkmate::assert_string(lbl_dvterm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_variable(adam_db$addv, c(dvreas_var, dvterm_var, "DVSEQ"))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(adam_db$addv, "USUBJID", empty_ok = TRUE)
+  assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
 
-  lyt <- pdt02_1_lyt(
+  lyt <- pdt02_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     dvreas_var = dvreas_var,
     lbl_dvreas_var = lbl_dvreas_var,
     dvterm_var = dvterm_var,
-    lbl_dvterm_var = lbl_dvterm_var,
-    deco = deco
+    lbl_dvterm_var = lbl_dvterm_var
   )
 
   tbl <- build_table(lyt, dbsel$addv, alt_counts_df = dbsel$adsl)
@@ -52,7 +60,7 @@ pdt02_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn pdt02_1 Layout
+#' @describeIn pdt02 Layout
 #'
 #' @inheritParams gen_args
 #' @param dvreas_var (`string`) the variable defining the reason for deviation. By default `DVREAS`.
@@ -62,14 +70,13 @@ pdt02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-pdt02_1_lyt <- function(arm_var,
-                        lbl_overall,
-                        dvreas_var,
-                        lbl_dvreas_var,
-                        dvterm_var,
-                        lbl_dvterm_var,
-                        deco) {
-  basic_table_deco(deco, show_colcounts = TRUE) %>%
+pdt02_lyt <- function(arm_var,
+                      lbl_overall,
+                      dvreas_var,
+                      lbl_dvreas_var,
+                      dvterm_var,
+                      lbl_dvterm_var) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
@@ -102,27 +109,25 @@ pdt02_1_lyt <- function(arm_var,
 
 #' @describeIn pdt02_1 Preprocessing
 #'
-#' @inheritParams pdt02_1_main
+#' @inheritParams pdt02_main
 #'
 #' @export
 #'
-pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {
-  assert_all_tablenames(adam_db, c("adsl", "addv"))
-
+pdt02_pre <- function(adam_db,
+                      ...) {
   adam_db$addv <- adam_db$addv %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y")
 
   fmt_ls <- list(
-    dvreas_var = rule(
+    DVREAS = rule(
       "No Coding available" = c("", NA)
     ),
-    dvterm_var = rule(
+    DVTERM = rule(
       "No Coding available" = c("", NA)
     ),
     DVSEQ = rule()
   )
 
-  names(fmt_ls) <- c(dvreas_var, dvterm_var, "DVSEQ")
   new_format <- list(addv = fmt_ls)
 
   reformat(adam_db, new_format, na_last = TRUE)
@@ -130,12 +135,12 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", .
 
 #' @describeIn pdt02_1 Postprocessing
 #'
-#' @inheritParams pdt02_1_main
+#' @inheritParams pdt02_main
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-pdt02_1_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {
+pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -160,10 +165,10 @@ pdt02_1_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var 
 #'
 #' @examples
 #' run(pdt02_1, syn_data)
-pdt02_1 <- chevron_t(
-  main = pdt02_1_main,
-  lyt = pdt02_1_lyt,
-  preprocess = pdt02_1_pre,
-  postprocess = pdt02_1_post,
+pdt02 <- chevron_t(
+  main = pdt02_main,
+  lyt = pdt02_lyt,
+  preprocess = pdt02_pre,
+  postprocess = pdt02_post,
   adam_datasets = c("adsl", "addv")
 )
