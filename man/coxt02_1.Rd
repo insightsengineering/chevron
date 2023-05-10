@@ -16,8 +16,8 @@ An object of class \code{chevron_t} of length 1.
 coxt02_1_main(
   adam_db,
   arm_var = "ARM",
-  time = "AVAL",
-  event = "CNSR",
+  time_var = "AVAL",
+  censor_var = "CNSR",
   covariates = c("SEX", "RACE", "AAGE"),
   strata = NULL,
   lbl_vars = "Effect/Covariate Included in the Model",
@@ -32,8 +32,8 @@ coxt02_1_lyt(variables, lbl_vars, conf_level, ties, deco)
 coxt02_1_pre(
   adam_db,
   arm_var = "ARM",
-  time = "AVAL",
-  event = "CNSR",
+  time_var = "AVAL",
+  censor_var = "CNSR",
   covariates = c("SEX", "RACE", "AAGE"),
   strata = NULL,
   ...
@@ -42,8 +42,8 @@ coxt02_1_pre(
 coxt02_1_check(
   adam_db,
   arm_var,
-  time,
-  event,
+  time_var,
+  censor_var,
   covariates,
   strata,
   req_tables = c("adsl", "adtte")
@@ -58,9 +58,9 @@ coxt02_1
 
 \item{arm_var}{(\code{string}) the arm variable used for arm splitting.}
 
-\item{time}{(\code{string}) time variable in a Cox proportional hazards regression model.}
+\item{time_var}{(\code{string}) the time variable in a Cox proportional hazards regression model.}
 
-\item{event}{(\code{string}) event variable in a Cox proportional hazards regression model.}
+\item{censor_var}{(\code{string}) the censor variable in a Cox proportional hazards regression model.}
 
 \item{covariates}{(\code{character}) will be fitted and the corresponding effect will be estimated.}
 

@@ -10,8 +10,8 @@ test_that("coxt02 can handle some NA values", {
   new_cnsr[sample(seq_along(new_cnsr), 10)] <- NA
   new_aval <- proc_data$adtte$AVAL
   new_aval[sample(seq_along(new_aval), 15)] <- NA
-  new_age <- proc_data$adtte$AGE
-  new_age[sample(seq_along(new_age), 15)] <- NA
+  new_aage <- proc_data$adtte$AAGE
+  new_aage[sample(seq_along(new_aage), 15)] <- NA
 
   proc_data$adtte <- proc_data$adtte %>%
     mutate(
@@ -19,7 +19,7 @@ test_that("coxt02 can handle some NA values", {
       RACE = factor(.env$new_race),
       CNSR = .env$new_cnsr,
       AVAL = .env$new_aval,
-      AGE = .env$new_age
+      AAGE = .env$new_aage
     )
 
   res1 <- expect_silent(run(coxt02_1, proc_data))

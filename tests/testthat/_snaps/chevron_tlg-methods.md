@@ -98,70 +98,36 @@
     Code
       res
     Output
-                                                       A: Drug X    B: Placebo    C: Combination   All Patients
-                                                        (N=134)       (N=134)        (N=132)         (N=400)   
-        ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Age (yr)                                                                                               
-          n                                               134           134            132             400     
-          Mean (SD)                                   33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
-          Median                                         33.0          35.0            35.0            34.0    
-          Min - Max                                   21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
-        Age group (yr)                                                                                         
-          n                                               134           134            132             400     
-          <65                                         134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
-          >=65                                             0             0           1 (0.8%)        1 (0.2%)  
-        Sex                                                                                                    
-          n                                               134           134            132             400     
-          F                                           79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
-          M                                           55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
-        Ethnicity                                                                                              
-          n                                               134           134            132             400     
-          NOT REPORTED                                 6 (4.5%)      10 (7.5%)      11 (8.3%)       27 (6.8%)  
-          HISPANIC OR LATINO                          15 (11.2%)    18 (13.4%)      15 (11.4%)      48 (12.0%) 
-          NOT HISPANIC OR LATINO                      104 (77.6%)   103 (76.9%)    101 (76.5%)     308 (77.0%) 
-          UNKNOWN                                      9 (6.7%)      3 (2.2%)        5 (3.8%)       17 (4.2%)  
-        Race                                                                                                   
-          n                                               134           134            132             400     
-          ASIAN                                       68 (50.7%)    67 (50.0%)      73 (55.3%)     208 (52.0%) 
-          BLACK OR AFRICAN AMERICAN                   31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
-          WHITE                                       27 (20.1%)    26 (19.4%)      21 (15.9%)      74 (18.5%) 
-          AMERICAN INDIAN OR ALASKA NATIVE             8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  
-          MULTIPLE                                         0         1 (0.7%)           0            1 (0.2%)  
-          NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER        0         1 (0.7%)           0            1 (0.2%)  
+                                              A: Drug X    B: Placebo    C: Combination   All Patients
+                                               (N=134)       (N=134)        (N=132)         (N=400)   
+        ——————————————————————————————————————————————————————————————————————————————————————————————
+        Age (yr)                                                                                      
+          n                                      134           134            132             400     
+          Mean (SD)                          33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
+          Median                                33.0          35.0            35.0            34.0    
+          Min - Max                          21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
+        Age group (yr)                                                                                
+          n                                      134           134            132             400     
+          <65                                134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
+          >=65                                    0             0           1 (0.8%)        1 (0.2%)  
+        Sex                                                                                           
+          n                                      134           134            132             400     
+          F                                  79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
+          M                                  55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
+        Ethnicity                                                                                     
+          n                                      134           134            132             400     
+          NOT REPORTED                        6 (4.5%)      10 (7.5%)      11 (8.3%)       27 (6.8%)  
+          HISPANIC OR LATINO                 15 (11.2%)    18 (13.4%)      15 (11.4%)      48 (12.0%) 
+          NOT HISPANIC OR LATINO             104 (77.6%)   103 (76.9%)    101 (76.5%)     308 (77.0%) 
+          UNKNOWN                             9 (6.7%)      3 (2.2%)        5 (3.8%)       17 (4.2%)  
+        Race                                                                                          
+          n                                      134           134            132             400     
+          AMERICAN INDIAN OR ALASKA NATIVE    8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  
+          ASIAN                              68 (50.7%)    68 (50.7%)      73 (55.3%)     209 (52.2%) 
+          BLACK OR AFRICAN AMERICAN          31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
+          WHITE                              27 (20.1%)    27 (20.1%)      21 (15.9%)      75 (18.8%) 
 
 # script_funs works as expected in interactive mode
-
-    Code
-      res
-    Output
-       [1] "# Edit Preprocessing Function."                                                                                                                                      
-       [2] "pre_fun <- function(adam_db, ...) {"                                                                                                                                 
-       [3] "  assert_all_tablenames(adam_db, c(\"adsl\", \"adae\"))"                                                                                                             
-       [4] ""                                                                                                                                                                    
-       [5] "  new_format <- list("                                                                                                                                               
-       [6] "    adae = list("                                                                                                                                                    
-       [7] "      AEBODSYS = rule(\"No Coding Available\" = c(\"\", NA, \"<Missing>\")),"                                                                                        
-       [8] "      AEDECOD = rule(\"No Coding Available\" = c(\"\", NA, \"<Missing>\")),"                                                                                         
-       [9] "      ATOXGR = rule(\"No Grading Available\" = c(\"\", NA, \"<Missing>\"))"                                                                                          
-      [10] "    )"                                                                                                                                                               
-      [11] "  )"                                                                                                                                                                 
-      [12] ""                                                                                                                                                                    
-      [13] "  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)"                                                                                                  
-      [14] ""                                                                                                                                                                    
-      [15] "  adam_db$adae <- adam_db$adae %>%"                                                                                                                                  
-      [16] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                                              
-      [17] "    filter(.data$ATOXGR != \"No Grading Available\") %>%"                                                                                                            
-      [18] "    mutate(ATOXGR = factor(.data$ATOXGR,"                                                                                                                            
-      [19] "      levels = setdiff(levels(.data$ATOXGR), \"No Grading Available\")"                                                                                              
-      [20] "    ))"                                                                                                                                                              
-      [21] ""                                                                                                                                                                    
-      [22] "  adam_db"                                                                                                                                                           
-      [23] "}"                                                                                                                                                                   
-      [24] ""                                                                                                                                                                    
-      [25] "# Create TLG"                                                                                                                                                        
-      [26] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04_1, !!!args_ls, auto_pre = FALSE, check_arg = FALSE)"
-
-# script_funs works as expected in non interactive mode
 
     Code
       res

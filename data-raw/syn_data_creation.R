@@ -132,6 +132,14 @@ syn_test_data <- function() {
       as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"), nrow(sd$adsl), replace = TRUE))
     })
 
+  # useful for coxt02
+  sd$adsl <- sd$adsl %>%
+    mutate(RACE = droplevels(factor(case_when(
+      .data$RACE == "MULTIPLE" ~ "WHITE",
+      .data$RACE == "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER" ~ "ASIAN",
+      TRUE ~ .data$RACE
+    ))))
+
   sd$adsl <- sd$adsl %>%
     mutate(ANL01FL = "Y")
 
@@ -154,15 +162,12 @@ syn_test_data <- function() {
   sd$adcm <- sd$adcm %>%
     mutate(ANL01FL = "Y")
 
-  sd$adtte <- sd$adtte %>%
-    mutate(RACE = factor(case_when(
-      .data$RACE == "MULTIPLE" ~ "WHITE",
-      .data$RACE == "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER" ~ "ASIAN",
-      TRUE ~ .data$RACE
-    )))
+  adsl <- sd$adsl[c("USUBJID", "AAGE")]
+  sd$adtte <- sd$adtte %>% left_join(adsl, by = "USUBJID")
 
-  sd$adtte$AAGE <- sd$adtte$AGE
-  attr(sd$adtte$AAGE, "label") <- "Age (yr)"
+  adsl <- sd$adsl[c("USUBJID", "RACE")]
+  sd$adtte <- sd$adtte %>% select(-c("RACE"))
+  sd$adtte <- sd$adtte %>% left_join(adsl, by = "USUBJID")
 
   sd
 }
