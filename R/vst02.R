@@ -32,9 +32,9 @@ vst02_main <- function(adam_db,
   checkmate::assert_string(lbl_vs_abnormality)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
 
-  assert_valid_variable(dbsel$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"))
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(dbsel$advs, "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(dbsel$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(dbsel$advs, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(dbsel$adsl, dbsel$advs, arm_var)
 
   lyt <- vst02_lyt(

@@ -24,14 +24,21 @@ aet01_main <- function(adam_db,
                        ),
                        medconcept_var = NULL,
                        ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adae")
+  assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)
   checkmate::assert_character(safety_var)
   checkmate::assert_character(medconcept_var, null.ok = TRUE)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var, "DTHFL", "DCSREAS"))
-  assert_valid_variable(dbsel$adae, c(arm_var, safety_var, medconcept_var))
-  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var, "DTHFL", "DCSREAS"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(
+    adam_db$adae,
+    c(safety_var, medconcept_var),
+    types = list("logical"),
+    na_ok = TRUE,
+    empty_ok = TRUE
+  )
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
   lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
   lbl_medconcept_var <- var_labels_for(adam_db$adae, medconcept_var)
@@ -45,9 +52,9 @@ aet01_main <- function(adam_db,
   )
 
   rbind(
-    build_table(lyts$ae1, dbsel$adae, alt_counts_df = dbsel$adsl),
-    build_table(lyts$adsl, dbsel$adsl, alt_counts_df = dbsel$adsl),
-    build_table(lyts$ae2, dbsel$adae, alt_counts_df = dbsel$adsl)
+    build_table(lyts$ae1, adam_db$adae, alt_counts_df = adam_db$adsl),
+    build_table(lyts$adsl, adam_db$adsl, alt_counts_df = adam_db$adsl),
+    build_table(lyts$ae2, adam_db$adae, alt_counts_df = adam_db$adsl)
   )
 }
 

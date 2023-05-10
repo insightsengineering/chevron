@@ -34,9 +34,9 @@ cmt01a_main <- function(adam_db,
   checkmate::assert_flag(incl_n_treatment)
   checkmate::assert_string(medcat_var)
   checkmate::assert_string(medname_var)
-  assert_valid_variable(dbsel$adcm, c(arm_var, medcat_var, medname_var))
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(dbsel$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE)
+  assert_valid_variable(dbsel$adcm, c(arm_var, medcat_var, medname_var), types = list(c("character", "factor")))
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(dbsel$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(dbsel$adsl, dbsel$adcm, arm_var)
 
   lbl_medcat_var <- var_labels_for(dbsel$adcm, medcat_var)

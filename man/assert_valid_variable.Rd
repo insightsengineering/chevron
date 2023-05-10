@@ -2,9 +2,15 @@
 % Please edit documentation in R/assertions.R
 \name{assert_valid_variable}
 \alias{assert_valid_variable}
-\title{Check variables in a data frame are valid}
+\title{Check variables in a data frame are valid character or factor.}
 \usage{
-assert_valid_variable(df, vars, label = deparse(substitute(df)), ...)
+assert_valid_variable(
+  df,
+  vars,
+  label = deparse(substitute(df)),
+  types = NULL,
+  ...
+)
 }
 \arguments{
 \item{df}{(\code{data.frame}) input dataset.}
@@ -13,8 +19,10 @@ assert_valid_variable(df, vars, label = deparse(substitute(df)), ...)
 
 \item{label}{(\code{string}) labels of the data frame.}
 
+\item{types}{Named (\code{list}) of type of the input.}
+
 \item{...}{further arugments for \code{assert_valid_var}.}
 }
 \description{
-Check variables in a data frame are valid
+Check variables in a data frame are valid character or factor.
 }

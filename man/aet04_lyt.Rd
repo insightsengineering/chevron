@@ -10,7 +10,6 @@ aet04_lyt(
   lbl_overall,
   lbl_aebodsys,
   lbl_aedecod,
-  toxicity_grade,
   grade_groups
 )
 }
@@ -24,8 +23,6 @@ aet04_lyt(
 \item{lbl_aebodsys}{(\code{string}) text label for \code{AEBODSYS}.}
 
 \item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
-
-\item{toxicity_grade}{(\code{character}) putting in correspondence toxicity levels.}
 
 \item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 }

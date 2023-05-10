@@ -11,12 +11,15 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
 
 \item{label}{(\code{string}) hints.}
 
+\item{na_ok}{(\code{flag}) whether NA value is allowed}
+
+\item{empty_ok}{(\code{flag}) whether length 0 value is allowed.}
+
 \item{...}{Not used.}
 }
 \description{
 Check whether var is valid
 }
 \details{
-This function checks the character or factor values are valid or not.
-Other types of data are all valid.
+This function checks the variable values are valid or not.
 }

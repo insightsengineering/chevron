@@ -28,9 +28,9 @@ aet02_main <- function(adam_db,
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(dbsel$adae, c(arm_var, row_split_var, "AEDECOD"))
-  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(dbsel$adae, c(arm_var, row_split_var, "AEDECOD"), types = list(c("character", "factor")))
+  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(dbsel$adsl, dbsel$adae, arm_var)
 
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)

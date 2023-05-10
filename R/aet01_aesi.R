@@ -36,14 +36,14 @@ aet01_aesi_main <- function(adam_db,
                             grade_groups = NULL,
                             lbl_overall = NULL,
                             ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adae")
+  assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)
   checkmate::assert_character(aesi_vars, null.ok = TRUE)
   checkmate::assert_list(grade_groups, null.ok = TRUE)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(dbsel$adae, c(arm_var))
-  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
+  assert_valid_variable(adam_db$adae, c(arm_var))
+  assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
 
   if (is.null(grade_groups)) {
@@ -56,7 +56,7 @@ aet01_aesi_main <- function(adam_db,
     )
   }
   all_aesi_vars <- get_aesi_vars(aesi_vars)
-  assert_valid_variable(dbsel$adae, c(all_aesi_vars))
+  assert_valid_variable(adam_db$adae, c(all_aesi_vars), empty_ok = TRUE, na_ok = TRUE, types = list("logical"))
   lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
   lyt <- aet01_aesi_lyt(
@@ -132,24 +132,24 @@ aet01_aesi_pre <- function(adam_db,
         "Total number of patients with at least one unresolved or ongoing non-fatal AE"
       ),
       ALL_RESOLVED = with_label(
-        .data$AEOUT != "FATAL" & !.data$NOT_RESOLVED,
+        !.data$AEOUT %in% "FATAL" & !.data$NOT_RESOLVED,
         "Total number of patients with all non-fatal AEs resolved"
       ),
       WD = with_label(
-        .data$AEACN == "DRUG WITHDRAWN", "Total number of patients with study drug withdrawn due to AE"
+        .data$AEACN %in% "DRUG WITHDRAWN", "Total number of patients with study drug withdrawn due to AE"
       ),
       DSM = with_label(
         .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
         "Total number of patients with dose modified/interrupted due to AE"
       ),
       CONTRT = with_label(
-        .data$AECONTRT == "Y", "Total number of patients with treatment received for AE"
+        .data$AECONTRT %in% "Y", "Total number of patients with treatment received for AE"
       ),
       SER = with_label(
-        .data$AESER == "Y", "Total number of patients with at least one serious AE"
+        .data$AESER %in% "Y", "Total number of patients with at least one serious AE"
       ),
       REL = with_label(
-        .data$AREL == "Y", "Total number of patients with at least one related AE"
+        .data$AREL %in% "Y", "Total number of patients with at least one related AE"
       ),
       ALLRESWD = with_label(
         .data$WD & .data$ALL_RESOLVED, "  No. of patients with study drug withdrawn due to resolved AE"

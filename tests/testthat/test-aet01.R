@@ -49,7 +49,7 @@ test_that("aet01 fails on incomplete data input", {
 
 test_that("aet01 can use custom medconcept_var", {
   proc_data <- syn_data
-  proc_data$adae$SMQ01 <- proc_data$adae$SMQ01NAM != ""
+  proc_data$adae$SMQ01 <- with_label(proc_data$adae$SMQ01NAM != "", "SMQ 01")
   res <- expect_silent(run(aet01, proc_data, medconcept_var = "SMQ01"))
   expect_snapshot(res)
 })
