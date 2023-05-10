@@ -6,6 +6,7 @@
 \usage{
 aet04_lyt(
   arm_var,
+  total_var,
   lbl_overall,
   lbl_aebodsys,
   lbl_aedecod,
@@ -15,6 +16,8 @@ aet04_lyt(
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{total_var}{(\code{string}) variable to create summary of all variables.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

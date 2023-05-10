@@ -3,7 +3,6 @@
 \docType{data}
 \name{cmt01a_main}
 \alias{cmt01a_main}
-\alias{cmt01a_lyt}
 \alias{cmt01a_pre}
 \alias{cmt01a_post}
 \alias{cmt01a}
@@ -17,22 +16,9 @@ cmt01a_main(
   arm_var = "ARM",
   incl_n_treatment = TRUE,
   medcat_var = "ATC2",
-  lbl_medcat_var = "ATC Class Level 2",
   medname_var = "CMDECOD",
-  lbl_medname_var = "Other Treatment",
   lbl_overall = NULL,
   ...
-)
-
-cmt01a_lyt(
-  arm_var,
-  lbl_overall,
-  incl_n_treatment = TRUE,
-  medcat_var,
-  lbl_medcat_var,
-  medname_var,
-  lbl_medname_var,
-  deco
 )
 
 cmt01a_pre(adam_db, ...)
@@ -57,17 +43,11 @@ cmt01a
 
 \item{medcat_var}{(\code{string}) the variable defining the medication category. By default \code{ATC2}.}
 
-\item{lbl_medcat_var}{(\code{string}) label for the variable defining the medication category.}
-
 \item{medname_var}{(\code{string}) the variable defining the medication name. By default \code{CMDECOD}.}
-
-\item{lbl_medname_var}{(\code{string}) label for the variable defining the medication name.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -93,8 +73,6 @@ the specific medication.
 \section{Functions}{
 \itemize{
 \item \code{cmt01a_main()}: Main TLG function
-
-\item \code{cmt01a_lyt()}: Layout
 
 \item \code{cmt01a_pre()}: Preprocessing
 

@@ -19,7 +19,6 @@ vst02_main(
   lbl_vs_assessment = "Assessment",
   lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
-  prune_0 = FALSE,
   ...
 )
 
@@ -50,11 +49,11 @@ vst02
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{flag}) remove 0 count rows}
-
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 Assessments Outside Normal Limits.
