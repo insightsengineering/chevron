@@ -88,8 +88,8 @@ reference:
       - mng01_1
       - pdt01_1
       - pdt02_1
-      - rmpt01_1
-      - vst01_1
+      - rmpt01
+      - vst01
       - vst02
   - title: Data
     contents:

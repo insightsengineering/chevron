@@ -229,25 +229,3 @@ test_that("pdt02_1 function with default argument value return expected result w
   res <- pdt02_1_post(raw_res)
   expect_snapshot(res)
 })
-
-test_that("rmpt01_1 function with default argument value return expected result with test data", {
-  pre_data <- rmpt01_1_pre(syn_data)
-  raw_res <- rmpt01_1_main(pre_data)
-  res <- rmpt01_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-
-test_that("vst01_1 functions with default argument value return expected result with test data", {
-  pre_data <- vst01_1_pre(syn_data)
-  raw_res <- vst01_1_main(pre_data)
-  res <- vst01_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("vst01_1 functions with default argument value return expected result with test data", {
-  pre_data <- vst01_1_pre(syn_data)
-  raw_res <- vst01_1_main(pre_data)
-  res <- vst01_1_post(raw_res)
-  expect_snapshot(res)
-})

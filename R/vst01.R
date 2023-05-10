@@ -25,11 +25,10 @@
 #' @export
 #'
 vst01_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         summaryvars = c("AVAL", "CHG"),
-                         visitvar = "AVISIT", # or ATPTN
-                         ...) {
-
+                       arm_var = "ACTARM",
+                       summaryvars = c("AVAL", "CHG"),
+                       visitvar = "AVISIT", # or ATPTN
+                       ...) {
   assert_all_tablenames(adam_db, c("adsl", "advs"))
   checkmate::assert_string(arm_var)
   checkmate::assert_character(summaryvars, len = 2)
@@ -76,16 +75,16 @@ vst01_main <- function(adam_db,
 #' @export
 #'
 vst01_lyt <- function(arm_var,
-                        summaryvars,
-                        summaryvars_lbls,
-                        visitvar,
-                        lbl_avisit,
-                        lbl_param) {
+                      summaryvars,
+                      summaryvars_lbls,
+                      visitvar,
+                      lbl_avisit,
+                      lbl_param) {
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
   # problem with the column count
 
-   basic_table(show_colcounts = TRUE) %>%
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
       "PARAM",
@@ -115,7 +114,6 @@ vst01_lyt <- function(arm_var,
 #' @export
 #'
 vst01_pre <- function(adam_db, ...) {
-
   adam_db$advs <- adam_db$advs %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(

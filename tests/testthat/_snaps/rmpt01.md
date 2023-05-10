@@ -1,3 +1,17 @@
+# rmpt01 function with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Duration of exposure                         Patients     Person time*
+                                                     (N=400)        (N=400)   
+        ——————————————————————————————————————————————————————————————————————
+        Total Number of Patients and Person Time   400 (100.0%)      49700    
+          < 1 month                                 39 (9.8%)         728     
+          1 to <3 months                           111 (27.8%)        6418    
+          3 to <6 months                           136 (34.0%)       17645    
+          >=6 months                               114 (28.5%)       24909    
+
 # rmpt01 can handle NA values
 
     Code
