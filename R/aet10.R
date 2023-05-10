@@ -18,9 +18,9 @@
 #' @export
 #'
 aet10_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_overall = NULL,
-                         ...) {
+                       arm_var = "ACTARM",
+                       lbl_overall = NULL,
+                       ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
@@ -49,8 +49,8 @@ aet10_main <- function(adam_db,
 #' @keywords internal
 #'
 aet10_lyt <- function(arm_var,
-                        lbl_overall,
-                        lbl_aedecod) {
+                      lbl_overall,
+                      lbl_aedecod) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%

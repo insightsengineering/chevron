@@ -1,8 +1,9 @@
-# cmt01a_1 ----
+# cmt01a ----
 
-#' @describeIn cmt01a_1 Main TLG function
+#' @describeIn cmt01a Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param incl_n_treatment (`flag`) include total number of treatments per medication.
 #' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
 #' @param lbl_medcat_var (`string`) label for the variable defining the medication category.
 #' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
@@ -23,21 +24,34 @@
 #'
 #' @export
 #'
-cmt01a_1_main <- function(adam_db,
-                          arm_var = "ARM",
-                          medcat_var = "ATC2", # Anatomical therapeutic category
-                          lbl_medcat_var = "ATC Class Level 2",
-                          medname_var = "CMDECOD",
-                          lbl_medname_var = "Other Treatment",
-                          lbl_overall = NULL,
-                          deco = std_deco("CMT01A"),
-                          ...) {
-  assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
+cmt01a_main <- function(adam_db,
+                        arm_var = "ARM",
+                        incl_n_treatment = TRUE,
+                        medcat_var = "ATC2",
+                        lbl_medcat_var = "ATC Class Level 2",
+                        medname_var = "CMDECOD",
+                        lbl_medname_var = "Other Treatment",
+                        lbl_overall = NULL,
+                        ...) {
+  checkmate::assert_string(arm_var)
+  checkmate::assert_flag(incl_n_treatment)
+  checkmate::assert_string(medcat_var)
+  checkmate::assert_string(lbl_medcat_var)
+  checkmate::assert_string(medname_var)
+  checkmate::assert_string(lbl_medname_var)
+  assert_colnames(adam_db$adcm, c(medcat_var, medname_var, "CMSEQ"))
+  assert_valid_var_pair(
+    adam_db$adsl[[arm_var]],
+    adam_db$adcm[[arm_var]],
+    sprintf("adsl.%s", arm_var),
+    sprintf("adcm.%s", arm_var)
+  )
 
   dbsel <- get_db_data(adam_db, "adsl", "adcm")
 
-  lyt <- cmt01a_1_lyt(
+  lyt <- cmt01a_lyt(
     arm_var = arm_var,
+    incl_n_treatment = incl_n_treatment,
     lbl_overall = lbl_overall,
     medcat_var = medcat_var,
     lbl_medcat_var = lbl_medcat_var,
@@ -51,23 +65,30 @@ cmt01a_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn cmt01a_1 Layout
+#' @describeIn cmt01a Layout
 #'
 #' @inheritParams gen_args
-#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`string`) the label for the medication category.
-#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`string`) the label for the medication name.
+#' @inheritParams cmt01a_main
 #'
 #' @export
 #'
-cmt01a_1_lyt <- function(arm_var,
-                         lbl_overall,
-                         medcat_var,
-                         lbl_medcat_var,
-                         medname_var,
-                         lbl_medname_var,
-                         deco) {
+cmt01a_lyt <- function(arm_var,
+                       lbl_overall,
+                       incl_n_treatment = TRUE,
+                       medcat_var,
+                       lbl_medcat_var,
+                       medname_var,
+                       lbl_medname_var,
+                       deco) {
+  if (incl_n_treatment) {
+    stats <- c("unique", "nonunique")
+    labels <- c(
+      unique = "Total number of patients with at least one treatment",
+      nonunique = "Total number of treatments"
+    )
+  }
+
+
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -93,11 +114,8 @@ cmt01a_1_lyt <- function(arm_var,
     summarize_num_patients(
       var = "USUBJID",
       count_by = "CMSEQ",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = "Total number of patients with at least one treatment",
-        nonunique = "Total number of treatments"
-      )
+      .stats = stats,
+      .labels = labels
     ) %>%
     count_occurrences(
       vars = medname_var,
@@ -106,198 +124,74 @@ cmt01a_1_lyt <- function(arm_var,
     append_topleft(paste0("  ", lbl_medname_var))
 }
 
-#' @describeIn cmt01a_1 Preprocessing
+#' @describeIn cmt01a Preprocessing
 #'
-#' @inheritParams cmt01a_1_main
-#'
+#' @inheritParams cmt01a_main
 #'
 #' @export
 #'
-cmt01a_1_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_pre <- function(adam_db, ...) {
   assert_all_tablenames(adam_db, c("adsl", "adcm"))
 
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(CMSEQ = as.character(.data$CMSEQ))
 
-  fmt_ls <- list(
-    medcat_var = rule(
-      "No Coding available" = c("", NA)
-    ),
-    medname_var = rule(
-      "No Coding available" = c("", NA)
-    ),
-    CMSEQ = rule()
-  )
-
-  names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
-  new_format <- list(adcm = fmt_ls)
-
-  reformat(adam_db, new_format, na_last = TRUE)
-}
-
-#' @describeIn cmt01a_1 Postprocessing
-#'
-#' @inheritParams cmt01a_1_main
-#' @inheritParams gen_args
-#'
-#'
-#' @export
-#'
-cmt01a_1_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  if (prune_0) {
-    tlg <- smart_prune(tlg)
-  }
-
-  tbl_sorted <- tlg %>%
-    sort_at_path(
-      path = c(medcat_var, "*", medname_var),
-      scorefun = score_occurrences
+  adam_db$adcm <- adam_db$adcm %>%
+    mutate(
+      ATC2 = with_label(.data$ATC2, "ATC Class Level 2"),
+      CMDECOD = with_label(.data$CMDECOD, "Other Treatment")
     )
 
-  std_postprocess(tbl_sorted)
-}
-
-#' `CMT01A` Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.
-#'
-#' A concomitant medication
-#' table with the number of subjects and the total number of treatments by medication class sorted alphabetically and
-#' medication name sorted by frequencies.
-#'
-#' @include chevron_tlg-S4class.R
-#' @export
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' proc_data <- syn_data
-#' proc_data$adcm <- proc_data$adcm %>%
-#'   filter(ATIREL == "CONCOMITANT")
-#'
-#' run(cmt01a_1, proc_data)
-cmt01a_1 <- chevron_t(
-  main = cmt01a_1_main,
-  lyt = cmt01a_1_lyt,
-  preprocess = cmt01a_1_pre,
-  postprocess = cmt01a_1_post,
-  adam_datasets = c("adsl", "adcm")
-)
-
-
-# cmt01a_2 ----
-
-#' @describeIn cmt01a_2 Main TLG function
-#'
-#' @inheritParams gen_args
-#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`string`) label for the variable defining the medication category.
-#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`string`) label for the variable defining the medication name.
-#'
-#' @details
-#'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
-#'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
-#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
-#'  * Split columns by arm.
-#'  * Does not include a total column by default.
-#'  * Sort by medication class frequency and within medication class by decreasing total number of patients with
-#'  the specific medication.
-#'
-#' @note
-#'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
-#'  as `"CMSEQ"`.
-#'
-#' @export
-#'
-cmt01a_2_main <- function(adam_db,
-                          arm_var = "ARM",
-                          medcat_var = "ATC2", # Anatomical therapeutic category
-                          lbl_medcat_var = "ATC Class Level 2",
-                          medname_var = "CMDECOD",
-                          lbl_medname_var = "Other Treatment",
-                          lbl_overall = NULL,
-                          deco = std_deco("CMT01A"),
-                          ...) {
-  assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
-
-  dbsel <- get_db_data(adam_db, "adsl", "adcm")
-
-  # The same layout can be used.
-  lyt <- cmt01a_1_lyt(
-    arm_var = arm_var,
-    lbl_overall = lbl_overall,
-    medcat_var = medcat_var,
-    lbl_medcat_var = lbl_medcat_var,
-    medname_var = medname_var,
-    lbl_medname_var = lbl_medname_var,
-    deco = deco
-  )
-
-  tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
-
-  tbl
-}
-
-#' @describeIn cmt01a_2 Preprocessing
-#'
-#' @inheritParams cmt01a_2_main
-#'
-#' @export
-#'
-cmt01a_2_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adcm"))
-
-  adam_db$adcm <- adam_db$adcm %>%
-    filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.character(.data$CMSEQ))
-
   fmt_ls <- list(
-    medcat_var = rule(
+    ATC2 = rule(
       "No Coding available" = c("", NA)
     ),
-    medname_var = rule(
+    CMDECOD = rule(
       "No Coding available" = c("", NA)
     ),
     CMSEQ = rule()
   )
 
-  names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
   new_format <- list(adcm = fmt_ls)
 
   reformat(adam_db, new_format, na_last = TRUE)
 }
 
-#' @describeIn cmt01a_2 Postprocessing
+#' @describeIn cmt01a Postprocessing
 #'
 #' @inheritParams cmt01a_main
 #' @inheritParams gen_args
+#' @param sort_by_freq (`flag`) whether to sort medication class by frequency.
 #'
 #' @export
 #'
-cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_post <- function(tlg, prune_0 = TRUE, sort_by_freq = FALSE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
 
+  if (sort_by_freq) {
+    tlg <- tlg %>%
+      sort_at_path(
+        medcat_var,
+        scorefun = cont_n_onecol(ncol(tlg))
+      )
+  }
+
   tbl_sorted <- tlg %>%
-    sort_at_path(
-      medcat_var,
-      scorefun = cont_n_onecol(ncol(tlg))
-    ) %>%
     sort_at_path(
       path = c(medcat_var, "*", medname_var),
       scorefun = score_occurrences
     )
 
-
   std_postprocess(tbl_sorted)
 }
 
-#' `CMT01A` Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
-#' frequency).
+#' `CMT01A` Concomitant Medication by Medication Class and Preferred Name.
 #'
-#' A concomitant medication table with the number of subjects and the total number of treatments by
-#' medication class and medication name sorted by frequencies.
+#' A concomitant medication
+#' table with the number of subjects and the total number of treatments by medication class.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -309,188 +203,11 @@ cmt01a_2_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var 
 #' proc_data$adcm <- proc_data$adcm %>%
 #'   filter(ATIREL == "CONCOMITANT")
 #'
-#' run(cmt01a_2, proc_data)
-cmt01a_2 <- chevron_t(
-  main = cmt01a_2_main,
-  preprocess = cmt01a_2_pre,
-  postprocess = cmt01a_2_post,
-  adam_datasets = c("adsl", "adcm")
-)
-
-
-# cmt01a_3 ----
-
-#' @describeIn cmt01a_3 Main TLG function
-#'
-#' @inheritParams gen_args
-#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
-#' @param lbl_medcat_var (`string`) the label for the medication category.
-#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
-#' @param lbl_medname_var (`string`) the label for the medication name.
-#'
-#' @details
-#'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
-#'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
-#'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
-#'  * Split columns by arm.
-#'  * Does not include a total column by default.
-#'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
-#'  the specific medication.
-#'
-#' @note
-#'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
-#'  as `"CMSEQ"`.
-#'
-#' @export
-#'
-cmt01a_3_main <- function(adam_db,
-                          arm_var = "ARM",
-                          medcat_var = "ATC2", # Anatomical therapeutic category
-                          lbl_medcat_var = "ATC Class Level 2",
-                          medname_var = "CMDECOD",
-                          lbl_medname_var = "Other Treatment",
-                          lbl_overall = NULL,
-                          deco = std_deco("CMT01A"),
-                          ...) {
-  assert_colnames(adam_db$adcm, c(medcat_var, medname_var))
-
-  dbsel <- get_db_data(adam_db, "adsl", "adcm")
-
-  lyt <- cmt01a_3_lyt(
-    arm_var = arm_var,
-    lbl_overall = lbl_overall,
-    medcat_var = medcat_var,
-    lbl_medcat_var = lbl_medcat_var,
-    medname_var = medname_var,
-    lbl_medname_var = lbl_medname_var,
-    deco = deco
-  )
-
-  tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
-
-  tbl
-}
-
-#' @describeIn cmt01a_3 Layout
-#'
-#' @inheritParams cmt01a_3_main
-#'
-#' @export
-#'
-cmt01a_3_lyt <- function(arm_var = "ARM",
-                         lbl_overall = NULL,
-                         medcat_var = "ATC2",
-                         lbl_medcat_var = "ATC Class Level 2",
-                         medname_var = "CMDECOD",
-                         lbl_medname_var = "Other Treatment",
-                         deco = std_deco("CMT01A")) {
-  basic_table_deco(deco) %>%
-    split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      count_by = "CMSEQ",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = "Total number of patients with at least one treatment",
-        nonunique = "Total number of treatments"
-      )
-    ) %>%
-    split_rows_by(
-      medcat_var,
-      child_labels = "visible",
-      nested = FALSE,
-      indent_mod = -1L,
-      split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_medcat_var
-    ) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      count_by = "CMSEQ",
-      .stats = c("unique"),
-      .labels = c(
-        unique = "Total number of patients with at least one treatment"
-      )
-    ) %>%
-    count_occurrences(
-      vars = medname_var,
-      .indent_mods = -1L
-    ) %>%
-    append_topleft(paste0("  ", lbl_medname_var))
-}
-
-#' @describeIn cmt01a_3 Preprocessing
-#'
-#' @inheritParams cmt01a_3_main
-#'
-#' @export
-#'
-cmt01a_3_pre <- function(adam_db, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adcm"))
-
-  adam_db$adcm <- adam_db$adcm %>%
-    filter(.data$ANL01FL == "Y") %>%
-    mutate(CMSEQ = as.character(.data$CMSEQ))
-
-  fmt_ls <- list(
-    medcat_var = rule(
-      "No Coding available" = c("", NA)
-    ),
-    medname_var = rule(
-      "No Coding available" = c("", NA)
-    ),
-    CMSEQ = rule()
-  )
-
-  names(fmt_ls) <- c(medcat_var, medname_var, "CMSEQ")
-  new_format <- list(adcm = fmt_ls)
-
-  reformat(adam_db, new_format, na_last = TRUE)
-}
-
-#' @describeIn cmt01a_3 Preprocessing
-#'
-#' @inheritParams cmt01a_3_main
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-cmt01a_3_post <- function(tlg, prune_0 = TRUE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
-  if (prune_0) {
-    tlg <- smart_prune(tlg)
-  }
-
-  tbl_sorted <- tlg %>%
-    sort_at_path(
-      path = c(medcat_var, "*", medname_var),
-      scorefun = score_occurrences
-    )
-
-  std_postprocess(tbl_sorted)
-}
-#' `CMT01A` Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
-#' treatments per medication class suppressed).
-#'
-#' A concomitant medication table with the number of subjects and the total
-#' number of treatments by medication class sorted alphabetically and medication name sorted by frequencies presented
-#' without the total number of treatments per medication.
-#'
-#' @include chevron_tlg-S4class.R
-#' @export
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' proc_data <- syn_data
-#' proc_data$adcm <- proc_data$adcm %>%
-#'   filter(ATIREL == "CONCOMITANT")
-#'
-#' run(cmt01a_3, proc_data)
-cmt01a_3 <- chevron_t(
-  main = cmt01a_3_main,
-  preprocess = cmt01a_3_pre,
-  postprocess = cmt01a_3_post,
+#' run(cmt01a, proc_data)
+cmt01a <- chevron_t(
+  main = cmt01a_main,
+  lyt = cmt01a_lyt,
+  preprocess = cmt01a_pre,
+  postprocess = cmt01a_post,
   adam_datasets = c("adsl", "adcm")
 )

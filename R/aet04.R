@@ -20,10 +20,10 @@
 #' @export
 #'
 aet04_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_overall = NULL,
-                         grade_groups = NULL,
-                         ...) {
+                       arm_var = "ACTARM",
+                       lbl_overall = NULL,
+                       grade_groups = NULL,
+                       ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
@@ -72,12 +72,17 @@ aet04_main <- function(adam_db,
 #' @keywords internal
 #'
 aet04_lyt <- function(arm_var,
-                      total_var,
-                        lbl_overall,
-                        lbl_aebodsys,
-                        lbl_aedecod,
-                        toxicity_grade,
-                        grade_groups) {
+                      lbl_overall,
+                      lbl_aebodsys,
+                      lbl_aedecod,
+                      toxicity_grade,
+                      grade_groups) {
+  all_grade_groups <- c(list(`- Any Grade -` = toxicity_grade), grade_groups)
+  combodf <- tibble::tribble(
+    ~valname, ~label, ~levelcombo, ~exargs,
+    "ALL", "- Any adverse events -", toxicity_grade, list()
+  )
+
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%

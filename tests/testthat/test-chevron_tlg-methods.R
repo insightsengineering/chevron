@@ -31,10 +31,26 @@ test_that("args_ls works as expected when simplify is TRUE", {
   checkmate::expect_names(
     names(res),
     identical.to = c(
-      "adam_db", "arm_var", "lbl_overall",
-      "grade_groups", "...", "tlg", "prune_0"
+      "adam_db", "arm_var", "lbl_overall", "grade_groups", "...", "tlg", "prune_0"
     )
   )
+})
+
+test_that("args_ls works as expected with custom chevron_tlg object", {
+  obj <- aet04
+  preprocess(obj) <- function(adam_db, arm_var = "overwritten", new_arg = "NEW", ...) {
+    adam_db
+  }
+
+  res <- expect_silent(args_ls(obj, simplify = TRUE))
+  checkmate::expect_list(res, len = 8, names = "named")
+  checkmate::expect_names(
+    names(res),
+    identical.to = c(
+      "adam_db", "arm_var", "lbl_overall", "grade_groups", "...", "new_arg", "tlg", "prune_0"
+    )
+  )
+  expect_identical(res$arm_var, "ACTARM")
 })
 
 # main ----

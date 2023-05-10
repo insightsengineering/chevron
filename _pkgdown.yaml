@@ -90,8 +90,7 @@ reference:
       - pdt02_1
       - rmpt01_1
       - vst01_1
-      - vst02_1
-      - vst02_2
+      - vst02
   - title: Data
     contents:
       - syn_data

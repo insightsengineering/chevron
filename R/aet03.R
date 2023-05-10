@@ -18,9 +18,9 @@
 #' @export
 #'
 aet03_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_overall = NULL,
-                         ...) {
+                       arm_var = "ACTARM",
+                       lbl_overall = NULL,
+                       ...) {
   dbsel <- get_db_data(adam_db, "adsl", "adae")
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
@@ -56,10 +56,10 @@ aet03_main <- function(adam_db,
 #' @keywords internal
 #'
 aet03_lyt <- function(arm_var,
-                        lbl_overall,
-                        lbl_aebodsys,
-                        lbl_aedecod,
-                        intensity_grade) {
+                      lbl_overall,
+                      lbl_aebodsys,
+                      lbl_aedecod,
+                      intensity_grade) {
   all_grade_groups <- list("- Any Intensity -" = intensity_grade)
 
   basic_table(show_colcounts = TRUE) %>%
