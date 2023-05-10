@@ -184,8 +184,9 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
     lyt
   } else {
     split_rows_by(lyt, var,
+      split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_var
+      split_label = paste(lbl_var)
     )
   }
 }
