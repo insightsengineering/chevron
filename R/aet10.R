@@ -41,12 +41,12 @@ aet10_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet10 Layout
+#' aet10 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
 #'
-#' @export
+#' @keywords internal
 #'
 aet10_lyt <- function(arm_var,
                         lbl_overall,

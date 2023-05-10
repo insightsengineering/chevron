@@ -60,7 +60,7 @@ aet04_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet04 Layout
+#' aet04 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -69,7 +69,7 @@ aet04_main <- function(adam_db,
 #' @param toxicity_grade (`character`) putting in correspondence toxicity levels.
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
 #'
-#' @export
+#' @keywords internal
 #'
 aet04_lyt <- function(arm_var,
                       total_var,

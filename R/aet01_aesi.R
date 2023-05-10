@@ -72,12 +72,12 @@ aet01_aesi_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet01_aesi Layout
+#' aet01_aesi Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_aesi_vars (`character`) the labels of the AESI variables to be summarized.
 #'
-#' @export
+#' @keywords internal
 #'
 aet01_aesi_lyt <- function(arm_var,
                            aesi_vars,

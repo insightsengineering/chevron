@@ -45,7 +45,7 @@ aet03_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn aet03 Layout
+#' aet03 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -53,7 +53,7 @@ aet03_main <- function(adam_db,
 #' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #' @param intensity_grade (`character`) describing the intensity levels present in the dataset.
 #'
-#' @export
+#' @keywords internal
 #'
 aet03_lyt <- function(arm_var,
                         lbl_overall,

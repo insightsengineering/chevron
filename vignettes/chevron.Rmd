@@ -146,4 +146,4 @@ The name of the first argument of the `preprocess` function must be `adam_db`;
 the input `dm` object to create `TLG` output and finally,
 the name of the first argument of the `postprocess` function must be `tlg`,
 the input `TableTree` object to post-process.
-Validation criteria enforce thes rules upon creation of a `chevron_tlg` object.
+Validation criteria enforce these rules upon creation of a `chevron_tlg` object.
