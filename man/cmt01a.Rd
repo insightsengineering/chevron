@@ -31,8 +31,7 @@ cmt01a_lyt(
   medcat_var,
   lbl_medcat_var,
   medname_var,
-  lbl_medname_var,
-  deco
+  lbl_medname_var
 )
 
 cmt01a_pre(adam_db, ...)
@@ -66,8 +65,6 @@ cmt01a
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
