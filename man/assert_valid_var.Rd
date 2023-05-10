@@ -4,7 +4,7 @@
 \alias{assert_valid_var}
 \title{Check whether var is valid}
 \usage{
-assert_valid_var(x, label, ...)
+assert_valid_var(x, label, na_ok, empty_ok, ...)
 }
 \arguments{
 \item{x}{value of col_split variable}

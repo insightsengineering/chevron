@@ -3,7 +3,6 @@
 \docType{data}
 \name{aet10_main}
 \alias{aet10_main}
-\alias{aet10_lyt}
 \alias{aet10_pre}
 \alias{aet10_post}
 \alias{aet10}
@@ -13,8 +12,6 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 aet10_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
-
-aet10_lyt(arm_var, lbl_overall, lbl_aedecod)
 
 aet10_pre(adam_db, ...)
 
@@ -30,8 +27,6 @@ aet10
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -55,8 +50,6 @@ Order the data by total column frequency from most to least frequently reported 
 \section{Functions}{
 \itemize{
 \item \code{aet10_main()}: Main TLG function
-
-\item \code{aet10_lyt()}: Layout
 
 \item \code{aet10_pre()}: Preprocessing
 

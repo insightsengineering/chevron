@@ -3,7 +3,6 @@
 \docType{data}
 \name{aet01_aesi_main}
 \alias{aet01_aesi_main}
-\alias{aet01_aesi_lyt}
 \alias{aet01_aesi_pre}
 \alias{aet01_aesi_post}
 \alias{aet01_aesi}
@@ -17,10 +16,9 @@ aet01_aesi_main(
   arm_var = "ACTARM",
   aesi_vars = NULL,
   grade_groups = NULL,
+  lbl_overall = NULL,
   ...
 )
-
-aet01_aesi_lyt(arm_var, aesi_vars, lbl_aesi_vars, grade_groups)
 
 aet01_aesi_pre(adam_db, ...)
 
@@ -37,9 +35,9 @@ aet01_aesi
 
 \item{grade_groups}{(\code{list}) the grade groups to be displayed.}
 
-\item{...}{not used.}
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_aesi_vars}{(\code{character}) the labels of the AESI variables to be summarized.}
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -56,8 +54,6 @@ aet01_aesi
 \section{Functions}{
 \itemize{
 \item \code{aet01_aesi_main()}: Main TLG function
-
-\item \code{aet01_aesi_lyt()}: Layout
 
 \item \code{aet01_aesi_pre()}: Preprocessing
 
