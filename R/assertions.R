@@ -171,17 +171,19 @@ assert_subset_suggest <- function(x, choices) {
 }
 
 
-#' Check to have only one PARAMCD in the analysis dataset
-#' @param param_val value of PARAMCD
+#' Check variable only has one unique value.
+#' @param x value vector.
+#' @param label (`string`) label of input.
 #' @export
-assert_single_paramcd <- function(param_val) {
-  unique_param_val <- unique(param_val)
+assert_single_value <- function(x, label = deparse(substitute(x))) {
+  unique_param_val <- unique(x)
   if (length(unique_param_val) > 1) {
-    stop(paste0(
-      "More than one parameters:",
+    stop(
+      quote_str(label),
+      " has than one values ",
       toString(unique_param_val),
-      ", only one suppose to have."
-    ))
+      ", only one value is allowed."
+    )
   }
 }
 

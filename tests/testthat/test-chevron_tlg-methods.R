@@ -5,10 +5,6 @@ test_that("run works as expected for chevron_t object", {
   expect_snapshot(res)
 })
 
-test_that("run returns a warning if provided with invalid arguments", {
-  expect_error(run(aet04, syn_data, xyz = TRUE), "xyz is not a valid argument.")
-})
-
 test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%

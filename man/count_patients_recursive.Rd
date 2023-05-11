@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet01.R
 \name{count_patients_recursive}
 \alias{count_patients_recursive}
-\title{Counte patients recusively}
+\title{Count patients recursively}
 \usage{
 count_patients_recursive(lyt, anl_vars, anl_lbls, lbl_vars)
 }
@@ -16,6 +16,6 @@ count_patients_recursive(lyt, anl_vars, anl_lbls, lbl_vars)
 \item{lbl_vars}{Named (\code{list}) of analysis labels.}
 }
 \description{
-Counte patients recusively
+Count patients recursively
 }
 \keyword{internal}

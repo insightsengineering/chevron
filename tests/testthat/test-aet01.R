@@ -55,9 +55,9 @@ test_that("aet01 can use custom medconcept_var", {
       aet01, proc_data,
       anl_vars = list(
         safety_var = c(
-                         "FATAL", "SER", "SERWD", "SERDSM",
-                         "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                       ),
+          "FATAL", "SER", "SERWD", "SERDSM",
+          "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+        ),
         medconcept = "SMQ01"
       )
     )

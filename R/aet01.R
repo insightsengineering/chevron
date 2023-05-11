@@ -19,10 +19,11 @@ aet01_main <- function(adam_db,
                        arm_var = "ACTARM",
                        lbl_overall = NULL,
                        anl_vars = list(
-                        safety_var = c(
-                         "FATAL", "SER", "SERWD", "SERDSM",
-                         "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                       )),
+                         safety_var = c(
+                           "FATAL", "SER", "SERWD", "SERDSM",
+                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                         )
+                       ),
                        anl_lbls = "Total number of patients with at least one",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
@@ -110,7 +111,7 @@ aet01_lyt <- function(arm_var,
   return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
 }
 
-#' Counte patients recusively
+#' Count patients recursively
 #' @param lyt (`PreDataTableLayouts`) rtable layout.
 #' @param anl_vars Named (`list`) of analysis variables.
 #' @param anl_lbls (`character`) of labels.

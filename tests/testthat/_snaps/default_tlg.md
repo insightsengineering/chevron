@@ -360,7 +360,7 @@
           medname A_3/3                                        45 (33.6%)    54 (40.3%)      48 (36.4%)  
           medname B_3/4                                        47 (35.1%)    47 (35.1%)      52 (39.4%)  
 
-# coxt02_1 functions with default argument value return expected result with test data
+# coxt02 functions with default argument value return expected result with test data
 
     Code
       res
