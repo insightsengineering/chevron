@@ -355,7 +355,7 @@ setMethod(
     if (details) {
       c(
         "# Edit Functions.",
-        deparse(rlang::call2("<-", sym("pre_fun"), preprocess(x)),
+        paste0("pre_fun <- ", deparse(preprocess(x)), control = "useSource")
           control = "useSource"
         ),
         "",
