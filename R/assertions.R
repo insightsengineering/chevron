@@ -38,7 +38,6 @@ assert_colnames <- function(df, x, null_ok = TRUE, types = NULL) {
     )
   }
   if (!is.null(types)) {
-
     var_types <- mapply(is, object = df[x], class2 = types, SIMPLIFY = TRUE)
     non_match <- which(var_types != types)
   }
