@@ -82,7 +82,7 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_one_tablenames.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_only_one_paramcd.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_single_paramcd.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_subset_suggest.html</loc>
@@ -113,6 +113,9 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt02_pt_1.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt02_1.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/datasets.html</loc>
