@@ -200,10 +200,14 @@ assert_valid_var <- function(x, label, na_ok, empty_ok, ...) {
   UseMethod("assert_valid_var")
 }
 #' @export
-assert_valid_var.character <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
+#' @param min.chars (`integer`) the minimum length of the characters.
+assert_valid_var.character <- function(
+    x, label = deparse(substitute(x)),
+    na_ok = FALSE, empty_ok = FALSE,
+    min_chars = 1L, ...) {
   checkmate::assert_character(
     x,
-    min.chars = 1L,
+    min.chars = min_chars,
     min.len = as.integer(!empty_ok),
     any.missing = na_ok,
     .var.name = label,
@@ -211,7 +215,16 @@ assert_valid_var.character <- function(x, label = deparse(substitute(x)), na_ok 
   )
 }
 #' @export
-assert_valid_var.factor <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
+assert_valid_var.factor <- function(
+    x, label = deparse(substitute(x)),
+    na_ok = FALSE, empty_ok = FALSE,
+    min_chars = 1L, ...) {
+  checkmate::assert_character(
+    levels(x),
+    min.chars = min_chars,
+    .var.name = paste("level of", label),
+    ...
+  )
   checkmate::assert_factor(
     x,
     min.levels = as.integer(empty_ok),
@@ -248,7 +261,8 @@ assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = 
 #' @param vars (`character`) variables to check.
 #' @param label (`string`) labels of the data frame.
 #' @param types Named (`list`) of type of the input.
-#' @param ... further arguments for `assert_valid_var`.
+#' @param ... further arguments for `assert_valid_var`. Please note that different methods have different arguments
+#' so if provided make sure the variables to check is of the same class.
 #'
 #' @export
 assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), types = NULL, ...) {

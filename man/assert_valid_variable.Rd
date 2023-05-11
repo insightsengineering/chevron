@@ -21,7 +21,8 @@ assert_valid_variable(
 
 \item{types}{Named (\code{list}) of type of the input.}
 
-\item{...}{further arguments for \code{assert_valid_var}.}
+\item{...}{further arguments for \code{assert_valid_var}. Please note that different methods have different arguments
+so if provided make sure the variables to check is of the same class.}
 }
 \description{
 Check variables in a data frame are valid character or factor.

@@ -98,7 +98,7 @@ reference:
       - abort
       - assert_colnames
       - assert_all_tablenames
-      - assert_single_paramcd
+      - assert_single_value
       - assert_valid_type
       - assert_valid_var
       - assert_valid_var_pair
