@@ -3,52 +3,51 @@
 #' @describeIn aet01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param safety_var (`character`) the safety variables to be summarized.
-#' @param medconcept_var (`character`) the medical concept variables to be summarized.
+#' @param anl_vars Named (`list`) of (`character`) variables the safety variables to be summarized.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adsl` table with the `"DTHFL"` and `"DCSREAS"` columns.
-#'  * `adam_db` object must contain an `adae` table with the columns passed to `safety_var`.
+#'  * `adam_db` object must contain an `adae` table with the columns passed to `anl_vars`.
 #'
 #' @export
 #'
 aet01_main <- function(adam_db,
                        arm_var = "ACTARM",
                        lbl_overall = NULL,
-                       safety_var = c(
+                       anl_vars = list(
+                        safety_var = c(
                          "FATAL", "SER", "SERWD", "SERDSM",
                          "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                       ),
-                       medconcept_var = NULL,
+                       )),
+                       anl_lbls = "Total Number of Patients with at Least One",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)
-  checkmate::assert_character(safety_var)
-  checkmate::assert_character(medconcept_var, null.ok = TRUE)
+  checkmate::assert_list(anl_vars, types = "character", names = "unique")
+  checkmate::assert_character(anl_lbls, min.chars = 1L)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var, "DTHFL", "DCSREAS"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_variable(
-    adam_db$adae,
-    c(safety_var, medconcept_var),
-    types = list("logical"),
-    na_ok = TRUE,
-    empty_ok = TRUE
-  )
+  assert_valid_variable(adam_db$adae, unlist(anl_vars), types = list("logical"), na_ok = TRUE, empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
-  lbl_safety_var <- var_labels_for(adam_db$adae, safety_var)
-  lbl_medconcept_var <- var_labels_for(adam_db$adae, medconcept_var)
+  lbl_vars <- lapply(
+    anl_vars,
+    var_labels_for,
+    df = adam_db$adae
+  )
+  if (length(anl_lbls) == 1) {
+    anl_lbls <- rep(anl_lbls, length(anl_vars))
+  }
   lyts <- aet01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    safety_var = safety_var,
-    lbl_safety_var = lbl_safety_var,
-    medconcept_var = medconcept_var,
-    lbl_medconcept_var = lbl_medconcept_var
+    anl_vars = anl_vars,
+    anl_lbls = anl_lbls,
+    lbl_vars = lbl_vars
   )
 
   rbind(
@@ -61,20 +60,16 @@ aet01_main <- function(adam_db,
 #' aet01 Layout
 #'
 #' @inheritParams aet01_main
-#' @param lbl_safety_var (`character`) the labels of the safety variables to be summarized.
-#'
+#' @param anl_vars Named (`list`) of analysis variables.
+#' @param anl_lbls (`character`) of labels.
+#' @param lbl_vars Named (`list`) of analysis labels.
 #' @keywords internal
 #'
 aet01_lyt <- function(arm_var,
                       lbl_overall,
-                      safety_var,
-                      lbl_safety_var,
-                      medconcept_var,
-                      lbl_medconcept_var) {
-  names(lbl_safety_var) <- safety_var
-  if (!is.null(medconcept_var)) {
-    names(lbl_medconcept_var) <- medconcept_var
-  }
+                      anl_vars,
+                      anl_lbls,
+                      lbl_vars) {
   lyt_base <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall)
@@ -104,29 +99,39 @@ aet01_lyt <- function(arm_var,
       .labels = c(count_fraction = "Total number of patients withdrawn from study due to an AE"),
       table_names = "TotWithdrawal"
     )
+
   lyt_ae2 <- lyt_base %>%
-    count_patients_with_flags(
-      "USUBJID",
-      flag_variables = lbl_safety_var,
-      denom = "N_col",
-      var_labels = "Total number of patients with at least one",
-      show_labels = "visible",
-      table_names = "AllAE",
-      .indent_mods = 0L
+    count_patients_recursive(
+      anl_vars,
+      anl_lbls,
+      lbl_vars
     )
-  if (length(lbl_medconcept_var) > 0) {
-    lyt_ae2 <- lyt_ae2 %>%
+  return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
+}
+
+#' Counte patients recusively
+#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param anl_vars Named (`list`) of analysis variables.
+#' @param anl_lbls (`character`) of labels.
+#' @param lbl_vars Named (`list`) of analysis labels.
+#' @keywords internal
+count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
+  checkmate::assert_list(anl_vars, names = "unique", types = "character")
+  checkmate::assert_character(anl_lbls, min.chars = 1L, len = length(anl_vars))
+  nms <- names(anl_vars)
+  for (k in seq_len(length(anl_vars))) {
+    lyt <- lyt %>%
       count_patients_with_flags(
         "USUBJID",
-        flag_variables = lbl_medconcept_var,
+        flag_variables = setNames(lbl_vars[[k]], anl_vars[[k]]),
         denom = "N_col",
-        var_labels = "Total number of patients with at least one",
+        var_labels = anl_lbls[k],
         show_labels = "visible",
-        table_names = "MedConcept",
+        table_names = nms[k],
         .indent_mods = 0L
       )
   }
-  return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
+  lyt
 }
 
 #' @describeIn aet01 Preprocessing
