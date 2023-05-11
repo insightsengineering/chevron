@@ -4,9 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param dvcode_var (`string`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
-#' @param lbl_dvcode_var (`string`) label for the variable defining the protocol deviation coded term.
 #' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
-#' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
 #' @details
 #'  * Data should be filtered for major protocol deviations. `(DVCAT == "MAJOR")`.
@@ -26,22 +24,21 @@
 pdt01_main <- function(adam_db,
                        arm_var = "ARM",
                        dvcode_var = "DVDECOD",
-                       lbl_dvcode_var = "Protocol Deviation Coded Term",
                        dvterm_var = "DVTERM",
-                       lbl_dvterm_var = "Category",
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "addv"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(dvcode_var)
-  checkmate::assert_string(lbl_dvcode_var)
   checkmate::assert_string(dvterm_var)
-  checkmate::assert_string(lbl_dvterm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$addv, c(dvcode_var, dvterm_var, "DVSEQ"))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
   assert_valid_variable(adam_db$addv, "USUBJID", empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
+
+  lbl_dvcode_var <- var_labels_for(adam_db$addv, dvcode_var)
+  lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
 
@@ -62,12 +59,11 @@ pdt01_main <- function(adam_db,
 #' @describeIn pdt01 Layout
 #'
 #' @inheritParams gen_args
-#' @param dvcode_var (`string`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
+#' @inheritParams pdt01_main
 #' @param lbl_dvcode_var (`string`) label for the variable defining the protocol deviation coded term.
-#' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
 #' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
-#' @export
+#' @keywords internal
 #'
 pdt01_lyt <- function(arm_var,
                       lbl_overall,
@@ -109,7 +105,11 @@ pdt01_lyt <- function(arm_var,
 pdt01_pre <- function(adam_db, ...) {
   adam_db$addv <- adam_db$addv %>%
     mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
-    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE)))
+    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
+    mutate(
+      DVDECOD = with_label(.data$DVDECOD, "Protocol Deviation Coded Term"),
+      DVTERM = with_label(.data$DVTERM, "Category")
+    )
 
   adam_db
 }

@@ -48,7 +48,10 @@ mht01_main <- function(adam_db,
 
 #' @describeIn mht01 Layout
 #'
+#' @inheritParams gen_args
 #' @inheritParams mht01_main
+#' @param lbl_mhbodsys (`string`) label associated with `"MHBODSYS"`.
+#' @param lbl_mhdecod (`string`) label associated with `"MHDECOD"`.
 #'
 #' @keywords internal
 #'

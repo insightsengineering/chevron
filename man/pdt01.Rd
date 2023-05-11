@@ -16,9 +16,7 @@ pdt01_main(
   adam_db,
   arm_var = "ARM",
   dvcode_var = "DVDECOD",
-  lbl_dvcode_var = "Protocol Deviation Coded Term",
   dvterm_var = "DVTERM",
-  lbl_dvterm_var = "Category",
   lbl_overall = NULL,
   ...
 )
@@ -51,15 +49,15 @@ pdt01
 
 \item{dvcode_var}{(\code{string}) the variable defining the protocol deviation coded term. By default \code{DVDECOD}.}
 
-\item{lbl_dvcode_var}{(\code{string}) label for the variable defining the protocol deviation coded term.}
-
 \item{dvterm_var}{(\code{string}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
-
-\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
+
+\item{lbl_dvcode_var}{(\code{string}) label for the variable defining the protocol deviation coded term.}
+
+\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -108,3 +106,4 @@ proc_data$addv <- proc_data$addv \%>\%
 run(pdt01, proc_data)
 }
 \keyword{datasets}
+\keyword{internal}

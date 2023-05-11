@@ -68,6 +68,7 @@ lbt07_main <- function(adam_db,
 #' @describeIn lbt07 Layout
 #'
 #' @inheritParams gen_args
+#' @inheritParams lbt07_main
 #'
 #' @param lbl_param_var (`string`) label of the `param_var` variable.
 #' @param lbl_grad_dir_var (`string`) label for the `grad_dir_var` variable.

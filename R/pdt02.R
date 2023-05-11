@@ -4,9 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param dvreas_var (`string`) the variable defining the reason for deviation. By default `DVREAS`.
-#' @param lbl_dvreas_var (`string`) label for the variable defining the reason for deviation.
 #' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
-#' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
 #' @details
 #'  * Data should be filtered for major protocol deviations related to epidemic/pandemic.
@@ -27,22 +25,21 @@
 pdt02_main <- function(adam_db,
                        arm_var = "ARM",
                        dvreas_var = "DVREAS",
-                       lbl_dvreas_var = "Primary Reason",
                        dvterm_var = "DVTERM",
-                       lbl_dvterm_var = "Description",
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "addv"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(dvreas_var)
-  checkmate::assert_string(lbl_dvreas_var)
   checkmate::assert_string(dvterm_var)
-  checkmate::assert_string(lbl_dvterm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$addv, c(dvreas_var, dvterm_var, "DVSEQ"))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
   assert_valid_variable(adam_db$addv, "USUBJID", empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
+
+  lbl_dvreas_var <- var_labels_for(adam_db$addv, dvreas_var)
+  lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
 
@@ -63,12 +60,11 @@ pdt02_main <- function(adam_db,
 #' @describeIn pdt02 Layout
 #'
 #' @inheritParams gen_args
-#' @param dvreas_var (`string`) the variable defining the reason for deviation. By default `DVREAS`.
+#' @inheritParams pdt02_main
 #' @param lbl_dvreas_var (`string`) label for the variable defining the reason for deviation.
-#' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
 #' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
-#' @export
+#' @keywords internal
 #'
 pdt02_lyt <- function(arm_var,
                       lbl_overall,
@@ -118,7 +114,11 @@ pdt02_pre <- function(adam_db,
   adam_db$addv <- adam_db$addv %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
     mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
-    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE)))
+    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
+    mutate(
+      DVREAS = with_label(.data$DVREAS, "Primary Reason"),
+      DVTERM = with_label(.data$DVTERM, "Description")
+    )
 
   adam_db
 }

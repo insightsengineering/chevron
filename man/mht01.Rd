@@ -31,6 +31,10 @@ mht01
 
 \item{...}{not used.}
 
+\item{lbl_mhbodsys}{(\code{string}) label associated with \code{"MHBODSYS"}.}
+
+\item{lbl_mhdecod}{(\code{string}) label associated with \code{"MHDECOD"}.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}

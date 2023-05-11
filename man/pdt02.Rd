@@ -16,9 +16,7 @@ pdt02_main(
   adam_db,
   arm_var = "ARM",
   dvreas_var = "DVREAS",
-  lbl_dvreas_var = "Primary Reason",
   dvterm_var = "DVTERM",
-  lbl_dvterm_var = "Description",
   lbl_overall = NULL,
   ...
 )
@@ -51,15 +49,15 @@ pdt02
 
 \item{dvreas_var}{(\code{string}) the variable defining the reason for deviation. By default \code{DVREAS}.}
 
-\item{lbl_dvreas_var}{(\code{string}) label for the variable defining the reason for deviation.}
-
 \item{dvterm_var}{(\code{string}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
-
-\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
+
+\item{lbl_dvreas_var}{(\code{string}) label for the variable defining the reason for deviation.}
+
+\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -103,3 +101,4 @@ as \code{"DVSEQ"}.
 run(pdt02, syn_data)
 }
 \keyword{datasets}
+\keyword{internal}

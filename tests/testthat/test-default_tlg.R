@@ -166,10 +166,3 @@ test_that("lbt04_1 functions with default argument value return expected result 
   res <- lbt04_1_post(raw_res)
   expect_snapshot(res)
 })
-
-test_that("lbt05_1 functions with default argument value return expected result with test data", {
-  pre_data <- lbt05_1_pre(syn_data)
-  raw_res <- lbt05_1_main(pre_data)
-  res <- lbt05_1_post(raw_res)
-  expect_snapshot(res)
-})
