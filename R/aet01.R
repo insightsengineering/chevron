@@ -102,9 +102,9 @@ aet01_lyt <- function(arm_var,
 
   lyt_ae2 <- lyt_base %>%
     count_patients_recursive(
-      anl_vars,
-      anl_lbls,
-      lbl_vars
+      anl_vars = anl_vars,
+      anl_lbls = anl_lbls,
+      lbl_vars = lbl_vars
     )
   return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
 }
@@ -122,7 +122,7 @@ count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
   for (k in seq_len(length(anl_vars))) {
     lyt <- lyt %>%
       count_patients_with_flags(
-        "USUBJID",
+        var = "USUBJID",
         flag_variables = setNames(lbl_vars[[k]], anl_vars[[k]]),
         denom = "N_col",
         var_labels = anl_lbls[k],
