@@ -62,6 +62,7 @@ reference:
       - aet10
       - cmt01a
       - cmt02_pt_1
+      - coxt02_1
       - dmt01
       - dst01_1
       - dst01_2
@@ -97,7 +98,7 @@ reference:
       - abort
       - assert_colnames
       - assert_all_tablenames
-      - assert_only_one_paramcd
+      - assert_single_paramcd
       - assert_valid_type
       - assert_valid_var
       - assert_valid_var_pair

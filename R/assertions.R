@@ -174,7 +174,7 @@ assert_subset_suggest <- function(x, choices) {
 #' Check to have only one PARAMCD in the analysis dataset
 #' @param param_val value of PARAMCD
 #' @export
-assert_only_one_paramcd <- function(param_val) {
+assert_single_paramcd <- function(param_val) {
   unique_param_val <- unique(param_val)
   if (length(unique_param_val) > 1) {
     stop(paste0(
