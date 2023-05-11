@@ -1,6 +1,6 @@
-# lbt01_1 ----
+# lbt01 ----
 
-#' @describeIn lbt01_1 Main TLG function
+#' @describeIn lbt01 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
@@ -27,36 +27,37 @@
 #'
 #' @export
 #'
-lbt01_1_main <- function(adam_db,
+lbt01_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         summaryvars = list("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
+                         summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
                          visitvar = "AVISIT",
                          precision = list(),
                          default_precision = 2,
-                         deco = std_deco("LBT01"),
                          ...) {
-  summaryvars <- unlist(summaryvars)
+
+  assert_all_tablenames(adam_db, c("adsl", "adlb"))
+  checkmate::assert_string(arm_var)
+  assert_valid_var(adam_db$adlb, c("PARAM", "PARAMCD", summaryvars, visitvar))
+  assert_valid_var(adam_db$adlb, c("USUBJID"), empty_ok = TRUE)
+  assert_valid_var(adam_db$adsl, c("USUBJID"))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_integerish, FUN.VALUE = numeric(1), lower = 0, len = 1)
+  checkmate::assert_integerish(default_precision, lower = 0, len = 1)
 
-  assert_colnames(adam_db$adlb, c("PARAM", "PARAMCD"))
-  assert_colnames(adam_db$adlb, summaryvars)
-  assert_colnames(adam_db$adlb, arm_var)
-  assert_colnames(adam_db$adlb, visitvar)
+  summaryvars <- unlist(summaryvars)
 
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+  summaryvars_lbls <- var_labels_for(adam_db$adlb, summaryvars)
 
-  summaryvars_lbls <- get_labels(adam_db$adlb, summaryvars)
-
-  lyt <- lbt01_1_lyt(
+  lyt <- lbt01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
-    deco = deco,
     precision = precision,
     default_precision = default_precision
   )
@@ -66,9 +67,9 @@ lbt01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt01_1 Layout
+#' @describeIn lbt01 Layout
 #'
-#' @inheritParams lbt01_1_main
+#' @inheritParams lbt01_main
 #'
 #' @param summaryvars (`character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
 #' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
@@ -78,18 +79,17 @@ lbt01_1_main <- function(adam_db,
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #'
 #'
-#' @export
+#' @keywords internal
 #'
-lbt01_1_lyt <- function(arm_var,
+lbt01_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
                         visitvar,
                         lbl_avisit,
                         lbl_param,
-                        deco,
                         precision,
                         default_precision) {
-  basic_table_deco(deco) %>%
+   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
       var = "PARAMCD",
@@ -164,29 +164,31 @@ lbt01_1_lyt <- function(arm_var,
     append_topleft(c(paste(" ", lbl_avisit), " "))
 }
 
-#' @describeIn lbt01_1 Preprocessing
+#' @describeIn lbt01 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-lbt01_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adlb"))
-
+lbt01_pre <- function(adam_db, ...) {
 
   adam_db$adlb <- adam_db$adlb %>%
-    filter(.data$ANL01FL == "Y")
+    filter(.data$ANL01FL == "Y") %>%
+    mutate(
+      AVAL = with_label(.data$AVAL, "Value at Visit"),
+      CHG = with_label(.data$CHG, "Change from \nBaseline")
+    )
 
   adam_db
 }
 
-#' @describeIn lbt01_1 Postprocessing
+#' @describeIn lbt01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+lbt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }
@@ -200,13 +202,13 @@ lbt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(lbt01_1, syn_data, precision = list(
+#' run(lbt01, syn_data, precision = list(
 #'   "ALT" = 0,
 #'   "CRP" = 1
 #' ))
-lbt01_1 <- chevron_t(
-  main = lbt01_1_main,
-  preprocess = lbt01_1_pre,
-  postprocess = lbt01_1_post,
+lbt01 <- chevron_t(
+  main = lbt01_main,
+  preprocess = lbt01_pre,
+  postprocess = lbt01_post,
   adam_datasets = c("adlb")
 )
