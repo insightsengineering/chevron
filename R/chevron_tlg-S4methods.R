@@ -355,19 +355,11 @@ setMethod(
     if (details) {
       c(
         "# Edit Functions.",
-        paste0("pre_fun <- ", deparse(preprocess(x)), control = "useSource")
-          control = "useSource"
-        ),
+        paste0("pre_fun <- ", deparse(preprocess(x), control = "useSource")),
         "",
-        deparse(
-          rlang::call2("<-", sym("main_fun"), main(x)),
-          control = "useSource"
-        ),
+        paste0("main_fun <- ", deparse(main(x), control = "useSource")),
         "",
-        deparse(
-          rlang::call2("<-", sym("post_fun"), postprocess(x)),
-          control = "useSource"
-        ),
+        paste0("post_fun <- ", deparse(postprocess(x), control = "useSource")),
         "",
         "# Create TLG",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
