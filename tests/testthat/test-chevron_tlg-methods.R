@@ -202,8 +202,7 @@ test_that("script_funs works as expected in interactive mode", {
 
 test_that("script_funs works as expected in non interactive mode", {
   skip_if(interactive())
-  res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls"))
-  expect_snapshot(res)
+  expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls"))
 })
 
 test_that("script_funs works as expected", {

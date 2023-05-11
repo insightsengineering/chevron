@@ -3,6 +3,8 @@
 S3method(assert_valid_var,character)
 S3method(assert_valid_var,default)
 S3method(assert_valid_var,factor)
+S3method(assert_valid_var,logical)
+S3method(assert_valid_var,numeric)
 S3method(droplevels,character)
 S3method(lvls,character)
 S3method(lvls,default)

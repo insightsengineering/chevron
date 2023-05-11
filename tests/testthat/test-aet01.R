@@ -29,9 +29,9 @@ test_that("aet01 can handle some NA values", {
   expect_snapshot(res)
 })
 
-test_that("aet01 can use custom lbl_safety_var", {
+test_that("aet01 can use custom anl_vars", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01, proc_data, safety_var = "FATAL"))
+  res <- expect_silent(run(aet01, proc_data, anl_vars = list(safety_var = "FATAL")))
   expect_snapshot(res)
 })
 
@@ -49,7 +49,19 @@ test_that("aet01 fails on incomplete data input", {
 
 test_that("aet01 can use custom medconcept_var", {
   proc_data <- syn_data
-  proc_data$adae$SMQ01 <- proc_data$adae$SMQ01NAM != ""
-  res <- expect_silent(run(aet01, proc_data, medconcept_var = "SMQ01"))
+  proc_data$adae$SMQ01 <- with_label(proc_data$adae$SMQ01NAM != "", "SMQ 01")
+  res <- expect_silent(
+    run(
+      aet01, proc_data,
+      anl_vars = list(
+        safety_var = c(
+                         "FATAL", "SER", "SERWD", "SERDSM",
+                         "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                       ),
+        medconcept = "SMQ01"
+      ),
+      anl_lbls = "Total Number of Patients with at Least One"
+    )
+  )
   expect_snapshot(res)
 })

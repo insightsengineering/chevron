@@ -39,15 +39,9 @@ dmt01_main <- function(adam_db,
                        ),
                        lbl_overall = "All Patients",
                        ...) {
-  assert_colnames(adam_db$adsl, c(arm_var, summaryvars))
-
+  assert_valid_variable(adam_db$adsl, summaryvars)
   summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
-  lapply(
-    summaryvars,
-    function(i) {
-      assert_valid_var(adam_db$adsl[[i]], sprintf("adsl.%s", i))
-    }
-  )
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
   lyt <- dmt01_lyt(
     arm_var = arm_var,
