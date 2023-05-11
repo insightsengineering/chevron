@@ -24,7 +24,6 @@ articles:
   - title: All vignettes
     contents:
       - chevron
-      - layouts
       - adding_new_tlgs_to_chevron
       - script_generator
 

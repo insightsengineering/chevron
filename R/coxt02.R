@@ -29,13 +29,13 @@
 #' @export
 #'
 coxt02_main <- function(adam_db,
-                          arm_var = "ARM",
-                          time_var = "AVAL",
-                          event_var = "EVENT",
-                          covariates = c("SEX", "RACE", "AAGE"),
-                          strata = NULL,
-                          lbl_vars = "Effect/Covariate Included in the Model",
-                          ...) {
+                        arm_var = "ARM",
+                        time_var = "AVAL",
+                        event_var = "EVENT",
+                        covariates = c("SEX", "RACE", "AAGE"),
+                        strata = NULL,
+                        lbl_vars = "Effect/Covariate Included in the Model",
+                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adtte")
   checkmate::assert_string(arm_var)
   checkmate::assert_string(time_var)
@@ -79,8 +79,8 @@ coxt02_main <- function(adam_db,
 #' @keywords internal
 #'
 coxt02_lyt <- function(variables,
-                         lbl_vars,
-                         control) {
+                       lbl_vars,
+                       control) {
   basic_table() %>%
     summarize_coxreg(
       variables = variables,
@@ -96,7 +96,7 @@ coxt02_lyt <- function(variables,
 #'
 #' @export
 #'
-coxt02_pre <- function(adam_db,  ...) {
+coxt02_pre <- function(adam_db, ...) {
   adam_db$adtte <- adam_db$adtte %>%
     mutate(EVENT = 1 - .data$CNSR)
   adam_db
