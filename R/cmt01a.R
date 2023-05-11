@@ -29,18 +29,18 @@ cmt01a_main <- function(adam_db,
                         medname_var = "CMDECOD",
                         lbl_overall = NULL,
                         ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adcm")
+  assert_all_tablenames(adam_db, "adsl", "adcm")
   checkmate::assert_string(arm_var)
   checkmate::assert_flag(incl_n_treatment)
   checkmate::assert_string(medcat_var)
   checkmate::assert_string(medname_var)
-  assert_valid_variable(dbsel$adcm, c(arm_var, medcat_var, medname_var), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_var_pair(dbsel$adsl, dbsel$adcm, arm_var)
+  assert_valid_variable(adam_db$adcm, c(arm_var, medcat_var, medname_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adcm, arm_var)
 
-  lbl_medcat_var <- var_labels_for(dbsel$adcm, medcat_var)
-  lbl_medname_var <- var_labels_for(dbsel$adcm, medname_var)
+  lbl_medcat_var <- var_labels_for(adam_db$adcm, medcat_var)
+  lbl_medname_var <- var_labels_for(adam_db$adcm, medname_var)
 
   lyt <- cmt01a_lyt(
     arm_var = arm_var,
@@ -52,7 +52,7 @@ cmt01a_main <- function(adam_db,
     lbl_medname_var = lbl_medname_var
   )
 
-  tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$adcm, alt_counts_df = adam_db$adsl)
 
   tbl
 }

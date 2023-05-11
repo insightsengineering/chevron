@@ -21,22 +21,22 @@ aet10_main <- function(adam_db,
                        arm_var = "ACTARM",
                        lbl_overall = NULL,
                        ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adae")
+  assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
 
-  lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
+  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
   lyt <- aet10_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_aedecod = lbl_aedecod
   )
 
-  tbl <- build_table(lyt, dbsel$adae, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 
   tbl
 }

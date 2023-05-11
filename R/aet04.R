@@ -24,17 +24,17 @@ aet04_main <- function(adam_db,
                        lbl_overall = NULL,
                        grade_groups = NULL,
                        ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adae")
+  assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(arm_var)
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adae, "ATOXGR", na_ok = TRUE, types = list("factor"))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adae, "ATOXGR", na_ok = TRUE, types = list("factor"))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
 
-  lbl_aebodsys <- var_labels_for(dbsel$adae, "AEBODSYS")
-  lbl_aedecod <- var_labels_for(dbsel$adae, "AEDECOD")
+  lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
+  lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
 
   checkmate::assert_list(grade_groups, types = "character", null.ok = TRUE)
   if (is.null(grade_groups)) {
@@ -53,8 +53,8 @@ aet04_main <- function(adam_db,
     lbl_aedecod = lbl_aedecod,
     grade_groups = grade_groups
   )
-  dbsel$adae$TOTAL_VAR <- "- Any adverse events - "
-  tbl <- build_table(lyt, df = dbsel$adae, alt_counts_df = dbsel$adsl)
+  adam_db$adae$TOTAL_VAR <- "- Any adverse events - "
+  tbl <- build_table(lyt, df = adam_db$adae, alt_counts_df = adam_db$adsl)
   tbl
 }
 

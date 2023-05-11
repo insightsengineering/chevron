@@ -25,17 +25,17 @@ vst02_main <- function(adam_db,
                        lbl_vs_abnormality = "Abnormality",
                        lbl_overall = NULL,
                        ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "advs")
+  assert_all_tablenames(adam_db, "adsl", "advs")
   checkmate::assert_string(arm_var)
   checkmate::assert_flag(exclude_base_abn)
   checkmate::assert_string(lbl_vs_assessment)
   checkmate::assert_string(lbl_vs_abnormality)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
 
-  assert_valid_variable(dbsel$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(dbsel$advs, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_var_pair(dbsel$adsl, dbsel$advs, arm_var)
+  assert_valid_variable(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$advs, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$advs, arm_var)
 
   lyt <- vst02_lyt(
     arm_var = arm_var,
