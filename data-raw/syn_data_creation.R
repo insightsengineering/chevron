@@ -20,11 +20,8 @@ syn_test_data <- function() {
       c("<5000", "5000-7000", "7000-9000", ">9000")
     )
   )
+
   sd$adex <- dunlin::cut_by_group(as.data.frame(sd$adex), "AVAL", "PARAM", group, "AVALCAT1")
-  sd$adsl$AAGE <- sd$adsl$AGE
-  attr(sd$adsl$AAGE, "label") <- "Age (yr)"
-  sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
-  attr(sd$adsl$AGEGR1, "label") <- "Age Group"
   sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
 
   set.seed(1, kind = "Mersenne-Twister")
@@ -62,28 +59,6 @@ syn_test_data <- function() {
       AVALCAT1 = factor(AVALCAT1),
       CHGCAT1 = factor(CHGCAT1)
     )
-
-  # useful for dmt01
-  adsub <- sd$adsub
-  adsub_wide_ls <- dunlin::poly_pivot_wider(
-    adsub,
-    id = "USUBJID",
-    param_from = "PARAMCD",
-    value_from = "AVAL",
-    labels_from = "PARAM"
-  )
-  adsub_wide_aval <- adsub_wide_ls[["AVAL"]]
-
-  sd$adsl <- sd$adsl %>% left_join(adsub_wide_aval, by = "USUBJID")
-
-  # useful for dst01
-  sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
-
-  sd$adsl <- sd$adsl %>%
-    mutate(EOTSTT = {
-      set.seed(321)
-      as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"), nrow(sd$adsl), replace = TRUE))
-    })
 
   # useful for lbt04, lbt05
   qntls <- sd$adlb %>%
@@ -130,6 +105,41 @@ syn_test_data <- function() {
     ) %>%
     select(-q1, -q2)
 
+  # useful for dmt01
+  adsub <- sd$adsub
+  adsub_wide_ls <- dunlin::poly_pivot_wider(
+    adsub,
+    id = "USUBJID",
+    param_from = "PARAMCD",
+    value_from = "AVAL",
+    labels_from = "PARAM"
+  )
+  adsub_wide_aval <- adsub_wide_ls[["AVAL"]]
+
+  sd$adsl$AAGE <- sd$adsl$AGE
+  attr(sd$adsl$AAGE, "label") <- "Age (yr)"
+  sd$adsl$AGEGR1 <- cut(sd$adsl$AGE, c(0, 65, 200), c("<65", ">=65"))
+  attr(sd$adsl$AGEGR1, "label") <- "Age Group"
+
+  sd$adsl <- sd$adsl %>% left_join(adsub_wide_aval, by = "USUBJID")
+
+  # useful for dst01
+  sd$adsl[["EOSSTT"]] <- as.factor(toupper(sd$adsl[["EOSSTT"]]))
+
+  sd$adsl <- sd$adsl %>%
+    mutate(EOTSTT = {
+      set.seed(321)
+      as.factor(sample(c("ONGOING", "COMPLETED", "DISCONTINUED"), nrow(sd$adsl), replace = TRUE))
+    })
+
+  # useful for coxt02
+  sd$adsl <- sd$adsl %>%
+    mutate(RACE = droplevels(factor(case_when(
+      .data$RACE == "MULTIPLE" ~ "WHITE",
+      .data$RACE == "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER" ~ "ASIAN",
+      TRUE ~ .data$RACE
+    ))))
+
   sd$adsl <- sd$adsl %>%
     mutate(ANL01FL = "Y")
 
@@ -151,6 +161,13 @@ syn_test_data <- function() {
 
   sd$adcm <- sd$adcm %>%
     mutate(ANL01FL = "Y")
+
+  adsl <- sd$adsl[c("USUBJID", "AAGE")]
+  sd$adtte <- sd$adtte %>% left_join(adsl, by = "USUBJID")
+
+  adsl <- sd$adsl[c("USUBJID", "RACE")]
+  sd$adtte <- sd$adtte %>% select(-c("RACE"))
+  sd$adtte <- sd$adtte %>% left_join(adsl, by = "USUBJID")
 
   sd
 }
