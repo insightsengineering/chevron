@@ -6,6 +6,13 @@
 \usage{
 assert_valid_type(x, types, label = deparse(substitute(x)))
 }
+\arguments{
+\item{x}{Object to check the type.}
+
+\item{types}{(\code{character}) possible types to check.}
+
+\item{label}{(\code{string}) label.}
+}
 \description{
 Check variable is of correct type
 }

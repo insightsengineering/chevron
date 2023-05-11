@@ -60,11 +60,9 @@ reference:
       - aet03
       - aet04
       - aet10
-      - cmt01a_1
-      - cmt01a_2
-      - cmt01a_3
+      - cmt01a
       - cmt02_pt_1
-      - dmt01_1
+      - dmt01
       - dst01_1
       - dst01_2
       - dst01_3
@@ -96,17 +94,27 @@ reference:
       - syn_data
   - title: Utility Functions
     contents:
+      - abort
       - assert_colnames
       - assert_all_tablenames
+      - assert_only_one_paramcd
+      - assert_valid_type
+      - assert_valid_var
+      - assert_valid_var_pair
+      - assert_valid_variable
       - get_db_data
       - report_null
       - smart_prune
       - std_deco
       - var_labels_for
-      - h_format_dec
       - gg_list
       - grob_list
-      - assert_only_one_paramcd
+      - h_format_dec
+      - lvls
+  - title: Standard Reformatting Rules
+    contents:
+      - nocoding
+      - missing_rule
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

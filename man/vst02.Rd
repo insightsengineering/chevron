@@ -83,6 +83,6 @@ Assessments Outside Normal Limits.
 }
 }
 \examples{
-run(vst02_1, syn_data)
+run(vst02, syn_data)
 }
 \keyword{datasets}

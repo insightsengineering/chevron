@@ -117,7 +117,7 @@ vst02_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(vst02_1, syn_data)
+#' run(vst02, syn_data)
 vst02 <- chevron_t(
   main = vst02_main,
   preprocess = vst02_pre,
