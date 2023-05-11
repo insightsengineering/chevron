@@ -4,6 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param anl_vars Named (`list`) of (`character`) variables the safety variables to be summarized.
+#' @param anl_lbls (`character`) of analysis labels.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -22,7 +23,7 @@ aet01_main <- function(adam_db,
                          "FATAL", "SER", "SERWD", "SERDSM",
                          "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                        )),
-                       anl_lbls = "Total Number of Patients with at Least One",
+                       anl_lbls = "Total number of patients with at least one",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)

@@ -59,8 +59,7 @@ test_that("aet01 can use custom medconcept_var", {
                          "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                        ),
         medconcept = "SMQ01"
-      ),
-      anl_lbls = "Total Number of Patients with at Least One"
+      )
     )
   )
   expect_snapshot(res)
