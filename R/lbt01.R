@@ -193,7 +193,7 @@ lbt01_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `LBT01` Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.
+#' `LBT01` Laboratory Test Results and Change from Baseline by Visit Table.
 #'
 #' The `LBT01` table provides an
 #' overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
