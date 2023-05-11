@@ -88,15 +88,10 @@ lbt14_pre <- function(adam_db,
   checkmate::assert_choice(direction, c("low", "high"))
 
   missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
-
-  new_format <- list(
-    adlb = list(
-      BTOXGR = missing_rule,
-      ATOXGR = missing_rule
+  adam_db$adlb <- adam_db$adlb %>%
+    mutate(
+      across(all_of(c("BTOXGR", "ATOXGR")), ~ reformat(.x, .env$missing_rule))
     )
-  )
-
-  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
     adam_db$adlb <- adam_db$adlb %>%
@@ -110,7 +105,6 @@ lbt14_pre <- function(adam_db,
       }) %>%
       mutate(BTOXGR = reformat(.data$BTOXGR, rule("0" = c("0", "<Missing>"))))
   }
-
 
   grade_rule <- if (direction == "high") {
     rule(
@@ -132,20 +126,14 @@ lbt14_pre <- function(adam_db,
     )
   }
 
-  grade_format <- list(
-    adlb = list(
-      ATOXGR_GRP = grade_rule,
-      BTOXGR_GRP = grade_rule
-    )
-  )
-
   adam_db$adlb <- adam_db$adlb %>%
     mutate(
       ATOXGR_GRP = as.character(.data$ATOXGR),
       BTOXGR_GRP = as.character(.data$BTOXGR)
+    ) %>%
+    mutate(
+      across(all_of(c("ATOXGR_GRP", "BTOXGR_GRP")), ~ reformat(.x, .env$grade_rule, na_last = TRUE))
     )
-
-  adam_db <- reformat(adam_db, grade_format, na_last = TRUE)
 
   adam_db$adlb <- adam_db$adlb %>%
     mutate(

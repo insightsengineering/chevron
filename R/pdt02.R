@@ -116,21 +116,11 @@ pdt02_lyt <- function(arm_var,
 pdt02_pre <- function(adam_db,
                       ...) {
   adam_db$addv <- adam_db$addv %>%
-    filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y")
+    filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
+    mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE)))
 
-  fmt_ls <- list(
-    DVREAS = rule(
-      "No Coding available" = c("", NA)
-    ),
-    DVTERM = rule(
-      "No Coding available" = c("", NA)
-    ),
-    DVSEQ = rule()
-  )
-
-  new_format <- list(addv = fmt_ls)
-
-  reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
 #' @describeIn pdt02 Postprocessing

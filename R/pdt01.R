@@ -107,18 +107,11 @@ pdt01_lyt <- function(arm_var,
 #' @export
 #'
 pdt01_pre <- function(adam_db, ...) {
-  fmt_ls <- list(
-    DVDECOD = rule(
-      "No Coding available" = c("", NA)
-    ),
-    DVTERM = rule(
-      "No Coding available" = c("", NA)
-    ),
-    DVSEQ = rule()
-  )
+  adam_db$addv <- adam_db$addv %>%
+    mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE)))
 
-  new_format <- list(addv = fmt_ls)
-  reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
 #' @describeIn pdt01 Postprocessing

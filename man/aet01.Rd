@@ -15,9 +15,9 @@ aet01_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD", "DSM", "REL",
-    "RELWD", "RELDSM", "SEV"),
-  medconcept_var = NULL,
+  anl_vars = list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD",
+    "DSM", "REL", "RELWD", "RELDSM", "SEV")),
+  anl_lbls = "Total Number of Patients with at Least One",
   ...
 )
 
@@ -34,9 +34,7 @@ aet01
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{safety_var}{(\code{character}) the safety variables to be summarized.}
-
-\item{medconcept_var}{(\code{character}) the medical concept variables to be summarized.}
+\item{anl_vars}{Named (\code{list}) of (\code{character}) variables the safety variables to be summarized.}
 
 \item{...}{not used.}
 
@@ -64,7 +62,7 @@ aet01
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adsl} table with the \code{"DTHFL"} and \code{"DCSREAS"} columns.
-\item \code{adam_db} object must contain an \code{adae} table with the columns passed to \code{safety_var}.
+\item \code{adam_db} object must contain an \code{adae} table with the columns passed to \code{anl_vars}.
 }
 }
 \examples{

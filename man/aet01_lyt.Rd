@@ -4,25 +4,18 @@
 \alias{aet01_lyt}
 \title{aet01 Layout}
 \usage{
-aet01_lyt(
-  arm_var,
-  lbl_overall,
-  safety_var,
-  lbl_safety_var,
-  medconcept_var,
-  lbl_medconcept_var
-)
+aet01_lyt(arm_var, lbl_overall, anl_vars, anl_lbls, lbl_vars)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{safety_var}{(\code{character}) the safety variables to be summarized.}
+\item{anl_vars}{Named (\code{list}) of analysis variables.}
 
-\item{lbl_safety_var}{(\code{character}) the labels of the safety variables to be summarized.}
+\item{anl_lbls}{(\code{character}) of labels.}
 
-\item{medconcept_var}{(\code{character}) the medical concept variables to be summarized.}
+\item{lbl_vars}{Named (\code{list}) of analysis labels.}
 }
 \description{
 aet01 Layout

@@ -18,10 +18,11 @@ aet01_main <- function(adam_db,
                        arm_var = "ACTARM",
                        lbl_overall = NULL,
                        anl_vars = list(
-                        safety_var = c(
-                         "FATAL", "SER", "SERWD", "SERDSM",
-                         "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
-                       )),
+                         safety_var = c(
+                           "FATAL", "SER", "SERWD", "SERDSM",
+                           "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+                         )
+                       ),
                        anl_lbls = "Total Number of Patients with at Least One",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")

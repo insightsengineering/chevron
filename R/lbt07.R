@@ -118,15 +118,10 @@ lbt07_lyt <- function(arm_var,
 #' @export
 #'
 lbt07_pre <- function(adam_db, ...) {
-  new_format <- list(
-    adlb = list(
-      ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding available"))
-    )
-  )
-
-  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
-
   adam_db$adlb <- adam_db$adlb %>%
+    mutate(
+      ATOXGR = reformat(.data$ATOXGR, rule("<Missing>" = c("", NA, "<Missing>", "No Coding available")), na_last = TRUE)
+    ) %>%
     filter(
       .data$ATOXGR != "<Missing>",
       .data$ONTRTFL == "Y",

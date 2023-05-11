@@ -12,14 +12,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-mht01_main(
-  adam_db,
-  arm_var = "ARM",
-  lbl_overall = NULL,
-  lbl_mhbodsys = "MedDRA System Organ Class",
-  lbl_mhdecod = "MedDRA Preferred Term",
-  ...
-)
+mht01_main(adam_db, arm_var = "ARM", lbl_overall = NULL, ...)
 
 mht01_lyt(arm_var, lbl_overall, lbl_mhbodsys, lbl_mhdecod)
 
@@ -35,12 +28,6 @@ mht01
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{lbl_mhbodsys}{(\code{string}) text label for \code{MHBODSYS}. If \code{NULL}, the value of the argument defaults to the label
-of the corresponding column in the \code{admh} table.}
-
-\item{lbl_mhdecod}{(\code{string}) text label for \code{MHDECOD}. If \code{NULL}, the value of the argument defaults to the label of
-the corresponding column in the \code{admh} table.}
 
 \item{...}{not used.}
 

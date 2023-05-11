@@ -12,14 +12,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-rmpt01_main(
-  adam_db,
-  summaryvars = c("AVALCAT1", "AVAL"),
-  lbl_vars = c("Patients", "Person time*"),
-  parcat = NULL,
-  lbl_parcat = "Parameter Category",
-  ...
-)
+rmpt01_main(adam_db, summaryvars = c("AVALCAT1", "AVAL"), parcat = NULL, ...)
 
 rmpt01_lyt(summaryvars, lbl_vars, parcat, lbl_parcat)
 
@@ -32,11 +25,7 @@ rmpt01
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{lbl_vars}{(\code{character}) the labels of the patient toll and time variables.}
-
 \item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
-
-\item{lbl_parcat}{(\code{string}) the label of the variable \code{parcat}.}
 
 \item{...}{not used.}
 

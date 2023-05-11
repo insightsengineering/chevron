@@ -3,10 +3,6 @@
 #' @describeIn mht01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_mhbodsys (`string`) text label for `MHBODSYS`. If `NULL`, the value of the argument defaults to the label
-#'   of the corresponding column in the `admh` table.
-#' @param lbl_mhdecod (`string`) text label for `MHDECOD`. If `NULL`, the value of the argument defaults to the label of
-#'   the corresponding column in the `admh` table.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -24,14 +20,10 @@
 mht01_main <- function(adam_db,
                        arm_var = "ARM",
                        lbl_overall = NULL,
-                       lbl_mhbodsys = "MedDRA System Organ Class",
-                       lbl_mhdecod = "MedDRA Preferred Term",
                        ...) {
   assert_all_tablenames(adam_db, c("admh", "adsl"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(lbl_mhbodsys, null.ok = TRUE)
-  checkmate::assert_string(lbl_mhdecod, null.ok = TRUE)
   assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), empty_ok = TRUE)
   assert_valid_variable(adam_db$admh, "USUBJID", empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, "USUBJID")
@@ -39,8 +31,8 @@ mht01_main <- function(adam_db,
 
   dbsel <- get_db_data(adam_db, "adsl", "admh")
 
-  if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
-  if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
+  lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
+  lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
   lyt <- mht01_lyt(
     arm_var = arm_var,
@@ -111,18 +103,16 @@ mht01_pre <- function(adam_db, ...) {
   adam_db$admh <- adam_db$admh %>%
     filter(.data$ANL01FL == "Y")
 
-  new_format <- list(
-    admh = list(
-      MHBODSYS = rule(
-        "No Coding available" = c("", NA)
-      ),
-      MHDECOD = rule(
-        "No Coding available" = c("", NA)
-      )
+  adam_db$admh <- adam_db$admh %>%
+    mutate(
+      across(all_of(c("MHBODSYS", "MHDECOD")), ~ reformat(.x, nocoding, na_last = TRUE))
+    ) %>%
+    mutate(
+      MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class"),
+      MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term")
     )
-  )
 
-  reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
 #' @describeIn mht01 Postprocessing

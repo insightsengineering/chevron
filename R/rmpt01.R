@@ -4,9 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param anl_vars (`character`) the names of variables to be analyzed.
-#' @param lbl_vars (`character`) the labels of the patient toll and time variables.
 #' @param parcat (`string`) the name of the variable initiating a new row split.
-#' @param lbl_parcat (`string`) the label of the variable `parcat`.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -22,16 +20,15 @@
 #'
 rmpt01_main <- function(adam_db,
                         summaryvars = c("AVALCAT1", "AVAL"),
-                        lbl_vars = c("Patients", "Person time*"),
                         parcat = NULL,
-                        lbl_parcat = "Parameter Category",
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(parcat, null.ok = TRUE)
   checkmate::assert_character(summaryvars)
   assert_valid_var(adam_db$adex, c("USUBJID", "PARAMCD", summaryvars, parcat))
-  checkmate::assert_character(lbl_vars)
-  checkmate::assert_string(lbl_parcat)
+
+  lbl_parcat <- var_labels_for(adam_db$adex, parcat)
+  lbl_vars <- var_labels_for(adam_db$adex, summaryvars)
 
   dbsel <- get_db_data(adam_db, "adsl", "adex")
 
@@ -91,6 +88,13 @@ rmpt01_pre <- function(adam_db,
 
   adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
   if (!is.null(parcat)) adam_db$adex[[parcat]] <- droplevels(adam_db$adex[[parcat]])
+
+  adam_db$adex <- adam_db$adex %>%
+    mutate(
+      AVALCAT1 = with_label(.data$AVALCAT1, "Patients"),
+      AVAL = with_label(.data$AVAL, "Person time*")
+    )
+
 
   adam_db
 }
