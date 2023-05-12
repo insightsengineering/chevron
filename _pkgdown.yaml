@@ -112,7 +112,6 @@ reference:
       - h_format_dec
       - gg_list
       - grob_list
-      - assert_only_one_paramcd
       - lvls
       - assert_single_paramcd
 
