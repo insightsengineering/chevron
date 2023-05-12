@@ -147,7 +147,7 @@ cmt01a_post <- function(tlg, prune_0 = TRUE, sort_by_freq = FALSE, medcat_var = 
     tlg <- tlg %>%
       tlg_sort_by_var(
         var = medcat_var,
-        scorefun = cont_n_onecol(ncol(tlg))
+        scorefun = cont_n_allcols
       )
   }
   tlg <- tlg %>%

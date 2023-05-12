@@ -24,7 +24,6 @@ articles:
   - title: All vignettes
     contents:
       - chevron
-      - layouts
       - adding_new_tlgs_to_chevron
       - script_generator
 
@@ -62,6 +61,7 @@ reference:
       - aet10
       - cmt01a
       - cmt02_pt_1
+      - coxt02
       - dmt01
       - dst01_1
       - dst01_2
@@ -96,7 +96,7 @@ reference:
       - abort
       - assert_colnames
       - assert_all_tablenames
-      - assert_only_one_paramcd
+      - assert_single_value
       - assert_valid_type
       - assert_valid_var
       - assert_valid_var_pair

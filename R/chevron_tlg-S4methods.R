@@ -10,11 +10,10 @@
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
-#' @param check_arg (`flag`) whether to check if all arguments are used.
 #'
 #' @name run
 #' @export
-setGeneric("run", function(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE) standardGeneric("run"))
+setGeneric("run", function(object, adam_db, auto_pre = TRUE, ...) standardGeneric("run"))
 
 #' Run the pipeline
 #' @rdname run
@@ -24,36 +23,19 @@ setGeneric("run", function(object, adam_db, auto_pre = TRUE, ..., check_arg = TR
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE) {
+  definition = function(object, adam_db, auto_pre = TRUE, ...) {
     checkmate::assert_list(adam_db, types = "list")
     checkmate::assert_flag(auto_pre)
-    checkmate::assert_flag(check_arg)
-
     user_args <- list(...)
-
-    # Assert validity of provided arguments.
-    arg_pre_name <- if (auto_pre) rlang::fn_fmls_names(preprocess(object))
-    arg_main_name <- rlang::fn_fmls_names(main(object))
-    arg_post_name <- rlang::fn_fmls_names(postprocess(object))
-
-    if (check_arg) {
-      all_args_names <- setdiff(c(arg_pre_name, arg_main_name, arg_post_name), "...")
-      assert_subset_suggest(names(user_args), all_args_names)
-    }
-
     proc_data <- if (auto_pre) {
-      arg_pre <- user_args[names(user_args) %in% arg_pre_name]
-      list(adam_db = do.call(object@preprocess, c(list(adam_db), arg_pre)))
+      list(adam_db = do.call(object@preprocess, c(list(adam_db), user_args)))
     } else {
       list(adam_db = adam_db)
     }
 
-    arg_main <- user_args[names(user_args) %in% arg_main_name]
-    arg_post <- user_args[names(user_args) %in% arg_post_name]
+    res_tlg <- list(tlg = do.call(object@main, c(proc_data, user_args)))
 
-    res_tlg <- list(tlg = do.call(object@main, c(proc_data, arg_main)))
-
-    do.call(object@postprocess, c(res_tlg, arg_post))
+    do.call(object@postprocess, c(res_tlg, user_args))
   }
 )
 
@@ -355,25 +337,11 @@ setMethod(
     if (details) {
       c(
         "# Edit Functions.",
-        utils::capture.output(
-          print(rlang::call2("<-", sym("pre_fun"), preprocess(x)),
-            useSource = TRUE
-          )
-        ),
+        paste0("pre_fun <- ", deparse(preprocess(x), control = "useSource")),
         "",
-        utils::capture.output(
-          print(
-            rlang::call2("<-", sym("main_fun"), main(x)),
-            useSource = TRUE
-          )
-        ),
+        paste0("main_fun <- ", deparse(main(x), control = "useSource")),
         "",
-        utils::capture.output(
-          print(
-            rlang::call2("<-", sym("post_fun"), postprocess(x)),
-            useSource = TRUE
-          )
-        ),
+        paste0("post_fun <- ", deparse(postprocess(x), control = "useSource")),
         "",
         "# Create TLG",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
@@ -393,7 +361,7 @@ setMethod(
         "",
         "# Create TLG",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
-        rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE, check_arg = FALSE)")
+        rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE)")
       )
     }
   }

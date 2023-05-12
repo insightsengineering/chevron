@@ -4,6 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param anl_vars Named (`list`) of (`character`) variables the safety variables to be summarized.
+#' @param anl_lbls (`character`) of analysis labels.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -23,14 +24,15 @@ aet01_main <- function(adam_db,
                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          )
                        ),
-                       anl_lbls = "Total Number of Patients with at Least One",
+                       anl_lbls = "Total number of patients with at least one",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)
   checkmate::assert_list(anl_vars, types = "character", names = "unique")
   checkmate::assert_character(anl_lbls, min.chars = 1L)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var, "DTHFL", "DCSREAS"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("DTHFL", "DCSREAS"), types = list(c("character", "factor")), min_chars = 0L)
   assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, unlist(anl_vars), types = list("logical"), na_ok = TRUE, empty_ok = TRUE)
@@ -110,7 +112,7 @@ aet01_lyt <- function(arm_var,
   return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
 }
 
-#' Counte patients recusively
+#' Count patients recursively
 #' @param lyt (`PreDataTableLayouts`) rtable layout.
 #' @param anl_vars Named (`list`) of analysis variables.
 #' @param anl_lbls (`character`) of labels.

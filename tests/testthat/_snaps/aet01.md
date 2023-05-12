@@ -68,7 +68,7 @@
           Related AE leading to dose modification/interruption       29 (21.6%)    38 (28.4%)      38 (28.8%)  
           Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
 
-# aet01 can use custom lbl_safety_var
+# aet01 can use custom anl_vars
 
     Code
       res

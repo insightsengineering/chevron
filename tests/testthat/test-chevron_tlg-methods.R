@@ -5,10 +5,6 @@ test_that("run works as expected for chevron_t object", {
   expect_snapshot(res)
 })
 
-test_that("run returns a warning if provided with invalid arguments", {
-  expect_error(run(aet04, syn_data, xyz = TRUE), "xyz is not a valid argument.")
-})
-
 test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
@@ -198,11 +194,6 @@ test_that("script_funs works as expected in interactive mode", {
   skip_if(!interactive())
   res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls"))
   expect_snapshot(res)
-})
-
-test_that("script_funs works as expected in non interactive mode", {
-  skip_if(interactive())
-  expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls"))
 })
 
 test_that("script_funs works as expected", {

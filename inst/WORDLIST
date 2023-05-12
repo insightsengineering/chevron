@@ -2,6 +2,7 @@ ADEG
 ADaM
 AESI
 CTCAE
+DAP
 Hoffmann
 Kaplan
 NCI
@@ -14,9 +15,9 @@ TLG
 TLGs
 aesi
 aet
-arugments
 cmt
 coxph
+coxt
 de
 df
 funder
@@ -25,3 +26,4 @@ pre
 preprocess
 repo
 reproducibility
+rtable

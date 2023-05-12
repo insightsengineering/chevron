@@ -17,7 +17,7 @@ aet01_main(
   lbl_overall = NULL,
   anl_vars = list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD",
     "DSM", "REL", "RELWD", "RELDSM", "SEV")),
-  anl_lbls = "Total Number of Patients with at Least One",
+  anl_lbls = "Total number of patients with at least one",
   ...
 )
 
@@ -35,6 +35,8 @@ aet01
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{anl_vars}{Named (\code{list}) of (\code{character}) variables the safety variables to be summarized.}
+
+\item{anl_lbls}{(\code{character}) of analysis labels.}
 
 \item{...}{not used.}
 
