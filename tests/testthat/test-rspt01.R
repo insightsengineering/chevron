@@ -5,12 +5,12 @@ test_that("rspt01_1 works as expected", {
   expect_snapshot(res)
 })
 
-test_that("rspt01_1 works as expected for stratified analysis", {
+test_that("rspt01_1 works as expected for stratified and unstratified analysis", {
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01_1, filter_data,
     dataset = "adrs",
     odds_ratio = FALSE,
-    strat_analysis = TRUE,
+    perform_analysis = c("unstrat", "strat"),
     strata = c("STRATA1", "STRATA2"),
     methods = list(diff_pval_method = "fisher")
   ))
@@ -18,25 +18,47 @@ test_that("rspt01_1 works as expected for stratified analysis", {
   res <- expect_silent(run(rspt01_1, filter_data,
     dataset = "adrs",
     odds_ratio = TRUE,
-    strat_analysis = TRUE,
+    perform_analysis = c("strat", "unstrat"),
     strata = c("STRATA1", "STRATA2"),
     methods = list(diff_pval_method = "fisher")
   ))
   expect_snapshot(res)
 })
 
-test_that("rspt01_1 works as expected for unstratified analysis", {
+test_that("rspt01_1 works as expected for unstratified analysis only", {
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01_1, filter_data,
     dataset = "adrs",
     odds_ratio = FALSE,
+    perform_analysis = c("unstrat"),
     methods = list(diff_pval_method = "fisher")
   ))
   expect_snapshot(res)
   res <- expect_silent(run(rspt01_1, filter_data,
     dataset = "adrs",
     odds_ratio = TRUE,
+    perform_analysis = c("unstrat"),
     methods = list(diff_pval_method = "fisher")
+  ))
+  expect_snapshot(res)
+})
+
+test_that("rspt01_1 works as expected for stratified analysis only", {
+  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+  res <- expect_silent(run(rspt01_1, filter_data,
+                           dataset = "adrs",
+                           odds_ratio = FALSE,
+                           perform_analysis = c("strat"),
+                           strata = c("STRATA1", "STRATA2"),
+                           methods = list(diff_pval_method = "fisher")
+  ))
+  expect_snapshot(res)
+  res <- expect_silent(run(rspt01_1, filter_data,
+                           dataset = "adrs",
+                           odds_ratio = TRUE,
+                           perform_analysis = c("strat"),
+                           strata = c("STRATA1", "STRATA2"),
+                           methods = list(diff_pval_method = "fisher")
   ))
   expect_snapshot(res)
 })
@@ -53,7 +75,7 @@ test_that("rspt01_1 works if change reference group", {
   res <- expect_silent(run(rspt01_1, filter_data,
     dataset = "adrs",
     odds_ratio = TRUE,
-    strat_analysis = TRUE,
+    perform_analysis = c("unstrat", "strat"),
     strata = c("STRATA1", "STRATA2"),
     ref_group = "B: Placebo",
     methods = list(diff_pval_method = "fisher")
@@ -76,7 +98,7 @@ test_that("rspt01_1 works if change statistic methods", {
   res <- expect_silent(run(rspt01_1, filter_data,
     dataset = "adrs",
     odds_ratio = TRUE,
-    strat_analysis = TRUE,
+    perform_analysis = c("unstrat", "strat"),
     strata = c("STRATA1", "STRATA2"),
     methods = list(
       prop_conf_method = "wald",
@@ -102,7 +124,7 @@ test_that("rspt01_1 works if change confidence interval", {
   res <- expect_silent(run(rspt01_1, filter_data,
     dataset = "adrs",
     odds_ratio = TRUE,
-    strat_analysis = TRUE,
+    perform_analysis = c("unstrat", "strat"),
     strata = c("STRATA1", "STRATA2"),
     conf_level = 0.9,
     methods = list(diff_pval_method = "fisher")

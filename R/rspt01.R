@@ -8,8 +8,8 @@
 #'  be identical to the values in `arm_var`, if not speficied, it will by default
 #'  use the first level or value of `arm_var`.
 #' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
-#' @param strat_analysis (`flag`) should the stratified analysis be performed,
-#' default is FALSE
+#' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
+#'  or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default
 #' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
 #' @param methods (`list`) a named list, use a named list to control, for example:
@@ -37,7 +37,7 @@ rspt01_1_main <- function(adam_db,
                           arm_var = "ARM",
                           ref_group = NULL,
                           odds_ratio = TRUE,
-                          strat_analysis = FALSE,
+                          perform_analysis = c("unstrat"),
                           strata = NULL,
                           conf_level = 0.95,
                           methods = list(),
@@ -48,7 +48,7 @@ rspt01_1_main <- function(adam_db,
   assert_only_one_paramcd(anl$PARAMCD)
   checkmate::assert_string(ref_group, null.ok = TRUE)
   checkmate::assert_flag(odds_ratio)
-  checkmate::assert_flag(strat_analysis)
+  checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
 
   arm_level <- lvls(anl[[arm_var]])
   ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
@@ -57,7 +57,7 @@ rspt01_1_main <- function(adam_db,
     arm_var = arm_var,
     ref_group = ref_group,
     odds_ratio = odds_ratio,
-    strat_analysis = strat_analysis,
+    perform_analysis = perform_analysis,
     strata = strata,
     conf_level = conf_level,
     methods = methods,
@@ -79,7 +79,7 @@ rspt01_1_main <- function(adam_db,
 rspt01_1_lyt <- function(arm_var,
                          ref_group,
                          odds_ratio,
-                         strat_analysis,
+                         perform_analysis,
                          strata,
                          conf_level,
                          methods,
@@ -93,25 +93,25 @@ rspt01_1_lyt <- function(arm_var,
       table_names = "est_prop"
     )
 
-  if (strat_analysis) {
+  for (perform in perform_analysis) {
+    if (perform == "strat") {
+      checkmate::assert_true(!is.null(strata))
+      strata1 <- strata
+    } else {
+      strata1 <- NULL
+    }
+
     lyt01 <- lyt01 %>%
       proportion_lyt(
         arm_var = arm_var,
         odds_ratio = odds_ratio,
-        strata = strata,
+        strata = strata1,
         conf_level = conf_level,
         methods = methods
       )
   }
 
   lyt <- lyt01 %>%
-    proportion_lyt(
-      arm_var = arm_var,
-      odds_ratio = odds_ratio,
-      strata = NULL,
-      conf_level = conf_level,
-      methods = methods
-    ) %>%
     estimate_multinomial_response(
       var = "rsp_lab",
       conf_level = conf_level,
@@ -171,8 +171,8 @@ rspt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 #' run(rspt01_1, syn_data2)
 #' run(rspt01_1, syn_data2,
-#'   odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"),
-#'   methods = list(diff_pval_method = "fisher")
+#'   odds_ratio = FALSE, perform_analysis = c("unstrat", "strat"),
+#'   strata = c("STRATA1", "STRATA2"),  methods = list(diff_pval_method = "fisher")
 #' )
 rspt01_1 <- chevron_t(
   main = rspt01_1_main,

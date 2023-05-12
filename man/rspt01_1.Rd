@@ -19,7 +19,7 @@ rspt01_1_main(
   arm_var = "ARM",
   ref_group = NULL,
   odds_ratio = TRUE,
-  strat_analysis = FALSE,
+  perform_analysis = c("unstrat"),
   strata = NULL,
   conf_level = 0.95,
   methods = list(),
@@ -31,7 +31,7 @@ rspt01_1_lyt(
   arm_var,
   ref_group,
   odds_ratio,
-  strat_analysis,
+  perform_analysis,
   strata,
   conf_level,
   methods,
@@ -65,8 +65,8 @@ use the first level or value of \code{arm_var}.}
 
 \item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is TRUE}
 
-\item{strat_analysis}{(\code{flag}) should the stratified analysis be performed,
-default is FALSE}
+\item{perform_analysis}{(\code{string}) option to display statistical comparisons using stratified analyses,
+or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default}
 
 \item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
 
@@ -127,8 +127,8 @@ library(dunlin)
 syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 run(rspt01_1, syn_data2)
 run(rspt01_1, syn_data2,
-  odds_ratio = FALSE, strat_analysis = TRUE, strata = c("STRATA1", "STRATA2"),
-  methods = list(diff_pval_method = "fisher")
+  odds_ratio = FALSE, perform_analysis = c("unstrat", "strat"),
+  strata = c("STRATA1", "STRATA2"),  methods = list(diff_pval_method = "fisher")
 )
 }
 \keyword{datasets}
