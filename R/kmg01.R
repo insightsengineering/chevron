@@ -1,6 +1,6 @@
-# kmg01_1 ----
+# kmg01 ----
 
-#' @describeIn kmg01_1 Main TLG Function
+#' @describeIn kmg01 Main TLG Function
 #'
 #' @details
 #'  * No overall value.
@@ -11,9 +11,10 @@
 #' @param y_name (`string`) the name of the x-axis.
 #' @param show_statis (`flag`) should the summary statistic table be displayed.
 #' @param show_censor (`flag`) should the censor flag be displayed.
-#' @param pval_method (`string`) should the censor flag be displayed.
-#' @param ties (`string`) should the censor flag be displayed.
-#' @param conf_level (`numeric`) should the censor flag be displayed.
+#' @param pval_method (`string`) p-value method for testing hazard ratio = 1. One of `"log-rank"`, `"wald"` or
+#'   `"likelihood"`.
+#' @param ties (`string`) specifying the method for tie handling. One of `"efron"`, `"breslow"` or `"exact"`.
+#' @param conf_level (`numeric`) the confidence level.
 #' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
 #' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
 #'   median survival time per group.
@@ -25,7 +26,7 @@
 #'
 #' @return a list of `ggplot` objects.
 #' @export
-kmg01_1_main <- function(adam_db,
+kmg01_main <- function(adam_db,
                          dataset = "adtte",
                          arm_var = "ARM",
                          x_name = "Time (Days)",
@@ -39,20 +40,32 @@ kmg01_1_main <- function(adam_db,
                          position_surv_med = c(0.9, 0.9),
                          line_col = as.list(nestcolor::color_palette()),
                          ...) {
-  anl <- adam_db[[dataset]]
-  assert_colnames(anl, c("PARAMCD", "is_event", arm_var))
-  assert_only_one_paramcd(anl$PARAMCD)
+
+  assert_all_tablenames(adam_db, c("adsl", dataset))
+  assert_valid_var(adam_db[[dataset]], "CNSR", types = list("numeric"))
+  assert_valid_var(adam_db[[dataset]], "is_event", types = list("logical"))
+  assert_valid_var(adam_db[[dataset]], c("PARAMCD", arm_var), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_only_one_paramcd(adam_db[[dataset]]$PARAMCD)
   checkmate::assert_string(x_name)
   checkmate::assert_string(y_name)
   checkmate::assert_flag(show_statis)
   checkmate::assert_flag(show_censor)
+  checkmate::assert_choice(pval_method, c("log-rank", "wald", "likelihood"))
+  checkmate::assert_choice(ties, c("efron", "breslow", "exact"))
+  checkmate::assert_numeric(conf_level, lower = 0, upper = 1)
+  checkmate::assert_numeric(position_coxph, len = 2)
+  checkmate::assert_numeric(position_surv_med, len = 2)
+  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
+  assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+
+  anl <- adam_db[[dataset]]
 
   line_col <- unlist(line_col)
   checkmate::assert_character(line_col, null.ok = TRUE)
 
   assert_colnames(anl, "AVAL")
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
-
 
   if (!is.null(names(line_col))) {
     color_lvl <- sort(unique(anl[[arm_var]]))
@@ -82,14 +95,12 @@ kmg01_1_main <- function(adam_db,
   )
 }
 
-#' @describeIn kmg01_1 Preprocessing
+#' @describeIn kmg01 Preprocessing
 #'
-#' @inheritParams kmg01_1_main
+#' @inheritParams kmg01_main
 #'
 #' @export
-kmg01_1_pre <- function(adam_db, dataset = "adtte", ...) {
-  assert_all_tablenames(adam_db, c("adsl", dataset))
-  assert_colnames(adam_db[[dataset]], "CNSR")
+kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
 
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(is_event = .data$CNSR == 0)
@@ -97,16 +108,16 @@ kmg01_1_pre <- function(adam_db, dataset = "adtte", ...) {
   adam_db
 }
 
-#' @describeIn kmg01_1 Postprocessing
+#' @describeIn kmg01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
-kmg01_1_post <- function(tlg, ...) {
+kmg01_post <- function(tlg, ...) {
   tlg
 }
 
-# `kmg01_1` Pipeline ----
+# `kmg01` Pipeline ----
 
 #' `KMG01` Kaplan-Meier Plot 1.
 #'
@@ -125,13 +136,13 @@ kmg01_1_post <- function(tlg, ...) {
 #' )
 #'
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-#' run(kmg01_1, syn_data2, dataset = "adtte", line_col = col)
+#' run(kmg01, syn_data2, dataset = "adtte", line_col = col)
 #'
 #' syn_data3 <- log_filter(syn_data, PARAMCD == "AEREPTTE", "adaette")
-#' run(kmg01_1, syn_data3, dataset = "adaette")
-kmg01_1 <- chevron_g(
-  main = kmg01_1_main,
-  preproces = kmg01_1_pre,
-  postprocess = kmg01_1_post,
+#' run(kmg01, syn_data3, dataset = "adaette")
+kmg01 <- chevron_g(
+  main = kmg01_main,
+  preproces = kmg01_pre,
+  postprocess = kmg01_post,
   adam_datasets = c("adsl")
 )

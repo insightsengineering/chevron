@@ -7,7 +7,7 @@
 \alias{lbt01_pre}
 \alias{lbt01_post}
 \alias{lbt01}
-\title{\code{LBT01} Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.}
+\title{\code{LBT01} Laboratory Test Results and Change from Baseline by Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -15,7 +15,7 @@ An object of class \code{chevron_t} of length 1.
 lbt01_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c(`Value at Visit` = "AVAL", `Change from \\nBaseline` = "CHG"),
+  summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
   precision = list(),
   default_precision = 2,

@@ -17,7 +17,7 @@ lbt14_main(adam_db, arm_var = "ACTARM", gr_missing = "incl", ...)
 
 lbt14_lyt(arm_var, gr_missing)
 
-lbt14_pre(adam_db, gr_missing = "incl", direction = c("low", "high"), ...)
+lbt14_pre(adam_db, gr_missing = "incl", direction = "low", ...)
 
 lbt14_post(tlg, prune_0 = TRUE, gr_missing = "incl", direction = "low", ...)
 

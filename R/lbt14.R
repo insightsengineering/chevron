@@ -30,9 +30,10 @@ lbt14_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
-  assert_valid_var(adam_db$adlb, c("PARAM", "BTOXGR", "ATOXGR"))
-  assert_valid_var(adam_db$adlb, c("USUBJID"), empty_ok = TRUE)
-  assert_valid_var(adam_db$adsl, c("USUBJID"))
+  assert_valid_var(adam_db$adlb, c("BTOXGR_GRP", "BTOXGR_GRP"), types = list( "factor"), na_ok = FALSE)
+  assert_valid_var(adam_db$adlb, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_var(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")),  empty_ok = TRUE)
+  assert_valid_var(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
   lyt <- lbt14_lyt(
@@ -81,9 +82,9 @@ lbt14_lyt <- function(arm_var,
 #'
 lbt14_pre <- function(adam_db,
                       gr_missing = "incl",
-                      direction = c("low", "high"),
+                      direction = "low",
                       ...) {
-  direction <- match.arg(direction)
+
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
   checkmate::assert_choice(direction, c("low", "high"))
 

@@ -19,11 +19,12 @@
 lbt04_main <- function(adam_db,
                        arm_var = "ACTARM",
                        ...) {
+
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
-  assert_valid_var(adam_db$adlb, c("PARAM", "AVALCAT1", "ANRIND"))
-  assert_valid_var(adam_db$adlb, c("USUBJID"), empty_ok = TRUE)
-  assert_valid_var(adam_db$adsl, c("USUBJID"))
+  assert_valid_var(adam_db$adlb, c("PARAM", "AVALCAT1", "ANRIND"), types = list("characater", "factor"), na_ok = FALSE)
+  assert_valid_var(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_var(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")

@@ -29,7 +29,7 @@
 #'
 lbt01_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         summaryvars = c("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
+                         summaryvars = c("AVAL", "CHG"),
                          visitvar = "AVISIT",
                          precision = list(),
                          default_precision = 2,
@@ -37,9 +37,11 @@ lbt01_main <- function(adam_db,
 
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
-  assert_valid_var(adam_db$adlb, c("PARAM", "PARAMCD", summaryvars, visitvar))
-  assert_valid_var(adam_db$adlb, c("USUBJID"), empty_ok = TRUE)
-  assert_valid_var(adam_db$adsl, c("USUBJID"))
+  assert_valid_var(adam_db$adlb, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
+  assert_valid_var(adam_db$adlb, c(summaryvars), types = list("numeric"), na_ok = TRUE)
+  assert_valid_var(adam_db$adlb, c(visitvar), types = c("character", "factor"))
+  assert_valid_var(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_var(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_integerish, FUN.VALUE = numeric(1), lower = 0, len = 1)
