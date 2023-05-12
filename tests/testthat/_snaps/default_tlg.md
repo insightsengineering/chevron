@@ -576,41 +576,60 @@
           medname A_3/3                                        45 (33.6%)    54 (40.3%)      48 (36.4%)  
           medname B_3/4                                        47 (35.1%)    47 (35.1%)      52 (39.4%)  
 
+# coxt02_1 functions with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
+        —————————————————————————————————————————————————————————————————————————————————————————————
+        Treatment:                                                                                   
+          Description of Planned Arm (reference = A: Drug X)                                  <0.0001
+            B: Placebo                                              1.45       (1.07, 1.98)   0.0176 
+            C: Combination                                          2.49       (1.84, 3.37)   <0.0001
+        Covariate:                                                                                   
+          Sex (reference = F)                                                                        
+            M                                                       0.99       (0.78, 1.27)   0.9564 
+          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9134 
+            ASIAN                                                   0.85       (0.49, 1.46)   0.5568 
+            BLACK OR AFRICAN AMERICAN                               0.85       (0.48, 1.50)   0.5673 
+            WHITE                                                   0.91       (0.51, 1.63)   0.7579 
+          Age (yr)                                                                                   
+            All                                                     0.99       (0.97, 1.01)   0.2501 
+
 # dmt01_1 functions with default argument value return expected result with test data
 
     Code
       res
     Output
-                                                       A: Drug X    B: Placebo    C: Combination   All Patients
-                                                        (N=134)       (N=134)        (N=132)         (N=400)   
-        ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Age (yr)                                                                                               
-          n                                               134           134            132             400     
-          Mean (SD)                                   33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
-          Median                                         33.0          35.0            35.0            34.0    
-          Min - Max                                   21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
-        Age group (yr)                                                                                         
-          n                                               134           134            132             400     
-          <65                                         134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
-          >=65                                             0             0           1 (0.8%)        1 (0.2%)  
-        Sex                                                                                                    
-          n                                               134           134            132             400     
-          F                                           79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
-          M                                           55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
-        Ethnicity                                                                                              
-          n                                               134           134            132             400     
-          NOT REPORTED                                 6 (4.5%)      10 (7.5%)      11 (8.3%)       27 (6.8%)  
-          HISPANIC OR LATINO                          15 (11.2%)    18 (13.4%)      15 (11.4%)      48 (12.0%) 
-          NOT HISPANIC OR LATINO                      104 (77.6%)   103 (76.9%)    101 (76.5%)     308 (77.0%) 
-          UNKNOWN                                      9 (6.7%)      3 (2.2%)        5 (3.8%)       17 (4.2%)  
-        Race                                                                                                   
-          n                                               134           134            132             400     
-          ASIAN                                       68 (50.7%)    67 (50.0%)      73 (55.3%)     208 (52.0%) 
-          BLACK OR AFRICAN AMERICAN                   31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
-          WHITE                                       27 (20.1%)    26 (19.4%)      21 (15.9%)      74 (18.5%) 
-          AMERICAN INDIAN OR ALASKA NATIVE             8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  
-          MULTIPLE                                         0         1 (0.7%)           0            1 (0.2%)  
-          NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER        0         1 (0.7%)           0            1 (0.2%)  
+                                              A: Drug X    B: Placebo    C: Combination   All Patients
+                                               (N=134)       (N=134)        (N=132)         (N=400)   
+        ——————————————————————————————————————————————————————————————————————————————————————————————
+        Age (yr)                                                                                      
+          n                                      134           134            132             400     
+          Mean (SD)                          33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
+          Median                                33.0          35.0            35.0            34.0    
+          Min - Max                          21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
+        Age group (yr)                                                                                
+          n                                      134           134            132             400     
+          <65                                134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
+          >=65                                    0             0           1 (0.8%)        1 (0.2%)  
+        Sex                                                                                           
+          n                                      134           134            132             400     
+          F                                  79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
+          M                                  55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
+        Ethnicity                                                                                     
+          n                                      134           134            132             400     
+          NOT REPORTED                        6 (4.5%)      10 (7.5%)      11 (8.3%)       27 (6.8%)  
+          HISPANIC OR LATINO                 15 (11.2%)    18 (13.4%)      15 (11.4%)      48 (12.0%) 
+          NOT HISPANIC OR LATINO             104 (77.6%)   103 (76.9%)    101 (76.5%)     308 (77.0%) 
+          UNKNOWN                             9 (6.7%)      3 (2.2%)        5 (3.8%)       17 (4.2%)  
+        Race                                                                                          
+          n                                      134           134            132             400     
+          AMERICAN INDIAN OR ALASKA NATIVE    8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  
+          ASIAN                              68 (50.7%)    68 (50.7%)      73 (55.3%)     209 (52.2%) 
+          BLACK OR AFRICAN AMERICAN          31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
+          WHITE                              27 (20.1%)    27 (20.1%)      21 (15.9%)      75 (18.8%) 
 
 # dst01_1 functions with default argument value return expected result with test data
 

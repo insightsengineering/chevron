@@ -67,6 +67,7 @@ reference:
       - cmt01a_2
       - cmt01a_3
       - cmt02_pt_1
+      - coxt02_1
       - dmt01_1
       - dst01_1
       - dst01_2
@@ -113,6 +114,7 @@ reference:
       - grob_list
       - assert_only_one_paramcd
       - lvls
+      - assert_single_paramcd
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
