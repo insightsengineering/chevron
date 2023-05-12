@@ -46,6 +46,7 @@ coxt02_main <- function(adam_db,
   assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adtte, c(covariates, strata), empty_ok = TRUE, na_ok = TRUE)
   assert_valid_variable(adam_db$adtte, "PARAMCD", empty_ok = TRUE, na_ok = FALSE)
+  assert_valid_variable(adam_db$adtte, event_var, types = list("numeric"), integerish = TRUE, lower = 0L, upper = 1L)
   assert_valid_variable(adam_db$adtte, time_var)
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
   assert_single_value(adam_db$adtte$PARAMCD)

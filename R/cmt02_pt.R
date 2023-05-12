@@ -1,6 +1,6 @@
-# cmt02_pt_1 ----
+# cmt02_pt ----
 
-#' @describeIn cmt02_pt_1 Main TLG function
+#' @describeIn cmt02_pt Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -14,34 +14,43 @@
 #'
 #' @export
 #'
-cmt02_pt_1_main <- function(adam_db,
+cmt02_pt_main <- function(adam_db,
                             arm_var = "ARM",
                             lbl_overall = NULL,
-                            deco = std_deco("CMT02_PT"),
+                            medname_var = "CMDECOD",
                             ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adcm")
+  assert_all_tablenames(adam_db, "adsl", "adcm")
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(medname_var)
+  assert_valid_variable(adam_db$adcm, c(arm_var, medname_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adcm, arm_var)
+  medname_lbl <- var_labels_for(adam_db$adcm, medname_var)
 
-  lyt <- cmt02_pt_1_lyt(
+  lyt <- cmt02_pt_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    deco = deco
+    medname_var = medname_var,
+    medname_lbl = medname_lbl
   )
 
-  tbl <- build_table(lyt, dbsel$adcm, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$adcm, alt_counts_df = adam_db$adsl)
 
   tbl
 }
 
-#' @describeIn cmt02_pt_1 Layout
+#' cmt02_pt Layout
 #'
 #' @inheritParams gen_args
 #'
-#' @export
+#' @keywords internal
 #'
-cmt02_pt_1_lyt <- function(arm_var,
+cmt02_pt_lyt <- function(arm_var,
                            lbl_overall,
-                           deco) {
-  basic_table_deco(deco) %>%
+                           medname_var,
+                           medname_lbl) {
+  basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -54,58 +63,42 @@ cmt02_pt_1_lyt <- function(arm_var,
         nonunique = "Total number of treatments"
       )
     ) %>%
-    split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
-    count_occurrences(vars = "CMDECOD", .indent_mods = 0L) %>%
-    append_topleft("Other Treatment")
+    count_occurrences(vars = medname_var, .indent_mods = -1L, drop = FALSE) %>%
+    append_topleft(medname_lbl)
 }
 
-#' @describeIn cmt02_pt_1 Preprocessing
+#' @describeIn cmt02_pt Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-cmt02_pt_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adcm"))
-
+cmt02_pt_pre <- function(adam_db, ...) {
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      DOMAIN = "CM",
+      CMDECOD = reformat(.data$CMDECOD, nocoding),
       CMSEQ = as.character(.data$CMSEQ)
     )
-
-  fmt_ls <- list(
-    CMDECOD = rule(
-      "No Coding available" = c("", NA)
-    ),
-    CMSEQ = rule(
-      "<Missing>" = c("", NA)
-    )
-  )
-
-  new_format <- list(adcm = fmt_ls)
-
-  reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
-#' @describeIn cmt02_pt_1 Postprocessing
+#' @describeIn cmt02_pt Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-cmt02_pt_1_post <- function(tlg, prune_0 = TRUE, ...) {
+cmt02_pt_post <- function(tlg, medname_var = "CMDECOD", prune_0 = TRUE, ...) {
+  tlg <- tlg %>%
+    tlg_sort_by_var(
+      var = medname_var,
+      scorefun = score_occurrences
+    )
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-
-  tlg %>%
-    sort_at_path(
-      path = c("DOMAIN", "*", "CMDECOD"),
-      scorefun = score_occurrences
-    ) %>%
-    std_postprocess()
+  std_postprocess(tlg)
 }
 
 #' `CMT02_PT` Table 1 (Default) Concomitant Medications by Preferred Name.
@@ -117,11 +110,11 @@ cmt02_pt_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(cmt02_pt_1, syn_data)
-cmt02_pt_1 <- chevron_t(
-  main = cmt02_pt_1_main,
-  lyt = cmt02_pt_1_lyt,
-  preprocess = cmt02_pt_1_pre,
-  postprocess = cmt02_pt_1_post,
+#' run(cmt02_pt, syn_data)
+cmt02_pt <- chevron_t(
+  main = cmt02_pt_main,
+  lyt = cmt02_pt_lyt,
+  preprocess = cmt02_pt_pre,
+  postprocess = cmt02_pt_post,
   adam_datasets = c("adsl", "adcm")
 )

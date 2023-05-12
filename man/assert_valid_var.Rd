@@ -2,9 +2,19 @@
 % Please edit documentation in R/assertions.R
 \name{assert_valid_var}
 \alias{assert_valid_var}
+\alias{assert_valid_var.character}
 \title{Check whether var is valid}
 \usage{
 assert_valid_var(x, label, na_ok, empty_ok, ...)
+
+\method{assert_valid_var}{character}(
+  x,
+  label = deparse(substitute(x)),
+  na_ok = FALSE,
+  empty_ok = FALSE,
+  min_chars = 1L,
+  ...
+)
 }
 \arguments{
 \item{x}{value of col_split variable}
@@ -16,6 +26,8 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
 \item{empty_ok}{(\code{flag}) whether length 0 value is allowed.}
 
 \item{...}{Not used.}
+
+\item{min.chars}{(\code{integer}) the minimum length of the characters.}
 }
 \description{
 Check whether var is valid

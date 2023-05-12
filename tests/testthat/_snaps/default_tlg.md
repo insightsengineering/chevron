@@ -340,25 +340,25 @@
           Total number of treatments                                 69            73              80      
           medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
 
-# cmt02_pt_1 functions with default argument value return expected result with test data
+# cmt02_pt functions with default argument value return expected result with test data
 
     Code
       res
     Output
-        Other Treatment                                         A: Drug X    B: Placebo    C: Combination
+        Standardized Medication Name                            A: Drug X    B: Placebo    C: Combination
                                                                  (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                 609           622            703      
-          medname A_1/3                                        54 (40.3%)    49 (36.6%)      69 (52.3%)  
-          medname C_2/2                                        52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname B_1/4                                        52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                        52 (38.8%)    55 (41.0%)      56 (42.4%)  
-          medname A_2/3                                        53 (39.6%)    50 (37.3%)      56 (42.4%)  
-          medname C_1/2                                        51 (38.1%)    50 (37.3%)      56 (42.4%)  
-          medname B_4/4                                        50 (37.3%)    45 (33.6%)      55 (41.7%)  
-          medname A_3/3                                        45 (33.6%)    54 (40.3%)      48 (36.4%)  
-          medname B_3/4                                        47 (35.1%)    47 (35.1%)      52 (39.4%)  
+        medname A_1/3                                          54 (40.3%)    49 (36.6%)      69 (52.3%)  
+        medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
+        medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
+        medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
+        medname A_2/3                                          53 (39.6%)    50 (37.3%)      56 (42.4%)  
+        medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  
+        medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
+        medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
+        medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
 
 # coxt02 functions with default argument value return expected result with test data
 
@@ -415,7 +415,7 @@
           BLACK OR AFRICAN AMERICAN          31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
           WHITE                              27 (20.1%)    27 (20.1%)      21 (15.9%)      75 (18.8%) 
 
-# dst01_1 functions with default argument value return expected result with test data
+# dst01 functions with default argument value return expected result with test data
 
     Code
       res
@@ -423,9 +423,9 @@
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
         —————————————————————————————————————————————————————————————————————————————————————————
-        Completed Study                   68 (50.7%)   66 (49.3%)     73 (55.3%)     207 (51.7%) 
+        Completed                         68 (50.7%)   66 (49.3%)     73 (55.3%)     207 (51.7%) 
         Ongoing                           24 (17.9%)   28 (20.9%)     21 (15.9%)      73 (18.2%) 
-        Discontinued Study                42 (31.3%)   40 (29.9%)     38 (28.8%)     120 (30.0%) 
+        Discontinued                      42 (31.3%)   40 (29.9%)     38 (28.8%)     120 (30.0%) 
           ADVERSE EVENT                    3 (2.2%)     6 (4.5%)       5 (3.8%)       14 (3.5%)  
           DEATH                           25 (18.7%)   23 (17.2%)     22 (16.7%)      70 (17.5%) 
           LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
@@ -434,52 +434,7 @@
           WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
           WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
 
-# dst01_2 functions with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-                                            A: Drug X    B: Placebo   C: Combination   All Patients
-                                             (N=134)      (N=134)        (N=132)         (N=400)   
-        ———————————————————————————————————————————————————————————————————————————————————————————
-        Completed Study                     68 (50.7%)   66 (49.3%)     73 (55.3%)     207 (51.7%) 
-        Ongoing                             24 (17.9%)   28 (20.9%)     21 (15.9%)      73 (18.2%) 
-        Discontinued Study                  42 (31.3%)   40 (29.9%)     38 (28.8%)     120 (30.0%) 
-          Safety                            28 (20.9%)   29 (21.6%)     27 (20.5%)      84 (21.0%) 
-            ADVERSE EVENT                    3 (2.2%)     6 (4.5%)       5 (3.8%)       14 (3.5%)  
-            DEATH                           25 (18.7%)   23 (17.2%)     22 (16.7%)      70 (17.5%) 
-          Non-Safety                        14 (10.4%)   11 (8.2%)      11 (8.3%)       36 (9.0%)  
-            LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
-            PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-            PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
-            WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
-            WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
-
-# dst01_3 functions with default argument value return expected result with test data
-
-    Code
-      res
-    Output
-                                            A: Drug X    B: Placebo   C: Combination   All Patients
-                                             (N=134)      (N=134)        (N=132)         (N=400)   
-        ———————————————————————————————————————————————————————————————————————————————————————————
-        Completed Study                     68 (50.7%)   66 (49.3%)     73 (55.3%)     207 (51.7%) 
-        Ongoing                             24 (17.9%)   28 (20.9%)     21 (15.9%)      73 (18.2%) 
-        Discontinued Study                  42 (31.3%)   40 (29.9%)     38 (28.8%)     120 (30.0%) 
-          Safety                            28 (20.9%)   29 (21.6%)     27 (20.5%)      84 (21.0%) 
-            ADVERSE EVENT                    3 (2.2%)     6 (4.5%)       5 (3.8%)       14 (3.5%)  
-            DEATH                           25 (18.7%)   23 (17.2%)     22 (16.7%)      70 (17.5%) 
-          Non-Safety                        14 (10.4%)   11 (8.2%)      11 (8.3%)       36 (9.0%)  
-            LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
-            PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-            PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
-            WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
-            WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
-        Completed Treatment                 47 (35.1%)   35 (26.1%)     42 (31.8%)     124 (31.0%) 
-        Ongoing Treatment                   39 (29.1%)   46 (34.3%)     46 (34.8%)     131 (32.8%) 
-        Discontinued Treatment              48 (35.8%)   53 (39.6%)     44 (33.3%)     145 (36.2%) 
-
-# dtht01_1 functions with default argument value return expected result with test data
+# dtht01 functions with default argument value return expected result with test data
 
     Code
       res
@@ -488,11 +443,11 @@
                                   (N=134)      (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————
         Total number of deaths   25 (18.7%)   23 (17.2%)     22 (16.7%)  
-        Primary cause of death                                           
+        Primary Cause of Death                                           
           n                          25           23             22      
-          ADVERSE EVENT          9 (36.0%)    7 (30.4%)      10 (45.5%)  
-          PROGRESSIVE DISEASE    8 (32.0%)    6 (26.1%)      6 (27.3%)   
-          OTHER                  8 (32.0%)    10 (43.5%)     6 (27.3%)   
+          Adverse Event          9 (36.0%)    7 (30.4%)      10 (45.5%)  
+          Progressive Disease    8 (32.0%)    6 (26.1%)      6 (27.3%)   
+          Other                  8 (32.0%)    10 (43.5%)     6 (27.3%)   
 
 # egt01_1 functions with default argument value return expected result with test data
 

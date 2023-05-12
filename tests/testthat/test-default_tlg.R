@@ -54,10 +54,10 @@ test_that("cmt01a_1 functions with default argument value return expected result
   expect_snapshot(res)
 })
 
-test_that("cmt02_pt_1 functions with default argument value return expected result with test data", {
-  pre_data <- cmt02_pt_1_pre(syn_data)
-  raw_res <- cmt02_pt_1_main(pre_data)
-  res <- cmt02_pt_1_post(raw_res)
+test_that("cmt02_pt functions with default argument value return expected result with test data", {
+  pre_data <- cmt02_pt_pre(syn_data)
+  raw_res <- cmt02_pt_main(pre_data)
+  res <- cmt02_pt_post(raw_res)
   expect_snapshot(res)
 })
 
@@ -76,31 +76,17 @@ test_that("dmt01 functions with default argument value return expected result wi
   expect_snapshot(res)
 })
 
-test_that("dst01_1 functions with default argument value return expected result with test data", {
-  pre_data <- dst01_1_pre(syn_data)
-  raw_res <- dst01_1_main(pre_data)
-  res <- dst01_1_post(raw_res)
+test_that("dst01 functions with default argument value return expected result with test data", {
+  pre_data <- dst01_pre(syn_data)
+  raw_res <- dst01_main(pre_data)
+  res <- dst01_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("dst01_2 functions with default argument value return expected result with test data", {
-  pre_data <- dst01_2_pre(syn_data)
-  raw_res <- dst01_2_main(pre_data)
-  res <- dst01_2_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("dst01_3 functions with default argument value return expected result with test data", {
-  pre_data <- dst01_3_pre(syn_data)
-  raw_res <- dst01_3_main(pre_data)
-  res <- dst01_3_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("dtht01_1 functions with default argument value return expected result with test data", {
-  pre_data <- dtht01_1_pre(syn_data)
-  raw_res <- dtht01_1_main(pre_data)
-  res <- dtht01_1_post(raw_res)
+test_that("dtht01 functions with default argument value return expected result with test data", {
+  pre_data <- dtht01_pre(syn_data)
+  raw_res <- dtht01_main(pre_data)
+  res <- dtht01_post(raw_res)
   expect_snapshot(res)
 })
 

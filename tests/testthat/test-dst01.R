@@ -1,6 +1,6 @@
 # NA values ----
 
-test_that("dst01 can handle all NA values", {
+test_that("dst01 create empty table on all NA values", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
@@ -8,148 +8,50 @@ test_that("dst01 can handle all NA values", {
       DCSREAS = NA_character_
     )
 
-  res <- expect_silent(run(dst01_1, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(run(dst01, proc_data, detail_vars = list()))
 })
 
-test_that("dst01_1 can handle all NA values in disc_reason_var", {
+test_that("dst01 can handle all NA values in DCSREAS", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
-      DCSREAS = NA_character_
+      DCSREAS = factor(NA_character_)
     )
 
-  res <- expect_silent(run(dst01_1, proc_data))
+  res <- expect_silent(run(dst01, proc_data, detail_vars = list()))
   expect_snapshot(res)
 })
 
-test_that("dst01_1 can handle some NA values", {
+test_that("dst01 can handle some NA values", {
   proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      EOSSTT = c(NA_character_, "", as.character(.data$EOSSTT[-c(1, 2)])),
-      DCSREAS = c(NA_character_, "", as.character(.data$DCSREAS[-c(1, 2)]))
-    )
-
-  res <- expect_silent(run(dst01_1, proc_data))
+  proc_data$adsl[1:2, c("EOSSTT", "DCSREAS")] <- NA
+  res <- expect_silent(run(dst01, proc_data))
   expect_snapshot(res)
 })
 
-test_that("dst01_1 can handle missing levels in status_var", {
+test_that("dst01 can handle missing levels in status_var", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
-      EOSSTT = factor(.data$EOSSTT, levels = "ONGOING"),
+      EOSSTT = with_label(factor(.data$EOSSTT, levels = "ONGOING"), var_labels_for(syn_data$adsl, "EOSSTT")),
     )
-
-  res <- expect_silent(run(dst01_1, proc_data))
+  res <- expect_silent(run(dst01, proc_data, detail_vars = list()))
   expect_snapshot(res)
 })
 
-test_that("dst01_1 can handle missing levels in disc_reason_var", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      DCSREAS = factor(.data$DCSREAS, levels = "DEATH")
-    )
-
-  res <- expect_silent(run(dst01_1, proc_data))
+test_that("dst01 can create variants", {
+  res <- expect_silent(run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS", Discontinued = "DCSREAS")))
   expect_snapshot(res)
 })
 
-
-# dst01_2 ----
-
-test_that("dst01_2 can handle all NA values", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      EOSSTT = NA_character_,
-      DCSREAS = NA_character_
-    )
-
-  res <- expect_silent(run(dst01_2, proc_data))
+test_that("dst01 can create variants", {
+  res <- expect_silent(run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS"))))
   expect_snapshot(res)
 })
 
-test_that("dst01_2 can handle all NA values in disc_reason_var", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      DCSREAS = NA_character_
-    )
-
-  res <- expect_silent(run(dst01_2, proc_data))
-  expect_snapshot(res)
-})
-
-test_that("dst01_2 can handle some NA values", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      EOSSTT = c(NA_character_, "", as.character(.data$EOSSTT[-c(1, 2)])),
-      DCSREAS = c(NA_character_, "", as.character(.data$DCSREAS[-c(1, 2)]))
-    )
-
-  res <- expect_silent(run(dst01_2, proc_data))
-  expect_snapshot(res)
-})
-
-test_that("dst01_2 can handle missing levels in disc_reason_var", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      DCSREAS = factor(.data$DCSREAS, levels = "DEATH")
-    )
-
-  res <- expect_silent(run(dst01_2, proc_data))
-  expect_snapshot(res)
-})
-
-# dst01_3 ----
-
-test_that("dst01_3 can handle all NA values", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      EOSSTT = NA_character_,
-      DCSREAS = NA_character_,
-      EOTSTT = NA_character_,
-    )
-
-  res <- expect_silent(run(dst01_3, proc_data))
-  expect_snapshot(res)
-})
-
-test_that("dst01_3 can handle all NA values in status_treatment_var", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      EOTSTT = NA_character_
-    )
-
-  res <- expect_silent(run(dst01_3, proc_data))
-  expect_snapshot(res)
-})
-
-test_that("dst01_3 can handle some NA values in status_treatment_var", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      EOTSTT = c(NA_character_, "", as.character(.data$EOTSTT[-c(1, 2)]))
-    )
-
-  res <- expect_silent(run(dst01_3, proc_data))
-  expect_snapshot(res)
-})
-
-test_that("dst01_3 can handle missing levels in status_treatment_var", {
-  proc_data <- syn_data
-  proc_data$adsl <- proc_data$adsl %>%
-    mutate(
-      EOTSTT = factor(.data$EOTSTT, levels = "ONGOING")
-    )
-
-  res <- expect_silent(run(dst01_3, proc_data))
+test_that("dst01 can create variants", {
+  res <- expect_silent(
+    run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")), trt_status_var = "EOTSTT")
+  )
   expect_snapshot(res)
 })
