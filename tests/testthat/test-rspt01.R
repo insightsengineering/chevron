@@ -46,19 +46,19 @@ test_that("rspt01_1 works as expected for unstratified analysis only", {
 test_that("rspt01_1 works as expected for stratified analysis only", {
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01_1, filter_data,
-                           dataset = "adrs",
-                           odds_ratio = FALSE,
-                           perform_analysis = c("strat"),
-                           strata = c("STRATA1", "STRATA2"),
-                           methods = list(diff_pval_method = "fisher")
+    dataset = "adrs",
+    odds_ratio = FALSE,
+    perform_analysis = c("strat"),
+    strata = c("STRATA1", "STRATA2"),
+    methods = list(diff_pval_method = "fisher")
   ))
   expect_snapshot(res)
   res <- expect_silent(run(rspt01_1, filter_data,
-                           dataset = "adrs",
-                           odds_ratio = TRUE,
-                           perform_analysis = c("strat"),
-                           strata = c("STRATA1", "STRATA2"),
-                           methods = list(diff_pval_method = "fisher")
+    dataset = "adrs",
+    odds_ratio = TRUE,
+    perform_analysis = c("strat"),
+    strata = c("STRATA1", "STRATA2"),
+    methods = list(diff_pval_method = "fisher")
   ))
   expect_snapshot(res)
 })

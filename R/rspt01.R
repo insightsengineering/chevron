@@ -172,7 +172,7 @@ rspt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' run(rspt01_1, syn_data2)
 #' run(rspt01_1, syn_data2,
 #'   odds_ratio = FALSE, perform_analysis = c("unstrat", "strat"),
-#'   strata = c("STRATA1", "STRATA2"),  methods = list(diff_pval_method = "fisher")
+#'   strata = c("STRATA1", "STRATA2"), methods = list(diff_pval_method = "fisher")
 #' )
 rspt01_1 <- chevron_t(
   main = rspt01_1_main,
