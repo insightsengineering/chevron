@@ -45,7 +45,7 @@ rspt01_1_main <- function(adam_db,
                           ...) {
   anl <- adam_db[[dataset]]
   assert_colnames(anl, c(arm_var, strata, "PARAMCD", "is_rsp", "rsp_lab"))
-  assert_only_one_paramcd(anl$PARAMCD)
+  assert_single_paramcd(anl$PARAMCD)
   checkmate::assert_string(ref_group, null.ok = TRUE)
   checkmate::assert_flag(odds_ratio)
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
