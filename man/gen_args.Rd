@@ -24,6 +24,7 @@ gen_args(
   paramcd_value,
   key_cols,
   disp_cols,
+  split_var,
   ...
 )
 }
@@ -70,9 +71,9 @@ Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
-\item{...}{not used.}
-
 \item{split_var}{(\code{character}) recursive split row variable.}
+
+\item{...}{not used.}
 }
 \description{
 General Argument Name Convention

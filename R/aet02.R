@@ -75,7 +75,10 @@ aet02_lyt <- function(arm_var,
       )
     )
   for (k in seq_len(length(row_split_var))) {
-    lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k])
+    lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k],
+      stats = c("unique", "nonunique"),
+      summarize_labels = c("Total number of patients with at least one adverse event", "Total number of events")
+    )
   }
   lyt %>%
     count_occurrences(
@@ -138,7 +141,8 @@ aet02 <- chevron_t(
 )
 
 
-split_and_summ_num_patients <- function(lyt, var, label, stats = c("unique", "nonunique"), summarize_labels = c("Total number of patients with at least one adverse event", "Total number of events"), ...) {
+#' @keywords internal
+split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_vars, ...) {
   checkmate::assert_string(var)
   checkmate::assert_string(label)
   lyt %>%

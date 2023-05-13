@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param incl_n_treatment (`flag`) include total number of treatments per medication.
 #' @param row_split_var (`character`) the variable defining the medication category. By default `ATC2`.
+#' @param medname_var (`string`) variable name of medical treatment name.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
@@ -16,8 +17,8 @@
 #'  the specific medication.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adcm` table with the columns specified in `row_split_var` and `medname_var` as well
-#'  as `"CMSEQ"`.
+#'  * `adam_db` object must contain an `adcm` table with the columns specified in `row_split_var` and `medname_var`
+#' as well as `"CMSEQ"`.
 #'
 #' @export
 #'
@@ -25,13 +26,13 @@ cmt01a_main <- function(adam_db,
                         arm_var = "ARM",
                         incl_n_treatment = TRUE,
                         row_split_var = "ATC2",
+                        medname_var = "CMDECOD",
                         lbl_overall = NULL,
                         ...) {
   assert_all_tablenames(adam_db, "adsl", "adcm")
   checkmate::assert_string(arm_var)
   checkmate::assert_flag(incl_n_treatment)
   checkmate::assert_character(row_split_var, null.ok = TRUE)
-  medname_var <- "CMDECOD"
   assert_valid_variable(adam_db$adcm, c(arm_var, row_split_var, medname_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
@@ -60,7 +61,6 @@ cmt01a_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @inheritParams cmt01a_main
 #' @param lbl_medname_var (`string`) label for the variable defining the medication name.
-#' @param medname_var (`string`) variable name of medical treatment name.
 #' @keywords internal
 #'
 cmt01a_lyt <- function(arm_var,
@@ -96,9 +96,9 @@ cmt01a_lyt <- function(arm_var,
         nonunique = "Total number of treatments"
       )
     )
-    for (k in seq_len(length(row_split_var))) {
-      lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k], stats, labels, count_by = "CMSEQ")
-    }
+  for (k in seq_len(length(row_split_var))) {
+    lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k], stats, labels, count_by = "CMSEQ")
+  }
   lyt %>%
     count_occurrences(
       vars = medname_var,
@@ -133,7 +133,10 @@ cmt01a_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-cmt01a_post <- function(tlg, prune_0 = TRUE, sort_by_freq = FALSE, row_split_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_post <- function(
+    tlg, prune_0 = TRUE,
+    sort_by_freq = FALSE, row_split_var = "ATC2",
+    medname_var = "CMDECOD", ...) {
   if (sort_by_freq) {
     tlg <- tlg %>%
       tlg_sort_by_var(

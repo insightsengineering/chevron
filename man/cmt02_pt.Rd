@@ -16,6 +16,7 @@ cmt02_pt_main(
   arm_var = "ARM",
   incl_n_treatment = TRUE,
   row_split_var = NULL,
+  medname_var = "CMDECOD",
   lbl_overall = NULL,
   ...
 )
@@ -41,6 +42,8 @@ cmt02_pt
 \item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
 
 \item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
+
+\item{medname_var}{(\code{string}) variable name of medical treatment name.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -78,8 +81,8 @@ the specific medication.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{row_split_var} and \code{medname_var} as well
-as \code{"CMSEQ"}.
+\item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{row_split_var} and \code{medname_var}
+as well as \code{"CMSEQ"}.
 }
 }
 \examples{
