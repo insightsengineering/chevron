@@ -142,7 +142,7 @@ aet02 <- chevron_t(
 
 
 #' @keywords internal
-split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_vars, ...) {
+split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, ...) {
   checkmate::assert_string(var)
   checkmate::assert_string(label)
   lyt %>%
