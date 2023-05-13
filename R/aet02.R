@@ -138,7 +138,7 @@ aet02 <- chevron_t(
 )
 
 
-split_and_summ_num_patients <- function(lyt, var, label) {
+split_and_summ_num_patients <- function(lyt, var, label, stats = c("unique", "nonunique"), summarize_labels = c("Total number of patients with at least one adverse event", "Total number of events"), ...) {
   checkmate::assert_string(var)
   checkmate::assert_string(label)
   lyt %>%
@@ -152,11 +152,9 @@ split_and_summ_num_patients <- function(lyt, var, label) {
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = "Total number of patients with at least one adverse event",
-        nonunique = "Total number of events"
-      )
+      .stats = stats,
+      .labels = setNames(summarize_labels, stats),
+      ...
     )
 }
 

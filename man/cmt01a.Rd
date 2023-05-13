@@ -15,8 +15,7 @@ cmt01a_main(
   adam_db,
   arm_var = "ARM",
   incl_n_treatment = TRUE,
-  medcat_var = "ATC2",
-  medname_var = "CMDECOD",
+  row_split_var = "ATC2",
   lbl_overall = NULL,
   ...
 )
@@ -27,7 +26,7 @@ cmt01a_post(
   tlg,
   prune_0 = TRUE,
   sort_by_freq = FALSE,
-  medcat_var = "ATC2",
+  row_split_var = "ATC2",
   medname_var = "CMDECOD",
   ...
 )
@@ -41,9 +40,7 @@ cmt01a
 
 \item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
 
-\item{medcat_var}{(\code{string}) the variable defining the medication category. By default \code{ATC2}.}
-
-\item{medname_var}{(\code{string}) the variable defining the medication name. By default \code{CMDECOD}.}
+\item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -81,7 +78,7 @@ the specific medication.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{medcat_var} and \code{medname_var} as well
+\item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{row_split_var} and \code{medname_var} as well
 as \code{"CMSEQ"}.
 }
 }

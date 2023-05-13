@@ -319,3 +319,10 @@ quote_str <- function(x) {
   checkmate::assert_string(x)
   paste0("`", x, "`")
 }
+
+#' @keywords internal
+modify_default_args <- function(fun, ...) {
+  ret <- fun
+  formals(ret) <- utils::modifyList(formals(fun), list(...), keep.null = TRUE)
+  return(ret)
+}

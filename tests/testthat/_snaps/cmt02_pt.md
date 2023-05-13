@@ -3,7 +3,7 @@
     Code
       res
     Output
-        CMDECOD                                                 A: Drug X    B: Placebo    C: Combination
+        Other Treatment                                         A: Drug X    B: Placebo    C: Combination
                                                                  (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
@@ -15,7 +15,7 @@
     Code
       res
     Output
-        Standardized Medication Name                            A: Drug X    B: Placebo    C: Combination
+        Other Treatment                                         A: Drug X    B: Placebo    C: Combination
                                                                  (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  

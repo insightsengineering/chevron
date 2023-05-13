@@ -14,14 +14,22 @@ An object of class \code{chevron_t} of length 1.
 cmt02_pt_main(
   adam_db,
   arm_var = "ARM",
+  incl_n_treatment = TRUE,
+  row_split_var = NULL,
   lbl_overall = NULL,
-  medname_var = "CMDECOD",
   ...
 )
 
 cmt02_pt_pre(adam_db, ...)
 
-cmt02_pt_post(tlg, medname_var = "CMDECOD", prune_0 = TRUE, ...)
+cmt02_pt_post(
+  tlg,
+  prune_0 = TRUE,
+  sort_by_freq = FALSE,
+  row_split_var = NULL,
+  medname_var = "CMDECOD",
+  ...
+)
 
 cmt02_pt
 }
@@ -30,15 +38,19 @@ cmt02_pt
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
 
-\item{medname_var}{(\code{string}) variable name medication term.}
+\item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{sort_by_freq}{(\code{flag}) whether to sort medication class by frequency.}
 }
 \description{
 A concomitant medication table with the
@@ -47,8 +59,12 @@ number of subjects and the total number of treatments by medication name sorted 
 \details{
 \itemize{
 \item Data should be filtered for concomitant medication. \code{(ATIREL == "CONCOMITANT")}.
-\item Order by decreasing total number of patients with the specific medication.
+\item Numbers represent absolute numbers of subjects and fraction of \code{N}, or absolute numbers when specified.
+\item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
+\item Split columns by arm.
 \item Does not include a total column by default.
+\item Sort by medication class alphabetically and within medication class by decreasing total number of patients with
+the specific medication.
 }
 }
 \section{Functions}{
@@ -62,7 +78,8 @@ number of subjects and the total number of treatments by medication name sorted 
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adcm} table with the columns \code{"CMDECOD"} and \code{"CMSEQ"}.
+\item \code{adam_db} object must contain an \code{adcm} table with the columns specified in \code{row_split_var} and \code{medname_var} as well
+as \code{"CMSEQ"}.
 }
 }
 \examples{

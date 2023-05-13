@@ -36,7 +36,8 @@ Imports:
     rlistings (>= 0.2.1),
     rtables (>= 0.6.0),
     tern (>= 0.8.1),
-    tibble
+    tibble,
+    utils
 Suggests:
     knitr,
     rmarkdown,
