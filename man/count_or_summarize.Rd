@@ -4,7 +4,7 @@
 \alias{count_or_summarize}
 \title{Count or summarize by groups}
 \usage{
-count_or_summarize(lyt, var, level, detail_vars, ...)
+count_or_summarize(lyt, var, level, detail_vars, indent_mod = 0L, ...)
 }
 \arguments{
 \item{lyt}{(\code{PreDataTableLayouts}) rtable layout.}

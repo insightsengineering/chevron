@@ -7,7 +7,7 @@
 dst01_lyt(arm_var, study_status_var, detail_vars, trt_status_var, lbl_overall)
 }
 \arguments{
-\item{arm_var}{(\code{string}) variable used for column splitting}
+\item{arm_var}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
 \item{study_status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis

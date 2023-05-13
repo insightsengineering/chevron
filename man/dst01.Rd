@@ -39,6 +39,8 @@ period.}
 \item{detail_vars}{Named (\code{list}) of grouped display of \code{study_status_var}. The names must be subset of unique levels
 of \code{study_status_var}.}
 
+\item{trt_status_var}{(\code{string}) variable of treatment status.}
+
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
@@ -81,6 +83,12 @@ run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")
 dst01_pre(syn_data)
 run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS"))
 run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STDONS"))
-run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS"), Ongoing = "STDONS"))
+run(
+  dst01, syn_data,
+  detail_vars = list(
+    Discontinued = c("DCSREASGP", "DCSREAS"),
+    Ongoing = "STDONS"
+  )
+)
 }
 \keyword{datasets}

@@ -3,7 +3,6 @@
 \docType{data}
 \name{dtht01_main}
 \alias{dtht01_main}
-\alias{dtht01_lyt}
 \alias{dtht01_pre}
 \alias{dtht01_post}
 \alias{dtht01}
@@ -15,21 +14,10 @@ An object of class \code{chevron_t} of length 1.
 dtht01_main(
   adam_db,
   arm_var = "ACTARM",
-  death_flag = "DTHFL",
-  death_var = "DTHCAT",
-  detail_vars = list(Other = "DTHCAUS"),
-  dose_death_var = NULL,
+  other_category = FALSE,
+  time_since_last_dose = FALSE,
   lbl_overall = NULL,
   ...
-)
-
-dtht01_lyt(
-  arm_var,
-  lbl_overall,
-  death_flag,
-  death_var,
-  detail_vars,
-  dose_death_var
 )
 
 dtht01_pre(adam_db, ...)
@@ -43,6 +31,10 @@ dtht01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{other_category}{(\code{flag}) should the breakdown of the \code{OTHER} category be displayed.}
+
+\item{time_since_last_dose}{(\code{flag}) should the time to event information be displayed.}
+
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
@@ -50,12 +42,6 @@ dtht01
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{time_since_last_dose}{(\code{flag}) should the time to event information be displayed.}
-
-\item{other_category}{(\code{flag}) should the breakdown of the \code{OTHER} category be displayed.}
-
-\item{breakdown}{(\code{character}) the levels of \code{DTHCAT} to be split. If \code{NULL}, this section is omitted.}
 }
 \description{
 A description of the causes of death optionally with the breakdown of the
@@ -71,8 +57,6 @@ A description of the causes of death optionally with the breakdown of the
 \section{Functions}{
 \itemize{
 \item \code{dtht01_main()}: Main TLG function
-
-\item \code{dtht01_lyt()}: Layout
 
 \item \code{dtht01_pre()}: Preprocessing
 

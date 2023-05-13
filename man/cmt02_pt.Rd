@@ -32,6 +32,8 @@ cmt02_pt
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{medname_var}{(\code{string}) variable name medication term.}
+
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}

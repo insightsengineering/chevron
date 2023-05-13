@@ -3,7 +3,7 @@
 #' @describeIn cmt02_pt Main TLG function
 #'
 #' @inheritParams gen_args
-#'
+#' @param medname_var (`string`) variable name medication term.
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
 #'  * Order by decreasing total number of patients with the specific medication.

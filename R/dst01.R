@@ -9,6 +9,7 @@
 #'   period.
 #' @param detail_vars Named (`list`) of grouped display of `study_status_var`. The names must be subset of unique levels
 #' of `study_status_var`.
+#' @param trt_status_var (`string`) variable of treatment status.
 #' @details
 #'  * Default patient disposition table summarizing the reasons for patients withdrawal.
 #'  * Numbers represent absolute numbers of patients and fraction of `N`.
@@ -67,12 +68,12 @@ dst01_main <- function(adam_db,
 
 #' dst01 Layout
 #'
-#' @inheritParams gen_args
+#' @inheritParams dst01_main
 #' @param study_status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #' @param detail_vars Named (`list`) of grouped display of `study_status_var`.
-#' @param trt_status_var (`string`) variable of treatment status.
+
 #'
 #' @keywords internal
 #'
@@ -109,7 +110,7 @@ dst01_lyt <- function(arm_var,
 #' @param level (`string`) level to be displayed.
 #' @param detail_vars (`character`) of variables for detail information.
 #' @keywords internal
-count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L,  ...) {
+count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ...) {
   checkmate::assert_string(level)
   if (is.null(detail_vars)) {
     lyt <- lyt %>%
@@ -217,7 +218,13 @@ dst01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @examples
 #' run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS"))
 #' run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STDONS"))
-#' run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS"), Ongoing = "STDONS"))
+#' run(
+#'   dst01, syn_data,
+#'   detail_vars = list(
+#'     Discontinued = c("DCSREASGP", "DCSREAS"),
+#'     Ongoing = "STDONS"
+#'   )
+#' )
 dst01 <- chevron_t(
   main = dst01_main,
   preprocess = dst01_pre,

@@ -69,7 +69,11 @@ dtht01_main <- function(adam_db,
 #' dtht01 Layout
 #'
 #' @inheritParams dtht01_main
-#' @param detail_vars Named (`list`) of variables containing detail information.
+#' @param death_falg (`string`) variable name of death flag.
+#' @param detah_var (`string`) variable name of death catagory.
+#' @param other_level (`string`) "Other" level in death catagory.
+#' @param other_var (`string`) variable name of death cause under "Other".
+#' @param dose_death_var (`string`) variable name of the days from last dose.
 #'
 #' @keywords internal
 #'
@@ -189,7 +193,7 @@ dtht01 <- chevron_t(
 #' @param .N_col (`integer`) number of rows in column-splitted dataset.
 #' @param ... Not used
 #' @keywords internal
-s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) {
+s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { #nolint
   denom <- match.arg(denom)
   y <- list()
   y$n <- length(x)
@@ -211,7 +215,7 @@ summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
     nested = TRUE, ..., show_labels = "default", table_names = vars,
     section_div = NA_character_, .stats = c("n", "count_fraction"),
-    .formats = NULL, .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) {
+    .formats = NULL, .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { #nolint
   afun <- make_afun(s_summary_na, .stats, .formats, .labels, .indent_mods, .ungroup_stats = c("count_fraction"))
   analyze(
     lyt = lyt, vars = vars, var_labels = var_labels,

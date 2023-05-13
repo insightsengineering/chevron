@@ -194,14 +194,14 @@ assert_single_value <- function(x, label = deparse(substitute(x))) {
 #' @param label (`string`) hints.
 #' @param na_ok (`flag`) whether NA value is allowed
 #' @param empty_ok (`flag`) whether length 0 value is allowed.
-#' @param ... Not used.
+#' @param ... Further arguments to methods.
 #' @export
 assert_valid_var <- function(x, label, na_ok, empty_ok, ...) {
   UseMethod("assert_valid_var")
 }
 #' @rdname assert_valid_var
 #' @export
-#' @param min.chars (`integer`) the minimum length of the characters.
+#' @param min_chars (`integer`) the minimum length of the characters.
 assert_valid_var.character <- function(
     x, label = deparse(substitute(x)),
     na_ok = FALSE, empty_ok = FALSE,
@@ -244,8 +244,12 @@ assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = 
     ...
   )
 }
+#' @rdname assert_valid_var
 #' @export
-assert_valid_var.numeric <- function(x, label = deparse(substitute(x)), na_ok = TRUE, empty_ok = FALSE, integerish = FALSE, ...) {
+#' @param integerish (`flag`) whether the number should be treated as integerish.
+assert_valid_var.numeric <- function(
+    x, label = deparse(substitute(x)),
+    na_ok = TRUE, empty_ok = FALSE, integerish = FALSE, ...) {
   check_fun <- if (integerish) checkmate::assert_integerish else checkmate::assert_numeric
   check_fun(
     x,
