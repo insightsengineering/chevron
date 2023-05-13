@@ -97,7 +97,8 @@ dtht01_lyt <- function(arm_var,
     summarize_row_groups(
       death_var,
       cfun = make_afun(
-        s_summary_na, .stats = c("n", "count_fraction"), .ungroup_stats = "count_fraction",
+        s_summary_na,
+        .stats = c("n", "count_fraction"), .ungroup_stats = "count_fraction",
         .formats = list(n = "xx", count_fraction = format_count_fraction_fixed_dp)
       ),
       indent_mod = 0L
@@ -147,7 +148,7 @@ dtht01_pre <- function(adam_db, ...) {
   adam_db$adsl <- adam_db$adsl %>%
     mutate(
       DTHCAT = reformat(.data$DTHCAT, death_format)
-  )
+    )
   adam_db
 }
 
@@ -193,7 +194,7 @@ dtht01 <- chevron_t(
 #' @param .N_col (`integer`) number of rows in column-splitted dataset.
 #' @param ... Not used
 #' @keywords internal
-s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { #nolint
+s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { # nolint
   denom <- match.arg(denom)
   y <- list()
   y$n <- length(x)
@@ -215,7 +216,7 @@ summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
     nested = TRUE, ..., show_labels = "default", table_names = vars,
     section_div = NA_character_, .stats = c("n", "count_fraction"),
-    .formats = NULL, .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { #nolint
+    .formats = NULL, .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { # nolint
   afun <- make_afun(s_summary_na, .stats, .formats, .labels, .indent_mods, .ungroup_stats = c("count_fraction"))
   analyze(
     lyt = lyt, vars = vars, var_labels = var_labels,

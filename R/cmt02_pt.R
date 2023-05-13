@@ -15,10 +15,10 @@
 #' @export
 #'
 cmt02_pt_main <- function(adam_db,
-                            arm_var = "ARM",
-                            lbl_overall = NULL,
-                            medname_var = "CMDECOD",
-                            ...) {
+                          arm_var = "ARM",
+                          lbl_overall = NULL,
+                          medname_var = "CMDECOD",
+                          ...) {
   assert_all_tablenames(adam_db, "adsl", "adcm")
   checkmate::assert_string(arm_var)
   checkmate::assert_string(medname_var)
@@ -47,9 +47,9 @@ cmt02_pt_main <- function(adam_db,
 #' @keywords internal
 #'
 cmt02_pt_lyt <- function(arm_var,
-                           lbl_overall,
-                           medname_var,
-                           medname_lbl) {
+                         lbl_overall,
+                         medname_var,
+                         medname_lbl) {
   basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
