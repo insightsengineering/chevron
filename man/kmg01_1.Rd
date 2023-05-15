@@ -53,7 +53,7 @@ kmg01_1
 
 \item{ties}{(\code{string}) should the censor flag be displayed.}
 
-\item{conf_level}{(\code{numeric}) should the censor flag be displayed.}
+\item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
 
 \item{position_coxph}{(\code{numeric}) x and y positions for plotting survival::coxph() model.}
 

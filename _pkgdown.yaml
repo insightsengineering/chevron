@@ -82,6 +82,7 @@ reference:
       - ext01_1
       - ext01_2
       - kmg01_1
+      - rspt01_1
       - lbt01_1
       - lbt04_1
       - lbt05_1
@@ -111,6 +112,7 @@ reference:
       - h_format_dec
       - gg_list
       - grob_list
+      - lvls
       - assert_single_paramcd
 
   - title: Non-exported Documented Functions for Packagage Developers

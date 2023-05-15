@@ -292,3 +292,18 @@ gg_list <- function(...) {
 droplevels.character <- function(x, ...) {
   x
 }
+
+#' `lvls` objective to get unique level of variables
+#' @param x (`character`) or (`factor`) variable to get level.
+#' @export
+lvls <- function(x) {
+  UseMethod("lvls")
+}
+#' @export
+lvls.character <- function(x) {
+  sort(unique(x))
+}
+#' @export
+lvls.factor <- function(x) {
+  levels(x)
+}
