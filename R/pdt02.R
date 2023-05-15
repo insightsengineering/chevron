@@ -17,8 +17,7 @@
 #'  the specific deviation term.
 #'
 #' @note
-#'  * `adam_db` object must contain an `addv` table with the columns specified in `dvreas_var` and `dvterm_var` as well
-#'  as `"DVSEQ"`.
+#'  * `adam_db` object must contain an `addv` table with the columns specified in `dvreas_var` and `dvterm_var`.
 #'
 #' @export
 #'
@@ -34,7 +33,6 @@ pdt02_main <- function(adam_db,
   checkmate::assert_string(dvterm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$addv, c(dvreas_var, dvterm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$addv, c("DVSEQ"), types = list(c("numeric", "factor")))
   assert_valid_variable(adam_db$addv, c("AEPRELFL"), types = list("factor"))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
@@ -115,7 +113,6 @@ pdt02_pre <- function(adam_db,
     mutate(across(all_of(c("DVCAT", "AEPRELFL")), ~ reformat(.x, missing_rule, na_last = TRUE))) %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
     mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
-    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
     mutate(
       DVREAS = with_label(.data$DVREAS, "Primary Reason"),
       DVTERM = with_label(.data$DVTERM, "Description")

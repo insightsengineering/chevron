@@ -77,7 +77,7 @@
     Output
                                                                                                 
         ————————————————————————————————————————————————————————————————————————————————————————
-        Null Report: No observations met the reporting criteria for inclusion in this output.   
+           Null Report: No observations met the reporting criteria for inclusion in this output.
 
 # egt03 can handle some NA values
 

@@ -93,8 +93,7 @@ the specific deviation term.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{addv} table with the columns specified in \code{dvreas_var} and \code{dvterm_var} as well
-as \code{"DVSEQ"}.
+\item \code{adam_db} object must contain an \code{addv} table with the columns specified in \code{dvreas_var} and \code{dvterm_var}.
 }
 }
 \examples{

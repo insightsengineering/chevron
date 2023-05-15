@@ -5,7 +5,7 @@
     Output
                                                                                                 
         ————————————————————————————————————————————————————————————————————————————————————————
-        Null Report: No observations met the reporting criteria for inclusion in this output.   
+           Null Report: No observations met the reporting criteria for inclusion in this output.
 
 # dst01 can handle all NA values in DCSREAS
 

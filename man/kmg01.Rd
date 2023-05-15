@@ -54,11 +54,7 @@ kmg01
 
 \item{ties}{(\code{string}) specifying the method for tie handling. One of \code{"efron"}, \code{"breslow"} or \code{"exact"}.}
 
-<<<<<<< HEAD:man/kmg01.Rd
 \item{conf_level}{(\code{numeric}) the confidence level.}
-=======
-\item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
->>>>>>> 476_harmonize_templates@main:man/kmg01_1.Rd
 
 \item{position_coxph}{(\code{numeric}) x and y positions for plotting survival::coxph() model.}
 

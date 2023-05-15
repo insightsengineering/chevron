@@ -63,12 +63,11 @@ reference:
       - cmt02_pt
       - coxt02
       - dmt01
-      - dst01_1
-      - dst01_2
-      - dst01_3
-      - dtht01_1
+      - dst01
+      - dtht01
       - egt01
-      - egt02
+      - egt02_1
+      - egt02_2
       - egt03
       - egt05_qtcat
       - ext01

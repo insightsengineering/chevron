@@ -1,4 +1,4 @@
-# egt02 functions with default argument value return expected result with test data
+# egt02_1 functions with default argument value return expected result with test data
 
     Code
       res
@@ -16,7 +16,7 @@
           Low          56/134 (41.8%)   41/134 (30.6%)   50/132 (37.9%)
           High         39/134 (29.1%)   62/134 (46.3%)   41/132 (31.1%)
 
-# egt02 functions with `exclude_base_abn = TRUE` value return expected result with test data
+# egt02_2 functions with default value return expected result with test data
 
     Code
       res

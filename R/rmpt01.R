@@ -25,7 +25,9 @@ rmpt01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(parcat, null.ok = TRUE)
   checkmate::assert_character(summaryvars)
-  assert_valid_var(adam_db$adex, c("USUBJID", "PARAMCD", summaryvars, parcat))
+  assert_valid_var(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
+  assert_valid_var(adam_db$adex, summaryvars[2], types = list("numeric"))
+  assert_valid_var(adam_db$adex, c("USUBJID", "PARAMCD", parcat))
   lbl_parcat <- var_labels_for(adam_db$adex, parcat)
   lbl_vars <- var_labels_for(adam_db$adex, summaryvars)
 
@@ -83,7 +85,8 @@ rmpt01_lyt <- function(summaryvars,
 rmpt01_pre <- function(adam_db,
                        parcat = NULL,
                        ...) {
-  adam_db <- dunlin::log_filter(adam_db, PARAMCD == "TDURD", "adex")
+  adam_db$adex <- adam_db$adex %>%
+    filter(PARAMCD == "TDURD")
 
   adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
   if (!is.null(parcat)) adam_db$adex[[parcat]] <- droplevels(adam_db$adex[[parcat]])
