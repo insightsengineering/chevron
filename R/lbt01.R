@@ -46,8 +46,6 @@ lbt01_main <- function(adam_db,
   vapply(precision, checkmate::assert_integerish, FUN.VALUE = numeric(1), lower = 0, len = 1)
   checkmate::assert_integerish(default_precision, lower = 0, len = 1)
 
-  summaryvars <- unlist(summaryvars)
-
   lbl_avisit <- var_labels_for(adam_db$adlb, visitvar)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
   summaryvars_lbls <- var_labels_for(adam_db$adlb, summaryvars)
