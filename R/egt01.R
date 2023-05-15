@@ -193,9 +193,9 @@ egt01_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `EGT01` Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.
+#' `EGT01` ECG Assessments and Change from Baseline by Visit Table.
 #'
-#' The `EGT01` table 1 summarizes
+#' The `EGT01` table summarizes
 #' several electrocardiogram parameters and their evolution throughout the study.
 #'
 #' @include chevron_tlg-S4class.R

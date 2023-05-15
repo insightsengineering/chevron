@@ -7,7 +7,7 @@
 \alias{egt01_pre}
 \alias{egt01_post}
 \alias{egt01}
-\title{\code{EGT01} Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.}
+\title{\code{EGT01} ECG Assessments and Change from Baseline by Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -68,7 +68,7 @@ represented with one more decimal of precision.}
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-The \code{EGT01} table 1 summarizes
+The \code{EGT01} table summarizes
 several electrocardiogram parameters and their evolution throughout the study.
 }
 \details{
