@@ -95,7 +95,6 @@ rspt01_1_lyt <- function(arm_var,
     )
 
   for (perform in perform_analysis) {
-
     lyt01 <- lyt01 %>%
       proportion_lyt(
         arm_var = arm_var,
