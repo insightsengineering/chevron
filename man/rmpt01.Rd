@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 rmpt01_main(adam_db, summaryvars = c("AVALCAT1", "AVAL"), parcat = NULL, ...)
 
-rmpt01_lyt(summaryvars, lbl_vars, parcat, lbl_parcat)
+rmpt01_lyt(summaryvars, lbl_summaryvars, parcat, lbl_parcat)
 
 rmpt01_pre(adam_db, parcat = NULL, ...)
 
@@ -25,15 +25,20 @@ rmpt01
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
+\item{summaryvars}{(\code{character}) variables to be analyzed. Names are used as subtitles. For values
+where no name is provided, the label attribute of the corresponding column in \code{adex} table of \code{adam_db} is used.}
+
 \item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
 
 \item{...}{not used.}
 
+\item{lbl_summaryvars}{(\code{character}) label associated with the analyzed variables.}
+
+\item{lbl_parcat}{(\code{string}) the label associated with the variable initiating a new row split.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{anl_vars}{(\code{character}) the names of variables to be analyzed.}
 }
 \description{
 The \code{RMPT01} table provides an overview of duration of exposure.

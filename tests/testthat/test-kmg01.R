@@ -10,7 +10,7 @@ test_that("kmg01 works as expected", {
 # kmg01 ----
 
 test_that("kmg01 works as expected with custom color set", {
-  col <- list(
+  col <- c(
     "A: Drug X" = "black",
     "B: Placebo" = "blue",
     "C: Combination" = "gray"

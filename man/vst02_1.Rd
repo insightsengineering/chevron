@@ -48,6 +48,9 @@ vst02_1
 
 \item{...}{not used.}
 
+\item{exclude_base_abn}{(\code{flag}) whether to exclude subjects with baseline abnormality from numerator and
+denominator.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}

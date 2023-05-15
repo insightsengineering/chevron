@@ -3,7 +3,7 @@
 #' @describeIn lbt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
+#' @param summaryvars (`character`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adlb` table of `adam_db` is used.
 #' @param visitvar (`string`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values

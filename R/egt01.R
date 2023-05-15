@@ -38,7 +38,7 @@ egt01_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   assert_valid_var(adam_db$adeg, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
-  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("numeric")), na_ok = TRUE)
+  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("numeric")), na_ok = TRUE, empty_ok = TRUE)
   assert_valid_var(adam_db$adeg, c(visitvar), types = c("character", "factor"))
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))

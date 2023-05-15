@@ -22,7 +22,6 @@
 #' @export
 #'
 ext01_main <- function(adam_db,
-                       keep_lvl = "ALL",
                        arm_var = "ACTARM",
                        summaryvars = "AVAL",
                        lbl_overall = NULL,

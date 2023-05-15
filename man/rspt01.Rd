@@ -3,6 +3,7 @@
 \docType{data}
 \name{rspt01_main}
 \alias{rspt01_main}
+\alias{rspt01_lyt}
 \alias{rspt01_pre}
 \alias{rspt01_post}
 \alias{rspt01}
@@ -22,6 +23,17 @@ rspt01_main(
   conf_level = 0.95,
   methods = list(),
   ...
+)
+
+rspt01_lyt(
+  arm_var,
+  ref_group,
+  odds_ratio,
+  perform_analysis,
+  strata,
+  conf_level,
+  methods,
+  rsp_var
 )
 
 rspt01_pre(adam_db, ...)
@@ -82,6 +94,8 @@ a single time point. Typical application for oncology
 \itemize{
 \item \code{rspt01_main()}: Main TLG function
 
+\item \code{rspt01_lyt()}: Layout
+
 \item \code{rspt01_pre()}: Preprocessing
 
 \item \code{rspt01_post()}: Postprocessing
@@ -100,3 +114,4 @@ run(rspt01, syn_data2,
 )
 }
 \keyword{datasets}
+\keyword{internal}

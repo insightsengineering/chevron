@@ -21,8 +21,8 @@
 #' @param show_h_grid (`flag`) should horizontal grid be displayed.
 #' @param show_v_grid (`flag`) should vertical grid be displayed.
 #' @param legend_pos (`string`) the position of the legend.
-#' @param line_col (`list`) describing the colors to use for the lines or a named `list` associating values of `arm_var`
-#'   with color names.
+#' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
+#'   `arm_var` with color names.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
@@ -45,7 +45,7 @@ mng01_main <- function(adam_db,
                        show_h_grid = TRUE,
                        show_v_grid = FALSE,
                        legend_pos = "top",
-                       line_col = as.list(nestcolor::color_palette()),
+                       line_col = nestcolor::color_palette(),
                        ...) {
   assert_all_tablenames(adam_db, c(dataset, "adsl"))
   checkmate::assert_character(x_var)
@@ -56,14 +56,14 @@ mng01_main <- function(adam_db,
   checkmate::assert_string(center_fun)
   checkmate::assert_string(interval_fun)
   checkmate::assert_names(center_fun, subset.of = c("mean", "median"))
-  checkmate::assert_names(interval_fun, subset.of = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
+  checkmate::assert_choice(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
   checkmate::assert_flag(show_table)
   checkmate::assert_flag(jitter)
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
   checkmate::assert_flag(show_v_grid)
-  checkmate::assert_names(legend_pos, subset.of = c("top", "bottom", "right", "left"))
-  checkmate::assert_list(line_col, types = "character", null.ok = TRUE)
+  checkmate::assert_choice(legend_pos, c("top", "bottom", "right", "left"))
+  checkmate::assert_character(line_col, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], x_var)
   assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
   assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", "factor")))

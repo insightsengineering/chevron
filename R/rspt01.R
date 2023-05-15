@@ -28,7 +28,6 @@
 #' @details
 #' * No overall value.
 #'
-#'
 #' @export
 #'
 #'
@@ -91,7 +90,7 @@ rspt01_main <- function(adam_db,
   tbl
 }
 
-#' rspt01 Layout
+#' @describeIn rspt01 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -146,8 +145,8 @@ rspt01_lyt <- function(arm_var,
 #' rspt01_pre(syn_data)
 rspt01_pre <- function(adam_db, ...) {
   adam_db$adrs <- adam_db$adrs %>%
-    mutate(RSP_LAB = tern::d_onco_rsp_label(AVALC)) %>%
-    mutate(IS_RSP = AVALC %in% c("CR", "PR"))
+    mutate(RSP_LAB = tern::d_onco_rsp_label(.data$AVALC)) %>%
+    mutate(IS_RSP = .data$AVALC %in% c("CR", "PR"))
   adam_db
 }
 

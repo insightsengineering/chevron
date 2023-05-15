@@ -41,6 +41,9 @@ egt02_1
 
 \item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
 
+\item{exclude_base_abn}{(\code{flag}) whether to exclude subjects with baseline abnormality from numerator and
+denominator.}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{

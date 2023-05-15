@@ -24,7 +24,7 @@ kmg01_main(
   conf_level = 0.95,
   position_coxph = c(0, 0.05),
   position_surv_med = c(0.9, 0.9),
-  line_col = as.list(nestcolor::color_palette()),
+  line_col = nestcolor::color_palette(),
   ...
 )
 
@@ -61,7 +61,7 @@ kmg01
 \item{position_surv_med}{(\code{numeric}) x and y positions for plotting annotation table estimating
 median survival time per group.}
 
-\item{line_col}{(\code{list}) describing the colors to use for the lines or a named \code{list}
+\item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character}
 associating values of \code{arm_var} with color names.}
 
 \item{...}{not used.}
@@ -97,7 +97,7 @@ a list of \code{ggplot} objects.
 library(dplyr)
 library(dunlin)
 
-col <- list(
+col <- c(
   "A: Drug X" = "black",
   "B: Placebo" = "blue",
   "C: Combination" = "gray"

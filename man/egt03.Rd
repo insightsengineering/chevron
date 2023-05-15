@@ -41,11 +41,11 @@ egt03
 
 \item{arm_var}{(\code{character}) the arm variables used for row split, typically \code{"ARMCD"}.}
 
-\item{summaryvar}{(\code{character}) variables to be analyzed, typically \code{"BNRIND"}. Labels of the corresponding columns are used as
-subtitles.}
+\item{summaryvar}{(\code{character}) variables to be analyzed, typically \code{"BNRIND"}. Labels of the corresponding columns
+are used as subtitles.}
 
-\item{splitvar}{(\code{character}) variables to be analyzed, typically \code{"ANRIND"}. Labels of the corresponding columns are used as
-subtitles.}
+\item{splitvar}{(\code{character}) variables to be analyzed, typically \code{"ANRIND"}. Labels of the corresponding columns are
+used as subtitles.}
 
 \item{visit_var}{Analysis Visit variable.}
 

@@ -48,6 +48,8 @@ egt02_1_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
+#' @param exclude_base_abn (`flag`) whether to exclude subjects with baseline abnormality from numerator and
+#'   denominator.
 #'
 #' @export
 #'

@@ -14,7 +14,6 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 ext01_main(
   adam_db,
-  keep_lvl = "ALL",
   arm_var = "ACTARM",
   summaryvars = "AVAL",
   lbl_overall = NULL,

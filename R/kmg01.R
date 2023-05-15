@@ -18,7 +18,7 @@
 #' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
 #' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
 #'   median survival time per group.
-#' @param line_col (`list`) describing the colors to use for the lines or a named `list`
+#' @param line_col (`character`) describing the colors to use for the lines or a named `character`
 #'  associating values of `arm_var` with color names.
 #'
 #' @note
@@ -38,7 +38,7 @@ kmg01_main <- function(adam_db,
                        conf_level = 0.95,
                        position_coxph = c(0, 0.05),
                        position_surv_med = c(0.9, 0.9),
-                       line_col = as.list(nestcolor::color_palette()),
+                       line_col = nestcolor::color_palette(),
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   assert_valid_var(adam_db[[dataset]], "CNSR", types = list("numeric"))
@@ -60,7 +60,6 @@ kmg01_main <- function(adam_db,
 
   anl <- adam_db[[dataset]]
 
-  line_col <- unlist(line_col)
   checkmate::assert_character(line_col, null.ok = TRUE)
 
   assert_colnames(anl, "AVAL")
@@ -128,7 +127,7 @@ kmg01_post <- function(tlg, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' col <- list(
+#' col <- c(
 #'   "A: Drug X" = "black",
 #'   "B: Placebo" = "blue",
 #'   "C: Combination" = "gray"

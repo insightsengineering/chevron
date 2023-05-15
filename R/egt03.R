@@ -2,10 +2,10 @@
 #' @describeIn egt03 Main TLG function
 #'
 #' @param arm_var (`character`) the arm variables used for row split, typically `"ARMCD"`.
-#' @param summaryvar (`character`) variables to be analyzed, typically `"BNRIND"`. Labels of the corresponding columns are used as
-#' subtitles.
-#' @param splitvar (`character`) variables to be analyzed, typically `"ANRIND"`. Labels of the corresponding columns are used as
-#' subtitles.
+#' @param summaryvar (`character`) variables to be analyzed, typically `"BNRIND"`. Labels of the corresponding columns
+#'   are used as subtitles.
+#' @param splitvar (`character`) variables to be analyzed, typically `"ANRIND"`. Labels of the corresponding columns are
+#'   used as subtitles.
 #'
 #' @details
 #'  * ADEG data are subsetted to contain only "POST-BASELINE MINIMUM" visit

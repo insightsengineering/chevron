@@ -8,7 +8,7 @@ test_that("mng01 works as expected", {
 })
 
 test_that("mng01 works as expected with custom color set", {
-  col <- list(
+  col <- c(
     "B: Placebo" = "black",
     "A: Drug X" = "blue",
     "C: Combination" = "gray"

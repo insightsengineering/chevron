@@ -33,7 +33,7 @@ vst01_main <- function(adam_db,
   checkmate::assert_string(arm_var)
   checkmate::assert_character(summaryvars, len = 2)
   checkmate::assert_string(visitvar)
-  assert_valid_variable(adam_db$advs, c(summaryvars), types = list("numeric"))
+  assert_valid_variable(adam_db$advs, c(summaryvars), types = list("numeric"), empty_ok = TRUE)
   assert_valid_variable(adam_db$advs, c(visitvar, "PARAM"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$advs, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))

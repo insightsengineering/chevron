@@ -3,7 +3,8 @@
 #' @describeIn rmpt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param anl_vars (`character`) the names of variables to be analyzed.
+#' @param summaryvars (`character`) variables to be analyzed. Names are used as subtitles. For values
+#'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
 #' @param parcat (`string`) the name of the variable initiating a new row split.
 #'
 #' @details
@@ -29,13 +30,13 @@ rmpt01_main <- function(adam_db,
   assert_valid_var(adam_db$adex, summaryvars[2], types = list("numeric"))
   assert_valid_var(adam_db$adex, c("USUBJID", "PARAMCD", parcat))
   lbl_parcat <- var_labels_for(adam_db$adex, parcat)
-  lbl_vars <- var_labels_for(adam_db$adex, summaryvars)
+  lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
 
   dbsel <- get_db_data(adam_db, "adsl", "adex")
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
-    lbl_vars = lbl_vars,
+    lbl_summaryvars = lbl_summaryvars,
     parcat = parcat,
     lbl_parcat = lbl_parcat
   )
@@ -47,11 +48,14 @@ rmpt01_main <- function(adam_db,
 #' @describeIn rmpt01 Layout
 #'
 #' @inheritParams gen_args
+#' @inheritParams rmpt01_main
+#' @param lbl_summaryvars (`character`) label associated with the analyzed variables.
+#' @param lbl_parcat (`string`) the label associated with the variable initiating a new row split.
 #'
 #' @export
 #'
 rmpt01_lyt <- function(summaryvars,
-                       lbl_vars,
+                       lbl_summaryvars,
                        parcat,
                        lbl_parcat) {
   basic_table(show_colcounts = TRUE) %>%
@@ -60,8 +64,8 @@ rmpt01_lyt <- function(summaryvars,
       var = summaryvars[2],
       col_split = TRUE,
       .labels = c(
-        n_patients = lbl_vars[1],
-        sum_exposure = lbl_vars[2]
+        n_patients = lbl_summaryvars[1],
+        sum_exposure = lbl_summaryvars[2]
       ),
       custom_label = "Total Number of Patients and Person Time"
     ) %>%
@@ -86,7 +90,7 @@ rmpt01_pre <- function(adam_db,
                        parcat = NULL,
                        ...) {
   adam_db$adex <- adam_db$adex %>%
-    filter(PARAMCD == "TDURD")
+    filter(.data$PARAMCD == "TDURD")
 
   adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
   if (!is.null(parcat)) adam_db$adex[[parcat]] <- droplevels(adam_db$adex[[parcat]])

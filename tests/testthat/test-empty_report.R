@@ -6,7 +6,7 @@ test_that("tlg functions return null reports when domain table is empty", {
 
   empty_report <- rtables::rtable(
     header = "",
-    rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
+    rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
   )
 
   empty_listing <- rlistings::as_listing(
@@ -16,6 +16,9 @@ test_that("tlg functions return null reports when domain table is empty", {
   )
 
   rtables::table_inset(empty_report) <- 2L
+
+  res <- run(ael01_nollt, dat_empty)
+  expect_identical(res, empty_listing)
 
   res <- run(aet01, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
@@ -44,13 +47,13 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(dtht01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(egt01_1, dat_empty)
+  res <- run(egt01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(egt02, dat_empty)
+  res <- run(egt02_1, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(egt02, dat_empty, exclude_base_abn = TRUE)
+  res <- run(egt02_1, dat_empty)
   expect_identical(res, empty_report)
 
   res <- suppressWarnings(run(egt03, dat_empty))
@@ -83,12 +86,9 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(vst01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(vst02, dat_empty)
+  res <- run(vst02_1, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(vst02, dat_empty, exclude_base_abn = TRUE)
+  res <- run(vst02_2, dat_empty)
   expect_identical(res, empty_report)
-
-  res <- run(ael01_nollt, dat_empty)
-  expect_identical(res, empty_listing)
 })
