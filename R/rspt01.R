@@ -49,6 +49,7 @@ rspt01_1_main <- function(adam_db,
   checkmate::assert_string(ref_group, null.ok = TRUE)
   checkmate::assert_flag(odds_ratio)
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
+  checkmate::assert_character(strata, null.ok = !"stata" %in% perform_analysis)
 
   arm_level <- lvls(anl[[arm_var]])
   ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
@@ -94,18 +95,12 @@ rspt01_1_lyt <- function(arm_var,
     )
 
   for (perform in perform_analysis) {
-    if (perform == "strat") {
-      checkmate::assert_true(!is.null(strata))
-      strata1 <- strata
-    } else {
-      strata1 <- NULL
-    }
 
     lyt01 <- lyt01 %>%
       proportion_lyt(
         arm_var = arm_var,
         odds_ratio = odds_ratio,
-        strata = strata1,
+        strata = if (perform == "strat") strata else NULL,
         conf_level = conf_level,
         methods = methods
       )
