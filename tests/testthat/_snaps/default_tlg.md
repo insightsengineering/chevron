@@ -1198,6 +1198,79 @@
             Last or replicated                     3 (2.4%)     8 (6.4%)       4 (3.4%)   
             Any Abnormality                        4 (3.2%)     9 (7.2%)       6 (5.0%)   
 
+# lbt06 functions with default argument value return expected result with test data
+
+    Code
+      res
+    Output
+        Visit                                                                                 
+             Abnormality at Visit                A: Drug X       B: Placebo     C: Combination
+                     Baseline Status              (N=134)         (N=134)          (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————
+        SCREENING                                                                             
+          Low                                                                                 
+                    Not low baseline status    13/80 (16.2%)    7/85 (8.2%)     13/89 (14.6%) 
+                    Low baseline status        2/11 (18.2%)         0/10         2/13 (15.4%) 
+                    Total                      15/87 (17.2%)    7/92 (7.6%)     15/97 (15.5%) 
+          High                                                                                
+                    Not high baseline status   11/83 (13.3%)    6/87 (6.9%)     14/90 (15.6%) 
+                    High baseline status       2/14 (14.3%)         0/10         1/18 (5.6%)  
+                    Total                      13/87 (14.9%)    6/92 (6.5%)     15/97 (15.5%) 
+        BASELINE                                                                              
+          Low                                                                                 
+                    Not low baseline status        0/85             0/98             0/84     
+                    Low baseline status        11/11 (100%)      8/8 (100%)      12/12 (100%) 
+                    Total                       11/92 (12%)     8/102 (7.8%)    12/88 (13.6%) 
+          High                                                                                
+                    Not high baseline status       0/84             0/92             0/84     
+                    High baseline status       13/13 (100%)     19/19 (100%)     11/11 (100%) 
+                    Total                      13/92 (14.1%)   19/102 (18.6%)   11/88 (12.5%) 
+        WEEK 1 DAY 8                                                                          
+          Low                                                                                 
+                    Not low baseline status     9/92 (9.8%)     7/83 (8.4%)      8/85 (9.4%)  
+                    Low baseline status        2/15 (13.3%)     1/8 (12.5%)      1/13 (7.7%)  
+                    Total                      10/99 (10.1%)    8/88 (9.1%)      9/91 (9.9%)  
+          High                                                                                
+                    Not high baseline status   11/91 (12.1%)   10/81 (12.3%)     6/82 (7.3%)  
+                    High baseline status       2/15 (13.3%)     2/16 (12.5%)     1/15 (6.7%)  
+                    Total                      13/99 (13.1%)   12/88 (13.6%)     7/91 (7.7%)  
+        WEEK 2 DAY 15                                                                         
+          Low                                                                                 
+                    Not low baseline status    11/81 (13.6%)   10/82 (12.2%)    13/85 (15.3%) 
+                    Low baseline status         3/9 (33.3%)         0/11         1/14 (7.1%)  
+                    Total                      14/83 (16.9%)   10/87 (11.5%)    14/92 (15.2%) 
+          High                                                                                
+                    Not high baseline status   10/78 (12.8%)   11/80 (13.8%)    11/83 (13.3%) 
+                    High baseline status           0/12         1/11 (9.1%)      1/18 (5.6%)  
+                    Total                       10/83 (12%)    12/87 (13.8%)     12/92 (13%)  
+        WEEK 3 DAY 22                                                                         
+          Low                                                                                 
+                    Not low baseline status     12/80 (15%)    13/86 (15.1%)    11/90 (12.2%) 
+                    Low baseline status         1/10 (10%)          0/15         3/13 (23.1%) 
+                    Total                      13/86 (15.1%)   13/92 (14.1%)    14/95 (14.7%) 
+          High                                                                                
+                    Not high baseline status   9/79 (11.4%)    11/90 (12.2%)     8/86 (9.3%)  
+                    High baseline status        1/16 (6.2%)         0/14             0/18     
+                    Total                      10/86 (11.6%)    11/92 (12%)      8/95 (8.4%)  
+        WEEK 4 DAY 29                                                                         
+          Low                                                                                 
+                    Not low baseline status     7/80 (8.8%)    10/86 (11.6%)     9/91 (9.9%)  
+                    Low baseline status            0/11         2/16 (12.5%)         0/12     
+                    Total                       7/86 (8.1%)    10/94 (10.6%)     9/95 (9.5%)  
+          High                                                                                
+                    Not high baseline status   14/77 (18.2%)    6/88 (6.8%)     14/86 (16.3%) 
+                    High baseline status       2/17 (11.8%)      3/15 (20%)      1/12 (8.3%)  
+                    Total                      16/86 (18.6%)    9/94 (9.6%)     15/95 (15.8%) 
+        WEEK 5 DAY 36                                                                         
+          Low                                                                                 
+                    Not low baseline status    11/88 (12.5%)    16/89 (18%)     14/99 (14.1%) 
+                    Low baseline status        2/11 (18.2%)     2/16 (12.5%)      1/10 (10%)  
+                    Total                       12/92 (13%)    18/98 (18.4%)    15/102 (14.7%)
+          High                                                                                
+                    Not high baseline status   11/86 (12.8%)   13/88 (14.8%)     8/94 (8.5%)  
+                    High baseline status           0/11             0/16         2/14 (14.3%) 
+                    Total                       11/92 (12%)    13/98 (13.3%)    10/102 (9.8%) 
+
 # lbt07_1 functions with default argument value return expected result with test data
 
     Code
