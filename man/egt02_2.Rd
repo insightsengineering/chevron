@@ -3,36 +3,13 @@
 \docType{data}
 \name{egt02_2_main}
 \alias{egt02_2_main}
-\alias{egt02_2_lyt}
-\alias{egt02_2_pre}
-\alias{egt02_2_post}
 \alias{egt02_2}
-\title{\code{EGT02} Table 2 (Supplementary) ECG Abnormalities Table 2.}
+\title{\code{EGT02_2} ECG Abnormalities Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-egt02_2_main(
-  adam_db,
-  arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
-  lbl_overall = NULL,
-  deco = std_deco("EGT02_2"),
-  ...
-)
-
-egt02_2_lyt(
-  arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
-  lbl_overall = NULL,
-  deco = std_deco("EGT02_2")
-)
-
-egt02_2_pre(adam_db, ...)
-
-egt02_2_post(tlg, ...)
+egt02_2_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
 
 egt02_2
 }
@@ -41,21 +18,12 @@ egt02_2
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
-
-\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
-Assessments Outside Normal Limits Among Subject Without
-Abnormality at Baseline.
+ECG Parameters outside Normal Limits Among Patients without Abnormality at Baseline Table.
 }
 \details{
 \itemize{
@@ -68,12 +36,6 @@ Abnormality at Baseline.
 \section{Functions}{
 \itemize{
 \item \code{egt02_2_main()}: Main TLG function
-
-\item \code{egt02_2_lyt()}: Layout
-
-\item \code{egt02_2_pre()}: Preprocessing
-
-\item \code{egt02_2_post()}: Postprocessing
 
 }}
 \note{

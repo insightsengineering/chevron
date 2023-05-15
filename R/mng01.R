@@ -1,6 +1,6 @@
-# mng01_1 ----
+# mng01 ----
 
-#' @describeIn mng01_1 Main TLG Function
+#' @describeIn mng01 Main TLG Function
 #'
 #' @details
 #'  * No overall value.
@@ -11,7 +11,7 @@
 #' @param x_var (`string`) the name of a column in the `dataset` to represent on the x-axis.
 #' @param y_var (`string`) the name of the variable to be represented on the y-axis.
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
-#' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NA`, only
+#' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NULL`, only
 #'   `y_name` is displayed as subtitle.
 #' @param center_fun (`string`) the function to compute the estimate value.
 #' @param interval_fun (`string`) the function defining the crossbar range.
@@ -30,40 +30,53 @@
 #'
 #' @return a list of `ggplot` objects.
 #' @export
-mng01_1_main <- function(adam_db,
-                         dataset = "adlb",
-                         x_var = "AVISIT",
-                         y_var = "AVAL",
-                         y_name = "PARAM",
-                         y_unit = NA,
-                         arm_var = "ACTARM",
-                         center_fun = "mean",
-                         interval_fun = "mean_ci",
-                         show_table = TRUE,
-                         jitter = TRUE,
-                         show_n = TRUE,
-                         show_h_grid = TRUE,
-                         show_v_grid = FALSE,
-                         legend_pos = "top",
-                         line_col = as.list(nestcolor::color_palette()),
-                         ...) {
-  df <- adam_db[[dataset]]
+mng01_main <- function(adam_db,
+                       dataset = "adlb",
+                       x_var = "AVISIT",
+                       y_var = "AVAL",
+                       y_name = "PARAM",
+                       y_unit = NULL,
+                       arm_var = "ACTARM",
+                       center_fun = "mean",
+                       interval_fun = "mean_ci",
+                       show_table = TRUE,
+                       jitter = TRUE,
+                       show_n = TRUE,
+                       show_h_grid = TRUE,
+                       show_v_grid = FALSE,
+                       legend_pos = "top",
+                       line_col = as.list(nestcolor::color_palette()),
+                       ...) {
+  assert_all_tablenames(adam_db, c(dataset, "adsl"))
+  checkmate::assert_character(x_var)
+  checkmate::assert_string(y_var)
+  checkmate::assert_string(y_name)
+  checkmate::assert_string(y_unit, null.ok = TRUE)
+  checkmate::assert_string(arm_var)
   checkmate::assert_string(center_fun)
   checkmate::assert_string(interval_fun)
-  line_col <- unlist(line_col)
-
-  data_ls <- split(df, df$PARAM, drop = TRUE)
-  x_var <- paste(x_var, collapse = "_")
-
-  checkmate::assert_subset(center_fun, c("mean", "median"))
-  checkmate::assert_subset(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
-
+  checkmate::assert_names(center_fun, subset.of = c("mean", "median"))
+  checkmate::assert_names(interval_fun, subset.of = c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
   checkmate::assert_flag(show_table)
   checkmate::assert_flag(jitter)
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
   checkmate::assert_flag(show_v_grid)
-  checkmate::assert_character(line_col, null.ok = TRUE)
+  checkmate::assert_names(legend_pos, subset.of = c("top", "bottom", "right", "left"))
+  checkmate::assert_list(line_col, types = "character", null.ok = TRUE)
+  assert_valid_variable(adam_db[[dataset]], x_var)
+  assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
+  assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db[[dataset]], arm_var, types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
+
+  df <- adam_db[[dataset]]
+  line_col <- unlist(line_col)
+
+  data_ls <- split(df, df$PARAM, drop = TRUE)
+  x_var <- paste(x_var, collapse = "_")
 
   interval_title <- switch(interval_fun,
     "mean_ci" = "95% Confidence Intervals",
@@ -92,6 +105,7 @@ mng01_1_main <- function(adam_db,
     "range" = c("min", "max")
   )
 
+  y_unit <- if (is.null(y_unit)) NA else y_unit
   variables <- c(
     x = x_var,
     y = y_var,
@@ -158,31 +172,29 @@ mng01_1_main <- function(adam_db,
   do.call(gg_list, ret)
 }
 
-#' @describeIn mng01_1 Preprocessing
+#' @describeIn mng01 Preprocessing
 #'
-#' @inheritParams mng01_1_main
+#' @inheritParams mng01_main
 #'
 #' @export
-mng01_1_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
-  assert_all_tablenames(adam_db, c("adsl", dataset))
-
+mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y")
 
   dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
 }
 
-#' @describeIn mng01_1 Postprocessing
+#' @describeIn mng01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
-mng01_1_post <- function(tlg, ...) {
+mng01_post <- function(tlg, ...) {
   tlg
 }
 
-# `mng01_1` Pipeline ----
+# `mng01` Pipeline ----
 
-#' `MNG01` Graph 1 (Default) Mean Plot 1.
+#' `MNG01` Mean Plot Graph.
 #'
 #' Overview of a summary statistics across time and arm for a selected data set.
 #'
@@ -196,10 +208,10 @@ mng01_1_post <- function(tlg, ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01_1, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
-mng01_1 <- chevron_g(
-  main = mng01_1_main,
-  preproces = mng01_1_pre,
-  postprocess = mng01_1_post,
+#' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
+mng01 <- chevron_g(
+  main = mng01_main,
+  preproces = mng01_pre,
+  postprocess = mng01_post,
   adam_datasets = c("adsl", "adlb", "adeg", "advs")
 )

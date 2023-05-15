@@ -1,12 +1,10 @@
-# pdt01_1 ----
+# pdt01 ----
 
-#' @describeIn pdt01_1 Main TLG function
+#' @describeIn pdt01 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param dvcode_var (`string`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
-#' @param lbl_dvcode_var (`string`) label for the variable defining the protocol deviation coded term.
 #' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
-#' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
 #' @details
 #'  * Data should be filtered for major protocol deviations. `(DVCAT == "MAJOR")`.
@@ -23,27 +21,34 @@
 #'
 #' @export
 #'
-pdt01_1_main <- function(adam_db,
-                         arm_var = "ARM",
-                         dvcode_var = "DVDECOD",
-                         lbl_dvcode_var = "Protocol Deviation Coded Term",
-                         dvterm_var = "DVTERM",
-                         lbl_dvterm_var = "Category",
-                         lbl_overall = NULL,
-                         deco = std_deco("pdt01_1"),
-                         ...) {
-  assert_colnames(adam_db$addv, c(dvcode_var, dvterm_var))
+pdt01_main <- function(adam_db,
+                       arm_var = "ARM",
+                       dvcode_var = "DVDECOD",
+                       dvterm_var = "DVTERM",
+                       lbl_overall = NULL,
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", "addv"))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(dvcode_var)
+  checkmate::assert_string(dvterm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_variable(adam_db$addv, c(dvcode_var, dvterm_var, "DVSEQ"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
+
+  lbl_dvcode_var <- var_labels_for(adam_db$addv, dvcode_var)
+  lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
 
   dbsel <- get_db_data(adam_db, "adsl", "addv")
 
-  lyt <- pdt01_1_lyt(
+  lyt <- pdt01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     dvcode_var = dvcode_var,
     lbl_dvcode_var = lbl_dvcode_var,
     dvterm_var = dvterm_var,
-    lbl_dvterm_var = lbl_dvterm_var,
-    deco = deco
+    lbl_dvterm_var = lbl_dvterm_var
   )
 
   tbl <- build_table(lyt, dbsel$addv, alt_counts_df = dbsel$adsl)
@@ -51,24 +56,22 @@ pdt01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn pdt01_1 Layout
+#' @describeIn pdt01 Layout
 #'
 #' @inheritParams gen_args
-#' @param dvcode_var (`string`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
+#' @inheritParams pdt01_main
 #' @param lbl_dvcode_var (`string`) label for the variable defining the protocol deviation coded term.
-#' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
 #' @param lbl_dvterm_var (`string`) label for the variable defining the protocol deviation term.
 #'
-#' @export
+#' @keywords internal
 #'
-pdt01_1_lyt <- function(arm_var,
-                        lbl_overall,
-                        dvcode_var,
-                        lbl_dvcode_var,
-                        dvterm_var,
-                        lbl_dvterm_var,
-                        deco) {
-  basic_table_deco(deco) %>%
+pdt01_lyt <- function(arm_var,
+                      lbl_overall,
+                      dvcode_var,
+                      lbl_dvcode_var,
+                      dvterm_var,
+                      lbl_dvterm_var) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     summarize_num_patients(
@@ -93,39 +96,32 @@ pdt01_1_lyt <- function(arm_var,
     append_topleft(paste0("  Description"))
 }
 
-#' @describeIn pdt01_1 Preprocessing
+#' @describeIn pdt01 Preprocessing
 #'
-#' @inheritParams pdt01_1_main
+#' @inheritParams pdt01_main
 #'
 #' @export
 #'
-pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
-  assert_all_tablenames(adam_db, c("adsl", "addv"))
+pdt01_pre <- function(adam_db, ...) {
+  adam_db$addv <- adam_db$addv %>%
+    mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
+    mutate(
+      DVDECOD = with_label(.data$DVDECOD, "Protocol Deviation Coded Term"),
+      DVTERM = with_label(.data$DVTERM, "Category")
+    )
 
-  fmt_ls <- list(
-    dvcode_var = rule(
-      "No Coding available" = c("", NA)
-    ),
-    dvterm_var = rule(
-      "No Coding available" = c("", NA)
-    ),
-    DVSEQ = rule()
-  )
-
-  names(fmt_ls) <- c(dvcode_var, dvterm_var, "DVSEQ")
-  new_format <- list(addv = fmt_ls)
-
-  reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
-#' @describeIn pdt01_1 Postprocessing
+#' @describeIn pdt01 Postprocessing
 #'
-#' @inheritParams pdt01_1_main
+#' @inheritParams pdt01_main
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
+pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -139,7 +135,7 @@ pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var
   std_postprocess(tbl_sorted)
 }
 
-#' `pdt01_1` Table 1 (Default) Major Protocol Deviations.
+#' `pdt01` Major Protocol Deviations Table.
 #'
 #' A major protocol deviations
 #' table with the number of subjects and the total number of treatments by medication class sorted alphabetically and
@@ -155,11 +151,11 @@ pdt01_1_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var
 #' proc_data$addv <- proc_data$addv %>%
 #'   filter(DVCAT == "MAJOR")
 #'
-#' run(pdt01_1, proc_data)
-pdt01_1 <- chevron_t(
-  main = pdt01_1_main,
-  lyt = pdt01_1_lyt,
-  preprocess = pdt01_1_pre,
-  postprocess = pdt01_1_post,
+#' run(pdt01, proc_data)
+pdt01 <- chevron_t(
+  main = pdt01_main,
+  lyt = pdt01_lyt,
+  preprocess = pdt01_pre,
+  postprocess = pdt01_post,
   adam_datasets = c("adsl", "addv")
 )

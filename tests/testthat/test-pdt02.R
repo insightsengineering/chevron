@@ -1,4 +1,15 @@
-test_that("pdt02_1 can handle all NA values", {
+# pdt02 function ----
+
+test_that("pdt02 function with default argument value return expected result with test data", {
+  pre_data <- pdt02_pre(syn_data)
+  raw_res <- pdt02_main(pre_data)
+  res <- pdt02_post(raw_res)
+  expect_snapshot(res)
+})
+
+# pdt02 ----
+
+test_that("pdt02 can handle all NA values", {
   proc_data <- syn_data
   proc_data$addv <- proc_data$addv %>%
     mutate(
@@ -6,11 +17,11 @@ test_that("pdt02_1 can handle all NA values", {
       DVTERM = NA_character_,
     )
 
-  res <- expect_silent(run(pdt02_1, proc_data))
+  res <- expect_silent(run(pdt02, proc_data))
   expect_snapshot(res)
 })
 
-test_that("pdt02_1 can handle some NA values", {
+test_that("pdt02 can handle some NA values", {
   new_dvreas <- c(NA_character_, "", as.character(syn_data$addv$DVREAS[-c(1, 2)]))
   new_dvterm <- c(NA_character_, "", as.character(syn_data$addv$DVTERM[-c(1, 2)]))
 
@@ -21,6 +32,6 @@ test_that("pdt02_1 can handle some NA values", {
       DVTERM = new_dvterm
     )
 
-  res <- expect_silent(run(pdt02_1, proc_data))
+  res <- expect_silent(run(pdt02, proc_data))
   expect_snapshot(res)
 })

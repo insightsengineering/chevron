@@ -65,29 +65,26 @@ reference:
       - dmt01
       - dst01
       - dtht01
-      - egt01_1
+      - egt01
       - egt02_1
       - egt02_2
-      - egt03_1
-      - egt03_2
-      - egt05_qtcat_1
-      - ext01_1
-      - ext01_2
-      - kmg01_1
-      - rspt01
-      - lbt01_1
-      - lbt04_1
-      - lbt05_1
-      - lbt07_1
-      - lbt14_1
-      - lbt14_2
-      - mht01_1
-      - mng01_1
-      - pdt01_1
-      - pdt02_1
-      - rmpt01_1
-      - vst01_1
-      - vst02
+      - egt03
+      - egt05_qtcat
+      - ext01
+      - kmg01
+      - lbt01
+      - lbt04
+      - lbt05
+      - lbt07
+      - lbt14
+      - mht01
+      - mng01
+      - pdt01
+      - pdt02
+      - rmpt01
+      - vst01
+      - vst02_1
+      - vst02_2
   - title: Data
     contents:
       - syn_data

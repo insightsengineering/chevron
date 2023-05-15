@@ -187,7 +187,7 @@ assert_single_value <- function(x, label = deparse(substitute(x))) {
   }
 }
 
-#' Check whether var is valid
+#' @title Check whether var is valid
 #' @details
 #' This function checks the variable values are valid or not.
 #' @param x value of col_split variable

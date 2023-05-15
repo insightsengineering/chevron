@@ -47,46 +47,46 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(egt01_1, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(egt02_1, dat_empty)
+  res <- run(egt02, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(egt02_2, dat_empty)
+  res <- run(egt02, dat_empty, exclude_base_abn = TRUE)
   expect_identical(res, empty_report)
 
-  res <- suppressWarnings(run(egt03_1, dat_empty))
+  res <- suppressWarnings(run(egt03, dat_empty))
   expect_identical(res, empty_report)
 
-  res <- suppressWarnings(run(egt03_2, dat_empty))
+  res <- suppressWarnings(run(egt03, dat_empty, minmax = "max"))
   expect_identical(res, empty_report)
 
-  res <- run(egt05_qtcat_1, dat_empty)
+  res <- run(egt05_qtcat, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(ext01_1, dat_empty)
+  res <- run(ext01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(ext01_2, dat_empty)
+  res <- run(ext01, dat_empty, summaryvars = c("AVAL", "AVALCAT1"))
   expect_identical(res, empty_report)
 
-  res <- run(lbt01_1, dat_empty)
+  res <- run(lbt01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(lbt05_1, dat_empty, prune_0 = TRUE)
+  res <- run(lbt05, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
 
-  res <- run(mht01_1, dat_empty)
+  res <- run(mht01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(pdt01_1, dat_empty)
+  res <- run(pdt01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(vst01_1, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(vst01_1, dat_empty)
+  res <- run(vst01, dat_empty)
   expect_identical(res, empty_report)
 
   res <- run(vst02, dat_empty)
+  expect_identical(res, empty_report)
+
+  res <- run(vst02, dat_empty, exclude_base_abn = TRUE)
   expect_identical(res, empty_report)
 
   res <- run(ael01_nollt, dat_empty)
