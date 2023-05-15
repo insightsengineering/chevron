@@ -112,31 +112,6 @@ aet01_lyt <- function(arm_var,
   return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
 }
 
-#' Count patients recursively
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
-#' @param anl_vars Named (`list`) of analysis variables.
-#' @param anl_lbls (`character`) of labels.
-#' @param lbl_vars Named (`list`) of analysis labels.
-#' @keywords internal
-count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
-  checkmate::assert_list(anl_vars, names = "unique", types = "character")
-  checkmate::assert_character(anl_lbls, min.chars = 1L, len = length(anl_vars))
-  nms <- names(anl_vars)
-  for (k in seq_len(length(anl_vars))) {
-    lyt <- lyt %>%
-      count_patients_with_flags(
-        var = "USUBJID",
-        flag_variables = setNames(lbl_vars[[k]], anl_vars[[k]]),
-        denom = "N_col",
-        var_labels = anl_lbls[k],
-        show_labels = "visible",
-        table_names = nms[k],
-        .indent_mods = 0L
-      )
-  }
-  lyt
-}
-
 #' @describeIn aet01 Preprocessing
 #'
 #' @inheritParams aet01_main

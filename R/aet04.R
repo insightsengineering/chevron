@@ -182,12 +182,3 @@ aet04 <- chevron_t(
   postprocess = aet04_post,
   adam_datasets = c("adsl", "adae")
 )
-
-
-score_all_sum <- function(tt) {
-  cleaf <- collect_leaves(tt)[[1]]
-  if (NROW(cleaf) == 0) {
-    stop("score_all_sum score function used at subtable [", obj_name(tt), "] that has no content.")
-  }
-  sum(sapply(row_values(cleaf), function(cv) cv[1]))
-}

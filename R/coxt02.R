@@ -12,6 +12,8 @@
 #' @param ... Further arguments passed to `tern::control_coxreg()`.
 #'
 #' @details
+#'  * The reference arm will always the first level of `arm_var`. Please change the level if you want to
+#'  change the reference arms.
 #'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
 #'  * The stratified analysis is with DISCRETE tie handling (equivalent to `tern::control_coxreg(ties = "exact")` in R).
 #'  * Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
@@ -36,19 +38,17 @@ coxt02_main <- function(adam_db,
                         strata = NULL,
                         lbl_vars = "Effect/Covariate Included in the Model",
                         ...) {
-  assert_all_tablenames(adam_db, "adsl", "adtte")
+  assert_all_tablenames(adam_db, "adtte")
   checkmate::assert_string(arm_var)
   checkmate::assert_string(time_var)
   checkmate::assert_string(event_var)
   checkmate::assert_character(covariates, null.ok = TRUE)
   checkmate::assert_character(strata, null.ok = TRUE)
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adtte, c(covariates, strata), empty_ok = TRUE, na_ok = TRUE)
-  assert_valid_variable(adam_db$adtte, "PARAMCD", empty_ok = TRUE, na_ok = FALSE)
+  assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"))
+  assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var, "PARAMCD"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adtte, c(covariates, strata), types = list(c("factor", "numeric")), na_ok = TRUE)
   assert_valid_variable(adam_db$adtte, event_var, types = list("numeric"), integerish = TRUE, lower = 0L, upper = 1L)
-  assert_valid_variable(adam_db$adtte, time_var)
-  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+  assert_valid_variable(adam_db$adtte, time_var, types = list("numeric"), lower = 0)
   assert_single_value(adam_db$adtte$PARAMCD)
   args <- list(...)
   control_args <- c("pval_method", "ties", "conf_level", "interaction")

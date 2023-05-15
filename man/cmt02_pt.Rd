@@ -10,6 +10,9 @@
 \format{
 An object of class \code{chevron_t} of length 1.
 }
+\source{
+cmt01a.R
+}
 \usage{
 cmt02_pt_main(
   adam_db,

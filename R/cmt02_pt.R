@@ -3,6 +3,7 @@
 #' @describeIn cmt02_pt Main TLG function
 #'
 #' @inherit cmt01a_main
+#' @source cmt01a.R
 #' @export
 #'
 cmt02_pt_main <- modify_default_args(cmt01a_main, row_split_var = NULL)
