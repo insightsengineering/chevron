@@ -7,7 +7,7 @@
 lvls(x)
 }
 \arguments{
-\item{x}{object to obtain levels.}
+\item{x}{(\code{character}) or (\code{factor}) object to obtain levels.}
 }
 \description{
 Obtain levels from vector

@@ -294,7 +294,7 @@ droplevels.character <- function(x, ...) {
 }
 
 #' Obtain levels from vector
-#' @param x object to obtain levels.
+#' @param x (`character`) or (`factor`) object to obtain levels.
 #' @details
 #' For factors, the levels will be returned. For characters, the sorted unique values will be returned.
 #' @export
