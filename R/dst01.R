@@ -104,52 +104,6 @@ dst01_lyt <- function(arm_var,
   lyt
 }
 
-#' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
-#' @param var (`string`) of analysis variable.
-#' @param level (`string`) level to be displayed.
-#' @param detail_vars (`character`) of variables for detail information.
-#' @keywords internal
-count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ...) {
-  checkmate::assert_string(level)
-  if (is.null(detail_vars)) {
-    lyt <- lyt %>%
-      count_values(
-        var,
-        values = level,
-        table_names = paste(var, level, sep = "_"),
-        .formats = list(count_fraction = format_count_fraction_fixed_dp),
-        .indent_mods = indent_mod,
-        ...
-      )
-  } else {
-    lyt <- lyt %>%
-      split_rows_by(var, split_fun = keep_split_levels(level), indent_mod = indent_mod) %>%
-      summarize_row_groups(
-        format = format_count_fraction_fixed_dp
-      ) %>%
-      split_rows_by_recurive(detail_vars[-length(detail_vars)], split_fun = drop_split_levels) %>%
-      summarize_vars(
-        detail_vars[length(detail_vars)],
-        .stats = "count_fraction",
-        denom = "N_col",
-        show_labels = "hidden",
-        .formats = list(count_fraction = format_count_fraction_fixed_dp),
-        ...
-      )
-  }
-  lyt
-}
-
-#' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
-#' @param split_var (`character`) variable to split rows by.
-#' @param ... Further arguments for `split_rows_by`
-#' @keywords internal
-split_rows_by_recurive <- function(lyt, split_var, ...) {
-  purrr::reduce(.x = split_var, .f = split_rows_by, .init = lyt, ...)
-}
-
 #' @describeIn dst01 Preprocessing
 #'
 #' @inheritParams dst01_main

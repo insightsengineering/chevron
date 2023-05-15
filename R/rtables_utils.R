@@ -18,13 +18,13 @@ split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels
       ...
     )
 }
-
+#' @keywords internal
 get_sort_path <- function(x) {
   checkmate::assert_character(x, null.ok = TRUE)
   x2 <- as.character(rbind(x, rep("*", length(x))))
   x2[-length(x2)]
 }
-
+#' @keywords internal
 tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
   purrr::reduce(
     .x = lapply(seq_len(length(vars)), function(i) vars[seq_len(i)]),
@@ -34,7 +34,7 @@ tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
     ...
   )
 }
-
+#' @keywords internal
 tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
   checkmate::assert_character(var)
   if (length(var) == 0) {
@@ -48,7 +48,7 @@ tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
       ...
     )
 }
-
+#' @keywords internal
 valid_sort_at_path <- function(tt, path, scorefun, ...) {
   if (valid_row_path(tt, path)) {
     sort_at_path(tt, path, scorefun, ...)
@@ -56,7 +56,7 @@ valid_sort_at_path <- function(tt, path, scorefun, ...) {
     tt
   }
 }
-
+#' @keywords internal
 valid_row_path <- function(tlg, row_path) {
   if (nrow(tlg) == 0) {
     return(TRUE)
@@ -91,11 +91,100 @@ count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
   }
   lyt
 }
-
+#' @keywords internal
 score_all_sum <- function(tt) {
   cleaf <- collect_leaves(tt)[[1]]
   if (NROW(cleaf) == 0) {
     stop("score_all_sum score function used at subtable [", obj_name(tt), "] that has no content.")
   }
   sum(sapply(row_values(cleaf), function(cv) cv[1]))
+}
+#' @keywords internal
+summarize_row <- function(lyt, vars, afun, ...) {
+  summarize_row_groups(lyt = lyt, var = vars, cfun = afun, ...)
+}
+
+#' Summary factor allowing NA
+#' @param x (`factor`) input.
+#' @param denom (`string`) denominator choice.
+#' @param .N_row (`integer`) number of rows in row-splitted dataset.
+#' @param .N_col (`integer`) number of rows in column-splitted dataset.
+#' @param ... Not used
+#' @keywords internal
+s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { # nolint
+  denom <- match.arg(denom)
+  y <- list()
+  y$n <- length(x)
+  y$count <- as.list(table(x, useNA = "no"))
+  dn <- switch(denom,
+    n = length(x),
+    N_row = .N_row,
+    N_col = .N_col
+  )
+  y$count_fraction <- lapply(y$count, function(x) {
+    c(x, ifelse(dn > 0, x / dn, 0))
+  })
+  y$n_blq <- sum(grepl("BLQ|LTR|<[1-9]", x))
+  y
+}
+#' Summarize variables allow na
+#' @keywords internal
+summarize_vars_allow_na <- function(
+    lyt, vars, var_labels = vars,
+    nested = TRUE, ..., show_labels = "default", table_names = vars,
+    section_div = NA_character_, .stats = c("n", "count_fraction"),
+    .formats = NULL, .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { # nolint
+  afun <- make_afun(s_summary_na, .stats, .formats, .labels, .indent_mods, .ungroup_stats = c("count_fraction"))
+  analyze(
+    lyt = lyt, vars = vars, var_labels = var_labels,
+    afun = afun, nested = nested, extra_args = list(...),
+    inclNAs = inclNAs, show_labels = show_labels, table_names = table_names,
+    section_div = section_div
+  )
+}
+
+#' Count or summarize by groups
+#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param var (`string`) of analysis variable.
+#' @param level (`string`) level to be displayed.
+#' @param detail_vars (`character`) of variables for detail information.
+#' @keywords internal
+count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ...) {
+  checkmate::assert_string(level)
+  if (is.null(detail_vars)) {
+    lyt <- lyt %>%
+      count_values(
+        var,
+        values = level,
+        table_names = paste(var, level, sep = "_"),
+        .formats = list(count_fraction = format_count_fraction_fixed_dp),
+        .indent_mods = indent_mod,
+        ...
+      )
+  } else {
+    lyt <- lyt %>%
+      split_rows_by(var, split_fun = keep_split_levels(level), indent_mod = indent_mod) %>%
+      summarize_row_groups(
+        format = format_count_fraction_fixed_dp
+      ) %>%
+      split_rows_by_recurive(detail_vars[-length(detail_vars)], split_fun = drop_split_levels) %>%
+      summarize_vars(
+        detail_vars[length(detail_vars)],
+        .stats = "count_fraction",
+        denom = "N_col",
+        show_labels = "hidden",
+        .formats = list(count_fraction = format_count_fraction_fixed_dp),
+        ...
+      )
+  }
+  lyt
+}
+
+#' Count or summarize by groups
+#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param split_var (`character`) variable to split rows by.
+#' @param ... Further arguments for `split_rows_by`
+#' @keywords internal
+split_rows_by_recurive <- function(lyt, split_var, ...) {
+  purrr::reduce(.x = split_var, .f = split_rows_by, .init = lyt, ...)
 }
