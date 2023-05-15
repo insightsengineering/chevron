@@ -35,7 +35,7 @@ dtht01_main <- function(adam_db,
   assert_valid_variable(
     adam_db$adsl,
     c("DTHFL", "DTHCAT", other_var, dose_death_var),
-    types = list("character", "factor"), na_ok = TRUE
+    types = list("character", "factor"), na_ok = TRUE, min_chars = 0L
   )
   if (other_category) {
     death_cause <- lvls(adam_db$adsl$DTHCAT)

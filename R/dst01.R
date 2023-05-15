@@ -43,8 +43,13 @@ dst01_main <- function(adam_db,
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(
     adam_db$adsl,
-    c(arm_var, study_status_var, trt_status_var),
+    arm_var,
     types = list(c("character", "factor")), na_ok = TRUE
+  )
+  assert_valid_variable(
+    adam_db$adsl, c(study_status_var, trt_status_var),
+    types = list(c("character", "factor")), na_ok = TRUE,
+    empty_ok = TRUE, min_chars = 0L
   )
   status_var_lvls <- lvls(adam_db$adsl[[study_status_var]])
   checkmate::assert_subset(names(detail_vars), choice = status_var_lvls)
@@ -53,7 +58,8 @@ dst01_main <- function(adam_db,
     unlist(detail_vars),
     types = list(c("character", "factor")),
     na_ok = TRUE,
-    empty_ok = TRUE
+    empty_ok = TRUE,
+    min_chars = 0L
   )
   detail_vars <- setNames(detail_vars[status_var_lvls], status_var_lvls)
   lyt <- dst01_lyt(
