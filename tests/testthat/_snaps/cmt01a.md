@@ -4,7 +4,7 @@
       res
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
-          Standardized Medication Name                             (N=134)       (N=134)        (N=132)    
+          Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      
@@ -19,7 +19,7 @@
       res
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
-          Standardized Medication Name                             (N=134)       (N=134)        (N=132)    
+          Other Treatment                                          (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                   609           622            703      

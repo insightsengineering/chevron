@@ -225,6 +225,7 @@ aet01_aesi <- chevron_t(
   adam_datasets = c("adsl", "adae")
 )
 
+#' @keywords internal
 get_aesi_vars <- function(aesi_vars) {
   if ("ALL" %in% aesi_vars) aesi_vars <- c("ALL_ALLRES", "ALL_NOTRES", "ALL_SER", "ALL_REL")
   if (any(grepl("^ALL_", aesi_vars))) {

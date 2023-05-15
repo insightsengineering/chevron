@@ -114,7 +114,7 @@ report_null <- function(tlg, ...) {
 #' @rdname report_null
 null_report <- rtables::rtable(
   header = "",
-  rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
+  rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
 )
 
 #' @export
@@ -294,7 +294,7 @@ droplevels.character <- function(x, ...) {
 }
 
 #' Obtain levels from vector
-#' @param x object to obtain levels.
+#' @param x (`character`) or (`factor`) object to obtain levels.
 #' @details
 #' For factors, the levels will be returned. For characters, the sorted unique values will be returned.
 #' @export
@@ -318,4 +318,11 @@ lvls.factor <- function(x) {
 quote_str <- function(x) {
   checkmate::assert_string(x)
   paste0("`", x, "`")
+}
+
+#' @keywords internal
+modify_default_args <- function(fun, ...) {
+  ret <- fun
+  formals(ret) <- utils::modifyList(formals(fun), list(...), keep.null = TRUE)
+  return(ret)
 }

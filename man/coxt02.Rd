@@ -56,6 +56,8 @@ and produces the estimates for each of the covariates included in the model
 }
 \details{
 \itemize{
+\item The reference arm will always the first level of \code{arm_var}. Please change the level if you want to
+change the reference arms.
 \item The table allows confidence level to be adjusted, default is 2-sided 5\%.
 \item The stratified analysis is with DISCRETE tie handling (equivalent to \code{tern::control_coxreg(ties = "exact")} in R).
 \item Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),

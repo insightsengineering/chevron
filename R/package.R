@@ -21,4 +21,5 @@
 #' @importFrom stats setNames median sd quantile
 #' @importFrom stringr str_dup
 #' @importFrom tibble tribble
+#' @importFrom utils modifyList
 "_PACKAGE"

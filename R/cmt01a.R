@@ -4,8 +4,8 @@
 #'
 #' @inheritParams gen_args
 #' @param incl_n_treatment (`flag`) include total number of treatments per medication.
-#' @param medcat_var (`string`) the variable defining the medication category. By default `ATC2`.
-#' @param medname_var (`string`) the variable defining the medication name. By default `CMDECOD`.
+#' @param row_split_var (`character`) the variable defining the medication category. By default `ATC2`.
+#' @param medname_var (`string`) variable name of medical treatment name.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
@@ -17,37 +17,36 @@
 #'  the specific medication.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adcm` table with the columns specified in `medcat_var` and `medname_var` as well
-#'  as `"CMSEQ"`.
+#'  * `adam_db` object must contain an `adcm` table with the columns specified in `row_split_var` and `medname_var`
+#' as well as `"CMSEQ"`.
 #'
 #' @export
 #'
 cmt01a_main <- function(adam_db,
                         arm_var = "ARM",
                         incl_n_treatment = TRUE,
-                        medcat_var = "ATC2",
+                        row_split_var = "ATC2",
                         medname_var = "CMDECOD",
                         lbl_overall = NULL,
                         ...) {
   assert_all_tablenames(adam_db, "adsl", "adcm")
   checkmate::assert_string(arm_var)
   checkmate::assert_flag(incl_n_treatment)
-  checkmate::assert_string(medcat_var)
-  checkmate::assert_string(medname_var)
-  assert_valid_variable(adam_db$adcm, c(arm_var, medcat_var, medname_var), types = list(c("character", "factor")))
+  checkmate::assert_character(row_split_var, null.ok = TRUE)
+  assert_valid_variable(adam_db$adcm, c(arm_var, row_split_var, medname_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adcm, arm_var)
 
-  lbl_medcat_var <- var_labels_for(adam_db$adcm, medcat_var)
+  lbl_row_split <- var_labels_for(adam_db$adcm, row_split_var)
   lbl_medname_var <- var_labels_for(adam_db$adcm, medname_var)
 
   lyt <- cmt01a_lyt(
     arm_var = arm_var,
     incl_n_treatment = incl_n_treatment,
     lbl_overall = lbl_overall,
-    medcat_var = medcat_var,
-    lbl_medcat_var = lbl_medcat_var,
+    row_split_var = row_split_var,
+    lbl_row_split = lbl_row_split,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var
   )
@@ -62,59 +61,51 @@ cmt01a_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @inheritParams cmt01a_main
 #' @param lbl_medname_var (`string`) label for the variable defining the medication name.
-#' @param lbl_medcat_var (`string`) label for the variable defining the medication category.
-#'
 #' @keywords internal
 #'
 cmt01a_lyt <- function(arm_var,
                        lbl_overall,
                        incl_n_treatment = TRUE,
-                       medcat_var,
-                       lbl_medcat_var,
+                       row_split_var,
+                       lbl_row_split,
                        medname_var,
                        lbl_medname_var) {
   if (incl_n_treatment) {
     stats <- c("unique", "nonunique")
     labels <- c(
-      unique = "Total number of patients with at least one treatment",
-      nonunique = "Total number of treatments"
+      "Total number of patients with at least one treatment",
+      "Total number of treatments"
+    )
+  } else {
+    stats <- c("unique")
+    labels <- c(
+      "Total number of patients with at least one treatment"
     )
   }
-
-
-  basic_table() %>%
+  lyt <- basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    summarize_num_patients(
-      var = "USUBJID",
+    analyze_num_patients(
+      vars = "USUBJID",
       count_by = "CMSEQ",
       .stats = c("unique", "nonunique"),
+      show_labels = "hidden",
       .labels = c(
         unique = "Total number of patients with at least one treatment",
         nonunique = "Total number of treatments"
       )
-    ) %>%
-    split_rows_by(
-      medcat_var,
-      child_labels = "visible",
-      nested = FALSE,
-      indent_mod = -1L,
-      split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_medcat_var
-    ) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      count_by = "CMSEQ",
-      .stats = stats,
-      .labels = labels
-    ) %>%
+    )
+  for (k in seq_len(length(row_split_var))) {
+    lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k], stats, labels, count_by = "CMSEQ")
+  }
+  lyt %>%
     count_occurrences(
       vars = medname_var,
+      drop = length(row_split_var) > 0,
       .indent_mods = -1L
     ) %>%
-    append_topleft(paste0("  ", lbl_medname_var))
+    append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), lbl_medname_var))
 }
 
 #' @describeIn cmt01a Preprocessing
@@ -127,7 +118,7 @@ cmt01a_pre <- function(adam_db, ...) {
   adam_db$adcm <- adam_db$adcm %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      CMDECOD = reformat(.data$CMDECOD, nocoding),
+      CMDECOD = with_label(reformat(.data$CMDECOD, nocoding), "Other Treatment"),
       ATC2 = reformat(.data$ATC2, nocoding),
       CMSEQ = as.character(.data$CMSEQ)
     )
@@ -142,17 +133,20 @@ cmt01a_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-cmt01a_post <- function(tlg, prune_0 = TRUE, sort_by_freq = FALSE, medcat_var = "ATC2", medname_var = "CMDECOD", ...) {
+cmt01a_post <- function(
+    tlg, prune_0 = TRUE,
+    sort_by_freq = FALSE, row_split_var = "ATC2",
+    medname_var = "CMDECOD", ...) {
   if (sort_by_freq) {
     tlg <- tlg %>%
       tlg_sort_by_var(
-        var = medcat_var,
+        var = row_split_var,
         scorefun = cont_n_allcols
       )
   }
   tlg <- tlg %>%
     tlg_sort_by_var(
-      var = c(medcat_var, medname_var),
+      var = c(row_split_var, medname_var),
       scorefun = score_occurrences
     )
   if (prune_0) {

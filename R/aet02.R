@@ -75,7 +75,10 @@ aet02_lyt <- function(arm_var,
       )
     )
   for (k in seq_len(length(row_split_var))) {
-    lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k])
+    lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k],
+      stats = c("unique", "nonunique"),
+      summarize_labels = c("Total number of patients with at least one adverse event", "Total number of events")
+    )
   }
   lyt %>%
     count_occurrences(
@@ -136,74 +139,3 @@ aet02 <- chevron_t(
   postprocess = aet02_post,
   adam_datasets = c("adsl", "adae")
 )
-
-
-split_and_summ_num_patients <- function(lyt, var, label) {
-  checkmate::assert_string(var)
-  checkmate::assert_string(label)
-  lyt %>%
-    split_rows_by(
-      var,
-      child_labels = "visible",
-      nested = TRUE,
-      split_fun = rtables::drop_split_levels,
-      label_pos = "topleft",
-      split_label = label
-    ) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = "Total number of patients with at least one adverse event",
-        nonunique = "Total number of events"
-      )
-    )
-}
-
-get_sort_path <- function(x) {
-  checkmate::assert_character(x, null.ok = TRUE)
-  x2 <- as.character(rbind(x, rep("*", length(x))))
-  x2[-length(x2)]
-}
-
-tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
-  purrr::reduce(
-    .x = lapply(seq_len(length(vars)), function(i) vars[seq_len(i)]),
-    .f = tlg_sort_by_var,
-    .init = tlg,
-    scorefun = scorefun,
-    ...
-  )
-}
-
-tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
-  checkmate::assert_character(var)
-  if (length(var) == 0) {
-    return(tlg)
-  }
-  var_path <- get_sort_path(var)
-  tlg %>%
-    valid_sort_at_path(
-      path = var_path,
-      scorefun = scorefun,
-      ...
-    )
-}
-
-valid_sort_at_path <- function(tt, path, scorefun, ...) {
-  if (valid_row_path(tt, path)) {
-    sort_at_path(tt, path, scorefun, ...)
-  } else {
-    tt
-  }
-}
-
-valid_row_path <- function(tlg, row_path) {
-  if (nrow(tlg) == 0) {
-    return(TRUE)
-  }
-  rpaths <- row_paths(tlg)
-  non_star <- which(row_path != "*") + 1
-  rpaths_choice <- unique(lapply(rpaths, `[`, non_star))
-  any(vapply(rpaths_choice, identical, FUN.VALUE = TRUE, y = row_path[non_star - 1]))
-}

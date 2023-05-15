@@ -8,8 +8,8 @@ cmt01a_lyt(
   arm_var,
   lbl_overall,
   incl_n_treatment = TRUE,
-  medcat_var,
-  lbl_medcat_var,
+  row_split_var,
+  lbl_row_split,
   medname_var,
   lbl_medname_var
 )
@@ -21,11 +21,9 @@ cmt01a_lyt(
 
 \item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
 
-\item{medcat_var}{(\code{string}) the variable defining the medication category. By default \code{ATC2}.}
+\item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
-\item{lbl_medcat_var}{(\code{string}) label for the variable defining the medication category.}
-
-\item{medname_var}{(\code{string}) the variable defining the medication name. By default \code{CMDECOD}.}
+\item{medname_var}{(\code{string}) variable name of medical treatment name.}
 
 \item{lbl_medname_var}{(\code{string}) label for the variable defining the medication name.}
 }
