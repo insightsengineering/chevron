@@ -23,20 +23,18 @@
 #' @export
 #'
 egt05_qtcat_main <- function(adam_db,
-                               arm_var = "ACTARM",
-                               summaryvars = c("AVALCAT1", "CHGCAT1"),
-                               lbl_overall = NULL,
-                               visitvar = "AVISIT",
-                               ...) {
-
+                             arm_var = "ACTARM",
+                             summaryvars = c("AVALCAT1", "CHGCAT1"),
+                             lbl_overall = NULL,
+                             visitvar = "AVISIT",
+                             ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(visitvar)
   assert_valid_var(adam_db$adeg, visitvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
-  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("numeric")))
-  assert_single_value(adam_db$adeg$PARAMCD)
-  assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
-  assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
+  assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
   summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars) # Value at visit / change from baseline
@@ -52,12 +50,12 @@ egt05_qtcat_main <- function(adam_db,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     lbl_cat = "Category",
-    lbl_headvisit = "Analysis Visit"
+    lbl_headvisit = lbl_avisit
   )
 
-   build_table(
+  build_table(
     lyt,
-    df = adam_db$adeg %>% filter(.data$PARAMCD %in% paramvar),
+    df = adam_db$adeg,
     alt_counts_df = adam_db$adsl
   )
 }
@@ -77,15 +75,15 @@ egt05_qtcat_main <- function(adam_db,
 #'
 #' @export
 egt05_qtcat_lyt <- function(arm_var,
-                              summaryvars,
-                              summaryvars_lbls,
-                              lbl_overall,
-                              visitvar,
-                              lbl_avisit,
-                              lbl_param,
-                              lbl_cat,
-                              lbl_headvisit) {
-  basic_table_deco(deco) %>%
+                            summaryvars,
+                            summaryvars_lbls,
+                            lbl_overall,
+                            visitvar,
+                            lbl_avisit,
+                            lbl_param,
+                            lbl_cat,
+                            lbl_headvisit) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -99,8 +97,7 @@ egt05_qtcat_lyt <- function(arm_var,
     split_rows_by(
       visitvar,
       split_fun = drop_split_levels,
-      label_pos = "hidden",
-      split_label = lbl_avisit
+      label_pos = "hidden"
     ) %>%
     summarize_vars(
       vars = summaryvars,
@@ -118,7 +115,6 @@ egt05_qtcat_lyt <- function(arm_var,
 #' @export
 #'
 egt05_qtcat_pre <- function(adam_db, paramvar = "QT", ...) {
-
   adam_db$adeg <- adam_db$adeg %>%
     filter(
       .data$ANL01FL == "Y"
@@ -130,7 +126,7 @@ egt05_qtcat_pre <- function(adam_db, paramvar = "QT", ...) {
       AVISIT = with_label(.data$AVISIT, "Analysis Visit"),
       PARAM = with_label(.data$PARAM, "Parameter")
     ) %>%
-    filter(.data$PARAMCD == paramvar)
+    filter(.data$PARAMCD %in% paramvar)
 
   adam_db
 }
@@ -154,12 +150,10 @@ egt05_qtcat_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' db <- syn_data
-#' run(egt05_qtcat, db)
-#' run(egt05_qtcat, db, summaryvars = list("AVALCAT1", "Change" = "CHGCAT1"))
+#' run(egt05_qtcat, syn_data)
 egt05_qtcat <- chevron_t(
   main = egt05_qtcat_main,
   preprocess = egt05_qtcat_pre,
   postprocess = egt05_qtcat_post,
-  adam_datasets = c("adeg")
+  adam_datasets = c("adsl", "adeg")
 )

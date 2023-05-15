@@ -27,12 +27,12 @@ ext01_1_main <- function(adam_db,
                          lbl_overall = NULL,
                          ...) {
 
-
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   assert_valid_var(adam_db, "adex", summaryvars)
-  checkmate::assert_string(lbl_overall)
-
-
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
+  assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
 
@@ -40,7 +40,7 @@ ext01_1_main <- function(adam_db,
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
-    lbl_overall = lbl_overall,
+    lbl_overall = lbl_overall
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
@@ -61,9 +61,8 @@ ext01_1_main <- function(adam_db,
 ext01_1_lyt <- function(arm_var,
                         summaryvars,
                         summaryvars_lbls,
-                        lbl_overall,
-                        deco) {
-  basic_table_deco(deco) %>%
+                        lbl_overall) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -71,7 +70,11 @@ ext01_1_lyt <- function(arm_var,
       "PARAM",
       split_fun = drop_split_levels
     ) %>%
-    summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+    summarize_vars(
+      vars = summaryvars,
+      var_labels = summaryvars_lbls,
+      show_labels = "hidden"
+    )
 
 }
 
@@ -79,12 +82,18 @@ ext01_1_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
+#' @param show_stats (`character`) providing the name of the parameters whose statistical summary should be
+#'   presented. To analyze all, provide `show_stats = "ALL"` (Default), to analyze none, provide `show_stats = ""`.
 #'
+#' @param show_bins (`character`) providing the name of the parameters whose categorical summary should be
+#'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
 #'
 #' @export
 #'
 ext01_1_pre <- function(adam_db,
-                        paramcd_order = list("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
+                        paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
+                        show_stats = "ALL",
+                        show_bins = "ALL",
                         ...) {
 
   adam_db$adex <- adam_db$adex %>%
@@ -93,10 +102,20 @@ ext01_1_pre <- function(adam_db,
   if (nrow(adam_db$adex) > 0L) {
     param_vars <- adam_db$adex %>%
       dplyr::select("PARAM", "PARAMCD") %>%
-      dunlin::co_relevels("PARAMCD", "PARAM", unlist(paramcd_order))
+      dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
 
     adam_db$adex <- adam_db$adex %>%
       mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD)
+  }
+
+  if (!"ALL" %in% show_stats) {
+    adam_db$adex <- adam_db$adex %>%
+      mutate(AVAL = ifelse(.data$PARAM %in% show_stats, .data$AVAL, NA))
+  }
+
+  if (!"ALL" %in% show_bins) {
+    adam_db$adex <- adam_db$adex %>%
+      mutate(AVALCAT1 = ifelse(.data$PARAM %in% show_bins, .data$AVALCAT1, NA))
   }
 
   adam_db
@@ -122,6 +141,7 @@ ext01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' @examples
 #' run(ext01_1, syn_data)
+#' run(ext01_1, syn_data, summaryvars = c("AVAL", "AVALCAT1"))
 ext01_1 <- chevron_t(
   main = ext01_1_main,
   preprocess = ext01_1_pre,
