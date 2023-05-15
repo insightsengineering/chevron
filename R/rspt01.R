@@ -1,6 +1,6 @@
-# rspt01_1 ----
+# rspt01 ----
 
-#' @describeIn rspt01_1 Main TLG function
+#' @describeIn rspt01 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
@@ -32,29 +32,50 @@
 #' @export
 #'
 #'
-rspt01_1_main <- function(adam_db,
-                          dataset = "adrs",
-                          arm_var = "ARM",
-                          ref_group = NULL,
-                          odds_ratio = TRUE,
-                          perform_analysis = c("unstrat"),
-                          strata = NULL,
-                          conf_level = 0.95,
-                          methods = list(),
-                          deco = std_deco("RSPT01"),
-                          ...) {
-  anl <- adam_db[[dataset]]
-  assert_colnames(anl, c(arm_var, strata, "PARAMCD", "is_rsp", "rsp_lab"))
-  assert_single_paramcd(anl$PARAMCD)
+rspt01_main <- function(adam_db,
+                        dataset = "adrs",
+                        arm_var = "ARM",
+                        ref_group = NULL,
+                        odds_ratio = TRUE,
+                        perform_analysis = c("unstrat"),
+                        strata = NULL,
+                        conf_level = 0.95,
+                        methods = list(),
+                        ...) {
+  checkmate::assert_string(dataset)
+  assert_all_tablenames(adam_db, "adsl", dataset)
   checkmate::assert_string(ref_group, null.ok = TRUE)
   checkmate::assert_flag(odds_ratio)
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
-  checkmate::assert_character(strata, null.ok = !"stata" %in% perform_analysis)
+  checkmate::assert_character(
+    strata,
+    null.ok = !"stata" %in% perform_analysis,
+    min.len = as.integer(!"stata" %in% perform_analysis)
+  )
+  checkmate::assert_string(arm_var)
+  df_label <- sprintf("adam_db$%s", dataset)
+  assert_valid_variable(
+    adam_db$adsl, c("USUBJID", arm_var),
+    types = list(c("character", "factor"))
+  )
+  assert_valid_variable(
+    adam_db[[dataset]], c("USUBJID", arm_var, "RSP_LAB"),
+    types = list(c("character", "factor")), label = df_label
+  )
+  assert_valid_variable(adam_db[[dataset]], "IS_RSP", types = list("logical"), label = df_label)
+  assert_valid_variable(
+    adam_db[[dataset]], c("PARAMCD", "PARAM"),
+    types = list(c("character", "factor")), label = df_label
+  )
+  assert_single_value(adam_db[[dataset]]$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
+  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
+  checkmate::assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
 
-  arm_level <- lvls(anl[[arm_var]])
-  ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
+  if (is.null(ref_group)) {
+    ref_group <- lvls(adam_db[[dataset]][[arm_var]])[1]
+  }
 
-  lyt <- rspt01_1_lyt(
+  lyt <- rspt01_lyt(
     arm_var = arm_var,
     ref_group = ref_group,
     odds_ratio = odds_ratio,
@@ -62,33 +83,32 @@ rspt01_1_main <- function(adam_db,
     strata = strata,
     conf_level = conf_level,
     methods = methods,
-    deco = deco
+    rsp_var = "IS_RSP"
   )
 
-  tbl <- build_table(lyt, anl)
+  tbl <- build_table(lyt, adam_db[[dataset]], alt_counts_df = adam_db$adsl)
 
   tbl
 }
 
-#' @describeIn rspt01_1 Layout
+#' rspt01 Layout
 #'
 #' @inheritParams gen_args
 #'
+#' @keywords internal
 #'
-#' @export
-#'
-rspt01_1_lyt <- function(arm_var,
-                         ref_group,
-                         odds_ratio,
-                         perform_analysis,
-                         strata,
-                         conf_level,
-                         methods,
-                         deco) {
+rspt01_lyt <- function(arm_var,
+                       ref_group,
+                       odds_ratio,
+                       perform_analysis,
+                       strata,
+                       conf_level,
+                       methods,
+                       rsp_var) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var, ref_group = ref_group) %>%
     estimate_proportion(
-      vars = "is_rsp",
+      vars = rsp_var,
       conf_level = conf_level,
       method = methods[["prop_conf_method"]] %||% "waldcc",
       table_names = "est_prop"
@@ -101,13 +121,14 @@ rspt01_1_lyt <- function(arm_var,
         odds_ratio = odds_ratio,
         strata = if (perform == "strat") strata else NULL,
         conf_level = conf_level,
-        methods = methods
+        methods = methods,
+        rsp_var = rsp_var
       )
   }
 
   lyt <- lyt01 %>%
     estimate_multinomial_response(
-      var = "rsp_lab",
+      var = "RSP_LAB",
       conf_level = conf_level,
       method = methods[["prop_conf_method"]] %||% "waldcc"
     )
@@ -115,35 +136,28 @@ rspt01_1_lyt <- function(arm_var,
   return(lyt)
 }
 
-#' @describeIn rspt01_1 Preprocessing
+#' @describeIn rspt01 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param responder (`string`) responder defined in the table, by default use c("CR", "PR").
 #'
 #' @export
 #'
 #' @examples
-#' rspt01_1_pre(syn_data)
-rspt01_1_pre <- function(adam_db, arm_var = "ARM", dataset = "adrs", responder = c("CR", "PR"),
-                         ...) {
-  assert_all_tablenames(adam_db, c("adsl", dataset))
-  assert_colnames(adam_db[[dataset]], c(arm_var, "AVALC"))
-
-  adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    mutate(rsp_lab = d_onco_rsp_label(AVALC)) %>%
-    mutate(is_rsp = AVALC %in% responder)
-
+#' rspt01_pre(syn_data)
+rspt01_pre <- function(adam_db, ...) {
+  adam_db$adrs <- adam_db$adrs %>%
+    mutate(RSP_LAB = tern::d_onco_rsp_label(AVALC)) %>%
+    mutate(IS_RSP = AVALC %in% c("CR", "PR"))
   adam_db
 }
 
-#' @describeIn rspt01_1 Postprocessing
+#' @describeIn rspt01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #'
 #' @export
-rspt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+rspt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -163,58 +177,14 @@ rspt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' library(dunlin)
 #'
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
-#' run(rspt01_1, syn_data2)
-#' run(rspt01_1, syn_data2,
+#' run(rspt01, syn_data2)
+#' run(rspt01, syn_data2,
 #'   odds_ratio = FALSE, perform_analysis = c("unstrat", "strat"),
 #'   strata = c("STRATA1", "STRATA2"), methods = list(diff_pval_method = "fisher")
 #' )
-rspt01_1 <- chevron_t(
-  main = rspt01_1_main,
-  preprocess = rspt01_1_pre,
-  postprocess = rspt01_1_post,
+rspt01 <- chevron_t(
+  main = rspt01_main,
+  preprocess = rspt01_pre,
+  postprocess = rspt01_post,
   adam_datasets = c("adsl")
 )
-
-#' @describeIn rspt01_1 get proportion layout
-#'
-#' @inheritParams gen_args
-#' @param lyt layout created by `rtables`
-#'
-#' @export
-proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio = TRUE) {
-  lyt <- lyt %>%
-    estimate_proportion_diff(
-      vars = "is_rsp",
-      show_labels = "visible",
-      var_labels = if (is.null(strata)) "Unstratified Analysis" else "Stratified Analysis",
-      conf_level = conf_level,
-      method = if (is.null(strata)) {
-        methods[["diff_conf_method"]] %||% "waldcc"
-      } else {
-        methods[["strat_diff_conf_method"]] %||% "cmh"
-      },
-      variables = list(strata = strata),
-      table_names = if (is.null(strata)) "est_prop_diff" else "est_prop_diff_strat"
-    ) %>%
-    test_proportion_diff(
-      vars = "is_rsp",
-      method = if (is.null(strata)) {
-        methods[["diff_pval_method"]] %||% "chisq"
-      } else {
-        methods[["strat_diff_pval_method"]] %||% "cmh"
-      },
-      variables = list(strata = strata),
-      table_names = if (is.null(strata)) "test_prop_diff" else "test_prop_diff_strat"
-    )
-
-  if (odds_ratio) {
-    lyt <- lyt %>%
-      estimate_odds_ratio(
-        vars = "is_rsp",
-        variables = if (is.null(strata)) list(strata = NULL, arm = NULL) else list(strata = strata, arm = arm_var),
-        table_names = if (is.null(strata)) "est_or" else "est_or_strat"
-      )
-  }
-
-  lyt
-}

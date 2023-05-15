@@ -188,3 +188,48 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 split_rows_by_recurive <- function(lyt, split_var, ...) {
   purrr::reduce(.x = split_var, .f = split_rows_by, .init = lyt, ...)
 }
+
+#' Proportion layout
+#'
+#' @inheritParams rspt01_main
+#' @param lyt layout created by `rtables`
+#'
+#' @keywords internal
+proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio = TRUE, rsp_var = "IS_RSP") {
+  non_stratified <- length(strata) == 0L
+  lyt <- lyt %>%
+    estimate_proportion_diff(
+      vars = rsp_var,
+      show_labels = "visible",
+      var_labels = if (non_stratified) "Unstratified Analysis" else "Stratified Analysis",
+      conf_level = conf_level,
+      method = if (non_stratified) {
+        methods[["diff_conf_method"]] %||% "waldcc"
+      } else {
+        methods[["strat_diff_conf_method"]] %||% "cmh"
+      },
+      variables = list(strata = strata),
+      table_names = if (non_stratified) "est_prop_diff" else "est_prop_diff_strat"
+    ) %>%
+    test_proportion_diff(
+      vars = rsp_var,
+      method = if (non_stratified) {
+        methods[["diff_pval_method"]] %||% "chisq"
+      } else {
+        methods[["strat_diff_pval_method"]] %||% "cmh"
+      },
+      variables = list(strata = strata),
+      table_names = if (non_stratified) "test_prop_diff" else "test_prop_diff_strat"
+    )
+
+  if (odds_ratio) {
+    lyt <- lyt %>%
+      estimate_odds_ratio(
+        vars = rsp_var,
+        variables = if (non_stratified) list(strata = strata, arm = arm_var),
+        table_names = if (non_stratified) "est_or" else "est_or_strat"
+      )
+  }
+
+  lyt
+}
