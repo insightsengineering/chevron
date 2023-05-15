@@ -5,10 +5,9 @@
 \alias{lbt06_main}
 \alias{lbt06_lyt}
 \alias{lbt06_pre}
-\alias{lbt06_check}
 \alias{lbt06_post}
 \alias{lbt06}
-\title{\code{LBT06} Table 1 (Default) Laboratory Abnormalities by Visit and Baseline Status.}
+\title{\code{LBT06} Table 1 (Default) Laboratory Abnormalities by Visit and Baseline Status Table 1.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -16,33 +15,30 @@ An object of class \code{chevron_t} of length 1.
 lbt06_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c("AVISIT", "ANRIND"),
   paramcd = NULL,
-  lbl_param = "Laboratory Test",
-  lbl_anrind = "Direction of Abnormality",
+  avisit_var = "AVISIT",
+  anrind_var = "ANRIND",
+  lbl_paramcd = "Parameter",
+  lbl_avisit = "Visit",
+  lbl_anrind = "Abnormality at Visit",
+  lbl_bnrind = "Baseline Status",
   deco = std_deco("LBT06"),
   ...
 )
 
-lbt06_lyt(arm_var, summaryvars, paramcd, lbl_paramcd, lbl_anrind, deco)
-
-lbt06_pre(
-  adam_db,
-  arm_var = "ACTARM",
-  summaryvars = c("AVISIT", "ANRIND"),
-  lab_vars = c("ONTRTFL", "PARCAT2", "AVAL"),
-  paramcd = NULL,
-  ...
-)
-
-lbt06_check(
-  adam_db,
+lbt06_lyt(
   arm_var,
-  summaryvars,
-  lab_vars,
   paramcd,
-  req_tables = c("adsl", "adlb")
+  avisit_var,
+  anrind_var,
+  lbl_paramcd,
+  lbl_avisit,
+  lbl_anrind,
+  lbl_bnrind,
+  deco
 )
+
+lbt06_pre(adam_db, ...)
 
 lbt06_post(tlg, prune_0 = FALSE, ...)
 
@@ -51,17 +47,25 @@ lbt06
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{string}) variable used for column splitting}
+\item{arm_var}{(\code{string}) the arm variable used for arm splitting.}
 
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
+\item{paramcd}{(\code{string}) the variable for parameter code.}
 
-\item{lbl_anrind}{(\code{string}) label of the \code{ANRIND} variable.}
+\item{avisit_var}{(\code{string}) the variable for analysis visit.}
+
+\item{anrind_var}{(\code{string}) the variable for analysis reference range indicator.}
+
+\item{lbl_paramcd}{(\code{string}) text label of the \code{PARAMCD} variable.}
+
+\item{lbl_avisit}{(\code{string}) text label of the \code{AVISIT} variable.}
+
+\item{lbl_anrind}{(\code{string}) text label of the \code{ANRIND} variable.}
+
+\item{lbl_bnrind}{(\code{string}) text label of the \code{BNRIND} variable.}
 
 \item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
 
 \item{...}{not used.}
-
-\item{req_tables}{(\code{character}) names of the required tables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -76,7 +80,7 @@ baseline status summary.
 \item Only count LOW or HIGH values.
 \item Lab test results with missing \code{ANRIND} values are excluded.
 \item Split columns by arm, typically \code{ACTARM}.
-\item Do include a total column by default.
+\item Keep zero count rows by default.
 }
 }
 \section{Functions}{
@@ -87,15 +91,13 @@ baseline status summary.
 
 \item \code{lbt06_pre()}: Preprocessing
 
-\item \code{lbt06_check()}: Checks
-
 \item \code{lbt06_post()}: Postprocessing
 
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adlb} table with columns ``,
-and column specified by \code{arm_var}.
+\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"ACTARM"}, \code{"AVISIT"},
+\code{"ANRIND"}, \code{"BNRIND"}, \code{"ONTRTFL"}, and \code{"PARCAT2"}.
 }
 }
 \examples{
@@ -104,3 +106,4 @@ run(lbt06, syn_data)
 run(lbt06, syn_data, paramcd = "PARAMCD")
 }
 \keyword{datasets}
+\keyword{internal}

@@ -3,35 +3,54 @@
 #' @describeIn lbt06 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_param (`string`) label of the `PARAM` variable.
-#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
+#' @param arm_var (`string`) the arm variable used for arm splitting.
+#' @param paramcd (`string`) the variable for parameter code.
+#' @param avisit_var (`string`) the variable for analysis visit.
+#' @param anrind_var (`string`) the variable for analysis reference range indicator.
+#' @param lbl_paramcd (`string`) text label of the `PARAMCD` variable.
+#' @param lbl_avisit (`string`) text label of the `AVISIT` variable.
+#' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
+#' @param lbl_bnrind (`string`) text label of the `BNRIND` variable.
 #'
 #' @details
 #'  * Only count LOW or HIGH values.
 #'  * Lab test results with missing `ANRIND` values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
-#'  * Do include a total column by default.
+#'  * Keep zero count rows by default.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adlb` table with columns ``,
-#'  and column specified by `arm_var`.
+#'  * `adam_db` object must contain an `adlb` table with columns `"ACTARM"`, `"AVISIT"`,
+#'  `"ANRIND"`, `"BNRIND"`, `"ONTRTFL"`, and `"PARCAT2"`.
 #'
 #' @export
 #'
 lbt06_main <- function(adam_db,
                        arm_var = "ACTARM",
-                       summaryvars = c("AVISIT", "ANRIND"),
                        paramcd = NULL,
-                       lbl_param = "Laboratory Test",
-                       lbl_anrind = "Direction of Abnormality",
+                       avisit_var = "AVISIT",
+                       anrind_var = "ANRIND",
+                       lbl_paramcd = "Parameter",
+                       lbl_avisit = "Visit",
+                       lbl_anrind = "Abnormality at Visit",
+                       lbl_bnrind = "Baseline Status",
                        deco = std_deco("LBT06"),
                        ...) {
+  assert_all_tablenames(adam_db, "adsl", "adlb")
+
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(paramcd, null.ok = TRUE)
+  checkmate::assert_string(avisit_var)
+  checkmate::assert_string(anrind_var)
+
   lyt <- lbt06_lyt(
     arm_var = arm_var,
-    summaryvars = summaryvars,
     paramcd = paramcd,
-    lbl_param = lbl_param,
+    avisit_var = avisit_var,
+    anrind_var = anrind_var,
+    lbl_paramcd = lbl_paramcd,
+    lbl_avisit = lbl_avisit,
     lbl_anrind = lbl_anrind,
+    lbl_bnrind = lbl_bnrind,
     deco = deco
   )
 
@@ -44,34 +63,33 @@ lbt06_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @inheritParams gen_args
-#' @param lbl_param (`string`) label of the `PARAM` variable.
-#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
-#'
-#' @export internal
+#' @keywords internal
 #'
 lbt06_lyt <- function(arm_var,
-                      summaryvars,
                       paramcd,
+                      avisit_var,
+                      anrind_var,
                       lbl_paramcd,
+                      lbl_avisit,
                       lbl_anrind,
+                      lbl_bnrind,
                       deco) {
   basic_table_deco(deco, show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     ifneeded_split_row(paramcd, lbl_paramcd) %>%
     split_rows_by(
-      var = summaryvars[1],
+      var = avisit_var,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = paste(lbl_param)
+      split_label = paste(lbl_avisit)
     ) %>%
     count_abnormal_by_baseline(
-      var = summaryvars[2],
+      var = anrind_var,
       abnormal = c(Low = "LOW", High = "HIGH"),
       .indent_mods = 4L
     ) %>%
-    append_topleft(paste("   ", lbl_anrind)) %>%
-    append_topleft("      Baseline Status")
+    append_topleft(paste("    ", lbl_anrind)) %>%
+    append_topleft(paste("            ", lbl_bnrind))
 }
 
 #' @describeIn lbt06 Preprocessing
@@ -80,13 +98,7 @@ lbt06_lyt <- function(arm_var,
 #'
 #' @export
 #'
-lbt06_pre <- function(adam_db, arm_var = "ACTARM", summaryvars = c("AVISIT", "ANRIND"),
-                      lab_vars = c("ONTRTFL", "PARCAT2", "AVAL"), paramcd = NULL, ...) {
-  lbt06_check(adam_db,
-    arm_var = arm_var, summaryvars = summaryvars, lab_vars = lab_vars,
-    paramcd = paramcd
-  )
-
+lbt06_pre <- function(adam_db, ...) {
   new_format <- list(
     adlb = list(
       ANRIND = rule("<Missing>" = c("", NA, "<Missing>")),
@@ -99,39 +111,10 @@ lbt06_pre <- function(adam_db, arm_var = "ACTARM", summaryvars = c("AVISIT", "AN
   adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ONTRTFL == "Y",
-      .data$PARCAT2 == "SI",
-      !is.na(.data$AVAL)
+      .data$PARCAT2 == "SI"
     )
 
   adam_db
-}
-
-#' @describeIn lbt06 Checks
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-lbt06_check <- function(adam_db,
-                        arm_var,
-                        summaryvars,
-                        lab_vars,
-                        paramcd,
-                        req_tables = c("adsl", "adlb")) {
-  assert_all_tablenames(adam_db, req_tables)
-
-  msg <- NULL
-
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(
-    "USUBJID", arm_var, summaryvars, lab_vars,
-    paramcd
-  )))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
 }
 
 #' @describeIn lbt06 Postprocessing
@@ -147,7 +130,7 @@ lbt06_post <- function(tlg, prune_0 = FALSE, ...) {
   std_postprocess(tlg)
 }
 
-#' `LBT06` Table 1 (Default) Laboratory Abnormalities by Visit and Baseline Status.
+#' `LBT06` Table 1 (Default) Laboratory Abnormalities by Visit and Baseline Status Table 1.
 #'
 #' The `LBT06` table produces the standard laboratory abnormalities by visit and
 #' baseline status summary.
