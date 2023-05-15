@@ -293,3 +293,37 @@ gg_list <- function(...) {
 droplevels.character <- function(x, ...) {
   x
 }
+
+#' Obtain levels from vector
+#' @param x object to obtain levels.
+#' @details
+#' For factors, the levels will be returned. For characters, the sorted unique values will be returned.
+#' @export
+lvls <- function(x) {
+  UseMethod("lvls")
+}
+#' @export
+lvls.default <- function(x) {
+  NULL
+}
+#' @export
+lvls.character <- function(x) {
+  sort(unique(x))
+}
+#' @export
+lvls.factor <- function(x) {
+  levels(x)
+}
+
+#' @keywords internal
+quote_str <- function(x) {
+  checkmate::assert_string(x)
+  paste0("`", x, "`")
+}
+
+#' @keywords internal
+modify_default_args <- function(fun, ...) {
+  ret <- fun
+  formals(ret) <- utils::modifyList(formals(fun), list(...), keep.null = TRUE)
+  return(ret)
+}

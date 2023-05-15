@@ -1,141 +1,92 @@
-test_that("aet01_1 function with default argument value return expected result with test data", {
-  pre_data <- aet01_1_pre(syn_data)
-  raw_res <- aet01_1_main(pre_data)
+test_that("ael01_nollt function with default argument value return expected result with test data", {
+  pre_data <- ael01_nollt_pre(syn_data)
+  raw_res <- ael01_nollt_main(pre_data)
+  res <- ael01_nollt_post(raw_res)
+  expect_snapshot(res)
+})
+
+test_that("aet01 function with default argument value return expected result with test data", {
+  pre_data <- aet01_pre(syn_data)
+  raw_res <- aet01_main(pre_data)
   res <- aet01_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet01_2 functions with default argument value return expected result with test data", {
-  pre_data <- aet01_2_pre(syn_data)
-  raw_res <- aet01_2_main(pre_data)
-  res <- aet01_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("aet01_aesi_1 function with default argument value return expected result with test data", {
-  pre_data <- aet01_aesi_1_pre(syn_data)
-  raw_res <- aet01_aesi_1_main(pre_data)
+test_that("aet01_aesi function with default argument value return expected result with test data", {
+  pre_data <- aet01_aesi_pre(syn_data)
+  raw_res <- aet01_aesi_main(pre_data)
   res <- aet01_aesi_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("ael01_nollt_1 function with default argument value return expected result with test data", {
-  pre_data <- ael01_nollt_1_pre(syn_data)
-  raw_res <- ael01_nollt_1_main(pre_data)
-  res <- ael01_nollt_1_post(raw_res)
+test_that("aet02 functions with default argument value return expected result with test data", {
+  pre_data <- aet02_pre(syn_data)
+  raw_res <- aet02_main(pre_data)
+  res <- aet02_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet02_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet02_1_pre(syn_data)
-  raw_res <- aet02_1_main(pre_data)
-  res <- aet02_1_post(raw_res)
+test_that("aet03 functions with default argument value return expected result with test data", {
+  pre_data <- aet03_pre(syn_data)
+  raw_res <- aet03_main(pre_data)
+  res <- aet03_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet02_2 functions with default argument value return expected result with test data", {
-  pre_data <- aet02_2_pre(syn_data)
-  raw_res <- aet02_2_main(pre_data)
-  res <- aet02_2_post(raw_res)
+test_that("aet04 functions with default argument value return expected result with test data", {
+  pre_data <- aet04_pre(syn_data)
+  raw_res <- aet04_main(pre_data)
+  res <- aet04_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("aet02_3 functions with default argument value return expected result with test data", {
-  pre_data <- aet02_3_pre(syn_data)
-  raw_res <- aet02_3_main(pre_data)
-  res <- aet02_3_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("aet03_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet03_1_pre(syn_data)
-  raw_res <- aet03_1_main(pre_data)
-  res <- aet03_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("aet04_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet04_1_pre(syn_data)
-  raw_res <- aet04_1_main(pre_data)
-  res <- aet04_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("aet10_1 functions with default argument value return expected result with test data", {
-  pre_data <- aet10_1_pre(syn_data)
-  raw_res <- aet10_1_main(pre_data)
-  res <- aet10_1_post(raw_res)
+test_that("aet10 functions with default argument value return expected result with test data", {
+  pre_data <- aet10_pre(syn_data)
+  raw_res <- aet10_main(pre_data)
+  res <- aet10_post(raw_res)
   expect_snapshot(res)
 })
 
 test_that("cmt01a_1 functions with default argument value return expected result with test data", {
-  pre_data <- cmt01a_1_pre(syn_data)
-  raw_res <- cmt01a_1_main(pre_data)
-  res <- cmt01a_1_post(raw_res)
+  pre_data <- cmt01a_pre(syn_data)
+  raw_res <- cmt01a_main(pre_data)
+  res <- cmt01a_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("cmt01a_2 functions with default argument value return expected result with test data", {
-  pre_data <- cmt01a_2_pre(syn_data)
-  raw_res <- cmt01a_2_main(pre_data)
-  res <- cmt01a_2_post(raw_res)
+test_that("cmt02_pt functions with default argument value return expected result with test data", {
+  pre_data <- cmt02_pt_pre(syn_data)
+  raw_res <- cmt02_pt_main(pre_data)
+  res <- cmt02_pt_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("cmt01a_3 functions with default argument value return expected result with test data", {
-  pre_data <- cmt01a_3_pre(syn_data)
-  raw_res <- cmt01a_3_main(pre_data)
-  res <- cmt01a_3_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("cmt02_pt_1 functions with default argument value return expected result with test data", {
-  pre_data <- cmt02_pt_1_pre(syn_data)
-  raw_res <- cmt02_pt_1_main(pre_data)
-  res <- cmt02_pt_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("coxt02_1 functions with default argument value return expected result with test data", {
+test_that("coxt02 functions with default argument value return expected result with test data", {
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
-  pre_data <- coxt02_1_pre(proc_data)
-  raw_res <- coxt02_1_main(pre_data)
-  res <- coxt02_1_post(raw_res)
+  pre_data <- coxt02_pre(proc_data)
+  raw_res <- coxt02_main(pre_data)
+  res <- coxt02_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("dmt01_1 functions with default argument value return expected result with test data", {
-  pre_data <- dmt01_1_pre(syn_data)
-  raw_res <- dmt01_1_main(pre_data)
-  res <- dmt01_1_post(raw_res)
+test_that("dmt01 functions with default argument value return expected result with test data", {
+  pre_data <- dmt01_pre(syn_data)
+  raw_res <- dmt01_main(pre_data)
+  res <- dmt01_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("dst01_1 functions with default argument value return expected result with test data", {
-  pre_data <- dst01_1_pre(syn_data)
-  raw_res <- dst01_1_main(pre_data)
-  res <- dst01_1_post(raw_res)
+test_that("dst01 functions with default argument value return expected result with test data", {
+  pre_data <- dst01_pre(syn_data)
+  raw_res <- dst01_main(pre_data)
+  res <- dst01_post(raw_res)
   expect_snapshot(res)
 })
 
-test_that("dst01_2 functions with default argument value return expected result with test data", {
-  pre_data <- dst01_2_pre(syn_data)
-  raw_res <- dst01_2_main(pre_data)
-  res <- dst01_2_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("dst01_3 functions with default argument value return expected result with test data", {
-  pre_data <- dst01_3_pre(syn_data)
-  raw_res <- dst01_3_main(pre_data)
-  res <- dst01_3_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("dtht01_1 functions with default argument value return expected result with test data", {
-  pre_data <- dtht01_1_pre(syn_data)
-  raw_res <- dtht01_1_main(pre_data)
-  res <- dtht01_1_post(raw_res)
+test_that("dtht01 functions with default argument value return expected result with test data", {
+  pre_data <- dtht01_pre(syn_data)
+  raw_res <- dtht01_main(pre_data)
+  res <- dtht01_post(raw_res)
   expect_snapshot(res)
 })
 
@@ -189,7 +140,8 @@ test_that("ext01_1 functions with default argument value return expected result 
 })
 
 test_that("ext01_2 functions with default argument value return expected result with test data", {
-  pre_data <- ext01_2_pre(syn_data)
+  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "TDOSE", "adex")
+  pre_data <- ext01_2_pre(proc_data)
   raw_res <- ext01_2_main(pre_data)
   res <- ext01_2_post(raw_res)
   expect_snapshot(res)
@@ -272,12 +224,6 @@ test_that("rmpt01_1 function with default argument value return expected result 
   expect_snapshot(res)
 })
 
-test_that("vst01_1 functions with default argument value return expected result with test data", {
-  pre_data <- vst01_1_pre(syn_data)
-  raw_res <- vst01_1_main(pre_data)
-  res <- vst01_1_post(raw_res)
-  expect_snapshot(res)
-})
 
 test_that("vst01_1 functions with default argument value return expected result with test data", {
   pre_data <- vst01_1_pre(syn_data)
@@ -286,16 +232,9 @@ test_that("vst01_1 functions with default argument value return expected result 
   expect_snapshot(res)
 })
 
-test_that("vst02_1 functions with default argument value return expected result with test data", {
-  pre_data <- vst02_1_pre(syn_data)
-  raw_res <- vst02_1_main(pre_data)
-  res <- vst02_1_post(raw_res)
-  expect_snapshot(res)
-})
-
-test_that("vst02_2 functions with default argument value return expected result with test data", {
-  pre_data <- vst02_2_pre(syn_data)
-  raw_res <- vst02_2_main(pre_data)
-  res <- vst02_2_post(raw_res)
+test_that("vst01_1 functions with default argument value return expected result with test data", {
+  pre_data <- vst01_1_pre(syn_data)
+  raw_res <- vst01_1_main(pre_data)
+  res <- vst01_1_post(raw_res)
   expect_snapshot(res)
 })

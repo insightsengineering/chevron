@@ -102,7 +102,7 @@ lbt14_1_pre <- function(adam_db,
     )
   )
 
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
     adam_db$adlb <- adam_db$adlb %>%
@@ -114,7 +114,7 @@ lbt14_1_pre <- function(adam_db,
       } else {
         .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>")))
+      mutate(BTOXGR = reformat(.data$BTOXGR, rule("0" = c("0", "<Missing>"))))
   }
 
   adam_db$adlb <- adam_db$adlb %>%
@@ -305,7 +305,7 @@ lbt14_2_pre <- function(adam_db,
     )
   )
 
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  adam_db <- reformat(adam_db, new_format, na_last = TRUE)
 
   if (gr_missing == "excl") {
     adam_db$adlb <- adam_db$adlb %>%
@@ -317,7 +317,7 @@ lbt14_2_pre <- function(adam_db,
       } else {
         .data$BTOXGR
       }) %>%
-      mutate(BTOXGR = forcats::fct_collapse(.data$BTOXGR, "0" = c("0", "<Missing>")))
+      mutate(BTOXGR = reformat(.data$BTOXGR, rule("0" = c("0", "<Missing>"))))
   }
 
   adam_db$adlb <- adam_db$adlb %>%

@@ -30,11 +30,14 @@ Imports:
     magrittr,
     methods,
     nestcolor (>= 0.1.1),
+    purrr,
+    stringr,
     rlang,
     rlistings (>= 0.2.1),
     rtables (>= 0.6.0),
     tern (>= 0.8.1),
-    tibble
+    tibble,
+    utils
 Suggests:
     knitr,
     rmarkdown,
@@ -93,6 +96,9 @@ Collate:
     'package.R'
     'pdt01.R'
     'pdt02.R'
+    'reexports.R'
     'rmpt01.R'
+    'rtables_utils.R'
+    'standard_rules.R'
     'vst01.R'
     'vst02.R'

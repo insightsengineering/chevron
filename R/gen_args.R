@@ -23,6 +23,7 @@
 #' @param key_cols (`character`) names of columns that should be treated as key columns when rendering the listing.
 #'   Key columns allow you to group repeat occurrences.
 #' @param disp_cols (`character`) names of non-key columns which should be displayed when the listing is rendered.
+#' @param split_var (`character`) recursive split row variable.
 #' @param ... not used.
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.
@@ -30,5 +31,5 @@
 gen_args <- function(adam_db, main, preprocess, postprocess, adam_datasets,
                      type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
                      tlg, tlgfname, visit_var, visit_value, paramcd_value,
-                     key_cols, disp_cols, ...) {
+                     key_cols, disp_cols, split_var, ...) {
 }

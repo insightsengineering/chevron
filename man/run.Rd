@@ -5,9 +5,9 @@
 \alias{run,chevron_tlg-method}
 \title{Run the pipeline}
 \usage{
-run(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE)
+run(object, adam_db, auto_pre = TRUE, ...)
 
-\S4method{run}{chevron_tlg}(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE)
+\S4method{run}{chevron_tlg}(object, adam_db, auto_pre = TRUE, ...)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
@@ -17,8 +17,6 @@ run(object, adam_db, auto_pre = TRUE, ..., check_arg = TRUE)
 \item{auto_pre}{(\code{flag}) whether to perform the default pre processing step.}
 
 \item{...}{extra arguments to pass to the pre-processing, main and post-processing functions.}
-
-\item{check_arg}{(\code{flag}) whether to check if all arguments are used.}
 }
 \description{
 Run the pipeline

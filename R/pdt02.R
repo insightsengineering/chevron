@@ -125,7 +125,7 @@ pdt02_1_pre <- function(adam_db, dvreas_var = "DVREAS", dvterm_var = "DVTERM", .
   names(fmt_ls) <- c(dvreas_var, dvterm_var, "DVSEQ")
   new_format <- list(addv = fmt_ls)
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn pdt02_1 Postprocessing

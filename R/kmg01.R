@@ -41,7 +41,7 @@ kmg01_1_main <- function(adam_db,
                          ...) {
   anl <- adam_db[[dataset]]
   assert_colnames(anl, c("PARAMCD", "is_event", arm_var))
-  assert_single_paramcd(anl$PARAMCD)
+  assert_single_value(anl$PARAMCD)
   checkmate::assert_string(x_name)
   checkmate::assert_string(y_name)
   checkmate::assert_flag(show_statis)

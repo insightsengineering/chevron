@@ -118,7 +118,7 @@ mht01_1_pre <- function(adam_db, ...) {
     )
   )
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn mht01_1 Postprocessing

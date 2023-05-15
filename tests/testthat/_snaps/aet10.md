@@ -1,4 +1,4 @@
-# aet10_1 can handle NA values
+# aet10 can handle NA values
 
     Code
       res
@@ -8,7 +8,7 @@
         ——————————————————————————————————————————————————————————————————
         No Coding Available     122 (91.0%)   123 (91.8%)    120 (90.9%)  
 
-# aet10_1 can handle some NA values
+# aet10 can handle some NA values
 
     Code
       res

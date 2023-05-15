@@ -106,7 +106,7 @@
           Mean (SD)                          33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
           Median                                33.0          35.0            35.0            34.0    
           Min - Max                          21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
-        Age group (yr)                                                                                
+        Age Group                                                                                     
           n                                      134           134            132             400     
           <65                                134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
           >=65                                    0             0           1 (0.8%)        1 (0.2%)  
@@ -120,7 +120,7 @@
           HISPANIC OR LATINO                 15 (11.2%)    18 (13.4%)      15 (11.4%)      48 (12.0%) 
           NOT HISPANIC OR LATINO             104 (77.6%)   103 (76.9%)    101 (76.5%)     308 (77.0%) 
           UNKNOWN                             9 (6.7%)      3 (2.2%)        5 (3.8%)       17 (4.2%)  
-        Race                                                                                          
+        RACE                                                                                          
           n                                      134           134            132             400     
           AMERICAN INDIAN OR ALASKA NATIVE    8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  
           ASIAN                              68 (50.7%)    68 (50.7%)      73 (55.3%)     209 (52.2%) 
@@ -132,30 +132,19 @@
     Code
       res
     Output
-       [1] "# Edit Preprocessing Function."                                                                                                                                      
-       [2] "pre_fun <- function(adam_db, ...) {"                                                                                                                                 
-       [3] "  assert_all_tablenames(adam_db, c(\"adsl\", \"adae\"))"                                                                                                             
-       [4] ""                                                                                                                                                                    
-       [5] "  new_format <- list("                                                                                                                                               
-       [6] "    adae = list("                                                                                                                                                    
-       [7] "      AEBODSYS = rule(\"No Coding Available\" = c(\"\", NA, \"<Missing>\")),"                                                                                        
-       [8] "      AEDECOD = rule(\"No Coding Available\" = c(\"\", NA, \"<Missing>\")),"                                                                                         
-       [9] "      ATOXGR = rule(\"No Grading Available\" = c(\"\", NA, \"<Missing>\"))"                                                                                          
-      [10] "    )"                                                                                                                                                               
-      [11] "  )"                                                                                                                                                                 
-      [12] ""                                                                                                                                                                    
-      [13] "  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)"                                                                                                  
-      [14] ""                                                                                                                                                                    
-      [15] "  adam_db$adae <- adam_db$adae %>%"                                                                                                                                  
-      [16] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                                              
-      [17] "    filter(.data$ATOXGR != \"No Grading Available\") %>%"                                                                                                            
-      [18] "    mutate(ATOXGR = factor(.data$ATOXGR,"                                                                                                                            
-      [19] "      levels = setdiff(levels(.data$ATOXGR), \"No Grading Available\")"                                                                                              
-      [20] "    ))"                                                                                                                                                              
-      [21] ""                                                                                                                                                                    
-      [22] "  adam_db"                                                                                                                                                           
-      [23] "}"                                                                                                                                                                   
-      [24] ""                                                                                                                                                                    
-      [25] "# Create TLG"                                                                                                                                                        
-      [26] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04_1, !!!args_ls, auto_pre = FALSE, check_arg = FALSE)"
+       [1] "# Edit Preprocessing Function."                                                                                                                 
+       [2] "pre_fun <- function(adam_db, ...) {"                                                                                                            
+       [3] "  atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")"                                                                                          
+       [4] "  adam_db$adae <- adam_db$adae %>%"                                                                                                             
+       [5] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                         
+       [6] "    mutate("                                                                                                                                    
+       [7] "      AEBODSYS = reformat(.data$AEBODSYS, nocoding),"                                                                                           
+       [8] "      AEDECOD = reformat(.data$AEDECOD, nocoding),"                                                                                             
+       [9] "      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)"                                                                                      
+      [10] "    )"                                                                                                                                          
+      [11] "  adam_db"                                                                                                                                      
+      [12] "}"                                                                                                                                              
+      [13] ""                                                                                                                                               
+      [14] "# Create TLG"                                                                                                                                   
+      [15] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04, !!!args_ls, auto_pre = FALSE)"
 

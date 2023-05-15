@@ -2,11 +2,11 @@ test_that("aet03 can handle NA values", {
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
-      AEBODSYS = NA_character_,
-      AEDECOD = NA_character_
+      AEBODSYS = with_label(NA_character_, var_labels_for(syn_data$adae, "AEBODSYS")),
+      AEDECOD = with_label(NA_character_, var_labels_for(syn_data$adae, "AEDECOD"))
     )
 
-  res1 <- expect_silent(run(aet03_1, proc_data))
+  res1 <- expect_silent(run(aet03, proc_data))
   expect_snapshot(res1)
 })
 
@@ -18,11 +18,11 @@ test_that("aet03 can handle some NA values", {
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
-      AEBODSYS = .env$new_aebodsys,
-      AEDECOD = .env$new_aedecod,
+      AEBODSYS = with_label(.env$new_aebodsys, var_labels_for(syn_data$adae, "AEBODSYS")),
+      AEDECOD = with_label(.env$new_aedecod, var_labels_for(syn_data$adae, "AEDECOD")),
       ASEV = .env$new_asev
     )
 
-  res1 <- expect_silent(run(aet03_1, proc_data))
+  res1 <- expect_silent(run(aet03, proc_data))
   expect_snapshot(res1)
 })

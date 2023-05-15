@@ -1,5 +1,0 @@
-dataset: "adlb"
-arm_var: "ARM"
-center_fun: "median"
-interval_fun: "mean_ci"
-show_table: FALSE,

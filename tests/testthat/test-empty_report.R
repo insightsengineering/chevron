@@ -10,62 +10,38 @@ test_that("tlg functions return null reports when domain table is empty", {
   )
 
   empty_listing <- rlistings::as_listing(
-    df = data.frame(x = formatters::with_label(
+    df = data.frame(x = with_label(
       "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
     ))
   )
 
   rtables::table_inset(empty_report) <- 2L
 
-  res <- run(aet01_1, dat_empty, prune_0 = TRUE)
+  res <- run(aet01, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
 
-  res <- run(aet01_2, dat_empty, prune_0 = TRUE)
+  res <- run(aet01_aesi, dat_empty, prune_0 = TRUE)
   expect_identical(res, empty_report)
 
-  res <- run(aet01_aesi_1, dat_empty, prune_0 = TRUE)
+  res <- run(aet02, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(aet02_1, dat_empty)
+  res <- run(aet03, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(aet02_2, dat_empty)
+  res <- run(aet04, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(aet02_3, dat_empty)
+  res <- run(cmt01a, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(aet03_1, dat_empty)
+  res <- run(cmt02_pt, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(aet04_1, dat_empty)
+  res <- run(dst01, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(cmt01a_1, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(cmt01a_2, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(cmt01a_3, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(cmt02_pt_1, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(dmt01_1, dat_empty, summaryvars = c("Age (yo)" = "AGE"))
-  expect_identical(res, empty_report)
-
-  res <- run(dst01_1, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(dst01_2, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(dst01_3, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(dtht01_1, dat_empty)
+  res <- run(dtht01, dat_empty)
   expect_identical(res, empty_report)
 
   res <- run(egt01_1, dat_empty)
@@ -110,12 +86,9 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(vst01_1, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(vst02_1, dat_empty)
+  res <- run(vst02, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- run(vst02_2, dat_empty)
-  expect_identical(res, empty_report)
-
-  res <- run(ael01_nollt_1, dat_empty)
+  res <- run(ael01_nollt, dat_empty)
   expect_identical(res, empty_listing)
 })

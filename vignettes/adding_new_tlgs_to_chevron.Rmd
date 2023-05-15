@@ -24,9 +24,9 @@ The `chevron` package is a collection of function to create standard tables, lis
 reporting. Here we present the logic to request new tables for the end users and how to construct new `chevron_tlg` objects
 for the programmers. The list of the already available functions is available
 [here](https://glowing-giggle-c0c5190c.pages.github.io/reference/index.html). The naming convention for table functions
-is `<table name>_<design number>`. ex: `aet02_2`. The default design number is by convention the number 1. Layouts are internal
-functions that determine the underlying structure of a table. One table function is generally associated with one layout
-function. The naming convention for layout is  `<table name>_<design number>_lyt`. ex: `aet02_2_lyt`.
+is `<table name>`. ex: `aet02`. Layouts are internal functions that determine the underlying structure of a table.
+One table function is generally associated with one layout function.
+The naming convention for layout is  `<table name>_lyt`. ex: `aet02_lyt`.
 
 ## How to request a table
 

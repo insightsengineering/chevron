@@ -115,7 +115,7 @@ pdt01_1_pre <- function(adam_db, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", 
   names(fmt_ls) <- c(dvcode_var, dvterm_var, "DVSEQ")
   new_format <- list(addv = fmt_ls)
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  reformat(adam_db, new_format, na_last = TRUE)
 }
 
 #' @describeIn pdt01_1 Postprocessing
