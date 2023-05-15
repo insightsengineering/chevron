@@ -1,10 +1,9 @@
-# egt02_1 ----
+# egt02 ----
 
-#' @describeIn egt02_1 Main TLG function
+#' @describeIn egt02 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
+#' @param exclude_base_abn (`flag`)  subjects with baseline abnormality from numerator and denominator.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -17,29 +16,34 @@
 #'
 #' @export
 #'
-egt02_1_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_vs_assessment = "Assessment",
-                         lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = NULL,
-                         deco = std_deco("EGT02"),
-                         ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adeg")
+egt02_main <- function(adam_db,
+                       arm_var = "ACTARM",
+                       lbl_overall = NULL,
+                       exclude_base_abn = FALSE,
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
+  assert_valid_variable(adam_db$adeg, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db$adeg, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  checkmate::assert_flag(exclude_base_abn)
+  assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
+  assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
-  lyt <- egt02_1_lyt(
+  lyt <- egt02_lyt(
     arm_var = arm_var,
-    lbl_vs_assessment = lbl_vs_assessment,
-    lbl_vs_abnormality = lbl_vs_abnormality,
+    lbl_vs_assessment = "Assessment",
+    lbl_vs_abnormality = "Abnormality",
     lbl_overall = lbl_overall,
-    deco = deco
+    exclude_base_abn = exclude_base_abn
   )
 
-  tbl <- build_table(lyt, dbsel$adeg, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$adeg, alt_counts_df = adam_db$adsl)
 
   tbl
 }
 
-#' @describeIn egt02_1 Layout
+#' @describeIn egt02 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
@@ -47,12 +51,12 @@ egt02_1_main <- function(adam_db,
 #'
 #' @export
 #'
-egt02_1_lyt <- function(arm_var = "ACTARM",
-                        lbl_vs_assessment,
-                        lbl_vs_abnormality,
-                        lbl_overall,
-                        deco) {
-  basic_table_deco(deco) %>%
+egt02_lyt <- function(arm_var = "ACTARM",
+                      lbl_vs_assessment = "Assessment",
+                      lbl_vs_abnormality = "Abnormality",
+                      lbl_overall,
+                      exclude_base_abn) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -61,18 +65,19 @@ egt02_1_lyt <- function(arm_var = "ACTARM",
       "ANRIND",
       abnormal = list(Low = "LOW", High = "HIGH"),
       variables = list(id = "USUBJID", baseline = "BNRIND"),
-      exclude_base_abn = FALSE
+      exclude_base_abn = exclude_base_abn
     ) %>%
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn egt02_1 Preprocessing
+
+#' @describeIn egt02 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-egt02_1_pre <- function(adam_db, ...) {
+egt02_pre <- function(adam_db, ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
 
   adam_db$adeg <- adam_db$adeg %>%
@@ -82,138 +87,29 @@ egt02_1_pre <- function(adam_db, ...) {
   adam_db
 }
 
-#' @describeIn egt02_1 Postprocessing
+#' @describeIn egt02 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-egt02_1_post <- function(tlg, ...) {
+egt02_post <- function(tlg, ...) {
   std_postprocess(tlg)
 }
 
-#' `EGT02` Table 1 (Default) ECG Abnormalities Table 1.
+#' `EGT02` ECG Abnormalities Table.
 #'
-#' Assessments Outside Normal Limits Regardless of Abnormality at
+#' Assessments Outside Normal Limits with or without of Abnormality at
 #' Baseline Table.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
-#' run(egt02_1, syn_data)
-egt02_1 <- chevron_t(
-  main = egt02_1_main,
-  preprocess = egt02_1_pre,
-  postprocess = egt02_1_post,
-  adam_datasets = c("adsl", "adeg")
-)
-
-# egt02_2 ----
-
-#' @describeIn egt02_2 Main TLG function
-#'
-#' @inheritParams gen_args
-#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
-#'
-#' @details
-#'   * Only count LOW or HIGH values.
-#'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
-#'   * Does not include a total column by default.
-#'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
-#'
-#' @note
-#'   * `adam_db` object must contain an `adeg` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
-#'
-#' @export
-#'
-egt02_2_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_vs_assessment = "Assessment",
-                         lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = NULL,
-                         deco = std_deco("EGT02_2"),
-                         ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adeg")
-
-  lyt <- egt02_2_lyt(
-    arm_var = arm_var,
-    lbl_vs_assessment = lbl_vs_assessment,
-    lbl_vs_abnormality = lbl_vs_abnormality,
-    lbl_overall = lbl_overall,
-    deco = deco
-  )
-
-  tbl <- build_table(lyt, dbsel$adeg, alt_counts_df = dbsel$adsl)
-
-  tbl
-}
-
-#' @describeIn egt02_2 Layout
-#'
-#' @inheritParams gen_args
-#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
-#'
-#' @export
-#'
-egt02_2_lyt <- function(arm_var = "ACTARM",
-                        lbl_vs_assessment = "Assessment",
-                        lbl_vs_abnormality = "Abnormality",
-                        lbl_overall = NULL,
-                        deco = std_deco("EGT02_2")) {
-  basic_table_deco(deco) %>%
-    split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
-    split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
-    count_abnormal(
-      "ANRIND",
-      abnormal = list(Low = "LOW", High = "HIGH"),
-      variables = list(id = "USUBJID", baseline = "BNRIND"),
-      exclude_base_abn = TRUE
-    ) %>%
-    append_topleft(paste0(" ", lbl_vs_abnormality))
-}
-
-#' @describeIn egt02_2 Preprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-egt02_2_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adeg"))
-
-  adam_db$adeg <- adam_db$adeg %>%
-    filter(.data$ANRIND != "<Missing>") %>%
-    filter(.data$ONTRTFL == "Y")
-
-  adam_db
-}
-#' @describeIn egt02_2 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-egt02_2_post <- function(tlg, ...) {
-  std_postprocess(tlg)
-}
-
-#' `EGT02` Table 2 (Supplementary) ECG Abnormalities Table 2.
-#'
-#' Assessments Outside Normal Limits Among Subject Without
-#' Abnormality at Baseline.
-#'
-#' @include chevron_tlg-S4class.R
-#' @export
-#'
-#' @examples
-#' run(egt02_2, syn_data)
-egt02_2 <- chevron_t(
-  main = egt02_2_main,
-  preprocess = egt02_2_pre,
-  postprocess = egt02_2_post,
+#' run(egt02, syn_data)
+egt02 <- chevron_t(
+  main = egt02_main,
+  preprocess = egt02_pre,
+  postprocess = egt02_post,
   adam_datasets = c("adsl", "adeg")
 )

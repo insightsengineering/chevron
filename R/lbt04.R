@@ -19,7 +19,6 @@
 lbt04_main <- function(adam_db,
                        arm_var = "ACTARM",
                        ...) {
-
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   assert_valid_var(adam_db$adlb, c("PARAM", "AVALCAT1", "ANRIND"), types = list("characater", "factor"), na_ok = FALSE)

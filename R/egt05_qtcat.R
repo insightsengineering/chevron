@@ -28,11 +28,11 @@ egt05_qtcat_main <- function(adam_db,
                              lbl_overall = NULL,
                              visitvar = "AVISIT",
                              ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adex"))
+  assert_all_tablenames(adam_db, c("adsl", "adeg"))
   checkmate::assert_string(visitvar)
   assert_valid_var(adam_db$adeg, visitvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
-  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor")))
+  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor")), na_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))

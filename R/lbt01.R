@@ -28,13 +28,12 @@
 #' @export
 #'
 lbt01_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         summaryvars = c("AVAL", "CHG"),
-                         visitvar = "AVISIT",
-                         precision = list(),
-                         default_precision = 2,
-                         ...) {
-
+                       arm_var = "ACTARM",
+                       summaryvars = c("AVAL", "CHG"),
+                       visitvar = "AVISIT",
+                       precision = list(),
+                       default_precision = 2,
+                       ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   assert_valid_var(adam_db$adlb, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
@@ -84,14 +83,14 @@ lbt01_main <- function(adam_db,
 #' @keywords internal
 #'
 lbt01_lyt <- function(arm_var,
-                        summaryvars,
-                        summaryvars_lbls,
-                        visitvar,
-                        lbl_avisit,
-                        lbl_param,
-                        precision,
-                        default_precision) {
-   basic_table(show_colcounts = TRUE) %>%
+                      summaryvars,
+                      summaryvars_lbls,
+                      visitvar,
+                      lbl_avisit,
+                      lbl_param,
+                      precision,
+                      default_precision) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
       var = "PARAMCD",
@@ -113,7 +112,7 @@ lbt01_lyt <- function(arm_var,
     ) %>%
     analyze_colvars(
       afun = function(x, .var, .spl_context, precision, default_precision, ...) {
-        param_val <- .spl_context$value[1]
+        param_val <- .spl_context$value[which(.spl_context$split == "PARAMCD")]
 
         pcs <- precision[[param_val]] %||% default_precision
 
@@ -173,7 +172,6 @@ lbt01_lyt <- function(arm_var,
 #' @export
 #'
 lbt01_pre <- function(adam_db, ...) {
-
   adam_db$adlb <- adam_db$adlb %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(

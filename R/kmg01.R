@@ -27,20 +27,19 @@
 #' @return a list of `ggplot` objects.
 #' @export
 kmg01_main <- function(adam_db,
-                         dataset = "adtte",
-                         arm_var = "ARM",
-                         x_name = "Time (Days)",
-                         y_name = "Survival Probability",
-                         show_statis = TRUE,
-                         show_censor = TRUE,
-                         pval_method = "wald",
-                         ties = "exact",
-                         conf_level = 0.95,
-                         position_coxph = c(0, 0.05),
-                         position_surv_med = c(0.9, 0.9),
-                         line_col = as.list(nestcolor::color_palette()),
-                         ...) {
-
+                       dataset = "adtte",
+                       arm_var = "ARM",
+                       x_name = "Time (Days)",
+                       y_name = "Survival Probability",
+                       show_statis = TRUE,
+                       show_censor = TRUE,
+                       pval_method = "wald",
+                       ties = "exact",
+                       conf_level = 0.95,
+                       position_coxph = c(0, 0.05),
+                       position_surv_med = c(0.9, 0.9),
+                       line_col = as.list(nestcolor::color_palette()),
+                       ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   assert_valid_var(adam_db[[dataset]], "CNSR", types = list("numeric"))
   assert_valid_var(adam_db[[dataset]], "is_event", types = list("logical"))
@@ -101,7 +100,6 @@ kmg01_main <- function(adam_db,
 #'
 #' @export
 kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
-
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(is_event = .data$CNSR == 0)
 

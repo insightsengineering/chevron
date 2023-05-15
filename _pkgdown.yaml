@@ -67,15 +67,12 @@ reference:
       - dst01_2
       - dst01_3
       - dtht01_1
-      - egt01_1
-      - egt02_1
-      - egt02_2
-      - egt03_1
-      - egt03_2
-      - egt05_qtcat_1
-      - ext01_1
-      - ext01_2
-      - kmg01_1
+      - egt01
+      - egt02
+      - egt03
+      - egt05_qtcat
+      - ext01
+      - kmg01
       - lbt01
       - lbt04
       - lbt05
