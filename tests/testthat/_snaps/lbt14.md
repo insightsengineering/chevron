@@ -490,9 +490,6 @@
                       Not Low                          1 (100%)     3 (100%)       3 (100%)   
                       3                                   0            0          1 (33.3%)   
                       4                                1 (100%)     3 (100%)       3 (100%)   
-        ——————————————————————————————————————————————————————————————————————————————————————
-      
-        Patients with missing baseline values are excluded from the analysis.
 
 ---
 
@@ -583,9 +580,6 @@
                       Not Low                          1 (100%)     3 (100%)       3 (100%)   
                       3                                   0            0          1 (33.3%)   
                       4                                1 (100%)     3 (100%)       3 (100%)   
-        ——————————————————————————————————————————————————————————————————————————————————————
-      
-        Patients with missing baseline values are assumed to be Grade 0 at baseline.
 
 # lbt14 can handle all NA values with direction = high
 
@@ -921,9 +915,6 @@
                       2                               1 (25.0%)        0          1 (50.0%)   
                       3                                   0            0          1 (50.0%)   
                       4                                4 (100%)     1 (100%)       2 (100%)   
-        ——————————————————————————————————————————————————————————————————————————————————————
-      
-        Patients with missing baseline values are excluded from the analysis.
 
 ---
 
@@ -1024,7 +1015,4 @@
                       2                               1 (25.0%)        0          1 (50.0%)   
                       3                                   0            0          1 (50.0%)   
                       4                                4 (100%)     1 (100%)       2 (100%)   
-        ——————————————————————————————————————————————————————————————————————————————————————
-      
-        Patients with missing baseline values are assumed to be Grade 0 at baseline.
 

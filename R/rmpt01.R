@@ -26,7 +26,6 @@ rmpt01_main <- function(adam_db,
   checkmate::assert_string(parcat, null.ok = TRUE)
   checkmate::assert_character(summaryvars)
   assert_valid_var(adam_db$adex, c("USUBJID", "PARAMCD", summaryvars, parcat))
-
   lbl_parcat <- var_labels_for(adam_db$adex, parcat)
   lbl_vars <- var_labels_for(adam_db$adex, summaryvars)
 
@@ -92,7 +91,8 @@ rmpt01_pre <- function(adam_db,
   adam_db$adex <- adam_db$adex %>%
     mutate(
       AVALCAT1 = with_label(.data$AVALCAT1, "Patients"),
-      AVAL = with_label(.data$AVAL, "Person time*")
+      AVAL = with_label(.data$AVAL, "Person time*"),
+      PARCAT2 = with_label(.data$PARCAT2, "Parameter Category")
     )
 
 

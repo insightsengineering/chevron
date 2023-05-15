@@ -1,6 +1,6 @@
-# egt05_qtcat_1 ----
+# egt05_qtcat ----
 
-#' @describeIn egt05_qtcat_1 Main TLG function
+#' @describeIn egt05_qtcat Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
@@ -22,22 +22,28 @@
 #'
 #' @export
 #'
-egt05_qtcat_1_main <- function(adam_db,
+egt05_qtcat_main <- function(adam_db,
                                arm_var = "ACTARM",
-                               summaryvars = list("Value at Visit" = "AVALCAT1", "Change from Baseline" = "CHGCAT1"),
-                               summaryvars_lbls = get_labels(adam_db$adeg, summaryvars),
+                               summaryvars = c("AVALCAT1", "CHGCAT1"),
                                lbl_overall = NULL,
                                visitvar = "AVISIT",
-                               lbl_avisit = var_labels_for(adam_db$adeg, visitvar),
-                               paramvar = "QT",
-                               lbl_param = var_labels_for(adam_db$adeg, "PARAM"),
-                               deco = std_deco("EGT05_QTCAT"),
-                               lbl_cat = "Category",
-                               lbl_headvisit = "Analysis Visit",
                                ...) {
-  summaryvars <- unlist(summaryvars)
 
-  lyt <- egt05_qtcat_1_lyt(
+  assert_all_tablenames(adam_db, c("adsl", "adex"))
+  checkmate::assert_string(visitvar)
+  assert_valid_var(adam_db$adeg, visitvar, types = list("character", "factor"))
+  assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("numeric")))
+  assert_single_value(adam_db$adeg$PARAMCD)
+  assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
+  assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+
+  summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars) # Value at visit / change from baseline
+  lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
+  lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
+
+  lyt <- egt05_qtcat_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -45,19 +51,18 @@ egt05_qtcat_1_main <- function(adam_db,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
-    deco = deco,
-    lbl_cat = lbl_cat,
-    lbl_headvisit = lbl_headvisit
+    lbl_cat = "Category",
+    lbl_headvisit = "Analysis Visit"
   )
 
-  tbl <- build_table(
+   build_table(
     lyt,
     df = adam_db$adeg %>% filter(.data$PARAMCD %in% paramvar),
     alt_counts_df = adam_db$adsl
   )
 }
 
-#' @describeIn egt05_qtcat_1 Layout
+#' @describeIn egt05_qtcat Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -71,14 +76,13 @@ egt05_qtcat_1_main <- function(adam_db,
 #' @param lbl_headvisit (`string`) label of Visits in the header. Default as `Analysis Visit`.
 #'
 #' @export
-egt05_qtcat_1_lyt <- function(arm_var,
+egt05_qtcat_lyt <- function(arm_var,
                               summaryvars,
                               summaryvars_lbls,
                               lbl_overall,
                               visitvar,
                               lbl_avisit,
                               lbl_param,
-                              deco,
                               lbl_cat,
                               lbl_headvisit) {
   basic_table_deco(deco) %>%
@@ -107,44 +111,43 @@ egt05_qtcat_1_lyt <- function(arm_var,
     append_topleft(paste0("    ", lbl_cat))
 }
 
-#' @describeIn egt05_qtcat_1 Preprocessing
+#' @describeIn egt05_qtcat Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-egt05_qtcat_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  assert_colnames(adam_db$adeg, c("AVALCAT1", "CHGCAT1"))
+egt05_qtcat_pre <- function(adam_db, paramvar = "QT", ...) {
 
   adam_db$adeg <- adam_db$adeg %>%
     filter(
       .data$ANL01FL == "Y"
-    )
+    ) %>%
+    mutate(across(all_of(c("AVALCAT1", "CHGCAT1")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
+    mutate(
+      AVALCAT1 = with_label(.data$AVALCAT1, "Value at Visit"),
+      CHGCAT1 = with_label(.data$CHGCAT1, "Change from Baseline"),
+      AVISIT = with_label(.data$AVISIT, "Analysis Visit"),
+      PARAM = with_label(.data$PARAM, "Parameter")
+    ) %>%
+    filter(.data$PARAMCD == paramvar)
 
-  new_format <- list(
-    adeg = list(
-      AVALCAT1 = rule(),
-      CHGCAT1 = rule()
-    )
-  )
-
-  reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
-#' @describeIn egt05_qtcat_1 Postprocessing
+#' @describeIn egt05_qtcat Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
-egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE, ...) {
+egt05_qtcat_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)
 }
 
-#' `EGT05_QTCAT` Table 1 (Default) ECG Actual Values and Changes from Baseline by Visit Table 1.
+#' `EGT05_QTCAT` ECG Actual Values and Changes from Baseline by Visit Table.
 #'
-#' The `EGT05_QTCAT` table 1 summarizes several electrocardiogram parameters and their evolution
+#' The `EGT05_QTCAT` table summarizes several electrocardiogram parameters and their evolution
 #' throughout the study.
 #'
 #' @include chevron_tlg-S4class.R
@@ -152,11 +155,11 @@ egt05_qtcat_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' @examples
 #' db <- syn_data
-#' run(egt05_qtcat_1, db)
-#' run(egt05_qtcat_1, db, summaryvars = list("AVALCAT1", "Change" = "CHGCAT1"))
-egt05_qtcat_1 <- chevron_t(
-  main = egt05_qtcat_1_main,
-  preprocess = egt05_qtcat_1_pre,
-  postprocess = egt05_qtcat_1_post,
+#' run(egt05_qtcat, db)
+#' run(egt05_qtcat, db, summaryvars = list("AVALCAT1", "Change" = "CHGCAT1"))
+egt05_qtcat <- chevron_t(
+  main = egt05_qtcat_main,
+  preprocess = egt05_qtcat_pre,
+  postprocess = egt05_qtcat_post,
   adam_datasets = c("adeg")
 )

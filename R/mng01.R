@@ -64,10 +64,12 @@ mng01_main <- function(adam_db,
   checkmate::assert_flag(show_v_grid)
   checkmate::assert_names(legend_pos, subset.of = c("top", "bottom", "right", "left"))
   checkmate::assert_list(line_col, types = "character", null.ok = TRUE)
-  assert_valid_variable(adam_db[[dataset]], c(x_var, y_var, y_unit, arm_var))
-  assert_valid_variable(adam_db[[dataset]], arm_var)
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(adam_db[[dataset]], x_var)
+  assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
+  assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db[[dataset]], arm_var, types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
 
   df <- adam_db[[dataset]]

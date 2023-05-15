@@ -24,12 +24,10 @@ mht01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("admh", "adsl"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), empty_ok = TRUE)
-  assert_valid_variable(adam_db$admh, "USUBJID", empty_ok = TRUE)
-  assert_valid_variable(adam_db$adsl, "USUBJID")
+  assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$admh, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$admh, arm_var)
-
-  dbsel <- get_db_data(adam_db, "adsl", "admh")
 
   lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
@@ -41,7 +39,7 @@ mht01_main <- function(adam_db,
     lbl_mhdecod = lbl_mhdecod
   )
 
-  tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$admh, alt_counts_df = adam_db$adsl)
 
   tbl
 }

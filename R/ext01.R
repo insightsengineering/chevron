@@ -3,7 +3,7 @@
 #' @describeIn ext01_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
+#' @param summaryvars (`character`) variables to be analyzed. Names are used as subtitles. For values
 #'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
 #'
 #' @details
@@ -25,10 +25,14 @@ ext01_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          summaryvars = "AVAL",
                          lbl_overall = NULL,
-                         deco = std_deco("EXT01"),
                          ...) {
-  summaryvars <- unlist(summaryvars)
-  assert_colnames(adam_db$adex, summaryvars)
+
+
+  assert_all_tablenames(adam_db, c("adsl", "adex"))
+  assert_valid_var(adam_db, "adex", summaryvars)
+  checkmate::assert_string(lbl_overall)
+
+
 
   summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
 
@@ -37,7 +41,6 @@ ext01_1_main <- function(adam_db,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
-    deco = deco
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
@@ -69,6 +72,7 @@ ext01_1_lyt <- function(arm_var,
       split_fun = drop_split_levels
     ) %>%
     summarize_vars(vars = summaryvars, var_labels = summaryvars_lbls)
+
 }
 
 #' @describeIn ext01_1 Preprocessing
@@ -82,7 +86,6 @@ ext01_1_lyt <- function(arm_var,
 ext01_1_pre <- function(adam_db,
                         paramcd_order = list("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
                         ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adex"))
 
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARCAT1 == "OVERALL")
@@ -189,6 +192,7 @@ ext01_2_lyt <- function(arm_var,
                         summaryvars_lbls,
                         lbl_overall,
                         deco = std_deco("EXT01")) {
+
   basic_table_deco(deco) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%

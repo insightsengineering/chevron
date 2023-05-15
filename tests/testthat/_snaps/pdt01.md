@@ -45,8 +45,8 @@
         ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one major protocol deviation   22 (16.4%)   23 (17.2%)     13 (9.8%)   
         Total number of major protocol deviations                                 40           42             21      
-        No Coding available                                                                                           
-          No Coding available                                                 22 (16.4%)   23 (17.2%)     13 (9.8%)   
+        No Coding Available                                                                                           
+          No Coding Available                                                 22 (16.4%)   23 (17.2%)     13 (9.8%)   
 
 # pdt01 can handle some NA values
 
@@ -84,6 +84,6 @@
           Failure to sign updated ICF within two visits                        1 (0.7%)     1 (0.7%)       1 (0.8%)   
           Missed 2 or more efficacy assessments                                2 (1.5%)        0           1 (0.8%)   
           Omission of complete lab panel required by protocol                     0         1 (0.7%)       1 (0.8%)   
-        No Coding available                                                                                           
-          No Coding available                                                  1 (0.7%)     1 (0.7%)          0       
+        No Coding Available                                                                                           
+          No Coding Available                                                  1 (0.7%)     1 (0.7%)          0       
 

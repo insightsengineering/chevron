@@ -33,15 +33,15 @@ pdt02_main <- function(adam_db,
   checkmate::assert_string(dvreas_var)
   checkmate::assert_string(dvterm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$addv, c(dvreas_var, dvterm_var, "DVSEQ"))
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(adam_db$addv, "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(adam_db$addv, c(dvreas_var, dvterm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$addv, c( "DVSEQ"), types = list(c("numeric", "factor")))
+  assert_valid_variable(adam_db$addv, c( "AEPRELFL"), types = list("factor"))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
 
   lbl_dvreas_var <- var_labels_for(adam_db$addv, dvreas_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
-
-  dbsel <- get_db_data(adam_db, "adsl", "addv")
 
   lyt <- pdt02_lyt(
     arm_var = arm_var,
@@ -52,7 +52,7 @@ pdt02_main <- function(adam_db,
     lbl_dvterm_var = lbl_dvterm_var
   )
 
-  tbl <- build_table(lyt, dbsel$addv, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$addv, alt_counts_df = adam_db$adsl)
 
   tbl
 }
@@ -112,6 +112,7 @@ pdt02_lyt <- function(arm_var,
 pdt02_pre <- function(adam_db,
                       ...) {
   adam_db$addv <- adam_db$addv %>%
+    mutate(across(all_of(c("DVCAT", "AEPRELFL")), ~ reformat(.x, missing_rule, na_last = TRUE))) %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
     mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
     mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE))) %>%

@@ -32,9 +32,9 @@ pdt01_main <- function(adam_db,
   checkmate::assert_string(dvcode_var)
   checkmate::assert_string(dvterm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$addv, c(dvcode_var, dvterm_var, "DVSEQ"))
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
-  assert_valid_variable(adam_db$addv, "USUBJID", empty_ok = TRUE)
+  assert_valid_variable(adam_db$addv, c(dvcode_var, dvterm_var, "DVSEQ"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
 
   lbl_dvcode_var <- var_labels_for(adam_db$addv, dvcode_var)

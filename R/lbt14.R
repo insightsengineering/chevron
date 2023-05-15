@@ -157,12 +157,6 @@ lbt14_pre <- function(adam_db,
 lbt14_post <- function(tlg, prune_0 = TRUE, gr_missing = "incl", direction = "low", ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
 
-  if (gr_missing == "excl") {
-    main_footer(tlg) <- "Patients with missing baseline values are excluded from the analysis."
-  } else if (gr_missing == "gr_0") {
-    main_footer(tlg) <- "Patients with missing baseline values are assumed to be Grade 0 at baseline."
-  }
-
   main_title(tlg) <- if (direction == "low") {
     "LBT14 - Low Direction"
   } else {
