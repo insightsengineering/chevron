@@ -40,7 +40,6 @@ kmg01_main <- function(adam_db,
                        position_surv_med = c(0.9, 0.9),
                        line_col = as.list(nestcolor::color_palette()),
                        ...) {
-
   assert_all_tablenames(adam_db, c("adsl", dataset))
   assert_valid_var(adam_db[[dataset]], "CNSR", types = list("numeric"))
   assert_valid_var(adam_db[[dataset]], "is_event", types = list("logical"))

@@ -1,6 +1,6 @@
-# egt02 ----
+# egt02_1 ----
 
-#' @describeIn egt02 Main TLG function
+#' @describeIn egt02_1 Main TLG function
 #'
 #' @inheritParams gen_args
 #'
@@ -16,11 +16,10 @@
 #' @export
 #'
 egt02_1_main <- function(adam_db,
-                       arm_var = "ACTARM",
-                       lbl_overall = NULL,
-                       ...) {
-
-  exclude_base_abn = FALSE
+                         arm_var = "ACTARM",
+                         lbl_overall = NULL,
+                         ...) {
+  exclude_base_abn <- FALSE
 
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   assert_valid_variable(adam_db$adeg, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
@@ -44,7 +43,7 @@ egt02_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt02 Layout
+#' @describeIn egt02_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
@@ -72,7 +71,7 @@ egt02_lyt <- function(arm_var = "ACTARM",
 }
 
 
-#' @describeIn egt02 Preprocessing
+#' @describeIn egt02_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -88,7 +87,7 @@ egt02_pre <- function(adam_db, ...) {
   adam_db
 }
 
-#' @describeIn egt02 Postprocessing
+#' @describeIn egt02_1 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -132,11 +131,10 @@ egt02_1 <- chevron_t(
 #' @export
 #'
 egt02_2_main <- function(adam_db,
-                       arm_var = "ACTARM",
-                       lbl_overall = NULL,
-                       ...) {
-
-  exclude_base_abn = TRUE
+                         arm_var = "ACTARM",
+                         lbl_overall = NULL,
+                         ...) {
+  exclude_base_abn <- TRUE
 
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   assert_valid_variable(adam_db$adeg, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
