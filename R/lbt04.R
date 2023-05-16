@@ -29,7 +29,6 @@ lbt04_main <- function(adam_db,
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-  checkmate::assert_true(any(lvls(adam_db$adlb$ANRIND) %in% c("HIGH", "LOW", "HIGH HIGH", "LOW LOW")))
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
 

@@ -16,6 +16,8 @@ vst01_main(
   arm_var = "ACTARM",
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
+  precision = list(),
+  default_precision = 2,
   ...
 )
 
@@ -35,6 +37,12 @@ where no name is provided, the label attribute of the corresponding column in \c
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed}
+
+\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
+indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
+represented with one more decimal of precision.}
+
+\item{default_precision}{(\code{integer}) the default number of digits.}
 
 \item{...}{not used.}
 

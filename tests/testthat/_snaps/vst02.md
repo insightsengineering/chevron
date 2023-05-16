@@ -1,7 +1,7 @@
 # vst02 functions with default argument value return expected result with test data
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Assessment                   A: Drug X        B: Placebo     C: Combination
          Abnormality                  (N=134)          (N=134)          (N=132)    
@@ -28,7 +28,7 @@
 # vst02 functions return expected result with test data when excluding subject with baseline abnormality
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Assessment                   A: Drug X        B: Placebo     C: Combination
          Abnormality                  (N=134)          (N=134)          (N=132)    

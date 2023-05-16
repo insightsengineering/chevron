@@ -1,7 +1,7 @@
 # dtht01 can handle all NA values
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                  A: Drug X    B: Placebo   C: Combination
                                   (N=134)      (N=134)        (N=132)    
@@ -9,11 +9,14 @@
         Total number of deaths   25 (18.7%)   23 (17.2%)     22 (16.7%)  
         Primary Cause of Death                                           
           n                          0            0              0       
+          Adverse Event              0            0              0       
+          Progressive Disease        0            0              0       
+          Other                      0            0              0       
 
 # dtht01 can handle some NA values
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                                                     A: Drug X    B: Placebo   C: Combination
                                                                      (N=134)      (N=134)        (N=132)    
@@ -48,7 +51,7 @@
 # dtht01 can be parametrize as expected
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                                                     A: Drug X    B: Placebo   C: Combination
                                                                      (N=134)      (N=134)        (N=132)    

@@ -18,14 +18,14 @@ test_that("dst01 can handle all NA values in DCSREAS", {
     )
 
   res <- expect_silent(run(dst01, proc_data, detail_vars = list()))
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("dst01 can handle some NA values", {
   proc_data <- syn_data
   proc_data$adsl[1:2, c("EOSSTT", "DCSREAS")] <- NA
   res <- expect_silent(run(dst01, proc_data))
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("dst01 can handle missing levels in status_var", {
@@ -35,22 +35,22 @@ test_that("dst01 can handle missing levels in status_var", {
       EOSSTT = with_label(factor(.data$EOSSTT, levels = "ONGOING"), var_labels_for(syn_data$adsl, "EOSSTT")),
     )
   res <- expect_silent(run(dst01, proc_data, detail_vars = list()))
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("dst01 can create variants", {
   res <- expect_silent(run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS", Discontinued = "DCSREAS")))
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("dst01 can create variants", {
   res <- expect_silent(run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS"))))
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("dst01 can create variants", {
   res <- expect_silent(
     run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")), trt_status_var = "EOTSTT")
   )
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })

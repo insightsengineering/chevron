@@ -1,7 +1,7 @@
 # aet04 can handle NA values
 
     Code
-      cat(export_as_txt(res1, lpp = 100))
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -39,7 +39,7 @@
 ---
 
     Code
-      cat(export_as_txt(res3, lpp = 100))
+      cat(formatters::export_as_txt(res3, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -77,7 +77,7 @@
 # aet04 can handle some NA values
 
     Code
-      cat(export_as_txt(res1, lpp = 100))
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -181,7 +181,7 @@
 ---
 
     Code
-      cat(export_as_txt(res3, lpp = 100))
+      cat(formatters::export_as_txt(res3, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -280,6 +280,11 @@
                                     - Any Grade -    1 (0.7%)          0              0       
                                     Grade 3-5        1 (0.7%)          0              0       
                                     3                1 (0.7%)          0              0       
+      \s\n  MedDRA System Organ Class                                                             
+          MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
+                                    Grade             (N=134)       (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————
+        No Coding Available                                                                   
           No Coding Available                                                                 
                                     - Any Grade -    1 (0.7%)          0              0       
                                     Grade 3-5        1 (0.7%)          0              0       

@@ -10,7 +10,9 @@ vst01_lyt(
   summaryvars_lbls,
   visitvar,
   lbl_avisit,
-  lbl_param
+  lbl_param,
+  precision,
+  default_precision
 )
 }
 \arguments{
@@ -26,6 +28,12 @@ to be displayed.}
 \item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
+
+\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
+indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
+represented with one more decimal of precision.}
+
+\item{default_precision}{(\code{integer}) the default number of digits.}
 }
 \description{
 \code{vst01} Layout

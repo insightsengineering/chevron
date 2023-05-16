@@ -1,7 +1,7 @@
 # egt03 functions with default argument value return expected result with test data
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Planned Arm Code                           Minimum Post-Baseline Assessment     
           Baseline Reference Range Indicator       LOW         NORMAL     HIGH   Missing
@@ -25,7 +25,7 @@
 # egt03 can handle some NA values
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Planned Arm Code                           Minimum Post-Baseline Assessment     
           Baseline Reference Range Indicator       LOW         NORMAL     HIGH   Missing

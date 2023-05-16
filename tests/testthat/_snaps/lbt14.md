@@ -1,7 +1,7 @@
 # lbt14 functions with default argument value return expected result with test data
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -91,7 +91,7 @@
 # lbt14 functions with default argument value return expected result with test data when direction = high
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -191,7 +191,7 @@
 # lbt14 can handle all NA values
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -213,7 +213,7 @@
 # lbt14 can handle some NA values
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -314,7 +314,7 @@
 # lbt14 can accept different gr_missing
 
     Code
-      cat(export_as_txt(res1, lpp = 100))
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -404,7 +404,7 @@
 ---
 
     Code
-      cat(export_as_txt(res2, lpp = 100))
+      cat(formatters::export_as_txt(res2, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -494,7 +494,7 @@
 ---
 
     Code
-      cat(export_as_txt(res3, lpp = 100))
+      cat(formatters::export_as_txt(res3, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -584,7 +584,7 @@
 # lbt14 can handle all NA values with direction = high
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -606,7 +606,7 @@
 # lbt14 can handle some NA values with direction = high
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -727,7 +727,7 @@
 # lbt14 can accept different gr_missing with direction = high
 
     Code
-      cat(export_as_txt(res1, lpp = 100))
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -827,7 +827,7 @@
 ---
 
     Code
-      cat(export_as_txt(res2, lpp = 100))
+      cat(formatters::export_as_txt(res2, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -927,7 +927,7 @@
 ---
 
     Code
-      cat(export_as_txt(res3, lpp = 100))
+      cat(formatters::export_as_txt(res3, lpp = 100))
     Output
       LBT14 - High Direction
       

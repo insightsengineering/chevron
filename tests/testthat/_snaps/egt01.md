@@ -1,7 +1,7 @@
 # egt01 functions with default argument value return expected result with test data
 
     Code
-      cat(export_as_txt(res, lpp = 200, cpp = 300))
+      res
     Output
         Parameter                         A: Drug X                                B: Placebo                              C: Combination             
           Analysis Visit                           Change from                               Change from                               Change from    
@@ -105,7 +105,7 @@
 # egt01 can handle n = 0 and outputs NE instead of infs and NAs
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                            A: Drug X   
                          Value at Visit

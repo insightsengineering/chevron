@@ -4,7 +4,7 @@ test_that("egt03 functions with default argument value return expected result wi
   pre_data <- egt03_pre(syn_data)
   raw_res <- egt03_main(pre_data)
   res <- egt03_post(raw_res)
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 # egt03 ----
@@ -25,7 +25,7 @@ test_that("egt03 can handle some NA values", {
   proc_data$adeg[1:2, c("ANRIND", "BNRIND")] <- NA
 
   res <- expect_silent(run(egt03, proc_data))
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("egt03 fails on incomplete data", {

@@ -1,7 +1,7 @@
 # run works as expected for chevron_t object
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -96,7 +96,7 @@
 # run works as expected for chevron_t object when auto_pre = FALSE
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                               A: Drug X    B: Placebo    C: Combination   All Patients
                                                (N=134)       (N=134)        (N=132)         (N=400)   
@@ -126,25 +126,4 @@
           ASIAN                              68 (50.7%)    68 (50.7%)      73 (55.3%)     209 (52.2%) 
           BLACK OR AFRICAN AMERICAN          31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
           WHITE                              27 (20.1%)    27 (20.1%)      21 (15.9%)      75 (18.8%) 
-
-# script_funs works as expected in interactive mode
-
-    Code
-      res
-    Output
-       [1] "# Edit Preprocessing Function."                                                                                                                 
-       [2] "pre_fun <- function(adam_db, ...) {"                                                                                                            
-       [3] "  atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")"                                                                                          
-       [4] "  adam_db$adae <- adam_db$adae %>%"                                                                                                             
-       [5] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                         
-       [6] "    mutate("                                                                                                                                    
-       [7] "      AEBODSYS = reformat(.data$AEBODSYS, nocoding),"                                                                                           
-       [8] "      AEDECOD = reformat(.data$AEDECOD, nocoding),"                                                                                             
-       [9] "      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)"                                                                                      
-      [10] "    )"                                                                                                                                          
-      [11] "  adam_db"                                                                                                                                      
-      [12] "}"                                                                                                                                              
-      [13] ""                                                                                                                                               
-      [14] "# Create TLG"                                                                                                                                   
-      [15] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04, !!!args_ls, auto_pre = FALSE)"
 
