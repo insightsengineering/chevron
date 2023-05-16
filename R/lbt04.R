@@ -28,7 +28,9 @@ lbt04_main <- function(adam_db,
   assert_valid_variable(adam_db$adlb, c("AVALCAT1", "ANRIND"), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
-  checkmate::assert_true(any(lvls(adam_db$adlb$ANRIND) %in% c("HIGH HIGH", "HIGH", "LOW", "LOW LOW")))
+  checkmate::assert_true(
+    any(lvls(adam_db$adlb$ANRIND) %in% c("HIGH HIGH", "HIGH", "LOW", "LOW LOW")) || all(is.na(adam_db$adlb$ANRIND))
+  )
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
