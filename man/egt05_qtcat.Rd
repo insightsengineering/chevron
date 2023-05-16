@@ -31,6 +31,9 @@ egt05_qtcat
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adeg}
+table of \code{adam_db} is used as name.}
+
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{visitvar}{(\code{string}) typically \code{"AVISIT"} (Default) or \code{"ATPTN"}.}

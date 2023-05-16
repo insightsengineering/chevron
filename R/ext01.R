@@ -3,8 +3,8 @@
 #' @describeIn ext01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`character`) variables to be analyzed. Names are used as subtitles. For values
-#'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adex`
+#'   table of `adam_db` is used as label.
 #'
 #' @details
 #'  * Default Exposure table

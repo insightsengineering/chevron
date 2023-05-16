@@ -32,8 +32,8 @@ egt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{list}) variables to be analyzed. Names are used as subtitles. For values
-where no name is provided, the label attribute of the corresponding column in \code{adeg} table of \code{adam_db} is used.}
+\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adeg}
+table of \code{adam_db} is used as label.}
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
 be displayed}

@@ -3,8 +3,8 @@
 #' @describeIn vst01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
-#'   where no name is provided, the label attribute of the corresponding column in `advs` table of `adam_db` is used.
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `advs`
+#'   table of `adam_db` is used as label.
 #' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values

@@ -7,8 +7,8 @@
 rmpt01_lyt(summaryvars, lbl_summaryvars, parcat, lbl_parcat)
 }
 \arguments{
-\item{summaryvars}{(\code{character}) variables to be analyzed. Names are used as subtitles. For values
-where no name is provided, the label attribute of the corresponding column in \code{adex} table of \code{adam_db} is used.}
+\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
+table of \code{adam_db} is used as label.}
 
 \item{lbl_summaryvars}{(\code{character}) label associated with the analyzed variables.}
 

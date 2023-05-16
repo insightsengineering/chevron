@@ -3,6 +3,8 @@
 #' @describeIn egt05_qtcat Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adeg`
+#'   table of `adam_db` is used as name.
 #' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
 #'
 #' @details

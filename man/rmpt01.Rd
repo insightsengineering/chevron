@@ -22,8 +22,8 @@ rmpt01
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{summaryvars}{(\code{character}) variables to be analyzed. Names are used as subtitles. For values
-where no name is provided, the label attribute of the corresponding column in \code{adex} table of \code{adam_db} is used.}
+\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
+table of \code{adam_db} is used as label.}
 
 \item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
 
