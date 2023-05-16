@@ -3,7 +3,6 @@
 \docType{data}
 \name{egt01_main}
 \alias{egt01_main}
-\alias{egt01_lyt}
 \alias{egt01_pre}
 \alias{egt01_post}
 \alias{egt01}
@@ -22,17 +21,6 @@ egt01_main(
   ...
 )
 
-egt01_lyt(
-  arm_var,
-  summaryvars,
-  summaryvars_lbls,
-  visitvar,
-  lbl_avisit,
-  lbl_param,
-  precision,
-  default_precision
-)
-
 egt01_pre(adam_db, ...)
 
 egt01_post(tlg, prune_0 = TRUE, ...)
@@ -44,10 +32,11 @@ egt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+\item{summaryvars}{(\code{list}) variables to be analyzed. Names are used as subtitles. For values
+where no name is provided, the label attribute of the corresponding column in \code{adeg} table of \code{adam_db} is used.}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
-to be displayed.}
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
+be displayed}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
@@ -56,12 +45,6 @@ represented with one more decimal of precision.}
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
 \item{...}{not used.}
-
-\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
-
-\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
-
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -87,8 +70,6 @@ by \code{AVISIT}. Re-level to customize order.
 \section{Functions}{
 \itemize{
 \item \code{egt01_main()}: Main TLG function
-
-\item \code{egt01_lyt()}: Layout
 
 \item \code{egt01_pre()}: Preprocessing
 

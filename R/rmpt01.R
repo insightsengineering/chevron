@@ -43,14 +43,14 @@ rmpt01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn rmpt01 Layout
+#' rmpt01 Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams rmpt01_main
 #' @param lbl_summaryvars (`character`) label associated with the analyzed variables.
 #' @param lbl_parcat (`string`) the label associated with the variable initiating a new row split.
 #'
-#' @export
+#' @keywords internal
 #'
 rmpt01_lyt <- function(summaryvars,
                        lbl_summaryvars,

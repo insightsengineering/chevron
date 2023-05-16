@@ -3,7 +3,6 @@
 \docType{data}
 \name{egt05_qtcat_main}
 \alias{egt05_qtcat_main}
-\alias{egt05_qtcat_lyt}
 \alias{egt05_qtcat_pre}
 \alias{egt05_qtcat_post}
 \alias{egt05_qtcat}
@@ -21,18 +20,6 @@ egt05_qtcat_main(
   ...
 )
 
-egt05_qtcat_lyt(
-  arm_var,
-  summaryvars,
-  summaryvars_lbls,
-  lbl_overall,
-  visitvar,
-  lbl_avisit,
-  lbl_param,
-  lbl_cat,
-  lbl_headvisit
-)
-
 egt05_qtcat_pre(adam_db, ...)
 
 egt05_qtcat_post(tlg, prune_0 = TRUE, ...)
@@ -44,24 +31,11 @@ egt05_qtcat
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
-to be displayed.}
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} (Default) or \code{"ATPTN"}.}
 
 \item{...}{not used.}
-
-\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
-
-\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
-
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
-
-\item{lbl_cat}{(\code{string}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
-
-\item{lbl_headvisit}{(\code{string}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -88,8 +62,6 @@ Re-level to customize order.
 \section{Functions}{
 \itemize{
 \item \code{egt05_qtcat_main()}: Main TLG function
-
-\item \code{egt05_qtcat_lyt()}: Layout
 
 \item \code{egt05_qtcat_pre()}: Preprocessing
 

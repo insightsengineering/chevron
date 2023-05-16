@@ -60,7 +60,7 @@ egt05_qtcat_main <- function(adam_db,
   )
 }
 
-#' @describeIn egt05_qtcat Layout
+#' egt05_qtcat Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -73,7 +73,7 @@ egt05_qtcat_main <- function(adam_db,
 #' @param lbl_cat (`string`) label of the Category of `summaryvars` variable. Default as `Category`.
 #' @param lbl_headvisit (`string`) label of Visits in the header. Default as `Analysis Visit`.
 #'
-#' @export
+#' @keywords internal
 egt05_qtcat_lyt <- function(arm_var,
                             summaryvars,
                             summaryvars_lbls,

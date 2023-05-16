@@ -50,7 +50,7 @@ lbt05_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt05 Layout
+#' lbt05 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -59,7 +59,7 @@ lbt05_main <- function(adam_db,
 #' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #' @param map (`data.frame`) mapping of `PARAM`s to directions of abnormality.
 #'
-#' @export
+#' @keywords internal
 #'
 lbt05_lyt <- function(arm_var,
                       lbl_overall,

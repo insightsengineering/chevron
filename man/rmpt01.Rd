@@ -3,7 +3,6 @@
 \docType{data}
 \name{rmpt01_main}
 \alias{rmpt01_main}
-\alias{rmpt01_lyt}
 \alias{rmpt01_pre}
 \alias{rmpt01_post}
 \alias{rmpt01}
@@ -13,8 +12,6 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 rmpt01_main(adam_db, summaryvars = c("AVALCAT1", "AVAL"), parcat = NULL, ...)
-
-rmpt01_lyt(summaryvars, lbl_summaryvars, parcat, lbl_parcat)
 
 rmpt01_pre(adam_db, parcat = NULL, ...)
 
@@ -31,10 +28,6 @@ where no name is provided, the label attribute of the corresponding column in \c
 \item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
 
 \item{...}{not used.}
-
-\item{lbl_summaryvars}{(\code{character}) label associated with the analyzed variables.}
-
-\item{lbl_parcat}{(\code{string}) the label associated with the variable initiating a new row split.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -54,8 +47,6 @@ The \code{RMPT01} table provides an overview of duration of exposure.
 \section{Functions}{
 \itemize{
 \item \code{rmpt01_main()}: Main TLG function
-
-\item \code{rmpt01_lyt()}: Layout
 
 \item \code{rmpt01_pre()}: Preprocessing
 

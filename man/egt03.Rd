@@ -3,7 +3,6 @@
 \docType{data}
 \name{egt03_main}
 \alias{egt03_main}
-\alias{egt03_lyt}
 \alias{egt03_pre}
 \alias{egt03_post}
 \alias{egt03}
@@ -20,8 +19,6 @@ egt03_main(
   visit_var = "AVISIT",
   ...
 )
-
-egt03_lyt(arm_var, splitvar, summaryvar, lbl_armvar, lbl_summaryvars)
 
 egt03_pre(adam_db, ...)
 
@@ -43,10 +40,6 @@ used as subtitles.}
 \item{visit_var}{Analysis Visit variable.}
 
 \item{...}{not used.}
-
-\item{lbl_armvar}{(\code{string}) label of the \code{arm_var} variable.}
-
-\item{lbl_summaryvars}{(\code{string}) label of the \code{summaryvar} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -73,8 +66,6 @@ last observation prior to initiation of study drug.
 \section{Functions}{
 \itemize{
 \item \code{egt03_main()}: Main TLG function
-
-\item \code{egt03_lyt()}: Layout
 
 \item \code{egt03_pre()}: Preprocessing
 

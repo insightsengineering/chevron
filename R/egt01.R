@@ -68,7 +68,7 @@ egt01_main <- function(adam_db,
   )
 }
 
-#' @describeIn egt01 Layout
+#' egt01 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -79,7 +79,7 @@ egt01_main <- function(adam_db,
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #'
-#' @export
+#' @keywords internal
 egt01_lyt <- function(arm_var,
                       summaryvars,
                       summaryvars_lbls,

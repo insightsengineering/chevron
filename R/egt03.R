@@ -58,7 +58,7 @@ egt03_main <- function(adam_db,
 }
 
 
-#' @describeIn egt03 Layout
+#' egt03 Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams egt03_main
@@ -66,7 +66,7 @@ egt03_main <- function(adam_db,
 #' @param lbl_armvar (`string`) label of the `arm_var` variable.
 #' @param lbl_summaryvars (`string`) label of the `summaryvar` variable.
 #'
-#' @export
+#' @keywords internal
 egt03_lyt <- function(arm_var,
                       splitvar,
                       summaryvar,
