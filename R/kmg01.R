@@ -59,7 +59,7 @@ kmg01_main <- function(adam_db,
   checkmate::assert_numeric(conf_level, lower = 0, upper = 1)
   checkmate::assert_numeric(position_coxph, len = 2)
   checkmate::assert_numeric(position_surv_med, len = 2)
-  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
+  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var, lab2 = paste0("adam_db$", dataset))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
