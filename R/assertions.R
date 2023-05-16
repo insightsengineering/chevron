@@ -305,9 +305,11 @@ assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), typ
 assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
   if (!any(vapply(types, is, object = x, FUN.VALUE = TRUE))) {
     abort(
-      quote_str(label),
-      " is not of type ",
-      toString(types)
+      paste0(
+        quote_str(label),
+        " is not of type ",
+        toString(types)
+      )
     )
   }
 }
@@ -326,9 +328,11 @@ assert_valid_var_pair <- function(df1, df2, var, lab1 = deparse(substitute(df1))
   lvl_y <- lvls(df2[[var]])
   if (!identical(lvl_x, lvl_y)) {
     abort(
-      quote_str(lab1), " and ",
-      quote_str(lab2), " should contain the same levels in variable ",
-      quote_str(var), "!"
+      paste0(
+        quote_str(lab1), " and ",
+        quote_str(lab2), " should contain the same levels in variable ",
+        quote_str(var), "!"
+      )
     )
   }
 }
