@@ -12,9 +12,8 @@ An object of class \code{chevron_t} of length 1.
 vst02_2_main(
   adam_db,
   arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
+  exclude_base_abn = TRUE,
   ...
 )
 
@@ -25,11 +24,9 @@ vst02_2
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
-
-\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{exclude_base_abn}{(\code{flag}) whether baseline abnormality should be excluded.}
 
 \item{...}{not used.}
 }

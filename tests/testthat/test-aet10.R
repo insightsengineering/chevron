@@ -7,7 +7,7 @@ test_that("aet10 can handle NA values", {
     )
 
   res <- expect_silent(run(aet10, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet10 can handle some NA values", {
@@ -21,5 +21,5 @@ test_that("aet10 can handle some NA values", {
     )
 
   res <- expect_silent(run(aet10, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

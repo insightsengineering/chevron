@@ -30,14 +30,14 @@ egt05_qtcat_main <- function(adam_db,
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   checkmate::assert_string(visitvar)
-  assert_valid_var(adam_db$adeg, visitvar, types = list("character", "factor"))
+  assert_valid_variable(adam_db$adeg, visitvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor")), na_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
-  summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars) # Value at visit / change from baseline
+  summaryvars_lbls <- var_labels_for(adam_db$adeg, summaryvars) # Value at visit / change from baseline
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
@@ -99,9 +99,10 @@ egt05_qtcat_lyt <- function(arm_var,
       split_fun = drop_split_levels,
       label_pos = "hidden"
     ) %>%
-    summarize_vars(
+    summarize_vars_allow_na(
       vars = summaryvars,
-      var_labels = summaryvars_lbls
+      var_labels = summaryvars_lbls,
+      inclNAs = FALSE
     ) %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(paste0("  ", lbl_headvisit)) %>%
@@ -114,20 +115,12 @@ egt05_qtcat_lyt <- function(arm_var,
 #'
 #' @export
 #'
-egt05_qtcat_pre <- function(adam_db, paramvar = "QT", ...) {
+egt05_qtcat_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(
-      .data$ANL01FL == "Y"
-    ) %>%
-    mutate(across(all_of(c("AVALCAT1", "CHGCAT1")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
-    mutate(
-      AVALCAT1 = with_label(.data$AVALCAT1, "Value at Visit"),
-      CHGCAT1 = with_label(.data$CHGCAT1, "Change from Baseline"),
-      AVISIT = with_label(.data$AVISIT, "Analysis Visit"),
-      PARAM = with_label(.data$PARAM, "Parameter")
-    ) %>%
-    filter(.data$PARAMCD %in% paramvar)
-
+      .data$ANL01FL == "Y",
+      .data$PARAMCD %in% "QT"
+    )
   adam_db
 }
 

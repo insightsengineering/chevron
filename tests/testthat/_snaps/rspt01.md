@@ -1,7 +1,7 @@
 # rspt01 works as expected
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                              A: Drug X          B: Placebo         C: Combination   
                                               (N=134)            (N=134)               (N=132)      
@@ -23,7 +23,7 @@
 # rspt01 works as expected for stratified and unstratified analysis
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                      A: Drug X        B: Placebo     C: Combination
                                                       (N=134)          (N=134)          (N=132)    
@@ -48,7 +48,7 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                      A: Drug X          B: Placebo         C: Combination   
                                                       (N=134)            (N=134)               (N=132)      
@@ -75,7 +75,7 @@
 # rspt01 works as expected for unstratified analysis only
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                A: Drug X        B: Placebo     C: Combination
                                                 (N=134)          (N=134)          (N=132)    
@@ -96,7 +96,7 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                A: Drug X          B: Placebo         C: Combination   
                                                 (N=134)            (N=134)               (N=132)      
@@ -118,7 +118,7 @@
 # rspt01 works as expected for stratified analysis only
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                      A: Drug X        B: Placebo     C: Combination
                                                       (N=134)          (N=134)          (N=132)    
@@ -139,7 +139,7 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                      A: Drug X          B: Placebo         C: Combination   
                                                       (N=134)            (N=134)               (N=132)      
@@ -161,7 +161,7 @@
 # rspt01 works if change reference group
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                B: Placebo          A: Drug X          C: Combination   
                                                 (N=134)             (N=134)               (N=132)      
@@ -183,7 +183,7 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                      B: Placebo          A: Drug X          C: Combination   
                                                       (N=134)             (N=134)               (N=132)      
@@ -210,7 +210,7 @@
 # rspt01 works if change statistic methods
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                   A: Drug X          B: Placebo         C: Combination   
                                                    (N=134)            (N=134)               (N=132)      
@@ -232,34 +232,55 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
-                                                                  A: Drug X          B: Placebo         C: Combination   
-                                                                   (N=134)            (N=134)               (N=132)      
-        —————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                               133 (99.3%)        127 (94.8%)           131 (99.2%)    
-        95% CI (Wald, without correction)                       (97.8, 100.0)       (91.0, 98.5)         (97.8, 100.0)   
-        Unstratified Analysis                                                                                            
-          Difference in Response rate (%)                                               -4.5                 -0.0        
-            95% CI (Wald, without correction)                                       (-8.5, -0.4)          (-2.1, 2.1)    
-          p-value (Fisher's Exact Test)                                                0.0662               1.0000       
-        Odds Ratio (95% CI)                                                      0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Stratified Analysis                                                                                              
-          Difference in Response rate (%)                                               -4.5                 -0.0        
-            95% CI (Anderson-Hauck)                                                 (-8.9, -0.0)          (-2.5, 2.5)    
-          p-value (Chi-Squared Test with Schouten Correction)                          0.0488               0.7332       
-        Odds Ratio (95% CI)                                                      0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Complete Response (CR)                                   119 (88.8%)         97 (72.4%)           120 (90.9%)    
-          95% CI (Wald, without correction)                     (83.47, 94.14)     (64.82, 79.96)       (86.00, 95.81)   
-        Partial Response (PR)                                     14 (10.4%)         30 (22.4%)            11 (8.3%)     
-          95% CI (Wald, without correction)                     (5.27, 15.63)      (15.33, 29.45)        (3.62, 13.05)   
-        Stable Disease (SD)                                        1 (0.7%)           7 (5.2%)             1 (0.8%)      
-          95% CI (Wald, without correction)                      (0.00, 2.20)       (1.46, 8.99)         (0.00, 2.24)    
+                                                                  A: Drug X          B: Placebo    
+                                                                   (N=134)            (N=134)      
+        ———————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                               133 (99.3%)        127 (94.8%)    
+        95% CI (Wald, without correction)                       (97.8, 100.0)       (91.0, 98.5)   
+        Unstratified Analysis                                                                      
+          Difference in Response rate (%)                                               -4.5       
+            95% CI (Wald, without correction)                                       (-8.5, -0.4)   
+          p-value (Fisher's Exact Test)                                                0.0662      
+        Odds Ratio (95% CI)                                                      0.14 (0.02 - 1.12)
+        Stratified Analysis                                                                        
+          Difference in Response rate (%)                                               -4.5       
+            95% CI (Anderson-Hauck)                                                 (-8.9, -0.0)   
+          p-value (Chi-Squared Test with Schouten Correction)                          0.0488      
+        Odds Ratio (95% CI)                                                      0.14 (0.02 - 1.12)
+        Complete Response (CR)                                   119 (88.8%)         97 (72.4%)    
+          95% CI (Wald, without correction)                     (83.47, 94.14)     (64.82, 79.96)  
+        Partial Response (PR)                                     14 (10.4%)         30 (22.4%)    
+          95% CI (Wald, without correction)                     (5.27, 15.63)      (15.33, 29.45)  
+        Stable Disease (SD)                                        1 (0.7%)           7 (5.2%)     
+          95% CI (Wald, without correction)                      (0.00, 2.20)       (1.46, 8.99)   
+      \s\n                                                            C: Combination   
+                                                                      (N=132)      
+        ———————————————————————————————————————————————————————————————————————————
+        Responders                                                  131 (99.2%)    
+        95% CI (Wald, without correction)                          (97.8, 100.0)   
+        Unstratified Analysis                                                      
+          Difference in Response rate (%)                              -0.0        
+            95% CI (Wald, without correction)                       (-2.1, 2.1)    
+          p-value (Fisher's Exact Test)                               1.0000       
+        Odds Ratio (95% CI)                                     0.98 (0.06 - 15.91)
+        Stratified Analysis                                                        
+          Difference in Response rate (%)                              -0.0        
+            95% CI (Anderson-Hauck)                                 (-2.5, 2.5)    
+          p-value (Chi-Squared Test with Schouten Correction)         0.7332       
+        Odds Ratio (95% CI)                                     0.98 (0.06 - 15.91)
+        Complete Response (CR)                                      120 (90.9%)    
+          95% CI (Wald, without correction)                       (86.00, 95.81)   
+        Partial Response (PR)                                        11 (8.3%)     
+          95% CI (Wald, without correction)                        (3.62, 13.05)   
+        Stable Disease (SD)                                          1 (0.8%)      
+          95% CI (Wald, without correction)                        (0.00, 2.24)    
 
 # rspt01 works if change confidence interval
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                A: Drug X          B: Placebo         C: Combination   
                                                 (N=134)            (N=134)               (N=132)      
@@ -281,7 +302,7 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                      A: Drug X          B: Placebo         C: Combination   
                                                       (N=134)            (N=134)               (N=132)      

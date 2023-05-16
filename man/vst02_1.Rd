@@ -3,7 +3,6 @@
 \docType{data}
 \name{vst02_1_main}
 \alias{vst02_1_main}
-\alias{vst02_lyt}
 \alias{vst02_pre}
 \alias{vst02_post}
 \alias{vst02_1}
@@ -15,18 +14,9 @@ An object of class \code{chevron_t} of length 1.
 vst02_1_main(
   adam_db,
   arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
+  exclude_base_abn = FALSE,
   ...
-)
-
-vst02_lyt(
-  arm_var,
-  exclude_base_abn,
-  lbl_vs_assessment,
-  lbl_vs_abnormality,
-  lbl_overall
 )
 
 vst02_pre(adam_db, ...)
@@ -40,20 +30,19 @@ vst02_1
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
-
-\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{...}{not used.}
+\item{exclude_base_abn}{(\code{flag}) whether baseline abnormality should be excluded.}
 
-\item{exclude_base_abn}{(\code{flag}) whether to exclude subjects with baseline abnormality from numerator and
-denominator.}
+\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
+
+\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
 }
 \description{
 Vital Sign Parameters outside Normal Limits Regardless of Abnormality at Baseline.
@@ -69,8 +58,6 @@ Vital Sign Parameters outside Normal Limits Regardless of Abnormality at Baselin
 \section{Functions}{
 \itemize{
 \item \code{vst02_1_main()}: Main TLG function
-
-\item \code{vst02_lyt()}: Layout
 
 \item \code{vst02_pre()}: Preprocessing
 

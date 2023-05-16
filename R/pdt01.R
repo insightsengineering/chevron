@@ -40,8 +40,6 @@ pdt01_main <- function(adam_db,
   lbl_dvcode_var <- var_labels_for(adam_db$addv, dvcode_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
 
-  dbsel <- get_db_data(adam_db, "adsl", "addv")
-
   lyt <- pdt01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -51,7 +49,7 @@ pdt01_main <- function(adam_db,
     lbl_dvterm_var = lbl_dvterm_var
   )
 
-  tbl <- build_table(lyt, dbsel$addv, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$addv, alt_counts_df = adam_db$adsl)
 
   tbl
 }

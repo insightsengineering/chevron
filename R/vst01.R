@@ -27,7 +27,7 @@
 vst01_main <- function(adam_db,
                        arm_var = "ACTARM",
                        summaryvars = c("AVAL", "CHG"),
-                       visitvar = "AVISIT", # or ATPTN
+                       visitvar = "AVISIT",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "advs"))
   checkmate::assert_string(arm_var)
@@ -42,7 +42,7 @@ vst01_main <- function(adam_db,
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 
-  summaryvars_lbls <- get_labels(adam_db$advs, summaryvars)
+  summaryvars_lbls <- var_labels_for(adam_db$advs, summaryvars)
 
   lyt <- vst01_lyt(
     arm_var = arm_var,
@@ -62,7 +62,7 @@ vst01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst01 Layout
+#' vst01 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -73,7 +73,7 @@ vst01_main <- function(adam_db,
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #'
-#' @export
+#' @keywords internal
 #'
 vst01_lyt <- function(arm_var,
                       summaryvars,

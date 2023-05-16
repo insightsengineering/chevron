@@ -53,18 +53,6 @@ test_that("h_format_dec works as expected with NA digits", {
   expect_identical(res, "123.000 - 222.210000")
 })
 
-# get_db_data ----
-test_that("get_db_data works", {
-  dfs <- list(iris = iris, mtcars = mtcars)
-  expect_identical(
-    get_db_data(dfs, "iris"),
-    list(iris = iris)
-  )
-  expect_identical(
-    get_db_data(dfs),
-    list()
-  )
-})
 
 # fuse_sequentially ----
 

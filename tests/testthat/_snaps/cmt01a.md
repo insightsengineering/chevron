@@ -1,7 +1,7 @@
 # cmt01a can handle all NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
@@ -16,7 +16,7 @@
 # cmt01a can handle some NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    

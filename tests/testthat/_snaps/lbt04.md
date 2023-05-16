@@ -1,7 +1,7 @@
 # lbt04 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
           Laboratory Test                          A: Drug X      B: Placebo     C: Combination
             Direction of Abnormality                (N=134)         (N=134)         (N=132)    
@@ -40,19 +40,16 @@
 # lbt04 can handle all NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
-          Laboratory Test              A: Drug X   B: Placebo   C: Combination
-            Direction of Abnormality    (N=134)     (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————
-        CHEMISTRY                                                             
-        COAGULATION                                                           
-        HEMATOLOGY                                                            
+                                                                                                
+        ————————————————————————————————————————————————————————————————————————————————————————
+           Null Report: No observations met the reporting criteria for inclusion in this output.
 
 # lbt04 can handle some NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
           Laboratory Test                          A: Drug X      B: Placebo     C: Combination
             Direction of Abnormality                (N=134)         (N=134)         (N=132)    

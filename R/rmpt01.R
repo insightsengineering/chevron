@@ -25,14 +25,12 @@ rmpt01_main <- function(adam_db,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(parcat, null.ok = TRUE)
-  checkmate::assert_character(summaryvars)
-  assert_valid_var(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
-  assert_valid_var(adam_db$adex, summaryvars[2], types = list("numeric"))
-  assert_valid_var(adam_db$adex, c("USUBJID", "PARAMCD", parcat))
+  checkmate::assert_character(summaryvars, len = 2L)
+  assert_valid_variable(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adex, summaryvars[2], types = list("numeric"))
+  assert_valid_variable(adam_db$adex, c("USUBJID", "PARAMCD", parcat))
   lbl_parcat <- var_labels_for(adam_db$adex, parcat)
   lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
-
-  dbsel <- get_db_data(adam_db, "adsl", "adex")
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
@@ -41,7 +39,7 @@ rmpt01_main <- function(adam_db,
     lbl_parcat = lbl_parcat
   )
 
-  tbl <- build_table(lyt, dbsel$adex, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$adex, alt_counts_df = adam_db$adsl)
   tbl
 }
 
@@ -69,13 +67,9 @@ rmpt01_lyt <- function(summaryvars,
       ),
       custom_label = "Total Number of Patients and Person Time"
     ) %>%
-    split_rows_by(
+    analyze_patients_exposure_in_cols(
       var = summaryvars[1],
-      label_pos = "topleft",
-      split_label = "Duration of exposure"
-    ) %>%
-    summarize_patients_exposure_in_cols(
-      var = summaryvars[2],
+      ex_var = summaryvars[2],
       col_split = FALSE
     )
 }

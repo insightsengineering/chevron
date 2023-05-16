@@ -1,7 +1,7 @@
 # mht01_1 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    
@@ -34,7 +34,7 @@
 # mht01 works
 
     Code
-      run(mht01, proc_data)
+      cat(export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    
@@ -67,7 +67,7 @@
 # mht01 works on NULL in lbl_mhbodsys or lbl_mhdecod
 
     Code
-      run(mht01, proc_data, lbl_mhbodsys = NULL, lbl_mhdecod = NULL)
+      cat(export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    

@@ -1,16 +1,7 @@
-# dst01 create empty table on all NA values
-
-    Code
-      run(dst01, proc_data, detail_vars = list())
-    Output
-                                                                                                
-        ————————————————————————————————————————————————————————————————————————————————————————
-           Null Report: No observations met the reporting criteria for inclusion in this output.
-
 # dst01 can handle all NA values in DCSREAS
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                        A: Drug X    B: Placebo   C: Combination   All Patients
                         (N=134)      (N=134)        (N=132)         (N=400)   
@@ -22,7 +13,7 @@
 # dst01 can handle some NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
@@ -41,7 +32,7 @@
 # dst01 can handle missing levels in status_var
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                   A: Drug X   B: Placebo   C: Combination   All Patients
                    (N=134)     (N=134)        (N=132)         (N=400)   
@@ -51,7 +42,7 @@
 # dst01 can create variants
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
@@ -72,7 +63,7 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X    B: Placebo   C: Combination   All Patients
                                              (N=134)      (N=134)        (N=132)         (N=400)   
@@ -93,7 +84,7 @@
 ---
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X    B: Placebo   C: Combination   All Patients
                                              (N=134)      (N=134)        (N=132)         (N=400)   

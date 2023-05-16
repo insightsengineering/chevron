@@ -1,7 +1,7 @@
 # ael01_nollt works with admh dataset
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Medical History
       —————————————————————————————————————————————————————————————————————————————————————————
@@ -19,7 +19,7 @@
 # ael01_nollt works with non-default label
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
       ———————————————————————————————————————————————————————————————————————————————————————
@@ -37,16 +37,16 @@
 # ael01_nollt can handle all missing values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
       ———————————————————————————————————————————————————————————————————————————————————————
-      No Coding Available         No Coding Available                                        
+      No Coding Available         No Coding Available             No Coding Available        
 
 # ael01_nollt can handle some missing values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
       ———————————————————————————————————————————————————————————————————————————————————————

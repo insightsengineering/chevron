@@ -1,7 +1,7 @@
 # lbt14 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -91,7 +91,7 @@
 # lbt14 functions with default argument value return expected result with test data when direction = high
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -191,7 +191,7 @@
 # lbt14 can handle all NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -213,7 +213,7 @@
 # lbt14 can handle some NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -314,7 +314,7 @@
 # lbt14 can accept different gr_missing
 
     Code
-      run(lbt14, proc_data, gr_missing = "incl")
+      cat(export_as_txt(res1, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -404,7 +404,7 @@
 ---
 
     Code
-      run(lbt14, proc_data, gr_missing = "excl")
+      cat(export_as_txt(res2, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -494,7 +494,7 @@
 ---
 
     Code
-      run(lbt14, proc_data, gr_missing = "gr_0")
+      cat(export_as_txt(res3, lpp = 100))
     Output
       LBT14 - Low Direction
       
@@ -584,7 +584,7 @@
 # lbt14 can handle all NA values with direction = high
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -606,7 +606,7 @@
 # lbt14 can handle some NA values with direction = high
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -705,6 +705,14 @@
                       1                               1 (20.0%)        0          1 (50.0%)   
                       2                                   0            0          1 (50.0%)   
                       3                                5 (100%)     2 (100%)       2 (100%)   
+      \s\nLBT14 - High Direction
+      
+        ——————————————————————————————————————————————————————————————————————————————————————
+        Parameter                                                                             
+              Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
+                      Post-baseline NCI-CTCAE Grade    (N=134)      (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————
+        Immunoglobulin A Measurement                                                          
               4                                           4            1              2       
                       Not High                         4 (100%)     1 (100%)       2 (100%)   
                       1                               1 (25.0%)        0              0       
@@ -719,7 +727,7 @@
 # lbt14 can accept different gr_missing with direction = high
 
     Code
-      run(lbt14, proc_data, gr_missing = "incl", direction = "high")
+      cat(export_as_txt(res1, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -819,7 +827,7 @@
 ---
 
     Code
-      run(lbt14, proc_data, gr_missing = "excl", direction = "high")
+      cat(export_as_txt(res2, lpp = 100))
     Output
       LBT14 - High Direction
       
@@ -919,7 +927,7 @@
 ---
 
     Code
-      run(lbt14, proc_data, gr_missing = "gr_0", direction = "high")
+      cat(export_as_txt(res3, lpp = 100))
     Output
       LBT14 - High Direction
       

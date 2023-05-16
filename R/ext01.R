@@ -27,13 +27,13 @@ ext01_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
-  assert_valid_var(adam_db, "adex", summaryvars)
+  assert_valid_variable(adam_db$adex, summaryvars, empty_ok = TRUE)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
-  summaryvars_lbls <- get_labels(adam_db$adex, summaryvars)
+  summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
 
   lyt <- ext01_lyt(
     arm_var = arm_var,
@@ -47,15 +47,15 @@ ext01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn ext01 Layout
+#' ext01 Layout
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars `(string)` the name of the variable to be analyzed. By default `"AVAL"`.
-#' @param summaryvars_lbls `(string)` the label associated with the analyzed variable.
+#' @param summaryvars (`character`) the name of the variable to be analyzed. By default `"AVAL"`.
+#' @param summaryvars_lbls (`character`) the label associated with the analyzed variable.
 #'
 #'
-#' @export
+#' @keywords internal
 #'
 ext01_lyt <- function(arm_var,
                       summaryvars,

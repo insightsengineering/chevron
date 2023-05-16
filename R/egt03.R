@@ -28,28 +28,27 @@ egt03_main <- function(adam_db,
                        visit_var = "AVISIT",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  checkmate::assert_character(summaryvar)
-  assert_valid_var(adam_db$adeg, summaryvar, types = list("character", "factor"))
-  checkmate::assert_character(splitvar)
-  assert_valid_var(adam_db$adeg, splitvar, types = list("character", "factor"))
+  checkmate::assert_string(summaryvar)
+  assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
+  checkmate::assert_string(splitvar)
+  assert_valid_variable(adam_db$adeg, splitvar, types = list("character", "factor"))
   assert_single_value(adam_db$adeg[[visit_var]])
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
-  lbl_summaryvars <- get_labels(adam_db$adeg, summaryvar)
-  lbl_splitvar <- get_labels(adam_db$adeg, splitvar)
+  lbl_summaryvars <- var_labels_for(adam_db$adeg, summaryvar)
+  lbl_splitvar <- var_labels_for(adam_db$adeg, splitvar)
 
   lyt <- egt03_lyt(
     arm_var = arm_var,
     splitvar = splitvar,
     summaryvar = summaryvar,
     lbl_armvar = lbl_armvar,
-    lbl_splitvar = lbl_splitvar,
     lbl_summaryvars = lbl_summaryvars
   )
-
+  adam_db$adeg$SPLIT_LABEL <- lbl_splitvar
   tbl <- build_table(
     lyt,
     df = adam_db$adeg
@@ -65,7 +64,6 @@ egt03_main <- function(adam_db,
 #' @inheritParams egt03_main
 #'
 #' @param lbl_armvar (`string`) label of the `arm_var` variable.
-#' @param lbl_splitvar (`string`) label of the `splitvar` variable.
 #' @param lbl_summaryvars (`string`) label of the `summaryvar` variable.
 #'
 #' @export
@@ -73,14 +71,13 @@ egt03_lyt <- function(arm_var,
                       splitvar,
                       summaryvar,
                       lbl_armvar,
-                      lbl_splitvar,
                       lbl_summaryvars) {
   indent <- 1L
   space <- paste(rep(" ", indent * 2), collapse = "")
   lbl_summaryvars <- paste0(space, lbl_summaryvars)
 
   basic_table(show_colcounts = FALSE) %>%
-    split_cols_by("minmax") %>%
+    split_cols_by("SPLIT_LABEL") %>%
     split_cols_by(splitvar) %>%
     split_rows_by(arm_var,
       split_fun = drop_split_levels,
@@ -100,23 +97,12 @@ egt03_lyt <- function(arm_var,
 #'   or minimum value.
 #'
 #' @export
-egt03_pre <- function(adam_db, visit_var = "AVISIT", minmax = "min", ...) {
-  checkmate::assert_choice(minmax, c("min", "max"))
-
-  minmax <- switch( # TODO: Use a split function in main.
-    minmax,
-    "max" = "Maximum",
-    "min" = "Minimum"
-  )
-
-  visit_value <- paste("POST-BASELINE", toupper(minmax))
-
+egt03_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(
       .data$PARAMCD == "HR" &
-        !!sym(visit_var) == visit_value # "Analysis Visit"
+      .data$AVISIT == "POST-BASELINE MINIMUM"
     ) %>%
-    mutate(minmax = paste(minmax, "Post-Baseline Assessment")) %>%
     mutate(BNRIND = factor(
       .data$BNRIND,
       levels = c("LOW", "NORMAL", "HIGH", "Missing"),
@@ -129,7 +115,7 @@ egt03_pre <- function(adam_db, visit_var = "AVISIT", minmax = "min", ...) {
     )) %>%
     mutate(
       BNRIND = with_label(.data$BNRIND, "Baseline Reference Range Indicator"),
-      ANRIND = with_label(.data$ANRIND, "Analysis Reference Range Indicator")
+      ANRIND = with_label(.data$ANRIND, "Minimum Post-Baseline Assessment")
     )
 
   adam_db
@@ -156,7 +142,7 @@ egt03_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(egt03, syn_data, minmax = "min")
+#' run(egt03, syn_data)
 egt03 <- chevron_t(
   main = egt03_main,
   preprocess = egt03_pre,

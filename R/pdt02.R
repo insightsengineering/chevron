@@ -73,8 +73,8 @@ pdt02_lyt <- function(arm_var,
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    summarize_num_patients(
-      var = "USUBJID",
+    analyze_num_patients(
+      vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
         unique = "Total number of patients with at least one major protocol deviation related to epidemic/pandemic",
@@ -84,7 +84,6 @@ pdt02_lyt <- function(arm_var,
     split_rows_by(
       dvreas_var,
       nested = FALSE,
-      indent_mod = -1L,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_dvreas_var

@@ -3,7 +3,6 @@
 \docType{data}
 \name{ext01_main}
 \alias{ext01_main}
-\alias{ext01_lyt}
 \alias{ext01_pre}
 \alias{ext01_post}
 \alias{ext01}
@@ -19,8 +18,6 @@ ext01_main(
   lbl_overall = NULL,
   ...
 )
-
-ext01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
 
 ext01_pre(
   adam_db,
@@ -39,13 +36,12 @@ ext01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{\code{(string)} the name of the variable to be analyzed. By default \code{"AVAL"}.}
+\item{summaryvars}{(\code{character}) variables to be analyzed. Names are used as subtitles. For values
+where no name is provided, the label attribute of the corresponding column in \code{adex} table of \code{adam_db} is used.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{summaryvars_lbls}{\code{(string)} the label associated with the analyzed variable.}
 
 \item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
 
@@ -78,8 +74,6 @@ patients in the corresponding analysis population given by \code{N}.
 \section{Functions}{
 \itemize{
 \item \code{ext01_main()}: Main TLG function
-
-\item \code{ext01_lyt()}: Layout
 
 \item \code{ext01_pre()}: Preprocessing
 

@@ -90,7 +90,6 @@ reference:
       - syn_data
   - title: Utility Functions
     contents:
-      - abort
       - assert_colnames
       - assert_all_tablenames
       - assert_single_value
@@ -98,7 +97,6 @@ reference:
       - assert_valid_var
       - assert_valid_var_pair
       - assert_valid_variable
-      - get_db_data
       - report_null
       - smart_prune
       - std_deco

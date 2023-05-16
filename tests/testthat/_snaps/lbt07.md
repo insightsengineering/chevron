@@ -1,7 +1,7 @@
 # lbt07 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                          
           Direction of Abnormality                 A: Drug X    B: Placebo   C: Combination
@@ -50,7 +50,7 @@
 # lbt07 can handle some NA values
 
     Code
-      res
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                          
           Direction of Abnormality                 A: Drug X    B: Placebo   C: Combination

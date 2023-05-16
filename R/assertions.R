@@ -325,10 +325,3 @@ assert_valid_var_pair <- function(df1, df2, var, lab1 = deparse(substitute(df1))
     )
   }
 }
-
-#' Abort without call information
-#' @param ... Pass to `stop`
-#' @export
-abort <- function(...) {
-  stop(..., call. = FALSE)
-}

@@ -3,7 +3,6 @@
 \docType{data}
 \name{vst01_main}
 \alias{vst01_main}
-\alias{vst01_lyt}
 \alias{vst01_pre}
 \alias{vst01_post}
 \alias{vst01}
@@ -20,15 +19,6 @@ vst01_main(
   ...
 )
 
-vst01_lyt(
-  arm_var,
-  summaryvars,
-  summaryvars_lbls,
-  visitvar,
-  lbl_avisit,
-  lbl_param
-)
-
 vst01_pre(adam_db, ...)
 
 vst01_post(tlg, prune_0 = TRUE, ...)
@@ -40,18 +30,13 @@ vst01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+\item{summaryvars}{(\code{list}) variables to be analyzed. Names are used as subtitles. For values
+where no name is provided, the label attribute of the corresponding column in \code{advs} table of \code{adam_db} is used.}
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
-to be displayed.}
+to be displayed}
 
 \item{...}{not used.}
-
-\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
-
-\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
-
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -78,8 +63,6 @@ by \code{AVISIT}. Re-level to customize order
 \section{Functions}{
 \itemize{
 \item \code{vst01_main()}: Main TLG function
-
-\item \code{vst01_lyt()}: Layout
 
 \item \code{vst01_pre()}: Preprocessing
 

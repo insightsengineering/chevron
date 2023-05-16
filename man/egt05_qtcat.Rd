@@ -33,7 +33,7 @@ egt05_qtcat_lyt(
   lbl_headvisit
 )
 
-egt05_qtcat_pre(adam_db, paramvar = "QT", ...)
+egt05_qtcat_pre(adam_db, ...)
 
 egt05_qtcat_post(tlg, prune_0 = TRUE, ...)
 
@@ -63,11 +63,11 @@ to be displayed.}
 
 \item{lbl_headvisit}{(\code{string}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 
-\item{paramvar}{(\code{string}) typically \code{"QT"} (Default). It should come from \code{"PARAMCD"}.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{paramvar}{(\code{string}) typically \code{"QT"} (Default). It should come from \code{"PARAMCD"}.}
 }
 \description{
 The \code{EGT05_QTCAT} table summarizes several electrocardiogram parameters and their evolution

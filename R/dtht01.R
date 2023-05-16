@@ -166,7 +166,7 @@ dtht01_pre <- function(adam_db, ...) {
 #'
 dtht01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
-    tlg <- trim_rows(tlg)
+    tlg <- smart_prune(tlg)
   }
   std_postprocess(tlg)
 }

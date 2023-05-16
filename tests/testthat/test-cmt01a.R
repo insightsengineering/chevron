@@ -7,7 +7,7 @@ test_that("cmt01a can handle all NA values", {
     )
 
   res <- expect_silent(run(cmt01a, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("cmt01a can handle some NA values", {
@@ -15,5 +15,5 @@ test_that("cmt01a can handle some NA values", {
   proc_data$adcm$ATC2[1:2] <- NA
   proc_data$adcm$CMDECOD[1:2] <- NA
   res <- expect_silent(run(cmt01a, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

@@ -31,12 +31,12 @@ lbt07_main <- function(adam_db,
   checkmate::assert_string(grad_dir_var)
   checkmate::assert_string(grad_anl_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_var(
+  assert_valid_variable(
     adam_db$adlb, c("ATOXGR", param_var, grad_dir_var, grad_anl_var),
     types = list(c("character", "factor"))
   )
-  assert_valid_var(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
-  assert_valid_var(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
   lbl_param_var <- var_labels_for(adam_db$adlb, param_var)

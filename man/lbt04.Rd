@@ -3,7 +3,6 @@
 \docType{data}
 \name{lbt04_main}
 \alias{lbt04_main}
-\alias{lbt04_lyt}
 \alias{lbt04_pre}
 \alias{lbt04_post}
 \alias{lbt04}
@@ -13,8 +12,6 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 lbt04_main(adam_db, arm_var = "ACTARM", ...)
-
-lbt04_lyt(arm_var, lbl_param, lbl_anrind)
 
 lbt04_pre(adam_db, ...)
 
@@ -28,10 +25,6 @@ lbt04
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{...}{not used.}
-
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
-
-\item{lbl_anrind}{(\code{string}) label of the \code{ANRIND} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
@@ -51,8 +44,6 @@ overview of laboratory abnormalities not present at baseline.
 \itemize{
 \item \code{lbt04_main()}: Main TLG function
 
-\item \code{lbt04_lyt()}: Layout
-
 \item \code{lbt04_pre()}: Preprocessing
 
 \item \code{lbt04_post()}: Postprocessing
@@ -68,4 +59,3 @@ and column specified by \code{arm_var}.
 run(lbt04, syn_data)
 }
 \keyword{datasets}
-\keyword{internal}
