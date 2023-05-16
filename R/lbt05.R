@@ -50,7 +50,7 @@ lbt05_main <- function(adam_db,
   tbl
 }
 
-#' lbt05 Layout
+#' `lbt05` Layout
 #'
 #' @inheritParams gen_args
 #'

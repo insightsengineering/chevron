@@ -61,7 +61,7 @@ egt05_qtcat_main <- function(adam_db,
   )
 }
 
-#' egt05_qtcat Layout
+#' `egt05_qtcat` Layout
 #'
 #' @inheritParams gen_args
 #'

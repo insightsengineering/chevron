@@ -2,7 +2,7 @@
 % Please edit documentation in R/egt05_qtcat.R
 \name{egt05_qtcat_lyt}
 \alias{egt05_qtcat_lyt}
-\title{egt05_qtcat Layout}
+\title{\code{egt05_qtcat} Layout}
 \usage{
 egt05_qtcat_lyt(
   arm_var,
@@ -37,6 +37,6 @@ to be displayed.}
 \item{lbl_headvisit}{(\code{string}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 }
 \description{
-egt05_qtcat Layout
+\code{egt05_qtcat} Layout
 }
 \keyword{internal}

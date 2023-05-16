@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmpt01.R
 \name{rmpt01_lyt}
 \alias{rmpt01_lyt}
-\title{rmpt01 Layout}
+\title{\code{rmpt01} Layout}
 \usage{
 rmpt01_lyt(summaryvars, lbl_summaryvars, parcat, lbl_parcat)
 }
@@ -17,6 +17,6 @@ table of \code{adam_db} is used as label.}
 \item{lbl_parcat}{(\code{string}) the label associated with the variable initiating a new row split.}
 }
 \description{
-rmpt01 Layout
+\code{rmpt01} Layout
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/egt01.R
 \name{egt01_lyt}
 \alias{egt01_lyt}
-\title{egt01 Layout}
+\title{\code{egt01} Layout}
 \usage{
 egt01_lyt(
   arm_var,
@@ -30,6 +30,6 @@ to be displayed.}
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 }
 \description{
-egt01 Layout
+\code{egt01} Layout
 }
 \keyword{internal}

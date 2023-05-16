@@ -1,3 +1,12 @@
+# dst01 works as expected when all data are NA
+
+    Code
+      cat(formatters::export_as_txt(res, lpp = 100))
+    Output
+                                                                                                
+        ————————————————————————————————————————————————————————————————————————————————————————
+           Null Report: No observations met the reporting criteria for inclusion in this output.
+
 # dst01 can handle all NA values in DCSREAS
 
     Code

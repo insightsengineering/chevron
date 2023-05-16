@@ -2,7 +2,7 @@
 % Please edit documentation in R/egt03.R
 \name{egt03_lyt}
 \alias{egt03_lyt}
-\title{egt03 Layout}
+\title{\code{egt03} Layout}
 \usage{
 egt03_lyt(arm_var, splitvar, summaryvar, lbl_armvar, lbl_summaryvars)
 }
@@ -20,6 +20,6 @@ are used as subtitles.}
 \item{lbl_summaryvars}{(\code{string}) label of the \code{summaryvar} variable.}
 }
 \description{
-egt03 Layout
+\code{egt03} Layout
 }
 \keyword{internal}

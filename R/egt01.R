@@ -68,7 +68,7 @@ egt01_main <- function(adam_db,
   )
 }
 
-#' egt01 Layout
+#' `egt01` Layout
 #'
 #' @inheritParams gen_args
 #'

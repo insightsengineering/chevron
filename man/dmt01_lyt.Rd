@@ -2,7 +2,7 @@
 % Please edit documentation in R/dmt01.R
 \name{dmt01_lyt}
 \alias{dmt01_lyt}
-\title{dmt01 Layout}
+\title{\code{dmt01} Layout}
 \usage{
 dmt01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
 }
@@ -14,6 +14,6 @@ dmt01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
-dmt01 Layout
+\code{dmt01} Layout
 }
 \keyword{internal}

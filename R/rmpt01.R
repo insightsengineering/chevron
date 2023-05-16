@@ -43,7 +43,7 @@ rmpt01_main <- function(adam_db,
   tbl
 }
 
-#' rmpt01 Layout
+#' `rmpt01` Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams rmpt01_main

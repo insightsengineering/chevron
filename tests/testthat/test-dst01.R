@@ -1,13 +1,14 @@
 # NA values ----
 
-test_that("dst01 create does not allow all NA values", {
+test_that("dst01 works as expected when all data are NA", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
       EOSSTT = NA_character_,
       DCSREAS = NA_character_
     )
-  expect_error(run(dst01, proc_data, detail_vars = list()))
+  expect_silent(res <- run(dst01, proc_data, detail_vars = list()))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("dst01 can handle all NA values in DCSREAS", {

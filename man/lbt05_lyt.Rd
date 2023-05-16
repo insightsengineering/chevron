@@ -2,7 +2,7 @@
 % Please edit documentation in R/lbt05.R
 \name{lbt05_lyt}
 \alias{lbt05_lyt}
-\title{lbt05 Layout}
+\title{\code{lbt05} Layout}
 \usage{
 lbt05_lyt(arm_var, lbl_overall, lbl_param, lbl_anrind, map)
 }
@@ -18,6 +18,6 @@ lbt05_lyt(arm_var, lbl_overall, lbl_param, lbl_anrind, map)
 \item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
 }
 \description{
-lbt05 Layout
+\code{lbt05} Layout
 }
 \keyword{internal}
