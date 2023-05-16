@@ -46,6 +46,45 @@
         ————————————————————————————————————————————————————————————————————————————————————————
            Null Report: No observations met the reporting criteria for inclusion in this output.
 
+# lbt04 can handle missing levels
+
+    Code
+      cat(formatters::export_as_txt(res, lpp = 100))
+    Output
+          Laboratory Test                        A: Drug X   B: Placebo   C: Combination
+            Direction of Abnormality              (N=134)     (N=134)        (N=132)    
+        ————————————————————————————————————————————————————————————————————————————————
+        CHEMISTRY                                                                       
+          Alanine Aminotransferase Measurement                                          
+            Low                                    0/70         0/65           0/67     
+            High                                   0/70         0/59           0/69     
+          C-Reactive Protein Measurement                                                
+            Low                                    0/70         0/78           0/65     
+            High                                   0/67         0/69           0/62     
+          Immunoglobulin A Measurement                                                  
+            Low                                    0/52         0/64           0/67     
+            High                                   0/50         0/63           0/67     
+        COAGULATION                                                                     
+          Alanine Aminotransferase Measurement                                          
+            Low                                    0/69         0/67           0/64     
+            High                                   0/67         0/64           0/62     
+          C-Reactive Protein Measurement                                                
+            Low                                    0/65         0/68           0/67     
+            High                                   0/63         0/66           0/61     
+          Immunoglobulin A Measurement                                                  
+            Low                                    0/60         0/69           0/66     
+            High                                   0/62         0/78           0/64     
+        HEMATOLOGY                                                                      
+          Alanine Aminotransferase Measurement                                          
+            Low                                    0/59         0/63           0/71     
+            High                                   0/58         0/60           0/68     
+          C-Reactive Protein Measurement                                                
+            Low                                    0/70         0/57           0/75     
+            High                                   0/63         0/53           0/67     
+          Immunoglobulin A Measurement                                                  
+            Low                                    0/69         0/67           0/60     
+            High                                   0/71         0/68           0/63     
+
 # lbt04 can handle some NA values
 
     Code
