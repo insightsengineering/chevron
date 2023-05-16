@@ -215,6 +215,8 @@ assert_valid_var.character <- function(
     ...
   )
 }
+
+#' @rdname assert_valid_var
 #' @export
 assert_valid_var.factor <- function(
     x, label = deparse(substitute(x)),
@@ -228,12 +230,14 @@ assert_valid_var.factor <- function(
   )
   checkmate::assert_factor(
     x,
-    min.levels = as.integer(empty_ok),
+    min.levels = as.integer(!empty_ok),
     any.missing = na_ok,
     .var.name = label,
     ...
   )
 }
+
+#' @rdname assert_valid_var
 #' @export
 assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = TRUE, empty_ok = FALSE, ...) {
   checkmate::assert_logical(
@@ -245,8 +249,8 @@ assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = 
   )
 }
 #' @rdname assert_valid_var
-#' @export
 #' @param integerish (`flag`) whether the number should be treated as integerish.
+#' @export
 assert_valid_var.numeric <- function(
     x, label = deparse(substitute(x)),
     na_ok = TRUE, empty_ok = FALSE, integerish = FALSE, ...) {
@@ -259,9 +263,12 @@ assert_valid_var.numeric <- function(
     ...
   )
 }
+
+#' @rdname assert_valid_var
 #' @export
 assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
 }
+
 #' Check variables in a data frame are valid character or factor.
 #' @param df (`data.frame`) input dataset.
 #' @param vars (`character`) variables to check.
@@ -298,9 +305,11 @@ assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), typ
 assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
   if (!any(vapply(types, is, object = x, FUN.VALUE = TRUE))) {
     abort(
-      quote_str(label),
-      " is not of type ",
-      toString(types)
+      paste0(
+        quote_str(label),
+        " is not of type ",
+        toString(types)
+      )
     )
   }
 }
@@ -319,9 +328,11 @@ assert_valid_var_pair <- function(df1, df2, var, lab1 = deparse(substitute(df1))
   lvl_y <- lvls(df2[[var]])
   if (!identical(lvl_x, lvl_y)) {
     abort(
-      quote_str(lab1), " and ",
-      quote_str(lab2), " should contain the same levels in variable ",
-      quote_str(var), "!"
+      paste0(
+        quote_str(lab1), " and ",
+        quote_str(lab2), " should contain the same levels in variable ",
+        quote_str(var), "!"
+      )
     )
   }
 }

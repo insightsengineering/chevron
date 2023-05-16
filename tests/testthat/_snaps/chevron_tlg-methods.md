@@ -127,3 +127,24 @@
           BLACK OR AFRICAN AMERICAN          31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
           WHITE                              27 (20.1%)    27 (20.1%)      21 (15.9%)      75 (18.8%) 
 
+# script_funs works as expected in interactive mode
+
+    Code
+      res
+    Output
+       [1] "# Edit Preprocessing Function."                                                                                                                 
+       [2] "pre_fun <- function(adam_db, ...) {"                                                                                                            
+       [3] "  atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")"                                                                                          
+       [4] "  adam_db$adae <- adam_db$adae %>%"                                                                                                             
+       [5] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                         
+       [6] "    mutate("                                                                                                                                    
+       [7] "      AEBODSYS = reformat(.data$AEBODSYS, nocoding),"                                                                                           
+       [8] "      AEDECOD = reformat(.data$AEDECOD, nocoding),"                                                                                             
+       [9] "      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)"                                                                                      
+      [10] "    )"                                                                                                                                          
+      [11] "  adam_db"                                                                                                                                      
+      [12] "}"                                                                                                                                              
+      [13] ""                                                                                                                                               
+      [14] "# Create TLG"                                                                                                                                   
+      [15] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04, !!!args_ls, auto_pre = FALSE)"
+
