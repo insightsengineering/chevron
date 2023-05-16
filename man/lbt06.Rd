@@ -18,11 +18,6 @@ lbt06_main(
   paramcd = NULL,
   avisit_var = "AVISIT",
   anrind_var = "ANRIND",
-  lbl_paramcd = "Parameter",
-  lbl_avisit = "Visit",
-  lbl_anrind = "Abnormality at Visit",
-  lbl_bnrind = "Baseline Status",
-  deco = std_deco("LBT06"),
   ...
 )
 
@@ -34,8 +29,7 @@ lbt06_lyt(
   lbl_paramcd,
   lbl_avisit,
   lbl_anrind,
-  lbl_bnrind,
-  deco
+  lbl_bnrind
 )
 
 lbt06_pre(adam_db, ...)
@@ -55,6 +49,8 @@ lbt06
 
 \item{anrind_var}{(\code{string}) the variable for analysis reference range indicator.}
 
+\item{...}{not used.}
+
 \item{lbl_paramcd}{(\code{string}) text label of the \code{PARAMCD} variable.}
 
 \item{lbl_avisit}{(\code{string}) text label of the \code{AVISIT} variable.}
@@ -62,10 +58,6 @@ lbt06
 \item{lbl_anrind}{(\code{string}) text label of the \code{ANRIND} variable.}
 
 \item{lbl_bnrind}{(\code{string}) text label of the \code{BNRIND} variable.}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
-
-\item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -96,8 +88,8 @@ baseline status summary.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"ACTARM"}, \code{"AVISIT"},
-\code{"ANRIND"}, \code{"BNRIND"}, \code{"ONTRTFL"}, and \code{"PARCAT2"}.
+\item \code{adam_db} object must contain an \code{adlb} table with columns \code{"AVISIT"}, \code{"ANRIND"}, \code{"BNRIND"},
+\code{"ONTRTFL"}, and \code{"PARCAT2"}, and column specified by \code{arm_var}.
 }
 }
 \examples{

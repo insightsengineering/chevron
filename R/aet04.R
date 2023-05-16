@@ -79,7 +79,7 @@ aet04_lyt <- function(arm_var,
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
-      total_var,
+      var = total_var,
       label_pos = "hidden",
       child_labels = "visible",
       indent_mod = -1L

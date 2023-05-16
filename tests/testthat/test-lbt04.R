@@ -1,3 +1,12 @@
+# lbt04 functions ----
+
+test_that("lbt04 functions with default argument value return expected result with test data", {
+  pre_data <- lbt04_pre(syn_data)
+  raw_res <- lbt04_main(pre_data)
+  res <- lbt04_post(raw_res)
+  expect_snapshot(res)
+})
+
 # lbt04 ----
 
 test_that("lbt04 can handle all NA values", {
@@ -7,7 +16,7 @@ test_that("lbt04 can handle all NA values", {
       ANRIND = NA_character_
     )
 
-  res <- expect_silent(run(lbt04_1, proc_data))
+  res <- expect_silent(run(lbt04, proc_data))
   expect_snapshot(res)
 })
 
@@ -20,7 +29,7 @@ test_that("lbt04 can handle some NA values", {
       ANRIND = .env$new_anrind,
     )
 
-  res <- expect_silent(run(lbt04_1, proc_data))
+  res <- expect_silent(run(lbt04, proc_data))
   expect_snapshot(res)
 })
 
@@ -29,5 +38,5 @@ test_that("lbt04 fails on incomlete date", {
   proc_data$adlb <- proc_data$adlb %>%
     mutate(PARCAT1 = NULL)
 
-  expect_error(run(lbt04_1, proc_data))
+  expect_error(run(lbt04, proc_data))
 })

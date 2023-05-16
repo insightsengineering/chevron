@@ -72,8 +72,8 @@ dict <- list(
   some_vector = c("A", "B")
 )
 
-res_args <- script_args(mng01_1, dict = dict)
-res_funs <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list")
+res_args <- script_args(mng01, dict = dict)
+res_funs <- script_funs(mng01, adam_db = "syn_data", args = "args_list")
 ```
 
 ```{r}
@@ -107,7 +107,7 @@ tlg_output
 By specifying `details = TRUE` the main and post processing functions are also exposed.
 
 ```{r}
-res_fun <- script_funs(mng01_1, adam_db = "syn_data", args = "args_list", details = TRUE)
+res_fun <- script_funs(mng01, adam_db = "syn_data", args = "args_list", details = TRUE)
 ```
 
 ```{r}

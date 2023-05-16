@@ -9,6 +9,7 @@ NCI
 PARAMCD
 Postprocessing
 Pre
+RSPT
 Repo
 Rua
 TLG
@@ -17,6 +18,7 @@ aesi
 aet
 catagory
 cmt
+conf
 coxph
 coxt
 de
@@ -29,7 +31,15 @@ na
 postprocessing
 pre
 preprocess
+pval
 repo
 reproducibility
+rspt
 rtable
+schouten
+speficied
 splitted
+strat
+unstrat
+unstratified
+wald

@@ -1,9 +1,8 @@
-# vst02 ----
+# vst02_1 ----
 
-#' @describeIn vst02 Main TLG function
+#' @describeIn vst02_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param exclude_base_abn (`flag`) whether to exclude subjects with baseline abnormality.
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
 #'
@@ -18,13 +17,14 @@
 #'
 #' @export
 #'
-vst02_main <- function(adam_db,
-                       arm_var = "ACTARM",
-                       exclude_base_abn = FALSE,
-                       lbl_vs_assessment = "Assessment",
-                       lbl_vs_abnormality = "Abnormality",
-                       lbl_overall = NULL,
-                       ...) {
+vst02_1_main <- function(adam_db,
+                         arm_var = "ACTARM",
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = NULL,
+                         ...) {
+  exclude_base_abn <- FALSE
+
   assert_all_tablenames(adam_db, "adsl", "advs")
   checkmate::assert_string(arm_var)
   checkmate::assert_flag(exclude_base_abn)
@@ -49,11 +49,13 @@ vst02_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst02 Layout
+#' @describeIn vst02_1 Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
 #' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
+#' @param exclude_base_abn (`flag`) whether to exclude subjects with baseline abnormality from numerator and
+#'   denominator.
 #'
 #' @export
 #'
@@ -76,7 +78,7 @@ vst02_lyt <- function(arm_var,
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
 
-#' @describeIn vst02 Preprocessing
+#' @describeIn vst02_1 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -96,7 +98,7 @@ vst02_pre <- function(adam_db, ...) {
   adam_db
 }
 
-#' @describeIn vst02 Postprocessing
+#' @describeIn vst02_1 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -111,15 +113,82 @@ vst02_post <- function(tlg, prune_0 = FALSE, ...) {
 
 #' `VST02` Vital Sign Abnormalities Table.
 #'
-#' Assessments Outside Normal Limits.
+#' Vital Sign Parameters outside Normal Limits Regardless of Abnormality at Baseline.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
-#' run(vst02, syn_data)
-vst02 <- chevron_t(
-  main = vst02_main,
+#' run(vst02_1, syn_data)
+vst02_1 <- chevron_t(
+  main = vst02_1_main,
+  preprocess = vst02_pre,
+  postprocess = vst02_post,
+  adam_datasets = c("adsl", "advs")
+)
+
+# vst02_2 ----
+
+#' @describeIn vst02_2 Main TLG function
+#'
+#' @inheritParams gen_args
+#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
+#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
+#'
+#' @details
+#'   * Only count LOW or HIGH values.
+#'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
+#'   * Does not include a total column by default.
+#'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
+#'
+#' @note
+#'   * `adam_db` object must contain an `advs` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
+#'
+#' @export
+#'
+vst02_2_main <- function(adam_db,
+                         arm_var = "ACTARM",
+                         lbl_vs_assessment = "Assessment",
+                         lbl_vs_abnormality = "Abnormality",
+                         lbl_overall = NULL,
+                         ...) {
+  exclude_base_abn <- TRUE
+
+  assert_all_tablenames(adam_db, "adsl", "advs")
+  checkmate::assert_string(arm_var)
+  checkmate::assert_flag(exclude_base_abn)
+  checkmate::assert_string(lbl_vs_assessment)
+  checkmate::assert_string(lbl_vs_abnormality)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+
+  assert_valid_variable(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$advs, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$advs, arm_var)
+
+  lyt <- vst02_lyt(
+    arm_var = arm_var,
+    exclude_base_abn = exclude_base_abn,
+    lbl_vs_assessment = lbl_vs_assessment,
+    lbl_vs_abnormality = lbl_vs_abnormality,
+    lbl_overall = lbl_overall
+  )
+
+  tbl <- build_table(lyt, adam_db$advs, alt_counts_df = adam_db$adsl)
+  tbl
+}
+
+#' `VST02` Vital Sign Abnormalities Table.
+#'
+#' Vital Sign Parameters outside Normal Limits Among Patients without Abnormality at Baseline.
+#'
+#' @include chevron_tlg-S4class.R
+#' @export
+#'
+#' @examples
+#' run(vst02_2, syn_data)
+vst02_2 <- chevron_t(
+  main = vst02_2_main,
   preprocess = vst02_pre,
   postprocess = vst02_post,
   adam_datasets = c("adsl", "advs")

@@ -19,7 +19,7 @@ setGeneric("run", function(object, adam_db, auto_pre = TRUE, ...) standardGeneri
 #' @rdname run
 #' @export
 #' @examples
-#' run(mng01_1, syn_data, auto_pre = TRUE, dataset = "adlb")
+#' run(mng01, syn_data, auto_pre = TRUE, dataset = "adlb")
 setMethod(
   f = "run",
   signature = "chevron_tlg",

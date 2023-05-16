@@ -1,6 +1,6 @@
-# vst01_1 ----
+# vst01 ----
 
-#' @describeIn vst01_1 Main TLG function
+#' @describeIn vst01 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
@@ -24,26 +24,33 @@
 #'
 #' @export
 #'
-vst01_1_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         summaryvars = list("Value at Visit" = "AVAL", "Change from \nBaseline" = "CHG"),
-                         visitvar = "AVISIT", # or ATPTN
-                         deco = std_deco("VST01"),
-                         ...) {
-  summaryvars <- unlist(summaryvars)
+vst01_main <- function(adam_db,
+                       arm_var = "ACTARM",
+                       summaryvars = c("AVAL", "CHG"),
+                       visitvar = "AVISIT", # or ATPTN
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", "advs"))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_character(summaryvars, len = 2)
+  checkmate::assert_string(visitvar)
+  assert_valid_variable(adam_db$advs, c(summaryvars), types = list("numeric"), empty_ok = TRUE)
+  assert_valid_variable(adam_db$advs, c(visitvar, "PARAM"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$advs, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+
   lbl_avisit <- var_labels_for(adam_db$advs, visitvar)
   lbl_param <- var_labels_for(adam_db$advs, "PARAM")
 
   summaryvars_lbls <- get_labels(adam_db$advs, summaryvars)
 
-  lyt <- vst01_1_lyt(
+  lyt <- vst01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
-    lbl_param = lbl_param,
-    deco = deco
+    lbl_param = lbl_param
   )
 
   tbl <- build_table(
@@ -55,7 +62,7 @@ vst01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst01_1 Layout
+#' @describeIn vst01 Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -68,18 +75,17 @@ vst01_1_main <- function(adam_db,
 #'
 #' @export
 #'
-vst01_1_lyt <- function(arm_var,
-                        summaryvars,
-                        summaryvars_lbls,
-                        visitvar,
-                        lbl_avisit,
-                        lbl_param,
-                        deco) {
+vst01_lyt <- function(arm_var,
+                      summaryvars,
+                      summaryvars_lbls,
+                      visitvar,
+                      lbl_avisit,
+                      lbl_param) {
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
   # problem with the column count
 
-  basic_table_deco(deco) %>%
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
       "PARAM",
@@ -103,31 +109,32 @@ vst01_1_lyt <- function(arm_var,
     append_topleft(paste(" ", lbl_avisit))
 }
 
-#' @describeIn vst01_1 Preprocessing
+#' @describeIn vst01 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @export
 #'
-vst01_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "advs"))
-
-
+vst01_pre <- function(adam_db, ...) {
   adam_db$advs <- adam_db$advs %>%
-    filter(.data$ANL01FL == "Y")
+    filter(.data$ANL01FL == "Y") %>%
+    mutate(
+      AVAL = with_label(.data$AVAL, "Value at Visit"),
+      CHG = with_label(.data$CHG, "Change from \nBaseline")
+    )
 
   adam_db
 }
 
-#' @describeIn vst01_1 Postprocessing
+#' @describeIn vst01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
-vst01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+vst01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }
-#' `VST01` Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.
+#' `VST01` Vital Sign Results and change from Baseline By Visit Table.
 #'
 #' The `VST01` table provides an
 #' overview of the Vital Sign values and its change from baseline of each respective arm
@@ -137,10 +144,10 @@ vst01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(vst01_1, syn_data)
-vst01_1 <- chevron_t(
-  main = vst01_1_main,
-  preprocess = vst01_1_pre,
-  postprocess = vst01_1_post,
+#' run(vst01, syn_data)
+vst01 <- chevron_t(
+  main = vst01_main,
+  preprocess = vst01_pre,
+  postprocess = vst01_post,
   adam_datasets = c("adsl", "advs")
 )

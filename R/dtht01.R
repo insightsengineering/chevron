@@ -35,7 +35,7 @@ dtht01_main <- function(adam_db,
   assert_valid_variable(
     adam_db$adsl,
     c("DTHFL", "DTHCAT", other_var, dose_death_var),
-    types = list("character", "factor"), na_ok = TRUE
+    types = list("character", "factor"), na_ok = TRUE, min_chars = 0L
   )
   if (other_category) {
     death_cause <- lvls(adam_db$adsl$DTHCAT)
@@ -84,6 +84,11 @@ dtht01_lyt <- function(arm_var,
                        other_level,
                        other_var,
                        dose_death_var) {
+  if (is.null(dose_death_var) && is.null(other_var)) {
+    lyt_block_fun <- analyze
+  } else {
+    lyt_block_fun <- summarize_row
+  }
   lyt <- basic_table() %>%
     split_cols_by("ACTARM") %>%
     add_colcounts() %>%
@@ -94,9 +99,9 @@ dtht01_lyt <- function(arm_var,
       .formats = c(count_fraction = format_count_fraction_fixed_dp)
     ) %>%
     split_rows_by("TOTAL", child_labels = "visible", label_pos = "hidden", split_fun = drop_split_levels) %>%
-    summarize_row_groups(
+    lyt_block_fun(
       death_var,
-      cfun = make_afun(
+      make_afun(
         s_summary_na,
         .stats = c("n", "count_fraction"), .ungroup_stats = "count_fraction",
         .formats = list(n = "xx", count_fraction = format_count_fraction_fixed_dp)
@@ -186,42 +191,3 @@ dtht01 <- chevron_t(
   postprocess = dtht01_post,
   adam_datasets = c("adsl")
 )
-
-#' Summary factor allowing NA
-#' @param x (`factor`) input.
-#' @param denom (`string`) denominator choice.
-#' @param .N_row (`integer`) number of rows in row-splitted dataset.
-#' @param .N_col (`integer`) number of rows in column-splitted dataset.
-#' @param ... Not used
-#' @keywords internal
-s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { # nolint
-  denom <- match.arg(denom)
-  y <- list()
-  y$n <- length(x)
-  y$count <- as.list(table(x, useNA = "no"))
-  dn <- switch(denom,
-    n = length(x),
-    N_row = .N_row,
-    N_col = .N_col
-  )
-  y$count_fraction <- lapply(y$count, function(x) {
-    c(x, ifelse(dn > 0, x / dn, 0))
-  })
-  y$n_blq <- sum(grepl("BLQ|LTR|<[1-9]", x))
-  y
-}
-#' Summarize variables allow na
-#' @keywords internal
-summarize_vars_allow_na <- function(
-    lyt, vars, var_labels = vars,
-    nested = TRUE, ..., show_labels = "default", table_names = vars,
-    section_div = NA_character_, .stats = c("n", "count_fraction"),
-    .formats = NULL, .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { # nolint
-  afun <- make_afun(s_summary_na, .stats, .formats, .labels, .indent_mods, .ungroup_stats = c("count_fraction"))
-  analyze(
-    lyt = lyt, vars = vars, var_labels = var_labels,
-    afun = afun, nested = nested, extra_args = list(...),
-    inclNAs = inclNAs, show_labels = show_labels, table_names = table_names,
-    section_div = section_div
-  )
-}

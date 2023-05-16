@@ -7,10 +7,6 @@
 #' @param paramcd (`string`) the variable for parameter code.
 #' @param avisit_var (`string`) the variable for analysis visit.
 #' @param anrind_var (`string`) the variable for analysis reference range indicator.
-#' @param lbl_paramcd (`string`) text label of the `PARAMCD` variable.
-#' @param lbl_avisit (`string`) text label of the `AVISIT` variable.
-#' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
-#' @param lbl_bnrind (`string`) text label of the `BNRIND` variable.
 #'
 #' @details
 #'  * Only count LOW or HIGH values.
@@ -19,8 +15,8 @@
 #'  * Keep zero count rows by default.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adlb` table with columns `"ACTARM"`, `"AVISIT"`,
-#'  `"ANRIND"`, `"BNRIND"`, `"ONTRTFL"`, and `"PARCAT2"`.
+#'  * `adam_db` object must contain an `adlb` table with columns `"AVISIT"`, `"ANRIND"`, `"BNRIND"`,
+#'  `"ONTRTFL"`, and `"PARCAT2"`, and column specified by `arm_var`.
 #'
 #' @export
 #'
@@ -29,18 +25,23 @@ lbt06_main <- function(adam_db,
                        paramcd = NULL,
                        avisit_var = "AVISIT",
                        anrind_var = "ANRIND",
-                       lbl_paramcd = "Parameter",
-                       lbl_avisit = "Visit",
-                       lbl_anrind = "Abnormality at Visit",
-                       lbl_bnrind = "Baseline Status",
-                       deco = std_deco("LBT06"),
                        ...) {
-  assert_all_tablenames(adam_db, "adsl", "adlb")
-
+  assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(paramcd, null.ok = TRUE)
   checkmate::assert_string(avisit_var)
   checkmate::assert_string(anrind_var)
+  assert_valid_var(adam_db$adlb, c("PARAMCD", "AVISIT", "ANRIND", "BNRIND"),
+    types = list("characater", "factor"), na_ok = FALSE
+  )
+  assert_valid_var(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_var(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
+
+  lbl_paramcd <- var_labels_for(adam_db$adlb, "PARAMCD")
+  lbl_avisit <- var_labels_for(adam_db$adlb, "AVISIT")
+  lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
+  lbl_bnrind <- var_labels_for(adam_db$adlb, "BNRIND")
 
   lyt <- lbt06_lyt(
     arm_var = arm_var,
@@ -50,8 +51,7 @@ lbt06_main <- function(adam_db,
     lbl_paramcd = lbl_paramcd,
     lbl_avisit = lbl_avisit,
     lbl_anrind = lbl_anrind,
-    lbl_bnrind = lbl_bnrind,
-    deco = deco
+    lbl_bnrind = lbl_bnrind
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -63,6 +63,12 @@ lbt06_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
+#' @inheritParams gen_args
+#' @param lbl_paramcd (`string`) text label of the `PARAMCD` variable.
+#' @param lbl_avisit (`string`) text label of the `AVISIT` variable.
+#' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
+#' @param lbl_bnrind (`string`) text label of the `BNRIND` variable.
+#'
 #' @keywords internal
 #'
 lbt06_lyt <- function(arm_var,
@@ -72,9 +78,8 @@ lbt06_lyt <- function(arm_var,
                       lbl_paramcd,
                       lbl_avisit,
                       lbl_anrind,
-                      lbl_bnrind,
-                      deco) {
-  basic_table_deco(deco, show_colcounts = TRUE) %>%
+                      lbl_bnrind) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     ifneeded_split_row(paramcd, lbl_paramcd) %>%
     split_rows_by(

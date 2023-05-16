@@ -114,7 +114,7 @@ report_null <- function(tlg, ...) {
 #' @rdname report_null
 null_report <- rtables::rtable(
   header = "",
-  rrow("Null Report: No observations met the reporting criteria for inclusion in this output.")
+  rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
 )
 
 #' @export
@@ -186,7 +186,7 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
     split_rows_by(lyt, var,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = paste(lbl_var)
+      split_label = lbl_var
     )
   }
 }
@@ -295,7 +295,7 @@ droplevels.character <- function(x, ...) {
 }
 
 #' Obtain levels from vector
-#' @param x object to obtain levels.
+#' @param x (`character`) or (`factor`) object to obtain levels.
 #' @details
 #' For factors, the levels will be returned. For characters, the sorted unique values will be returned.
 #' @export
