@@ -2,7 +2,7 @@
 % Please edit documentation in R/vst01.R
 \name{vst01_lyt}
 \alias{vst01_lyt}
-\title{vst01 Layout}
+\title{\code{vst01} Layout}
 \usage{
 vst01_lyt(
   arm_var,
@@ -28,6 +28,6 @@ to be displayed.}
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 }
 \description{
-vst01 Layout
+\code{vst01} Layout
 }
 \keyword{internal}

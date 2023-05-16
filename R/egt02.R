@@ -43,7 +43,7 @@ egt02_1_main <- function(adam_db,
   tbl
 }
 
-#' egt02 Layout
+#' `egt02` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.

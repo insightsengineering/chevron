@@ -40,8 +40,6 @@ egt05_qtcat
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{paramvar}{(\code{string}) typically \code{"QT"} (Default). It should come from \code{"PARAMCD"}.}
 }
 \description{
 The \code{EGT05_QTCAT} table summarizes several electrocardiogram parameters and their evolution

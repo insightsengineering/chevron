@@ -25,7 +25,7 @@ lbt04_main <- function(adam_db,
     adam_db$adlb, c("PARAM", "PARCAT1"),
     types = list("characater", "factor")
   )
-  assert_valid_variable(adam_db$adsl, c("AVALCAT1", "ANRIND"), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
+  assert_valid_variable(adam_db$adlb, c("AVALCAT1", "ANRIND"), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
@@ -47,7 +47,7 @@ lbt04_main <- function(adam_db,
   tbl
 }
 
-#' lbt04 Layout
+#' `lbt04` Layout
 #'
 #' @inheritParams gen_args
 #'

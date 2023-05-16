@@ -39,10 +39,6 @@ vst02_1
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
-
-\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
 }
 \description{
 Vital Sign Parameters outside Normal Limits Regardless of Abnormality at Baseline.

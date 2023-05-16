@@ -99,7 +99,6 @@ reference:
       - assert_valid_variable
       - report_null
       - smart_prune
-      - std_deco
       - var_labels_for
       - gg_list
       - grob_list

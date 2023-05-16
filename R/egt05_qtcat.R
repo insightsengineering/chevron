@@ -4,7 +4,6 @@
 #'
 #' @inheritParams gen_args
 #' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
-#' @param paramvar (`string`) typically `"QT"` (Default). It should come from `"PARAMCD"`.
 #'
 #' @details
 #'  * The `Value at Visit` column, displays the categories of the specific `"PARAMCD"` value for patients.
