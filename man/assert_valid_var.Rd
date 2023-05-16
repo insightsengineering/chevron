@@ -3,7 +3,10 @@
 \name{assert_valid_var}
 \alias{assert_valid_var}
 \alias{assert_valid_var.character}
+\alias{assert_valid_var.factor}
+\alias{assert_valid_var.logical}
 \alias{assert_valid_var.numeric}
+\alias{assert_valid_var.default}
 \title{Check whether var is valid}
 \usage{
 assert_valid_var(x, label, na_ok, empty_ok, ...)
@@ -17,12 +20,37 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
   ...
 )
 
+\method{assert_valid_var}{factor}(
+  x,
+  label = deparse(substitute(x)),
+  na_ok = FALSE,
+  empty_ok = FALSE,
+  min_chars = 1L,
+  ...
+)
+
+\method{assert_valid_var}{logical}(
+  x,
+  label = deparse(substitute(x)),
+  na_ok = TRUE,
+  empty_ok = FALSE,
+  ...
+)
+
 \method{assert_valid_var}{numeric}(
   x,
   label = deparse(substitute(x)),
   na_ok = TRUE,
   empty_ok = FALSE,
   integerish = FALSE,
+  ...
+)
+
+\method{assert_valid_var}{default}(
+  x,
+  label = deparse(substitute(x)),
+  na_ok = FALSE,
+  empty_ok = FALSE,
   ...
 )
 }

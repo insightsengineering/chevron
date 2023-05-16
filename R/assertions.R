@@ -215,6 +215,8 @@ assert_valid_var.character <- function(
     ...
   )
 }
+
+#' @rdname assert_valid_var
 #' @export
 assert_valid_var.factor <- function(
     x, label = deparse(substitute(x)),
@@ -228,12 +230,14 @@ assert_valid_var.factor <- function(
   )
   checkmate::assert_factor(
     x,
-    min.levels = as.integer(empty_ok),
+    min.levels = as.integer(!empty_ok),
     any.missing = na_ok,
     .var.name = label,
     ...
   )
 }
+
+#' @rdname assert_valid_var
 #' @export
 assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = TRUE, empty_ok = FALSE, ...) {
   checkmate::assert_logical(
@@ -245,8 +249,8 @@ assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = 
   )
 }
 #' @rdname assert_valid_var
-#' @export
 #' @param integerish (`flag`) whether the number should be treated as integerish.
+#' @export
 assert_valid_var.numeric <- function(
     x, label = deparse(substitute(x)),
     na_ok = TRUE, empty_ok = FALSE, integerish = FALSE, ...) {
@@ -259,9 +263,12 @@ assert_valid_var.numeric <- function(
     ...
   )
 }
+
+#' @rdname assert_valid_var
 #' @export
 assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
 }
+
 #' Check variables in a data frame are valid character or factor.
 #' @param df (`data.frame`) input dataset.
 #' @param vars (`character`) variables to check.
