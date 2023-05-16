@@ -62,7 +62,7 @@ vst01_main <- function(adam_db,
   tbl
 }
 
-#' vst01 Layout
+#' `vst01` Layout
 #'
 #' @inheritParams gen_args
 #'

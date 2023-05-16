@@ -2,7 +2,7 @@
 % Please edit documentation in R/lbt04.R
 \name{lbt04_lyt}
 \alias{lbt04_lyt}
-\title{lbt04 Layout}
+\title{\code{lbt04} Layout}
 \usage{
 lbt04_lyt(arm_var, var_parcat, var_param, lbl_param, var_anrind, lbl_anrind)
 }
@@ -14,6 +14,6 @@ lbt04_lyt(arm_var, var_parcat, var_param, lbl_param, var_anrind, lbl_anrind)
 \item{lbl_anrind}{(\code{string}) label of the \code{ANRIND} variable.}
 }
 \description{
-lbt04 Layout
+\code{lbt04} Layout
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/egt02.R
 \name{egt02_lyt}
 \alias{egt02_lyt}
-\title{egt02 Layout}
+\title{\code{egt02} Layout}
 \usage{
 egt02_lyt(
   arm_var = "ACTARM",
@@ -25,6 +25,6 @@ egt02_lyt(
 denominator.}
 }
 \description{
-egt02 Layout
+\code{egt02} Layout
 }
 \keyword{internal}

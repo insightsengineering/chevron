@@ -3,8 +3,6 @@
 #' @describeIn vst02_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
 #' @param exclude_base_abn (`flag`) whether baseline abnormality should be excluded.
 #'
 #' @details
@@ -47,7 +45,7 @@ vst02_1_main <- function(adam_db,
   tbl
 }
 
-#' vst02_1 Layout
+#' `vst02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.

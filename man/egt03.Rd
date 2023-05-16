@@ -44,9 +44,6 @@ used as subtitles.}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{minmax}{(\code{string}) one of \code{"min"} or \code{"max"} indicating whether the baseline should be compared to the maximum
-or minimum value.}
 }
 \description{
 The \code{EGT03} Table entries provide the number of patients by baseline assessment and minimum or maximum post-baseline
