@@ -2,7 +2,7 @@
 % Please edit documentation in R/vst02.R
 \name{vst02_lyt}
 \alias{vst02_lyt}
-\title{vst02_1 Layout}
+\title{\code{vst02_1} Layout}
 \usage{
 vst02_lyt(
   arm_var,
@@ -25,6 +25,6 @@ denominator.}
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
-vst02_1 Layout
+\code{vst02_1} Layout
 }
 \keyword{internal}

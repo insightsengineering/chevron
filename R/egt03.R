@@ -93,15 +93,13 @@ egt03_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @inheritParams egt03_main
-#' @param minmax (`string`) one of `"min"` or `"max"` indicating whether the baseline should be compared to the maximum
-#'   or minimum value.
 #'
 #' @export
 egt03_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(
       .data$PARAMCD == "HR" &
-      .data$AVISIT == "POST-BASELINE MINIMUM"
+        .data$AVISIT == "POST-BASELINE MINIMUM"
     ) %>%
     mutate(BNRIND = factor(
       .data$BNRIND,

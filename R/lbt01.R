@@ -37,7 +37,7 @@ lbt01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   assert_valid_variable(adam_db$adlb, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
-  assert_valid_variable(adam_db$adlb, c(summaryvars), types = list("numeric"), na_ok = TRUE)
+  assert_valid_variable(adam_db$adlb, c(summaryvars), types = list("numeric"), na_ok = TRUE, empty_ok = TRUE)
   assert_valid_variable(adam_db$adlb, c(visitvar), types = c("character", "factor"))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
