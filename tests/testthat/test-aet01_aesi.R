@@ -27,7 +27,7 @@ test_that("aet01_aesi can handle some NA values", {
     )
 
   res <- expect_silent(run(aet01_aesi, proc_data))
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
 test_that("aet01_aesi works with `ALL` argument", {
