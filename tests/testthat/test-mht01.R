@@ -4,17 +4,19 @@ test_that("mht01_1 functions with default argument value return expected result 
   pre_data <- mht01_pre(syn_data)
   raw_res <- mht01_main(pre_data)
   res <- mht01_post(raw_res)
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 # mht01_1 ----
 
 test_that("mht01 works", {
   proc_data <- syn_data
-  expect_snapshot(run(mht01, proc_data))
+  res <- run(mht01, proc_data)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("mht01 works on NULL in lbl_mhbodsys or lbl_mhdecod", {
   proc_data <- syn_data
-  expect_snapshot(run(mht01, proc_data, lbl_mhbodsys = NULL, lbl_mhdecod = NULL))
+  res <- run(mht01, proc_data, lbl_mhbodsys = NULL, lbl_mhdecod = NULL)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })

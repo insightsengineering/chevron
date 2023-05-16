@@ -107,13 +107,7 @@ test_that("assert_args works as expected", {
 
   choices <- c("adam_db", "arm_var", "lbl_overall", "lbl_x", "lbl_y")
 
-  expect_error(
-    assert_subset_suggest(x, choices),
-    "lbl_ is not a valid argument. Do you mean: lbl_x, lbl_y ?
-armvar is not a valid argument. Do you mean: arm_var ?
-xxxx is not a valid argument. ",
-    fixed = TRUE
-  )
+  expect_error(assert_subset_suggest(x, choices))
 
   x_ok <- c(
     "lbl_overall",

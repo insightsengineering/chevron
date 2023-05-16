@@ -1,7 +1,7 @@
 # ext01 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                                 A: Drug X        B: Placebo      C: Combination 
                                                  (N=134)           (N=134)           (N=132)    
@@ -20,7 +20,7 @@
 # ext01 functions with categorical data return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                      A: Drug X        B: Placebo      C: Combination 
                                       (N=134)           (N=134)           (N=132)    
@@ -39,7 +39,7 @@
 # ext01 works
 
     Code
-      tlg
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
                                                 A: Drug X        B: Placebo      C: Combination 
                                                  (N=134)           (N=134)           (N=132)    
@@ -58,7 +58,7 @@
 ---
 
     Code
-      tlg
+      cat(formatters::export_as_txt(res2, lpp = 100))
     Output
                                                 A: Drug X        B: Placebo      C: Combination 
                                                  (N=134)           (N=134)           (N=132)    
@@ -77,7 +77,7 @@
 # ext01 works for selected parameters and categorical variables
 
     Code
-      run(ext01, proc_data, prune_0 = TRUE, summaryvars = c("AVAL", "AVALCAT1"))
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                      A: Drug X        B: Placebo      C: Combination 
                                       (N=134)           (N=134)           (N=132)    

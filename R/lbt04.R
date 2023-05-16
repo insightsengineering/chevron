@@ -21,17 +21,23 @@ lbt04_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
-  assert_valid_var(adam_db$adlb, c("PARAM", "AVALCAT1", "ANRIND"), types = list("characater", "factor"), na_ok = FALSE)
-  assert_valid_var(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
-  assert_valid_var(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
+  assert_valid_variable(
+    adam_db$adlb, c("PARAM", "PARCAT1"),
+    types = list("characater", "factor")
+  )
+  assert_valid_variable(adam_db$adlb, c("AVALCAT1", "ANRIND"), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
+  assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
 
   lyt <- lbt04_lyt(
     arm_var = arm_var,
+    var_parcat = "PARCAT1",
+    var_param = "PARAM",
     lbl_param = lbl_param,
+    var_anrind = "ANRIND",
     lbl_anrind = lbl_anrind
   )
 
@@ -40,7 +46,7 @@ lbt04_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt04 Layout
+#' `lbt04` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -51,20 +57,26 @@ lbt04_main <- function(adam_db,
 #' @keywords internal
 #'
 lbt04_lyt <- function(arm_var,
+                      var_parcat,
+                      var_param,
                       lbl_param,
+                      var_anrind,
                       lbl_anrind) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    split_rows_by("PARCAT1") %>%
     split_rows_by(
-      "PARAM",
+      var_parcat,
+      split_fun = drop_split_levels
+    ) %>%
+    split_rows_by(
+      var_param,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = paste(lbl_param),
+      split_label = lbl_param,
       indent_mod = 0L
     ) %>%
     count_abnormal(
-      var = "ANRIND",
+      var = var_anrind,
       abnormal = list(Low = c("LOW", "LOW LOW"), High = c("HIGH", "HIGH HIGH")),
       exclude_base_abn = TRUE,
       .formats = list(fraction = format_fraction_fixed_dp)
@@ -80,13 +92,10 @@ lbt04_lyt <- function(arm_var,
 #'
 lbt04_pre <- function(adam_db, ...) {
   adam_db$adlb <- adam_db$adlb %>%
-    mutate(
-      ANRIND = reformat(.data$ANRIND, missing_rule, na_last = TRUE)
-    ) %>%
     filter(
       .data$ONTRTFL == "Y",
       .data$PARCAT2 == "SI",
-      .data$ANRIND != "<Missing>"
+      !is.na(.data$ANRIND)
     ) %>%
     mutate(
       PARAM = with_label(.data$PARAM, "Laboratory Test"),

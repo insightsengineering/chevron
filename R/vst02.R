@@ -3,8 +3,7 @@
 #' @describeIn vst02_1 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
+#' @param exclude_base_abn (`flag`) whether baseline abnormality should be excluded.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -19,17 +18,12 @@
 #'
 vst02_1_main <- function(adam_db,
                          arm_var = "ACTARM",
-                         lbl_vs_assessment = "Assessment",
-                         lbl_vs_abnormality = "Abnormality",
                          lbl_overall = NULL,
+                         exclude_base_abn = FALSE,
                          ...) {
-  exclude_base_abn <- FALSE
-
   assert_all_tablenames(adam_db, "adsl", "advs")
   checkmate::assert_string(arm_var)
   checkmate::assert_flag(exclude_base_abn)
-  checkmate::assert_string(lbl_vs_assessment)
-  checkmate::assert_string(lbl_vs_abnormality)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
 
   assert_valid_variable(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
@@ -37,6 +31,8 @@ vst02_1_main <- function(adam_db,
   assert_valid_variable(adam_db$advs, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$advs, arm_var)
 
+  lbl_vs_assessment <- var_labels_for(adam_db$advs, "PARAM")
+  lbl_vs_abnormality <- var_labels_for(adam_db$advs, "ANRIND")
   lyt <- vst02_lyt(
     arm_var = arm_var,
     exclude_base_abn = exclude_base_abn,
@@ -49,7 +45,7 @@ vst02_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn vst02_1 Layout
+#' `vst02_1` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
@@ -57,7 +53,7 @@ vst02_1_main <- function(adam_db,
 #' @param exclude_base_abn (`flag`) whether to exclude subjects with baseline abnormality from numerator and
 #'   denominator.
 #'
-#' @export
+#' @keywords internal
 #'
 vst02_lyt <- function(arm_var,
                       exclude_base_abn,
@@ -92,7 +88,8 @@ vst02_pre <- function(adam_db, ...) {
   adam_db$advs <- adam_db$advs %>%
     filter(.data$ONTRTFL == "Y") %>%
     mutate(
-      ANRIND = reformat(.data$ANRIND, high_low_format),
+      PARAM = with_label(.data$PARAM, "Assessment"),
+      ANRIND = with_label(reformat(.data$ANRIND, high_low_format), "Abnormality"),
       BNRIND = reformat(.data$BNRIND, high_low_format)
     )
   adam_db
@@ -130,54 +127,10 @@ vst02_1 <- chevron_t(
 # vst02_2 ----
 
 #' @describeIn vst02_2 Main TLG function
-#'
-#' @inheritParams gen_args
-#' @param lbl_vs_assessment (`string`) the label of the assessment variable.
-#' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
-#'
-#' @details
-#'   * Only count LOW or HIGH values.
-#'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
-#'   * Does not include a total column by default.
-#'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
-#'
-#' @note
-#'   * `adam_db` object must contain an `advs` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
-#'
+#' @inherit vst02_1_main
 #' @export
 #'
-vst02_2_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_vs_assessment = "Assessment",
-                         lbl_vs_abnormality = "Abnormality",
-                         lbl_overall = NULL,
-                         ...) {
-  exclude_base_abn <- TRUE
-
-  assert_all_tablenames(adam_db, "adsl", "advs")
-  checkmate::assert_string(arm_var)
-  checkmate::assert_flag(exclude_base_abn)
-  checkmate::assert_string(lbl_vs_assessment)
-  checkmate::assert_string(lbl_vs_abnormality)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-
-  assert_valid_variable(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$advs, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_var_pair(adam_db$adsl, adam_db$advs, arm_var)
-
-  lyt <- vst02_lyt(
-    arm_var = arm_var,
-    exclude_base_abn = exclude_base_abn,
-    lbl_vs_assessment = lbl_vs_assessment,
-    lbl_vs_abnormality = lbl_vs_abnormality,
-    lbl_overall = lbl_overall
-  )
-
-  tbl <- build_table(lyt, adam_db$advs, alt_counts_df = adam_db$adsl)
-  tbl
-}
-
+vst02_2_main <- modify_default_args(vst02_1_main, exclude_base_abn = TRUE)
 #' `VST02` Vital Sign Abnormalities Table.
 #'
 #' Vital Sign Parameters outside Normal Limits Among Patients without Abnormality at Baseline.

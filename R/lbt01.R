@@ -3,8 +3,8 @@
 #' @describeIn lbt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`character`) variables to be analyzed. Names are used as subtitles. For values
-#'   where no name is provided, the label attribute of the corresponding column in `adlb` table of `adam_db` is used.
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adlb`
+#'   table of `adam_db` is used as label.
 #' @param visitvar (`string`) the type of time point to use. Typically one of `"AVISIT"` (Default) or `"ATPTN"`.
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
@@ -36,11 +36,11 @@ lbt01_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
-  assert_valid_var(adam_db$adlb, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
-  assert_valid_var(adam_db$adlb, c(summaryvars), types = list("numeric"), na_ok = TRUE)
-  assert_valid_var(adam_db$adlb, c(visitvar), types = c("character", "factor"))
-  assert_valid_var(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
-  assert_valid_var(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adlb, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
+  assert_valid_variable(adam_db$adlb, c(summaryvars), types = list("numeric"), na_ok = TRUE, empty_ok = TRUE)
+  assert_valid_variable(adam_db$adlb, c(visitvar), types = c("character", "factor"))
+  assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_integerish, FUN.VALUE = numeric(1), lower = 0, len = 1)

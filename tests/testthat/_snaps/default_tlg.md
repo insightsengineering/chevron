@@ -1,7 +1,7 @@
 # ael01_nollt function with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
       MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
       ———————————————————————————————————————————————————————————————————————————————————————
@@ -19,7 +19,7 @@
 # aet01 function with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    
@@ -44,31 +44,67 @@
 # aet01_aesi function with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
-                                                                                         A: Drug X    B: Placebo    C: Combination
-                                                                                          (N=134)       (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one AE                                   122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of AEs                                                                 609           622            703      
-        Total number of patients with at least one AE by worst grade                                                              
-          Grade 1                                                                        7 (5.2%)      9 (6.7%)        4 (3.0%)   
-          Grade 2                                                                        6 (4.5%)      10 (7.5%)       7 (5.3%)   
-          Grade 3                                                                       18 (13.4%)    14 (10.4%)      16 (12.1%)  
-          Grade 4                                                                       15 (11.2%)    20 (14.9%)      18 (13.6%)  
-          Grade 5 (fatal outcome)                                                       76 (56.7%)    70 (52.2%)      75 (56.8%)  
-        Total number of patients with study drug withdrawn due to AE                    27 (20.1%)    26 (19.4%)      30 (22.7%)  
-        Total number of patients with dose modified/interrupted due to AE               66 (49.3%)    76 (56.7%)      74 (56.1%)  
-        Total number of patients with treatment received for AE                         98 (73.1%)    102 (76.1%)    103 (78.0%)  
-        Total number of patients with all non-fatal AEs resolved                        84 (62.7%)    92 (68.7%)      97 (73.5%)  
-        Total number of patients with at least one unresolved or ongoing non-fatal AE   102 (76.1%)   110 (82.1%)    107 (81.1%)  
-        Total number of patients with at least one serious AE                           104 (77.6%)   101 (75.4%)     99 (75.0%)  
-        Total number of patients with at least one related AE                           105 (78.4%)   108 (80.6%)    109 (82.6%)  
+                                                                                         A: Drug X 
+                                                                                          (N=134)  
+        ———————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one AE                                   122 (91.0%)
+        Total number of AEs                                                                 609    
+        Total number of patients with at least one AE by worst grade                               
+          Grade 1                                                                        7 (5.2%)  
+          Grade 2                                                                        6 (4.5%)  
+          Grade 3                                                                       18 (13.4%) 
+          Grade 4                                                                       15 (11.2%) 
+          Grade 5 (fatal outcome)                                                       76 (56.7%) 
+        Total number of patients with study drug withdrawn due to AE                    27 (20.1%) 
+        Total number of patients with dose modified/interrupted due to AE               66 (49.3%) 
+        Total number of patients with treatment received for AE                         98 (73.1%) 
+        Total number of patients with all non-fatal AEs resolved                        84 (62.7%) 
+        Total number of patients with at least one unresolved or ongoing non-fatal AE   102 (76.1%)
+        Total number of patients with at least one serious AE                           104 (77.6%)
+        Total number of patients with at least one related AE                           105 (78.4%)
+      \s\n                                                                                  B: Placebo 
+                                                                                          (N=134)  
+        ———————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one AE                                   123 (91.8%)
+        Total number of AEs                                                                 622    
+        Total number of patients with at least one AE by worst grade                               
+          Grade 1                                                                        9 (6.7%)  
+          Grade 2                                                                        10 (7.5%) 
+          Grade 3                                                                       14 (10.4%) 
+          Grade 4                                                                       20 (14.9%) 
+          Grade 5 (fatal outcome)                                                       70 (52.2%) 
+        Total number of patients with study drug withdrawn due to AE                    26 (19.4%) 
+        Total number of patients with dose modified/interrupted due to AE               76 (56.7%) 
+        Total number of patients with treatment received for AE                         102 (76.1%)
+        Total number of patients with all non-fatal AEs resolved                        92 (68.7%) 
+        Total number of patients with at least one unresolved or ongoing non-fatal AE   110 (82.1%)
+        Total number of patients with at least one serious AE                           101 (75.4%)
+        Total number of patients with at least one related AE                           108 (80.6%)
+      \s\n                                                                                  C: Combination
+                                                                                           (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one AE                                    120 (90.9%)  
+        Total number of AEs                                                                  703      
+        Total number of patients with at least one AE by worst grade                                  
+          Grade 1                                                                          4 (3.0%)   
+          Grade 2                                                                          7 (5.3%)   
+          Grade 3                                                                         16 (12.1%)  
+          Grade 4                                                                         18 (13.6%)  
+          Grade 5 (fatal outcome)                                                         75 (56.8%)  
+        Total number of patients with study drug withdrawn due to AE                      30 (22.7%)  
+        Total number of patients with dose modified/interrupted due to AE                 74 (56.1%)  
+        Total number of patients with treatment received for AE                          103 (78.0%)  
+        Total number of patients with all non-fatal AEs resolved                          97 (73.5%)  
+        Total number of patients with at least one unresolved or ongoing non-fatal AE    107 (81.1%)  
+        Total number of patients with at least one serious AE                             99 (75.0%)  
+        Total number of patients with at least one related AE                            109 (82.6%)  
 
 # aet02 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
@@ -110,7 +146,7 @@
 # aet03 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
@@ -177,7 +213,7 @@
 # aet04 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -272,7 +308,7 @@
 # aet10 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                 A: Drug X    B: Placebo   C: Combination
         MedDRA Preferred Term    (N=134)      (N=134)        (N=132)    
@@ -291,7 +327,7 @@
 # cmt01a_1 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
@@ -343,7 +379,7 @@
 # cmt02_pt functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Other Treatment                                         A: Drug X    B: Placebo    C: Combination
                                                                  (N=134)       (N=134)        (N=132)    
@@ -363,7 +399,7 @@
 # coxt02 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
         —————————————————————————————————————————————————————————————————————————————————————————————
@@ -384,7 +420,7 @@
 # dmt01 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                               A: Drug X    B: Placebo    C: Combination   All Patients
                                                (N=134)       (N=134)        (N=132)         (N=400)   
@@ -418,7 +454,7 @@
 # dst01 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
@@ -437,7 +473,7 @@
 # dtht01 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                  A: Drug X    B: Placebo   C: Combination
                                   (N=134)      (N=134)        (N=132)    

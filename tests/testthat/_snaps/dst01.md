@@ -1,7 +1,7 @@
-# dst01 create empty table on all NA values
+# dst01 works as expected when all data are NA
 
     Code
-      run(dst01, proc_data, detail_vars = list())
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                                                                                 
         ————————————————————————————————————————————————————————————————————————————————————————
@@ -10,7 +10,7 @@
 # dst01 can handle all NA values in DCSREAS
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                        A: Drug X    B: Placebo   C: Combination   All Patients
                         (N=134)      (N=134)        (N=132)         (N=400)   
@@ -22,7 +22,7 @@
 # dst01 can handle some NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
@@ -41,7 +41,7 @@
 # dst01 can handle missing levels in status_var
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                   A: Drug X   B: Placebo   C: Combination   All Patients
                    (N=134)     (N=134)        (N=132)         (N=400)   
@@ -51,7 +51,7 @@
 # dst01 can create variants
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
@@ -72,7 +72,7 @@
 ---
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X    B: Placebo   C: Combination   All Patients
                                              (N=134)      (N=134)        (N=132)         (N=400)   
@@ -93,7 +93,7 @@
 ---
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X    B: Placebo   C: Combination   All Patients
                                              (N=134)      (N=134)        (N=132)         (N=400)   

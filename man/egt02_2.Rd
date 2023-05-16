@@ -9,7 +9,13 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-egt02_2_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
+egt02_2_main(
+  adam_db,
+  arm_var = "ACTARM",
+  lbl_overall = NULL,
+  exclude_base_abn = TRUE,
+  ...
+)
 
 egt02_2
 }
@@ -19,6 +25,8 @@ egt02_2
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{exclude_base_abn}{(\code{flag}) whether baseline abnormality should be excluded.}
 
 \item{...}{not used.}
 }

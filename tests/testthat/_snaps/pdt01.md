@@ -1,7 +1,7 @@
 # pdt01 function with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Category                                                              A: Drug X    B: Placebo   C: Combination
           Description                                                          (N=134)      (N=134)        (N=132)    
@@ -38,20 +38,27 @@
 # pdt01 can handle all NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
-        Category                                                              A: Drug X    B: Placebo   C: Combination
-          Description                                                          (N=134)      (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one major protocol deviation   22 (16.4%)   23 (17.2%)     13 (9.8%)   
-        Total number of major protocol deviations                                 40           42             21      
-        No Coding Available                                                                                           
-          No Coding Available                                                 22 (16.4%)   23 (17.2%)     13 (9.8%)   
+        Category                                                              A: Drug X    B: Placebo
+          Description                                                          (N=134)      (N=134)  
+        —————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one major protocol deviation   22 (16.4%)   23 (17.2%)
+        Total number of major protocol deviations                                 40           42    
+        No Coding Available                                                                          
+          No Coding Available                                                 22 (16.4%)   23 (17.2%)
+      \s\n  Category                                                              C: Combination
+          Description                                                            (N=132)    
+        ————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one major protocol deviation     13 (9.8%)   
+        Total number of major protocol deviations                                   21      
+        No Coding Available                                                                 
+          No Coding Available                                                   13 (9.8%)   
 
 # pdt01 can handle some NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Category                                                              A: Drug X    B: Placebo   C: Combination
           Description                                                          (N=134)      (N=134)        (N=132)    

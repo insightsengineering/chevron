@@ -52,20 +52,26 @@ syn_test_data <- function() {
   sd$adeg <- sd$adeg %>%
     mutate(
       AVALCAT1 = case_when(
-        PARAMCD == "QT" & AVAL <= 450 ~ paste("<=450", " ", AVALU),
-        PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ paste(">450 to <=480", " ", AVALU),
-        PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ paste(">480 to <=500", " ", AVALU),
-        PARAMCD == "QT" & AVAL > 500 ~ paste(">500", " ", AVALU),
-        PARAMCD == "QT" & is.na(AVAL) ~ "<Missing>"
+        PARAMCD == "QT" & AVAL <= 450 ~ "<=450 msec",
+        PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ ">450 to <=480 msec",
+        PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ ">480 to <=500 msec",
+        PARAMCD == "QT" & AVAL > 500 ~ ">500 msec",
+        PARAMCD == "QT" & is.na(AVAL) ~ NA_character_
       ),
       CHGCAT1 = case_when(
-        PARAMCD == "QT" & CHG <= 30 ~ paste("<=30", " ", AVALU),
-        PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ paste(">30 to <=60", " ", AVALU),
-        PARAMCD == "QT" & CHG > 60 ~ paste(">60", " ", AVALU),
-        PARAMCD == "QT" & is.na(CHG) ~ "<Missing>"
+        PARAMCD == "QT" & CHG <= 30 ~ "<=30 msec",
+        PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ ">30 to <=60 msec",
+        PARAMCD == "QT" & CHG > 60 ~ ">60 msec",
+        PARAMCD == "QT" & is.na(CHG) ~ NA_character_
       ),
-      AVALCAT1 = factor(AVALCAT1),
-      CHGCAT1 = factor(CHGCAT1)
+      AVALCAT1 = with_label(
+        factor(AVALCAT1, levels = c("<=450 msec", ">450 to <=480 msec", ">480 to <=500 msec", ">500 msec")),
+        "Value at Visit"
+      ),
+      CHGCAT1 = with_label(
+        factor(CHGCAT1, levels = c("<=30 msec", ">30 to <=60 msec", ">60 msec")),
+        "Change from Baseline"
+      )
     )
 
   # useful for lbt04, lbt05

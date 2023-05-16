@@ -3,7 +3,6 @@
 \docType{data}
 \name{egt02_1_main}
 \alias{egt02_1_main}
-\alias{egt02_lyt}
 \alias{egt02_pre}
 \alias{egt02_post}
 \alias{egt02_1}
@@ -12,14 +11,12 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-egt02_1_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
-
-egt02_lyt(
+egt02_1_main(
+  adam_db,
   arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
-  lbl_overall,
-  exclude_base_abn
+  lbl_overall = NULL,
+  exclude_base_abn = FALSE,
+  ...
 )
 
 egt02_pre(adam_db, ...)
@@ -35,14 +32,9 @@ egt02_1
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{exclude_base_abn}{(\code{flag}) whether baseline abnormality should be excluded.}
+
 \item{...}{not used.}
-
-\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
-
-\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
-
-\item{exclude_base_abn}{(\code{flag}) whether to exclude subjects with baseline abnormality from numerator and
-denominator.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
@@ -60,8 +52,6 @@ ECG Parameters outside Normal Limits Regardless of Abnormality at Baseline Table
 \section{Functions}{
 \itemize{
 \item \code{egt02_1_main()}: Main TLG function
-
-\item \code{egt02_lyt()}: Layout
 
 \item \code{egt02_pre()}: Preprocessing
 

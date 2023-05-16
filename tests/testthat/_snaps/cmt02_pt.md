@@ -1,7 +1,7 @@
 # cmt02_pt can handle all NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Other Treatment                                         A: Drug X    B: Placebo    C: Combination
                                                                  (N=134)       (N=134)        (N=132)    
@@ -13,7 +13,7 @@
 # cmt02_pt can handle some NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Other Treatment                                         A: Drug X    B: Placebo    C: Combination
                                                                  (N=134)       (N=134)        (N=132)    

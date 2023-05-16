@@ -3,6 +3,7 @@
 #' @describeIn egt02_1 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param exclude_base_abn (`flag`) whether baseline abnormality should be excluded.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -18,9 +19,8 @@
 egt02_1_main <- function(adam_db,
                          arm_var = "ACTARM",
                          lbl_overall = NULL,
+                         exclude_base_abn = FALSE,
                          ...) {
-  exclude_base_abn <- FALSE
-
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   assert_valid_variable(adam_db$adeg, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adeg, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
@@ -43,7 +43,7 @@ egt02_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn egt02_1 Layout
+#' `egt02` Layout
 #'
 #' @inheritParams gen_args
 #' @param lbl_vs_assessment (`string`) the label of the assessment variable.
@@ -51,7 +51,7 @@ egt02_1_main <- function(adam_db,
 #' @param exclude_base_abn (`flag`) whether to exclude subjects with baseline abnormality from numerator and
 #'   denominator.
 #'
-#' @export
+#' @keywords internal
 #'
 egt02_lyt <- function(arm_var = "ACTARM",
                       lbl_vs_assessment = "Assessment",
@@ -119,46 +119,10 @@ egt02_1 <- chevron_t(
 
 #' @describeIn egt02_2 Main TLG function
 #'
-#' @inheritParams gen_args
-#'
-#' @details
-#'   * Only count LOW or HIGH values.
-#'   * Results of "LOW LOW" are treated as the same as "LOW", and "HIGH HIGH" the same as "HIGH".
-#'   * Does not include a total column by default.
-#'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
-#'
-#' @note
-#'   * `adam_db` object must contain an `adeg` table with the `"PARAM"`, `"ANRIND"` and `"BNRIND"` columns.
-#'
+#' @inherit egt02_1_main
 #' @export
 #'
-egt02_2_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_overall = NULL,
-                         ...) {
-  exclude_base_abn <- TRUE
-
-  assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  assert_valid_variable(adam_db$adeg, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
-  assert_valid_variable(adam_db$adeg, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_flag(exclude_base_abn)
-  assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
-  assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-
-  lyt <- egt02_lyt(
-    arm_var = arm_var,
-    lbl_vs_assessment = "Assessment",
-    lbl_vs_abnormality = "Abnormality",
-    lbl_overall = lbl_overall,
-    exclude_base_abn = exclude_base_abn
-  )
-
-  tbl <- build_table(lyt, adam_db$adeg, alt_counts_df = adam_db$adsl)
-
-  tbl
-}
+egt02_2_main <- modify_default_args(egt02_1_main, exclude_base_abn = TRUE)
 
 #' `EGT02_2` ECG Abnormalities Table.
 #'

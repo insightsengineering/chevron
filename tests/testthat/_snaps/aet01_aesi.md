@@ -1,7 +1,7 @@
 # aet01_aesi can handle all NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100, cpp = 200))
     Output
                                                                                          A: Drug X    B: Placebo    C: Combination
                                                                                           (N=134)       (N=134)        (N=132)    
@@ -25,7 +25,7 @@
 ---
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100, cpp = 200))
     Output
                                                                                          A: Drug X    B: Placebo    C: Combination
                                                                                           (N=134)       (N=134)        (N=132)    
@@ -45,7 +45,7 @@
 # aet01_aesi can handle some NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100, cpp = 200))
     Output
                                                                                          A: Drug X    B: Placebo    C: Combination
                                                                                           (N=134)       (N=134)        (N=132)    
@@ -69,7 +69,7 @@
 # aet01_aesi works with `ALL` argument
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100, cpp = 200))
     Output
                                                                                             A: Drug X    B: Placebo    C: Combination
                                                                                              (N=134)       (N=134)        (N=132)    

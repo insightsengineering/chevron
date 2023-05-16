@@ -2,7 +2,7 @@
 
 test_that("tlg functions return null reports when domain table is empty", {
   dat_empty <- lapply(syn_data, tern::df_explicit_na) %>%
-    lapply(filter, USUBJID == "")
+    lapply(dplyr::filter, USUBJID == "")
 
   empty_report <- rtables::rtable(
     header = "",

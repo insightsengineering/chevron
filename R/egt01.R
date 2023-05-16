@@ -3,8 +3,8 @@
 #' @describeIn egt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`list`) variables to be analyzed. Names are used as subtitles. For values
-#'   where no name is provided, the label attribute of the corresponding column in `adeg` table of `adam_db` is used.
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adeg`
+#'   table of `adam_db` is used as label.
 #' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point to
 #'   be displayed
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
@@ -37,9 +37,9 @@ egt01_main <- function(adam_db,
                        default_precision = 2,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  assert_valid_var(adam_db$adeg, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
+  assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list("character", "factor"), na_ok = FALSE)
   assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("numeric")), na_ok = TRUE, empty_ok = TRUE)
-  assert_valid_var(adam_db$adeg, c(visitvar), types = c("character", "factor"))
+  assert_valid_variable(adam_db$adeg, c(visitvar), types = c("character", "factor"))
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
@@ -68,7 +68,7 @@ egt01_main <- function(adam_db,
   )
 }
 
-#' @describeIn egt01 Layout
+#' `egt01` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -79,7 +79,7 @@ egt01_main <- function(adam_db,
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #'
-#' @export
+#' @keywords internal
 egt01_lyt <- function(arm_var,
                       summaryvars,
                       summaryvars_lbls,

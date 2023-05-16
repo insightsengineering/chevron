@@ -41,9 +41,14 @@ kmg01_main <- function(adam_db,
                        line_col = nestcolor::color_palette(),
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
-  assert_valid_var(adam_db[[dataset]], "CNSR", types = list("numeric"))
-  assert_valid_var(adam_db[[dataset]], "is_event", types = list("logical"))
-  assert_valid_var(adam_db[[dataset]], c("PARAMCD", arm_var), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db[[dataset]], "CNSR", types = list("numeric"))
+  assert_valid_variable(adam_db[[dataset]], "is_event", types = list("logical"))
+  assert_valid_variable(
+    adam_db[[dataset]],
+    c("PARAMCD", arm_var),
+    types = list(c("character", "factor")),
+    na_ok = FALSE
+  )
   assert_single_value(adam_db[[dataset]]$PARAMCD)
   checkmate::assert_string(x_name)
   checkmate::assert_string(y_name)

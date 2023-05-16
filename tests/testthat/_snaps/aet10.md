@@ -1,7 +1,7 @@
 # aet10 can handle NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                  A: Drug X    B: Placebo    C: Combination
         MedDRA Preferred Term     (N=134)       (N=134)        (N=132)    
@@ -11,7 +11,7 @@
 # aet10 can handle some NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                 A: Drug X    B: Placebo   C: Combination
         MedDRA Preferred Term    (N=134)      (N=134)        (N=132)    

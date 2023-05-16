@@ -3,9 +3,8 @@
 #' @describeIn dmt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`list`) variables summarized in demographic table. Names are used as
-#'   subtitles. For values where no name is provided, the label attribute of the corresponding column in `adsl` table of
-#'   `adam_db` is used.
+#' @param summaryvars (`character`) variables summarized in demographic table. The label attribute of the corresponding
+#'   column in `adsl` table of `adam_db` is used as label.
 #'
 #' @details
 #'  * Information from `ADSUB` are generally included into `ADSL` before analysis.
@@ -55,13 +54,13 @@ dmt01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dmt01 Layout
+#' `dmt01` Layout
 #' @param summaryvars_lbls (`character`) labels corresponding to the analyzed variables.
 #'
 #' @inheritParams gen_args
 #'
 #'
-#' @export
+#' @keywords internal
 #'
 dmt01_lyt <- function(arm_var,
                       summaryvars,

@@ -3,8 +3,9 @@
 #' @describeIn egt05_qtcat Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adeg`
+#'   table of `adam_db` is used as name.
 #' @param visitvar (`string`) typically `"AVISIT"` (Default) or `"ATPTN"`.
-#' @param paramvar (`string`) typically `"QT"` (Default). It should come from `"PARAMCD"`.
 #'
 #' @details
 #'  * The `Value at Visit` column, displays the categories of the specific `"PARAMCD"` value for patients.
@@ -30,14 +31,14 @@ egt05_qtcat_main <- function(adam_db,
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   checkmate::assert_string(visitvar)
-  assert_valid_var(adam_db$adeg, visitvar, types = list("character", "factor"))
+  assert_valid_variable(adam_db$adeg, visitvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor")), na_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
-  summaryvars_lbls <- get_labels(adam_db$adeg, summaryvars) # Value at visit / change from baseline
+  summaryvars_lbls <- var_labels_for(adam_db$adeg, summaryvars) # Value at visit / change from baseline
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
@@ -60,7 +61,7 @@ egt05_qtcat_main <- function(adam_db,
   )
 }
 
-#' @describeIn egt05_qtcat Layout
+#' `egt05_qtcat` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -73,7 +74,7 @@ egt05_qtcat_main <- function(adam_db,
 #' @param lbl_cat (`string`) label of the Category of `summaryvars` variable. Default as `Category`.
 #' @param lbl_headvisit (`string`) label of Visits in the header. Default as `Analysis Visit`.
 #'
-#' @export
+#' @keywords internal
 egt05_qtcat_lyt <- function(arm_var,
                             summaryvars,
                             summaryvars_lbls,
@@ -99,9 +100,10 @@ egt05_qtcat_lyt <- function(arm_var,
       split_fun = drop_split_levels,
       label_pos = "hidden"
     ) %>%
-    summarize_vars(
+    summarize_vars_allow_na(
       vars = summaryvars,
-      var_labels = summaryvars_lbls
+      var_labels = summaryvars_lbls,
+      inclNAs = FALSE
     ) %>%
     append_topleft(paste(lbl_param)) %>%
     append_topleft(paste0("  ", lbl_headvisit)) %>%
@@ -114,20 +116,12 @@ egt05_qtcat_lyt <- function(arm_var,
 #'
 #' @export
 #'
-egt05_qtcat_pre <- function(adam_db, paramvar = "QT", ...) {
+egt05_qtcat_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(
-      .data$ANL01FL == "Y"
-    ) %>%
-    mutate(across(all_of(c("AVALCAT1", "CHGCAT1")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
-    mutate(
-      AVALCAT1 = with_label(.data$AVALCAT1, "Value at Visit"),
-      CHGCAT1 = with_label(.data$CHGCAT1, "Change from Baseline"),
-      AVISIT = with_label(.data$AVISIT, "Analysis Visit"),
-      PARAM = with_label(.data$PARAM, "Parameter")
-    ) %>%
-    filter(.data$PARAMCD %in% paramvar)
-
+      .data$ANL01FL == "Y",
+      .data$PARAMCD %in% "QT"
+    )
   adam_db
 }
 

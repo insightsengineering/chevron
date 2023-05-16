@@ -1,7 +1,7 @@
 # lbt05 functions with default argument value return expected result with test data
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Laboratory Test                            A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality                (N=134)     (N=134)        (N=132)    
@@ -37,7 +37,7 @@
 # lbt05 can handle some NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Laboratory Test                            A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality                (N=134)     (N=134)        (N=132)    

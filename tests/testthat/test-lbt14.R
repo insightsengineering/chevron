@@ -4,14 +4,14 @@ test_that("lbt14 functions with default argument value return expected result wi
   pre_data <- lbt14_pre(syn_data)
   raw_res <- lbt14_main(pre_data)
   res <- lbt14_post(raw_res)
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt14 functions with default argument value return expected result with test data when direction = high", {
   pre_data <- lbt14_pre(syn_data, direction = "high")
   raw_res <- lbt14_main(pre_data, direction = "high")
   res <- lbt14_post(raw_res, direction = "high")
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 # lbt14 ----
@@ -24,7 +24,7 @@ test_that("lbt14 can handle all NA values", {
     )
 
   res <- expect_silent(run(lbt14, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt14 can handle some NA values", {
@@ -43,15 +43,17 @@ test_that("lbt14 can handle some NA values", {
     )
 
   res <- expect_silent(run(lbt14, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt14 can accept different gr_missing", {
   proc_data <- syn_data
-
-  expect_snapshot(run(lbt14, proc_data, gr_missing = "incl"))
-  expect_snapshot(run(lbt14, proc_data, gr_missing = "excl"))
-  expect_snapshot(run(lbt14, proc_data, gr_missing = "gr_0"))
+  res1 <- run(lbt14, proc_data, gr_missing = "incl")
+  res2 <- run(lbt14, proc_data, gr_missing = "excl")
+  res3 <- run(lbt14, proc_data, gr_missing = "gr_0")
+  expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res2, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res3, lpp = 100)))
 })
 
 test_that("lbt14 fails on incomlete data", {
@@ -74,7 +76,7 @@ test_that("lbt14 can handle all NA values with direction = high", {
     )
 
   res <- expect_silent(run(lbt14, proc_data, direction = "high"))
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt14 can handle some NA values with direction = high", {
@@ -93,14 +95,17 @@ test_that("lbt14 can handle some NA values with direction = high", {
     )
 
   res <- expect_silent(run(lbt14, proc_data, direction = "high"))
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt14 can accept different gr_missing with direction = high", {
   proc_data <- syn_data
-  expect_snapshot(run(lbt14, proc_data, gr_missing = "incl", direction = "high"))
-  expect_snapshot(run(lbt14, proc_data, gr_missing = "excl", direction = "high"))
-  expect_snapshot(run(lbt14, proc_data, gr_missing = "gr_0", direction = "high"))
+  res1 <- run(lbt14, proc_data, gr_missing = "incl", direction = "high")
+  res2 <- run(lbt14, proc_data, gr_missing = "excl", direction = "high")
+  res3 <- run(lbt14, proc_data, gr_missing = "gr_0", direction = "high")
+  expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res2, lpp = 100)))
+  expect_snapshot(cat(formatters::export_as_txt(res3, lpp = 100)))
 })
 
 test_that("lbt14 fails on incomlete data", {

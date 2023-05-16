@@ -14,7 +14,7 @@ summarize_vars_allow_na(
   table_names = vars,
   section_div = NA_character_,
   .stats = c("n", "count_fraction"),
-  .formats = NULL,
+  .formats = list(count_fraction = format_count_fraction_fixed_dp),
   .labels = NULL,
   .indent_mods = NULL,
   inclNAs = TRUE

@@ -133,7 +133,7 @@ summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
     nested = TRUE, ..., show_labels = "default", table_names = vars,
     section_div = NA_character_, .stats = c("n", "count_fraction"),
-    .formats = NULL, .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { # nolint
+    .formats = list(count_fraction = format_count_fraction_fixed_dp), .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { # nolint
   afun <- make_afun(s_summary_na, .stats, .formats, .labels, .indent_mods, .ungroup_stats = c("count_fraction"))
   analyze(
     lyt = lyt, vars = vars, var_labels = var_labels,
@@ -232,4 +232,72 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
   }
 
   lyt
+}
+
+#' Helper function to add a row split if specified
+#'
+#' @param lyt (`rtables`) object.
+#' @param var (`string`) the name of the variable initiating a new row split.
+#' @param lbl_var (`string`)the label of the variable `var`.
+#'
+#' @keywords internal
+#'
+#' @return `rtables` object.
+#'
+ifneeded_split_row <- function(lyt, var, lbl_var) {
+  if (is.null(var)) {
+    lyt
+  } else {
+    split_rows_by(lyt, var,
+      label_pos = "topleft",
+      split_label = lbl_var
+    )
+  }
+}
+
+#' Create a Null Report
+#' @rdname report_null
+#' @aliases null_report
+#' @param tlg (`TableTree`) object.
+#' @param ... not used. Important to be used directly as post processing function.
+#'
+#' @export
+#'
+#' @return original `TableTree` or a null report if no observation are found in the table.
+#'
+report_null <- function(tlg, ...) {
+  checkmate::assert_true(is.null(tlg) || rtables::is_rtable(tlg))
+
+  if (is.null(tlg) || nrow(tlg) == 0L) {
+    null_report
+  } else {
+    tlg
+  }
+}
+
+#' @export
+#' @rdname report_null
+null_report <- rtables::rtable(
+  header = "",
+  rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
+)
+
+#' @export
+#' @rdname report_null
+null_listing <- rlistings::as_listing(
+  df = data.frame(x = formatters::with_label(
+    "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
+  ))
+)
+
+has_overall_col <- function(lbl_overall) {
+  !is.null(lbl_overall) && !identical(lbl_overall, "")
+}
+
+ifneeded_add_overall_col <- function(lyt, lbl_overall) {
+  if (has_overall_col(lbl_overall)) {
+    add_overall_col(lyt, label = lbl_overall)
+  } else {
+    lyt
+  }
 }

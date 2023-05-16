@@ -4,7 +4,6 @@
 \name{ael01_nollt_main}
 \alias{ael01_nollt_main}
 \alias{ael01_nollt_pre}
-\alias{ael01_nollt_check}
 \alias{ael01_nollt_post}
 \alias{ael01_nollt}
 \title{\code{AEL01_NOLLT} Listing 1 (Default) Glossary of Preferred Terms and Investigator-Specified Terms.}
@@ -28,8 +27,6 @@ ael01_nollt_pre(
   ...
 )
 
-ael01_nollt_check(adam_db, dataset, vars)
-
 ael01_nollt_post(tlg, ...)
 
 ael01_nollt
@@ -45,8 +42,6 @@ Key columns allow you to group repeat occurrences.}
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{...}{not used.}
-
-\item{vars}{(\code{character}) variables to be included in the listing.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
@@ -66,8 +61,6 @@ Key columns allow you to group repeat occurrences.}
 \item \code{ael01_nollt_main()}: Main TLG function
 
 \item \code{ael01_nollt_pre()}: Preprocessing
-
-\item \code{ael01_nollt_check()}: Checks
 
 \item \code{ael01_nollt_post()}: Postprocessing
 

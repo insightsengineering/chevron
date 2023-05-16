@@ -16,7 +16,7 @@
 #' @importFrom methods is setValidity
 #' @importFrom nestcolor color_palette
 #' @importFrom purrr reduce
-#' @importFrom rlang sym .data .env !!! %||%
+#' @importFrom rlang sym .data .env !!! %||% abort
 #' @importFrom rlistings as_listing
 #' @importFrom stats setNames median sd quantile
 #' @importFrom stringr str_dup

@@ -22,15 +22,13 @@ ael01_nollt_main <- function(adam_db,
                              disp_cols = "AETERM",
                              ...) {
   assert_all_tablenames(adam_db, dataset)
-  df <- adam_db[[dataset]]
+  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
 
-  lsting <- as_listing(
-    df,
+  as_listing(
+    adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols
   )
-
-  lsting
 }
 
 #' @describeIn ael01_nollt Preprocessing
@@ -44,34 +42,15 @@ ael01_nollt_pre <- function(adam_db,
                             key_cols = c("AEBODSYS", "AEDECOD"),
                             disp_cols = "AETERM",
                             ...) {
-  ael01_nollt_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols))
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
     distinct() %>%
     mutate(
-      across(all_of(key_cols), ~ reformat(.x, nocoding))
+      across(all_of(c(key_cols, disp_cols)), ~ reformat(.x, nocoding))
     ) %>%
     arrange(pick(all_of(c(key_cols, disp_cols))))
 
   adam_db
-}
-
-#' @describeIn ael01_nollt Checks
-#'
-#' @inheritParams gen_args
-#' @param vars (`character`) variables to be included in the listing.
-#' @export
-ael01_nollt_check <- function(adam_db,
-                              dataset,
-                              vars) {
-  assert_all_tablenames(adam_db, dataset)
-  msg <- c(NULL, check_all_colnames(adam_db[[dataset]], vars))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
 }
 
 #' @describeIn ael01_nollt Postprocessing

@@ -3,8 +3,8 @@
 #' @describeIn rmpt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`character`) variables to be analyzed. Names are used as subtitles. For values
-#'   where no name is provided, the label attribute of the corresponding column in `adex` table of `adam_db` is used.
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding columns in `adex`
+#'   table of `adam_db` is used as label.
 #' @param parcat (`string`) the name of the variable initiating a new row split.
 #'
 #' @details
@@ -25,14 +25,12 @@ rmpt01_main <- function(adam_db,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(parcat, null.ok = TRUE)
-  checkmate::assert_character(summaryvars)
-  assert_valid_var(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
-  assert_valid_var(adam_db$adex, summaryvars[2], types = list("numeric"))
-  assert_valid_var(adam_db$adex, c("USUBJID", "PARAMCD", parcat))
+  checkmate::assert_character(summaryvars, len = 2L)
+  assert_valid_variable(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adex, summaryvars[2], types = list("numeric"))
+  assert_valid_variable(adam_db$adex, c("USUBJID", "PARAMCD", parcat))
   lbl_parcat <- var_labels_for(adam_db$adex, parcat)
   lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
-
-  dbsel <- get_db_data(adam_db, "adsl", "adex")
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
@@ -41,18 +39,18 @@ rmpt01_main <- function(adam_db,
     lbl_parcat = lbl_parcat
   )
 
-  tbl <- build_table(lyt, dbsel$adex, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$adex, alt_counts_df = adam_db$adsl)
   tbl
 }
 
-#' @describeIn rmpt01 Layout
+#' `rmpt01` Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams rmpt01_main
 #' @param lbl_summaryvars (`character`) label associated with the analyzed variables.
 #' @param lbl_parcat (`string`) the label associated with the variable initiating a new row split.
 #'
-#' @export
+#' @keywords internal
 #'
 rmpt01_lyt <- function(summaryvars,
                        lbl_summaryvars,
@@ -69,13 +67,9 @@ rmpt01_lyt <- function(summaryvars,
       ),
       custom_label = "Total Number of Patients and Person Time"
     ) %>%
-    split_rows_by(
+    analyze_patients_exposure_in_cols(
       var = summaryvars[1],
-      label_pos = "topleft",
-      split_label = "Duration of exposure"
-    ) %>%
-    summarize_patients_exposure_in_cols(
-      var = summaryvars[2],
+      ex_var = summaryvars[2],
       col_split = FALSE
     )
 }

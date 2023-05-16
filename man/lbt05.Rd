@@ -3,7 +3,6 @@
 \docType{data}
 \name{lbt05_main}
 \alias{lbt05_main}
-\alias{lbt05_lyt}
 \alias{lbt05_pre}
 \alias{lbt05_post}
 \alias{lbt05}
@@ -13,8 +12,6 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 lbt05_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
-
-lbt05_lyt(arm_var, lbl_overall, lbl_param, lbl_anrind, map)
 
 lbt05_pre(adam_db, ...)
 
@@ -30,12 +27,6 @@ lbt05
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
-
-\item{lbl_anrind}{(\code{string}) label of the \code{ANRIND} variable.}
-
-\item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -54,8 +45,6 @@ lbt05
 \section{Functions}{
 \itemize{
 \item \code{lbt05_main()}: Main TLG function
-
-\item \code{lbt05_lyt()}: Layout
 
 \item \code{lbt05_pre()}: Preprocessing
 

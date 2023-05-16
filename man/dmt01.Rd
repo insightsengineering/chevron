@@ -3,7 +3,6 @@
 \docType{data}
 \name{dmt01_main}
 \alias{dmt01_main}
-\alias{dmt01_lyt}
 \alias{dmt01_pre}
 \alias{dmt01_post}
 \alias{dmt01}
@@ -20,8 +19,6 @@ dmt01_main(
   ...
 )
 
-dmt01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
-
 dmt01_pre(adam_db, ...)
 
 dmt01_post(tlg, prune_0 = TRUE, ...)
@@ -33,15 +30,12 @@ dmt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{list}) variables summarized in demographic table. Names are used as
-subtitles. For values where no name is provided, the label attribute of the corresponding column in \code{adsl} table of
-\code{adam_db} is used.}
+\item{summaryvars}{(\code{character}) variables summarized in demographic table. The label attribute of the corresponding
+column in \code{adsl} table of \code{adam_db} is used as label.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{summaryvars_lbls}{(\code{character}) labels corresponding to the analyzed variables.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -64,8 +58,6 @@ by default based on the number of patients in the corresponding \code{n} row.
 \section{Functions}{
 \itemize{
 \item \code{dmt01_main()}: Main TLG function
-
-\item \code{dmt01_lyt()}: Layout
 
 \item \code{dmt01_pre()}: Preprocessing
 

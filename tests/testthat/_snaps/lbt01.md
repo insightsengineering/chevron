@@ -105,7 +105,7 @@
 # lbt01 can handle n = 0 and outputs NE instead of infs and NAs
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
                                                  A: Drug X   
                                                Value at Visit

@@ -4,7 +4,7 @@ test_that("pdt02 function with default argument value return expected result wit
   pre_data <- pdt02_pre(syn_data)
   raw_res <- pdt02_main(pre_data)
   res <- pdt02_post(raw_res)
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, colwidths = c(40, 10, 10, 10))))
 })
 
 # pdt02 ----
@@ -18,7 +18,7 @@ test_that("pdt02 can handle all NA values", {
     )
 
   res <- expect_silent(run(pdt02, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, colwidths = c(40, 10, 10, 10))))
 })
 
 test_that("pdt02 can handle some NA values", {
@@ -33,5 +33,5 @@ test_that("pdt02 can handle some NA values", {
     )
 
   res <- expect_silent(run(pdt02, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, colwidths = c(40, 10, 10, 10))))
 })
