@@ -21,7 +21,7 @@ fstg01_main(
   ...
 )
 
-fstg01_pre(adam_db, dataset = "adrs", ...)
+fstg01_pre(adam_db, dataset = "adrs", rsp = c("CR", "PR", "SD", "PD"), ...)
 
 fstg01_post(tlg, ...)
 
@@ -85,12 +85,12 @@ pre_data <- log_filter(syn_data, ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs"
 pre_data$adrs <- pre_data$adrs \%>\% droplevels()
 
 proc_data <- log_filter(pre_data, PARAMCD == "OVRINV", "adrs")
-run(fstg01, proc_data, dataset = "adrs", line_col = col)
+run(fstg01, proc_data, rsp = c("CR"), dataset = "adrs", line_col = col)
 
 proc_data <- log_filter(pre_data, PARAMCD == "BESRSPI", "adrs")
 run(fstg01, proc_data,
   rsp = c("CR", "PR"), subgroups = c("SEX", "AGEGR1", "RACE"),
-  strata = c("STRATA2"), conf_level = 0.90, dataset = "adrs"
+  conf_level = 0.90, dataset = "adrs"
 )
 }
 \keyword{datasets}
