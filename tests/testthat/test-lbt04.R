@@ -20,6 +20,17 @@ test_that("lbt04 can handle all NA values", {
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
+test_that("lbt04 can handle missing levels", {
+  proc_data <- syn_data
+  proc_data$adlb <- proc_data$adlb %>%
+    mutate(
+      ANRIND = ""
+    )
+
+  res <- expect_silent(run(lbt04, proc_data))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+})
+
 test_that("lbt04 can handle some NA values", {
   proc_data <- syn_data
   proc_data$adlb[1:2, "ANRIND"] <- NA

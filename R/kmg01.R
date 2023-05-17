@@ -7,19 +7,10 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param x_name (`string`) the name of the x-axis.
-#' @param y_name (`string`) the name of the x-axis.
-#' @param show_statis (`flag`) should the summary statistic table be displayed.
-#' @param show_censor (`flag`) should the censor flag be displayed.
-#' @param pval_method (`string`) p-value method for testing hazard ratio = 1. One of `"log-rank"`, `"wald"` or
-#'   `"likelihood"`.
-#' @param ties (`string`) specifying the method for tie handling. One of `"efron"`, `"breslow"` or `"exact"`.
-#' @param conf_level (`numeric`) the confidence level.
-#' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
-#' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
-#'   median survival time per group.
-#' @param line_col (`character`) describing the colors to use for the lines or a named `character`
-#'  associating values of `arm_var` with color names.
+#' @param ... Further arguments passed to `g_km` and `control_coxph`. For details, see
+#' the documentation in `tern`.
+#' Commonly used arguments include `col`, `pval_method`, `ties`, `conf_level`, `conf_type`,
+#' `annot_coxph`, `annot_stats`, etc.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by  `arm_var`.
@@ -29,73 +20,31 @@
 kmg01_main <- function(adam_db,
                        dataset = "adtte",
                        arm_var = "ARM",
-                       x_name = "Time (Days)",
-                       y_name = "Survival Probability",
-                       show_statis = TRUE,
-                       show_censor = TRUE,
-                       pval_method = "wald",
-                       ties = "exact",
-                       conf_level = 0.95,
-                       position_coxph = c(0, 0.05),
-                       position_surv_med = c(0.9, 0.9),
-                       line_col = nestcolor::color_palette(),
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
-  assert_valid_variable(adam_db[[dataset]], "CNSR", types = list("numeric"))
-  assert_valid_variable(adam_db[[dataset]], "is_event", types = list("logical"))
+  df_lbl <- paste0("adam_db$", dataset)
+  assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_lbl)
+  assert_valid_variable(adam_db[[dataset]], "is_event", types = list("logical"), label = df_lbl)
   assert_valid_variable(
     adam_db[[dataset]],
     c("PARAMCD", arm_var),
     types = list(c("character", "factor")),
-    na_ok = FALSE
+    na_ok = FALSE,
+    label = df_lbl
   )
-  assert_single_value(adam_db[[dataset]]$PARAMCD)
-  checkmate::assert_string(x_name)
-  checkmate::assert_string(y_name)
-  checkmate::assert_flag(show_statis)
-  checkmate::assert_flag(show_censor)
-  checkmate::assert_choice(pval_method, c("log-rank", "wald", "likelihood"))
-  checkmate::assert_choice(ties, c("efron", "breslow", "exact"))
-  checkmate::assert_numeric(conf_level, lower = 0, upper = 1)
-  checkmate::assert_numeric(position_coxph, len = 2)
-  checkmate::assert_numeric(position_surv_med, len = 2)
-  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
+  assert_single_value(adam_db[[dataset]]$PARAMCD, label = past0(df_lbl, "$PARAMCD"))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-
-  anl <- adam_db[[dataset]]
-
-  checkmate::assert_character(line_col, null.ok = TRUE)
-
-  assert_colnames(anl, "AVAL")
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
 
-  if (!is.null(names(line_col))) {
-    color_lvl <- sort(unique(anl[[arm_var]]))
-    col <- line_col[as.character(color_lvl)]
-
-    if (anyNA(col)) {
-      missing_col <- setdiff(color_lvl, names(col))
-      stop(paste("Missing color matching for", toString(missing_col)))
-    }
-
-    col <- unname(col)
-  } else {
-    col <- line_col
-  }
-
-  g_km(
-    df = anl,
+  control_cox <- execute_with_args(control_coxph, ...)
+  control_surv <- execute_with_args(control_surv_timepoint, ...)
+  execute_with_args(
+    g_km,
+    df = adam_db[[dataset]],
     variables = variables,
-    col = col,
-    censor_show = show_censor,
-    xlab = x_name,
-    ylab = y_name,
-    annot_surv_med = !show_statis,
-    annot_coxph = show_statis,
-    control_coxph_pw = control_coxph(pval_method = pval_method, ties = ties, conf_level = conf_level),
-    position_coxph = position_coxph,
-    position_surv_med = position_surv_med
+    control_surv = control_surv,
+    control_coxph_pw = control_cox,
+    ...
   )
 }
 

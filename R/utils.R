@@ -31,6 +31,8 @@ smart_prune <- function(tlg) {
   res
 }
 
+
+
 #' Standard Post processing
 #'
 #' @param tlg (`TableTree`) object.
@@ -166,4 +168,13 @@ modify_default_args <- function(fun, ...) {
   ret <- fun
   formals(ret) <- utils::modifyList(formals(fun), list(...), keep.null = TRUE)
   return(ret)
+}
+
+#' Execute function with given arguments
+#' @details If the function has `...`, this function will not pass other arguments to `...`.
+#' Only named arguments are passed.
+#' @keywords internal
+execute_with_args <- function(fun, ...) {
+  args <- list(...)
+  do.call(fun, args[intersect(names(args), formalArgs(fun))])
 }

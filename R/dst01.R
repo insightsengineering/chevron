@@ -47,7 +47,12 @@ dst01_main <- function(adam_db,
     types = list(c("character", "factor")), na_ok = TRUE
   )
   assert_valid_variable(
-    adam_db$adsl, c(study_status_var, trt_status_var),
+    adam_db$adsl, study_status_var,
+    types = list(c("character", "factor")), na_ok = TRUE,
+    empty_ok = FALSE, min_chars = 1L
+  )
+  assert_valid_variable(
+    adam_db$adsl, trt_status_var,
     types = list(c("character", "factor")), na_ok = TRUE,
     empty_ok = TRUE, min_chars = 0L
   )
