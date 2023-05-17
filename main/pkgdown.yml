@@ -4,9 +4,8 @@ pkgdown_sha: ~
 articles:
   adding_new_tlgs_to_chevron: adding_new_tlgs_to_chevron.html
   chevron: chevron.html
-  layouts: layouts.html
   script_generator: script_generator.html
-last_built: 2023-05-15T07:53Z
+last_built: 2023-05-17T08:05Z
 urls:
   reference: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference
   article: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/articles

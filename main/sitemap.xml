@@ -25,9 +25,6 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/articles/layouts.html</loc>
-  </url>
-  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/articles/script_generator.html</loc>
   </url>
   <url>
@@ -40,34 +37,43 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/news/index.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ael01_nollt_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ael01_nollt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet01_2.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet01_aesi.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet01_aesi_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet01_aesi_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet02_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet01_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet02_2.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet02.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet02_3.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet02_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet03_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet03.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet04_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet03_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet10_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet04.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet04_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet10.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet10_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/args_ls.html</loc>
@@ -82,10 +88,22 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_one_tablenames.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_single_paramcd.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_single_value.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_subset_suggest.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_valid_type.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_valid_var.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_valid_var_pair.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_valid_variable.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/check_all_colnames.html</loc>
@@ -103,40 +121,52 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/chevron_tlg-class.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt01a_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt01a.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt01a_2.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt01a_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt01a_3.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt02_pt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cmt02_pt_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/count_or_summarize.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt02_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/count_patients_recursive.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt02.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt02_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/datasets.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dmt01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dmt01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dst01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dmt01_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dst01_2.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dst01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dst01_3.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dst01_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dtht01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dtht01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/dtht01_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt01.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt02_1.html</loc>
@@ -145,19 +175,28 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt02_2.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt03_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt02_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt03_2.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt03.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt05_qtcat_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt03_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ext01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt05_qtcat.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ext01_2.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt05_qtcat_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/execute_with_args.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ext01.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ext01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/fuse_sequentially.html</loc>
@@ -167,12 +206,6 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/get_adam_datasets.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/get_db_data.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/get_labels.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/get_main.html</loc>
@@ -199,25 +232,28 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/kmg01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/kmg01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt04_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt04.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt05_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt04_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt07_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt05.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt14_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt05_lyt.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt14_2.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt07.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt14.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lvls.html</loc>
@@ -226,16 +262,22 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/main.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mht01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mht01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mng01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/missing_rule.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mng01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt02_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/nocoding.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt01.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt02.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/postprocess.html</loc>
@@ -244,31 +286,43 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/preprocess.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/proportion_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/reexports.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/report_null.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/rmpt01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/rmpt01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/rspt01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/rmpt01_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/rspt01.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/run.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/script.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/s_summary_na.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/set_decoration.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/script.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/smart_prune.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/std_deco.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/split_rows_by_recurive.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/std_postprocess.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/summarize_vars_allow_na.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/syn_data.html</loc>
@@ -277,12 +331,18 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/var_labels_for.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst01_1.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst01.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst02_1.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst02_2.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst02_lyt.html</loc>
   </url>
 </urlset>
