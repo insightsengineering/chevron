@@ -75,6 +75,7 @@ reference:
       - lbt01
       - lbt04
       - lbt05
+      - lbt06
       - lbt07
       - lbt14
       - mht01
@@ -82,6 +83,7 @@ reference:
       - pdt01
       - pdt02
       - rmpt01
+      - rspt01
       - vst01
       - vst02_1
       - vst02_2
