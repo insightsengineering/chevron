@@ -1,3 +1,21 @@
+# cmt01a functions ----
+
+test_that("cmt01a_1 functions with default argument value return expected result with test data", {
+  pre_data <- cmt01a_pre(syn_data)
+  raw_res <- cmt01a_main(pre_data)
+  res <- cmt01a_post(raw_res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+})
+
+test_that("cmt01a_1 functions with custom argument value return expected result with test data", {
+  pre_data <- cmt01a_pre(syn_data)
+  raw_res <- cmt01a_main(pre_data, incl_n_treatment = FALSE)
+  res <- cmt01a_post(raw_res, sort_by_freq = TRUE)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+})
+
+# cmt01a ----
+
 test_that("cmt01a can handle all NA values", {
   proc_data <- syn_data
   proc_data$adcm <- proc_data$adcm %>%

@@ -47,13 +47,6 @@ test_that("aet10 functions with default argument value return expected result wi
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
-test_that("cmt01a_1 functions with default argument value return expected result with test data", {
-  pre_data <- cmt01a_pre(syn_data)
-  raw_res <- cmt01a_main(pre_data)
-  res <- cmt01a_post(raw_res)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
-})
-
 test_that("cmt02_pt functions with default argument value return expected result with test data", {
   pre_data <- cmt02_pt_pre(syn_data)
   raw_res <- cmt02_pt_main(pre_data)

@@ -91,3 +91,94 @@ test_that("ifneeded_split_row works as expected", {
 
   expect_null(rtables::vars_in_layout(lyt))
 })
+
+# droplevels.character ----
+
+test_that("droplevels.character works as expected", {
+  char <- LETTERS
+  res <- expect_silent(droplevels(char))
+  expect_identical(res, char)
+})
+
+# lvls ----
+
+test_that("lvls.character works as expected", {
+  x <- c("b", "a", NA)
+  res <- expect_silent(lvls(x))
+  expect_identical(res, c("a", "b"))
+})
+
+test_that("lvls.factor works as expected", {
+  x <- factor(c("a", "b", NA), levels = c("b", "a", "x"))
+  res <- expect_silent(lvls(x))
+  expect_identical(res, c("b", "a", "x"))
+})
+
+
+test_that("lvls.default works as expected", {
+  x <- 1:10
+  res <- expect_silent(lvls(x))
+  expect_null(res)
+})
+
+# quote_str  ----
+
+test_that("quote_str works as expected", {
+  x <- c("abc")
+  res <- expect_silent(quote_str(x))
+  expect_identical(res, "`abc`")
+
+  expect_error(quote_str(NA))
+})
+
+# modify_default_args ----
+
+test_that("modify_default_args works as expected", {
+  foo <- function(a = 1, b = 2, ...) {
+    NULL
+  }
+  bar <- expect_silent(modify_default_args(foo, a = FALSE, c = 4, d = NULL))
+
+  expect_identical(
+    formals(bar),
+    as.pairlist(
+      alist(
+        a = FALSE,
+        b = 2,
+        ... = ,
+        c = 4,
+        d = NULL
+      )
+    )
+  )
+})
+
+# execute_with_args ----
+
+test_that("execute_with_args works as expected", {
+  foo <- function(a = 1, b = 2, ...) {
+    sum(a, b, ...)
+  }
+
+  res <- expect_silent(execute_with_args(foo))
+  expect_equal(res, 3)
+
+  res <- expect_silent(execute_with_args(foo, 10))
+  expect_equal(res, 3)
+
+  res <- expect_silent(execute_with_args(foo, b = 10))
+  expect_equal(res, 11)
+
+  res <- expect_silent(execute_with_args(foo, a = NA))
+  expect_true(is.na(res))
+
+  res <- expect_silent(execute_with_args(foo, a = NA, na.rm = TRUE))
+  expect_true(is.na(res))
+
+  bar <- function(a = 1, b = 2, na.rm = FALSE, ...) {
+    sum(a, b, na.rm = na.rm, ...)
+  }
+
+  res <- expect_silent(execute_with_args(bar, a = NA, na.rm = TRUE))
+  expect_equal(res, 2)
+})

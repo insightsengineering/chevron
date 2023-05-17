@@ -39,7 +39,17 @@ assert_colnames <- function(df, x, null_ok = TRUE, types = NULL) {
   }
   if (!is.null(types)) {
     var_types <- mapply(is, object = df[x], class2 = types, SIMPLIFY = TRUE)
-    non_match <- which(var_types != types)
+    non_match <- names(var_types)[!var_types]
+
+    if (length(non_match) > 0L) {
+      abort(
+        paste0(
+          toString(vapply(non_match, quote_str, "character")),
+          " not of type ",
+          toString(types)
+        )
+      )
+    }
   }
 }
 
@@ -180,7 +190,7 @@ assert_single_value <- function(x, label = deparse(substitute(x))) {
   if (length(unique_param_val) > 1) {
     stop(
       quote_str(label),
-      " has than one values ",
+      " has more than one values ",
       toString(unique_param_val),
       ", only one value is allowed."
     )
