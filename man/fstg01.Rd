@@ -21,7 +21,12 @@ fstg01_main(
   ...
 )
 
-fstg01_pre(adam_db, dataset = "adrs", rsp = c("CR", "PR", "SD", "PD"), ...)
+fstg01_pre(
+  adam_db,
+  dataset = "adrs",
+  response = c("CR", "PR", "SD", "PD"),
+  ...
+)
 
 fstg01_post(tlg, ...)
 
@@ -82,14 +87,14 @@ library(dunlin)
 col <- c("Overall" = "blue")
 
 pre_data <- log_filter(syn_data, ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
-pre_data$adrs <- pre_data$adrs \%>\% droplevels()
+pre_data$adrs$ARM <- droplevels(pre_data$adrs$ARM)
 
 proc_data <- log_filter(pre_data, PARAMCD == "OVRINV", "adrs")
-run(fstg01, proc_data, rsp = c("CR"), dataset = "adrs", line_col = col)
+run(fstg01, proc_data, response = c("CR"), dataset = "adrs", line_col = col)
 
 proc_data <- log_filter(pre_data, PARAMCD == "BESRSPI", "adrs")
 run(fstg01, proc_data,
-  rsp = c("CR", "PR"), subgroups = c("SEX", "AGEGR1", "RACE"),
+  response = c("CR", "PR"), subgroups = c("SEX", "AGEGR1", "RACE"),
   conf_level = 0.90, dataset = "adrs"
 )
 }
