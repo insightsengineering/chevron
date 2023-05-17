@@ -50,9 +50,7 @@ coxt02_main <- function(adam_db,
   assert_valid_variable(adam_db$adtte, event_var, types = list("numeric"), integerish = TRUE, lower = 0L, upper = 1L)
   assert_valid_variable(adam_db$adtte, time_var, types = list("numeric"), lower = 0)
   assert_single_value(adam_db$adtte$PARAMCD)
-  args <- list(...)
-  control_args <- c("pval_method", "ties", "conf_level", "interaction")
-  control <- do.call(control_coxreg, args[intersect(names(args), control_args)])
+  control <- execute_with_args(control_coxreg, ...)
   variables <- list(
     time = time_var,
     event = event_var,
