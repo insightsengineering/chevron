@@ -1,15 +1,15 @@
-# vst02_1 ----
+# vst02 functions ----
 
-test_that("vst02_1 works", {
-  proc_data <- syn_data
-  expect_snapshot(run(vst02_1, proc_data))
-  expect_snapshot(run(vst02_1, proc_data, prune_0 = TRUE))
+test_that("vst02 functions with default argument value return expected result with test data", {
+  pre_data <- vst02_pre(syn_data)
+  raw_res <- vst02_1_main(pre_data)
+  res <- vst02_post(raw_res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
-# vst02_2 ----
-
-test_that("vst02_2 works", {
-  proc_data <- syn_data
-  expect_snapshot(run(vst02_2, proc_data))
-  expect_snapshot(run(vst02_2, proc_data, prune_0 = TRUE))
+test_that("vst02 functions return expected result with test data when excluding subject with baseline abnormality", {
+  pre_data <- vst02_pre(syn_data)
+  raw_res <- vst02_2_main(pre_data)
+  res <- vst02_post(raw_res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })

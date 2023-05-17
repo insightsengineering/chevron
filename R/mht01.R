@@ -1,12 +1,8 @@
-# mht01_1 ----
+# mht01 ----
 
-#' @describeIn mht01_1 Main TLG function
+#' @describeIn mht01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_mhbodsys (`string`) text label for `MHBODSYS`. If `NULL`, the value of the argument defaults to the label
-#'   of the corresponding column in the `admh` table.
-#' @param lbl_mhdecod (`string`) text label for `MHDECOD`. If `NULL`, the value of the argument defaults to the label of
-#'   the corresponding column in the `admh` table.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -21,43 +17,47 @@
 #'
 #' @export
 #'
-mht01_1_main <- function(adam_db,
-                         arm_var = "ARM",
-                         lbl_overall = NULL,
-                         lbl_mhbodsys = "MedDRA System Organ Class",
-                         lbl_mhdecod = "MedDRA Preferred Term",
-                         deco = std_deco("MHT01"),
-                         ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "admh")
+mht01_main <- function(adam_db,
+                       arm_var = "ARM",
+                       lbl_overall = NULL,
+                       ...) {
+  assert_all_tablenames(adam_db, c("admh", "adsl"))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$admh, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$admh, arm_var)
 
-  if (is.null(lbl_mhbodsys)) lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
-  if (is.null(lbl_mhdecod)) lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
+  lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
+  lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- mht01_1_lyt(
+  lyt <- mht01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     lbl_mhbodsys = lbl_mhbodsys,
-    lbl_mhdecod = lbl_mhdecod,
-    deco = deco
+    lbl_mhdecod = lbl_mhdecod
   )
 
-  tbl <- build_table(lyt, dbsel$admh, alt_counts_df = dbsel$adsl)
+  tbl <- build_table(lyt, adam_db$admh, alt_counts_df = adam_db$adsl)
 
   tbl
 }
 
-#' @describeIn mht01_1 Layout
+#' @describeIn mht01 Layout
 #'
-#' @inheritParams mht01_1_main
+#' @inheritParams gen_args
+#' @inheritParams mht01_main
+#' @param lbl_mhbodsys (`string`) label associated with `"MHBODSYS"`.
+#' @param lbl_mhdecod (`string`) label associated with `"MHDECOD"`.
 #'
-#' @export
+#' @keywords internal
 #'
-mht01_1_lyt <- function(arm_var,
-                        lbl_overall,
-                        lbl_mhbodsys,
-                        lbl_mhdecod,
-                        deco) {
-  basic_table_deco(deco) %>%
+mht01_lyt <- function(arm_var,
+                      lbl_overall,
+                      lbl_mhbodsys,
+                      lbl_mhdecod) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
@@ -94,40 +94,35 @@ mht01_1_lyt <- function(arm_var,
     append_topleft(paste0("  ", lbl_mhdecod))
 }
 
-#' @describeIn mht01_1 Preprocessing
+#' @describeIn mht01 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-mht01_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "admh"))
-
-
+mht01_pre <- function(adam_db, ...) {
   adam_db$admh <- adam_db$admh %>%
     filter(.data$ANL01FL == "Y")
 
-  new_format <- list(
-    admh = list(
-      MHBODSYS = rule(
-        "No Coding available" = c("", NA)
-      ),
-      MHDECOD = rule(
-        "No Coding available" = c("", NA)
-      )
+  adam_db$admh <- adam_db$admh %>%
+    mutate(
+      across(all_of(c("MHBODSYS", "MHDECOD")), ~ reformat(.x, nocoding, na_last = TRUE))
+    ) %>%
+    mutate(
+      MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class"),
+      MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term")
     )
-  )
 
-  dunlin::reformat(adam_db, new_format, na_last = TRUE)
+  adam_db
 }
 
-#' @describeIn mht01_1 Postprocessing
+#' @describeIn mht01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+mht01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -141,7 +136,7 @@ mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tbl_sorted)
 }
 
-#' `MHT01` Table 1 (Default) Medical History Table 1.
+#' `MHT01` Medical History Table.
 #'
 #' The `MHT01` table provides an overview of the subjects medical
 #' history by SOC and Preferred Term.
@@ -150,10 +145,10 @@ mht01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(mht01_1, syn_data)
-mht01_1 <- chevron_t(
-  main = mht01_1_main,
-  preprocess = mht01_1_pre,
-  postprocess = mht01_1_post,
+#' run(mht01, syn_data)
+mht01 <- chevron_t(
+  main = mht01_main,
+  preprocess = mht01_pre,
+  postprocess = mht01_post,
   adam_datasets = c("adsl", "admh")
 )

@@ -3,11 +3,10 @@
 \docType{data}
 \name{egt02_1_main}
 \alias{egt02_1_main}
-\alias{egt02_1_lyt}
-\alias{egt02_1_pre}
-\alias{egt02_1_post}
+\alias{egt02_pre}
+\alias{egt02_post}
 \alias{egt02_1}
-\title{\code{EGT02} Table 1 (Default) ECG Abnormalities Table 1.}
+\title{\code{EGT02} ECG Abnormalities Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -15,24 +14,14 @@ An object of class \code{chevron_t} of length 1.
 egt02_1_main(
   adam_db,
   arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
-  deco = std_deco("EGT02"),
+  exclude_base_abn = FALSE,
   ...
 )
 
-egt02_1_lyt(
-  arm_var = "ACTARM",
-  lbl_vs_assessment,
-  lbl_vs_abnormality,
-  lbl_overall,
-  deco
-)
+egt02_pre(adam_db, ...)
 
-egt02_1_pre(adam_db, ...)
-
-egt02_1_post(tlg, ...)
+egt02_post(tlg, ...)
 
 egt02_1
 }
@@ -41,21 +30,16 @@ egt02_1
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
-
-\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{exclude_base_abn}{(\code{flag}) whether baseline abnormality should be excluded.}
 
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
-Assessments Outside Normal Limits Regardless of Abnormality at
-Baseline Table.
+ECG Parameters outside Normal Limits Regardless of Abnormality at Baseline Table.
 }
 \details{
 \itemize{
@@ -69,11 +53,9 @@ Baseline Table.
 \itemize{
 \item \code{egt02_1_main()}: Main TLG function
 
-\item \code{egt02_1_lyt()}: Layout
+\item \code{egt02_pre()}: Preprocessing
 
-\item \code{egt02_1_pre()}: Preprocessing
-
-\item \code{egt02_1_post()}: Postprocessing
+\item \code{egt02_post()}: Postprocessing
 
 }}
 \note{

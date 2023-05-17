@@ -1,6 +1,6 @@
-# ael01_nollt_1 ----
+# ael01_nollt ----
 
-#' @describeIn ael01_nollt_1 Main TLG function
+#' @describeIn ael01_nollt Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param dataset (`character`) the name of a table in the `adam_db` object.
@@ -16,78 +16,48 @@
 #'
 #' @export
 #'
-ael01_nollt_1_main <- function(adam_db,
-                               dataset = "adae",
-                               key_cols = c("AEBODSYS", "AEDECOD"),
-                               disp_cols = "AETERM",
-                               deco = std_deco("AEL01_NOLLT"),
-                               ...) {
-  df <- adam_db[[dataset]]
+ael01_nollt_main <- function(adam_db,
+                             dataset = "adae",
+                             key_cols = c("AEBODSYS", "AEDECOD"),
+                             disp_cols = "AETERM",
+                             ...) {
+  assert_all_tablenames(adam_db, dataset)
+  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
 
-  lsting <- as_listing(
-    df,
+  as_listing(
+    adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols
   )
-
-  lsting
 }
 
-#' @describeIn ael01_nollt_1 Preprocessing
+#' @describeIn ael01_nollt Preprocessing
 #'
-#' @inheritParams ael01_nollt_1_main
-#' @param new_lbls (named `list` of `strings`) list where names correspond to variable names in `dataset` and
-#'   strings to the new labels to apply to the named variables. Set to `NULL` to use default labels.
+#' @inheritParams ael01_nollt_main
 #'
 #' @export
 #'
-ael01_nollt_1_pre <- function(adam_db,
-                              dataset = "adae",
-                              key_cols = c("AEBODSYS", "AEDECOD"),
-                              disp_cols = "AETERM",
-                              new_lbls = NULL,
-                              ...) {
-  ael01_nollt_1_check(adam_db, dataset = dataset, vars = c(key_cols, disp_cols, names(new_lbls)))
-
-  missing_rule <- rule("No Coding Available" = c("", NA))
-  new_format <- list()
-  new_format[[dataset]] <- rep(list(missing_rule), length(c(key_cols, disp_cols)))
-  names(new_format[[dataset]]) <- c(key_cols, disp_cols)
-
-  db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
-
-  db[[dataset]] <- db[[dataset]] %>%
+ael01_nollt_pre <- function(adam_db,
+                            dataset = "adae",
+                            key_cols = c("AEBODSYS", "AEDECOD"),
+                            disp_cols = "AETERM",
+                            ...) {
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
     select(all_of(c(key_cols, disp_cols))) %>%
     distinct() %>%
-    arrange(pick(all_of(c(key_cols, disp_cols)))) %>%
-    mutate(across(names(new_lbls), function(x) formatters::with_label(x, new_lbls[[cur_column()]])))
+    mutate(
+      across(all_of(c(key_cols, disp_cols)), ~ reformat(.x, nocoding))
+    ) %>%
+    arrange(pick(all_of(c(key_cols, disp_cols))))
 
-  db
+  adam_db
 }
 
-#' @describeIn ael01_nollt_1 Checks
-#'
-#' @inheritParams gen_args
-#' @param vars (`character`) variables to be included in the listing.
-#' @export
-ael01_nollt_1_check <- function(adam_db,
-                                dataset,
-                                vars) {
-  assert_all_tablenames(adam_db, dataset)
-  msg <- c(NULL, check_all_colnames(adam_db[[dataset]], vars))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
-}
-
-#' @describeIn ael01_nollt_1 Postprocessing
+#' @describeIn ael01_nollt Postprocessing
 #'
 #' @inheritParams gen_args
 #'
-ael01_nollt_1_post <- function(tlg, ...) {
+ael01_nollt_post <- function(tlg, ...) {
   if (nrow(tlg) == 0) tlg <- null_listing
 
   tlg
@@ -99,11 +69,9 @@ ael01_nollt_1_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' run(ael01_nollt_1, syn_data, new_lbls = list(
-#'   AETERM = "Investigator-Specified\n Adverse Event Term"
-#' ))
-ael01_nollt_1 <- chevron_l(
-  main = ael01_nollt_1_main,
-  preprocess = ael01_nollt_1_pre,
-  postprocess = ael01_nollt_1_post
+#' run(ael01_nollt, syn_data)
+ael01_nollt <- chevron_l(
+  main = ael01_nollt_main,
+  preprocess = ael01_nollt_pre,
+  postprocess = ael01_nollt_post
 )

@@ -1,7 +1,7 @@
 # aet04 can handle NA values
 
     Code
-      res1
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -39,7 +39,7 @@
 ---
 
     Code
-      res3
+      cat(formatters::export_as_txt(res3, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -77,7 +77,7 @@
 # aet04 can handle some NA values
 
     Code
-      res1
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -85,11 +85,11 @@
         ——————————————————————————————————————————————————————————————————————————————————————
         - Any adverse events -                                                                
                                     - Any Grade -   122 (91.0%)   123 (91.8%)    120 (90.9%)  
-                                    Grade 1-2       14 (10.4%)    19 (14.2%)      11 (8.3%)   
+                                    Grade 1-2        13 (9.7%)    19 (14.2%)      11 (8.3%)   
                                     1                7 (5.2%)      9 (6.7%)        4 (3.0%)   
-                                    2                7 (5.2%)      10 (7.5%)       7 (5.3%)   
-                                    Grade 3-4       32 (23.9%)    34 (25.4%)      34 (25.8%)  
-                                    3               17 (12.7%)    14 (10.4%)      16 (12.1%)  
+                                    2                6 (4.5%)      10 (7.5%)       7 (5.3%)   
+                                    Grade 3-4       33 (24.6%)    34 (25.4%)      34 (25.8%)  
+                                    3               18 (13.4%)    14 (10.4%)      16 (12.1%)  
                                     4               15 (11.2%)    20 (14.9%)      18 (13.6%)  
                                     Grade 5         76 (56.7%)    70 (52.2%)      75 (56.8%)  
         cl A.1                                                                                
@@ -168,11 +168,20 @@
                                     - Any Grade -   43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     Grade 3-4       43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        No Coding Available                                                                   
+          - Overall -                                                                         
+                                    - Any Grade -    1 (0.7%)          0              0       
+                                    Grade 3-4        1 (0.7%)          0              0       
+                                    3                1 (0.7%)          0              0       
+          No Coding Available                                                                 
+                                    - Any Grade -    1 (0.7%)          0              0       
+                                    Grade 3-4        1 (0.7%)          0              0       
+                                    3                1 (0.7%)          0              0       
 
 ---
 
     Code
-      res3
+      cat(formatters::export_as_txt(res3, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -180,11 +189,11 @@
         ——————————————————————————————————————————————————————————————————————————————————————
         - Any adverse events -                                                                
                                     - Any Grade -   122 (91.0%)   123 (91.8%)    120 (90.9%)  
-                                    Grade 1-2       14 (10.4%)    19 (14.2%)      11 (8.3%)   
+                                    Grade 1-2        13 (9.7%)    19 (14.2%)      11 (8.3%)   
                                     1                7 (5.2%)      9 (6.7%)        4 (3.0%)   
-                                    2                7 (5.2%)      10 (7.5%)       7 (5.3%)   
-                                    Grade 3-5       108 (80.6%)   104 (77.6%)    109 (82.6%)  
-                                    3               17 (12.7%)    14 (10.4%)      16 (12.1%)  
+                                    2                6 (4.5%)      10 (7.5%)       7 (5.3%)   
+                                    Grade 3-5       109 (81.3%)   104 (77.6%)    109 (82.6%)  
+                                    3               18 (13.4%)    14 (10.4%)      16 (12.1%)  
                                     4               15 (11.2%)    20 (14.9%)      18 (13.6%)  
                                     5               76 (56.7%)    70 (52.2%)      75 (56.8%)  
         cl A.1                                                                                
@@ -266,4 +275,18 @@
                                     - Any Grade -   43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     Grade 3-5       43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        No Coding Available                                                                   
+          - Overall -                                                                         
+                                    - Any Grade -    1 (0.7%)          0              0       
+                                    Grade 3-5        1 (0.7%)          0              0       
+                                    3                1 (0.7%)          0              0       
+      \s\n  MedDRA System Organ Class                                                             
+          MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
+                                    Grade             (N=134)       (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————
+        No Coding Available                                                                   
+          No Coding Available                                                                 
+                                    - Any Grade -    1 (0.7%)          0              0       
+                                    Grade 3-5        1 (0.7%)          0              0       
+                                    3                1 (0.7%)          0              0       
 

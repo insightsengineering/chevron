@@ -1,4 +1,4 @@
-# aet01_1 ----
+# aet01 ----
 
 test_that("aet01 can handle all NA values", {
   proc_data <- syn_data
@@ -8,10 +8,10 @@ test_that("aet01 can handle all NA values", {
       AESER = NA
     )
 
-  res <- expect_silent(run(aet01_1, proc_data))
-  expect_snapshot(res)
-  res <- expect_silent(run(aet01_1, proc_data, prune_0 = TRUE))
-  expect_snapshot(res)
+  res <- expect_silent(run(aet01, proc_data))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  res <- expect_silent(run(aet01, proc_data, prune_0 = TRUE))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet01 can handle some NA values", {
@@ -25,14 +25,14 @@ test_that("aet01 can handle some NA values", {
       AESER = .env$new_aeser
     )
 
-  res <- expect_silent(run(aet01_1, proc_data))
-  expect_snapshot(res)
+  res <- expect_silent(run(aet01, proc_data))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
-test_that("aet01 can use custom lbl_safety_var", {
+test_that("aet01 can use custom anl_vars", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01_1, proc_data, safety_var = list("FATAL"), lbl_safety_var = list("Fatal AE")))
-  expect_snapshot(res)
+  res <- expect_silent(run(aet01, proc_data, anl_vars = list(safety_var = "FATAL")))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet01 fails on incomplete data input", {
@@ -41,14 +41,26 @@ test_that("aet01 fails on incomplete data input", {
     mutate(AESER = NULL)
 
   expect_error(
-    run(aet01_1, proc_data),
-    "Expected column names: AESER not in adam_db$adae",
+    run(aet01, proc_data),
+    "Column `AESER` not found",
     fixed = TRUE
   )
 })
-# aet01_2 ----
-test_that("aet01_2 can use custom medconcept_var", {
+
+test_that("aet01 can use custom medconcept_var", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01_2, proc_data, medconcept_var = list("SMQ01"), lbl_medconcept_var = list("SMQ 01")))
-  expect_snapshot(res)
+  proc_data$adae$SMQ01 <- with_label(proc_data$adae$SMQ01NAM != "", "SMQ 01")
+  res <- expect_silent(
+    run(
+      aet01, proc_data,
+      anl_vars = list(
+        safety_var = c(
+          "FATAL", "SER", "SERWD", "SERDSM",
+          "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
+        ),
+        medconcept = "SMQ01"
+      )
+    )
+  )
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })

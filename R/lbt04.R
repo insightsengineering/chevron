@@ -1,10 +1,8 @@
-# lbt04_1 ----
+# lbt04 ----
 
-#' @describeIn lbt04_1 Main TLG function
+#' @describeIn lbt04 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param lbl_param (`string`) label of the `PARAM` variable.
-#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #'
 #' @details
 #'  * Only count LOW or HIGH values.
@@ -18,17 +16,32 @@
 #'
 #' @export
 #'
-lbt04_1_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_param = "Laboratory Test",
-                         lbl_anrind = "Direction of Abnormality",
-                         deco = std_deco("LBT04"),
-                         ...) {
-  lyt <- lbt04_1_lyt(
+lbt04_main <- function(adam_db,
+                       arm_var = "ACTARM",
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adlb"))
+  checkmate::assert_string(arm_var)
+  assert_valid_variable(
+    adam_db$adlb, c("PARAM", "PARCAT1"),
+    types = list("characater", "factor")
+  )
+  assert_valid_variable(adam_db$adlb, c("AVALCAT1", "ANRIND"), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
+  assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
+  checkmate::assert_true(
+    any(lvls(adam_db$adlb$ANRIND) %in% c("HIGH HIGH", "HIGH", "LOW", "LOW LOW")) || all(is.na(adam_db$adlb$ANRIND))
+  )
+  assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
+  lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
+  lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+
+  lyt <- lbt04_lyt(
     arm_var = arm_var,
+    var_parcat = "PARCAT1",
+    var_param = "PARAM",
     lbl_param = lbl_param,
-    lbl_anrind = lbl_anrind,
-    deco = deco
+    var_anrind = "ANRIND",
+    lbl_anrind = lbl_anrind
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -36,7 +49,7 @@ lbt04_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt04_1 Layout
+#' `lbt04` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -44,24 +57,29 @@ lbt04_1_main <- function(adam_db,
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #'
-#' @export
+#' @keywords internal
 #'
-lbt04_1_lyt <- function(arm_var,
-                        lbl_param,
-                        lbl_anrind,
-                        deco) {
-  basic_table_deco(deco, show_colcounts = TRUE) %>%
+lbt04_lyt <- function(arm_var,
+                      var_parcat,
+                      var_param,
+                      lbl_param,
+                      var_anrind,
+                      lbl_anrind) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    split_rows_by("PARCAT1") %>%
     split_rows_by(
-      "PARAM",
+      var_parcat,
+      split_fun = drop_split_levels
+    ) %>%
+    split_rows_by(
+      var_param,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = paste(lbl_param),
+      split_label = lbl_param,
       indent_mod = 0L
     ) %>%
     count_abnormal(
-      var = "ANRIND",
+      var = var_anrind,
       abnormal = list(Low = c("LOW", "LOW LOW"), High = c("HIGH", "HIGH HIGH")),
       exclude_base_abn = TRUE,
       .formats = list(fraction = format_fraction_fixed_dp)
@@ -69,68 +87,50 @@ lbt04_1_lyt <- function(arm_var,
     append_topleft(paste("   ", lbl_anrind))
 }
 
-#' @describeIn lbt04_1 Preprocessing
+#' @describeIn lbt04 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-lbt04_1_pre <- function(adam_db, req_tables = c("adsl", "adlb"), arm_var = "ACTARM", ...) {
-  lbt04_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
-
-  new_format <- list(
-    adlb = list(
-      ANRIND = rule("<Missing>" = c("", NA, "<Missing>"))
-    )
-  )
-
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
-
+lbt04_pre <- function(adam_db, ...) {
   adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ONTRTFL == "Y",
       .data$PARCAT2 == "SI",
-      .data$ANRIND != "<Missing>"
+      !is.na(.data$ANRIND)
+    ) %>%
+    mutate(
+      PARAM = with_label(.data$PARAM, "Laboratory Test"),
+      ANRIND = with_label(.data$ANRIND, "Direction of Abnormality")
+    ) %>%
+    mutate(
+      ANRIND = reformat(
+        .data$ANRIND,
+        rule(
+          "HIGH HIGH" = "HIGH HIGH",
+          "HIGH" = "HIGH",
+          "LOW" = "LOW",
+          "LOW LOW" = "LOW LOW",
+          "NORMAL" = "NORMAL"
+        )
+      )
     )
 
   adam_db
 }
 
-#' @describeIn lbt04_1 Checks
-#'
-#' @inheritParams gen_args
-#' @export
-lbt04_1_check <- function(adam_db,
-                          req_tables = c("adsl", "adlb"),
-                          arm_var = "ACTARM") {
-  assert_all_tablenames(adam_db, req_tables)
-
-  msg <- NULL
-
-  adlb_layout_col <- c("USUBJID", "ONTRTFL", "PARCAT1", "PARCAT2", "PARAM", "ANRIND")
-  adsl_layout_col <- c("USUBJID")
-
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
-}
-
-#' @describeIn lbt04_1 Postprocessing
+#' @describeIn lbt04 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-lbt04_1_post <- function(tlg, ...) {
+lbt04_post <- function(tlg, ...) {
   std_postprocess(tlg)
 }
 
-#' `LBT04` Table 1 (Default) Laboratory Abnormalities Not Present at Baseline.
+#' `LBT04` Laboratory Abnormalities Not Present at Baseline Table.
 #'
 #' The `LBT04` table provides an
 #' overview of laboratory abnormalities not present at baseline.
@@ -139,10 +139,10 @@ lbt04_1_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' run(lbt04_1, syn_data)
-lbt04_1 <- chevron_t(
-  main = lbt04_1_main,
-  preprocess = lbt04_1_pre,
-  postprocess = lbt04_1_post,
+#' run(lbt04, syn_data)
+lbt04 <- chevron_t(
+  main = lbt04_main,
+  preprocess = lbt04_pre,
+  postprocess = lbt04_post,
   adam_datasets = c("adsl", "adlb")
 )

@@ -4,7 +4,7 @@
 \alias{assert_colnames}
 \title{Check if strings are column names of a \code{data.frame}}
 \usage{
-assert_colnames(df, x, null_ok = TRUE)
+assert_colnames(df, x, null_ok = TRUE, types = NULL)
 }
 \arguments{
 \item{df}{(\code{data.frame}) input to check for the presence of column names.}
@@ -12,6 +12,8 @@ assert_colnames(df, x, null_ok = TRUE)
 \item{x}{(\code{character}) the names of the columns to be checked.}
 
 \item{null_ok}{(\code{logical}) can \code{x} be NULL.}
+
+\item{types}{(\code{character}) type of the variables.}
 }
 \description{
 Provides a clearer error message in the case of missing variable.

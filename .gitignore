@@ -10,3 +10,6 @@ temp
 .Renviron
 .Rprofile
 .vscode
+doc/
+Meta/
+*pdf

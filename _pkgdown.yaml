@@ -24,7 +24,6 @@ articles:
   - title: All vignettes
     contents:
       - chevron
-      - layouts
       - adding_new_tlgs_to_chevron
       - script_generator
 
@@ -53,48 +52,37 @@ reference:
 
   - title: chevron_tlg objects
     contents:
-      - ael01_nollt_1
-      - aet01_1
-      - aet01_2
-      - aet01_aesi_1
-      - aet02_1
-      - aet02_2
-      - aet02_3
-      - aet03_1
-      - aet04_1
-      - aet10_1
-      - cmt01a_1
-      - cmt01a_2
-      - cmt01a_3
-      - cmt02_pt_1
-      - coxt02_1
-      - dmt01_1
-      - dst01_1
-      - dst01_2
-      - dst01_3
-      - dtht01_1
-      - egt01_1
+      - ael01_nollt
+      - aet01
+      - aet01_aesi
+      - aet02
+      - aet03
+      - aet04
+      - aet10
+      - cmt01a
+      - cmt02_pt
+      - coxt02
+      - dmt01
+      - dst01
+      - dtht01
+      - egt01
       - egt02_1
       - egt02_2
-      - egt03_1
-      - egt03_2
-      - egt05_qtcat_1
-      - ext01_1
-      - ext01_2
-      - kmg01_1
-      - rspt01_1
-      - lbt01_1
-      - lbt04_1
-      - lbt05_1
-      - lbt07_1
-      - lbt14_1
-      - lbt14_2
-      - mht01_1
-      - mng01_1
-      - pdt01_1
-      - pdt02_1
-      - rmpt01_1
-      - vst01_1
+      - egt03
+      - egt05_qtcat
+      - ext01
+      - kmg01
+      - lbt01
+      - lbt04
+      - lbt05
+      - lbt07
+      - lbt14
+      - mht01
+      - mng01
+      - pdt01
+      - pdt02
+      - rmpt01
+      - vst01
       - vst02_1
       - vst02_2
   - title: Data
@@ -104,16 +92,22 @@ reference:
     contents:
       - assert_colnames
       - assert_all_tablenames
-      - get_db_data
+      - assert_single_value
+      - assert_valid_type
+      - assert_valid_var
+      - assert_valid_var_pair
+      - assert_valid_variable
       - report_null
       - smart_prune
-      - std_deco
       - var_labels_for
-      - h_format_dec
       - gg_list
       - grob_list
+      - h_format_dec
       - lvls
-      - assert_single_paramcd
+  - title: Standard Reformatting Rules
+    contents:
+      - nocoding
+      - missing_rule
 
   - title: Non-exported Documented Functions for Packagage Developers
     contents:

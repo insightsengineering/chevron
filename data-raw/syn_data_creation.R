@@ -18,11 +18,19 @@ syn_test_data <- function() {
       "Total dose administered",
       c(-Inf, 5000, 7000, 9000, Inf),
       c("<5000", "5000-7000", "7000-9000", ">9000")
+    ),
+    list(
+      "Total number of doses administered",
+      c(6, 8),
+      "7"
     )
   )
 
   sd$adex <- dunlin::cut_by_group(as.data.frame(sd$adex), "AVAL", "PARAM", group, "AVALCAT1")
-  sd$adex$AVALCAT1 <- forcats::fct_na_value_to_level(sd$adex$AVALCAT1, level = "<Missing>") # nolint
+  sd$adex$AVALCAT1 <- factor(
+    sd$adex$AVALCAT1,
+    levels = c("<700", "700-900", "900-1200", ">1200", "<5000", "5000-7000", "7000-9000", ">9000", "7")
+  )
 
   set.seed(1, kind = "Mersenne-Twister")
   sd$adex <- sd$adex %>%
@@ -44,20 +52,26 @@ syn_test_data <- function() {
   sd$adeg <- sd$adeg %>%
     mutate(
       AVALCAT1 = case_when(
-        PARAMCD == "QT" & AVAL <= 450 ~ paste("<=450", " ", AVALU),
-        PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ paste(">450 to <=480", " ", AVALU),
-        PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ paste(">480 to <=500", " ", AVALU),
-        PARAMCD == "QT" & AVAL > 500 ~ paste(">500", " ", AVALU),
-        PARAMCD == "QT" & is.na(AVAL) ~ "<Missing>"
+        PARAMCD == "QT" & AVAL <= 450 ~ "<=450 msec",
+        PARAMCD == "QT" & AVAL > 450 & AVAL <= 480 ~ ">450 to <=480 msec",
+        PARAMCD == "QT" & AVAL > 480 & AVAL <= 500 ~ ">480 to <=500 msec",
+        PARAMCD == "QT" & AVAL > 500 ~ ">500 msec",
+        PARAMCD == "QT" & is.na(AVAL) ~ NA_character_
       ),
       CHGCAT1 = case_when(
-        PARAMCD == "QT" & CHG <= 30 ~ paste("<=30", " ", AVALU),
-        PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ paste(">30 to <=60", " ", AVALU),
-        PARAMCD == "QT" & CHG > 60 ~ paste(">60", " ", AVALU),
-        PARAMCD == "QT" & is.na(CHG) ~ "<Missing>"
+        PARAMCD == "QT" & CHG <= 30 ~ "<=30 msec",
+        PARAMCD == "QT" & CHG > 30 & CHG <= 60 ~ ">30 to <=60 msec",
+        PARAMCD == "QT" & CHG > 60 ~ ">60 msec",
+        PARAMCD == "QT" & is.na(CHG) ~ NA_character_
       ),
-      AVALCAT1 = factor(AVALCAT1),
-      CHGCAT1 = factor(CHGCAT1)
+      AVALCAT1 = with_label(
+        factor(AVALCAT1, levels = c("<=450 msec", ">450 to <=480 msec", ">480 to <=500 msec", ">500 msec")),
+        "Value at Visit"
+      ),
+      CHGCAT1 = with_label(
+        factor(CHGCAT1, levels = c("<=30 msec", ">30 to <=60 msec", ">60 msec")),
+        "Change from Baseline"
+      )
     )
 
   # useful for lbt04, lbt05
@@ -144,8 +158,8 @@ syn_test_data <- function() {
     mutate(ANL01FL = "Y")
 
   sd$adae <- sd$adae %>%
-    mutate(AEBODSYS = formatters::with_label(.data$AEBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(AEDECOD = formatters::with_label(.data$AEDECOD, "MedDRA Preferred Term")) %>%
+    mutate(AEBODSYS = with_label(.data$AEBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(AEDECOD = with_label(.data$AEDECOD, "MedDRA Preferred Term")) %>%
     mutate(ANL01FL = "Y") %>%
     mutate(ASEV = .data$AESEV) %>%
     mutate(AREL = .data$AEREL) %>%
@@ -153,8 +167,8 @@ syn_test_data <- function() {
 
   sd$admh <- sd$admh %>%
     mutate(ANL01FL = "Y") %>%
-    mutate(MHBODSYS = formatters::with_label(.data$MHBODSYS, "MedDRA System Organ Class")) %>%
-    mutate(MHDECOD = formatters::with_label(.data$MHDECOD, "MedDRA Preferred Term"))
+    mutate(MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class")) %>%
+    mutate(MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term"))
 
   sd$advs <- sd$advs %>%
     mutate(ANL01FL = "Y")

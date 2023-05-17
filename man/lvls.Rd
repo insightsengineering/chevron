@@ -2,13 +2,16 @@
 % Please edit documentation in R/utils.R
 \name{lvls}
 \alias{lvls}
-\title{\code{lvls} objective to get unique level of variables}
+\title{Obtain levels from vector}
 \usage{
 lvls(x)
 }
 \arguments{
-\item{x}{(\code{character}) or (\code{factor}) variable to get level.}
+\item{x}{(\code{character}) or (\code{factor}) object to obtain levels.}
 }
 \description{
-\code{lvls} objective to get unique level of variables
+Obtain levels from vector
+}
+\details{
+For factors, the levels will be returned. For characters, the sorted unique values will be returned.
 }

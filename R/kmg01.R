@@ -1,112 +1,75 @@
-# kmg01_1 ----
+# kmg01 ----
 
-#' @describeIn kmg01_1 Main TLG Function
+#' @describeIn kmg01 Main TLG Function
 #'
 #' @details
 #'  * No overall value.
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param x_name (`string`) the name of the x-axis.
-#' @param y_name (`string`) the name of the x-axis.
-#' @param show_statis (`flag`) should the summary statistic table be displayed.
-#' @param show_censor (`flag`) should the censor flag be displayed.
-#' @param pval_method (`string`) should the censor flag be displayed.
-#' @param ties (`string`) should the censor flag be displayed.
-#' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
-#' @param position_coxph (`numeric`) x and y positions for plotting survival::coxph() model.
-#' @param position_surv_med (`numeric`) x and y positions for plotting annotation table estimating
-#'   median survival time per group.
-#' @param line_col (`list`) describing the colors to use for the lines or a named `list`
-#'  associating values of `arm_var` with color names.
+#' @param ... Further arguments passed to `g_km` and `control_coxph`. For details, see
+#' the documentation in `tern`.
+#' Commonly used arguments include `col`, `pval_method`, `ties`, `conf_level`, `conf_type`,
+#' `annot_coxph`, `annot_stats`, etc.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by  `arm_var`.
 #'
 #' @return a list of `ggplot` objects.
 #' @export
-kmg01_1_main <- function(adam_db,
-                         dataset = "adtte",
-                         arm_var = "ARM",
-                         x_name = "Time (Days)",
-                         y_name = "Survival Probability",
-                         show_statis = TRUE,
-                         show_censor = TRUE,
-                         pval_method = "wald",
-                         ties = "exact",
-                         conf_level = 0.95,
-                         position_coxph = c(0, 0.05),
-                         position_surv_med = c(0.9, 0.9),
-                         line_col = as.list(nestcolor::color_palette()),
-                         ...) {
-  anl <- adam_db[[dataset]]
-  assert_colnames(anl, c("PARAMCD", "is_event", arm_var))
-  assert_single_paramcd(anl$PARAMCD)
-  checkmate::assert_string(x_name)
-  checkmate::assert_string(y_name)
-  checkmate::assert_flag(show_statis)
-  checkmate::assert_flag(show_censor)
-
-  line_col <- unlist(line_col)
-  checkmate::assert_character(line_col, null.ok = TRUE)
-
-  assert_colnames(anl, "AVAL")
+kmg01_main <- function(adam_db,
+                       dataset = "adtte",
+                       arm_var = "ARM",
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", dataset))
+  df_lbl <- paste0("adam_db$", dataset)
+  assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_lbl)
+  assert_valid_variable(adam_db[[dataset]], "is_event", types = list("logical"), label = df_lbl)
+  assert_valid_variable(
+    adam_db[[dataset]],
+    c("PARAMCD", arm_var),
+    types = list(c("character", "factor")),
+    na_ok = FALSE,
+    label = df_lbl
+  )
+  assert_single_value(adam_db[[dataset]]$PARAMCD, label = past0(df_lbl, "$PARAMCD"))
+  assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
 
-
-  if (!is.null(names(line_col))) {
-    color_lvl <- sort(unique(anl[[arm_var]]))
-    col <- line_col[as.character(color_lvl)]
-
-    if (anyNA(col)) {
-      missing_col <- setdiff(color_lvl, names(col))
-      stop(paste("Missing color matching for", toString(missing_col)))
-    }
-
-    col <- unname(col)
-  } else {
-    col <- line_col
-  }
-
-  g_km(
-    df = anl,
+  control_cox <- execute_with_args(control_coxph, ...)
+  control_surv <- execute_with_args(control_surv_timepoint, ...)
+  execute_with_args(
+    g_km,
+    df = adam_db[[dataset]],
     variables = variables,
-    censor_show = show_censor,
-    xlab = x_name,
-    ylab = y_name,
-    annot_surv_med = !show_statis,
-    annot_coxph = show_statis,
-    control_coxph_pw = control_coxph(pval_method = pval_method, ties = ties, conf_level = conf_level),
-    position_coxph = position_coxph,
-    position_surv_med = position_surv_med
+    control_surv = control_surv,
+    control_coxph_pw = control_cox,
+    ...
   )
 }
 
-#' @describeIn kmg01_1 Preprocessing
+#' @describeIn kmg01 Preprocessing
 #'
-#' @inheritParams kmg01_1_main
+#' @inheritParams kmg01_main
 #'
 #' @export
-kmg01_1_pre <- function(adam_db, dataset = "adtte", ...) {
-  assert_all_tablenames(adam_db, c("adsl", dataset))
-  assert_colnames(adam_db[[dataset]], "CNSR")
-
+kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(is_event = .data$CNSR == 0)
 
   adam_db
 }
 
-#' @describeIn kmg01_1 Postprocessing
+#' @describeIn kmg01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
-kmg01_1_post <- function(tlg, ...) {
+kmg01_post <- function(tlg, ...) {
   tlg
 }
 
-# `kmg01_1` Pipeline ----
+# `kmg01` Pipeline ----
 
 #' `KMG01` Kaplan-Meier Plot 1.
 #'
@@ -118,20 +81,20 @@ kmg01_1_post <- function(tlg, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' col <- list(
+#' col <- c(
 #'   "A: Drug X" = "black",
 #'   "B: Placebo" = "blue",
 #'   "C: Combination" = "gray"
 #' )
 #'
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-#' run(kmg01_1, syn_data2, dataset = "adtte", line_col = col)
+#' run(kmg01, syn_data2, dataset = "adtte", line_col = col)
 #'
 #' syn_data3 <- log_filter(syn_data, PARAMCD == "AEREPTTE", "adaette")
-#' run(kmg01_1, syn_data3, dataset = "adaette")
-kmg01_1 <- chevron_g(
-  main = kmg01_1_main,
-  preproces = kmg01_1_pre,
-  postprocess = kmg01_1_post,
+#' run(kmg01, syn_data3, dataset = "adaette")
+kmg01 <- chevron_g(
+  main = kmg01_main,
+  preproces = kmg01_pre,
+  postprocess = kmg01_post,
   adam_datasets = c("adsl")
 )

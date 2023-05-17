@@ -1,4 +1,4 @@
-# aet01_aesi_1 ----
+# aet01_aesi ----
 
 test_that("aet01_aesi can handle all NA values", {
   proc_data <- syn_data
@@ -13,10 +13,10 @@ test_that("aet01_aesi can handle all NA values", {
       AESER = NA
     )
 
-  res <- expect_silent(run(aet01_aesi_1, proc_data))
-  expect_snapshot(res)
-  res <- expect_silent(run(aet01_aesi_1, proc_data, prune_0 = TRUE))
-  expect_snapshot(res)
+  res <- expect_silent(run(aet01_aesi, proc_data))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
+  res <- expect_silent(run(aet01_aesi, proc_data, prune_0 = TRUE))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
 test_that("aet01_aesi can handle some NA values", {
@@ -26,24 +26,24 @@ test_that("aet01_aesi can handle some NA values", {
       AEACN = c(NA, as.character(syn_data$adae$AEACN)[-1])
     )
 
-  res <- expect_silent(run(aet01_aesi_1, proc_data))
-  expect_snapshot(res)
+  res <- expect_silent(run(aet01_aesi, proc_data))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
 test_that("aet01_aesi works with `ALL` argument", {
   proc_data <- syn_data
-  res <- expect_silent(run(aet01_aesi_1, proc_data, aesi_vars = list("ALL")))
-  expect_snapshot(res)
+  res <- expect_silent(run(aet01_aesi, proc_data, aesi_vars = c("ALL")))
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
-test_that("aet01_aesi_1_check fails on incomplete data input", {
+test_that("aet01_aesi_check fails on incomplete data input", {
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(AEOUT = NULL)
 
   expect_error(
-    run(aet01_aesi_1, proc_data, aesi_vars = list("ALL")),
-    "AEOUT not in adam_db$adae",
+    run(aet01_aesi, proc_data, aesi_vars = c("ALL")),
+    "Column `AEOUT` not found in",
     fixed = TRUE
   )
 })

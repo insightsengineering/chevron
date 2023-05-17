@@ -1,11 +1,10 @@
-# dmt01_1 ----
+# dmt01 ----
 
-#' @describeIn dmt01_1 Main TLG function
+#' @describeIn dmt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`list`) variables summarized in demographic table. Names are used as
-#'   subtitles. For values where no name is provided, the label attribute of the corresponding column in `adsl` table of
-#'   `adam_db` is used.
+#' @param summaryvars (`character`) variables summarized in demographic table. The label attribute of the corresponding
+#'   column in `adsl` table of `adam_db` is used as label.
 #'
 #' @details
 #'  * Information from `ADSUB` are generally included into `ADSL` before analysis.
@@ -24,33 +23,30 @@
 #' library(magrittr)
 #'
 #' db <- syn_data %>%
-#'   dmt01_1_pre()
+#'   dmt01_pre()
 #'
-#' dmt01_1_main(db, lbl_overall = NULL)
-#' dmt01_1_main(db, summaryvars = c("Age" = "AGE", "Race" = "RACE", "Gender" = "SEX"))
-dmt01_1_main <- function(adam_db,
-                         arm_var = "ARM",
-                         summaryvars = list(
-                           "Age (yr)" = "AAGE",
-                           "Age group (yr)" = "AGEGR1",
-                           "Sex" = "SEX",
-                           "Ethnicity" = "ETHNIC",
-                           "Race" = "RACE"
-                         ),
-                         lbl_overall = "All Patients",
-                         deco = std_deco("DMT01"),
-                         ...) {
-  summaryvars <- unlist(summaryvars)
-  assert_colnames(adam_db$adsl, summaryvars)
+#' dmt01_main(db, lbl_overall = NULL)
+#' dmt01_main(db, summaryvars = c("AGE", "RACE", "SEX"))
+dmt01_main <- function(adam_db,
+                       arm_var = "ARM",
+                       summaryvars = c(
+                         "AAGE",
+                         "AGEGR1",
+                         "SEX",
+                         "ETHNIC",
+                         "RACE"
+                       ),
+                       lbl_overall = "All Patients",
+                       ...) {
+  assert_valid_variable(adam_db$adsl, summaryvars)
+  summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
-  summaryvars_lbls <- get_labels(adam_db$adsl, summaryvars)
-
-  lyt <- dmt01_1_lyt(
+  lyt <- dmt01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
-    lbl_overall = lbl_overall,
-    deco = deco
+    lbl_overall = lbl_overall
   )
 
   tbl <- build_table(lyt, adam_db$adsl)
@@ -58,24 +54,22 @@ dmt01_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn dmt01_1 Layout
+#' `dmt01` Layout
 #' @param summaryvars_lbls (`character`) labels corresponding to the analyzed variables.
 #'
 #' @inheritParams gen_args
 #'
 #'
-#' @export
+#' @keywords internal
 #'
-dmt01_1_lyt <- function(arm_var,
-                        summaryvars,
-                        summaryvars_lbls,
-                        lbl_overall,
-                        deco) {
-  basic_table_deco(deco) %>%
+dmt01_lyt <- function(arm_var,
+                      summaryvars,
+                      summaryvars_lbls,
+                      lbl_overall) {
+  basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    split_rows_by("DOMAIN", split_fun = drop_split_levels, child_labels = "hidden") %>%
     summarize_vars(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
@@ -83,7 +77,7 @@ dmt01_1_lyt <- function(arm_var,
     )
 }
 
-#' @describeIn dmt01_1 Preprocessing
+#' @describeIn dmt01 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
@@ -91,25 +85,20 @@ dmt01_1_lyt <- function(arm_var,
 #' @export
 #'
 #' @examples
-#' dmt01_1_pre(syn_data)
-dmt01_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl"))
-
-  adam_db$adsl <- tern::df_explicit_na(adam_db$adsl)
-
+#' dmt01_pre(syn_data)
+dmt01_pre <- function(adam_db, ...) {
   adam_db$adsl <- adam_db$adsl %>%
-    mutate(DOMAIN = "ADSL")
-
+    mutate(SEX = reformat(.data$SEX, rule(Male = "M", Female = "F")))
   adam_db
 }
 
-#' @describeIn dmt01_1 Postprocessing
+#' @describeIn dmt01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #'
 #' @export
-dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
+dmt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -125,10 +114,10 @@ dmt01_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(dmt01_1, syn_data)
-dmt01_1 <- chevron_t(
-  main = dmt01_1_main,
-  preprocess = dmt01_1_pre,
-  postprocess = dmt01_1_post,
+#' run(dmt01, syn_data)
+dmt01 <- chevron_t(
+  main = dmt01_main,
+  preprocess = dmt01_pre,
+  postprocess = dmt01_post,
   adam_datasets = c("adsl")
 )

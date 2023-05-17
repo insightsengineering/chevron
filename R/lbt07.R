@@ -1,15 +1,13 @@
-# lbt07_1 ----
+# lbt07 ----
 
-#' @describeIn lbt07_1 Main TLG function
+#' @describeIn lbt07 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param grade_var (`list`) `PARAM` and variables derived from the standard lab grade variable `ATOXGR`:
-#' * A grade direction variable (`GRADE_DIR`) is required in order to obtain
-#'   the correct denominators when building the layout as it is used to define row splitting.
-#' * A toxicity grade variable (e.g. `GRADE_ANL`) where all negative values from
+#' @param param_var (`string`) the name of the column storing the parameters name.
+#' @param grad_dir_var  (`string`) the name of the column storing the grade direction variable which  is required in
+#'   order to obtain the correct denominators when building the layout as it is used to define row splitting.
+#' @param grad_anl_var (`string`)  the name of the column storing toxicity grade variable where all negative values from
 #'   `ATOXGR` are replaced by their absolute values.
-#' @param lbl_grade_var (`list`) label of the variables in `grade_var`. If `NULL`, uses the label
-#'   attribute of the columns selected in `grade_var`.
 #'
 #' @details
 #'  * Split columns by arm, typically `ACTARM`.
@@ -20,38 +18,48 @@
 #'
 #' @export
 #'
-lbt07_1_main <- function(adam_db,
-                         arm_var = "ACTARM",
-                         lbl_overall = NULL,
-                         grade_var = list("PARAM", "GRADE_DIR", "GRADE_ANL"),
-                         deco = std_deco("LBT07"),
-                         lbl_grade_var = list("Parameter", "Direction of Abnormality", "Toxicity Grade"),
-                         req_tables = c("adsl", "adlb"),
-                         ...) {
-  lbt07_1_check(adam_db, req_tables = req_tables, arm_var = arm_var)
+lbt07_main <- function(adam_db,
+                       arm_var = "ACTARM",
+                       lbl_overall = NULL,
+                       param_var = "PARAM",
+                       grad_dir_var = "GRADE_DIR",
+                       grad_anl_var = "GRADE_ANL",
+                       ...) {
+  assert_all_tablenames(adam_db, c("adsl", "adlb"))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(param_var)
+  checkmate::assert_string(grad_dir_var)
+  checkmate::assert_string(grad_anl_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_valid_variable(
+    adam_db$adlb, c("ATOXGR", param_var, grad_dir_var, grad_anl_var),
+    types = list(c("character", "factor"))
+  )
+  assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
-  checkmate::assert_list(grade_var, types = "character")
-  grade_var <- unlist(grade_var)
-  checkmate::assert_list(lbl_grade_var, types = "character", null.ok = TRUE)
-  lbl_grade_var <- unlist(lbl_grade_var)
-  checkmate::assert_character(lbl_grade_var, len = length(grade_var), null.ok = TRUE)
-
-  lbl_grade_var <- if (is.null(lbl_grade_var)) var_labels_for(adam_db$adlb, grade_var) else lbl_grade_var
+  lbl_param_var <- var_labels_for(adam_db$adlb, param_var)
+  lbl_grad_dir_var <- var_labels_for(adam_db$adlb, grad_dir_var)
 
   map <- expand.grid(
-    PARAM = levels(adam_db$adlb$PARAM),
+    PARAM = levels(adam_db$adlb[[param_var]]),
     GRADE_DIR = c("LOW", "HIGH"),
     GRADE_ANL = as.character(1:4),
     stringsAsFactors = FALSE
   ) %>%
     arrange(.data$PARAM, desc(.data$GRADE_DIR), .data$GRADE_ANL)
 
-  lyt <- lbt07_1_lyt(
+  names(map) <- c(param_var, grad_dir_var, grad_anl_var)
+
+  lyt <- lbt07_lyt(
     arm_var = arm_var,
+    param_var = param_var,
+    grad_dir_var = grad_dir_var,
+    grad_anl_var = grad_anl_var,
+    lbl_param_var = lbl_param_var,
+    lbl_grad_dir_var = lbl_grad_dir_var,
     lbl_overall = lbl_overall,
-    grade_var = grade_var,
-    lbl_grade_var = lbl_grade_var,
-    deco = deco,
     map = map
   )
 
@@ -60,33 +68,32 @@ lbt07_1_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt07_1 Layout
+#' @describeIn lbt07 Layout
 #'
 #' @inheritParams gen_args
+#' @inheritParams lbt07_main
 #'
-#' @param lbl_param (`string`) label of the `PARAM` variable.
-#' @param lbl_gradedir (`string`) label of the `GRADE_DIR` variable.
+#' @param lbl_param_var (`string`) label of the `param_var` variable.
+#' @param lbl_grad_dir_var (`string`) label for the `grad_dir_var` variable.
 #' @param map (`data.frame`) mapping of `PARAM`s to directions of abnormality.
 #'
-#' @export
+#' @keywords internal
 #'
-lbt07_1_lyt <- function(arm_var,
-                        lbl_overall,
-                        lbl_gradedir,
-                        lbl_param,
-                        grade_var,
-                        lbl_grade_var,
-                        deco,
-                        map) {
-  names(lbl_grade_var) <- grade_var
-
-  basic_table_deco(deco, show_colcount = TRUE) %>%
+lbt07_lyt <- function(arm_var,
+                      param_var,
+                      grad_dir_var,
+                      grad_anl_var,
+                      lbl_param_var,
+                      lbl_grad_dir_var,
+                      lbl_overall,
+                      map) {
+  basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
-      "PARAM",
+      param_var,
       label_pos = "topleft",
-      split_label = lbl_grade_var[1]
+      split_label = lbl_param_var
     ) %>%
     summarize_num_patients(
       var = "USUBJID",
@@ -94,38 +101,31 @@ lbt07_1_lyt <- function(arm_var,
       .stats = "unique_count"
     ) %>%
     split_rows_by(
-      "GRADE_DIR",
+      grad_dir_var,
       label_pos = "topleft",
-      split_label = lbl_grade_var[2],
+      split_label = lbl_grad_dir_var,
       split_fun = trim_levels_to_map(map)
     ) %>%
     count_abnormal_by_worst_grade(
-      var = "GRADE_ANL",
-      variables = list(id = "USUBJID", param = "PARAM", grade_dir = "GRADE_DIR"),
+      var = grad_anl_var,
+      variables = list(id = "USUBJID", param = param_var, grade_dir = grad_dir_var),
       .formats = list(count_fraction = tern::format_count_fraction_fixed_dp),
       .indent_mods = 4L
     ) %>%
     append_topleft("            Highest NCI CTCAE Grade")
 }
 
-#' @describeIn lbt07_1 Preprocessing
+#' @describeIn lbt07 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-lbt07_1_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adlb"))
-
-  new_format <- list(
-    adlb = list(
-      ATOXGR = rule("<Missing>" = c("", NA, "<Missing>", "No Coding available"))
-    )
-  )
-
-  adam_db <- dunlin::reformat(adam_db, new_format, na_last = TRUE)
-
+lbt07_pre <- function(adam_db, ...) {
   adam_db$adlb <- adam_db$adlb %>%
+    mutate(
+      ATOXGR = reformat(.data$ATOXGR, missing_rule, na_last = TRUE)
+    ) %>%
     filter(
       .data$ATOXGR != "<Missing>",
       .data$ONTRTFL == "Y",
@@ -145,41 +145,23 @@ lbt07_1_pre <- function(adam_db, ...) {
       PARAM = as.factor(.data$PARAM)
     )
 
+  adam_db$adlb <- adam_db$adlb %>%
+    mutate(
+      PARAM = with_label(.data$PARAM, "Parameter"),
+      GRADE_DIR = with_label(.data$GRADE_DIR, "Direction of Abnormality"),
+      GRADE_ANL = with_label(.data$GRADE_ANL, "Toxicity Grade")
+    )
+
   adam_db
 }
 
-#' @describeIn lbt07_1 Checks
-#'
-#' @inheritParams gen_args
-#' @export
-lbt07_1_check <- function(adam_db,
-                          req_tables = c("adsl", "adlb"),
-                          arm_var = "ACTARM") {
-  assert_all_tablenames(adam_db, req_tables)
-
-  msg <- NULL
-
-  adlb_layout_col <- c("USUBJID", "ATOXGR", "ONTRTFL")
-  adsl_layout_col <- c("USUBJID")
-
-  msg <- c(msg, check_all_colnames(adam_db$adlb, c(arm_var, adlb_layout_col)))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c(adsl_layout_col)))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
-}
-
-
-#' @describeIn lbt07_1 Postprocessing
+#' @describeIn lbt07 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-lbt07_1_post <- function(tlg, prune_0 = TRUE, ...) {
+lbt07_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -194,10 +176,10 @@ lbt07_1_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(lbt07_1, syn_data)
-lbt07_1 <- chevron_t(
-  main = lbt07_1_main,
-  preprocess = lbt07_1_pre,
-  postprocess = lbt07_1_post,
+#' run(lbt07, syn_data)
+lbt07 <- chevron_t(
+  main = lbt07_main,
+  preprocess = lbt07_pre,
+  postprocess = lbt07_post,
   adam_datasets = c("adlb", "adsl")
 )

@@ -1,19 +1,19 @@
-# coxt02_1 ----
+# coxt02 ----
 
-#' @describeIn coxt02_1 Main TLG function
+#' @describeIn coxt02 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param arm_var (`string`) the arm variable used for arm splitting.
 #' @param time_var (`string`) the time variable in a Cox proportional hazards regression model.
-#' @param censor_var (`string`) the censor variable in a Cox proportional hazards regression model.
+#' @param event_var (`string`) the event variable in a Cox proportional hazards regression model.
 #' @param covariates (`character`) will be fitted and the corresponding effect will be estimated.
 #' @param strata (`character`) will be fitted for the stratified analysis.
 #' @param lbl_vars (`string`) text label for the a Cox regression model variables.
-#' @param conf_level (`string`) confidence level of the interval when fitting a Cox regression model
-#' and estimating hazard ratio to describe the effect size in a survival analysis.
-#' @param ties (`string`) specifies the method for tie handling.
+#' @param ... Further arguments passed to `tern::control_coxreg()`.
 #'
 #' @details
+#'  * The reference arm will always the first level of `arm_var`. Please change the level if you want to
+#'  change the reference arms.
 #'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
 #'  * The stratified analysis is with DISCRETE tie handling (equivalent to `tern::control_coxreg(ties = "exact")` in R).
 #'  * Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
@@ -30,123 +30,84 @@
 #'
 #' @export
 #'
-coxt02_1_main <- function(adam_db,
-                          arm_var = "ARM",
-                          time_var = "AVAL",
-                          censor_var = "CNSR",
-                          covariates = c("SEX", "RACE", "AAGE"),
-                          strata = NULL,
-                          lbl_vars = "Effect/Covariate Included in the Model",
-                          conf_level = .95,
-                          ties = "exact",
-                          deco = std_deco("COXT02"),
-                          ...) {
-  dbsel <- get_db_data(adam_db, "adsl", "adtte")
-  assert_colnames(dbsel$adtte, c(arm_var, time_var, censor_var, covariates, strata))
-
-  assert_single_paramcd(dbsel$adtte$PARAMCD)
-
-  checkmate::assert_character(covariates, null.ok = TRUE, any.missing = FALSE)
-  checkmate::assert_character(strata, null.ok = TRUE, any.missing = FALSE)
-  checkmate::assert_number(conf_level, null.ok = FALSE, lower = 0, upper = 1)
-  checkmate::assert_string(ties, null.ok = TRUE)
-
-  dbsel$adtte <- dbsel$adtte %>%
-    mutate(event = 1 - .data[[censor_var]])
-
+coxt02_main <- function(adam_db,
+                        arm_var = "ARM",
+                        time_var = "AVAL",
+                        event_var = "EVENT",
+                        covariates = c("SEX", "RACE", "AAGE"),
+                        strata = NULL,
+                        lbl_vars = "Effect/Covariate Included in the Model",
+                        ...) {
+  assert_all_tablenames(adam_db, "adtte")
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(time_var)
+  checkmate::assert_string(event_var)
+  checkmate::assert_character(covariates, null.ok = TRUE)
+  checkmate::assert_character(strata, null.ok = TRUE)
+  assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"))
+  assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var, "PARAMCD"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adtte, c(covariates, strata), types = list(c("factor", "numeric")), na_ok = TRUE)
+  assert_valid_variable(adam_db$adtte, event_var, types = list("numeric"), integerish = TRUE, lower = 0L, upper = 1L)
+  assert_valid_variable(adam_db$adtte, time_var, types = list("numeric"), lower = 0)
+  assert_single_value(adam_db$adtte$PARAMCD)
+  control <- execute_with_args(control_coxreg, ...)
   variables <- list(
     time = time_var,
-    event = "event",
+    event = event_var,
     arm = arm_var,
     covariates = covariates,
     strata = strata
   )
 
-  lyt <- coxt02_1_lyt(
+  lyt <- coxt02_lyt(
     variables = variables,
     lbl_vars = lbl_vars,
-    conf_level = conf_level,
-    ties = ties,
-    deco = deco
+    control = control
   )
 
-  tbl <- build_table(lyt, dbsel$adtte)
+  tbl <- build_table(lyt, adam_db$adtte)
 
   tbl
 }
 
-#' @describeIn coxt02_1 Layout
+#' coxt02 Layout
 #'
 #' @inheritParams gen_args
 #' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
 #'
-#' @export
+#' @keywords internal
 #'
-coxt02_1_lyt <- function(variables,
-                         lbl_vars,
-                         conf_level,
-                         ties,
-                         deco) {
-  basic_table_deco(deco) %>%
+coxt02_lyt <- function(variables,
+                       lbl_vars,
+                       control) {
+  basic_table() %>%
     summarize_coxreg(
       variables = variables,
-      control = control_coxreg(
-        conf_level = conf_level,
-        ties = ties,
-      ),
+      control = control,
       multivar = TRUE
     ) %>%
     append_topleft(lbl_vars)
 }
 
-#' @describeIn coxt02_1 Preprocessing
+#' @describeIn coxt02 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-coxt02_1_pre <- function(adam_db, arm_var = "ARM", time_var = "AVAL", censor_var = "CNSR",
-                         covariates = c("SEX", "RACE", "AAGE"), strata = NULL, ...) {
-  coxt02_1_check(adam_db,
-    arm_var = arm_var, time_var = time_var, censor_var = censor_var,
-    covariates = covariates, strata = strata
-  )
-
+coxt02_pre <- function(adam_db, ...) {
+  adam_db$adtte <- adam_db$adtte %>%
+    mutate(EVENT = 1 - .data$CNSR)
   adam_db
 }
 
-#' @describeIn coxt02_1 Checks
+#' @describeIn coxt02 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-coxt02_1_check <- function(adam_db, arm_var, time_var, censor_var, covariates, strata,
-                           req_tables = c("adsl", "adtte")) {
-  assert_all_tablenames(adam_db, req_tables)
-
-  msg <- NULL
-
-  msg <- c(msg, check_all_colnames(adam_db$adtte, c(
-    "USUBJID", "PARAMCD", arm_var, time_var, censor_var,
-    covariates, strata
-  )))
-  msg <- c(msg, check_all_colnames(adam_db$adsl, c("USUBJID")))
-
-  if (is.null(msg)) {
-    TRUE
-  } else {
-    stop(paste(msg, collapse = "\n  "))
-  }
-}
-
-#' @describeIn coxt02_1 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-coxt02_1_post <- function(tlg, prune_0 = FALSE, ...) {
+coxt02_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -168,12 +129,12 @@ coxt02_1_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
 #'
-#' run(coxt02_1, proc_data)
+#' run(coxt02, proc_data)
 #'
-#' run(coxt02_1, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
-coxt02_1 <- chevron_t(
-  main = coxt02_1_main,
-  preprocess = coxt02_1_pre,
-  postprocess = coxt02_1_post,
+#' run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
+coxt02 <- chevron_t(
+  main = coxt02_main,
+  preprocess = coxt02_pre,
+  postprocess = coxt02_post,
   adam_datasets = c("adsl", "adtte")
 )

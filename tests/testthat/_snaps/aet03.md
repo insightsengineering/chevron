@@ -1,7 +1,7 @@
 # aet03 can handle NA values
 
     Code
-      res1
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
@@ -10,12 +10,12 @@
         MILD                         7 (5.2%)      9 (6.7%)        4 (3.0%)   
         MODERATE                    24 (17.9%)    24 (17.9%)      23 (17.4%)  
         SEVERE                      91 (67.9%)    90 (67.2%)      93 (70.5%)  
-        No Coding available                                                   
+        No Coding Available                                                   
           - Any Intensity -         122 (91.0%)   123 (91.8%)    120 (90.9%)  
           MILD                       7 (5.2%)      9 (6.7%)        4 (3.0%)   
           MODERATE                  24 (17.9%)    24 (17.9%)      23 (17.4%)  
           SEVERE                    91 (67.9%)    90 (67.2%)      93 (70.5%)  
-          No Coding available                                                 
+          No Coding Available                                                 
             - Any Intensity -       122 (91.0%)   123 (91.8%)    120 (90.9%)  
             MILD                     7 (5.2%)      9 (6.7%)        4 (3.0%)   
             MODERATE                24 (17.9%)    24 (17.9%)      23 (17.4%)  
@@ -24,7 +24,7 @@
 # aet03 can handle some NA values
 
     Code
-      res1
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    

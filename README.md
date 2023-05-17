@@ -41,7 +41,7 @@ remotes::install_github("insightsengineering/chevron@*release")
 library(chevron)
 
 data(syn_data)
-run(aet02_1, syn_data)
+run(aet02, syn_data)
 ```
 
 which returns

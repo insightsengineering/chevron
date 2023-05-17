@@ -3,11 +3,10 @@
 \docType{data}
 \name{vst02_1_main}
 \alias{vst02_1_main}
-\alias{vst02_1_lyt}
-\alias{vst02_1_pre}
-\alias{vst02_1_post}
+\alias{vst02_pre}
+\alias{vst02_post}
 \alias{vst02_1}
-\title{\code{VST02} Table 1 (Default) Vital Sign Abnormalities Table 1.}
+\title{\code{VST02} Vital Sign Abnormalities Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -15,19 +14,14 @@ An object of class \code{chevron_t} of length 1.
 vst02_1_main(
   adam_db,
   arm_var = "ACTARM",
-  lbl_vs_assessment = "Assessment",
-  lbl_vs_abnormality = "Abnormality",
   lbl_overall = NULL,
-  prune_0 = FALSE,
-  deco = std_deco("VST02"),
+  exclude_base_abn = FALSE,
   ...
 )
 
-vst02_1_lyt(arm_var, lbl_vs_assessment, lbl_vs_abnormality, lbl_overall, deco)
+vst02_pre(adam_db, ...)
 
-vst02_1_pre(adam_db, ...)
-
-vst02_1_post(tlg, prune_0 = FALSE, ...)
+vst02_post(tlg, prune_0 = FALSE, ...)
 
 vst02_1
 }
@@ -36,23 +30,18 @@ vst02_1
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
-
-\item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{deco}{(\code{character}) decoration with \code{title}, \code{subtitles} and \code{main_footer} content}
+\item{exclude_base_abn}{(\code{flag}) whether baseline abnormality should be excluded.}
 
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-Assessments Outside Normal Limits Regardless of
-Abnormality at Baseline Table.
+Vital Sign Parameters outside Normal Limits Regardless of Abnormality at Baseline.
 }
 \details{
 \itemize{
@@ -66,11 +55,9 @@ Abnormality at Baseline Table.
 \itemize{
 \item \code{vst02_1_main()}: Main TLG function
 
-\item \code{vst02_1_lyt()}: Layout
+\item \code{vst02_pre()}: Preprocessing
 
-\item \code{vst02_1_pre()}: Preprocessing
-
-\item \code{vst02_1_post()}: Postprocessing
+\item \code{vst02_post()}: Postprocessing
 
 }}
 \note{

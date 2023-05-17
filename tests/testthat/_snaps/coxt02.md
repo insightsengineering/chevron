@@ -1,76 +1,76 @@
 # coxt02 can handle some NA values
 
     Code
-      res1
+      cat(formatters::export_as_txt(res1, lpp = 100))
     Output
         Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
         —————————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                                   
           Description of Planned Arm (reference = A: Drug X)                                  <0.0001
-            B: Placebo                                              1.52       (1.08, 2.13)   0.0161 
-            C: Combination                                          2.61       (1.87, 3.64)   <0.0001
+            B: Placebo                                              1.43       (1.05, 1.94)   0.0249 
+            C: Combination                                          2.43       (1.79, 3.29)   <0.0001
         Covariate:                                                                                   
-          SEX (reference = F)                                                                        
-            M                                                       0.97       (0.74, 1.28)   0.8379 
-          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9140 
-            ASIAN                                                   0.85       (0.47, 1.55)   0.6039 
-            BLACK OR AFRICAN AMERICAN                               0.87       (0.47, 1.62)   0.6607 
-            WHITE                                                   0.95       (0.51, 1.77)   0.8665 
+          Sex (reference = F)                                                                        
+            M                                                       1.00       (0.78, 1.29)   0.9824 
+          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9404 
+            ASIAN                                                   0.85       (0.49, 1.46)   0.5544 
+            BLACK OR AFRICAN AMERICAN                               0.86       (0.48, 1.53)   0.6029 
+            WHITE                                                   0.89       (0.50, 1.59)   0.6997 
           Age (yr)                                                                                   
-            All                                                     0.99       (0.97, 1.01)   0.1955 
+            All                                                     0.99       (0.97, 1.01)   0.2501 
 
 ---
 
     Code
-      res2
+      cat(formatters::export_as_txt(res2, lpp = 100))
     Output
         Effect/Covariate Included in the Model                  Hazard Ratio      90% CI      p-value
         —————————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                                   
           Description of Planned Arm (reference = A: Drug X)                                  <0.0001
-            B: Placebo                                              1.52       (1.14, 2.01)   0.0161 
-            C: Combination                                          2.61       (1.98, 3.45)   <0.0001
+            B: Placebo                                              1.43       (1.10, 1.85)   0.0249 
+            C: Combination                                          2.43       (1.88, 3.14)   <0.0001
         Covariate:                                                                                   
-          SEX (reference = F)                                                                        
-            M                                                       0.97       (0.77, 1.22)   0.8379 
-          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9140 
-            ASIAN                                                   0.85       (0.52, 1.41)   0.6039 
-            BLACK OR AFRICAN AMERICAN                               0.87       (0.52, 1.47)   0.6607 
-            WHITE                                                   0.95       (0.56, 1.60)   0.8665 
+          Sex (reference = F)                                                                        
+            M                                                       1.00       (0.81, 1.23)   0.9824 
+          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9404 
+            ASIAN                                                   0.85       (0.54, 1.34)   0.5544 
+            BLACK OR AFRICAN AMERICAN                               0.86       (0.53, 1.39)   0.6029 
+            WHITE                                                   0.89       (0.55, 1.45)   0.6997 
           Age (yr)                                                                                   
-            All                                                     0.99       (0.97, 1.00)   0.1955 
+            All                                                     0.99       (0.98, 1.00)   0.2501 
 
 ---
 
     Code
-      res3
+      cat(formatters::export_as_txt(res3, lpp = 100))
     Output
         Effect/Covariate Included in the Model                 Hazard Ratio      95% CI      p-value
         ————————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                                  
           Description of Planned Arm (reference = A: Drug X)                                 <0.0001
-            B: Placebo                                             1.56       (1.12, 2.17)   0.0080 
-            C: Combination                                         2.58       (1.86, 3.58)   <0.0001
+            B: Placebo                                             1.44       (1.06, 1.96)   0.0195 
+            C: Combination                                         2.42       (1.79, 3.28)   <0.0001
         Covariate:                                                                                  
-          SEX (reference = F)                                                                       
-            M                                                      0.98       (0.75, 1.27)   0.8712 
+          Sex (reference = F)                                                                       
+            M                                                      1.00       (0.79, 1.29)   0.9721 
           Age (yr)                                                                                  
-            All                                                    0.99       (0.97, 1.01)   0.1969 
+            All                                                    0.99       (0.97, 1.01)   0.2216 
 
 ---
 
     Code
-      res4
+      cat(formatters::export_as_txt(res4, lpp = 100))
     Output
         Effect/Covariate Included in the Model                 Hazard Ratio      95% CI      p-value
         ————————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                                  
           Description of Planned Arm (reference = A: Drug X)                                 <0.0001
-            B: Placebo                                             1.52       (1.08, 2.13)   0.0163 
-            C: Combination                                         2.64       (1.89, 3.69)   <0.0001
+            B: Placebo                                             1.43       (1.04, 1.95)   0.0254 
+            C: Combination                                         2.45       (1.80, 3.32)   <0.0001
         Covariate:                                                                                  
-          SEX (reference = F)                                                                       
-            M                                                      1.00       (0.76, 1.33)   0.9933 
+          Sex (reference = F)                                                                       
+            M                                                      1.00       (0.78, 1.29)   0.9899 
           Age (yr)                                                                                  
-            All                                                    0.99       (0.97, 1.01)   0.1919 
+            All                                                    0.99       (0.97, 1.01)   0.1973 
 

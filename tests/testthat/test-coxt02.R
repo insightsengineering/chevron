@@ -1,44 +1,22 @@
 test_that("coxt02 can handle some NA values", {
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+  proc_data$adtte[1:4, c("SEX", "RACE", "CNSR", "AVAL", "AAGE")] <- NA
+  res1 <- expect_silent(run(coxt02, proc_data))
+  expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
 
-  set.seed(1)
-  new_sex <- as.character(proc_data$adtte$SEX)
-  new_sex[sample(seq_along(new_sex), 20)] <- NA
-  new_race <- as.character(proc_data$adtte$RACE)
-  new_race[sample(seq_along(new_race), 15)] <- NA
-  new_cnsr <- proc_data$adtte$CNSR
-  new_cnsr[sample(seq_along(new_cnsr), 10)] <- NA
-  new_aval <- proc_data$adtte$AVAL
-  new_aval[sample(seq_along(new_aval), 15)] <- NA
-  new_aage <- proc_data$adtte$AAGE
-  new_aage[sample(seq_along(new_aage), 15)] <- NA
+  res2 <- expect_silent(run(coxt02, proc_data, conf_level = .90))
+  expect_snapshot(cat(formatters::export_as_txt(res2, lpp = 100)))
 
-  proc_data$adtte <- proc_data$adtte %>%
-    mutate(
-      SEX = factor(.env$new_sex),
-      RACE = factor(.env$new_race),
-      CNSR = .env$new_cnsr,
-      AVAL = .env$new_aval,
-      AAGE = .env$new_aage
-    )
+  res3 <- expect_silent(run(coxt02, proc_data, covariates = c("SEX", "AAGE")))
+  expect_snapshot(cat(formatters::export_as_txt(res3, lpp = 100)))
 
-  res1 <- expect_silent(run(coxt02_1, proc_data))
-  expect_snapshot(res1)
-
-  res2 <- expect_silent(run(coxt02_1, proc_data, conf_level = .90))
-  expect_snapshot(res2)
-
-  res3 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AAGE")))
-  expect_snapshot(res3)
-
-  res4 <- expect_silent(run(coxt02_1, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE")))
-  expect_snapshot(res4)
+  res4 <- expect_silent(run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE")))
+  expect_snapshot(cat(formatters::export_as_txt(res4, lpp = 100)))
 })
 
 test_that("coxt02 fails on incomlete date", {
   proc_data <- syn_data
   proc_data$adtte <- proc_data$adtte %>%
     mutate(PARAMCD = NULL)
-
-  expect_error(run(coxt02_1, proc_data))
+  expect_error(run(coxt02, proc_data))
 })
