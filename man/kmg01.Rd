@@ -11,22 +11,7 @@
 An object of class \code{chevron_g} of length 1.
 }
 \usage{
-kmg01_main(
-  adam_db,
-  dataset = "adtte",
-  arm_var = "ARM",
-  x_name = "Time (Days)",
-  y_name = "Survival Probability",
-  show_statis = TRUE,
-  show_censor = TRUE,
-  pval_method = "wald",
-  ties = "exact",
-  conf_level = 0.95,
-  position_coxph = c(0, 0.05),
-  position_surv_med = c(0.9, 0.9),
-  line_col = nestcolor::color_palette(),
-  ...
-)
+kmg01_main(adam_db, dataset = "adtte", arm_var = "ARM", ...)
 
 kmg01_pre(adam_db, dataset = "adtte", ...)
 
@@ -41,30 +26,10 @@ kmg01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{x_name}{(\code{string}) the name of the x-axis.}
-
-\item{y_name}{(\code{string}) the name of the x-axis.}
-
-\item{show_statis}{(\code{flag}) should the summary statistic table be displayed.}
-
-\item{show_censor}{(\code{flag}) should the censor flag be displayed.}
-
-\item{pval_method}{(\code{string}) p-value method for testing hazard ratio = 1. One of \code{"log-rank"}, \code{"wald"} or
-\code{"likelihood"}.}
-
-\item{ties}{(\code{string}) specifying the method for tie handling. One of \code{"efron"}, \code{"breslow"} or \code{"exact"}.}
-
-\item{conf_level}{(\code{numeric}) the confidence level.}
-
-\item{position_coxph}{(\code{numeric}) x and y positions for plotting survival::coxph() model.}
-
-\item{position_surv_med}{(\code{numeric}) x and y positions for plotting annotation table estimating
-median survival time per group.}
-
-\item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character}
-associating values of \code{arm_var} with color names.}
-
-\item{...}{not used.}
+\item{...}{Further arguments passed to \code{g_km} and \code{control_coxph}. For details, see
+the documentation in \code{tern}.
+Commonly used arguments include \code{col}, \code{pval_method}, \code{ties}, \code{conf_level}, \code{conf_type},
+\code{annot_coxph}, \code{annot_stats}, etc.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
