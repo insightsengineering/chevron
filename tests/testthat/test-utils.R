@@ -175,10 +175,10 @@ test_that("execute_with_args works as expected", {
   res <- expect_silent(execute_with_args(foo, a = NA, na.rm = TRUE))
   expect_true(is.na(res))
 
-  bar <- function(a = 1, b = 2, na.rm = FALSE, ...) {
-    sum(a, b, na.rm = na.rm, ...)
+  bar <- function(a = 1, b = 2, na_rm = FALSE, ...) {
+    sum(a, b, na.rm = na_rm, ...)
   }
 
-  res <- expect_silent(execute_with_args(bar, a = NA, na.rm = TRUE))
+  res <- expect_silent(execute_with_args(bar, a = NA, na_rm = TRUE))
   expect_equal(res, 2)
 })
