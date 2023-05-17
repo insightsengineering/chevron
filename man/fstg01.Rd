@@ -32,7 +32,13 @@ fstg01
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
-\item{arm_var}{(\code{string}) variable used for column splitting}
+\item{arm_var}{(\code{string}) the arm variable name used for group splitting.}
+
+\item{rsp_var}{(\code{string}) the responder variable name to flag whether each subject is a responder or not.}
+
+\item{subgroups}{(\code{character}) the subgroups variable name to list baseline risk factors.}
+
+\item{strata_var}{(\code{character}) required if stratified analysis is performed.}
 
 \item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups}. For details, see
 the documentation in \code{tern}.
@@ -64,7 +70,9 @@ a list of \code{ggplot} objects.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain the table specified by \code{dataset} with the columns specified by  \code{arm_var}.
+\item \code{adam_db} object must contain the table specified by \code{dataset} with \code{"PARAMCD"}, \code{"ARM"},
+\code{"AVALC"}, and the columns specified by \code{"subgroups"} which is denoted as
+\code{c("SEX", "AGEGR1", "RACE")} by default.
 }
 }
 \examples{
