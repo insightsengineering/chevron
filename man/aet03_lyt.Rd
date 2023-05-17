@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet03.R
 \name{aet03_lyt}
 \alias{aet03_lyt}
-\title{aet03 Layout}
+\title{\code{aet03} Layout}
 \usage{
 aet03_lyt(arm_var, lbl_overall, lbl_aebodsys, lbl_aedecod, intensity_grade)
 }
@@ -18,6 +18,6 @@ aet03_lyt(arm_var, lbl_overall, lbl_aebodsys, lbl_aedecod, intensity_grade)
 \item{intensity_grade}{(\code{character}) describing the intensity levels present in the dataset.}
 }
 \description{
-aet03 Layout
+\code{aet03} Layout
 }
 \keyword{internal}

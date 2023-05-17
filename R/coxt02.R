@@ -71,7 +71,7 @@ coxt02_main <- function(adam_db,
   tbl
 }
 
-#' coxt02 Layout
+#' `coxt02` Layout
 #'
 #' @inheritParams gen_args
 #' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
@@ -99,6 +99,7 @@ coxt02_lyt <- function(variables,
 coxt02_pre <- function(adam_db, ...) {
   adam_db$adtte <- adam_db$adtte %>%
     mutate(EVENT = 1 - .data$CNSR)
+
   adam_db
 }
 

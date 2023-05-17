@@ -3,7 +3,6 @@
 \docType{data}
 \name{lbt06_main}
 \alias{lbt06_main}
-\alias{lbt06_lyt}
 \alias{lbt06_pre}
 \alias{lbt06_post}
 \alias{lbt06}
@@ -15,21 +14,11 @@ An object of class \code{chevron_t} of length 1.
 lbt06_main(
   adam_db,
   arm_var = "ACTARM",
-  paramcd = NULL,
-  avisit_var = "AVISIT",
+  paramcd = "PARAMCD",
+  visit_var = "AVISIT",
   anrind_var = "ANRIND",
+  bnrind_var = "BNRIND",
   ...
-)
-
-lbt06_lyt(
-  arm_var,
-  paramcd,
-  avisit_var,
-  anrind_var,
-  lbl_paramcd,
-  lbl_avisit,
-  lbl_anrind,
-  lbl_bnrind
 )
 
 lbt06_pre(adam_db, ...)
@@ -45,19 +34,13 @@ lbt06
 
 \item{paramcd}{(\code{string}) the variable for parameter code.}
 
-\item{avisit_var}{(\code{string}) the variable for analysis visit.}
+\item{visit_var}{(\code{string}) the variable for analysis visit.}
 
 \item{anrind_var}{(\code{string}) the variable for analysis reference range indicator.}
 
+\item{bnrind_var}{(\code{string}) the variable for baseline reference range indicator.}
+
 \item{...}{not used.}
-
-\item{lbl_paramcd}{(\code{string}) text label of the \code{PARAMCD} variable.}
-
-\item{lbl_avisit}{(\code{string}) text label of the \code{AVISIT} variable.}
-
-\item{lbl_anrind}{(\code{string}) text label of the \code{ANRIND} variable.}
-
-\item{lbl_bnrind}{(\code{string}) text label of the \code{BNRIND} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -79,8 +62,6 @@ baseline status summary.
 \itemize{
 \item \code{lbt06_main()}: Main TLG function
 
-\item \code{lbt06_lyt()}: Layout
-
 \item \code{lbt06_pre()}: Preprocessing
 
 \item \code{lbt06_post()}: Postprocessing
@@ -94,8 +75,5 @@ baseline status summary.
 }
 \examples{
 run(lbt06, syn_data)
-
-run(lbt06, syn_data, paramcd = "PARAMCD")
 }
 \keyword{datasets}
-\keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet10.R
 \name{aet10_lyt}
 \alias{aet10_lyt}
-\title{aet10 Layout}
+\title{\code{aet10} Layout}
 \usage{
 aet10_lyt(arm_var, lbl_overall, lbl_aedecod)
 }
@@ -14,6 +14,6 @@ aet10_lyt(arm_var, lbl_overall, lbl_aedecod)
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
 \description{
-aet10 Layout
+\code{aet10} Layout
 }
 \keyword{internal}

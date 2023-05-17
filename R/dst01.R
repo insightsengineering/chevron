@@ -77,7 +77,7 @@ dst01_main <- function(adam_db,
   build_table(lyt, adam_db$adsl)
 }
 
-#' dst01 Layout
+#' `dst01` Layout
 #'
 #' @inheritParams dst01_main
 #' @param study_status_var (`string`) variable used to define patient status. Default is `EOSSTT`, however can also be a

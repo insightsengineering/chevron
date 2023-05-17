@@ -49,7 +49,7 @@ aet02_main <- function(adam_db,
   tbl
 }
 
-#' aet02 Layout
+#' `aet02` Layout
 #'
 #' @inheritParams aet02_main
 #' @param lbl_row_split (`character`) label for `row_split_var`.

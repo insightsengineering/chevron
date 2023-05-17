@@ -54,7 +54,7 @@ pdt01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn pdt01 Layout
+#' `pdt01` Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams pdt01_main

@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet01_aesi.R
 \name{aet01_aesi_lyt}
 \alias{aet01_aesi_lyt}
-\title{aet01_aesi Layout}
+\title{\code{aet01_aesi} Layout}
 \usage{
 aet01_aesi_lyt(arm_var, aesi_vars, lbl_overall, lbl_aesi_vars, grade_groups)
 }
@@ -14,6 +14,6 @@ aet01_aesi_lyt(arm_var, aesi_vars, lbl_overall, lbl_aesi_vars, grade_groups)
 \item{lbl_aesi_vars}{(\code{character}) the labels of the AESI variables to be summarized.}
 }
 \description{
-aet01_aesi Layout
+\code{aet01_aesi} Layout
 }
 \keyword{internal}

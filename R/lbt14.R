@@ -46,7 +46,7 @@ lbt14_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn lbt14 Layout
+#' `lbt14` Layout
 #'
 #' @inheritParams lbt14_main
 #'
