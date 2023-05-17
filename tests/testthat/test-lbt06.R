@@ -24,7 +24,7 @@ test_that("lbt06 can handle some NA values", {
   expect_snapshot(res2)
 })
 
-test_that("lbt06 fails on incomlete date", {
+test_that("lbt06 fails on incomlete data", {
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(PARCAT2 = NULL)

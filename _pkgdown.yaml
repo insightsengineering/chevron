@@ -31,9 +31,11 @@ reference:
   - title: Package Overview
     contents:
       - chevron-package
+
   - title: Classes and Instances
     contents:
       - chevron_tlg-class
+
   - title: Methods
     contents:
       - args_ls
@@ -47,6 +49,7 @@ reference:
       - get_preprocess
       - get_postprocess
       - get_adam_datasets
+
   - title: chevron_tlg objects
     contents:
       - ael01_nollt
@@ -105,6 +108,7 @@ reference:
     contents:
       - nocoding
       - missing_rule
+
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
       - gen_args
