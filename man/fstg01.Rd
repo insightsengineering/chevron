@@ -15,21 +15,9 @@ fstg01_main(
   adam_db,
   dataset = "adrs",
   arm_var = "ARM",
-  col_x = attr(tbl, "col_x"),
-  col_ci = attr(tbl, "col_ci"),
-  vline = 1,
-  forest_header = attr(tbl, "forest_header"),
-  xlim = c(0.1, 10),
-  logx = TRUE,
-  x_at = c(0.1, 1, 10),
-  width_row_names = NULL,
-  width_columns = NULL,
-  width_forest = grid::unit(1, "null"),
-  col_symbol_size = attr(tbl, "col_symbol_size"),
-  col = getOption("ggplot2.discrete.colour")[1],
-  draw = TRUE,
-  newpage = TRUE,
-  line_col = nestcolor::color_palette(),
+  rsp_var = "is_rsp",
+  subgroups = c("SEX", "AGEGR1", "RACE"),
+  strata_var = NULL,
   ...
 )
 
@@ -46,26 +34,10 @@ fstg01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{col_x}{(\code{string}) column index with estimator.}
-
-\item{col_ci}{(\code{string}) column index with confidence intervals.}
-
-\item{vline}{(\code{numeric}) x coordinate for vertical line.}
-
-\item{forest_header}{(\code{character}) text displayed to the left and right of vline, respectively.}
-
-\item{xlim}{(\code{character}) limits for x axis.}
-
-\item{logx}{(\code{flag}) shows the x-values on logarithm scale.}
-
-\item{x_at}{(\code{character}) x-tick locations.}
-
-\item{col_symbol_size}{(\code{numeric}) is used to determine relative size for estimator plot symbol.}
-
-\item{line_col}{(\code{character}) describes the colors to use for the lines or a named \code{character}
-associating values of \code{arm_var} with color names.}
-
-\item{...}{not used.}
+\item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups}. For details, see
+the documentation in \code{tern}.
+Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}, \code{groups_lists}, \code{conf_level},
+\code{method}, \code{label_all}, etc.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
@@ -99,14 +71,15 @@ a list of \code{ggplot} objects.
 library(dplyr)
 library(dunlin)
 
-col <- c(
-  "Overall" = "blue"
-)
+col <- c("Overall" = "blue")
 
-proc_data <- log_filter(syn_data, PARAMCD == "OVRINV", "adrs")
+pre_data <- log_filter(syn_data, ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
+pre_data$adrs <- pre_data$adrs \%>\% droplevels()
+
+proc_data <- log_filter(pre_data, PARAMCD == "OVRINV", "adrs")
 run(fstg01, proc_data, dataset = "adrs", line_col = col)
 
-proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+proc_data <- log_filter(pre_data, PARAMCD == "BESRSPI", "adrs")
 run(fstg01, proc_data,
   rsp = c("CR", "PR"), subgroups = c("SEX", "AGEGR1", "RACE"),
   strata = c("STRATA2"), conf_level = 0.90, dataset = "adrs"
