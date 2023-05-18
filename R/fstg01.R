@@ -9,7 +9,7 @@
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param arm_var (`string`) the arm variable name used for group splitting.
-#' @param rsp_var (`string`) the responder variable name to flag whether each subject is a responder or not.
+#' @param rsp_var (`string`) the response variable name to flag whether each subject is a binary response or not.
 #' @param subgroups (`character`) the subgroups variable name to list baseline risk factors.
 #' @param strata_var (`character`) required if stratified analysis is performed.
 #' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups` (a wrapper for
@@ -95,8 +95,8 @@ fstg01_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' library(dplyr)
 #' library(dunlin)
+#' library(dplyr)
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "OVRINV" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
 #' proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)

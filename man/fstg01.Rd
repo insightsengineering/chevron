@@ -34,7 +34,7 @@ fstg01
 
 \item{arm_var}{(\code{string}) the arm variable name used for group splitting.}
 
-\item{rsp_var}{(\code{string}) the responder variable name to flag whether each subject is a responder or not.}
+\item{rsp_var}{(\code{string}) the response variable name to flag whether each subject is a binary response or not.}
 
 \item{subgroups}{(\code{character}) the subgroups variable name to list baseline risk factors.}
 
@@ -76,8 +76,8 @@ a list of \code{ggplot} objects.
 }
 }
 \examples{
-library(dplyr)
 library(dunlin)
+library(dplyr)
 
 proc_data <- log_filter(syn_data, PARAMCD == "OVRINV" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
 proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
