@@ -226,7 +226,6 @@ assert_valid_var.factor <- function(
     levels(x),
     min.chars = min_chars,
     .var.name = paste("level of", label),
-    ...
   )
   checkmate::assert_factor(
     x,

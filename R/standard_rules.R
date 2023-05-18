@@ -4,3 +4,6 @@ nocoding <- rule("No Coding Available" = c("", NA))
 #' Missing rule
 #' @export
 missing_rule <- rule("<Missing>" = c("", NA))
+#' Empty rule
+#' @export
+empty <- rule()
