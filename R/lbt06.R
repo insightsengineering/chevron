@@ -93,6 +93,7 @@ lbt06_lyt <- function(arm_var,
     count_abnormal_by_baseline(
       var = anrind_var,
       abnormal = c(Low = "LOW", High = "HIGH"),
+      variables = list(id = "USUBJID", baseline = bnrind_var),
       .indent_mods = 4L
     ) %>%
     append_topleft(paste("    ", lbl_anrind)) %>%
