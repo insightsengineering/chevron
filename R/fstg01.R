@@ -103,6 +103,7 @@ fstg01_post <- function(tlg, ...) {
 #' run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs")
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
+#' proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
 #' run(fstg01, proc_data,
 #'   response = c("CR"), subgroups = c("SEX", "AGEGR1", "RACE"),
 #'   conf_level = 0.90, dataset = "adrs"
