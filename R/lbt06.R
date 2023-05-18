@@ -5,9 +5,6 @@
 #' @inheritParams gen_args
 #' @param arm_var (`string`) the arm variable used for arm splitting.
 #' @param paramcd (`string`) the variable for parameter code.
-#' @param visit_var (`string`) the variable for analysis visit.
-#' @param anrind_var (`string`) the variable for analysis reference range indicator.
-#' @param bnrind_var (`string`) the variable for baseline reference range indicator.
 #'
 #' @details
 #'  * Only count LOW or HIGH values.
@@ -17,29 +14,26 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adlb` table with columns `"AVISIT"`, `"ANRIND"`, `"BNRIND"`,
-#'  `"ONTRTFL"`, and `"PARCAT2"`, and column specified by `arm_var`.
+#'  `"ONTRTFL"`, and `"PARCAT2"`, and column specified by `arm_var`. The column specified by `paramcd`
+#'   has the default value `"PARAMCD"` to display multiple tests.
 #'
 #' @export
 #'
 lbt06_main <- function(adam_db,
                        arm_var = "ACTARM",
                        paramcd = "PARAMCD",
-                       visit_var = "AVISIT",
-                       anrind_var = "ANRIND",
-                       bnrind_var = "BNRIND",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(paramcd, null.ok = TRUE)
-  checkmate::assert_string(visit_var)
-  checkmate::assert_string(anrind_var)
-  checkmate::assert_string(bnrind_var)
 
-  assert_valid_variable(adam_db$adlb, c(arm_var, visit_var), types = list("characater", "factor"))
-  assert_valid_variable(adam_db$adlb, c(paramcd, "ANRIND", "BNRIND"), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
+  assert_valid_variable(adam_db$adlb, c(arm_var, paramcd, "AVISIT"), types = list("characater", "factor"))
+  assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
+  assert_single_value(adam_db$adlb$ONTRTFL)
+  assert_single_value(adam_db$adlb$PARCAT2)
 
   lbl_paramcd <- var_labels_for(adam_db$adlb, "PARAMCD")
   lbl_visit <- var_labels_for(adam_db$adlb, "AVISIT")
@@ -49,8 +43,9 @@ lbt06_main <- function(adam_db,
   lyt <- lbt06_lyt(
     arm_var = arm_var,
     paramcd = paramcd,
-    visit_var = visit_var,
-    anrind_var = anrind_var,
+    visit_var = "AVISIT",
+    anrind_var = "ANRIND",
+    bnrind_var = "BNRIND",
     lbl_paramcd = lbl_paramcd,
     lbl_visit = lbl_visit,
     lbl_anrind = lbl_anrind,
@@ -67,6 +62,9 @@ lbt06_main <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @inheritParams gen_args
+#' @param visit_var (`string`) the variable for analysis visit.
+#' @param anrind_var (`string`) the variable for analysis reference range indicator.
+#' @param bnrind_var (`string`) the variable for baseline reference range indicator.
 #' @param lbl_paramcd (`string`) text label of the `PARAMCD` variable.
 #' @param lbl_visit (`string`) text label of the `AVISIT` variable.
 #' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
@@ -78,6 +76,7 @@ lbt06_lyt <- function(arm_var,
                       paramcd,
                       visit_var,
                       anrind_var,
+                      bnrind_var,
                       lbl_paramcd,
                       lbl_visit,
                       lbl_anrind,
@@ -107,14 +106,15 @@ lbt06_lyt <- function(arm_var,
 #' @export
 #'
 lbt06_pre <- function(adam_db, ...) {
+  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>"))
+
   adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ONTRTFL == "Y",
       .data$PARCAT2 == "SI"
     ) %>%
     mutate(
-      ANRIND = reformat(.data$ANRIND, rule("<Missing>" = c("", NA, "<Missing>")), na_last = TRUE),
-      BNRIND = reformat(.data$BNRIND, rule("<Missing>" = c("", NA, "<Missing>")), na_last = TRUE),
+      across(all_of(c("ANRIND", "BNRIND")), ~ reformat(.x, .env$missing_rule)),
       AVISIT = with_label(.data$AVISIT, "Visit"),
       ANRIND = with_label(.data$ANRIND, "Abnormality at Visit"),
       BNRIND = with_label(.data$BNRIND, "Baseline Status")

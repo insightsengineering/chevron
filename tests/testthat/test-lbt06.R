@@ -1,8 +1,9 @@
-test_that("lbt06 gives all 0 count if ANRIND are all missing", {
+test_that("lbt06 gives all 0 count if ANRIND and BNRIND are all missing", {
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
-      ANRIND = NA_character_
+      ANRIND = NA_character_,
+      BNRIND = NA_character_
     )
   res <- run(lbt06, proc_data)
   res <- smart_prune(res)
