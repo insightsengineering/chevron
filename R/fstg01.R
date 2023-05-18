@@ -19,8 +19,9 @@
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with `"PARAMCD"`, `"ARM"`,
-#'  `"AVALC"`, and the columns specified by `"subgroups"` which is denoted as
-#'  `c("SEX", "AGEGR1", "RACE")` by default.
+#'  `"AVALC"`, and the columns specified by `subgroups` which is denoted as
+#'  `c("SEX", "AGEGR1", "RACE")` by default. The column specified by `response` has the default value
+#'  `c("CR", "PR")`.
 #'
 #' @return a list of `ggplot` objects.
 #' @export
@@ -32,16 +33,22 @@ fstg01_main <- function(adam_db,
                         strata_var = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
+  df_lbl <- paste0("adam_db$", dataset)
   checkmate::assert_string(arm_var)
   checkmate::assert_string(rsp_var)
   checkmate::assert_character(subgroups, null.ok = TRUE)
   checkmate::assert_character(strata_var, null.ok = TRUE)
-  assert_valid_variable(adam_db$adrs, arm_var, types = list("factor"))
-  assert_valid_variable(adam_db$adrs, c("USUBJID", "PARAMCD"), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adrs, rsp_var, types = list("logical"))
-  assert_valid_variable(adam_db$adrs, c(subgroups, strata_var), types = list(c("factor", "numeric")))
-  assert_single_value(adam_db$adrs$PARAMCD)
-  checkmate::assert_factor(adam_db$adrs[[arm_var]], n.levels = 2)
+  assert_valid_variable(adam_db[[dataset]], arm_var, types = list("factor"), n.levels = 2, label = df_lbl)
+  assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD"),
+    types = list(c("character", "factor")),
+    label = df_lbl
+  )
+  assert_valid_variable(adam_db[[dataset]], rsp_var, types = list("logical"), label = df_lbl)
+  assert_valid_variable(adam_db[[dataset]], c(subgroups, strata_var),
+    types = list(c("factor")), na_ok = TRUE,
+    label = df_lbl
+  )
+  assert_single_value(adam_db[[dataset]]$PARAMCD, label = df_lbl)
 
   variables <- list(
     arm = arm_var,
@@ -69,11 +76,15 @@ fstg01_main <- function(adam_db,
 #' @describeIn fstg01 Preprocessing
 #'
 #' @inheritParams fstg01_main
+#' @param response (`character`) the response variable name(s).
 #'
 #' @export
 fstg01_pre <- function(adam_db, dataset = "adrs", response = c("CR", "PR"), ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    mutate(is_rsp = .data$AVALC %in% response)
+    mutate(
+      ARM = droplevels(.data$ARM),
+      is_rsp = .data$AVALC %in% response
+    )
 
   adam_db
 }
@@ -95,15 +106,19 @@ fstg01_post <- function(tlg, ...) {
 #' @export
 #'
 #' @examples
-#' library(dunlin)
 #' library(dplyr)
+#' library(dunlin)
 #'
-#' proc_data <- log_filter(syn_data, PARAMCD == "OVRINV" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
-#' proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
+#' proc_data <- log_filter(
+#'   syn_data,
+#'   PARAMCD == "OVRINV" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
+#' )
 #' run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs")
 #'
-#' proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
-#' proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
+#' proc_data <- log_filter(
+#'   syn_data,
+#'   PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
+#' )
 #' run(fstg01, proc_data,
 #'   response = c("CR"), subgroups = c("SEX", "AGEGR1", "RACE"),
 #'   conf_level = 0.90, dataset = "adrs"

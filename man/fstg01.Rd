@@ -45,6 +45,8 @@ fstg01
 Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}, \code{groups_lists}, \code{conf_level},
 \code{method}, \code{label_all}, etc.}
 
+\item{response}{(\code{character}) the response variable name(s).}
+
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
@@ -71,20 +73,25 @@ a list of \code{ggplot} objects.
 \note{
 \itemize{
 \item \code{adam_db} object must contain the table specified by \code{dataset} with \code{"PARAMCD"}, \code{"ARM"},
-\code{"AVALC"}, and the columns specified by \code{"subgroups"} which is denoted as
-\code{c("SEX", "AGEGR1", "RACE")} by default.
+\code{"AVALC"}, and the columns specified by \code{subgroups} which is denoted as
+\code{c("SEX", "AGEGR1", "RACE")} by default. The column specified by \code{response} has the default value
+\code{c("CR", "PR")}.
 }
 }
 \examples{
-library(dunlin)
 library(dplyr)
+library(dunlin)
 
-proc_data <- log_filter(syn_data, PARAMCD == "OVRINV" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
-proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
+proc_data <- log_filter(
+  syn_data,
+  PARAMCD == "OVRINV" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs"
+)
 run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs")
 
-proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
-proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
+proc_data <- log_filter(
+  syn_data,
+  PARAMCD == "BESRSPI" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs"
+)
 run(fstg01, proc_data,
   response = c("CR"), subgroups = c("SEX", "AGEGR1", "RACE"),
   conf_level = 0.90, dataset = "adrs"

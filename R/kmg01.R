@@ -32,7 +32,7 @@ kmg01_main <- function(adam_db,
     na_ok = FALSE,
     label = df_lbl
   )
-  assert_single_value(adam_db[[dataset]]$PARAMCD, label = past0(df_lbl, "$PARAMCD"))
+  assert_single_value(adam_db[[dataset]]$PARAMCD, label = paste0(df_lbl, "$PARAMCD"))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
 
