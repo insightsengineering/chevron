@@ -12,8 +12,8 @@
 #' @param rsp_var (`string`) the responder variable name to flag whether each subject is a responder or not.
 #' @param subgroups (`character`) the subgroups variable name to list baseline risk factors.
 #' @param strata_var (`character`) required if stratified analysis is performed.
-#' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups`. For details, see
-#' the documentation in `tern`.
+#' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups` (a wrapper for
+#' `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
 #' Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
 #' `method`, `label_all`, etc.
 #'
@@ -32,6 +32,16 @@ fstg01_main <- function(adam_db,
                         strata_var = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(rsp_var)
+  checkmate::assert_character(subgroups, null.ok = TRUE)
+  checkmate::assert_character(strata_var, null.ok = TRUE)
+  assert_valid_variable(adam_db$adrs, arm_var, types = list("factor"))
+  assert_valid_variable(adam_db$adrs, c("USUBJID", "PARAMCD"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adrs, rsp_var, types = list("logical"))
+  assert_valid_variable(adam_db$adrs, c(subgroups, strata_var), types = list(c("factor", "numeric")))
+  assert_single_value(adam_db$adrs$PARAMCD)
+  checkmate::assert_factor(adam_db$adrs[[arm_var]], n.levels = 2)
 
   variables <- list(
     arm = arm_var,
@@ -61,7 +71,7 @@ fstg01_main <- function(adam_db,
 #' @inheritParams fstg01_main
 #'
 #' @export
-fstg01_pre <- function(adam_db, dataset = "adrs", response = c("CR", "PR", "SD", "PD"), ...) {
+fstg01_pre <- function(adam_db, dataset = "adrs", response = c("CR", "PR"), ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(is_rsp = .data$AVALC %in% response)
 
@@ -88,17 +98,13 @@ fstg01_post <- function(tlg, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' col <- c("Overall" = "blue")
+#' proc_data <- log_filter(syn_data, PARAMCD == "OVRINV" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
+#' proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
+#' run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs")
 #'
-#' pre_data <- log_filter(syn_data, ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
-#' pre_data$adrs$ARM <- droplevels(pre_data$adrs$ARM)
-#'
-#' proc_data <- log_filter(pre_data, PARAMCD == "OVRINV", "adrs")
-#' run(fstg01, proc_data, response = c("CR"), dataset = "adrs", line_col = col)
-#'
-#' proc_data <- log_filter(pre_data, PARAMCD == "BESRSPI", "adrs")
+#' proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
 #' run(fstg01, proc_data,
-#'   response = c("CR", "PR"), subgroups = c("SEX", "AGEGR1", "RACE"),
+#'   response = c("CR"), subgroups = c("SEX", "AGEGR1", "RACE"),
 #'   conf_level = 0.90, dataset = "adrs"
 #' )
 fstg01 <- chevron_g(

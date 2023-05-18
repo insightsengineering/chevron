@@ -21,12 +21,7 @@ fstg01_main(
   ...
 )
 
-fstg01_pre(
-  adam_db,
-  dataset = "adrs",
-  response = c("CR", "PR", "SD", "PD"),
-  ...
-)
+fstg01_pre(adam_db, dataset = "adrs", response = c("CR", "PR"), ...)
 
 fstg01_post(tlg, ...)
 
@@ -45,8 +40,8 @@ fstg01
 
 \item{strata_var}{(\code{character}) required if stratified analysis is performed.}
 
-\item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups}. For details, see
-the documentation in \code{tern}.
+\item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups} (a wrapper for
+\code{h_odds_ratio_subgroups_df} and \code{h_proportion_subgroups_df}). For details, see the documentation in \code{tern}.
 Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}, \code{groups_lists}, \code{conf_level},
 \code{method}, \code{label_all}, etc.}
 
@@ -84,17 +79,13 @@ a list of \code{ggplot} objects.
 library(dplyr)
 library(dunlin)
 
-col <- c("Overall" = "blue")
+proc_data <- log_filter(syn_data, PARAMCD == "OVRINV" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
+proc_data$adrs$ARM <- droplevels(proc_data$adrs$ARM)
+run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs")
 
-pre_data <- log_filter(syn_data, ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
-pre_data$adrs$ARM <- droplevels(pre_data$adrs$ARM)
-
-proc_data <- log_filter(pre_data, PARAMCD == "OVRINV", "adrs")
-run(fstg01, proc_data, response = c("CR"), dataset = "adrs", line_col = col)
-
-proc_data <- log_filter(pre_data, PARAMCD == "BESRSPI", "adrs")
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs")
 run(fstg01, proc_data,
-  response = c("CR", "PR"), subgroups = c("SEX", "AGEGR1", "RACE"),
+  response = c("CR"), subgroups = c("SEX", "AGEGR1", "RACE"),
   conf_level = 0.90, dataset = "adrs"
 )
 }
