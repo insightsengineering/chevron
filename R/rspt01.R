@@ -48,8 +48,8 @@ rspt01_main <- function(adam_db,
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
   checkmate::assert_character(
     strata,
-    null.ok = !"stata" %in% perform_analysis,
-    min.len = as.integer(!"stata" %in% perform_analysis)
+    null.ok = !"strat" %in% perform_analysis,
+    min.len = as.integer(!"strat" %in% perform_analysis)
   )
   checkmate::assert_string(arm_var)
   df_label <- sprintf("adam_db$%s", dataset)

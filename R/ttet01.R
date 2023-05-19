@@ -7,23 +7,22 @@
 #' @param ref_group (`string`) The name of the reference group, the value should
 #'  be identical to the values in `arm_var`, if not speficied, it will by default
 #'  use the first level or value of `arm_var`.
-#' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
+#' @param summarize_event (`flag`) should the event discription be displayed, default is TRUE
 #' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
 #'  or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default
-#' @param strat (`string`) stratification factors, e.g. strat = c("STRATA1", "STRATA2"), by default as NULL
+#' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
+#' @param pval_method (string) p-value method for testing hazard ratio = 1.
+#' Default method is "log-rank", can also be set to "wald" or "likelihood".
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
-#' @param methods (`list`) a named list, use a named list to control, for example:
-#' methods = list(prop_conf_method = "wald",
-#'                diff_conf_method = "wald",
-#'                strat_diff_conf_method = "ha",
-#'                diff_pval_method = "fisher",
-#'                strat_diff_pval_method = "schouten")
-#' `prop_conf_method` controls the methods of calculating proportion confidence interval,
-#' `diff_conf_method` controls the methods of calculating unstratified difference confidence interval,
-#' `strat_diff_conf_method` controls the methods of calculating stratified difference confidence interval,
-#' `diff_pval_method` controls the methods of calculating unstratified p-value for odds ratio,
-#' `strat_diff_pval_method` controls the methods of calculating stratified p-value for odds ratio,
-#' see more details in `tern`
+#' @param conf_type (`string`) confidence interval type. Options are "plain" (default), "log", "log-log",
+#'  see more in survival::survfit(). Note option "none" is no longer supported.
+#' @param quantiles (`numeric`) of length two to specify the quantiles of survival time.
+#' @param ties string) specifying the method for tie handling. Default is "efron", can also be set to "breslow" or "exact".
+#' see more in survival::coxph()
+#' @param timepoint (number) survival time point of interest.
+#' @param method (string) either surv (survival estimations),
+#'  surv_diff (difference in survival with the control) or both.
+#'
 #'
 #' @details
 #' * No overall value.
@@ -48,19 +47,23 @@ ttet01_main <- function(adam_db,
                         method = "both",
                         ...) {
   anl <- adam_db[[dataset]]
-  assert_colnames(anl, c(arm_var, strata, "AVAL", "AVALU", "PARAMCD", "is_event", "is_not_event", "EVNT1", "EVNTDESC"))
+  assert_colnames(anl, c(arm_var, strata, "AVAL", "AVALU", "PARAMCD", "IS_EVENT", "IS_NOT_EVENT", "EVNT1", "EVNTDESC"))
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   checkmate::assert_string(ref_group, null.ok = TRUE)
   checkmate::assert_flag(summarize_event)
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
-  checkmate::assert_character(strata, null.ok = !"stata" %in% perform_analysis)
+  checkmate::assert_character(
+    strata,
+    null.ok = !"strat" %in% perform_analysis,
+    min.len = as.integer(!"strat" %in% perform_analysis)
+  )
 
   arm_level <- lvls(anl[[arm_var]])
   ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
 
   timeunit <- unique(anl[["AVALU"]])
 
-  lyt2 <- ttet01_lyt(
+  lyt <- ttet01_lyt(
     arm_var = arm_var,
     ref_group = ref_group,
     summarize_event = summarize_event,
@@ -106,7 +109,7 @@ ttet01_lyt <- function(arm_var,
       var = arm_var, ref_group = ref_group
     ) %>%
     summarize_vars(
-      vars = "is_event",
+      vars = "IS_EVENT",
       .stats = "count_fraction",
       .labels = c(count_fraction = "Patients with event (%)")
     )
@@ -126,7 +129,7 @@ ttet01_lyt <- function(arm_var,
 
   lyt01 <- lyt01 %>%
     summarize_vars(
-      vars = "is_not_event",
+      vars = "IS_NOT_EVENT",
       .stats = "count_fraction",
       .labels = c(count_fraction = "Patients without event (%)"),
       nested = FALSE,
@@ -135,7 +138,7 @@ ttet01_lyt <- function(arm_var,
     surv_time(
       vars = "AVAL",
       var_labels = "Time to Event (Months)",
-      is_event = "is_event",
+      is_event = "IS_EVENT",
       control = control_surv_time(
         conf_level = conf_level,
         conf_type = conf_type,
@@ -148,7 +151,7 @@ ttet01_lyt <- function(arm_var,
     lyt01 <- lyt01 %>%
       coxph_pairwise(
         vars = "AVAL",
-        is_event = "is_event",
+        is_event = "IS_EVENT",
         var_labels = if (perform == "strat") "Stratified Analysis" else "Unstratified Analysis",
         strat = if (perform == "strat") strata else NULL,
         control = control_coxph(
@@ -165,7 +168,7 @@ ttet01_lyt <- function(arm_var,
       vars = "AVAL",
       var_labels = timeunit,
       time_point = timepoint,
-      is_event = "is_event",
+      is_event = "IS_EVENT",
       method = method,
       control = control_surv_timepoint(
         conf_level = conf_level,
@@ -195,12 +198,12 @@ ttet01_pre <- function(adam_db, arm_var = "ARM", dataset = "adtte",
     mutate(
       AVAL = day2month(AVAL),
       AVALU = "MONTHS",
-      is_event = CNSR == 0,
-      is_not_event = CNSR == 1,
+      IS_EVENT = CNSR == 0,
+      IS_NOT_EVENT = CNSR == 1,
       EVNT1 = factor(
         case_when(
-          is_event == TRUE ~ "Patients with event (%)",
-          is_event == FALSE ~ "Patients without event (%)"
+          IS_EVENT == TRUE ~ "Patients with event (%)",
+          IS_NOT_EVENT == FALSE ~ "Patients without event (%)"
         ),
         levels = c("Patients with event (%)", "Patients without event (%)")
       ),

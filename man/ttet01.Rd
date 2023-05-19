@@ -63,31 +63,34 @@ ttet01
 be identical to the values in \code{arm_var}, if not speficied, it will by default
 use the first level or value of \code{arm_var}.}
 
+\item{summarize_event}{(\code{flag}) should the event discription be displayed, default is TRUE}
+
 \item{perform_analysis}{(\code{string}) option to display statistical comparisons using stratified analyses,
 or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default}
 
+\item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
+
+\item{pval_method}{(string) p-value method for testing hazard ratio = 1.
+Default method is "log-rank", can also be set to "wald" or "likelihood".}
+
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
+
+\item{conf_type}{(\code{string}) confidence interval type. Options are "plain" (default), "log", "log-log",
+see more in survival::survfit(). Note option "none" is no longer supported.}
+
+\item{quantiles}{(\code{numeric}) of length two to specify the quantiles of survival time.}
+
+\item{ties}{string) specifying the method for tie handling. Default is "efron", can also be set to "breslow" or "exact".
+see more in survival::coxph()}
+
+\item{timepoint}{(number) survival time point of interest.}
+
+\item{method}{(string) either surv (survival estimations),
+surv_diff (difference in survival with the control) or both.}
 
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is TRUE}
-
-\item{strat}{(\code{string}) stratification factors, e.g. strat = c("STRATA1", "STRATA2"), by default as NULL}
-
-\item{methods}{(\code{list}) a named list, use a named list to control, for example:
-methods = list(prop_conf_method = "wald",
-diff_conf_method = "wald",
-strat_diff_conf_method = "ha",
-diff_pval_method = "fisher",
-strat_diff_pval_method = "schouten")
-\code{prop_conf_method} controls the methods of calculating proportion confidence interval,
-\code{diff_conf_method} controls the methods of calculating unstratified difference confidence interval,
-\code{strat_diff_conf_method} controls the methods of calculating stratified difference confidence interval,
-\code{diff_pval_method} controls the methods of calculating unstratified p-value for odds ratio,
-\code{strat_diff_pval_method} controls the methods of calculating stratified p-value for odds ratio,
-see more details in \code{tern}}
 
 \item{responder}{(\code{string}) responder defined in the table, by default use c("CR", "PR").}
 }
