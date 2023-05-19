@@ -17,8 +17,8 @@
 #' @param conf_type (`string`) confidence interval type. Options are "plain" (default), "log", "log-log",
 #'  see more in survival::survfit(). Note option "none" is no longer supported.
 #' @param quantiles (`numeric`) of length two to specify the quantiles of survival time.
-#' @param ties string) specifying the method for tie handling. Default is "efron", can also be set to "breslow" or "exact".
-#' see more in survival::coxph()
+#' @param ties string) specifying the method for tie handling. Default is "efron",
+#'  can also be set to "breslow" or "exact". see more in survival::coxph()
 #' @param timepoint (number) survival time point of interest.
 #' @param method (string) either surv (survival estimations),
 #'  surv_diff (difference in survival with the control) or both.

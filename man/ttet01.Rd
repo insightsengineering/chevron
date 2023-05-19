@@ -80,8 +80,8 @@ see more in survival::survfit(). Note option "none" is no longer supported.}
 
 \item{quantiles}{(\code{numeric}) of length two to specify the quantiles of survival time.}
 
-\item{ties}{string) specifying the method for tie handling. Default is "efron", can also be set to "breslow" or "exact".
-see more in survival::coxph()}
+\item{ties}{string) specifying the method for tie handling. Default is "efron",
+can also be set to "breslow" or "exact". see more in survival::coxph()}
 
 \item{timepoint}{(number) survival time point of interest.}
 
