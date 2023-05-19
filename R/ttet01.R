@@ -63,7 +63,7 @@ ttet01_main <- function(adam_db,
   lyt2 <- ttet01_lyt(
     arm_var = arm_var,
     ref_group = ref_group,
-    summarize_event = F,
+    summarize_event = summarize_event,
     perform_analysis = perform_analysis,
     strata = strata,
     pval_method = pval_method,
