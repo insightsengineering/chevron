@@ -146,6 +146,7 @@ dst01_pre <- function(adam_db,
       EOSSTT = reformat(.data$EOSSTT, study_status_format),
       EOTSTT = reformat(.data$EOTSTT, trt_status_format),
       DCSREASGP = reformat(.data$DCSREAS, dcsreas_grp_format),
+      DCSREAS = reformat(.data$DCSREAS, empty_rule),
       STDONS = factor(
         case_when(
           EOTSTT == "Ongoing Treatment" & EOSSTT == "Ongoing" ~ "Alive: Ongoing",
