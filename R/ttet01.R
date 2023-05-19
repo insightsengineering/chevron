@@ -87,7 +87,7 @@ ttet01_main <- function(adam_db,
 #' @describeIn ttet01 Layout
 #'
 #' @inheritParams gen_args
-#'
+#' @param timeunit (string) time uint get from AVALU, by default is "Months"
 #'
 #' @export
 #'
@@ -137,7 +137,7 @@ ttet01_lyt <- function(arm_var,
     ) %>%
     surv_time(
       vars = "AVAL",
-      var_labels = "Time to Event (Months)",
+      var_labels = paste0("Time to Event (", timeunit, ")"),
       is_event = "IS_EVENT",
       control = control_surv_time(
         conf_level = conf_level,
@@ -183,7 +183,6 @@ ttet01_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param responder (`string`) responder defined in the table, by default use c("CR", "PR").
 #'
 #' @export
 #'

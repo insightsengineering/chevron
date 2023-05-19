@@ -90,9 +90,9 @@ surv_diff (difference in survival with the control) or both.}
 
 \item{...}{not used.}
 
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+\item{timeunit}{(string) time uint get from AVALU, by default is "Months"}
 
-\item{responder}{(\code{string}) responder defined in the table, by default use c("CR", "PR").}
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 TTET01 template may be used to summarize any binary outcome or response variable at
