@@ -50,7 +50,7 @@ Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
-a list of \code{ggplot} objects.
+a \code{gTree} object.
 }
 \description{
 \code{FSTG01} Subgroup Analysis of Best Overall Response.

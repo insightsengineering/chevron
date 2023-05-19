@@ -23,7 +23,7 @@
 #'  `c("SEX", "AGEGR1", "RACE")` by default. The column specified by `response` has the default value
 #'  `c("CR", "PR")`.
 #'
-#' @return a list of `ggplot` objects.
+#' @return a `gTree` object.
 #' @export
 fstg01_main <- function(adam_db,
                         dataset = "adrs",
