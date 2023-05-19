@@ -90,7 +90,7 @@ surv_diff (difference in survival with the control) or both.}
 
 \item{...}{not used.}
 
-\item{timeunit}{(string) time uint get from AVALU, by default is "Months"}
+\item{timeunit}{(string) time unit get from AVALU, by default is "Months"}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }

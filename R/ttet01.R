@@ -87,7 +87,7 @@ ttet01_main <- function(adam_db,
 #' @describeIn ttet01 Layout
 #'
 #' @inheritParams gen_args
-#' @param timeunit (string) time uint get from AVALU, by default is "Months"
+#' @param timeunit (string) time unit get from AVALU, by default is "Months"
 #'
 #' @export
 #'
