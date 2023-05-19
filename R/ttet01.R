@@ -49,7 +49,7 @@ ttet01_main <- function(adam_db,
                         ...) {
   anl <- adam_db[[dataset]]
   assert_colnames(anl, c(arm_var, strata, "AVAL", "AVALU", "PARAMCD", "is_event", "is_not_event", "EVNT1", "EVNTDESC"))
-  assert_single_value(anl$PARAMCD)
+  assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   checkmate::assert_string(ref_group, null.ok = TRUE)
   checkmate::assert_flag(summarize_event)
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
