@@ -16,27 +16,6 @@ proportion_lyt(
 }
 \arguments{
 \item{lyt}{layout created by \code{rtables}}
-
-\item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{methods}{(\code{list}) a named list, use a named list to control, for example:
-methods = list(prop_conf_method = "wald",
-diff_conf_method = "wald",
-strat_diff_conf_method = "ha",
-diff_pval_method = "fisher",
-strat_diff_pval_method = "schouten")
-\code{prop_conf_method} controls the methods of calculating proportion confidence interval,
-\code{diff_conf_method} controls the methods of calculating unstratified difference confidence interval,
-\code{strat_diff_conf_method} controls the methods of calculating stratified difference confidence interval,
-\code{diff_pval_method} controls the methods of calculating unstratified p-value for odds ratio,
-\code{strat_diff_pval_method} controls the methods of calculating stratified p-value for odds ratio,
-see more details in \code{tern}}
-
-\item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
-
-\item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
-
-\item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is TRUE}
 }
 \description{
 Proportion layout
