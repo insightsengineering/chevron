@@ -26,15 +26,11 @@ lbt06_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(paramcd, null.ok = TRUE)
-
   assert_valid_variable(adam_db$adlb, c(arm_var, paramcd, "AVISIT"), types = list("characater", "factor"))
   assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-  assert_single_value(adam_db$adlb$ONTRTFL)
-  assert_single_value(adam_db$adlb$PARCAT2)
-
   lbl_paramcd <- var_labels_for(adam_db$adlb, "PARAMCD")
   lbl_visit <- var_labels_for(adam_db$adlb, "AVISIT")
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
