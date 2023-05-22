@@ -19,6 +19,8 @@ lbt06_lyt(
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{paramcd}{(\code{string}) the variable for parameter code.}
+
 \item{visit_var}{(\code{string}) the variable for analysis visit.}
 
 \item{anrind_var}{(\code{string}) the variable for analysis reference range indicator.}

@@ -11,7 +11,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-lbt06_main(adam_db, arm_var = "ACTARM", paramcd = "PARAMCD", ...)
+lbt06_main(adam_db, arm_var = "ACTARM", ...)
 
 lbt06_pre(adam_db, ...)
 
@@ -23,8 +23,6 @@ lbt06
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) the arm variable used for arm splitting.}
-
-\item{paramcd}{(\code{string}) the variable for parameter code.}
 
 \item{...}{not used.}
 
@@ -56,8 +54,7 @@ baseline status summary.
 \note{
 \itemize{
 \item \code{adam_db} object must contain an \code{adlb} table with columns \code{"AVISIT"}, \code{"ANRIND"}, \code{"BNRIND"},
-\code{"ONTRTFL"}, and \code{"PARCAT2"}, and column specified by \code{arm_var}. The column specified by \code{paramcd}
-has the default value \code{"PARAMCD"} to display multiple tests.
+\code{"ONTRTFL"}, and \code{"PARCAT2"}, and column specified by \code{arm_var}.
 }
 }
 \examples{

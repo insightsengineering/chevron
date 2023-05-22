@@ -4,7 +4,6 @@
 #'
 #' @inheritParams gen_args
 #' @param arm_var (`string`) the arm variable used for arm splitting.
-#' @param paramcd (`string`) the variable for parameter code.
 #'
 #' @details
 #'  * Only count `"LOW"` or `"HIGH"` values for `ANRIND` and `BNRIND`.
@@ -14,19 +13,16 @@
 #'
 #' @note
 #'  * `adam_db` object must contain an `adlb` table with columns `"AVISIT"`, `"ANRIND"`, `"BNRIND"`,
-#'  `"ONTRTFL"`, and `"PARCAT2"`, and column specified by `arm_var`. The column specified by `paramcd`
-#'   has the default value `"PARAMCD"` to display multiple tests.
+#'  `"ONTRTFL"`, and `"PARCAT2"`, and column specified by `arm_var`.
 #'
 #' @export
 #'
 lbt06_main <- function(adam_db,
                        arm_var = "ACTARM",
-                       paramcd = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
-  checkmate::assert_string(paramcd, null.ok = TRUE)
-  assert_valid_variable(adam_db$adlb, c(arm_var, paramcd, "AVISIT"), types = list("characater", "factor"))
+  assert_valid_variable(adam_db$adlb, c(arm_var, "AVISIT"), types = list("characater", "factor"))
   assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
@@ -38,7 +34,7 @@ lbt06_main <- function(adam_db,
 
   lyt <- lbt06_lyt(
     arm_var = arm_var,
-    paramcd = paramcd,
+    paramcd = "PARAMCD",
     visit_var = "AVISIT",
     anrind_var = "ANRIND",
     bnrind_var = "BNRIND",
@@ -58,6 +54,7 @@ lbt06_main <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @inheritParams gen_args
+#' @param paramcd (`string`) the variable for parameter code.
 #' @param visit_var (`string`) the variable for analysis visit.
 #' @param anrind_var (`string`) the variable for analysis reference range indicator.
 #' @param bnrind_var (`string`) the variable for baseline reference range indicator.
@@ -79,7 +76,12 @@ lbt06_lyt <- function(arm_var,
                       lbl_bnrind) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    ifneeded_split_row(paramcd, lbl_paramcd) %>%
+    split_rows_by(
+      var = paramcd,
+      split_fun = drop_split_levels,
+      label_pos = "topleft",
+      split_label = lbl_paramcd
+    ) %>%
     split_rows_by(
       var = visit_var,
       split_fun = drop_split_levels,
