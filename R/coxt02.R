@@ -24,7 +24,7 @@
 #'  * Keep zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adtte` table with with `"PARAMCD"`, `"ARM"`,
+#'   * `adam_db` object must contain an `adtte` table with `"PARAMCD"`, `"ARM"`,
 #'   `"AVAL"`, `"CNSR`, and the columns specified by `"covariates"` which is denoted as
 #'   `c("SEX", "RACE", "AAGE")` by default.
 #'

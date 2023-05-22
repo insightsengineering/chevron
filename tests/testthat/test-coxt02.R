@@ -14,7 +14,7 @@ test_that("coxt02 can handle some NA values", {
   expect_snapshot(cat(formatters::export_as_txt(res4, lpp = 100)))
 })
 
-test_that("coxt02 fails on incomlete date", {
+test_that("coxt02 fails on incomlete data", {
   proc_data <- syn_data
   proc_data$adtte <- proc_data$adtte %>%
     mutate(PARAMCD = NULL)

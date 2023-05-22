@@ -15,7 +15,7 @@
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by  `arm_var`.
 #'
-#' @return a list of `ggplot` objects.
+#' @return a `gTree` object.
 #' @export
 kmg01_main <- function(adam_db,
                        dataset = "adtte",
