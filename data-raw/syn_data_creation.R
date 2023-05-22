@@ -119,6 +119,13 @@ syn_test_data <- function() {
     ) %>%
     select(-q1, -q2)
 
+  # useful for lbt06
+  sd$adlb <- sd$adlb %>%
+    mutate(ONTRTFL = case_when(
+      .data$AVISIT %in% c("BASELINE", "SCREENING") ~ "",
+      TRUE ~ "Y"
+    ))
+
   # useful for dmt01
   adsub <- sd$adsub
   adsub_wide_ls <- dunlin::poly_pivot_wider(
@@ -176,12 +183,13 @@ syn_test_data <- function() {
   sd$adcm <- sd$adcm %>%
     mutate(ANL01FL = "Y")
 
-  adsl <- sd$adsl[c("USUBJID", "AAGE")]
-  sd$adtte <- sd$adtte %>% left_join(adsl, by = "USUBJID")
-
-  adsl <- sd$adsl[c("USUBJID", "RACE")]
+  adsl <- sd$adsl[c("USUBJID", "AAGE", "RACE")]
   sd$adtte <- sd$adtte %>% select(-c("RACE"))
   sd$adtte <- sd$adtte %>% left_join(adsl, by = "USUBJID")
+
+  # useful for fstg01
+  sd$adrs$AGEGR1 <- cut(sd$adrs$AGE, c(0, 65, 200), c("<65", ">=65"))
+  attr(sd$adrs$AGEGR1, "label") <- "Age Group"
 
   sd
 }
