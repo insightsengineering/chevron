@@ -20,8 +20,7 @@
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with `"PARAMCD"`, `"ARM"`,
 #'  `"AVALC"`, and the columns specified by `subgroups` which is denoted as
-#'  `c("SEX", "AGEGR1", "RACE")` by default. The column specified by `response` has the default value
-#'  `c("CR", "PR")`.
+#'  `c("SEX", "AGEGR1", "RACE")` by default.
 #'
 #' @return a `gTree` object.
 #' @export
@@ -76,7 +75,6 @@ fstg01_main <- function(adam_db,
 #' @describeIn fstg01 Preprocessing
 #'
 #' @inheritParams fstg01_main
-#' @param response (`character`) the response variable name(s).
 #'
 #' @export
 fstg01_pre <- function(adam_db, ...) {
@@ -112,14 +110,14 @@ fstg01_post <- function(tlg, ...) {
 #'   syn_data,
 #'   PARAMCD == "OVRINV" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
 #' )
-#' run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs")
+#' run(fstg01, proc_data, dataset = "adrs")
 #'
 #' proc_data <- log_filter(
 #'   syn_data,
 #'   PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
 #' )
 #' run(fstg01, proc_data,
-#'   response = c("CR"), subgroups = c("SEX", "AGEGR1", "RACE"),
+#'   subgroups = c("SEX", "AGEGR1", "RACE"),
 #'   conf_level = 0.90, dataset = "adrs"
 #' )
 fstg01 <- chevron_g(

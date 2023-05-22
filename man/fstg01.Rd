@@ -46,8 +46,6 @@ Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}
 \code{method}, \code{label_all}, etc.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{response}{(\code{character}) the response variable name(s).}
 }
 \value{
 a \code{gTree} object.
@@ -74,8 +72,7 @@ a \code{gTree} object.
 \itemize{
 \item \code{adam_db} object must contain the table specified by \code{dataset} with \code{"PARAMCD"}, \code{"ARM"},
 \code{"AVALC"}, and the columns specified by \code{subgroups} which is denoted as
-\code{c("SEX", "AGEGR1", "RACE")} by default. The column specified by \code{response} has the default value
-\code{c("CR", "PR")}.
+\code{c("SEX", "AGEGR1", "RACE")} by default.
 }
 }
 \examples{
@@ -86,14 +83,14 @@ proc_data <- log_filter(
   syn_data,
   PARAMCD == "OVRINV" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs"
 )
-run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs")
+run(fstg01, proc_data, dataset = "adrs")
 
 proc_data <- log_filter(
   syn_data,
   PARAMCD == "BESRSPI" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs"
 )
 run(fstg01, proc_data,
-  response = c("CR"), subgroups = c("SEX", "AGEGR1", "RACE"),
+  subgroups = c("SEX", "AGEGR1", "RACE"),
   conf_level = 0.90, dataset = "adrs"
 )
 }
