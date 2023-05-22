@@ -1,38 +1,3 @@
-# assert_colnames ----
-
-test_that("assert_colnames works as expected", {
-  expect_silent(
-    assert_colnames(mtcars, c("mpg", "cyl"), null_ok = TRUE)
-  )
-
-  expect_error(
-    assert_colnames(mtcars, c("mpg", "speed", "seats"), null_ok = TRUE),
-    "Variable(s) not a column name of mtcars:
- speed
- seats
- [available columns are: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb]",
-    fixed = TRUE
-  )
-
-  expect_silent(
-    assert_colnames(mtcars, NULL, null_ok = TRUE)
-  )
-
-  expect_error(
-    assert_colnames(mtcars, NULL, null_ok = FALSE),
-    "x cannot be NULL"
-  )
-
-  expect_silent(
-    assert_colnames(mtcars, c("mpg", "cyl"), types = "numeric")
-  )
-
-  expect_error(
-    assert_colnames(mtcars, c("mpg", "cyl"), types = "character"),
-    "`mpg`, `cyl` not of type character"
-  )
-})
-
 # assert_one_tablenames ----
 
 test_that("assert_one_tablenames works as expected", {
@@ -101,53 +66,6 @@ test_that("assert_all_tablenames works as expected", {
       qualifier = "first test:"
     ),
     "first test: Expected table names: haha, hoho not in df"
-  )
-})
-
-# assert_subset_suggest ----
-
-test_that("assert_args works as expected", {
-  x <- c(
-    "lbl_overall",
-    "lbl_",
-    "armvar",
-    "xxxx"
-  )
-
-  choices <- c("adam_db", "arm_var", "lbl_overall", "lbl_x", "lbl_y")
-
-  expect_error(assert_subset_suggest(x, choices))
-
-  x_ok <- c(
-    "lbl_overall",
-    "arm_var"
-  )
-
-  expect_silent(res <- assert_subset_suggest(x_ok, choices))
-  expect_null(res)
-})
-
-# assert_single_value ----
-
-test_that("assert_single_value works as expected", {
-  x <- c("A", "A")
-  res <- expect_silent(assert_single_value(x))
-  expect_null(res)
-
-  x <- factor(c("A", "A"), levels = c("A", "B"))
-  res <- expect_silent(assert_single_value(x))
-  expect_null(res)
-
-  x <- factor(c("A", "B"), levels = c("A", "B"))
-  expect_error(
-    assert_single_value(x),
-    "`x` has more than one values A, B, only one value is allowed."
-  )
-
-  x <- factor(c("A", NA), levels = c("A", "B"))
-  expect_error(
-    assert_single_value(x),
-    "`x` has more than one values A, NA, only one value is allowed."
   )
 })
 

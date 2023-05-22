@@ -1,4 +1,4 @@
-# cmt01a_1 functions with default argument value return expected result with test data
+# cmt01a functions with default argument value return expected result with test data
 
     Code
       cat(formatters::export_as_txt(res, lpp = 100))
@@ -50,7 +50,7 @@
           Total number of treatments                                 69            73              80      
           medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
 
-# cmt01a_1 functions with custom argument value return expected result with test data
+# cmt01a functions with custom argument value return expected result with test data
 
     Code
       cat(formatters::export_as_txt(res, lpp = 100))

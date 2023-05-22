@@ -166,3 +166,20 @@ test_that("script_funs works as expected with details set to TRUE", {
   res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls", details = TRUE))
   checkmate::expect_character(res)
 })
+
+
+test_that("script_funs generates a valid script", {
+  tmp <- tempfile()
+
+  args_list <- list(
+    arm_var = "ARM"
+  )
+
+  res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = FALSE)
+  writeLines(res_fun, tmp)
+
+  expected <- run(aet04, syn_data, arm_var = "ARM")
+  source(tmp, local = TRUE)
+
+  expect_identical(tlg_output, expected)
+})

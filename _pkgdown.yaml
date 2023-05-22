@@ -86,7 +86,6 @@ reference:
       - syn_data
   - title: Utility Functions
     contents:
-      - assert_colnames
       - assert_all_tablenames
       - assert_single_value
       - assert_valid_type
