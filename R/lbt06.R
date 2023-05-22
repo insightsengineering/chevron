@@ -53,7 +53,6 @@ lbt06_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @inheritParams gen_args
 #' @param paramcd (`string`) the variable for parameter code.
 #' @param visit_var (`string`) the variable for analysis visit.
 #' @param anrind_var (`string`) the variable for analysis reference range indicator.
