@@ -38,7 +38,7 @@ baseline status summary.
 }
 \details{
 \itemize{
-\item Only count LOW or HIGH values.
+\item Only count \code{"LOW"} or \code{"HIGH"} values for \code{ANRIND} and \code{BNRIND}.
 \item Lab test results with missing \code{ANRIND} values are excluded.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Keep zero count rows by default.

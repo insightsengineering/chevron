@@ -7,7 +7,7 @@
 #' @param paramcd (`string`) the variable for parameter code.
 #'
 #' @details
-#'  * Only count LOW or HIGH values.
+#'  * Only count `"LOW"` or `"HIGH"` values for `ANRIND` and `BNRIND`.
 #'  * Lab test results with missing `ANRIND` values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Keep zero count rows by default.
@@ -28,7 +28,7 @@ lbt06_main <- function(adam_db,
   checkmate::assert_string(paramcd, null.ok = TRUE)
   assert_valid_variable(adam_db$adlb, c(arm_var, paramcd, "AVISIT"), types = list("characater", "factor"))
   assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
   lbl_paramcd <- var_labels_for(adam_db$adlb, "PARAMCD")
