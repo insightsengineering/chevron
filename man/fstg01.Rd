@@ -21,7 +21,7 @@ fstg01_main(
   ...
 )
 
-fstg01_pre(adam_db, dataset = "adrs", response = c("CR", "PR"), ...)
+fstg01_pre(adam_db, ...)
 
 fstg01_post(tlg, ...)
 
@@ -45,9 +45,9 @@ fstg01
 Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}, \code{groups_lists}, \code{conf_level},
 \code{method}, \code{label_all}, etc.}
 
-\item{response}{(\code{character}) the response variable name(s).}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{response}{(\code{character}) the response variable name(s).}
 }
 \value{
 a \code{gTree} object.

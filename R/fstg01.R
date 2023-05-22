@@ -79,13 +79,12 @@ fstg01_main <- function(adam_db,
 #' @param response (`character`) the response variable name(s).
 #'
 #' @export
-fstg01_pre <- function(adam_db, dataset = "adrs", response = c("CR", "PR"), ...) {
-  adam_db[[dataset]] <- adam_db[[dataset]] %>%
+fstg01_pre <- function(adam_db, ...) {
+  adam_db$adrs <- adam_db$adrs %>%
     mutate(
       ARM = droplevels(.data$ARM),
-      is_rsp = .data$AVALC %in% response
+      is_rsp = .data$AVALC %in% c("CR", "PR")
     )
-
   adam_db
 }
 

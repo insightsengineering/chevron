@@ -32,7 +32,7 @@ pdt01_main <- function(adam_db,
   checkmate::assert_string(dvcode_var)
   checkmate::assert_string(dvterm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$addv, c(dvcode_var, dvterm_var, "DVSEQ"), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$addv, c(dvcode_var, dvterm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
@@ -103,7 +103,6 @@ pdt01_lyt <- function(arm_var,
 pdt01_pre <- function(adam_db, ...) {
   adam_db$addv <- adam_db$addv %>%
     mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
-    mutate(across(all_of(c("DVSEQ")), ~ reformat(.x, rule(), na_last = TRUE))) %>%
     mutate(
       DVDECOD = with_label(.data$DVDECOD, "Protocol Deviation Coded Term"),
       DVTERM = with_label(.data$DVTERM, "Category")
