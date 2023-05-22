@@ -1,12 +1,12 @@
 # lbt06 can handle some NA values
 
     Code
-      res
+      cat(formatters::export_as_txt(res, lpp = 100))
     Output
         Parameter Code                                                                        
           Visit                                                                               
-             Abnormality at Visit                 A: Drug X      B: Placebo     C: Combination
-                     Baseline Status               (N=134)         (N=134)         (N=132)    
+            Abnormality at Visit                  A: Drug X      B: Placebo     C: Combination
+                    Baseline Status                (N=134)         (N=134)         (N=132)    
         ——————————————————————————————————————————————————————————————————————————————————————
         ALT                                                                                   
           SCREENING                                                                           
@@ -100,6 +100,12 @@
                       Not high baseline status   6/44 (13.6%)   4/37 (10.8%)     1/35 (2.9%)  
                       High baseline status           0/7          1/5 (20%)          0/9      
                       Total                      6/51 (11.8%)   5/42 (11.9%)     1/44 (2.3%)  
+      \s\n  Parameter Code                                                                        
+          Visit                                                                               
+            Abnormality at Visit                  A: Drug X      B: Placebo     C: Combination
+                    Baseline Status                (N=134)         (N=134)         (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————
+        CRP                                                                                   
           WEEK 2 DAY 15                                                                       
             Low                                                                               
                       Not low baseline status    4/39 (10.3%)   3/29 (10.3%)     2/33 (6.1%)  
@@ -191,6 +197,12 @@
                       Not high baseline status   6/29 (20.7%)    4/49 (8.2%)     3/44 (6.8%)  
                       High baseline status           0/5          1/4 (25%)       1/4 (25%)   
                       Total                      6/34 (17.6%)    5/53 (9.4%)     4/48 (8.3%)  
+      \s\n  Parameter Code                                                                        
+          Visit                                                                               
+            Abnormality at Visit                  A: Drug X      B: Placebo     C: Combination
+                    Baseline Status                (N=134)         (N=134)         (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————————
+        IGA                                                                                   
           WEEK 5 DAY 36                                                                       
             Low                                                                               
                       Not low baseline status    4/41 (9.8%)    6/38 (15.8%)     5/38 (13.2%) 

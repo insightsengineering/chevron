@@ -27,7 +27,7 @@ lbt06_main <- function(adam_db,
   checkmate::assert_string(arm_var)
   checkmate::assert_string(paramcd, null.ok = TRUE)
   assert_valid_variable(adam_db$adlb, c(arm_var, paramcd, "AVISIT"), types = list("characater", "factor"))
-  assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
+  assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
@@ -84,7 +84,7 @@ lbt06_lyt <- function(arm_var,
       var = visit_var,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = paste(lbl_visit)
+      split_label = lbl_visit
     ) %>%
     count_abnormal_by_baseline(
       var = anrind_var,
@@ -92,8 +92,8 @@ lbt06_lyt <- function(arm_var,
       variables = list(id = "USUBJID", baseline = bnrind_var),
       .indent_mods = 4L
     ) %>%
-    append_topleft(paste("    ", lbl_anrind)) %>%
-    append_topleft(paste("            ", lbl_bnrind))
+    append_topleft(paste0("    ", lbl_anrind)) %>%
+    append_topleft(paste0("            ", lbl_bnrind))
 }
 
 #' @describeIn lbt06 Preprocessing

@@ -15,7 +15,7 @@ test_that("lbt06 can handle some NA values", {
   proc_data$adlb[1:4, c("ANRIND", "BNRIND")] <- NA
 
   res <- expect_silent(run(lbt06, proc_data))
-  expect_snapshot(res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt06 fails on incomlete data", {

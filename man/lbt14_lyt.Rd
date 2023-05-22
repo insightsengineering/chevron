@@ -4,15 +4,10 @@
 \alias{lbt14_lyt}
 \title{\code{lbt14} Layout}
 \usage{
-lbt14_lyt(arm_var, gr_missing)
+lbt14_lyt(arm_var)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{gr_missing}{(\code{string}) how missing baseline grades should be handled. Defaults to \code{"incl"} to include the
-\code{"Missing"}
-level. Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing
-baseline grades to grade 0.}
 }
 \description{
 \code{lbt14} Layout

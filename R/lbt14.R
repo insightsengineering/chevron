@@ -30,15 +30,14 @@ lbt14_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
-  assert_valid_variable(adam_db$adlb, c("BTOXGR_GRP", "BTOXGR_GRP"), types = list("factor"), na_ok = FALSE)
+  assert_valid_variable(adam_db$adlb, c("ATOXGR", "BTOXGR"), types = list("factor"), na_ok = TRUE)
   assert_valid_variable(adam_db$adlb, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
   lyt <- lbt14_lyt(
-    arm_var = arm_var,
-    gr_missing = gr_missing
+    arm_var = arm_var
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -52,8 +51,7 @@ lbt14_main <- function(adam_db,
 #'
 #' @keywords internal
 #'
-lbt14_lyt <- function(arm_var,
-                      gr_missing) {
+lbt14_lyt <- function(arm_var) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
@@ -63,13 +61,13 @@ lbt14_lyt <- function(arm_var,
       split_label = "Parameter"
     ) %>%
     split_rows_by(
-      "BTOXGR_GRP",
+      "BTOXGR",
       label_pos = "topleft",
       split_label = "    Baseline NCI-CTCAE Grade",
       indent_mod = 2L
     ) %>%
     summarize_num_patients(var = "USUBJID", .stats = c("unique_count"), unique_count_suffix = FALSE) %>%
-    count_occurrences("ATOXGR_GRP", denom = "n", drop = FALSE, .indent_mods = 3L) %>%
+    count_occurrences_by_grade("ATOXGR", denom = "n", drop = FALSE, .indent_mods = 3L) %>%
     append_topleft("              Post-baseline NCI-CTCAE Grade")
 }
 
@@ -86,64 +84,31 @@ lbt14_pre <- function(adam_db,
                       ...) {
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
   checkmate::assert_choice(direction, c("low", "high"))
-
-  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>", "No Coding Available"))
-  adam_db$adlb <- adam_db$adlb %>%
-    mutate(
-      across(all_of(c("BTOXGR", "ATOXGR")), ~ reformat(.x, .env$missing_rule))
-    )
-
-  if (gr_missing == "excl") {
+  if (direction == "high") {
     adam_db$adlb <- adam_db$adlb %>%
-      filter(.data$BTOXGR != "<Missing>")
-  } else if (gr_missing == "gr_0") {
-    adam_db$adlb <- adam_db$adlb %>%
-      mutate(BTOXGR = if (all(adam_db$adlb$BTOXGR == "<Missing>")) {
-        factor(.data$BTOXGR, levels = c("0", "<Missing>"))
-      } else {
-        .data$BTOXGR
-      }) %>%
-      mutate(BTOXGR = reformat(.data$BTOXGR, rule("0" = c("0", "<Missing>"))))
-  }
-
-  grade_rule <- if (direction == "high") {
-    rule(
-      "Not High" = c("0", "-1", "-2", "-3", "-4"),
-      "1" = "1",
-      "2" = "2",
-      "3" = "3",
-      "4" = "4",
-      "Missing" = "<Missing>"
-    )
+      filter(.data$WGRHIFL == "Y") %>%
+      h_adsl_adlb_merge_using_worst_flag(
+        adsl = adam_db$adsl,
+        worst_flag = c("WGRHIFL" = "Y")
+      )
   } else {
-    rule(
-      "Not Low" = c("0", "1", "2", "3", "4"),
-      "1" = "-1",
-      "2" = "-2",
-      "3" = "-3",
-      "4" = "-4",
-      "Missing" = "<Missing>"
-    )
+    adam_db$adlb <- adam_db$adlb %>%
+      filter(.data$WGRLOFL == "Y") %>%
+      h_adsl_adlb_merge_using_worst_flag(
+        adsl = adam_db$adsl,
+        worst_flag = c("WGRLOFL" = "Y")
+      )
   }
-
   adam_db$adlb <- adam_db$adlb %>%
     mutate(
-      ATOXGR_GRP = as.character(.data$ATOXGR),
-      BTOXGR_GRP = as.character(.data$BTOXGR)
-    ) %>%
-    mutate(
-      across(all_of(c("ATOXGR_GRP", "BTOXGR_GRP")), ~ reformat(.x, .env$grade_rule, na_last = TRUE))
+      across(all_of(c("BTOXGR", "ATOXGR")), ~ forcats::fct_na_level_to_value(.x, "<Missing>"))
     )
 
+  grade_rule <- get_grade_rule(direction, gr_missing)
   adam_db$adlb <- adam_db$adlb %>%
     mutate(
-      BTOXGR_GRP = if (gr_missing != "incl" || any(.data$BTOXGR == "<Missing>")) {
-        forcats::fct_drop(.data$BTOXGR_GRP, only = "Missing")
-      } else {
-        .data$BTOXGR_GRP
-      }
+      across(all_of(c("BTOXGR", "ATOXGR")), ~ reformat(.x, grade_rule))
     )
-
   adam_db
 }
 
@@ -153,15 +118,8 @@ lbt14_pre <- function(adam_db,
 #'
 #' @export
 #'
-lbt14_post <- function(tlg, prune_0 = TRUE, gr_missing = "incl", direction = "low", ...) {
+lbt14_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
-
-  main_title(tlg) <- if (direction == "low") {
-    "LBT14 - Low Direction"
-  } else {
-    "LBT14 - High Direction"
-  }
-
   std_postprocess(tlg)
 }
 
