@@ -20,7 +20,7 @@ test_that("lbt06 can handle some NA values", {
   expect_snapshot(cat(formatters::export_as_txt(std_postprocess(res), lpp = 100)))
 })
 
-test_that("lbt06 fails on incomlete data", {
+test_that("lbt06 fails on incomplete data", {
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(PARCAT2 = NULL)
