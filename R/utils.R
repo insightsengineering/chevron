@@ -72,7 +72,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' fun(c(123, 567.89))
 #'
 h_format_dec <- function(digits = NA, format = NA) {
-  checkmate::assert_int(digits, lower = 0)
+  checkmate::assert_int(digits, lower = 0, na.ok = TRUE)
   checkmate::assert_string(format, na.ok = TRUE)
 
   if (is.na(format)) {
