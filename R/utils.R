@@ -48,7 +48,7 @@ smart_prune <- function(tlg) {
 #' @keywords internal
 #'
 std_postprocess <- function(tlg, ind = 2L, ...) {
-  checkmate::assert_integerish(ind, lower = 0L)
+  checkmate::assert_int(ind, lower = 0L)
 
   res <- report_null(tlg)
   table_inset(res) <- ind
@@ -72,7 +72,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' fun(c(123, 567.89))
 #'
 h_format_dec <- function(digits = NA, format = NA) {
-  checkmate::assert_integerish(digits, lower = 0, len = 1)
+  checkmate::assert_int(digits, lower = 0, na.ok = TRUE)
   checkmate::assert_string(format, na.ok = TRUE)
 
   if (is.na(format)) {

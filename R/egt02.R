@@ -81,9 +81,9 @@ egt02_lyt <- function(arm_var = "ACTARM",
 #'
 egt02_pre <- function(adam_db, ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
-
   adam_db$adeg <- adam_db$adeg %>%
-    filter(.data$ANRIND != "<Missing>") %>%
+    mutate(ANRIND = factor(.data$ANRIND, levels = c("LOW", "NORMAL", "HIGH"))) %>%
+    filter(!is.na(.data$ANRIND)) %>%
     filter(.data$ONTRTFL == "Y")
 
   adam_db
