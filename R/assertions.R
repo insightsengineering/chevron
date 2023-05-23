@@ -1,47 +1,4 @@
-# assert_colnames ----
-
-#' Check if strings are column names of a `data.frame`
-#'
-#' Provides a clearer error message in the case of missing variable.
-#'
-#' @param df (`data.frame`) input to check for the presence of column names.
-#' @param x (`character`) the names of the columns to be checked.
-#' @param null_ok (`logical`) can `x` be NULL.
-#' @param types (`character`) type of the variables.
-#'
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' assert_colnames(mtcars, c("speed", "seats"), null_ok = TRUE)
-#'
-#' my_colnames <- NULL
-#' assert_colnames(mtcars, my_colnames, null_ok = FALSE)
-#' }
-assert_colnames <- function(df, x, null_ok = TRUE, types = NULL) {
-  if (!null_ok && is.null(x)) {
-    stop("x cannot be NULL.", call. = FALSE)
-  }
-
-  missing_var <- setdiff(x, colnames(df))
-  if (length(missing_var) > 0) {
-    abort(
-      paste0(
-        "Variable(s) not a column name of ",
-        deparse(substitute(df)),
-        ":",
-        paste("\n", missing_var, collapse = ""),
-        "\n [available columns are: ",
-        paste(colnames(df), collapse = ", "),
-        "]"
-      )
-    )
-  }
-  if (!is.null(types)) {
-    var_types <- mapply(is, object = df[x], class2 = types, SIMPLIFY = TRUE)
-    non_match <- which(var_types != types)
-  }
-}
+# assert_all_tablenames ----
 
 #' Assert that all names are among names of a `list` of `data.frame`.
 #'
@@ -77,6 +34,8 @@ assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
     )
   }
 }
+
+# assert_one_tablenames ----
 
 #' Assert that at least one name is among table names of a `list` of `data.frame`.
 #'
@@ -116,60 +75,8 @@ assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 }
 
 
-#' Assert Subset and Provide Suggestions
-#'
-#' @param x (`character`) to be asserted
-#' @param choices (`character`) set of possible values.
-#'
-#' @keywords internal
-#'
-#' @return invisible `NULL` if all `x` are subset of `choices` or an informative warning otherwise.
-#'
-#' @examples
-#' \dontrun{
-#' assert_subset_suggest(c("lbl_overall"), "lbl_overall")
-#' assert_subset_suggest(
-#'   c("lbl_", "xxx", "arm_var"),
-#'   c("lbl_overall", "arm_var")
-#' )
-#' }
-assert_subset_suggest <- function(x, choices) {
-  checkmate::assert_character(choices)
-  checkmate::assert_character(x, null.ok = TRUE)
 
-  invalid_args <- setdiff(x, choices)
-
-  if (length(invalid_args) == 0) {
-    return(invisible(NULL))
-  }
-
-  supp_args <- setdiff(choices, x)
-  matching_args <- lapply(invalid_args, function(choices) supp_args[agrep(choices, supp_args)])
-
-  msg <- mapply(
-    function(x, y) {
-      paste(
-        paste0(
-          "\n",
-          y,
-          " is not a valid argument."
-        ),
-        if (length(x) > 0) {
-          paste0(
-            "Do you mean: ",
-            toString(x),
-            " ?"
-          )
-        }
-      )
-    },
-    matching_args,
-    invalid_args
-  )
-
-  abort(msg)
-}
-
+# assert_single_value ----
 
 #' Check variable only has one unique value.
 #' @param x value vector.
@@ -180,12 +87,14 @@ assert_single_value <- function(x, label = deparse(substitute(x))) {
   if (length(unique_param_val) > 1) {
     stop(
       quote_str(label),
-      " has than one values ",
+      " has more than one values ",
       toString(unique_param_val),
       ", only one value is allowed."
     )
   }
 }
+
+# assert_valid_var ----
 
 #' @title Check whether var is valid
 #' @details
@@ -225,7 +134,7 @@ assert_valid_var.factor <- function(
   checkmate::assert_character(
     levels(x),
     min.chars = min_chars,
-    .var.name = paste("level of", label),
+    .var.name = paste("level of", label)
   )
   checkmate::assert_factor(
     x,
@@ -268,6 +177,8 @@ assert_valid_var.numeric <- function(
 assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
 }
 
+# assert_valid_variable ----
+
 #' Check variables in a data frame are valid character or factor.
 #' @param df (`data.frame`) input dataset.
 #' @param vars (`character`) variables to check.
@@ -278,7 +189,8 @@ assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = 
 #'
 #' @export
 assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), types = NULL, ...) {
-  assert_colnames(df, vars, null_ok = TRUE)
+  checkmate::assert_names(colnames(df), must.include = vars, what = "colnames")
+
   labels <- sprintf("%s$%s", label, vars)
   if (length(types) == 1 && is.null(names(types))) {
     types <- setNames(rep(types, length(vars)), vars)
@@ -297,6 +209,8 @@ assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), typ
   checkmate::reportAssertions(collection)
 }
 
+# assert_valid_type ----
+
 #' Check variable is of correct type
 #' @param x Object to check the type.
 #' @param types (`character`) possible types to check.
@@ -312,6 +226,8 @@ assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
     )
   }
 }
+
+# assert_valid_var_pair ----
 
 #' Check variables are of same levels
 #' @param df1 (`data.frame`) input.

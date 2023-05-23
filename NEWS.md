@@ -1,9 +1,12 @@
-# chevron 0.1.4.9013
+# chevron 0.1.4.9017
 
 * Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument. 
 * Remove variants in template names.
+* Remove deprecated `getter` functions `get_main`, `get_preprocess` and `get_postprocess`.
 * Simplify `pre` function and add more data checks in `main` function.
-* Add more templates: `AET10`, `KMG01`, `RSPT01`, `RMPT01`, `COXT02`.
+* Remove redundant assertion functions.
+* Add more templates: `AET10`, `KMG01`, `RSPT01`, `RMPT01`, `COXT02`, `FSTG01`, `LBT06`.
+
 # chevron 0.1.4
 
 * Use `list` to replace `character` in template arguments.

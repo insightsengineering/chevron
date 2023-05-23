@@ -337,11 +337,20 @@ setMethod(
     if (details) {
       c(
         "# Edit Functions.",
-        paste0("pre_fun <- ", deparse(preprocess(x), control = "useSource")),
+        deparse(
+          rlang::call2("<-", sym("pre_fun"), preprocess(x)),
+          control = "useSource"
+        ),
         "",
-        paste0("main_fun <- ", deparse(main(x), control = "useSource")),
+        deparse(
+          rlang::call2("<-", sym("main_fun"), main(x)),
+          control = "useSource"
+        ),
         "",
-        paste0("post_fun <- ", deparse(postprocess(x), control = "useSource")),
+        deparse(
+          rlang::call2("<-", sym("post_fun"), postprocess(x)),
+          control = "useSource"
+        ),
         "",
         "# Create TLG",
         glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
@@ -364,89 +373,5 @@ setMethod(
         rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE)")
       )
     }
-  }
-)
-
-# get_main ----
-
-#' Retrieve Main Function
-#'
-#' @param object (`chevron_tlg`) input.
-#'
-#' @aliases get_main
-#' @export
-setGeneric("get_main", function(object) standardGeneric("get_main"))
-
-#' @rdname get_main
-#' @export
-setMethod(
-  f = "get_main",
-  signature = "chevron_tlg",
-  definition = function(object) {
-    .Deprecated("main()", old = "get_main()")
-    object@main
-  }
-)
-
-# get_preprocess ----
-
-#' Retrieve pre-processing Function
-#'
-#' @param object (`chevron_tlg`) input.
-#'
-#' @aliases get_preprocess
-#' @export
-setGeneric("get_preprocess", function(object) standardGeneric("get_preprocess"))
-
-#' @rdname get_preprocess
-#' @export
-setMethod(
-  f = "get_preprocess",
-  signature = "chevron_tlg",
-  definition = function(object) {
-    .Deprecated("preprocess()", old = "get_preprocess()")
-    object@preprocess
-  }
-)
-
-# get_postprocess ----
-
-#' Retrieve post-processing Function
-#'
-#' @param object (`chevron_tlg`) input.
-#'
-#' @aliases get_postprocess
-#' @export
-setGeneric("get_postprocess", function(object) standardGeneric("get_postprocess"))
-
-#' @rdname get_postprocess
-#' @export
-setMethod(
-  f = "get_postprocess",
-  signature = "chevron_tlg",
-  definition = function(object) {
-    .Deprecated("postprocess()", old = "get_postprocess()")
-    object@postprocess
-  }
-)
-
-# get_adam_datasets ----
-
-#' Retrieve names of datasets associated with the object
-#'
-#' @param object (`chevron_tlg`) input.
-#'
-#' @export
-#' @aliases get_adam_datasets
-setGeneric("get_adam_datasets", function(object) standardGeneric("get_adam_datasets"))
-
-#' @rdname get_adam_datasets
-#' @export
-setMethod(
-  f = "get_adam_datasets",
-  signature = "chevron_tlg",
-  definition = function(object) {
-    .Deprecated("datasets()", old = "get_adam_datasets()")
-    object@adam_datasets
   }
 )

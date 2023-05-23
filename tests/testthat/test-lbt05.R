@@ -5,6 +5,9 @@ test_that("lbt05 functions with default argument value return expected result wi
   raw_res <- lbt05_main(pre_data)
   res <- lbt05_post(raw_res)
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+
+  res_prune <- lbt05_post(raw_res, prune_0 = TRUE)
+  expect_snapshot(cat(formatters::export_as_txt(res_prune, lpp = 100)))
 })
 
 # lbt05 ----
@@ -33,7 +36,7 @@ test_that("lbt05 can handle some NA values", {
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
-test_that("lbt05 fails on incomlete date", {
+test_that("lbt05 fails on incomlete data", {
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(PARCAT2 = NULL)

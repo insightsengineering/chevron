@@ -2,7 +2,7 @@
 % Please edit documentation in R/coxt02.R
 \name{coxt02_lyt}
 \alias{coxt02_lyt}
-\title{coxt02 Layout}
+\title{\code{coxt02} Layout}
 \usage{
 coxt02_lyt(variables, lbl_vars, control)
 }
@@ -10,6 +10,6 @@ coxt02_lyt(variables, lbl_vars, control)
 \item{variables}{(\code{list}) list of variables in a Cox proportional hazards regression model.}
 }
 \description{
-coxt02 Layout
+\code{coxt02} Layout
 }
 \keyword{internal}

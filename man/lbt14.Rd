@@ -3,7 +3,6 @@
 \docType{data}
 \name{lbt14_main}
 \alias{lbt14_main}
-\alias{lbt14_lyt}
 \alias{lbt14_pre}
 \alias{lbt14_post}
 \alias{lbt14}
@@ -14,8 +13,6 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 lbt14_main(adam_db, arm_var = "ACTARM", gr_missing = "incl", ...)
-
-lbt14_lyt(arm_var)
 
 lbt14_pre(adam_db, gr_missing = "incl", direction = "low", ...)
 
@@ -58,8 +55,6 @@ Baseline Grade (Low or High Direction).
 \itemize{
 \item \code{lbt14_main()}: Main TLG function
 
-\item \code{lbt14_lyt()}: Layout
-
 \item \code{lbt14_pre()}: Preprocessing
 
 \item \code{lbt14_post()}: Postprocessing
@@ -75,4 +70,3 @@ and the column specified by \code{arm_var}.
 run(lbt14, syn_data)
 }
 \keyword{datasets}
-\keyword{internal}

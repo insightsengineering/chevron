@@ -2,7 +2,7 @@
 % Please edit documentation in R/ext01.R
 \name{ext01_lyt}
 \alias{ext01_lyt}
-\title{ext01 Layout}
+\title{\code{ext01} Layout}
 \usage{
 ext01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
 }
@@ -16,6 +16,6 @@ ext01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
-ext01 Layout
+\code{ext01} Layout
 }
 \keyword{internal}

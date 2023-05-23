@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet01.R
 \name{aet01_lyt}
 \alias{aet01_lyt}
-\title{aet01 Layout}
+\title{\code{aet01} Layout}
 \usage{
 aet01_lyt(arm_var, lbl_overall, anl_vars, anl_lbls, lbl_vars)
 }
@@ -18,6 +18,6 @@ aet01_lyt(arm_var, lbl_overall, anl_vars, anl_lbls, lbl_vars)
 \item{lbl_vars}{Named (\code{list}) of analysis labels.}
 }
 \description{
-aet01 Layout
+\code{aet01} Layout
 }
 \keyword{internal}

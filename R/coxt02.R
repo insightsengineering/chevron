@@ -24,7 +24,7 @@
 #'  * Keep zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
 #' @note
-#'   * `adam_db` object must contain an `adtte` table with with `"PARAMCD"`, `"ARM"`,
+#'   * `adam_db` object must contain an `adtte` table with `"PARAMCD"`, `"ARM"`,
 #'   `"AVAL"`, `"CNSR`, and the columns specified by `"covariates"` which is denoted as
 #'   `c("SEX", "RACE", "AAGE")` by default.
 #'
@@ -51,6 +51,7 @@ coxt02_main <- function(adam_db,
   assert_valid_variable(adam_db$adtte, time_var, types = list("numeric"), lower = 0)
   assert_single_value(adam_db$adtte$PARAMCD)
   control <- execute_with_args(control_coxreg, ...)
+
   variables <- list(
     time = time_var,
     event = event_var,
@@ -70,7 +71,7 @@ coxt02_main <- function(adam_db,
   tbl
 }
 
-#' coxt02 Layout
+#' `coxt02` Layout
 #'
 #' @inheritParams gen_args
 #' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
@@ -98,6 +99,7 @@ coxt02_lyt <- function(variables,
 coxt02_pre <- function(adam_db, ...) {
   adam_db$adtte <- adam_db$adtte %>%
     mutate(EVENT = 1 - .data$CNSR)
+
   adam_db
 }
 

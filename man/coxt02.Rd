@@ -79,7 +79,7 @@ with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adtte} table with with \code{"PARAMCD"}, \code{"ARM"},
+\item \code{adam_db} object must contain an \code{adtte} table with \code{"PARAMCD"}, \code{"ARM"},
 \code{"AVAL"}, \verb{"CNSR}, and the columns specified by \code{"covariates"} which is denoted as
 \code{c("SEX", "RACE", "AAGE")} by default.
 }

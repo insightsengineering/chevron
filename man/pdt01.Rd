@@ -3,7 +3,6 @@
 \docType{data}
 \name{pdt01_main}
 \alias{pdt01_main}
-\alias{pdt01_lyt}
 \alias{pdt01_pre}
 \alias{pdt01_post}
 \alias{pdt01}
@@ -19,15 +18,6 @@ pdt01_main(
   dvterm_var = "DVTERM",
   lbl_overall = NULL,
   ...
-)
-
-pdt01_lyt(
-  arm_var,
-  lbl_overall,
-  dvcode_var,
-  lbl_dvcode_var,
-  dvterm_var,
-  lbl_dvterm_var
 )
 
 pdt01_pre(adam_db, ...)
@@ -55,10 +45,6 @@ pdt01
 
 \item{...}{not used.}
 
-\item{lbl_dvcode_var}{(\code{string}) label for the variable defining the protocol deviation coded term.}
-
-\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
@@ -83,8 +69,6 @@ the specific medication.
 \itemize{
 \item \code{pdt01_main()}: Main TLG function
 
-\item \code{pdt01_lyt()}: Layout
-
 \item \code{pdt01_pre()}: Preprocessing
 
 \item \code{pdt01_post()}: Postprocessing
@@ -106,4 +90,3 @@ proc_data$addv <- proc_data$addv \%>\%
 run(pdt01, proc_data)
 }
 \keyword{datasets}
-\keyword{internal}

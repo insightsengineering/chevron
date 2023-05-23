@@ -7,6 +7,7 @@ test_that("ael01_nollt works with admh dataset", {
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
+
 test_that("ael01_nollt works with non-default label", {
   proc_data <- syn_data
   attr(proc_data$adae$AETERM, "label") <- "Investigator-Specified\n Adverse Event Term"

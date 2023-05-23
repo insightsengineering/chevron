@@ -14,6 +14,20 @@ test_that("lbt14 functions with default argument value return expected result wi
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
+test_that("lbt14 functions with `gr_missing = excl` return expected result with test data", {
+  pre_data <- lbt14_pre(syn_data, gr_missing = "excl")
+  raw_res <- lbt14_main(pre_data)
+  res <- lbt14_post(raw_res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+})
+
+test_that("lbt14 functions with `gr_missing = gr_0` return expected result with test data", {
+  pre_data <- lbt14_pre(syn_data, gr_missing = "gr_0")
+  raw_res <- lbt14_main(pre_data)
+  res <- lbt14_post(raw_res)
+  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+})
+
 # lbt14 ----
 test_that("lbt14 can handle all NA values", {
   proc_data <- syn_data
@@ -47,10 +61,9 @@ test_that("lbt14 can handle some NA values", {
 })
 
 test_that("lbt14 can accept different gr_missing", {
-  proc_data <- syn_data
-  res1 <- run(lbt14, proc_data, gr_missing = "incl")
-  res2 <- run(lbt14, proc_data, gr_missing = "excl")
-  res3 <- run(lbt14, proc_data, gr_missing = "gr_0")
+  res1 <- run(lbt14, syn_data, gr_missing = "incl")
+  res2 <- run(lbt14, syn_data, gr_missing = "excl")
+  res3 <- run(lbt14, syn_data, gr_missing = "gr_0")
   expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
   expect_snapshot(cat(formatters::export_as_txt(res2, lpp = 100)))
   expect_snapshot(cat(formatters::export_as_txt(res3, lpp = 100)))

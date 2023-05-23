@@ -47,7 +47,7 @@ ext01_main <- function(adam_db,
   tbl
 }
 
-#' ext01 Layout
+#' `ext01` Layout
 #'
 #' @inheritParams gen_args
 #'

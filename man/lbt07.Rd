@@ -3,7 +3,6 @@
 \docType{data}
 \name{lbt07_main}
 \alias{lbt07_main}
-\alias{lbt07_lyt}
 \alias{lbt07_pre}
 \alias{lbt07_post}
 \alias{lbt07}
@@ -20,17 +19,6 @@ lbt07_main(
   grad_dir_var = "GRADE_DIR",
   grad_anl_var = "GRADE_ANL",
   ...
-)
-
-lbt07_lyt(
-  arm_var,
-  param_var,
-  grad_dir_var,
-  grad_anl_var,
-  lbl_param_var,
-  lbl_grad_dir_var,
-  lbl_overall,
-  map
 )
 
 lbt07_pre(adam_db, ...)
@@ -56,12 +44,6 @@ order to obtain the correct denominators when building the layout as it is used 
 
 \item{...}{not used.}
 
-\item{lbl_param_var}{(\code{string}) label of the \code{param_var} variable.}
-
-\item{lbl_grad_dir_var}{(\code{string}) label for the \code{grad_dir_var} variable.}
-
-\item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
@@ -79,8 +61,6 @@ overview of the analysis values and its change from baseline of each respective 
 \itemize{
 \item \code{lbt07_main()}: Main TLG function
 
-\item \code{lbt07_lyt()}: Layout
-
 \item \code{lbt07_pre()}: Preprocessing
 
 \item \code{lbt07_post()}: Postprocessing
@@ -96,4 +76,3 @@ overview of the analysis values and its change from baseline of each respective 
 run(lbt07, syn_data)
 }
 \keyword{datasets}
-\keyword{internal}

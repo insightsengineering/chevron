@@ -57,16 +57,6 @@ test_that("main works as expected", {
   expect_identical(res, aet04_main)
 })
 
-test_that("get_main works as expected", {
-  skip_on_covr()
-  expect_warning(
-    res <- get_main(aet04),
-    "deprecated"
-  )
-  expect_identical(res, aet04_main)
-})
-
-
 test_that("main setter works as expected", {
   func <- function(adam_db, ...) {
     build_table(basic_table(), adam_db)
@@ -94,15 +84,6 @@ test_that("preprocess works as expected", {
   expect_identical(res, aet04_pre)
 })
 
-test_that("get_preprocess works as expected", {
-  skip_on_covr()
-  expect_warning(
-    res <- get_preprocess(aet04),
-    "deprecated"
-  )
-  expect_identical(res, aet04_pre)
-})
-
 test_that("preprocess setter works as expected", {
   func <- function(adam_db, ...) adam_db
   obj <- aet04
@@ -118,22 +99,11 @@ test_that("preprocess sends an error as expected", {
   )
 })
 
-
 # postprocess ----
 
 test_that("postprocess works as expected", {
   res <- postprocess(aet04)
   expect_identical(res, aet04@postprocess)
-})
-
-
-test_that("get_postprocess works as expected", {
-  skip_on_covr()
-  expect_warning(
-    res <- get_postprocess(aet04),
-    "deprecated"
-  )
-  expect_identical(res, aet04_post)
 })
 
 test_that("postprocess setter works as expected", {
@@ -155,15 +125,6 @@ test_that("postprocess sends an error as expected", {
 
 test_that("datasets works as expected", {
   res <- datasets(aet04)
-  expect_identical(res, c("adsl", "adae"))
-})
-
-test_that("get_adam_datasets works as expected", {
-  skip_on_covr()
-  expect_warning(
-    res <- get_adam_datasets(aet04),
-    "deprecated"
-  )
   expect_identical(res, c("adsl", "adae"))
 })
 
@@ -204,4 +165,26 @@ test_that("script_funs works as expected", {
 test_that("script_funs works as expected with details set to TRUE", {
   res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls", details = TRUE))
   checkmate::expect_character(res)
+})
+
+
+test_that("script_funs generates a valid script", {
+  tmp <- tempfile()
+
+  args_list <- list(
+    arm_var = "ARM"
+  )
+
+  res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = FALSE)
+  writeLines(res_fun, tmp)
+  source(tmp, local = TRUE)
+
+  expected <- run(aet04, syn_data, arm_var = "ARM")
+  expect_identical(tlg_output, expected)
+
+  res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = TRUE)
+  writeLines(res_fun, tmp)
+  source(tmp, local = TRUE)
+
+  expect_identical(tlg_output, expected)
 })

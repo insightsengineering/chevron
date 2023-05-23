@@ -34,7 +34,7 @@ Commonly used arguments include \code{col}, \code{pval_method}, \code{ties}, \co
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
-a list of \code{ggplot} objects.
+a \code{gTree} object.
 }
 \description{
 \code{KMG01} Kaplan-Meier Plot 1.

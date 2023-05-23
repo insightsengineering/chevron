@@ -2,7 +2,7 @@
 % Please edit documentation in R/cmt01a.R
 \name{cmt01a_lyt}
 \alias{cmt01a_lyt}
-\title{cmt01a Layout}
+\title{\code{cmt01a} Layout}
 \usage{
 cmt01a_lyt(
   arm_var,
@@ -28,6 +28,6 @@ cmt01a_lyt(
 \item{lbl_medname_var}{(\code{string}) label for the variable defining the medication name.}
 }
 \description{
-cmt01a Layout
+\code{cmt01a} Layout
 }
 \keyword{internal}
