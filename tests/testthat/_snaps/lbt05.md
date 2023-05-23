@@ -42,21 +42,21 @@
         Laboratory Test                            A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality                (N=134)     (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————————————————
-        Alanine Aminotransferase Measurement (n)      129         128            127      
+        Alanine Aminotransferase Measurement (n)      119         122            111      
           Low                                                                             
-            Any Abnormality                        5 (3.9%)    13 (10.2%)      5 (3.9%)   
+            Any Abnormality                        3 (2.5%)     9 (7.4%)       2 (1.8%)   
           High                                                                            
-            Any Abnormality                        9 (7.0%)    12 (9.4%)       7 (5.5%)   
-        C-Reactive Protein Measurement (n)            128         123            123      
+            Any Abnormality                        6 (5.0%)     9 (7.4%)       5 (4.5%)   
+        C-Reactive Protein Measurement (n)            124         114            114      
           Low                                                                             
-            Any Abnormality                        12 (9.4%)    7 (5.7%)       7 (5.7%)   
+            Any Abnormality                        6 (4.8%)     6 (5.3%)       5 (4.4%)   
           High                                                                            
-            Any Abnormality                        11 (8.6%)   11 (8.9%)      13 (10.6%)  
-        Immunoglobulin A Measurement (n)              126         125            119      
+            Any Abnormality                        7 (5.6%)     6 (5.3%)       7 (6.1%)   
+        Immunoglobulin A Measurement (n)              112         116            113      
           Low                                                                             
-            Any Abnormality                        7 (5.6%)     9 (7.2%)      11 (9.2%)   
+            Any Abnormality                        5 (4.5%)     6 (5.2%)       6 (5.3%)   
           High                                                                            
-            Any Abnormality                        4 (3.2%)     9 (7.2%)       6 (5.0%)   
+            Any Abnormality                        2 (1.8%)     6 (5.2%)       5 (4.4%)   
 
 # lbt05 can handle some NA values
 
