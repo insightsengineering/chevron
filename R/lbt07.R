@@ -142,7 +142,7 @@ lbt07_pre <- function(adam_db, ...) {
         levels = c("LOW", "ZERO", "HIGH", "NONE")
       ),
       GRADE_ANL = factor(.data$ATOXGR, levels = c(-4:4), labels = abs(c(-4:4))),
-      PARAM = as.factor(.data$PARAM)
+      PARAM = as.factor(trimws(stringr::str_remove_all(.data$PARAM, "\\(.+?\\)")))
     )
 
   adam_db$adlb <- adam_db$adlb %>%
