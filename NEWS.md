@@ -1,4 +1,4 @@
-# chevron 0.1.4.9017
+# chevron 0.1.4.9018
 
 * Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument. 
 * Remove variants in template names.
