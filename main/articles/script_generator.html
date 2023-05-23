@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9015</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9016</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,17 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -337,115 +326,116 @@ processing functions are also exposed.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_fun</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Functions.</span></span>
 <span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
-<span><span class="co">#&gt; pre_fun &lt;- {</span></span>
-<span><span class="co">#&gt; pre_fun &lt;-     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt; pre_fun &lt;-         "Y")</span></span>
-<span><span class="co">#&gt; pre_fun &lt;-     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
-<span><span class="co">#&gt; pre_fun &lt;- }</span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
+<span><span class="co">#&gt;         "Y")</span></span>
+<span><span class="co">#&gt;     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
+<span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; main_fun &lt;- function (adam_db, dataset = "adlb", x_var = "AVISIT", y_var = "AVAL", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-     y_name = "PARAM", y_unit = NULL, arm_var = "ACTARM", center_fun = "mean", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-     interval_fun = "mean_ci", show_table = TRUE, jitter = TRUE, </span></span>
-<span><span class="co">#&gt; main_fun &lt;-     show_n = TRUE, show_h_grid = TRUE, show_v_grid = FALSE, legend_pos = "top", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-     line_col = nestcolor::color_palette(), ...) </span></span>
-<span><span class="co">#&gt; main_fun &lt;- {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_all_tablenames(adam_db, c(dataset, "adsl"))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_character(x_var)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_string(y_var)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_string(y_name)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_string(y_unit, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_string(arm_var)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_string(center_fun)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_string(interval_fun)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_names(center_fun, subset.of = c("mean", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "median"))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_choice(interval_fun, c("mean_ci", "mean_sei", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "mean_sdi", "median_ci", "quantiles", "range"))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_flag(show_table)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_flag(jitter)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_flag(show_n)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_flag(show_h_grid)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_flag(show_v_grid)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_choice(legend_pos, c("top", "bottom", "right", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "left"))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     checkmate::assert_character(line_col, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_valid_variable(adam_db[[dataset]], x_var)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "factor")))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_valid_variable(adam_db[[dataset]], arm_var, types = list(c("character", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "factor")), na_ok = FALSE)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         types = list(c("character", "factor")))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "factor")), empty_ok = TRUE)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     df &lt;- adam_db[[dataset]]</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     line_col &lt;- unlist(line_col)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     data_ls &lt;- split(df, df$PARAM, drop = TRUE)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     x_var &lt;- paste(x_var, collapse = "_")</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     interval_title &lt;- switch(interval_fun, mean_ci = "95% Confidence Intervals", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         mean_sei = "Standard Error", mean_sdi = "Standard Deviation", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         median_ci = "95% Confidence Intervals", quantiles = "Interquatile Range", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         range = "Min-Max Range")</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     title &lt;- paste0("Plot of ", center_fun, " and ", interval_title, </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         " by ", var_labels_for(df, x_var))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     whiskers_fun &lt;- switch(interval_fun, mean_ci = c("mean_ci_lwr", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "mean_ci_upr"), mean_sei = c("mean_sei_lwr", "mean_sei_upr"), </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         mean_sdi = c("mean_sdi_lwr", "mean_sdi_upr"), median_ci = c("median_ci_lwr", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-             "median_ci_upr"), quantiles = c("quantiles_0.25", </span></span>
-<span><span class="co">#&gt; main_fun &lt;-             "quantile_0.75"), range = c("min", "max"))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     y_unit &lt;- if (is.null(y_unit)) </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         NA</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     else y_unit</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     variables &lt;- c(x = x_var, y = y_var, strata = arm_var, paramcd = y_name, </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         y_unit = y_unit)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     n_func &lt;- if (show_n) </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         "n"</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     else NULL</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     table &lt;- if (show_table) </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         c(n_func, center_fun, interval_fun)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     else NULL</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     ggtheme &lt;- ggplot2::theme_bw() + ggplot2::theme(legend.position = legend_pos) + </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         ggplot2::theme(axis.title.x = ggplot2::element_blank())</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     ggtheme &lt;- if (!show_v_grid) {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     }</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     else {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     }</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     ggtheme &lt;- if (!show_h_grid) {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         ggtheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_blank(), </span></span>
-<span><span class="co">#&gt; main_fun &lt;-             panel.grid.major.y = ggplot2::element_blank())</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     }</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     else {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         ggtheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_line(linewidth = 1), </span></span>
-<span><span class="co">#&gt; main_fun &lt;-             panel.grid.major.y = ggplot2::element_line(linewidth = 1))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     }</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     if (!is.null(names(line_col))) {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         color_lvl &lt;- sort(unique(df[[arm_var]]))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         col &lt;- line_col[as.character(color_lvl)]</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         if (anyNA(col)) {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-             missing_col &lt;- setdiff(color_lvl, names(col))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-             stop(paste("Missing color matching for", toString(missing_col)))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         }</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         col &lt;- unname(col)</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     }</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     else {</span></span>
-<span><span class="co">#&gt; main_fun &lt;-         col &lt;- line_col</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     }</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     ret &lt;- lapply(data_ls, tern::g_lineplot, alt_count = adam_db[["adsl"]], </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         variables = variables, mid = center_fun, interval = interval_fun, </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         whiskers = whiskers_fun, position = ggplot2::position_dodge(width = ifelse(jitter, </span></span>
-<span><span class="co">#&gt; main_fun &lt;-             0.3, 0)), title = title, table = table, ggtheme = ggtheme, </span></span>
-<span><span class="co">#&gt; main_fun &lt;-         col = col, subtitle_add_unit = !is.na(y_unit))</span></span>
-<span><span class="co">#&gt; main_fun &lt;-     do.call(gg_list, ret)</span></span>
-<span><span class="co">#&gt; main_fun &lt;- }</span></span>
+<span><span class="co">#&gt; main_fun &lt;- function (adam_db, dataset = "adlb", x_var = "AVISIT", </span></span>
+<span><span class="co">#&gt;     y_var = "AVAL", y_name = "PARAM", y_unit = NULL, arm_var = "ACTARM", </span></span>
+<span><span class="co">#&gt;     center_fun = "mean", interval_fun = "mean_ci", show_table = TRUE, </span></span>
+<span><span class="co">#&gt;     jitter = TRUE, show_n = TRUE, show_h_grid = TRUE, show_v_grid = FALSE, </span></span>
+<span><span class="co">#&gt;     legend_pos = "top", line_col = nestcolor::color_palette(), </span></span>
+<span><span class="co">#&gt;     ...) </span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     assert_all_tablenames(adam_db, c(dataset, "adsl"))</span></span>
+<span><span class="co">#&gt;     checkmate::assert_character(x_var)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(y_var)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(y_name)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(y_unit, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(arm_var)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(center_fun)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(interval_fun)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_names(center_fun, subset.of = c("mean", </span></span>
+<span><span class="co">#&gt;         "median"))</span></span>
+<span><span class="co">#&gt;     checkmate::assert_choice(interval_fun, c("mean_ci", "mean_sei", </span></span>
+<span><span class="co">#&gt;         "mean_sdi", "median_ci", "quantiles", "range"))</span></span>
+<span><span class="co">#&gt;     checkmate::assert_flag(show_table)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_flag(jitter)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_flag(show_n)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_flag(show_h_grid)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_flag(show_v_grid)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_choice(legend_pos, c("top", "bottom", "right", </span></span>
+<span><span class="co">#&gt;         "left"))</span></span>
+<span><span class="co">#&gt;     checkmate::assert_character(line_col, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], x_var)</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", </span></span>
+<span><span class="co">#&gt;         "factor")))</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], arm_var, types = list(c("character", </span></span>
+<span><span class="co">#&gt;         "factor")), na_ok = FALSE)</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), </span></span>
+<span><span class="co">#&gt;         types = list(c("character", "factor")))</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", </span></span>
+<span><span class="co">#&gt;         "factor")), empty_ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)</span></span>
+<span><span class="co">#&gt;     df &lt;- adam_db[[dataset]]</span></span>
+<span><span class="co">#&gt;     line_col &lt;- unlist(line_col)</span></span>
+<span><span class="co">#&gt;     data_ls &lt;- split(df, df$PARAM, drop = TRUE)</span></span>
+<span><span class="co">#&gt;     x_var &lt;- paste(x_var, collapse = "_")</span></span>
+<span><span class="co">#&gt;     interval_title &lt;- switch(interval_fun, mean_ci = "95% Confidence Intervals", </span></span>
+<span><span class="co">#&gt;         mean_sei = "Standard Error", mean_sdi = "Standard Deviation", </span></span>
+<span><span class="co">#&gt;         median_ci = "95% Confidence Intervals", quantiles = "Interquatile Range", </span></span>
+<span><span class="co">#&gt;         range = "Min-Max Range")</span></span>
+<span><span class="co">#&gt;     title &lt;- paste0("Plot of ", center_fun, " and ", interval_title, </span></span>
+<span><span class="co">#&gt;         " by ", var_labels_for(df, x_var))</span></span>
+<span><span class="co">#&gt;     whiskers_fun &lt;- switch(interval_fun, mean_ci = c("mean_ci_lwr", </span></span>
+<span><span class="co">#&gt;         "mean_ci_upr"), mean_sei = c("mean_sei_lwr", "mean_sei_upr"), </span></span>
+<span><span class="co">#&gt;         mean_sdi = c("mean_sdi_lwr", "mean_sdi_upr"), median_ci = c("median_ci_lwr", </span></span>
+<span><span class="co">#&gt;             "median_ci_upr"), quantiles = c("quantiles_0.25", </span></span>
+<span><span class="co">#&gt;             "quantile_0.75"), range = c("min", "max"))</span></span>
+<span><span class="co">#&gt;     y_unit &lt;- if (is.null(y_unit)) </span></span>
+<span><span class="co">#&gt;         NA</span></span>
+<span><span class="co">#&gt;     else y_unit</span></span>
+<span><span class="co">#&gt;     variables &lt;- c(x = x_var, y = y_var, strata = arm_var, paramcd = y_name, </span></span>
+<span><span class="co">#&gt;         y_unit = y_unit)</span></span>
+<span><span class="co">#&gt;     n_func &lt;- if (show_n) </span></span>
+<span><span class="co">#&gt;         "n"</span></span>
+<span><span class="co">#&gt;     else NULL</span></span>
+<span><span class="co">#&gt;     table &lt;- if (show_table) </span></span>
+<span><span class="co">#&gt;         c(n_func, center_fun, interval_fun)</span></span>
+<span><span class="co">#&gt;     else NULL</span></span>
+<span><span class="co">#&gt;     ggtheme &lt;- ggplot2::theme_bw() + ggplot2::theme(legend.position = legend_pos) + </span></span>
+<span><span class="co">#&gt;         ggplot2::theme(axis.title.x = ggplot2::element_blank())</span></span>
+<span><span class="co">#&gt;     ggtheme &lt;- if (!show_v_grid) {</span></span>
+<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     ggtheme &lt;- if (!show_h_grid) {</span></span>
+<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_blank(), </span></span>
+<span><span class="co">#&gt;             panel.grid.major.y = ggplot2::element_blank())</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_line(linewidth = 1), </span></span>
+<span><span class="co">#&gt;             panel.grid.major.y = ggplot2::element_line(linewidth = 1))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     if (!is.null(names(line_col))) {</span></span>
+<span><span class="co">#&gt;         color_lvl &lt;- sort(unique(df[[arm_var]]))</span></span>
+<span><span class="co">#&gt;         col &lt;- line_col[as.character(color_lvl)]</span></span>
+<span><span class="co">#&gt;         if (anyNA(col)) {</span></span>
+<span><span class="co">#&gt;             missing_col &lt;- setdiff(color_lvl, names(col))</span></span>
+<span><span class="co">#&gt;             stop(paste("Missing color matching for", toString(missing_col)))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         col &lt;- unname(col)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         col &lt;- line_col</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     ret &lt;- lapply(data_ls, tern::g_lineplot, alt_count = adam_db[["adsl"]], </span></span>
+<span><span class="co">#&gt;         variables = variables, mid = center_fun, interval = interval_fun, </span></span>
+<span><span class="co">#&gt;         whiskers = whiskers_fun, position = ggplot2::position_dodge(width = ifelse(jitter, </span></span>
+<span><span class="co">#&gt;             0.3, 0)), title = title, table = table, ggtheme = ggtheme, </span></span>
+<span><span class="co">#&gt;         col = col, subtitle_add_unit = !is.na(y_unit))</span></span>
+<span><span class="co">#&gt;     do.call(gg_list, ret)</span></span>
+<span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; post_fun &lt;- function (tlg, ...) </span></span>
-<span><span class="co">#&gt; post_fun &lt;- {</span></span>
-<span><span class="co">#&gt; post_fun &lt;-     tlg</span></span>
-<span><span class="co">#&gt; post_fun &lt;- }</span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     tlg</span></span>
+<span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Create TLG</span></span>
 <span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) %&gt;% </span></span>
