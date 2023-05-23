@@ -11,17 +11,17 @@
 #' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
 #'  or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default
 #' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
-#' @param pval_method (string) p-value method for testing hazard ratio = 1.
+#' @param pval_method (`string`) p-value method for testing hazard ratio = 1.
 #' Default method is "log-rank", can also be set to "wald" or "likelihood".
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
 #' @param conf_type (`string`) confidence interval type. Options are "plain" (default), "log", "log-log",
 #'  see more in survival::survfit(). Note option "none" is no longer supported.
 #' @param quantiles (`numeric`) of length two to specify the quantiles of survival time.
-#' @param ties string) specifying the method for tie handling. Default is "efron",
+#' @param ties (`string`) specifying the method for tie handling. Default is "efron",
 #'  can also be set to "breslow" or "exact". see more in survival::coxph()
-#' @param timepoint (number) survival time point of interest.
-#' @param method (string) either surv (survival estimations),
-#'  surv_diff (difference in survival with the control) or both.
+#' @param timepoint (`numeric`) survival time point of interest.
+#' @param method (`string`) either "surv" (survival estimations),
+#'  "surv_diff" (difference in survival with the control) or "both".
 #'
 #'
 #' @details
@@ -36,7 +36,7 @@ ttet01_main <- function(adam_db,
                         arm_var = "ARM",
                         ref_group = NULL,
                         summarize_event = TRUE,
-                        perform_analysis = c("unstrat"),
+                        perform_analysis = "unstrat",
                         strata = NULL,
                         pval_method = "log-rank",
                         conf_level = 0.95,
@@ -47,9 +47,21 @@ ttet01_main <- function(adam_db,
                         method = "both",
                         ...) {
   anl <- adam_db[[dataset]]
-  assert_colnames(anl, c(arm_var, strata, "AVAL", "AVALU", "PARAMCD", "IS_EVENT", "IS_NOT_EVENT", "EVNT1", "EVNTDESC"))
+  assert_colnames(anl, c(arm_var, strata, "AVAL", "AVALU", "PARAMCD", "IS_EVENT", "IS_NOT_EVENT", "EVNT1", "CNSR", "EVNTDESC"))
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   checkmate::assert_string(ref_group, null.ok = TRUE)
+  df_label <- sprintf("adam_db$%s", dataset)
+  assert_valid_variable(adam_db[[dataset]], "IS_EVENT", types = list("logical"), label = df_label)
+  assert_valid_variable(adam_db[[dataset]], "IS_NOT_EVENT", types = list("logical"), label = df_label)
+  assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
+  assert_valid_variable(
+    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1"),
+    types = list(c("character", "factor")), label = df_label
+  )
+  assert_valid_variable(
+    adam_db[[dataset]], c("USUBJID", arm_var, "EVNTDESC"),
+    types = list(c("character", "factor")), label = df_label
+  )
   checkmate::assert_flag(summarize_event)
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
   checkmate::assert_character(
@@ -58,8 +70,7 @@ ttet01_main <- function(adam_db,
     min.len = as.integer(!"strat" %in% perform_analysis)
   )
 
-  arm_level <- lvls(anl[[arm_var]])
-  ref_group <- ifelse(is.null(ref_group), as.character(arm_level[1]), ref_group)
+  ref_group <- ref_group %||% lvls(anl[[arm_var]])[1]
 
   timeunit <- unique(anl[["AVALU"]])
 
@@ -84,12 +95,11 @@ ttet01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn ttet01 Layout
+#' ttet01 Layout
 #'
 #' @inheritParams gen_args
 #' @param timeunit (string) time unit get from AVALU, by default is "Months"
 #'
-#' @export
 #'
 ttet01_lyt <- function(arm_var,
                        ref_group,
@@ -124,7 +134,7 @@ ttet01_lyt <- function(arm_var,
         child_labels = "hidden",
         indent_mod = 1L,
       ) %>%
-      summarize_vars("EVNTDESC", split_fun = drop_split_levels)
+      summarize_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count_fraction")
   }
 
   lyt01 <- lyt01 %>%
@@ -190,8 +200,6 @@ ttet01_lyt <- function(arm_var,
 #' ttet01_pre(syn_data)
 ttet01_pre <- function(adam_db, arm_var = "ARM", dataset = "adtte",
                        ...) {
-  assert_all_tablenames(adam_db, c("adsl", dataset))
-  assert_colnames(adam_db[[dataset]], c(arm_var, "CNSR", "EVNTDESC"))
 
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
@@ -202,7 +210,7 @@ ttet01_pre <- function(adam_db, arm_var = "ARM", dataset = "adtte",
       EVNT1 = factor(
         case_when(
           IS_EVENT == TRUE ~ "Patients with event (%)",
-          IS_NOT_EVENT == FALSE ~ "Patients without event (%)"
+          IS_EVENT == FALSE ~ "Patients without event (%)"
         ),
         levels = c("Patients with event (%)", "Patients without event (%)")
       ),
@@ -218,7 +226,10 @@ ttet01_pre <- function(adam_db, arm_var = "ARM", dataset = "adtte",
 #'
 #'
 #' @export
-ttet01_post <- function(tlg, ...) {
+ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
   std_postprocess(tlg)
 }
 

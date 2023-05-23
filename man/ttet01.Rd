@@ -3,7 +3,6 @@
 \docType{data}
 \name{ttet01_main}
 \alias{ttet01_main}
-\alias{ttet01_lyt}
 \alias{ttet01_pre}
 \alias{ttet01_post}
 \alias{ttet01}
@@ -18,7 +17,7 @@ ttet01_main(
   arm_var = "ARM",
   ref_group = NULL,
   summarize_event = TRUE,
-  perform_analysis = c("unstrat"),
+  perform_analysis = "unstrat",
   strata = NULL,
   pval_method = "log-rank",
   conf_level = 0.95,
@@ -30,25 +29,9 @@ ttet01_main(
   ...
 )
 
-ttet01_lyt(
-  arm_var,
-  ref_group,
-  summarize_event,
-  perform_analysis,
-  strata,
-  pval_method,
-  conf_level,
-  conf_type,
-  quantiles,
-  ties,
-  timeunit,
-  timepoint,
-  method
-)
-
 ttet01_pre(adam_db, arm_var = "ARM", dataset = "adtte", ...)
 
-ttet01_post(tlg, ...)
+ttet01_post(tlg, prune_0 = TRUE, ...)
 
 ttet01
 }
@@ -70,7 +53,7 @@ or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified
 
 \item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
 
-\item{pval_method}{(string) p-value method for testing hazard ratio = 1.
+\item{pval_method}{(\code{string}) p-value method for testing hazard ratio = 1.
 Default method is "log-rank", can also be set to "wald" or "likelihood".}
 
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
@@ -80,19 +63,19 @@ see more in survival::survfit(). Note option "none" is no longer supported.}
 
 \item{quantiles}{(\code{numeric}) of length two to specify the quantiles of survival time.}
 
-\item{ties}{string) specifying the method for tie handling. Default is "efron",
+\item{ties}{(\code{string}) specifying the method for tie handling. Default is "efron",
 can also be set to "breslow" or "exact". see more in survival::coxph()}
 
-\item{timepoint}{(number) survival time point of interest.}
+\item{timepoint}{(\code{numeric}) survival time point of interest.}
 
-\item{method}{(string) either surv (survival estimations),
-surv_diff (difference in survival with the control) or both.}
+\item{method}{(\code{string}) either "surv" (survival estimations),
+"surv_diff" (difference in survival with the control) or "both".}
 
 \item{...}{not used.}
 
-\item{timeunit}{(string) time unit get from AVALU, by default is "Months"}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 TTET01 template may be used to summarize any binary outcome or response variable at
@@ -106,8 +89,6 @@ a single time point. Typical application for oncology
 \section{Functions}{
 \itemize{
 \item \code{ttet01_main()}: Main TLG function
-
-\item \code{ttet01_lyt()}: Layout
 
 \item \code{ttet01_pre()}: Preprocessing
 
