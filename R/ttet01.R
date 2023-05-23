@@ -47,13 +47,10 @@ ttet01_main <- function(adam_db,
                         method = "both",
                         ...) {
   anl <- adam_db[[dataset]]
-  assert_colnames(anl, c(
-    arm_var, strata, "AVAL", "AVALU", "PARAMCD", "IS_EVENT",
-    "IS_NOT_EVENT", "EVNT1", "CNSR", "EVNTDESC"
-  ))
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   checkmate::assert_string(ref_group, null.ok = TRUE)
   df_label <- sprintf("adam_db$%s", dataset)
+  assert_valid_variable(adam_db[[dataset]], "AVALU", types = list("character"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "IS_EVENT", types = list("logical"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "IS_NOT_EVENT", types = list("logical"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
