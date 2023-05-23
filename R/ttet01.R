@@ -200,7 +200,6 @@ ttet01_lyt <- function(arm_var,
 #' ttet01_pre(syn_data)
 ttet01_pre <- function(adam_db, arm_var = "ARM", dataset = "adtte",
                        ...) {
-
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       AVAL = day2month(AVAL),

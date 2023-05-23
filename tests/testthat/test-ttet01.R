@@ -8,14 +8,14 @@ test_that("ttet01 works as expected", {
 test_that("ttet01 works as expected for stratified and unstratified analysis", {
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "PFS", "adtte")
   res <- expect_silent(run(ttet01, filter_data,
-                           summarize_event = FALSE,
-                           perform_analysis = "unstrat"
+    summarize_event = FALSE,
+    perform_analysis = "unstrat"
   ))
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
   res <- expect_silent(run(ttet01, filter_data,
-                           summarize_event = TRUE,
-                           perform_analysis = c("strat", "unstrat"),
-                           strata = c("STRATA1", "STRATA2")
+    summarize_event = TRUE,
+    perform_analysis = c("strat", "unstrat"),
+    strata = c("STRATA1", "STRATA2")
   ))
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
@@ -23,13 +23,13 @@ test_that("ttet01 works as expected for stratified and unstratified analysis", {
 test_that("rspt01 works as expected for stratified analysis only", {
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(ttet01, filter_data,
-                           summarize_event = FALSE,
-                           perform_analysis = "strat"
+    summarize_event = FALSE,
+    perform_analysis = "strat"
   ))
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
   res <- expect_silent(run(ttet01, filter_data,
-                           summarize_event = TRUE,
-                           perform_analysis = "strat"
+    summarize_event = TRUE,
+    perform_analysis = "strat"
   ))
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
@@ -37,15 +37,15 @@ test_that("rspt01 works as expected for stratified analysis only", {
 test_that("rspt01 works if change reference group", {
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(ttet01, filter_data,
-                           summarize_event = FALSE,
-                           ref_group = "B: Placebo",
-                           perform_analysis = "unstrat"
+    summarize_event = FALSE,
+    ref_group = "B: Placebo",
+    perform_analysis = "unstrat"
   ))
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
   res <- expect_silent(run(ttet01, filter_data,
-                           summarize_event = TRUE,
-                           ref_group = "B: Placebo",
-                           perform_analysis = c("strat", "unstrat")
+    summarize_event = TRUE,
+    ref_group = "B: Placebo",
+    perform_analysis = c("strat", "unstrat")
   ))
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
