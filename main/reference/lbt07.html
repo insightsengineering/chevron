@@ -12,7 +12,7 @@ overview of the analysis values and its change from baseline of each respective 
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9013</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9015</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,17 +32,6 @@ overview of the analysis values and its change from baseline of each respective 
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -88,17 +77,6 @@ overview of the analysis values and its change from baseline of each respective 
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">lbt07_lyt</span><span class="op">(</span></span>
-<span>  <span class="va">arm_var</span>,</span>
-<span>  <span class="va">param_var</span>,</span>
-<span>  <span class="va">grad_dir_var</span>,</span>
-<span>  <span class="va">grad_anl_var</span>,</span>
-<span>  <span class="va">lbl_param_var</span>,</span>
-<span>  <span class="va">lbl_grad_dir_var</span>,</span>
-<span>  <span class="va">lbl_overall</span>,</span>
-<span>  <span class="va">map</span></span>
-<span><span class="op">)</span></span>
-<span></span>
 <span><span class="fu">lbt07_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">lbt07_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -142,18 +120,6 @@ order to obtain the correct denominators when building the layout as it is used 
 <dd><p>not used.</p></dd>
 
 
-<dt>lbl_param_var</dt>
-<dd><p>(<code>string</code>) label of the <code>param_var</code> variable.</p></dd>
-
-
-<dt>lbl_grad_dir_var</dt>
-<dd><p>(<code>string</code>) label for the <code>grad_dir_var</code> variable.</p></dd>
-
-
-<dt>map</dt>
-<dd><p>(<code>data.frame</code>) mapping of <code>PARAM</code>s to directions of abnormality.</p></dd>
-
-
 <dt>tlg</dt>
 <dd><p>(<code>TableTree</code>, <code>Listing</code> or <code>ggplot</code>) object typically produced by a <code>main</code> function.</p></dd>
 
@@ -171,7 +137,6 @@ order to obtain the correct denominators when building the layout as it is used 
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
     
 <ul><li><p><code>lbt07_main()</code>: Main TLG function</p></li>
-<li><p><code>lbt07_lyt()</code>: Layout</p></li>
 <li><p><code>lbt07_pre()</code>: Preprocessing</p></li>
 <li><p><code>lbt07_post()</code>: Postprocessing</p></li>
 </ul></div>
@@ -189,19 +154,19 @@ order to obtain the correct denominators when building the layout as it is used 
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Direction of Abnormality                 A: Drug X    B: Placebo   C: Combination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Highest NCI CTCAE Grade         (N=134)      (N=134)        (N=132)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Alanine Aminotransferase Measurement (n)      134          133            132      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Alanine Aminotransferase Measurement (n)      134          134            132      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              14 (10.4%)   15 (11.3%)     10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              13 (9.7%)    18 (13.5%)     11 (8.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              14 (10.4%)   15 (11.2%)     10 (7.6%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              13 (9.7%)    18 (13.4%)     11 (8.3%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               3                              20 (14.9%)   12 (9.0%)      10 (7.6%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               4                               7 (5.2%)     8 (6.0%)      10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            54 (40.3%)   53 (39.8%)     41 (31.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            54 (40.3%)   53 (39.6%)     41 (31.1%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              18 (13.4%)   16 (12.0%)     18 (13.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              15 (11.2%)   13 (9.8%)      17 (12.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              10 (7.5%)    16 (12.0%)     13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              12 (9.0%)    11 (8.3%)      13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            55 (41.0%)   56 (42.1%)     61 (46.2%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              18 (13.4%)   16 (11.9%)     18 (13.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              15 (11.2%)   13 (9.7%)      18 (13.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              10 (7.5%)    16 (11.9%)     13 (9.8%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              12 (9.0%)    11 (8.2%)      13 (9.8%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            55 (41.0%)   56 (41.8%)     62 (47.0%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C-Reactive Protein Measurement (n)            134          134            132      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               1                              16 (11.9%)   19 (14.2%)     15 (11.4%)  </span>
@@ -215,19 +180,19 @@ order to obtain the correct denominators when building the layout as it is used 
 <span class="r-out co"><span class="r-pr">#&gt;</span>               3                              16 (11.9%)   12 (9.0%)      14 (10.6%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               4                              12 (9.0%)    12 (9.0%)      10 (7.6%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            60 (44.8%)   55 (41.0%)     46 (34.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Immunoglobulin A Measurement (n)              133          133            132      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Immunoglobulin A Measurement (n)              134          134            132      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              17 (12.8%)   23 (17.3%)     17 (12.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              12 (9.0%)    15 (11.3%)     14 (10.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              15 (11.3%)   11 (8.3%)      14 (10.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              10 (7.5%)    16 (12.0%)     10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            54 (40.6%)   65 (48.9%)     55 (41.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              17 (12.7%)   23 (17.2%)     17 (12.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              12 (9.0%)    15 (11.2%)     14 (10.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              15 (11.2%)   11 (8.2%)      14 (10.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              10 (7.5%)    16 (11.9%)     10 (7.6%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            54 (40.3%)   65 (48.5%)     55 (41.7%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              25 (18.8%)   14 (10.5%)     13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              14 (10.5%)   19 (14.3%)     16 (12.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              12 (9.0%)    12 (9.0%)      17 (12.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              11 (8.3%)    13 (9.8%)       4 (3.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            62 (46.6%)   58 (43.6%)     50 (37.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              25 (18.7%)   14 (10.4%)     13 (9.8%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              14 (10.4%)   20 (14.9%)     16 (12.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              12 (9.0%)    13 (9.7%)      17 (12.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              11 (8.2%)    13 (9.7%)       4 (3.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            62 (46.3%)   60 (44.8%)     50 (37.9%)  </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

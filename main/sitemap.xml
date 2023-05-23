@@ -247,6 +247,9 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt01.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt01_lyt.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt04.html</loc>
   </url>
   <url>
@@ -259,10 +262,22 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt05_lyt.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt06.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt06_lyt.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt07.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt07_lyt.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt14.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt14_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lvls.html</loc>
@@ -272,6 +287,9 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mht01.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/mht01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/missing_rule.html</loc>
@@ -286,7 +304,13 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt01.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt01_lyt.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt02.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt02_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/postprocess.html</loc>
@@ -311,6 +335,9 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/rspt01.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/rspt01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/run.html</loc>
