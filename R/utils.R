@@ -3,12 +3,12 @@ globalVariables(c(".", ":="))
 
 #' Retrieve labels for certain variables
 #'
-#' @param df data frame
-#' @param vars variable names in `df`
+#' @param df (`data.frame`) containing columns with label attribute.
+#' @param vars (`character`) variable names in `df`.
 #'
 #' @export
 var_labels_for <- function(df, vars) {
-  assert_colnames(df, vars)
+  checkmate::assert_names(colnames(df), must.include = vars, what = "colnames")
   unname(formatters::var_labels(df, fill = TRUE)[vars])
 }
 

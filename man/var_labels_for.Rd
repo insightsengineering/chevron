@@ -7,9 +7,9 @@
 var_labels_for(df, vars)
 }
 \arguments{
-\item{df}{data frame}
+\item{df}{(\code{data.frame}) containing columns with label attribute.}
 
-\item{vars}{variable names in \code{df}}
+\item{vars}{(\code{character}) variable names in \code{df}.}
 }
 \description{
 Retrieve labels for certain variables

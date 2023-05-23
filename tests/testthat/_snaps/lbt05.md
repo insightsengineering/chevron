@@ -34,6 +34,30 @@
             Last or replicated                     1 (0.9%)     5 (4.3%)       3 (2.7%)   
             Any Abnormality                        2 (1.8%)     6 (5.2%)       5 (4.4%)   
 
+---
+
+    Code
+      cat(formatters::export_as_txt(res_prune, lpp = 100))
+    Output
+        Laboratory Test                            A: Drug X   B: Placebo   C: Combination
+            Direction of Abnormality                (N=134)     (N=134)        (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————
+        Alanine Aminotransferase Measurement (n)      129         128            127      
+          Low                                                                             
+            Any Abnormality                        5 (3.9%)    13 (10.2%)      5 (3.9%)   
+          High                                                                            
+            Any Abnormality                        9 (7.0%)    12 (9.4%)       7 (5.5%)   
+        C-Reactive Protein Measurement (n)            128         123            123      
+          Low                                                                             
+            Any Abnormality                        12 (9.4%)    7 (5.7%)       7 (5.7%)   
+          High                                                                            
+            Any Abnormality                        11 (8.6%)   11 (8.9%)      13 (10.6%)  
+        Immunoglobulin A Measurement (n)              126         125            119      
+          Low                                                                             
+            Any Abnormality                        7 (5.6%)     9 (7.2%)      11 (9.2%)   
+          High                                                                            
+            Any Abnormality                        4 (3.2%)     9 (7.2%)       6 (5.0%)   
+
 # lbt05 can handle some NA values
 
     Code
