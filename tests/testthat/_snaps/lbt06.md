@@ -1,7 +1,7 @@
 # lbt06 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(formatters::export_as_txt(std_postprocess(res), lpp = 100))
     Output
         Parameter Code                                                                       
           Visit                                                                              
