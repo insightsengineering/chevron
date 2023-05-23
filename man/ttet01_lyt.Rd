@@ -2,7 +2,7 @@
 % Please edit documentation in R/ttet01.R
 \name{ttet01_lyt}
 \alias{ttet01_lyt}
-\title{ttet01 Layout}
+\title{\code{ttet01} Layout}
 \usage{
 ttet01_lyt(
   arm_var,
@@ -26,5 +26,5 @@ ttet01_lyt(
 \item{timeunit}{(string) time unit get from AVALU, by default is "Months"}
 }
 \description{
-ttet01 Layout
+\code{ttet01} Layout
 }
