@@ -46,20 +46,17 @@ ttet01_main <- function(adam_db,
                         timepoint = c(6, 12),
                         method = "both",
                         ...) {
+  checkmate::assert_string(dataset)
+  assert_all_tablenames(adam_db, "adsl", dataset)
   anl <- adam_db[[dataset]]
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   checkmate::assert_string(ref_group, null.ok = TRUE)
   df_label <- sprintf("adam_db$%s", dataset)
   assert_valid_variable(adam_db[[dataset]], "AVALU", types = list("character"), label = df_label)
-  assert_valid_variable(adam_db[[dataset]], "IS_EVENT", types = list("logical"), label = df_label)
-  assert_valid_variable(adam_db[[dataset]], "IS_NOT_EVENT", types = list("logical"), label = df_label)
+  assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
   assert_valid_variable(
-    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1"),
-    types = list(c("character", "factor")), label = df_label
-  )
-  assert_valid_variable(
-    adam_db[[dataset]], c("USUBJID", arm_var, "EVNTDESC"),
+    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC"),
     types = list(c("character", "factor")), label = df_label
   )
   checkmate::assert_flag(summarize_event)
@@ -70,8 +67,10 @@ ttet01_main <- function(adam_db,
     min.len = as.integer(!"strat" %in% perform_analysis)
   )
 
+  checkmate::assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
   ref_group <- ref_group %||% lvls(anl[[arm_var]])[1]
 
+  assert_single_value(anl$AVALU, label = sprintf("adam_db$%s$AVALU", dataset))
   timeunit <- unique(anl[["AVALU"]])
 
   lyt <- ttet01_lyt(
@@ -198,7 +197,7 @@ ttet01_lyt <- function(arm_var,
 #'
 #' @examples
 #' ttet01_pre(syn_data)
-ttet01_pre <- function(adam_db, arm_var = "ARM", dataset = "adtte",
+ttet01_pre <- function(adam_db, dataset = "adtte",
                        ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(

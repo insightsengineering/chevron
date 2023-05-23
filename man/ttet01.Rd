@@ -29,7 +29,7 @@ ttet01_main(
   ...
 )
 
-ttet01_pre(adam_db, arm_var = "ARM", dataset = "adtte", ...)
+ttet01_pre(adam_db, dataset = "adtte", ...)
 
 ttet01_post(tlg, prune_0 = TRUE, ...)
 
