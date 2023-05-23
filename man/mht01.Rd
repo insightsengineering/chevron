@@ -3,7 +3,6 @@
 \docType{data}
 \name{mht01_main}
 \alias{mht01_main}
-\alias{mht01_lyt}
 \alias{mht01_pre}
 \alias{mht01_post}
 \alias{mht01}
@@ -13,8 +12,6 @@ An object of class \code{chevron_t} of length 1.
 }
 \usage{
 mht01_main(adam_db, arm_var = "ARM", lbl_overall = NULL, ...)
-
-mht01_lyt(arm_var, lbl_overall, lbl_mhbodsys, lbl_mhdecod)
 
 mht01_pre(adam_db, ...)
 
@@ -30,10 +27,6 @@ mht01
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
-
-\item{lbl_mhbodsys}{(\code{string}) label associated with \code{"MHBODSYS"}.}
-
-\item{lbl_mhdecod}{(\code{string}) label associated with \code{"MHDECOD"}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -57,8 +50,6 @@ patients with the specific condition.
 \itemize{
 \item \code{mht01_main()}: Main TLG function
 
-\item \code{mht01_lyt()}: Layout
-
 \item \code{mht01_pre()}: Preprocessing
 
 \item \code{mht01_post()}: Postprocessing
@@ -73,4 +64,3 @@ patients with the specific condition.
 run(mht01, syn_data)
 }
 \keyword{datasets}
-\keyword{internal}

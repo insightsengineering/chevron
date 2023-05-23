@@ -56,7 +56,7 @@ cmt01a_main <- function(adam_db,
   tbl
 }
 
-#' cmt01a Layout
+#' `cmt01a` Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams cmt01a_main

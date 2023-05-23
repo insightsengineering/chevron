@@ -2,7 +2,7 @@
 % Please edit documentation in R/dtht01.R
 \name{dtht01_lyt}
 \alias{dtht01_lyt}
-\title{dtht01 Layout}
+\title{\code{dtht01} Layout}
 \usage{
 dtht01_lyt(
   arm_var,
@@ -30,6 +30,6 @@ dtht01_lyt(
 \item{detah_var}{(\code{string}) variable name of death catagory.}
 }
 \description{
-dtht01 Layout
+\code{dtht01} Layout
 }
 \keyword{internal}

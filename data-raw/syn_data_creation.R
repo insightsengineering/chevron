@@ -119,6 +119,13 @@ syn_test_data <- function() {
     ) %>%
     select(-q1, -q2)
 
+  # useful for lbt06
+  sd$adlb <- sd$adlb %>%
+    mutate(ONTRTFL = case_when(
+      .data$AVISIT %in% c("BASELINE", "SCREENING") ~ "",
+      TRUE ~ "Y"
+    ))
+
   # useful for dmt01
   adsub <- sd$adsub
   adsub_wide_ls <- dunlin::poly_pivot_wider(

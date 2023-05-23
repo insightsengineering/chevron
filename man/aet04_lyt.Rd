@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet04.R
 \name{aet04_lyt}
 \alias{aet04_lyt}
-\title{aet04 Layout}
+\title{\code{aet04} Layout}
 \usage{
 aet04_lyt(
   arm_var,
@@ -27,6 +27,6 @@ aet04_lyt(
 \item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 }
 \description{
-aet04 Layout
+\code{aet04} Layout
 }
 \keyword{internal}

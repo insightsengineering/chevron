@@ -3,7 +3,6 @@
 \docType{data}
 \name{lbt01_main}
 \alias{lbt01_main}
-\alias{lbt01_lyt}
 \alias{lbt01_pre}
 \alias{lbt01_post}
 \alias{lbt01}
@@ -22,17 +21,6 @@ lbt01_main(
   ...
 )
 
-lbt01_lyt(
-  arm_var,
-  summaryvars,
-  summaryvars_lbls,
-  visitvar,
-  lbl_avisit,
-  lbl_param,
-  precision,
-  default_precision
-)
-
 lbt01_pre(adam_db, ...)
 
 lbt01_post(tlg, prune_0 = TRUE, ...)
@@ -44,10 +32,10 @@ lbt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
+\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adlb}
+table of \code{adam_db} is used as label.}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
-to be displayed.}
+\item{visitvar}{(\code{string}) the type of time point to use. Typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"}.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
@@ -56,12 +44,6 @@ represented with one more decimal of precision.}
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
 \item{...}{not used.}
-
-\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
-
-\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
-
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
@@ -88,8 +70,6 @@ by \code{AVISIT}. Re-level to customize order.
 \itemize{
 \item \code{lbt01_main()}: Main TLG function
 
-\item \code{lbt01_lyt()}: Layout
-
 \item \code{lbt01_pre()}: Preprocessing
 
 \item \code{lbt01_post()}: Postprocessing
@@ -107,4 +87,3 @@ run(lbt01, syn_data, precision = list(
 ))
 }
 \keyword{datasets}
-\keyword{internal}

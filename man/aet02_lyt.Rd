@@ -2,7 +2,7 @@
 % Please edit documentation in R/aet02.R
 \name{aet02_lyt}
 \alias{aet02_lyt}
-\title{aet02 Layout}
+\title{\code{aet02} Layout}
 \usage{
 aet02_lyt(arm_var, lbl_overall, row_split_var, lbl_row_split, lbl_aedecod)
 }
@@ -18,6 +18,6 @@ aet02_lyt(arm_var, lbl_overall, row_split_var, lbl_row_split, lbl_aedecod)
 \item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
 }
 \description{
-aet02 Layout
+\code{aet02} Layout
 }
 \keyword{internal}

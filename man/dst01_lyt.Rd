@@ -2,7 +2,7 @@
 % Please edit documentation in R/dst01.R
 \name{dst01_lyt}
 \alias{dst01_lyt}
-\title{dst01 Layout}
+\title{\code{dst01} Layout}
 \usage{
 dst01_lyt(arm_var, study_status_var, detail_vars, trt_status_var, lbl_overall)
 }
@@ -20,6 +20,6 @@ period.}
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
-dst01 Layout
+\code{dst01} Layout
 }
 \keyword{internal}

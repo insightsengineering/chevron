@@ -6,33 +6,33 @@
         Laboratory Test                            A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality                (N=134)     (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————————————————
-        Alanine Aminotransferase Measurement (n)      129         128            127      
+        Alanine Aminotransferase Measurement (n)      119         122            111      
           Low                                                                             
-            Single, not last                       1 (0.8%)     2 (1.6%)       2 (1.6%)   
-            Last or replicated                     4 (3.1%)    11 (8.6%)       3 (2.4%)   
-            Any Abnormality                        5 (3.9%)    13 (10.2%)      5 (3.9%)   
+            Single, not last                       1 (0.8%)     2 (1.6%)       2 (1.8%)   
+            Last or replicated                     2 (1.7%)     7 (5.7%)          0       
+            Any Abnormality                        3 (2.5%)     9 (7.4%)       2 (1.8%)   
           High                                                                            
-            Single, not last                       4 (3.1%)     4 (3.1%)       1 (0.8%)   
-            Last or replicated                     5 (3.9%)     8 (6.2%)       6 (4.7%)   
-            Any Abnormality                        9 (7.0%)    12 (9.4%)       7 (5.5%)   
-        C-Reactive Protein Measurement (n)            128         123            123      
+            Single, not last                       4 (3.4%)     4 (3.3%)       1 (0.9%)   
+            Last or replicated                     2 (1.7%)     5 (4.1%)       4 (3.6%)   
+            Any Abnormality                        6 (5.0%)     9 (7.4%)       5 (4.5%)   
+        C-Reactive Protein Measurement (n)            124         114            114      
           Low                                                                             
-            Single, not last                       1 (0.8%)        0           3 (2.4%)   
-            Last or replicated                     11 (8.6%)    7 (5.7%)       4 (3.3%)   
-            Any Abnormality                        12 (9.4%)    7 (5.7%)       7 (5.7%)   
+            Single, not last                       1 (0.8%)        0           3 (2.6%)   
+            Last or replicated                     5 (4.0%)     6 (5.3%)       2 (1.8%)   
+            Any Abnormality                        6 (4.8%)     6 (5.3%)       5 (4.4%)   
           High                                                                            
-            Single, not last                       2 (1.6%)     1 (0.8%)       2 (1.6%)   
-            Last or replicated                     9 (7.0%)    10 (8.1%)      11 (8.9%)   
-            Any Abnormality                        11 (8.6%)   11 (8.9%)      13 (10.6%)  
-        Immunoglobulin A Measurement (n)              126         125            119      
+            Single, not last                       2 (1.6%)     1 (0.9%)       2 (1.8%)   
+            Last or replicated                     5 (4.0%)     5 (4.4%)       5 (4.4%)   
+            Any Abnormality                        7 (5.6%)     6 (5.3%)       7 (6.1%)   
+        Immunoglobulin A Measurement (n)              112         116            113      
           Low                                                                             
-            Single, not last                       1 (0.8%)     3 (2.4%)       4 (3.4%)   
-            Last or replicated                     6 (4.8%)     6 (4.8%)       7 (5.9%)   
-            Any Abnormality                        7 (5.6%)     9 (7.2%)      11 (9.2%)   
+            Single, not last                       1 (0.9%)     3 (2.6%)       4 (3.5%)   
+            Last or replicated                     4 (3.6%)     3 (2.6%)       2 (1.8%)   
+            Any Abnormality                        5 (4.5%)     6 (5.2%)       6 (5.3%)   
           High                                                                            
-            Single, not last                       1 (0.8%)     1 (0.8%)       2 (1.7%)   
-            Last or replicated                     3 (2.4%)     8 (6.4%)       4 (3.4%)   
-            Any Abnormality                        4 (3.2%)     9 (7.2%)       6 (5.0%)   
+            Single, not last                       1 (0.9%)     1 (0.9%)       2 (1.8%)   
+            Last or replicated                     1 (0.9%)     5 (4.3%)       3 (2.7%)   
+            Any Abnormality                        2 (1.8%)     6 (5.2%)       5 (4.4%)   
 
 ---
 
@@ -66,31 +66,31 @@
         Laboratory Test                            A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality                (N=134)     (N=134)        (N=132)    
         ——————————————————————————————————————————————————————————————————————————————————
-        Alanine Aminotransferase Measurement (n)      129         128            127      
+        Alanine Aminotransferase Measurement (n)      119         122            111      
           Low                                                                             
-            Single, not last                       1 (0.8%)     2 (1.6%)       2 (1.6%)   
-            Last or replicated                     4 (3.1%)    11 (8.6%)       3 (2.4%)   
-            Any Abnormality                        5 (3.9%)    13 (10.2%)      5 (3.9%)   
+            Single, not last                       1 (0.8%)     2 (1.6%)       2 (1.8%)   
+            Last or replicated                     2 (1.7%)     7 (5.7%)          0       
+            Any Abnormality                        3 (2.5%)     9 (7.4%)       2 (1.8%)   
           High                                                                            
-            Single, not last                       4 (3.1%)     4 (3.1%)       1 (0.8%)   
-            Last or replicated                     5 (3.9%)     8 (6.2%)       6 (4.7%)   
-            Any Abnormality                        9 (7.0%)    12 (9.4%)       7 (5.5%)   
-        C-Reactive Protein Measurement (n)            128         123            123      
+            Single, not last                       4 (3.4%)     4 (3.3%)       1 (0.9%)   
+            Last or replicated                     2 (1.7%)     5 (4.1%)       4 (3.6%)   
+            Any Abnormality                        6 (5.0%)     9 (7.4%)       5 (4.5%)   
+        C-Reactive Protein Measurement (n)            124         114            114      
           Low                                                                             
-            Single, not last                       1 (0.8%)        0           3 (2.4%)   
-            Last or replicated                     11 (8.6%)    7 (5.7%)       4 (3.3%)   
-            Any Abnormality                        12 (9.4%)    7 (5.7%)       7 (5.7%)   
+            Single, not last                       1 (0.8%)        0           3 (2.6%)   
+            Last or replicated                     5 (4.0%)     6 (5.3%)       2 (1.8%)   
+            Any Abnormality                        6 (4.8%)     6 (5.3%)       5 (4.4%)   
           High                                                                            
-            Single, not last                       2 (1.6%)     1 (0.8%)       2 (1.6%)   
-            Last or replicated                     9 (7.0%)    10 (8.1%)      11 (8.9%)   
-            Any Abnormality                        11 (8.6%)   11 (8.9%)      13 (10.6%)  
-        Immunoglobulin A Measurement (n)              126         125            119      
+            Single, not last                       2 (1.6%)     1 (0.9%)       2 (1.8%)   
+            Last or replicated                     5 (4.0%)     5 (4.4%)       5 (4.4%)   
+            Any Abnormality                        7 (5.6%)     6 (5.3%)       7 (6.1%)   
+        Immunoglobulin A Measurement (n)              112         116            113      
           Low                                                                             
-            Single, not last                       1 (0.8%)     3 (2.4%)       4 (3.4%)   
-            Last or replicated                     6 (4.8%)     6 (4.8%)       7 (5.9%)   
-            Any Abnormality                        7 (5.6%)     9 (7.2%)      11 (9.2%)   
+            Single, not last                       1 (0.9%)     3 (2.6%)       4 (3.5%)   
+            Last or replicated                     4 (3.6%)     3 (2.6%)       2 (1.8%)   
+            Any Abnormality                        5 (4.5%)     6 (5.2%)       6 (5.3%)   
           High                                                                            
-            Single, not last                       1 (0.8%)     1 (0.8%)       2 (1.7%)   
-            Last or replicated                     3 (2.4%)     8 (6.4%)       4 (3.4%)   
-            Any Abnormality                        4 (3.2%)     9 (7.2%)       6 (5.0%)   
+            Single, not last                       1 (0.9%)     1 (0.9%)       2 (1.8%)   
+            Last or replicated                     1 (0.9%)     5 (4.3%)       3 (2.7%)   
+            Any Abnormality                        2 (1.8%)     6 (5.2%)       5 (4.4%)   
 

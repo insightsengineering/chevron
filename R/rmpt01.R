@@ -96,7 +96,6 @@ rmpt01_pre <- function(adam_db,
       PARCAT2 = with_label(.data$PARCAT2, "Parameter Category")
     )
 
-
   adam_db
 }
 
