@@ -20,8 +20,8 @@ test_that("ttet01 works as expected for stratified and unstratified analysis", {
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
-test_that("rspt01 works as expected for stratified analysis only", {
-  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+test_that("ttet01 works as expected for stratified analysis only", {
+  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "PFS", "adtte")
   res <- expect_silent(run(ttet01, filter_data,
     summarize_event = FALSE,
     perform_analysis = "strat"
@@ -34,8 +34,8 @@ test_that("rspt01 works as expected for stratified analysis only", {
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
-test_that("rspt01 works if change reference group", {
-  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+test_that("ttet01 works if change reference group", {
+  filter_data <- dunlin::log_filter(syn_data, PARAMCD == "PFS", "adtte")
   res <- expect_silent(run(ttet01, filter_data,
     summarize_event = FALSE,
     ref_group = "B: Placebo",
