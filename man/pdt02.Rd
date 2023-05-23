@@ -3,7 +3,6 @@
 \docType{data}
 \name{pdt02_main}
 \alias{pdt02_main}
-\alias{pdt02_lyt}
 \alias{pdt02_pre}
 \alias{pdt02_post}
 \alias{pdt02}
@@ -19,15 +18,6 @@ pdt02_main(
   dvterm_var = "DVTERM",
   lbl_overall = NULL,
   ...
-)
-
-pdt02_lyt(
-  arm_var,
-  lbl_overall,
-  dvreas_var,
-  lbl_dvreas_var,
-  dvterm_var,
-  lbl_dvterm_var
 )
 
 pdt02_pre(adam_db, ...)
@@ -55,10 +45,6 @@ pdt02
 
 \item{...}{not used.}
 
-\item{lbl_dvreas_var}{(\code{string}) label for the variable defining the reason for deviation.}
-
-\item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
-
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
@@ -84,8 +70,6 @@ the specific deviation term.
 \itemize{
 \item \code{pdt02_main()}: Main TLG function
 
-\item \code{pdt02_lyt()}: Layout
-
 \item \code{pdt02_pre()}: Preprocessing
 
 \item \code{pdt02_post()}: Postprocessing
@@ -100,4 +84,3 @@ the specific deviation term.
 run(pdt02, syn_data)
 }
 \keyword{datasets}
-\keyword{internal}

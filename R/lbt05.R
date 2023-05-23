@@ -54,7 +54,6 @@ lbt05_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @inheritParams gen_args
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #' @param lbl_anrind (`string`) label of the `ANRIND` variable.
 #' @param map (`data.frame`) mapping of `PARAM`s to directions of abnormality.

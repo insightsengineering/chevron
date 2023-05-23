@@ -71,7 +71,7 @@ dtht01_main <- function(adam_db,
   build_table(lyt, adsl)
 }
 
-#' dtht01 Layout
+#' `dtht01` Layout
 #'
 #' @inheritParams dtht01_main
 #' @param death_falg (`string`) variable name of death flag.

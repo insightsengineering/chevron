@@ -45,7 +45,7 @@ aet03_main <- function(adam_db,
   tbl
 }
 
-#' aet03 Layout
+#' `aet03` Layout
 #'
 #' @inheritParams gen_args
 #'

@@ -60,7 +60,7 @@ aet01_main <- function(adam_db,
   )
 }
 
-#' aet01 Layout
+#' `aet01` Layout
 #'
 #' @inheritParams aet01_main
 #' @param anl_vars Named (`list`) of analysis variables.

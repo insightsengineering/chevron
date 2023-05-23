@@ -44,7 +44,7 @@ mht01_main <- function(adam_db,
   tbl
 }
 
-#' @describeIn mht01 Layout
+#' `mht01` Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams mht01_main
