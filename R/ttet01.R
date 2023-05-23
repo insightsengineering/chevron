@@ -47,7 +47,10 @@ ttet01_main <- function(adam_db,
                         method = "both",
                         ...) {
   anl <- adam_db[[dataset]]
-  assert_colnames(anl, c(arm_var, strata, "AVAL", "AVALU", "PARAMCD", "IS_EVENT", "IS_NOT_EVENT", "EVNT1", "CNSR", "EVNTDESC"))
+  assert_colnames(anl, c(
+    arm_var, strata, "AVAL", "AVALU", "PARAMCD", "IS_EVENT",
+    "IS_NOT_EVENT", "EVNT1", "CNSR", "EVNTDESC"
+  ))
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   checkmate::assert_string(ref_group, null.ok = TRUE)
   df_label <- sprintf("adam_db$%s", dataset)
