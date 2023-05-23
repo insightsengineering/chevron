@@ -103,7 +103,7 @@ ttet01_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param timeunit (string) time unit get from AVALU, by default is "Months"
 #'
-#'
+#' @keywords internal
 ttet01_lyt <- function(arm_var,
                        ref_group,
                        summarize_event,
