@@ -1,9 +1,10 @@
-# chevron 0.1.4.9013
+# chevron 0.1.4.9014
 
 * Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument. 
 * Remove variants in template names.
 * Simplify `pre` function and add more data checks in `main` function.
-* Add more templates: `AET10`, `KMG01`, `RSPT01`, `RMPT01`, `COXT02`.
+* Add more templates: `AET10`, `KMG01`, `RSPT01`, `RMPT01`, `COXT02`, `FSTG01`.
+
 # chevron 0.1.4
 
 * Use `list` to replace `character` in template arguments.
