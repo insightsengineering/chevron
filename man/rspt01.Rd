@@ -17,7 +17,7 @@ rspt01_main(
   arm_var = "ARM",
   ref_group = NULL,
   odds_ratio = TRUE,
-  perform_analysis = c("unstrat"),
+  perform_analysis = "unstrat",
   strata = NULL,
   conf_level = 0.95,
   methods = list(),

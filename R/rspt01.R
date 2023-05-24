@@ -36,7 +36,7 @@ rspt01_main <- function(adam_db,
                         arm_var = "ARM",
                         ref_group = NULL,
                         odds_ratio = TRUE,
-                        perform_analysis = c("unstrat"),
+                        perform_analysis = "unstrat",
                         strata = NULL,
                         conf_level = 0.95,
                         methods = list(),
@@ -48,8 +48,8 @@ rspt01_main <- function(adam_db,
   checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
   checkmate::assert_character(
     strata,
-    null.ok = !"stata" %in% perform_analysis,
-    min.len = as.integer(!"stata" %in% perform_analysis)
+    null.ok = !"strat" %in% perform_analysis,
+    min.len = as.integer(!"strat" %in% perform_analysis)
   )
   checkmate::assert_string(arm_var)
   df_label <- sprintf("adam_db$%s", dataset)
@@ -70,9 +70,7 @@ rspt01_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
   checkmate::assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
 
-  if (is.null(ref_group)) {
-    ref_group <- lvls(adam_db[[dataset]][[arm_var]])[1]
-  }
+  ref_group <- ref_group %||% lvls(adam_db[[dataset]][[arm_var]])[1]
 
   lyt <- rspt01_lyt(
     arm_var = arm_var,
