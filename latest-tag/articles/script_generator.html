@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,11 +54,19 @@
           aria-expanded="false" aria-haspopup="true"
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
 <!-- end dropdown for versions -->
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-reports">
+    <a class="dropdown-item" href="../coverage-report/">Coverage report</a>
+    <a class="dropdown-item" href="../unit-test-report/">Unit test report</a>
+  </div>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -121,84 +129,47 @@ argument.</p></li>
 character with one element per line of the script, that can be easily
 rendered.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">aet01</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Arguments definition ----</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; adam_db &lt;- stop("missing value")</span></span>
 <span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
-<span><span class="co">#&gt; deco &lt;- std_deco("AET01")</span></span>
-<span><span class="co">#&gt; safety_var &lt;- list("FATAL", "SER", "SERWD", "SERDSM", "RELSER", </span></span>
-<span><span class="co">#&gt;     "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")</span></span>
-<span><span class="co">#&gt; req_tables &lt;- c("adsl", "adae")</span></span>
+<span><span class="co">#&gt; anl_vars &lt;- list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", </span></span>
+<span><span class="co">#&gt;     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))</span></span>
+<span><span class="co">#&gt; anl_lbls &lt;- "Total number of patients with at least one"</span></span>
 <span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
-<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
-<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, req_tables = c("adsl", "adae"), </span></span>
-<span><span class="co">#&gt;     arm_var = "ACTARM", safety_var = list("FATAL", "SER", "SERWD", </span></span>
-<span><span class="co">#&gt;         "SERDSM", "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", </span></span>
-<span><span class="co">#&gt;         "SEV"), ...) </span></span>
+<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     checkmate::assert_class(adam_db, "dm")</span></span>
-<span><span class="co">#&gt;     checkmate::assert_list(safety_var, types = "character")</span></span>
-<span><span class="co">#&gt;     safety_var &lt;- unlist(safety_var)</span></span>
-<span><span class="co">#&gt;     aet01_1_check(adam_db, req_tables = req_tables, arm_var = arm_var, </span></span>
-<span><span class="co">#&gt;         safety_var = safety_var)</span></span>
-<span><span class="co">#&gt;     db &lt;- adam_db %&gt;% dm_zoom_to("adae") %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y") %&gt;% dm_update_zoomed() %&gt;% dm_zoom_to("adae") %&gt;% </span></span>
-<span><span class="co">#&gt;         mutate(FATAL = .data$AESDTH == "Y", SER = .data$AESER == </span></span>
-<span><span class="co">#&gt;             "Y", SERWD = (.data$AESER == "Y" &amp; .data$AEACN == </span></span>
-<span><span class="co">#&gt;             "DRUG WITHDRAWN"), SERDSM = (.data$AESER == "Y" &amp; </span></span>
-<span><span class="co">#&gt;             .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", </span></span>
-<span><span class="co">#&gt;                 "DOSE REDUCED")), RELSER = (.data$AESER == "Y" &amp; </span></span>
-<span><span class="co">#&gt;             .data$AREL == "Y"), WD = .data$AEACN == "DRUG WITHDRAWN", </span></span>
-<span><span class="co">#&gt;             DSM = .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", </span></span>
-<span><span class="co">#&gt;                 "DOSE REDUCED"), REL = .data$AREL == "Y", RELWD = (.data$AREL == </span></span>
-<span><span class="co">#&gt;                 "Y" &amp; .data$AEACN == "DRUG WITHDRAWN"), RELDSM = (.data$AREL == </span></span>
-<span><span class="co">#&gt;                 "Y" &amp; .data$AEACN %in% c("DRUG INTERRUPTED", </span></span>
-<span><span class="co">#&gt;                 "DOSE INCREASED", "DOSE REDUCED")), CTC35 = if ("ATOXGR" %in% </span></span>
-<span><span class="co">#&gt;                 colnames(.)) </span></span>
-<span><span class="co">#&gt;                 .data$ATOXGR %in% c("3", "4", "5"), CTC45 = if ("ATOXGR" %in% </span></span>
-<span><span class="co">#&gt;                 colnames(.)) </span></span>
-<span><span class="co">#&gt;                 .data$ATOXGR %in% c("4", "5"), SEV = if ("ASEV" %in% </span></span>
-<span><span class="co">#&gt;                 colnames(.)) </span></span>
-<span><span class="co">#&gt;                 .data$ASEV == "SEVERE", SMQ01 = if ("SMQ01NAM" %in% </span></span>
-<span><span class="co">#&gt;                 colnames(.)) </span></span>
-<span><span class="co">#&gt;                 .data$SMQ01NAM != "", SMQ02 = if ("SMQ02NAM" %in% </span></span>
-<span><span class="co">#&gt;                 colnames(.)) </span></span>
-<span><span class="co">#&gt;                 .data$SMQ02NAM != "", CQ01 = if ("CQ01NAM" %in% </span></span>
-<span><span class="co">#&gt;                 colnames(.)) </span></span>
-<span><span class="co">#&gt;                 .data$CQ01NAM != "") %&gt;% mutate(AEDECOD = formatters::with_label(.data$AEDECOD, </span></span>
-<span><span class="co">#&gt;         "Dictionary-Derived Term"), AESDTH = formatters::with_label(.data$AESDTH, </span></span>
-<span><span class="co">#&gt;         "Results in Death"), AEACN = formatters::with_label(.data$AEACN, </span></span>
-<span><span class="co">#&gt;         "Action Taken with Study Treatment"), FATAL = formatters::with_label(.data$FATAL, </span></span>
-<span><span class="co">#&gt;         "AE with fatal outcome"), SER = formatters::with_label(.data$SER, </span></span>
-<span><span class="co">#&gt;         "Serious AE"), SEV = if ("SEV" %in% colnames(.)) </span></span>
-<span><span class="co">#&gt;         formatters::with_label(.data$SEV, "Severe AE (at greatest intensity)"), </span></span>
-<span><span class="co">#&gt;         SERWD = formatters::with_label(.data$SERWD, "Serious AE leading to withdrawal from treatment"), </span></span>
-<span><span class="co">#&gt;         SERDSM = formatters::with_label(.data$SERDSM, "Serious AE leading to dose modification/interruption"), </span></span>
-<span><span class="co">#&gt;         RELSER = formatters::with_label(.data$RELSER, "Related Serious AE"), </span></span>
-<span><span class="co">#&gt;         WD = formatters::with_label(.data$WD, "AE leading to withdrawal from treatment"), </span></span>
-<span><span class="co">#&gt;         DSM = formatters::with_label(.data$DSM, "AE leading to dose modification/interruption"), </span></span>
-<span><span class="co">#&gt;         REL = formatters::with_label(.data$REL, "Related AE"), </span></span>
-<span><span class="co">#&gt;         RELWD = formatters::with_label(.data$RELWD, "Related AE leading to withdrawal from treatment"), </span></span>
-<span><span class="co">#&gt;         RELDSM = formatters::with_label(.data$RELDSM, "Related AE leading to dose modification/interruption"), </span></span>
-<span><span class="co">#&gt;         CTC35 = if ("CTC35" %in% colnames(.)) </span></span>
-<span><span class="co">#&gt;             formatters::with_label(.data$CTC35, "Grade 3-5 AE"), </span></span>
-<span><span class="co">#&gt;         CTC45 = if ("CTC45" %in% colnames(.)) </span></span>
-<span><span class="co">#&gt;             formatters::with_label(.data$CTC45, "Grade 4/5 AE")) %&gt;% </span></span>
-<span><span class="co">#&gt;         dm_update_zoomed()</span></span>
-<span><span class="co">#&gt;     missing_rule &lt;- rule(`&lt;Missing&gt;` = c("", NA))</span></span>
-<span><span class="co">#&gt;     new_format &lt;- list(adsl = list(DCSREAS = missing_rule))</span></span>
-<span><span class="co">#&gt;     db &lt;- dunlin::reformat(db, new_format, na_last = TRUE)</span></span>
-<span><span class="co">#&gt;     db</span></span>
+<span><span class="co">#&gt;     adam_db$adae &lt;- adam_db$adae %&gt;% filter(.data$ANL01FL == </span></span>
+<span><span class="co">#&gt;         "Y") %&gt;% mutate(FATAL = with_label(.data$AESDTH == "Y", </span></span>
+<span><span class="co">#&gt;         "AE with fatal outcome"), SER = with_label(.data$AESER == </span></span>
+<span><span class="co">#&gt;         "Y", "Serious AE"), SEV = with_label(.data$ASEV == "SEVERE", </span></span>
+<span><span class="co">#&gt;         "Severe AE (at greatest intensity)"), REL = with_label(.data$AREL == </span></span>
+<span><span class="co">#&gt;         "Y", "Related AE"), WD = with_label(.data$AEACN == "DRUG WITHDRAWN", </span></span>
+<span><span class="co">#&gt;         "AE leading to withdrawal from treatment"), DSM = with_label(.data$AEACN %in% </span></span>
+<span><span class="co">#&gt;         c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"), </span></span>
+<span><span class="co">#&gt;         "AE leading to dose modification/interruption"), SERWD = with_label(.data$SER &amp; </span></span>
+<span><span class="co">#&gt;         .data$WD, "Serious AE leading to withdrawal from treatment"), </span></span>
+<span><span class="co">#&gt;         SERDSM = with_label(.data$SER &amp; .data$DSM, "Serious AE leading to dose modification/interruption"), </span></span>
+<span><span class="co">#&gt;         RELSER = with_label(.data$SER &amp; .data$REL, "Related Serious AE"), </span></span>
+<span><span class="co">#&gt;         RELWD = with_label(.data$REL &amp; .data$WD, "Related AE leading to withdrawal from treatment"), </span></span>
+<span><span class="co">#&gt;         RELDSM = with_label(.data$REL &amp; .data$DSM, "Related AE leading to dose modification/interruption"), </span></span>
+<span><span class="co">#&gt;         CTC35 = with_label(.data$ATOXGR %in% c("3", "4", "5"), </span></span>
+<span><span class="co">#&gt;             "Grade 3-5 AE"), CTC45 = with_label(.data$ATOXGR %in% </span></span>
+<span><span class="co">#&gt;             c("4", "5"), "Grade 4/5 AE"))</span></span>
+<span><span class="co">#&gt;     adam_db$adsl &lt;- adam_db$adsl %&gt;% mutate(DCSREAS = reformat(.data$DCSREAS, </span></span>
+<span><span class="co">#&gt;         missing_rule))</span></span>
+<span><span class="co">#&gt;     adam_db</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Create TLG</span></span>
 <span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) %&gt;% </span></span>
-<span><span class="co">#&gt; rlang::exec(.fn = run, object = aet01_1, !!!args_list, auto_pre = FALSE, check_arg = FALSE)</span></span></code></pre></div>
+<span><span class="co">#&gt; rlang::exec(.fn = run, object = aet01, !!!args_list, auto_pre = FALSE)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="with-a-modified-chevron-object">With a modified chevron object<a class="anchor" aria-label="anchor" href="#with-a-modified-chevron-object"></a>
@@ -207,12 +178,12 @@ rendered.</p>
 object. Modifying the <code>chevron_tlg</code> object can lead to a
 different script.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">dunlin</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/reformat.html" class="external-link">reformat</a></span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span><span class="va">aet01</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/reformat.html" class="external-link">reformat</a></span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">aet01_1</span><span class="op">)</span></span>
-<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">aet01</span><span class="op">)</span></span>
+<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
 <p>Print the generated scripts. Note that a new argument
 <code>new_format</code> has been added and the pre processing function
 has been modified.</p>
@@ -223,20 +194,20 @@ has been modified.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; adam_db &lt;- stop("missing value")</span></span>
 <span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
-<span><span class="co">#&gt; deco &lt;- std_deco("AET01")</span></span>
-<span><span class="co">#&gt; safety_var &lt;- list("FATAL", "SER", "SERWD", "SERDSM", "RELSER", </span></span>
-<span><span class="co">#&gt;     "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV")</span></span>
+<span><span class="co">#&gt; anl_vars &lt;- list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", </span></span>
+<span><span class="co">#&gt;     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))</span></span>
+<span><span class="co">#&gt; anl_lbls &lt;- "Total number of patients with at least one"</span></span>
 <span><span class="co">#&gt; new_format &lt;- stop("missing value")</span></span>
 <span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
 <span><span class="co">#&gt; pre_fun &lt;- function(adam_db, new_format, ...) {</span></span>
-<span><span class="co">#&gt;   dunlin::reformat(adam_db, new_format)</span></span>
+<span><span class="co">#&gt;   reformat(adam_db, new_format)</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Create TLG</span></span>
 <span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) %&gt;% </span></span>
-<span><span class="co">#&gt; rlang::exec(.fn = run, object = aet01_1, !!!args_list, auto_pre = FALSE, check_arg = FALSE)</span></span></code></pre></div>
+<span><span class="co">#&gt; rlang::exec(.fn = run, object = aet01, !!!args_list, auto_pre = FALSE)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="with-custom-argument-definition">With custom argument definition<a class="anchor" aria-label="anchor" href="#with-custom-argument-definition"></a>
@@ -254,8 +225,8 @@ values will be overwritten.</p>
 <span>  some_vector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">mng01_1</span>, dict <span class="op">=</span> <span class="va">dict</span><span class="op">)</span></span>
-<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">mng01</span>, dict <span class="op">=</span> <span class="va">dict</span><span class="op">)</span></span>
+<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -268,7 +239,6 @@ values will be overwritten.</p>
 <span><span class="co">#&gt; x_var &lt;- "AVISIT"</span></span>
 <span><span class="co">#&gt; y_var &lt;- "AVAL"</span></span>
 <span><span class="co">#&gt; y_name &lt;- "PARAM"</span></span>
-<span><span class="co">#&gt; y_unit &lt;- NA</span></span>
 <span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
 <span><span class="co">#&gt; center_fun &lt;- "mean"</span></span>
 <span><span class="co">#&gt; interval_fun &lt;- "mean_ci"</span></span>
@@ -278,20 +248,19 @@ values will be overwritten.</p>
 <span><span class="co">#&gt; show_h_grid &lt;- TRUE</span></span>
 <span><span class="co">#&gt; show_v_grid &lt;- FALSE</span></span>
 <span><span class="co">#&gt; legend_pos &lt;- "top"</span></span>
-<span><span class="co">#&gt; line_col &lt;- as.list(nestcolor::color_palette())</span></span>
+<span><span class="co">#&gt; line_col &lt;- nestcolor::color_palette()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
 <span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     checkmate::assert_class(adam_db, "dm")</span></span>
-<span><span class="co">#&gt;     adam_db &lt;- adam_db %&gt;% dm_zoom_to(!!dataset) %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y") %&gt;% dm_update_zoomed()</span></span>
-<span><span class="co">#&gt;     dunlin::dm_unite(adam_db, dataset, x_var, "_")</span></span>
+<span><span class="co">#&gt;     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
+<span><span class="co">#&gt;         "Y")</span></span>
+<span><span class="co">#&gt;     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Create TLG</span></span>
 <span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) %&gt;% </span></span>
-<span><span class="co">#&gt; rlang::exec(.fn = run, object = mng01_1, !!!args_list, auto_pre = FALSE, check_arg = FALSE)</span></span></code></pre></div>
+<span><span class="co">#&gt; rlang::exec(.fn = run, object = mng01, !!!args_list, auto_pre = FALSE)</span></span></code></pre></div>
 <p>If saved in a <code>.R</code> file, the generated script can be
 executed. The result stored in <code>tlg_output</code> can be
 printed.</p>
@@ -325,8 +294,6 @@ printed.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &gt; y_name &lt;- "PARAM"</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; y_unit &lt;- NA</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &gt; arm_var &lt;- "ACTARM"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &gt; center_fun &lt;- "mean"</span></span>
@@ -345,7 +312,7 @@ printed.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &gt; legend_pos &lt;- "top"</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; line_col &lt;- as.list(nestcolor::color_palette())</span></span>
+<span><span class="co">#&gt; &gt; line_col &lt;- nestcolor::color_palette()</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_funs</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tlg_output</span></span>
 <span><span class="co">#&gt; $`Alanine Aminotransferase Measurement`</span></span></code></pre></div>
@@ -366,40 +333,59 @@ printed.</p>
 <p>By specifying <code>details = TRUE</code> the main and post
 processing functions are also exposed.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res_fun</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01_1</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">res_fun</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_fun</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Functions.</span></span>
 <span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     checkmate::assert_class(adam_db, "dm")</span></span>
-<span><span class="co">#&gt;     adam_db &lt;- adam_db %&gt;% dm_zoom_to(!!dataset) %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y") %&gt;% dm_update_zoomed()</span></span>
-<span><span class="co">#&gt;     dunlin::dm_unite(adam_db, dataset, x_var, "_")</span></span>
+<span><span class="co">#&gt;     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
+<span><span class="co">#&gt;         "Y")</span></span>
+<span><span class="co">#&gt;     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; main_fun &lt;- function (adam_db, dataset = "adlb", x_var = "AVISIT", </span></span>
-<span><span class="co">#&gt;     y_var = "AVAL", y_name = "PARAM", y_unit = NA, arm_var = "ACTARM", </span></span>
+<span><span class="co">#&gt;     y_var = "AVAL", y_name = "PARAM", y_unit = NULL, arm_var = "ACTARM", </span></span>
 <span><span class="co">#&gt;     center_fun = "mean", interval_fun = "mean_ci", show_table = TRUE, </span></span>
 <span><span class="co">#&gt;     jitter = TRUE, show_n = TRUE, show_h_grid = TRUE, show_v_grid = FALSE, </span></span>
-<span><span class="co">#&gt;     legend_pos = "top", line_col = as.list(nestcolor::color_palette()), </span></span>
+<span><span class="co">#&gt;     legend_pos = "top", line_col = nestcolor::color_palette(), </span></span>
 <span><span class="co">#&gt;     ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     df &lt;- adam_db[[dataset]]</span></span>
+<span><span class="co">#&gt;     assert_all_tablenames(adam_db, c(dataset, "adsl"))</span></span>
+<span><span class="co">#&gt;     checkmate::assert_character(x_var)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(y_var)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(y_name)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(y_unit, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_string(arm_var)</span></span>
 <span><span class="co">#&gt;     checkmate::assert_string(center_fun)</span></span>
 <span><span class="co">#&gt;     checkmate::assert_string(interval_fun)</span></span>
-<span><span class="co">#&gt;     line_col &lt;- unlist(line_col)</span></span>
-<span><span class="co">#&gt;     data_ls &lt;- split(df, df$PARAM, drop = TRUE)</span></span>
-<span><span class="co">#&gt;     x_var &lt;- paste(x_var, collapse = "_")</span></span>
-<span><span class="co">#&gt;     checkmate::assert_subset(center_fun, c("mean", "median"))</span></span>
-<span><span class="co">#&gt;     checkmate::assert_subset(interval_fun, c("mean_ci", "mean_sei", </span></span>
+<span><span class="co">#&gt;     checkmate::assert_names(center_fun, subset.of = c("mean", </span></span>
+<span><span class="co">#&gt;         "median"))</span></span>
+<span><span class="co">#&gt;     checkmate::assert_choice(interval_fun, c("mean_ci", "mean_sei", </span></span>
 <span><span class="co">#&gt;         "mean_sdi", "median_ci", "quantiles", "range"))</span></span>
 <span><span class="co">#&gt;     checkmate::assert_flag(show_table)</span></span>
 <span><span class="co">#&gt;     checkmate::assert_flag(jitter)</span></span>
 <span><span class="co">#&gt;     checkmate::assert_flag(show_n)</span></span>
 <span><span class="co">#&gt;     checkmate::assert_flag(show_h_grid)</span></span>
 <span><span class="co">#&gt;     checkmate::assert_flag(show_v_grid)</span></span>
+<span><span class="co">#&gt;     checkmate::assert_choice(legend_pos, c("top", "bottom", "right", </span></span>
+<span><span class="co">#&gt;         "left"))</span></span>
 <span><span class="co">#&gt;     checkmate::assert_character(line_col, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], x_var)</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", </span></span>
+<span><span class="co">#&gt;         "factor")))</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], arm_var, types = list(c("character", </span></span>
+<span><span class="co">#&gt;         "factor")), na_ok = FALSE)</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), </span></span>
+<span><span class="co">#&gt;         types = list(c("character", "factor")))</span></span>
+<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", </span></span>
+<span><span class="co">#&gt;         "factor")), empty_ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)</span></span>
+<span><span class="co">#&gt;     df &lt;- adam_db[[dataset]]</span></span>
+<span><span class="co">#&gt;     line_col &lt;- unlist(line_col)</span></span>
+<span><span class="co">#&gt;     data_ls &lt;- split(df, df$PARAM, drop = TRUE)</span></span>
+<span><span class="co">#&gt;     x_var &lt;- paste(x_var, collapse = "_")</span></span>
 <span><span class="co">#&gt;     interval_title &lt;- switch(interval_fun, mean_ci = "95% Confidence Intervals", </span></span>
 <span><span class="co">#&gt;         mean_sei = "Standard Error", mean_sdi = "Standard Deviation", </span></span>
 <span><span class="co">#&gt;         median_ci = "95% Confidence Intervals", quantiles = "Interquatile Range", </span></span>
@@ -411,6 +397,9 @@ processing functions are also exposed.</p>
 <span><span class="co">#&gt;         mean_sdi = c("mean_sdi_lwr", "mean_sdi_upr"), median_ci = c("median_ci_lwr", </span></span>
 <span><span class="co">#&gt;             "median_ci_upr"), quantiles = c("quantiles_0.25", </span></span>
 <span><span class="co">#&gt;             "quantile_0.75"), range = c("min", "max"))</span></span>
+<span><span class="co">#&gt;     y_unit &lt;- if (is.null(y_unit)) </span></span>
+<span><span class="co">#&gt;         NA</span></span>
+<span><span class="co">#&gt;     else y_unit</span></span>
 <span><span class="co">#&gt;     variables &lt;- c(x = x_var, y = y_var, strata = arm_var, paramcd = y_name, </span></span>
 <span><span class="co">#&gt;         y_unit = y_unit)</span></span>
 <span><span class="co">#&gt;     n_func &lt;- if (show_n) </span></span>

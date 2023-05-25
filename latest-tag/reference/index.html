@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,11 +36,19 @@
           aria-expanded="false" aria-haspopup="true"
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
 <!-- end dropdown for versions -->
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-reports">
+    <a class="dropdown-item" href="../coverage-report/">Coverage report</a>
+    <a class="dropdown-item" href="../unit-test-report/">Unit test report</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -138,26 +146,6 @@
           <code><a href="script.html">script_args()</a></code> <code><a href="script.html">script_funs()</a></code> 
         </dt>
         <dd>Create Script for Parameters Assignment</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_main.html">get_main()</a></code> 
-        </dt>
-        <dd>Retrieve Main Function</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_preprocess.html">get_preprocess()</a></code> 
-        </dt>
-        <dd>Retrieve pre-processing Function</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_postprocess.html">get_postprocess()</a></code> 
-        </dt>
-        <dd>Retrieve post-processing Function</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_adam_datasets.html">get_adam_datasets()</a></code> 
-        </dt>
-        <dd>Retrieve names of datasets associated with the object</dd>
       </dl></div><div class="section level2">
       <h2 id="chevron-tlg-objects">chevron_tlg objects<a class="anchor" aria-label="anchor" href="#chevron-tlg-objects"></a></h2>
       
@@ -171,199 +159,190 @@
 
       <dl><dt>
           
-          <code><a href="aet01_1.html">aet01_1_main()</a></code> <code><a href="aet01_1.html">aet01_1_lyt()</a></code> <code><a href="aet01_1.html">aet01_1_pre()</a></code> <code><a href="aet01_1.html">aet01_1_check()</a></code> <code><a href="aet01_1.html">aet01_post()</a></code> <code><a href="aet01_1.html">aet01_1</a></code> 
+          <code><a href="ael01_nollt.html">ael01_nollt_main()</a></code> <code><a href="ael01_nollt.html">ael01_nollt_pre()</a></code> <code><a href="ael01_nollt.html">ael01_nollt_post()</a></code> <code><a href="ael01_nollt.html">ael01_nollt</a></code> 
+        </dt>
+        <dd><code>AEL01_NOLLT</code> Listing 1 (Default) Glossary of Preferred Terms and Investigator-Specified Terms.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="aet01.html">aet01_main()</a></code> <code><a href="aet01.html">aet01_pre()</a></code> <code><a href="aet01.html">aet01_post()</a></code> <code><a href="aet01.html">aet01</a></code> 
         </dt>
         <dd><code>AET01</code> Table 1 (Default) Overview of Deaths and Adverse Events Summary Table 1.</dd>
       </dl><dl><dt>
           
-          <code><a href="aet01_2.html">aet01_2_main()</a></code> <code><a href="aet01_2.html">aet01_2_lyt()</a></code> <code><a href="aet01_2.html">aet01_2_pre()</a></code> <code><a href="aet01_2.html">aet01_2_check()</a></code> <code><a href="aet01_2.html">aet01_2</a></code> 
-        </dt>
-        <dd><code>AET01</code> Table 2 (Supplementary) Overview of Deaths and Adverse Events Summary Table 2. Overview of death and summary
-of adverse events with medical concepts.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="aet01_aesi_1.html">aet01_aesi_1_main()</a></code> <code><a href="aet01_aesi_1.html">aet01_aesi_1_lyt()</a></code> <code><a href="aet01_aesi_1.html">aet01_aesi_1_pre()</a></code> <code><a href="aet01_aesi_1.html">aet01_aesi_1_check()</a></code> <code><a href="aet01_aesi_1.html">aet01_aesi_post()</a></code> <code><a href="aet01_aesi_1.html">aet01_aesi_1</a></code> 
+          <code><a href="aet01_aesi.html">aet01_aesi_main()</a></code> <code><a href="aet01_aesi.html">aet01_aesi_pre()</a></code> <code><a href="aet01_aesi.html">aet01_aesi_post()</a></code> <code><a href="aet01_aesi.html">aet01_aesi</a></code> 
         </dt>
         <dd><code>AET01_AESI</code> Table 1 (Default) Adverse Event of Special Interest Summary Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="aet02_1.html">aet02_1_main()</a></code> <code><a href="aet02_1.html">aet02_1_lyt()</a></code> <code><a href="aet02_1.html">aet02_1_pre()</a></code> <code><a href="aet02_1.html">aet02_1_check()</a></code> <code><a href="aet02_1.html">aet02_1_post()</a></code> <code><a href="aet02_1.html">aet02_1</a></code> 
+          <code><a href="aet02.html">aet02_main()</a></code> <code><a href="aet02.html">aet02_pre()</a></code> <code><a href="aet02.html">aet02_post()</a></code> <code><a href="aet02.html">aet02</a></code> 
         </dt>
         <dd><code>AET02</code> Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1</dd>
       </dl><dl><dt>
           
-          <code><a href="aet02_2.html">aet02_2_main()</a></code> <code><a href="aet02_2.html">aet02_2_lyt()</a></code> <code><a href="aet02_2.html">aet02_2_pre()</a></code> <code><a href="aet02_2.html">aet02_2_post()</a></code> <code><a href="aet02_2.html">aet02_2</a></code> <code><a href="aet02_2.html">aet02_3_main()</a></code> 
-        </dt>
-        <dd><code>AET02</code> Table 2 (Supplementary) Adverse Events by System Organ Class, High Level Term and Preferred Term Table 2.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="aet02_3.html">aet02_3_lyt()</a></code> <code><a href="aet02_3.html">aet02_3_pre()</a></code> <code><a href="aet02_3.html">aet02_3_post()</a></code> <code><a href="aet02_3.html">aet02_3</a></code> 
-        </dt>
-        <dd><code>AET02</code> Table 3 (Supplementary) Adverse Events by Dictionary-Derived Term Table 3.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="aet03_1.html">aet03_1_main()</a></code> <code><a href="aet03_1.html">aet03_1_lyt()</a></code> <code><a href="aet03_1.html">aet03_1_pre()</a></code> <code><a href="aet03_1.html">aet03_1_post()</a></code> <code><a href="aet03_1.html">aet03_1</a></code> 
+          <code><a href="aet03.html">aet03_main()</a></code> <code><a href="aet03.html">aet03_pre()</a></code> <code><a href="aet03.html">aet03_post()</a></code> <code><a href="aet03.html">aet03</a></code> 
         </dt>
         <dd><code>AET03</code> Table 1 (Default) Advert Events by Greatest Intensity Table 1.</dd>
       </dl><dl><dt>
           
-          <code><a href="aet04_1.html">aet04_1_main()</a></code> <code><a href="aet04_1.html">aet04_1_lyt()</a></code> <code><a href="aet04_1.html">aet04_1_pre()</a></code> <code><a href="aet04_1.html">aet04_1_post()</a></code> <code><a href="aet04_1.html">aet04_1</a></code> 
+          <code><a href="aet04.html">aet04_main()</a></code> <code><a href="aet04.html">aet04_pre()</a></code> <code><a href="aet04.html">aet04_post()</a></code> <code><a href="aet04.html">aet04</a></code> 
         </dt>
         <dd><code>AET04</code> Table 1 (Default) Adverse Events by Highest <code>NCI</code> <code>CTACAE</code> <code>AE</code> Grade Table 1.</dd>
       </dl><dl><dt>
           
-          <code><a href="cmt01a_1.html">cmt01a_1_main()</a></code> <code><a href="cmt01a_1.html">cmt01a_1_lyt()</a></code> <code><a href="cmt01a_1.html">cmt01a_1_pre()</a></code> <code><a href="cmt01a_1.html">cmt01a_1_post()</a></code> <code><a href="cmt01a_1.html">cmt01a_1</a></code> 
+          <code><a href="aet10.html">aet10_main()</a></code> <code><a href="aet10.html">aet10_pre()</a></code> <code><a href="aet10.html">aet10_post()</a></code> <code><a href="aet10.html">aet10</a></code> 
         </dt>
-        <dd><code>CMT01A</code> Table 1 (Default) Concomitant Medication by Medication Class and Preferred Name.</dd>
+        <dd><code>AET10</code> Table 1 (Default) Most Common (xx%) Adverse Events Preferred Terms Table 1</dd>
       </dl><dl><dt>
           
-          <code><a href="cmt01a_2.html">cmt01a_2_main()</a></code> <code><a href="cmt01a_2.html">cmt01a_2_pre()</a></code> <code><a href="cmt01a_2.html">cmt01a_2_post()</a></code> <code><a href="cmt01a_2.html">cmt01a_2</a></code> 
+          <code><a href="cmt01a.html">cmt01a_main()</a></code> <code><a href="cmt01a.html">cmt01a_pre()</a></code> <code><a href="cmt01a.html">cmt01a_post()</a></code> <code><a href="cmt01a.html">cmt01a</a></code> 
         </dt>
-        <dd><code>CMT01A</code> Table 2 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Classes sorted by
-frequency).</dd>
+        <dd><code>CMT01A</code> Concomitant Medication by Medication Class and Preferred Name.</dd>
       </dl><dl><dt>
           
-          <code><a href="cmt01a_3.html">cmt01a_3_main()</a></code> <code><a href="cmt01a_3.html">cmt01a_3_lyt()</a></code> <code><a href="cmt01a_3.html">cmt01a_3_pre()</a></code> <code><a href="cmt01a_3.html">cmt01a_3_post()</a></code> <code><a href="cmt01a_3.html">cmt01a_3</a></code> 
-        </dt>
-        <dd><code>CMT01A</code> Table 3 (Supplementary) Concomitant Medication by Medication Class and Preferred Name (Total number of
-treatments per medication class suppressed).</dd>
-      </dl><dl><dt>
-          
-          <code><a href="cmt02_pt_1.html">cmt02_pt_1_main()</a></code> <code><a href="cmt02_pt_1.html">cmt02_pt_1_lyt()</a></code> <code><a href="cmt02_pt_1.html">cmt02_pt_1_pre()</a></code> <code><a href="cmt02_pt_1.html">cmt02_pt_1_post()</a></code> <code><a href="cmt02_pt_1.html">cmt02_pt_1</a></code> 
+          <code><a href="cmt02_pt.html">cmt02_pt_main()</a></code> <code><a href="cmt02_pt.html">cmt02_pt_pre()</a></code> <code><a href="cmt02_pt.html">cmt02_pt_post()</a></code> <code><a href="cmt02_pt.html">cmt02_pt</a></code> 
         </dt>
         <dd><code>CMT02_PT</code> Table 1 (Default) Concomitant Medications by Preferred Name.</dd>
       </dl><dl><dt>
           
-          <code><a href="dmt01_1.html">dmt01_1_main()</a></code> <code><a href="dmt01_1.html">dmt01_1_lyt()</a></code> <code><a href="dmt01_1.html">dmt01_1_pre()</a></code> <code><a href="dmt01_1.html">dmt01_1_post()</a></code> <code><a href="dmt01_1.html">dmt01_1</a></code> 
+          <code><a href="coxt02.html">coxt02_main()</a></code> <code><a href="coxt02.html">coxt02_pre()</a></code> <code><a href="coxt02.html">coxt02_post()</a></code> <code><a href="coxt02.html">coxt02</a></code> 
+        </dt>
+        <dd><code>COXT02</code> Table 1 (Default) Multi-Variable Cox Regression Model Table 1.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="dmt01.html">dmt01_main()</a></code> <code><a href="dmt01.html">dmt01_pre()</a></code> <code><a href="dmt01.html">dmt01_post()</a></code> <code><a href="dmt01.html">dmt01</a></code> 
         </dt>
         <dd><code>DMT01</code> Table 1 (Default) Demographics and Baseline Characteristics Table 1.</dd>
       </dl><dl><dt>
           
-          <code><a href="dst01_1.html">dst01_1_main()</a></code> <code><a href="dst01_1.html">dst01_1_lyt()</a></code> <code><a href="dst01_1.html">dst01_1_pre()</a></code> <code><a href="dst01_1.html">dst01_1_post()</a></code> <code><a href="dst01_1.html">dst01_1</a></code> 
+          <code><a href="dst01.html">dst01_main()</a></code> <code><a href="dst01.html">dst01_pre()</a></code> <code><a href="dst01.html">dst01_post()</a></code> <code><a href="dst01.html">dst01</a></code> 
         </dt>
         <dd>DST01 Table 1 (Default) Patient Disposition Table 1.</dd>
       </dl><dl><dt>
           
-          <code><a href="dst01_2.html">dst01_2_main()</a></code> <code><a href="dst01_2.html">dst01_2_lyt()</a></code> <code><a href="dst01_2.html">dst01_2_pre()</a></code> <code><a href="dst01_2.html">dst01_2_post()</a></code> <code><a href="dst01_2.html">dst01_2</a></code> 
-        </dt>
-        <dd>DST01 Table 2 (Supplementary) Patient Disposition Table 2.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="dst01_3.html">dst01_3_main()</a></code> <code><a href="dst01_3.html">dst01_3_lyt()</a></code> <code><a href="dst01_3.html">dst01_3_pre()</a></code> <code><a href="dst01_3.html">dst01_3_post()</a></code> <code><a href="dst01_3.html">dst01_3</a></code> 
-        </dt>
-        <dd>DST01 Table 3 (Supplementary) Patient Disposition Table 3.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="dtht01_1.html">dtht01_1_main()</a></code> <code><a href="dtht01_1.html">dtht01_1_lyt()</a></code> <code><a href="dtht01_1.html">dtht01_1_opt_lyt()</a></code> <code><a href="dtht01_1.html">dtht01_1_pre()</a></code> <code><a href="dtht01_1.html">dtht01_1_post()</a></code> <code><a href="dtht01_1.html">dtht01_1</a></code> 
+          <code><a href="dtht01.html">dtht01_main()</a></code> <code><a href="dtht01.html">dtht01_pre()</a></code> <code><a href="dtht01.html">dtht01_post()</a></code> <code><a href="dtht01.html">dtht01</a></code> 
         </dt>
         <dd><code>DTHT01</code> Table 1 (Default) Death Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="egt01_1.html">egt01_1_main()</a></code> <code><a href="egt01_1.html">egt01_1_lyt()</a></code> <code><a href="egt01_1.html">egt01_1_pre()</a></code> <code><a href="egt01_1.html">egt01_1_post()</a></code> <code><a href="egt01_1.html">egt01_1</a></code> 
+          <code><a href="egt01.html">egt01_main()</a></code> <code><a href="egt01.html">egt01_pre()</a></code> <code><a href="egt01.html">egt01_post()</a></code> <code><a href="egt01.html">egt01</a></code> 
         </dt>
-        <dd><code>EGT01</code> Table 1 (Default) ECG Assessments and Change from Baseline by Visit Table 1.</dd>
+        <dd><code>EGT01</code> ECG Assessments and Change from Baseline by Visit Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="egt02_1.html">egt02_1_main()</a></code> <code><a href="egt02_1.html">egt02_1_lyt()</a></code> <code><a href="egt02_1.html">egt02_1_pre()</a></code> <code><a href="egt02_1.html">egt02_1_post()</a></code> <code><a href="egt02_1.html">egt02_1</a></code> 
+          <code><a href="egt02_1.html">egt02_1_main()</a></code> <code><a href="egt02_1.html">egt02_pre()</a></code> <code><a href="egt02_1.html">egt02_post()</a></code> <code><a href="egt02_1.html">egt02_1</a></code> 
         </dt>
-        <dd><code>EGT02</code> Table 1 (Default) ECG Abnormalities Table 1.</dd>
+        <dd><code>EGT02</code> ECG Abnormalities Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="egt02_2.html">egt02_2_main()</a></code> <code><a href="egt02_2.html">egt02_2_lyt()</a></code> <code><a href="egt02_2.html">egt02_2_pre()</a></code> <code><a href="egt02_2.html">egt02_2_post()</a></code> <code><a href="egt02_2.html">egt02_2</a></code> 
+          <code><a href="egt02_2.html">egt02_2_main()</a></code> <code><a href="egt02_2.html">egt02_2</a></code> 
         </dt>
-        <dd><code>EGT02</code> Table 2 (Supplementary) ECG Abnormalities Table 2.</dd>
+        <dd><code>EGT02_2</code> ECG Abnormalities Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="egt03_1.html">egt03_1_main()</a></code> <code><a href="egt03_1.html">egt03_1_lyt()</a></code> <code><a href="egt03_1.html">egt03_1_check()</a></code> <code><a href="egt03_1.html">egt03_1_pre()</a></code> <code><a href="egt03_1.html">egt03_1_post()</a></code> <code><a href="egt03_1.html">egt03_1</a></code> 
+          <code><a href="egt03.html">egt03_main()</a></code> <code><a href="egt03.html">egt03_pre()</a></code> <code><a href="egt03.html">egt03_post()</a></code> <code><a href="egt03.html">egt03</a></code> 
         </dt>
-        <dd><code>EGT03</code> Table 1 (Default) Shift Table of ECG Interval Data - Baseline versus Minimum Post-Baseline</dd>
+        <dd><code>EGT03</code> Shift Table of ECG Interval Data - Baseline versus Minimum or Maximum Post-Baseline</dd>
       </dl><dl><dt>
           
-          <code><a href="egt03_2.html">egt03_2_main()</a></code> <code><a href="egt03_2.html">egt03_2_lyt()</a></code> <code><a href="egt03_2.html">egt03_2_pre()</a></code> <code><a href="egt03_2.html">egt03_2_post()</a></code> <code><a href="egt03_2.html">egt03_2</a></code> 
+          <code><a href="egt05_qtcat.html">egt05_qtcat_main()</a></code> <code><a href="egt05_qtcat.html">egt05_qtcat_pre()</a></code> <code><a href="egt05_qtcat.html">egt05_qtcat_post()</a></code> <code><a href="egt05_qtcat.html">egt05_qtcat</a></code> 
         </dt>
-        <dd><code>EGT03</code> Table 2 Shift Table of ECG Interval Data - Baseline versus Maximum Post-Baseline</dd>
+        <dd><code>EGT05_QTCAT</code> ECG Actual Values and Changes from Baseline by Visit Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="egt05_qtcat_1.html">egt05_qtcat_1_main()</a></code> <code><a href="egt05_qtcat_1.html">egt05_qtcat_1_lyt()</a></code> <code><a href="egt05_qtcat_1.html">egt05_qtcat_1_pre()</a></code> <code><a href="egt05_qtcat_1.html">egt05_qtcat_1_post()</a></code> <code><a href="egt05_qtcat_1.html">egt05_qtcat_1</a></code> 
+          <code><a href="ext01.html">ext01_main()</a></code> <code><a href="ext01.html">ext01_pre()</a></code> <code><a href="ext01.html">ext01_post()</a></code> <code><a href="ext01.html">ext01</a></code> 
         </dt>
-        <dd><code>EGT05_QTCAT</code> Table 1 (Default) ECG Actual Values and Changes from Baseline by Visit Table 1.</dd>
+        <dd>EXT01 Exposure Summary Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="ext01_1.html">ext01_1_main()</a></code> <code><a href="ext01_1.html">ext01_1_lyt()</a></code> <code><a href="ext01_1.html">ext01_1_pre()</a></code> <code><a href="ext01_1.html">ext01_1_post()</a></code> <code><a href="ext01_1.html">ext01_1</a></code> 
+          <code><a href="fstg01.html">fstg01_main()</a></code> <code><a href="fstg01.html">fstg01_pre()</a></code> <code><a href="fstg01.html">fstg01_post()</a></code> <code><a href="fstg01.html">fstg01</a></code> 
         </dt>
-        <dd>EXT01 Table 1 (Default) Exposure Summary Table.</dd>
+        <dd><code>FSTG01</code> Subgroup Analysis of Best Overall Response.</dd>
       </dl><dl><dt>
           
-          <code><a href="ext01_2.html">ext01_2_main()</a></code> <code><a href="ext01_2.html">ext01_2_lyt()</a></code> <code><a href="ext01_2.html">ext01_2_pre()</a></code> <code><a href="ext01_2.html">ext01_2_post()</a></code> <code><a href="ext01_2.html">ext01_2</a></code> 
+          <code><a href="kmg01.html">kmg01_main()</a></code> <code><a href="kmg01.html">kmg01_pre()</a></code> <code><a href="kmg01.html">kmg01_post()</a></code> <code><a href="kmg01.html">kmg01</a></code> 
         </dt>
-        <dd>EXT01 Table 2 (Supplementary) Exposure Summary Table with grouping options</dd>
+        <dd><code>KMG01</code> Kaplan-Meier Plot 1.</dd>
       </dl><dl><dt>
           
-          <code><a href="lbt01_1.html">lbt01_1_main()</a></code> <code><a href="lbt01_1.html">lbt01_1_lyt()</a></code> <code><a href="lbt01_1.html">lbt01_1_pre()</a></code> <code><a href="lbt01_1.html">lbt01_1_post()</a></code> <code><a href="lbt01_1.html">lbt01_1</a></code> 
+          <code><a href="lbt01.html">lbt01_main()</a></code> <code><a href="lbt01.html">lbt01_pre()</a></code> <code><a href="lbt01.html">lbt01_post()</a></code> <code><a href="lbt01.html">lbt01</a></code> 
         </dt>
-        <dd><code>LBT01</code> Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.</dd>
+        <dd><code>LBT01</code> Laboratory Test Results and Change from Baseline by Visit Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="lbt04_1.html">lbt04_1_main()</a></code> <code><a href="lbt04_1.html">lbt04_1_lyt()</a></code> <code><a href="lbt04_1.html">lbt04_1_pre()</a></code> <code><a href="lbt04_1.html">lbt04_1_check()</a></code> <code><a href="lbt04_1.html">lbt04_1_post()</a></code> <code><a href="lbt04_1.html">lbt04_1</a></code> 
+          <code><a href="lbt04.html">lbt04_main()</a></code> <code><a href="lbt04.html">lbt04_pre()</a></code> <code><a href="lbt04.html">lbt04_post()</a></code> <code><a href="lbt04.html">lbt04</a></code> 
         </dt>
-        <dd><code>LBT04</code> Table 1 (Default) Laboratory Abnormalities Not Present at Baseline.</dd>
+        <dd><code>LBT04</code> Laboratory Abnormalities Not Present at Baseline Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="lbt05_1.html">lbt05_1_main()</a></code> <code><a href="lbt05_1.html">lbt05_1_lyt()</a></code> <code><a href="lbt05_1.html">lbt05_1_pre()</a></code> <code><a href="lbt05_1.html">lbt05_1_check()</a></code> <code><a href="lbt05_1.html">lbt05_1_post()</a></code> <code><a href="lbt05_1.html">lbt05_1</a></code> 
+          <code><a href="lbt05.html">lbt05_main()</a></code> <code><a href="lbt05.html">lbt05_pre()</a></code> <code><a href="lbt05.html">lbt05_post()</a></code> <code><a href="lbt05.html">lbt05</a></code> 
         </dt>
         <dd><code>LBT05</code> Table 1 (Default) Laboratory Abnormalities with Single and Replicated Marked.</dd>
       </dl><dl><dt>
           
-          <code><a href="lbt07_1.html">lbt07_1_main()</a></code> <code><a href="lbt07_1.html">lbt07_1_lyt()</a></code> <code><a href="lbt07_1.html">lbt07_1_pre()</a></code> <code><a href="lbt07_1.html">lbt07_1_check()</a></code> <code><a href="lbt07_1.html">lbt07_1_post()</a></code> <code><a href="lbt07_1.html">lbt07_1</a></code> 
+          <code><a href="lbt06.html">lbt06_main()</a></code> <code><a href="lbt06.html">lbt06_pre()</a></code> <code><a href="lbt06.html">lbt06_post()</a></code> <code><a href="lbt06.html">lbt06</a></code> 
+        </dt>
+        <dd><code>LBT06</code> Table 1 (Default) Laboratory Abnormalities by Visit and Baseline Status Table 1.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lbt07.html">lbt07_main()</a></code> <code><a href="lbt07.html">lbt07_pre()</a></code> <code><a href="lbt07.html">lbt07_post()</a></code> <code><a href="lbt07.html">lbt07</a></code> 
         </dt>
         <dd><code>LBT07</code> Table 1 (Default) Laboratory Test Results and Change from Baseline by Visit.</dd>
       </dl><dl><dt>
           
-          <code><a href="lbt14_1.html">lbt14_1_main()</a></code> <code><a href="lbt14_1.html">lbt14_1_lyt()</a></code> <code><a href="lbt14_1.html">lbt14_1_pre()</a></code> <code><a href="lbt14_1.html">lbt14_1_check()</a></code> <code><a href="lbt14_1.html">lbt14_1_post()</a></code> <code><a href="lbt14_1.html">lbt14_1</a></code> 
+          <code><a href="lbt14.html">lbt14_main()</a></code> <code><a href="lbt14.html">lbt14_pre()</a></code> <code><a href="lbt14.html">lbt14_post()</a></code> <code><a href="lbt14.html">lbt14</a></code> 
         </dt>
-        <dd><code>LBT14</code> Table 1 (Low Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
-Baseline Grade.</dd>
+        <dd><code>LBT14</code> Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
+Baseline Grade (Low or High Direction).</dd>
       </dl><dl><dt>
           
-          <code><a href="lbt14_2.html">lbt14_2_main()</a></code> <code><a href="lbt14_2.html">lbt14_2_lyt()</a></code> <code><a href="lbt14_2.html">lbt14_2_pre()</a></code> <code><a href="lbt14_2.html">lbt14_2_check()</a></code> <code><a href="lbt14_2.html">lbt14_2_post()</a></code> <code><a href="lbt14_2.html">lbt14_2</a></code> 
+          <code><a href="mht01.html">mht01_main()</a></code> <code><a href="mht01.html">mht01_pre()</a></code> <code><a href="mht01.html">mht01_post()</a></code> <code><a href="mht01.html">mht01</a></code> 
         </dt>
-        <dd><code>LBT14</code> Table 2 (High Direction) Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
-Baseline Grade.</dd>
+        <dd><code>MHT01</code> Medical History Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="mht01_1.html">mht01_1_main()</a></code> <code><a href="mht01_1.html">mht01_1_lyt()</a></code> <code><a href="mht01_1.html">mht01_1_pre()</a></code> <code><a href="mht01_1.html">mht01_1_post()</a></code> <code><a href="mht01_1.html">mht01_1</a></code> 
+          <code><a href="mng01.html">mng01_main()</a></code> <code><a href="mng01.html">mng01_pre()</a></code> <code><a href="mng01.html">mng01_post()</a></code> <code><a href="mng01.html">mng01</a></code> 
         </dt>
-        <dd><code>MHT01</code> Table 1 (Default) Medical History Table 1.</dd>
+        <dd><code>MNG01</code> Mean Plot Graph.</dd>
       </dl><dl><dt>
           
-          <code><a href="mng01_1.html">mng01_1_main()</a></code> <code><a href="mng01_1.html">mng01_1_pre()</a></code> <code><a href="mng01_1.html">mng01_1_post()</a></code> <code><a href="mng01_1.html">mng01_1</a></code> 
+          <code><a href="pdt01.html">pdt01_main()</a></code> <code><a href="pdt01.html">pdt01_pre()</a></code> <code><a href="pdt01.html">pdt01_post()</a></code> <code><a href="pdt01.html">pdt01</a></code> 
         </dt>
-        <dd><code>MNG01</code> Graph 1 (Default) Mean Plot 1.</dd>
+        <dd><code>pdt01</code> Major Protocol Deviations Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="vst01_1.html">vst01_1_main()</a></code> <code><a href="vst01_1.html">vst01_1_lyt()</a></code> <code><a href="vst01_1.html">vst01_1_pre()</a></code> <code><a href="vst01_1.html">vst01_1_post()</a></code> <code><a href="vst01_1.html">vst01_1</a></code> 
+          <code><a href="pdt02.html">pdt02_main()</a></code> <code><a href="pdt02.html">pdt02_pre()</a></code> <code><a href="pdt02.html">pdt02_post()</a></code> <code><a href="pdt02.html">pdt02</a></code> 
         </dt>
-        <dd><code>VST01</code> Table 1 (Default) Vital Sign Results and change from Baseline By Visit Table 1.</dd>
+        <dd><code>pdt02</code> Major Protocol Deviations Related to Epidemic/Pandemic Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="vst02_1.html">vst02_1_main()</a></code> <code><a href="vst02_1.html">vst02_1_lyt()</a></code> <code><a href="vst02_1.html">vst02_1_pre()</a></code> <code><a href="vst02_1.html">vst02_1_post()</a></code> <code><a href="vst02_1.html">vst02_1</a></code> 
+          <code><a href="rmpt01.html">rmpt01_main()</a></code> <code><a href="rmpt01.html">rmpt01_pre()</a></code> <code><a href="rmpt01.html">rmpt01_post()</a></code> <code><a href="rmpt01.html">rmpt01</a></code> 
         </dt>
-        <dd><code>VST02</code> Table 1 (Default) Vital Sign Abnormalities Table 1.</dd>
+        <dd><code>RMPT01</code>Duration of Exposure for Risk Management Plan Table.</dd>
       </dl><dl><dt>
           
-          <code><a href="vst02_2.html">vst02_2_main()</a></code> <code><a href="vst02_2.html">vst02_2_lyt()</a></code> <code><a href="vst02_2.html">vst02_2_pre()</a></code> <code><a href="vst02_2.html">vst02_2_post()</a></code> <code><a href="vst02_2.html">vst02_2</a></code> 
+          <code><a href="rspt01.html">rspt01_main()</a></code> <code><a href="rspt01.html">rspt01_pre()</a></code> <code><a href="rspt01.html">rspt01_post()</a></code> <code><a href="rspt01.html">rspt01</a></code> 
         </dt>
-        <dd><code>VST02</code> Table 2 (Supplementary) Vital Sign Abnormalities Table 2.</dd>
+        <dd><code>RSPT01</code> Binary Outcomes Summary</dd>
       </dl><dl><dt>
           
-          <code><a href="pdt01_1.html">pdt01_1_main()</a></code> <code><a href="pdt01_1.html">pdt01_1_lyt()</a></code> <code><a href="pdt01_1.html">pdt01_1_pre()</a></code> <code><a href="pdt01_1.html">pdt01_1_post()</a></code> <code><a href="pdt01_1.html">pdt01_1</a></code> 
+          <code><a href="ttet01.html">ttet01_main()</a></code> <code><a href="ttet01.html">ttet01_pre()</a></code> <code><a href="ttet01.html">ttet01_post()</a></code> <code><a href="ttet01.html">ttet01</a></code> 
         </dt>
-        <dd><code>pdt01_1</code> Table 1 (Default) Major Protocol Deviations.</dd>
+        <dd><code>TTET01</code> Binary Outcomes Summary</dd>
       </dl><dl><dt>
           
-          <code><a href="pdt02_1.html">pdt02_1_main()</a></code> <code><a href="pdt02_1.html">pdt02_1_lyt()</a></code> <code><a href="pdt02_1.html">pdt02_1_pre()</a></code> <code><a href="pdt02_1.html">pdt02_1_post()</a></code> <code><a href="pdt02_1.html">pdt02_1</a></code> 
+          <code><a href="vst01.html">vst01_main()</a></code> <code><a href="vst01.html">vst01_pre()</a></code> <code><a href="vst01.html">vst01_post()</a></code> <code><a href="vst01.html">vst01</a></code> 
         </dt>
-        <dd><code>pdt02_1</code> Table 1 (Default) Major Protocol Deviations Related to Epidemic/Pandemic.</dd>
+        <dd><code>VST01</code> Vital Sign Results and change from Baseline By Visit Table.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="vst02_1.html">vst02_1_main()</a></code> <code><a href="vst02_1.html">vst02_pre()</a></code> <code><a href="vst02_1.html">vst02_post()</a></code> <code><a href="vst02_1.html">vst02_1</a></code> 
+        </dt>
+        <dd><code>VST02</code> Vital Sign Abnormalities Table.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="vst02_2.html">vst02_2_main()</a></code> <code><a href="vst02_2.html">vst02_2</a></code> 
+        </dt>
+        <dd><code>VST02</code> Vital Sign Abnormalities Table.</dd>
       </dl></div><div class="section level2">
       <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a></h2>
       
@@ -393,12 +372,37 @@ Baseline Grade.</dd>
 
       <dl><dt>
           
-          <code><a href="get_db_data.html">get_db_data()</a></code> 
+          <code><a href="assert_all_tablenames.html">assert_all_tablenames()</a></code> 
         </dt>
-        <dd>Get Data from a DB</dd>
+        <dd>Assert that all names are among names of a <code>list</code> of <code>data.frame</code>.</dd>
       </dl><dl><dt>
           
-          <code><a href="report_null.html">report_null()</a></code> <code><a href="report_null.html">null_report</a></code> 
+          <code><a href="assert_single_value.html">assert_single_value()</a></code> 
+        </dt>
+        <dd>Check variable only has one unique value.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="assert_valid_type.html">assert_valid_type()</a></code> 
+        </dt>
+        <dd>Check variable is of correct type</dd>
+      </dl><dl><dt>
+          
+          <code><a href="assert_valid_var.html">assert_valid_var()</a></code> 
+        </dt>
+        <dd>Check whether var is valid</dd>
+      </dl><dl><dt>
+          
+          <code><a href="assert_valid_var_pair.html">assert_valid_var_pair()</a></code> 
+        </dt>
+        <dd>Check variables are of same levels</dd>
+      </dl><dl><dt>
+          
+          <code><a href="assert_valid_variable.html">assert_valid_variable()</a></code> 
+        </dt>
+        <dd>Check variables in a data frame are valid character or factor.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="report_null.html">report_null()</a></code> <code><a href="report_null.html">null_report</a></code> <code><a href="report_null.html">null_listing</a></code> 
         </dt>
         <dd>Create a Null Report</dd>
       </dl><dl><dt>
@@ -408,19 +412,9 @@ Baseline Grade.</dd>
         <dd>Prune Table up to an <code>ElementaryTable</code></dd>
       </dl><dl><dt>
           
-          <code><a href="std_deco.html">std_deco()</a></code> 
-        </dt>
-        <dd>Standard documentation lookup</dd>
-      </dl><dl><dt>
-          
           <code><a href="var_labels_for.html">var_labels_for()</a></code> 
         </dt>
         <dd>Retrieve labels for certain variables</dd>
-      </dl><dl><dt>
-          
-          <code><a href="h_format_dec.html">h_format_dec()</a></code> 
-        </dt>
-        <dd>Decimal Formatting</dd>
       </dl><dl><dt>
           
           <code><a href="gg_list.html">gg_list()</a></code> 
@@ -431,6 +425,47 @@ Baseline Grade.</dd>
           <code><a href="grob_list.html">grob_list()</a></code> 
         </dt>
         <dd>List of <code>grob</code> object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="h_format_dec.html">h_format_dec()</a></code> 
+        </dt>
+        <dd>Decimal Formatting</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lvls.html">lvls()</a></code> 
+        </dt>
+        <dd>Obtain levels from vector</dd>
+      </dl></div><div class="section level2">
+      <h2 id="standard-reformatting-rules">Standard Reformatting Rules<a class="anchor" aria-label="anchor" href="#standard-reformatting-rules"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="nocoding.html">nocoding</a></code> 
+        </dt>
+        <dd>No Coding Available rule</dd>
+      </dl><dl><dt>
+          
+          <code><a href="missing_rule.html">missing_rule</a></code> 
+        </dt>
+        <dd>Missing rule</dd>
+      </dl><dl><dt>
+          
+          <code><a href="empty_rule.html">empty_rule</a></code> 
+        </dt>
+        <dd>Empty rule</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_grade_rule.html">get_grade_rule()</a></code> 
+        </dt>
+        <dd>Get grade rule</dd>
       </dl></div><div class="section level2">
       <h2 id="non-exported-documented-functions-for-packagage-developers">Non-exported Documented Functions for Packagage Developers<a class="anchor" aria-label="anchor" href="#non-exported-documented-functions-for-packagage-developers"></a></h2>
       
