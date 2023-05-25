@@ -201,10 +201,10 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
                        ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
-      AVAL = day2month(AVAL),
+      AVAL = day2month(.data$AVAL),
       AVALU = "MONTHS",
-      IS_EVENT = CNSR == 0,
-      IS_NOT_EVENT = CNSR == 1,
+      IS_EVENT = .data$CNSR == 0,
+      IS_NOT_EVENT = .data$CNSR == 1,
       EVNT1 = factor(
         case_when(
           IS_EVENT == TRUE ~ "Patients with event (%)",
@@ -212,7 +212,7 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
         ),
         levels = c("Patients with event (%)", "Patients without event (%)")
       ),
-      EVNTDESC = factor(EVNTDESC)
+      EVNTDESC = factor(.data$EVNTDESC)
     )
 
   adam_db
