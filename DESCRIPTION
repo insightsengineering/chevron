@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.0
+Version: 0.2.0.9000
 Date: 2023-05-24
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
@@ -21,37 +21,49 @@ Depends:
     R (>= 4.0.0)
 Imports:
     checkmate (>= 2.0),
-    dplyr,
+    dplyr (>= 1.0.0),
     dunlin (>= 0.1.3),
     forcats (>= 1.0.0),
     formatters (>= 0.5.0),
     ggplot2 (>= 3.4.0),
-    glue,
-    magrittr,
+    glue (>= 1.3.2),
+    magrittr (>= 1.5),
     methods,
     nestcolor (>= 0.1.1),
     purrr,
-    rlang,
+    rlang (>= 1.1.0),
     rlistings (>= 0.2.2),
     rtables (>= 0.6.1),
     stringr,
     tern (>= 0.8.2),
-    tibble,
+    tibble (>= 3.0.0),
     utils
 Suggests:
-    knitr,
-    rmarkdown,
+    knitr (>= 1.34),
     testthat (>= 3.0.0),
-    tidyr
+    tidyr (>= 1.0.0)
 VignetteBuilder:
     knitr
 Remotes:
+    mllg/checkmate@*release,
+    tidyverse/dplyr@*release,
     insightsengineering/dunlin@*release,
+    tidyverse/forcats@*release,
     insightsengineering/formatters@*release,
+    tidyverse/ggplot2@*release,
+    tidyverse/glue@*release,
+    tidyverse/magrittr@*release,
     insightsengineering/nestcolor@*release,
+    tidyverse/purrr@*release,
+    r-lib/rlang@*release,
     insightsengineering/rlistings@*release,
     insightsengineering/rtables@*release,
-    insightsengineering/tern@*release
+    tidyverse/stringr@*release,
+    insightsengineering/tern@*release,
+    tidyverse/tibble@*release,
+    yihui/knitr@*release,
+    r-lib/testthat@*release,
+    tidyverse/tidyr@*release
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
 Encoding: UTF-8

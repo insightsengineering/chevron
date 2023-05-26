@@ -1,6 +1,10 @@
+# chevron 0.2.0.9000
+
+* Specify minimal version of dependencies.
+
 # chevron 0.2.0
 
-* Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument. 
+* Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument.
 * Remove variants in template names.
 * Remove deprecated `getter` functions `get_main`, `get_preprocess` and `get_postprocess`.
 * Simplify `pre` function and add more data checks in `main` function.
