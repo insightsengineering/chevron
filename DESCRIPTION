@@ -39,7 +39,7 @@ Imports:
     tibble (>= 3.0.0),
     utils
 Suggests:
-    knitr (>= 1.34),
+    knitr (>= 1.42),
     testthat (>= 3.0.0),
     tidyr (>= 1.0.0)
 VignetteBuilder:
