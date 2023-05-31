@@ -5,21 +5,27 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding columns in `adsl`
 #'   table of `adam_db` is used as label.
+#' @param show_tot (`flag`) whether to show the total number of patients and patient time.
 #'
 #' @export
 #'
 rmpt04_main <- function(adam_db,
                         summaryvars = "ETHNIC",
+                        show_tot = TRUE,
                         ...) {
-
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(summaryvars)
+  checkmate::assert_flag(show_tot)
   assert_valid_variable(adam_db$adsl, summaryvars, types = list("factor"))
   assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
 
   lbl_summaryvars <- var_labels_for(adam_db$adsl, summaryvars)
 
-  lyt <- rmpt04_lyt(summaryvars, lbl_summaryvars)
+  lyt <- rmpt04_lyt(
+    summaryvars = summaryvars,
+    lbl_summaryvars = lbl_summaryvars,
+    show_tot = show_tot
+  )
 
   build_table(lyt, df = adam_db$adex, alt_counts_df = adam_db$adsl)
 }
@@ -33,16 +39,29 @@ rmpt04_main <- function(adam_db,
 #' @keywords internal
 #'
 rmpt04_lyt <- function(summaryvars,
-                       lbl_summaryvars) {
+                       lbl_summaryvars,
+                       show_tot) {
+  lyt <- if (show_tot) {
+    basic_table(show_colcounts = TRUE) %>%
+      summarize_patients_exposure_in_cols(
+        var = "AVAL",
+        col_split = TRUE,
+        .labels = c(
+          n_patients = "Number of Patients",
+          sum_exposure = "Patient Time*"
+        ),
+        custom_label = "Total Number of Patients and Patient Time"
+      )
+  } else {
+    basic_table(show_colcounts = TRUE) %>%
+      split_cols_by_multivar(
+        vars = c("AVAL", "AVAL"),
+        varlabels = c(n_patients = "Patients", sum_exposure = "Person time"),
+        extra_args = list(.stats = c("n_patients", "sum_exposure"))
+      )
+  }
 
-  basic_table(show_colcounts = TRUE) %>%
-    summarize_patients_exposure_in_cols(
-      var = "AVAL",
-      col_split = TRUE,
-      .labels = c(n_patients = "Number of Patients",
-                  sum_exposure = "Patient Time*"),
-      custom_label = "Total Number of Patients and Patient Time"
-    ) %>%
+  lyt %>%
     analyze_patients_exposure_in_cols(
       var = summaryvars,
       col_split = FALSE
@@ -57,7 +76,6 @@ rmpt04_lyt <- function(summaryvars,
 #' @export
 #'
 rmpt04_pre <- function(adam_db, ...) {
-
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
 
@@ -73,7 +91,7 @@ rmpt04_pre <- function(adam_db, ...) {
 #'
 #' @export
 #'
-rmpt04_post <- function(tlg, prune_0 = FALSE, ...) {
+rmpt04_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
@@ -88,7 +106,7 @@ rmpt04_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(rmpt04, syn_data)
+#' run(rmpt04, syn_data, show_tot = FALSE)
 rmpt04 <- chevron_t(
   main = rmpt04_main,
   preprocess = rmpt04_pre,

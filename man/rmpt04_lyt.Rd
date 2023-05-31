@@ -4,13 +4,15 @@
 \alias{rmpt04_lyt}
 \title{\code{rmpt04} Layout}
 \usage{
-rmpt04_lyt(summaryvars, lbl_summaryvars)
+rmpt04_lyt(summaryvars, lbl_summaryvars, show_tot)
 }
 \arguments{
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
 table of \code{adam_db} is used as label.}
 
 \item{lbl_summaryvars}{(\code{string}) label associated with the analyzed variable.}
+
+\item{show_tot}{(\code{flag}) whether to show the total number of patients and patient time.}
 }
 \description{
 \code{rmpt04} Layout

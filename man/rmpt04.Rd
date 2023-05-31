@@ -11,11 +11,11 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-rmpt04_main(adam_db, summaryvars = "ETHNIC", ...)
+rmpt04_main(adam_db, summaryvars = "ETHNIC", show_tot = TRUE, ...)
 
 rmpt04_pre(adam_db, ...)
 
-rmpt04_post(tlg, prune_0 = FALSE, ...)
+rmpt04_post(tlg, prune_0 = TRUE, ...)
 
 rmpt04
 }
@@ -24,6 +24,8 @@ rmpt04
 
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
 table of \code{adam_db} is used as label.}
+
+\item{show_tot}{(\code{flag}) whether to show the total number of patients and patient time.}
 
 \item{...}{not used.}
 
@@ -44,6 +46,6 @@ The \code{RMPT04} table provides an overview of duration of exposure extent.
 
 }}
 \examples{
-run(rmpt04, syn_data)
+run(rmpt04, syn_data, show_tot = FALSE)
 }
 \keyword{datasets}
