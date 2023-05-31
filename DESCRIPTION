@@ -99,6 +99,7 @@ Collate:
     'pdt02.R'
     'reexports.R'
     'rmpt01.R'
+    'rmpt04.R'
     'rspt01.R'
     'rtables_utils.R'
     'standard_rules.R'
