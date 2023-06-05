@@ -113,6 +113,7 @@ lbt06_pre <- function(adam_db, ...) {
     ) %>%
     mutate(
       across(all_of(c("ANRIND", "BNRIND")), ~ reformat(.x, .env$missing_rule)),
+      AVISIT = reorder(.data$AVISIT, .data$AVISITN),
       AVISIT = with_label(.data$AVISIT, "Visit"),
       ANRIND = with_label(.data$ANRIND, "Abnormality at Visit"),
       BNRIND = with_label(.data$BNRIND, "Baseline Status")
