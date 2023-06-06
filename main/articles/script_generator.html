@@ -48,18 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -254,7 +242,8 @@ values will be overwritten.</p>
 <span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y")</span></span>
+<span><span class="co">#&gt;         "Y") %&gt;% mutate(AVISIT = reorder(.data$AVISIT, .data$AVISITN), </span></span>
+<span><span class="co">#&gt;         AVISIT = with_label(.data$AVISIT, "Visit"))</span></span>
 <span><span class="co">#&gt;     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -340,7 +329,8 @@ processing functions are also exposed.</p>
 <span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y")</span></span>
+<span><span class="co">#&gt;         "Y") %&gt;% mutate(AVISIT = reorder(.data$AVISIT, .data$AVISITN), </span></span>
+<span><span class="co">#&gt;         AVISIT = with_label(.data$AVISIT, "Visit"))</span></span>
 <span><span class="co">#&gt;     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
