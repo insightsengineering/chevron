@@ -1,9 +1,9 @@
-# chevron 0.2.0
+# chevron 0.2.0.9000
 
 * Update `LBT06` template to use `PARAM` as row split.
 * Convert `AVISIT` to factor according to `AVISITN` as order in preprocessing.
 
-# chevron 0.2.0
+# chevron 0.2.0.9000
 
 * Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument. 
 * Remove variants in template names.
