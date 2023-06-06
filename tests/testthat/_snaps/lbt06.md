@@ -3,12 +3,12 @@
     Code
       cat(formatters::export_as_txt(std_postprocess(res), lpp = 100))
     Output
-        Parameter Code                                                                       
+        Parameter                                                                            
           Visit                                                                              
             Abnormality at Visit                  A: Drug X      B: Placebo    C: Combination
                     Baseline Status                (N=134)        (N=134)         (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————
-        ALT                                                                                  
+        Alanine Aminotransferase Measurement                                                 
           WEEK 1 DAY 8                                                                       
             Low                                                                              
                       Not low baseline status    3/38 (7.9%)     2/40 (5%)      1/37 (2.7%)  
@@ -54,7 +54,7 @@
                       Not high baseline status   4/38 (10.5%)   7/38 (18.4%)    1/41 (2.4%)  
                       High baseline status           0/0            0/5             0/6      
                       Total                      4/38 (10.5%)   7/43 (16.3%)    1/47 (2.1%)  
-        CRP                                                                                  
+        C-Reactive Protein Measurement                                                       
           WEEK 1 DAY 8                                                                       
             Low                                                                              
                       Not low baseline status    4/46 (8.7%)     2/40 (5%)      4/42 (9.5%)  
@@ -100,12 +100,12 @@
                       Not high baseline status   4/35 (11.4%)   4/35 (11.4%)    3/39 (7.7%)  
                       High baseline status           0/5            0/7         1/7 (14.3%)  
                       Total                       4/40 (10%)    4/42 (9.5%)     4/46 (8.7%)  
-      \s\n  Parameter Code                                                                       
+      \s\n  Parameter                                                                            
           Visit                                                                              
             Abnormality at Visit                  A: Drug X      B: Placebo    C: Combination
                     Baseline Status                (N=134)        (N=134)         (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————
-        IGA                                                                                  
+        Immunoglobulin A Measurement                                                         
           WEEK 1 DAY 8                                                                       
             Low                                                                              
                       Not low baseline status    2/38 (5.3%)    3/38 (7.9%)      3/30 (10%)  

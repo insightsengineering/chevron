@@ -6,11 +6,11 @@
 \usage{
 lbt06_lyt(
   arm_var,
-  paramcd,
+  param,
   visit_var,
   anrind_var,
   bnrind_var,
-  lbl_paramcd,
+  lbl_param,
   lbl_visit,
   lbl_anrind,
   lbl_bnrind
@@ -19,7 +19,7 @@ lbt06_lyt(
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{paramcd}{(\code{string}) the variable for parameter code.}
+\item{param}{(\code{string}) the variable for parameter code.}
 
 \item{visit_var}{(\code{string}) the variable for analysis visit.}
 
@@ -27,7 +27,7 @@ lbt06_lyt(
 
 \item{bnrind_var}{(\code{string}) the variable for baseline reference range indicator.}
 
-\item{lbl_paramcd}{(\code{string}) text label of the \code{PARAMCD} variable.}
+\item{lbl_param}{(\code{string}) text label of the \code{PARAM} variable.}
 
 \item{lbl_visit}{(\code{string}) text label of the \code{AVISIT} variable.}
 
