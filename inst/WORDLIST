@@ -4,6 +4,7 @@ AESI
 AVALU
 CTCAE
 DAP
+Ecg
 Hoffmann
 Kaplan
 NCI
@@ -18,6 +19,7 @@ TLGs
 TTET
 breslow
 catagory
+cfbt
 cmt
 conf
 coxph
@@ -41,7 +43,6 @@ splitted
 strat
 surv
 survfit
-ttet
 unstrat
 unstratified
 wald
