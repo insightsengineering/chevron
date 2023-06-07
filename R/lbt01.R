@@ -173,6 +173,8 @@ lbt01_pre <- function(adam_db, ...) {
   adam_db$adlb <- adam_db$adlb %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
+      AVISIT = reorder(.data$AVISIT, .data$AVISITN),
+      AVISIT = with_label(.data$AVISIT, "Analysis Visit"),
       AVAL = with_label(.data$AVAL, "Value at Visit"),
       CHG = with_label(.data$CHG, "Change from \nBaseline")
     )

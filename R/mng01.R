@@ -179,7 +179,11 @@ mng01_main <- function(adam_db,
 #' @export
 mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    filter(.data$ANL01FL == "Y")
+    filter(.data$ANL01FL == "Y") %>%
+    mutate(
+      AVISIT = reorder(.data$AVISIT, .data$AVISITN),
+      AVISIT = with_label(.data$AVISIT, "Visit")
+    )
 
   dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
 }
