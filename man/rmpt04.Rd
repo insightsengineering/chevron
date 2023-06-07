@@ -11,7 +11,13 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-rmpt04_main(adam_db, summaryvars = "ETHNIC", show_tot = TRUE, ...)
+rmpt04_main(
+  adam_db,
+  summaryvars = "ETHNIC",
+  show_tot = TRUE,
+  indication = NULL,
+  ...
+)
 
 rmpt04_pre(adam_db, ...)
 
@@ -25,7 +31,9 @@ rmpt04
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
 table of \code{adam_db} is used as label.}
 
-\item{show_tot}{(\code{flag}) whether to show the total number of patients and patient time.}
+\item{show_tot}{(\code{flag}) whether to display the cumulative total.}
+
+\item{indication}{(\code{string}) the name of the column that containing variable to split exposure by.}
 
 \item{...}{not used.}
 
