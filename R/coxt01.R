@@ -1,6 +1,6 @@
-# coxt02 ----
+# coxt01 ----
 
-#' @describeIn coxt02 Main TLG function
+#' @describeIn coxt01 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param arm_var (`string`) the arm variable used for arm splitting.
@@ -30,7 +30,7 @@
 #'
 #' @export
 #'
-coxt02_main <- function(adam_db,
+coxt01_main <- function(adam_db,
                         arm_var = "ARM",
                         time_var = "AVAL",
                         event_var = "EVENT",
@@ -62,21 +62,69 @@ coxt02_main <- function(adam_db,
 
   lyt <- coxt01_lyt(
     variables = variables,
+    col_split = "COL_LABEL",
     lbl_vars = lbl_vars,
     control = control,
-    col_split = NULL,
-    multivar = TRUE,
     ...
   )
-
+  col_split <- "Treatment Effect Adjusted for Covariate"
+  adam_db$adtte$COL_LABEL <- factor(rep(col_split, nrow(adam_db$adtte)), levels = col_split)
   tbl <- build_table(lyt, adam_db$adtte)
 
   tbl
 }
 
-#' `COXT02` Multi-Variable Cox Regression Model Table.
+#' `coxt01` Layout
 #'
-#' The `COXT02` table follows the same principles as the general Cox model analysis
+#' @inheritParams gen_args
+#' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
+#'
+#' @keywords internal
+#'
+coxt01_lyt <- function(variables,
+                       col_split,
+                       lbl_vars,
+                       control,
+                       ...) {
+  lyt <- basic_table() %>%
+    ifneeded_split_col(col_split)
+  lyt <- execute_with_args(
+    summarize_coxreg,
+    lyt = lyt, variables = variables, control = control, ...
+  )
+  lyt %>%
+    append_topleft(lbl_vars)
+}
+
+#' @describeIn coxt01 Preprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+coxt01_pre <- function(adam_db, ...) {
+  adam_db$adtte <- adam_db$adtte %>%
+    mutate(EVENT = 1 - .data$CNSR)
+
+  adam_db
+}
+
+#' @describeIn coxt01 Postprocessing
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
+  std_postprocess(tlg)
+}
+
+#' `coxt01` Table 1 (Default) Multi-Variable Cox Regression Model Table 1.
+#'
+#' The `coxt01` table follows the same principles as the general Cox model analysis
 #' and produces the estimates for each of the covariates included in the model
 #' (usually the main effects without interaction terms).
 #'
@@ -89,11 +137,11 @@ coxt02_main <- function(adam_db,
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
 #'
-#' run(coxt02, proc_data)
+#' run(coxt01, proc_data)
 #'
-#' run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
-coxt02 <- chevron_t(
-  main = coxt02_main,
+#' run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
+coxt01 <- chevron_t(
+  main = coxt01_main,
   preprocess = coxt01_pre,
   postprocess = coxt01_post,
   adam_datasets = c("adsl", "adtte")

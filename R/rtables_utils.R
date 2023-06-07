@@ -236,13 +236,13 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
 
 #' Helper function to add a row split if specified
 #'
-#' @param lyt (`rtables`) object.
+#' @param lyt (`PreDataTableLayouts`) object.
 #' @param var (`string`) the name of the variable initiating a new row split.
 #' @param lbl_var (`string`)the label of the variable `var`.
 #'
 #' @keywords internal
 #'
-#' @return `rtables` object.
+#' @return `PreDataTableLayouts` object.
 #'
 ifneeded_split_row <- function(lyt, var, lbl_var) {
   if (is.null(var)) {
@@ -252,6 +252,23 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
       label_pos = "topleft",
       split_label = lbl_var
     )
+  }
+}
+
+#' Helper function to add a col split if specified
+#'
+#' @param lyt (`PreDataTableLayouts`) object.
+#' @param var (`string`) the name of the variable initiating a new column split.
+#'
+#' @keywords internal
+#'
+#' @return `PreDataTableLayouts` object.
+#'
+ifneeded_split_col <- function(lyt, var) {
+  if (is.null(var)) {
+    lyt
+  } else {
+    split_cols_by(lyt, var)
   }
 }
 
