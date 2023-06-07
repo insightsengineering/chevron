@@ -78,7 +78,7 @@ cfbt01_main <- function(adam_db,
 #' `cfbt01` Layout
 #'
 #' @inheritParams gen_args
-#' @inheritParams vst01_main
+#' @inheritParams cfbt01_main
 #'
 #' @param summaryvars (`character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
 #' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
@@ -176,12 +176,12 @@ cfbt01_lyt <- function(arm_var,
     append_topleft(paste(" ", lbl_avisit))
 }
 
-#' @describeIn vst01 Preprocessing
+#' @describeIn cfbt01 Preprocessing
 #'
 #' @inheritParams gen_args
 #' @export
 #'
-vst01_pre <- function(adam_db, dataset, ...) {
+cfbt01_pre <- function(adam_db, dataset, ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
@@ -194,12 +194,12 @@ vst01_pre <- function(adam_db, dataset, ...) {
   adam_db
 }
 
-#' @describeIn vst01 Postprocessing
+#' @describeIn cfbt01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
-vst01_post <- function(tlg, prune_0 = TRUE, ...) {
+cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
   std_postprocess(tlg)
 }
