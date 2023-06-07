@@ -51,7 +51,8 @@ egt03_main <- function(adam_db,
   adam_db$adeg$SPLIT_LABEL <- lbl_splitvar
   tbl <- build_table(
     lyt,
-    df = adam_db$adeg
+    df = adam_db$adeg,
+    alt_counts_df = adam_db$adsl
   )
 
   return(tbl)
