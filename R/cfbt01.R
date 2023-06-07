@@ -29,21 +29,27 @@
 #' @export
 #'
 cfbt01_main <- function(adam_db,
-                       dataset,  
-                       arm_var = "ACTARM",
-                       summaryvars = c("AVAL", "CHG"),
-                       visitvar = "AVISIT",
-                       precision = list(),
-                       default_precision = 2,
-                       ...) {
+                        dataset,
+                        arm_var = "ACTARM",
+                        summaryvars = c("AVAL", "CHG"),
+                        visitvar = "AVISIT",
+                        precision = list(),
+                        default_precision = 2,
+                        ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
   checkmate::assert_character(summaryvars, len = 2)
   checkmate::assert_string(visitvar)
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], c(visitvar, "PARAM"), types = list(c("character", "factor")), label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE, label = df_lbl)
+  assert_valid_variable(
+    adam_db[[dataset]], c(visitvar, "PARAM"), 
+    types = list(c("character", "factor")), label = df_lbl
+  )
+  assert_valid_variable(
+    adam_db[[dataset]], "USUBJID",
+    types = list(c("character", "factor")), empty_ok = TRUE, label = df_lbl
+  )
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
@@ -90,13 +96,13 @@ cfbt01_main <- function(adam_db,
 #' @keywords internal
 #'
 cfbt01_lyt <- function(arm_var,
-                      summaryvars,
-                      summaryvars_lbls,
-                      visitvar,
-                      lbl_avisit,
-                      lbl_param,
-                      precision,
-                      default_precision) {
+                       summaryvars,
+                       summaryvars_lbls,
+                       visitvar,
+                       lbl_avisit,
+                       lbl_param,
+                       precision,
+                       default_precision) {
   # TODE solve the problem of the overall column
   # remove change from baseline in BASELINE
   # problem with the column count
