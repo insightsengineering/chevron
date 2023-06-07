@@ -86,9 +86,7 @@ rmpt04_lyt <- function(summaryvars,
 #'
 rmpt04_pre <- function(adam_db, ...) {
   adam_db$adex <- adam_db$adex %>%
-    filter(.data$PARAMCD == "TDURD")
-
-  adam_db$adsl <- adam_db$adsl %>%
+    filter(.data$PARAMCD == "TDURD") %>%
     mutate(ETHNIC = with_label(.data$ETHNIC, "Ethnicity"))
 
   adam_db
