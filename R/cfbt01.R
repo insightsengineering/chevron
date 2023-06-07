@@ -43,7 +43,7 @@ cfbt01_main <- function(adam_db,
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
-    adam_db[[dataset]], c(visitvar, "PARAM"), 
+    adam_db[[dataset]], c(visitvar, "PARAM"),
     types = list(c("character", "factor")), label = df_lbl
   )
   assert_valid_variable(
