@@ -4,15 +4,18 @@
 \name{lbt01_main}
 \alias{lbt01_main}
 \alias{lbt01_pre}
-\alias{lbt01_post}
 \alias{lbt01}
-\title{\code{LBT01} Laboratory Test Results and Change from Baseline by Visit Table.}
+\title{\code{LBT01} Lab Results and change from Baseline By Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
+}
+\source{
+cfbt01.R
 }
 \usage{
 lbt01_main(
   adam_db,
+  dataset = "adlb",
   arm_var = "ACTARM",
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
@@ -21,21 +24,22 @@ lbt01_main(
   ...
 )
 
-lbt01_pre(adam_db, ...)
-
-lbt01_post(tlg, prune_0 = TRUE, ...)
+lbt01_pre(adam_db, dataset = "adlb", ...)
 
 lbt01
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
+\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adlb}
+\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in
 table of \code{adam_db} is used as label.}
 
-\item{visitvar}{(\code{string}) the type of time point to use. Typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"}.}
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
+to be displayed}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
@@ -44,14 +48,11 @@ represented with one more decimal of precision.}
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{LBT01} table provides an
-overview of the analysis values and its change from baseline of each respective arm over the course of the trial.
+overview of the Lab values and its change from baseline of each respective arm
+over the course of the trial.
 }
 \details{
 \itemize{
@@ -63,7 +64,7 @@ median and range of changes relative to the baseline.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sorted  based on factor level; first by \code{PARAM} labels in alphabetic order then by chronological time point given
-by \code{AVISIT}. Re-level to customize order.
+by \code{AVISIT}. Re-level to customize order
 }
 }
 \section{Functions}{
@@ -72,18 +73,13 @@ by \code{AVISIT}. Re-level to customize order.
 
 \item \code{lbt01_pre()}: Preprocessing
 
-\item \code{lbt01_post()}: Postprocessing
-
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adlb} table with columns specified in \code{summaryvars}.
+\item \code{adam_db} object must contain table named as \code{dataset} with the columns specified in \code{summaryvars}.
 }
 }
 \examples{
-run(lbt01, syn_data, precision = list(
-  "ALT" = 0,
-  "CRP" = 1
-))
+run(lbt01, syn_data)
 }
 \keyword{datasets}

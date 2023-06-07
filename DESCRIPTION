@@ -69,6 +69,7 @@ Collate:
     'aet04.R'
     'aet10.R'
     'assertions.R'
+    'cfbt01.R'
     'checks.R'
     'chevron_tlg-S4methods.R'
     'cmt01a.R'

@@ -3,7 +3,7 @@
 #' @describeIn cfbt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `advs`
+#' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in
 #'   table of `adam_db` is used as label.
 #' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed
@@ -24,7 +24,7 @@
 #'  by `AVISIT`. Re-level to customize order
 #'
 #' @note
-#'   * `adam_db` object must contain an `advs` table with the columns specified in `summaryvars`.
+#'   * `adam_db` object must contain table named as `dataset` with the columns specified in `summaryvars`.
 #'
 #' @export
 #'
@@ -51,11 +51,11 @@ cfbt01_main <- function(adam_db,
   checkmate::assert_integerish(default_precision, lower = 0)
 
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
-  lbl_param <- var_labels_for(adam_db$advs, "PARAM")
+  lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
   summaryvars_lbls <- var_labels_for(adam_db[[dataset]], summaryvars)
 
-  lyt <- vst01_lyt(
+  lyt <- cfbt01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
@@ -200,23 +200,25 @@ cfbt01_pre <- function(adam_db, dataset, ...) {
 #'
 #' @export
 cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
-  if (prune_0) tlg <- tlg %>% trim_rows()
+  if (prune_0) {
+    tlg <- smart_prune(tlg)
+  }
   std_postprocess(tlg)
 }
-#' `VST01` Vital Sign Results and change from Baseline By Visit Table.
+#' `CFBT01` Change from Baseline By Visit Table.
 #'
-#' The `VST01` table provides an
-#' overview of the Vital Sign values and its change from baseline of each respective arm
+#' The `CFBT01` table provides an
+#' overview of the actual values and its change from baseline of each respective arm
 #' over the course of the trial.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
-#' run(vst01, syn_data)
-vst01 <- chevron_t(
-  main = vst01_main,
-  preprocess = vst01_pre,
-  postprocess = vst01_post,
-  adam_datasets = c("adsl", "advs")
+#' run(cfbt01, syn_data, dataset = "advs")
+cfbt01 <- chevron_t(
+  main = cfbt01_main,
+  preprocess = cfbt01_pre,
+  postprocess = cfbt01_post,
+  adam_datasets = c("adsl")
 )
