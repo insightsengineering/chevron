@@ -48,6 +48,8 @@ represented with one more decimal of precision.}
 
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
+\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}

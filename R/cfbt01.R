@@ -11,6 +11,7 @@
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
 #' @param default_precision (`integer`) the default number of digits.
+#' @param page_by (`flag`) indicator whether the parameter row split is by page.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of

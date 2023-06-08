@@ -35,6 +35,8 @@ indicate the number of digits that should be represented for \code{min}, \code{m
 represented with one more decimal of precision.}
 
 \item{default_precision}{(\code{integer}) the default number of digits.}
+
+\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
 }
 \description{
 \code{cfbt01} Layout
