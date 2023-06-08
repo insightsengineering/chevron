@@ -19,14 +19,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(magrittr)
-#'
-#' db <- syn_data %>%
-#'   dmt01_pre()
-#'
-#' dmt01_main(db, lbl_overall = NULL)
-#' dmt01_main(db, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_main <- function(adam_db,
                        arm_var = "ARM",
                        summaryvars = c(
@@ -84,8 +76,6 @@ dmt01_lyt <- function(arm_var,
 #'
 #' @export
 #'
-#' @examples
-#' dmt01_pre(syn_data)
 dmt01_pre <- function(adam_db, ...) {
   adam_db$adsl <- adam_db$adsl %>%
     mutate(SEX = reformat(.data$SEX, rule(Male = "M", Female = "F")))

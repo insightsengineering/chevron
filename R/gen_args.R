@@ -6,6 +6,7 @@
 #' @param preprocess (`function`) returning a pre-processed `list` of `data.frames`, with `adam_db` as first argument.
 #'   Typically one of the `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
+#' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` data set required for `tlg`
 #'   creation.
 #' @param type (`string`) indicating the subclass.
@@ -28,7 +29,7 @@
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.
 #'
-gen_args <- function(adam_db, main, preprocess, postprocess, adam_datasets,
+gen_args <- function(adam_db, main, preprocess, postprocess, dataset, adam_datasets,
                      type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
                      tlg, tlgfname, visit_var, visit_value, paramcd_value,
                      key_cols, disp_cols, split_var, ...) {

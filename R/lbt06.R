@@ -22,23 +22,23 @@ lbt06_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
-  assert_valid_variable(adam_db$adlb, c(arm_var, "PARAMCD", "AVISIT"), types = list("characater", "factor"))
+  assert_valid_variable(adam_db$adlb, c(arm_var, "PARAM", "AVISIT"), types = list("characater", "factor"))
   assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-  lbl_paramcd <- var_labels_for(adam_db$adlb, "PARAMCD")
+  lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
   lbl_visit <- var_labels_for(adam_db$adlb, "AVISIT")
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
   lbl_bnrind <- var_labels_for(adam_db$adlb, "BNRIND")
 
   lyt <- lbt06_lyt(
     arm_var = arm_var,
-    paramcd = "PARAMCD",
+    param = "PARAM",
     visit_var = "AVISIT",
     anrind_var = "ANRIND",
     bnrind_var = "BNRIND",
-    lbl_paramcd = lbl_paramcd,
+    lbl_param = lbl_param,
     lbl_visit = lbl_visit,
     lbl_anrind = lbl_anrind,
     lbl_bnrind = lbl_bnrind
@@ -53,11 +53,11 @@ lbt06_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param paramcd (`string`) the variable for parameter code.
+#' @param param (`string`) the variable for parameter code.
 #' @param visit_var (`string`) the variable for analysis visit.
 #' @param anrind_var (`string`) the variable for analysis reference range indicator.
 #' @param bnrind_var (`string`) the variable for baseline reference range indicator.
-#' @param lbl_paramcd (`string`) text label of the `PARAMCD` variable.
+#' @param lbl_param (`string`) text label of the `PARAM` variable.
 #' @param lbl_visit (`string`) text label of the `AVISIT` variable.
 #' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
 #' @param lbl_bnrind (`string`) text label of the `BNRIND` variable.
@@ -65,21 +65,21 @@ lbt06_main <- function(adam_db,
 #' @keywords internal
 #'
 lbt06_lyt <- function(arm_var,
-                      paramcd,
+                      param,
                       visit_var,
                       anrind_var,
                       bnrind_var,
-                      lbl_paramcd,
+                      lbl_param,
                       lbl_visit,
                       lbl_anrind,
                       lbl_bnrind) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
-      var = paramcd,
+      var = param,
       split_fun = drop_split_levels,
       label_pos = "topleft",
-      split_label = lbl_paramcd
+      split_label = lbl_param
     ) %>%
     split_rows_by(
       var = visit_var,
@@ -113,6 +113,7 @@ lbt06_pre <- function(adam_db, ...) {
     ) %>%
     mutate(
       across(all_of(c("ANRIND", "BNRIND")), ~ reformat(.x, .env$missing_rule)),
+      AVISIT = reorder(.data$AVISIT, .data$AVISITN),
       AVISIT = with_label(.data$AVISIT, "Visit"),
       ANRIND = with_label(.data$ANRIND, "Abnormality at Visit"),
       BNRIND = with_label(.data$BNRIND, "Baseline Status")
