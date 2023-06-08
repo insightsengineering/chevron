@@ -4,7 +4,7 @@
 \alias{rmpt04_lyt}
 \title{\code{rmpt04} Layout}
 \usage{
-rmpt04_lyt(summaryvars, lbl_summaryvars, show_tot, indication)
+rmpt04_lyt(summaryvars, lbl_summaryvars, show_tot, split_var)
 }
 \arguments{
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
@@ -14,7 +14,7 @@ table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
-\item{indication}{(\code{string}) the name of the column that containing variable to split exposure by.}
+\item{split_var}{(\code{character}) recursive split row variable.}
 }
 \description{
 \code{rmpt04} Layout

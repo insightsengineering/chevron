@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 rmpt01_main(
   adam_db,
   summaryvars = c("AVALCAT1", "AVAL"),
-  indication = NULL,
+  split_var = NULL,
   ...
 )
 
@@ -30,7 +30,7 @@ rmpt01
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
-\item{indication}{(\code{string}) the name of the variable initiating a new row split.}
+\item{split_var}{(\code{string}) the name of the variable initiating a new row split.}
 
 \item{...}{not used.}
 

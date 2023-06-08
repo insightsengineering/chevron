@@ -15,7 +15,7 @@ rmpt04_main(
   adam_db,
   summaryvars = "ETHNIC",
   show_tot = TRUE,
-  indication = NULL,
+  split_var = NULL,
   ...
 )
 
@@ -33,7 +33,7 @@ table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
-\item{indication}{(\code{string}) the name of the column that containing variable to split exposure by.}
+\item{split_var}{(\code{string}) the name of the column that containing variable to split exposure by.}
 
 \item{...}{not used.}
 
@@ -54,6 +54,6 @@ The \code{RMPT04} table provides an overview of duration of exposure extent.
 
 }}
 \examples{
-run(rmpt04, syn_data, show_tot = TRUE, indication = "PARCAT1")
+run(rmpt04, syn_data, show_tot = TRUE, split_var = "PARCAT1")
 }
 \keyword{datasets}

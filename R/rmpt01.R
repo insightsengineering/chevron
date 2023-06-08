@@ -5,7 +5,7 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding columns in `adex`
 #'   table of `adam_db` is used as label.
-#' @param indication (`string`) the name of the variable initiating a new row split.
+#' @param split_var (`string`) the name of the variable initiating a new row split.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -21,20 +21,20 @@
 #'
 rmpt01_main <- function(adam_db,
                         summaryvars = c("AVALCAT1", "AVAL"),
-                        indication = NULL,
+                        split_var = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
-  checkmate::assert_string(indication, null.ok = TRUE)
+  checkmate::assert_string(split_var, null.ok = TRUE)
   checkmate::assert_character(summaryvars, len = 2L)
   assert_valid_variable(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adex, summaryvars[2], types = list("numeric"))
-  assert_valid_variable(adam_db$adex, c("USUBJID", "PARAMCD", indication))
+  assert_valid_variable(adam_db$adex, c("USUBJID", "PARAMCD", split_var))
   lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
     lbl_summaryvars = lbl_summaryvars,
-    indication = indication
+    split_var = split_var
   )
 
   tbl <- build_table(lyt, adam_db$adex, alt_counts_df = adam_db$adsl)
@@ -52,7 +52,7 @@ rmpt01_main <- function(adam_db,
 #'
 rmpt01_lyt <- function(summaryvars,
                        lbl_summaryvars,
-                       indication) {
+                       split_var) {
 
    lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by_multivar(
@@ -68,9 +68,9 @@ rmpt01_lyt <- function(summaryvars,
       custom_label = "TOTAL patients number/person time"
     )
 
-  if (!is.null(indication)) {
+  if (!is.null(split_var)) {
     lyt %>%
-      split_rows_by(indication) %>%
+      split_rows_by(split_var) %>%
       analyze_patients_exposure_in_cols(
         .indent_mods = -1,
         var = summaryvars[1],
