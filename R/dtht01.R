@@ -95,7 +95,7 @@ dtht01_lyt <- function(arm_var,
     lyt_block_fun <- summarize_row
   }
   lyt <- basic_table() %>%
-    split_cols_by("ACTARM") %>%
+    split_cols_by(arm_var) %>%
     add_colcounts() %>%
     count_values(
       death_flag,
