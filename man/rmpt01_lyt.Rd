@@ -4,7 +4,7 @@
 \alias{rmpt01_lyt}
 \title{\code{rmpt01} Layout}
 \usage{
-rmpt01_lyt(summaryvars, lbl_summaryvars, parcat, lbl_parcat)
+rmpt01_lyt(summaryvars, lbl_summaryvars, indication)
 }
 \arguments{
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
@@ -12,7 +12,7 @@ table of \code{adam_db} is used as label.}
 
 \item{lbl_summaryvars}{(\code{character}) label associated with the analyzed variables.}
 
-\item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
+\item{indication}{(\code{string}) the name of the variable initiating a new row split.}
 
 \item{lbl_parcat}{(\code{string}) the label associated with the variable initiating a new row split.}
 }

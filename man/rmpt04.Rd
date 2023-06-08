@@ -54,6 +54,6 @@ The \code{RMPT04} table provides an overview of duration of exposure extent.
 
 }}
 \examples{
-run(rmpt04, syn_data, show_tot = FALSE)
+run(rmpt04, syn_data, show_tot = TRUE, indication = "PARCAT1")
 }
 \keyword{datasets}

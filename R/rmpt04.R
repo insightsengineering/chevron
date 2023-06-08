@@ -113,7 +113,7 @@ rmpt04_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(rmpt04, syn_data, show_tot = FALSE)
+#' run(rmpt04, syn_data, show_tot = TRUE, indication = "PARCAT1")
 rmpt04 <- chevron_t(
   main = rmpt04_main,
   preprocess = rmpt04_pre,

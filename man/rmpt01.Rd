@@ -11,7 +11,12 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-rmpt01_main(adam_db, summaryvars = c("AVALCAT1", "AVAL"), parcat = NULL, ...)
+rmpt01_main(
+  adam_db,
+  summaryvars = c("AVALCAT1", "AVAL"),
+  indication = NULL,
+  ...
+)
 
 rmpt01_pre(adam_db, parcat = NULL, ...)
 
@@ -25,7 +30,7 @@ rmpt01
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
-\item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
+\item{indication}{(\code{string}) the name of the variable initiating a new row split.}
 
 \item{...}{not used.}
 
@@ -61,7 +66,6 @@ is denoted as \code{c("AVALCAT1", "AVAL")} by default.
 }
 \examples{
 run(rmpt01, syn_data)
-
-run(rmpt01, syn_data, parcat = "PARCAT2")
+run(rmpt01, syn_data, indication = "PARCAT2")
 }
 \keyword{datasets}

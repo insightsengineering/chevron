@@ -5,7 +5,7 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding columns in `adex`
 #'   table of `adam_db` is used as label.
-#' @param parcat (`string`) the name of the variable initiating a new row split.
+#' @param indication (`string`) the name of the variable initiating a new row split.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -21,22 +21,20 @@
 #'
 rmpt01_main <- function(adam_db,
                         summaryvars = c("AVALCAT1", "AVAL"),
-                        parcat = NULL,
+                        indication = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
-  checkmate::assert_string(parcat, null.ok = TRUE)
+  checkmate::assert_string(indication, null.ok = TRUE)
   checkmate::assert_character(summaryvars, len = 2L)
   assert_valid_variable(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adex, summaryvars[2], types = list("numeric"))
-  assert_valid_variable(adam_db$adex, c("USUBJID", "PARAMCD", parcat))
-  lbl_parcat <- var_labels_for(adam_db$adex, parcat)
+  assert_valid_variable(adam_db$adex, c("USUBJID", "PARAMCD", indication))
   lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
     lbl_summaryvars = lbl_summaryvars,
-    parcat = parcat,
-    lbl_parcat = lbl_parcat
+    indication = indication
   )
 
   tbl <- build_table(lyt, adam_db$adex, alt_counts_df = adam_db$adsl)
@@ -54,24 +52,36 @@ rmpt01_main <- function(adam_db,
 #'
 rmpt01_lyt <- function(summaryvars,
                        lbl_summaryvars,
-                       parcat,
-                       lbl_parcat) {
-  basic_table(show_colcounts = TRUE) %>%
-    ifneeded_split_row(parcat, lbl_parcat) %>%
-    summarize_patients_exposure_in_cols(
-      var = summaryvars[2],
-      col_split = TRUE,
-      .labels = c(
-        n_patients = lbl_summaryvars[1],
-        sum_exposure = lbl_summaryvars[2]
-      ),
-      custom_label = "Total Number of Patients and Person Time"
+                       indication) {
+
+   lyt <- basic_table(show_colcounts = TRUE) %>%
+    split_cols_by_multivar(
+      vars = c("AVAL", "AVAL"),
+      varlabels = c(n_patients = "Patients", sum_exposure = "Person time"),
+      extra_args = list(.stats = c("n_patients", "sum_exposure"))
     ) %>%
     analyze_patients_exposure_in_cols(
       var = summaryvars[1],
-      ex_var = summaryvars[2],
-      col_split = FALSE
+      ex_vars = summaryvars[2],
+      col_split = FALSE,
+      add_total_level = TRUE,
+      custom_label = "TOTAL patients number/person time"
     )
+
+  if (!is.null(indication)) {
+    lyt %>%
+      split_rows_by(indication) %>%
+      analyze_patients_exposure_in_cols(
+        .indent_mods = -1,
+        var = summaryvars[1],
+        ex_vars = summaryvars[2],
+        col_split = FALSE,
+        add_total_level = TRUE,
+        custom_label = "Total patients number/person time"
+      )
+  } else {
+    lyt
+  }
 }
 
 #' @describeIn rmpt01 Preprocessing
@@ -121,8 +131,7 @@ rmpt01_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' @examples
 #' run(rmpt01, syn_data)
-#'
-#' run(rmpt01, syn_data, parcat = "PARCAT2")
+#' run(rmpt01, syn_data, indication = "PARCAT2")
 rmpt01 <- chevron_t(
   main = rmpt01_main,
   preprocess = rmpt01_pre,
