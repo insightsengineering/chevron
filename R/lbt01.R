@@ -61,7 +61,7 @@ lbt01_main <- function(adam_db,
     default_precision = default_precision
   )
 
-  tbl <- build_table(lyt, adam_db$adlb)
+  tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
 
   tbl
 }
