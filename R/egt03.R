@@ -48,7 +48,7 @@ egt03_main <- function(adam_db,
     lbl_armvar = lbl_armvar,
     lbl_summaryvars = lbl_summaryvars
   )
-  adam_db$adeg$SPLIT_LABEL <- lbl_splitvar
+  adam_db$adeg$SPLIT_LABEL <- factor(rep(lbl_splitvar, nrow(adam_db$adeg)), levels = lbl_splitvar)
   tbl <- build_table(
     lyt,
     df = adam_db$adeg

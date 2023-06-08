@@ -56,7 +56,7 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(egt02_1, dat_empty)
   expect_identical(res, empty_report)
 
-  res <- suppressWarnings(run(egt03, dat_empty))
+  res <- run(egt03, dat_empty)
   expect_identical(res, empty_report)
 
   res <- suppressWarnings(run(egt03, dat_empty, minmax = "max"))
