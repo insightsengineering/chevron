@@ -20,20 +20,19 @@
 #' @export
 #'
 rmpt01_main <- function(adam_db,
-                        summaryvars = c("AVALCAT1", "AVAL"),
+                        summaryvars = "AVALCAT1",
                         split_var = NULL,
                         ...) {
+
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(split_var, null.ok = TRUE)
-  checkmate::assert_character(summaryvars, len = 2L)
-  assert_valid_variable(adam_db$adex, summaryvars[1], types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adex, summaryvars[2], types = list("numeric"))
+  checkmate::assert_character(summaryvars, len = 1L)
+  assert_valid_variable(adam_db$adex, summaryvars, types = c("factor", "character"))
+  assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
   assert_valid_variable(adam_db$adex, c("USUBJID", "PARAMCD", split_var))
-  lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
-    lbl_summaryvars = lbl_summaryvars,
     split_var = split_var
   )
 
@@ -51,7 +50,6 @@ rmpt01_main <- function(adam_db,
 #' @keywords internal
 #'
 rmpt01_lyt <- function(summaryvars,
-                       lbl_summaryvars,
                        split_var) {
 
    lyt <- basic_table(show_colcounts = TRUE) %>%
@@ -61,8 +59,7 @@ rmpt01_lyt <- function(summaryvars,
       extra_args = list(.stats = c("n_patients", "sum_exposure"))
     ) %>%
     analyze_patients_exposure_in_cols(
-      var = summaryvars[1],
-      ex_vars = summaryvars[2],
+      var = summaryvars,
       col_split = FALSE,
       add_total_level = TRUE,
       custom_label = "TOTAL patients number/person time"
@@ -73,8 +70,7 @@ rmpt01_lyt <- function(summaryvars,
       split_rows_by(split_var) %>%
       analyze_patients_exposure_in_cols(
         .indent_mods = -1,
-        var = summaryvars[1],
-        ex_vars = summaryvars[2],
+        var = summaryvars,
         col_split = FALSE,
         add_total_level = TRUE,
         custom_label = "Total patients number/person time"

@@ -24,7 +24,7 @@ rmpt04_main <- function(adam_db,
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
 
-  lbl_summaryvars <- var_labels_for(adam_db$adsl, summaryvars)
+  lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
 
   lyt <- rmpt04_lyt(
     summaryvars = summaryvars,

@@ -11,12 +11,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-rmpt01_main(
-  adam_db,
-  summaryvars = c("AVALCAT1", "AVAL"),
-  split_var = NULL,
-  ...
-)
+rmpt01_main(adam_db, summaryvars = "AVALCAT1", split_var = NULL, ...)
 
 rmpt01_pre(adam_db, parcat = NULL, ...)
 
