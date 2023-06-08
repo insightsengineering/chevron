@@ -3,7 +3,7 @@
 test_that("vst01 functions with default argument value return expected result with test data", {
   pre_data <- vst01_pre(syn_data)
   raw_res <- vst01_main(pre_data)
-  res <- vst01_post(raw_res)
+  res <- cfbt01_post(raw_res)
   expect_snapshot(res)
 })
 
