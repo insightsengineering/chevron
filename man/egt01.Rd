@@ -20,6 +20,7 @@ egt01_main(
   visitvar = "AVISIT",
   precision = list(),
   default_precision = 2,
+  page_by = TRUE,
   ...
 )
 

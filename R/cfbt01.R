@@ -53,7 +53,7 @@ cfbt01_main <- function(adam_db,
     types = list(c("character", "factor")), empty_ok = TRUE, label = df_lbl
   )
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
-  assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_int, FUN.VALUE = numeric(1), lower = 0)
   checkmate::assert_integerish(default_precision, lower = 0)

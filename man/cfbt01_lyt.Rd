@@ -12,7 +12,8 @@ cfbt01_lyt(
   lbl_avisit,
   lbl_param,
   precision,
-  default_precision
+  default_precision,
+  page_by
 )
 }
 \arguments{
