@@ -45,25 +45,29 @@ Suggests:
 VignetteBuilder:
     knitr
 Remotes:
-    mllg/checkmate@*release,
-    tidyverse/dplyr@*release,
     insightsengineering/dunlin@*release,
-    tidyverse/forcats@*release,
-    insightsengineering/formatters@*release,
-    tidyverse/ggplot2@*release,
-    tidyverse/glue@*release,
-    tidyverse/magrittr@*release,
     insightsengineering/nestcolor@*release,
-    tidyverse/purrr@*release,
-    r-lib/rlang@*release,
-    insightsengineering/rlistings@*release,
-    insightsengineering/rtables@*release,
-    tidyverse/stringr@*release,
-    insightsengineering/tern@*release,
-    tidyverse/tibble@*release,
-    yihui/knitr@*release,
-    r-lib/testthat@*release,
-    tidyverse/tidyr@*release
+    insightsengineering/tern@*release
+Config/Needs/verdepcheck:
+    mllg/checkmate,
+    tidyverse/dplyr,
+    insightsengineering/dunlin,
+    tidyverse/forcats,
+    insightsengineering/formatters,
+    tidyverse/ggplot2,
+    tidyverse/glue,
+    tidyverse/magrittr,
+    insightsengineering/nestcolor,
+    tidyverse/purrr,
+    r-lib/rlang,
+    insightsengineering/rlistings,
+    insightsengineering/rtables,
+    tidyverse/stringr,
+    insightsengineering/tern,
+    tidyverse/tibble,
+    yihui/knitr,
+    r-lib/testthat,
+    tidyverse/tidyr
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
