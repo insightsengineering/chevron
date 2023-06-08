@@ -88,7 +88,6 @@ a single time point. Typical application for oncology
 
 }}
 \examples{
-rspt01_pre(syn_data)
 library(dplyr)
 library(dunlin)
 

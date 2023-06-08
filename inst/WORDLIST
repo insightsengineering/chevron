@@ -18,6 +18,7 @@ TLGs
 TTET
 breslow
 catagory
+cfbt
 cmt
 conf
 coxph
@@ -41,7 +42,6 @@ splitted
 strat
 surv
 survfit
-ttet
 unstrat
 unstratified
 wald

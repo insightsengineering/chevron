@@ -195,8 +195,6 @@ ttet01_lyt <- function(arm_var,
 #'
 #' @export
 #'
-#' @examples
-#' ttet01_pre(syn_data)
 ttet01_pre <- function(adam_db, dataset = "adtte",
                        ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%

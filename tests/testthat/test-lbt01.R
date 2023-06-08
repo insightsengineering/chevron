@@ -3,7 +3,7 @@
 test_that("lbt01 functions with default argument value return expected result with test data", {
   pre_data <- lbt01_pre(syn_data)
   raw_res <- lbt01_main(pre_data)
-  res <- lbt01_post(raw_res)
+  res <- cfbt01_post(raw_res)
   expect_snapshot(res)
 })
 
