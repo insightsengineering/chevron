@@ -35,11 +35,13 @@ cfbt01_main <- function(adam_db,
                         visitvar = "AVISIT",
                         precision = list(),
                         default_precision = 2,
+                        page_by = TRUE,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
   checkmate::assert_character(summaryvars, len = 2)
   checkmate::assert_string(visitvar)
+  checkmate::assert_flag(page_by)
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
@@ -69,7 +71,8 @@ cfbt01_main <- function(adam_db,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     precision = precision,
-    default_precision = default_precision
+    default_precision = default_precision,
+    page_by = page_by
   )
 
   tbl <- build_table(
@@ -102,20 +105,22 @@ cfbt01_lyt <- function(arm_var,
                        lbl_avisit,
                        lbl_param,
                        precision,
-                       default_precision) {
+                       default_precision,
+                       page_by) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = "hidden",
-      split_label = paste(lbl_param)
+      label_pos = if (page_by) "hidden" else "topleft",
+      split_label = lbl_param,
+      page_by = page_by
     ) %>%
     split_rows_by(
       visitvar,
       split_fun = drop_split_levels,
-      label_pos = "hidden",
+      label_pos = "topleft",
       split_label = lbl_avisit
     ) %>%
     split_cols_by_multivar(
@@ -173,9 +178,7 @@ cfbt01_lyt <- function(arm_var,
         precision = precision,
         default_precision = default_precision
       )
-    ) %>%
-    append_topleft(paste(lbl_param)) %>%
-    append_topleft(paste(" ", lbl_avisit))
+    )
 }
 
 #' @describeIn cfbt01 Preprocessing
