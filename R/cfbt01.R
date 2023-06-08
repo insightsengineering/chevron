@@ -43,7 +43,7 @@ cfbt01_main <- function(adam_db,
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
-    adam_db[[dataset]], c(visitvar, "PARAM"),
+    adam_db[[dataset]], c(visitvar, "PARAM", "PARAMCD"),
     types = list(c("character", "factor")), label = df_lbl
   )
   assert_valid_variable(
@@ -103,10 +103,6 @@ cfbt01_lyt <- function(arm_var,
                        lbl_param,
                        precision,
                        default_precision) {
-  # TODE solve the problem of the overall column
-  # remove change from baseline in BASELINE
-  # problem with the column count
-
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(

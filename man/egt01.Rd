@@ -4,7 +4,7 @@
 \name{egt01_main}
 \alias{egt01_main}
 \alias{egt01}
-\title{\code{EGT01} Vital Sign Results and change from Baseline By Visit Table.}
+\title{\code{EGT01} ECG Parameters and Change from Baseline By Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -48,7 +48,7 @@ represented with one more decimal of precision.}
 }
 \description{
 The \code{EGT01} table provides an
-overview of the Ecg values and its change from baseline of each respective arm
+overview of the ECG values and its change from baseline of each respective arm
 over the course of the trial.
 }
 \details{

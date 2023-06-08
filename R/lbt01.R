@@ -15,7 +15,7 @@ lbt01_main <- modify_default_args(cfbt01_main, dataset = "adlb")
 #'
 lbt01_pre <- modify_default_args(cfbt01_pre, dataset = "adlb")
 
-#' `LBT01` Lab Results and change from Baseline By Visit Table.
+#' `LBT01` Lab Results and Change from Baseline by Visit Table.
 #'
 #' The `LBT01` table provides an
 #' overview of the Lab values and its change from baseline of each respective arm

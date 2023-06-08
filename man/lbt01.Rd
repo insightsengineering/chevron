@@ -5,7 +5,7 @@
 \alias{lbt01_main}
 \alias{lbt01_pre}
 \alias{lbt01}
-\title{\code{LBT01} Lab Results and change from Baseline By Visit Table.}
+\title{\code{LBT01} Lab Results and Change from Baseline by Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }

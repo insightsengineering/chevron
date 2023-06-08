@@ -15,10 +15,10 @@ egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg")
 #'
 egt01_pre <- modify_default_args(cfbt01_pre, dataset = "adeg")
 
-#' `EGT01` Vital Sign Results and change from Baseline By Visit Table.
+#' `EGT01` ECG Parameters and Change from Baseline By Visit Table.
 #'
 #' The `EGT01` table provides an
-#' overview of the Ecg values and its change from baseline of each respective arm
+#' overview of the ECG values and its change from baseline of each respective arm
 #' over the course of the trial.
 #'
 #' @include chevron_tlg-S4class.R
