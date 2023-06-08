@@ -19,14 +19,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' library(magrittr)
-#'
-#' db <- syn_data %>%
-#'   dmt01_pre()
-#'
-#' dmt01_main(db, lbl_overall = NULL)
-#' dmt01_main(db, summaryvars = c("AGE", "RACE", "SEX"))
 dmt01_main <- function(adam_db,
                        arm_var = "ARM",
                        summaryvars = c(
