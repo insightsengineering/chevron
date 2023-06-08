@@ -49,7 +49,6 @@ egt03_main <- function(adam_db,
     lbl_summaryvars = lbl_summaryvars
   )
   adam_db$adeg$SPLIT_LABEL <- factor(rep(lbl_splitvar, nrow(adam_db$adeg)), levels = lbl_splitvar)
-  adam_db$adsl$SPLIT_LABEL <- factor(rep(lbl_splitvar, nrow(adam_db$adsl)), levels = lbl_splitvar)
   tbl <- build_table(
     lyt,
     df = adam_db$adeg
