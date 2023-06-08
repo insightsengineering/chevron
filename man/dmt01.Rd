@@ -70,14 +70,6 @@ by default based on the number of patients in the corresponding \code{n} row.
 }
 }
 \examples{
-library(magrittr)
-
-db <- syn_data \%>\%
-  dmt01_pre()
-
-dmt01_main(db, lbl_overall = NULL)
-dmt01_main(db, summaryvars = c("AGE", "RACE", "SEX"))
-dmt01_pre(syn_data)
 run(dmt01, syn_data)
 }
 \keyword{datasets}

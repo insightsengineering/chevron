@@ -96,7 +96,6 @@ a single time point. Typical application for oncology
 
 }}
 \examples{
-ttet01_pre(syn_data)
 library(dplyr)
 library(dunlin)
 
