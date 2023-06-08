@@ -100,6 +100,12 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/assert_valid_variable.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cfbt01.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/cfbt01_lyt.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/check_all_colnames.html</loc>
   </url>
   <url>
@@ -155,9 +161,6 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt01.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/egt02_1.html</loc>
@@ -224,9 +227,6 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt01.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/lbt04.html</loc>
@@ -353,9 +353,6 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst01.html</loc>
-  </url>
-  <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst01_lyt.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/vst02_1.html</loc>
