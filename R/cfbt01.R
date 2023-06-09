@@ -12,6 +12,7 @@
 #'   represented with one more decimal of precision.
 #' @param default_precision (`integer`) the default number of digits.
 #' @param page_by (`flag`) indicator whether the parameter row split is by page.
+#' @param row_split_var (`character`) row split variable other than `PARAMCD`.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -32,6 +33,7 @@
 cfbt01_main <- function(adam_db,
                         dataset,
                         arm_var = "ACTARM",
+                        row_split_var = NULL,
                         summaryvars = c("AVAL", "CHG"),
                         visitvar = "AVISIT",
                         precision = list(),
@@ -41,12 +43,14 @@ cfbt01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
   checkmate::assert_character(summaryvars, len = 2)
+  checkmate::assert_character(row_split_var, null.ok = TRUE)
+  checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   checkmate::assert_string(visitvar)
   checkmate::assert_flag(page_by)
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
-    adam_db[[dataset]], c(visitvar, "PARAM", "PARAMCD"),
+    adam_db[[dataset]], c(visitvar, row_split_var, "PARAM", "PARAMCD"),
     types = list(c("character", "factor")), label = df_lbl
   )
   assert_valid_variable(
@@ -63,11 +67,14 @@ cfbt01_main <- function(adam_db,
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
   summaryvars_lbls <- var_labels_for(adam_db[[dataset]], summaryvars)
+  row_split_lbl <- var_labels_for(adam_db[[dataset]], row_split_var)
 
   lyt <- cfbt01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
+    row_split_var = row_split_var,
+    row_split_lbl = row_split_lbl,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
@@ -102,19 +109,23 @@ cfbt01_main <- function(adam_db,
 cfbt01_lyt <- function(arm_var,
                        summaryvars,
                        summaryvars_lbls,
+                       row_split_var,
+                       row_split_lbl,
                        visitvar,
                        lbl_avisit,
                        lbl_param,
                        precision,
                        default_precision,
                        page_by) {
+  label_pos <- if (page_by) "hidden" else "topleft"
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    split_rows_by_recurive(row_split_var, split_label = row_split_lbl, label_pos = label_pos, page_by = TRUE) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = if (page_by) "hidden" else "topleft",
+      label_pos = label_pos,
       split_label = lbl_param,
       page_by = page_by
     ) %>%

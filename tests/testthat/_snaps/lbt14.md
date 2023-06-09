@@ -1,7 +1,7 @@
 # lbt14 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -82,7 +82,7 @@
 # lbt14 functions with default argument value return expected result with test data when direction = high
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -168,7 +168,7 @@
 # lbt14 functions with `gr_missing = excl` return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -249,7 +249,7 @@
 # lbt14 functions with `gr_missing = gr_0` return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -330,7 +330,7 @@
 # lbt14 can handle all NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -349,7 +349,7 @@
 # lbt14 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -437,7 +437,7 @@
 # lbt14 can accept different gr_missing
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -518,7 +518,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res2, lpp = 100))
+      cat(export_as_txt(res2, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -599,7 +599,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res3, lpp = 100))
+      cat(export_as_txt(res3, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -680,7 +680,7 @@
 # lbt14 can handle all NA values with direction = high
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -699,7 +699,7 @@
 # lbt14 can handle some NA values with direction = high
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -792,7 +792,7 @@
 # lbt14 can accept different gr_missing with direction = high
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -878,7 +878,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res2, lpp = 100))
+      cat(export_as_txt(res2, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination
@@ -964,7 +964,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res3, lpp = 100))
+      cat(export_as_txt(res3, lpp = 100))
     Output
         Parameter                                                                             
               Baseline NCI-CTCAE Grade                A: Drug X    B: Placebo   C: Combination

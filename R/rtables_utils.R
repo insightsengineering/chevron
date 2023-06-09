@@ -186,7 +186,33 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 #' @param ... Further arguments for `split_rows_by`
 #' @keywords internal
 split_rows_by_recurive <- function(lyt, split_var, ...) {
-  purrr::reduce(.x = split_var, .f = split_rows_by, .init = lyt, ...)
+  args <- list(...)
+  for (i in seq_len(length(split_var))) {
+    args_i <- lapply(args, obtain_value, index = i)
+    lyt <- do.call(
+      split_rows_by,
+      c(
+        list(
+          lyt = lyt,
+          split_var
+        ),
+        args_i
+      )
+    )
+  }
+  lyt
+}
+
+#' Obtain value from a vector
+#' @keywords internal
+obtain_value <- function(obj, index) {
+  if (is.list(obj)) {
+    return(obj[[index]])
+  }
+  if (is.vector(obj) && length(obj) >= index) {
+    return(obj[index])
+  }
+  return(obj)
 }
 
 #' Proportion layout
