@@ -12,8 +12,7 @@ egt05_qtcat_lyt(
   visitvar,
   lbl_avisit,
   lbl_param,
-  lbl_cat,
-  lbl_headvisit
+  lbl_cat
 )
 }
 \arguments{
@@ -33,8 +32,6 @@ to be displayed.}
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{lbl_cat}{(\code{string}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
-
-\item{lbl_headvisit}{(\code{string}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 }
 \description{
 \code{egt05_qtcat} Layout

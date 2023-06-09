@@ -50,8 +50,7 @@ egt05_qtcat_main <- function(adam_db,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
-    lbl_cat = "Category",
-    lbl_headvisit = lbl_avisit
+    lbl_cat = "Category"
   )
 
   build_table(
@@ -72,7 +71,6 @@ egt05_qtcat_main <- function(adam_db,
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #' @param lbl_cat (`string`) label of the Category of `summaryvars` variable. Default as `Category`.
-#' @param lbl_headvisit (`string`) label of Visits in the header. Default as `Analysis Visit`.
 #'
 #' @keywords internal
 egt05_qtcat_lyt <- function(arm_var,
@@ -82,8 +80,7 @@ egt05_qtcat_lyt <- function(arm_var,
                             visitvar,
                             lbl_avisit,
                             lbl_param,
-                            lbl_cat,
-                            lbl_headvisit) {
+                            lbl_cat) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%
@@ -93,21 +90,21 @@ egt05_qtcat_lyt <- function(arm_var,
       labels_var = "PARAM",
       split_fun = drop_split_levels,
       label_pos = "hidden",
-      split_label = paste(lbl_param)
+      split_label = lbl_param,
+      page_by = TRUE
     ) %>%
     split_rows_by(
       visitvar,
       split_fun = drop_split_levels,
-      label_pos = "hidden"
+      split_label = lbl_avisit,
+      label_pos = "topleft"
     ) %>%
     summarize_vars_allow_na(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
       inclNAs = FALSE
     ) %>%
-    append_topleft(paste(lbl_param)) %>%
-    append_topleft(paste0("  ", lbl_headvisit)) %>%
-    append_topleft(paste0("    ", lbl_cat))
+    append_topleft(paste0("  ", lbl_cat))
 }
 
 #' @describeIn egt05_qtcat Preprocessing
