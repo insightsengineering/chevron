@@ -118,10 +118,7 @@ egt05_qtcat_lyt <- function(arm_var,
 #'
 egt05_qtcat_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
-    filter(
-      .data$ANL01FL == "Y",
-      .data$PARAMCD %in% "QT"
-    ) %>%
+    filter(.data$ANL01FL == "Y") %>%
     mutate(
       AVISIT = reorder(.data$AVISIT, .data$AVISITN),
       AVISIT = with_label(.data$AVISIT, "Analysis Visit")
