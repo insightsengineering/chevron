@@ -8,6 +8,8 @@ cfbt01_lyt(
   arm_var,
   summaryvars,
   summaryvars_lbls,
+  row_split_var,
+  row_split_lbl,
   visitvar,
   lbl_avisit,
   lbl_param,
@@ -22,6 +24,10 @@ cfbt01_lyt(
 \item{summaryvars}{(\code{character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
 \item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
+
+\item{row_split_var}{(\code{character}) row split variable other than \code{PARAMCD}.}
+
+\item{row_split_lbl}{(\code{character}) label of further row splits.}
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
 to be displayed.}

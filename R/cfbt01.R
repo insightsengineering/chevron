@@ -103,6 +103,7 @@ cfbt01_main <- function(adam_db,
 #'   to be displayed.
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param row_split_lbl (`character`) label of further row splits.
 #'
 #' @keywords internal
 #'
