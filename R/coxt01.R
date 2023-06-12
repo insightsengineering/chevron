@@ -44,7 +44,7 @@ coxt01_main <- function(adam_db,
   checkmate::assert_string(event_var)
   checkmate::assert_character(covariates, null.ok = TRUE)
   checkmate::assert_character(strata, null.ok = TRUE)
-  assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"))
+  assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"), n.levels = 2L)
   assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var, "PARAMCD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adtte, c(covariates, strata), types = list(c("factor", "numeric")), na_ok = TRUE)
   assert_valid_variable(adam_db$adtte, event_var, types = list("numeric"), integerish = TRUE, lower = 0L, upper = 1L)
@@ -122,11 +122,13 @@ coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
   std_postprocess(tlg)
 }
 
-#' `coxt01` Table 1 (Default) Multi-Variable Cox Regression Model Table 1.
+#' `coxt01` (Default) Cox Regression Model Table.
 #'
-#' The `coxt01` table follows the same principles as the general Cox model analysis
-#' and produces the estimates for each of the covariates included in the model
-#' (usually the main effects without interaction terms).
+#' Cox models are the most commonly used methods to estimate the magnitude of the effect in survival analyses.
+#' It assumes proportional hazards; that is, it assumes that the ratio of the hazards
+#' of the two groups (e.g. two arms) is constant over time.
+#' This ratio is referred to as the "hazard ratio" and is one of the most commonly reported metrics
+#' to describe the effect size in survival analysis.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -136,7 +138,8 @@ coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
 #' library(dunlin)
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
-#'
+#' proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
+#' proc_data$adtte$ARM <- droplevels(proc_data$adtte$ARM)
 #' run(coxt01, proc_data)
 #'
 #' run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
