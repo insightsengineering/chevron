@@ -94,19 +94,15 @@ rmpt01_lyt <- function(summaryvars,
 #' @export
 #'
 rmpt01_pre <- function(adam_db,
-                       parcat = NULL,
                        ...) {
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
 
   adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
-  if (!is.null(parcat)) adam_db$adex[[parcat]] <- droplevels(adam_db$adex[[parcat]])
 
   adam_db$adex <- adam_db$adex %>%
     mutate(
-      AVALCAT1 = with_label(.data$AVALCAT1, "Duration of exposure"),
-      AVAL = with_label(.data$AVAL, "Person time*"),
-      PARCAT2 = with_label(.data$PARCAT2, "Parameter Category")
+      AVALCAT1 = with_label(.data$AVALCAT1, "Duration of exposure")
     )
 
   adam_db

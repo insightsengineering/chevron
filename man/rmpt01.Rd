@@ -19,7 +19,7 @@ rmpt01_main(
   ...
 )
 
-rmpt01_pre(adam_db, parcat = NULL, ...)
+rmpt01_pre(adam_db, ...)
 
 rmpt01_post(tlg, prune_0 = FALSE, ...)
 
