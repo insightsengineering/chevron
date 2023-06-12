@@ -4,6 +4,7 @@
 * Convert `AVISIT` to factor according to `AVISITN` as order in preprocessing.
 * Add `CFBT01` template. `VST01`, `EGT01` and `LBT01` are now all following `CFBT01`. By default parameters are by page displayed.
 * Update `EGT03` to use `ACTARMCD` as default arm variable, and remove the preprocessing of filtering to "HR".
+* Add `COXT01` template.
 
 # chevron 0.2.0
 
