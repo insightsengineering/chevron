@@ -1,6 +1,6 @@
-# rmpt01 ----
+# rmpt03 ----
 
-#' @describeIn rmpt01 Main TLG function
+#' @describeIn rmpt03 Main TLG function
 #'
 #' @inheritParams gen_args
 #' @param summaryvars (`string`) variables to be analyzed. The label attribute of the corresponding columns in `adsl`
@@ -14,12 +14,10 @@
 #'   (number of non-missing values).
 #'   * Does not remove zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
-#' @note
-#'   * `adam_db` object must contain an `adex` table with `"AVAL"` and the columns specified by `summaryvars`.
 #' @export
 #'
-rmpt01_main <- function(adam_db,
-                        summaryvars = "AVALCAT1",
+rmpt03_main <- function(adam_db,
+                        summaryvars = "AGEGR1",
                         show_tot = TRUE,
                         split_var = NULL,
                         ...) {
@@ -27,6 +25,7 @@ rmpt01_main <- function(adam_db,
   checkmate::assert_string(summaryvars)
   checkmate::assert_flag(show_tot)
   assert_valid_variable(adam_db$adex, summaryvars, types = list("factor", "character"), empty_ok = FALSE)
+  assert_valid_variable(adam_db$adex, "SEX", types = list("factor", "character"), empty_ok = FALSE)
   assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
   assert_valid_variable(adam_db$adex, split_var, types = list("factor", "numeric"), empty_ok = TRUE)
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
@@ -34,7 +33,7 @@ rmpt01_main <- function(adam_db,
 
   lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
 
-  lyt <- rmpt01_lyt(
+  lyt <- rmpt03_lyt(
     summaryvars = summaryvars,
     lbl_summaryvars = lbl_summaryvars,
     show_tot = show_tot,
@@ -45,19 +44,20 @@ rmpt01_main <- function(adam_db,
 }
 
 
-#' `rmpt01` Layout
+#' `rmpt03` Layout
 #'
 #' @inheritParams gen_args
-#' @inheritParams rmpt01_main
+#' @inheritParams rmpt03_main
 #' @param lbl_summaryvars (`character`) label associated with the analyzed variables.
 #'
 #' @keywords internal
 #'
-rmpt01_lyt <- function(summaryvars,
+rmpt03_lyt <- function(summaryvars,
                        lbl_summaryvars,
                        show_tot,
                        split_var) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
+    split_cols_by("SEX", split_fun = add_overall_level("SEX_ALL", "All Genders")) %>%
     split_cols_by_multivar(
       vars = c("AVAL", "AVAL"),
       varlabels = c(n_patients = "Patients", sum_exposure = "Person time"),
@@ -87,56 +87,48 @@ rmpt01_lyt <- function(summaryvars,
   }
 }
 
-#' @describeIn rmpt01 Preprocessing
+
+#' @describeIn rmpt03 Preprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-rmpt01_pre <- function(adam_db,
+rmpt03_pre <- function(adam_db,
                        parcat = NULL,
                        ...) {
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
 
-  adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
-  if (!is.null(parcat)) adam_db$adex[[parcat]] <- droplevels(adam_db$adex[[parcat]])
-
-  adam_db$adex <- adam_db$adex %>%
-    mutate(
-      AVALCAT1 = with_label(.data$AVALCAT1, "Duration of exposure"),
-      AVAL = with_label(.data$AVAL, "Person time*"),
-      PARCAT2 = with_label(.data$PARCAT2, "Parameter Category")
-    )
-
   adam_db
 }
 
-#' @describeIn rmpt01 Postprocessing
+#' @describeIn rmpt03 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
 #' @export
 #'
-rmpt01_post <- function(tlg, prune_0 = FALSE, ...) {
+rmpt03_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
   std_postprocess(tlg)
 }
 
-#' `RMPT01`Duration of Exposure for Risk Management Plan Table.
+#' `rmpt03`Duration of Exposure for Risk Management Plan Table.
 #'
-#' The `RMPT01` table provides an overview of duration of exposure.
+#' The `rmpt03` table provides an overview of duration of exposure.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
 #' @examples
-#' run(rmpt01, syn_data)
-rmpt01 <- chevron_t(
-  main = rmpt01_main,
-  preprocess = rmpt01_pre,
-  postprocess = rmpt01_post,
+#' pre_data <- dunlin::propagate(syn_data, "adsl", "AGEGR1", "USUBJID")
+#' run(rmpt03, pre_data)
+rmpt03 <- chevron_t(
+  main = rmpt03_main,
+  preprocess = rmpt03_pre,
+  postprocess = rmpt03_post,
   adam_datasets = c("adsl", "adex")
 )

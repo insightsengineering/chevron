@@ -4,7 +4,7 @@ test_that("rmpt04 function with default argument value return expected result wi
   pre_data <- rmpt04_pre(syn_data)
   raw_res <- rmpt04_main(pre_data)
   res <- rmpt04_post(raw_res)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 # rmpt04 ----
@@ -14,10 +14,10 @@ test_that("rmpt04 can handle NA values", {
   proc_data$adex$AVAL <- NA_real_
 
   res1 <- expect_silent(run(rmpt04, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
 
   res2 <- expect_silent(run(rmpt04, proc_data, prune_0 = FALSE))
-  expect_snapshot(cat(formatters::export_as_txt(res2, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 })
 
 test_that("rmpt04 can handle some NA values", {
@@ -31,7 +31,7 @@ test_that("rmpt04 can handle some NA values", {
     )
 
   res1 <- expect_silent(run(rmpt04, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
 })
 
 test_that("rmpt04 fails on incomlete data", {
