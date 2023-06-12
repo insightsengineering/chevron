@@ -121,7 +121,7 @@ cfbt01_lyt <- function(arm_var,
   label_pos <- if (page_by) "hidden" else "topleft"
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    split_rows_by_recurive(row_split_var, split_label = row_split_lbl, label_pos = label_pos, page_by = TRUE) %>%
+    split_rows_by_recurive(row_split_var, split_label = row_split_lbl, label_pos = label_pos, page_by = page_by) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
@@ -142,52 +142,11 @@ cfbt01_lyt <- function(arm_var,
       nested = TRUE
     ) %>%
     analyze_colvars(
-      afun = function(x, .var, .spl_context, precision, default_precision, ...) {
-        param_val <- .spl_context$value[which(.spl_context$split == "PARAMCD")]
-
-        pcs <- precision[[param_val]] %||% default_precision
-
-        # Create context dependent function.
-        n_fun <- sum(!is.na(x), na.rm = TRUE)
-        if (n_fun == 0) {
-          mean_sd_fun <- c(NA, NA)
-          median_fun <- NA
-          min_max_fun <- c(NA, NA)
-        } else {
-          mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
-          median_fun <- median(x, na.rm = TRUE)
-          min_max_fun <- c(min(x), max(x))
-        }
-
-        # Identify context-
-        is_chg <- .var == "CHG"
-
-        is_baseline <- .spl_context$value[which(.spl_context$split == "AVISIT")] == "BASELINE"
-
-        if (is_baseline && is_chg) {
-          n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
-        }
-
-        in_rows(
-          "n" = n_fun,
-          "Mean (SD)" = mean_sd_fun,
-          "Median" = median_fun,
-          "Min - Max" = min_max_fun,
-          .formats = list(
-            "n" = "xx",
-            "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
-            "Median" = h_format_dec(format = "%f", digits = pcs + 1),
-            "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
-          ),
-          .format_na_strs = list(
-            "n" = "NE",
-            "Mean (SD)" = "NE (NE)",
-            "Median" = "NE",
-            "Min - Max" = "NE - NE"
-          )
-        )
-      },
+      afun = afun_skip_baseline,
       extra_args = list(
+        visitvar = visitvar,
+        paramcdvar = "PARAMCD",
+        skip = c("BASELINE" = summaryvars[2]),
         precision = precision,
         default_precision = default_precision
       )
