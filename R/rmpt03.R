@@ -95,7 +95,6 @@ rmpt03_lyt <- function(summaryvars,
 #' @export
 #'
 rmpt03_pre <- function(adam_db,
-                       parcat = NULL,
                        ...) {
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
