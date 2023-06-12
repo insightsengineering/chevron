@@ -139,8 +139,6 @@ rspt01_lyt <- function(arm_var,
 #'
 #' @export
 #'
-#' @examples
-#' rspt01_pre(syn_data)
 rspt01_pre <- function(adam_db, ...) {
   adam_db$adrs <- adam_db$adrs %>%
     mutate(RSP_LAB = tern::d_onco_rsp_label(.data$AVALC)) %>%

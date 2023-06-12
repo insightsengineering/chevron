@@ -1,7 +1,7 @@
 # egt03 ----
 #' @describeIn egt03 Main TLG function
 #'
-#' @param arm_var (`character`) the arm variables used for row split, typically `"ARMCD"`.
+#' @param arm_var (`character`) the arm variables used for row split, typically `"ACTARMCD"`.
 #' @param summaryvar (`character`) variables to be analyzed, typically `"BNRIND"`. Labels of the corresponding columns
 #'   are used as subtitles.
 #' @param splitvar (`character`) variables to be analyzed, typically `"ANRIND"`. Labels of the corresponding columns are
@@ -16,13 +16,13 @@
 #'  * Sorted  based on factor level.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adeg` table with a `"ARMCD"` column as well as columns specified in
+#'  * `adam_db` object must contain an `adeg` table with a `"ACTARMCD"` column as well as columns specified in
 #'  `summaryvar` and `splitvar`.
 #'
 #' @export
 #'
 egt03_main <- function(adam_db,
-                       arm_var = "ARMCD",
+                       arm_var = "ACTARMCD",
                        summaryvar = "BNRIND",
                        splitvar = "ANRIND",
                        visit_var = "AVISIT",
@@ -31,12 +31,12 @@ egt03_main <- function(adam_db,
   checkmate::assert_string(summaryvar)
   assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
   checkmate::assert_string(splitvar)
-  assert_valid_variable(adam_db$adeg, splitvar, types = list("character", "factor"))
+  assert_valid_variable(adam_db$adeg, c("PARAMCD", splitvar), types = list("character", "factor"))
   assert_single_value(adam_db$adeg[[visit_var]])
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-
+  assert_single_value(adam_db$adeg$PARAMCD)
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- var_labels_for(adam_db$adeg, summaryvar)
   lbl_splitvar <- var_labels_for(adam_db$adeg, splitvar)
@@ -48,7 +48,7 @@ egt03_main <- function(adam_db,
     lbl_armvar = lbl_armvar,
     lbl_summaryvars = lbl_summaryvars
   )
-  adam_db$adeg$SPLIT_LABEL <- lbl_splitvar
+  adam_db$adeg$SPLIT_LABEL <- factor(rep(lbl_splitvar, nrow(adam_db$adeg)), levels = lbl_splitvar)
   tbl <- build_table(
     lyt,
     df = adam_db$adeg
@@ -98,8 +98,7 @@ egt03_lyt <- function(arm_var,
 egt03_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(
-      .data$PARAMCD == "HR" &
-        .data$AVISIT == "POST-BASELINE MINIMUM"
+      .data$AVISIT == "POST-BASELINE MINIMUM"
     ) %>%
     mutate(BNRIND = factor(
       .data$BNRIND,
@@ -140,7 +139,9 @@ egt03_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(egt03, syn_data)
+#' library(dunlin)
+#' proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
+#' run(egt03, proc_data)
 egt03 <- chevron_t(
   main = egt03_main,
   preprocess = egt03_pre,

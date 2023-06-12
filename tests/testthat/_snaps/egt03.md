@@ -3,7 +3,7 @@
     Code
       cat(formatters::export_as_txt(res, lpp = 100))
     Output
-        Planned Arm Code                           Minimum Post-Baseline Assessment     
+        Actual Arm Code                            Minimum Post-Baseline Assessment     
           Baseline Reference Range Indicator       LOW         NORMAL     HIGH   Missing
         ————————————————————————————————————————————————————————————————————————————————
         ARM A (N=134)                                                                   
@@ -27,7 +27,7 @@
     Code
       cat(formatters::export_as_txt(res, lpp = 100))
     Output
-        Planned Arm Code                           Minimum Post-Baseline Assessment     
+        Actual Arm Code                            Minimum Post-Baseline Assessment     
           Baseline Reference Range Indicator       LOW         NORMAL     HIGH   Missing
         ————————————————————————————————————————————————————————————————————————————————
         ARM A (N=134)                                                                   
