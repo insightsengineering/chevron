@@ -182,3 +182,48 @@ test_that("execute_with_args works as expected", {
   res <- expect_silent(execute_with_args(bar, a = NA, na_rm = TRUE))
   expect_equal(res, 2)
 })
+
+# empty_as_na ----
+
+test_that("empty_as_na works for character", {
+  x <- c("a", "b", "")
+  attr(x, "label") <- "x label"
+  out <- empty_as_na(x)
+  x[3] <- NA
+  expect_identical(
+    x,
+    out
+  )
+})
+
+test_that("empty_as_na works if no empty string found", {
+  x <- c("a", "b")
+  attr(x, "label") <- "x label"
+  out <- empty_as_na(x)
+  expect_identical(
+    x,
+    out
+  )
+})
+
+test_that("empty_as_na works for factor", {
+  x <- factor(c("a", "b", ""))
+  attr(x, "label") <- "x label"
+  out <- empty_as_na(x)
+  y <- factor(c("a", "b", NA))
+  attr(y, "label") <- "x label"
+  expect_identical(
+    y,
+    out
+  )
+})
+
+test_that("empty_as_na works for factor if no empty string found", {
+  x <- factor(c("a", "b"))
+  attr(x, "label") <- "x label"
+  out <- empty_as_na(x)
+  expect_identical(
+    x,
+    out
+  )
+})

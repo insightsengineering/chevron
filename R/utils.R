@@ -178,3 +178,21 @@ execute_with_args <- function(fun, ...) {
   args <- list(...)
   do.call(fun, args[intersect(names(args), formalArgs(fun))])
 }
+
+#' Convert empty string to NA
+#' @param x (`character`) or (`factor`) input.
+#' @export
+empty_as_na <- function(x) {
+  UseMethod("empty_as_na")
+}
+
+#' @export
+empty_as_na.character <- function(x) {
+  x[x == ""] <- NA_character_
+  x
+}
+
+#' @export
+empty_as_na.factor <- function(x) {
+  forcats::fct_na_level_to_value(x, "")
+}

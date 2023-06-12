@@ -3,9 +3,8 @@
     Code
       cat(formatters::export_as_txt(res, lpp = 100))
     Output
-        Parameter                                                            
           Analysis Visit            A: Drug X    B: Placebo    C: Combination
-            Category                 (N=134)       (N=134)        (N=132)    
+          Category                   (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————
         QT Duration                                                          
           BASELINE                                                           
@@ -81,9 +80,8 @@
     Code
       cat(formatters::export_as_txt(res, lpp = 100))
     Output
-        Parameter                                                            
           Analysis Visit            A: Drug X    B: Placebo    C: Combination
-            Category                 (N=134)       (N=134)        (N=132)    
+          Category                   (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————
         QT Duration                                                          
           BASELINE                                                           
