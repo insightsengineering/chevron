@@ -305,6 +305,19 @@
                                     Grade 3-4       43 (32.1%)    46 (34.3%)      43 (32.6%)  
                                     4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
+# aet05 functions with default argument value return expected result with test data
+
+    Code
+      cat(formatters::export_as_txt(res, lpp = 100))
+    Output
+                                             A: Drug X      B: Placebo    C: Combination
+                                              (N=134)        (N=134)         (N=132)    
+        ————————————————————————————————————————————————————————————————————————————————
+        Total patient-years at risk           13068.4        13038.6         12739.2    
+        Number of adverse events observed       441            511             414      
+        AE rate per 1 patient-years             0.03           0.04            0.03     
+        95% CI                              (0.03, 0.04)   (0.04, 0.04)    (0.03, 0.04) 
+
 # aet10 functions with default argument value return expected result with test data
 
     Code
