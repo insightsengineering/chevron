@@ -318,6 +318,19 @@
         AE rate per 1 patient-years             0.03           0.04            0.03     
         95% CI                              (0.03, 0.04)   (0.04, 0.04)    (0.03, 0.04) 
 
+# aet05_all functions with default argument value return expected result with test data
+
+    Code
+      cat(formatters::export_as_txt(res, lpp = 100))
+    Output
+                                             A: Drug X      B: Placebo    C: Combination
+                                              (N=134)        (N=134)         (N=132)    
+        ————————————————————————————————————————————————————————————————————————————————
+        Total patient-years at risk            1013.7         995.5           1024.8    
+        Number of adverse events observed       1232           1176            1495     
+        AE rate per 1 patient-years             1.22           1.18            1.46     
+        95% CI                              (1.15, 1.28)   (1.11, 1.25)    (1.38, 1.53) 
+
 # aet10 functions with default argument value return expected result with test data
 
     Code
