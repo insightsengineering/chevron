@@ -18,7 +18,7 @@
 #' @importFrom purrr reduce
 #' @importFrom rlang sym .data .env !!! %||% abort
 #' @importFrom rlistings as_listing
-#' @importFrom stats setNames median sd quantile
+#' @importFrom stats setNames median sd quantile reorder
 #' @importFrom stringr str_dup
 #' @importFrom tibble tribble
 #' @importFrom utils modifyList

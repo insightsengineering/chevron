@@ -3,10 +3,10 @@
     Code
       res
     Output
-        Parameter                                         A: Drug X                        B: Placebo                      C: Combination         
-          Analysis Visit                                         Change from                       Change from                       Change from  
+          Analysis Visit                                  A: Drug X                        B: Placebo                      C: Combination         
+                                                                 Change from                       Change from                       Change from  
                                                Value at Visit      Baseline      Value at Visit      Baseline      Value at Visit      Baseline   
-                                                  (N=2412)         (N=2412)         (N=2412)         (N=2412)         (N=2376)         (N=2376)   
+                                                  (N=134)          (N=134)          (N=134)          (N=134)          (N=132)          (N=132)    
         ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                                                                                      
           BASELINE                                                                                                                                
@@ -109,7 +109,7 @@
     Output
                                                  A: Drug X   
                                                Value at Visit
-                                                   (N=0)     
+                                                  (N=134)    
         —————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                 
           BASELINE                                           

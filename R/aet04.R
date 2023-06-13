@@ -89,7 +89,7 @@ aet04_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = "unique",
       .labels = "- Any Grade -",
-      indent_mod = 7L
+      .indent_mods = 7L
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
@@ -115,7 +115,7 @@ aet04_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = "unique",
       .labels = "- Any Grade -",
-      indent_mod = 6L
+      .indent_mods = 6L
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",

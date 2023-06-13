@@ -3,40 +3,41 @@
 \docType{data}
 \name{egt01_main}
 \alias{egt01_main}
-\alias{egt01_pre}
-\alias{egt01_post}
 \alias{egt01}
-\title{\code{EGT01} ECG Assessments and Change from Baseline by Visit Table.}
+\title{\code{EGT01} ECG Parameters and Change from Baseline By Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
+}
+\source{
+cfbt01.R
 }
 \usage{
 egt01_main(
   adam_db,
+  dataset = "adeg",
   arm_var = "ACTARM",
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
   precision = list(),
   default_precision = 2,
+  page_by = TRUE,
   ...
 )
-
-egt01_pre(adam_db, ...)
-
-egt01_post(tlg, prune_0 = TRUE, ...)
 
 egt01
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
+\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adeg}
+\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in
 table of \code{adam_db} is used as label.}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point to
-be displayed}
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
+to be displayed}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
@@ -44,15 +45,14 @@ represented with one more decimal of precision.}
 
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
+\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-The \code{EGT01} table summarizes
-several electrocardiogram parameters and their evolution throughout the study.
+The \code{EGT01} table provides an
+overview of the ECG values and its change from baseline of each respective arm
+over the course of the trial.
 }
 \details{
 \itemize{
@@ -64,29 +64,20 @@ median and range of changes relative to the baseline.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 \item Sorted  based on factor level; first by \code{PARAM} labels in alphabetic order then by chronological time point given
-by \code{AVISIT}. Re-level to customize order.
+by \code{AVISIT}. Re-level to customize order
 }
 }
 \section{Functions}{
 \itemize{
 \item \code{egt01_main()}: Main TLG function
 
-\item \code{egt01_pre()}: Preprocessing
-
-\item \code{egt01_post()}: Postprocessing
-
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adeg} table with a \code{"PARAM"} column as well as columns specified in
-\code{summaryvars} and \code{visitvar}.
+\item \code{adam_db} object must contain table named as \code{dataset} with the columns specified in \code{summaryvars}.
 }
 }
 \examples{
-run(egt01, syn_data, precision = list(
-  "HR" = 1,
-  "QT" = 1,
-  "RR" = 0
-))
+run(egt01, syn_data)
 }
 \keyword{datasets}
