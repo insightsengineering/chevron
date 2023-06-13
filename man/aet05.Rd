@@ -22,7 +22,7 @@ aet05
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{string}) variable used for column splitting}
+\item{arm_var}{(\code{string}) the arm variable used for arm splitting.}
 
 \item{...}{Further arguments passed to \code{tern::control_incidence_rate()}.}
 
@@ -53,12 +53,12 @@ considering first occurrence.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adaette} table with the columns \code{""} and \code{""}.
+\item \code{adam_db} object must contain an \code{adaette} table with the columns \code{"PARAMCD"}, \code{"AVAL"}, and \code{"CNSR"}.
 }
 }
 \examples{
-run(aet05, syn_data)
+run(aet05, syn_data, time_unit_output = 100)
 
-run(aet05, syn_data, conf_type = "exact", time_unit_output = 100)
+run(aet05, syn_data, conf_type = "exact", conf_level = 0.90, time_unit_output = 100)
 }
 \keyword{datasets}

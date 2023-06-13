@@ -4,7 +4,6 @@
 \name{aet05_all_main}
 \alias{aet05_all_main}
 \alias{aet05_all_pre}
-\alias{aet05_all_post}
 \alias{aet05_all}
 \title{\code{AET05_ALL} Table 1 (Default) Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences.}
 \format{
@@ -15,22 +14,14 @@ aet05_all_main(adam_db, arm_var = "ACTARM", ...)
 
 aet05_all_pre(adam_db, ...)
 
-aet05_all_post(tlg, prune_0 = FALSE, ...)
-
 aet05_all
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{string}) variable used for column splitting}
+\item{arm_var}{(\code{string}) the arm variable used for arm splitting.}
 
-\item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
-
-\item{occurrence}{(\code{character}) time intervals with respect to first occurrence or all occurrences.}
+\item{...}{Further arguments passed to \code{tern::control_incidence_rate()}.}
 }
 \description{
 The \code{AET05_ALL} table produces the standard adverse event rate adjusted for patient-years at risk summary
@@ -40,6 +31,7 @@ considering all occurrences.
 \itemize{
 \item Total patient-years at risk is the sum over all patients of the time intervals (in years).
 \item Split columns by arm, typically \code{ACTARM}.
+\item The table allows confidence level to be adjusted, default is 2-sided 5\%.
 \item Keep zero count rows by default.
 }
 }
@@ -49,17 +41,15 @@ considering all occurrences.
 
 \item \code{aet05_all_pre()}: Preprocessing
 
-\item \code{aet05_all_post()}: Postprocessing
-
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adaette} table with the columns \code{""} and \code{""}.
+\item \code{adam_db} object must contain an \code{adaette} table with the columns \code{"PARAMCD"}, \code{"AVAL"}, and \code{"CNSR"}.
 }
 }
 \examples{
-run(aet05_all, syn_data)
+run(aet05_all, syn_data, time_unit_output = 100)
 
-run(aet05_all, syn_data, conf_type = "exact")
+run(aet05, syn_data, conf_type = "exact", conf_level = 0.90, time_unit_output = 100)
 }
 \keyword{datasets}

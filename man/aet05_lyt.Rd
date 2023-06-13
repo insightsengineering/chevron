@@ -8,6 +8,13 @@ aet05_lyt(arm_var, vars, n_events, control)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{vars}{(\code{string}) variable for the primary analysis variable to be iterated over.}
+
+\item{n_events}{(\code{string}) variable to count the number of events observed.}
+
+\item{control}{(\code{list}) parameters for estimation details, specified by using the helper function
+control_incidence_rate().}
 }
 \description{
 \code{aet05} Layout
