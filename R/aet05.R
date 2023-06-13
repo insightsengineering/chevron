@@ -25,7 +25,7 @@ aet05_main <- function(adam_db,
   checkmate::assert_string(arm_var)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adaette, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adaette, "AVAL", types = list("numeric"), lower = 0)
+  assert_valid_variable(adam_db$adaette, "AVAL", types = list("numeric"), lower = 0, na_ok = TRUE)
   assert_valid_variable(adam_db$adaette, "n_events", types = list("numeric"), integerish = TRUE, lower = 0L, upper = 1L)
   assert_valid_var_pair(adam_db$adsl, adam_db$adaette, arm_var)
   control <- execute_with_args(control_incidence_rate, ...)
@@ -106,7 +106,7 @@ aet05_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @examples
 #' run(aet05, syn_data, time_unit_output = 100)
 #'
-#' run(aet05, syn_data, conf_type = "exact", conf_level = 0.90, time_unit_output = 100)
+#' run(aet05, syn_data, conf_level = 0.90, conf_type = "exact", time_unit_output = 100)
 aet05 <- chevron_t(
   main = aet05_main,
   preprocess = aet05_pre,

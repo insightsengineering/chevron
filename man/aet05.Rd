@@ -59,6 +59,6 @@ considering first occurrence.
 \examples{
 run(aet05, syn_data, time_unit_output = 100)
 
-run(aet05, syn_data, conf_type = "exact", conf_level = 0.90, time_unit_output = 100)
+run(aet05, syn_data, conf_level = 0.90, conf_type = "exact", time_unit_output = 100)
 }
 \keyword{datasets}
