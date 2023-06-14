@@ -4,12 +4,14 @@
 \alias{ifneeded_split_col}
 \title{Helper function to add a col split if specified}
 \usage{
-ifneeded_split_col(lyt, var)
+ifneeded_split_col(lyt, var, ...)
 }
 \arguments{
 \item{lyt}{(\code{PreDataTableLayouts}) object.}
 
 \item{var}{(\code{string}) the name of the variable initiating a new column split.}
+
+\item{...}{additional arguments for \code{split_cols_by}.}
 }
 \value{
 \code{PreDataTableLayouts} object.

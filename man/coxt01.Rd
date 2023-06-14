@@ -87,7 +87,6 @@ with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 }
 }
 \examples{
-library(dplyr)
 library(dunlin)
 
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")

@@ -259,16 +259,17 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
 #'
 #' @param lyt (`PreDataTableLayouts`) object.
 #' @param var (`string`) the name of the variable initiating a new column split.
+#' @param ... additional arguments for `split_cols_by`.
 #'
 #' @keywords internal
 #'
 #' @return `PreDataTableLayouts` object.
 #'
-ifneeded_split_col <- function(lyt, var) {
+ifneeded_split_col <- function(lyt, var, ...) {
   if (is.null(var)) {
     lyt
   } else {
-    split_cols_by(lyt, var)
+    split_cols_by(lyt, var, ...)
   }
 }
 

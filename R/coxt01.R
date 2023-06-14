@@ -46,7 +46,8 @@ coxt01_main <- function(adam_db,
   checkmate::assert_character(strata, null.ok = TRUE)
   assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"), n.levels = 2L)
   assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var, "PARAMCD"), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adtte, c(covariates, strata), types = list(c("factor", "numeric")), na_ok = TRUE)
+  assert_valid_variable(adam_db$adtte, c(strata), types = list(c("factor", "integer", "character")), na_ok = TRUE)
+  assert_valid_variable(adam_db$adtte, covariates, na_ok = TRUE)
   assert_valid_variable(adam_db$adtte, event_var, types = list("numeric"), integerish = TRUE, lower = 0L, upper = 1L)
   assert_valid_variable(adam_db$adtte, time_var, types = list("numeric"), lower = 0)
   assert_single_value(adam_db$adtte$PARAMCD)
@@ -134,7 +135,6 @@ coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' library(dplyr)
 #' library(dunlin)
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
