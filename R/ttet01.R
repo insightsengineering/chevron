@@ -5,23 +5,23 @@
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param ref_group (`string`) The name of the reference group, the value should
-#'  be identical to the values in `arm_var`, if not speficied, it will by default
+#'  be identical to the values in `arm_var`, if not specified, it will by default
 #'  use the first level or value of `arm_var`.
-#' @param summarize_event (`flag`) should the event discription be displayed, default is TRUE
+#' @param summarize_event (`flag`) should the event description be displayed, default is TRUE
 #' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
-#'  or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default
-#' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
+#'  or unstratified analyses, or both, e.g. `c("unstrat", "strat")`. Only unstratified will be displayed by default
+#' @param strata (`string`) stratification factors, e.g. `strata = c("STRATA1", "STRATA2")`, by default as NULL
 #' @param pval_method (`string`) p-value method for testing hazard ratio = 1.
-#' Default method is "log-rank", can also be set to "wald" or "likelihood".
+#' Default method is `"log-rank"`, can also be set to `"wald"` or `"likelihood"`.
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
-#' @param conf_type (`string`) confidence interval type. Options are "plain" (default), "log", "log-log",
-#'  see more in survival::survfit(). Note option "none" is no longer supported.
+#' @param conf_type (`string`) confidence interval type. Options are `"plain"` (default), `"log"`, `"log-log"`,
+#'  see more in `survival::survfit()`. Note option "none" is no longer supported.
 #' @param quantiles (`numeric`) of length two to specify the quantiles of survival time.
-#' @param ties (`string`) specifying the method for tie handling. Default is "efron",
-#'  can also be set to "breslow" or "exact". see more in survival::coxph()
+#' @param ties (`string`) specifying the method for tie handling. Default is `"efron"`,
+#'  can also be set to `"breslow"` or `"exact"`. see more in `survival::coxph()`
 #' @param timepoint (`numeric`) survival time point of interest.
-#' @param method (`string`) either "surv" (survival estimations),
-#'  "surv_diff" (difference in survival with the control) or "both".
+#' @param method (`string`) either `"surv"` (survival estimations),
+#'  `"surv_diff"` (difference in survival with the control) or `"both"`.
 #'
 #'
 #' @details
@@ -97,7 +97,7 @@ ttet01_main <- function(adam_db,
 #' `ttet01` Layout
 #'
 #' @inheritParams gen_args
-#' @param timeunit (string) time unit get from AVALU, by default is "Months"
+#' @param timeunit (`string`) time unit get from `AVALU`, by default is `"Months"`
 #'
 #' @keywords internal
 ttet01_lyt <- function(arm_var,
@@ -231,7 +231,7 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
 
 #' `TTET01` Binary Outcomes Summary
 #'
-#' TTET01 template may be used to summarize any binary outcome or response variable at
+#' `TTET01` template may be used to summarize any binary outcome or response variable at
 #' a single time point. Typical application for oncology
 #'
 #' @include chevron_tlg-S4class.R

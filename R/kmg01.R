@@ -71,7 +71,7 @@ kmg01_post <- function(tlg, ...) {
 
 # `kmg01` Pipeline ----
 
-#' `KMG01` Kaplan-Meier Plot 1.
+#' `KMG01` `Kaplan-Meier` Plot 1.
 #'
 #'
 #' @include chevron_tlg-S4class.R

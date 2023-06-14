@@ -7,7 +7,7 @@
 count_patients_recursive(lyt, anl_vars, anl_lbls, lbl_vars)
 }
 \arguments{
-\item{lyt}{(\code{PreDataTableLayouts}) rtable layout.}
+\item{lyt}{(\code{PreDataTableLayouts}) \code{rtable} layout.}
 
 \item{anl_vars}{Named (\code{list}) of analysis variables.}
 

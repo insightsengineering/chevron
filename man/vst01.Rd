@@ -11,7 +11,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \source{
-cfbt01.R
+\code{cfbt01.R}
 }
 \usage{
 egt01_pre(adam_db, dataset = "adeg", ...)

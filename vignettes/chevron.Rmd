@@ -71,7 +71,7 @@ This preprocessing function will be printed to allow modification in script gene
 By default, the Postprocessing function returns its input or a null report if the input has no rows.
 *`postprocessing`* function of a `chevron_tlg` object must have at least `tlg` as formal arguments.
 
-### *ADaM datasets*
+### *`ADaM` datasets*
 
 The `adam_datasets` stores the name(s) of the data sets in the `AdAM` `list` of `data.frame` object that will be used in the process. This
 information is important when the `chevron_tlg` object is interfaced with other processes from the `chevron` ecosystem of packages
