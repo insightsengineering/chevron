@@ -16,6 +16,46 @@ rmpt03_main(
   summaryvars = "AGEGR1",
   show_tot = TRUE,
   split_var = NULL,
+  col_split_var = "SEX",
+  col_split_fun = function (df, spl, vals = NULL, labels = NULL, ...) 
+ {
+     if
+    (is(spl, "MultiVarSplit")) 
+        
+    stop("Combining levels of a MultiVarSplit does not make sense.", call. = FALSE)
+    
+    ret <- .apply_split_inner(spl, df, vals = vals, labels = labels, trim = trim)
+    
+    for (i in seq_len(nrow(combosdf))) {
+         lcombo <- combosdf[i, "levelcombo",
+    drop = TRUE][[1]]
+         spld <- spl_payload(spl)
+         if (is(lcombo,
+    "AllLevelsSentinel")) 
+             subdf <- df
+         else if (is(spl,
+    "VarLevelSplit")) {
+             subdf <- df[df[[spld]] \%in\% lcombo, ]
+         }
+ 
+           else {
+             stopifnot(all(lcombo \%in\% c(ret$labels, ret$vals)))
+    
+            subdf <- do.call(rbind, ret$datasplit[names(ret$datasplit) \%in\% lcombo |
+    ret$vals \%in\% lcombo])
+         }
+         ret <- .add_combo_part_info(ret, subdf,
+    combosdf[i, "valname", drop = TRUE], lcombo, combosdf[i, "label", drop = TRUE],
+    combosdf[i, "exargs", drop = TRUE][[1]], first)
+     }
+     if
+    (!is.null(keep_levels)) {
+         keep_inds <- value_names(ret$values) \%in\%
+    keep_levels
+         ret <- lapply(ret, function(x) x[keep_inds])
+     }
+     ret
+ },
   ...
 )
 
@@ -28,12 +68,16 @@ rmpt03
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
+\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
 \item{split_var}{(\code{string}) the name of the column that containing variable to split exposure by.}
+
+\item{col_split_var}{(\code{character}) additional column splitting variables.}
+
+\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
 
 \item{...}{not used.}
 

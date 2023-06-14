@@ -16,6 +16,8 @@ rmpt01_main(
   summaryvars = "AVALCAT1",
   show_tot = TRUE,
   split_var = NULL,
+  col_split_var = NULL,
+  col_split_fun = NULL,
   ...
 )
 
@@ -28,12 +30,16 @@ rmpt01
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
+\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
 \item{split_var}{(\code{string}) the name of the column that containing variable to split exposure by.}
+
+\item{col_split_var}{(\code{character}) additional column splitting variables.}
+
+\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
 
 \item{...}{not used.}
 

@@ -3,10 +3,12 @@
 #' @describeIn rmpt01 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param summaryvars (`string`) variables to be analyzed. The label attribute of the corresponding columns in `adsl`
+#' @param summaryvars (`string`) variables to be analyzed. The label attribute of the corresponding columns in `adex`
 #'   table of `adam_db` is used as label.
 #' @param show_tot (`flag`) whether to display the cumulative total.
 #' @param split_var (`string`) the name of the column that containing variable to split exposure by.
+#' @param col_split_var (`character`) additional column splitting variables.
+#' @param col_split_fun (`function` or `NULL`) function for column split.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -22,23 +24,32 @@ rmpt01_main <- function(adam_db,
                         summaryvars = "AVALCAT1",
                         show_tot = TRUE,
                         split_var = NULL,
+                        col_split_var = NULL,
+                        col_split_fun = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(summaryvars)
   checkmate::assert_flag(show_tot)
-  assert_valid_variable(adam_db$adex, summaryvars, types = list("factor", "character"), empty_ok = FALSE)
+  assert_valid_variable(adam_db$adex, summaryvars, types = list(c("factor", "character")), empty_ok = FALSE)
   assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
-  assert_valid_variable(adam_db$adex, split_var, types = list("factor", "numeric"), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adex, split_var, types = list(c("factor", "numeric")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adex, col_split_var, types = list(c("factor", "character")))
+  checkmate::assert_function(col_split_fun, null.ok = TRUE)
+
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
 
   lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
+  col_split_lbl <- var_labels_for(adam_db$adex, col_split_var)
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
     lbl_summaryvars = lbl_summaryvars,
     show_tot = show_tot,
-    split_var = split_var
+    split_var = split_var,
+    col_split_var = col_split_var,
+    col_split_lbl = col_split_lbl,
+    col_split_fun = col_split_fun
   )
 
   build_table(lyt, df = adam_db$adex, alt_counts_df = adam_db$adsl)
@@ -56,8 +67,12 @@ rmpt01_main <- function(adam_db,
 rmpt01_lyt <- function(summaryvars,
                        lbl_summaryvars,
                        show_tot,
-                       split_var) {
+                       split_var,
+                       col_split_var,
+                       col_split_lbl,
+                       col_split_fun) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
+    ifneeded_split_col(col_split_var, col_split_lbl, col_split_fun) %>%
     split_cols_by_multivar(
       vars = c("AVAL", "AVAL"),
       varlabels = c(n_patients = "Patients", sum_exposure = "Person time"),

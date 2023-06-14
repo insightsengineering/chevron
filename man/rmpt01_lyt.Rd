@@ -4,10 +4,18 @@
 \alias{rmpt01_lyt}
 \title{\code{rmpt01} Layout}
 \usage{
-rmpt01_lyt(summaryvars, lbl_summaryvars, show_tot, split_var)
+rmpt01_lyt(
+  summaryvars,
+  lbl_summaryvars,
+  show_tot,
+  split_var,
+  col_split_var,
+  col_split_lbl,
+  col_split_fun
+)
 }
 \arguments{
-\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
+\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
 \item{lbl_summaryvars}{(\code{character}) label associated with the analyzed variables.}
@@ -15,6 +23,10 @@ table of \code{adam_db} is used as label.}
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
 \item{split_var}{(\code{character}) recursive split row variable.}
+
+\item{col_split_var}{(\code{character}) additional column splitting variables.}
+
+\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
 }
 \description{
 \code{rmpt01} Layout

@@ -16,6 +16,8 @@ rmpt04_main(
   summaryvars = "ETHNIC",
   show_tot = TRUE,
   split_var = NULL,
+  col_split_var = NULL,
+  col_split_fun = NULL,
   ...
 )
 
@@ -28,12 +30,16 @@ rmpt04
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adsl}
+\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
 \item{split_var}{(\code{character}) recursive split row variable.}
+
+\item{col_split_var}{(\code{character}) additional column splitting variables.}
+
+\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
 
 \item{...}{not used.}
 
@@ -43,6 +49,14 @@ table of \code{adam_db} is used as label.}
 }
 \description{
 The \code{RMPT04} table provides an overview of duration of exposure extent.
+}
+\details{
+\itemize{
+\item Person time is the sum of exposure across all patients.
+\item Summary statistics are by default based on the number of patients in the corresponding \code{N} row
+(number of non-missing values).
+\item Does not remove zero-count rows unless overridden with \code{prune_0 = TRUE}.
+}
 }
 \section{Functions}{
 \itemize{

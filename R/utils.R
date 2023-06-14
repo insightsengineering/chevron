@@ -32,7 +32,6 @@ smart_prune <- function(tlg) {
 }
 
 
-
 #' Standard Post processing
 #'
 #' @param tlg (`TableTree`) object.

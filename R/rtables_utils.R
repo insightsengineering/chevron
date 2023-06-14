@@ -255,6 +255,30 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
   }
 }
 
+#' Helper function to add a column split if specified
+#'
+#' @param lyt (`rtables`) object.
+#' @param var (`string`) the name of the variable initiating a new column split.
+#' @param lbl_var (`string`) the label of the variable `var`.
+#' @param split_fun (`function` or `NULL`) custom splitting functions.
+#'
+#' @keywords internal
+#'
+#' @return `rtables` object.
+#'
+ifneeded_split_col <- function(lyt, var, lbl_var, split_fun = NULL) {
+  if (is.null(var)) {
+    lyt
+  } else {
+    split_cols_by(
+      lyt = lyt,
+      var = var,
+      split_label = lbl_var,
+      split_fun = split_fun
+    )
+  }
+}
+
 #' Create a Null Report
 #' @rdname report_null
 #' @aliases null_report
