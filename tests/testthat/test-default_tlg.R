@@ -49,7 +49,7 @@ test_that("aet05 functions with default argument value return expected result wi
 
 test_that("aet05_all functions with default argument value return expected result with test data", {
   pre_data <- aet05_all_pre(syn_data)
-  raw_res <- aet05_all_main(pre_data)
+  raw_res <- aet05_main(pre_data)
   res <- aet05_post(raw_res)
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })

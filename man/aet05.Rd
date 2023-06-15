@@ -38,6 +38,7 @@ considering first occurrence.
 \itemize{
 \item Total patient-years at risk is the sum over all patients of the time intervals (in years).
 \item Split columns by arm, typically \code{ACTARM}.
+\item Split rows by parameter code.
 \item The table allows confidence level to be adjusted, default is 2-sided 5\%.
 \item Keep zero count rows by default.
 }
@@ -57,8 +58,13 @@ considering first occurrence.
 }
 }
 \examples{
-run(aet05, syn_data, time_unit_output = 100)
+library(dplyr)
+library(dunlin)
 
-run(aet05, syn_data, conf_level = 0.90, conf_type = "exact", time_unit_output = 100)
+proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
+
+run(aet05, proc_data, time_unit_output = 100)
+
+run(aet05, proc_data, conf_level = 0.90, conf_type = "exact", time_unit_output = 100)
 }
 \keyword{datasets}

@@ -4,10 +4,12 @@
 \alias{aet05_lyt}
 \title{\code{aet05} Layout}
 \usage{
-aet05_lyt(arm_var, vars, n_events, control)
+aet05_lyt(arm_var, param_var, vars, n_events, control)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{param_var}{(\code{string}) variable for parameter code.}
 
 \item{vars}{(\code{string}) variable for the primary analysis variable to be iterated over.}
 

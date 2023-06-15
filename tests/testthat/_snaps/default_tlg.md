@@ -310,26 +310,63 @@
     Code
       cat(formatters::export_as_txt(res, lpp = 100))
     Output
-                                             A: Drug X      B: Placebo    C: Combination
-                                              (N=134)        (N=134)         (N=132)    
-        ————————————————————————————————————————————————————————————————————————————————
-        Total patient-years at risk           13068.4        13038.6         12739.2    
-        Number of adverse events observed       441            511             414      
-        AE rate per 1 patient-years             0.03           0.04            0.03     
-        95% CI                              (0.03, 0.04)   (0.04, 0.04)    (0.03, 0.04) 
+                                               A: Drug X      B: Placebo    C: Combination
+                                                (N=134)        (N=134)         (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————
+        AEREPTTE                                                                          
+          Total patient-years at risk            337.9          331.8           341.6     
+          Number of adverse events observed       134            134             132      
+          AE rate per 1 patient-years             0.40           0.40            0.39     
+          95% CI                              (0.33, 0.46)   (0.34, 0.47)    (0.32, 0.45) 
+        AETTE1                                                                            
+          Total patient-years at risk            162.4          103.8           172.6     
+          Number of adverse events observed        78            104              67      
+          AE rate per 1 patient-years             0.48           1.00            0.39     
+          95% CI                              (0.37, 0.59)   (0.81, 1.19)    (0.30, 0.48) 
+        AETTE2                                                                            
+          Total patient-years at risk            135.8           80.1           127.8     
+          Number of adverse events observed        89            123              88      
+          AE rate per 1 patient-years             0.66           1.54            0.69     
+          95% CI                              (0.52, 0.79)   (1.26, 1.81)    (0.54, 0.83) 
+        AETTE3                                                                            
+          Total patient-years at risk             89.3           59.2            91.8     
+          Number of adverse events observed       106            123             103      
+          AE rate per 1 patient-years             1.19           2.08            1.12     
+          95% CI                              (0.96, 1.41)   (1.71, 2.44)    (0.91, 1.34) 
+        HYSTTEBL                                                                          
+          Total patient-years at risk            5623.1         5681.4          6769.3    
+          Number of adverse events observed        14             18              15      
+          AE rate per 1 patient-years             0.00           0.00            0.00     
+          95% CI                              (0.00, 0.00)   (0.00, 0.00)    (0.00, 0.00) 
+        HYSTTEUL                                                                          
+          Total patient-years at risk            6720.0         6782.1          5236.1    
+          Number of adverse events observed        20             9               9       
+          AE rate per 1 patient-years             0.00           0.00            0.00     
+          95% CI                              (0.00, 0.00)   (0.00, 0.00)    (0.00, 0.00) 
 
 # aet05_all functions with default argument value return expected result with test data
 
     Code
       cat(formatters::export_as_txt(res, lpp = 100))
     Output
-                                             A: Drug X      B: Placebo    C: Combination
-                                              (N=134)        (N=134)         (N=132)    
-        ————————————————————————————————————————————————————————————————————————————————
-        Total patient-years at risk            1013.7         995.5           1024.8    
-        Number of adverse events observed       1232           1176            1495     
-        AE rate per 1 patient-years             1.22           1.18            1.46     
-        95% CI                              (1.15, 1.28)   (1.11, 1.25)    (1.38, 1.53) 
+                                               A: Drug X      B: Placebo    C: Combination
+                                                (N=134)        (N=134)         (N=132)    
+        ——————————————————————————————————————————————————————————————————————————————————
+        AETOT1                                                                            
+          Total patient-years at risk            337.9          331.8           341.6     
+          Number of adverse events observed       343            380             397      
+          AE rate per 1 patient-years             1.02           1.15            1.16     
+          95% CI                              (0.91, 1.12)   (1.03, 1.26)    (1.05, 1.28) 
+        AETOT2                                                                            
+          Total patient-years at risk            337.9          331.8           341.6     
+          Number of adverse events observed       355            331             446      
+          AE rate per 1 patient-years             1.05           1.00            1.31     
+          95% CI                              (0.94, 1.16)   (0.89, 1.10)    (1.18, 1.43) 
+        AETOT3                                                                            
+          Total patient-years at risk            337.9          331.8           341.6     
+          Number of adverse events observed       534            465             652      
+          AE rate per 1 patient-years             1.58           1.40            1.91     
+          95% CI                              (1.45, 1.71)   (1.27, 1.53)    (1.76, 2.06) 
 
 # aet10 functions with default argument value return expected result with test data
 
