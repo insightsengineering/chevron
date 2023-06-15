@@ -17,7 +17,7 @@ rmpt01_main(
   show_tot = TRUE,
   split_var = NULL,
   col_split_var = NULL,
-  col_split_fun = NULL,
+  overall_col_lbl = NULL,
   ...
 )
 
@@ -39,7 +39,7 @@ table of \code{adam_db} is used as label.}
 
 \item{col_split_var}{(\code{character}) additional column splitting variables.}
 
-\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
+\item{overall_col_lbl}{(\code{string}) name of the overall column.}
 
 \item{...}{not used.}
 

@@ -10,8 +10,7 @@ rmpt01_lyt(
   show_tot,
   split_var,
   col_split_var,
-  col_split_lbl,
-  col_split_fun
+  overall_col_lbl
 )
 }
 \arguments{
@@ -26,7 +25,7 @@ table of \code{adam_db} is used as label.}
 
 \item{col_split_var}{(\code{character}) additional column splitting variables.}
 
-\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
+\item{overall_col_lbl}{(\code{string}) name of the overall column.}
 }
 \description{
 \code{rmpt01} Layout

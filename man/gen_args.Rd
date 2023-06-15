@@ -19,7 +19,6 @@ gen_args(
   deco,
   group,
   tlg,
-  tlgfname,
   visit_var,
   visit_value,
   paramcd_value,
@@ -60,8 +59,6 @@ creation.}
 \item{group}{(\verb{list of lists}) for group-dependent data binning}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{tlgfname}{(\code{character}) function name of TLG function}
 
 \item{visit_var}{Analysis Visit variable.}
 

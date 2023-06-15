@@ -3,8 +3,6 @@
 \docType{data}
 \name{rmpt03_main}
 \alias{rmpt03_main}
-\alias{rmpt03_pre}
-\alias{rmpt03_post}
 \alias{rmpt03}
 \title{\code{rmpt03}Duration of Exposure for Risk Management Plan Table.}
 \format{
@@ -17,51 +15,9 @@ rmpt03_main(
   show_tot = TRUE,
   split_var = NULL,
   col_split_var = "SEX",
-  col_split_fun = function (df, spl, vals = NULL, labels = NULL, ...) 
- {
-     if
-    (is(spl, "MultiVarSplit")) 
-        
-    stop("Combining levels of a MultiVarSplit does not make sense.", call. = FALSE)
-    
-    ret <- .apply_split_inner(spl, df, vals = vals, labels = labels, trim = trim)
-    
-    for (i in seq_len(nrow(combosdf))) {
-         lcombo <- combosdf[i, "levelcombo",
-    drop = TRUE][[1]]
-         spld <- spl_payload(spl)
-         if (is(lcombo,
-    "AllLevelsSentinel")) 
-             subdf <- df
-         else if (is(spl,
-    "VarLevelSplit")) {
-             subdf <- df[df[[spld]] \%in\% lcombo, ]
-         }
- 
-           else {
-             stopifnot(all(lcombo \%in\% c(ret$labels, ret$vals)))
-    
-            subdf <- do.call(rbind, ret$datasplit[names(ret$datasplit) \%in\% lcombo |
-    ret$vals \%in\% lcombo])
-         }
-         ret <- .add_combo_part_info(ret, subdf,
-    combosdf[i, "valname", drop = TRUE], lcombo, combosdf[i, "label", drop = TRUE],
-    combosdf[i, "exargs", drop = TRUE][[1]], first)
-     }
-     if
-    (!is.null(keep_levels)) {
-         keep_inds <- value_names(ret$values) \%in\%
-    keep_levels
-         ret <- lapply(ret, function(x) x[keep_inds])
-     }
-     ret
- },
+  overall_col_lbl = "All Genders",
   ...
 )
-
-rmpt03_pre(adam_db, ...)
-
-rmpt03_post(tlg, prune_0 = FALSE, ...)
 
 rmpt03
 }
@@ -77,13 +33,9 @@ table of \code{adam_db} is used as label.}
 
 \item{col_split_var}{(\code{character}) additional column splitting variables.}
 
-\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
+\item{overall_col_lbl}{(\code{string}) name of the overall column.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{rmpt03} table provides an overview of duration of exposure.
@@ -99,10 +51,6 @@ The \code{rmpt03} table provides an overview of duration of exposure.
 \section{Functions}{
 \itemize{
 \item \code{rmpt03_main()}: Main TLG function
-
-\item \code{rmpt03_pre()}: Preprocessing
-
-\item \code{rmpt03_post()}: Postprocessing
 
 }}
 \examples{

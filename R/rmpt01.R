@@ -8,7 +8,7 @@
 #' @param show_tot (`flag`) whether to display the cumulative total.
 #' @param split_var (`string`) the name of the column that containing variable to split exposure by.
 #' @param col_split_var (`character`) additional column splitting variables.
-#' @param col_split_fun (`function` or `NULL`) function for column split.
+#' @param overall_col_lbl (`string`) name of the overall column.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -25,7 +25,7 @@ rmpt01_main <- function(adam_db,
                         show_tot = TRUE,
                         split_var = NULL,
                         col_split_var = NULL,
-                        col_split_fun = NULL,
+                        overall_col_lbl = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(summaryvars)
@@ -34,13 +34,12 @@ rmpt01_main <- function(adam_db,
   assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
   assert_valid_variable(adam_db$adex, split_var, types = list(c("factor", "numeric")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adex, col_split_var, types = list(c("factor", "character")))
-  checkmate::assert_function(col_split_fun, null.ok = TRUE)
+  checkmate::assert_string(overall_col_lbl, null.ok = TRUE)
 
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
 
   lbl_summaryvars <- var_labels_for(adam_db$adex, summaryvars)
-  col_split_lbl <- var_labels_for(adam_db$adex, col_split_var)
 
   lyt <- rmpt01_lyt(
     summaryvars = summaryvars,
@@ -48,8 +47,7 @@ rmpt01_main <- function(adam_db,
     show_tot = show_tot,
     split_var = split_var,
     col_split_var = col_split_var,
-    col_split_lbl = col_split_lbl,
-    col_split_fun = col_split_fun
+    overall_col_lbl = overall_col_lbl
   )
 
   build_table(lyt, df = adam_db$adex, alt_counts_df = adam_db$adsl)
@@ -69,10 +67,9 @@ rmpt01_lyt <- function(summaryvars,
                        show_tot,
                        split_var,
                        col_split_var,
-                       col_split_lbl,
-                       col_split_fun) {
+                       overall_col_lbl) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
-    ifneeded_split_col(col_split_var, col_split_lbl, col_split_fun) %>%
+    ifneeded_split_col(col_split_var, overall_col_lbl) %>%
     split_cols_by_multivar(
       vars = c("AVAL", "AVAL"),
       varlabels = c(n_patients = "Patients", sum_exposure = "Person time"),

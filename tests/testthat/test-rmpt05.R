@@ -1,9 +1,9 @@
 # rmpt05 functions ----
 
 test_that("rmpt05 function with default argument value return expected result with test data", {
-  pre_data <- rmpt05_pre(syn_data)
+  pre_data <- rmpt01_pre(syn_data)
   raw_res <- rmpt05_main(pre_data)
-  res <- rmpt05_post(raw_res)
+  res <- rmpt01_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 

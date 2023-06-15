@@ -16,7 +16,6 @@
 #' @param prune_0 (`flag`) remove 0 count rows
 #' @param req_tables (`character`) names of the required tables.
 #' @param tlg (`TableTree`, `Listing` or `ggplot`) object typically produced by a `main` function.
-#' @param tlgfname (`character`) function name of TLG function
 #' @param group (`list of lists`) for group-dependent data binning
 #' @param visit_var Analysis Visit variable.
 #' @param paramcd_value Value of PARAMCD variable.
@@ -31,6 +30,6 @@
 #'
 gen_args <- function(adam_db, main, preprocess, postprocess, dataset, adam_datasets,
                      type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
-                     tlg, tlgfname, visit_var, visit_value, paramcd_value,
+                     tlg, visit_var, visit_value, paramcd_value,
                      key_cols, disp_cols, split_var, ...) {
 }

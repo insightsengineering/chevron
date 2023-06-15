@@ -4,16 +4,14 @@
 \alias{ifneeded_split_col}
 \title{Helper function to add a column split if specified}
 \usage{
-ifneeded_split_col(lyt, var, lbl_var, split_fun = NULL)
+ifneeded_split_col(lyt, var, overall_col_lbl = NULL)
 }
 \arguments{
 \item{lyt}{(\code{rtables}) object.}
 
 \item{var}{(\code{string}) the name of the variable initiating a new column split.}
 
-\item{lbl_var}{(\code{string}) the label of the variable \code{var}.}
-
-\item{split_fun}{(\code{function} or \code{NULL}) custom splitting functions.}
+\item{overall_col_lbl}{(\code{string}) the label for the overall column.}
 }
 \value{
 \code{rtables} object.

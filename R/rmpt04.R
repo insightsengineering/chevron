@@ -15,32 +15,6 @@
 #'
 rmpt04_main <- modify_default_args(rmpt01_main, summaryvars = "ETHNIC")
 
-#' @describeIn rmpt04 Preprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-rmpt04_pre <- function(adam_db, ...) {
-  adam_db$adex <- adam_db$adex %>%
-    filter(.data$PARAMCD == "TDURD")
-
-  adam_db
-}
-
-#' @describeIn rmpt04 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-rmpt04_post <- function(tlg, prune_0 = FALSE, ...) {
-  if (prune_0) {
-    tlg <- smart_prune(tlg)
-  }
-  std_postprocess(tlg)
-}
-
 #' `RMPT04`Extent of Exposure by Ethnic Origin for Risk Management Plan Table.
 #'
 #' The `RMPT04` table provides an overview of duration of exposure extent.
@@ -52,7 +26,7 @@ rmpt04_post <- function(tlg, prune_0 = FALSE, ...) {
 #' run(rmpt04, syn_data)
 rmpt04 <- chevron_t(
   main = rmpt04_main,
-  preprocess = rmpt04_pre,
-  postprocess = rmpt04_post,
+  preprocess = rmpt01_pre,
+  postprocess = rmpt01_post,
   adam_datasets = c("adsl", "adex")
 )

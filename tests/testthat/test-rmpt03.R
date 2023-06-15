@@ -3,9 +3,9 @@
 prop_data <- dunlin::propagate(syn_data, "adsl", "AGEGR1", "USUBJID")
 
 test_that("rmpt03 function with default argument value return expected result with test data", {
-  pre_data <- rmpt03_pre(prop_data)
+  pre_data <- rmpt01_pre(prop_data)
   raw_res <- rmpt03_main(pre_data)
-  res <- rmpt03_post(raw_res)
+  res <- rmpt01_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 

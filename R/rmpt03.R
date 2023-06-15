@@ -15,35 +15,8 @@ rmpt03_main <- modify_default_args(
   rmpt01_main,
   summaryvars = "AGEGR1",
   col_split_var = "SEX",
-  col_split_fun = add_overall_level("SEX_ALL", "All Genders")
+  overall_col_lbl = "All Genders"
 )
-
-#' @describeIn rmpt03 Preprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-rmpt03_pre <- function(adam_db,
-                       ...) {
-  adam_db$adex <- adam_db$adex %>%
-    filter(.data$PARAMCD == "TDURD")
-
-  adam_db
-}
-
-#' @describeIn rmpt03 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-#'
-rmpt03_post <- function(tlg, prune_0 = FALSE, ...) {
-  if (prune_0) {
-    tlg <- smart_prune(tlg)
-  }
-  std_postprocess(tlg)
-}
 
 #' `rmpt03`Duration of Exposure for Risk Management Plan Table.
 #'
@@ -57,7 +30,7 @@ rmpt03_post <- function(tlg, prune_0 = FALSE, ...) {
 #' run(rmpt03, pre_data)
 rmpt03 <- chevron_t(
   main = rmpt03_main,
-  preprocess = rmpt03_pre,
-  postprocess = rmpt03_post,
+  preprocess = rmpt01_pre,
+  postprocess = rmpt01_post,
   adam_datasets = c("adsl", "adex")
 )

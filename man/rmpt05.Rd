@@ -3,8 +3,6 @@
 \docType{data}
 \name{rmpt05_main}
 \alias{rmpt05_main}
-\alias{rmpt05_pre}
-\alias{rmpt05_post}
 \alias{rmpt05}
 \title{\code{RMPT05} Extent of Exposure by Race for Risk Management Plan Table.}
 \format{
@@ -17,13 +15,9 @@ rmpt05_main(
   show_tot = TRUE,
   split_var = NULL,
   col_split_var = NULL,
-  col_split_fun = NULL,
+  overall_col_lbl = NULL,
   ...
 )
-
-rmpt05_pre(adam_db, ...)
-
-rmpt05_post(tlg, prune_0 = FALSE, ...)
 
 rmpt05
 }
@@ -39,13 +33,9 @@ table of \code{adam_db} is used as label.}
 
 \item{col_split_var}{(\code{character}) additional column splitting variables.}
 
-\item{col_split_fun}{(\code{function} or \code{NULL}) function for column split.}
+\item{overall_col_lbl}{(\code{string}) name of the overall column.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{RMPT05} table provides an overview of duration of exposure extent.
@@ -61,10 +51,6 @@ The \code{RMPT05} table provides an overview of duration of exposure extent.
 \section{Functions}{
 \itemize{
 \item \code{rmpt05_main()}: Main TLG function
-
-\item \code{rmpt05_pre()}: Preprocessing
-
-\item \code{rmpt05_post()}: Postprocessing
 
 }}
 \examples{
