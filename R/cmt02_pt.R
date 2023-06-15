@@ -38,6 +38,5 @@ cmt02_pt <- chevron_t(
   main = cmt02_pt_main,
   lyt = cmt02_pt_lyt,
   preprocess = cmt02_pt_pre,
-  postprocess = cmt02_pt_post,
-  adam_datasets = c("adsl", "adcm")
+  postprocess = cmt02_pt_post
 )

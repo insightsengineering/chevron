@@ -121,19 +121,6 @@ test_that("postprocess sends an error as expected", {
   )
 })
 
-# Datasets ----
-
-test_that("datasets works as expected", {
-  res <- datasets(aet04)
-  expect_identical(res, c("adsl", "adae"))
-})
-
-test_that("datasets setter works as expected", {
-  obj <- aet04
-  datasets(obj) <- c("adsl", "adxx")
-  expect_identical(obj@adam_datasets, c("adsl", "adxx"))
-})
-
 # script_args ----
 
 test_that("script works as expected", {
