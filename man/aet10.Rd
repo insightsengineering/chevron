@@ -11,11 +11,17 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-aet10_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
+aet10_main(
+  adam_db,
+  arm_var = "ACTARM",
+  row_split_var = NULL,
+  lbl_overall = NULL,
+  ...
+)
 
 aet10_pre(adam_db, ...)
 
-aet10_post(tlg, atleast = 0.05, ...)
+aet10_post(tlg, atleast = 0.05, row_split_var = NULL, ...)
 
 aet10
 }
@@ -23,6 +29,8 @@ aet10
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{row_split_var}{(\code{character}) row split variables.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 

@@ -4,14 +4,18 @@
 \alias{aet10_lyt}
 \title{\code{aet10} Layout}
 \usage{
-aet10_lyt(arm_var, lbl_overall, lbl_aedecod)
+aet10_lyt(arm_var, row_split_var, lbl_row_split, lbl_overall, lbl_aedecod)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{row_split_var}{(\code{character}) row split variables.}
+
+\item{lbl_row_split}{(\code{character}) label for \code{row_split_var}.}
+
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
+\item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
 }
 \description{
 \code{aet10} Layout
