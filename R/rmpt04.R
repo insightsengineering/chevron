@@ -27,6 +27,5 @@ rmpt04_main <- modify_default_args(rmpt01_main, summaryvars = "ETHNIC")
 rmpt04 <- chevron_t(
   main = rmpt04_main,
   preprocess = rmpt01_pre,
-  postprocess = rmpt01_post,
-  adam_datasets = c("adsl", "adex")
+  postprocess = rmpt01_post
 )

@@ -27,6 +27,5 @@ rmpt05_main <- modify_default_args(rmpt01_main, summaryvars = "RACE")
 rmpt05 <- chevron_t(
   main = rmpt05_main,
   preprocess = rmpt01_pre,
-  postprocess = rmpt01_post,
-  adam_datasets = c("adsl", "adex")
+  postprocess = rmpt01_post
 )
