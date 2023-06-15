@@ -31,9 +31,9 @@ table of \code{adam_db} is used as label.}
 
 \item{split_var}{(\code{character}) recursive split row variable.}
 
-\item{col_split_var}{(\code{character}) additional column splitting variables.}
+\item{col_split_var}{(\code{string}) additional column splitting variable.}
 
-\item{overall_col_lbl}{(\code{string}) name of the overall column.}
+\item{overall_col_lbl}{(\code{string}) name of the overall column. If \code{NULL}, no overall level is added.}
 
 \item{...}{not used.}
 }

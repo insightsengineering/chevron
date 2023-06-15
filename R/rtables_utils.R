@@ -272,13 +272,11 @@ ifneeded_split_col <- function(lyt, var, overall_col_lbl = NULL) {
     split_cols_by(
       lyt = lyt,
       var = var
-      # split_label = lbl_var,
     )
   } else {
     split_cols_by(
       lyt = lyt,
       var = var,
-      # split_label = lbl_var,
       split_fun = add_overall_level("ALL", overall_col_lbl)
     )
   }

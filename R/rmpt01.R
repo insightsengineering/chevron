@@ -7,8 +7,8 @@
 #'   table of `adam_db` is used as label.
 #' @param show_tot (`flag`) whether to display the cumulative total.
 #' @param split_var (`string`) the name of the column that containing variable to split exposure by.
-#' @param col_split_var (`character`) additional column splitting variables.
-#' @param overall_col_lbl (`string`) name of the overall column.
+#' @param col_split_var (`string`) additional column splitting variable.
+#' @param overall_col_lbl (`string`) name of the overall column. If `NULL`, no overall level is added.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -30,6 +30,8 @@ rmpt01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   checkmate::assert_string(summaryvars)
   checkmate::assert_flag(show_tot)
+  checkmate::assert_string(col_split_var, null.ok = TRUE)
+  checkmate::assert_string(overall_col_lbl, null.ok = TRUE)
   assert_valid_variable(adam_db$adex, summaryvars, types = list(c("factor", "character")), empty_ok = FALSE)
   assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
   assert_valid_variable(adam_db$adex, split_var, types = list(c("factor", "numeric")), empty_ok = TRUE)
@@ -141,7 +143,7 @@ rmpt01_post <- function(tlg, prune_0 = FALSE, ...) {
 #' @export
 #'
 #' @examples
-#' run(rmpt01, syn_data)
+#' run(rmpt01, syn_data, col_split_var = "SEX")
 rmpt01 <- chevron_t(
   main = rmpt01_main,
   preprocess = rmpt01_pre,

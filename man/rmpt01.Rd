@@ -37,9 +37,9 @@ table of \code{adam_db} is used as label.}
 
 \item{split_var}{(\code{string}) the name of the column that containing variable to split exposure by.}
 
-\item{col_split_var}{(\code{character}) additional column splitting variables.}
+\item{col_split_var}{(\code{string}) additional column splitting variable.}
 
-\item{overall_col_lbl}{(\code{string}) name of the overall column.}
+\item{overall_col_lbl}{(\code{string}) name of the overall column. If \code{NULL}, no overall level is added.}
 
 \item{...}{not used.}
 
@@ -73,6 +73,6 @@ The \code{RMPT01} table provides an overview of duration of exposure.
 }
 }
 \examples{
-run(rmpt01, syn_data)
+run(rmpt01, syn_data, col_split_var = "SEX")
 }
 \keyword{datasets}
