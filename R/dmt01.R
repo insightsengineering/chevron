@@ -108,6 +108,5 @@ dmt01_post <- function(tlg, prune_0 = TRUE, ...) {
 dmt01 <- chevron_t(
   main = dmt01_main,
   preprocess = dmt01_pre,
-  postprocess = dmt01_post,
-  adam_datasets = c("adsl")
+  postprocess = dmt01_post
 )

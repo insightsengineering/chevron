@@ -116,6 +116,5 @@ aet10 <- chevron_t(
   main = aet10_main,
   lyt = aet10_lyt,
   preprocess = aet10_pre,
-  postprocess = aet10_post,
-  adam_datasets = c("adsl", "adae")
+  postprocess = aet10_post
 )

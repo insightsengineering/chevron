@@ -149,6 +149,5 @@ mht01_post <- function(tlg, prune_0 = TRUE, ...) {
 mht01 <- chevron_t(
   main = mht01_main,
   preprocess = mht01_pre,
-  postprocess = mht01_post,
-  adam_datasets = c("adsl", "admh")
+  postprocess = mht01_post
 )
