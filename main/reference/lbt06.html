@@ -12,7 +12,7 @@ baseline status summary."><!-- mathjax --><script src="https://cdnjs.cloudflare.
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9004</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,18 +32,6 @@ baseline status summary."><!-- mathjax --><script src="https://cdnjs.cloudflare.
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -139,149 +127,149 @@ baseline status summary.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">lbt06</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameter                                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Visit                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Abnormality at Visit                  A: Drug X      B: Placebo    C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Baseline Status                (N=134)        (N=134)         (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Alanine Aminotransferase Measurement                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    3/39 (7.7%)     2/40 (5%)      1/37 (2.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status         1/4 (25%)         0/2             0/7      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      4/43 (9.3%)    2/42 (4.8%)     1/44 (2.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   3/42 (7.1%)    3/35 (8.6%)     4/41 (9.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/1            0/7             0/3      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                       3/43 (7%)     3/42 (7.1%)     4/44 (9.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    5/29 (17.2%)   2/30 (6.7%)     7/45 (15.6%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status         1/2 (50%)         0/5             0/7      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      6/31 (19.4%)   2/35 (5.7%)     7/52 (13.5%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   1/26 (3.8%)    4/33 (12.1%)    4/45 (8.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/5            0/2         1/7 (14.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      1/31 (3.2%)    4/35 (11.4%)    5/52 (9.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    2/34 (5.9%)    3/34 (8.8%)     1/35 (2.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status        1/3 (33.3%)        0/0          1/4 (25%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      3/37 (8.1%)    3/34 (8.8%)     2/39 (5.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   5/33 (15.2%)   5/29 (17.2%)    3/34 (8.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status        1/4 (25%)         0/5             0/5      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      6/37 (16.2%)   5/34 (14.7%)    3/39 (7.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status     2/40 (5%)     2/39 (5.1%)     1/38 (2.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status            0/2         1/4 (25%)          0/5      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      2/42 (4.8%)     3/43 (7%)      1/43 (2.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   5/36 (13.9%)   1/34 (2.9%)     6/39 (15.4%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status       1/6 (16.7%)    1/9 (11.1%)         0/4      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      6/42 (14.3%)   2/43 (4.7%)      6/43 (14%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    2/35 (5.7%)    6/35 (17.1%)    4/44 (9.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status        1/3 (33.3%)     2/8 (25%)          0/3      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      3/38 (7.9%)    8/43 (18.6%)    4/47 (8.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   4/38 (10.5%)   7/38 (18.4%)    1/41 (2.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/0            0/5             0/6      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      4/38 (10.5%)   7/43 (16.3%)    1/47 (2.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   C-Reactive Protein Measurement                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    4/46 (8.7%)     2/40 (5%)      4/42 (9.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status            0/5            0/2             0/2      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      4/51 (7.8%)    2/42 (4.8%)     4/44 (9.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   6/44 (13.6%)   4/37 (10.8%)    1/35 (2.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/7         1/5 (20%)          0/9      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      6/51 (11.8%)   5/42 (11.9%)    1/44 (2.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    4/39 (10.3%)   3/29 (10.3%)    2/33 (6.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status        1/3 (33.3%)        0/2             0/3      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      5/42 (11.9%)   3/31 (9.7%)     2/36 (5.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   2/36 (5.6%)    3/27 (11.1%)    3/27 (11.1%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/6         1/4 (25%)          0/9      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      2/42 (4.8%)    4/31 (12.9%)    3/36 (8.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    3/37 (8.1%)     6/46 (13%)     8/44 (18.2%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status            0/3            0/5             0/6      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      3/40 (7.5%)    6/51 (11.8%)     8/50 (16%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   2/34 (5.9%)    2/44 (4.5%)     1/43 (2.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/6            0/7             0/7      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                       2/40 (5%)     2/51 (3.9%)      1/50 (2%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    3/42 (7.1%)    1/36 (2.8%)     4/34 (11.8%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status            0/4         1/2 (50%)          0/5      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      3/46 (6.5%)    2/38 (5.3%)     4/39 (10.3%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   3/40 (7.5%)    1/35 (2.9%)     5/34 (14.7%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status       1/6 (16.7%)    1/3 (33.3%)         0/5      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      4/46 (8.7%)    2/38 (5.3%)     5/39 (12.8%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    5/34 (14.7%)   4/38 (10.5%)    5/41 (12.2%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status        1/6 (16.7%)        0/4          1/5 (20%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                       6/40 (15%)    4/42 (9.5%)      6/46 (13%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   4/35 (11.4%)   4/35 (11.4%)    3/39 (7.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/5            0/7         1/7 (14.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                       4/40 (10%)    4/42 (9.5%)     4/46 (8.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Immunoglobulin A Measurement                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    2/38 (5.3%)    3/38 (7.9%)      3/30 (10%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status        1/7 (14.3%)     1/4 (25%)       1/4 (25%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      3/45 (6.7%)    4/42 (9.5%)     4/34 (11.8%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   2/38 (5.3%)    3/37 (8.1%)     1/30 (3.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status       2/7 (28.6%)     1/5 (20%)       1/4 (25%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      4/45 (8.9%)    4/42 (9.5%)     2/34 (5.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    2/36 (5.6%)    5/45 (11.1%)    5/43 (11.6%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status         1/4 (25%)         0/4         1/6 (16.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      3/40 (7.5%)    5/49 (10.2%)    6/49 (12.2%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   7/39 (17.9%)   4/44 (9.1%)     5/46 (10.9%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/1            0/5             0/3      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      7/40 (17.5%)   4/49 (8.2%)     5/49 (10.2%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    7/43 (16.3%)    4/40 (10%)     2/38 (5.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status            0/5            0/10         2/4 (50%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      7/48 (14.6%)    4/50 (8%)      4/42 (9.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   2/41 (4.9%)    5/48 (10.4%)    5/36 (13.9%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/7            0/2             0/6      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      2/48 (4.2%)     5/50 (10%)     5/42 (11.9%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    2/29 (6.9%)    7/43 (16.3%)    4/46 (8.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status            0/5            0/10            0/2      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      2/34 (5.9%)    7/53 (13.2%)    4/48 (8.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   6/29 (20.7%)   4/49 (8.2%)     3/44 (6.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/5         1/4 (25%)       1/4 (25%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      6/34 (17.6%)   5/53 (9.4%)     4/48 (8.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low baseline status    4/41 (9.8%)    6/39 (15.4%)    5/38 (13.2%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low baseline status            0/2            0/5             0/2      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                      4/43 (9.3%)    6/44 (13.6%)    5/40 (12.5%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high baseline status   3/37 (8.1%)    5/39 (12.8%)    4/38 (10.5%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 High baseline status           0/6            0/5          1/2 (50%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                       3/43 (7%)     5/44 (11.4%)    5/40 (12.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameter                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Visit                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Abnormality at Visit                A: Drug X      B: Placebo    C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Baseline Status              (N=134)        (N=134)         (N=132)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Alanine Aminotransferase Measurement                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  3/39 (7.7%)     2/40 (5%)      1/37 (2.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                       1/4 (25%)         0/2             0/7      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    4/43 (9.3%)    2/42 (4.8%)     1/44 (2.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 3/42 (7.1%)    3/35 (8.6%)     4/41 (9.8%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/1            0/7             0/3      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                     3/43 (7%)     3/42 (7.1%)     4/44 (9.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  5/29 (17.2%)   2/30 (6.7%)     7/45 (15.6%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                       1/2 (50%)         0/5             0/7      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    6/31 (19.4%)   2/35 (5.7%)     7/52 (13.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 1/26 (3.8%)    4/33 (12.1%)    4/45 (8.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/5            0/2         1/7 (14.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    1/31 (3.2%)    4/35 (11.4%)    5/52 (9.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  2/34 (5.9%)    3/34 (8.8%)     1/35 (2.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                      1/3 (33.3%)        0/0          1/4 (25%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    3/37 (8.1%)    3/34 (8.8%)     2/39 (5.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 5/33 (15.2%)   5/29 (17.2%)    3/34 (8.8%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                      1/4 (25%)         0/5             0/5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    6/37 (16.2%)   5/34 (14.7%)    3/39 (7.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                   2/40 (5%)     2/39 (5.1%)     1/38 (2.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                          0/2         1/4 (25%)          0/5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    2/42 (4.8%)     3/43 (7%)      1/43 (2.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 5/36 (13.9%)   1/34 (2.9%)     6/39 (15.4%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                     1/6 (16.7%)    1/9 (11.1%)         0/4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    6/42 (14.3%)   2/43 (4.7%)      6/43 (14%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  2/35 (5.7%)    6/35 (17.1%)    4/44 (9.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                      1/3 (33.3%)     2/8 (25%)          0/3      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    3/38 (7.9%)    8/43 (18.6%)    4/47 (8.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 4/38 (10.5%)   7/38 (18.4%)    1/41 (2.4%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/0            0/5             0/6      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    4/38 (10.5%)   7/43 (16.3%)    1/47 (2.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C-Reactive Protein Measurement                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  4/46 (8.7%)     2/40 (5%)      4/42 (9.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                          0/5            0/2             0/2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    4/51 (7.8%)    2/42 (4.8%)     4/44 (9.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 6/44 (13.6%)   4/37 (10.8%)    1/35 (2.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/7         1/5 (20%)          0/9      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    6/51 (11.8%)   5/42 (11.9%)    1/44 (2.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  4/39 (10.3%)   3/29 (10.3%)    2/33 (6.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                      1/3 (33.3%)        0/2             0/3      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    5/42 (11.9%)   3/31 (9.7%)     2/36 (5.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 2/36 (5.6%)    3/27 (11.1%)    3/27 (11.1%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/6         1/4 (25%)          0/9      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    2/42 (4.8%)    4/31 (12.9%)    3/36 (8.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  3/37 (8.1%)     6/46 (13%)     8/44 (18.2%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                          0/3            0/5             0/6      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    3/40 (7.5%)    6/51 (11.8%)     8/50 (16%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 2/34 (5.9%)    2/44 (4.5%)     1/43 (2.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/6            0/7             0/7      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                     2/40 (5%)     2/51 (3.9%)      1/50 (2%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  3/42 (7.1%)    1/36 (2.8%)     4/34 (11.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                          0/4         1/2 (50%)          0/5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    3/46 (6.5%)    2/38 (5.3%)     4/39 (10.3%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 3/40 (7.5%)    1/35 (2.9%)     5/34 (14.7%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                     1/6 (16.7%)    1/3 (33.3%)         0/5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    4/46 (8.7%)    2/38 (5.3%)     5/39 (12.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  5/34 (14.7%)   4/38 (10.5%)    5/41 (12.2%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                      1/6 (16.7%)        0/4          1/5 (20%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                     6/40 (15%)    4/42 (9.5%)      6/46 (13%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 4/35 (11.4%)   4/35 (11.4%)    3/39 (7.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/5            0/7         1/7 (14.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                     4/40 (10%)    4/42 (9.5%)     4/46 (8.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Immunoglobulin A Measurement                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  2/38 (5.3%)    3/38 (7.9%)      3/30 (10%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                      1/7 (14.3%)     1/4 (25%)       1/4 (25%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    3/45 (6.7%)    4/42 (9.5%)     4/34 (11.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 2/38 (5.3%)    3/37 (8.1%)     1/30 (3.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                     2/7 (28.6%)     1/5 (20%)       1/4 (25%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    4/45 (8.9%)    4/42 (9.5%)     2/34 (5.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  2/36 (5.6%)    5/45 (11.1%)    5/43 (11.6%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                       1/4 (25%)         0/4         1/6 (16.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    3/40 (7.5%)    5/49 (10.2%)    6/49 (12.2%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 7/39 (17.9%)   4/44 (9.1%)     5/46 (10.9%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/1            0/5             0/3      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    7/40 (17.5%)   4/49 (8.2%)     5/49 (10.2%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  7/43 (16.3%)    4/40 (10%)     2/38 (5.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                          0/5            0/10         2/4 (50%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    7/48 (14.6%)    4/50 (8%)      4/42 (9.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 2/41 (4.9%)    5/48 (10.4%)    5/36 (13.9%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/7            0/2             0/6      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    2/48 (4.2%)     5/50 (10%)     5/42 (11.9%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  2/29 (6.9%)    7/43 (16.3%)    4/46 (8.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                          0/5            0/10            0/2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    2/34 (5.9%)    7/53 (13.2%)    4/48 (8.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 6/29 (20.7%)   4/49 (8.2%)     3/44 (6.8%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/5         1/4 (25%)       1/4 (25%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    6/34 (17.6%)   5/53 (9.4%)     4/48 (8.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not low                  4/41 (9.8%)    6/39 (15.4%)    5/38 (13.2%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Low                          0/2            0/5             0/2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                    4/43 (9.3%)    6/44 (13.6%)    5/40 (12.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Not high                 3/37 (8.1%)    5/39 (12.8%)    4/38 (10.5%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 High                         0/6            0/5          1/2 (50%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Total                     3/43 (7%)     5/44 (11.4%)    5/40 (12.5%) </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

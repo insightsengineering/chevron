@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9004</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,18 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -122,8 +110,6 @@ objects in separate slots:</p>
 <em>TLG-function</em>.</li>
 <li>A <code>preprocess</code> function.</li>
 <li>A <code>postprocess</code> function</li>
-<li>A <code>adam_datasets</code> character vector of the name of the
-<code>AdAM</code> datasets required to create the output.</li>
 </ul>
 <div class="section level3">
 <h3 id="tlg-functions">
@@ -191,17 +177,6 @@ generated in <code>citril</code>.</p>
 report if the input has no rows. <em><code>postprocessing</code></em>
 function of a <code>chevron_tlg</code> object must have at least
 <code>tlg</code> as formal arguments.</p>
-</div>
-<div class="section level3">
-<h3 id="adam-datasets">
-<em>ADaM datasets</em><a class="anchor" aria-label="anchor" href="#adam-datasets"></a>
-</h3>
-<p>The <code>adam_datasets</code> stores the name(s) of the data sets in
-the <code>AdAM</code> <code>list</code> of <code>data.frame</code>
-object that will be used in the process. This information is important
-when the <code>chevron_tlg</code> object is interfaced with other
-processes from the <code>chevron</code> ecosystem of packages such as
-<code>citril</code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -285,7 +260,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55ab96269070&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55c6dd16a5b0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -330,8 +305,7 @@ the provided constructors corresponding to the desired output:</p>
 <span><span class="va">my_template</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chevron_tlg-class.html">chevron_t</a></span><span class="op">(</span></span>
 <span>  main <span class="op">=</span> <span class="st">"&lt;your main function to build the table&gt;"</span>,</span>
 <span>  preprocess <span class="op">=</span> <span class="st">"&lt;your pre function to process the data&gt;"</span>,</span>
-<span>  postprocess <span class="op">=</span> <span class="st">"&lt;your post function to add custom sorting&gt;"</span>,</span>
-<span>  adam_datasets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span><span class="op">)</span></span>
+<span>  postprocess <span class="op">=</span> <span class="st">"&lt;your post function to add custom sorting&gt;"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_template</span>, <span class="va">syn_data</span><span class="op">)</span></span></code></pre></div>
@@ -340,7 +314,7 @@ function, the name of the first argument of the <code>main</code>
 function must be <code>adam_db</code>; the input <code>list</code> of
 <code>data.frame</code> object to pre-process. The name of the first
 argument of the <code>preprocess</code> function must be
-<code>adam_db</code>; the input <code>dm</code> object to create
+<code>adam_db</code>; the input <code>list</code> object to create
 <code>TLG</code> output and finally, the name of the first argument of
 the <code>postprocess</code> function must be <code>tlg</code>, the
 input <code>TableTree</code> object to post-process. Validation criteria
