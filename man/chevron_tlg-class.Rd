@@ -22,7 +22,6 @@ chevron_t(
   main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = report_null,
-  adam_datasets = NA_character_,
   ...
 )
 
@@ -30,7 +29,6 @@ chevron_l(
   main = function(adam_db, ...) data.frame(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = function(tlg, ...) tlg,
-  adam_datasets = NA_character_,
   ...
 )
 
@@ -38,7 +36,6 @@ chevron_g(
   main = function(adam_db, ...) ggplot2::ggplot(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = function(tlg, ...) tlg,
-  adam_datasets = NA_character_,
   ...
 )
 }
@@ -50,9 +47,6 @@ of \code{chevron}.}
 Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
-
-\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
-creation.}
 
 \item{...}{not used}
 }
@@ -72,9 +66,6 @@ creation.}
 one of the \verb{*_pre} function from \code{chevron}.}
 
 \item{\code{postprocess}}{(\code{function}) returning a post-processed \code{tlg}.}
-
-\item{\code{adam_datasets}}{(\code{character}) representing the name of the tables from an \code{AdAM} dataset required for \code{tlg}
-creation.}
 }}
 
 \note{

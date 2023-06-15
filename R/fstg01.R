@@ -123,6 +123,5 @@ fstg01_post <- function(tlg, ...) {
 fstg01 <- chevron_g(
   main = fstg01_main,
   preproces = fstg01_pre,
-  postprocess = fstg01_post,
-  adam_datasets = c("adsl", "adrs")
+  postprocess = fstg01_post
 )
