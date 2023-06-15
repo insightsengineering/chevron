@@ -182,7 +182,7 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 
 #' Count or summarize by groups
 #' @param lyt (`PreDataTableLayouts`) rtable layout.
-#' @param split_var (`character`) variable to split rows by.
+#' @param split_var (`character`) variables to split rows by.
 #' @param ... Further arguments for `split_rows_by`
 #' @keywords internal
 split_rows_by_recurive <- function(lyt, split_var, ...) {
