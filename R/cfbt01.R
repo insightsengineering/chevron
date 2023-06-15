@@ -225,6 +225,5 @@ cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
 cfbt01 <- chevron_t(
   main = cfbt01_main,
   preprocess = cfbt01_pre,
-  postprocess = cfbt01_post,
-  adam_datasets = c("adsl")
+  postprocess = cfbt01_post
 )

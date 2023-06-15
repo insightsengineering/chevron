@@ -10,7 +10,6 @@ gen_args(
   preprocess,
   postprocess,
   dataset,
-  adam_datasets,
   type,
   arm_var,
   lbl_overall,
@@ -41,9 +40,6 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
-
-\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
-creation.}
 
 \item{type}{(\code{string}) indicating the subclass.}
 
