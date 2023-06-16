@@ -68,7 +68,7 @@ valid_row_path <- function(tlg, row_path) {
 }
 
 #' Count patients recursively
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param anl_vars Named (`list`) of analysis variables.
 #' @param anl_lbls (`character`) of labels.
 #' @param lbl_vars Named (`list`) of analysis labels.
@@ -107,8 +107,8 @@ summarize_row <- function(lyt, vars, afun, ...) {
 #' Summary factor allowing NA
 #' @param x (`factor`) input.
 #' @param denom (`string`) denominator choice.
-#' @param .N_row (`integer`) number of rows in row-splitted dataset.
-#' @param .N_col (`integer`) number of rows in column-splitted dataset.
+#' @param .N_row (`integer`) number of rows in row-split dataset.
+#' @param .N_col (`integer`) number of rows in column-split dataset.
 #' @param ... Not used
 #' @keywords internal
 s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { # nolint
@@ -127,7 +127,7 @@ s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, 
   y$n_blq <- sum(grepl("BLQ|LTR|<[1-9]", x))
   y
 }
-#' Summarize variables allow na
+#' Summarize variables allow `NA`
 #' @keywords internal
 summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
@@ -144,7 +144,7 @@ summarize_vars_allow_na <- function(
 }
 
 #' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param var (`string`) of analysis variable.
 #' @param level (`string`) level to be displayed.
 #' @param detail_vars (`character`) of variables for detail information.
@@ -181,7 +181,7 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 }
 
 #' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param split_var (`character`) variable to split rows by.
 #' @param ... Further arguments for `split_rows_by`
 #' @keywords internal

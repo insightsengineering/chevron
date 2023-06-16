@@ -19,9 +19,9 @@ assert_valid_var_pair(
 
 \item{var}{(\code{string}) variable to check.}
 
-\item{lab1}{(\code{string}) label hint for df1.}
+\item{lab1}{(\code{string}) label hint for \code{df1}.}
 
-\item{lab2}{(\code{string}) label hint for df2.}
+\item{lab2}{(\code{string}) label hint for \code{df2}.}
 }
 \description{
 Check variables are of same levels

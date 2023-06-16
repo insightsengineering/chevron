@@ -63,7 +63,7 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{visit_value}{Value of visit variable.}
 
-\item{paramcd_value}{Value of PARAMCD variable.}
+\item{paramcd_value}{Value of \code{PARAMCD} variable.}
 
 \item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
 Key columns allow you to group repeat occurrences.}

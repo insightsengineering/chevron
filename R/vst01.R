@@ -3,7 +3,7 @@
 #' @describeIn vst01 Main TLG function
 #'
 #' @inherit cfbt01_main
-#' @source cfbt01.R
+#' @source `cfbt01.R`
 #' @export
 #'
 vst01_main <- modify_default_args(cfbt01_main, dataset = "advs")

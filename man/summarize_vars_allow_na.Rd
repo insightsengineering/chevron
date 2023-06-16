@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtables_utils.R
 \name{summarize_vars_allow_na}
 \alias{summarize_vars_allow_na}
-\title{Summarize variables allow na}
+\title{Summarize variables allow \code{NA}}
 \usage{
 summarize_vars_allow_na(
   lyt,
@@ -21,6 +21,6 @@ summarize_vars_allow_na(
 )
 }
 \description{
-Summarize variables allow na
+Summarize variables allow \code{NA}
 }
 \keyword{internal}

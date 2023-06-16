@@ -75,9 +75,9 @@ dtht01_main <- function(adam_db,
 #'
 #' @inheritParams dtht01_main
 #' @param death_falg (`string`) variable name of death flag.
-#' @param detah_var (`string`) variable name of death catagory.
-#' @param other_level (`string`) "Other" level in death catagory.
-#' @param other_var (`string`) variable name of death cause under "Other".
+#' @param detah_var (`string`) variable name of death category.
+#' @param other_level (`string`) `"Other"` level in death category.
+#' @param other_var (`string`) variable name of death cause under `"Other"`.
 #' @param dose_death_var (`string`) variable name of the days from last dose.
 #'
 #' @keywords internal

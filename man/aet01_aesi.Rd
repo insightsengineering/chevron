@@ -31,7 +31,7 @@ aet01_aesi
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{aesi_vars}{(\code{character}) the AESI variables to be included in the summary. Defaults to \code{NA}.}
+\item{aesi_vars}{(\code{character}) the \code{AESI} variables to be included in the summary. Defaults to \code{NA}.}
 
 \item{grade_groups}{(\code{list}) the grade groups to be displayed.}
 

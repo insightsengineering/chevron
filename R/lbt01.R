@@ -3,7 +3,7 @@
 #' @describeIn lbt01 Main TLG function
 #'
 #' @inherit cfbt01_main
-#' @source cfbt01.R
+#' @source `cfbt01.R`
 #' @export
 #'
 lbt01_main <- modify_default_args(cfbt01_main, dataset = "adlb")
