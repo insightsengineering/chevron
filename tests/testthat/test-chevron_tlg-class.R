@@ -15,8 +15,7 @@ test_that("chevron_t object can be constructed with custom values", {
           count_patients_with_flags(fl)
         build_table(lyt, adam_db$adlb, adam_db$adsl)
       },
-      postprocess = function(tlg, ...) report_null(tlg),
-      adam_datasets = c("adsl, adlb")
+      postprocess = function(tlg, ...) report_null(tlg)
     )
   )
   expect_true(validObject(obj))
@@ -30,8 +29,7 @@ test_that("chevron_t object can be constructed with custom values", {
           count_patients_with_flags(fl)
         build_table(lyt, adam_db$adlb, adam_db$adsl)
       },
-      postprocess = function(tlg, ...) report_null(tlg),
-      adam_datasets = c("adsl, adlb")
+      postprocess = function(tlg, ...) report_null(tlg)
     )
   )
   expect_true(validObject(obj))
@@ -47,8 +45,7 @@ test_that("chevron_t constructor returns an error when expected", {
           count_patients_with_flags(fl)
         build_table(lyt, x$adlb, x$adsl)
       },
-      postprocess = function(w) report_null(w),
-      adam_datasets = c("adsl, adlb")
+      postprocess = function(w) report_null(w)
     )
   )
 
@@ -102,8 +99,7 @@ test_that("chevron_g object can be constructed with custom values", {
         ggplot(adam_db$adsl, aes_string(x = x)) +
           geom_histogram()
       },
-      postprocess = function(tlg, ...) tlg,
-      adam_datasets = c("adsl, adlb")
+      postprocess = function(tlg, ...) tlg
     )
   )
   expect_true(validObject(obj))
@@ -114,8 +110,7 @@ test_that("chevron_g object can be constructed with custom values", {
       main = function(adam_db, x, ...) {
         ggplot(adam_db$adsl, aes_string(x = x)) +
           geom_histogram()
-      },
-      adam_datasets = c("adsl, adlb")
+      }
     )
   )
   expect_true(validObject(obj))
@@ -129,8 +124,7 @@ test_that("chevron_g constructor returns an error when expected", {
         ggplot(dat$adsl, aes_string(x = x)) +
           geom_histogram()
       },
-      postprocess = function(w) w,
-      adam_datasets = c("adsl, adlb")
+      postprocess = function(w) w
     )
   )
 

@@ -155,6 +155,5 @@ pdt02 <- chevron_t(
   main = pdt02_main,
   lyt = pdt02_lyt,
   preprocess = pdt02_pre,
-  postprocess = pdt02_post,
-  adam_datasets = c("adsl", "addv")
+  postprocess = pdt02_post
 )

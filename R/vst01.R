@@ -29,6 +29,5 @@ vst01_pre <- modify_default_args(cfbt01_pre, dataset = "advs")
 vst01 <- chevron_t(
   main = vst01_main,
   preprocess = vst01_pre,
-  postprocess = cfbt01_post,
-  adam_datasets = c("adsl", "advs")
+  postprocess = cfbt01_post
 )
