@@ -18,6 +18,18 @@ rmpt03_main <- modify_default_args(
   overall_col_lbl = "All Genders"
 )
 
+#' @describeIn rmpt03 Preprocessing
+#'
+#' @inheritParams gen_args
+#' @inheritParams rmpt03_main
+#'
+#' @export
+#'
+rmpt03_pre <- modify_default_args(
+  rmpt01_pre,
+  summaryvars = "AGEGR1"
+)
+
 #' `rmpt03`Duration of Exposure for Risk Management Plan Table.
 #'
 #' The `rmpt03` table provides an overview of duration of exposure.
@@ -30,6 +42,6 @@ rmpt03_main <- modify_default_args(
 #' run(rmpt03, pre_data)
 rmpt03 <- chevron_t(
   main = rmpt03_main,
-  preprocess = rmpt01_pre,
+  preprocess = rmpt03_pre,
   postprocess = rmpt01_post
 )

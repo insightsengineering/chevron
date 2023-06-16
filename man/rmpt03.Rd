@@ -3,6 +3,7 @@
 \docType{data}
 \name{rmpt03_main}
 \alias{rmpt03_main}
+\alias{rmpt03_pre}
 \alias{rmpt03}
 \title{\code{rmpt03}Duration of Exposure for Risk Management Plan Table.}
 \format{
@@ -18,6 +19,8 @@ rmpt03_main(
   overall_col_lbl = "All Genders",
   ...
 )
+
+rmpt03_pre(adam_db, summaryvars = "AGEGR1", ...)
 
 rmpt03
 }
@@ -51,6 +54,8 @@ The \code{rmpt03} table provides an overview of duration of exposure.
 \section{Functions}{
 \itemize{
 \item \code{rmpt03_main()}: Main TLG function
+
+\item \code{rmpt03_pre()}: Preprocessing
 
 }}
 \examples{

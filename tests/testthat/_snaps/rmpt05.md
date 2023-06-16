@@ -70,3 +70,20 @@
         UNKNOWN                                       0 (0.0%)          0     
         Total patients number/person time           400 (100.0%)      49700   
 
+---
+
+    Code
+      cat(export_as_txt(res2, lpp = 100))
+    Output
+                                                      Patients     Person time
+        RACE                                          (N=400)        (N=400)  
+        ——————————————————————————————————————————————————————————————————————
+        AMERICAN INDIAN OR ALASKA NATIVE             25 (6.2%)        3348    
+        ASIAN                                       208 (52.0%)       25754   
+        BLACK OR AFRICAN AMERICAN                    90 (22.5%)       10469   
+        MULTIPLE                                      1 (0.2%)         219    
+        NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER     1 (0.2%)         49     
+        WHITE                                        73 (18.2%)       9544    
+        <Missing>                                     2 (0.5%)         317    
+        Total patients number/person time           400 (100.0%)      49700   
+

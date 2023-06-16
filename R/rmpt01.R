@@ -104,10 +104,12 @@ rmpt01_lyt <- function(summaryvars,
 #' @describeIn rmpt01 Preprocessing
 #'
 #' @inheritParams gen_args
+#' @inheritParams rmpt01_main
 #'
 #' @export
 #'
 rmpt01_pre <- function(adam_db,
+                       summaryvars = "AVALCAT1",
                        ...) {
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
@@ -118,6 +120,11 @@ rmpt01_pre <- function(adam_db,
     mutate(
       AVALCAT1 = with_label(.data$AVALCAT1, "Duration of exposure")
     )
+
+  adam_db$adex[[summaryvars]] <- reformat(adam_db$adex[[summaryvars]], missing_rule)
+  if (!"<Missing>" %in% adam_db$adex[[summaryvars]] && summaryvars %in% colnames(adam_db$adex)) {
+    adam_db$adex[[summaryvars]] <- forcats::fct_drop(adam_db$adex[[summaryvars]], only = "<Missing>")
+  }
 
   adam_db
 }

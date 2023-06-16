@@ -15,6 +15,18 @@
 #'
 rmpt04_main <- modify_default_args(rmpt01_main, summaryvars = "ETHNIC")
 
+#' @describeIn rmpt04 Preprocessing
+#'
+#' @inheritParams gen_args
+#' @inheritParams rmpt04_main
+#'
+#' @export
+#'
+rmpt04_pre <- modify_default_args(
+  rmpt01_pre,
+  summaryvars = "ETHNIC"
+)
+
 #' `RMPT04`Extent of Exposure by Ethnic Origin for Risk Management Plan Table.
 #'
 #' The `RMPT04` table provides an overview of duration of exposure extent.
@@ -26,6 +38,6 @@ rmpt04_main <- modify_default_args(rmpt01_main, summaryvars = "ETHNIC")
 #' run(rmpt04, syn_data)
 rmpt04 <- chevron_t(
   main = rmpt04_main,
-  preprocess = rmpt01_pre,
+  preprocess = rmpt04_pre,
   postprocess = rmpt01_post
 )

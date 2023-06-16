@@ -3,6 +3,7 @@
 \docType{data}
 \name{rmpt05_main}
 \alias{rmpt05_main}
+\alias{rmpt05_pre}
 \alias{rmpt05}
 \title{\code{RMPT05} Extent of Exposure by Race for Risk Management Plan Table.}
 \format{
@@ -18,6 +19,8 @@ rmpt05_main(
   overall_col_lbl = NULL,
   ...
 )
+
+rmpt05_pre(adam_db, summaryvars = "RACE", ...)
 
 rmpt05
 }
@@ -51,6 +54,8 @@ The \code{RMPT05} table provides an overview of duration of exposure extent.
 \section{Functions}{
 \itemize{
 \item \code{rmpt05_main()}: Main TLG function
+
+\item \code{rmpt05_pre()}: Preprocessing
 
 }}
 \examples{

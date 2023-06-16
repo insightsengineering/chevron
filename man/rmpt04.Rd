@@ -3,6 +3,7 @@
 \docType{data}
 \name{rmpt04_main}
 \alias{rmpt04_main}
+\alias{rmpt04_pre}
 \alias{rmpt04}
 \title{\code{RMPT04}Extent of Exposure by Ethnic Origin for Risk Management Plan Table.}
 \format{
@@ -18,6 +19,8 @@ rmpt04_main(
   overall_col_lbl = NULL,
   ...
 )
+
+rmpt04_pre(adam_db, summaryvars = "ETHNIC", ...)
 
 rmpt04
 }
@@ -51,6 +54,8 @@ The \code{RMPT04} table provides an overview of duration of exposure extent.
 \section{Functions}{
 \itemize{
 \item \code{rmpt04_main()}: Main TLG function
+
+\item \code{rmpt04_pre()}: Preprocessing
 
 }}
 \examples{
