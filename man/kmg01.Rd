@@ -6,7 +6,7 @@
 \alias{kmg01_pre}
 \alias{kmg01_post}
 \alias{kmg01}
-\title{\code{KMG01} \code{Kaplan-Meier} Plot 1.}
+\title{\code{KMG01} Kaplan-Meier Plot 1.}
 \format{
 An object of class \code{chevron_g} of length 1.
 }
@@ -37,7 +37,7 @@ Commonly used arguments include \code{col}, \code{pval_method}, \code{ties}, \co
 a \code{gTree} object.
 }
 \description{
-\code{KMG01} \code{Kaplan-Meier} Plot 1.
+\code{KMG01} Kaplan-Meier Plot 1.
 }
 \details{
 \itemize{
