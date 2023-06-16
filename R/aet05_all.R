@@ -9,17 +9,17 @@
 aet05_all_pre <- function(adam_db, ...) {
   anl_tte <- adam_db$adaette %>%
     filter(.data$PARAMCD == "AEREPTTE") %>%
-    select(-PARAMCD)
+    select(-PARAMCD, -PARAM)
 
-  anl_events <- adam_db$adaette %>%
+  adam_db$adaette <- adam_db$adaette %>%
     filter(grepl("TOT", .data$PARAMCD)) %>%
     mutate(
       PARAMCD = droplevels(.data$PARAMCD),
+      PARAM = droplevels(.data$PARAM),
       n_events = as.integer(AVAL)
     ) %>%
-    select(USUBJID, ACTARM, PARAMCD, n_events)
-
-  adam_db$adaette <- full_join(anl_tte, anl_events, by = c("USUBJID", "ACTARM"))
+    select(USUBJID, ACTARM, PARAMCD, PARAM, n_events) %>%
+    left_join(anl_tte, by = c("USUBJID", "ACTARM"))
 
   adam_db
 }

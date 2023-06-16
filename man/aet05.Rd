@@ -54,7 +54,7 @@ considering first occurrence.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adaette} table with the columns \code{"PARAMCD"}, \code{"AVAL"}, and \code{"CNSR"}.
+\item \code{adam_db} object must contain an \code{adaette} table with the columns \code{"PARAMCD"}, \code{"PARAM"}, \code{"AVAL"}, and \code{"CNSR"}.
 }
 }
 \examples{
