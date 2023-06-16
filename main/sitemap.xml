@@ -76,6 +76,9 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/aet10_lyt.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/afun_skip_baseline.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/args_ls.html</loc>
   </url>
   <url>
@@ -275,6 +278,9 @@
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/nocoding.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/obtain_value.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/pdt01.html</loc>
