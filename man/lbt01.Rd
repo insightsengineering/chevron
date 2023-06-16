@@ -17,6 +17,7 @@ lbt01_main(
   adam_db,
   dataset = "adlb",
   arm_var = "ACTARM",
+  row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
   precision = list(),
@@ -35,6 +36,8 @@ lbt01
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{row_split_var}{(\code{character}) row split variable other than \code{PARAMCD}.}
 
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in
 table of \code{adam_db} is used as label.}

@@ -27,6 +27,6 @@ test_that("aet02 handle empty data input", {
 test_that("aet02 can have different levels of row_split", {
   res1 <- run(aet02, syn_data, row_split_var = NULL)
   res2 <- run(aet02, syn_data, row_split_var = c("AEBODSYS", "AEDECOD"))
-  expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
-  expect_snapshot(cat(formatters::export_as_txt(res2, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 })

@@ -1,7 +1,7 @@
 # aet03 can handle NA values
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
@@ -24,7 +24,7 @@
 # aet03 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
         MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    

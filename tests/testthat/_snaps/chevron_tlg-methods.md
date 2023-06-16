@@ -1,7 +1,7 @@
 # run works as expected for chevron_t object
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -96,7 +96,7 @@
 # run works as expected for chevron_t object when auto_pre = FALSE
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                               A: Drug X    B: Placebo    C: Combination   All Patients
                                                (N=134)       (N=134)        (N=132)         (N=400)   
