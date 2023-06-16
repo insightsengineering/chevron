@@ -186,7 +186,33 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 #' @param ... Further arguments for `split_rows_by`
 #' @keywords internal
 split_rows_by_recurive <- function(lyt, split_var, ...) {
-  purrr::reduce(.x = split_var, .f = split_rows_by, .init = lyt, ...)
+  args <- list(...)
+  for (i in seq_len(length(split_var))) {
+    args_i <- lapply(args, obtain_value, index = i)
+    lyt <- do.call(
+      split_rows_by,
+      c(
+        list(
+          lyt = lyt,
+          split_var
+        ),
+        args_i
+      )
+    )
+  }
+  lyt
+}
+
+#' Obtain value from a vector
+#' @keywords internal
+obtain_value <- function(obj, index) {
+  if (is.list(obj)) {
+    return(obj[[index]])
+  }
+  if (is.vector(obj) && length(obj) >= index) {
+    return(obj[index])
+  }
+  return(obj)
 }
 
 #' Proportion layout
@@ -327,4 +353,58 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
   } else {
     lyt
   }
+}
+
+#' Analyze skip baseline
+#' @param x value to analyze
+#' @param .var variable name.
+#' @param .spl_context split context.
+#' @param paramcdvar (`string`) name of parameter code.
+#' @param visitvar (`string`) name of the visit variable.
+#' @param skip Named (`character`) indicating the pairs to skip in analyze.
+#' @inheritParams cfbt01_main
+#' @keywords internal
+afun_skip_baseline <- function(x, .var, .spl_context, paramcdvar, visitvar, skip, precision, default_precision, ...) {
+  param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
+  pcs <- precision[[param_val]] %||% default_precision
+
+  # Create context dependent function.
+  n_fun <- sum(!is.na(x), na.rm = TRUE)
+  if (n_fun == 0) {
+    mean_sd_fun <- c(NA, NA)
+    median_fun <- NA
+    min_max_fun <- c(NA, NA)
+  } else {
+    mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+    median_fun <- median(x, na.rm = TRUE)
+    min_max_fun <- c(min(x), max(x))
+  }
+
+  # Identify context-
+  is_chg <- .var == skip
+
+  is_baseline <- .spl_context$value[which(.spl_context$split == visitvar)] == names(skip)
+
+  if (is_baseline && is_chg) {
+    n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
+  }
+
+  in_rows(
+    "n" = n_fun,
+    "Mean (SD)" = mean_sd_fun,
+    "Median" = median_fun,
+    "Min - Max" = min_max_fun,
+    .formats = list(
+      "n" = "xx",
+      "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
+      "Median" = h_format_dec(format = "%f", digits = pcs + 1),
+      "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
+    ),
+    .format_na_strs = list(
+      "n" = "NE",
+      "Mean (SD)" = "NE (NE)",
+      "Median" = "NE",
+      "Min - Max" = "NE - NE"
+    )
+  )
 }

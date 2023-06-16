@@ -42,7 +42,7 @@
 # ttet01 works as expected for stratified and unstratified analysis
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X        B: Placebo      C: Combination
                                              (N=134)           (N=134)          (N=132)    
@@ -77,7 +77,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X        B: Placebo      C: Combination
                                              (N=134)           (N=134)          (N=132)    
@@ -119,7 +119,7 @@
 # ttet01 works as expected for stratified analysis only
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X        B: Placebo      C: Combination
                                              (N=134)           (N=134)          (N=132)    
@@ -154,7 +154,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             A: Drug X        B: Placebo      C: Combination
                                              (N=134)           (N=134)          (N=132)    
@@ -192,7 +192,7 @@
 # ttet01 works if change reference group
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             B: Placebo        A: Drug X      C: Combination
                                              (N=134)           (N=134)          (N=132)    
@@ -227,7 +227,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                             B: Placebo        A: Drug X      C: Combination
                                              (N=134)           (N=134)          (N=132)    

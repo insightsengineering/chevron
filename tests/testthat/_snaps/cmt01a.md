@@ -1,7 +1,7 @@
 # cmt01a functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
@@ -53,7 +53,7 @@
 # cmt01a functions with custom argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
@@ -97,7 +97,7 @@
 # cmt01a can handle all NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    
@@ -112,7 +112,7 @@
 # cmt01a can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
           Other Treatment                                          (N=134)       (N=134)        (N=132)    

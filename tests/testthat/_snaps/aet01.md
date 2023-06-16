@@ -1,7 +1,7 @@
 # aet01 can handle all NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    
@@ -26,7 +26,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    
@@ -46,7 +46,7 @@
 # aet01 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    
@@ -71,7 +71,7 @@
 # aet01 can use custom anl_vars
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    
@@ -86,7 +86,7 @@
 # aet01 can use custom medconcept_var
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    

@@ -1,7 +1,7 @@
 # ael01_nollt function with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
       MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
       ———————————————————————————————————————————————————————————————————————————————————————
@@ -19,7 +19,7 @@
 # aet01 function with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                       A: Drug X    B: Placebo    C: Combination
                                                                        (N=134)       (N=134)        (N=132)    
@@ -44,7 +44,7 @@
 # aet01_aesi function with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                                          A: Drug X 
                                                                                           (N=134)  
@@ -104,7 +104,7 @@
 # aet02 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
@@ -146,7 +146,7 @@
 # aet03 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
@@ -213,7 +213,7 @@
 # aet04 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         MedDRA System Organ Class                                                             
           MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
@@ -308,7 +308,7 @@
 # aet10 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                 A: Drug X    B: Placebo   C: Combination
         MedDRA Preferred Term    (N=134)      (N=134)        (N=132)    
@@ -327,7 +327,7 @@
 # cmt02_pt functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Other Treatment                                         A: Drug X    B: Placebo    C: Combination
                                                                  (N=134)       (N=134)        (N=132)    
@@ -347,7 +347,7 @@
 # coxt02 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
         —————————————————————————————————————————————————————————————————————————————————————————————
@@ -368,7 +368,7 @@
 # dmt01 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                               A: Drug X    B: Placebo    C: Combination   All Patients
                                                (N=134)       (N=134)        (N=132)         (N=400)   
@@ -402,7 +402,7 @@
 # dst01 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
                                            (N=134)      (N=134)        (N=132)         (N=400)   
@@ -421,7 +421,7 @@
 # dtht01 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                  A: Drug X    B: Placebo   C: Combination
                                   (N=134)      (N=134)        (N=132)    
