@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adex`
 #'   table of `adam_db` is used as label.
+#' @param map (`data.frame`) of mapping for split rows.
 #'
 #' @details
 #'  * Default Exposure table
@@ -24,22 +25,44 @@
 ext01_main <- function(adam_db,
                        arm_var = "ACTARM",
                        summaryvars = "AVAL",
+                       row_split_var = "PARCAT2",
                        lbl_overall = NULL,
+                       page_by = TRUE,
+                       map = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
-  assert_valid_variable(adam_db$adex, summaryvars, empty_ok = TRUE)
+  checkmate::assert_string(arm_var)
+  checkmate::assert_character(summaryvars)
+  checkmate::assert_character(row_split_var, null.ok = TRUE)
+  checkmate::assert_data_frame(map, null.ok = TRUE)
+  character_var <- base::Filter(function(x) {
+    is.character(adam_db$adex[[x]]) || is.factor(adam_db$adex[[x]])
+  }, summaryvars)
+  if (!is.null(map)) {
+    map <- infer_mapping(map, adam_db$adex)
+  }
+  assert_valid_variable(adam_db$adex, summaryvars, empty_ok = TRUE, na_ok = TRUE)
+  assert_valid_variable(
+    adam_db$adex, c(row_split_var, "PARAMCD", "PARAM"),
+    types = list(c("character", "factor")), empty_ok = TRUE
+  )
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
   summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
+  row_split_lbl <- var_labels_for(adam_db$adex, row_split_var)
 
   lyt <- ext01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
-    lbl_overall = lbl_overall
+    row_split_var = row_split_var,
+    row_split_lbl = row_split_lbl,
+    lbl_overall = lbl_overall,
+    page_by,
+    map = map
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
@@ -60,14 +83,24 @@ ext01_main <- function(adam_db,
 ext01_lyt <- function(arm_var,
                       summaryvars,
                       summaryvars_lbls,
-                      lbl_overall) {
+                      row_split_var,
+                      row_split_lbl,
+                      lbl_overall,
+                      page_by,
+                      map) {
+  label_pos <- if (page_by) "hidden" else "topleft"
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by_recurive(
+      row_split_var,
+      split_label = row_split_lbl, label_pos = label_pos, page_by = page_by
+    ) %>%
     split_rows_by(
-      "PARAM",
-      split_fun = drop_split_levels
+      "PARAMCD",
+      labels_var = "PARAM",
+      split_fun = split_fun_map(map)
     ) %>%
     summarize_vars(
       vars = summaryvars,
@@ -80,41 +113,12 @@ ext01_lyt <- function(arm_var,
 #' @describeIn ext01 Preprocessing
 #'
 #' @inheritParams gen_args
-#' @param paramcd_order (`character`) providing the `PARAMCD` values in the desired order.
-#' @param show_stats (`character`) providing the name of the parameters whose statistical summary should be
-#'   presented. To analyze all, provide `show_stats = "ALL"` (Default), to analyze none, provide `show_stats = ""`.
-#'
-#' @param show_bins (`character`) providing the name of the parameters whose categorical summary should be
-#'   presented. To analyze all, provide `show_bins = "ALL"` (Default), to analyze none, provide `show_bins = ""`.
-#'
 #' @export
 #'
 ext01_pre <- function(adam_db,
-                      paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
-                      show_stats = "ALL",
-                      show_bins = "ALL",
                       ...) {
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARCAT1 == "OVERALL")
-
-  if (nrow(adam_db$adex) > 0L) {
-    param_vars <- adam_db$adex %>%
-      dplyr::select("PARAM", "PARAMCD") %>%
-      dunlin::co_relevels("PARAMCD", "PARAM", paramcd_order)
-
-    adam_db$adex <- adam_db$adex %>%
-      mutate(PARAM = param_vars$PARAM, PARAMCD = param_vars$PARAMCD)
-  }
-
-  if (!"ALL" %in% show_stats) {
-    adam_db$adex <- adam_db$adex %>%
-      mutate(AVAL = ifelse(.data$PARAM %in% show_stats, .data$AVAL, NA))
-  }
-
-  if (!"ALL" %in% show_bins) {
-    adam_db$adex <- adam_db$adex %>%
-      mutate(AVALCAT1 = ifelse(.data$PARAM %in% show_bins, .data$AVALCAT1, NA))
-  }
 
   adam_db
 }
@@ -139,7 +143,13 @@ ext01_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' @examples
 #' run(ext01, syn_data)
-#' run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"))
+#' run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE)
+#' levels(syn_data$adex$AVALCAT1) <- c(levels(syn_data$adex$AVALCAT1), "12 months")
+#' map <- data.frame(
+#'   PARAMCD = "TDURD",
+#'   AVALCAT1 = c("< 1 month", "1 to <3 months", ">=6 months", "3 to <6 months", "12 months")
+#' )
+#' run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE, map = map)
 ext01 <- chevron_t(
   main = ext01_main,
   preprocess = ext01_pre,

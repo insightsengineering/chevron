@@ -39,6 +39,7 @@ syn_test_data <- function() {
       PARAMCD = "TDURD",
       PARAM = "Overall duration (days)",
       AVAL = sample(x = seq(1, 250), size = n(), replace = TRUE),
+      PARCAT1 = "OVERALL",
       AVALCAT1 = factor(case_when(
         AVAL < 30 ~ "< 1 month",
         AVAL < 90 ~ "1 to <3 months",

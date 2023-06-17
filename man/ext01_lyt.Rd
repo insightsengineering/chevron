@@ -4,7 +4,16 @@
 \alias{ext01_lyt}
 \title{\code{ext01} Layout}
 \usage{
-ext01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
+ext01_lyt(
+  arm_var,
+  summaryvars,
+  summaryvars_lbls,
+  row_split_var,
+  row_split_lbl,
+  lbl_overall,
+  page_by,
+  map
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}

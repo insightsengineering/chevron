@@ -381,3 +381,35 @@ afun_skip_baseline <- function(x, .var, .spl_context, paramcdvar, visitvar, skip
     )
   )
 }
+
+split_fun_map <- function(map) {
+  if (is.null(map)) {
+    drop_split_levels
+  } else {
+    trim_levels_to_map(map = map)
+  }
+}
+
+infer_mapping <- function(map_df, df) {
+  checkmate::assert_data_frame(df)
+  vars <- colnames(map_df)
+  checkmate::assert_names(names(df), must.include = vars)
+  for (x in vars) {
+    if (!checkmate::test_subset(map_df[[x]], lvls(df[[x]]))) {
+      rlang::abort(
+        paste0(
+          "Provided map should only contain valid levels in dataset in variable ", x, 
+          ". Consider convert ", x, " to factor first and add the levels to it."
+        )
+      )
+    }
+  }
+  unique_rows <- df[vars] %>%
+    unique() %>%
+    arrange(across(everything())) %>%
+    mutate(across(everything(), as.character))
+  if (is.null(map_df)) {
+    return(unique_rows)
+  }
+  dplyr::full_join(map_df, unique_rows, by = colnames(map_df))[vars]
+}
