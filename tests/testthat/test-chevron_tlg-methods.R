@@ -2,7 +2,7 @@
 
 test_that("run works as expected for chevron_t object", {
   res <- run(aet04, syn_data, prune_0 = TRUE)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
@@ -10,7 +10,7 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
   proc_data$adsl <- proc_data$adsl %>%
     mutate(DOMAIN = "ADSL")
   res <- run(dmt01, proc_data, auto_pre = FALSE)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 # args_ls ----
@@ -119,19 +119,6 @@ test_that("postprocess sends an error as expected", {
   expect_error(postprocess(obj) <- func, "Variable 'object@postprocess': Must have formal arguments: ....",
     fixed = TRUE
   )
-})
-
-# Datasets ----
-
-test_that("datasets works as expected", {
-  res <- datasets(aet04)
-  expect_identical(res, c("adsl", "adae"))
-})
-
-test_that("datasets setter works as expected", {
-  obj <- aet04
-  datasets(obj) <- c("adsl", "adxx")
-  expect_identical(obj@adam_datasets, c("adsl", "adxx"))
 })
 
 # script_args ----

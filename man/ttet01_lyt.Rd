@@ -23,7 +23,7 @@ ttet01_lyt(
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{timeunit}{(string) time unit get from AVALU, by default is "Months"}
+\item{timeunit}{(\code{string}) time unit get from \code{AVALU}, by default is \code{"Months"}}
 }
 \description{
 \code{ttet01} Layout

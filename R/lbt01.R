@@ -3,7 +3,7 @@
 #' @describeIn lbt01 Main TLG function
 #'
 #' @inherit cfbt01_main
-#' @source cfbt01.R
+#' @source `cfbt01.R`
 #' @export
 #'
 lbt01_main <- modify_default_args(cfbt01_main, dataset = "adlb")
@@ -29,6 +29,5 @@ lbt01_pre <- modify_default_args(cfbt01_pre, dataset = "adlb")
 lbt01 <- chevron_t(
   main = lbt01_main,
   preprocess = lbt01_pre,
-  postprocess = cfbt01_post,
-  adam_datasets = c("adsl", "adlb")
+  postprocess = cfbt01_post
 )

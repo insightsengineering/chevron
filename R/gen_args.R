@@ -7,8 +7,6 @@
 #'   Typically one of the `_pre` function of `chevron`.
 #' @param postprocess (`function`) returning a post-processed `tlg`, with `tlg` as first argument.
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param adam_datasets (`character`) representing the names of the tables from an `ADaM` data set required for `tlg`
-#'   creation.
 #' @param type (`string`) indicating the subclass.
 #' @param arm_var (`string`) variable used for column splitting
 #' @param deco (`character`) decoration with `title`, `subtitles` and `main_footer` content
@@ -19,7 +17,7 @@
 #' @param tlgfname (`character`) function name of TLG function
 #' @param group (`list of lists`) for group-dependent data binning
 #' @param visit_var Analysis Visit variable.
-#' @param paramcd_value Value of PARAMCD variable.
+#' @param paramcd_value Value of `PARAMCD` variable.
 #' @param visit_value Value of visit variable.
 #' @param key_cols (`character`) names of columns that should be treated as key columns when rendering the listing.
 #'   Key columns allow you to group repeat occurrences.
@@ -29,7 +27,7 @@
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.
 #'
-gen_args <- function(adam_db, main, preprocess, postprocess, dataset, adam_datasets,
+gen_args <- function(adam_db, main, preprocess, postprocess, dataset,
                      type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
                      tlg, tlgfname, visit_var, visit_value, paramcd_value,
                      key_cols, disp_cols, split_var, ...) {

@@ -216,6 +216,5 @@ mng01_post <- function(tlg, ...) {
 mng01 <- chevron_g(
   main = mng01_main,
   preproces = mng01_pre,
-  postprocess = mng01_post,
-  adam_datasets = c("adsl", "adlb", "adeg", "advs")
+  postprocess = mng01_post
 )

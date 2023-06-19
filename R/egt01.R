@@ -3,7 +3,7 @@
 #' @describeIn egt01 Main TLG function
 #'
 #' @inherit cfbt01_main
-#' @source cfbt01.R
+#' @source `cfbt01.R`
 #' @export
 #'
 egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg")
@@ -29,6 +29,5 @@ egt01_pre <- modify_default_args(cfbt01_pre, dataset = "adeg")
 egt01 <- chevron_t(
   main = egt01_main,
   preprocess = egt01_pre,
-  postprocess = cfbt01_post,
-  adam_datasets = c("adsl", "adeg")
+  postprocess = cfbt01_post
 )

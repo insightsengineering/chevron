@@ -144,6 +144,5 @@ lbt05_post <- function(tlg, prune_0 = FALSE, ...) {
 lbt05 <- chevron_t(
   main = lbt05_main,
   preprocess = lbt05_pre,
-  postprocess = lbt05_post,
-  adam_datasets = c("adsl", "adlb")
+  postprocess = lbt05_post
 )

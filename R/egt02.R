@@ -111,8 +111,7 @@ egt02_post <- function(tlg, ...) {
 egt02_1 <- chevron_t(
   main = egt02_1_main,
   preprocess = egt02_pre,
-  postprocess = egt02_post,
-  adam_datasets = c("adsl", "adeg")
+  postprocess = egt02_post
 )
 
 # egt02_2 ----
@@ -136,6 +135,5 @@ egt02_2_main <- modify_default_args(egt02_1_main, exclude_base_abn = TRUE)
 egt02_2 <- chevron_t(
   main = egt02_2_main,
   preprocess = egt02_pre,
-  postprocess = egt02_post,
-  adam_datasets = c("adsl", "adeg")
+  postprocess = egt02_post
 )
