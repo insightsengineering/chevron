@@ -27,7 +27,7 @@ ext01_main <- function(adam_db,
                        summaryvars = "AVAL",
                        row_split_var = "PARCAT2",
                        lbl_overall = NULL,
-                       page_by = TRUE,
+                       page_var = tail(row_split_var, 1L),
                        map = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
@@ -47,6 +47,8 @@ ext01_main <- function(adam_db,
     types = list(c("character", "factor")), empty_ok = TRUE
   )
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  checkmate::assert_string(page_var)
+  checkmate::assert_subset(page_var, c(row_split_var))
   assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
@@ -61,7 +63,7 @@ ext01_main <- function(adam_db,
     row_split_var = row_split_var,
     row_split_lbl = row_split_lbl,
     lbl_overall = lbl_overall,
-    page_by,
+    page_var = page_var,
     map = map
   )
 
@@ -86,9 +88,10 @@ ext01_lyt <- function(arm_var,
                       row_split_var,
                       row_split_lbl,
                       lbl_overall,
-                      page_by,
+                      page_var,
                       map) {
-  label_pos <- if (page_by) "hidden" else "topleft"
+  page_by <- get_page_by(page_var, c(row_split_var))
+  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%

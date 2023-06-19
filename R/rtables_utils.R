@@ -215,6 +215,19 @@ obtain_value <- function(obj, index) {
   return(obj)
 }
 
+#' Get page by value
+#' @keywords internal
+get_page_by <- function(var, vars) {
+  ret <- rep(FALSE, length(vars))
+  index <- match(var, vars)
+  checkmate::assert_int(index, na.ok = TRUE)
+  if (is.na(index)) {
+    return(ret)
+  }
+  ret[seq_len(index)] <- TRUE
+  return(ret)
+}
+
 #' Proportion layout
 #'
 #' @inheritParams rspt01_main
@@ -398,7 +411,7 @@ infer_mapping <- function(map_df, df) {
     if (!checkmate::test_subset(map_df[[x]], lvls(df[[x]]))) {
       rlang::abort(
         paste0(
-          "Provided map should only contain valid levels in dataset in variable ", x, 
+          "Provided map should only contain valid levels in dataset in variable ", x,
           ". Consider convert ", x, " to factor first and add the levels to it."
         )
       )

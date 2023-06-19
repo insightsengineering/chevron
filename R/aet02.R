@@ -3,7 +3,6 @@
 #' @describeIn aet02 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param row_split_var (`character`) row split variables.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subject and fraction of `N`, or absolute number of event when specified.

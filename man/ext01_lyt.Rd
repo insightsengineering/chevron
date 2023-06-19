@@ -11,7 +11,7 @@ ext01_lyt(
   row_split_var,
   row_split_lbl,
   lbl_overall,
-  page_by,
+  page_var,
   map
 )
 }
@@ -22,7 +22,11 @@ ext01_lyt(
 
 \item{summaryvars_lbls}{(\code{character}) the label associated with the analyzed variable.}
 
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{ext01} Layout
