@@ -120,7 +120,7 @@ ext01_pre <- function(adam_db,
                       ...) {
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARCAT1 == "OVERALL") %>%
-    filter(.data$PARAMCD %in% c("TNDOSE", "TDOSE", "TDOSINT"))
+    filter(.data$PARAMCD %in% c("TDURD", "TDOSE"))
 
   adam_db
 }
