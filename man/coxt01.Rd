@@ -19,6 +19,7 @@ coxt01_main(
   covariates = c("SEX", "RACE", "AAGE"),
   strata = NULL,
   lbl_vars = "Effect/Covariate Included in the Model",
+  multivar = FALSE,
   ...
 )
 
@@ -42,6 +43,8 @@ coxt01
 \item{strata}{(\code{character}) will be fitted for the stratified analysis.}
 
 \item{lbl_vars}{(\code{string}) text label for the a Cox regression model variables.}
+
+\item{multivar}{(\code{flag}) indicator of whether multivariate cox regression is conducted.}
 
 \item{...}{Further arguments passed to \code{tern::control_coxreg()}.}
 

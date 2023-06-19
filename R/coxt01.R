@@ -9,6 +9,7 @@
 #' @param covariates (`character`) will be fitted and the corresponding effect will be estimated.
 #' @param strata (`character`) will be fitted for the stratified analysis.
 #' @param lbl_vars (`string`) text label for the a Cox regression model variables.
+#' @param multivar (`flag`) indicator of whether multivariate cox regression is conducted.
 #' @param ... Further arguments passed to `tern::control_coxreg()`.
 #'
 #' @details
@@ -37,6 +38,7 @@ coxt01_main <- function(adam_db,
                         covariates = c("SEX", "RACE", "AAGE"),
                         strata = NULL,
                         lbl_vars = "Effect/Covariate Included in the Model",
+                        multivar = FALSE,
                         ...) {
   assert_all_tablenames(adam_db, "adtte")
   checkmate::assert_string(arm_var)
@@ -44,7 +46,8 @@ coxt01_main <- function(adam_db,
   checkmate::assert_string(event_var)
   checkmate::assert_character(covariates, null.ok = TRUE)
   checkmate::assert_character(strata, null.ok = TRUE)
-  assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"), n.levels = 2L)
+  checkmate::assert_flag(multivar)
+  assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"), n.levels = if (!multivar) 2L)
   assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var, "PARAMCD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adtte, strata, types = list(c("factor", "integer", "character")), na_ok = TRUE)
   assert_valid_variable(adam_db$adtte, covariates, na_ok = TRUE)
@@ -63,8 +66,9 @@ coxt01_main <- function(adam_db,
 
   lyt <- coxt01_lyt(
     variables = variables,
-    col_split = "COL_LABEL",
+    col_split = if (!multivar) "COL_LABEL",
     lbl_vars = lbl_vars,
+    multivar = multivar,
     control = control,
     ...
   )
@@ -86,12 +90,13 @@ coxt01_lyt <- function(variables,
                        col_split,
                        lbl_vars,
                        control,
+                       multivar,
                        ...) {
   lyt <- basic_table() %>%
     ifneeded_split_col(col_split)
   lyt <- execute_with_args(
     summarize_coxreg,
-    lyt = lyt, variables = variables, control = control, ...
+    lyt = lyt, variables = variables, control = control, multivar = multivar, ...
   )
   lyt %>%
     append_topleft(lbl_vars)

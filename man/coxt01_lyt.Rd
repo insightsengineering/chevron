@@ -4,7 +4,7 @@
 \alias{coxt01_lyt}
 \title{\code{coxt01} Layout}
 \usage{
-coxt01_lyt(variables, col_split, lbl_vars, control, ...)
+coxt01_lyt(variables, col_split, lbl_vars, control, multivar, ...)
 }
 \arguments{
 \item{variables}{(\code{list}) list of variables in a Cox proportional hazards regression model.}

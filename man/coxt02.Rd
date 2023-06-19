@@ -8,6 +8,9 @@
 \format{
 An object of class \code{chevron_t} of length 1.
 }
+\source{
+utils.R
+}
 \usage{
 coxt02_main(
   adam_db,
@@ -17,6 +20,7 @@ coxt02_main(
   covariates = c("SEX", "RACE", "AAGE"),
   strata = NULL,
   lbl_vars = "Effect/Covariate Included in the Model",
+  multivar = TRUE,
   ...
 )
 
@@ -36,6 +40,8 @@ coxt02
 \item{strata}{(\code{character}) will be fitted for the stratified analysis.}
 
 \item{lbl_vars}{(\code{string}) text label for the a Cox regression model variables.}
+
+\item{multivar}{(\code{flag}) indicator of whether multivariate cox regression is conducted.}
 
 \item{...}{Further arguments passed to \code{tern::control_coxreg()}.}
 }
@@ -71,7 +77,6 @@ with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 }
 }
 \examples{
-library(dplyr)
 library(dunlin)
 
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
