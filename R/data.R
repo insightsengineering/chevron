@@ -28,12 +28,12 @@
 
 # ctc_dir ----
 
-#' ctc grade data
+#' CTC Grade Direction Data
 "ctc_dir"
 
 # mla_grid ----
-#' mla grade data
-"mla_grid"
+#' MLA Grade Direction Data
+"mla_dir"
 
 #' Get ctc grade data by version
 #' @param version (`number`) version of ctc grading.

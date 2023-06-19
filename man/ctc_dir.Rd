@@ -3,7 +3,7 @@
 \docType{data}
 \name{ctc_dir}
 \alias{ctc_dir}
-\title{ctc grade data}
+\title{CTC Grade Direction Data}
 \format{
 An object of class \code{data.frame} with 69 rows and 3 columns.
 }
@@ -11,6 +11,6 @@ An object of class \code{data.frame} with 69 rows and 3 columns.
 ctc_dir
 }
 \description{
-ctc grade data
+CTC Grade Direction Data
 }
 \keyword{datasets}

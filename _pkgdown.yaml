@@ -88,6 +88,9 @@ reference:
   - title: Data
     contents:
       - syn_data
+      - ctc_dir
+      - mla_dir
+      - get_ctc
   - title: Utility Functions
     contents:
       - assert_all_tablenames
