@@ -35,9 +35,7 @@ ext01_main <- function(adam_db,
   checkmate::assert_character(summaryvars)
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   checkmate::assert_data_frame(map, null.ok = TRUE)
-  character_var <- base::Filter(function(x) {
-    is.character(adam_db$adex[[x]]) || is.factor(adam_db$adex[[x]])
-  }, summaryvars)
+  assert_valid_variable(adam_db$adex, colnames(map), types = list(c("character", "factor")))
   if (!is.null(map)) {
     map <- infer_mapping(map, adam_db$adex)
   }
@@ -136,9 +134,9 @@ ext01_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' EXT01 Exposure Summary Table.
+#' `EXT01` Exposure Summary Table.
 #'
-#' The EXT01 table provides an overview of the of the exposure of the
+#' The `EXT01` table provides an overview of the of the exposure of the
 #' patients in terms of Total dose administered or missed, and treatment duration.
 #'
 #' @include chevron_tlg-S4class.R

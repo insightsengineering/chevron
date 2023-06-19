@@ -219,6 +219,9 @@ obtain_value <- function(obj, index) {
 #' @keywords internal
 get_page_by <- function(var, vars) {
   ret <- rep(FALSE, length(vars))
+  if (is.null(var)) {
+    return(ret)
+  }
   index <- match(var, vars)
   checkmate::assert_int(index, na.ok = TRUE)
   if (is.na(index)) {

@@ -6,7 +6,7 @@
 \alias{ext01_pre}
 \alias{ext01_post}
 \alias{ext01}
-\title{EXT01 Exposure Summary Table.}
+\title{\code{EXT01} Exposure Summary Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -51,7 +51,7 @@ table of \code{adam_db} is used as label.}
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-The EXT01 table provides an overview of the of the exposure of the
+The \code{EXT01} table provides an overview of the of the exposure of the
 patients in terms of Total dose administered or missed, and treatment duration.
 }
 \details{

@@ -36,7 +36,7 @@ cfbt01_main <- function(adam_db,
                         visitvar = "AVISIT",
                         precision = list(),
                         default_precision = 2,
-                        page_var = "PARAMCD",
+                        page_var = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
@@ -44,7 +44,7 @@ cfbt01_main <- function(adam_db,
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   checkmate::assert_string(visitvar)
-  checkmate::assert_string(page_var)
+  checkmate::assert_string(page_var, null.ok = TRUE)
   checkmate::assert_subset(page_var, c(row_split_var, "PARAMCD"))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)

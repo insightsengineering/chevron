@@ -3,6 +3,7 @@
 \docType{data}
 \name{egt01_main}
 \alias{egt01_main}
+\alias{egt01_pre}
 \alias{egt01}
 \title{\code{EGT01} ECG Parameters and Change from Baseline By Visit Table.}
 \format{
@@ -21,9 +22,11 @@ egt01_main(
   visitvar = "AVISIT",
   precision = list(),
   default_precision = 2,
-  page_var = "PARAMCD",
+  page_var = NULL,
   ...
 )
+
+egt01_pre(adam_db, dataset = "adeg", ...)
 
 egt01
 }
@@ -73,6 +76,8 @@ by \code{AVISIT}. Re-level to customize order
 \section{Functions}{
 \itemize{
 \item \code{egt01_main()}: Main TLG function
+
+\item \code{egt01_pre()}: Preprocessing
 
 }}
 \note{
