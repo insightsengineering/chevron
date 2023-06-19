@@ -78,9 +78,6 @@ study completion. For patients who discontinued the study a reason is provided.
 }
 }
 \examples{
-run(dst01, syn_data)
-run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")))
-dst01_pre(syn_data)
 run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS"))
 run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STDONS"))
 run(

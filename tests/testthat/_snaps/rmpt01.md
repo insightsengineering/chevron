@@ -1,7 +1,7 @@
 # rmpt01 function with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                      Patients     Person time*
                                                      (N=400)        (N=400)   
@@ -15,7 +15,7 @@
 # rmpt01 can handle NA values
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
                                                    Patients   Person time*
                                                    (N=400)      (N=400)   
@@ -29,7 +29,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res2, lpp = 100))
+      cat(export_as_txt(res2, lpp = 100))
     Output
         Parameter Category   Patients   Person time*
                              (N=400)      (N=400)   
@@ -48,7 +48,7 @@
 # rmpt01 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
                                                     Patients     Person time*
                                                      (N=400)       (N=400)   
@@ -62,7 +62,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res2, lpp = 100))
+      cat(export_as_txt(res2, lpp = 100))
     Output
         Parameter Category    Patients     Person time*
                                (N=400)       (N=400)   

@@ -19,7 +19,7 @@
 #'  * Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 #'  with `"SEX"`, `"RACE"` and `"AAGE"` as default candidates.
 #'  * The selection of the covariates and whether or not there is a selection process
-#'  (vs. a fixed, pre-specified list) needs to be specified in the DAP.
+#'  (vs. a fixed, pre-specified list) needs to be specified in the `DAP`.
 #'  * For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
 #'  * Keep zero-count rows unless overridden with `prune_0 = TRUE`.
 #'
@@ -137,6 +137,5 @@ coxt02_post <- function(tlg, prune_0 = FALSE, ...) {
 coxt02 <- chevron_t(
   main = coxt02_main,
   preprocess = coxt02_pre,
-  postprocess = coxt02_post,
-  adam_datasets = c("adsl", "adtte")
+  postprocess = coxt02_post
 )

@@ -43,7 +43,6 @@ reference:
       - main
       - preprocess
       - postprocess
-      - datasets
       - script
 
   - title: chevron_tlg objects
@@ -55,6 +54,7 @@ reference:
       - aet03
       - aet04
       - aet10
+      - cfbt01
       - cmt01a
       - cmt02_pt
       - coxt02

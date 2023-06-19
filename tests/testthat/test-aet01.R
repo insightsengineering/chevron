@@ -9,9 +9,9 @@ test_that("aet01 can handle all NA values", {
     )
 
   res <- expect_silent(run(aet01, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
   res <- expect_silent(run(aet01, proc_data, prune_0 = TRUE))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet01 can handle some NA values", {
@@ -26,13 +26,13 @@ test_that("aet01 can handle some NA values", {
     )
 
   res <- expect_silent(run(aet01, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet01 can use custom anl_vars", {
   proc_data <- syn_data
   res <- expect_silent(run(aet01, proc_data, anl_vars = list(safety_var = "FATAL")))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet01 fails on incomplete data input", {
@@ -62,5 +62,5 @@ test_that("aet01 can use custom medconcept_var", {
       )
     )
   )
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

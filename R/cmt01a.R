@@ -175,6 +175,5 @@ cmt01a <- chevron_t(
   main = cmt01a_main,
   lyt = cmt01a_lyt,
   preprocess = cmt01a_pre,
-  postprocess = cmt01a_post,
-  adam_datasets = c("adsl", "adcm")
+  postprocess = cmt01a_post
 )

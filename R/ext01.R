@@ -143,6 +143,5 @@ ext01_post <- function(tlg, prune_0 = TRUE, ...) {
 ext01 <- chevron_t(
   main = ext01_main,
   preprocess = ext01_pre,
-  postprocess = ext01_post,
-  adam_datasets = c("adsl", "adex")
+  postprocess = ext01_post
 )

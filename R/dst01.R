@@ -21,12 +21,8 @@
 #' @note
 #'  * `adam_db` object must contain an `adsl` table with the columns specified by `status_var` and `disc_reason_var`.
 #'
-#'
 #' @export
 #'
-#' @examples
-#' run(dst01, syn_data)
-#' run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")))
 dst01_main <- function(adam_db,
                        arm_var = "ARM",
                        study_status_var = "EOSSTT",
@@ -120,8 +116,6 @@ dst01_lyt <- function(arm_var,
 #' @inheritParams dst01_main
 #' @export
 #'
-#' @examples
-#' dst01_pre(syn_data)
 dst01_pre <- function(adam_db,
                       ...) {
   study_status_format <- rule(
@@ -194,6 +188,5 @@ dst01_post <- function(tlg, prune_0 = TRUE, ...) {
 dst01 <- chevron_t(
   main = dst01_main,
   preprocess = dst01_pre,
-  postprocess = dst01_post,
-  adam_datasets = c("adsl")
+  postprocess = dst01_post
 )
