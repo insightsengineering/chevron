@@ -119,7 +119,8 @@ ext01_lyt <- function(arm_var,
 ext01_pre <- function(adam_db,
                       ...) {
   adam_db$adex <- adam_db$adex %>%
-    filter(.data$PARCAT1 == "OVERALL")
+    filter(.data$PARCAT1 == "OVERALL") %>%
+    filter(.data$PARAMCD %in% c("TNDOSE", "TDOSE", "TDOSINT"))
 
   adam_db
 }
