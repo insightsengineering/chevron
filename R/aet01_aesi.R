@@ -3,7 +3,7 @@
 #' @describeIn aet01_aesi Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param aesi_vars (`character`) the AESI variables to be included in the summary. Defaults to `NA`.
+#' @param aesi_vars (`character`) the `AESI` variables to be included in the summary. Defaults to `NA`.
 #' @param grade_groups (`list`) the grade groups to be displayed.
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -75,7 +75,7 @@ aet01_aesi_main <- function(adam_db,
 #' `aet01_aesi` Layout
 #'
 #' @inheritParams gen_args
-#' @param lbl_aesi_vars (`character`) the labels of the AESI variables to be summarized.
+#' @param lbl_aesi_vars (`character`) the labels of the `AESI` variables to be summarized.
 #'
 #' @keywords internal
 #'

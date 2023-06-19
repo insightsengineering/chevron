@@ -3,7 +3,7 @@
 #' @describeIn egt01 Main TLG function
 #'
 #' @inherit cfbt01_main
-#' @source cfbt01.R
+#' @source `cfbt01.R`
 #' @export
 #'
 egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg")

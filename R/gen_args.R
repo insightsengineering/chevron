@@ -16,7 +16,7 @@
 #' @param tlg (`TableTree`, `Listing` or `ggplot`) object typically produced by a `main` function.
 #' @param group (`list of lists`) for group-dependent data binning
 #' @param visit_var Analysis Visit variable.
-#' @param paramcd_value Value of PARAMCD variable.
+#' @param paramcd_value Value of `PARAMCD` variable.
 #' @param visit_value Value of visit variable.
 #' @param key_cols (`character`) names of columns that should be treated as key columns when rendering the listing.
 #'   Key columns allow you to group repeat occurrences.

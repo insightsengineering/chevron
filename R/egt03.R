@@ -8,7 +8,7 @@
 #'   used as subtitles.
 #'
 #' @details
-#'  * ADEG data are subsetted to contain only "POST-BASELINE MINIMUM" visit
+#'  * `ADEG` data are subsetted to contain only "POST-BASELINE MINIMUM" visit
 #'  * the number of patients by baseline assessment and minimum post-baseline assessment.
 #'  * Percentages are based on the total number of patients in a treatment group.
 #'  * Split columns by Analysis Reference Range Indicator, typically `ANRIND`.
