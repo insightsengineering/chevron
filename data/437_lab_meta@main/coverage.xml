@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.982462686567164" branch-rate="0" lines-covered="2633" lines-valid="2680" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-06-17 16:38:16">
+<coverage line-rate="0.983563690698543" branch-rate="0" lines-covered="2633" lines-valid="2677" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-06-19 01:56:34">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
   <packages>
-    <package name="chevron" line-rate="0.982462686567164" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.983563690698543" branch-rate="0" complexity="0">
       <classes>
         <class name="ael01_nollt.R" filename="R/ael01_nollt.R" line-rate="0.941176470588235" branch-rate="0" complexity="0">
           <methods>
@@ -2275,22 +2275,6 @@
             <line number="113" hits="1" branch="false"/>
             <line number="114" hits="0" branch="false"/>
             <line number="116" hits="1" branch="false"/>
-          </lines>
-        </class>
-        <class name="data.R" filename="R/data.R" line-rate="0" branch-rate="0" complexity="0">
-          <methods>
-            <method name="get_ctc" signature="" line-rate="0" branch-rate="0" complexity="0">
-              <lines>
-                <line number="42" hits="0" branch="false"/>
-                <line number="43" hits="0" branch="false"/>
-                <line number="44" hits="0" branch="false"/>
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="42" hits="0" branch="false"/>
-            <line number="43" hits="0" branch="false"/>
-            <line number="44" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="dmt01.R" filename="R/dmt01.R" line-rate="1" branch-rate="0" complexity="0">
