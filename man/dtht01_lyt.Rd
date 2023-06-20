@@ -19,15 +19,15 @@ dtht01_lyt(
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{other_level}{(\code{string}) "Other" level in death catagory.}
+\item{other_level}{(\code{string}) \code{"Other"} level in death category.}
 
-\item{other_var}{(\code{string}) variable name of death cause under "Other".}
+\item{other_var}{(\code{string}) variable name of death cause under \code{"Other"}.}
 
 \item{dose_death_var}{(\code{string}) variable name of the days from last dose.}
 
 \item{death_falg}{(\code{string}) variable name of death flag.}
 
-\item{detah_var}{(\code{string}) variable name of death catagory.}
+\item{detah_var}{(\code{string}) variable name of death category.}
 }
 \description{
 \code{dtht01} Layout

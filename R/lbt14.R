@@ -123,7 +123,7 @@ lbt14_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `LBT14` Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
+#' `LBT14` Laboratory Test Results Shift Table – Highest `NCI-CTCAE` Grade Post-Baseline by
 #' Baseline Grade (Low or High Direction).
 #'
 #' @include chevron_tlg-S4class.R
@@ -134,6 +134,5 @@ lbt14_post <- function(tlg, prune_0 = TRUE, ...) {
 lbt14 <- chevron_t(
   main = lbt14_main,
   preprocess = lbt14_pre,
-  postprocess = lbt14_post,
-  adam_datasets = c("adsl", "adlb")
+  postprocess = lbt14_post
 )

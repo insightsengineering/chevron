@@ -10,7 +10,6 @@ gen_args(
   preprocess,
   postprocess,
   dataset,
-  adam_datasets,
   type,
   arm_var,
   lbl_overall,
@@ -42,9 +41,6 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
-\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
-creation.}
-
 \item{type}{(\code{string}) indicating the subclass.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
@@ -67,7 +63,7 @@ creation.}
 
 \item{visit_value}{Value of visit variable.}
 
-\item{paramcd_value}{Value of PARAMCD variable.}
+\item{paramcd_value}{Value of \code{PARAMCD} variable.}
 
 \item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
 Key columns allow you to group repeat occurrences.}

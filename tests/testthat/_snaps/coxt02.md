@@ -1,7 +1,7 @@
 # coxt02 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
         Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
         —————————————————————————————————————————————————————————————————————————————————————————————
@@ -22,7 +22,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res2, lpp = 100))
+      cat(export_as_txt(res2, lpp = 100))
     Output
         Effect/Covariate Included in the Model                  Hazard Ratio      90% CI      p-value
         —————————————————————————————————————————————————————————————————————————————————————————————
@@ -43,7 +43,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res3, lpp = 100))
+      cat(export_as_txt(res3, lpp = 100))
     Output
         Effect/Covariate Included in the Model                 Hazard Ratio      95% CI      p-value
         ————————————————————————————————————————————————————————————————————————————————————————————
@@ -60,7 +60,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res4, lpp = 100))
+      cat(export_as_txt(res4, lpp = 100))
     Output
         Effect/Covariate Included in the Model                 Hazard Ratio      95% CI      p-value
         ————————————————————————————————————————————————————————————————————————————————————————————

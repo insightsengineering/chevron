@@ -7,7 +7,7 @@
 count_or_summarize(lyt, var, level, detail_vars, indent_mod = 0L, ...)
 }
 \arguments{
-\item{lyt}{(\code{PreDataTableLayouts}) rtable layout.}
+\item{lyt}{(\code{PreDataTableLayouts}) \code{rtable} layout.}
 
 \item{var}{(\code{string}) of analysis variable.}
 

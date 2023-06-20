@@ -1,7 +1,7 @@
 # dmt01 can handle NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                               A: Drug X    B: Placebo    C: Combination   All Patients
                                                (N=134)       (N=134)        (N=132)         (N=400)   
@@ -30,7 +30,7 @@
 # dmt01 can handle numeric NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                               A: Drug X    B: Placebo    C: Combination   All Patients
                                                (N=134)       (N=134)        (N=132)         (N=400)   

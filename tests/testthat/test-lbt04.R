@@ -4,7 +4,7 @@ test_that("lbt04 functions with default argument value return expected result wi
   pre_data <- lbt04_pre(syn_data)
   raw_res <- lbt04_main(pre_data)
   res <- lbt04_post(raw_res)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 # lbt04 ----
@@ -17,7 +17,7 @@ test_that("lbt04 can handle all NA values", {
     )
 
   res <- expect_silent(run(lbt04, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt04 can handle missing levels", {
@@ -28,7 +28,7 @@ test_that("lbt04 can handle missing levels", {
     )
 
   res <- expect_silent(run(lbt04, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt04 can handle some NA values", {
@@ -36,7 +36,7 @@ test_that("lbt04 can handle some NA values", {
   proc_data$adlb[1:2, "ANRIND"] <- NA
 
   res <- expect_silent(run(lbt04, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt04 fails on incomlete data", {

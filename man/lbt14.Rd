@@ -6,7 +6,7 @@
 \alias{lbt14_pre}
 \alias{lbt14_post}
 \alias{lbt14}
-\title{\code{LBT14} Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
+\title{\code{LBT14} Laboratory Test Results Shift Table – Highest \code{NCI-CTCAE} Grade Post-Baseline by
 Baseline Grade (Low or High Direction).}
 \format{
 An object of class \code{chevron_t} of length 1.
@@ -39,7 +39,7 @@ baseline grades to grade 0.}
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-\code{LBT14} Laboratory Test Results Shift Table – Highest NCI-CTCAE Grade Post-Baseline by
+\code{LBT14} Laboratory Test Results Shift Table – Highest \code{NCI-CTCAE} Grade Post-Baseline by
 Baseline Grade (Low or High Direction).
 }
 \details{

@@ -11,13 +11,13 @@ test_that("ttet01 works as expected for stratified and unstratified analysis", {
     summarize_event = FALSE,
     perform_analysis = "unstrat"
   ))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
   res <- expect_silent(run(ttet01, filter_data,
     summarize_event = TRUE,
     perform_analysis = c("strat", "unstrat"),
     strata = c("STRATA1", "STRATA2")
   ))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("ttet01 works as expected for stratified analysis only", {
@@ -27,13 +27,13 @@ test_that("ttet01 works as expected for stratified analysis only", {
     perform_analysis = "strat",
     strata = c("STRATA1", "STRATA2")
   ))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
   res <- expect_silent(run(ttet01, filter_data,
     summarize_event = TRUE,
     perform_analysis = "strat",
     strata = c("STRATA1", "STRATA2")
   ))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("ttet01 works if change reference group", {
@@ -43,12 +43,12 @@ test_that("ttet01 works if change reference group", {
     ref_group = "B: Placebo",
     perform_analysis = "unstrat"
   ))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
   res <- expect_silent(run(ttet01, filter_data,
     summarize_event = TRUE,
     ref_group = "B: Placebo",
     perform_analysis = c("strat", "unstrat"),
     strata = c("STRATA1", "STRATA2")
   ))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
