@@ -3,7 +3,7 @@ test_that("aet05_all can handle NA values", {
   proc_data$adaette$AVAL <- NA_real_
   proc_data$adaette$CNSR <- NA_real_
 
-  res <- expect_silent(run(aet05_all, proc_data, time_unit_output = 100))
+  res <- expect_silent(run(aet05_all, proc_data))
   expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
 })
 
@@ -17,9 +17,9 @@ test_that("aet05_all can handle some NA values", {
       PARAMCD = with_label(.env$new_paramcd, var_labels_for(syn_data$adaette, "PARAMCD"))
     )
 
-  res1 <- expect_silent(run(aet05_all, proc_data, time_unit_output = 100))
+  res1 <- expect_silent(run(aet05_all, proc_data))
   expect_snapshot(cat(formatters::export_as_txt(res1, lpp = 100)))
 
-  res2 <- expect_silent(run(aet05_all, proc_data, conf_level = 0.90, conf_type = "byar", time_unit_output = 100))
+  res2 <- expect_silent(run(aet05_all, proc_data, conf_level = 0.90, conf_type = "byar"))
   expect_snapshot(cat(formatters::export_as_txt(res2, lpp = 100)))
 })

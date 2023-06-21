@@ -35,7 +35,7 @@ aet05_main <- function(adam_db,
 
   lyt <- aet05_lyt(
     arm_var = arm_var,
-    param_var = "PARAM",
+    param_label = "PARAM",
     vars = "AVAL",
     n_events = "n_events",
     control = control
@@ -49,7 +49,7 @@ aet05_main <- function(adam_db,
 #' `aet05` Layout
 #'
 #' @inheritParams gen_args
-#' @param param_var (`string`) variable for parameter code.
+#' @param param_label (`string`) variable for parameter code.
 #' @param vars (`string`) variable for the primary analysis variable to be iterated over.
 #' @param n_events (`string`) variable to count the number of events observed.
 #' @param control (`list`) parameters for estimation details, specified by using the helper function
@@ -58,13 +58,13 @@ aet05_main <- function(adam_db,
 #' @keywords internal
 #'
 aet05_lyt <- function(arm_var,
-                      param_var,
+                      param_label,
                       vars,
                       n_events,
                       control) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    split_rows_by(param_var) %>%
+    split_rows_by(param_label, split_fun = drop_split_levels) %>%
     estimate_incidence_rate(
       vars = vars,
       n_events = n_events,
@@ -82,8 +82,6 @@ aet05_pre <- function(adam_db, ...) {
   adam_db$adaette <- adam_db$adaette %>%
     filter(grepl("AETTE", .data$PARAMCD)) %>%
     mutate(
-      PARAMCD = droplevels(.data$PARAMCD),
-      PARAM = droplevels(.data$PARAM),
       n_events = as.integer(.data$CNSR == 0)
     )
 
@@ -117,9 +115,9 @@ aet05_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
 #'
-#' run(aet05, proc_data, time_unit_output = 100)
+#' run(aet05, proc_data)
 #'
-#' run(aet05, proc_data, conf_level = 0.90, conf_type = "exact", time_unit_output = 100)
+#' run(aet05, proc_data, conf_level = 0.90, conf_type = "exact")
 aet05 <- chevron_t(
   main = aet05_main,
   preprocess = aet05_pre,

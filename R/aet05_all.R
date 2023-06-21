@@ -14,9 +14,7 @@ aet05_all_pre <- function(adam_db, ...) {
   adam_db$adaette <- adam_db$adaette %>%
     filter(grepl("TOT", .data$PARAMCD)) %>%
     mutate(
-      PARAMCD = droplevels(.data$PARAMCD),
-      PARAM = droplevels(.data$PARAM),
-      n_events = as.integer(AVAL)
+      n_events = as.integer(.data$AVAL)
     ) %>%
     select(-AVAL) %>%
     left_join(anl_tte, by = c("USUBJID"))
@@ -38,9 +36,9 @@ aet05_all_pre <- function(adam_db, ...) {
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
 #'
-#' run(aet05_all, proc_data, time_unit_output = 100)
+#' run(aet05_all, proc_data)
 #'
-#' run(aet05_all, proc_data, conf_level = 0.90, conf_type = "exact", time_unit_output = 100)
+#' run(aet05_all, proc_data, conf_level = 0.90, conf_type = "exact")
 aet05_all <- chevron_t(
   main = aet05_main,
   preprocess = aet05_all_pre,

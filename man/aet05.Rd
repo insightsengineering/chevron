@@ -63,8 +63,8 @@ library(dunlin)
 
 proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
 
-run(aet05, proc_data, time_unit_output = 100)
+run(aet05, proc_data)
 
-run(aet05, proc_data, conf_level = 0.90, conf_type = "exact", time_unit_output = 100)
+run(aet05, proc_data, conf_level = 0.90, conf_type = "exact")
 }
 \keyword{datasets}
