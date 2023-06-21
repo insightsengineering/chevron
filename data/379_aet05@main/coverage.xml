@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.98350439882698" branch-rate="0" lines-covered="2683" lines-valid="2728" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-06-20 15:50:24">
+<coverage line-rate="0.983480176211454" branch-rate="0" lines-covered="2679" lines-valid="2724" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-06-21 08:45:32">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
   <packages>
-    <package name="chevron" line-rate="0.98350439882698" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.983480176211454" branch-rate="0" complexity="0">
       <classes>
         <class name="ael01_nollt.R" filename="R/ael01_nollt.R" line-rate="0.941176470588235" branch-rate="0" complexity="0">
           <methods>
@@ -1107,9 +1107,7 @@
                 <line number="18" hits="1" branch="false"/>
                 <line number="19" hits="1" branch="false"/>
                 <line number="20" hits="1" branch="false"/>
-                <line number="21" hits="1" branch="false"/>
                 <line number="22" hits="1" branch="false"/>
-                <line number="24" hits="1" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -1124,12 +1122,10 @@
             <line number="18" hits="1" branch="false"/>
             <line number="19" hits="1" branch="false"/>
             <line number="20" hits="1" branch="false"/>
-            <line number="21" hits="1" branch="false"/>
             <line number="22" hits="1" branch="false"/>
-            <line number="24" hits="1" branch="false"/>
           </lines>
         </class>
-        <class name="aet05.R" filename="R/aet05.R" line-rate="0.973684210526316" branch-rate="0" complexity="0">
+        <class name="aet05.R" filename="R/aet05.R" line-rate="0.972222222222222" branch-rate="0" complexity="0">
           <methods>
             <method name="aet05_main" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -1173,16 +1169,14 @@
                 <line number="84" hits="1" branch="false"/>
                 <line number="85" hits="1" branch="false"/>
                 <line number="86" hits="1" branch="false"/>
-                <line number="87" hits="1" branch="false"/>
                 <line number="88" hits="1" branch="false"/>
-                <line number="90" hits="1" branch="false"/>
               </lines>
             </method>
             <method name="aet05_post" signature="" line-rate="0.666666666666667" branch-rate="0" complexity="0">
               <lines>
-                <line number="100" hits="2" branch="false"/>
-                <line number="101" hits="0" branch="false"/>
-                <line number="103" hits="2" branch="false"/>
+                <line number="98" hits="2" branch="false"/>
+                <line number="99" hits="0" branch="false"/>
+                <line number="101" hits="2" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -1219,12 +1213,10 @@
             <line number="84" hits="1" branch="false"/>
             <line number="85" hits="1" branch="false"/>
             <line number="86" hits="1" branch="false"/>
-            <line number="87" hits="1" branch="false"/>
             <line number="88" hits="1" branch="false"/>
-            <line number="90" hits="1" branch="false"/>
-            <line number="100" hits="2" branch="false"/>
-            <line number="101" hits="0" branch="false"/>
-            <line number="103" hits="2" branch="false"/>
+            <line number="98" hits="2" branch="false"/>
+            <line number="99" hits="0" branch="false"/>
+            <line number="101" hits="2" branch="false"/>
           </lines>
         </class>
         <class name="aet10.R" filename="R/aet10.R" line-rate="1" branch-rate="0" complexity="0">
@@ -6271,7 +6263,7 @@
             </method>
             <method name="droplevels.character" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
-                <line number="136" hits="3" branch="false"/>
+                <line number="136" hits="1" branch="false"/>
               </lines>
             </method>
             <method name="lvls" signature="" line-rate="1" branch-rate="0" complexity="0">
@@ -6353,7 +6345,7 @@
             <line number="129" hits="6" branch="false"/>
             <line number="130" hits="6" branch="false"/>
             <line number="131" hits="6" branch="false"/>
-            <line number="136" hits="3" branch="false"/>
+            <line number="136" hits="1" branch="false"/>
             <line number="145" hits="295" branch="false"/>
             <line number="149" hits="1" branch="false"/>
             <line number="153" hits="5" branch="false"/>
