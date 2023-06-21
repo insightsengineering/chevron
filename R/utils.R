@@ -62,30 +62,33 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #'
 #' @param digits (`integer`) number of digits.
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
+#' @paran ne (`flag`) indicator whether to use "NE" to replace the actual value.
 #'
-#' @return `function` formatting numbers with the defined format or `NULL` if the format is not defined.
+#' @return `function` formatting numbers with the defined format.
 #'
 #' @export
 #'
 #' @examples
-#' fun <- h_format_dec(1, "%f - %f")
+#' fun <- h_format_dec(c(1, 1), "%s - %s")
 #' fun(c(123, 567.89))
 #'
-h_format_dec <- function(digits = NA, format = NA) {
-  checkmate::assert_int(digits, lower = 0, na.ok = TRUE)
-  checkmate::assert_string(format, na.ok = TRUE)
-
-  if (is.na(format)) {
-    NULL
-  } else {
+h_format_dec <- function(digits, format, ne = FALSE) {
+  checkmate::assert_integerish(digits, lower = 0)
+  checkmate::assert_string(format)
+  if (any(is.na(digits))) {
     function(x, ...) {
-      checkmate::assert_numeric(x)
-
-      digit_string <- ifelse(is.na(digits), "", paste0(".", digits))
-      new_format <- gsub("%([a-z])", paste0("%", digit_string, "\\1"), format)
-
-      formatters::sprintf_format(new_format)(x)
+      ""
     }
+  } else {
+    if (ne) {
+      ret <- function(x, ...) {
+        do.call(sprintf, c(list(fmt = format), rep("NE", length(digits))))
+      }
+      return(ret)
+    }
+    digit_string <- paste0("%", ifelse(is.na(digits), "", paste0(".", digits)), "f")
+    new_format <- do.call(sprintf, c(list(fmt = format), digit_string))
+    formatters::sprintf_format(new_format)
   }
 }
 

@@ -13,6 +13,8 @@
 #' @param default_precision (`integer`) the default number of digits.
 #' @param page_by (`flag`) indicator whether the parameter row split is by page.
 #' @param row_split_var (`character`) row split variable other than `PARAMCD`.
+#' @param .stats (`character`) statistics names, see `summarize_vars()`.
+#' @param ... additional arguments like `.indent_mods`, `.labels`.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -36,9 +38,9 @@ cfbt01_main <- function(adam_db,
                         row_split_var = NULL,
                         summaryvars = c("AVAL", "CHG"),
                         visitvar = "AVISIT",
-                        precision = list(),
-                        default_precision = 2,
+                        precision = list(default = 2L),
                         page_by = TRUE,
+                        .stats = c("n", "mean_sd", "median", "range"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
@@ -61,8 +63,12 @@ cfbt01_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_int, FUN.VALUE = numeric(1), lower = 0)
-  checkmate::assert_integerish(default_precision, lower = 0)
-
+  all_stats <- c(
+    "n", "sum", "mean", "sd", "se", "mean_sd", "mean_se", "mean_ci",  "mean_sei",
+    "mean_sdi", "mean_pval", "median", "mad", "median_ci",  "quantiles", "iqr", "range",
+    "cv", "min", "max", "median_range",  "geom_mean", "geom_cv"
+  )
+  checkmate::assert_subset(.stats, all_stats)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
@@ -79,10 +85,10 @@ cfbt01_main <- function(adam_db,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     precision = precision,
-    default_precision = default_precision,
-    page_by = page_by
+    .stats = .stats,
+    page_by = page_by,
+    ...
   )
-
   tbl <- build_table(
     lyt,
     df = adam_db[[dataset]],
@@ -116,8 +122,9 @@ cfbt01_lyt <- function(arm_var,
                        lbl_avisit,
                        lbl_param,
                        precision,
-                       default_precision,
-                       page_by) {
+                       page_by,
+                       .stats,
+                       ...) {
   label_pos <- if (page_by) "hidden" else "topleft"
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
@@ -148,7 +155,8 @@ cfbt01_lyt <- function(arm_var,
         paramcdvar = "PARAMCD",
         skip = c("BASELINE" = summaryvars[2]),
         precision = precision,
-        default_precision = default_precision
+        .stats = .stats,
+        ...
       )
     )
 }

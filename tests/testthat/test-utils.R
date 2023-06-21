@@ -1,58 +1,46 @@
 # h_pad_or_round ----
 
 test_that("h_format_dec works as exected", {
-  fun <- expect_silent(h_format_dec(10, "%f"))
+  fun <- expect_silent(h_format_dec(10, "%s"))
   res <- fun(123.1234)
   expect_identical(res, "123.1234000000")
 
-  fun <- expect_silent(h_format_dec(0, "%f"))
+  fun <- expect_silent(h_format_dec(0, "%s"))
   res <- fun(123.1234)
   expect_identical(res, "123")
 
-  fun <- expect_silent(h_format_dec(1, "%f"))
+  fun <- expect_silent(h_format_dec(1, "%s"))
   res <- fun(123.06)
   expect_identical(res, "123.1")
 
-  fun <- expect_silent(h_format_dec(3, "%f"))
+  fun <- expect_silent(h_format_dec(3, "%s"))
   res <- fun(123)
   expect_identical(res, "123.000")
 
-  fun <- expect_silent(h_format_dec(0, "%f"))
+  fun <- expect_silent(h_format_dec(0, "%s"))
   res <- fun(123)
   expect_identical(res, "123")
 
-  fun <- expect_silent(h_format_dec(0, "%f"))
+  fun <- expect_silent(h_format_dec(0, "%s"))
   res <- fun(0.9)
   expect_identical(res, "1")
 })
 
 test_that("h_format_dec works as expected with more than one value", {
-  fun <- h_format_dec(3, "%f - %f")
+  fun <- h_format_dec(c(3, 3), "%s - %s")
   res <- fun(c(123, 222))
   expect_identical(res, "123.000 - 222.000")
 
-  fun <- h_format_dec(3, "%f /// %f /// %f")
+  fun <- h_format_dec(rep(3, 3), "%s /// %s /// %s")
   res <- fun(c(123, 222.2, 555.12345))
   expect_identical(res, "123.000 /// 222.200 /// 555.123")
 })
 
-test_that("h_format_dec works returns null with NA format", {
-  fun <- h_format_dec(3)
-  expect_null(fun)
-})
-
 test_that("h_format_dec works as expected with NA digits", {
-  fun <- h_format_dec(format = "%f - %f")
+  fun <- h_format_dec(format = "%s - %s", digits = rep(NA, 2))
   res <- fun(c(123, 222.21))
-  expect_identical(res, "123.000000 - 222.210000")
+  expect_identical(res, "")
 })
-
-test_that("h_format_dec works as expected with NA digits", {
-  fun <- h_format_dec(3, format = "%f - %.6f")
-  res <- fun(c(123, 222.21))
-  expect_identical(res, "123.000 - 222.210000")
-})
-
 
 # fuse_sequentially ----
 

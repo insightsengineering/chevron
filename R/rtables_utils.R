@@ -337,47 +337,53 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' @param skip Named (`character`) indicating the pairs to skip in analyze.
 #' @inheritParams cfbt01_main
 #' @keywords internal
-afun_skip_baseline <- function(x, .var, .spl_context, paramcdvar, visitvar, skip, precision, default_precision, ...) {
+afun_skip_baseline <- function(x, .var, .spl_context, paramcdvar, visitvar, skip, precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) {
   param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
-  pcs <- precision[[param_val]] %||% default_precision
-
-  # Create context dependent function.
-  n_fun <- sum(!is.na(x), na.rm = TRUE)
-  if (n_fun == 0) {
-    mean_sd_fun <- c(NA, NA)
-    median_fun <- NA
-    min_max_fun <- c(NA, NA)
-  } else {
-    mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
-    median_fun <- median(x, na.rm = TRUE)
-    min_max_fun <- c(min(x), max(x))
-  }
-
   # Identify context-
   is_chg <- .var == skip
 
   is_baseline <- .spl_context$value[which(.spl_context$split == visitvar)] == names(skip)
-
   if (is_baseline && is_chg) {
-    n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
+    pcs <- NA
+  } else {
+    pcs <- precision[[param_val]] %||% precision[["default"]] %||% 2
   }
 
-  in_rows(
-    "n" = n_fun,
-    "Mean (SD)" = mean_sd_fun,
-    "Median" = median_fun,
-    "Min - Max" = min_max_fun,
-    .formats = list(
-      "n" = "xx",
-      "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
-      "Median" = h_format_dec(format = "%f", digits = pcs + 1),
-      "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
-    ),
-    .format_na_strs = list(
-      "n" = "NE",
-      "Mean (SD)" = "NE (NE)",
-      "Median" = "NE",
-      "Min - Max" = "NE - NE"
-    )
+  fmts <- lapply(.stats, summary_formats, pcs = pcs, FALSE)
+  names(fmts) <- .stats
+  fmts_na <- lapply(.stats, summary_formats, pcs = pcs, ne = TRUE)
+  ret <- tern::create_afun_summary(.stats, fmts, .labels, .indent_mods)(x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...)
+  for (i in seq_len(length(ret))) {
+    attr(ret[[i]], "format_na_str") <- fmts_na[[i]]()
+  }
+  ret
+}
+
+summary_formats <- function(x, pcs, ne = FALSE) {
+  checkmate::assert_int(pcs, lower = 0, na.ok = TRUE)
+  switch(x,
+    n = h_format_dec(format = "%s", digits = pcs - pcs, ne = ne),
+    min = ,
+    max = ,
+    sum = h_format_dec(format = "%s", digits = pcs, ne = ne),
+    mean = ,
+    sd = ,
+    median = ,
+    mad = ,
+    iqr = ,
+    cv = ,
+    geom_mean = ,
+    geom_cv = ,
+    se = h_format_dec(format = "%s", digits = pcs + 1, ne = ne),
+    mean_sd = ,
+    mean_se = h_format_dec(format = "%s (%s)", digits = rep(pcs + 1, 2), ne = ne),
+    mean_ci = ,
+    mean_sei = ,
+    median_ci = ,
+    mean_sdi = h_format_dec(format = "(%s, %s)", digits = rep(pcs + 1, 2), ne = ne),
+    mean_pval = h_format_dec(format = "%s", digits = 2, ne = ne),
+    quantiles = h_format_dec(format = "(%s - %s)", digits = rep(pcs + 1, 2), ne = ne),
+    range = h_format_dec(format = "%s - %s", digits = rep(pcs, 2), ne = ne),
+    median_range = h_format_dec(format = "%s (%s - %s)", digits = c(pcs, pcs + 1, pcs + 1), ne = ne)
   )
 }
