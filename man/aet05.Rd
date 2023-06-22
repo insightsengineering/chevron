@@ -39,7 +39,9 @@ considering first occurrence.
 \item Total patient-years at risk is the sum over all patients of the time intervals (in years).
 \item Split columns by arm, typically \code{ACTARM}.
 \item Split rows by parameter code.
-\item The table allows confidence level to be adjusted, default is 2-sided 5\%.
+\item \code{AVAL} is patient-years at risk.
+\item \code{n_events} is the number of adverse events observed.
+\item The table allows confidence level to be adjusted, default is 95\%.
 \item Keep zero count rows by default.
 }
 }

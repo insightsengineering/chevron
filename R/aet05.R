@@ -10,7 +10,9 @@
 #'  * Total patient-years at risk is the sum over all patients of the time intervals (in years).
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Split rows by parameter code.
-#'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
+#'  * `AVAL` is patient-years at risk.
+#'  * `n_events` is the number of adverse events observed.
+#'  * The table allows confidence level to be adjusted, default is 95%.
 #'  * Keep zero count rows by default.
 #'
 #' @note
