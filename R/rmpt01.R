@@ -40,6 +40,7 @@ rmpt01_main <- function(adam_db,
   )
 
   tbl <- build_table(lyt, adam_db$adex, alt_counts_df = adam_db$adsl)
+
   tbl
 }
 

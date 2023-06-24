@@ -68,6 +68,8 @@ Collate:
     'aet02.R'
     'aet03.R'
     'aet04.R'
+    'aet05.R'
+    'aet05_all.R'
     'aet10.R'
     'assertions.R'
     'cfbt01.R'
