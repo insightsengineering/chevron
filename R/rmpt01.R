@@ -52,7 +52,7 @@ rmpt01_main <- function(adam_db,
     overall_col_lbl = overall_col_lbl
   )
 
-  build_table(lyt, df = adam_db$adex, alt_counts_df = adam_db$adsl)
+  build_table(lyt, adam_db$adex, alt_counts_df = adam_db$adsl)
 }
 
 
