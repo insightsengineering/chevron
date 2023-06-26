@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9009</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,22 +30,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -80,9 +64,17 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rmpt01_main</span><span class="op">(</span><span class="va">adam_db</span>, summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVALCAT1"</span>, <span class="st">"AVAL"</span><span class="op">)</span>, parcat <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rmpt01_main</span><span class="op">(</span></span>
+<span>  <span class="va">adam_db</span>,</span>
+<span>  summaryvars <span class="op">=</span> <span class="st">"AVALCAT1"</span>,</span>
+<span>  show_tot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  split_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_split_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  overall_col_lbl <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">rmpt01_pre</span><span class="op">(</span><span class="va">adam_db</span>, parcat <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">rmpt01_pre</span><span class="op">(</span><span class="va">adam_db</span>, summaryvars <span class="op">=</span> <span class="st">"AVALCAT1"</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">rmpt01_post</span><span class="op">(</span><span class="va">tlg</span>, prune_0 <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
@@ -100,12 +92,24 @@
 
 
 <dt>summaryvars</dt>
-<dd><p>(<code>character</code>) variables to be analyzed. The label attribute of the corresponding columns in <code>adex</code>
+<dd><p>(<code>string</code>) variables to be analyzed. The label attribute of the corresponding columns in <code>adex</code>
 table of <code>adam_db</code> is used as label.</p></dd>
 
 
-<dt>parcat</dt>
-<dd><p>(<code>string</code>) the name of the variable initiating a new row split.</p></dd>
+<dt>show_tot</dt>
+<dd><p>(<code>flag</code>) whether to display the cumulative total.</p></dd>
+
+
+<dt>split_var</dt>
+<dd><p>(<code>string</code>) the name of the column that containing variable to split exposure by.</p></dd>
+
+
+<dt>col_split_var</dt>
+<dd><p>(<code>string</code>) additional column splitting variable.</p></dd>
+
+
+<dt>overall_col_lbl</dt>
+<dd><p>(<code>string</code>) name of the overall column. If <code>NULL</code>, no overall level is added.</p></dd>
 
 
 <dt>...</dt>
@@ -138,36 +142,21 @@ table of <code>adam_db</code> is used as label.</p></dd>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     
-<ul><li><p><code>adam_db</code> object must contain an <code>adex</code> table with <code>"PARAMCD"</code> and the columns specified by <code>anl_vars</code> which
-is denoted as <code>c("AVALCAT1", "AVAL")</code> by default.</p></li>
+<ul><li><p><code>adam_db</code> object must contain an <code>adex</code> table with <code>"AVAL"</code> and the columns specified by <code>summaryvars</code>.</p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">rmpt01</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                Patients     Person time*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                (N=400)        (N=400)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ——————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total Number of Patients and Person Time   400 (100.0%)      49700    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt; 1 month                                 39 (9.8%)         728     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1 to &lt;3 months                           111 (27.8%)        6418    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3 to &lt;6 months                           136 (34.0%)       17645    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &gt;=6 months                               114 (28.5%)       24909    </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">rmpt01</span>, <span class="va">syn_data</span>, parcat <span class="op">=</span> <span class="st">"PARCAT2"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameter Category    Patients     Person time*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          (N=400)       (N=400)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Drug A               217 (54.2%)      27693    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt; 1 month           22 (5.5%)        402     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1 to &lt;3 months     55 (13.8%)        3139    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3 to &lt;6 months     73 (18.2%)        9543    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &gt;=6 months         67 (16.8%)       14609    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Drug B               183 (45.8%)      22007    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt; 1 month           17 (4.2%)        326     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1 to &lt;3 months     56 (14.0%)        3279    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3 to &lt;6 months     63 (15.8%)        8102    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &gt;=6 months         47 (11.8%)       10300    </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">rmpt01</span>, <span class="va">syn_data</span>, col_split_var <span class="op">=</span> <span class="st">"SEX"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                   F                            M             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Duration of exposure                  Patients     Person time     Patients     Person time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                         (N=231)        (N=231)       (N=169)        (N=169)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt; 1 month                            25 (10.8%)        435        14 (8.3%)         293    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1 to &lt;3 months                       67 (29.0%)       3790        44 (26.0%)       2628    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3 to &lt;6 months                       81 (35.1%)       10567       55 (32.5%)       7078    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &gt;=6 months                           58 (25.1%)       12572       56 (33.1%)       12337   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total patients number/person time   231 (100.0%)      27364      169 (100.0%)      22336   </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
