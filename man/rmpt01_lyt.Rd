@@ -4,17 +4,28 @@
 \alias{rmpt01_lyt}
 \title{\code{rmpt01} Layout}
 \usage{
-rmpt01_lyt(summaryvars, lbl_summaryvars, parcat, lbl_parcat)
+rmpt01_lyt(
+  summaryvars,
+  lbl_summaryvars,
+  show_tot,
+  split_var,
+  col_split_var,
+  overall_col_lbl
+)
 }
 \arguments{
-\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
+\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
 \item{lbl_summaryvars}{(\code{character}) label associated with the analyzed variables.}
 
-\item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
+\item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
-\item{lbl_parcat}{(\code{string}) the label associated with the variable initiating a new row split.}
+\item{split_var}{(\code{character}) recursive split row variable.}
+
+\item{col_split_var}{(\code{string}) additional column splitting variable.}
+
+\item{overall_col_lbl}{(\code{string}) name of the overall column. If \code{NULL}, no overall level is added.}
 }
 \description{
 \code{rmpt01} Layout

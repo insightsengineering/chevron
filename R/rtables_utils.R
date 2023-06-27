@@ -297,6 +297,33 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
   }
 }
 
+#' Helper function to add a column split if specified
+#'
+#' @param lyt (`rtables`) object.
+#' @param var (`string`) the name of the variable initiating a new column split.
+#' @param overall_col_lbl (`string`) the label for the overall column.
+#'
+#' @keywords internal
+#'
+#' @return `rtables` object.
+#'
+ifneeded_split_col <- function(lyt, var, overall_col_lbl = NULL) {
+  if (is.null(var)) {
+    lyt
+  } else if (is.null(overall_col_lbl)) {
+    split_cols_by(
+      lyt = lyt,
+      var = var
+    )
+  } else {
+    split_cols_by(
+      lyt = lyt,
+      var = var,
+      split_fun = add_overall_level("ALL", overall_col_lbl)
+    )
+  }
+}
+
 #' Create a Null Report
 #' @rdname report_null
 #' @aliases null_report

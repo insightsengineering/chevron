@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.0.9007
-Date: 2023-06-16
+Version: 0.2.0.9013
+Date: 2023-06-27
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
@@ -35,7 +35,7 @@ Imports:
     rlistings (>= 0.2.2),
     rtables (>= 0.6.1),
     stringr,
-    tern (>= 0.8.2),
+    tern (>= 0.8.4),
     tibble,
     utils
 Suggests:
@@ -68,6 +68,8 @@ Collate:
     'aet02.R'
     'aet03.R'
     'aet04.R'
+    'aet05.R'
+    'aet05_all.R'
     'aet10.R'
     'assertions.R'
     'cfbt01.R'
@@ -101,6 +103,9 @@ Collate:
     'pdt02.R'
     'reexports.R'
     'rmpt01.R'
+    'rmpt03.R'
+    'rmpt04.R'
+    'rmpt05.R'
     'rspt01.R'
     'rtables_utils.R'
     'standard_rules.R'

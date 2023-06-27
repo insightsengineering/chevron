@@ -14,7 +14,7 @@
 #' @details
 #'  * The reference arm will always the first level of `arm_var`. Please change the level if you want to
 #'  change the reference arms.
-#'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
+#'  * The table allows confidence level to be adjusted, default is 2-sided 95%.
 #'  * The stratified analysis is with DISCRETE tie handling (equivalent to `tern::control_coxreg(ties = "exact")` in R).
 #'  * Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 #'  with `"SEX"`, `"RACE"` and `"AAGE"` as default candidates.
