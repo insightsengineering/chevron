@@ -9,7 +9,7 @@
 aet05_all_pre <- function(adam_db, ...) {
   anl_tte <- adam_db$adaette %>%
     filter(.data$PARAMCD == "AEREPTTE") %>%
-    select(USUBJID, AVAL)
+    select(all_of(c("USUBJID", "AVAL")))
 
   adam_db$adaette <- adam_db$adaette %>%
     filter(grepl("TOT", .data$PARAMCD)) %>%

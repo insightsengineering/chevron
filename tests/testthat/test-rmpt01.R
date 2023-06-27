@@ -1,4 +1,4 @@
-# rmp01 functions ----
+# rmpt01 functions ----
 
 test_that("rmpt01 function with default argument value return expected result with test data", {
   pre_data <- rmpt01_pre(syn_data)
@@ -7,7 +7,7 @@ test_that("rmpt01 function with default argument value return expected result wi
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
-# rmp01 ----
+# rmpt01 ----
 
 test_that("rmpt01 can handle NA values", {
   proc_data <- syn_data
@@ -16,7 +16,7 @@ test_that("rmpt01 can handle NA values", {
   res1 <- expect_silent(run(rmpt01, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
 
-  res2 <- expect_silent(run(rmpt01, proc_data, parcat = "PARCAT2"))
+  res2 <- expect_silent(run(rmpt01, proc_data, split_var = "PARCAT2"))
   expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 })
 
@@ -30,7 +30,7 @@ test_that("rmpt01 can handle some NA values", {
   res1 <- expect_silent(run(rmpt01, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
 
-  res2 <- expect_silent(run(rmpt01, proc_data, parcat = "PARCAT2"))
+  res2 <- expect_silent(run(rmpt01, proc_data, split_var = "PARCAT2"))
   expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 })
 
@@ -42,5 +42,5 @@ test_that("rmpt01 fails on incomlete data", {
     )
 
   expect_error(run(rmpt01, proc_data))
-  expect_error(run(rmpt01, proc_data, parcat = "PARCAT2"))
+  expect_error(run(rmpt01, proc_data, split_var = "PARCAT2"))
 })
