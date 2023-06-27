@@ -16,7 +16,7 @@ aet05_all_pre <- function(adam_db, ...) {
     mutate(
       n_events = as.integer(.data$AVAL)
     ) %>%
-    select(-AVAL) %>%
+    select(-c("AVAL")) %>%
     left_join(anl_tte, by = c("USUBJID"))
 
   adam_db
