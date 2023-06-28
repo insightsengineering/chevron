@@ -14,8 +14,9 @@ cfbt01_lyt(
   lbl_avisit,
   lbl_param,
   precision,
-  default_precision,
-  page_by
+  page_by,
+  .stats,
+  ...
 )
 }
 \arguments{
@@ -40,9 +41,11 @@ to be displayed.}
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
-\item{default_precision}{(\code{integer}) the default number of digits.}
-
 \item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+
+\item{.stats}{(\code{character}) statistics names, see \code{summarize_vars()}.}
+
+\item{...}{not used.}
 }
 \description{
 \code{cfbt01} Layout

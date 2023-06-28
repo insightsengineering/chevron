@@ -18,9 +18,9 @@ cfbt01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(),
-  default_precision = 2,
+  precision = list(default = 2L),
   page_by = TRUE,
+  .stats = c("n", "mean_sd", "median", "range"),
   ...
 )
 
@@ -49,11 +49,11 @@ to be displayed}
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
-\item{default_precision}{(\code{integer}) the default number of digits.}
-
 \item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
 
-\item{...}{not used.}
+\item{.stats}{(\code{character}) statistics names, see \code{summarize_vars()}.}
+
+\item{...}{additional arguments like \code{.indent_mods}, \code{.labels}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 

@@ -362,11 +362,19 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' @param paramcdvar (`string`) name of parameter code.
 #' @param visitvar (`string`) name of the visit variable.
 #' @param skip Named (`character`) indicating the pairs to skip in analyze.
+#' @param .stats (`character`) See `tern::summarize_variables`.
+#' @param .label (`character`) See `tern::summarize_variables`.
+#' @param .indent_mods (`integer`) See `tern::summarize_variables`.
+#' @param .N_col (`int`) See `tern::summarize_variables`.
+#' @param .N_row (`int`) See `tern::summarize_variables`.
+#' @param ... additional arguments for `tern::create_afun_summary`.
 #' @inheritParams cfbt01_main
 #' @keywords internal
-afun_skip_baseline <- function(x, .var, .spl_context, paramcdvar, visitvar, skip, precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) {
+afun_skip_baseline <- function(
+    x, .var, .spl_context, paramcdvar, visitvar, skip,
+    precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) {
   param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
-  # Identify context-
+  # Identify context
   is_chg <- .var == skip
 
   is_baseline <- .spl_context$value[which(.spl_context$split == visitvar)] == names(skip)

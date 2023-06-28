@@ -10,7 +10,6 @@
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
-#' @param default_precision (`integer`) the default number of digits.
 #' @param page_by (`flag`) indicator whether the parameter row split is by page.
 #' @param row_split_var (`character`) row split variable other than `PARAMCD`.
 #' @param .stats (`character`) statistics names, see `summarize_vars()`.
@@ -64,9 +63,9 @@ cfbt01_main <- function(adam_db,
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_int, FUN.VALUE = numeric(1), lower = 0)
   all_stats <- c(
-    "n", "sum", "mean", "sd", "se", "mean_sd", "mean_se", "mean_ci",  "mean_sei",
-    "mean_sdi", "mean_pval", "median", "mad", "median_ci",  "quantiles", "iqr", "range",
-    "cv", "min", "max", "median_range",  "geom_mean", "geom_cv"
+    "n", "sum", "mean", "sd", "se", "mean_sd", "mean_se", "mean_ci", "mean_sei",
+    "mean_sdi", "mean_pval", "median", "mad", "median_ci", "quantiles", "iqr", "range",
+    "cv", "min", "max", "median_range", "geom_mean", "geom_cv"
   )
   checkmate::assert_subset(.stats, all_stats)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)

@@ -4,21 +4,23 @@
 \alias{h_format_dec}
 \title{Decimal Formatting}
 \usage{
-h_format_dec(digits = NA, format = NA)
+h_format_dec(digits, format, ne = FALSE)
 }
 \arguments{
 \item{digits}{(\code{integer}) number of digits.}
 
 \item{format}{(\code{string}) describing how the numbers should be formatted following the \code{sprintf} syntax.}
+
+\item{ne}{(\code{flag}) indicator whether to use "NE" to replace the actual value.}
 }
 \value{
-\code{function} formatting numbers with the defined format or \code{NULL} if the format is not defined.
+\code{function} formatting numbers with the defined format.
 }
 \description{
 Decimal Formatting
 }
 \examples{
-fun <- h_format_dec(1, "\%f - \%f")
+fun <- h_format_dec(c(1, 1), "\%s - \%s")
 fun(c(123, 567.89))
 
 }

@@ -61,7 +61,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #'
 #' @param digits (`integer`) number of digits.
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
-#' @paran ne (`flag`) indicator whether to use "NE" to replace the actual value.
+#' @param ne (`flag`) indicator whether to use "NE" to replace the actual value.
 #'
 #' @return `function` formatting numbers with the defined format.
 #'

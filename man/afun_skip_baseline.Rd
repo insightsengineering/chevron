@@ -12,7 +12,11 @@ afun_skip_baseline(
   visitvar,
   skip,
   precision,
-  default_precision,
+  .stats,
+  .labels = NULL,
+  .indent_mods = NULL,
+  .N_col,
+  .N_row,
   ...
 )
 }
@@ -33,9 +37,17 @@ afun_skip_baseline(
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
-\item{default_precision}{(\code{integer}) the default number of digits.}
+\item{.stats}{(\code{character}) See \code{tern::summarize_variables}.}
 
-\item{...}{not used.}
+\item{.indent_mods}{(\code{integer}) See \code{tern::summarize_variables}.}
+
+\item{.N_col}{(\code{int}) See \code{tern::summarize_variables}.}
+
+\item{.N_row}{(\code{int}) See \code{tern::summarize_variables}.}
+
+\item{...}{additional arguments for \code{tern::create_afun_summary}.}
+
+\item{.label}{(\code{character}) See \code{tern::summarize_variables}.}
 }
 \description{
 Analyze skip baseline

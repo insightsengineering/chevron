@@ -23,9 +23,9 @@ vst01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(),
-  default_precision = 2,
+  precision = list(default = 2L),
   page_by = TRUE,
+  .stats = c("n", "mean_sd", "median", "range"),
   ...
 )
 
@@ -38,7 +38,7 @@ vst01
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
-\item{...}{not used.}
+\item{...}{additional arguments like \code{.indent_mods}, \code{.labels}.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
@@ -54,9 +54,9 @@ to be displayed}
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
-\item{default_precision}{(\code{integer}) the default number of digits.}
-
 \item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+
+\item{.stats}{(\code{character}) statistics names, see \code{summarize_vars()}.}
 }
 \description{
 The \code{VST01} table provides an
