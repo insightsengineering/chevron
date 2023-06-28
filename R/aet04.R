@@ -55,6 +55,7 @@ aet04_main <- function(adam_db,
   )
   adam_db$adae$TOTAL_VAR <- "- Any adverse events - "
   tbl <- build_table(lyt, df = adam_db$adae, alt_counts_df = adam_db$adsl)
+
   tbl
 }
 
