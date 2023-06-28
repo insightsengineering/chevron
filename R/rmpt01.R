@@ -71,7 +71,7 @@ rmpt01_lyt <- function(summaryvars,
                        col_split_var,
                        overall_col_lbl) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
-    ifneeded_split_col(col_split_var, overall_col_lbl) %>%
+    ifneeded_split_col(col_split_var, split_fun = if(!is.null(overall_col_lbl)) add_overall_level("ALL", overall_col_lbl)) %>%
     split_cols_by_multivar(
       vars = c("AVAL", "AVAL"),
       varlabels = c(n_patients = "Patients", sum_exposure = "Person time"),
