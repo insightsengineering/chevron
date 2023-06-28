@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 The **`aet01`** template produces the standard safety summary.
 
 ```{r}
-run(aet01, adam_db = syn_data)
+run(aet01, syn_data, arm_var = "ARM")
 ```
 
 #### **2. Safety Summary with Modified Rows**
@@ -28,7 +28,7 @@ Analyses under "Total number of patients with at least one" can be removed, adde
 ```{r}
 syn_data$adae <- syn_data$adae %>%
   mutate(RELCTC35 = with_label(.data$ATOXGR %in% c("3", "4", "5") & .data$AEREL == "Y", "Related Grade 3-5"))
-run(aet01, adam_db = syn_data, anl_vars = list(safety_var = c("FATAL", "SER", "RELSER", "RELCTC35")))
+run(aet01, syn_data, anl_vars = list(safety_var = c("FATAL", "SER", "RELSER", "RELCTC35")))
 ```
 
 ### **Safety Summary (Adverse Events of Special Interest) (AET01_AESI) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_aet01_aesi.html))**
@@ -37,14 +37,14 @@ run(aet01, adam_db = syn_data, anl_vars = list(safety_var = c("FATAL", "SER", "R
 The **`aet01_aesi`** template produces the standard safety summary for adverse events of special interest.
 
 ```{r}
-run(aet01_aesi, adam_db = syn_data)
+run(aet01_aesi, syn_data)
 ```
 
 #### **2. Safety Summary (Adverse Events of Special Interest) (optional lines)**
 Additional analyses can be added with the parameter *`aesi_vars`*, please type "`?aet01_aesi`" in the RStudio console to find out the list of all pre-defined optional analyses in the help.
 
 ```{r}
-run(aet01_aesi, adam_db = syn_data, aesi_vars = c("RESLWD", "RELSER"))
+run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
 ```
 
 #### **3. Safety Summary (Adverse Events of Special Interest) (for studies with multiple drugs)**
@@ -58,20 +58,20 @@ For studies with more than one study drug, user needs to define the analyses var
 3) Missing values in `AEBODSYS`, and `AEDECOD` are labeled by *⁠No Coding available.*
 
 ```{r}
-run(aet02, adam_db = syn_data)
+run(aet02, syn_data)
 ```
 
 #### **2. Adverse Events (with High-level Term)**
 The syntax below displays adverse events by MedDRA system organ class, high-level term and preferred term.
 ```{r}
-run(aet02, adam_db = syn_data, row_split_var = c("AEBODSYS", "AEHLT"))
+run(aet02, syn_data, row_split_var = c("AEBODSYS", "AEHLT"))
 ```
 
 #### **3. Adverse Events (Preferred Terms only)**
 The syntax below displays adverse events by preferred term only.
 
 ```{r}
-run(aet02, adam_db = syn_data, row_split_var = NULL)
+run(aet02, syn_data, row_split_var = NULL)
 ```
 
 ### **Adverse Events by Greatest Intensity(AET03) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_aet03.html))**
@@ -80,7 +80,7 @@ run(aet02, adam_db = syn_data, row_split_var = NULL)
 This **`aet03`** template  produces the standard adverse event by greatest intensity summary
 
 ```{r}
-run(aet03, adam_db = syn_data)
+run(aet03, syn_data)
 ```
 
 ### **Adverse Events by Highest NCI CTCAE Grade (AET04) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_aet04.html))**
@@ -92,14 +92,14 @@ run(aet03, adam_db = syn_data)
 4) If a treatment group does not have any AE, the treatment group is automatically displayed providing that it is defined in `ADSL`.  
 
 ```{r}
-run(aet04, adam_db = syn_data)
+run(aet04, syn_data)
 ```
 
 #### **2. Adverse Events by Highest NCI CTCAE Grade (Fill in of Grades)**
 If for some preferred terms not all grades occur but all grades should be displayed, this can be achieved by specifying *`prune_0 = FALSE`*.
 
 ```{r}
-run(aet04, adam_db = syn_data, prune_0 = FALSE)
+run(aet04, syn_data, prune_0 = FALSE)
 ```
 
 #### **3. Adverse Events by Highest NCI CTCAE Grade with modified grouping of grade**
@@ -118,14 +118,14 @@ run(aet04, syn_data, grade_groups = grade_groups, prune_0 = FALSE)
 1) The *`aet10`* template produces the standard most common adverse events occurring with relative frequency >=5% output.
 
 ```{r}
-run(aet10, adam_db = syn_data)
+run(aet10, syn_data)
 ```
 
 #### **2. Most Common (>=8%) Adverse Events (setting threshold)**
 To modify the threshold for displaying preferred terms, this can be achieved by providing the threshold to the *`atleast`* parameter.  
 
 ```{r}
-run(aet10, adam_db = syn_data, atleast = 0.08)
+run(aet10, syn_data, atleast = 0.08)
 ```
 
 ### **Concomitant Medications by Medication Class and Preferred Name (CMT01A) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_cmt01.html))**
@@ -136,27 +136,27 @@ run(aet10, adam_db = syn_data, atleast = 0.08)
 3) The template sort medication class and preferred name by alphabetical order by default.  
 
 ```{r}
-run(cmt01a, adam_db = syn_data)
+run(cmt01a, syn_data)
 ```
 
 #### **2. Concomitant Medications by Medication Class and Preferred Name (changing ATC class level)**
 
 ```{r}
-run(cmt01a, adam_db = syn_data, row_split_var = "ATC1")
+run(cmt01a, syn_data, row_split_var = "ATC1")
 ```
 
 #### **3. Concomitant Medications by Medication Class and Preferred Name (classes sorted by frequency)**
 The option *`sort_by_freq = TRUE`* sort medication class by frequency.
 
 ```{r}
-run(cmt01a, adam_db = syn_data, sort_by_freq = TRUE)
+run(cmt01a, syn_data, sort_by_freq = TRUE)
 ```
 
 #### **4. Concomitant Medications by Medication Class and Preferred Name (total number of treatments per medication class suppressed)**
 The **`cmt01a`** template includes the analysis of 'total number of treatments' by default, use *`incl_n_treatment = FALSE`* to remove it.
 
 ```{r}
-run(cmt01a, adam_db = syn_data, incl_n_treatment = FALSE)
+run(cmt01a, syn_data, incl_n_treatment = FALSE)
 ```
 
 ### **Concomitant Medications by Preferred Name (CMT02_PT) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_cmt02_pt.html))**
@@ -167,7 +167,7 @@ run(cmt01a, adam_db = syn_data, incl_n_treatment = FALSE)
 3) The template sorts preferred name by alphabetical order by default. Set the option *`sort_by_freq = TRUE`*  to sort preferred names by frequency.  
 
 ```{r}
-run(cmt02_pt, adam_db = syn_data)
+run(cmt02_pt, syn_data)
 ```
 
 ### **Demographics and Baseline Characteristics (DMT01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_dmt01.html))**
@@ -177,14 +177,14 @@ run(cmt02_pt, adam_db = syn_data)
 2) This template includes the column of total by default.  
 
 ```{r}
-run(dmt01, adam_db = syn_data)
+run(dmt01, syn_data)
 ```
 
 #### **2. Demographics and Baseline Characteristics without All Patients**
 To remove the column of total, set the parameter *`lbl_overall`* to *`NULL`*. 
 
 ```{r}
-run(dmt01, adam_db = syn_data, lbl_overall = NULL)
+run(dmt01, syn_data, lbl_overall = NULL)
 ```
 
 #### **3. Demographics and Baseline Characteristics with an additional study specific continuous variable**
@@ -192,7 +192,7 @@ run(dmt01, adam_db = syn_data, lbl_overall = NULL)
 2) CHEVRON performs the analysis based on the type of variable as defined in the input data.    
 
 ```{r}
-run(dmt01, adam_db = syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMISI"), lbl_overall = NULL)
+run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMISI"), lbl_overall = NULL)
 ```
 
 #### **4. Demographics and Baseline Characteristics with an additional study specific categorical variable**
@@ -221,7 +221,7 @@ syn_data$adsl <- syn_data$adsl %>%
     "Obese Class II (Severely obese)",
     "Obese Class III (Very severely obese)"
   )))
-run(dmt01, adam_db = syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMIGR1"))
+run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMIGR1"))
 ```
 
 #### **5. Demographics and Baseline Characteristics with additional vital signs baseline values from ADVS or ADSUB**
@@ -234,7 +234,7 @@ diabpbl <- syn_data$advs %>%
   select("STUDYID", "USUBJID", "DIABPBL")
 syn_data$adsl <- syn_data$adsl %>%
   left_join(diabpbl, by = c("STUDYID", "USUBJID"))
-run(dmt01, adam_db = syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "DIABPBL"))
+run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "DIABPBL"))
 ```
 
 ### **Patient Disposition (DST01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_dst01.html))**
@@ -244,7 +244,7 @@ run(dmt01, adam_db = syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC",
 2) The template includes the column of total by default. Use *`lbl_overall = NULL`* to suppress the default.   
 
 ```{r}
-run(dst01, adam_db = syn_data, lbl_overall = NULL)
+run(dst01, syn_data, lbl_overall = NULL)
 ```
 
 #### **2. Patient Disposition (with grouping of reasons)**
@@ -253,14 +253,14 @@ run(dst01, adam_db = syn_data, lbl_overall = NULL)
 2) The variable [`ADSL.DCSREASGP`] that groups the discontinuation reasons needs to be derived manually and provided in the input *`adsl`* dataset. 
 
 ```{r}
-run(dst01, adam_db = syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")), lbl_overall = NULL)
+run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")), lbl_overall = NULL)
 ```
 
 #### **3. Patient Disposition (adding end of treatment status)**
 The syntax below adds the end of treatment status to the standard patient disposition summary by providing the end of treatment status variable to the parameter *`trt_status_var`*.
 
 ```{r}
-run(dst01, adam_db = syn_data, trt_status_var = "EOTSTT", lbl_overall = NULL)
+run(dst01, syn_data, trt_status_var = "EOTSTT", lbl_overall = NULL)
 ```
 
 #### **4. Patient Disposition (adding details of study ongoing status)**
@@ -285,13 +285,13 @@ run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STD
 The **`dtht01`** template produces the standard deaths output.
 
 ```{r}
-run(dst01, adam_db = syn_data)
+run(dst01, syn_data)
 ```
 
 #### **2. Deaths (adding "Primary Cause of Death" details for 'Other' category)**
 
 ```{r}
-run(dtht01, adam_db = syn_data, other_category = TRUE)
+run(dtht01, syn_data, other_category = TRUE)
 ```
 
 NOTE: In order to avoid the warning above and display 'Other' as the last category under "Primary Cause of Death" right above the detailed reasons for "Other", the user is expected to manually provide levels to `ADSL.DTHCAT` based on categories available in the dataset.
@@ -300,7 +300,7 @@ NOTE: In order to avoid the warning above and display 'Other' as the last catego
 Setting *`time_since_last_dose`* to *`TRUE`*, the syntax produces the count of deaths by days from last study drug administration as well as the count of deaths by primary cause and days from last study drug administration.
 
 ```{r}
-run(dtht01, adam_db = syn_data, time_since_last_dose = TRUE)
+run(dtht01, syn_data, time_since_last_dose = TRUE)
 ```
 
 ### **ECG Results and Change from Baseline by Visit (EGT01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_egt01.html))**
@@ -309,7 +309,7 @@ run(dtht01, adam_db = syn_data, time_since_last_dose = TRUE)
 The **`egt01`** template produces the standard ECG results and change from baseline by visit summary.
 
 ```{r}
-run(egt01, adam_db = syn_data)
+run(egt01, syn_data)
 ```
 
 ### **ECG Abnormalities (Regardless of Abnormality at Baseline) (EGT02_1) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_egt02_1.html))**
@@ -318,7 +318,7 @@ run(egt01, adam_db = syn_data)
 The **`egt02_1`** template produces the standard ECG abnormalities summary where the abnormalities are summarized regardless of the abnormality at baseline.
 
 ```{r}
-run(egt02_1, adam_db = syn_data)
+run(egt02_1, syn_data)
 ```
 
 ### **ECG Abnormalities (Among Subject Without Abnormality at Baseline) (EGT02_2) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_egt02_2.html))**
@@ -327,7 +327,7 @@ run(egt02_1, adam_db = syn_data)
 The **`egt02_2`** template produces the standard ECG abnormalities summary where the abnormalities are summarized among subject without abnormality at baseline.
 
 ```{r}
-run(egt02_2, adam_db = syn_data)
+run(egt02_2, syn_data)
 ```
 
 ### **Shift Table of ECG Interval Data - Baseline versus Minimum/Maximum Post-Baseline (EGT03) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_egt03.html))**
@@ -336,7 +336,7 @@ run(egt02_2, adam_db = syn_data)
 The **`egt03`** template produces the standard shift table of ECG interval data - baseline versus minimum post-baseline summary.
 
 ```{r}
-run(egt03, adam_db = syn_data)
+run(egt03, syn_data)
 ```
 
 #### **2. Shift Table of ECG Interval Data - Baseline versus Maximum Post-Baseline**
@@ -348,14 +348,14 @@ To produce the standard shift table of ECG interval data - baseline versus maxim
 The **`egt05_qtcat`** template produces the standard ECG actual values and changes from baseline by visit summary.
 
 ```{r}
-run(egt05_qtcat, adam_db = syn_data)
+run(egt05_qtcat, syn_data)
 ```
 
 #### **2. ECG Actual Values and Changes from Baseline by Visit (removing default analyses)**
 The template have two default analyses of `ADEG.AVALCAT1` and `ADEG.CHGCAT1`. To keep only the analyses needed, this can be achieved by modifying the parameter *`summaryvars`*.
 
 ```{r}
-run(egt05_qtcat, adam_db = syn_data, summaryvars = c("AVALCAT1"))
+run(egt05_qtcat, syn_data, summaryvars = c("AVALCAT1"))
 ```
 
 ### **Study Drug Exposure (EXT01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_ext01.html))**
@@ -365,7 +365,7 @@ run(egt05_qtcat, adam_db = syn_data, summaryvars = c("AVALCAT1"))
 2) The template does not include the column of total by default
 
 ```{r}
-run(ext01, adam_db = syn_data)
+run(ext01, syn_data)
 ```
 
 ### **Laboratory Test Results and Change from Baseline by Visit (LBT01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_lbt01.html))**
@@ -375,7 +375,7 @@ run(ext01, adam_db = syn_data)
 2) To select the SI/CV/LS results and the panel (chemistry/hematology/urinalysis/coagulation etc.) to display, user defines individual filters and apply to input datasets prior to running CHEVRON.  
 
 ```{r}
-t_lb_chg <- run(lbt01, adam_db = syn_data)
+t_lb_chg <- run(lbt01, syn_data)
 head(t_lb_chg, 20)
 ```
 #### **2. Laboratory Test Results and Change from Baseline by Visit (customized precision)**
@@ -389,7 +389,7 @@ TBA
 3) The laboratory tests and directions where an abnormality is possible are determined by ....?   
 
 ```{r}
-run(lbt04, adam_db = syn_data)
+run(lbt04, syn_data)
 ```
 
 ### **Laboratory Abnormalities with Single and Replicated Marked (LBT05) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_lbt05.html))**
@@ -399,7 +399,7 @@ run(lbt04, adam_db = syn_data)
 2) The laboratory tests and directions where an abnormality is possible are determined by the standard metadata for Safety Lab Standardization??
 
 ```{r}
-run(lbt05, adam_db = syn_data)
+run(lbt05, syn_data)
 ```
 
 #### **2. Laboratory Abnormalities with Single and Replicated Marked showing all categories**
@@ -412,7 +412,7 @@ run(lbt05, adam_db = syn_data)
 2) The laboratory tests and directions where an abnormality is possible are determined by....?
 
 ```{r}
-run(lbt06, adam_db = syn_data)
+run(lbt06, syn_data)
 ```
 
 ### **Laboratory Test Results with Highest NCI CTCAE Grade Post-Baseline (LBT07) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_lbt07.html))**
@@ -421,7 +421,7 @@ run(lbt06, adam_db = syn_data)
 The **`lbt07`** template produces the standard laboratory test results with highest NCI CTCAE grade post-baseline summary.
 
 ```{r}
-run(lbt07, adam_db = syn_data)
+run(lbt07, syn_data)
 ```
 
 ### **Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (LBT14) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_lbt14.html))**
@@ -430,35 +430,35 @@ run(lbt07, adam_db = syn_data)
 To produce the standard laboratory test results shift table - highest NCI-CTCAE grade post-baseline by baseline NCI-CTCAE grade summary for high abnormalities, use the **`lbt04`** template and set the parameter *`direction`* to *`high`*.
 
 ```{r}
-run(lbt14, adam_db = syn_data, direction = "high", gr_missing = "incl")
+run(lbt14, syn_data, direction = "high")
 ```
 
 #### **2. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (Low)**
-To produce the standard laboratory test results shift table - highest NCI-CTCAE grade post-baseline by baseline NCI-CTCAE grade summary for high abnormalities, use the **`lbt04`** template and set the parameter *`direction`* to *`low`*.
+To produce the standard laboratory test results shift table - highest NCI-CTCAE grade post-baseline by baseline NCI-CTCAE grade summary for high abnormalities, use the **`lbt04`** template and the parameter *`direction`* is *`low`* by default.
 
 ```{r}
-run(lbt14, adam_db = syn_data, direction = "low", gr_missing = "incl")
+run(lbt14, syn_data)
 ```
 
 #### **3. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (High) Without Patients with Missing Baseline**
 To exclude patients with missing baseline grade, set the parameter *`gr_missing`* to *`excl`*.
 
 ```{r}
-run(lbt14, adam_db = syn_data, direction = "high", gr_missing = "excl")
+run(lbt14, syn_data, direction = "high", gr_missing = "excl")
 ```
 
 #### **4. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (Low) with Missing Baseline Considered as Grade 0**
 To count patients with missing baseline grade as grade 0, set the parameter *`gr_missing`* to *`gr_0`*.
 
 ```{r}
-run(lbt14, adam_db = syn_data, direction = "low", gr_missing = "gr_0")
+run(lbt14, syn_data, gr_missing = "gr_0")
 ```
 
 #### **4. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (with fill in of grades)**
 To display all possible grades even if they do not occur in the data, set the parameter *`prune_0`* to *`FALSE`*.
 
 ```{r}
-run(lbt14, adam_db = syn_data, direction = "high", gr_missing = "incl", prune_0 = FALSE)
+run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
 ```
 
 ### **Medical History (MHT01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_mht01.html))**
@@ -471,13 +471,13 @@ run(lbt14, adam_db = syn_data, direction = "high", gr_missing = "incl", prune_0 
 5）This template currently does not support sorting MedDRA system organ class and preferred names by order of frequency.
 
 ```{r}
-run(mht01, adam_db = syn_data)
+run(mht01, syn_data)
 ```
 
 #### **2. Medical History showing additional column 'All Patients'**
 
 ```{r}
-run(mht01, adam_db = syn_data, lbl_overall = "All Patients")
+run(mht01, syn_data, lbl_overall = "All Patients")
 ```
 
 ### **Vital Signs (VST01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_mht01.html))**
@@ -485,7 +485,7 @@ run(mht01, adam_db = syn_data, lbl_overall = "All Patients")
 #### **1. Vital Sign Results and Change from Baseline by Visit**
 
 ```{r}
-t_vs_chg <- run(vst01, adam_db = syn_data)
+t_vs_chg <- run(vst01, syn_data)
 head(t_vs_chg, 20)
 ```
 
@@ -494,7 +494,7 @@ head(t_vs_chg, 20)
 #### **1. Vital Sign Abnormalities (Regardless of Abnormality at Baseline)**
 
 ```{r}
-run(vst02_1, adam_db = syn_data)
+run(vst02_1, syn_data)
 ```
 
 ### **Vital Signs Abnormalities (Among Subject Without Abnormality at Baseline) (VST02_2) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_vst02_2.html))**
@@ -502,7 +502,7 @@ run(vst02_1, adam_db = syn_data)
 #### **1. Vital Sign Abnormalities (Among Subject Without Abnormality at Baseline)**
 
 ```{r}
-run(vst02_2, adam_db = syn_data)
+run(vst02_2, syn_data)
 ```
 
 ## **LISTINGS**
@@ -513,6 +513,6 @@ run(vst02_2, adam_db = syn_data)
 2) The example below use *head* function to print only the first 10 lines of the output.
 
 ```{r}
-l_ae_nollt <- run(ael01_nollt, adam_db = syn_data)
+l_ae_nollt <- run(ael01_nollt, syn_data)
 head(l_ae_nollt, 10)
 ```
