@@ -372,7 +372,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' @keywords internal
 afun_skip_baseline <- function(
     x, .var, .spl_context, paramcdvar, visitvar, skip,
-    precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) {
+    precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) { # nolint
   param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
   # Identify context
   is_chg <- .var == skip
@@ -387,7 +387,9 @@ afun_skip_baseline <- function(
   fmts <- lapply(.stats, summary_formats, pcs = pcs, FALSE)
   names(fmts) <- .stats
   fmts_na <- lapply(.stats, summary_formats, pcs = pcs, ne = TRUE)
-  ret <- tern::create_afun_summary(.stats, fmts, .labels, .indent_mods)(x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...)
+  ret <- tern::create_afun_summary(
+    .stats, fmts, .labels, .indent_mods
+  )(x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...)
   for (i in seq_len(length(ret))) {
     attr(ret[[i]], "format_na_str") <- fmts_na[[i]]()
   }
