@@ -86,7 +86,7 @@ rmpt01_lyt <- function(summaryvars,
 
   if (!is.null(row_split_var)) {
     lyt %>%
-      split_rows_by(row_split_var,) %>%
+      split_rows_by(row_split_var) %>%
       analyze_patients_exposure_in_cols(
         .indent_mods = -1L,
         var = summaryvars,
