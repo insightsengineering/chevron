@@ -9,7 +9,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \source{
-utils.R
+\code{utils.R}
 }
 \usage{
 coxt02_main(
@@ -54,12 +54,12 @@ and produces the estimates for each of the covariates included in the model
 \itemize{
 \item The reference arm will always the first level of \code{arm_var}. Please change the level if you want to
 change the reference arms.
-\item The table allows confidence level to be adjusted, default is 2-sided 95\%.
+\item The table allows confidence level to be adjusted, default is 2-sided 5\%.
 \item The stratified analysis is with DISCRETE tie handling (equivalent to \code{tern::control_coxreg(ties = "exact")} in R).
 \item Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 \item The selection of the covariates and whether or not there is a selection process
-(vs. a fixed, pre-specified list) needs to be specified in the \code{DAP}.
+(vs. a fixed, pre-specified list) needs to be pre-specified.
 \item For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
 \item Keep zero-count rows unless overridden with \code{prune_0 = TRUE}.
 }

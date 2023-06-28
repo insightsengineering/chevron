@@ -68,7 +68,7 @@ change the reference arms.
 \item Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 \item The selection of the covariates and whether or not there is a selection process
-(vs. a fixed, pre-specified list) needs to be specified in the DAP.
+(vs. a fixed, pre-specified list) needs to be pre-specified.
 \item For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
 \item Keep zero-count rows unless overridden with \code{prune_0 = TRUE}.
 }
