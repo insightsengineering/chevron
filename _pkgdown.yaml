@@ -53,6 +53,8 @@ reference:
       - aet02
       - aet03
       - aet04
+      - aet05
+      - aet05_all
       - aet10
       - cfbt01
       - cmt01a
@@ -81,6 +83,9 @@ reference:
       - pdt01
       - pdt02
       - rmpt01
+      - rmpt03
+      - rmpt04
+      - rmpt05
       - rspt01
       - ttet01
       - vst01
