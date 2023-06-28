@@ -14,7 +14,7 @@ rmpt04_main(
   adam_db,
   summaryvars = "ETHNIC",
   show_tot = TRUE,
-  split_var = NULL,
+  row_split_var = NULL,
   col_split_var = NULL,
   overall_col_lbl = NULL,
   ...
@@ -32,7 +32,7 @@ table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
-\item{split_var}{(\code{character}) recursive split row variable.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{col_split_var}{(\code{string}) additional column splitting variable.}
 

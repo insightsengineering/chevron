@@ -6,7 +6,7 @@
 #' @param summaryvars (`string`) variables to be analyzed. The label attribute of the corresponding columns in `adex`
 #'   table of `adam_db` is used as label.
 #' @param show_tot (`flag`) whether to display the cumulative total.
-#' @param split_var (`string`) the name of the column that containing variable to split exposure by.
+#' @param row_split_var (`string`) the name of the column that containing variable to split exposure by.
 #' @param col_split_var (`string`) additional column splitting variable.
 #' @param overall_col_lbl (`string`) name of the overall column. If `NULL`, no overall level is added.
 #'
@@ -23,7 +23,7 @@
 rmpt01_main <- function(adam_db,
                         summaryvars = "AVALCAT1",
                         show_tot = TRUE,
-                        split_var = NULL,
+                        row_split_var = NULL,
                         col_split_var = NULL,
                         overall_col_lbl = NULL,
                         ...) {
@@ -34,7 +34,7 @@ rmpt01_main <- function(adam_db,
   checkmate::assert_string(overall_col_lbl, null.ok = TRUE)
   assert_valid_variable(adam_db$adex, summaryvars, types = list(c("factor", "character")), empty_ok = FALSE)
   assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
-  assert_valid_variable(adam_db$adex, split_var, types = list(c("factor", "numeric")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adex, row_split_var, types = list(c("factor", "numeric")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adex, col_split_var, types = list(c("factor", "character")))
   checkmate::assert_string(overall_col_lbl, null.ok = TRUE)
 
@@ -47,7 +47,7 @@ rmpt01_main <- function(adam_db,
     summaryvars = summaryvars,
     lbl_summaryvars = lbl_summaryvars,
     show_tot = show_tot,
-    split_var = split_var,
+    row_split_var = row_split_var,
     col_split_var = col_split_var,
     overall_col_lbl = overall_col_lbl
   )
@@ -67,7 +67,7 @@ rmpt01_main <- function(adam_db,
 rmpt01_lyt <- function(summaryvars,
                        lbl_summaryvars,
                        show_tot,
-                       split_var,
+                       row_split_var,
                        col_split_var,
                        overall_col_lbl) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
@@ -84,11 +84,11 @@ rmpt01_lyt <- function(summaryvars,
       custom_label = "Total patients number/person time"
     )
 
-  if (!is.null(split_var)) {
+  if (!is.null(row_split_var)) {
     lyt %>%
-      split_rows_by(split_var) %>%
+      split_rows_by(row_split_var,) %>%
       analyze_patients_exposure_in_cols(
-        .indent_mods = -1,
+        .indent_mods = -1L,
         var = summaryvars,
         col_split = FALSE,
         add_total_level = show_tot,

@@ -4,12 +4,12 @@
 \alias{split_rows_by_recurive}
 \title{Count or summarize by groups}
 \usage{
-split_rows_by_recurive(lyt, split_var, ...)
+split_rows_by_recurive(lyt, row_split_var, ...)
 }
 \arguments{
 \item{lyt}{(\code{PreDataTableLayouts}) \code{rtable} layout.}
 
-\item{split_var}{(\code{character}) variable to split rows by.}
+\item{row_split_var}{(\code{character}) variable to split rows by.}
 
 \item{...}{Further arguments for \code{split_rows_by}}
 }
