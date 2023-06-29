@@ -128,7 +128,7 @@ coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
   std_postprocess(tlg)
 }
 
-#' `coxt01` (Default) Cox Regression Model Table.
+#' `COXT01` (Default) Cox Regression Model Table.
 #'
 #' Cox models are the most commonly used methods to estimate the magnitude of the effect in survival analyses.
 #' It assumes proportional hazards; that is, it assumes that the ratio of the hazards
