@@ -15,7 +15,7 @@
 #' @details
 #'  * The reference arm will always the first level of `arm_var`. Please change the level if you want to
 #'  change the reference arms.
-#'  * The table allows confidence level to be adjusted, default is 2-sided 5%.
+#'  * The table allows confidence level to be adjusted, default is two-sided 95%.
 #'  * The stratified analysis is with DISCRETE tie handling (equivalent to `tern::control_coxreg(ties = "exact")` in R).
 #'  * Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 #'  with `"SEX"`, `"RACE"` and `"AAGE"` as default candidates.
@@ -81,7 +81,7 @@ coxt01_main <- function(adam_db,
 
 #' `COXT01` Layout
 #'
-#' @inheritParams gen_args
+#' @inheritParams coxt01_main
 #' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
 #'
 #' @keywords internal

@@ -2,16 +2,20 @@
 % Please edit documentation in R/coxt01.R
 \name{coxt01_lyt}
 \alias{coxt01_lyt}
-\title{\code{coxt01} Layout}
+\title{\code{COXT01} Layout}
 \usage{
 coxt01_lyt(variables, col_split, lbl_vars, control, multivar, ...)
 }
 \arguments{
 \item{variables}{(\code{list}) list of variables in a Cox proportional hazards regression model.}
 
-\item{...}{not used.}
+\item{lbl_vars}{(\code{string}) text label for the a Cox regression model variables.}
+
+\item{multivar}{(\code{flag}) indicator of whether multivariate cox regression is conducted.}
+
+\item{...}{Further arguments passed to \code{tern::control_coxreg()}.}
 }
 \description{
-\code{coxt01} Layout
+\code{COXT01} Layout
 }
 \keyword{internal}
