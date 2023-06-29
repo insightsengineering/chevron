@@ -378,7 +378,7 @@ afun_skip_baseline <- function(
   is_chg <- .var == skip
 
   is_baseline <- .spl_context$value[which(.spl_context$split == visitvar)] == names(skip)
-  if (is_baseline && is_chg) {
+  pcs <- if (is_baseline && is_chg) {
     pcs <- NA
   } else {
     pcs <- precision[[param_val]] %||% precision[["default"]] %||% 2
