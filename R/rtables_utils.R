@@ -379,9 +379,9 @@ afun_skip_baseline <- function(
 
   is_baseline <- .spl_context$value[which(.spl_context$split == visitvar)] == names(skip)
   pcs <- if (is_baseline && is_chg) {
-    pcs <- NA
+    NA
   } else {
-    pcs <- precision[[param_val]] %||% precision[["default"]] %||% 2
+    precision[[param_val]] %||% precision[["default"]] %||% 2
   }
 
   fmts <- lapply(.stats, summary_formats, pcs = pcs, FALSE)
