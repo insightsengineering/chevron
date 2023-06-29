@@ -43,7 +43,7 @@ represented with one more decimal of precision.}
 
 \item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
 
-\item{.stats}{(\code{character}) statistics names, see \code{summarize_vars()}.}
+\item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
 
 \item{...}{not used.}
 }
