@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.977015687705217" branch-rate="0" lines-covered="2678" lines-valid="2741" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-06-28 19:29:20.904156">
+<coverage line-rate="0.977032446226759" branch-rate="0" lines-covered="2680" lines-valid="2743" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-06-29 02:23:06.452792">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
   <packages>
-    <package name="chevron" line-rate="0.977015687705217" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.977032446226759" branch-rate="0" complexity="0">
       <classes>
         <class name="ael01_nollt.R" filename="R/ael01_nollt.R" line-rate="0.941176470588235" branch-rate="0" complexity="0">
           <methods>
@@ -5393,7 +5393,7 @@
             <line number="159" hits="0" branch="false"/>
           </lines>
         </class>
-        <class name="rtables_utils.R" filename="R/rtables_utils.R" line-rate="0.944700460829493" branch-rate="0" complexity="0">
+        <class name="rtables_utils.R" filename="R/rtables_utils.R" line-rate="0.945205479452055" branch-rate="0" complexity="0">
           <methods>
             <method name="split_and_summ_num_patients" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -5672,8 +5672,10 @@
                 <line number="378" hits="1116" branch="false"/>
                 <line number="380" hits="1116" branch="false"/>
                 <line number="381" hits="1116" branch="false"/>
-                <line number="382" hits="87" branch="false"/>
+                <line number="382" hits="1116" branch="false"/>
+                <line number="383" hits="1116" branch="false"/>
                 <line number="384" hits="1029" branch="false"/>
+                <line number="385" hits="1116" branch="false"/>
                 <line number="387" hits="1116" branch="false"/>
                 <line number="388" hits="1116" branch="false"/>
                 <line number="389" hits="1116" branch="false"/>
@@ -5897,8 +5899,10 @@
             <line number="378" hits="1116" branch="false"/>
             <line number="380" hits="1116" branch="false"/>
             <line number="381" hits="1116" branch="false"/>
-            <line number="382" hits="87" branch="false"/>
+            <line number="382" hits="1116" branch="false"/>
+            <line number="383" hits="1116" branch="false"/>
             <line number="384" hits="1029" branch="false"/>
+            <line number="385" hits="1116" branch="false"/>
             <line number="387" hits="1116" branch="false"/>
             <line number="388" hits="1116" branch="false"/>
             <line number="389" hits="1116" branch="false"/>
