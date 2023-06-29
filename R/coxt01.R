@@ -79,7 +79,7 @@ coxt01_main <- function(adam_db,
   tbl
 }
 
-#' `coxt01` Layout
+#' `COXT01` Layout
 #'
 #' @inheritParams gen_args
 #' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
