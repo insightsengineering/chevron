@@ -12,7 +12,7 @@
 #'   represented with one more decimal of precision.
 #' @param page_by (`flag`) indicator whether the parameter row split is by page.
 #' @param row_split_var (`character`) row split variable other than `PARAMCD`.
-#' @param .stats (`character`) statistics names, see `summarize_vars()`.
+#' @param .stats (`character`) statistics names, see `tern::summarize_vars()`.
 #' @param ... additional arguments like `.indent_mods`, `.labels`.
 #'
 #' @details
