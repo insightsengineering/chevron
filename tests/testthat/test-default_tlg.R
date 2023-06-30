@@ -44,14 +44,14 @@ test_that("aet05 functions with default argument value return expected result wi
   pre_data <- aet05_pre(syn_data)
   raw_res <- aet05_main(pre_data)
   res <- aet05_post(raw_res)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet05_all functions with default argument value return expected result with test data", {
   pre_data <- aet05_all_pre(syn_data)
   raw_res <- aet05_main(pre_data)
   res <- aet05_post(raw_res)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet10 functions with default argument value return expected result with test data", {
@@ -68,11 +68,21 @@ test_that("cmt02_pt functions with default argument value return expected result
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
+test_that("coxt01 functions with default argument value return expected result with test data", {
+  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+  proc_data <- dunlin::log_filter(proc_data, ARMCD != "ARM C", "adsl")
+  proc_data$adtte$ARM <- droplevels(proc_data$adtte$ARM)
+  pre_data <- coxt01_pre(proc_data)
+  raw_res <- coxt01_main(pre_data)
+  res <- coxt01_post(raw_res)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
 test_that("coxt02 functions with default argument value return expected result with test data", {
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
-  pre_data <- coxt02_pre(proc_data)
+  pre_data <- coxt01_pre(proc_data)
   raw_res <- coxt02_main(pre_data)
-  res <- coxt02_post(raw_res)
+  res <- coxt01_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
