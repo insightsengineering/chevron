@@ -196,7 +196,12 @@ cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(cfbt01, syn_data, dataset = "advs")
+#' library(dunlin)
+#' proc_data <- log_filter(
+#'   syn_data,
+#'   PARAMCD %in% c("DIABP", "SYSBP"), "advs"
+#' )
+#' run(cfbt01, proc_data, dataset = "advs")
 cfbt01 <- chevron_t(
   main = cfbt01_main,
   preprocess = cfbt01_pre,

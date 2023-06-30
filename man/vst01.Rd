@@ -86,6 +86,11 @@ by \code{AVISIT}. Re-level to customize order
 }
 }
 \examples{
-run(vst01, syn_data)
+library(dunlin)
+proc_data <- log_filter(
+  syn_data,
+  PARAMCD \%in\% c("DIABP", "SYSBP"), "advs"
+)
+run(vst01, proc_data)
 }
 \keyword{datasets}

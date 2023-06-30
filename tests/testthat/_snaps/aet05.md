@@ -1,7 +1,7 @@
 # aet05 can handle NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                 A: Drug X   B: Placebo   C: Combination
                                                                  (N=134)     (N=134)        (N=132)    
@@ -25,7 +25,7 @@
 # aet05 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
                                                                    A: Drug X         B: Placebo   
                                                                     (N=134)           (N=134)     
@@ -67,7 +67,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res2, lpp = 100))
+      cat(export_as_txt(res2, lpp = 100))
     Output
                                                                    A: Drug X          B: Placebo   
                                                                     (N=134)            (N=134)     

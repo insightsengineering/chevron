@@ -7,14 +7,14 @@
 ifneeded_split_row(lyt, var, lbl_var)
 }
 \arguments{
-\item{lyt}{(\code{rtables}) object.}
+\item{lyt}{(\code{PreDataTableLayouts}) object.}
 
 \item{var}{(\code{string}) the name of the variable initiating a new row split.}
 
 \item{lbl_var}{(\code{string})the label of the variable \code{var}.}
 }
 \value{
-\code{rtables} object.
+\code{PreDataTableLayouts} object.
 }
 \description{
 Helper function to add a row split if specified

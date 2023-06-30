@@ -308,7 +308,7 @@
 # aet05 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                    A: Drug X         B: Placebo   
                                                                     (N=134)           (N=134)     
@@ -350,7 +350,7 @@
 # aet05_all functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                 A: Drug X          B: Placebo   
                                                                  (N=134)            (N=134)     
@@ -427,6 +427,21 @@
         medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
         medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
         medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
+
+# coxt01 functions with default argument value return expected result with test data
+
+    Code
+      cat(export_as_txt(res, lpp = 100))
+    Output
+        Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     
+                                                   n     Hazard Ratio       95% CI       p-value 
+        —————————————————————————————————————————————————————————————————————————————————————————
+        Treatment:                                                                               
+          B: Placebo vs control (A: Drug X)       268        1.43        (1.06, 1.94)     0.0204 
+        Covariate:                                                                               
+          Sex                                     268        1.43        (1.06, 1.94)     0.0208 
+          RACE                                    268        1.44        (1.06, 1.96)     0.0208 
+          Age (yr)                                268        1.46        (1.07, 1.98)     0.0154 
 
 # coxt02 functions with default argument value return expected result with test data
 
