@@ -1,13 +1,16 @@
 ---
-title: "Chevron Catalog Version x.x.x"
+title: "Chevron Catalog"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
-output: 
+output:
   html_document:
-    toc: true
+    toc: yes
     toc_depth: 4
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -26,9 +29,33 @@ run(aet01, syn_data, arm_var = "ARM")
 Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter *`anl_vars`*. The defined analyses currently include "`FATAL`", "`SER`", "`SERWD`", "`SERDSM`", "`RELSER`", "`WD`", "`DSM`", "`REL`", "`RELWD`", "`RELDSM`", "`SEV`". When modification is made, analyses must be all listed in the parameter *`anl_vars`*. The example below shows adding customized analyses "`RELCTC35`".
 
 ```{r}
-syn_data$adae <- syn_data$adae %>%
-  mutate(RELCTC35 = with_label(.data$ATOXGR %in% c("3", "4", "5") & .data$AEREL == "Y", "Related Grade 3-5"))
-run(aet01, syn_data, anl_vars = list(safety_var = c("FATAL", "SER", "RELSER", "RELCTC35")))
+proc_data <- syn_data
+proc_data$adae <- proc_data$adae %>%
+  filter(.data$ANL01FL == "Y") %>%
+  mutate(
+    FATAL = with_label(.data$AESDTH == "Y", "AE with fatal outcome"),
+    SER = with_label(.data$AESER == "Y", "Serious AE"),
+    SEV = with_label(.data$ASEV == "SEVERE", "Severe AE (at greatest intensity)"),
+    REL = with_label(.data$AREL == "Y", "Related AE"),
+    WD = with_label(.data$AEACN == "DRUG WITHDRAWN", "AE leading to withdrawal from treatment"),
+    DSM = with_label(
+      .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
+      "AE leading to dose modification/interruption"
+    ),
+    SERWD = with_label(.data$SER & .data$WD, "Serious AE leading to withdrawal from treatment"),
+    SERDSM = with_label(.data$SER & .data$DSM, "Serious AE leading to dose modification/interruption"),
+    RELSER = with_label(.data$SER & .data$REL, "Related Serious AE"),
+    RELWD = with_label(.data$REL & .data$WD, "Related AE leading to withdrawal from treatment"),
+    RELDSM = with_label(.data$REL & .data$DSM, "Related AE leading to dose modification/interruption"),
+    CTC35 = with_label(.data$ATOXGR %in% c("3", "4", "5"), "Grade 3-5 AE"),
+    CTC45 = with_label(.data$ATOXGR %in% c("4", "5"), "Grade 4/5 AE"),
+    RELCTC35 = with_label(.data$ATOXGR %in% c("3", "4", "5") & .data$AEREL == "Y", "Related Grade 3-5")
+  )
+
+proc_data$adsl <- proc_data$adsl %>%
+  mutate(DCSREAS = reformat(.data$DCSREAS, missing_rule))
+
+run(aet01, proc_data, anl_vars = list(safety_var = c("FATAL", "SER", "RELSER", "RELCTC35")), auto_pre = FALSE)
 ```
 
 ### **Safety Summary (Adverse Events of Special Interest) (AET01_AESI) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_aet01_aesi.html))**
@@ -200,41 +227,49 @@ run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "
 2) To display the values within a categorical variable in pre-specified order, the categorical variable need to be factorized with pre-specified order provided as levels.
 
 ```{r}
-syn_data$adsl <- syn_data$adsl %>%
-  mutate(BBMIGR1 = case_when(
-    BBMISI < 15 ~ "Very severely underweight",
-    BBMISI >= 15 & BBMISI < 16 ~ "Severely underweight",
-    BBMISI >= 16 & BBMISI < 18.5 ~ "Underweight",
-    BBMISI >= 18.5 & BBMISI < 25 ~ "Normal (healthy weight)",
-    BBMISI >= 25 & BBMISI < 30 ~ "Overweight",
-    BBMISI >= 30 & BBMISI < 35 ~ "Obese Class I (Moderately obese)",
-    BBMISI >= 35 & BBMISI < 40 ~ "Obese Class II (Severely obese)",
-    BBMISI >= 40 ~ "Obese Class III (Very severely obese)"
-  )) %>%
-  mutate(BBMIGR1 = factor(BBMIGR1, levels = c(
-    "Very severely underweight",
-    "Severely underweight",
-    "Underweight",
-    "Normal (healthy weight)",
-    "Overweight",
-    "Obese Class I (Moderately obese)",
-    "Obese Class II (Severely obese)",
-    "Obese Class III (Very severely obese)"
-  )))
-run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMIGR1"))
+proc_data <- syn_data
+proc_data$adsl <- proc_data$adsl %>%
+  mutate(
+    SEX = reformat(.data$SEX, rule(Male = "M", Female = "F")),
+    BBMIGR1 = factor(case_when(
+      BBMISI < 15 ~ "Very severely underweight",
+      BBMISI >= 15 & BBMISI < 16 ~ "Severely underweight",
+      BBMISI >= 16 & BBMISI < 18.5 ~ "Underweight",
+      BBMISI >= 18.5 & BBMISI < 25 ~ "Normal (healthy weight)",
+      BBMISI >= 25 & BBMISI < 30 ~ "Overweight",
+      BBMISI >= 30 & BBMISI < 35 ~ "Obese Class I (Moderately obese)",
+      BBMISI >= 35 & BBMISI < 40 ~ "Obese Class II (Severely obese)",
+      BBMISI >= 40 ~ "Obese Class III (Very severely obese)"
+    ), levels = c(
+      "Very severely underweight",
+      "Severely underweight",
+      "Underweight",
+      "Normal (healthy weight)",
+      "Overweight",
+      "Obese Class I (Moderately obese)",
+      "Obese Class II (Severely obese)",
+      "Obese Class III (Very severely obese)"
+    ))
+  )
+
+run(dmt01, proc_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMIGR1"), auto_pre = FALSE)
 ```
 
 #### **5. Demographics and Baseline Characteristics with additional vital signs baseline values from ADVS or ADSUB**
 To add baseline vital signs or other baseline characteristics to the demographics and baseline characteristics summary, manual preprocess of input *`adsl`* dataset is expected and merge the vital signs baseline values from *`advs`* (where `ADVS.ABLFL=='Y'`) or *`adsub`* with *`adsl`* by unique subject identifier.
 
 ```{r}
-diabpbl <- syn_data$advs %>%
+proc_data <- syn_data
+diabpbl <- proc_data$advs %>%
   filter(ABLFL == "Y" & PARAMCD == "DIABP") %>%
   mutate(DIABPBL = AVAL) %>%
   select("STUDYID", "USUBJID", "DIABPBL")
-syn_data$adsl <- syn_data$adsl %>%
+
+proc_data$adsl <- proc_data$adsl %>%
+  mutate(SEX = reformat(.data$SEX, rule(Male = "M", Female = "F"))) %>%
   left_join(diabpbl, by = c("STUDYID", "USUBJID"))
-run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "DIABPBL"))
+
+run(dmt01, proc_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "DIABPBL"), auto_pre = FALSE)
 ```
 
 ### **Patient Disposition (DST01) ([STREAM v2.12 Link](https://pages.github.roche.com/MDIS/stream_doc/2_12/um/report_outputs_dst01.html))**
@@ -267,15 +302,6 @@ run(dst01, syn_data, trt_status_var = "EOTSTT", lbl_overall = NULL)
 The syntax adds the details of study ongoing/alive status to the standard patient disposition summary by modifying the parameter *`detail_vars`*.
 
 ```{r}
-syn_data$adsl <- syn_data$adsl %>%
-  mutate(STDONS = factor(
-    case_when(
-      EOTSTT == "Ongoing Treatment" & EOSSTT == "Ongoing" ~ "Alive: Ongoing",
-      EOTSTT != "Ongoing Treatment" & EOSSTT == "Ongoing" ~ "Alive: In Follow-up",
-      TRUE ~ NA_character_
-    ),
-    levels = c("Alive: Ongoing", "Alive: In Follow-up")
-  ))
 run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STDONS"))
 ```
 
