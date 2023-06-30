@@ -81,12 +81,6 @@ library(dunlin)
 
 proc_data <- log_filter(
   syn_data,
-  PARAMCD == "OVRINV" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs"
-)
-run(fstg01, proc_data, dataset = "adrs")
-
-proc_data <- log_filter(
-  syn_data,
   PARAMCD == "BESRSPI" & ARM \%in\% c("A: Drug X", "B: Placebo"), "adrs"
 )
 run(fstg01, proc_data,
