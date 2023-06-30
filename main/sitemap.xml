@@ -145,10 +145,13 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/count_patients_recursive.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt02.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt01.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt02_lyt.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt01_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/coxt02.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/main/reference/ctcv4_dir.html</loc>
