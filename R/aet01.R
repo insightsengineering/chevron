@@ -43,7 +43,7 @@ aet01_main <- function(adam_db,
     var_labels_for,
     df = adam_db$adae
   )
-  anl_lbls <- dunlin::render_safe(anl_lbls)
+  anl_lbls <- render_safe(anl_lbls)
   if (length(anl_lbls) == 1) {
     anl_lbls <- rep(anl_lbls, length(anl_vars))
   }

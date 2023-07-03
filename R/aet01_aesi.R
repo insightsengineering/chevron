@@ -84,6 +84,7 @@ aet01_aesi_lyt <- function(arm_var,
                            lbl_overall,
                            lbl_aesi_vars,
                            grade_groups) {
+  lbl_aesi_vars <- render_safe(lbl_aesi_vars)
   names(lbl_aesi_vars) <- aesi_vars
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
@@ -92,7 +93,7 @@ aet01_aesi_lyt <- function(arm_var,
       vars = "USUBJID",
       filters = c("ANL01FL" = "Y"),
       denom = "N_col",
-      .labels = c(count_fraction = "Total number of {{patient_label}} with at least one AE")
+      .labels = c(count_fraction = render_safe("Total number of {{patient_label}} with at least one AE"))
     ) %>%
     count_values(
       "ANL01FL",
@@ -103,7 +104,7 @@ aet01_aesi_lyt <- function(arm_var,
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
-      var_labels = "Total number of {{patient_label}} with at least one AE by worst grade",
+      var_labels = render_safe("Total number of {{patient_label}} with at least one AE by worst grade"),
       show_labels = "visible",
       grade_groups = grade_groups
     ) %>%
