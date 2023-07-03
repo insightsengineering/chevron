@@ -122,7 +122,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = event_lvls[1])
+      .labels = c(count_fraction = render_safe(event_lvls[1]))
     )
 
   if (summarize_event) {
@@ -142,7 +142,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_NOT_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = event_lvls[2]),
+      .labels = c(count_fraction = render_safe(event_lvls[2])),
       nested = FALSE,
       show_labels = "hidden"
     ) %>%
@@ -184,7 +184,8 @@ ttet01_lyt <- function(arm_var,
       control = control_surv_timepoint(
         conf_level = conf_level,
         conf_type = conf_type
-      )
+      ),
+      .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk"))
     )
 
   return(lyt)
@@ -207,10 +208,10 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
       IS_NOT_EVENT = .data$CNSR == 1,
       EVNT1 = factor(
         case_when(
-          IS_EVENT == TRUE ~ "Patients with event (%)",
-          IS_EVENT == FALSE ~ "Patients without event (%)"
+          IS_EVENT == TRUE ~ "{Patient_label} with event (%)",
+          IS_EVENT == FALSE ~ "{Patient_label} without event (%)"
         ),
-        levels = c("Patients with event (%)", "Patients without event (%)")
+        levels = c("{Patient_label} with event (%)", "{Patient_label} without event (%)")
       ),
       EVNTDESC = factor(.data$EVNTDESC)
     )
