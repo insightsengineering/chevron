@@ -2,7 +2,7 @@
 title: "Chevron Catalog"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Adding new TLGs to Chevron}
+  %\VignetteIndexEntry{Chevron Catalog}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options:
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 
 library(chevron)
-library(dplyr)
+data(syn_data, package = "chevron")
 ```
 
 ## **TABLES**
@@ -423,7 +423,7 @@ The template have two default analyses of `ADEG.AVALCAT1` and `ADEG.CHGCAT1`. To
 run(egt05_qtcat, syn_data, summaryvars = c("AVALCAT1"))
 ```
 
-### **Study Drug Exposure (EXT01)**
+### **Study Drug Exposure (`EXT01`)**
 
 #### **1. Study Drug Exposure**
 
