@@ -101,7 +101,7 @@ aet01_lyt <- function(arm_var,
       "USUBJID",
       filters = c("DCSREAS" = "ADVERSE EVENT"),
       denom = "N_col",
-      .labels = c(count_fraction = dunlin::render_safe("Total number of {{patient_label}} withdrawn from study due to an AE")),
+      .labels = c(count_fraction = render_safe("Total number of {{patient_label}} withdrawn from study due to an AE")),
       table_names = "TotWithdrawal"
     )
 

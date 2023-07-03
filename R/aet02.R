@@ -77,7 +77,9 @@ aet02_lyt <- function(arm_var,
   for (k in seq_len(length(row_split_var))) {
     lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k],
       stats = c("unique", "nonunique"),
-      summarize_labels = render_safe(c("Total number of {{patient_label}} with at least one adverse event", "Total number of events"))
+      summarize_labels = render_safe(
+        c("Total number of {{patient_label}} with at least one adverse event", "Total number of events")
+      )
     )
   }
   lyt %>%

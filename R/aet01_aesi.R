@@ -162,14 +162,16 @@ aet01_aesi_pre <- function(adam_db,
         .data$CONTRT & .data$ALL_RESOLVED, "  No. of {{patient_label}} with treatment received for resolved AE"
       ),
       NOTRESWD = with_label(
-        .data$WD & .data$NOT_RESOLVED, "  No. of {{patient_label}} with study drug withdrawn due to unresolved or ongoing AE"
+        .data$WD & .data$NOT_RESOLVED,
+        "  No. of {{patient_label}} with study drug withdrawn due to unresolved or ongoing AE"
       ),
       NOTRESDSM = with_label(
         .data$DSM & .data$NOT_RESOLVED,
         "  No. of {{patient_label}} with dose modified/interrupted due to unresolved or ongoing AE"
       ),
       NOTRESCONTRT = with_label(
-        .data$CONTRT & .data$NOT_RESOLVED, "  No. of {{patient_label}} with treatment received for unresolved/ongoing AE"
+        .data$CONTRT & .data$NOT_RESOLVED,
+        "  No. of {{patient_label}} with treatment received for unresolved/ongoing AE"
       ),
       SERWD = with_label(
         .data$SER & .data$WD, "  No. of {{patient_label}} with study drug withdrawn due to serious AE"
