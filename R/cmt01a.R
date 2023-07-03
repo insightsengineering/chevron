@@ -73,13 +73,13 @@ cmt01a_lyt <- function(arm_var,
   if (incl_n_treatment) {
     stats <- c("unique", "nonunique")
     labels <- c(
-      "Total number of patients with at least one treatment",
+      "Total number of {{patient_label}} with at least one treatment",
       "Total number of treatments"
     )
   } else {
     stats <- c("unique")
     labels <- c(
-      "Total number of patients with at least one treatment"
+      "Total number of {{patient_label}} with at least one treatment"
     )
   }
   lyt <- basic_table() %>%
@@ -92,7 +92,7 @@ cmt01a_lyt <- function(arm_var,
       .stats = c("unique", "nonunique"),
       show_labels = "hidden",
       .labels = c(
-        unique = "Total number of patients with at least one treatment",
+        unique = "Total number of {{patient_label}} with at least one treatment",
         nonunique = "Total number of treatments"
       )
     )

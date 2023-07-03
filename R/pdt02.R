@@ -76,7 +76,7 @@ pdt02_lyt <- function(arm_var,
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one major protocol deviation related to epidemic/pandemic",
+        unique = "Total number of {{patient_label}} with at least one major protocol deviation related to epidemic/pandemic",
         nonunique = "Total number of major protocol deviations related to epidemic/pandemic"
       )
     ) %>%

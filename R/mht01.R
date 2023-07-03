@@ -65,7 +65,7 @@ mht01_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one condition",
+        unique = "Total number of {{patient_label}} with at least one condition",
         nonunique = "Total number of conditions"
       )
     ) %>%
@@ -83,7 +83,7 @@ mht01_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one condition",
+        unique = "Total number of {{patient_label}} with at least one condition",
         nonunique = "Total number of conditions"
       )
     ) %>%

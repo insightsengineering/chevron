@@ -92,7 +92,7 @@ aet01_aesi_lyt <- function(arm_var,
       vars = "USUBJID",
       filters = c("ANL01FL" = "Y"),
       denom = "N_col",
-      .labels = c(count_fraction = "Total number of patients with at least one AE")
+      .labels = c(count_fraction = "Total number of {{patient_label}} with at least one AE")
     ) %>%
     count_values(
       "ANL01FL",
@@ -103,7 +103,7 @@ aet01_aesi_lyt <- function(arm_var,
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
-      var_labels = "Total number of patients with at least one AE by worst grade",
+      var_labels = "Total number of {{patient_label}} with at least one AE by worst grade",
       show_labels = "visible",
       grade_groups = grade_groups
     ) %>%
@@ -129,67 +129,67 @@ aet01_aesi_pre <- function(adam_db,
     mutate(
       NOT_RESOLVED = with_label(
         .data$AEOUT %in% c("NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING", "UNKNOWN"),
-        "Total number of patients with at least one unresolved or ongoing non-fatal AE"
+        "Total number of {{patient_label}} with at least one unresolved or ongoing non-fatal AE"
       ),
       ALL_RESOLVED = with_label(
         !.data$AEOUT %in% "FATAL" & !.data$NOT_RESOLVED,
-        "Total number of patients with all non-fatal AEs resolved"
+        "Total number of {{patient_label}} with all non-fatal AEs resolved"
       ),
       WD = with_label(
-        .data$AEACN %in% "DRUG WITHDRAWN", "Total number of patients with study drug withdrawn due to AE"
+        .data$AEACN %in% "DRUG WITHDRAWN", "Total number of {{patient_label}} with study drug withdrawn due to AE"
       ),
       DSM = with_label(
         .data$AEACN %in% c("DRUG INTERRUPTED", "DOSE INCREASED", "DOSE REDUCED"),
-        "Total number of patients with dose modified/interrupted due to AE"
+        "Total number of {{patient_label}} with dose modified/interrupted due to AE"
       ),
       CONTRT = with_label(
-        .data$AECONTRT %in% "Y", "Total number of patients with treatment received for AE"
+        .data$AECONTRT %in% "Y", "Total number of {{patient_label}} with treatment received for AE"
       ),
       SER = with_label(
-        .data$AESER %in% "Y", "Total number of patients with at least one serious AE"
+        .data$AESER %in% "Y", "Total number of {{patient_label}} with at least one serious AE"
       ),
       REL = with_label(
-        .data$AREL %in% "Y", "Total number of patients with at least one related AE"
+        .data$AREL %in% "Y", "Total number of {{patient_label}} with at least one related AE"
       ),
       ALLRESWD = with_label(
-        .data$WD & .data$ALL_RESOLVED, "  No. of patients with study drug withdrawn due to resolved AE"
+        .data$WD & .data$ALL_RESOLVED, "  No. of {{patient_label}} with study drug withdrawn due to resolved AE"
       ),
       ALLRESDSM = with_label(
-        .data$DSM & .data$ALL_RESOLVED, "  No. of patients with dose modified/interrupted due to resolved AE"
+        .data$DSM & .data$ALL_RESOLVED, "  No. of {{patient_label}} with dose modified/interrupted due to resolved AE"
       ),
       ALLRESCONTRT = with_label(
-        .data$CONTRT & .data$ALL_RESOLVED, "  No. of patients with treatment received for resolved AE"
+        .data$CONTRT & .data$ALL_RESOLVED, "  No. of {{patient_label}} with treatment received for resolved AE"
       ),
       NOTRESWD = with_label(
-        .data$WD & .data$NOT_RESOLVED, "  No. of patients with study drug withdrawn due to unresolved or ongoing AE"
+        .data$WD & .data$NOT_RESOLVED, "  No. of {{patient_label}} with study drug withdrawn due to unresolved or ongoing AE"
       ),
       NOTRESDSM = with_label(
         .data$DSM & .data$NOT_RESOLVED,
-        "  No. of patients with dose modified/interrupted due to unresolved or ongoing AE"
+        "  No. of {{patient_label}} with dose modified/interrupted due to unresolved or ongoing AE"
       ),
       NOTRESCONTRT = with_label(
-        .data$CONTRT & .data$NOT_RESOLVED, "  No. of patients with treatment received for unresolved/ongoing AE"
+        .data$CONTRT & .data$NOT_RESOLVED, "  No. of {{patient_label}} with treatment received for unresolved/ongoing AE"
       ),
       SERWD = with_label(
-        .data$SER & .data$WD, "  No. of patients with study drug withdrawn due to serious AE"
+        .data$SER & .data$WD, "  No. of {{patient_label}} with study drug withdrawn due to serious AE"
       ),
       SERDSM = with_label(
-        .data$SER & .data$DSM, "  No. of patients with dose modified/interrupted due to serious AE"
+        .data$SER & .data$DSM, "  No. of {{patient_label}} with dose modified/interrupted due to serious AE"
       ),
       SERCONTRT = with_label(
-        .data$SER & .data$CONTRT, "  No. of patients with treatment received for serious AE"
+        .data$SER & .data$CONTRT, "  No. of {{patient_label}} with treatment received for serious AE"
       ),
       RELWD = with_label(
-        .data$REL & .data$WD, "  No. of patients with study drug withdrawn due to related AE"
+        .data$REL & .data$WD, "  No. of {{patient_label}} with study drug withdrawn due to related AE"
       ),
       RELDSM = with_label(
-        .data$REL & .data$DSM, "  No. of patients with dose modified/interrupted due to related AE"
+        .data$REL & .data$DSM, "  No. of {{patient_label}} with dose modified/interrupted due to related AE"
       ),
       RELCONTRT = with_label(
-        .data$REL & .data$CONTRT, "  No. of patients with treatment received for related AE"
+        .data$REL & .data$CONTRT, "  No. of {{patient_label}} with treatment received for related AE"
       ),
       RELSER = with_label(
-        .data$REL & .data$SER, "  No. of patients with serious, related AE"
+        .data$REL & .data$SER, "  No. of {{patient_label}} with serious, related AE"
       )
     ) %>%
     mutate(
