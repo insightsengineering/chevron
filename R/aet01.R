@@ -24,7 +24,7 @@ aet01_main <- function(adam_db,
                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          )
                        ),
-                       anl_lbls = "Total number of {{patient_label}} with at least one",
+                       anl_lbls = "Total number of {patient_label} with at least one",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)
@@ -83,7 +83,7 @@ aet01_lyt <- function(arm_var,
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = render_safe("Total number of {{patient_label}} with at least one AE"),
+        unique = render_safe("Total number of {patient_label} with at least one AE"),
         nonunique = "Total number of AEs"
       ),
       .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx"),
@@ -101,7 +101,7 @@ aet01_lyt <- function(arm_var,
       "USUBJID",
       filters = c("DCSREAS" = "ADVERSE EVENT"),
       denom = "N_col",
-      .labels = c(count_fraction = render_safe("Total number of {{patient_label}} withdrawn from study due to an AE")),
+      .labels = c(count_fraction = render_safe("Total number of {patient_label} withdrawn from study due to an AE")),
       table_names = "TotWithdrawal"
     )
 

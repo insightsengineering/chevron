@@ -72,7 +72,7 @@ ttet01_main <- function(adam_db,
 
   assert_single_value(anl$AVALU, label = sprintf("adam_db$%s$AVALU", dataset))
   timeunit <- unique(anl[["AVALU"]])
-
+  event_lvls <- lvls(anl$EVNT1)
   lyt <- ttet01_lyt(
     arm_var = arm_var,
     ref_group = ref_group,
@@ -86,7 +86,8 @@ ttet01_main <- function(adam_db,
     ties = ties,
     timeunit = timeunit,
     timepoint = timepoint,
-    method = method
+    method = method,
+    event_lvls = event_lvls
   )
 
   tbl <- build_table(lyt, anl)
@@ -112,7 +113,8 @@ ttet01_lyt <- function(arm_var,
                        ties,
                        timeunit,
                        timepoint,
-                       method) {
+                       method,
+                       event_lvls) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(
       var = arm_var, ref_group = ref_group
@@ -120,7 +122,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = "Patients with event (%)")
+      .labels = c(count_fraction = event_lvls[1])
     )
 
   if (summarize_event) {
@@ -128,7 +130,7 @@ ttet01_lyt <- function(arm_var,
       split_rows_by(
         "EVNT1",
         split_label = "Earliest contributing event",
-        split_fun = keep_split_levels("Patients with event (%)"),
+        split_fun = keep_split_levels(event_lvls[1]),
         label_pos = "visible",
         child_labels = "hidden",
         indent_mod = 1L,
@@ -140,7 +142,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_NOT_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = "Patients without event (%)"),
+      .labels = c(count_fraction = event_lvls[2]),
       nested = FALSE,
       show_labels = "hidden"
     ) %>%

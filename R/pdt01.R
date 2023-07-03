@@ -76,7 +76,7 @@ pdt01_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = render_safe("Total number of {{patient_label}} with at least one major protocol deviation"),
+        unique = render_safe("Total number of {patient_label} with at least one major protocol deviation"),
         nonunique = "Total number of major protocol deviations"
       ),
       .formats = list(unique = format_count_fraction_fixed_dp)
