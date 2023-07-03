@@ -1,4 +1,4 @@
-# chevron 0.2.0.9016
+# chevron 0.2.0.9017
 
 * Update `LBT06` template to use `PARAM` as row split.
 * Convert `AVISIT` to factor according to `AVISITN` as order in preprocessing.
@@ -6,7 +6,8 @@
 * Add `RMPT04` and `RMPT05` which follow `RMPT01`.
 * Add `RMPT03` template.
 * Update `EGT03` to use `ACTARMCD` as default arm variable, and remove the preprocessing of filtering to "HR".
-* Add more templates: `AET05` and `AET05_ALL`.
+* Add `COXT01` template. `COXT02` is based on `COXT01` now.
+* Add `AET05` and `AET05_ALL` template.
 
 # chevron 0.2.0
 
