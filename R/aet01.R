@@ -83,7 +83,7 @@ aet01_lyt <- function(arm_var,
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = dunlin::render_safe("Total number of {{patient_label}} with at least one AE"),
+        unique = render_safe("Total number of {{patient_label}} with at least one AE"),
         nonunique = "Total number of AEs"
       ),
       .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx"),
