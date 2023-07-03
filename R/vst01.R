@@ -25,7 +25,12 @@ vst01_pre <- modify_default_args(cfbt01_pre, dataset = "advs")
 #' @export
 #'
 #' @examples
-#' run(vst01, syn_data)
+#' library(dunlin)
+#' proc_data <- log_filter(
+#'   syn_data,
+#'   PARAMCD %in% c("DIABP", "SYSBP"), "advs"
+#' )
+#' run(vst01, proc_data)
 vst01 <- chevron_t(
   main = vst01_main,
   preprocess = vst01_pre,
