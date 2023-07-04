@@ -208,10 +208,10 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
       IS_NOT_EVENT = .data$CNSR == 1,
       EVNT1 = factor(
         case_when(
-          IS_EVENT == TRUE ~ "{Patient_label} with event (%)",
-          IS_EVENT == FALSE ~ "{Patient_label} without event (%)"
+          IS_EVENT == TRUE ~ render_safe("{Patient_label} with event (%)"),
+          IS_EVENT == FALSE ~ render_safe("{Patient_label} without event (%)")
         ),
-        levels = c("{Patient_label} with event (%)", "{Patient_label} without event (%)")
+        levels = render_safe(c("{Patient_label} with event (%)", "{Patient_label} without event (%)"))
       ),
       EVNTDESC = factor(.data$EVNTDESC)
     )
