@@ -35,7 +35,7 @@ aet04_main <- function(adam_db,
 
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
-
+  lbl_overall <- render_safe(lbl_overall)
   checkmate::assert_list(grade_groups, types = "character", null.ok = TRUE)
   if (is.null(grade_groups)) {
     grade_groups <- list(

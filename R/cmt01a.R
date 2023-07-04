@@ -40,7 +40,7 @@ cmt01a_main <- function(adam_db,
 
   lbl_row_split <- var_labels_for(adam_db$adcm, row_split_var)
   lbl_medname_var <- var_labels_for(adam_db$adcm, medname_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- cmt01a_lyt(
     arm_var = arm_var,
     incl_n_treatment = incl_n_treatment,

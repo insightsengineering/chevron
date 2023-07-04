@@ -30,13 +30,14 @@ dst01_main <- function(adam_db,
                          Discontinued = c("DCSREAS")
                        ),
                        trt_status_var = NULL,
-                       lbl_overall = "All Patients",
+                       lbl_overall = "All {Patient_label}",
                        ...) {
   assert_all_tablenames(adam_db, "adsl")
   checkmate::assert_string(arm_var)
   checkmate::assert_string(study_status_var)
   checkmate::assert_string(trt_status_var, null.ok = TRUE)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  lbl_overall <- render_safe(lbl_overall)
   assert_valid_variable(
     adam_db$adsl,
     arm_var,

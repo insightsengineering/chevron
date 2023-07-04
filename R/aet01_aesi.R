@@ -84,7 +84,6 @@ aet01_aesi_lyt <- function(arm_var,
                            lbl_overall,
                            lbl_aesi_vars,
                            grade_groups) {
-  lbl_aesi_vars <- render_safe(lbl_aesi_vars)
   names(lbl_aesi_vars) <- aesi_vars
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%

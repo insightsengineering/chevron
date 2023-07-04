@@ -41,7 +41,7 @@ egt05_qtcat_main <- function(adam_db,
   summaryvars_lbls <- var_labels_for(adam_db$adeg, summaryvars) # Value at visit / change from baseline
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- egt05_qtcat_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,

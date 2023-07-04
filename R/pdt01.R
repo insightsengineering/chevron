@@ -39,7 +39,7 @@ pdt01_main <- function(adam_db,
 
   lbl_dvcode_var <- var_labels_for(adam_db$addv, dvcode_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- pdt01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,

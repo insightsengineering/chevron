@@ -31,7 +31,7 @@ mht01_main <- function(adam_db,
 
   lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- mht01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,

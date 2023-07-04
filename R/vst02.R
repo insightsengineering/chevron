@@ -33,6 +33,7 @@ vst02_1_main <- function(adam_db,
 
   lbl_vs_assessment <- var_labels_for(adam_db$advs, "PARAM")
   lbl_vs_abnormality <- var_labels_for(adam_db$advs, "ANRIND")
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- vst02_lyt(
     arm_var = arm_var,
     exclude_base_abn = exclude_base_abn,

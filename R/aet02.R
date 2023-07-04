@@ -35,7 +35,7 @@ aet02_main <- function(adam_db,
 
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- aet02_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
