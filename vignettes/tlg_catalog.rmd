@@ -28,7 +28,7 @@ library(chevron)
 
 The **`aet01`** template produces the standard safety summary.
 
-```{r, eval = FALSE}
+```{r}
 run(aet01, syn_data, arm_var = "ARM")
 ```
 
