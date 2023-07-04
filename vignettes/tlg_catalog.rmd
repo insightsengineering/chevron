@@ -78,7 +78,7 @@ run(aet01_aesi, syn_data)
 
 #### **2. Safety Summary (Adverse Events of Special Interest) (optional lines)**
 
-Additional analyses can be added with the parameter `aesi_vars`, please type `?aet01_aesi` in the RStudio console to find out the list of all pre-defined optional analyses in the help.
+Additional analyses can be added with the parameter `aesi_vars`, please type `?aet01_aesi` in the console to find out the list of all pre-defined optional analyses in the help.
 
 ```{r}
 run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
@@ -126,11 +126,11 @@ This **`aet03`** template  produces the standard adverse event by greatest inten
 run(aet03, syn_data)
 ```
 
-### **Adverse Events by Highest NCI CTCAE Grade (`AET04`)**
+### **Adverse Events by Highest `NCI CTCAE` Grade (`AET04`)**
 
-#### **1. Adverse Events by Highest NCI CTCAE Grade**
+#### **1. Adverse Events by Highest `NCI CTCAE` Grade**
 
-1) The **`aet04`** template produces the standard adverse event by highest NCI CTCAE grade summary.  
+1) The **`aet04`** template produces the standard adverse event by highest `NCI CTCAE` grade summary.  
 2) By default, this template includes the grouped grades of 'Grade 1-2' and 'Grade 3-4'.   
 3) By default this template removes the rows with 0 count.   
 4) If a treatment group does not have any adverse event, the treatment group is automatically displayed providing that it is defined in `ADSL`.
@@ -139,7 +139,7 @@ run(aet03, syn_data)
 run(aet04, syn_data)
 ```
 
-#### **2. Adverse Events by Highest NCI CTCAE Grade (Fill in of Grades)**
+#### **2. Adverse Events by Highest `NCI CTCAE` Grade (Fill in of Grades)**
 
 If for some preferred terms not all grades occur but all grades should be displayed, this can be achieved by specifying `prune_0 = FALSE`.
 
@@ -147,7 +147,7 @@ If for some preferred terms not all grades occur but all grades should be displa
 run(aet04, syn_data, prune_0 = FALSE)
 ```
 
-#### **3. Adverse Events by Highest NCI CTCAE Grade with modified grouping of grade**
+#### **3. Adverse Events by Highest `NCI CTCAE` Grade with modified grouping of grade**
 
 To collapse grade 3-4 with grade 5, this can be achieved by modifying the definition of grade groups in `grade_groups`.
 
@@ -182,7 +182,7 @@ run(aet10, syn_data, atleast = 0.08)
 
 #### **1. Concomitant Medications by Medication Class and Preferred Name**
 
-1) The **`cmt01a`** template displays concomitant medications by ATC Level 2 and Preferred Name by default.  
+1) The **`cmt01a`** template displays concomitant medications by `ATC Level 2` and Preferred Name by default.  
 2) The template does not include the column of total by default.  
 3) The template sort medication class and preferred name by alphabetical order by default.  
 
@@ -190,7 +190,7 @@ run(aet10, syn_data, atleast = 0.08)
 run(cmt01a, syn_data)
 ```
 
-#### **2. Concomitant Medications by Medication Class and Preferred Name (changing ATC class level)**
+#### **2. Concomitant Medications by Medication Class and Preferred Name (changing `ATC class level`)**
 
 ```{r}
 run(cmt01a, syn_data, row_split_var = "ATC1")
@@ -479,7 +479,7 @@ run(lbt05, syn_data)
 
 #### **2. Laboratory Abnormalities with Single and Replicated Marked showing all categories**
 
-#### **3. Laboratory Abnormalities with Single and Replicated Marked with study specific MLAs**
+#### **3. Laboratory Abnormalities with Single and Replicated Marked with study specific `MLAs`**
 
 ### **Laboratory Abnormalities by Visit and Baseline Status (`LBT06`)**
 
@@ -492,35 +492,35 @@ run(lbt05, syn_data)
 run(lbt06, syn_data)
 ```
 
-### **Laboratory Test Results with Highest NCI CTCAE Grade Post-Baseline (`LBT07`)**
+### **Laboratory Test Results with Highest `NCI CTCAE` Grade Post-Baseline (`LBT07`)**
 
-#### **1. Laboratory Test Results with Highest NCI CTCAE Grade Post-Baseline**
+#### **1. Laboratory Test Results with Highest `NCI CTCAE` Grade Post-Baseline**
 
-The **`lbt07`** template produces the standard laboratory test results with highest NCI CTCAE grade post-baseline summary.
+The **`lbt07`** template produces the standard laboratory test results with highest `NCI CTCAE` grade post-baseline summary.
 
 ```{r}
 run(lbt07, syn_data)
 ```
 
-### **Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (`LBT14`)**
+### **Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (`LBT14`)**
 
-#### **1. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (High)**
+#### **1. Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (High)**
 
-To produce the standard laboratory test results shift table - highest NCI-CTCAE grade post-baseline by baseline NCI-CTCAE grade summary for high abnormalities, use the **`lbt04`** template and set the parameter *`direction`* to `high`.
+To produce the standard laboratory test results shift table - highest `NCI-CTCAE` grade post-baseline by baseline `NCI-CTCAE` grade summary for high abnormalities, use the **`lbt04`** template and set the parameter *`direction`* to `high`.
 
 ```{r}
 run(lbt14, syn_data, direction = "high")
 ```
 
-#### **2. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (Low)**
+#### **2. Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (Low)**
 
-To produce the standard laboratory test results shift table - highest NCI-CTCAE grade post-baseline by baseline NCI-CTCAE grade summary for high abnormalities, use the **`lbt04`** template and the parameter `direction` is `low` by default.
+To produce the standard laboratory test results shift table - highest `NCI-CTCAE` grade post-baseline by baseline `NCI-CTCAE` grade summary for high abnormalities, use the **`lbt04`** template and the parameter `direction` is `low` by default.
 
 ```{r}
 run(lbt14, syn_data)
 ```
 
-#### **3. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (High) Without Patients with Missing Baseline**
+#### **3. Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (High) Without Patients with Missing Baseline**
 
 To exclude patients with missing baseline grade, set the parameter `gr_missing` to `excl`.
 
@@ -528,7 +528,7 @@ To exclude patients with missing baseline grade, set the parameter `gr_missing` 
 run(lbt14, syn_data, direction = "high", gr_missing = "excl")
 ```
 
-#### **4. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (Low) with Missing Baseline Considered as Grade 0**
+#### **4. Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (Low) with Missing Baseline Considered as Grade 0**
 
 To count patients with missing baseline grade as grade 0, set the parameter `gr_missing` to `gr_0`.
 
@@ -536,7 +536,7 @@ To count patients with missing baseline grade as grade 0, set the parameter `gr_
 run(lbt14, syn_data, gr_missing = "gr_0")
 ```
 
-#### **4. Laboratory Test Results Shift Table - Highest NCI-CTCAE Grade Post-Baseline by Baseline NCI-CTCAE Grade (with fill in of grades)**
+#### **4. Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (with fill in of grades)**
 
 To display all possible grades even if they do not occur in the data, set the parameter `prune_0` to `FALSE`.
 
