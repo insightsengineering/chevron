@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+library(dunlin)
 library(chevron)
-data(syn_data, package = "chevron")
 ```
 
 ## **TABLES**
@@ -27,13 +27,13 @@ data(syn_data, package = "chevron")
 
 The **`aet01`** template produces the standard safety summary.
 
-```{r}
+```{r, eval = FALSE}
 run(aet01, syn_data, arm_var = "ARM")
 ```
 
 #### **2. Safety Summary with Modified Rows**
 
-Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, `"SEV"`. When modification is made, analyses must be all listed in the parameter `anl_vars`. The example below shows adding customized analyses `"RELCTC35"`.
+Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, and `"SEV"`. When modification is made, analyses must be all listed in the parameter `anl_vars`. The example below shows adding customized analyses `"RELCTC35"`.
 
 ```{r}
 proc_data <- syn_data
@@ -68,6 +68,7 @@ run(aet01, proc_data, anl_vars = list(safety_var = c("FATAL", "SER", "RELSER", "
 ### **Safety Summary (Adverse Events of Special Interest) (`AET01_AESI`)**
 
 #### **1. Safety Summary (Adverse Events of Special Interest)**
+
 The **`aet01_aesi`** template produces the standard safety summary for adverse events of special interest.
 
 ```{r}
@@ -169,6 +170,7 @@ run(aet10, syn_data)
 ```
 
 #### **2. Most Common (>=8%) Adverse Events (setting threshold)**
+
 To modify the threshold for displaying preferred terms, this can be achieved by providing the threshold to the `atleast` parameter.  
 
 ```{r}
@@ -366,6 +368,7 @@ run(dtht01, syn_data, time_since_last_dose = TRUE)
 ### **ECG Results and Change from Baseline by Visit (`EGT01`)**
 
 #### **1. ECG Results and Change from Baseline by Visit**
+
 The **`egt01`** template produces the standard ECG results and change from baseline by visit summary.
 
 ```{r}
@@ -385,6 +388,7 @@ run(egt02_1, syn_data)
 ### **ECG Abnormalities (Among Subject Without Abnormality at Baseline) (`EGT02_2`)**
 
 #### **1. ECG Abnormalities (Among Subject Without Abnormality at Baseline)**
+
 The **`egt02_2`** template produces the standard ECG abnormalities summary where the abnormalities are summarized among subject without abnormality at baseline.
 
 ```{r}
@@ -398,7 +402,8 @@ run(egt02_2, syn_data)
 The **`egt03`** template produces the standard shift table of ECG interval data - baseline versus minimum post-baseline summary.
 
 ```{r}
-run(egt03, syn_data)
+proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
+run(egt03, proc_data)
 ```
 
 #### **2. Shift Table of ECG Interval Data - Baseline versus Maximum Post-Baseline**
