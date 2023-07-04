@@ -122,7 +122,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = render_safe(event_lvls[1]))
+      .labels = c(count_fraction = event_lvls[1])
     )
 
   if (summarize_event) {
@@ -142,7 +142,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_NOT_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = render_safe(event_lvls[2])),
+      .labels = c(count_fraction = event_lvls[2]),
       nested = FALSE,
       show_labels = "hidden"
     ) %>%
