@@ -34,7 +34,7 @@ ext01_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
   summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- ext01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,

@@ -14,3 +14,7 @@ var_labels_for(df, vars)
 \description{
 Retrieve labels for certain variables
 }
+\details{
+The labels will be returned if the column has \code{label} attribute, otherwise the column name will be returned.
+Any values between brackets {} will be replaced with \code{dunlin::render_safe}.
+}

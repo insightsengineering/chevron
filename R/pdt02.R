@@ -39,7 +39,7 @@ pdt02_main <- function(adam_db,
 
   lbl_dvreas_var <- var_labels_for(adam_db$addv, dvreas_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- pdt02_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -76,7 +76,9 @@ pdt02_lyt <- function(arm_var,
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one major protocol deviation related to epidemic/pandemic",
+        unique = render_safe(
+          "Total number of {patient_label} with at least one major protocol deviation related to epidemic/pandemic"
+        ),
         nonunique = "Total number of major protocol deviations related to epidemic/pandemic"
       )
     ) %>%

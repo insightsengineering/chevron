@@ -28,7 +28,7 @@ aet03_main <- function(adam_db,
   assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", "AEDECOD", "ASEV"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   intensity_grade <- levels(adam_db$adae[["ASEV"]])
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")

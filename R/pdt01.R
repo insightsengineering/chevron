@@ -39,7 +39,7 @@ pdt01_main <- function(adam_db,
 
   lbl_dvcode_var <- var_labels_for(adam_db$addv, dvcode_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- pdt01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -76,7 +76,7 @@ pdt01_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one major protocol deviation",
+        unique = render_safe("Total number of {patient_label} with at least one major protocol deviation"),
         nonunique = "Total number of major protocol deviations"
       ),
       .formats = list(unique = format_count_fraction_fixed_dp)

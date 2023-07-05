@@ -77,14 +77,14 @@ rmpt01_lyt <- function(summaryvars,
     ) %>%
     split_cols_by_multivar(
       vars = c("AVAL", "AVAL"),
-      varlabels = c(n_patients = "Patients", sum_exposure = "Person time"),
+      varlabels = c(n_patients = render_safe("{Patient_label}"), sum_exposure = "Person time"),
       extra_args = list(.stats = c("n_patients", "sum_exposure"))
     ) %>%
     analyze_patients_exposure_in_cols(
       var = summaryvars,
       col_split = FALSE,
       add_total_level = show_tot,
-      custom_label = "Total patients number/person time"
+      custom_label = render_safe("Total {patient_label} number/person time")
     )
 
   if (!is.null(split_var)) {
@@ -95,7 +95,7 @@ rmpt01_lyt <- function(summaryvars,
         var = summaryvars,
         col_split = FALSE,
         add_total_level = show_tot,
-        custom_label = "Total patients number/person time"
+        custom_label = render_safe("Total {patient_label} number/person time")
       ) %>%
       append_topleft(c("", lbl_summaryvars))
   } else {
