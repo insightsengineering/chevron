@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9017</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9018</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,22 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -142,7 +126,7 @@ rendered.</p>
 <span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
 <span><span class="co">#&gt; anl_vars &lt;- list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", </span></span>
 <span><span class="co">#&gt;     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))</span></span>
-<span><span class="co">#&gt; anl_lbls &lt;- "Total number of patients with at least one"</span></span>
+<span><span class="co">#&gt; anl_lbls &lt;- "Total number of {patient_label} with at least one"</span></span>
 <span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
@@ -200,7 +184,7 @@ has been modified.</p>
 <span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
 <span><span class="co">#&gt; anl_vars &lt;- list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", </span></span>
 <span><span class="co">#&gt;     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))</span></span>
-<span><span class="co">#&gt; anl_lbls &lt;- "Total number of patients with at least one"</span></span>
+<span><span class="co">#&gt; anl_lbls &lt;- "Total number of {patient_label} with at least one"</span></span>
 <span><span class="co">#&gt; new_format &lt;- stop("missing value")</span></span>
 <span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
