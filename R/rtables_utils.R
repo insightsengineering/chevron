@@ -218,8 +218,10 @@ obtain_value <- function(obj, index) {
 #' Get page by value
 #' @keywords internal
 get_page_by <- function(var, vars) {
+  checkmate::assert_character(vars, null.ok = TRUE)
+  checkmate::assert_character(var, null.ok = TRUE, max.len = 1L)
   ret <- rep(FALSE, length(vars))
-  if (is.null(var)) {
+  if (is.null(var) || length(var) == 0) {
     return(ret)
   }
   index <- match(var, vars)

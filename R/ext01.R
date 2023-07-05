@@ -27,7 +27,7 @@ ext01_main <- function(adam_db,
                        summaryvars = "AVAL",
                        row_split_var = "PARCAT2",
                        lbl_overall = NULL,
-                       page_var = tail(row_split_var, 1L),
+                       page_var = NULL,
                        map = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
@@ -45,7 +45,7 @@ ext01_main <- function(adam_db,
     types = list(c("character", "factor")), empty_ok = TRUE
   )
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(page_var)
+  checkmate::assert_string(page_var, null.ok = TRUE)
   checkmate::assert_subset(page_var, c(row_split_var))
   assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
