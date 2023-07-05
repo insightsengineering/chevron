@@ -106,7 +106,7 @@ mht01_pre <- function(adam_db, ...) {
 
   adam_db$admh <- adam_db$admh %>%
     mutate(
-      across(all_of(c("MHBODSYS", "MHDECOD")), ~ reformat(.x, nocoding, na_last = TRUE))
+      across(all_of(c("MHBODSYS", "MHDECOD")), ~ reformat(.x, nocoding, .na_last = TRUE))
     ) %>%
     mutate(
       MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class"),

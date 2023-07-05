@@ -110,9 +110,9 @@ pdt02_lyt <- function(arm_var,
 pdt02_pre <- function(adam_db,
                       ...) {
   adam_db$addv <- adam_db$addv %>%
-    mutate(across(all_of(c("DVCAT", "AEPRELFL")), ~ reformat(.x, missing_rule, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVCAT", "AEPRELFL")), ~ reformat(.x, missing_rule, .na_last = TRUE))) %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
-    mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding, .na_last = TRUE))) %>%
     mutate(
       DVREAS = with_label(.data$DVREAS, "Primary Reason"),
       DVTERM = with_label(.data$DVTERM, "Description")
