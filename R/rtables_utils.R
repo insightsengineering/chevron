@@ -68,7 +68,7 @@ valid_row_path <- function(tlg, row_path) {
 }
 
 #' Count patients recursively
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param anl_vars Named (`list`) of analysis variables.
 #' @param anl_lbls (`character`) of labels.
 #' @param lbl_vars Named (`list`) of analysis labels.
@@ -107,8 +107,8 @@ summarize_row <- function(lyt, vars, afun, ...) {
 #' Summary factor allowing NA
 #' @param x (`factor`) input.
 #' @param denom (`string`) denominator choice.
-#' @param .N_row (`integer`) number of rows in row-splitted dataset.
-#' @param .N_col (`integer`) number of rows in column-splitted dataset.
+#' @param .N_row (`integer`) number of rows in row-split dataset.
+#' @param .N_col (`integer`) number of rows in column-split dataset.
 #' @param ... Not used
 #' @keywords internal
 s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { # nolint
@@ -127,7 +127,7 @@ s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, 
   y$n_blq <- sum(grepl("BLQ|LTR|<[1-9]", x))
   y
 }
-#' Summarize variables allow na
+#' Summarize variables allow `NA`
 #' @keywords internal
 summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
@@ -144,7 +144,7 @@ summarize_vars_allow_na <- function(
 }
 
 #' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param var (`string`) of analysis variable.
 #' @param level (`string`) level to be displayed.
 #' @param detail_vars (`character`) of variables for detail information.
@@ -181,12 +181,38 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 }
 
 #' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param split_var (`character`) variable to split rows by.
 #' @param ... Further arguments for `split_rows_by`
 #' @keywords internal
 split_rows_by_recurive <- function(lyt, split_var, ...) {
-  purrr::reduce(.x = split_var, .f = split_rows_by, .init = lyt, ...)
+  args <- list(...)
+  for (i in seq_len(length(split_var))) {
+    args_i <- lapply(args, obtain_value, index = i)
+    lyt <- do.call(
+      split_rows_by,
+      c(
+        list(
+          lyt = lyt,
+          split_var
+        ),
+        args_i
+      )
+    )
+  }
+  lyt
+}
+
+#' Obtain value from a vector
+#' @keywords internal
+obtain_value <- function(obj, index) {
+  if (is.list(obj)) {
+    return(obj[[index]])
+  }
+  if (is.vector(obj) && length(obj) >= index) {
+    return(obj[index])
+  }
+  return(obj)
 }
 
 #' Proportion layout
@@ -236,13 +262,13 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
 
 #' Helper function to add a row split if specified
 #'
-#' @param lyt (`rtables`) object.
+#' @param lyt (`PreDataTableLayouts`) object.
 #' @param var (`string`) the name of the variable initiating a new row split.
 #' @param lbl_var (`string`)the label of the variable `var`.
 #'
 #' @keywords internal
 #'
-#' @return `rtables` object.
+#' @return `PreDataTableLayouts` object.
 #'
 ifneeded_split_row <- function(lyt, var, lbl_var) {
   if (is.null(var)) {
@@ -251,6 +277,28 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
     split_rows_by(lyt, var,
       label_pos = "topleft",
       split_label = lbl_var
+    )
+  }
+}
+
+#' Helper function to add a column split if specified
+#'
+#' @param lyt (`rtables`) object.
+#' @param var (`string`) the name of the variable initiating a new column split.
+#' @param ... Additional arguments for `split_cols_by`.
+#'
+#' @keywords internal
+#'
+#' @return `rtables` object.
+#'
+ifneeded_split_col <- function(lyt, var, ...) {
+  if (is.null(var)) {
+    lyt
+  } else {
+    split_cols_by(
+      lyt = lyt,
+      var = var,
+      ...
     )
   }
 }
@@ -300,4 +348,58 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
   } else {
     lyt
   }
+}
+
+#' Analyze skip baseline
+#' @param x value to analyze
+#' @param .var variable name.
+#' @param .spl_context split context.
+#' @param paramcdvar (`string`) name of parameter code.
+#' @param visitvar (`string`) name of the visit variable.
+#' @param skip Named (`character`) indicating the pairs to skip in analyze.
+#' @inheritParams cfbt01_main
+#' @keywords internal
+afun_skip_baseline <- function(x, .var, .spl_context, paramcdvar, visitvar, skip, precision, default_precision, ...) {
+  param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
+  pcs <- precision[[param_val]] %||% default_precision
+
+  # Create context dependent function.
+  n_fun <- sum(!is.na(x), na.rm = TRUE)
+  if (n_fun == 0) {
+    mean_sd_fun <- c(NA, NA)
+    median_fun <- NA
+    min_max_fun <- c(NA, NA)
+  } else {
+    mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+    median_fun <- median(x, na.rm = TRUE)
+    min_max_fun <- c(min(x), max(x))
+  }
+
+  # Identify context-
+  is_chg <- .var == skip
+
+  is_baseline <- .spl_context$value[which(.spl_context$split == visitvar)] == names(skip)
+
+  if (is_baseline && is_chg) {
+    n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
+  }
+
+  in_rows(
+    "n" = n_fun,
+    "Mean (SD)" = mean_sd_fun,
+    "Median" = median_fun,
+    "Min - Max" = min_max_fun,
+    .formats = list(
+      "n" = "xx",
+      "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
+      "Median" = h_format_dec(format = "%f", digits = pcs + 1),
+      "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
+    ),
+    .format_na_strs = list(
+      "n" = "NE",
+      "Mean (SD)" = "NE (NE)",
+      "Median" = "NE",
+      "Min - Max" = "NE - NE"
+    )
+  )
 }

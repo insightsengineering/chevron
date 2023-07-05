@@ -7,7 +7,7 @@
 split_rows_by_recurive(lyt, split_var, ...)
 }
 \arguments{
-\item{lyt}{(\code{PreDataTableLayouts}) rtable layout.}
+\item{lyt}{(\code{PreDataTableLayouts}) \code{rtable} layout.}
 
 \item{split_var}{(\code{character}) variable to split rows by.}
 

@@ -10,7 +10,7 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
-#'  * Missing values in `AEDECOD` are labeled by `No Coding available`.
+#'  * Missing values in `AEDECOD` are labeled by `No Coding Available`.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adae` table with the columns `"AEDECOD"`.
@@ -116,6 +116,5 @@ aet10 <- chevron_t(
   main = aet10_main,
   lyt = aet10_lyt,
   preprocess = aet10_pre,
-  postprocess = aet10_post,
-  adam_datasets = c("adsl", "adae")
+  postprocess = aet10_post
 )

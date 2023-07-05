@@ -13,7 +13,7 @@ An object of class \code{chevron_t} of length 1.
 \usage{
 egt03_main(
   adam_db,
-  arm_var = "ARMCD",
+  arm_var = "ACTARMCD",
   summaryvar = "BNRIND",
   splitvar = "ANRIND",
   visit_var = "AVISIT",
@@ -29,7 +29,7 @@ egt03
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{arm_var}{(\code{character}) the arm variables used for row split, typically \code{"ARMCD"}.}
+\item{arm_var}{(\code{character}) the arm variables used for row split, typically \code{"ACTARMCD"}.}
 
 \item{summaryvar}{(\code{character}) variables to be analyzed, typically \code{"BNRIND"}. Labels of the corresponding columns
 are used as subtitles.}
@@ -52,7 +52,7 @@ last observation prior to initiation of study drug.
 }
 \details{
 \itemize{
-\item ADEG data are subsetted to contain only "POST-BASELINE MINIMUM" visit
+\item \code{ADEG} data are subsetted to contain only "POST-BASELINE MINIMUM" visit
 \item the number of patients by baseline assessment and minimum post-baseline assessment.
 \item Percentages are based on the total number of patients in a treatment group.
 \item Split columns by Analysis Reference Range Indicator, typically \code{ANRIND}.
@@ -71,11 +71,13 @@ last observation prior to initiation of study drug.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adeg} table with a \code{"ARMCD"} column as well as columns specified in
+\item \code{adam_db} object must contain an \code{adeg} table with a \code{"ACTARMCD"} column as well as columns specified in
 \code{summaryvar} and \code{splitvar}.
 }
 }
 \examples{
-run(egt03, syn_data)
+library(dunlin)
+proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
+run(egt03, proc_data)
 }
 \keyword{datasets}

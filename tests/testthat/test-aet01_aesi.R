@@ -14,9 +14,9 @@ test_that("aet01_aesi can handle all NA values", {
     )
 
   res <- expect_silent(run(aet01_aesi, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
   res <- expect_silent(run(aet01_aesi, proc_data, prune_0 = TRUE))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
 test_that("aet01_aesi can handle some NA values", {
@@ -27,13 +27,13 @@ test_that("aet01_aesi can handle some NA values", {
     )
 
   res <- expect_silent(run(aet01_aesi, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
 test_that("aet01_aesi works with `ALL` argument", {
   proc_data <- syn_data
   res <- expect_silent(run(aet01_aesi, proc_data, aesi_vars = c("ALL")))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100, cpp = 200)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
 test_that("aet01_aesi_check fails on incomplete data input", {

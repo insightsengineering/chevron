@@ -11,7 +11,7 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
-#'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
+#'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding Available`.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"` and `"AEDECOD"`.
@@ -136,6 +136,5 @@ aet02_post <- function(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) {
 aet02 <- chevron_t(
   main = aet02_main,
   preprocess = aet02_pre,
-  postprocess = aet02_post,
-  adam_datasets = c("adsl", "adae")
+  postprocess = aet02_post
 )

@@ -3,12 +3,13 @@
 \docType{data}
 \name{coxt02_main}
 \alias{coxt02_main}
-\alias{coxt02_pre}
-\alias{coxt02_post}
 \alias{coxt02}
-\title{\code{COXT02} Table 1 (Default) Multi-Variable Cox Regression Model Table 1.}
+\title{\code{COXT02} Multi-Variable Cox Regression Model Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
+}
+\source{
+\code{utils.R}
 }
 \usage{
 coxt02_main(
@@ -19,12 +20,9 @@ coxt02_main(
   covariates = c("SEX", "RACE", "AAGE"),
   strata = NULL,
   lbl_vars = "Effect/Covariate Included in the Model",
+  multivar = TRUE,
   ...
 )
-
-coxt02_pre(adam_db, ...)
-
-coxt02_post(tlg, prune_0 = FALSE, ...)
 
 coxt02
 }
@@ -43,11 +41,9 @@ coxt02
 
 \item{lbl_vars}{(\code{string}) text label for the a Cox regression model variables.}
 
+\item{multivar}{(\code{flag}) indicator of whether multivariate cox regression is conducted.}
+
 \item{...}{Further arguments passed to \code{tern::control_coxreg()}.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 The \code{COXT02} table follows the same principles as the general Cox model analysis
@@ -58,12 +54,12 @@ and produces the estimates for each of the covariates included in the model
 \itemize{
 \item The reference arm will always the first level of \code{arm_var}. Please change the level if you want to
 change the reference arms.
-\item The table allows confidence level to be adjusted, default is 2-sided 5\%.
+\item The table allows confidence level to be adjusted, default is two-sided 95\%.
 \item The stratified analysis is with DISCRETE tie handling (equivalent to \code{tern::control_coxreg(ties = "exact")} in R).
 \item Model includes treatment plus specified covariate(s) as factor(s) or numeric(s),
 with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 \item The selection of the covariates and whether or not there is a selection process
-(vs. a fixed, pre-specified list) needs to be specified in the DAP.
+(vs. a fixed, pre-specified list) needs to be pre-specified.
 \item For pairwise comparisons using the hazard ratio, the value for the control group is the denominator.
 \item Keep zero-count rows unless overridden with \code{prune_0 = TRUE}.
 }
@@ -71,10 +67,6 @@ with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 \section{Functions}{
 \itemize{
 \item \code{coxt02_main()}: Main TLG function
-
-\item \code{coxt02_pre()}: Preprocessing
-
-\item \code{coxt02_post()}: Postprocessing
 
 }}
 \note{
@@ -85,7 +77,6 @@ with \code{"SEX"}, \code{"RACE"} and \code{"AAGE"} as default candidates.
 }
 }
 \examples{
-library(dplyr)
 library(dunlin)
 
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")

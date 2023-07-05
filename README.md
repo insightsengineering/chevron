@@ -8,7 +8,7 @@
 [![Code Coverage 📔](https://raw.githubusercontent.com/insightsengineering/chevron/_xml_coverage_reports/data/main/badge.svg)](https://insightsengineering.github.io/chevron/main/coverage-report/)
 
 ![GitHub forks](https://img.shields.io/github/forks/insightsengineering/chevron?style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/insightsengineering/chevron?style=social)
+![GitHub repo stars](https://img.shields.io/github/stars/insightsengineering/chevron?style=social)
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/insightsengineering/chevron)
 ![GitHub contributors](https://img.shields.io/github/contributors/insightsengineering/chevron)

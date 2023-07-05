@@ -1,7 +1,7 @@
 # egt05_qtcat functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                            
           Analysis Visit            A: Drug X    B: Placebo    C: Combination
@@ -79,7 +79,7 @@
 # egt05_qtcat can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Parameter                                                            
           Analysis Visit            A: Drug X    B: Placebo    C: Combination

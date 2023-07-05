@@ -11,9 +11,17 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-rmpt01_main(adam_db, summaryvars = c("AVALCAT1", "AVAL"), parcat = NULL, ...)
+rmpt01_main(
+  adam_db,
+  summaryvars = "AVALCAT1",
+  show_tot = TRUE,
+  split_var = NULL,
+  col_split_var = NULL,
+  overall_col_lbl = NULL,
+  ...
+)
 
-rmpt01_pre(adam_db, parcat = NULL, ...)
+rmpt01_pre(adam_db, summaryvars = "AVALCAT1", ...)
 
 rmpt01_post(tlg, prune_0 = FALSE, ...)
 
@@ -22,10 +30,16 @@ rmpt01
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
-\item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
+\item{summaryvars}{(\code{string}) variables to be analyzed. The label attribute of the corresponding columns in \code{adex}
 table of \code{adam_db} is used as label.}
 
-\item{parcat}{(\code{string}) the name of the variable initiating a new row split.}
+\item{show_tot}{(\code{flag}) whether to display the cumulative total.}
+
+\item{split_var}{(\code{string}) the name of the column that containing variable to split exposure by.}
+
+\item{col_split_var}{(\code{string}) additional column splitting variable.}
+
+\item{overall_col_lbl}{(\code{string}) name of the overall column. If \code{NULL}, no overall level is added.}
 
 \item{...}{not used.}
 
@@ -55,13 +69,10 @@ The \code{RMPT01} table provides an overview of duration of exposure.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adex} table with \code{"PARAMCD"} and the columns specified by \code{anl_vars} which
-is denoted as \code{c("AVALCAT1", "AVAL")} by default.
+\item \code{adam_db} object must contain an \code{adex} table with \code{"AVAL"} and the columns specified by \code{summaryvars}.
 }
 }
 \examples{
-run(rmpt01, syn_data)
-
-run(rmpt01, syn_data, parcat = "PARCAT2")
+run(rmpt01, syn_data, col_split_var = "SEX")
 }
 \keyword{datasets}

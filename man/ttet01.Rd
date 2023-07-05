@@ -43,33 +43,33 @@ ttet01
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{ref_group}{(\code{string}) The name of the reference group, the value should
-be identical to the values in \code{arm_var}, if not speficied, it will by default
+be identical to the values in \code{arm_var}, if not specified, it will by default
 use the first level or value of \code{arm_var}.}
 
-\item{summarize_event}{(\code{flag}) should the event discription be displayed, default is TRUE}
+\item{summarize_event}{(\code{flag}) should the event description be displayed, default is TRUE}
 
 \item{perform_analysis}{(\code{string}) option to display statistical comparisons using stratified analyses,
-or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default}
+or unstratified analyses, or both, e.g. \code{c("unstrat", "strat")}. Only unstratified will be displayed by default}
 
-\item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
+\item{strata}{(\code{string}) stratification factors, e.g. \code{strata = c("STRATA1", "STRATA2")}, by default as NULL}
 
 \item{pval_method}{(\code{string}) p-value method for testing hazard ratio = 1.
-Default method is "log-rank", can also be set to "wald" or "likelihood".}
+Default method is \code{"log-rank"}, can also be set to \code{"wald"} or \code{"likelihood"}.}
 
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
 
-\item{conf_type}{(\code{string}) confidence interval type. Options are "plain" (default), "log", "log-log",
-see more in survival::survfit(). Note option "none" is no longer supported.}
+\item{conf_type}{(\code{string}) confidence interval type. Options are \code{"plain"} (default), \code{"log"}, \code{"log-log"},
+see more in \code{survival::survfit()}. Note option "none" is no longer supported.}
 
 \item{quantiles}{(\code{numeric}) of length two to specify the quantiles of survival time.}
 
-\item{ties}{(\code{string}) specifying the method for tie handling. Default is "efron",
-can also be set to "breslow" or "exact". see more in survival::coxph()}
+\item{ties}{(\code{string}) specifying the method for tie handling. Default is \code{"efron"},
+can also be set to \code{"breslow"} or \code{"exact"}. see more in \code{survival::coxph()}}
 
 \item{timepoint}{(\code{numeric}) survival time point of interest.}
 
-\item{method}{(\code{string}) either "surv" (survival estimations),
-"surv_diff" (difference in survival with the control) or "both".}
+\item{method}{(\code{string}) either \code{"surv"} (survival estimations),
+\code{"surv_diff"} (difference in survival with the control) or \code{"both"}.}
 
 \item{...}{not used.}
 
@@ -78,7 +78,7 @@ can also be set to "breslow" or "exact". see more in survival::coxph()}
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-TTET01 template may be used to summarize any binary outcome or response variable at
+\code{TTET01} template may be used to summarize any binary outcome or response variable at
 a single time point. Typical application for oncology
 }
 \details{
@@ -96,7 +96,6 @@ a single time point. Typical application for oncology
 
 }}
 \examples{
-ttet01_pre(syn_data)
 library(dplyr)
 library(dunlin)
 

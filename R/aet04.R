@@ -55,6 +55,7 @@ aet04_main <- function(adam_db,
   )
   adam_db$adae$TOTAL_VAR <- "- Any adverse events - "
   tbl <- build_table(lyt, df = adam_db$adae, alt_counts_df = adam_db$adsl)
+
   tbl
 }
 
@@ -179,6 +180,5 @@ aet04_post <- function(tlg, prune_0 = TRUE, ...) {
 aet04 <- chevron_t(
   main = aet04_main,
   preprocess = aet04_pre,
-  postprocess = aet04_post,
-  adam_datasets = c("adsl", "adae")
+  postprocess = aet04_post
 )
