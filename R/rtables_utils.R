@@ -439,7 +439,7 @@ infer_mapping <- function(map_df, df) {
       rlang::abort(
         paste0(
           "Provided map should only contain valid levels in dataset in variable ", x,
-          ". Consider convert ", x, " to factor first and add the levels to it."
+          ". Consider convert ", x, " to factor first and add", toString(setdiff(map_df[[x]], lvls(df[[x]]))) ,"levels to it."
         )
       )
     }
