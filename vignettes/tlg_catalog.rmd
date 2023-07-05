@@ -34,7 +34,7 @@ run(aet01, syn_data, arm_var = "ARM")
 
 #### **2. Safety Summary with Modified Rows**
 
-Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. An analyses here is an abbreviated name of the analyses of interest, and supported by a variable in ADAE derived under the condition of interest. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, and `"SEV"`. When modification is made, analyses must be all listed in the parameter `anl_vars`. The example below shows adding customized analyses `"RELCTC35"`.
+Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. An analyses here is an abbreviated name of the analyses of interest, and supported by a variable in `ADAE` derived under the condition of interest. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, and `"SEV"`. When modification is made, analyses must be all listed in the parameter `anl_vars`. The example below shows adding customized analyses `"RELCTC35"`.
 
 ```{r}
 proc_data <- syn_data
@@ -78,7 +78,7 @@ run(aet01_aesi, syn_data)
 
 #### **2. Safety Summary (Adverse Events of Special Interest) (optional lines)**
 
-Additional analyses can be added with the parameter `aesi_vars`, please type `?aet01_aesi` in Rstudio console to find out the list of all pre-defined optional analyses in the HELP.
+Additional analyses can be added with the parameter `aesi_vars`, please type `?aet01_aesi` in console to find out the list of all pre-defined optional analyses in the HELP.
 
 ```{r}
 run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
@@ -487,7 +487,6 @@ run(lbt05, syn_data)
 
 1) The **`lbt06`** template produces the standard laboratory abnormalities by visit and baseline status summary.
 
-
 ```{r}
 run(lbt06, syn_data)
 ```
@@ -497,7 +496,7 @@ run(lbt06, syn_data)
 #### **1. Laboratory Test Results with Highest `NCI CTCAE` Grade Post-Baseline**
 
 1) The **`lbt07`** template produces the standard laboratory test results with highest `NCI CTCAE` grade post-baseline summary.  
-2) The laboratory tests and grades in this template is currently data-driven. The standard metadata for possible lab tests and corresponding NCI CTCAE grade will be incorporated in future release.
+2) The laboratory tests and grades in this template is currently data-driven. The standard metadata for possible lab tests and corresponding `NCI CTCAE` grade will be incorporated in future release.
 
 ```{r}
 run(lbt07, syn_data)
