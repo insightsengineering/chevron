@@ -17,7 +17,8 @@ ttet01_lyt(
   ties,
   timeunit,
   timepoint,
-  method
+  method,
+  event_lvls
 )
 }
 \arguments{

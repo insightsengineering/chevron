@@ -31,7 +31,7 @@ mht01_main <- function(adam_db,
 
   lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- mht01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -65,8 +65,8 @@ mht01_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one condition",
-        nonunique = "Total number of conditions"
+        unique = render_safe("Total number of {patient_label} with at least one condition"),
+        nonunique = render_safe("Total number of conditions")
       )
     ) %>%
     split_rows_by(
@@ -83,7 +83,7 @@ mht01_lyt <- function(arm_var,
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one condition",
+        unique = render_safe("Total number of {patient_label} with at least one condition"),
         nonunique = "Total number of conditions"
       )
     ) %>%

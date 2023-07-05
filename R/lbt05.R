@@ -29,7 +29,7 @@ lbt05_main <- function(adam_db,
 
   lbl_anrind <- var_labels_for(adam_db$adlb, "ABN_DIR")
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
-
+  lbl_overall <- render_safe(lbl_overall)
   map <- expand.grid(
     PARAM = levels(adam_db$adlb$PARAM),
     ABN_DIR = c("Low", "High"),

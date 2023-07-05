@@ -41,7 +41,7 @@ lbt07_main <- function(adam_db,
 
   lbl_param_var <- var_labels_for(adam_db$adlb, param_var)
   lbl_grad_dir_var <- var_labels_for(adam_db$adlb, grad_dir_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   map <- expand.grid(
     PARAM = levels(adam_db$adlb[[param_var]]),
     GRADE_DIR = c("LOW", "HIGH"),

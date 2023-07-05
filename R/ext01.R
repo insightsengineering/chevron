@@ -53,7 +53,7 @@ ext01_main <- function(adam_db,
 
   summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
   row_split_lbl <- var_labels_for(adam_db$adex, row_split_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- ext01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
