@@ -445,12 +445,13 @@ infer_mapping <- function(map_df, df) {
       )
     }
   }
+  res <- df[vars] %>%
+    unique() %>%
+    arrange(across(everything())) %>%
+    mutate(across(everything(), as.character))
   if (!is.null(map_df)) {
-    map_df
+    dplyr::full_join(map_df, res, by = colnames(map_df))[vars]
   } else {
-    df[vars] %>%
-      unique() %>%
-      arrange(across(everything())) %>%
-      mutate(across(everything(), as.character))
+    res
   }
 }
