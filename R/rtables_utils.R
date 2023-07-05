@@ -440,7 +440,7 @@ infer_mapping <- function(map_df, df) {
         paste0(
           "Provided map should only contain valid levels in dataset in variable ", x,
           ". Consider convert ", x, " to factor first and add",
-          toString(setdiff(map_df[[x]], lvls(df[[x]]))) ,"levels to it."
+          toString(setdiff(map_df[[x]], lvls(df[[x]]))), "levels to it."
         )
       )
     }
