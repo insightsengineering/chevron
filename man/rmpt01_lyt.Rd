@@ -8,7 +8,7 @@ rmpt01_lyt(
   summaryvars,
   lbl_summaryvars,
   show_tot,
-  split_var,
+  row_split_var,
   col_split_var,
   overall_col_lbl
 )
@@ -21,7 +21,7 @@ table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
-\item{split_var}{(\code{character}) recursive split row variable.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{col_split_var}{(\code{string}) additional column splitting variable.}
 

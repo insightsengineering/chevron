@@ -35,3 +35,35 @@ test_that("ext01 works for selected parameters and categorical variables", {
   res <- run(ext01, proc_data, prune_0 = TRUE, summaryvars = c("AVAL", "AVALCAT1"))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
+
+# ext01 with custom mapping
+
+test_that("ext01 works with custom mapping order", {
+  map <- data.frame(
+    PARAMCD = "TDURD",
+    AVALCAT1 = c("< 1 month", "3 to <6 months", "1 to <3 months", ">=6 months")
+  )
+  res <- run(ext01, syn_data, prune_0 = FALSE, summaryvars = c("AVAL", "AVALCAT1"), map = map)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("ext01 works with custom mapping order for a single split", {
+  map <- data.frame(
+    PARCAT2 = "Drug A",
+    PARAMCD = "TDURD",
+    AVALCAT1 = c("< 1 month", "3 to <6 months", "1 to <3 months", ">=6 months")
+  )
+  res <- run(ext01, syn_data, prune_0 = FALSE, summaryvars = c("AVAL", "AVALCAT1"), map = map)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("ext01 works with custom mapping fill in value", {
+  map <- data.frame(
+    PARAMCD = "TDURD",
+    AVALCAT1 = c("< 1 month", "3 to <6 months", "1 to <3 months", ">=6 months", "> 12 months")
+  )
+  proc_data <- syn_data
+  levels(proc_data$adex$AVALCAT1) <- c(levels(proc_data$adex$AVALCAT1), "> 12 months")
+  res <- run(ext01, proc_data, prune_0 = FALSE, summaryvars = c("AVAL", "AVALCAT1"), map = map)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})

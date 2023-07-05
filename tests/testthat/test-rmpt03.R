@@ -18,7 +18,7 @@ test_that("rmpt03 can handle NA values", {
   res1 <- expect_silent(run(rmpt03, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
 
-  res2 <- expect_silent(run(rmpt03, proc_data, split_var = "PARCAT2"))
+  res2 <- expect_silent(run(rmpt03, proc_data, row_split_var = "PARCAT2"))
   expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 })
 
@@ -32,7 +32,7 @@ test_that("rmpt03 can handle some NA values", {
   res1 <- expect_silent(run(rmpt03, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
 
-  res2 <- expect_silent(run(rmpt03, proc_data, split_var = "PARCAT2"))
+  res2 <- expect_silent(run(rmpt03, proc_data, row_split_var = "PARCAT2"))
   expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 })
 
@@ -44,7 +44,7 @@ test_that("rmpt03 fails on incomlete data", {
     )
 
   expect_error(run(rmpt03, proc_data))
-  expect_error(run(rmpt03, proc_data, split_var = "PARCAT2"))
+  expect_error(run(rmpt03, proc_data, row_split_var = "PARCAT2"))
 
   proc_data <- prop_data
   proc_data$adex <- proc_data$adex %>%

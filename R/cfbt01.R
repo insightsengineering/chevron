@@ -11,8 +11,6 @@
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
 #' @param default_precision (`integer`) the default number of digits.
-#' @param page_by (`flag`) indicator whether the parameter row split is by page.
-#' @param row_split_var (`character`) row split variable other than `PARAMCD`.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -38,7 +36,7 @@ cfbt01_main <- function(adam_db,
                         visitvar = "AVISIT",
                         precision = list(),
                         default_precision = 2,
-                        page_by = TRUE,
+                        page_var = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
@@ -46,7 +44,8 @@ cfbt01_main <- function(adam_db,
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   checkmate::assert_string(visitvar)
-  checkmate::assert_flag(page_by)
+  checkmate::assert_string(page_var, null.ok = TRUE)
+  checkmate::assert_subset(page_var, c(row_split_var, "PARAMCD"))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
@@ -80,7 +79,7 @@ cfbt01_main <- function(adam_db,
     lbl_param = lbl_param,
     precision = precision,
     default_precision = default_precision,
-    page_by = page_by
+    page_var = page_var
   )
 
   tbl <- build_table(
@@ -117,18 +116,23 @@ cfbt01_lyt <- function(arm_var,
                        lbl_param,
                        precision,
                        default_precision,
-                       page_by) {
-  label_pos <- if (page_by) "hidden" else "topleft"
+                       page_var) {
+  page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD", visitvar))
+  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    split_rows_by_recurive(row_split_var, split_label = row_split_lbl, label_pos = label_pos, page_by = page_by) %>%
+    split_rows_by_recurive(
+      row_split_var,
+      split_label = row_split_lbl,
+      label_pos = head(label_pos, -1L), page_by = head(page_by, -1L)
+    ) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = label_pos,
+      label_pos = tail(label_pos, 1L),
       split_label = lbl_param,
-      page_by = page_by
+      page_by = tail(page_by, 1L)
     ) %>%
     split_rows_by(
       visitvar,

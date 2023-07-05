@@ -3,6 +3,7 @@
 \docType{data}
 \name{egt01_main}
 \alias{egt01_main}
+\alias{egt01_pre}
 \alias{egt01}
 \title{\code{EGT01} ECG Parameters and Change from Baseline By Visit Table.}
 \format{
@@ -21,9 +22,11 @@ egt01_main(
   visitvar = "AVISIT",
   precision = list(),
   default_precision = 2,
-  page_by = TRUE,
+  page_var = NULL,
   ...
 )
+
+egt01_pre(adam_db, dataset = "adeg", ...)
 
 egt01
 }
@@ -34,7 +37,7 @@ egt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{row_split_var}{(\code{character}) row split variable other than \code{PARAMCD}.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in
 table of \code{adam_db} is used as label.}
@@ -48,7 +51,7 @@ represented with one more decimal of precision.}
 
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
-\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 }
@@ -73,6 +76,8 @@ by \code{AVISIT}. Re-level to customize order
 \section{Functions}{
 \itemize{
 \item \code{egt01_main()}: Main TLG function
+
+\item \code{egt01_pre()}: Preprocessing
 
 }}
 \note{

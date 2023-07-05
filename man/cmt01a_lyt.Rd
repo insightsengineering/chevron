@@ -21,7 +21,7 @@ cmt01a_lyt(
 
 \item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
 
-\item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{medname_var}{(\code{string}) variable name of medical treatment name.}
 

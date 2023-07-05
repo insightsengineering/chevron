@@ -182,19 +182,19 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 
 #' Count or summarize by groups
 #' @param lyt (`PreDataTableLayouts`) `rtable` layout.
-#' @param split_var (`character`) variable to split rows by.
+#' @param row_split_var (`character`) variable to split rows by.
 #' @param ... Further arguments for `split_rows_by`
 #' @keywords internal
-split_rows_by_recurive <- function(lyt, split_var, ...) {
+split_rows_by_recurive <- function(lyt, row_split_var, ...) {
   args <- list(...)
-  for (i in seq_len(length(split_var))) {
+  for (i in seq_len(length(row_split_var))) {
     args_i <- lapply(args, obtain_value, index = i)
     lyt <- do.call(
       split_rows_by,
       c(
         list(
           lyt = lyt,
-          split_var
+          row_split_var
         ),
         args_i
       )
@@ -213,6 +213,24 @@ obtain_value <- function(obj, index) {
     return(obj[index])
   }
   return(obj)
+}
+
+#' Get page by value
+#' @keywords internal
+get_page_by <- function(var, vars) {
+  checkmate::assert_character(vars, null.ok = TRUE)
+  checkmate::assert_character(var, null.ok = TRUE, max.len = 1L)
+  ret <- rep(FALSE, length(vars))
+  if (is.null(var) || length(var) == 0) {
+    return(ret)
+  }
+  index <- match(var, vars)
+  checkmate::assert_int(index, na.ok = TRUE)
+  if (is.na(index)) {
+    return(ret)
+  }
+  ret[seq_len(index)] <- TRUE
+  return(ret)
 }
 
 #' Proportion layout
@@ -402,4 +420,38 @@ afun_skip_baseline <- function(x, .var, .spl_context, paramcdvar, visitvar, skip
       "Min - Max" = "NE - NE"
     )
   )
+}
+
+split_fun_map <- function(map) {
+  if (is.null(map)) {
+    drop_split_levels
+  } else {
+    trim_levels_to_map(map = map)
+  }
+}
+
+infer_mapping <- function(map_df, df) {
+  checkmate::assert_data_frame(df)
+  vars <- colnames(map_df)
+  checkmate::assert_names(names(df), must.include = vars)
+  for (x in vars) {
+    if (!checkmate::test_subset(map_df[[x]], lvls(df[[x]]))) {
+      rlang::abort(
+        paste0(
+          "Provided map should only contain valid levels in dataset in variable ", x,
+          ". Consider convert ", x, " to factor first and add",
+          toString(setdiff(map_df[[x]], lvls(df[[x]]))), "levels to it."
+        )
+      )
+    }
+  }
+  res <- df[vars] %>%
+    unique() %>%
+    arrange(across(everything())) %>%
+    mutate(across(everything(), as.character))
+  if (!is.null(map_df)) {
+    dplyr::full_join(map_df, res, by = colnames(map_df))[vars]
+  } else {
+    res
+  }
 }

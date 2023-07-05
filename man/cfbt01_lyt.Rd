@@ -15,7 +15,7 @@ cfbt01_lyt(
   lbl_param,
   precision,
   default_precision,
-  page_by
+  page_var
 )
 }
 \arguments{
@@ -25,7 +25,7 @@ cfbt01_lyt(
 
 \item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
 
-\item{row_split_var}{(\code{character}) row split variable other than \code{PARAMCD}.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{row_split_lbl}{(\code{character}) label of further row splits.}
 
@@ -42,7 +42,7 @@ represented with one more decimal of precision.}
 
 \item{default_precision}{(\code{integer}) the default number of digits.}
 
-\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{cfbt01} Layout

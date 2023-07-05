@@ -14,7 +14,7 @@ rmpt03_main(
   adam_db,
   summaryvars = "AGEGR1",
   show_tot = TRUE,
-  split_var = NULL,
+  row_split_var = NULL,
   col_split_var = "SEX",
   overall_col_lbl = "All Genders",
   ...
@@ -32,7 +32,7 @@ table of \code{adam_db} is used as label.}
 
 \item{show_tot}{(\code{flag}) whether to display the cumulative total.}
 
-\item{split_var}{(\code{string}) the name of the column that containing variable to split exposure by.}
+\item{row_split_var}{(\code{string}) the name of the column that containing variable to split exposure by.}
 
 \item{col_split_var}{(\code{string}) additional column splitting variable.}
 

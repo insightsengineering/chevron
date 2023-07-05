@@ -124,7 +124,7 @@ lbt07_lyt <- function(arm_var,
 lbt07_pre <- function(adam_db, ...) {
   adam_db$adlb <- adam_db$adlb %>%
     mutate(
-      ATOXGR = reformat(.data$ATOXGR, missing_rule, .na_last = TRUE)
+      ATOXGR = reformat(.data$ATOXGR, missing_rule)
     ) %>%
     filter(
       .data$ATOXGR != "<Missing>",

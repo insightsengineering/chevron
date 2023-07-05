@@ -8,7 +8,7 @@
 #'
 egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg")
 
-#' @describeIn vst01 Preprocessing
+#' @describeIn egt01 Preprocessing
 #'
 #' @inherit cfbt01_pre
 #' @export
