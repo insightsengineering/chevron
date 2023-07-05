@@ -34,7 +34,7 @@ run(aet01, syn_data, arm_var = "ARM")
 
 #### **2. Safety Summary with Modified Rows**
 
-Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, and `"SEV"`. When modification is made, analyses must be all listed in the parameter `anl_vars`. The example below shows adding customized analyses `"RELCTC35"`.
+Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. An analyses here is an abbreviated name of the analyses of interest, and supported by a variable in ADAE derived under the condition of interest. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, and `"SEV"`. When modification is made, analyses must be all listed in the parameter `anl_vars`. The example below shows adding customized analyses `"RELCTC35"`.
 
 ```{r}
 proc_data <- syn_data
@@ -78,7 +78,7 @@ run(aet01_aesi, syn_data)
 
 #### **2. Safety Summary (Adverse Events of Special Interest) (optional lines)**
 
-Additional analyses can be added with the parameter `aesi_vars`, please type `?aet01_aesi` in the console to find out the list of all pre-defined optional analyses in the help.
+Additional analyses can be added with the parameter `aesi_vars`, please type `?aet01_aesi` in Rstudio console to find out the list of all pre-defined optional analyses in the HELP.
 
 ```{r}
 run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
@@ -86,7 +86,7 @@ run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
 
 #### **3. Safety Summary (Adverse Events of Special Interest) (for studies with multiple drugs)**
 
-For studies with more than one study drug, user needs to define the analyses variable in `adae` and add to the parameter `aesi_vars` following the example above. No pre-defined analyses is available at this moment. 
+For studies with more than one study drug, users need to define the analyses in `adae` and add to the parameter `aesi_vars` following the example above. No pre-defined analyses is available at this moment. 
 
 ### **Adverse Events (`AET02`)**
 
@@ -459,8 +459,8 @@ TBA
 
 #### **1. Laboratory Abnormalities**
 1) The **`lbt04`** template produces the standard laboratory abnormalities summary.  
-2) The template subsets to SI results by default.  
-3) The laboratory tests and directions where an abnormality is possible are determined by ....?   
+2) The template subsets to SI results by default.   
+3) The laboratory tests and directions of abnormality in this template is data-driven. Table entries provide the number of patients with a during treatment laboratory value abnormality in the direction specified among patients without this abnormality at baseline.
 
 ```{r}
 run(lbt04, syn_data)
@@ -471,7 +471,7 @@ run(lbt04, syn_data)
 #### **1. Laboratory Abnormalities with Single and Replicated Marked**
 
 1) The **`lbt05`** template produces the standard laboratory abnormalities summary for marked abnormalities.  
-2) The laboratory tests and directions where an abnormality is possible are determined by the standard metadata for Safety Lab Standardization??
+2) The laboratory tests and directions of abnormality in this template is currently data-driven. The standard metadata for Safety Lab Standardization will be incorporated in future release.
 
 ```{r}
 run(lbt05, syn_data)
@@ -486,7 +486,7 @@ run(lbt05, syn_data)
 #### **1. Laboratory Abnormalities by Visit and Baseline Status**
 
 1) The **`lbt06`** template produces the standard laboratory abnormalities by visit and baseline status summary.
-2) The laboratory tests and directions where an abnormality is possible are determined by....?
+
 
 ```{r}
 run(lbt06, syn_data)
@@ -496,7 +496,8 @@ run(lbt06, syn_data)
 
 #### **1. Laboratory Test Results with Highest `NCI CTCAE` Grade Post-Baseline**
 
-The **`lbt07`** template produces the standard laboratory test results with highest `NCI CTCAE` grade post-baseline summary.
+1) The **`lbt07`** template produces the standard laboratory test results with highest `NCI CTCAE` grade post-baseline summary.  
+2) The laboratory tests and grades in this template is currently data-driven. The standard metadata for possible lab tests and corresponding NCI CTCAE grade will be incorporated in future release.
 
 ```{r}
 run(lbt07, syn_data)
@@ -506,7 +507,7 @@ run(lbt07, syn_data)
 
 #### **1. Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (High)**
 
-To produce the standard laboratory test results shift table - highest `NCI-CTCAE` grade post-baseline by baseline `NCI-CTCAE` grade summary for high abnormalities, use the **`lbt04`** template and set the parameter *`direction`* to `high`.
+To produce the standard laboratory test results shift table - highest `NCI-CTCAE` grade post-baseline by baseline `NCI-CTCAE` grade summary for high abnormalities, use the **`lbt14`** template and set the parameter *`direction`* to `high`.
 
 ```{r}
 run(lbt14, syn_data, direction = "high")
@@ -514,7 +515,7 @@ run(lbt14, syn_data, direction = "high")
 
 #### **2. Laboratory Test Results Shift Table - Highest `NCI-CTCAE` Grade Post-Baseline by Baseline `NCI-CTCAE` Grade (Low)**
 
-To produce the standard laboratory test results shift table - highest `NCI-CTCAE` grade post-baseline by baseline `NCI-CTCAE` grade summary for high abnormalities, use the **`lbt04`** template and the parameter `direction` is `low` by default.
+To produce the standard laboratory test results shift table - highest `NCI-CTCAE` grade post-baseline by baseline `NCI-CTCAE` grade summary for high abnormalities, use the **`lbt14`** template and the parameter `direction` is `low` by default.
 
 ```{r}
 run(lbt14, syn_data)
