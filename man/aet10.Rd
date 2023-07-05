@@ -44,7 +44,7 @@ Order the data by total column frequency from most to least frequently reported 
 \item Split columns by arm.
 \item Does not include a total column by default.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
-\item Missing values in \code{AEDECOD} are labeled by \verb{No Coding available}.
+\item Missing values in \code{AEDECOD} are labeled by \verb{No Coding Available}.
 }
 }
 \section{Functions}{
