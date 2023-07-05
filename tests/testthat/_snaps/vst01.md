@@ -7,7 +7,7 @@
       Parameter: Diastolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -51,7 +51,7 @@
       Parameter: Diastolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -95,7 +95,7 @@
       Parameter: Pulse Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -139,7 +139,7 @@
       Parameter: Pulse Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -183,7 +183,7 @@
       Parameter: Respiratory Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -227,7 +227,7 @@
       Parameter: Respiratory Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -271,7 +271,7 @@
       Parameter: Systolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -315,7 +315,7 @@
       Parameter: Systolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -359,7 +359,7 @@
       Parameter: Temperature
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -403,7 +403,7 @@
       Parameter: Temperature
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -447,7 +447,7 @@
       Parameter: Weight
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -491,7 +491,7 @@
       Parameter: Weight
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -541,7 +541,7 @@
       Parameter: Diastolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -585,7 +585,7 @@
       Parameter: Diastolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -629,7 +629,7 @@
       Parameter: Pulse Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -673,7 +673,7 @@
       Parameter: Pulse Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -717,7 +717,7 @@
       Parameter: Respiratory Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -761,7 +761,7 @@
       Parameter: Respiratory Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -805,7 +805,7 @@
       Parameter: Systolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -849,7 +849,7 @@
       Parameter: Systolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -893,7 +893,7 @@
       Parameter: Temperature
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -937,7 +937,7 @@
       Parameter: Temperature
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -981,7 +981,7 @@
       Parameter: Weight
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -1025,7 +1025,7 @@
       Parameter: Weight
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
