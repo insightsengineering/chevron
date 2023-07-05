@@ -17,7 +17,7 @@ ext01_main(
   summaryvars = "AVAL",
   row_split_var = "PARCAT2",
   lbl_overall = NULL,
-  page_var = tail(row_split_var, 1L),
+  page_var = NULL,
   map = NULL,
   ...
 )

@@ -439,17 +439,18 @@ infer_mapping <- function(map_df, df) {
       rlang::abort(
         paste0(
           "Provided map should only contain valid levels in dataset in variable ", x,
-          ". Consider convert ", x, " to factor first and add", toString(setdiff(map_df[[x]], lvls(df[[x]]))) ,"levels to it."
+          ". Consider convert ", x, " to factor first and add",
+          toString(setdiff(map_df[[x]], lvls(df[[x]]))) ,"levels to it."
         )
       )
     }
   }
-  unique_rows <- df[vars] %>%
-    unique() %>%
-    arrange(across(everything())) %>%
-    mutate(across(everything(), as.character))
-  if (is.null(map_df)) {
-    return(unique_rows)
+  if (!is.null(map_df)) {
+    map_df
+  } else {
+    df[vars] %>%
+      unique() %>%
+      arrange(across(everything())) %>%
+      mutate(across(everything(), as.character))
   }
-  dplyr::full_join(map_df, unique_rows, by = colnames(map_df))[vars]
 }
