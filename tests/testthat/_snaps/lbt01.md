@@ -7,7 +7,7 @@
       Parameter: Alanine Aminotransferase Measurement
       
         ———————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                                  A: Drug X                B: Placebo  
+        Analysis Visit                                    A: Drug X                B: Placebo  
                                                                  Change from                   
                                                Value at Visit      Baseline      Value at Visit
                                                   (N=134)          (N=134)          (N=134)    
@@ -46,7 +46,7 @@
       Parameter: Alanine Aminotransferase Measurement
       
         ———————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                         B: Placebo             C: Combination         
+        Analysis Visit                           B: Placebo             C: Combination         
                                                 Change from                       Change from  
                                                   Baseline      Value at Visit      Baseline   
                                                   (N=134)          (N=132)          (N=132)    
@@ -85,7 +85,7 @@
       Parameter: C-Reactive Protein Measurement
       
         ———————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                                  A: Drug X                B: Placebo  
+        Analysis Visit                                    A: Drug X                B: Placebo  
                                                                  Change from                   
                                                Value at Visit      Baseline      Value at Visit
                                                   (N=134)          (N=134)          (N=134)    
@@ -124,7 +124,7 @@
       Parameter: C-Reactive Protein Measurement
       
         ———————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                         B: Placebo             C: Combination         
+        Analysis Visit                           B: Placebo             C: Combination         
                                                 Change from                       Change from  
                                                   Baseline      Value at Visit      Baseline   
                                                   (N=134)          (N=132)          (N=132)    
@@ -163,7 +163,7 @@
       Parameter: Immunoglobulin A Measurement
       
         ———————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                                  A: Drug X                B: Placebo  
+        Analysis Visit                                    A: Drug X                B: Placebo  
                                                                  Change from                   
                                                Value at Visit      Baseline      Value at Visit
                                                   (N=134)          (N=134)          (N=134)    
@@ -202,7 +202,7 @@
       Parameter: Immunoglobulin A Measurement
       
         ———————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                         B: Placebo             C: Combination         
+        Analysis Visit                           B: Placebo             C: Combination         
                                                 Change from                       Change from  
                                                   Baseline      Value at Visit      Baseline   
                                                   (N=134)          (N=132)          (N=132)    
@@ -248,7 +248,7 @@
       Parameter: Alanine Aminotransferase Measurement
       
         —————————————————————————————————————————————————————————————————————————————————————————
-            Analysis Visit                                  A: Drug X                B: Placebo  
+        Analysis Visit                                      A: Drug X                B: Placebo  
                                                                    Change from                   
                                                  Value at Visit      Baseline      Value at Visit
                                                     (N=134)          (N=134)          (N=134)    
@@ -288,7 +288,7 @@
       Parameter: Alanine Aminotransferase Measurement
       
         —————————————————————————————————————————————————————————————————————————————————————————
-            Analysis Visit                         B: Placebo             C: Combination         
+        Analysis Visit                             B: Placebo             C: Combination         
                                                   Change from                       Change from  
                                                     Baseline      Value at Visit      Baseline   
                                                     (N=134)          (N=132)          (N=132)    
@@ -328,7 +328,7 @@
       Parameter: C-Reactive Protein Measurement
       
         —————————————————————————————————————————————————————————————————————————————————————————
-            Analysis Visit                                  A: Drug X                B: Placebo  
+        Analysis Visit                                      A: Drug X                B: Placebo  
                                                                    Change from                   
                                                  Value at Visit      Baseline      Value at Visit
                                                     (N=134)          (N=134)          (N=134)    
@@ -368,7 +368,7 @@
       Parameter: C-Reactive Protein Measurement
       
         —————————————————————————————————————————————————————————————————————————————————————————
-            Analysis Visit                         B: Placebo             C: Combination         
+        Analysis Visit                             B: Placebo             C: Combination         
                                                   Change from                       Change from  
                                                     Baseline      Value at Visit      Baseline   
                                                     (N=134)          (N=132)          (N=132)    
@@ -408,7 +408,7 @@
       Parameter: Immunoglobulin A Measurement
       
         —————————————————————————————————————————————————————————————————————————————————————————
-            Analysis Visit                                  A: Drug X                B: Placebo  
+        Analysis Visit                                      A: Drug X                B: Placebo  
                                                                    Change from                   
                                                  Value at Visit      Baseline      Value at Visit
                                                     (N=134)          (N=134)          (N=134)    
@@ -448,7 +448,7 @@
       Parameter: Immunoglobulin A Measurement
       
         —————————————————————————————————————————————————————————————————————————————————————————
-            Analysis Visit                         B: Placebo             C: Combination         
+        Analysis Visit                             B: Placebo             C: Combination         
                                                   Change from                       Change from  
                                                     Baseline      Value at Visit      Baseline   
                                                     (N=134)          (N=132)          (N=132)    
