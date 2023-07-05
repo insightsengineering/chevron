@@ -106,7 +106,7 @@ lbt05_pre <- function(adam_db, ...) {
       PARAM = with_label(.data$PARAM, "Laboratory Test")
     ) %>%
     mutate(
-      across(all_of(c("AVALCAT1", "ABN_DIR")), ~ reformat(.x, .env$missing_rule, na_last = TRUE))
+      across(all_of(c("AVALCAT1", "ABN_DIR")), ~ reformat(.x, .env$missing_rule))
     )
 
 

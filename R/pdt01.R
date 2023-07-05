@@ -102,7 +102,7 @@ pdt01_lyt <- function(arm_var,
 #'
 pdt01_pre <- function(adam_db, ...) {
   adam_db$addv <- adam_db$addv %>%
-    mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding))) %>%
     mutate(
       DVDECOD = with_label(.data$DVDECOD, "Protocol Deviation Coded Term"),
       DVTERM = with_label(.data$DVTERM, "Category")
