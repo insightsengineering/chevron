@@ -26,7 +26,7 @@ articles:
       - chevron
       - adding_new_tlgs_to_chevron
       - script_generator
-      - tlg_catalog
+      - chevron_catalog
 
 reference:
   - title: Package Overview
