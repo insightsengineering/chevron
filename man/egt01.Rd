@@ -21,7 +21,7 @@ egt01_main(
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
   precision = list(default = 2L),
-  page_by = TRUE,
+  page_var = "PARAMCD",
   .stats = c("n", "mean_sd", "median", "range"),
   ...
 )
@@ -37,7 +37,7 @@ egt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{row_split_var}{(\code{character}) row split variable other than \code{PARAMCD}.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in
 table of \code{adam_db} is used as label.}
@@ -49,7 +49,7 @@ to be displayed}
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
-\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
 

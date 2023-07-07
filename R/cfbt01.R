@@ -10,8 +10,6 @@
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
-#' @param page_by (`flag`) indicator whether the parameter row split is by page.
-#' @param row_split_var (`character`) row split variable other than `PARAMCD`.
 #' @param .stats (`character`) statistics names, see `tern::summarize_vars()`.
 #' @param ... additional arguments like `.indent_mods`, `.labels`.
 #'
@@ -38,7 +36,7 @@ cfbt01_main <- function(adam_db,
                         summaryvars = c("AVAL", "CHG"),
                         visitvar = "AVISIT",
                         precision = list(default = 2L),
-                        page_by = TRUE,
+                        page_var = "PARAMCD",
                         .stats = c("n", "mean_sd", "median", "range"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
@@ -86,7 +84,7 @@ cfbt01_main <- function(adam_db,
     lbl_param = lbl_param,
     precision = precision,
     .stats = .stats,
-    page_by = page_by,
+    page_var = page_var,
     ...
   )
   tbl <- build_table(
@@ -122,10 +120,11 @@ cfbt01_lyt <- function(arm_var,
                        lbl_avisit,
                        lbl_param,
                        precision,
-                       page_by,
+                       page_var,
                        .stats,
                        ...) {
-  label_pos <- if (page_by) "hidden" else "topleft"
+  page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
+  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by_recurive(

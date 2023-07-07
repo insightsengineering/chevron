@@ -14,7 +14,7 @@ cfbt01_lyt(
   lbl_avisit,
   lbl_param,
   precision,
-  page_by,
+  page_var,
   .stats,
   ...
 )
@@ -41,7 +41,7 @@ to be displayed.}
 indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
 represented with one more decimal of precision.}
 
-\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
 
