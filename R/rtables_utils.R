@@ -383,15 +383,13 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' @param ... additional arguments for `tern::create_afun_summary`.
 #' @inheritParams cfbt01_main
 #' @keywords internal
-afun_skip_baseline <- function(
+afun_skip <- function(
     x, .var, .spl_context, paramcdvar, visitvar, skip,
     precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) { # nolint
   param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
   # Identify context
-  is_chg <- .var == skip
-
-  is_baseline <- .spl_context$value[which(.spl_context$split == visitvar)] == names(skip)
-  pcs <- if (is_baseline && is_chg) {
+  split_level <- .spl_context$value[which(.spl_context$split == visitvar)]
+  pcs <- if (.var %in% names(skip) && split_level %in% skip[[.var]]) {
     NA
   } else {
     precision[[param_val]] %||% precision[["default"]] %||% 2

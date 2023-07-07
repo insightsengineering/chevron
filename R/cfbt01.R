@@ -11,6 +11,7 @@
 #'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
 #'   represented with one more decimal of precision.
 #' @param .stats (`character`) statistics names, see `tern::summarize_vars()`.
+#' @param skip Named (`list`) of visit variables that need to be inhibited.
 #' @param ... additional arguments like `.indent_mods`, `.labels`.
 #'
 #' @details
@@ -38,6 +39,7 @@ cfbt01_main <- function(adam_db,
                         precision = list(default = 2L),
                         page_var = "PARAMCD",
                         .stats = c("n", "mean_sd", "median", "range"),
+                        skip = list(CHG = "BASELINE"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
@@ -85,6 +87,7 @@ cfbt01_main <- function(adam_db,
     precision = precision,
     .stats = .stats,
     page_var = page_var,
+    skip = skip,
     ...
   )
   tbl <- build_table(
@@ -122,6 +125,7 @@ cfbt01_lyt <- function(arm_var,
                        precision,
                        page_var,
                        .stats,
+                       skip,
                        ...) {
   page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
   label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
@@ -152,11 +156,11 @@ cfbt01_lyt <- function(arm_var,
       nested = TRUE
     ) %>%
     analyze_colvars(
-      afun = afun_skip_baseline,
+      afun = afun_skip,
       extra_args = list(
         visitvar = visitvar,
         paramcdvar = "PARAMCD",
-        skip = c("BASELINE" = "CHG"),
+        skip = skip,
         precision = precision,
         .stats = .stats,
         ...

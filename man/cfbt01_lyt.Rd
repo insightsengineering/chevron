@@ -16,6 +16,7 @@ cfbt01_lyt(
   precision,
   page_var,
   .stats,
+  skip,
   ...
 )
 }
@@ -44,6 +45,8 @@ represented with one more decimal of precision.}
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
+
+\item{skip}{Named (\code{list}) of visit variables that need to be inhibited.}
 
 \item{...}{not used.}
 }

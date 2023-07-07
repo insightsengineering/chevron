@@ -23,6 +23,7 @@ egt01_main(
   precision = list(default = 2L),
   page_var = "PARAMCD",
   .stats = c("n", "mean_sd", "median", "range"),
+  skip = list(CHG = "BASELINE"),
   ...
 )
 
@@ -52,6 +53,8 @@ represented with one more decimal of precision.}
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
+
+\item{skip}{Named (\code{list}) of visit variables that need to be inhibited.}
 
 \item{...}{additional arguments like \code{.indent_mods}, \code{.labels}.}
 }
