@@ -7,7 +7,7 @@
       Parameter: Diastolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -51,7 +51,7 @@
       Parameter: Diastolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -95,7 +95,7 @@
       Parameter: Pulse Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -139,7 +139,7 @@
       Parameter: Pulse Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -183,7 +183,7 @@
       Parameter: Respiratory Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -227,7 +227,7 @@
       Parameter: Respiratory Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -271,7 +271,7 @@
       Parameter: Systolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -315,7 +315,7 @@
       Parameter: Systolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -359,7 +359,7 @@
       Parameter: Temperature
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -403,7 +403,7 @@
       Parameter: Temperature
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -447,7 +447,7 @@
       Parameter: Weight
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -491,46 +491,37 @@
       Parameter: Weight
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
-        SCREENING                                                  
-          n                             132                0       
-          Mean (SD)                50.305 (9.057)       NE (NE)    
-          Median                       49.745             NE       
-          Min - Max                26.04 - 69.99        NE - NE    
-        BASELINE                                                   
-          n                             132                        
-          Mean (SD)                49.377 (7.489)                  
-          Median                       49.568                      
-          Min - Max                29.39 - 65.05                   
-        WEEK 1 DAY 8                                               
-          n                             132               132      
-          Mean (SD)                49.572 (8.396)   0.196 (12.142) 
-          Median                       49.864           -0.451     
-          Min - Max                29.73 - 69.07    -31.02 - 32.60 
-        WEEK 2 DAY 15                                              
-          n                             132               132      
-          Mean (SD)                49.741 (7.937)   0.364 (10.827) 
-          Median                       49.762            1.317     
-          Min - Max                28.09 - 73.67    -28.00 - 26.59 
-        WEEK 3 DAY 22                                              
-          n                             132               132      
-          Mean (SD)                50.446 (8.084)   1.069 (10.807) 
-          Median                       50.805           -0.190     
-          Min - Max                27.81 - 70.85    -28.93 - 31.73 
-        WEEK 4 DAY 29                                              
-          n                             132               132      
-          Mean (SD)                49.667 (7.509)   0.290 (10.415) 
-          Median                       49.608           -1.187     
-          Min - Max                30.79 - 77.45    -23.39 - 29.93 
-        WEEK 5 DAY 36                                              
-          n                             132               132      
-          Mean (SD)                49.872 (7.400)   0.495 (10.871) 
-          Median                       49.590           -0.156     
-          Min - Max                28.74 - 67.93    -36.15 - 31.04 
+        Weight                                                     
+          WEEK 1 DAY 8                                             
+            n                           132               132      
+            Mean (SD)              49.572 (8.396)   0.196 (12.142) 
+            Median                     49.864           -0.451     
+            Min - Max              29.73 - 69.07    -31.02 - 32.60 
+          WEEK 2 DAY 15                                            
+            n                           132               132      
+            Mean (SD)              49.741 (7.937)   0.364 (10.827) 
+            Median                     49.762            1.317     
+            Min - Max              28.09 - 73.67    -28.00 - 26.59 
+          WEEK 3 DAY 22                                            
+            n                           132               132      
+            Mean (SD)              50.446 (8.084)   1.069 (10.807) 
+            Median                     50.805           -0.190     
+            Min - Max              27.81 - 70.85    -28.93 - 31.73 
+          WEEK 4 DAY 29                                            
+            n                           132               132      
+            Mean (SD)              49.667 (7.509)   0.290 (10.415) 
+            Median                     49.608           -1.187     
+            Min - Max              30.79 - 77.45    -23.39 - 29.93 
+          WEEK 5 DAY 36                                            
+            n                           132               132      
+            Mean (SD)              49.872 (7.400)   0.495 (10.871) 
+            Median                     49.590           -0.156     
+            Min - Max              28.74 - 67.93    -36.15 - 31.04 
 
 # run vst01 works as expected
 
@@ -541,7 +532,7 @@
       Parameter: Diastolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -585,7 +576,7 @@
       Parameter: Diastolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -629,7 +620,7 @@
       Parameter: Pulse Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -673,7 +664,7 @@
       Parameter: Pulse Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -717,7 +708,7 @@
       Parameter: Respiratory Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -761,7 +752,7 @@
       Parameter: Respiratory Rate
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -805,7 +796,7 @@
       Parameter: Systolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -849,7 +840,7 @@
       Parameter: Systolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -893,7 +884,7 @@
       Parameter: Temperature
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -937,7 +928,7 @@
       Parameter: Temperature
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
@@ -981,7 +972,7 @@
       Parameter: Weight
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-          Analysis Visit                      A: Drug X                          B: Placebo           
+        Analysis Visit                        A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
                                       (N=134)           (N=134)          (N=134)           (N=134)    
@@ -1025,44 +1016,35 @@
       Parameter: Weight
       
         ———————————————————————————————————————————————————————————
-          Analysis Visit                    C: Combination         
+        Analysis Visit                      C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
                                       (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
-        SCREENING                                                  
-          n                             132                0       
-          Mean (SD)                50.305 (9.057)       NE (NE)    
-          Median                       49.745             NE       
-          Min - Max                26.04 - 69.99        NE - NE    
-        BASELINE                                                   
-          n                             132                        
-          Mean (SD)                49.377 (7.489)                  
-          Median                       49.568                      
-          Min - Max                29.39 - 65.05                   
-        WEEK 1 DAY 8                                               
-          n                             132               132      
-          Mean (SD)                49.572 (8.396)   0.196 (12.142) 
-          Median                       49.864           -0.451     
-          Min - Max                29.73 - 69.07    -31.02 - 32.60 
-        WEEK 2 DAY 15                                              
-          n                             132               132      
-          Mean (SD)                49.741 (7.937)   0.364 (10.827) 
-          Median                       49.762            1.317     
-          Min - Max                28.09 - 73.67    -28.00 - 26.59 
-        WEEK 3 DAY 22                                              
-          n                             132               132      
-          Mean (SD)                50.446 (8.084)   1.069 (10.807) 
-          Median                       50.805           -0.190     
-          Min - Max                27.81 - 70.85    -28.93 - 31.73 
-        WEEK 4 DAY 29                                              
-          n                             132               132      
-          Mean (SD)                49.667 (7.509)   0.290 (10.415) 
-          Median                       49.608           -1.187     
-          Min - Max                30.79 - 77.45    -23.39 - 29.93 
-        WEEK 5 DAY 36                                              
-          n                             132               132      
-          Mean (SD)                49.872 (7.400)   0.495 (10.871) 
-          Median                       49.590           -0.156     
-          Min - Max                28.74 - 67.93    -36.15 - 31.04 
+        Weight                                                     
+          WEEK 1 DAY 8                                             
+            n                           132               132      
+            Mean (SD)              49.572 (8.396)   0.196 (12.142) 
+            Median                     49.864           -0.451     
+            Min - Max              29.73 - 69.07    -31.02 - 32.60 
+          WEEK 2 DAY 15                                            
+            n                           132               132      
+            Mean (SD)              49.741 (7.937)   0.364 (10.827) 
+            Median                     49.762            1.317     
+            Min - Max              28.09 - 73.67    -28.00 - 26.59 
+          WEEK 3 DAY 22                                            
+            n                           132               132      
+            Mean (SD)              50.446 (8.084)   1.069 (10.807) 
+            Median                     50.805           -0.190     
+            Min - Max              27.81 - 70.85    -28.93 - 31.73 
+          WEEK 4 DAY 29                                            
+            n                           132               132      
+            Mean (SD)              49.667 (7.509)   0.290 (10.415) 
+            Median                     49.608           -1.187     
+            Min - Max              30.79 - 77.45    -23.39 - 29.93 
+          WEEK 5 DAY 36                                            
+            n                           132               132      
+            Mean (SD)              49.872 (7.400)   0.495 (10.871) 
+            Median                     49.590           -0.156     
+            Min - Max              28.74 - 67.93    -36.15 - 31.04 
 

@@ -26,7 +26,7 @@ cfbt01_lyt(
 
 \item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
 
-\item{row_split_var}{(\code{character}) row split variable other than \code{PARAMCD}.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{row_split_lbl}{(\code{character}) label of further row splits.}
 

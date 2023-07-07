@@ -28,7 +28,7 @@ dtht01_main <- function(adam_db,
   checkmate::assert_flag(other_category)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_flag(time_since_last_dose, null.ok = TRUE)
-
+  lbl_overall <- render_safe(lbl_overall)
   other_var <- if (other_category) "DTHCAUS"
   dose_death_var <- if (time_since_last_dose) "LDDTHGR1"
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list("character", "factor"))

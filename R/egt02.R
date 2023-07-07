@@ -29,7 +29,7 @@ egt02_1_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- egt02_lyt(
     arm_var = arm_var,
     lbl_vs_assessment = "Assessment",

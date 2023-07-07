@@ -3,7 +3,6 @@
 #' @describeIn aet02 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param row_split_var (`character`) row split variables.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subject and fraction of `N`, or absolute number of event when specified.
@@ -11,7 +10,7 @@
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
-#'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding available`.
+#'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding Available`.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"` and `"AEDECOD"`.
@@ -35,7 +34,7 @@ aet02_main <- function(adam_db,
 
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- aet02_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -70,14 +69,16 @@ aet02_lyt <- function(arm_var,
       .stats = c("unique", "nonunique"),
       show_labels = "hidden",
       .labels = c(
-        unique = "Total number of patients with at least one adverse event",
+        unique = render_safe("Total number of {patient_label} with at least one adverse event"),
         nonunique = "Overall total number of events"
       )
     )
   for (k in seq_len(length(row_split_var))) {
     lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k],
       stats = c("unique", "nonunique"),
-      summarize_labels = c("Total number of patients with at least one adverse event", "Total number of events")
+      summarize_labels = render_safe(
+        c("Total number of {patient_label} with at least one adverse event", "Total number of events")
+      )
     )
   }
   lyt %>%

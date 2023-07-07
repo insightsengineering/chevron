@@ -47,7 +47,8 @@ cfbt01_main <- function(adam_db,
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   checkmate::assert_string(visitvar)
-  checkmate::assert_flag(page_by)
+  checkmate::assert_string(page_var, null.ok = TRUE)
+  checkmate::assert_subset(page_var, c(row_split_var, "PARAMCD"))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
@@ -127,14 +128,18 @@ cfbt01_lyt <- function(arm_var,
   label_pos <- if (page_by) "hidden" else "topleft"
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    split_rows_by_recurive(row_split_var, split_label = row_split_lbl, label_pos = label_pos, page_by = page_by) %>%
+    split_rows_by_recurive(
+      row_split_var,
+      split_label = row_split_lbl,
+      label_pos = head(label_pos, -1L), page_by = head(page_by, -1L)
+    ) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = label_pos,
+      label_pos = tail(label_pos, 1L),
       split_label = lbl_param,
-      page_by = page_by
+      page_by = tail(page_by, 1L)
     ) %>%
     split_rows_by(
       visitvar,
@@ -199,7 +204,12 @@ cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(cfbt01, syn_data, dataset = "advs")
+#' library(dunlin)
+#' proc_data <- log_filter(
+#'   syn_data,
+#'   PARAMCD %in% c("DIABP", "SYSBP"), "advs"
+#' )
+#' run(cfbt01, proc_data, dataset = "advs")
 cfbt01 <- chevron_t(
   main = cfbt01_main,
   preprocess = cfbt01_pre,

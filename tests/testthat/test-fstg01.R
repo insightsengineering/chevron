@@ -1,7 +1,7 @@
 # fstg01 functions ----
 
 test_that("fstg01 works as expected", {
-  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "OVRINV" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
+  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
   pre_data <- expect_silent(fstg01_pre(proc_data, dataset = "adrs", response = c("CR", "PR")))
   raw_res <- expect_silent(fstg01_main(pre_data, dataset = "adrs"))
   checkmate::assert_true(grid::is.grob(raw_res))

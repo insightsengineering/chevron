@@ -75,12 +75,7 @@ grade_groups <- list(
   "Grade 3-4" = c("3", "4"),
   "Grade 5" = c("5")
 )
-
-grade_groups <- list(
-  "Grade 1-2" = c("1", "2"),
-  "Grade 3-5" = c("3", "4", "5")
-)
-
-run(aet04, syn_data, grade_groups = grade_groups)
+proc_data <- dunlin::log_filter(syn_data, AEBODSYS == "cl A.1", "adae")
+run(aet04, proc_data, grade_groups = grade_groups)
 }
 \keyword{datasets}

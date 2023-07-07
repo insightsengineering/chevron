@@ -23,7 +23,8 @@ gen_args(
   paramcd_value,
   key_cols,
   disp_cols,
-  split_var,
+  row_split_var,
+  page_var,
   ...
 )
 }
@@ -67,7 +68,9 @@ Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
-\item{split_var}{(\code{character}) recursive split row variable.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 }

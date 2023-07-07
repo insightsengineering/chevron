@@ -44,12 +44,13 @@ writeLines(res)
 The script generator depends on the functions actually stored in the object. Modifying the `chevron_tlg` object can lead to a different script.
 
 ```{r}
-preprocess(aet01) <- function(adam_db, new_format, ...) {
+aet01_custom <- aet01
+preprocess(aet01_custom) <- function(adam_db, new_format, ...) {
   reformat(adam_db, new_format)
 }
 
-res_args <- script_args(aet01)
-res_funs <- script_funs(aet01, adam_db = "syn_data", args = "args_list")
+res_args <- script_args(aet01_custom)
+res_funs <- script_funs(aet01_custom, adam_db = "syn_data", args = "args_list")
 ```
 
 Print the generated scripts. Note that a new argument `new_format` has been added and the pre processing function has been modified.

@@ -6,10 +6,13 @@ globalVariables(c(".", ":="))
 #' @param df (`data.frame`) containing columns with label attribute.
 #' @param vars (`character`) variable names in `df`.
 #'
+#' @details
+#' The labels will be returned if the column has `label` attribute, otherwise the column name will be returned.
+#' Any values between brackets {} will be replaced with `dunlin::render_safe`.
 #' @export
 var_labels_for <- function(df, vars) {
   checkmate::assert_names(colnames(df), must.include = vars, what = "colnames")
-  unname(formatters::var_labels(df, fill = TRUE)[vars])
+  render_safe(unname(formatters::var_labels(df, fill = TRUE)[vars]))
 }
 
 #' Prune Table up to an `ElementaryTable`

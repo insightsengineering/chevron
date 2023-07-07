@@ -35,7 +35,7 @@ aet04_main <- function(adam_db,
 
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
-
+  lbl_overall <- render_safe(lbl_overall)
   checkmate::assert_list(grade_groups, types = "character", null.ok = TRUE)
   if (is.null(grade_groups)) {
     grade_groups <- list(
@@ -170,13 +170,8 @@ aet04_post <- function(tlg, prune_0 = TRUE, ...) {
 #'   "Grade 3-4" = c("3", "4"),
 #'   "Grade 5" = c("5")
 #' )
-#'
-#' grade_groups <- list(
-#'   "Grade 1-2" = c("1", "2"),
-#'   "Grade 3-5" = c("3", "4", "5")
-#' )
-#'
-#' run(aet04, syn_data, grade_groups = grade_groups)
+#' proc_data <- dunlin::log_filter(syn_data, AEBODSYS == "cl A.1", "adae")
+#' run(aet04, proc_data, grade_groups = grade_groups)
 aet04 <- chevron_t(
   main = aet04_main,
   preprocess = aet04_pre,

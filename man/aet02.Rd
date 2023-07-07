@@ -30,7 +30,7 @@ aet02
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{row_split_var}{(\code{character}) row split variables.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
@@ -51,7 +51,7 @@ events categorized by Body System and Dictionary-Derived Term.
 \item Split columns by arm.
 \item Does not include a total column by default.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
-\item Missing values in \code{AEBODSYS}, and \code{AEDECOD} are labeled by \verb{No Coding available}.
+\item Missing values in \code{AEBODSYS}, and \code{AEDECOD} are labeled by \verb{No Coding Available}.
 }
 }
 \section{Functions}{

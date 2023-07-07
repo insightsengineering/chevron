@@ -41,7 +41,7 @@ lbt07_main <- function(adam_db,
 
   lbl_param_var <- var_labels_for(adam_db$adlb, param_var)
   lbl_grad_dir_var <- var_labels_for(adam_db$adlb, grad_dir_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   map <- expand.grid(
     PARAM = levels(adam_db$adlb[[param_var]]),
     GRADE_DIR = c("LOW", "HIGH"),
@@ -124,7 +124,7 @@ lbt07_lyt <- function(arm_var,
 lbt07_pre <- function(adam_db, ...) {
   adam_db$adlb <- adam_db$adlb %>%
     mutate(
-      ATOXGR = reformat(.data$ATOXGR, missing_rule, na_last = TRUE)
+      ATOXGR = reformat(.data$ATOXGR, missing_rule)
     ) %>%
     filter(
       .data$ATOXGR != "<Missing>",

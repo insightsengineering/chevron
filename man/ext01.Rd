@@ -6,7 +6,7 @@
 \alias{ext01_pre}
 \alias{ext01_post}
 \alias{ext01}
-\title{EXT01 Exposure Summary Table.}
+\title{\code{EXT01} Exposure Summary Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -15,17 +15,14 @@ ext01_main(
   adam_db,
   arm_var = "ACTARM",
   summaryvars = "AVAL",
+  row_split_var = "PARCAT2",
   lbl_overall = NULL,
+  page_var = NULL,
+  map = NULL,
   ...
 )
 
-ext01_pre(
-  adam_db,
-  paramcd_order = c("TNDOSE", "DOSE", "NDOSE", "TDOSE"),
-  show_stats = "ALL",
-  show_bins = "ALL",
-  ...
-)
+ext01_pre(adam_db, ...)
 
 ext01_post(tlg, prune_0 = TRUE, ...)
 
@@ -39,24 +36,22 @@ ext01
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adex}
 table of \code{adam_db} is used as label.}
 
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
+
+\item{map}{(\code{data.frame}) of mapping for split rows.}
+
 \item{...}{not used.}
-
-\item{paramcd_order}{(\code{character}) providing the \code{PARAMCD} values in the desired order.}
-
-\item{show_stats}{(\code{character}) providing the name of the parameters whose statistical summary should be
-presented. To analyze all, provide \code{show_stats = "ALL"} (Default), to analyze none, provide \code{show_stats = ""}.}
-
-\item{show_bins}{(\code{character}) providing the name of the parameters whose categorical summary should be
-presented. To analyze all, provide \code{show_bins = "ALL"} (Default), to analyze none, provide \code{show_bins = ""}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-The EXT01 table provides an overview of the of the exposure of the
+The \code{EXT01} table provides an overview of the of the exposure of the
 patients in terms of Total dose administered or missed, and treatment duration.
 }
 \details{
@@ -87,6 +82,12 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \examples{
 run(ext01, syn_data)
-run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"))
+run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE)
+levels(syn_data$adex$AVALCAT1) <- c(levels(syn_data$adex$AVALCAT1), "12 months")
+map <- data.frame(
+  PARAMCD = "TDURD",
+  AVALCAT1 = c("< 1 month", "1 to <3 months", ">=6 months", "3 to <6 months", "12 months")
+)
+run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE, map = map)
 }
 \keyword{datasets}

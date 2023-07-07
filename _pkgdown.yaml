@@ -26,6 +26,7 @@ articles:
       - chevron
       - adding_new_tlgs_to_chevron
       - script_generator
+      - chevron_catalog
 
 reference:
   - title: Package Overview
@@ -59,6 +60,7 @@ reference:
       - cfbt01
       - cmt01a
       - cmt02_pt
+      - coxt01
       - coxt02
       - dmt01
       - dst01

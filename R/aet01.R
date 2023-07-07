@@ -24,12 +24,13 @@ aet01_main <- function(adam_db,
                            "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"
                          )
                        ),
-                       anl_lbls = "Total number of patients with at least one",
+                       anl_lbls = "Total number of {patient_label} with at least one",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   checkmate::assert_string(arm_var)
   checkmate::assert_list(anl_vars, types = "character", names = "unique")
   checkmate::assert_character(anl_lbls, min.chars = 1L)
+  lbl_overall <- render_safe(lbl_overall)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("DTHFL", "DCSREAS"), types = list(c("character", "factor")), min_chars = 0L)
@@ -42,6 +43,7 @@ aet01_main <- function(adam_db,
     var_labels_for,
     df = adam_db$adae
   )
+  anl_lbls <- render_safe(anl_lbls)
   if (length(anl_lbls) == 1) {
     anl_lbls <- rep(anl_lbls, length(anl_vars))
   }
@@ -81,7 +83,7 @@ aet01_lyt <- function(arm_var,
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one AE",
+        unique = render_safe("Total number of {patient_label} with at least one AE"),
         nonunique = "Total number of AEs"
       ),
       .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx"),
@@ -99,7 +101,7 @@ aet01_lyt <- function(arm_var,
       "USUBJID",
       filters = c("DCSREAS" = "ADVERSE EVENT"),
       denom = "N_col",
-      .labels = c(count_fraction = "Total number of patients withdrawn from study due to an AE"),
+      .labels = c(count_fraction = render_safe("Total number of {patient_label} withdrawn from study due to an AE")),
       table_names = "TotWithdrawal"
     )
 

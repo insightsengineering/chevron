@@ -3,7 +3,7 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-          Laboratory Test                         A: Drug X      B: Placebo    C: Combination
+        Laboratory Test                           A: Drug X      B: Placebo    C: Combination
             Direction of Abnormality               (N=134)        (N=134)         (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————
         CHEMISTRY                                                                            
@@ -51,7 +51,7 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-          Laboratory Test                        A: Drug X   B: Placebo   C: Combination
+        Laboratory Test                          A: Drug X   B: Placebo   C: Combination
             Direction of Abnormality              (N=134)     (N=134)        (N=132)    
         ————————————————————————————————————————————————————————————————————————————————
         CHEMISTRY                                                                       
@@ -90,7 +90,7 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-          Laboratory Test                         A: Drug X      B: Placebo    C: Combination
+        Laboratory Test                           A: Drug X      B: Placebo    C: Combination
             Direction of Abnormality               (N=134)        (N=134)         (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————
         CHEMISTRY                                                                            

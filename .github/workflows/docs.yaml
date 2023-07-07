@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - inst/templates/**
-      - _pkgdown.yml
+      - _pkgdown.*
       - DESCRIPTION
       - '**.md'
       - man/**
@@ -23,7 +23,7 @@ on:
       - main
     paths:
       - inst/templates/**
-      - _pkgdown.yml
+      - _pkgdown.*
       - DESCRIPTION
       - '**.md'
       - man/**
