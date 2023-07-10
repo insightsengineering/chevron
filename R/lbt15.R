@@ -2,6 +2,9 @@
 
 #' @describeIn lbt15 Main TLG function
 #' @source `lbt04.R`
+#'
+#' @inheritParams lbt04
+#'
 #' @export
 #'
 lbt15_main <- modify_default_args(lbt04_main, abn_range = "ATOXGR", baseline = "BTOXGR")
@@ -37,7 +40,7 @@ lbt15_pre <- function(adam_db, ...) {
   adam_db
 }
 
-#' `LBT15` Laboratory Test Shifts to NCI-CTCAE Grade 3-4 Post-Baseline Table.
+#' `LBT15` Laboratory Test Shifts to `NCI`-`CTCAE` Grade 3-4 Post-Baseline Table.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
