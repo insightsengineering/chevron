@@ -34,8 +34,8 @@ afun_skip(
 \item{skip}{Named (\code{character}) indicating the pairs to skip in analyze.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
-indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified, the value for
-\code{default} will be used.}
+indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
+the value for \code{default} will be used.}
 
 \item{.stats}{(\code{character}) See \code{tern::summarize_variables}.}
 

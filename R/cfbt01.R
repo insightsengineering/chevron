@@ -8,8 +8,8 @@
 #' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
-#'   indicate the number of digits in statistics. If `default` is set, and parameter precision not specified, the value for
-#'   `default` will be used.
+#'   indicate the number of digits in statistics. If `default` is set, and parameter precision not specified,
+#'   the value for `default` will be used.
 #' @param .stats (`character`) statistics names, see `tern::summarize_vars()`.
 #' @param skip Named (`list`) of visit values that need to be inhibited.
 #' @param ... additional arguments like `.indent_mods`, `.labels`.
