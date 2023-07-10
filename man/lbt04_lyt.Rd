@@ -4,7 +4,15 @@
 \alias{lbt04_lyt}
 \title{\code{lbt04} Layout}
 \usage{
-lbt04_lyt(arm_var, var_parcat, var_param, lbl_param, var_anrind, lbl_anrind)
+lbt04_lyt(
+  arm_var,
+  var_parcat,
+  var_param,
+  lbl_param,
+  abn_range,
+  lbl_abn_range,
+  variables
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
