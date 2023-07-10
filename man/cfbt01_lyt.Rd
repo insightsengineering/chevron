@@ -14,8 +14,10 @@ cfbt01_lyt(
   lbl_avisit,
   lbl_param,
   precision,
-  default_precision,
-  page_var
+  page_var,
+  .stats,
+  skip,
+  ...
 )
 }
 \arguments{
@@ -37,12 +39,16 @@ to be displayed.}
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
-indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
-represented with one more decimal of precision.}
-
-\item{default_precision}{(\code{integer}) the default number of digits.}
+indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
+the value for \code{default} will be used.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
+
+\item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
+
+\item{skip}{Named (\code{list}) of visit values that need to be inhibited.}
+
+\item{...}{not used.}
 }
 \description{
 \code{cfbt01} Layout

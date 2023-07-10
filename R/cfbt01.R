@@ -8,9 +8,11 @@
 #' @param visitvar (`string`) typically one of `"AVISIT"` (Default) or `"ATPTN"` depending on the type of time point
 #'   to be displayed
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
-#'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
-#'   represented with one more decimal of precision.
-#' @param default_precision (`integer`) the default number of digits.
+#'   indicate the number of digits in statistics. If `default` is set, and parameter precision not specified,
+#'   the value for `default` will be used.
+#' @param .stats (`character`) statistics names, see `tern::summarize_vars()`.
+#' @param skip Named (`list`) of visit values that need to be inhibited.
+#' @param ... additional arguments like `.indent_mods`, `.labels`.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -34,13 +36,14 @@ cfbt01_main <- function(adam_db,
                         row_split_var = NULL,
                         summaryvars = c("AVAL", "CHG"),
                         visitvar = "AVISIT",
-                        precision = list(),
-                        default_precision = 2,
-                        page_var = NULL,
+                        precision = list(default = 2L),
+                        page_var = "PARAMCD",
+                        .stats = c("n", "mean_sd", "median", "range"),
+                        skip = list(CHG = "BASELINE"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
-  checkmate::assert_character(summaryvars, len = 2)
+  checkmate::assert_character(summaryvars, max.len = 2L, min.len = 1L)
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   checkmate::assert_string(visitvar)
@@ -60,8 +63,12 @@ cfbt01_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_int, FUN.VALUE = numeric(1), lower = 0)
-  checkmate::assert_integerish(default_precision, lower = 0)
-
+  all_stats <- c(
+    "n", "sum", "mean", "sd", "se", "mean_sd", "mean_se", "mean_ci", "mean_sei",
+    "mean_sdi", "mean_pval", "median", "mad", "median_ci", "quantiles", "iqr", "range",
+    "cv", "min", "max", "median_range", "geom_mean", "geom_cv"
+  )
+  checkmate::assert_subset(.stats, all_stats)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
@@ -78,10 +85,11 @@ cfbt01_main <- function(adam_db,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     precision = precision,
-    default_precision = default_precision,
-    page_var = page_var
+    .stats = .stats,
+    page_var = page_var,
+    skip = skip,
+    ...
   )
-
   tbl <- build_table(
     lyt,
     df = adam_db[[dataset]],
@@ -115,9 +123,11 @@ cfbt01_lyt <- function(arm_var,
                        lbl_avisit,
                        lbl_param,
                        precision,
-                       default_precision,
-                       page_var) {
-  page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD", visitvar))
+                       page_var,
+                       .stats,
+                       skip,
+                       ...) {
+  page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
   label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
@@ -146,13 +156,14 @@ cfbt01_lyt <- function(arm_var,
       nested = TRUE
     ) %>%
     analyze_colvars(
-      afun = afun_skip_baseline,
+      afun = afun_skip,
       extra_args = list(
         visitvar = visitvar,
         paramcdvar = "PARAMCD",
-        skip = c("BASELINE" = summaryvars[2]),
+        skip = skip,
         precision = precision,
-        default_precision = default_precision
+        .stats = .stats,
+        ...
       )
     )
 }

@@ -18,9 +18,10 @@ cfbt01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(),
-  default_precision = 2,
-  page_var = NULL,
+  precision = list(default = 2L),
+  page_var = "PARAMCD",
+  .stats = c("n", "mean_sd", "median", "range"),
+  skip = list(CHG = "BASELINE"),
   ...
 )
 
@@ -46,14 +47,16 @@ table of \code{adam_db} is used as label.}
 to be displayed}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
-indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
-represented with one more decimal of precision.}
-
-\item{default_precision}{(\code{integer}) the default number of digits.}
+indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
+the value for \code{default} will be used.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
-\item{...}{not used.}
+\item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
+
+\item{skip}{Named (\code{list}) of visit values that need to be inhibited.}
+
+\item{...}{additional arguments like \code{.indent_mods}, \code{.labels}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
