@@ -184,7 +184,7 @@ execute_with_args <- function(fun, ...) {
   do_call(fun, args[intersect(names(args), formalArgs(fun))])
 }
 
-#' DoCall
+#' Execute a Function Call
 #' @keywords internal
 do_call <- function(what, args) {
   arg_names <- names(args)
@@ -195,6 +195,7 @@ do_call <- function(what, args) {
     arg_names[arg_names == ""] <- arg_names_random[arg_names == ""]
   }
   args_env <- as.environment(setNames(args, arg_names))
+  parent.env(args_env) <- parent.frame()
   new_args <- lapply(arg_names, as.symbol)
   names(new_args) <- names(args)
   do.call(what, new_args, envir = args_env)

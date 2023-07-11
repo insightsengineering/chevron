@@ -2,11 +2,11 @@
 % Please edit documentation in R/utils.R
 \name{do_call}
 \alias{do_call}
-\title{DoCall}
+\title{Execute a Function Call}
 \usage{
 do_call(what, args)
 }
 \description{
-DoCall
+Execute a Function Call
 }
 \keyword{internal}
