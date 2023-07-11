@@ -182,3 +182,14 @@ test_that("do_call work as expected", {
     list(x = 1, y = 3, z = 2)
   )
 })
+
+test_that("do_call errors as expected", {
+  a <- function(x, y, z) {
+    list(x = x, y = y, z = z)
+  }
+  expect_error(do_call(a, list(x = 1, 2, y = 3, 4)))
+  b <- function() {
+    stop("error")
+  }
+  expect_error(do_call(b, list()))
+})
