@@ -170,3 +170,15 @@ test_that("execute_with_args works as expected", {
   res <- expect_silent(execute_with_args(bar, a = NA, na_rm = TRUE))
   expect_equal(res, 2)
 })
+
+# do_call ----
+
+test_that("do_call work as expected", {
+  a <- function(x, y, z) {
+    list(x = x, y = y, z = z)
+  }
+  expect_identical(
+    expect_silent(do_call(a, list(x = 1, 2, y = 3))),
+    list(x = 1, y = 3, z = 2)
+  )
+})

@@ -28,14 +28,14 @@ setMethod(
     checkmate::assert_flag(auto_pre)
     user_args <- list(...)
     proc_data <- if (auto_pre) {
-      list(adam_db = do.call(object@preprocess, c(list(adam_db), user_args)))
+      list(adam_db = do_call(object@preprocess, c(list(adam_db), user_args)))
     } else {
       list(adam_db = adam_db)
     }
 
-    res_tlg <- list(tlg = do.call(object@main, c(proc_data, user_args)))
+    res_tlg <- list(tlg = do_call(object@main, c(proc_data, user_args)))
 
-    do.call(object@postprocess, c(res_tlg, user_args))
+    do_call(object@postprocess, c(res_tlg, user_args))
   }
 )
 
