@@ -17,6 +17,7 @@
 #'  * Sorted based on factor level; by chronological time point given by `"AVISIT"`
 #'  or user-defined visit incorporating `"ATPT"`.
 #'  Re-level to customize order.
+#'  * Please note that it is best to convert `summaryvars` to factor.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adeg` table with column specified in `visitvar`.
@@ -28,6 +29,8 @@ egt05_qtcat_main <- function(adam_db,
                              arm_var = "ACTARM",
                              summaryvars = c("AVALCAT1", "CHGCAT1"),
                              lbl_overall = NULL,
+                             row_split_var = NULL,
+                             page_var = NULL,
                              visitvar = "AVISIT",
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
@@ -35,6 +38,10 @@ egt05_qtcat_main <- function(adam_db,
   assert_valid_variable(adam_db$adeg, visitvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor", "character")), na_ok = TRUE)
+  checkmate::assert_character(row_split_var, null.ok = TRUE)
+  checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
+  checkmate::assert_string(page_var, null.ok = TRUE)
+  checkmate::assert_subset(page_var, c(row_split_var, "PARAMCD"))
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
@@ -43,12 +50,17 @@ egt05_qtcat_main <- function(adam_db,
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
   lbl_overall <- render_safe(lbl_overall)
+  row_split_lbl <- var_labels_for(adam_db$adeg, row_split_var)
+
   lyt <- egt05_qtcat_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
     visitvar = visitvar,
+    row_split_var = row_split_var,
+    row_split_lbl = row_split_lbl,
+    page_var = page_var,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     lbl_cat = "Category"
@@ -77,21 +89,31 @@ egt05_qtcat_lyt <- function(arm_var,
                             summaryvars,
                             summaryvars_lbls,
                             lbl_overall,
+                            row_split_var,
+                            row_split_lbl,
                             visitvar,
+                            page_var,
                             lbl_avisit,
                             lbl_param,
                             lbl_cat) {
+  page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
+  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by_recurive(
+      row_split_var,
+      split_label = row_split_lbl,
+      label_pos = head(label_pos, -1L), page_by = head(page_by, -1L)
+    ) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = "hidden",
+      label_pos = tail(label_pos, 1L),
       split_label = lbl_param,
-      page_by = TRUE
+      page_by = tail(page_by, 1L)
     ) %>%
     split_rows_by(
       visitvar,
@@ -104,7 +126,7 @@ egt05_qtcat_lyt <- function(arm_var,
       var_labels = summaryvars_lbls,
       inclNAs = FALSE
     ) %>%
-    append_topleft(paste0("  ", lbl_cat))
+    append_topleft(paste0(stringr::str_dup(" ", sum(!page_by) * 2 + 2), lbl_cat))
 }
 
 #' @describeIn egt05_qtcat Preprocessing
