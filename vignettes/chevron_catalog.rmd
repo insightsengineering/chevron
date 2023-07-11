@@ -624,9 +624,9 @@ The **`rmpt04`** template produces the standard extent of exposure by ethnic ori
 run(rmpt04, syn_data)
 ```
 
-### **Extent of Exposure by Ethnic Origin for Risk Management Plan (`RMPT05`)**
+### **Extent of Exposure by Race for Risk Management Plan (`RMPT05`)**
 
-#### **1. Extent of Exposure by Ethnic Origin for Risk Management Plan**
+#### **1. Extent of Exposure by Race for Risk Management Plan**
 
 The **`rmpt05`** template produces the standard extent of exposure by race output for the Risk Management Plan (RMP).
 
