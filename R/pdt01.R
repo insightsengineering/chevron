@@ -39,7 +39,7 @@ pdt01_main <- function(adam_db,
 
   lbl_dvcode_var <- var_labels_for(adam_db$addv, dvcode_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- pdt01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -72,11 +72,12 @@ pdt01_lyt <- function(arm_var,
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one major protocol deviation",
+        unique = render_safe("Total number of {patient_label} with at least one major protocol deviation"),
         nonunique = "Total number of major protocol deviations"
       ),
       .formats = list(unique = format_count_fraction_fixed_dp)
@@ -102,7 +103,7 @@ pdt01_lyt <- function(arm_var,
 #'
 pdt01_pre <- function(adam_db, ...) {
   adam_db$addv <- adam_db$addv %>%
-    mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVDECOD", "DVTERM")), ~ reformat(.x, nocoding))) %>%
     mutate(
       DVDECOD = with_label(.data$DVDECOD, "Protocol Deviation Coded Term"),
       DVTERM = with_label(.data$DVTERM, "Category")
@@ -153,6 +154,5 @@ pdt01 <- chevron_t(
   main = pdt01_main,
   lyt = pdt01_lyt,
   preprocess = pdt01_pre,
-  postprocess = pdt01_post,
-  adam_datasets = c("adsl", "addv")
+  postprocess = pdt01_post
 )

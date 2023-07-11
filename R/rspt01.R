@@ -5,19 +5,19 @@
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param ref_group (`string`) The name of the reference group, the value should
-#'  be identical to the values in `arm_var`, if not speficied, it will by default
+#'  be identical to the values in `arm_var`, if not specified, it will by default
 #'  use the first level or value of `arm_var`.
-#' @param odds_ratio (`flag`) should the odds ratio be calculated, default is TRUE
+#' @param odds_ratio (`flag`) should the odds ratio be calculated, default is `TRUE`
 #' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
-#'  or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default
-#' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
+#'  or unstratified analyses, or both, e.g. `c("unstrat", "strat")`. Only unstratified will be displayed by default
+#' @param strata (`string`) stratification factors, e.g. `strata = c("STRATA1", "STRATA2")`, by default as NULL
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
 #' @param methods (`list`) a named list, use a named list to control, for example:
-#' methods = list(prop_conf_method = "wald",
+#' `methods = list(prop_conf_method = "wald",
 #'                diff_conf_method = "wald",
 #'                strat_diff_conf_method = "ha",
 #'                diff_pval_method = "fisher",
-#'                strat_diff_pval_method = "schouten")
+#'                strat_diff_pval_method = "schouten")`
 #' `prop_conf_method` controls the methods of calculating proportion confidence interval,
 #' `diff_conf_method` controls the methods of calculating unstratified difference confidence interval,
 #' `strat_diff_conf_method` controls the methods of calculating stratified difference confidence interval,
@@ -161,7 +161,7 @@ rspt01_post <- function(tlg, prune_0 = TRUE, ...) {
 
 #' `RSPT01` Binary Outcomes Summary
 #'
-#' RSPT01 template may be used to summarize any binary outcome or response variable at
+#' `RSPT01` template may be used to summarize any binary outcome or response variable at
 #' a single time point. Typical application for oncology
 #'
 #' @include chevron_tlg-S4class.R
@@ -180,6 +180,5 @@ rspt01_post <- function(tlg, prune_0 = TRUE, ...) {
 rspt01 <- chevron_t(
   main = rspt01_main,
   preprocess = rspt01_pre,
-  postprocess = rspt01_post,
-  adam_datasets = c("adsl")
+  postprocess = rspt01_post
 )

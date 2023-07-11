@@ -17,7 +17,7 @@ test_that("lbt06 can handle some NA values", {
   df_pre <- lbt06_pre(proc_data)
   tlg <- lbt06_main(df_pre)
   res <- smart_prune(tlg)
-  expect_snapshot(cat(formatters::export_as_txt(std_postprocess(res), lpp = 100)))
+  expect_snapshot(cat(export_as_txt(std_postprocess(res), lpp = 100)))
 })
 
 test_that("lbt06 fails on incomplete data", {

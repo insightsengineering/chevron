@@ -8,12 +8,16 @@ cfbt01_lyt(
   arm_var,
   summaryvars,
   summaryvars_lbls,
+  row_split_var,
+  row_split_lbl,
   visitvar,
   lbl_avisit,
   lbl_param,
   precision,
-  default_precision,
-  page_by
+  page_var,
+  .stats,
+  skip,
+  ...
 )
 }
 \arguments{
@@ -23,6 +27,10 @@ cfbt01_lyt(
 
 \item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
 
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{row_split_lbl}{(\code{character}) label of further row splits.}
+
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
 \item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
@@ -30,12 +38,16 @@ cfbt01_lyt(
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
-indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
-represented with one more decimal of precision.}
+indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
+the value for \code{default} will be used.}
 
-\item{default_precision}{(\code{integer}) the default number of digits.}
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
-\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+\item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
+
+\item{skip}{Named (\code{list}) of visit values that need to be inhibited.}
+
+\item{...}{not used.}
 }
 \description{
 \code{cfbt01} Layout

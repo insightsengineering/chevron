@@ -8,7 +8,7 @@
 #'   used as subtitles.
 #'
 #' @details
-#'  * ADEG data are subsetted to contain only "POST-BASELINE MINIMUM" visit
+#'  * `ADEG` data are subsetted to contain only "POST-BASELINE MINIMUM" visit
 #'  * the number of patients by baseline assessment and minimum post-baseline assessment.
 #'  * Percentages are based on the total number of patients in a treatment group.
 #'  * Split columns by Analysis Reference Range Indicator, typically `ANRIND`.
@@ -145,6 +145,5 @@ egt03_post <- function(tlg, prune_0 = FALSE, ...) {
 egt03 <- chevron_t(
   main = egt03_main,
   preprocess = egt03_pre,
-  postprocess = egt03_post,
-  adam_datasets = c("adsl", "adeg")
+  postprocess = egt03_post
 )

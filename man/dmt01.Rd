@@ -15,7 +15,7 @@ dmt01_main(
   adam_db,
   arm_var = "ARM",
   summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-  lbl_overall = "All Patients",
+  lbl_overall = "All {Patient_label}",
   ...
 )
 

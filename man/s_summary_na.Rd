@@ -18,9 +18,9 @@ s_summary_na(
 
 \item{denom}{(\code{string}) denominator choice.}
 
-\item{.N_row}{(\code{integer}) number of rows in row-splitted dataset.}
+\item{.N_row}{(\code{integer}) number of rows in row-split dataset.}
 
-\item{.N_col}{(\code{integer}) number of rows in column-splitted dataset.}
+\item{.N_col}{(\code{integer}) number of rows in column-split dataset.}
 
 \item{...}{Not used}
 }

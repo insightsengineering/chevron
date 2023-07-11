@@ -4,7 +4,7 @@ test_that("lbt07 functions with default argument value return expected result wi
   pre_data <- lbt07_pre(syn_data)
   raw_res <- lbt07_main(pre_data)
   res <- lbt07_post(raw_res)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 # lbt07 ----
@@ -19,7 +19,7 @@ test_that("lbt07 can handle some NA values", {
     )
 
   res <- expect_silent(run(lbt07, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("lbt07 fails on incomlete data", {

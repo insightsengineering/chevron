@@ -1,7 +1,7 @@
 # egt02_1 functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Assessment       A: Drug X        B: Placebo     C: Combination
          Abnormality      (N=134)          (N=134)          (N=132)    
@@ -19,7 +19,7 @@
 # egt02_2 functions with default value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
         Assessment       A: Drug X        B: Placebo     C: Combination
          Abnormality      (N=134)          (N=134)          (N=132)    

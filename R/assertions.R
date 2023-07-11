@@ -157,7 +157,7 @@ assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = 
   )
 }
 #' @rdname assert_valid_var
-#' @param integerish (`flag`) whether the number should be treated as integerish.
+#' @param integerish (`flag`) whether the number should be treated as `integerish`.
 #' @export
 assert_valid_var.numeric <- function(
     x, label = deparse(substitute(x)),
@@ -233,8 +233,8 @@ assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
 #' @param df1 (`data.frame`) input.
 #' @param df2 (`data.frame`) input.
 #' @param var (`string`) variable to check.
-#' @param lab1 (`string`) label hint for df1.
-#' @param lab2 (`string`) label hint for df2.
+#' @param lab1 (`string`) label hint for `df1`.
+#' @param lab2 (`string`) label hint for `df2`.
 assert_valid_var_pair <- function(df1, df2, var, lab1 = deparse(substitute(df1)), lab2 = deparse(substitute(df2))) {
   checkmate::assert_data_frame(df1)
   checkmate::assert_data_frame(df2)

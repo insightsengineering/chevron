@@ -95,6 +95,5 @@ kmg01_post <- function(tlg, ...) {
 kmg01 <- chevron_g(
   main = kmg01_main,
   preproces = kmg01_pre,
-  postprocess = kmg01_post,
-  adam_datasets = c("adsl")
+  postprocess = kmg01_post
 )

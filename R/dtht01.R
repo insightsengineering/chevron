@@ -28,7 +28,7 @@ dtht01_main <- function(adam_db,
   checkmate::assert_flag(other_category)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_flag(time_since_last_dose, null.ok = TRUE)
-
+  lbl_overall <- render_safe(lbl_overall)
   other_var <- if (other_category) "DTHCAUS"
   dose_death_var <- if (time_since_last_dose) "LDDTHGR1"
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list("character", "factor"))
@@ -75,9 +75,9 @@ dtht01_main <- function(adam_db,
 #'
 #' @inheritParams dtht01_main
 #' @param death_falg (`string`) variable name of death flag.
-#' @param detah_var (`string`) variable name of death catagory.
-#' @param other_level (`string`) "Other" level in death catagory.
-#' @param other_var (`string`) variable name of death cause under "Other".
+#' @param detah_var (`string`) variable name of death category.
+#' @param other_level (`string`) `"Other"` level in death category.
+#' @param other_var (`string`) variable name of death cause under `"Other"`.
 #' @param dose_death_var (`string`) variable name of the days from last dose.
 #'
 #' @keywords internal
@@ -193,6 +193,5 @@ dtht01_post <- function(tlg, prune_0 = TRUE, ...) {
 dtht01 <- chevron_t(
   main = dtht01_main,
   preprocess = dtht01_pre,
-  postprocess = dtht01_post,
-  adam_datasets = c("adsl")
+  postprocess = dtht01_post
 )

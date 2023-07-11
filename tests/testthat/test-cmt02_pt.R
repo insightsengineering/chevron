@@ -6,7 +6,7 @@ test_that("cmt02_pt can handle all NA values", {
     )
 
   res <- expect_silent(run(cmt02_pt, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("cmt02_pt can handle some NA values", {
@@ -14,5 +14,5 @@ test_that("cmt02_pt can handle some NA values", {
   proc_data$adcm[1:2, c("CMDECOD")] <- NA
 
   res <- expect_silent(run(cmt02_pt, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

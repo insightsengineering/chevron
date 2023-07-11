@@ -10,7 +10,6 @@ gen_args(
   preprocess,
   postprocess,
   dataset,
-  adam_datasets,
   type,
   arm_var,
   lbl_overall,
@@ -19,13 +18,13 @@ gen_args(
   deco,
   group,
   tlg,
-  tlgfname,
   visit_var,
   visit_value,
   paramcd_value,
   key_cols,
   disp_cols,
-  split_var,
+  row_split_var,
+  page_var,
   ...
 )
 }
@@ -41,9 +40,6 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
-
-\item{adam_datasets}{(\code{character}) representing the names of the tables from an \code{ADaM} data set required for \code{tlg}
-creation.}
 
 \item{type}{(\code{string}) indicating the subclass.}
 
@@ -61,20 +57,20 @@ creation.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{tlgfname}{(\code{character}) function name of TLG function}
-
 \item{visit_var}{Analysis Visit variable.}
 
 \item{visit_value}{Value of visit variable.}
 
-\item{paramcd_value}{Value of PARAMCD variable.}
+\item{paramcd_value}{Value of \code{PARAMCD} variable.}
 
 \item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
 Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
-\item{split_var}{(\code{character}) recursive split row variable.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 }

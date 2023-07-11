@@ -42,7 +42,7 @@ egt05_qtcat_main <- function(adam_db,
   summaryvars_lbls <- var_labels_for(adam_db$adeg, summaryvars) # Value at visit / change from baseline
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- egt05_qtcat_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
@@ -61,7 +61,7 @@ egt05_qtcat_main <- function(adam_db,
   )
 }
 
-#' `egt05_qtcat` Layout
+#' `EGT05_QTCAT` Layout
 #'
 #' @inheritParams gen_args
 #'
@@ -148,6 +148,5 @@ egt05_qtcat_post <- function(tlg, prune_0 = TRUE, ...) {
 egt05_qtcat <- chevron_t(
   main = egt05_qtcat_main,
   preprocess = egt05_qtcat_pre,
-  postprocess = egt05_qtcat_post,
-  adam_datasets = c("adsl", "adeg")
+  postprocess = egt05_qtcat_post
 )

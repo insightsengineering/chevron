@@ -7,10 +7,11 @@
 #'   table of `adam_db` is used as label.
 #' @param visitvar (`string`) typically one of `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
-#'   indicate the number of digits that should be represented for `min`, `max` and `median`. `Mean` and `sd` are
-#'   represented with one more decimal of precision.
-#' @param default_precision (`integer`) the default number of digits.
-#' @param page_by (`flag`) indicator whether the parameter row split is by page.
+#'   indicate the number of digits in statistics. If `default` is set, and parameter precision not specified,
+#'   the value for `default` will be used.
+#' @param .stats (`character`) statistics names, see `tern::summarize_vars()`.
+#' @param skip Named (`list`) of visit values that need to be inhibited.
+#' @param ... additional arguments like `.indent_mods`, `.labels`.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -31,21 +32,26 @@
 cfbt01_main <- function(adam_db,
                         dataset,
                         arm_var = "ACTARM",
+                        row_split_var = NULL,
                         summaryvars = c("AVAL", "CHG"),
                         visitvar = "AVISIT",
-                        precision = list(),
-                        default_precision = 2,
-                        page_by = TRUE,
+                        precision = list(default = 2L),
+                        page_var = "PARAMCD",
+                        .stats = c("n", "mean_sd", "median", "range"),
+                        skip = list(CHG = "BASELINE"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
-  checkmate::assert_character(summaryvars, len = 2)
+  checkmate::assert_character(summaryvars, max.len = 2L, min.len = 1L)
+  checkmate::assert_character(row_split_var, null.ok = TRUE)
+  checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   checkmate::assert_string(visitvar)
-  checkmate::assert_flag(page_by)
+  checkmate::assert_string(page_var, null.ok = TRUE)
+  checkmate::assert_subset(page_var, c(row_split_var, "PARAMCD"))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
-    adam_db[[dataset]], c(visitvar, "PARAM", "PARAMCD"),
+    adam_db[[dataset]], c(visitvar, row_split_var, "PARAM", "PARAMCD"),
     types = list(c("character", "factor")), label = df_lbl
   )
   assert_valid_variable(
@@ -56,25 +62,33 @@ cfbt01_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
   checkmate::assert_list(precision, types = "integerish", names = "unique")
   vapply(precision, checkmate::assert_int, FUN.VALUE = numeric(1), lower = 0)
-  checkmate::assert_integerish(default_precision, lower = 0)
-
+  all_stats <- c(
+    "n", "sum", "mean", "sd", "se", "mean_sd", "mean_se", "mean_ci", "mean_sei",
+    "mean_sdi", "mean_pval", "median", "mad", "median_ci", "quantiles", "iqr", "range",
+    "cv", "min", "max", "median_range", "geom_mean", "geom_cv"
+  )
+  checkmate::assert_subset(.stats, all_stats)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
   summaryvars_lbls <- var_labels_for(adam_db[[dataset]], summaryvars)
+  row_split_lbl <- var_labels_for(adam_db[[dataset]], row_split_var)
 
   lyt <- cfbt01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
+    row_split_var = row_split_var,
+    row_split_lbl = row_split_lbl,
     visitvar = visitvar,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     precision = precision,
-    default_precision = default_precision,
-    page_by = page_by
+    .stats = .stats,
+    page_var = page_var,
+    skip = skip,
+    ...
   )
-
   tbl <- build_table(
     lyt,
     df = adam_db[[dataset]],
@@ -94,27 +108,39 @@ cfbt01_main <- function(adam_db,
 #' @param visitvar (`string`) typically one of `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param row_split_lbl (`character`) label of further row splits.
 #'
 #' @keywords internal
 #'
 cfbt01_lyt <- function(arm_var,
                        summaryvars,
                        summaryvars_lbls,
+                       row_split_var,
+                       row_split_lbl,
                        visitvar,
                        lbl_avisit,
                        lbl_param,
                        precision,
-                       default_precision,
-                       page_by) {
+                       page_var,
+                       .stats,
+                       skip,
+                       ...) {
+  page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
+  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    split_rows_by_recurive(
+      row_split_var,
+      split_label = row_split_lbl,
+      label_pos = head(label_pos, -1L), page_by = head(page_by, -1L)
+    ) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = if (page_by) "hidden" else "topleft",
+      label_pos = tail(label_pos, 1L),
       split_label = lbl_param,
-      page_by = page_by
+      page_by = tail(page_by, 1L)
     ) %>%
     split_rows_by(
       visitvar,
@@ -128,54 +154,14 @@ cfbt01_lyt <- function(arm_var,
       nested = TRUE
     ) %>%
     analyze_colvars(
-      afun = function(x, .var, .spl_context, precision, default_precision, ...) {
-        param_val <- .spl_context$value[which(.spl_context$split == "PARAMCD")]
-
-        pcs <- precision[[param_val]] %||% default_precision
-
-        # Create context dependent function.
-        n_fun <- sum(!is.na(x), na.rm = TRUE)
-        if (n_fun == 0) {
-          mean_sd_fun <- c(NA, NA)
-          median_fun <- NA
-          min_max_fun <- c(NA, NA)
-        } else {
-          mean_sd_fun <- c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
-          median_fun <- median(x, na.rm = TRUE)
-          min_max_fun <- c(min(x), max(x))
-        }
-
-        # Identify context-
-        is_chg <- .var == "CHG"
-
-        is_baseline <- .spl_context$value[which(.spl_context$split == "AVISIT")] == "BASELINE"
-
-        if (is_baseline && is_chg) {
-          n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
-        }
-
-        in_rows(
-          "n" = n_fun,
-          "Mean (SD)" = mean_sd_fun,
-          "Median" = median_fun,
-          "Min - Max" = min_max_fun,
-          .formats = list(
-            "n" = "xx",
-            "Mean (SD)" = h_format_dec(format = "%f (%f)", digits = pcs + 1),
-            "Median" = h_format_dec(format = "%f", digits = pcs + 1),
-            "Min - Max" = h_format_dec(format = "%f - %f", digits = pcs)
-          ),
-          .format_na_strs = list(
-            "n" = "NE",
-            "Mean (SD)" = "NE (NE)",
-            "Median" = "NE",
-            "Min - Max" = "NE - NE"
-          )
-        )
-      },
+      afun = afun_skip,
       extra_args = list(
+        visitvar = visitvar,
+        paramcdvar = "PARAMCD",
+        skip = skip,
         precision = precision,
-        default_precision = default_precision
+        .stats = .stats,
+        ...
       )
     )
 }
@@ -219,10 +205,14 @@ cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' run(cfbt01, syn_data, dataset = "advs")
+#' library(dunlin)
+#' proc_data <- log_filter(
+#'   syn_data,
+#'   PARAMCD %in% c("DIABP", "SYSBP"), "advs"
+#' )
+#' run(cfbt01, proc_data, dataset = "advs")
 cfbt01 <- chevron_t(
   main = cfbt01_main,
   preprocess = cfbt01_pre,
-  postprocess = cfbt01_post,
-  adam_datasets = c("adsl")
+  postprocess = cfbt01_post
 )

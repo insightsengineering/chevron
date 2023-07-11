@@ -2,7 +2,7 @@
 % Please edit documentation in R/egt05_qtcat.R
 \name{egt05_qtcat_lyt}
 \alias{egt05_qtcat_lyt}
-\title{\code{egt05_qtcat} Layout}
+\title{\code{EGT05_QTCAT} Layout}
 \usage{
 egt05_qtcat_lyt(
   arm_var,
@@ -33,6 +33,6 @@ egt05_qtcat_lyt(
 \item{lbl_cat}{(\code{string}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
 }
 \description{
-\code{egt05_qtcat} Layout
+\code{EGT05_QTCAT} Layout
 }
 \keyword{internal}

@@ -17,7 +17,7 @@ dst01_main(
   study_status_var = "EOSSTT",
   detail_vars = list(Discontinued = c("DCSREAS")),
   trt_status_var = NULL,
-  lbl_overall = "All Patients",
+  lbl_overall = "All {Patient_label}",
   ...
 )
 

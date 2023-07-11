@@ -1,7 +1,7 @@
 # egt05_qtcat functions with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
           Analysis Visit            A: Drug X    B: Placebo    C: Combination
           Category                   (N=134)       (N=134)        (N=132)    
@@ -78,7 +78,7 @@
 # egt05_qtcat can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
           Analysis Visit            A: Drug X    B: Placebo    C: Combination
           Category                   (N=134)       (N=134)        (N=132)    

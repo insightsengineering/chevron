@@ -108,12 +108,6 @@ fstg01_post <- function(tlg, ...) {
 #'
 #' proc_data <- log_filter(
 #'   syn_data,
-#'   PARAMCD == "OVRINV" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
-#' )
-#' run(fstg01, proc_data, dataset = "adrs")
-#'
-#' proc_data <- log_filter(
-#'   syn_data,
 #'   PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
 #' )
 #' run(fstg01, proc_data,
@@ -123,6 +117,5 @@ fstg01_post <- function(tlg, ...) {
 fstg01 <- chevron_g(
   main = fstg01_main,
   preproces = fstg01_pre,
-  postprocess = fstg01_post,
-  adam_datasets = c("adsl", "adrs")
+  postprocess = fstg01_post
 )

@@ -210,49 +210,6 @@ setMethod(
   }
 )
 
-# datasets ----
-
-#' `Datasets`
-#'
-#' retrieve or set `adam_datasets`.
-#'
-#' @param x (`chevron_tlg`) input.
-#'
-#' @aliases datasets
-#' @export
-setGeneric("datasets", function(x) standardGeneric("datasets"))
-
-#' @rdname datasets
-#' @export
-setMethod(
-  f = "datasets",
-  signature = "chevron_tlg",
-  definition = function(x) {
-    x@adam_datasets
-  }
-)
-
-#' Set Data Sets
-#'
-#' @param x (`chevron_tlg`) input.
-#' @param value (`character`) representing the name of the table from an `ADaM` dataset required for `tlg` creation.
-#'
-#' @rdname datasets
-#' @export
-setGeneric("datasets<-", function(x, value) standardGeneric("datasets<-"))
-
-#' @rdname datasets
-#' @export
-setMethod(
-  f = "datasets<-",
-  signature = "chevron_tlg",
-  definition = function(x, value) {
-    x@adam_datasets <- value
-    validObject(x)
-    x
-  }
-)
-
 # script ----
 
 #' Create Script for Parameters Assignment

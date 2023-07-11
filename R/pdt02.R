@@ -39,7 +39,7 @@ pdt02_main <- function(adam_db,
 
   lbl_dvreas_var <- var_labels_for(adam_db$addv, dvreas_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- pdt02_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -76,7 +76,9 @@ pdt02_lyt <- function(arm_var,
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),
       .labels = c(
-        unique = "Total number of patients with at least one major protocol deviation related to epidemic/pandemic",
+        unique = render_safe(
+          "Total number of {patient_label} with at least one major protocol deviation related to epidemic/pandemic"
+        ),
         nonunique = "Total number of major protocol deviations related to epidemic/pandemic"
       )
     ) %>%
@@ -108,9 +110,9 @@ pdt02_lyt <- function(arm_var,
 pdt02_pre <- function(adam_db,
                       ...) {
   adam_db$addv <- adam_db$addv %>%
-    mutate(across(all_of(c("DVCAT", "AEPRELFL")), ~ reformat(.x, missing_rule, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVCAT", "AEPRELFL")), ~ reformat(.x, missing_rule))) %>%
     filter(.data$DVCAT == "MAJOR" & .data$AEPRELFL == "Y") %>%
-    mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding, na_last = TRUE))) %>%
+    mutate(across(all_of(c("DVREAS", "DVTERM")), ~ reformat(.x, nocoding))) %>%
     mutate(
       DVREAS = with_label(.data$DVREAS, "Primary Reason"),
       DVTERM = with_label(.data$DVTERM, "Description")
@@ -155,6 +157,5 @@ pdt02 <- chevron_t(
   main = pdt02_main,
   lyt = pdt02_lyt,
   preprocess = pdt02_pre,
-  postprocess = pdt02_post,
-  adam_datasets = c("adsl", "addv")
+  postprocess = pdt02_post
 )

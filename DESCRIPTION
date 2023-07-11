@@ -1,17 +1,14 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.0.9004
-Date: 2023-06-08
+Version: 0.2.0.9024
+Date: 2023-07-10
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
-    person("Adrian", "Waddell", , "adrian.waddell@gene.com", role = "aut"),
-    person("Emily", "de la Rua", , "emily.de_la_rua@contractors.roche.com", role = "aut"),
-    person("Joe", "Zhu", , "joe.zhu@roche.com", role = "aut"),
-    person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "aut"),
-    person("Lena", "Wang", , "wang.xinyue@gene.com", role = "aut"),
-    person("Heng", "Wang", , "wang.heng@gene.com", role = "aut"),
+    person("Xiaoli", "Duan", , "xiaoli.duan@roche.com", role = "aut"),
+    person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb"),
+    person("Tian", "Fang", , "tian.fang@roche.com", role = "ctb"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
 Description: Standard Table, Listings, and Graphs (TLG) library used in
@@ -35,7 +32,7 @@ Imports:
     rlistings (>= 0.2.2),
     rtables (>= 0.6.1),
     stringr,
-    tern (>= 0.8.2),
+    tern (>= 0.8.4),
     tibble,
     utils
 Suggests:
@@ -55,6 +52,7 @@ Remotes:
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
+Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
@@ -67,6 +65,8 @@ Collate:
     'aet02.R'
     'aet03.R'
     'aet04.R'
+    'aet05.R'
+    'aet05_all.R'
     'aet10.R'
     'assertions.R'
     'cfbt01.R'
@@ -74,6 +74,7 @@ Collate:
     'chevron_tlg-S4methods.R'
     'cmt01a.R'
     'cmt02_pt.R'
+    'coxt01.R'
     'coxt02.R'
     'data.R'
     'dmt01.R'
@@ -100,6 +101,9 @@ Collate:
     'pdt02.R'
     'reexports.R'
     'rmpt01.R'
+    'rmpt03.R'
+    'rmpt04.R'
+    'rmpt05.R'
     'rspt01.R'
     'rtables_utils.R'
     'standard_rules.R'

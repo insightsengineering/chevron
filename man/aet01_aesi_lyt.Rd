@@ -11,7 +11,7 @@ aet01_aesi_lyt(arm_var, aesi_vars, lbl_overall, lbl_aesi_vars, grade_groups)
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{lbl_aesi_vars}{(\code{character}) the labels of the AESI variables to be summarized.}
+\item{lbl_aesi_vars}{(\code{character}) the labels of the \code{AESI} variables to be summarized.}
 }
 \description{
 \code{aet01_aesi} Layout

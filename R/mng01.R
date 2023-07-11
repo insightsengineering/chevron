@@ -78,24 +78,6 @@ mng01_main <- function(adam_db,
   data_ls <- split(df, df$PARAM, drop = TRUE)
   x_var <- paste(x_var, collapse = "_")
 
-  interval_title <- switch(interval_fun,
-    "mean_ci" = "95% Confidence Intervals",
-    "mean_sei" = "Standard Error",
-    "mean_sdi" = "Standard Deviation",
-    "median_ci" = "95% Confidence Intervals",
-    "quantiles" = "Interquatile Range",
-    "range" = "Min-Max Range"
-  )
-
-  title <- paste0(
-    "Plot of ",
-    center_fun,
-    " and ",
-    interval_title,
-    " by ",
-    var_labels_for(df, x_var)
-  )
-
   whiskers_fun <- switch(interval_fun,
     "mean_ci" = c("mean_ci_lwr", "mean_ci_upr"),
     "mean_sei" = c("mean_sei_lwr", "mean_sei_upr"),
@@ -163,7 +145,7 @@ mng01_main <- function(adam_db,
     interval = interval_fun,
     whiskers = whiskers_fun,
     position = ggplot2::position_dodge(width = ifelse(jitter, 0.3, 0)),
-    title = title,
+    title = NULL,
     table = table,
     ggtheme = ggtheme,
     col = col,
@@ -216,6 +198,5 @@ mng01_post <- function(tlg, ...) {
 mng01 <- chevron_g(
   main = mng01_main,
   preproces = mng01_pre,
-  postprocess = mng01_post,
-  adam_datasets = c("adsl", "adlb", "adeg", "advs")
+  postprocess = mng01_post
 )

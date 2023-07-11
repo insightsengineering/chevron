@@ -11,8 +11,6 @@
 #' @slot preprocess (`function`) returning a pre-processed `list` of `data.frames` amenable to `tlg` creation. Typically
 #'   one of the `*_pre` function from `chevron`.
 #' @slot postprocess (`function`) returning a post-processed `tlg`.
-#' @slot adam_datasets (`character`) representing the name of the tables from an `AdAM` dataset required for `tlg`
-#'   creation.
 #'
 #' @format NULL
 #'
@@ -32,8 +30,7 @@
   slots = c(
     main = "function",
     preprocess = "function",
-    postprocess = "function",
-    adam_datasets = "character"
+    postprocess = "function"
   )
 )
 
@@ -134,13 +131,11 @@ methods::setValidity("chevron_g", function(object) {
 chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = report_null,
-                      adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_t(
     main = main,
     preprocess = preprocess,
-    postprocess = postprocess,
-    adam_datasets = adam_datasets
+    postprocess = postprocess
   )
 
   res
@@ -161,13 +156,11 @@ chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), a
 chevron_l <- function(main = function(adam_db, ...) data.frame(),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = function(tlg, ...) tlg,
-                      adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_l(
     main = main,
     preprocess = preprocess,
-    postprocess = postprocess,
-    adam_datasets = adam_datasets
+    postprocess = postprocess
   )
 
   res
@@ -191,13 +184,11 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = function(tlg, ...) tlg,
-                      adam_datasets = NA_character_,
                       ...) {
   res <- .chevron_g(
     main = main,
     preprocess = preprocess,
-    postprocess = postprocess,
-    adam_datasets = adam_datasets
+    postprocess = postprocess
   )
 
   res

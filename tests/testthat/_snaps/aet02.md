@@ -1,7 +1,7 @@
 # aet02 can have different levels of row_split
 
     Code
-      cat(formatters::export_as_txt(res1, lpp = 100))
+      cat(export_as_txt(res1, lpp = 100))
     Output
         MedDRA Preferred Term                                       A: Drug X    B: Placebo    C: Combination
                                                                      (N=134)       (N=134)        (N=132)    
@@ -22,7 +22,7 @@
 ---
 
     Code
-      cat(formatters::export_as_txt(res2, lpp = 100))
+      cat(export_as_txt(res2, lpp = 100))
     Output
         MedDRA System Organ Class                                                                 
           MedDRA Preferred Term                                           A: Drug X    B: Placebo 

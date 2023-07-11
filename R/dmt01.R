@@ -28,12 +28,12 @@ dmt01_main <- function(adam_db,
                          "ETHNIC",
                          "RACE"
                        ),
-                       lbl_overall = "All Patients",
+                       lbl_overall = "All {Patient_label}",
                        ...) {
   assert_valid_variable(adam_db$adsl, summaryvars)
   summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- dmt01_lyt(
     arm_var = arm_var,
     summaryvars = summaryvars,
@@ -108,6 +108,5 @@ dmt01_post <- function(tlg, prune_0 = TRUE, ...) {
 dmt01 <- chevron_t(
   main = dmt01_main,
   preprocess = dmt01_pre,
-  postprocess = dmt01_post,
-  adam_datasets = c("adsl")
+  postprocess = dmt01_post
 )

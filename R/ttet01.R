@@ -5,23 +5,23 @@
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param ref_group (`string`) The name of the reference group, the value should
-#'  be identical to the values in `arm_var`, if not speficied, it will by default
+#'  be identical to the values in `arm_var`, if not specified, it will by default
 #'  use the first level or value of `arm_var`.
-#' @param summarize_event (`flag`) should the event discription be displayed, default is TRUE
+#' @param summarize_event (`flag`) should the event description be displayed, default is TRUE
 #' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
-#'  or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default
-#' @param strata (`string`) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL
+#'  or unstratified analyses, or both, e.g. `c("unstrat", "strat")`. Only unstratified will be displayed by default
+#' @param strata (`string`) stratification factors, e.g. `strata = c("STRATA1", "STRATA2")`, by default as NULL
 #' @param pval_method (`string`) p-value method for testing hazard ratio = 1.
-#' Default method is "log-rank", can also be set to "wald" or "likelihood".
+#' Default method is `"log-rank"`, can also be set to `"wald"` or `"likelihood"`.
 #' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
-#' @param conf_type (`string`) confidence interval type. Options are "plain" (default), "log", "log-log",
-#'  see more in survival::survfit(). Note option "none" is no longer supported.
+#' @param conf_type (`string`) confidence interval type. Options are `"plain"` (default), `"log"`, `"log-log"`,
+#'  see more in `survival::survfit()`. Note option "none" is no longer supported.
 #' @param quantiles (`numeric`) of length two to specify the quantiles of survival time.
-#' @param ties (`string`) specifying the method for tie handling. Default is "efron",
-#'  can also be set to "breslow" or "exact". see more in survival::coxph()
+#' @param ties (`string`) specifying the method for tie handling. Default is `"efron"`,
+#'  can also be set to `"breslow"` or `"exact"`. see more in `survival::coxph()`
 #' @param timepoint (`numeric`) survival time point of interest.
-#' @param method (`string`) either "surv" (survival estimations),
-#'  "surv_diff" (difference in survival with the control) or "both".
+#' @param method (`string`) either `"surv"` (survival estimations),
+#'  `"surv_diff"` (difference in survival with the control) or `"both"`.
 #'
 #'
 #' @details
@@ -72,7 +72,7 @@ ttet01_main <- function(adam_db,
 
   assert_single_value(anl$AVALU, label = sprintf("adam_db$%s$AVALU", dataset))
   timeunit <- unique(anl[["AVALU"]])
-
+  event_lvls <- lvls(anl$EVNT1)
   lyt <- ttet01_lyt(
     arm_var = arm_var,
     ref_group = ref_group,
@@ -86,7 +86,8 @@ ttet01_main <- function(adam_db,
     ties = ties,
     timeunit = timeunit,
     timepoint = timepoint,
-    method = method
+    method = method,
+    event_lvls = event_lvls
   )
 
   tbl <- build_table(lyt, anl)
@@ -97,7 +98,7 @@ ttet01_main <- function(adam_db,
 #' `ttet01` Layout
 #'
 #' @inheritParams gen_args
-#' @param timeunit (string) time unit get from AVALU, by default is "Months"
+#' @param timeunit (`string`) time unit get from `AVALU`, by default is `"Months"`
 #'
 #' @keywords internal
 ttet01_lyt <- function(arm_var,
@@ -112,7 +113,8 @@ ttet01_lyt <- function(arm_var,
                        ties,
                        timeunit,
                        timepoint,
-                       method) {
+                       method,
+                       event_lvls) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(
       var = arm_var, ref_group = ref_group
@@ -120,7 +122,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = "Patients with event (%)")
+      .labels = c(count_fraction = event_lvls[1])
     )
 
   if (summarize_event) {
@@ -128,7 +130,7 @@ ttet01_lyt <- function(arm_var,
       split_rows_by(
         "EVNT1",
         split_label = "Earliest contributing event",
-        split_fun = keep_split_levels("Patients with event (%)"),
+        split_fun = keep_split_levels(event_lvls[1]),
         label_pos = "visible",
         child_labels = "hidden",
         indent_mod = 1L,
@@ -140,7 +142,7 @@ ttet01_lyt <- function(arm_var,
     summarize_vars(
       vars = "IS_NOT_EVENT",
       .stats = "count_fraction",
-      .labels = c(count_fraction = "Patients without event (%)"),
+      .labels = c(count_fraction = event_lvls[2]),
       nested = FALSE,
       show_labels = "hidden"
     ) %>%
@@ -182,7 +184,8 @@ ttet01_lyt <- function(arm_var,
       control = control_surv_timepoint(
         conf_level = conf_level,
         conf_type = conf_type
-      )
+      ),
+      .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk"))
     )
 
   return(lyt)
@@ -205,10 +208,10 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
       IS_NOT_EVENT = .data$CNSR == 1,
       EVNT1 = factor(
         case_when(
-          IS_EVENT == TRUE ~ "Patients with event (%)",
-          IS_EVENT == FALSE ~ "Patients without event (%)"
+          IS_EVENT == TRUE ~ render_safe("{Patient_label} with event (%)"),
+          IS_EVENT == FALSE ~ render_safe("{Patient_label} without event (%)")
         ),
-        levels = c("Patients with event (%)", "Patients without event (%)")
+        levels = render_safe(c("{Patient_label} with event (%)", "{Patient_label} without event (%)"))
       ),
       EVNTDESC = factor(.data$EVNTDESC)
     )
@@ -231,7 +234,7 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
 
 #' `TTET01` Binary Outcomes Summary
 #'
-#' TTET01 template may be used to summarize any binary outcome or response variable at
+#' `TTET01` template may be used to summarize any binary outcome or response variable at
 #' a single time point. Typical application for oncology
 #'
 #' @include chevron_tlg-S4class.R
@@ -250,6 +253,5 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
 ttet01 <- chevron_t(
   main = ttet01_main,
   preprocess = ttet01_pre,
-  postprocess = ttet01_post,
-  adam_datasets = c("adsl")
+  postprocess = ttet01_post
 )

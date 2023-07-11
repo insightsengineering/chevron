@@ -4,7 +4,7 @@ test_that("egt05_qtcat functions with default argument value return expected res
   pre_data <- egt05_qtcat_pre(syn_data)
   raw_res <- egt05_qtcat_main(pre_data)
   res <- egt05_qtcat_post(raw_res)
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 # egt05_qtcat ----
@@ -25,5 +25,5 @@ test_that("egt05_qtcat can handle some NA values", {
     filter(PARAMCD == "QT")
   proc_data$adeg[1:2, c("AVALCAT1", "CHGCAT1")] <- NA
   res <- expect_silent(run(egt05_qtcat, proc_data))
-  expect_snapshot(cat(formatters::export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

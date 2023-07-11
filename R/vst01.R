@@ -3,7 +3,7 @@
 #' @describeIn vst01 Main TLG function
 #'
 #' @inherit cfbt01_main
-#' @source cfbt01.R
+#' @source `cfbt01.R`
 #' @export
 #'
 vst01_main <- modify_default_args(cfbt01_main, dataset = "advs")
@@ -25,10 +25,14 @@ vst01_pre <- modify_default_args(cfbt01_pre, dataset = "advs")
 #' @export
 #'
 #' @examples
-#' run(vst01, syn_data)
+#' library(dunlin)
+#' proc_data <- log_filter(
+#'   syn_data,
+#'   PARAMCD %in% c("DIABP", "SYSBP"), "advs"
+#' )
+#' run(vst01, proc_data)
 vst01 <- chevron_t(
   main = vst01_main,
   preprocess = vst01_pre,
-  postprocess = cfbt01_post,
-  adam_datasets = c("adsl", "advs")
+  postprocess = cfbt01_post
 )

@@ -29,7 +29,7 @@ egt02_1_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-
+  lbl_overall <- render_safe(lbl_overall)
   lyt <- egt02_lyt(
     arm_var = arm_var,
     lbl_vs_assessment = "Assessment",
@@ -111,8 +111,7 @@ egt02_post <- function(tlg, ...) {
 egt02_1 <- chevron_t(
   main = egt02_1_main,
   preprocess = egt02_pre,
-  postprocess = egt02_post,
-  adam_datasets = c("adsl", "adeg")
+  postprocess = egt02_post
 )
 
 # egt02_2 ----
@@ -136,6 +135,5 @@ egt02_2_main <- modify_default_args(egt02_1_main, exclude_base_abn = TRUE)
 egt02_2 <- chevron_t(
   main = egt02_2_main,
   preprocess = egt02_pre,
-  postprocess = egt02_post,
-  adam_datasets = c("adsl", "adeg")
+  postprocess = egt02_post
 )

@@ -1,7 +1,7 @@
 # pdt01 function with default argument value return expected result with test data
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100, cpp = 200))
+      cat(export_as_txt(res, lpp = 100, cpp = 200))
     Output
         Category                                                              A: Drug X    B: Placebo   C: Combination
           Description                                                          (N=134)      (N=134)        (N=132)    
@@ -38,7 +38,7 @@
 # pdt01 can handle all NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100, cpp = 200))
+      cat(export_as_txt(res, lpp = 100, cpp = 200))
     Output
         Category                                                              A: Drug X    B: Placebo   C: Combination
           Description                                                          (N=134)      (N=134)        (N=132)    
@@ -51,7 +51,7 @@
 # pdt01 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100, cpp = 200))
+      cat(export_as_txt(res, lpp = 100, cpp = 200))
     Output
         Category                                                              A: Drug X    B: Placebo   C: Combination
           Description                                                          (N=134)      (N=134)        (N=132)    

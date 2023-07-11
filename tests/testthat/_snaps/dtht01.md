@@ -1,7 +1,7 @@
 # dtht01 can handle all NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                  A: Drug X    B: Placebo   C: Combination
                                   (N=134)      (N=134)        (N=132)    
@@ -16,7 +16,7 @@
 # dtht01 can handle some NA values
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                     A: Drug X    B: Placebo   C: Combination
                                                                      (N=134)      (N=134)        (N=132)    
@@ -51,7 +51,7 @@
 # dtht01 can be parametrize as expected
 
     Code
-      cat(formatters::export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
                                                                     A: Drug X    B: Placebo   C: Combination
                                                                      (N=134)      (N=134)        (N=132)    

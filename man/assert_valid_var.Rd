@@ -67,7 +67,7 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
 
 \item{min_chars}{(\code{integer}) the minimum length of the characters.}
 
-\item{integerish}{(\code{flag}) whether the number should be treated as integerish.}
+\item{integerish}{(\code{flag}) whether the number should be treated as \code{integerish}.}
 }
 \description{
 Check whether var is valid

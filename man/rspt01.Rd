@@ -38,24 +38,20 @@ rspt01
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{ref_group}{(\code{string}) The name of the reference group, the value should
-be identical to the values in \code{arm_var}, if not speficied, it will by default
+be identical to the values in \code{arm_var}, if not specified, it will by default
 use the first level or value of \code{arm_var}.}
 
-\item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is TRUE}
+\item{odds_ratio}{(\code{flag}) should the odds ratio be calculated, default is \code{TRUE}}
 
 \item{perform_analysis}{(\code{string}) option to display statistical comparisons using stratified analyses,
-or unstratified analyses, or both, e.g. c("unstrat", "strat"). Only unstratified will be displayed by default}
+or unstratified analyses, or both, e.g. \code{c("unstrat", "strat")}. Only unstratified will be displayed by default}
 
-\item{strata}{(\code{string}) stratification factors, e.g. strata = c("STRATA1", "STRATA2"), by default as NULL}
+\item{strata}{(\code{string}) stratification factors, e.g. \code{strata = c("STRATA1", "STRATA2")}, by default as NULL}
 
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
 
 \item{methods}{(\code{list}) a named list, use a named list to control, for example:
-methods = list(prop_conf_method = "wald",
-diff_conf_method = "wald",
-strat_diff_conf_method = "ha",
-diff_pval_method = "fisher",
-strat_diff_pval_method = "schouten")
+\code{methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "ha", diff_pval_method = "fisher", strat_diff_pval_method = "schouten")}
 \code{prop_conf_method} controls the methods of calculating proportion confidence interval,
 \code{diff_conf_method} controls the methods of calculating unstratified difference confidence interval,
 \code{strat_diff_conf_method} controls the methods of calculating stratified difference confidence interval,
@@ -70,7 +66,7 @@ see more details in \code{tern}}
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
-RSPT01 template may be used to summarize any binary outcome or response variable at
+\code{RSPT01} template may be used to summarize any binary outcome or response variable at
 a single time point. Typical application for oncology
 }
 \details{

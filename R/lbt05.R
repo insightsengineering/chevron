@@ -29,7 +29,7 @@ lbt05_main <- function(adam_db,
 
   lbl_anrind <- var_labels_for(adam_db$adlb, "ABN_DIR")
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
-
+  lbl_overall <- render_safe(lbl_overall)
   map <- expand.grid(
     PARAM = levels(adam_db$adlb$PARAM),
     ABN_DIR = c("Low", "High"),
@@ -106,7 +106,7 @@ lbt05_pre <- function(adam_db, ...) {
       PARAM = with_label(.data$PARAM, "Laboratory Test")
     ) %>%
     mutate(
-      across(all_of(c("AVALCAT1", "ABN_DIR")), ~ reformat(.x, .env$missing_rule, na_last = TRUE))
+      across(all_of(c("AVALCAT1", "ABN_DIR")), ~ reformat(.x, .env$missing_rule))
     )
 
 
@@ -144,6 +144,5 @@ lbt05_post <- function(tlg, prune_0 = FALSE, ...) {
 lbt05 <- chevron_t(
   main = lbt05_main,
   preprocess = lbt05_pre,
-  postprocess = lbt05_post,
-  adam_datasets = c("adsl", "adlb")
+  postprocess = lbt05_post
 )

@@ -68,7 +68,7 @@ valid_row_path <- function(tlg, row_path) {
 }
 
 #' Count patients recursively
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param anl_vars Named (`list`) of analysis variables.
 #' @param anl_lbls (`character`) of labels.
 #' @param lbl_vars Named (`list`) of analysis labels.
@@ -107,8 +107,8 @@ summarize_row <- function(lyt, vars, afun, ...) {
 #' Summary factor allowing NA
 #' @param x (`factor`) input.
 #' @param denom (`string`) denominator choice.
-#' @param .N_row (`integer`) number of rows in row-splitted dataset.
-#' @param .N_col (`integer`) number of rows in column-splitted dataset.
+#' @param .N_row (`integer`) number of rows in row-split dataset.
+#' @param .N_col (`integer`) number of rows in column-split dataset.
 #' @param ... Not used
 #' @keywords internal
 s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { # nolint
@@ -127,7 +127,7 @@ s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, 
   y$n_blq <- sum(grepl("BLQ|LTR|<[1-9]", x))
   y
 }
-#' Summarize variables allow na
+#' Summarize variables allow `NA`
 #' @keywords internal
 summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
@@ -144,7 +144,7 @@ summarize_vars_allow_na <- function(
 }
 
 #' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param var (`string`) of analysis variable.
 #' @param level (`string`) level to be displayed.
 #' @param detail_vars (`character`) of variables for detail information.
@@ -181,12 +181,56 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 }
 
 #' Count or summarize by groups
-#' @param lyt (`PreDataTableLayouts`) rtable layout.
-#' @param split_var (`character`) variable to split rows by.
+#' @param lyt (`PreDataTableLayouts`) `rtable` layout.
+#' @param row_split_var (`character`) variable to split rows by.
 #' @param ... Further arguments for `split_rows_by`
 #' @keywords internal
-split_rows_by_recurive <- function(lyt, split_var, ...) {
-  purrr::reduce(.x = split_var, .f = split_rows_by, .init = lyt, ...)
+split_rows_by_recurive <- function(lyt, row_split_var, ...) {
+  args <- list(...)
+  for (i in seq_len(length(row_split_var))) {
+    args_i <- lapply(args, obtain_value, index = i)
+    lyt <- do.call(
+      split_rows_by,
+      c(
+        list(
+          lyt = lyt,
+          row_split_var
+        ),
+        args_i
+      )
+    )
+  }
+  lyt
+}
+
+#' Obtain value from a vector
+#' @keywords internal
+obtain_value <- function(obj, index) {
+  if (is.list(obj)) {
+    return(obj[[index]])
+  }
+  if (is.vector(obj) && length(obj) >= index) {
+    return(obj[index])
+  }
+  return(obj)
+}
+
+#' Get page by value
+#' @keywords internal
+get_page_by <- function(var, vars) {
+  checkmate::assert_character(vars, null.ok = TRUE)
+  checkmate::assert_character(var, null.ok = TRUE, max.len = 1L)
+  ret <- rep(FALSE, length(vars))
+  if (is.null(var) || length(var) == 0) {
+    return(ret)
+  }
+  index <- match(var, vars)
+  checkmate::assert_int(index, na.ok = TRUE)
+  if (is.na(index)) {
+    return(ret)
+  }
+  ret[seq_len(index)] <- TRUE
+  return(ret)
 }
 
 #' Proportion layout
@@ -236,13 +280,13 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
 
 #' Helper function to add a row split if specified
 #'
-#' @param lyt (`rtables`) object.
+#' @param lyt (`PreDataTableLayouts`) object.
 #' @param var (`string`) the name of the variable initiating a new row split.
 #' @param lbl_var (`string`)the label of the variable `var`.
 #'
 #' @keywords internal
 #'
-#' @return `rtables` object.
+#' @return `PreDataTableLayouts` object.
 #'
 ifneeded_split_row <- function(lyt, var, lbl_var) {
   if (is.null(var)) {
@@ -251,6 +295,28 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
     split_rows_by(lyt, var,
       label_pos = "topleft",
       split_label = lbl_var
+    )
+  }
+}
+
+#' Helper function to add a column split if specified
+#'
+#' @param lyt (`rtables`) object.
+#' @param var (`string`) the name of the variable initiating a new column split.
+#' @param ... Additional arguments for `split_cols_by`.
+#'
+#' @keywords internal
+#'
+#' @return `rtables` object.
+#'
+ifneeded_split_col <- function(lyt, var, ...) {
+  if (is.null(var)) {
+    lyt
+  } else {
+    split_cols_by(
+      lyt = lyt,
+      var = var,
+      ...
     )
   }
 }
@@ -299,5 +365,107 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
     add_overall_col(lyt, label = lbl_overall)
   } else {
     lyt
+  }
+}
+
+#' Analyze skip baseline
+#' @param x value to analyze
+#' @param .var variable name.
+#' @param .spl_context split context.
+#' @param paramcdvar (`string`) name of parameter code.
+#' @param visitvar (`string`) name of the visit variable.
+#' @param skip Named (`character`) indicating the pairs to skip in analyze.
+#' @param .stats (`character`) See `tern::summarize_variables`.
+#' @param .label (`character`) See `tern::summarize_variables`.
+#' @param .indent_mods (`integer`) See `tern::summarize_variables`.
+#' @param .N_col (`int`) See `tern::summarize_variables`.
+#' @param .N_row (`int`) See `tern::summarize_variables`.
+#' @param ... additional arguments for `tern::create_afun_summary`.
+#' @inheritParams cfbt01_main
+#' @keywords internal
+afun_skip <- function(
+    x, .var, .spl_context, paramcdvar, visitvar, skip,
+    precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) { # nolint
+  param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
+  # Identify context
+  split_level <- .spl_context$value[which(.spl_context$split == visitvar)]
+  pcs <- if (.var %in% names(skip) && split_level %in% skip[[.var]]) {
+    NA
+  } else {
+    precision[[param_val]] %||% precision[["default"]] %||% 2
+  }
+
+  fmts <- lapply(.stats, summary_formats, pcs = pcs, FALSE)
+  names(fmts) <- .stats
+  fmts_na <- lapply(.stats, summary_formats, pcs = pcs, ne = TRUE)
+  ret <- tern::create_afun_summary(
+    .stats, fmts, .labels, .indent_mods
+  )(x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...)
+  for (i in seq_len(length(ret))) {
+    attr(ret[[i]], "format_na_str") <- fmts_na[[i]]()
+  }
+  ret
+}
+
+summary_formats <- function(x, pcs, ne = FALSE) {
+  checkmate::assert_int(pcs, lower = 0, na.ok = TRUE)
+  switch(x,
+    n = h_format_dec(format = "%s", digits = pcs - pcs, ne = ne),
+    min = ,
+    max = ,
+    sum = h_format_dec(format = "%s", digits = pcs, ne = ne),
+    mean = ,
+    sd = ,
+    median = ,
+    mad = ,
+    iqr = ,
+    cv = ,
+    geom_mean = ,
+    geom_cv = ,
+    se = h_format_dec(format = "%s", digits = pcs + 1, ne = ne),
+    mean_sd = ,
+    mean_se = h_format_dec(format = "%s (%s)", digits = rep(pcs + 1, 2), ne = ne),
+    mean_ci = ,
+    mean_sei = ,
+    median_ci = ,
+    mean_sdi = h_format_dec(format = "(%s, %s)", digits = rep(pcs + 1, 2), ne = ne),
+    mean_pval = h_format_dec(format = "%s", digits = 2, ne = ne),
+    quantiles = h_format_dec(format = "(%s - %s)", digits = rep(pcs + 1, 2), ne = ne),
+    range = h_format_dec(format = "%s - %s", digits = rep(pcs, 2), ne = ne),
+    median_range = h_format_dec(format = "%s (%s - %s)", digits = c(pcs, pcs + 1, pcs + 1), ne = ne)
+  )
+}
+
+split_fun_map <- function(map) {
+  if (is.null(map)) {
+    drop_split_levels
+  } else {
+    trim_levels_to_map(map = map)
+  }
+}
+
+infer_mapping <- function(map_df, df) {
+  checkmate::assert_data_frame(df)
+  vars <- colnames(map_df)
+  checkmate::assert_names(names(df), must.include = vars)
+  for (x in vars) {
+    if (!checkmate::test_subset(map_df[[x]], lvls(df[[x]]))) {
+      rlang::abort(
+        paste0(
+          "Provided map should only contain valid levels in dataset in variable ", x,
+          ". Consider convert ", x, " to factor first and add",
+          toString(setdiff(map_df[[x]], lvls(df[[x]]))), "levels to it."
+        )
+      )
+    }
+  }
+  res <- df[vars] %>%
+    unique() %>%
+    arrange(across(everything())) %>%
+    mutate(across(everything(), as.character))
+  if (!is.null(map_df)) {
+    dplyr::full_join(map_df, res, by = colnames(map_df))[vars]
+  } else {
+    res
   }
 }

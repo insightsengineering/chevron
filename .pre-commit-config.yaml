@@ -15,6 +15,8 @@ repos:
       - id: roxygenize
         name: Regenerate package documentation
         additional_dependencies:
+          - purrr
+          - vctrs
           - checkmate
           - dplyr
           - insightsengineering/dunlin

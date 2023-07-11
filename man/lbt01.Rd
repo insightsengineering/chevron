@@ -10,18 +10,20 @@
 An object of class \code{chevron_t} of length 1.
 }
 \source{
-cfbt01.R
+\code{cfbt01.R}
 }
 \usage{
 lbt01_main(
   adam_db,
   dataset = "adlb",
   arm_var = "ACTARM",
+  row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(),
-  default_precision = 2,
-  page_by = TRUE,
+  precision = list(default = 2L),
+  page_var = "PARAMCD",
+  .stats = c("n", "mean_sd", "median", "range"),
+  skip = list(CHG = "BASELINE"),
   ...
 )
 
@@ -36,20 +38,24 @@ lbt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in
 table of \code{adam_db} is used as label.}
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
-indicate the number of digits that should be represented for \code{min}, \code{max} and \code{median}. \code{Mean} and \code{sd} are
-represented with one more decimal of precision.}
+indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
+the value for \code{default} will be used.}
 
-\item{default_precision}{(\code{integer}) the default number of digits.}
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
-\item{page_by}{(\code{flag}) indicator whether the parameter row split is by page.}
+\item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
 
-\item{...}{not used.}
+\item{skip}{Named (\code{list}) of visit values that need to be inhibited.}
+
+\item{...}{additional arguments like \code{.indent_mods}, \code{.labels}.}
 }
 \description{
 The \code{LBT01} table provides an
