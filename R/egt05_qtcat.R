@@ -139,8 +139,8 @@ egt05_qtcat_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      AVALCAT1 = empty_as_na(.data$AVALCAT1),
-      CHGCAT1 = empty_as_na(.data$CHGCAT1),
+      AVALCAT1 = reformat(.data$AVALCAT1, empty_rule),
+      CHGCAT1 = reformat(.data$CHGCAT1, empty_rule),
       AVISIT = reorder(.data$AVISIT, .data$AVISITN),
       AVISIT = with_label(.data$AVISIT, "Analysis Visit")
     )

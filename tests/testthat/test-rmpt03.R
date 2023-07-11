@@ -1,6 +1,7 @@
 # rmpt03 functions ----
 
-prop_data <- dunlin::propagate(syn_data, "adsl", "AGEGR1", "USUBJID")
+syn_data$adex <- syn_data$adex %>%
+  left_join(select(syn_data$adsl, USUBJID, AGEGR1), by = "USUBJID")
 
 test_that("rmpt03 function with default argument value return expected result with test data", {
   pre_data <- rmpt03_pre(prop_data)
