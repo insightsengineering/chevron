@@ -17,7 +17,7 @@
 #'  * Sorted based on factor level; by chronological time point given by `"AVISIT"`
 #'  or user-defined visit incorporating `"ATPT"`.
 #'  Re-level to customize order.
-#'  * Please note that it is best to convert `summaryvars` to factor.
+#'  * Please note that it is preferable to convert `summaryvars` to factor.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adeg` table with column specified in `visitvar`.
