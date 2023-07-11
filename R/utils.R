@@ -191,7 +191,7 @@ do_call <- function(what, args) {
   if (is.null(arg_names)) {
     arg_names <- sprintf("var_%s", seq_along(args))
   } else if (any(arg_names == "")) {
-    arg_names_random <- sprintf("var_%s", seq_len(length(args)))
+    arg_names_random <- sprintf("var_%s", seq_along(args))
     arg_names[arg_names == ""] <- arg_names_random[arg_names == ""]
   }
   args_env <- as.environment(setNames(args, arg_names))
