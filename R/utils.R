@@ -189,7 +189,7 @@ execute_with_args <- function(fun, ...) {
 do_call <- function(what, args) {
   arg_names <- names(args)
   if (is.null(arg_names)) {
-    arg_names <- sprintf("var_%s", seq_len(length(args)))
+    arg_names <- sprintf("var_%s", seq_along(args))
   } else if (any(arg_names == "")) {
     arg_names_random <- sprintf("var_%s", seq_len(length(args)))
     arg_names[arg_names == ""] <- arg_names_random[arg_names == ""]
