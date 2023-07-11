@@ -9,8 +9,8 @@ lbt04_lyt(
   var_parcat,
   var_param,
   lbl_param,
-  abn_range,
-  lbl_abn_range,
+  analysis_abn_var,
+  lbl_abn_var,
   variables
 )
 }
@@ -19,7 +19,9 @@ lbt04_lyt(
 
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
-\item{lbl_anrind}{(\code{string}) label of the \code{ANRIND} variable.}
+\item{lbl_abn_var}{(\code{string}) label of the \code{analysis_abn_var} variable.}
+
+\item{variables}{(\code{list}) see \link[tern:abnormal]{tern::count_abnormal}}
 }
 \description{
 \code{lbt04} Layout

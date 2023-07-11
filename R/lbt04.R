@@ -3,12 +3,12 @@
 #' @describeIn lbt04 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param abn_range (`string`) column describing anomaly magnitude
-#' @param baseline (`string`) column describing anomaly at baseline.
+#' @param analysis_abn_var (`string`) column describing anomaly magnitude
+#' @param baseline_abn_var (`string`) column describing anomaly at baseline.
 #'
 #' @details
 #'  * Only count LOW or HIGH values.
-#'  * Lab test results with missing `abn_range` values are excluded.
+#'  * Lab test results with missing `analysis_abn_var` values are excluded.
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Does not include a total column by default.
 #'
@@ -20,8 +20,8 @@
 #'
 lbt04_main <- function(adam_db,
                        arm_var = "ACTARM",
-                       abn_range = "ANRIND",
-                       baseline = "BNRIND",
+                       analysis_abn_var = "ANRIND",
+                       baseline_abn_var = "BNRIND",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
@@ -29,16 +29,16 @@ lbt04_main <- function(adam_db,
     adam_db$adlb, c("PARAM", "PARCAT1"),
     types = list("characater", "factor")
   )
-  assert_valid_variable(adam_db$adlb, c("AVALCAT1", abn_range), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
+  assert_valid_variable(adam_db$adlb, c("AVALCAT1", analysis_abn_var), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adlb, baseline, types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adlb, baseline_abn_var, types = list(c("character", "factor")), empty_ok = TRUE)
   checkmate::assert_true(
-    any(lvls(adam_db$adlb[[abn_range]]) %in% c("HIGH HIGH", "HIGH", "LOW", "LOW LOW")) ||
-      all(is.na(adam_db$adlb[[abn_range]]))
+    any(lvls(adam_db$adlb[[analysis_abn_var]]) %in% c("HIGH HIGH", "HIGH", "LOW", "LOW LOW")) ||
+      all(is.na(adam_db$adlb[[analysis_abn_var]]))
   )
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-  lbl_abn_range <- var_labels_for(adam_db$adlb, abn_range)
+  lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
 
   lyt <- lbt04_lyt(
@@ -46,9 +46,9 @@ lbt04_main <- function(adam_db,
     var_parcat = "PARCAT1",
     var_param = "PARAM",
     lbl_param = lbl_param,
-    abn_range = abn_range,
-    lbl_abn_range = lbl_abn_range,
-    variables = list(id = "USUBJID", baseline = baseline)
+    analysis_abn_var = analysis_abn_var,
+    lbl_abn_var = lbl_abn_var,
+    variables = list(id = "USUBJID", baseline = baseline_abn_var)
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -61,7 +61,8 @@ lbt04_main <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @param lbl_param (`string`) label of the `PARAM` variable.
-#' @param lbl_anrind (`string`) label of the `ANRIND` variable.
+#' @param lbl_abn_var (`string`) label of the `analysis_abn_var` variable.
+#' @param variables (`list`) see [tern::count_abnormal]
 #'
 #' @keywords internal
 #'
@@ -69,8 +70,8 @@ lbt04_lyt <- function(arm_var,
                       var_parcat,
                       var_param,
                       lbl_param,
-                      abn_range,
-                      lbl_abn_range,
+                      analysis_abn_var,
+                      lbl_abn_var,
                       variables) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
@@ -86,13 +87,13 @@ lbt04_lyt <- function(arm_var,
       indent_mod = 0L
     ) %>%
     count_abnormal(
-      var = abn_range,
+      var = analysis_abn_var,
       abnormal = list(Low = c("LOW", "LOW LOW"), High = c("HIGH", "HIGH HIGH")),
       exclude_base_abn = TRUE,
       variables = variables,
       .formats = list(fraction = format_fraction_fixed_dp)
     ) %>%
-    append_topleft(paste("   ", lbl_abn_range))
+    append_topleft(paste("   ", lbl_abn_var))
 }
 
 #' @describeIn lbt04 Preprocessing

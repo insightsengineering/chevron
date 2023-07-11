@@ -14,8 +14,8 @@ An object of class \code{chevron_t} of length 1.
 lbt04_main(
   adam_db,
   arm_var = "ACTARM",
-  abn_range = "ANRIND",
-  baseline = "BNRIND",
+  analysis_abn_var = "ANRIND",
+  baseline_abn_var = "BNRIND",
   ...
 )
 
@@ -30,9 +30,9 @@ lbt04
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{abn_range}{(\code{string}) column describing anomaly magnitude}
+\item{analysis_abn_var}{(\code{string}) column describing anomaly magnitude}
 
-\item{baseline}{(\code{string}) column describing anomaly at baseline.}
+\item{baseline_abn_var}{(\code{string}) column describing anomaly at baseline.}
 
 \item{...}{not used.}
 
@@ -45,7 +45,7 @@ overview of laboratory abnormalities not present at baseline.
 \details{
 \itemize{
 \item Only count LOW or HIGH values.
-\item Lab test results with missing \code{abn_range} values are excluded.
+\item Lab test results with missing \code{analysis_abn_var} values are excluded.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Does not include a total column by default.
 }

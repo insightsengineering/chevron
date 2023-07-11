@@ -5,7 +5,7 @@
 \alias{lbt15_main}
 \alias{lbt15_pre}
 \alias{lbt15}
-\title{\code{LBT15} Laboratory Test Shifts to \code{NCI}-\code{CTCAE} Grade 3-4 Post-Baseline Table.}
+\title{\code{LBT15} Laboratory Test Shifts to \code{NCI-CTCAE} Grade 3-4 Post-Baseline Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
@@ -16,8 +16,8 @@ An object of class \code{chevron_t} of length 1.
 lbt15_main(
   adam_db,
   arm_var = "ACTARM",
-  abn_range = "ATOXGR",
-  baseline = "BTOXGR",
+  analysis_abn_var = "ATOXGR",
+  baseline_abn_var = "BTOXGR",
   ...
 )
 
@@ -30,14 +30,14 @@ lbt15
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{abn_range}{(\code{string}) column describing anomaly magnitude}
+\item{analysis_abn_var}{(\code{string}) column describing anomaly magnitude}
 
-\item{baseline}{(\code{string}) column describing anomaly at baseline.}
+\item{baseline_abn_var}{(\code{string}) column describing anomaly at baseline.}
 
 \item{...}{not used.}
 }
 \description{
-\code{LBT15} Laboratory Test Shifts to \code{NCI}-\code{CTCAE} Grade 3-4 Post-Baseline Table.
+\code{LBT15} Laboratory Test Shifts to \code{NCI-CTCAE} Grade 3-4 Post-Baseline Table.
 }
 \section{Functions}{
 \itemize{
