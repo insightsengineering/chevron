@@ -2,12 +2,12 @@
 
 test_that("lbt15 functions with default argument value return expected result with test data", {
   pre_data <- lbt15_pre(syn_data)
-  raw_res <- lbt15_main(pre_data)
+  raw_res <- lbt04_main(pre_data)
   res <- lbt04_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
-# lbt04 ----
+# lbt15 ----
 
 test_that("lbt15 can handle all NA values", {
   proc_data <- syn_data

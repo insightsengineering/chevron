@@ -52,7 +52,7 @@
       cat(export_as_txt(res, lpp = 100))
     Output
         Laboratory Test                          A: Drug X   B: Placebo   C: Combination
-            ATOXGR                                (N=134)     (N=134)        (N=132)    
+            ANRIND                                (N=134)     (N=134)        (N=132)    
         ————————————————————————————————————————————————————————————————————————————————
         CHEMISTRY                                                                       
           Alanine Aminotransferase Measurement                                          

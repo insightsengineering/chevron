@@ -1,14 +1,5 @@
 # lbt15 ----
 
-#' @describeIn lbt15 Main TLG function
-#' @source `lbt04.R`
-#'
-#' @inheritParams lbt04
-#'
-#' @export
-#'
-lbt15_main <- modify_default_args(lbt04_main, analysis_abn_var = "ATOXGR", baseline_abn_var = "BTOXGR")
-
 #' @describeIn lbt15 Preprocessing
 #'
 #' @inheritParams gen_args
@@ -33,14 +24,15 @@ lbt15_pre <- function(adam_db, ...) {
       ANRIND = with_label(.data$ANRIND, "Direction of Abnormality")
     ) %>%
     mutate(
-      ATOXGR = reformat(.data$ATOXGR, .env$format),
-      BTOXGR = reformat(.data$BTOXGR, .env$format)
+      ANRIND = reformat(.data$ATOXGR, .env$format),
+      BNRIND = reformat(.data$BTOXGR, .env$format)
     )
 
   adam_db
 }
 
 #' `LBT15` Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline Table.
+#' @source `lbt04.R`
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -48,7 +40,7 @@ lbt15_pre <- function(adam_db, ...) {
 #' @examples
 #' run(lbt15, syn_data)
 lbt15 <- chevron_t(
-  main = lbt15_main,
+  main = lbt04_main,
   preprocess = lbt15_pre,
   postprocess = lbt04_post
 )
