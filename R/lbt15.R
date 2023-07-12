@@ -10,8 +10,7 @@ lbt15_pre <- function(adam_db, ...) {
   format <- rule(
     "LOW" = c("-2", "-3", "-4"),
     "MODERATE/NORMAL" = c("-1", "0", "1"),
-    "HIGH" = c("2", "3", "4"),
-    .to_NA = ""
+    "HIGH" = c("2", "3", "4")
   )
 
   adam_db$adlb <- adam_db$adlb %>%

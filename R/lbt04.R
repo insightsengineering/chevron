@@ -32,7 +32,12 @@ lbt04_main <- function(adam_db,
   assert_valid_variable(adam_db$adlb, c("AVALCAT1", analysis_abn_var), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adlb, baseline_abn_var, types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(
+    adam_db$adlb,
+    baseline_abn_var,
+    types = list(c("character", "factor")),
+    na_ok = TRUE, empty_ok = TRUE, min_chars = 0L
+  )
   checkmate::assert_true(
     any(lvls(adam_db$adlb[[analysis_abn_var]]) %in% c("HIGH HIGH", "HIGH", "LOW", "LOW LOW")) ||
       all(is.na(adam_db$adlb[[analysis_abn_var]]))

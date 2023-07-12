@@ -31,9 +31,28 @@ test_that("lbt15 can handle missing levels", {
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
+test_that("lbt15 can handle missing levels in baseline", {
+  proc_data <- syn_data
+  proc_data$adlb <- proc_data$adlb %>%
+    mutate(
+      BTOXGR = ""
+    )
+
+  res <- expect_silent(run(lbt15, proc_data))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
 test_that("lbt15 can handle some NA values", {
   proc_data <- syn_data
   proc_data$adlb[1:2, "ATOXGR"] <- NA
+
+  res <- expect_silent(run(lbt15, proc_data))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("lbt15 can handle some NA values in baseline", {
+  proc_data <- syn_data
+  proc_data$adlb[1:2, "BTOXGR"] <- NA
 
   res <- expect_silent(run(lbt15, proc_data))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
