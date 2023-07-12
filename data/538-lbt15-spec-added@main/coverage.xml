@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.977320307048151" branch-rate="0" lines-covered="2801" lines-valid="2866" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-07-12 07:09:52.233373">
+<coverage line-rate="0.977328217649111" branch-rate="0" lines-covered="2802" lines-valid="2867" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-07-12 15:52:04.553078">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
   <packages>
-    <package name="chevron" line-rate="0.977320307048151" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.977328217649111" branch-rate="0" complexity="0">
       <classes>
         <class name="ael01_nollt.R" filename="R/ael01_nollt.R" line-rate="0.941176470588235" branch-rate="0" complexity="0">
           <methods>
@@ -4522,7 +4522,7 @@
                 <line number="12" hits="1" branch="false"/>
                 <line number="13" hits="1" branch="false"/>
                 <line number="14" hits="1" branch="false"/>
-                <line number="16" hits="1" branch="false"/>
+                <line number="15" hits="1" branch="false"/>
                 <line number="17" hits="1" branch="false"/>
                 <line number="18" hits="1" branch="false"/>
                 <line number="19" hits="1" branch="false"/>
@@ -4536,7 +4536,8 @@
                 <line number="27" hits="1" branch="false"/>
                 <line number="28" hits="1" branch="false"/>
                 <line number="29" hits="1" branch="false"/>
-                <line number="31" hits="1" branch="false"/>
+                <line number="30" hits="1" branch="false"/>
+                <line number="32" hits="1" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -4546,7 +4547,7 @@
             <line number="12" hits="1" branch="false"/>
             <line number="13" hits="1" branch="false"/>
             <line number="14" hits="1" branch="false"/>
-            <line number="16" hits="1" branch="false"/>
+            <line number="15" hits="1" branch="false"/>
             <line number="17" hits="1" branch="false"/>
             <line number="18" hits="1" branch="false"/>
             <line number="19" hits="1" branch="false"/>
@@ -4560,7 +4561,8 @@
             <line number="27" hits="1" branch="false"/>
             <line number="28" hits="1" branch="false"/>
             <line number="29" hits="1" branch="false"/>
-            <line number="31" hits="1" branch="false"/>
+            <line number="30" hits="1" branch="false"/>
+            <line number="32" hits="1" branch="false"/>
           </lines>
         </class>
         <class name="mht01.R" filename="R/mht01.R" line-rate="1" branch-rate="0" complexity="0">
