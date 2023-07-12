@@ -607,11 +607,30 @@ run(rmpt01, syn_data)
 
 The **`rmpt03`** template produces the standard extent of exposure by age group and gender output for the Risk Management Plan (RMP).
 
-By default, the `AGEGR1` variable is used as the age group. Study specific age group variable can be added by editing the parameter `summaryvars`. The age group variable to be categorized needs to be present in both ADSL and ADEX.
+By default, the `AGEGR1` variable is used as the age group. If `AGEGR1` is available in ADSL only but not in ADEX, it needs to be added to ADEX first.
 
 ```{r}
-pre_data <- propagate(syn_data, "adsl", "AGEGR1", "USUBJID")
-run(rmpt03, pre_data)
+proc_data <- syn_data
+proc_data  <- propagate(proc_data, "adsl", "AGEGR1", "USUBJID")
+run(rmpt03, proc_data)
+```
+
+Any other study specific age group can be used by editing the parameter `summaryvars`. For all RMP tables, if the variable specified per `summaryvars` is unavailable in ADEX, it needs to be added to ADEX first.
+```{r}
+proc_data <- syn_data
+proc_data$adsl <- proc_data$adsl %>%
+  mutate(
+    AGEGR2 = with_label(
+      factor(case_when(
+        AAGE < 18 ~ "<18",
+        AAGE >= 18 & AAGE <= 65 ~ "18 - 65",
+        AAGE >65 ~ ">65",
+      ), levels = c("<18", "18 - 65", ">65")),
+      "Age Group 2"
+    )
+  )
+proc_data <- propagate(proc_data, "adsl", "AGEGR2", "USUBJID")
+run(rmpt03, proc_data, summaryvars = "AGEGR2")
 ```
 
 ### **Extent of Exposure by Ethnic Origin for Risk Management Plan (`RMPT04`)**
