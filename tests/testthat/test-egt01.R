@@ -4,7 +4,7 @@ test_that("egt01 functions with default argument value return expected result wi
   pre_data <- egt01_pre(syn_data)
   raw_res <- egt01_main(pre_data)
   res <- cfbt01_post(raw_res)
-  expect_snapshot(res)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 # egt01 ----
