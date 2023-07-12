@@ -624,7 +624,7 @@ proc_data$adsl <- proc_data$adsl %>%
       factor(case_when(
         AAGE < 18 ~ "<18",
         AAGE >= 18 & AAGE <= 65 ~ "18 - 65",
-        AAGE >65 ~ ">65",
+        AAGE > 65 ~ ">65",
       ), levels = c("<18", "18 - 65", ">65")),
       "Age Group 2"
     )
