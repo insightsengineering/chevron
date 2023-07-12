@@ -56,34 +56,34 @@
         ————————————————————————————————————————————————————————————————————————————————
         CHEMISTRY                                                                       
           Alanine Aminotransferase Measurement                                          
-            Low                                    0/47         0/53           0/65     
-            High                                   0/47         0/46           0/63     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
           C-Reactive Protein Measurement                                                
-            Low                                    0/55         0/63           0/53     
-            High                                   0/56         0/58           0/48     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
           Immunoglobulin A Measurement                                                  
-            Low                                    0/46         0/52           0/54     
-            High                                   0/43         0/52           0/55     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
         COAGULATION                                                                     
           Alanine Aminotransferase Measurement                                          
-            Low                                    0/54         0/58           0/50     
-            High                                   0/55         0/52           0/50     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
           C-Reactive Protein Measurement                                                
-            Low                                    0/57         0/50           0/52     
-            High                                   0/54         0/46           0/50     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
           Immunoglobulin A Measurement                                                  
-            Low                                    0/54         0/64           0/56     
-            High                                   0/49         0/67           0/56     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
         HEMATOLOGY                                                                      
           Alanine Aminotransferase Measurement                                          
-            Low                                    0/49         0/48           0/61     
-            High                                   0/48         0/45           0/57     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
           C-Reactive Protein Measurement                                                
-            Low                                    0/50         0/48           0/59     
-            High                                   0/47         0/46           0/56     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
           Immunoglobulin A Measurement                                                  
-            Low                                    0/59         0/57           0/52     
-            High                                   0/57         0/59           0/53     
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
 
 # lbt15 can handle some NA values
 
