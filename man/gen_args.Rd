@@ -57,8 +57,6 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{visit_var}{Analysis Visit variable.}
-
 \item{visit_value}{Value of visit variable.}
 
 \item{paramcd_value}{Value of \code{PARAMCD} variable.}
@@ -73,6 +71,8 @@ Key columns allow you to group repeat occurrences.}
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
+
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 }
 \description{
 General Argument Name Convention

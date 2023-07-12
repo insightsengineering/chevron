@@ -37,8 +37,6 @@ are used as subtitles.}
 \item{splitvar}{(\code{character}) variables to be analyzed, typically \code{"ANRIND"}. Labels of the corresponding columns are
 used as subtitles.}
 
-\item{visit_var}{Analysis Visit variable.}
-
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}

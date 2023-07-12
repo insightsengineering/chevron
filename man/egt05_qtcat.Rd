@@ -65,7 +65,7 @@ change from baseline for patients.
 \item Sorted based on factor level; by chronological time point given by \code{"AVISIT"}
 or user-defined visit incorporating \code{"ATPT"}.
 Re-level to customize order.
-\item Please note that it is best to convert \code{summaryvars} to factor.
+\item Please note that it is preferable to convert \code{summaryvars} to factor.
 }
 }
 \section{Functions}{

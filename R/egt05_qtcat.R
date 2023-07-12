@@ -5,7 +5,6 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adeg`
 #'   table of `adam_db` is used as name.
-#' @param visitvar (`string`) typically `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #'
 #' @details
 #'  * The `Value at Visit` column, displays the categories of the specific `"PARAMCD"` value for patients.

@@ -15,7 +15,7 @@
 #' @param req_tables (`character`) names of the required tables.
 #' @param tlg (`TableTree`, `Listing` or `ggplot`) object typically produced by a `main` function.
 #' @param group (`list of lists`) for group-dependent data binning
-#' @param visit_var Analysis Visit variable.
+#' @param visitvar (`string`) typically `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #' @param paramcd_value Value of `PARAMCD` variable.
 #' @param visit_value Value of visit variable.
 #' @param key_cols (`character`) names of columns that should be treated as key columns when rendering the listing.

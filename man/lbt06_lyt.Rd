@@ -21,8 +21,6 @@ lbt06_lyt(
 
 \item{param}{(\code{string}) the variable for parameter code.}
 
-\item{visit_var}{(\code{string}) the variable for analysis visit.}
-
 \item{anrind_var}{(\code{string}) the variable for analysis reference range indicator.}
 
 \item{bnrind_var}{(\code{string}) the variable for baseline reference range indicator.}
