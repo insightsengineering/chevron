@@ -16,7 +16,7 @@ egt03_main(
   arm_var = "ACTARMCD",
   summaryvar = "BNRIND",
   splitvar = "ANRIND",
-  visit_var = "AVISIT",
+  visitvar = "AVISIT",
   ...
 )
 
@@ -36,6 +36,8 @@ are used as subtitles.}
 
 \item{splitvar}{(\code{character}) variables to be analyzed, typically \code{"ANRIND"}. Labels of the corresponding columns are
 used as subtitles.}
+
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
 \item{...}{not used.}
 

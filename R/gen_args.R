@@ -29,6 +29,6 @@
 #'
 gen_args <- function(adam_db, main, preprocess, postprocess, dataset,
                      type, arm_var, lbl_overall, prune_0, req_tables, deco, group,
-                     tlg, visit_var, visit_value, paramcd_value,
+                     tlg, visitvar, visit_value, paramcd_value,
                      key_cols, disp_cols, row_split_var, page_var, ...) {
 }

@@ -35,7 +35,7 @@ lbt06_main <- function(adam_db,
   lyt <- lbt06_lyt(
     arm_var = arm_var,
     param = "PARAM",
-    visit_var = "AVISIT",
+    visitvar = "AVISIT",
     anrind_var = "ANRIND",
     bnrind_var = "BNRIND",
     lbl_param = lbl_param,
@@ -65,7 +65,7 @@ lbt06_main <- function(adam_db,
 #'
 lbt06_lyt <- function(arm_var,
                       param,
-                      visit_var,
+                      visitvar,
                       anrind_var,
                       bnrind_var,
                       lbl_param,
@@ -81,7 +81,7 @@ lbt06_lyt <- function(arm_var,
       split_label = lbl_param
     ) %>%
     split_rows_by(
-      var = visit_var,
+      var = visitvar,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_visit

@@ -25,14 +25,14 @@ egt03_main <- function(adam_db,
                        arm_var = "ACTARMCD",
                        summaryvar = "BNRIND",
                        splitvar = "ANRIND",
-                       visit_var = "AVISIT",
+                       visitvar = "AVISIT",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   checkmate::assert_string(summaryvar)
   assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
   checkmate::assert_string(splitvar)
   assert_valid_variable(adam_db$adeg, c("PARAMCD", splitvar), types = list("character", "factor"))
-  assert_single_value(adam_db$adeg[[visit_var]])
+  assert_single_value(adam_db$adeg[[visitvar]])
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))

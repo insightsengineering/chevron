@@ -7,7 +7,7 @@
 lbt06_lyt(
   arm_var,
   param,
-  visit_var,
+  visitvar,
   anrind_var,
   bnrind_var,
   lbl_param,
@@ -20,6 +20,8 @@ lbt06_lyt(
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{param}{(\code{string}) the variable for parameter code.}
+
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
 \item{anrind_var}{(\code{string}) the variable for analysis reference range indicator.}
 
