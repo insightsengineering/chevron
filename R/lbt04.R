@@ -38,10 +38,6 @@ lbt04_main <- function(adam_db,
     types = list(c("character", "factor")),
     na_ok = TRUE, empty_ok = TRUE, min_chars = 0L
   )
-  checkmate::assert_true(
-    any(lvls(adam_db$adlb[[analysis_abn_var]]) %in% c("HIGH HIGH", "HIGH", "LOW", "LOW LOW")) ||
-      all(is.na(adam_db$adlb[[analysis_abn_var]]))
-  )
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
   lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")

@@ -13,7 +13,7 @@ test_that("lbt15 can handle all NA values", {
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
-      ATOXGR = NA_character_
+      ATOXGR = NA
     )
 
   res <- expect_silent(run(lbt15, proc_data))
