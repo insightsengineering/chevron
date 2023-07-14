@@ -37,6 +37,45 @@
             Low                                  2/60 (3.3%)    4/58 (6.9%)    4/54 (7.4%)  
             High                                 3/60 (5.0%)    3/59 (5.1%)    5/53 (9.4%)  
 
+# lbt15 can handle all NA values
+
+    Code
+      cat(export_as_txt(res, lpp = 100))
+    Output
+        Laboratory Test                          A: Drug X   B: Placebo   C: Combination
+            ANRIND                                (N=134)     (N=134)        (N=132)    
+        ————————————————————————————————————————————————————————————————————————————————
+        CHEMISTRY                                                                       
+          Alanine Aminotransferase Measurement                                          
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+          C-Reactive Protein Measurement                                                
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+          Immunoglobulin A Measurement                                                  
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+        COAGULATION                                                                     
+          Alanine Aminotransferase Measurement                                          
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+          C-Reactive Protein Measurement                                                
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+          Immunoglobulin A Measurement                                                  
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+        HEMATOLOGY                                                                      
+          Alanine Aminotransferase Measurement                                          
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+          C-Reactive Protein Measurement                                                
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+          Immunoglobulin A Measurement                                                  
+            Low                                     0/0         0/0            0/0      
+            High                                    0/0         0/0            0/0      
+
 # lbt15 can handle missing levels
 
     Code
