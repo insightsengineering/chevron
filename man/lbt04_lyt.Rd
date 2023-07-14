@@ -4,14 +4,24 @@
 \alias{lbt04_lyt}
 \title{\code{lbt04} Layout}
 \usage{
-lbt04_lyt(arm_var, var_parcat, var_param, lbl_param, var_anrind, lbl_anrind)
+lbt04_lyt(
+  arm_var,
+  var_parcat,
+  var_param,
+  lbl_param,
+  analysis_abn_var,
+  lbl_abn_var,
+  variables
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
-\item{lbl_anrind}{(\code{string}) label of the \code{ANRIND} variable.}
+\item{lbl_abn_var}{(\code{string}) label of the \code{analysis_abn_var} variable.}
+
+\item{variables}{(\code{list}) see \link[tern:abnormal]{tern::count_abnormal}}
 }
 \description{
 \code{lbt04} Layout
