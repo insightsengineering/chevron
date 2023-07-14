@@ -35,7 +35,7 @@ lbt06_main <- function(adam_db,
   lyt <- lbt06_lyt(
     arm_var = arm_var,
     param = "PARAM",
-    visit_var = "AVISIT",
+    visitvar = "AVISIT",
     anrind_var = "ANRIND",
     bnrind_var = "BNRIND",
     lbl_param = lbl_param,
@@ -54,7 +54,6 @@ lbt06_main <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @param param (`string`) the variable for parameter code.
-#' @param visit_var (`string`) the variable for analysis visit.
 #' @param anrind_var (`string`) the variable for analysis reference range indicator.
 #' @param bnrind_var (`string`) the variable for baseline reference range indicator.
 #' @param lbl_param (`string`) text label of the `PARAM` variable.
@@ -66,7 +65,7 @@ lbt06_main <- function(adam_db,
 #'
 lbt06_lyt <- function(arm_var,
                       param,
-                      visit_var,
+                      visitvar,
                       anrind_var,
                       bnrind_var,
                       lbl_param,
@@ -82,7 +81,7 @@ lbt06_lyt <- function(arm_var,
       split_label = lbl_param
     ) %>%
     split_rows_by(
-      var = visit_var,
+      var = visitvar,
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_visit

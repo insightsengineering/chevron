@@ -9,11 +9,13 @@ egt05_qtcat_lyt(
   summaryvars,
   summaryvars_lbls,
   lbl_overall,
+  row_split_var,
+  row_split_lbl,
   visitvar,
+  page_var,
   lbl_avisit,
   lbl_param,
-  lbl_cat,
-  lbl_headvisit
+  lbl_cat
 )
 }
 \arguments{
@@ -25,16 +27,17 @@ egt05_qtcat_lyt(
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
-to be displayed.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{lbl_cat}{(\code{string}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
-
-\item{lbl_headvisit}{(\code{string}) label of Visits in the header. Default as \verb{Analysis Visit}.}
 }
 \description{
 \code{EGT05_QTCAT} Layout
