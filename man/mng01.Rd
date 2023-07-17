@@ -59,7 +59,8 @@ mng01
 
 \item{show_table}{(\code{flag}) should the summary statistic table be displayed.}
 
-\item{jitter}{(\code{number}) the width of spread for data points on the x-axis; a number from 0 (no jitter) to 1, with a default of 0.3.}
+\item{jitter}{(\code{numeric}) the width of spread for data points on the x-axis; a number from 0 (no jitter) to 1 (high jitter),
+with a default of 0.3 (slight jitter).}
 
 \item{show_n}{(\code{flag}) should the number of observation be displayed int the table.}
 

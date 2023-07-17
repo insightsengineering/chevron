@@ -17,7 +17,8 @@
 #' @param interval_fun (`string`) the function defining the crossbar range.
 #' @param show_table (`flag`) should the summary statistic table be displayed.
 #' @param show_n (`flag`) should the number of observation be displayed int the table.
-#' @param jitter (`number`) the width of spread for data points on the x-axis; a number from 0 (no jitter) to 1, with a default of 0.3.
+#' @param jitter (`numeric`) the width of spread for data points on the x-axis; a number from 0 (no jitter) to 1 (high jitter),
+#'   with a default of 0.3 (slight jitter).
 #' @param show_h_grid (`flag`) should horizontal grid be displayed.
 #' @param show_v_grid (`flag`) should vertical grid be displayed.
 #' @param legend_pos (`string`) the position of the legend.
