@@ -9,7 +9,7 @@
 #' @inheritParams gen_args
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
-#' @param verbose (`flag`) wheter to print argument information.
+#' @param verbose (`flag`) whether to print argument information.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
 #'
 #' @name run
