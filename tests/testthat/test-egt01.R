@@ -17,6 +17,5 @@ test_that("egt01 can handle n = 0 and outputs NE instead of infs and NAs", {
   res <- expect_silent(
     run(egt01, proc_data, precision = list("RR" = 0, "HR" = 1))
   )
-  res <- res[1:11, 1]
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

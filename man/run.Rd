@@ -5,9 +5,9 @@
 \alias{run,chevron_tlg-method}
 \title{Run the pipeline}
 \usage{
-run(object, adam_db, auto_pre = TRUE, ...)
+run(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...)
 
-\S4method{run}{chevron_tlg}(object, adam_db, auto_pre = TRUE, ...)
+\S4method{run}{chevron_tlg}(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
@@ -15,6 +15,8 @@ run(object, adam_db, auto_pre = TRUE, ...)
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{auto_pre}{(\code{flag}) whether to perform the default pre processing step.}
+
+\item{verbose}{(\code{flag}) wheter to print argument information.}
 
 \item{...}{extra arguments to pass to the pre-processing, main and post-processing functions.}
 }

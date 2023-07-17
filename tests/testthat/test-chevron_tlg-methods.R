@@ -175,3 +175,13 @@ test_that("script_funs generates a valid script", {
 
   expect_identical(tlg_output, expected)
 })
+
+# print_list ----
+
+test_that("print_list works", {
+  expect_snapshot(print_list(alist(a = 1, b = b, c = xx)))
+})
+
+test_that("print_list works for empty list", {
+  expect_snapshot(print_list(alist()))
+})

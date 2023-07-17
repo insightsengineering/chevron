@@ -148,3 +148,20 @@
       [14] "# Create TLG"                                                                                                                                   
       [15] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04, !!!args_ls, auto_pre = FALSE)"
 
+# print_list works
+
+    Code
+      print_list(alist(a = 1, b = b, c = xx))
+    Output
+        a  : 1
+        b  : b
+        c  : xx
+
+# print_list works for empty list
+
+    Code
+      print_list(alist())
+    Output
+        No mapped argument.
+      NULL
+

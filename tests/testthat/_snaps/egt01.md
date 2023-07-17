@@ -246,19 +246,235 @@
       
       Parameter: Heart Rate
       
-        ———————————————————————————————
-                           A: Drug X   
-                         Value at Visit
-                            (N=134)    
-        ———————————————————————————————
-        BASELINE                       
-          n                    0       
-          Mean (SD)         NE (NE)    
-          Median               NE      
-          Min - Max         NE - NE    
-        WEEK 1 DAY 8                   
-          n                    0       
-          Mean (SD)         NE (NE)    
-          Median               NE      
-          Min - Max         NE - NE    
+        ———————————————————————————————————————————————————————————————————————————————————————
+        Analysis Visit              A: Drug X                          B: Placebo              
+                                           Change from                           Change from   
+                          Value at Visit     Baseline      Value at Visit         Baseline     
+                             (N=134)         (N=134)           (N=134)             (N=134)     
+        ———————————————————————————————————————————————————————————————————————————————————————
+        BASELINE                                                                               
+          n                     0                                134                           
+          Mean (SD)          NE (NE)                        69.83 (20.72)                      
+          Median                NE                              73.35                          
+          Min - Max          NE - NE                        13.5 - 115.5                       
+        WEEK 1 DAY 8                                                                           
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)        69.43 (20.80)       -0.40 (29.73)  
+          Median                NE              NE              70.46               -0.52      
+          Min - Max          NE - NE         NE - NE        16.9 - 129.1        -68.2 - 88.4   
+        WEEK 2 DAY 15                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)        71.11 (20.56)       1.28 (31.35)   
+          Median                NE              NE              72.52               -0.31      
+          Min - Max          NE - NE         NE - NE         9.2 - 120.5        -73.1 - 81.4   
+        WEEK 3 DAY 22                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)        68.95 (20.56)       -0.88 (30.14)  
+          Median                NE              NE              67.80               1.19       
+          Min - Max          NE - NE         NE - NE        24.0 - 130.4        -73.0 - 103.3  
+        WEEK 4 DAY 29                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)        71.60 (20.34)       1.77 (30.26)   
+          Median                NE              NE              72.21               -0.88      
+          Min - Max          NE - NE         NE - NE        17.5 - 129.1        -64.3 - 85.3   
+        WEEK 5 DAY 36                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)        71.25 (18.92)       1.42 (27.08)   
+          Median                NE              NE              70.86               0.64       
+          Min - Max          NE - NE         NE - NE        25.9 - 125.7        -71.2 - 67.4   
+      \s\n
+      Parameter: Heart Rate
+      
+        ———————————————————————————————————————————————————————
+        Analysis Visit               C: Combination            
+                                                 Change from   
+                           Value at Visit         Baseline     
+                               (N=132)             (N=132)     
+        ———————————————————————————————————————————————————————
+        BASELINE                                               
+          n                      132                           
+          Mean (SD)         69.34 (20.95)                      
+          Median                71.96                          
+          Min - Max         11.6 - 115.5                       
+        WEEK 1 DAY 8                                           
+          n                      132                 132       
+          Mean (SD)         68.65 (18.06)       -0.69 (27.81)  
+          Median                68.57               -0.76      
+          Min - Max         16.9 - 115.6        -68.2 - 67.2   
+        WEEK 2 DAY 15                                          
+          n                      132                 132       
+          Mean (SD)         69.19 (18.06)       -0.15 (28.61)  
+          Median                69.30               -1.55      
+          Min - Max         29.6 - 120.5        -67.7 - 66.3   
+        WEEK 3 DAY 22                                          
+          n                      132                 132       
+          Mean (SD)         70.88 (20.28)       1.54 (27.28)   
+          Median                70.12               0.14       
+          Min - Max         20.9 - 116.8        -64.5 - 72.5   
+        WEEK 4 DAY 29                                          
+          n                      132                 132       
+          Mean (SD)         71.02 (20.59)       1.68 (29.60)   
+          Median                70.52               3.81       
+          Min - Max         10.4 - 117.3        -65.9 - 105.7  
+        WEEK 5 DAY 36                                          
+          n                      132                 132       
+          Mean (SD)         71.26 (18.56)       1.92 (29.59)   
+          Median                73.29               1.74       
+          Min - Max         23.9 - 117.2        -58.2 - 68.9   
+      \s\n
+      Parameter: QT Duration
+      
+        ———————————————————————————————————————————————————————————————————————————————————————
+        Analysis Visit              A: Drug X                          B: Placebo              
+                                           Change from                           Change from   
+                          Value at Visit     Baseline      Value at Visit         Baseline     
+                             (N=134)         (N=134)           (N=134)             (N=134)     
+        ———————————————————————————————————————————————————————————————————————————————————————
+        BASELINE                                                                               
+          n                     0                                134                           
+          Mean (SD)          NE (NE)                      351.004 (98.436)                     
+          Median                NE                             351.480                         
+          Min - Max          NE - NE                       98.90 - 641.92                      
+        WEEK 1 DAY 8                                                                           
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)      363.946 (102.338)   12.943 (140.729) 
+          Median                NE              NE             356.539             13.730      
+          Min - Max          NE - NE         NE - NE       114.92 - 656.45    -317.53 - 416.35 
+        WEEK 2 DAY 15                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)      345.926 (96.783)    -5.078 (152.509) 
+          Median                NE              NE             346.831             -9.681      
+          Min - Max          NE - NE         NE - NE       146.42 - 556.07    -440.28 - 364.76 
+        WEEK 3 DAY 22                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)      343.412 (102.585)   -7.592 (138.803) 
+          Median                NE              NE             335.119             -15.888     
+          Min - Max          NE - NE         NE - NE       63.37 - 566.51     -311.28 - 293.76 
+        WEEK 4 DAY 29                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)      354.377 (108.286)    3.374 (142.390) 
+          Median                NE              NE             346.699             -17.129     
+          Min - Max          NE - NE         NE - NE       80.82 - 687.69     -439.90 - 364.80 
+        WEEK 5 DAY 36                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)      338.648 (99.260)    -12.356 (130.457)
+          Median                NE              NE             344.167              0.405      
+          Min - Max          NE - NE         NE - NE       31.25 - 563.90     -338.85 - 352.75 
+      \s\n
+      Parameter: QT Duration
+      
+        ———————————————————————————————————————————————————————
+        Analysis Visit               C: Combination            
+                                                 Change from   
+                           Value at Visit         Baseline     
+                               (N=132)             (N=132)     
+        ———————————————————————————————————————————————————————
+        BASELINE                                               
+          n                      132                           
+          Mean (SD)       352.598 (105.114)                    
+          Median               347.956                         
+          Min - Max        105.68 - 628.14                     
+        WEEK 1 DAY 8                                           
+          n                      132                 132       
+          Mean (SD)       359.424 (105.161)    6.826 (147.129) 
+          Median               363.838              8.685      
+          Min - Max        51.91 - 611.88     -473.19 - 358.00 
+        WEEK 2 DAY 15                                          
+          n                      132                 132       
+          Mean (SD)       335.689 (98.605)    -16.909 (138.448)
+          Median               320.957             -22.267     
+          Min - Max        104.91 - 562.34    -326.55 - 325.27 
+        WEEK 3 DAY 22                                          
+          n                      132                 132       
+          Mean (SD)       346.947 (94.965)    -5.652 (144.651) 
+          Median               352.154              9.113      
+          Min - Max        126.09 - 580.81    -412.11 - 410.01 
+        WEEK 4 DAY 29                                          
+          n                      132                 132       
+          Mean (SD)       341.358 (106.745)   -11.240 (145.648)
+          Median               352.295             -11.868     
+          Min - Max         4.95 - 570.61     -480.94 - 330.67 
+        WEEK 5 DAY 36                                          
+          n                      132                 132       
+          Mean (SD)       349.303 (95.769)    -3.296 (135.997) 
+          Median               350.319             12.680      
+          Min - Max        119.02 - 581.83    -311.45 - 295.53 
+      \s\n
+      Parameter: RR Duration
+      
+        ———————————————————————————————————————————————————————————————————————————————————————
+        Analysis Visit              A: Drug X                          B: Placebo              
+                                           Change from                           Change from   
+                          Value at Visit     Baseline      Value at Visit         Baseline     
+                             (N=134)         (N=134)           (N=134)             (N=134)     
+        ———————————————————————————————————————————————————————————————————————————————————————
+        BASELINE                                                                               
+          n                     0                                134                           
+          Mean (SD)          NE (NE)                       1027.5 (324.0)                      
+          Median                NE                             1047.3                          
+          Min - Max          NE - NE                          5 - 1877                         
+        WEEK 1 DAY 8                                                                           
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)       1061.6 (269.1)       34.1 (401.8)   
+          Median                NE              NE             1061.5               66.9       
+          Min - Max          NE - NE         NE - NE         277 - 1712          -942 - 994    
+        WEEK 2 DAY 15                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)       1109.4 (318.2)       81.9 (453.1)   
+          Median                NE              NE             1117.8               69.3       
+          Min - Max          NE - NE         NE - NE         161 - 2049         -1127 - 1149   
+        WEEK 3 DAY 22                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)       1118.3 (296.5)       90.9 (409.6)   
+          Median                NE              NE             1134.6               52.0       
+          Min - Max          NE - NE         NE - NE          97 - 1825          -887 - 1166   
+        WEEK 4 DAY 29                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)       1079.8 (298.9)       52.3 (429.3)   
+          Median                NE              NE             1051.6               69.6       
+          Min - Max          NE - NE         NE - NE         348 - 1762          -826 - 1192   
+        WEEK 5 DAY 36                                                                          
+          n                     0               0                134                 134       
+          Mean (SD)          NE (NE)         NE (NE)       1058.5 (271.0)       31.0 (436.0)   
+          Median                NE              NE             1068.9               33.6       
+          Min - Max          NE - NE         NE - NE         209 - 1795          -979 - 1365   
+      \s\n
+      Parameter: RR Duration
+      
+        ———————————————————————————————————————————————————————
+        Analysis Visit               C: Combination            
+                                                 Change from   
+                           Value at Visit         Baseline     
+                               (N=132)             (N=132)     
+        ———————————————————————————————————————————————————————
+        BASELINE                                               
+          n                      132                           
+          Mean (SD)        1074.6 (277.3)                      
+          Median               1080.9                          
+          Min - Max          290 - 1617                        
+        WEEK 1 DAY 8                                           
+          n                      132                 132       
+          Mean (SD)        1039.6 (284.4)       -35.0 (406.0)  
+          Median               1014.8               -97.8      
+          Min - Max          498 - 1937          -959 - 909    
+        WEEK 2 DAY 15                                          
+          n                      132                 132       
+          Mean (SD)        1045.2 (277.5)       -29.4 (380.8)  
+          Median               1034.6               -15.3      
+          Min - Max          253 - 1722          -859 - 872    
+        WEEK 3 DAY 22                                          
+          n                      132                 132       
+          Mean (SD)        1036.6 (268.5)       -38.0 (421.5)  
+          Median               1030.7               -60.7      
+          Min - Max          446 - 1713          -985 - 902    
+        WEEK 4 DAY 29                                          
+          n                      132                 132       
+          Mean (SD)        1027.5 (295.9)       -47.1 (378.2)  
+          Median               1023.4               -49.5      
+          Min - Max          342 - 2145         -1002 - 1049   
+        WEEK 5 DAY 36                                          
+          n                      132                 132       
+          Mean (SD)        1029.0 (271.2)       -45.6 (405.5)  
+          Median               1065.3               -34.4      
+          Min - Max          436 - 1794          -962 - 1330   
 
