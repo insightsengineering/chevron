@@ -16,7 +16,7 @@ run(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...)
 
 \item{auto_pre}{(\code{flag}) whether to perform the default pre processing step.}
 
-\item{verbose}{(\code{flag}) wheter to print argument information.}
+\item{verbose}{(\code{flag}) whether to print argument information.}
 
 \item{...}{extra arguments to pass to the pre-processing, main and post-processing functions.}
 }
