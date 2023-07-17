@@ -24,10 +24,16 @@ ael01_nollt_main <- function(adam_db,
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
 
+  fmt <- list(
+    all = formatters::fmt_config(align = "left"),
+    numeric = formatters::fmt_config(align = "center")
+  )
+
   as_listing(
     adam_db[[dataset]],
     key_cols = key_cols,
-    disp_cols = disp_cols
+    disp_cols = disp_cols,
+    default_formatting = fmt
   )
 }
 
