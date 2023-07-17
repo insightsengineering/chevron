@@ -243,19 +243,22 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
+      
+      Parameter: Heart Rate
+      
+        ———————————————————————————————
                            A: Drug X   
                          Value at Visit
                             (N=134)    
         ———————————————————————————————
-        Heart Rate                     
-          BASELINE                     
-            n                  0       
-            Mean (SD)       NE (NE)    
-            Median             NE      
-            Min - Max       NE - NE    
-          WEEK 1 DAY 8                 
-            n                  0       
-            Mean (SD)       NE (NE)    
-            Median             NE      
-            Min - Max       NE - NE    
+        BASELINE                       
+          n                    0       
+          Mean (SD)         NE (NE)    
+          Median               NE      
+          Min - Max         NE - NE    
+        WEEK 1 DAY 8                   
+          n                    0       
+          Mean (SD)         NE (NE)    
+          Median               NE      
+          Min - Max         NE - NE    
 

@@ -5,7 +5,6 @@
 #' @import rtables
 #' @import tern
 #' @importFrom formatters with_label
-#' @importFrom rlistings as_listing
 #' @importFrom rtables drop_split_levels
 #' @importFrom checkmate check_class
 #' @importFrom dunlin rule reformat render_safe

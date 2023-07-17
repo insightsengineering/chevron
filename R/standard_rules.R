@@ -6,7 +6,7 @@ nocoding <- rule("No Coding Available" = c("", NA))
 missing_rule <- rule("<Missing>" = c("", NA))
 #' Empty rule
 #' @export
-empty_rule <- rule()
+empty_rule <- rule(.to_NA = "")
 #' Get grade rule
 #' @param direction (`string`) of abnormality direction.
 #' @param missing (`string`) method to deal with missing

@@ -84,12 +84,12 @@ h_format_dec <- function(digits, format, ne = FALSE) {
   } else {
     if (ne) {
       ret <- function(x, ...) {
-        do.call(sprintf, c(list(fmt = format), rep("NE", length(digits))))
+        do_call(sprintf, c(list(fmt = format), rep("NE", length(digits))))
       }
       return(ret)
     }
     digit_string <- paste0("%", ifelse(is.na(digits), "", paste0(".", digits)), "f")
-    new_format <- do.call(sprintf, c(list(fmt = format), digit_string))
+    new_format <- do_call(sprintf, c(list(fmt = format), digit_string))
     formatters::sprintf_format(new_format)
   }
 }
@@ -181,5 +181,22 @@ modify_default_args <- function(fun, ...) {
 #' @keywords internal
 execute_with_args <- function(fun, ...) {
   args <- list(...)
-  do.call(fun, args[intersect(names(args), formalArgs(fun))])
+  do_call(fun, args[intersect(names(args), formalArgs(fun))])
+}
+
+#' Execute a Function Call
+#' @keywords internal
+do_call <- function(what, args) {
+  arg_names <- names(args)
+  if (is.null(arg_names)) {
+    arg_names <- sprintf("var_%s", seq_along(args))
+  } else if (any(arg_names == "")) {
+    arg_names_random <- sprintf("var_%s", seq_along(args))
+    arg_names[arg_names == ""] <- arg_names_random[arg_names == ""]
+  }
+  args_env <- as.environment(setNames(args, arg_names))
+  parent.env(args_env) <- parent.frame()
+  new_args <- lapply(arg_names, as.symbol)
+  names(new_args) <- names(args)
+  do.call(what, new_args, envir = args_env)
 }

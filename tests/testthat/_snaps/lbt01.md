@@ -489,19 +489,22 @@
     Code
       cat(export_as_txt(res, lpp = 200))
     Output
+      
+      Parameter: Alanine Aminotransferase Measurement
+      
+        —————————————————————————————————————————————————————
                                                  A: Drug X   
                                                Value at Visit
                                                   (N=134)    
         —————————————————————————————————————————————————————
-        Alanine Aminotransferase Measurement                 
-          BASELINE                                           
-            n                                        0       
-            Mean (SD)                             NE (NE)    
-            Median                                   NE      
-            Min - Max                             NE - NE    
-          WEEK 1 DAY 8                                       
-            n                                        0       
-            Mean (SD)                             NE (NE)    
-            Median                                   NE      
-            Min - Max                             NE - NE    
+        BASELINE                                             
+          n                                          0       
+          Mean (SD)                               NE (NE)    
+          Median                                     NE      
+          Min - Max                               NE - NE    
+        WEEK 1 DAY 8                                         
+          n                                          0       
+          Mean (SD)                               NE (NE)    
+          Median                                     NE      
+          Min - Max                               NE - NE    
 

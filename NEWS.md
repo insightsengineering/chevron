@@ -1,4 +1,4 @@
-# chevron 0.2.0.9024
+# chevron 0.2.0.9031
 
 * Add `row_split_var` and `page_var` as argument for some template.
 * Update `LBT06` template to use `PARAM` as row split.
@@ -10,6 +10,7 @@
 * Update `EXT01` to allow it to be displayed by `PARCAT2`.
 * Add `COXT01` template. `COXT02` is based on `COXT01` now.
 * Add `AET05` and `AET05_ALL` template.
+* Add `LBT15` based on `LBT04`.
 
 # chevron 0.2.0
 
