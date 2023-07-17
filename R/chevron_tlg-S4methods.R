@@ -100,7 +100,7 @@ print_list <- function(x, indent = 2L) {
       sprintf(
         paste0("%s%-", m_charx + 2, "s: %s\n"),
         stringr::str_dup(" ", indent), k,
-        paste(deparse(x[[k]]), collapse = paste0("\n", stringr::str_dup(" ", m_charx + 4)))
+        paste(deparse(x[[k]]), collapse = paste0("\n", stringr::str_dup(" ", m_charx + indent + 2)))
       )
     )
   }
