@@ -67,3 +67,14 @@ test_that("mng01 works with combination of x variables", {
   )
   checkmate::expect_list(res, len = 3, types = "ggplot")
 })
+
+test_that("mng01 works with numeric jitter", {
+  proc_data <- syn_data
+  res <- run(
+    mng01,
+    proc_data,
+    dataset = "adlb",
+    jitter = 0.2
+  )
+  checkmate::expect_list(res, len = 3, types = "ggplot")
+})
