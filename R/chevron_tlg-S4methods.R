@@ -51,10 +51,18 @@ setMethod(
 #' Print Arguments
 #' @keywords internal
 print_args <- function(run_call, args, auto_pre = TRUE) {
+  checkmate::assert_class(run_call, "call")
+  checkmate::assert_list(args)
+  checkmate::assert_flag(auto_pre)
   run_call[[1]] <- quote(alist)
   run_call <- eval(run_call)
   run_call$auto_pre <- NULL
   run_call$verbose <- NULL
+  nms_args <- unique(unlist(lapply(args, names)))
+  nms_call <- names(run_call)
+  m <- pmatch(nms_call, nms_args)
+  nms_call[!is.na(m)] <- nms_args[m[!is.na(m)]]
+  names(run_call) <- nms_call
   cat("Using template: ", run_call$object, "\n")
   cat("Using data:     ", run_call$adam_db, "\n")
   if (auto_pre) {
@@ -74,12 +82,13 @@ print_args <- function(run_call, args, auto_pre = TRUE) {
   }
 }
 
-#' Subset args and merge
+#' Subset Arguments and Merge
 #' @keywords internal
 get_subset <- function(x, y) {
   utils::modifyList(
     x,
-    y[names(y) %in% names(x)]
+    y[names(y) %in% names(x)],
+    keep.null = TRUE
   )
 }
 
