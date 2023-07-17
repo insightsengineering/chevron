@@ -2,11 +2,11 @@
 % Please edit documentation in R/chevron_tlg-S4methods.R
 \name{get_subset}
 \alias{get_subset}
-\title{Subset args and merge}
+\title{Subset Arguments and Merge}
 \usage{
 get_subset(x, y)
 }
 \description{
-Subset args and merge
+Subset Arguments and Merge
 }
 \keyword{internal}
