@@ -18,7 +18,7 @@ gen_args(
   deco,
   group,
   tlg,
-  visit_var,
+  visitvar,
   visit_value,
   paramcd_value,
   key_cols,
@@ -57,7 +57,7 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
-\item{visit_var}{Analysis Visit variable.}
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
 \item{visit_value}{Value of visit variable.}
 

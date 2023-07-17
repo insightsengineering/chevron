@@ -189,7 +189,7 @@ split_rows_by_recurive <- function(lyt, row_split_var, ...) {
   args <- list(...)
   for (i in seq_len(length(row_split_var))) {
     args_i <- lapply(args, obtain_value, index = i)
-    lyt <- do.call(
+    lyt <- do_call(
       split_rows_by,
       c(
         list(

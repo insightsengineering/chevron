@@ -31,8 +31,7 @@ cfbt01_lyt(
 
 \item{row_split_lbl}{(\code{character}) label of further row splits.}
 
-\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} (Default) or \code{"ATPTN"} depending on the type of time point
-to be displayed.}
+\item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
 \item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
 

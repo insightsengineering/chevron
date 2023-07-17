@@ -564,6 +564,70 @@ run(mht01, syn_data)
 run(mht01, syn_data, lbl_overall = "All Patients")
 ```
 
+### **Duration of Exposure for Risk Management Plan (`RMPT01`)**
+
+#### **1. Duration of Exposure for Risk Management Plan**
+
+The **`rmpt01`** template produces the standard duration of exposure output for the Risk Management Plan (`RMP`).
+
+Person time is the sum of exposure across all patients in days.
+
+```{r}
+run(rmpt01, syn_data)
+```
+
+### **Extent of Exposure by Age Group and Gender for Risk Management Plan (`RMPT03`)**
+
+#### **1. Extent of Exposure by Age Group and Gender for Risk Management Plan**
+
+The **`rmpt03`** template produces the standard extent of exposure by age group and gender output for the Risk Management Plan (`RMP`).
+
+By default, the `AGEGR1` variable is used as the age group. If `AGEGR1` is available in `ADSL` only but not in `ADEX`, it needs to be added to `ADEX` first.
+
+```{r}
+proc_data <- syn_data
+proc_data  <- propagate(proc_data, "adsl", "AGEGR1", "USUBJID")
+run(rmpt03, proc_data)
+```
+
+Any other study specific age group can be used by editing the parameter `summaryvars`. For all `RMP` tables, if the variable specified per `summaryvars` is unavailable in `ADEX`, it needs to be added to `ADEX` first.
+```{r}
+proc_data <- syn_data
+proc_data$adsl <- proc_data$adsl %>%
+  mutate(
+    AGEGR2 = with_label(
+      factor(case_when(
+        AAGE < 18 ~ "<18",
+        AAGE >= 18 & AAGE <= 65 ~ "18 - 65",
+        AAGE > 65 ~ ">65",
+      ), levels = c("<18", "18 - 65", ">65")),
+      "Age Group 2"
+    )
+  )
+proc_data <- propagate(proc_data, "adsl", "AGEGR2", "USUBJID")
+run(rmpt03, proc_data, summaryvars = "AGEGR2")
+```
+
+### **Extent of Exposure by Ethnic Origin for Risk Management Plan (`RMPT04`)**
+
+#### **1. Extent of Exposure by Ethnic Origin for Risk Management Plan**
+
+The **`rmpt04`** template produces the standard extent of exposure by ethnic origin output for the Risk Management Plan (`RMP`).
+
+```{r}
+run(rmpt04, syn_data)
+```
+
+### **Extent of Exposure by Race for Risk Management Plan (`RMPT05`)**
+
+#### **1. Extent of Exposure by Race for Risk Management Plan**
+
+The **`rmpt05`** template produces the standard extent of exposure by race output for the Risk Management Plan (`RMP`).
+
+```{r}
+run(rmpt05, syn_data)
+```
+
 ### **Vital Signs (`VST01`)**
 
 #### **1. Vital Sign Results and Change from Baseline by Visit**

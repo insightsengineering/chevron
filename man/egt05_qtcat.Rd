@@ -16,6 +16,8 @@ egt05_qtcat_main(
   arm_var = "ACTARM",
   summaryvars = c("AVALCAT1", "CHGCAT1"),
   lbl_overall = NULL,
+  row_split_var = NULL,
+  page_var = NULL,
   visitvar = "AVISIT",
   ...
 )
@@ -36,7 +38,11 @@ table of \code{adam_db} is used as name.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{visitvar}{(\code{string}) typically \code{"AVISIT"} (Default) or \code{"ATPTN"}.}
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
+
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
 \item{...}{not used.}
 
@@ -56,8 +62,10 @@ change from baseline for patients.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{"ACTARM"}.
 \item Does not include a total column by default.
-\item Sorted based on factor level; by chronological time point given by one of \code{"AVISIT"} (Default) or \code{"ATPTN"}.
+\item Sorted based on factor level; by chronological time point given by \code{"AVISIT"}
+or user-defined visit incorporating \code{"ATPT"}.
 Re-level to customize order.
+\item Please note that it is preferable to convert \code{summaryvars} to factor.
 }
 }
 \section{Functions}{
