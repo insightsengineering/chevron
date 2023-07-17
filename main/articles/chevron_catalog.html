@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9028</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9030</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,22 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -3199,6 +3183,181 @@ Patients’</strong><a class="anchor" aria-label="anchor" href="#medical-history
 </div>
 </div>
 <div class="section level3">
+<h3 id="duration-of-exposure-for-risk-management-plan-rmpt01">
+<strong>Duration of Exposure for Risk Management Plan
+(<code>RMPT01</code>)</strong><a class="anchor" aria-label="anchor" href="#duration-of-exposure-for-risk-management-plan-rmpt01"></a>
+</h3>
+<div class="section level4">
+<h4 id="duration-of-exposure-for-risk-management-plan">
+<strong>1. Duration of Exposure for Risk Management
+Plan</strong><a class="anchor" aria-label="anchor" href="#duration-of-exposure-for-risk-management-plan"></a>
+</h4>
+<p>The <strong><code>rmpt01</code></strong> template produces the
+standard duration of exposure output for the Risk Management Plan
+(<code>RMP</code>).</p>
+<p>Person time is the sum of exposure across all patients in days.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt01</span>, <span class="va">syn_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                         Patients     Person time</span></span>
+<span><span class="co">#&gt;   Duration of exposure                  (N=400)        (N=400)  </span></span>
+<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   &lt; 1 month                            39 (9.8%)         728    </span></span>
+<span><span class="co">#&gt;   1 to &lt;3 months                      111 (27.8%)       6418    </span></span>
+<span><span class="co">#&gt;   3 to &lt;6 months                      136 (34.0%)       17645   </span></span>
+<span><span class="co">#&gt;   &gt;=6 months                          114 (28.5%)       24909   </span></span>
+<span><span class="co">#&gt;   Total patients number/person time   400 (100.0%)      49700</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="extent-of-exposure-by-age-group-and-gender-for-risk-management-plan-rmpt03">
+<strong>Extent of Exposure by Age Group and Gender for Risk
+Management Plan (<code>RMPT03</code>)</strong><a class="anchor" aria-label="anchor" href="#extent-of-exposure-by-age-group-and-gender-for-risk-management-plan-rmpt03"></a>
+</h3>
+<div class="section level4">
+<h4 id="extent-of-exposure-by-age-group-and-gender-for-risk-management-plan">
+<strong>1. Extent of Exposure by Age Group and Gender for Risk
+Management Plan</strong><a class="anchor" aria-label="anchor" href="#extent-of-exposure-by-age-group-and-gender-for-risk-management-plan"></a>
+</h4>
+<p>The <strong><code>rmpt03</code></strong> template produces the
+standard extent of exposure by age group and gender output for the Risk
+Management Plan (<code>RMP</code>).</p>
+<p>By default, the <code>AGEGR1</code> variable is used as the age
+group. If <code>AGEGR1</code> is available in <code>ADSL</code> only but
+not in <code>ADEX</code>, it needs to be added to <code>ADEX</code>
+first.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="va">syn_data</span></span>
+<span><span class="va">proc_data</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/propagate.html" class="external-link">propagate</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="st">"adsl"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"USUBJID"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Updating: adab with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adae with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adaette with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adcm with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: addv with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adeg with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adex with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adhy with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adlb with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: admh with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adpc with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adpp with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adqs with: AGEGR1</span></span>
+<span><span class="co">#&gt; Skipping: adrs</span></span>
+<span><span class="co">#&gt; Updating: adsub with: AGEGR1</span></span>
+<span><span class="co">#&gt; Skipping: adtr</span></span>
+<span><span class="co">#&gt; Updating: adtte with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: advs with: AGEGR1</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt03</span>, <span class="va">proc_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                              All Genders                       F                            M             </span></span>
+<span><span class="co">#&gt;   Age Group                             Patients     Person time     Patients     Person time     Patients     Person time</span></span>
+<span><span class="co">#&gt;                                         (N=400)        (N=400)       (N=231)        (N=231)       (N=169)        (N=169)  </span></span>
+<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   &lt;65                                 399 (99.8%)       49488      231 (100.0%)      27364      168 (99.4%)       22124   </span></span>
+<span><span class="co">#&gt;   &gt;=65                                  1 (0.2%)         212         0 (0.0%)          0          1 (0.6%)         212    </span></span>
+<span><span class="co">#&gt;   Total patients number/person time   400 (100.0%)      49700      231 (100.0%)      27364      169 (100.0%)      22336</span></span></code></pre></div>
+<p>Any other study specific age group can be used by editing the
+parameter <code>summaryvars</code>. For all <code>RMP</code> tables, if
+the variable specified per <code>summaryvars</code> is unavailable in
+<code>ADEX</code>, it needs to be added to <code>ADEX</code> first.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="va">syn_data</span></span>
+<span><span class="va">proc_data</span><span class="op">$</span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">proc_data</span><span class="op">$</span><span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    AGEGR2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/formatters/man/with_label.html" class="external-link">with_label</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
+<span>        <span class="va">AAGE</span> <span class="op">&lt;</span> <span class="fl">18</span> <span class="op">~</span> <span class="st">"&lt;18"</span>,</span>
+<span>        <span class="va">AAGE</span> <span class="op">&gt;=</span> <span class="fl">18</span> <span class="op">&amp;</span> <span class="va">AAGE</span> <span class="op">&lt;=</span> <span class="fl">65</span> <span class="op">~</span> <span class="st">"18 - 65"</span>,</span>
+<span>        <span class="va">AAGE</span> <span class="op">&gt;</span> <span class="fl">65</span> <span class="op">~</span> <span class="st">"&gt;65"</span>,</span>
+<span>      <span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt;18"</span>, <span class="st">"18 - 65"</span>, <span class="st">"&gt;65"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      <span class="st">"Age Group 2"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/propagate.html" class="external-link">propagate</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="st">"adsl"</span>, <span class="st">"AGEGR2"</span>, <span class="st">"USUBJID"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Updating: adab with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adae with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adaette with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adcm with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: addv with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adeg with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adex with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adhy with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adlb with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: admh with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adpc with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adpp with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adqs with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adrs with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adsub with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adtr with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adtte with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: advs with: AGEGR2</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt03</span>, <span class="va">proc_data</span>, summaryvars <span class="op">=</span> <span class="st">"AGEGR2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                              All Genders                       F                            M             </span></span>
+<span><span class="co">#&gt;   Age Group 2                           Patients     Person time     Patients     Person time     Patients     Person time</span></span>
+<span><span class="co">#&gt;                                         (N=400)        (N=400)       (N=231)        (N=231)       (N=169)        (N=169)  </span></span>
+<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   &lt;18                                   0 (0.0%)          0          0 (0.0%)          0          0 (0.0%)          0     </span></span>
+<span><span class="co">#&gt;   18 - 65                             399 (99.8%)       49488      231 (100.0%)      27364      168 (99.4%)       22124   </span></span>
+<span><span class="co">#&gt;   &gt;65                                   1 (0.2%)         212         0 (0.0%)          0          1 (0.6%)         212    </span></span>
+<span><span class="co">#&gt;   Total patients number/person time   400 (100.0%)      49700      231 (100.0%)      27364      169 (100.0%)      22336</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="extent-of-exposure-by-ethnic-origin-for-risk-management-plan-rmpt04">
+<strong>Extent of Exposure by Ethnic Origin for Risk Management Plan
+(<code>RMPT04</code>)</strong><a class="anchor" aria-label="anchor" href="#extent-of-exposure-by-ethnic-origin-for-risk-management-plan-rmpt04"></a>
+</h3>
+<div class="section level4">
+<h4 id="extent-of-exposure-by-ethnic-origin-for-risk-management-plan">
+<strong>1. Extent of Exposure by Ethnic Origin for Risk Management
+Plan</strong><a class="anchor" aria-label="anchor" href="#extent-of-exposure-by-ethnic-origin-for-risk-management-plan"></a>
+</h4>
+<p>The <strong><code>rmpt04</code></strong> template produces the
+standard extent of exposure by ethnic origin output for the Risk
+Management Plan (<code>RMP</code>).</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt04</span>, <span class="va">syn_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                         Patients     Person time</span></span>
+<span><span class="co">#&gt;   ETHNIC                                (N=400)        (N=400)  </span></span>
+<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   NOT REPORTED                         27 (6.8%)        3315    </span></span>
+<span><span class="co">#&gt;   HISPANIC OR LATINO                   48 (12.0%)       4636    </span></span>
+<span><span class="co">#&gt;   NOT HISPANIC OR LATINO              308 (77.0%)       39229   </span></span>
+<span><span class="co">#&gt;   UNKNOWN                              17 (4.2%)        2520    </span></span>
+<span><span class="co">#&gt;   Total patients number/person time   400 (100.0%)      49700</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="extent-of-exposure-by-race-for-risk-management-plan-rmpt05">
+<strong>Extent of Exposure by Race for Risk Management Plan
+(<code>RMPT05</code>)</strong><a class="anchor" aria-label="anchor" href="#extent-of-exposure-by-race-for-risk-management-plan-rmpt05"></a>
+</h3>
+<div class="section level4">
+<h4 id="extent-of-exposure-by-race-for-risk-management-plan">
+<strong>1. Extent of Exposure by Race for Risk Management
+Plan</strong><a class="anchor" aria-label="anchor" href="#extent-of-exposure-by-race-for-risk-management-plan"></a>
+</h4>
+<p>The <strong><code>rmpt05</code></strong> template produces the
+standard extent of exposure by race output for the Risk Management Plan
+(<code>RMP</code>).</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt05</span>, <span class="va">syn_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                                 Patients     Person time</span></span>
+<span><span class="co">#&gt;   RACE                                          (N=400)        (N=400)  </span></span>
+<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   ASIAN                                       208 (52.0%)       25754   </span></span>
+<span><span class="co">#&gt;   BLACK OR AFRICAN AMERICAN                    91 (22.8%)       10718   </span></span>
+<span><span class="co">#&gt;   WHITE                                        74 (18.5%)       9612    </span></span>
+<span><span class="co">#&gt;   AMERICAN INDIAN OR ALASKA NATIVE             25 (6.2%)        3348    </span></span>
+<span><span class="co">#&gt;   MULTIPLE                                      1 (0.2%)         219    </span></span>
+<span><span class="co">#&gt;   NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER     1 (0.2%)         49     </span></span>
+<span><span class="co">#&gt;   OTHER                                         0 (0.0%)          0     </span></span>
+<span><span class="co">#&gt;   UNKNOWN                                       0 (0.0%)          0     </span></span>
+<span><span class="co">#&gt;   Total patients number/person time           400 (100.0%)      49700</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
 <h3 id="vital-signs-vst01">
 <strong>Vital Signs (<code>VST01</code>)</strong><a class="anchor" aria-label="anchor" href="#vital-signs-vst01"></a>
 </h3>
@@ -3207,7 +3366,7 @@ Patients’</strong><a class="anchor" aria-label="anchor" href="#medical-history
 <strong>1. Vital Sign Results and Change from Baseline by
 Visit</strong><a class="anchor" aria-label="anchor" href="#vital-sign-results-and-change-from-baseline-by-visit"></a>
 </h4>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t_vs_chg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">vst01</span>, <span class="va">syn_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">t_vs_chg</span>, <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                                         A: Drug X                         B: Placebo                       C: Combination         </span></span>
@@ -3247,7 +3406,7 @@ Baseline) (<code>VST02_1</code>)</strong><a class="anchor" aria-label="anchor" h
 <strong>1. Vital Sign Abnormalities (Regardless of Abnormality at
 Baseline)</strong><a class="anchor" aria-label="anchor" href="#vital-sign-abnormalities-regardless-of-abnormality-at-baseline"></a>
 </h4>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">vst02_1</span>, <span class="va">syn_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Assessment                   A: Drug X        B: Placebo     C: Combination</span></span>
 <span><span class="co">#&gt;    Abnormality                  (N=134)          (N=134)          (N=132)    </span></span>
@@ -3282,7 +3441,7 @@ at Baseline) (<code>VST02_2</code>)</strong><a class="anchor" aria-label="anchor
 <strong>1. Vital Sign Abnormalities (Among Subject Without
 Abnormality at Baseline)</strong><a class="anchor" aria-label="anchor" href="#vital-sign-abnormalities-among-subject-without-abnormality-at-baseline"></a>
 </h4>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">vst02_2</span>, <span class="va">syn_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Assessment                   A: Drug X        B: Placebo     C: Combination</span></span>
 <span><span class="co">#&gt;    Abnormality                  (N=134)          (N=134)          (N=132)    </span></span>
@@ -3329,21 +3488,21 @@ investigator-specified terms.</li>
 <li>The example below use <code>head</code> function to print only the
 first 10 lines of the output.</li>
 </ol>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">l_ae_nollt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ael01_nollt</span>, <span class="va">syn_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">l_ae_nollt</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event</span></span>
 <span><span class="co">#&gt; ———————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;          cl A.1                 dcd A.1.1.1.1                  trm A.1.1.1.1           </span></span>
-<span><span class="co">#&gt;                                 dcd A.1.1.1.2                  trm A.1.1.1.2           </span></span>
-<span><span class="co">#&gt;          cl B.1                 dcd B.1.1.1.1                  trm B.1.1.1.1           </span></span>
-<span><span class="co">#&gt;          cl B.2                 dcd B.2.1.2.1                  trm B.2.1.2.1           </span></span>
-<span><span class="co">#&gt;                                 dcd B.2.2.3.1                  trm B.2.2.3.1           </span></span>
-<span><span class="co">#&gt;          cl C.1                 dcd C.1.1.1.3                  trm C.1.1.1.3           </span></span>
-<span><span class="co">#&gt;          cl C.2                 dcd C.2.1.2.1                  trm C.2.1.2.1           </span></span>
-<span><span class="co">#&gt;          cl D.1                 dcd D.1.1.1.1                  trm D.1.1.1.1           </span></span>
-<span><span class="co">#&gt;                                 dcd D.1.1.4.2                  trm D.1.1.4.2           </span></span>
-<span><span class="co">#&gt;          cl D.2                 dcd D.2.1.5.3                  trm D.2.1.5.3</span></span></code></pre></div>
+<span><span class="co">#&gt; cl A.1                      dcd A.1.1.1.1           trm A.1.1.1.1                      </span></span>
+<span><span class="co">#&gt;                             dcd A.1.1.1.2           trm A.1.1.1.2                      </span></span>
+<span><span class="co">#&gt; cl B.1                      dcd B.1.1.1.1           trm B.1.1.1.1                      </span></span>
+<span><span class="co">#&gt; cl B.2                      dcd B.2.1.2.1           trm B.2.1.2.1                      </span></span>
+<span><span class="co">#&gt;                             dcd B.2.2.3.1           trm B.2.2.3.1                      </span></span>
+<span><span class="co">#&gt; cl C.1                      dcd C.1.1.1.3           trm C.1.1.1.3                      </span></span>
+<span><span class="co">#&gt; cl C.2                      dcd C.2.1.2.1           trm C.2.1.2.1                      </span></span>
+<span><span class="co">#&gt; cl D.1                      dcd D.1.1.1.1           trm D.1.1.1.1                      </span></span>
+<span><span class="co">#&gt;                             dcd D.1.1.4.2           trm D.1.1.4.2                      </span></span>
+<span><span class="co">#&gt; cl D.2                      dcd D.2.1.5.3           trm D.2.1.5.3</span></span></code></pre></div>
 </div>
 </div>
 </div>
