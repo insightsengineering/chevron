@@ -4,6 +4,8 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`character`) the name of a table in the `adam_db` object.
+#' @param default_formatting (`list`) the default format of the listing columns. See [rlistings::as_listing].
+#' @param col_formatting (`list`) the format of specific listing columns. See [rlistings::as_listing].
 #'
 #' @details
 #'  * Removes duplicate rows.
@@ -20,20 +22,23 @@ ael01_nollt_main <- function(adam_db,
                              dataset = "adae",
                              key_cols = c("AEBODSYS", "AEDECOD"),
                              disp_cols = "AETERM",
+                             default_formatting = list(
+                               all = formatters::fmt_config(align = "left"),
+                               numeric = formatters::fmt_config(align = "center")
+                             ),
+                             col_formatting = NULL,
                              ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
-
-  fmt <- list(
-    all = formatters::fmt_config(align = "left"),
-    numeric = formatters::fmt_config(align = "center")
-  )
+  checkmate::assert_list(default_formatting)
+  checkmate::assert_list(col_formatting, null.ok = TRUE)
 
   as_listing(
     adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,
-    default_formatting = fmt
+    default_formatting = default_formatting,
+    col_formatting = col_formatting
   )
 }
 

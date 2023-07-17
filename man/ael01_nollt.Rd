@@ -16,6 +16,9 @@ ael01_nollt_main(
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
+  default_formatting = list(all = formatters::fmt_config(align = "left"), numeric =
+    formatters::fmt_config(align = "center")),
+  col_formatting = NULL,
   ...
 )
 
@@ -40,6 +43,10 @@ ael01_nollt
 Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
+
+\item{default_formatting}{(\code{list}) the default format of the listing columns. See \link[rlistings:listings]{rlistings::as_listing}.}
+
+\item{col_formatting}{(\code{list}) the format of specific listing columns. See \link[rlistings:listings]{rlistings::as_listing}.}
 
 \item{...}{not used.}
 
