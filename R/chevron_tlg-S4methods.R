@@ -31,8 +31,9 @@ setMethod(
     user_args <- list(...)
     checkmate::assert_list(user_args, names = "unique")
     if (verbose) {
+      cl <- match.call()
       print_args(
-        match.call(expand.dots = TRUE, call = sys.call(sys.parent() - 1L)),
+        cl,
         args_ls(object, omit = c("...", "adam_db", "tlg")), auto_pre
       )
     }

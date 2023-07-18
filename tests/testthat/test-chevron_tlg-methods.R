@@ -13,6 +13,18 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
+test_that("run works as expected with argument printed", {
+  res <- capture_output(tbl <- run(aet02, syn_data, prune_0 = TRUE, verbose = TRUE))
+  expect_snapshot(cat(res))
+  expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
+test_that("run works as expected with partial match argument", {
+  res <- capture_output(tbl <- run(aet02, syn_data, prune = TRUE, verbose = TRUE, arm = "ARM"))
+  expect_snapshot(cat(res))
+  expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
 # args_ls ----
 
 test_that("args_ls works as expected", {
