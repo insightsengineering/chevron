@@ -11,10 +11,11 @@
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
 #' @param verbose (`flag`) whether to print argument information.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
+#' @param user_args (`list`) arguments from `...`.
 #'
 #' @name run
 #' @export
-setGeneric("run", function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...) standardGeneric("run"))
+setGeneric("run", function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) standardGeneric("run"))
 
 #' Run the pipeline
 #' @rdname run
@@ -24,11 +25,10 @@ setGeneric("run", function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...) {
+  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) {
     checkmate::assert_list(adam_db, types = "list")
     checkmate::assert_flag(auto_pre)
     checkmate::assert_flag(verbose)
-    user_args <- list(...)
     checkmate::assert_list(user_args, names = "unique")
     if (verbose) {
       cl <- match.call()
@@ -55,10 +55,16 @@ print_args <- function(run_call, args, auto_pre = TRUE) {
   checkmate::assert_class(run_call, "call")
   checkmate::assert_list(args)
   checkmate::assert_flag(auto_pre)
-  run_call[[1]] <- quote(alist)
-  run_call <- eval(run_call)
-  run_call$auto_pre <- NULL
-  run_call$verbose <- NULL
+  run_call[[1]] <- NULL
+  run_call <- as.list(run_call)
+  run_call_user_args <- run_call$user_args
+  if (!is.null(run_call_user_args)) {
+    run_call_user_args <- as.list(run_call_user_args)
+    run_call_user_args[[1]] <- NULL
+    run_call <- c(run_call[c("object", "adam_db")], run_call_user_args)
+  } else {
+    run_call[c("auto_pre", "verbose")] <- NULL
+  }
   nms_args <- unique(unlist(lapply(args, names)))
   nms_call <- names(run_call)
   m <- pmatch(nms_call, nms_args)
@@ -402,8 +408,10 @@ setMethod(
         ),
         "",
         "# Create TLG",
-        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
-        rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE)")
+        glue::glue("{adam_db} <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args})"),
+        glue::glue(
+          "tlg_output <- run(object = {tlg_name}, adam_db = {adam_db}",
+          ", auto_pre = FALSE, verbose = TRUE, user_args = {args})")
       )
     }
   }

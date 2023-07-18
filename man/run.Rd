@@ -5,9 +5,23 @@
 \alias{run,chevron_tlg-method}
 \title{Run the pipeline}
 \usage{
-run(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...)
+run(
+  object,
+  adam_db,
+  auto_pre = TRUE,
+  verbose = FALSE,
+  ...,
+  user_args = list(...)
+)
 
-\S4method{run}{chevron_tlg}(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...)
+\S4method{run}{chevron_tlg}(
+  object,
+  adam_db,
+  auto_pre = TRUE,
+  verbose = FALSE,
+  ...,
+  user_args = list(...)
+)
 }
 \arguments{
 \item{object}{(\code{chevron_tlg}) input.}
@@ -19,6 +33,8 @@ run(object, adam_db, auto_pre = TRUE, verbose = FALSE, ...)
 \item{verbose}{(\code{flag}) whether to print argument information.}
 
 \item{...}{extra arguments to pass to the pre-processing, main and post-processing functions.}
+
+\item{user_args}{(\code{list}) arguments from \code{...}.}
 }
 \description{
 Run the pipeline
