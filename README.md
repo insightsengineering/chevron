@@ -23,7 +23,7 @@
 
 <!-- markdownlint-enable MD033 -->
 
-`chevron` is a collection of function to create standard tables, listings, and graphs for clinical trials reporting.
+`chevron` is a collection of functions to create standard tables, listings, and graphs for clinical trials reporting.
 
 ## Installation
 
