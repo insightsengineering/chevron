@@ -273,6 +273,20 @@
       [15] "data <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls)"                                          
       [16] "tlg_output <- run(object = aet04, adam_db = data, auto_pre = FALSE, verbose = TRUE, user_args = args_ls)"
 
+# script_funs generates a valid script
+
+    Code
+      res
+    Output
+      [1] "Using template:  aet04 \nUsing data:      syn_data \n\nMain args:\n  arm_var       : \"ACTARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE"
+
+---
+
+    Code
+      res
+    Output
+      [1] ""
+
 # print_list works
 
     Code
