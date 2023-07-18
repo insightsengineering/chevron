@@ -15,7 +15,10 @@
 #'
 #' @name run
 #' @export
-setGeneric("run", function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) standardGeneric("run"))
+setGeneric(
+  "run",
+  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) standardGeneric("run")
+)
 
 #' Run the pipeline
 #' @rdname run
@@ -411,7 +414,8 @@ setMethod(
         glue::glue("{adam_db} <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args})"),
         glue::glue(
           "tlg_output <- run(object = {tlg_name}, adam_db = {adam_db}",
-          ", auto_pre = FALSE, verbose = TRUE, user_args = {args})")
+          ", auto_pre = FALSE, verbose = TRUE, user_args = {args})"
+        )
       )
     }
   }
