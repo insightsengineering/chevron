@@ -1,4 +1,4 @@
-# chevron 0.2.0.9032
+# chevron 0.2.0.9033
 
 * Add `verbose` argument for `run` method which would print the argument used.
 * Add `row_split_var` and `page_var` as argument for some template.
