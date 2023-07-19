@@ -13,6 +13,18 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
+test_that("run works as expected with argument printed", {
+  res <- capture_output(tbl <- run(aet02, syn_data, prune_0 = TRUE, verbose = TRUE))
+  expect_snapshot(cat(res))
+  expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
+test_that("run works as expected with partial match argument", {
+  res <- capture_output(tbl <- run(aet02, syn_data, prune = TRUE, verbose = TRUE, arm = "ARM"))
+  expect_snapshot(cat(res))
+  expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
 # args_ls ----
 
 test_that("args_ls works as expected", {
@@ -164,14 +176,24 @@ test_that("script_funs generates a valid script", {
 
   res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = FALSE)
   writeLines(res_fun, tmp)
-  source(tmp, local = TRUE)
-
+  res <- capture_output(source(tmp, local = TRUE))
+  expect_snapshot(res)
   expected <- run(aet04, syn_data, arm_var = "ARM")
   expect_identical(tlg_output, expected)
 
   res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = TRUE)
   writeLines(res_fun, tmp)
-  source(tmp, local = TRUE)
-
+  res <- capture_output(source(tmp, local = TRUE))
+  expect_snapshot(res)
   expect_identical(tlg_output, expected)
+})
+
+# print_list ----
+
+test_that("print_list works", {
+  expect_snapshot(print_list(alist(a = 1, b = b, c = xx)))
+})
+
+test_that("print_list works for empty list", {
+  expect_snapshot(print_list(alist()))
 })
