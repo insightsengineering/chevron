@@ -90,6 +90,7 @@ print_args <- function(run_call, args, auto_pre = TRUE) {
     cat("\nAdditional args:\n")
     print_list(add_args)
   }
+  cat("\n\n")
 }
 
 #' Subset Arguments and Merge
