@@ -22,7 +22,7 @@ mng01_main(
   center_fun = "mean",
   interval_fun = "mean_ci",
   show_table = TRUE,
-  jitter = TRUE,
+  jitter = 0.3,
   show_n = TRUE,
   show_h_grid = TRUE,
   show_v_grid = FALSE,
@@ -59,7 +59,8 @@ mng01
 
 \item{show_table}{(\code{flag}) should the summary statistic table be displayed.}
 
-\item{jitter}{(\code{flag}) should data point be slightly spread on the x-axis.}
+\item{jitter}{(\code{numeric}) the width of spread for data points on the x-axis; a number from 0 (no \code{jitter}) to 1 (high
+\code{jitter}), with a default of 0.3 (slight \code{jitter}).}
 
 \item{show_n}{(\code{flag}) should the number of observation be displayed int the table.}
 

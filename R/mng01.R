@@ -17,7 +17,8 @@
 #' @param interval_fun (`string`) the function defining the crossbar range.
 #' @param show_table (`flag`) should the summary statistic table be displayed.
 #' @param show_n (`flag`) should the number of observation be displayed int the table.
-#' @param jitter (`flag`) should data point be slightly spread on the x-axis.
+#' @param jitter (`numeric`) the width of spread for data points on the x-axis; a number from 0 (no `jitter`) to 1 (high
+#'   `jitter`), with a default of 0.3 (slight `jitter`).
 #' @param show_h_grid (`flag`) should horizontal grid be displayed.
 #' @param show_v_grid (`flag`) should vertical grid be displayed.
 #' @param legend_pos (`string`) the position of the legend.
@@ -40,7 +41,7 @@ mng01_main <- function(adam_db,
                        center_fun = "mean",
                        interval_fun = "mean_ci",
                        show_table = TRUE,
-                       jitter = TRUE,
+                       jitter = 0.3,
                        show_n = TRUE,
                        show_h_grid = TRUE,
                        show_v_grid = FALSE,
@@ -58,7 +59,7 @@ mng01_main <- function(adam_db,
   checkmate::assert_names(center_fun, subset.of = c("mean", "median"))
   checkmate::assert_choice(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
   checkmate::assert_flag(show_table)
-  checkmate::assert_flag(jitter)
+  checkmate::assert_number(jitter, lower = 0, upper = 1)
   checkmate::assert_flag(show_n)
   checkmate::assert_flag(show_h_grid)
   checkmate::assert_flag(show_v_grid)
@@ -144,7 +145,7 @@ mng01_main <- function(adam_db,
     mid = center_fun,
     interval = interval_fun,
     whiskers = whiskers_fun,
-    position = ggplot2::position_dodge(width = ifelse(jitter, 0.3, 0)),
+    position = ggplot2::position_dodge(width = jitter),
     title = NULL,
     table = table,
     ggtheme = ggtheme,

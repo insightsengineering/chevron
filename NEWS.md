@@ -11,6 +11,7 @@
 * Add `COXT01` template. `COXT02` is based on `COXT01` now.
 * Add `AET05` and `AET05_ALL` template.
 * Add `LBT15` based on `LBT04`.
+* Update `MNG01` so that the numeric `jitter` argument controls the width of data spread along the x-axis.
 
 # chevron 0.2.0
 
