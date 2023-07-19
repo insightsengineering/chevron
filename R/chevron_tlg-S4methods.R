@@ -9,11 +9,16 @@
 #' @inheritParams gen_args
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
+#' @param verbose (`flag`) whether to print argument information.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
+#' @param user_args (`list`) arguments from `...`.
 #'
 #' @name run
 #' @export
-setGeneric("run", function(object, adam_db, auto_pre = TRUE, ...) standardGeneric("run"))
+setGeneric(
+  "run",
+  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) standardGeneric("run")
+)
 
 #' Run the pipeline
 #' @rdname run
@@ -23,10 +28,18 @@ setGeneric("run", function(object, adam_db, auto_pre = TRUE, ...) standardGeneri
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, ...) {
+  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) {
     checkmate::assert_list(adam_db, types = "list")
     checkmate::assert_flag(auto_pre)
-    user_args <- list(...)
+    checkmate::assert_flag(verbose)
+    checkmate::assert_list(user_args, names = "unique")
+    if (verbose) {
+      cl <- match.call()
+      print_args(
+        cl,
+        args_ls(object, omit = c("...", "adam_db", "tlg")), auto_pre
+      )
+    }
     proc_data <- if (auto_pre) {
       list(adam_db = do_call(object@preprocess, c(list(adam_db), user_args)))
     } else {
@@ -39,6 +52,79 @@ setMethod(
   }
 )
 
+#' Print Arguments
+#' @keywords internal
+print_args <- function(run_call, args, auto_pre = TRUE) {
+  checkmate::assert_class(run_call, "call")
+  checkmate::assert_list(args)
+  checkmate::assert_flag(auto_pre)
+  run_call[[1]] <- NULL
+  run_call <- as.list(run_call)
+  run_call_user_args <- run_call$user_args
+  if (!is.null(run_call_user_args)) {
+    run_call_user_args <- as.list(run_call_user_args)
+    run_call_user_args[[1]] <- NULL
+    run_call <- c(run_call[c("object", "adam_db")], run_call_user_args)
+  } else {
+    run_call[c("auto_pre", "verbose")] <- NULL
+  }
+  nms_args <- unique(unlist(lapply(args, names)))
+  nms_call <- names(run_call)
+  m <- pmatch(nms_call, nms_args)
+  nms_call[!is.na(m)] <- nms_args[m[!is.na(m)]]
+  names(run_call) <- nms_call
+  cat("Using template: ", run_call$object, "\n")
+  cat("Using data:     ", run_call$adam_db, "\n")
+  if (auto_pre) {
+    cat("\nPre args:\n")
+    print_list(get_subset(args$preprocess, run_call))
+  }
+  cat("\nMain args:\n")
+  print_list(get_subset(args$main, run_call))
+  cat("\nPost args:\n")
+  print_list(get_subset(args$postprocess, run_call))
+  add_args <- run_call[
+    !names(run_call) %in% c(names(args$main), names(args$postprocess), names(args$preprocess), "object", "adam_db")
+  ]
+  if (length(add_args) > 0) {
+    cat("\nAdditional args:\n")
+    print_list(add_args)
+  }
+  cat("\n\n")
+}
+
+#' Subset Arguments and Merge
+#' @keywords internal
+get_subset <- function(x, y) {
+  utils::modifyList(
+    x,
+    y[names(y) %in% names(x)],
+    keep.null = TRUE
+  )
+}
+
+#' Print list
+#' @keywords internal
+print_list <- function(x, indent = 2L) {
+  if (length(x) == 0) {
+    cat(paste0(
+      stringr::str_dup(" ", indent),
+      "No mapped argument.\n"
+    ))
+    return()
+  }
+  k <- names(x)
+  m_charx <- max(nchar(k), 1)
+  for (k in names(x)) {
+    cat(
+      sprintf(
+        paste0("%s%-", m_charx + 2, "s: %s\n"),
+        stringr::str_dup(" ", indent), k,
+        paste(deparse(x[[k]]), collapse = paste0("\n", stringr::str_dup(" ", m_charx + indent + 2)))
+      )
+    )
+  }
+}
 
 # args_ls ----
 
@@ -326,8 +412,11 @@ setMethod(
         ),
         "",
         "# Create TLG",
-        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
-        rlang::exec(.fn = run, object = {tlg_name}, !!!{args}, auto_pre = FALSE)")
+        glue::glue("{adam_db} <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args})"),
+        glue::glue(
+          "tlg_output <- run(object = {tlg_name}, adam_db = {adam_db}",
+          ", auto_pre = FALSE, verbose = TRUE, user_args = {args})"
+        )
       )
     }
   }

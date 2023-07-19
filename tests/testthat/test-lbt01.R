@@ -26,6 +26,5 @@ test_that("lbt01 can handle n = 0 and outputs NE instead of infs and NAs", {
   res <- expect_silent(
     run(lbt01, proc_data, precision = list("ALT" = 0, "CRP" = 1))
   )
-  res <- res[1:11, 1]
   expect_snapshot(cat(export_as_txt(res, lpp = 200)))
 })

@@ -3,6 +3,7 @@
 * Placeholder strings are now replaced during layout creation using `dunlin::render_safe` function.
 * New `chevron_catalog` vignette details usage and version of chevron templates.
 * The `run` method renders the errors faster thanks to the new internal `do_call` function.
+* Add `verbose` argument for `run` method which would print the argument used.
 * Add `row_split_var` and `page_var` as argument for some template.
 * The `dataset` slot in `chevron_tlg` class has been removed.
 * Add `CFBT01` template. `VST01`, `EGT01` and `LBT01` are now all following `CFBT01`. By default parameters are displayed by page .
@@ -14,6 +15,7 @@
 * Update `EXT01` to allow it to be displayed by `PARCAT2`.
 * Update `LBT06` template to use `PARAM` as row split.
 * Convert `AVISIT` to factor and order levels according to `AVISITN` in preprocessing.
+* Update `MNG01` so that the numeric `jitter` argument controls the width of data spread along the x-axis.
 
 # chevron 0.2.0
 

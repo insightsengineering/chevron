@@ -127,24 +127,182 @@
           BLACK OR AFRICAN AMERICAN          31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
           WHITE                              27 (20.1%)    27 (20.1%)      21 (15.9%)      75 (18.8%) 
 
+# run works as expected with argument printed
+
+    Code
+      cat(res)
+    Output
+      Using template:  aet02 
+      Using data:      syn_data 
+      
+      Pre args:
+        row_split_var  : "AEBODSYS"
+      
+      Main args:
+        arm_var        : "ACTARM"
+        row_split_var  : "AEBODSYS"
+        lbl_overall    : NULL
+      
+      Post args:
+        row_split_var  : "AEBODSYS"
+        prune_0        : TRUE
+      
+
+---
+
+    Code
+      cat(export_as_txt(tbl, lpp = 100))
+    Output
+        MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                   609           622            703      
+        cl A.1                                                                                                 
+          Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          Total number of events                                         132           130            160      
+          dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
+          dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        cl B.2                                                                                                 
+          Total number of patients with at least one adverse event   79 (59.0%)    74 (55.2%)      85 (64.4%)  
+          Total number of events                                         129           138            143      
+          dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        cl D.1                                                                                                 
+          Total number of patients with at least one adverse event   79 (59.0%)    67 (50.0%)      80 (60.6%)  
+          Total number of events                                         127           106            135      
+          dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        cl D.2                                                                                                 
+          Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          Total number of events                                         62            72              74      
+          dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        cl B.1                                                                                                 
+          Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          Total number of events                                         56            60              62      
+          dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        cl C.2                                                                                                 
+          Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          Total number of events                                         48            53              65      
+          dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        cl C.1                                                                                                 
+          Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          Total number of events                                         55            63              64      
+          dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+
+# run works as expected with partial match argument
+
+    Code
+      cat(res)
+    Output
+      Using template:  aet02 
+      Using data:      syn_data 
+      
+      Pre args:
+        row_split_var  : "AEBODSYS"
+      
+      Main args:
+        arm_var        : "ARM"
+        row_split_var  : "AEBODSYS"
+        lbl_overall    : NULL
+      
+      Post args:
+        row_split_var  : "AEBODSYS"
+        prune_0        : TRUE
+      
+
+---
+
+    Code
+      cat(export_as_txt(tbl, lpp = 100))
+    Output
+        MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                   609           622            703      
+        cl A.1                                                                                                 
+          Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          Total number of events                                         132           130            160      
+          dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
+          dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        cl B.2                                                                                                 
+          Total number of patients with at least one adverse event   79 (59.0%)    74 (55.2%)      85 (64.4%)  
+          Total number of events                                         129           138            143      
+          dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        cl D.1                                                                                                 
+          Total number of patients with at least one adverse event   79 (59.0%)    67 (50.0%)      80 (60.6%)  
+          Total number of events                                         127           106            135      
+          dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        cl D.2                                                                                                 
+          Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          Total number of events                                         62            72              74      
+          dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        cl B.1                                                                                                 
+          Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          Total number of events                                         56            60              62      
+          dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        cl C.2                                                                                                 
+          Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          Total number of events                                         48            53              65      
+          dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        cl C.1                                                                                                 
+          Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          Total number of events                                         55            63              64      
+          dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+
 # script_funs works as expected in interactive mode
 
     Code
       res
     Output
-       [1] "# Edit Preprocessing Function."                                                                                                                 
-       [2] "pre_fun <- function(adam_db, ...) {"                                                                                                            
-       [3] "  atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")"                                                                                          
-       [4] "  adam_db$adae <- adam_db$adae %>%"                                                                                                             
-       [5] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                                                         
-       [6] "    mutate("                                                                                                                                    
-       [7] "      AEBODSYS = reformat(.data$AEBODSYS, nocoding),"                                                                                           
-       [8] "      AEDECOD = reformat(.data$AEDECOD, nocoding),"                                                                                             
-       [9] "      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)"                                                                                      
-      [10] "    )"                                                                                                                                          
-      [11] "  adam_db"                                                                                                                                      
-      [12] "}"                                                                                                                                              
-      [13] ""                                                                                                                                               
-      [14] "# Create TLG"                                                                                                                                   
-      [15] "tlg_output <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls) %>% \nrlang::exec(.fn = run, object = aet04, !!!args_ls, auto_pre = FALSE)"
+       [1] "# Edit Preprocessing Function."                                                                          
+       [2] "pre_fun <- function(adam_db, ...) {"                                                                     
+       [3] "  atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")"                                                   
+       [4] "  adam_db$adae <- adam_db$adae %>%"                                                                      
+       [5] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                  
+       [6] "    mutate("                                                                                             
+       [7] "      AEBODSYS = reformat(.data$AEBODSYS, nocoding),"                                                    
+       [8] "      AEDECOD = reformat(.data$AEDECOD, nocoding),"                                                      
+       [9] "      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)"                                               
+      [10] "    )"                                                                                                   
+      [11] "  adam_db"                                                                                               
+      [12] "}"                                                                                                       
+      [13] ""                                                                                                        
+      [14] "# Create TLG"                                                                                            
+      [15] "data <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls)"                                          
+      [16] "tlg_output <- run(object = aet04, adam_db = data, auto_pre = FALSE, verbose = TRUE, user_args = args_ls)"
+
+# script_funs generates a valid script
+
+    Code
+      res
+    Output
+      [1] "Using template:  aet04 \nUsing data:      syn_data \n\nMain args:\n  arm_var       : \"ACTARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE\n\n"
+
+---
+
+    Code
+      res
+    Output
+      [1] ""
+
+# print_list works
+
+    Code
+      print_list(alist(a = 1, b = b, c = xx))
+    Output
+        a  : 1
+        b  : b
+        c  : xx
+
+# print_list works for empty list
+
+    Code
+      print_list(alist())
+    Output
+        No mapped argument.
+      NULL
 

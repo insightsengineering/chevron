@@ -492,19 +492,235 @@
       
       Parameter: Alanine Aminotransferase Measurement
       
-        —————————————————————————————————————————————————————
-                                                 A: Drug X   
-                                               Value at Visit
-                                                  (N=134)    
-        —————————————————————————————————————————————————————
-        BASELINE                                             
-          n                                          0       
-          Mean (SD)                               NE (NE)    
-          Median                                     NE      
-          Min - Max                               NE - NE    
-        WEEK 1 DAY 8                                         
-          n                                          0       
-          Mean (SD)                               NE (NE)    
-          Median                                     NE      
-          Min - Max                               NE - NE    
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————
+        Analysis Visit                                   A: Drug X                       B: Placebo           
+                                                                Change from                      Change from  
+                                               Value at Visit     Baseline     Value at Visit      Baseline   
+                                                  (N=134)         (N=134)         (N=134)          (N=134)    
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————
+        BASELINE                                                                                              
+          n                                          0                              134                       
+          Mean (SD)                               NE (NE)                        20.2 (4.2)                   
+          Median                                     NE                             20.1                      
+          Min - Max                               NE - NE                          8 - 35                     
+        WEEK 1 DAY 8                                                                                          
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)        20.2 (4.0)       0.1 (6.0)   
+          Median                                     NE              NE             20.1             -0.7     
+          Min - Max                               NE - NE         NE - NE          6 - 29          -12 - 17   
+        WEEK 2 DAY 15                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)        20.1 (4.3)       -0.0 (6.3)  
+          Median                                     NE              NE             20.0             -0.4     
+          Min - Max                               NE - NE         NE - NE          7 - 31          -18 - 14   
+        WEEK 3 DAY 22                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)        19.8 (3.9)       -0.3 (5.6)  
+          Median                                     NE              NE             19.9             -0.2     
+          Min - Max                               NE - NE         NE - NE         12 - 28          -19 - 15   
+        WEEK 4 DAY 29                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)        19.6 (4.3)       -0.5 (6.3)  
+          Median                                     NE              NE             19.2             -1.2     
+          Min - Max                               NE - NE         NE - NE         11 - 32          -17 - 17   
+        WEEK 5 DAY 36                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)        19.9 (4.2)       -0.3 (6.3)  
+          Median                                     NE              NE             20.1             0.7      
+          Min - Max                               NE - NE         NE - NE         10 - 29          -19 - 13   
+      \s\n
+      Parameter: Alanine Aminotransferase Measurement
+      
+        ——————————————————————————————————————————————————————————————————————
+        Analysis Visit                                 C: Combination         
+                                                                 Change from  
+                                               Value at Visit      Baseline   
+                                                  (N=132)          (N=132)    
+        ——————————————————————————————————————————————————————————————————————
+        BASELINE                                                              
+          n                                         132                       
+          Mean (SD)                              20.5 (3.9)                   
+          Median                                    20.4                      
+          Min - Max                                9 - 29                     
+        WEEK 1 DAY 8                                                          
+          n                                         132              132      
+          Mean (SD)                              20.6 (3.9)       0.1 (5.5)   
+          Median                                    20.4             0.0      
+          Min - Max                               10 - 31          -14 - 16   
+        WEEK 2 DAY 15                                                         
+          n                                         132              132      
+          Mean (SD)                              19.2 (3.6)       -1.2 (5.5)  
+          Median                                    19.6             -0.5     
+          Min - Max                                8 - 27          -14 - 16   
+        WEEK 3 DAY 22                                                         
+          n                                         132              132      
+          Mean (SD)                              19.4 (3.9)       -1.0 (5.6)  
+          Median                                    18.8             -1.1     
+          Min - Max                               10 - 28          -12 - 11   
+        WEEK 4 DAY 29                                                         
+          n                                         132              132      
+          Mean (SD)                              19.8 (4.0)       -0.6 (5.3)  
+          Median                                    19.9             -0.6     
+          Min - Max                                8 - 29          -12 - 15   
+        WEEK 5 DAY 36                                                         
+          n                                         132              132      
+          Mean (SD)                              20.0 (4.2)       -0.5 (5.6)  
+          Median                                    20.5             -1.0     
+          Min - Max                                7 - 28          -16 - 17   
+      \s\n
+      Parameter: C-Reactive Protein Measurement
+      
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————
+        Analysis Visit                                   A: Drug X                       B: Placebo           
+                                                                Change from                      Change from  
+                                               Value at Visit     Baseline     Value at Visit      Baseline   
+                                                  (N=134)         (N=134)         (N=134)          (N=134)    
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————
+        BASELINE                                                                                              
+          n                                          0                              134                       
+          Mean (SD)                               NE (NE)                       1.00 (0.20)                   
+          Median                                     NE                             1.00                      
+          Min - Max                               NE - NE                        0.5 - 1.6                    
+        WEEK 1 DAY 8                                                                                          
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)       1.01 (0.22)      0.00 (0.29)  
+          Median                                     NE              NE             1.03             0.02     
+          Min - Max                               NE - NE         NE - NE        0.4 - 1.4        -0.8 - 0.9  
+        WEEK 2 DAY 15                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)       1.02 (0.19)      0.02 (0.27)  
+          Median                                     NE              NE             1.04             0.02     
+          Min - Max                               NE - NE         NE - NE        0.5 - 1.4        -0.6 - 0.7  
+        WEEK 3 DAY 22                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)       0.98 (0.19)      -0.02 (0.27) 
+          Median                                     NE              NE             0.97             0.00     
+          Min - Max                               NE - NE         NE - NE        0.5 - 1.4        -0.8 - 0.7  
+        WEEK 4 DAY 29                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)       0.99 (0.21)      -0.02 (0.28) 
+          Median                                     NE              NE             0.97            -0.03     
+          Min - Max                               NE - NE         NE - NE        0.4 - 1.4        -0.6 - 0.6  
+        WEEK 5 DAY 36                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)       1.02 (0.19)      0.02 (0.28)  
+          Median                                     NE              NE             1.01             0.01     
+          Min - Max                               NE - NE         NE - NE        0.6 - 1.5        -0.6 - 0.8  
+      \s\n
+      Parameter: C-Reactive Protein Measurement
+      
+        ——————————————————————————————————————————————————————————————————————
+        Analysis Visit                                 C: Combination         
+                                                                 Change from  
+                                               Value at Visit      Baseline   
+                                                  (N=132)          (N=132)    
+        ——————————————————————————————————————————————————————————————————————
+        BASELINE                                                              
+          n                                         132                       
+          Mean (SD)                             1.01 (0.21)                   
+          Median                                    1.00                      
+          Min - Max                              0.5 - 1.6                    
+        WEEK 1 DAY 8                                                          
+          n                                         132              132      
+          Mean (SD)                             1.01 (0.23)      0.00 (0.33)  
+          Median                                    1.02            -0.01     
+          Min - Max                              0.4 - 1.5        -0.8 - 0.8  
+        WEEK 2 DAY 15                                                         
+          n                                         132              132      
+          Mean (SD)                             0.98 (0.21)      -0.03 (0.28) 
+          Median                                    0.97            -0.04     
+          Min - Max                              0.3 - 1.5        -0.8 - 0.5  
+        WEEK 3 DAY 22                                                         
+          n                                         132              132      
+          Mean (SD)                             0.99 (0.19)      -0.01 (0.30) 
+          Median                                    0.99            -0.03     
+          Min - Max                              0.5 - 1.6        -0.7 - 0.9  
+        WEEK 4 DAY 29                                                         
+          n                                         132              132      
+          Mean (SD)                             0.99 (0.19)      -0.01 (0.29) 
+          Median                                    1.00             0.02     
+          Min - Max                              0.6 - 1.5        -0.8 - 0.8  
+        WEEK 5 DAY 36                                                         
+          n                                         132              132      
+          Mean (SD)                             0.98 (0.19)      -0.03 (0.29) 
+          Median                                    0.98            -0.04     
+          Min - Max                              0.6 - 1.6        -0.8 - 0.8  
+      \s\n
+      Parameter: Immunoglobulin A Measurement
+      
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————
+        Analysis Visit                                   A: Drug X                       B: Placebo           
+                                                                Change from                      Change from  
+                                               Value at Visit     Baseline     Value at Visit      Baseline   
+                                                  (N=134)         (N=134)         (N=134)          (N=134)    
+        ——————————————————————————————————————————————————————————————————————————————————————————————————————
+        BASELINE                                                                                              
+          n                                          0                              134                       
+          Mean (SD)                               NE (NE)                      1.987 (0.415)                  
+          Median                                     NE                            1.964                      
+          Min - Max                               NE - NE                       0.79 - 3.07                   
+        WEEK 1 DAY 8                                                                                          
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)      2.056 (0.409)    0.069 (0.562) 
+          Median                                     NE              NE            2.026            0.077     
+          Min - Max                               NE - NE         NE - NE       1.06 - 3.23      -1.27 - 1.78 
+        WEEK 2 DAY 15                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)      1.994 (0.417)    0.007 (0.583) 
+          Median                                     NE              NE            2.034            0.047     
+          Min - Max                               NE - NE         NE - NE       0.89 - 2.99      -1.48 - 1.38 
+        WEEK 3 DAY 22                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)      1.999 (0.396)    0.012 (0.577) 
+          Median                                     NE              NE            1.957            0.039     
+          Min - Max                               NE - NE         NE - NE       0.75 - 2.89      -1.60 - 1.21 
+        WEEK 4 DAY 29                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)      1.955 (0.381)    -0.032 (0.551)
+          Median                                     NE              NE            1.945            0.028     
+          Min - Max                               NE - NE         NE - NE       1.07 - 2.81      -1.38 - 1.09 
+        WEEK 5 DAY 36                                                                                         
+          n                                          0               0              134              134      
+          Mean (SD)                               NE (NE)         NE (NE)      2.018 (0.433)    0.031 (0.635) 
+          Median                                     NE              NE            1.987            0.071     
+          Min - Max                               NE - NE         NE - NE       0.92 - 3.35      -1.38 - 1.64 
+      \s\n
+      Parameter: Immunoglobulin A Measurement
+      
+        ——————————————————————————————————————————————————————————————————————
+        Analysis Visit                                 C: Combination         
+                                                                 Change from  
+                                               Value at Visit      Baseline   
+                                                  (N=132)          (N=132)    
+        ——————————————————————————————————————————————————————————————————————
+        BASELINE                                                              
+          n                                         132                       
+          Mean (SD)                            2.015 (0.453)                  
+          Median                                   1.987                      
+          Min - Max                             0.80 - 3.00                   
+        WEEK 1 DAY 8                                                          
+          n                                         132              132      
+          Mean (SD)                            2.038 (0.421)    0.022 (0.645) 
+          Median                                   2.055            0.023     
+          Min - Max                             0.81 - 3.05      -1.49 - 1.55 
+        WEEK 2 DAY 15                                                         
+          n                                         132              132      
+          Mean (SD)                            1.969 (0.374)    -0.046 (0.602)
+          Median                                   1.978            -0.010    
+          Min - Max                             0.97 - 2.75      -1.64 - 1.45 
+        WEEK 3 DAY 22                                                         
+          n                                         132              132      
+          Mean (SD)                            2.048 (0.391)    0.033 (0.602) 
+          Median                                   2.056            0.013     
+          Min - Max                             0.99 - 2.99      -1.81 - 1.23 
+        WEEK 4 DAY 29                                                         
+          n                                         132              132      
+          Mean (SD)                            1.979 (0.420)    -0.037 (0.622)
+          Median                                   1.993            -0.068    
+          Min - Max                             0.99 - 2.95      -1.35 - 1.59 
+        WEEK 5 DAY 36                                                         
+          n                                         132              132      
+          Mean (SD)                            1.965 (0.427)    -0.050 (0.609)
+          Median                                   2.009            0.034     
+          Min - Max                             0.62 - 2.88      -1.60 - 1.32 
 
