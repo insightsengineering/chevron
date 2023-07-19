@@ -146,6 +146,7 @@
       Post args:
         row_split_var  : "AEBODSYS"
         prune_0        : TRUE
+      
 
 ---
 
@@ -208,6 +209,7 @@
       Post args:
         row_split_var  : "AEBODSYS"
         prune_0        : TRUE
+      
 
 ---
 
@@ -278,7 +280,7 @@
     Code
       res
     Output
-      [1] "Using template:  aet04 \nUsing data:      syn_data \n\nMain args:\n  arm_var       : \"ACTARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE"
+      [1] "Using template:  aet04 \nUsing data:      syn_data \n\nMain args:\n  arm_var       : \"ACTARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE\n\n"
 
 ---
 
