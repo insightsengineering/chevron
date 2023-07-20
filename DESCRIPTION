@@ -21,7 +21,7 @@ Imports:
     dplyr,
     dunlin (>= 0.1.4),
     forcats (>= 1.0.0),
-    formatters (>= 0.5.0),
+    formatters (>= 0.5.1),
     ggplot2 (>= 3.4.0),
     glue,
     magrittr,
@@ -29,10 +29,10 @@ Imports:
     nestcolor (>= 0.1.1),
     purrr,
     rlang,
-    rlistings (>= 0.2.2),
-    rtables (>= 0.6.1),
+    rlistings (>= 0.2.3),
+    rtables (>= 0.6.2),
     stringr,
-    tern (>= 0.8.4),
+    tern (>= 0.8.5),
     tibble,
     utils
 Suggests:
