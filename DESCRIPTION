@@ -2,7 +2,7 @@ Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
 Version: 0.2.1
-Date: 2023-07-24
+Date: 2023-07-21
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
