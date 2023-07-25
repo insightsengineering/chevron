@@ -1,16 +1,20 @@
-# chevron 0.2.0.9034
+# chevron 0.2.1
 
+* Placeholder strings are now replaced during layout creation using `dunlin::render_safe` function.
+* New `chevron_catalog` vignette details usage and version of chevron templates.
+* The `run` method renders the errors faster thanks to the new internal `do_call` function.
 * Add `verbose` argument for `run` method which would print the argument used.
 * Add `row_split_var` and `page_var` as argument for some template.
-* Update `LBT06` template to use `PARAM` as row split.
-* Convert `AVISIT` to factor according to `AVISITN` as order in preprocessing.
-* Add `CFBT01` template. `VST01`, `EGT01` and `LBT01` are now all following `CFBT01`. By default parameters are by page displayed.
+* The `dataset` slot in `chevron_tlg` class has been removed.
+* Add `CFBT01` template. `VST01`, `EGT01` and `LBT01` are now all following `CFBT01`. By default parameters are displayed by page .
 * Add `RMPT03`, `RMPT04` and `RMPT05` which follow `RMPT01`.
+* Add `COXT01` template. `COXT02` is now based on `COXT01`.
+* Add `AET05` and `AET05_ALL` templates.
+* Add `LBT15` based on `LBT04`. `LBT04` has new arguments to make it more flexible.
 * Update `EGT03` to use `ACTARMCD` as default arm variable, and remove the preprocessing of filtering to "HR".
 * Update `EXT01` to allow it to be displayed by `PARCAT2`.
-* Add `COXT01` template. `COXT02` is based on `COXT01` now.
-* Add `AET05` and `AET05_ALL` template.
-* Add `LBT15` based on `LBT04`.
+* Update `LBT06` template to use `PARAM` as row split.
+* Convert `AVISIT` to factor and order levels according to `AVISITN` in preprocessing.
 * Update `MNG01` so that the numeric `jitter` argument controls the width of data spread along the x-axis.
 
 # chevron 0.2.0
