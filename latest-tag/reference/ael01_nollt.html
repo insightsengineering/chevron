@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,7 @@
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
@@ -85,6 +86,9 @@
 <span>  dataset <span class="op">=</span> <span class="st">"adae"</span>,</span>
 <span>  key_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AEBODSYS"</span>, <span class="st">"AEDECOD"</span><span class="op">)</span>,</span>
 <span>  disp_cols <span class="op">=</span> <span class="st">"AETERM"</span>,</span>
+<span>  default_formatting <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>all <span class="op">=</span> <span class="fu">formatters</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/formatters/man/fmt_config.html" class="external-link">fmt_config</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span>, numeric <span class="op">=</span></span>
+<span>    <span class="fu">formatters</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/formatters/man/fmt_config.html" class="external-link">fmt_config</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  col_formatting <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -124,6 +128,14 @@ Key columns allow you to group repeat occurrences.</p></dd>
 <dd><p>(<code>character</code>) names of non-key columns which should be displayed when the listing is rendered.</p></dd>
 
 
+<dt>default_formatting</dt>
+<dd><p>(<code>list</code>) the default format of the listing columns. See <code><a href="https://rdrr.io/pkg/rlistings/man/listings.html" class="external-link">rlistings::as_listing</a></code>.</p></dd>
+
+
+<dt>col_formatting</dt>
+<dd><p>(<code>list</code>) the format of specific listing columns. See <code><a href="https://rdrr.io/pkg/rlistings/man/listings.html" class="external-link">rlistings::as_listing</a></code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>not used.</p></dd>
 
@@ -158,16 +170,16 @@ Key columns allow you to group repeat occurrences.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">ael01_nollt</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ———————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cl A.1                      dcd A.1.1.1.1                      trm A.1.1.1.1           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                             dcd A.1.1.1.2                      trm A.1.1.1.2           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cl B.1                      dcd B.1.1.1.1                      trm B.1.1.1.1           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cl B.2                      dcd B.2.1.2.1                      trm B.2.1.2.1           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                             dcd B.2.2.3.1                      trm B.2.2.3.1           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cl C.1                      dcd C.1.1.1.3                      trm C.1.1.1.3           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cl C.2                      dcd C.2.1.2.1                      trm C.2.1.2.1           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cl D.1                      dcd D.1.1.1.1                      trm D.1.1.1.1           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                             dcd D.1.1.4.2                      trm D.1.1.4.2           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cl D.2                      dcd D.2.1.5.3                      trm D.2.1.5.3           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cl A.1                      dcd A.1.1.1.1           trm A.1.1.1.1                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             dcd A.1.1.1.2           trm A.1.1.1.2                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cl B.1                      dcd B.1.1.1.1           trm B.1.1.1.1                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cl B.2                      dcd B.2.1.2.1           trm B.2.1.2.1                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             dcd B.2.2.3.1           trm B.2.2.3.1                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cl C.1                      dcd C.1.1.1.3           trm C.1.1.1.3                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cl C.2                      dcd C.2.1.2.1           trm C.2.1.2.1                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cl D.1                      dcd D.1.1.1.1           trm D.1.1.1.1                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             dcd D.1.1.4.2           trm D.1.1.4.2                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cl D.2                      dcd D.2.1.5.3           trm D.2.1.5.3                      </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
