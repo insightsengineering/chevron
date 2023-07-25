@@ -1,5 +1,8 @@
 # chevron 0.2.1.9000
 
+* Allow `EGT03` to include multiple parameters.
+* Allow `KMG01` to include stratified variables.
+
 # chevron 0.2.1
 
 * Placeholder strings are now replaced during layout creation using `dunlin::render_safe` function.
