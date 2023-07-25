@@ -17,6 +17,7 @@ egt03_main(
   summaryvar = "BNRIND",
   splitvar = "ANRIND",
   visitvar = "AVISIT",
+  page_var = "PARAMCD",
   ...
 )
 
@@ -38,6 +39,8 @@ are used as subtitles.}
 used as subtitles.}
 
 \item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 

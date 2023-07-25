@@ -4,7 +4,15 @@
 \alias{egt03_lyt}
 \title{\code{egt03} Layout}
 \usage{
-egt03_lyt(arm_var, splitvar, summaryvar, lbl_armvar, lbl_summaryvars)
+egt03_lyt(
+  arm_var,
+  splitvar,
+  summaryvar,
+  lbl_armvar,
+  lbl_summaryvars,
+  lbl_param,
+  page_var
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
@@ -18,6 +26,8 @@ are used as subtitles.}
 \item{lbl_armvar}{(\code{string}) label of the \code{arm_var} variable.}
 
 \item{lbl_summaryvars}{(\code{string}) label of the \code{summaryvar} variable.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{egt03} Layout
