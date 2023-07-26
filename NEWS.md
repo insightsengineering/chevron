@@ -1,5 +1,7 @@
 # chevron 0.2.1.9000
 
+* Add `FSTG02` template. `FSTG02` is now based on `FSTG02`.
+
 # chevron 0.2.1
 
 * Placeholder strings are now replaced during layout creation using `dunlin::render_safe` function.

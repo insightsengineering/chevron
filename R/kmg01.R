@@ -73,7 +73,6 @@ kmg01_post <- function(tlg, ...) {
 
 #' `KMG01` Kaplan-Meier Plot 1.
 #'
-#'
 #' @include chevron_tlg-S4class.R
 #' @export
 #'
