@@ -26,11 +26,11 @@ lbt07_main <- function(adam_db,
                        grad_anl_var = "GRADE_ANL",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(param_var)
-  checkmate::assert_string(grad_dir_var)
-  checkmate::assert_string(grad_anl_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(param_var)
+  assert_string(grad_dir_var)
+  assert_string(grad_anl_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(
     adam_db$adlb, c("ATOXGR", param_var, grad_dir_var, grad_anl_var),
     types = list(c("character", "factor"))

@@ -13,7 +13,8 @@ lbt06_lyt(
   lbl_param,
   lbl_visit,
   lbl_anrind,
-  lbl_bnrind
+  lbl_bnrind,
+  page_var
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ lbt06_lyt(
 \item{lbl_anrind}{(\code{string}) text label of the \code{ANRIND} variable.}
 
 \item{lbl_bnrind}{(\code{string}) text label of the \code{BNRIND} variable.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{lbt06} Layout

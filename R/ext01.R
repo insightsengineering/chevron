@@ -31,10 +31,10 @@ ext01_main <- function(adam_db,
                        map = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_character(summaryvars)
-  checkmate::assert_character(row_split_var, null.ok = TRUE)
-  checkmate::assert_data_frame(map, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_character(summaryvars)
+  assert_character(row_split_var, null.ok = TRUE)
+  assert_data_frame(map, null.ok = TRUE)
   assert_valid_variable(adam_db$adex, colnames(map), types = list(c("character", "factor")))
   if (!is.null(map)) {
     map <- infer_mapping(map, adam_db$adex)
@@ -44,9 +44,9 @@ ext01_main <- function(adam_db,
     adam_db$adex, c(row_split_var, "PARAMCD", "PARAM"),
     types = list(c("character", "factor")), empty_ok = TRUE
   )
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(page_var, null.ok = TRUE)
-  checkmate::assert_subset(page_var, c(row_split_var))
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(page_var, null.ok = TRUE)
+  assert_subset(page_var, c(row_split_var))
   assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
@@ -89,7 +89,7 @@ ext01_lyt <- function(arm_var,
                       page_var,
                       map) {
   page_by <- get_page_by(page_var, c(row_split_var))
-  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
+  label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%

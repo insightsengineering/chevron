@@ -20,9 +20,9 @@
 #' assert_all_tablenames(lsd, c("mtcars", "iris", "x"), qualifier = "first test:")
 #' }
 assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_list(db, types = "data.frame", names = "unique")
-  checkmate::assert_character(tab, null.ok = null_ok)
-  checkmate::assert_string(qualifier, null.ok = TRUE)
+  assert_list(db, types = "data.frame", names = "unique")
+  assert_character(tab, null.ok = null_ok)
+  assert_string(qualifier, null.ok = TRUE)
 
   diff <- setdiff(tab, names(db))
 
@@ -57,9 +57,9 @@ assert_all_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
 #' assert_one_tablenames(lsd, c("mtcars", "x", "y"), qualifier = "first test:")
 #' }
 assert_one_tablenames <- function(db, tab, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_list(db, types = "data.frame", names = "unique")
-  checkmate::assert_character(tab, null.ok = null_ok)
-  checkmate::assert_string(qualifier, null.ok = TRUE)
+  assert_list(db, types = "data.frame", names = "unique")
+  assert_character(tab, null.ok = null_ok)
+  assert_string(qualifier, null.ok = TRUE)
 
   diff <- setdiff(tab, names(db))
 
@@ -115,7 +115,7 @@ assert_valid_var.character <- function(
     x, label = deparse(substitute(x)),
     na_ok = FALSE, empty_ok = FALSE,
     min_chars = 1L, ...) {
-  checkmate::assert_character(
+  assert_character(
     x,
     min.chars = min_chars,
     min.len = as.integer(!empty_ok),
@@ -131,12 +131,12 @@ assert_valid_var.factor <- function(
     x, label = deparse(substitute(x)),
     na_ok = FALSE, empty_ok = FALSE,
     min_chars = 1L, ...) {
-  checkmate::assert_character(
+  assert_character(
     levels(x),
     min.chars = min_chars,
     .var.name = paste("level of", label)
   )
-  checkmate::assert_factor(
+  assert_factor(
     x,
     min.levels = as.integer(!empty_ok),
     any.missing = na_ok,
@@ -148,7 +148,7 @@ assert_valid_var.factor <- function(
 #' @rdname assert_valid_var
 #' @export
 assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = TRUE, empty_ok = FALSE, ...) {
-  checkmate::assert_logical(
+  assert_logical(
     x,
     min.len = as.integer(!empty_ok),
     any.missing = na_ok,
@@ -162,7 +162,7 @@ assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = 
 assert_valid_var.numeric <- function(
     x, label = deparse(substitute(x)),
     na_ok = TRUE, empty_ok = FALSE, integerish = FALSE, ...) {
-  check_fun <- if (integerish) checkmate::assert_integerish else checkmate::assert_numeric
+  check_fun <- if (integerish) assert_integerish else assert_numeric
   check_fun(
     x,
     min.len = as.integer(!empty_ok),
@@ -189,7 +189,7 @@ assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = 
 #'
 #' @export
 assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), types = NULL, ...) {
-  checkmate::assert_names(colnames(df), must.include = vars, what = "colnames")
+  assert_names(colnames(df), must.include = vars, what = "colnames")
 
   labels <- sprintf("%s$%s", label, vars)
   if (length(types) == 1 && is.null(names(types))) {
@@ -204,9 +204,9 @@ assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), typ
       label = labels[vars_to_check]
     )
   }
-  collection <- checkmate::makeAssertCollection()
+  collection <- makeAssertCollection()
   mapply(assert_valid_var, df[vars], labels, MoreArgs = list(..., add = collection), SIMPLIFY = FALSE)
-  checkmate::reportAssertions(collection)
+  reportAssertions(collection)
 }
 
 # assert_valid_type ----
@@ -236,9 +236,9 @@ assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
 #' @param lab1 (`string`) label hint for `df1`.
 #' @param lab2 (`string`) label hint for `df2`.
 assert_valid_var_pair <- function(df1, df2, var, lab1 = deparse(substitute(df1)), lab2 = deparse(substitute(df2))) {
-  checkmate::assert_data_frame(df1)
-  checkmate::assert_data_frame(df2)
-  checkmate::assert_string(var)
+  assert_data_frame(df1)
+  assert_data_frame(df2)
+  assert_string(var)
   lvl_x <- lvls(df1[[var]])
   lvl_y <- lvls(df2[[var]])
   if (!identical(lvl_x, lvl_y)) {

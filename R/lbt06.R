@@ -19,14 +19,16 @@
 #'
 lbt06_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       page_var = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
-  checkmate::assert_string(arm_var)
-  assert_valid_variable(adam_db$adlb, c(arm_var, "PARAM", "AVISIT"), types = list("characater", "factor"))
+  assert_string(arm_var)
+  assert_valid_variable(adam_db$adlb, c(arm_var, "PARAMCD", "PARAM", "AVISIT"), types = list("characater", "factor"))
   assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
+  assert_subset(page_var, "PARAMCD")
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
   lbl_visit <- var_labels_for(adam_db$adlb, "AVISIT")
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
@@ -34,14 +36,14 @@ lbt06_main <- function(adam_db,
 
   lyt <- lbt06_lyt(
     arm_var = arm_var,
-    param = "PARAM",
     visitvar = "AVISIT",
     anrind_var = "ANRIND",
     bnrind_var = "BNRIND",
     lbl_param = lbl_param,
     lbl_visit = lbl_visit,
     lbl_anrind = lbl_anrind,
-    lbl_bnrind = lbl_bnrind
+    lbl_bnrind = lbl_bnrind,
+    page_var = page_var
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -71,14 +73,19 @@ lbt06_lyt <- function(arm_var,
                       lbl_param,
                       lbl_visit,
                       lbl_anrind,
-                      lbl_bnrind) {
+                      lbl_bnrind,
+                      page_var) {
+  page_by <- !is.null(page_var)
+  label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
-      var = param,
+      var = "PARAMCD",
+      labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_param
+      label_pos = label_pos,
+      split_label = lbl_param,
+      page_by = page_by
     ) %>%
     split_rows_by(
       var = visitvar,
@@ -92,8 +99,8 @@ lbt06_lyt <- function(arm_var,
       variables = list(id = "USUBJID", baseline = bnrind_var),
       .indent_mods = 4L
     ) %>%
-    append_topleft(paste0("    ", lbl_anrind)) %>%
-    append_topleft(paste0("            ", lbl_bnrind))
+    append_topleft(paste0(stringr::str_dup(" ", 2L * (2 - page_by)), lbl_anrind)) %>%
+    append_topleft(paste0(stringr::str_dup(" ", 2L * (7 - page_by)), lbl_bnrind))
 }
 
 #' @describeIn lbt06 Preprocessing

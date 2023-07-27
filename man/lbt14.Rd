@@ -12,7 +12,13 @@ Baseline Grade (Low or High Direction).}
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-lbt14_main(adam_db, arm_var = "ACTARM", gr_missing = "incl", ...)
+lbt14_main(
+  adam_db,
+  arm_var = "ACTARM",
+  gr_missing = "incl",
+  page_var = "PARAMCD",
+  ...
+)
 
 lbt14_pre(adam_db, gr_missing = "incl", direction = "low", ...)
 
@@ -29,6 +35,8 @@ lbt14
 \code{"Missing"}
 level. Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing
 baseline grades to grade 0.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 

@@ -29,10 +29,10 @@ egt03_main <- function(adam_db,
                        page_var = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  checkmate::assert_string(summaryvar)
+  assert_string(summaryvar)
   assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
-  checkmate::assert_string(splitvar)
-  checkmate::assert_subset(page_var, "PARAMCD")
+  assert_string(splitvar)
+  assert_subset(page_var, "PARAMCD")
   assert_valid_variable(adam_db$adeg, c("PARAMCD", "PARAM", splitvar), types = list("character", "factor"))
   assert_single_value(adam_db$adeg[[visitvar]])
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)

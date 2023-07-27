@@ -24,7 +24,7 @@ lbt04_main <- function(adam_db,
                        baseline_abn_var = "BNRIND",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
-  checkmate::assert_string(arm_var)
+  assert_string(arm_var)
   assert_valid_variable(
     adam_db$adlb, c("PARAM", "PARCAT1"),
     types = list("characater", "factor")

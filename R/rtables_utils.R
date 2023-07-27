@@ -1,7 +1,7 @@
 #' @keywords internal
 split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, ...) {
-  checkmate::assert_string(var)
-  checkmate::assert_string(label)
+  assert_string(var)
+  assert_string(label)
   lyt %>%
     split_rows_by(
       var,
@@ -20,7 +20,7 @@ split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels
 }
 #' @keywords internal
 get_sort_path <- function(x) {
-  checkmate::assert_character(x, null.ok = TRUE)
+  assert_character(x, null.ok = TRUE)
   x2 <- as.character(rbind(x, rep("*", length(x))))
   x2[-length(x2)]
 }
@@ -36,7 +36,7 @@ tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
 }
 #' @keywords internal
 tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
-  checkmate::assert_character(var)
+  assert_character(var)
   if (length(var) == 0) {
     return(tlg)
   }
@@ -74,8 +74,8 @@ valid_row_path <- function(tlg, row_path) {
 #' @param lbl_vars Named (`list`) of analysis labels.
 #' @keywords internal
 count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
-  checkmate::assert_list(anl_vars, names = "unique", types = "character")
-  checkmate::assert_character(anl_lbls, min.chars = 1L, len = length(anl_vars))
+  assert_list(anl_vars, names = "unique", types = "character")
+  assert_character(anl_lbls, min.chars = 1L, len = length(anl_vars))
   nms <- names(anl_vars)
   for (k in seq_len(length(anl_vars))) {
     lyt <- lyt %>%
@@ -150,7 +150,7 @@ summarize_vars_allow_na <- function(
 #' @param detail_vars (`character`) of variables for detail information.
 #' @keywords internal
 count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ...) {
-  checkmate::assert_string(level)
+  assert_string(level)
   if (is.null(detail_vars)) {
     lyt <- lyt %>%
       count_values(
@@ -218,14 +218,14 @@ obtain_value <- function(obj, index) {
 #' Get page by value
 #' @keywords internal
 get_page_by <- function(var, vars) {
-  checkmate::assert_character(vars, null.ok = TRUE)
-  checkmate::assert_character(var, null.ok = TRUE, max.len = 1L)
+  assert_character(vars, null.ok = TRUE)
+  assert_character(var, null.ok = TRUE, max.len = 1L)
   ret <- rep(FALSE, length(vars))
   if (is.null(var) || length(var) == 0) {
     return(ret)
   }
   index <- match(var, vars)
-  checkmate::assert_int(index, na.ok = TRUE)
+  assert_int(index, na.ok = TRUE)
   if (is.na(index)) {
     return(ret)
   }
@@ -332,7 +332,7 @@ ifneeded_split_col <- function(lyt, var, ...) {
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
 report_null <- function(tlg, ...) {
-  checkmate::assert_true(is.null(tlg) || rtables::is_rtable(tlg))
+  assert_true(is.null(tlg) || rtables::is_rtable(tlg))
 
   if (is.null(tlg) || nrow(tlg) == 0L) {
     null_report
@@ -408,7 +408,7 @@ afun_skip <- function(
 }
 
 summary_formats <- function(x, pcs, ne = FALSE) {
-  checkmate::assert_int(pcs, lower = 0, na.ok = TRUE)
+  assert_int(pcs, lower = 0, na.ok = TRUE)
   switch(x,
     n = h_format_dec(format = "%s", digits = pcs - pcs, ne = ne),
     min = ,
@@ -445,11 +445,11 @@ split_fun_map <- function(map) {
 }
 
 infer_mapping <- function(map_df, df) {
-  checkmate::assert_data_frame(df)
+  assert_data_frame(df)
   vars <- colnames(map_df)
-  checkmate::assert_names(names(df), must.include = vars)
+  assert_names(names(df), must.include = vars)
   for (x in vars) {
-    if (!checkmate::test_subset(map_df[[x]], lvls(df[[x]]))) {
+    if (!test_subset(map_df[[x]], lvls(df[[x]]))) {
       rlang::abort(
         paste0(
           "Provided map should only contain valid levels in dataset in variable ", x,

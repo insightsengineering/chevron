@@ -28,10 +28,10 @@ pdt01_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "addv"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(dvcode_var)
-  checkmate::assert_string(dvterm_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(dvcode_var)
+  assert_string(dvterm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$addv, c(dvcode_var, dvterm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)

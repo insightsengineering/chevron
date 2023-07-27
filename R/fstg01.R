@@ -33,10 +33,10 @@ fstg01_main <- function(adam_db,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(rsp_var)
-  checkmate::assert_character(subgroups, null.ok = TRUE)
-  checkmate::assert_character(strata_var, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(rsp_var)
+  assert_character(subgroups, null.ok = TRUE)
+  assert_character(strata_var, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], arm_var, types = list("factor"), n.levels = 2, label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD"),
     types = list(c("character", "factor")),

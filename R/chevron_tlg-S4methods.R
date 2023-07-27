@@ -29,10 +29,10 @@ setMethod(
   f = "run",
   signature = "chevron_tlg",
   definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) {
-    checkmate::assert_list(adam_db, types = "list")
-    checkmate::assert_flag(auto_pre)
-    checkmate::assert_flag(verbose)
-    checkmate::assert_list(user_args, names = "unique")
+    assert_list(adam_db, types = "list")
+    assert_flag(auto_pre)
+    assert_flag(verbose)
+    assert_list(user_args, names = "unique")
     if (verbose) {
       cl <- match.call()
       print_args(
@@ -55,9 +55,9 @@ setMethod(
 #' Print Arguments
 #' @keywords internal
 print_args <- function(run_call, args, auto_pre = TRUE) {
-  checkmate::assert_class(run_call, "call")
-  checkmate::assert_list(args)
-  checkmate::assert_flag(auto_pre)
+  assert_class(run_call, "call")
+  assert_list(args)
+  assert_flag(auto_pre)
   run_call[[1]] <- NULL
   run_call <- as.list(run_call)
   run_call_user_args <- run_call$user_args
@@ -145,8 +145,8 @@ setMethod(
   f = "args_ls",
   signature = "chevron_tlg",
   definition = function(x, simplify = FALSE, omit = NULL) {
-    checkmate::assert_flag(simplify)
-    checkmate::assert_character(omit, null.ok = TRUE)
+    assert_flag(simplify)
+    assert_character(omit, null.ok = TRUE)
 
     x_ls <- list(
       main = formals(x@main),
@@ -327,7 +327,7 @@ setMethod(
   f = "script_args",
   signature = "chevron_tlg",
   definition = function(x, dict = NULL) {
-    checkmate::assert_list(dict, null.ok = TRUE)
+    assert_list(dict, null.ok = TRUE)
 
     # Construct call for attribution of all arguments
     simple_arg <- args_ls(x, omit = c("tlg", "..."), simplify = TRUE)
@@ -373,9 +373,9 @@ setMethod(
   f = "script_funs",
   signature = "chevron_tlg",
   definition = function(x, adam_db, args, details = FALSE) {
-    checkmate::assert_flag(details)
-    checkmate::assert_string(adam_db)
-    checkmate::assert_string(args)
+    assert_flag(details)
+    assert_string(adam_db)
+    assert_string(args)
 
     if (details) {
       c(

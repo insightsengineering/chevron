@@ -26,18 +26,25 @@
 lbt14_main <- function(adam_db,
                        arm_var = "ACTARM",
                        gr_missing = "incl",
+                       page_var = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
+  assert_string(arm_var)
+  assert_choice(gr_missing, c("incl", "excl", "gr_0"))
   assert_valid_variable(adam_db$adlb, c("ATOXGR", "BTOXGR"), types = list("factor"), na_ok = TRUE)
-  assert_valid_variable(adam_db$adlb, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db$adlb, c("PARAMCD", "PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
+  assert_subset(page_var, "PARAMCD")
 
+  lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+  lbl_btoxgr <- var_labels_for(adam_db$adlb, "BTOXGR")
   lyt <- lbt14_lyt(
-    arm_var = arm_var
+    arm_var = arm_var,
+    page_var = page_var,
+    lbl_param = lbl_param,
+    lbl_btoxgr = lbl_btoxgr
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -51,24 +58,27 @@ lbt14_main <- function(adam_db,
 #'
 #' @keywords internal
 #'
-lbt14_lyt <- function(arm_var) {
+lbt14_lyt <- function(arm_var, page_var, lbl_param, lbl_btoxgr) {
+  page_by <- !is.null(page_var)
+  label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by(
-      "PARAM",
+      var = "PARAMCD",
+      labels_var = "PARAM",
       split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = "Parameter"
+      label_pos = label_pos,
+      split_label = lbl_param,
+      page_by = page_by
     ) %>%
     split_rows_by(
       "BTOXGR",
       label_pos = "topleft",
-      split_label = "    Baseline NCI-CTCAE Grade",
-      indent_mod = 2L
+      split_label = lbl_btoxgr
     ) %>%
     summarize_num_patients(var = "USUBJID", .stats = c("unique_count"), unique_count_suffix = FALSE) %>%
     count_occurrences_by_grade("ATOXGR", denom = "n", drop = FALSE, .indent_mods = 3L) %>%
-    append_topleft("              Post-baseline NCI-CTCAE Grade")
+    append_topleft(paste0(stringr::str_dup(" ", 2L * (5L - page_by)), "Post-baseline NCI-CTCAE Grade"))
 }
 
 #' @describeIn lbt14 Preprocessing
@@ -82,8 +92,8 @@ lbt14_pre <- function(adam_db,
                       gr_missing = "incl",
                       direction = "low",
                       ...) {
-  checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
-  checkmate::assert_choice(direction, c("low", "high"))
+  assert_choice(gr_missing, c("incl", "excl", "gr_0"))
+  assert_choice(direction, c("low", "high"))
   if (direction == "high") {
     adam_db$adlb <- adam_db$adlb %>%
       filter(.data$WGRHIFL == "Y") %>%

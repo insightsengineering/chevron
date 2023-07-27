@@ -41,17 +41,17 @@ rspt01_main <- function(adam_db,
                         conf_level = 0.95,
                         methods = list(),
                         ...) {
-  checkmate::assert_string(dataset)
+  assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
-  checkmate::assert_string(ref_group, null.ok = TRUE)
-  checkmate::assert_flag(odds_ratio)
-  checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
-  checkmate::assert_character(
+  assert_string(ref_group, null.ok = TRUE)
+  assert_flag(odds_ratio)
+  assert_subset(perform_analysis, c("unstrat", "strat"))
+  assert_character(
     strata,
     null.ok = !"strat" %in% perform_analysis,
     min.len = as.integer(!"strat" %in% perform_analysis)
   )
-  checkmate::assert_string(arm_var)
+  assert_string(arm_var)
   df_label <- sprintf("adam_db$%s", dataset)
   assert_valid_variable(
     adam_db$adsl, c("USUBJID", arm_var),
@@ -68,7 +68,7 @@ rspt01_main <- function(adam_db,
   )
   assert_single_value(adam_db[[dataset]]$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
-  checkmate::assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
+  assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
 
   ref_group <- ref_group %||% lvls(adam_db[[dataset]][[arm_var]])[1]
 

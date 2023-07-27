@@ -25,8 +25,8 @@ aet04_main <- function(adam_db,
                        grade_groups = NULL,
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
@@ -36,7 +36,7 @@ aet04_main <- function(adam_db,
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
   lbl_overall <- render_safe(lbl_overall)
-  checkmate::assert_list(grade_groups, types = "character", null.ok = TRUE)
+  assert_list(grade_groups, types = "character", null.ok = TRUE)
   if (is.null(grade_groups)) {
     grade_groups <- list(
       "Grade 1-2" = c("1", "2"),

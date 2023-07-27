@@ -24,9 +24,9 @@ aet02_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
-  checkmate::assert_character(row_split_var, null.ok = TRUE)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(arm_var)
+  assert_character(row_split_var, null.ok = TRUE)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
