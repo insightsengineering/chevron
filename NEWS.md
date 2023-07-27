@@ -2,6 +2,7 @@
 
 * Allow `EGT03` to include multiple parameters.
 * Allow `KMG01` to include stratified variables.
+* Allow `LBT06` and `LBT14` split by page.
 
 # chevron 0.2.1
 
