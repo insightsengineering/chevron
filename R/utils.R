@@ -200,3 +200,11 @@ do_call <- function(what, args) {
   names(new_args) <- names(args)
   do.call(what, new_args, envir = args_env)
 }
+
+#' Modify character
+#' @keywords internal
+modify_character <- function(x, y) {
+  assert_character(x, names = "unique", null.ok = TRUE)
+  assert_character(y, names = "unique", null.ok = TRUE)
+  c(y, x)[unique(c(names(y), names(x)))]
+}

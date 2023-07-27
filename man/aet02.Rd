@@ -16,6 +16,9 @@ aet02_main(
   arm_var = "ACTARM",
   row_split_var = "AEBODSYS",
   lbl_overall = NULL,
+  summary_labels = list(all = c(unique =
+    "Total number of {patient_label} with at least one adverse event", nonunique =
+    "Total number of events"), TOTAL = c(nonunique = "Overall total number of events")),
   ...
 )
 
@@ -33,6 +36,8 @@ aet02
 \item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{summary_labels}{(\code{list}) of summarize labels. See details.}
 
 \item{...}{not used.}
 
@@ -52,6 +57,8 @@ events categorized by Body System and Dictionary-Derived Term.
 \item Does not include a total column by default.
 \item Sort Dictionary-Derived Code (\code{AEDECOD}) by highest overall frequencies.
 \item Missing values in \code{AEBODSYS}, and \code{AEDECOD} are labeled by \verb{No Coding Available}.
+\code{summary_labels} is used to control the summary for each level. If "all" is used, then each split will have that
+summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 }
 }
 \section{Functions}{

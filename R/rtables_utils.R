@@ -1,22 +1,27 @@
 #' @keywords internal
-split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, ...) {
+split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, split_indent, ...) {
   assert_string(var)
   assert_string(label)
-  lyt %>%
+  lyt <- lyt %>%
     split_rows_by(
       var,
       child_labels = "visible",
       nested = TRUE,
       split_fun = rtables::drop_split_levels,
       label_pos = "topleft",
-      split_label = label
-    ) %>%
+      split_label = label,
+      indent_mod = split_indent
+    )
+  if (length(stats) > 0) {
+    lyt <- lyt %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = stats,
       .labels = setNames(summarize_labels, stats),
       ...
     )
+  }
+  lyt
 }
 #' @keywords internal
 get_sort_path <- function(x) {
@@ -51,7 +56,12 @@ tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
 #' @keywords internal
 valid_sort_at_path <- function(tt, path, scorefun, ...) {
   if (valid_row_path(tt, path)) {
-    sort_at_path(tt, path, scorefun, ...)
+    tryCatch(
+      sort_at_path(tt, path, scorefun, ...),
+      error = function(e) {
+        tt
+      }
+    )
   } else {
     tt
   }

@@ -7,19 +7,17 @@
 cmt01a_lyt(
   arm_var,
   lbl_overall,
-  incl_n_treatment = TRUE,
   row_split_var,
   lbl_row_split,
   medname_var,
-  lbl_medname_var
+  lbl_medname_var,
+  summary_labels
 )
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
 

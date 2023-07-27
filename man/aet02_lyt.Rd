@@ -4,7 +4,14 @@
 \alias{aet02_lyt}
 \title{\code{aet02} Layout}
 \usage{
-aet02_lyt(arm_var, lbl_overall, row_split_var, lbl_row_split, lbl_aedecod)
+aet02_lyt(
+  arm_var,
+  lbl_overall,
+  row_split_var,
+  lbl_row_split,
+  lbl_aedecod,
+  summary_labels
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
@@ -16,6 +23,8 @@ aet02_lyt(arm_var, lbl_overall, row_split_var, lbl_row_split, lbl_aedecod)
 \item{lbl_row_split}{(\code{character}) label for \code{row_split_var}.}
 
 \item{lbl_aedecod}{(\code{string}) text label for \code{AEDECOD}.}
+
+\item{summary_labels}{(\code{list}) of summarize labels. See details.}
 }
 \description{
 \code{aet02} Layout

@@ -3,6 +3,7 @@
 #' @describeIn aet02 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param summary_labels (`list`) of summarize labels. See details.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subject and fraction of `N`, or absolute number of event when specified.
@@ -11,6 +12,8 @@
 #'  * Does not include a total column by default.
 #'  * Sort Dictionary-Derived Code (`AEDECOD`) by highest overall frequencies.
 #'  * Missing values in `AEBODSYS`, and `AEDECOD` are labeled by `No Coding Available`.
+#'  `summary_labels` is used to control the summary for each level. If "all" is used, then each split will have that
+#'  summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"` and `"AEDECOD"`.
@@ -22,6 +25,13 @@ aet02_main <- function(adam_db,
                        arm_var = "ACTARM",
                        row_split_var = "AEBODSYS",
                        lbl_overall = NULL,
+                       summary_labels = list(
+                         all = c(
+                           unique = "Total number of {patient_label} with at least one adverse event",
+                           nonunique = "Total number of events"
+                         ),
+                         TOTAL = c(nonunique = "Overall total number of events")
+                       ),
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   assert_character(row_split_var, null.ok = TRUE)
@@ -31,7 +41,20 @@ aet02_main <- function(adam_db,
   assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
-
+  assert_list(summary_labels)
+  assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))
+  assert_subset(
+    unique(unlist(lapply(summary_labels, names))),
+    c("unique", "nonunique", "unique_count")
+  )
+  if ("all" %in% names(summary_labels)) {
+    summary_labels <- lapply(
+      c(TOTAL = "TOTAL", setNames(row_split_var, row_split_var)),
+      function(x) {
+        modify_character(summary_labels$all, summary_labels[[x]])
+      }
+    )
+  }
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
   lbl_overall <- render_safe(lbl_overall)
@@ -40,7 +63,8 @@ aet02_main <- function(adam_db,
     lbl_overall = lbl_overall,
     row_split_var = row_split_var,
     lbl_row_split = lbl_row_split,
-    lbl_aedecod = lbl_aedecod
+    lbl_aedecod = lbl_aedecod,
+    summary_labels = summary_labels
   )
 
   tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
@@ -60,32 +84,39 @@ aet02_lyt <- function(arm_var,
                       lbl_overall,
                       row_split_var,
                       lbl_row_split,
-                      lbl_aedecod) {
+                      lbl_aedecod,
+                      summary_labels) {
+  split_indent <- vapply(c("TOTAL", row_split_var), function(x) {
+    if (length(summary_labels[[x]]) > 0L) -1L else 0L
+  }, FUN.VALUE = 0L)
+  split_indent[1L] <- 0L
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
-    analyze_num_patients(
-      vars = "USUBJID",
-      .stats = c("unique", "nonunique"),
-      show_labels = "hidden",
-      .labels = c(
-        unique = render_safe("Total number of {patient_label} with at least one adverse event"),
-        nonunique = "Overall total number of events"
+    ifneeded_add_overall_col(lbl_overall)
+  if (length(summary_labels$TOTAL) > 0) {
+    lyt <- lyt %>%
+      analyze_num_patients(
+        vars = "USUBJID",
+        .stats = names(summary_labels$TOTAL),
+        show_labels = "hidden",
+        .labels = render_safe(summary_labels$TOTAL)
       )
-    )
+  }
   for (k in seq_len(length(row_split_var))) {
-    lyt <- split_and_summ_num_patients(lyt, row_split_var[k], lbl_row_split[k],
-      stats = c("unique", "nonunique"),
-      summarize_labels = render_safe(
-        c("Total number of {patient_label} with at least one adverse event", "Total number of events")
-      )
+    lyt <- split_and_summ_num_patients(
+      lyt = lyt,
+      var = row_split_var[k],
+      label = lbl_row_split[k],
+      split_indent = split_indent[k],
+      stats = names(summary_labels[[row_split_var[k]]]),
+      summarize_labels = render_safe(summary_labels[[row_split_var[k]]])
     )
   }
   lyt %>%
     count_occurrences(
       vars = "AEDECOD",
       drop = length(row_split_var) > 0,
-      .indent_mods = -1L
+      .indent_mods = unname(tail(split_indent, 1L))
     ) %>%
     append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), lbl_aedecod))
 }

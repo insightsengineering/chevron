@@ -139,9 +139,11 @@
         row_split_var  : "AEBODSYS"
       
       Main args:
-        arm_var        : "ACTARM"
-        row_split_var  : "AEBODSYS"
-        lbl_overall    : NULL
+        arm_var         : "ACTARM"
+        row_split_var   : "AEBODSYS"
+        lbl_overall     : NULL
+        summary_labels  : list(all = c(unique = "Total number of {patient_label} with at least one adverse event", 
+                            nonunique = "Total number of events"), TOTAL = c(nonunique = "Overall total number of events"))
       
       Post args:
         row_split_var  : "AEBODSYS"
@@ -156,8 +158,8 @@
         MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Overall total number of events                                   609           622            703      
+        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         cl A.1                                                                                                 
           Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
           Total number of events                                         132           130            160      
@@ -202,9 +204,11 @@
         row_split_var  : "AEBODSYS"
       
       Main args:
-        arm_var        : "ARM"
-        row_split_var  : "AEBODSYS"
-        lbl_overall    : NULL
+        arm_var         : "ARM"
+        row_split_var   : "AEBODSYS"
+        lbl_overall     : NULL
+        summary_labels  : list(all = c(unique = "Total number of {patient_label} with at least one adverse event", 
+                            nonunique = "Total number of events"), TOTAL = c(nonunique = "Overall total number of events"))
       
       Post args:
         row_split_var  : "AEBODSYS"
@@ -219,8 +223,8 @@
         MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Overall total number of events                                   609           622            703      
+        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
         cl A.1                                                                                                 
           Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
           Total number of events                                         132           130            160      

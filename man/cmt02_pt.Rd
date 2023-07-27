@@ -17,10 +17,12 @@ An object of class \code{chevron_t} of length 1.
 cmt02_pt_main(
   adam_db,
   arm_var = "ARM",
-  incl_n_treatment = TRUE,
   row_split_var = NULL,
   medname_var = "CMDECOD",
   lbl_overall = NULL,
+  summary_labels = list(TOTAL = c(unique =
+    "Total number of {patient_label} with at least one treatment", nonunique =
+    "Total number of treatments")),
   ...
 )
 
@@ -41,8 +43,6 @@ cmt02_pt
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
 
 \item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
