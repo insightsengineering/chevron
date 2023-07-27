@@ -54,7 +54,7 @@ dst01_main <- function(adam_db,
     empty_ok = TRUE, min_chars = 0L
   )
   status_var_lvls <- lvls(adam_db$adsl[[study_status_var]])
-  assert_subset(names(detail_vars), choice = status_var_lvls)
+  assert_subset(names(detail_vars), choices = status_var_lvls)
   assert_valid_variable(
     adam_db$adsl,
     unlist(detail_vars),
