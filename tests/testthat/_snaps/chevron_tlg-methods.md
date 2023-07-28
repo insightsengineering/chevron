@@ -142,8 +142,7 @@
         arm_var         : "ACTARM"
         row_split_var   : "AEBODSYS"
         lbl_overall     : NULL
-        summary_labels  : list(all = c(unique = "Total number of {patient_label} with at least one adverse event", 
-                            nonunique = "Total number of events"), TOTAL = c(nonunique = "Overall total number of events"))
+        summary_labels  : list(all = aet02_label, TOTAL = c(nonunique = "Overall total number of events"))
       
       Post args:
         row_split_var  : "AEBODSYS"
@@ -207,8 +206,7 @@
         arm_var         : "ARM"
         row_split_var   : "AEBODSYS"
         lbl_overall     : NULL
-        summary_labels  : list(all = c(unique = "Total number of {patient_label} with at least one adverse event", 
-                            nonunique = "Total number of events"), TOTAL = c(nonunique = "Overall total number of events"))
+        summary_labels  : list(all = aet02_label, TOTAL = c(nonunique = "Overall total number of events"))
       
       Post args:
         row_split_var  : "AEBODSYS"

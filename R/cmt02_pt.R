@@ -6,12 +6,11 @@
 #' @source `cmt01a.R`
 #' @export
 #'
-cmt02_pt_main <- modify_default_args(cmt01a_main, row_split_var = NULL, summary_labels = list(
-  TOTAL = c(
-    unique = "Total number of {patient_label} with at least one treatment",
-    nonunique = "Total number of treatments"
-  )
-))
+cmt02_pt_main <- modify_default_args(
+  cmt01a_main,
+  row_split_var = NULL,
+  summary_labels = quote(list(TOTAL = cmt01_label))
+)
 
 #' @describeIn cmt02_pt Preprocessing
 #'

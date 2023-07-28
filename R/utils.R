@@ -208,4 +208,3 @@ modify_character <- function(x, y) {
   assert_character(y, names = "unique", null.ok = TRUE)
   c(y, x)[unique(c(names(y), names(x)))]
 }
-

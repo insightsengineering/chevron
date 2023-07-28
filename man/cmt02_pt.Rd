@@ -20,9 +20,7 @@ cmt02_pt_main(
   row_split_var = NULL,
   medname_var = "CMDECOD",
   lbl_overall = NULL,
-  summary_labels = list(TOTAL = c(unique =
-    "Total number of {patient_label} with at least one treatment", nonunique =
-    "Total number of treatments")),
+  summary_labels = list(TOTAL = cmt01_label),
   ...
 )
 
