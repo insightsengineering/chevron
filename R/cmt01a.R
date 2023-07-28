@@ -12,6 +12,7 @@ cmt01_label <- c(
 #' @inheritParams gen_args
 #' @param row_split_var (`character`) the variable defining the medication category. By default `ATC2`.
 #' @param medname_var (`string`) variable name of medical treatment name.
+#' @param summary_labels (`list`) of summarize labels. See details.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
@@ -21,6 +22,8 @@ cmt01_label <- c(
 #'  * Does not include a total column by default.
 #'  * Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 #'  the specific medication.
+#'  `summary_labels` is used to control the summary for each level. If "all" is used, then each split will have that
+#'  summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 #'
 #' @note
 #'  * `adam_db` object must contain an `adcm` table with the columns specified in `row_split_var` and `medname_var`
@@ -33,7 +36,9 @@ cmt01a_main <- function(adam_db,
                         row_split_var = "ATC2",
                         medname_var = "CMDECOD",
                         lbl_overall = NULL,
-                        summary_labels = name_list(cmt01_label, c("TOTAL", row_split_var)),
+                        summary_labels = setNames(
+                          rep(list(cmt01_label), length(row_split_var) + 1L), c("TOTAL", row_split_var)
+                        ),
                         ...) {
   assert_all_tablenames(adam_db, "adsl", "adcm")
   assert_string(arm_var)

@@ -193,14 +193,3 @@ test_that("do_call errors as expected", {
   }
   expect_error(do_call(b, list()))
 })
-
-# name_list ----
-
-test_that("name_list works", {
-  v <- c(a = 1, b = 2)
-  r <- expect_silent(name_list(v, c("a", "b", "c")))
-  expect_identical(
-    list(a = v, b = v, c = v),
-    r
-  )
-})

@@ -25,6 +25,8 @@ occurrence_lyt(
 \item{medname_var}{(\code{string}) variable name of medical treatment name.}
 
 \item{lbl_medname_var}{(\code{string}) label for the variable defining the medication name.}
+
+\item{summary_labels}{(\code{list}) of summarize labels. See details.}
 }
 \description{
 Occurrence Layout

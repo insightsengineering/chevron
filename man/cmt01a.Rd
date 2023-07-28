@@ -22,7 +22,8 @@ cmt01a_main(
   row_split_var = "ATC2",
   medname_var = "CMDECOD",
   lbl_overall = NULL,
-  summary_labels = name_list(cmt01_label, c("TOTAL", row_split_var)),
+  summary_labels = setNames(rep(list(cmt01_label), length(row_split_var) + 1L),
+    c("TOTAL", row_split_var)),
   ...
 )
 
@@ -50,6 +51,8 @@ cmt01a
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{summary_labels}{(\code{list}) of summarize labels. See details.}
+
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
@@ -71,6 +74,8 @@ table with the number of subjects and the total number of treatments by medicati
 \item Does not include a total column by default.
 \item Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 the specific medication.
+\code{summary_labels} is used to control the summary for each level. If "all" is used, then each split will have that
+summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 }
 }
 \section{Functions}{
