@@ -12,6 +12,7 @@
 #' @param rsp_var (`string`) the response variable name to flag whether each subject is a binary response or not.
 #' @param subgroups (`character`) the subgroups variable name to list baseline risk factors.
 #' @param strata_var (`character`) required if stratified analysis is performed.
+#' @param stat_var (`character`) the names of statistics to be reported in `tabulate_rsp_subgroups`.
 #' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups` (a wrapper for
 #' `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
 #' Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
@@ -30,6 +31,7 @@ fstg01_main <- function(adam_db,
                         rsp_var = "is_rsp",
                         subgroups = c("SEX", "AGEGR1", "RACE"),
                         strata_var = NULL,
+                        stat_var = c("n_tot", "n", "n_rsp", "prop", "or", "ci"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
@@ -37,6 +39,7 @@ fstg01_main <- function(adam_db,
   checkmate::assert_string(rsp_var)
   checkmate::assert_character(subgroups, null.ok = TRUE)
   checkmate::assert_character(strata_var, null.ok = TRUE)
+  checkmate::assert_character(stat_var, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], arm_var, types = list("factor"), n.levels = 2, label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD"),
     types = list(c("character", "factor")),
@@ -63,7 +66,7 @@ fstg01_main <- function(adam_db,
   )
 
   result <- basic_table() %>%
-    tabulate_rsp_subgroups(df, vars = c("n_tot", "n", "n_rsp", "prop", "or", "ci"))
+    tabulate_rsp_subgroups(df, vars = stat_var)
 
   execute_with_args(
     g_forest,
@@ -85,15 +88,6 @@ fstg01_pre <- function(adam_db, ...) {
     )
 
   adam_db
-}
-
-#' @describeIn fstg01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-fstg01_post <- function(tlg, ...) {
-  tlg
 }
 
 # `fstg01` Pipeline ----
@@ -119,6 +113,5 @@ fstg01_post <- function(tlg, ...) {
 #' )
 fstg01 <- chevron_g(
   main = fstg01_main,
-  preproces = fstg01_pre,
-  postprocess = fstg01_post
+  preproces = fstg01_pre
 )

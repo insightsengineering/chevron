@@ -15,7 +15,7 @@ var_labels_for <- function(df, vars) {
   render_safe(unname(formatters::var_labels(df, fill = TRUE)[vars]))
 }
 
-#' Prune Table up to an `ElementaryTable`
+#' Prune table up to an `ElementaryTable`
 #'
 #' Avoid returning `NULL` when the `table` is empty.
 #'
@@ -34,8 +34,7 @@ smart_prune <- function(tlg) {
   res
 }
 
-
-#' Standard Post processing
+#' Standard post processing
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
@@ -60,7 +59,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 
 # Special formats ----
 
-#' Decimal Formatting
+#' Decimal formatting
 #'
 #' @param digits (`integer`) number of digits.
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
@@ -184,7 +183,7 @@ execute_with_args <- function(fun, ...) {
   do_call(fun, args[intersect(names(args), formalArgs(fun))])
 }
 
-#' Execute a Function Call
+#' Execute a function call
 #' @keywords internal
 do_call <- function(what, args) {
   arg_names <- names(args)
@@ -199,4 +198,20 @@ do_call <- function(what, args) {
   new_args <- lapply(arg_names, as.symbol)
   names(new_args) <- names(args)
   do.call(what, new_args, envir = args_env)
+}
+
+#' Helper function to convert days to months if needed
+#' @keywords internal
+ifneeded_convert_day2month <- function(data) {
+  assert_single_value(data$AVALU)
+  avalu <- unique(data$AVALU)
+
+  if (avalu == "DAYS") {
+    data %>% mutate(
+      AVAL = day2month(.data$AVAL),
+      AVALU = "MONTHS"
+    )
+  } else {
+    data
+  }
 }

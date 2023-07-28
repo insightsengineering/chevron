@@ -11,6 +11,7 @@
 #' @param arm_var (`string`) the arm variable name used for group splitting.
 #' @param subgroups (`character`) the subgroups variable name to list baseline risk factors.
 #' @param strata_var (`character`) required if stratified analysis is performed.
+#' @param stat_var (`character`) the names of statistics to be reported in `tabulate_survival_subgroups`.
 #' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups` (a wrapper for
 #' `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
 #' Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
@@ -28,12 +29,14 @@ fstg02_main <- function(adam_db,
                         arm_var = "ARM",
                         subgroups = c("SEX", "AGEGR1", "RACE"),
                         strata_var = NULL,
+                        stat_var = c("n_tot", "n", "median", "hr", "ci"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
   checkmate::assert_string(arm_var)
   checkmate::assert_character(subgroups, null.ok = TRUE)
   checkmate::assert_character(strata_var, null.ok = TRUE)
+  checkmate::assert_character(stat_var, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], arm_var, types = list("factor"), n.levels = 2, label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD"),
     types = list(c("character", "factor")),
@@ -66,7 +69,7 @@ fstg02_main <- function(adam_db,
   )
 
   result <- basic_table() %>%
-    tabulate_survival_subgroups(df, vars = c("n_tot", "n", "median", "hr", "ci"), time_unit = timeunit)
+    tabulate_survival_subgroups(df, vars = stat_var, time_unit = timeunit)
 
   execute_with_args(
     g_forest,
@@ -84,21 +87,11 @@ fstg02_pre <- function(adam_db, ...) {
   adam_db$adtte <- adam_db$adtte %>%
     mutate(
       ARM = droplevels(.data$ARM),
-      AVAL = day2month(.data$AVAL),
-      AVALU = "MONTHS",
       is_event = .data$CNSR == 0
-    )
+    ) %>%
+    ifneeded_convert_day2month()
 
   adam_db
-}
-
-#' @describeIn fstg02 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-fstg02_post <- function(tlg, ...) {
-  tlg
 }
 
 # `fstg02` Pipeline ----
@@ -124,6 +117,5 @@ fstg02_post <- function(tlg, ...) {
 #' )
 fstg02 <- chevron_g(
   main = fstg02_main,
-  preproces = fstg02_pre,
-  postprocess = fstg02_post
+  preproces = fstg02_pre
 )

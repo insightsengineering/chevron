@@ -2,8 +2,7 @@
 
 test_that("mng01 works as expected with default argument values", {
   pre_data <- mng01_pre(syn_data, dataset = "adlb")
-  raw_res <- mng01_main(pre_data, dataset = "adlb")
-  res <- mng01_post(raw_res)
+  res <- mng01_main(pre_data, dataset = "adlb")
   checkmate::expect_list(res, len = 3, types = "ggplot")
 })
 
@@ -15,8 +14,7 @@ test_that("mng01 works as expected with custom argument values", {
   )
 
   pre_data <- mng01_pre(syn_data, dataset = "adlb")
-  raw_res <- mng01_main(pre_data, dataset = "adlb", show_v_grid = FALSE, show_h_grid = FALSE, line_col = col)
-  res <- mng01_post(raw_res)
+  res <- mng01_main(pre_data, dataset = "adlb", show_v_grid = FALSE, show_h_grid = FALSE, line_col = col)
   checkmate::expect_list(res, len = 3, types = "ggplot")
 
   bad_col <- c(

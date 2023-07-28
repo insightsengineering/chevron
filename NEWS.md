@@ -1,6 +1,6 @@
 # chevron 0.2.1.9000
 
-* Add `FSTG02` template. `FSTG02` is now based on `FSTG02`.
+* Add `FSTG02` template. `FSTG02` is now based on `FSTG01`.
 
 # chevron 0.2.1
 

@@ -4,7 +4,6 @@
 \name{fstg01_main}
 \alias{fstg01_main}
 \alias{fstg01_pre}
-\alias{fstg01_post}
 \alias{fstg01}
 \title{\code{FSTG01} Subgroup Analysis of Best Overall Response.}
 \format{
@@ -18,12 +17,11 @@ fstg01_main(
   rsp_var = "is_rsp",
   subgroups = c("SEX", "AGEGR1", "RACE"),
   strata_var = NULL,
+  stat_var = c("n_tot", "n", "n_rsp", "prop", "or", "ci"),
   ...
 )
 
 fstg01_pre(adam_db, ...)
-
-fstg01_post(tlg, ...)
 
 fstg01
 }
@@ -40,12 +38,12 @@ fstg01
 
 \item{strata_var}{(\code{character}) required if stratified analysis is performed.}
 
+\item{stat_var}{(\code{character}) the names of statistics to be reported in \code{tabulate_rsp_subgroups}.}
+
 \item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups} (a wrapper for
 \code{h_odds_ratio_subgroups_df} and \code{h_proportion_subgroups_df}). For details, see the documentation in \code{tern}.
 Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}, \code{groups_lists}, \code{conf_level},
 \code{method}, \code{label_all}, etc.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
 a \code{gTree} object.
@@ -64,8 +62,6 @@ The template produces the subgroup analysis of best overall response graphic.
 \item \code{fstg01_main()}: Main TLG Function
 
 \item \code{fstg01_pre()}: Preprocessing
-
-\item \code{fstg01_post()}: Postprocessing
 
 }}
 \note{

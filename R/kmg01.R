@@ -60,15 +60,6 @@ kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
   adam_db
 }
 
-#' @describeIn kmg01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-kmg01_post <- function(tlg, ...) {
-  tlg
-}
-
 # `kmg01` Pipeline ----
 
 #' `KMG01` Kaplan-Meier Plot 1.
@@ -93,6 +84,5 @@ kmg01_post <- function(tlg, ...) {
 #' run(kmg01, syn_data3, dataset = "adaette")
 kmg01 <- chevron_g(
   main = kmg01_main,
-  preproces = kmg01_pre,
-  postprocess = kmg01_post
+  preproces = kmg01_pre
 )
