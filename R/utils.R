@@ -208,3 +208,12 @@ modify_character <- function(x, y) {
   assert_character(y, names = "unique", null.ok = TRUE)
   c(y, x)[unique(c(names(y), names(x)))]
 }
+
+#' Create list with names
+#' @export
+#' @param obj Object content.
+#' @param names (`character`) names of the object.
+name_list <- function(obj, names) {
+  ret <- lapply(names, function(x) {obj})
+  setNames(ret, names)
+}

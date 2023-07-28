@@ -1,5 +1,12 @@
 # cmt01a ----
 
+#' @describeIn cmt01a Default labels
+#' @export
+cmt01_label <- c(
+  unique = "Total number of {patient_label} with at least one treatment",
+  nonunique = "Total number of treatments"
+)
+
 #' @describeIn cmt01a Main TLG function
 #'
 #' @inheritParams gen_args
@@ -26,16 +33,7 @@ cmt01a_main <- function(adam_db,
                         row_split_var = "ATC2",
                         medname_var = "CMDECOD",
                         lbl_overall = NULL,
-                        summary_labels = list(
-                          TOTAL = c(
-                            unique = "Total number of {patient_label} with at least one treatment",
-                            nonunique = "Total number of treatments"
-                          ),
-                          ATC2 = c(
-                            unique = "Total number of {patient_label} with at least one treatment",
-                            nonunique = "Total number of treatments"
-                          )
-                        ),
+                        summary_labels = name_list(cmt01_label, c("TOTAL", row_split_var)),
                         ...) {
   assert_all_tablenames(adam_db, "adsl", "adcm")
   assert_string(arm_var)
@@ -62,14 +60,15 @@ cmt01a_main <- function(adam_db,
   lbl_row_split <- var_labels_for(adam_db$adcm, row_split_var)
   lbl_medname_var <- var_labels_for(adam_db$adcm, medname_var)
   lbl_overall <- render_safe(lbl_overall)
-  lyt <- cmt01a_lyt(
+  lyt <- occurrence_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     row_split_var = row_split_var,
     lbl_row_split = lbl_row_split,
     medname_var = medname_var,
     lbl_medname_var = lbl_medname_var,
-    summary_labels = summary_labels
+    summary_labels = summary_labels,
+    count_by = "CMSEQ"
   )
 
   tbl <- build_table(lyt, adam_db$adcm, alt_counts_df = adam_db$adsl)
@@ -77,20 +76,21 @@ cmt01a_main <- function(adam_db,
   tbl
 }
 
-#' `cmt01a` Layout
+#' Occurrence Layout
 #'
 #' @inheritParams gen_args
 #' @inheritParams cmt01a_main
 #' @param lbl_medname_var (`string`) label for the variable defining the medication name.
 #' @keywords internal
 #'
-cmt01a_lyt <- function(arm_var,
-                       lbl_overall,
-                       row_split_var,
-                       lbl_row_split,
-                       medname_var,
-                       lbl_medname_var,
-                       summary_labels) {
+occurrence_lyt <- function(arm_var,
+                           lbl_overall,
+                           row_split_var,
+                           lbl_row_split,
+                           medname_var,
+                           lbl_medname_var,
+                           summary_labels,
+                           count_by) {
   split_indent <- vapply(c("TOTAL", row_split_var), function(x) {
     if (length(summary_labels[[x]]) > 0L) -1L else 0L
   }, FUN.VALUE = 0L)
@@ -103,7 +103,7 @@ cmt01a_lyt <- function(arm_var,
     lyt <- lyt %>%
       analyze_num_patients(
         vars = "USUBJID",
-        count_by = "CMSEQ",
+        count_by = count_by,
         .stats = names(summary_labels$TOTAL),
         show_labels = "hidden",
         .labels = render_safe(summary_labels$TOTAL)
@@ -112,7 +112,7 @@ cmt01a_lyt <- function(arm_var,
   for (k in seq_len(length(row_split_var))) {
     lyt <- split_and_summ_num_patients(
       lyt = lyt,
-      count_by = "CMSEQ",
+      count_by = count_by,
       var = row_split_var[k],
       label = lbl_row_split[k],
       split_indent = split_indent[k],
@@ -194,7 +194,7 @@ cmt01a_post <- function(
 #' run(cmt01a, proc_data)
 cmt01a <- chevron_t(
   main = cmt01a_main,
-  lyt = cmt01a_lyt,
+  lyt = occurrence_lyt,
   preprocess = cmt01a_pre,
   postprocess = cmt01a_post
 )

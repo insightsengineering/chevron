@@ -1,5 +1,12 @@
 # aet02 ----
 
+#' @describeIn aet02 Default labels
+#' @export
+aet02_label <- c(
+  unique = "Total number of {patient_label} with at least one adverse event",
+  nonunique = "Total number of events"
+)
+
 #' @describeIn aet02 Main TLG function
 #'
 #' @inheritParams gen_args
@@ -26,10 +33,7 @@ aet02_main <- function(adam_db,
                        row_split_var = "AEBODSYS",
                        lbl_overall = NULL,
                        summary_labels = list(
-                         all = c(
-                           unique = "Total number of {patient_label} with at least one adverse event",
-                           nonunique = "Total number of events"
-                         ),
+                         all = aet02_label,
                          TOTAL = c(nonunique = "Overall total number of events")
                        ),
                        ...) {
@@ -58,67 +62,20 @@ aet02_main <- function(adam_db,
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
   lbl_overall <- render_safe(lbl_overall)
-  lyt <- aet02_lyt(
+  lyt <- occurrence_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     row_split_var = row_split_var,
     lbl_row_split = lbl_row_split,
-    lbl_aedecod = lbl_aedecod,
-    summary_labels = summary_labels
+    medname_var = "AEDECOD",
+    lbl_medname_var = lbl_aedecod,
+    summary_labels = summary_labels,
+    count_by = NULL
   )
 
   tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 
   tbl
-}
-
-#' `aet02` Layout
-#'
-#' @inheritParams aet02_main
-#' @param lbl_row_split (`character`) label for `row_split_var`.
-#' @param lbl_aedecod (`string`) text label for `AEDECOD`.
-#'
-#' @keywords internal
-#'
-aet02_lyt <- function(arm_var,
-                      lbl_overall,
-                      row_split_var,
-                      lbl_row_split,
-                      lbl_aedecod,
-                      summary_labels) {
-  split_indent <- vapply(c("TOTAL", row_split_var), function(x) {
-    if (length(summary_labels[[x]]) > 0L) -1L else 0L
-  }, FUN.VALUE = 0L)
-  split_indent[1L] <- 0L
-  lyt <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall)
-  if (length(summary_labels$TOTAL) > 0) {
-    lyt <- lyt %>%
-      analyze_num_patients(
-        vars = "USUBJID",
-        .stats = names(summary_labels$TOTAL),
-        show_labels = "hidden",
-        .labels = render_safe(summary_labels$TOTAL)
-      )
-  }
-  for (k in seq_len(length(row_split_var))) {
-    lyt <- split_and_summ_num_patients(
-      lyt = lyt,
-      var = row_split_var[k],
-      label = lbl_row_split[k],
-      split_indent = split_indent[k],
-      stats = names(summary_labels[[row_split_var[k]]]),
-      summarize_labels = render_safe(summary_labels[[row_split_var[k]]])
-    )
-  }
-  lyt %>%
-    count_occurrences(
-      vars = "AEDECOD",
-      drop = length(row_split_var) > 0,
-      .indent_mods = unname(tail(split_indent, 1L))
-    ) %>%
-    append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), lbl_aedecod))
 }
 
 #' @describeIn aet02 Preprocessing

@@ -14,12 +14,12 @@ split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels
     )
   if (length(stats) > 0) {
     lyt <- lyt %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      .stats = stats,
-      .labels = setNames(summarize_labels, stats),
-      ...
-    )
+      summarize_num_patients(
+        var = "USUBJID",
+        .stats = stats,
+        .labels = setNames(summarize_labels, stats),
+        ...
+      )
   }
   lyt
 }
