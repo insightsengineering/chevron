@@ -201,6 +201,12 @@ do_call <- function(what, args) {
 }
 
 #' Helper function to convert to months if needed
+
+#' @param x (`numeric`) time.
+#' @param unit (`character`) or (`factor`) time unit.
+#'
+#' @return A `numeric` vector with the time in months.
+#'
 #' @export
 convert_to_month <- function(x, unit) {
   checkmate::assert_numeric(x)

@@ -115,6 +115,7 @@ reference:
       - grob_list
       - h_format_dec
       - lvls
+      - convert_to_month
   - title: Standard Reformatting Rules
     contents:
       - nocoding

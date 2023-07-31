@@ -38,12 +38,11 @@ fstg02_main <- function(adam_db,
   checkmate::assert_character(strata_var, null.ok = TRUE)
   checkmate::assert_character(stat_var, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], arm_var, types = list("factor"), n.levels = 2, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD"),
+  assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD", "AVALU"),
     types = list(c("character", "factor")),
     label = df_lbl
   )
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], "AVALU", types = list("character"), label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], "is_event", types = list("logical"), label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], c(subgroups, strata_var),
     types = list(c("factor")), na_ok = TRUE,

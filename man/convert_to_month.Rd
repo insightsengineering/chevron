@@ -6,6 +6,14 @@
 \usage{
 convert_to_month(x, unit)
 }
+\arguments{
+\item{x}{(\code{numeric}) time.}
+
+\item{unit}{(\code{character}) or (\code{factor}) time unit.}
+}
+\value{
+A \code{numeric} vector with the time in months.
+}
 \description{
 Helper function to convert to months if needed
 }
