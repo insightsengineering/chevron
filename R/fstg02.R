@@ -87,10 +87,10 @@ fstg02_pre <- function(adam_db, ...) {
   adam_db$adtte <- adam_db$adtte %>%
     mutate(
       ARM = droplevels(.data$ARM),
+      AVAL = convert_to_month(.data$AVAL, .data$AVALU),
+      AVALU = "MONTHS",
       is_event = .data$CNSR == 0
-    ) %>%
-    ifneeded_convert_day2month()
-
+    )
   adam_db
 }
 

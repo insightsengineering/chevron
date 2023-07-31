@@ -200,18 +200,12 @@ do_call <- function(what, args) {
   do.call(what, new_args, envir = args_env)
 }
 
-#' Helper function to convert days to months if needed
-#' @keywords internal
-ifneeded_convert_day2month <- function(data) {
-  assert_single_value(data$AVALU)
-  avalu <- unique(data$AVALU)
-
-  if (avalu == "DAYS") {
-    data %>% mutate(
-      AVAL = day2month(.data$AVAL),
-      AVALU = "MONTHS"
-    )
-  } else {
-    data
-  }
+#' Helper function to convert to months if needed
+#' @export
+convert_to_month <- function(x, unit) {
+  checkmate::assert_numeric(x)
+  case_when(
+    toupper(unit) == "DAYS" ~ x / 30.4375,
+    TRUE ~ x
+  )
 }
