@@ -354,6 +354,7 @@ report_null <- function(tlg, ...) {
 }
 
 #' Count Children
+#' @keywords internal
 count_children <- function(x) {
   assert_true(rtables::is_rtable(x))
   if (is(x, "ElementaryTable")) {
