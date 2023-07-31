@@ -45,7 +45,7 @@ aet02_main <- function(adam_db,
   assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
-  assert_list(summary_labels)
+  assert_list(summary_labels, null.ok = TRUE)
   assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))
   assert_subset(
     unique(unlist(lapply(summary_labels, names))),

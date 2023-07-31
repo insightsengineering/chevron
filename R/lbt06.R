@@ -66,7 +66,6 @@ lbt06_main <- function(adam_db,
 #' @keywords internal
 #'
 lbt06_lyt <- function(arm_var,
-                      param,
                       visitvar,
                       anrind_var,
                       bnrind_var,

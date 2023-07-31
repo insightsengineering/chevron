@@ -345,10 +345,25 @@ report_null <- function(tlg, ...) {
   assert_true(is.null(tlg) || rtables::is_rtable(tlg))
 
   if (is.null(tlg) || nrow(tlg) == 0L) {
-    null_report
-  } else {
-    tlg
+    return(null_report)
   }
+  if (count_children(tlg) == 0) {
+    return(null_report)
+  }
+  tlg
+}
+
+#' Count Children
+count_children <- function(x) {
+  assert_true(rtables::is_rtable(x))
+  if (is(x, "ElementaryTable")) {
+    return(length(x@children))
+  }
+  sum(vapply(
+    tree_children(x),
+    count_children,
+    FUN.VALUE = 0
+  ))
 }
 
 #' @export
