@@ -193,3 +193,15 @@ test_that("do_call errors as expected", {
   }
   expect_error(do_call(b, list()))
 })
+
+# convert_to_month ----
+
+test_that("convert_to_month work as expected", {
+  expect_identical(expect_silent(convert_to_month(30.4375, "DAYS")), 1)
+  expect_identical(expect_silent(convert_to_month(1, "MONTHS")), 1)
+  expect_identical(expect_silent(convert_to_month(1, "YEARS")), 12)
+})
+
+test_that("convert_to_month warning messages as expected", {
+  expect_warning(convert_to_month(1, "xxx"))
+})

@@ -28,7 +28,7 @@
 fstg01_main <- function(adam_db,
                         dataset = "adrs",
                         arm_var = "ARM",
-                        rsp_var = "is_rsp",
+                        rsp_var = "IS_RSP",
                         subgroups = c("SEX", "AGEGR1", "RACE"),
                         strata_var = NULL,
                         stat_var = c("n_tot", "n", "n_rsp", "prop", "or", "ci"),
@@ -84,7 +84,7 @@ fstg01_pre <- function(adam_db, ...) {
   adam_db$adrs <- adam_db$adrs %>%
     mutate(
       ARM = droplevels(.data$ARM),
-      is_rsp = .data$AVALC %in% c("CR", "PR")
+      IS_RSP = .data$AVALC %in% c("CR", "PR")
     )
 
   adam_db

@@ -203,15 +203,25 @@ do_call <- function(what, args) {
 #' Helper function to convert to months if needed
 
 #' @param x (`numeric`) time.
-#' @param unit (`character`) or (`factor`) time unit.
+#' @param unit (`character`) time unit.
 #'
 #' @return A `numeric` vector with the time in months.
 #'
 #' @export
 convert_to_month <- function(x, unit) {
   checkmate::assert_numeric(x)
+  checkmate::assert_character(unit)
+  if (!all(unique(unit) %in% c("DAYS", "MONTHS", "YEARS"))) {
+    warning(
+      "Data may contain time units which are not covered.",
+      call. = FALSE
+    )
+  }
+
   case_when(
     toupper(unit) == "DAYS" ~ x / 30.4375,
+    toupper(unit) == "MONTHS" ~ x,
+    toupper(unit) == "YEARS" ~ x * 12,
     TRUE ~ x
   )
 }

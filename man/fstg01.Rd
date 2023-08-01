@@ -14,7 +14,7 @@ fstg01_main(
   adam_db,
   dataset = "adrs",
   arm_var = "ARM",
-  rsp_var = "is_rsp",
+  rsp_var = "IS_RSP",
   subgroups = c("SEX", "AGEGR1", "RACE"),
   strata_var = NULL,
   stat_var = c("n_tot", "n", "n_rsp", "prop", "or", "ci"),

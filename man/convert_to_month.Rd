@@ -9,7 +9,7 @@ convert_to_month(x, unit)
 \arguments{
 \item{x}{(\code{numeric}) time.}
 
-\item{unit}{(\code{character}) or (\code{factor}) time unit.}
+\item{unit}{(\code{character}) time unit.}
 }
 \value{
 A \code{numeric} vector with the time in months.

@@ -54,8 +54,9 @@ ttet01_main <- function(adam_db,
   df_label <- sprintf("adam_db$%s", dataset)
   assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
+  assert_valid_variable(adam_db[[dataset]], c("AVALU"), types = list("character"), label = df_label)
   assert_valid_variable(
-    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC", "AVALU"),
+    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC"),
     types = list(c("character", "factor")), label = df_label
   )
   checkmate::assert_flag(summarize_event)
@@ -201,7 +202,7 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
                        ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
-      AVAL = convert_to_month(.data$AVAL, .data$AVALU),
+      AVAL = convert_to_month(.data$AVAL, as.character(.data$AVALU)),
       AVALU = "MONTHS",
       IS_EVENT = .data$CNSR == 0,
       IS_NOT_EVENT = .data$CNSR == 1,
