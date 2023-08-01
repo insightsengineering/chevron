@@ -298,63 +298,6 @@ setMethod(
 
 # script ----
 
-#' Create Script for Parameters Assignment
-#'
-#' @param x (`chevron_tlg`) input.
-#' @param adam_db (`string`) the name of the dataset.
-#' @param dict (`list`) with the name and value of custom arguments.
-#' @param details (`flag`) whether to show the code of all function. By default, only the detail of the code of the
-#'   prepossessing step is printed.
-#' @param args (`string`) the name of argument list.
-#'
-#' @name script
-#' @rdname script
-NULL
-
-## script_args ----
-
-#' @rdname script
-#' @export
-setGeneric("script_args", function(x, dict = NULL) standardGeneric("script_args"))
-
-#' @rdname script
-#' @export
-#'
-#' @examples
-#' script_args(aet04)
-#'
-setMethod(
-  f = "script_args",
-  signature = "chevron_tlg",
-  definition = function(x, dict = NULL) {
-    checkmate::assert_list(dict, null.ok = TRUE)
-
-    # Construct call for attribution of all arguments
-    simple_arg <- args_ls(x, omit = c("tlg", "..."), simplify = TRUE)
-    simple_arg <- fuse_sequentially(dict, simple_arg)
-    names_args <- names(simple_arg)
-    val_args <- unname(simple_arg)
-
-    res <- alist()
-    for (i in seq_along(simple_arg)) {
-      val <- val_args[[i]]
-      id <- names_args[[i]]
-
-      if (missing(val)) {
-        res[[id]] <- rlang::call2("stop", "missing value")
-      } else {
-        res[[id]] <- val
-      }
-    }
-
-    arg_calls <- mapply(function(x, y) rlang::call2("<-", sym(x), y), as.list(names(res)), res)
-
-    c(
-      "\n# Arguments definition ----\n",
-      unlist(lapply(arg_calls, deparse))
-    )
-  }
-)
 
 ## script_funs ----
 
@@ -376,48 +319,18 @@ setMethod(
     checkmate::assert_flag(details)
     checkmate::assert_string(adam_db)
     checkmate::assert_string(args)
-
-    if (details) {
-      c(
-        "# Edit Functions.",
-        deparse(
-          rlang::call2("<-", sym("pre_fun"), preprocess(x)),
-          control = "useSource"
-        ),
-        "",
-        deparse(
-          rlang::call2("<-", sym("main_fun"), main(x)),
-          control = "useSource"
-        ),
-        "",
-        deparse(
-          rlang::call2("<-", sym("post_fun"), postprocess(x)),
-          control = "useSource"
-        ),
-        "",
-        "# Create TLG",
-        glue::glue("tlg_output <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args}) %>% \
-        rlang::exec(.fn = main_fun, !!!{args}) %>% \
-        rlang::exec(.fn = post_fun, !!!{args})")
+    lifecycle::deprecate_warn("0.2.2", "chevron::script_funs(details = )")
+    tlg_name <- deparse(substitute(x))
+    c(
+      "# Edit Preprocessing Function.",
+      glue::glue("preprocess({tlg_name}) <- "),
+      deparse(preprocess(x), control = c("useSource")),
+      "",
+      "# Create TLG",
+      glue::glue(
+        "tlg_output <- run(object = {tlg_name}, adam_db = {adam_db}",
+        ", verbose = TRUE, user_args = {args})"
       )
-    } else {
-      tlg_name <- deparse(substitute(x))
-      c(
-        "# Edit Preprocessing Function.",
-        utils::capture.output(
-          print(
-            rlang::call2("<-", sym("pre_fun"), preprocess(x)),
-            useSource = TRUE
-          )
-        ),
-        "",
-        "# Create TLG",
-        glue::glue("{adam_db} <- rlang::exec(.fn = pre_fun, adam_db = {adam_db}, !!!{args})"),
-        glue::glue(
-          "tlg_output <- run(object = {tlg_name}, adam_db = {adam_db}",
-          ", auto_pre = FALSE, verbose = TRUE, user_args = {args})"
-        )
-      )
-    }
+    )
   }
 )
