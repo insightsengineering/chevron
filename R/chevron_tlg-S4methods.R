@@ -306,6 +306,16 @@ setMethod(
 
 # script ----
 
+#' Create Script for Parameters Assignment
+#'
+#' @param x (`chevron_tlg`) input.
+#' @param adam_db (`string`) the name of the dataset.
+#' @param details (`flag`) deprecated. whether to show the code of all function.
+#' @param args (`string`) the name of argument list.
+#'
+#' @name script
+#' @rdname script
+NULL
 
 ## script_funs ----
 
