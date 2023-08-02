@@ -64,7 +64,6 @@ egt03_main <- function(adam_db,
   return(tbl)
 }
 
-
 #' `egt03` Layout
 #'
 #' @inheritParams gen_args
