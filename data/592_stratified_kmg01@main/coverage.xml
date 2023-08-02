@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.975049900199601" branch-rate="0" lines-covered="2931" lines-valid="3006" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-08-02 03:26:20.580823">
+<coverage line-rate="0.975016655562958" branch-rate="0" lines-covered="2927" lines-valid="3002" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-08-02 05:11:45.644533">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
   <packages>
-    <package name="chevron" line-rate="0.975049900199601" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.975016655562958" branch-rate="0" complexity="0">
       <classes>
         <class name="ael01_nollt.R" filename="R/ael01_nollt.R" line-rate="0.952380952380952" branch-rate="0" complexity="0">
           <methods>
@@ -4671,22 +4671,18 @@
                 <line number="111" hits="3" branch="false"/>
                 <line number="112" hits="3" branch="false"/>
                 <line number="113" hits="3" branch="false"/>
-                <line number="115" hits="4" branch="false"/>
                 <line number="116" hits="4" branch="false"/>
                 <line number="117" hits="4" branch="false"/>
                 <line number="118" hits="4" branch="false"/>
+                <line number="119" hits="4" branch="false"/>
                 <line number="120" hits="4" branch="false"/>
                 <line number="121" hits="4" branch="false"/>
-                <line number="122" hits="4" branch="false"/>
-                <line number="123" hits="4" branch="false"/>
-                <line number="124" hits="4" branch="false"/>
-                <line number="125" hits="4" branch="false"/>
               </lines>
             </method>
             <method name="lbt14_post" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
-                <line number="135" hits="4" branch="false"/>
-                <line number="136" hits="4" branch="false"/>
+                <line number="131" hits="4" branch="false"/>
+                <line number="132" hits="4" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -4745,18 +4741,14 @@
             <line number="111" hits="3" branch="false"/>
             <line number="112" hits="3" branch="false"/>
             <line number="113" hits="3" branch="false"/>
-            <line number="115" hits="4" branch="false"/>
             <line number="116" hits="4" branch="false"/>
             <line number="117" hits="4" branch="false"/>
             <line number="118" hits="4" branch="false"/>
+            <line number="119" hits="4" branch="false"/>
             <line number="120" hits="4" branch="false"/>
             <line number="121" hits="4" branch="false"/>
-            <line number="122" hits="4" branch="false"/>
-            <line number="123" hits="4" branch="false"/>
-            <line number="124" hits="4" branch="false"/>
-            <line number="125" hits="4" branch="false"/>
-            <line number="135" hits="4" branch="false"/>
-            <line number="136" hits="4" branch="false"/>
+            <line number="131" hits="4" branch="false"/>
+            <line number="132" hits="4" branch="false"/>
           </lines>
         </class>
         <class name="lbt15.R" filename="R/lbt15.R" line-rate="1" branch-rate="0" complexity="0">
