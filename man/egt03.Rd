@@ -55,8 +55,8 @@ last observation prior to initiation of study drug.
 }
 \details{
 \itemize{
-\item \code{ADEG} data are subsetted to contain only "POST-BASELINE MINIMUM" visit
-\item the number of patients by baseline assessment and minimum post-baseline assessment.
+\item \code{ADEG} data are subsetted to contain only "POST-BASELINE MINIMUM"/"POST-BASELINE MAXIMUM" visit
+according to the preprocessing.
 \item Percentages are based on the total number of patients in a treatment group.
 \item Split columns by Analysis Reference Range Indicator, typically \code{ANRIND}.
 \item Does not include a total column by default.

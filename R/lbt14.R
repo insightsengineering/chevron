@@ -10,8 +10,11 @@
 #' @param direction (`string`) one of `"high"` or `"low"` indicating which shift direction should be detailed.
 #'
 #' @details
+#'  * This table follows ADaMIG 1.1.
 #'  * Only the worst grade recorded for each patient is included in the table.
 #'  * If no missing baseline lab results, the "Missing" level of `BTOXGR` is excluded.
+#'  * Grading takes value from -4 to 4, negative value means the abnormality direction is low,
+#'  poisitive value means the abnormality direction is high.
 #'  * Grades 0, 1, 2, 3, and 4 are counted as `"Not Low"` when `direction = "low"`. Conversely, when `direction =
 #'  "high"`, Grades 0, -1, -2, -3, and -4 are counted as `"Not High".
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
