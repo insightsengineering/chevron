@@ -73,8 +73,16 @@ print_args <- function(run_call, args, auto_pre = TRUE) {
   m <- pmatch(nms_call, nms_args)
   nms_call[!is.na(m)] <- nms_args[m[!is.na(m)]]
   names(run_call) <- nms_call
-  cat("Using template: ", run_call$object, "\n")
-  cat("Using data:     ", run_call$adam_db, "\n")
+  cat(
+    "Using template: ",
+    if (is.name(run_call$object)) run_call$object else paste("object of class", class(run_call$object)),
+    "\n"
+  )
+  cat(
+    "Using data:     ",
+    if (is.name(run_call$adam_db)) run_call$adam_db else paste("object of class", class(run_call$adam_db)),
+    "\n"
+  )
   if (auto_pre) {
     cat("\nPre args:\n")
     print_list(get_subset(args$preprocess, run_call))
