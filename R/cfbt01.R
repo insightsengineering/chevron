@@ -70,6 +70,8 @@ cfbt01_main <- function(adam_db,
     "cv", "min", "max", "median_range", "geom_mean", "geom_cv"
   )
   checkmate::assert_subset(.stats, all_stats)
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
@@ -78,19 +80,21 @@ cfbt01_main <- function(adam_db,
 
   lyt <- cfbt01_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
+    lbl_avisit = lbl_avisit,
+    lbl_param = lbl_param,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     row_split_var = row_split_var,
     row_split_lbl = row_split_lbl,
     visitvar = visitvar,
-    lbl_avisit = lbl_avisit,
-    lbl_param = lbl_param,
     precision = precision,
     .stats = .stats,
     page_var = page_var,
     skip = skip,
     ...
   )
+
   tbl <- build_table(
     lyt,
     df = adam_db[[dataset]],
@@ -105,23 +109,24 @@ cfbt01_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @inheritParams cfbt01_main
 #'
-#' @param summaryvars (`character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
-#' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
-#' @param visitvar (`string`) typically one of `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
+#' @param summaryvars (`character`) the variables to be analyzed. For this table, `AVAL` and `CHG` by default.
+#' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
 #' @param row_split_lbl (`character`) label of further row splits.
+#' @param visitvar (`string`) typically one of `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #'
 #' @keywords internal
 #'
 cfbt01_lyt <- function(arm_var,
+                       lbl_overall,
+                       lbl_avisit,
+                       lbl_param,
                        summaryvars,
                        summaryvars_lbls,
                        row_split_var,
                        row_split_lbl,
                        visitvar,
-                       lbl_avisit,
-                       lbl_param,
                        precision,
                        page_var,
                        .stats,
@@ -131,6 +136,7 @@ cfbt01_lyt <- function(arm_var,
   label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by_recurive(
       row_split_var,
       split_label = row_split_lbl,

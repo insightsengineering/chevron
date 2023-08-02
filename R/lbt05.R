@@ -114,7 +114,6 @@ lbt05_pre <- function(adam_db, ...) {
   adam_db
 }
 
-
 #' @describeIn lbt05 Postprocessing
 #'
 #' @inheritParams gen_args

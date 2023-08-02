@@ -14,6 +14,7 @@ An object of class \code{chevron_t} of length 1.
 egt03_main(
   adam_db,
   arm_var = "ACTARMCD",
+  lbl_overall = NULL,
   summaryvar = "BNRIND",
   splitvar = "ANRIND",
   visitvar = "AVISIT",
@@ -30,6 +31,8 @@ egt03
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{character}) the arm variables used for row split, typically \code{"ACTARMCD"}.}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{summaryvar}{(\code{character}) variables to be analyzed, typically \code{"BNRIND"}. Labels of the corresponding columns
 are used as subtitles.}

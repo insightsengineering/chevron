@@ -4,7 +4,14 @@
 \alias{egt03_lyt}
 \title{\code{egt03} Layout}
 \usage{
-egt03_lyt(arm_var, splitvar, summaryvar, lbl_armvar, lbl_summaryvars)
+egt03_lyt(
+  arm_var,
+  splitvar,
+  summaryvar,
+  lbl_overall,
+  lbl_armvar,
+  lbl_summaryvars
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
@@ -14,6 +21,8 @@ used as subtitles.}
 
 \item{summaryvar}{(\code{character}) variables to be analyzed, typically \code{"BNRIND"}. Labels of the corresponding columns
 are used as subtitles.}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_armvar}{(\code{string}) label of the \code{arm_var} variable.}
 

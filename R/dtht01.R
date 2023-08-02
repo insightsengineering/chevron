@@ -28,9 +28,10 @@ dtht01_main <- function(adam_db,
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_flag(other_category)
   checkmate::assert_flag(time_since_last_dose, null.ok = TRUE)
+  lbl_overall <- render_safe(lbl_overall)
+
   other_var <- if (other_category) "DTHCAUS"
   dose_death_var <- if (time_since_last_dose) "LDDTHGR1"
-  lbl_overall <- render_safe(lbl_overall)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list("character", "factor"))
   assert_valid_variable(
     adam_db$adsl,
@@ -61,10 +62,10 @@ dtht01_main <- function(adam_db,
   lyt <- dtht01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    other_var = other_var,
-    other_level = other_level,
     death_flag = "DTHFL",
     death_var = "DTHCAT",
+    other_level = other_level,
+    other_var = other_var,
     dose_death_var = dose_death_var
   )
   adsl <- adam_db$adsl %>%
@@ -95,9 +96,9 @@ dtht01_lyt <- function(arm_var,
   } else {
     lyt_block_fun <- summarize_row
   }
-  lyt <- basic_table() %>%
+  lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     count_values(
       death_flag,
       values = "Y",

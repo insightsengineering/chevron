@@ -23,11 +23,14 @@
 #'
 egt03_main <- function(adam_db,
                        arm_var = "ACTARMCD",
+                       lbl_overall = NULL,
                        summaryvar = "BNRIND",
                        splitvar = "ANRIND",
                        visitvar = "AVISIT",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
+  checkmate::assert_string(arm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_string(summaryvar)
   assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
   checkmate::assert_string(splitvar)
@@ -37,6 +40,9 @@ egt03_main <- function(adam_db,
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_single_value(adam_db$adeg$PARAMCD)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- var_labels_for(adam_db$adeg, summaryvar)
   lbl_splitvar <- var_labels_for(adam_db$adeg, splitvar)
@@ -45,6 +51,7 @@ egt03_main <- function(adam_db,
     arm_var = arm_var,
     splitvar = splitvar,
     summaryvar = summaryvar,
+    lbl_overall = lbl_overall,
     lbl_armvar = lbl_armvar,
     lbl_summaryvars = lbl_summaryvars
   )
@@ -70,6 +77,7 @@ egt03_main <- function(adam_db,
 egt03_lyt <- function(arm_var,
                       splitvar,
                       summaryvar,
+                      lbl_overall,
                       lbl_armvar,
                       lbl_summaryvars) {
   indent <- 1L
@@ -79,6 +87,7 @@ egt03_lyt <- function(arm_var,
   basic_table(show_colcounts = FALSE) %>%
     split_cols_by("SPLIT_LABEL") %>%
     split_cols_by(splitvar) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(arm_var,
       split_fun = drop_split_levels,
       label_pos = "topleft",

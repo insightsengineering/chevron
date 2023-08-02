@@ -6,13 +6,14 @@
 \usage{
 cfbt01_lyt(
   arm_var,
+  lbl_overall,
+  lbl_avisit,
+  lbl_param,
   summaryvars,
   summaryvars_lbls,
   row_split_var,
   row_split_lbl,
   visitvar,
-  lbl_avisit,
-  lbl_param,
   precision,
   page_var,
   .stats,
@@ -23,6 +24,12 @@ cfbt01_lyt(
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
+
+\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
+
 \item{summaryvars}{(\code{character}) the variables to be analyzed. For this table, \code{AVAL} and \code{CHG} by default.}
 
 \item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
@@ -32,10 +39,6 @@ cfbt01_lyt(
 \item{row_split_lbl}{(\code{character}) label of further row splits.}
 
 \item{visitvar}{(\code{string}) typically one of \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
-
-\item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
-
-\item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
 indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
