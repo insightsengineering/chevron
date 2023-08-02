@@ -155,7 +155,6 @@ pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = 
 #' run(pdt02, syn_data)
 pdt02 <- chevron_t(
   main = pdt02_main,
-  lyt = pdt02_lyt,
   preprocess = pdt02_pre,
   postprocess = pdt02_post
 )

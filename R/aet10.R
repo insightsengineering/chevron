@@ -114,7 +114,6 @@ aet10_post <- function(tlg, atleast = 0.05, ...) {
 #' run(aet10, syn_data)
 aet10 <- chevron_t(
   main = aet10_main,
-  lyt = aet10_lyt,
   preprocess = aet10_pre,
   postprocess = aet10_post
 )

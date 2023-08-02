@@ -152,7 +152,6 @@ pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var =
 #' run(pdt01, proc_data)
 pdt01 <- chevron_t(
   main = pdt01_main,
-  lyt = pdt01_lyt,
   preprocess = pdt01_pre,
   postprocess = pdt01_post
 )

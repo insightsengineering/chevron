@@ -495,3 +495,57 @@ infer_mapping <- function(map_df, df) {
     res
   }
 }
+
+
+#' Occurrence Layout
+#'
+#' @inheritParams gen_args
+#' @inheritParams cmt01a_main
+#' @param lbl_medname_var (`string`) label for the variable defining the medication name.
+#' @keywords internal
+#'
+occurrence_lyt <- function(arm_var,
+                           lbl_overall,
+                           row_split_var,
+                           lbl_row_split,
+                           medname_var,
+                           lbl_medname_var,
+                           summary_labels,
+                           count_by) {
+  split_indent <- vapply(c("TOTAL", row_split_var), function(x) {
+    if (length(summary_labels[[x]]) > 0L) -1L else 0L
+  }, FUN.VALUE = 0L)
+  split_indent[1L] <- 0L
+  lyt <- basic_table() %>%
+    split_cols_by(var = arm_var) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall)
+  if (length(summary_labels$TOTAL) > 0) {
+    lyt <- lyt %>%
+      analyze_num_patients(
+        vars = "USUBJID",
+        count_by = count_by,
+        .stats = names(summary_labels$TOTAL),
+        show_labels = "hidden",
+        .labels = render_safe(summary_labels$TOTAL)
+      )
+  }
+  for (k in seq_len(length(row_split_var))) {
+    lyt <- split_and_summ_num_patients(
+      lyt = lyt,
+      count_by = count_by,
+      var = row_split_var[k],
+      label = lbl_row_split[k],
+      split_indent = split_indent[k],
+      stats = names(summary_labels[[row_split_var[k]]]),
+      summarize_labels = render_safe(summary_labels[[row_split_var[k]]])
+    )
+  }
+  lyt %>%
+    count_occurrences(
+      vars = medname_var,
+      drop = length(row_split_var) > 0,
+      .indent_mods = unname(tail(split_indent, 1L))
+    ) %>%
+    append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), lbl_medname_var))
+}
