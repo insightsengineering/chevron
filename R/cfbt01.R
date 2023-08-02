@@ -32,6 +32,7 @@
 cfbt01_main <- function(adam_db,
                         dataset,
                         arm_var = "ACTARM",
+                        lbl_overall = NULL,
                         row_split_var = NULL,
                         summaryvars = c("AVAL", "CHG"),
                         visitvar = "AVISIT",
@@ -42,6 +43,7 @@ cfbt01_main <- function(adam_db,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   checkmate::assert_string(arm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_character(summaryvars, max.len = 2L, min.len = 1L)
   checkmate::assert_character(row_split_var, null.ok = TRUE)
   checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))

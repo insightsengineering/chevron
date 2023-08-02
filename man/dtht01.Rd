@@ -14,9 +14,9 @@ An object of class \code{chevron_t} of length 1.
 dtht01_main(
   adam_db,
   arm_var = "ACTARM",
+  lbl_overall = NULL,
   other_category = FALSE,
   time_since_last_dose = FALSE,
-  lbl_overall = NULL,
   ...
 )
 
@@ -31,11 +31,11 @@ dtht01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{other_category}{(\code{flag}) should the breakdown of the \code{OTHER} category be displayed.}
 
 \item{time_since_last_dose}{(\code{flag}) should the time to event information be displayed.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
 

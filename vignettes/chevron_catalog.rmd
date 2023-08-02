@@ -586,7 +586,7 @@ By default, the `AGEGR1` variable is used as the age group. If `AGEGR1` is avail
 
 ```{r}
 proc_data <- syn_data
-proc_data  <- propagate(proc_data, "adsl", "AGEGR1", "USUBJID")
+proc_data <- propagate(proc_data, "adsl", "AGEGR1", "USUBJID")
 run(rmpt03, proc_data)
 ```
 

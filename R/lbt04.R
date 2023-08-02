@@ -20,11 +20,13 @@
 #'
 lbt04_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       lbl_overall = NULL,
                        analysis_abn_var = "ANRIND",
                        baseline_abn_var = "BNRIND",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(
     adam_db$adlb, c("PARAM", "PARCAT1"),
     types = list("characater", "factor")
@@ -39,6 +41,8 @@ lbt04_main <- function(adam_db,
     na_ok = TRUE, empty_ok = TRUE, min_chars = 0L
   )
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
 
@@ -46,8 +50,9 @@ lbt04_main <- function(adam_db,
     arm_var = arm_var,
     var_parcat = "PARCAT1",
     var_param = "PARAM",
-    lbl_param = lbl_param,
     analysis_abn_var = analysis_abn_var,
+    lbl_overall = lbl_overall,
+    lbl_param = lbl_param,
     lbl_abn_var = lbl_abn_var,
     variables = list(id = "USUBJID", baseline = baseline_abn_var)
   )
@@ -70,12 +75,14 @@ lbt04_main <- function(adam_db,
 lbt04_lyt <- function(arm_var,
                       var_parcat,
                       var_param,
-                      lbl_param,
                       analysis_abn_var,
+                      lbl_overall,
+                      lbl_param,
                       lbl_abn_var,
                       variables) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       var_parcat,
       split_fun = drop_split_levels

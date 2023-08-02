@@ -10,6 +10,7 @@ lbt06_lyt(
   visitvar,
   anrind_var,
   bnrind_var,
+  lbl_overall,
   lbl_param,
   lbl_visit,
   lbl_anrind,
@@ -26,6 +27,8 @@ lbt06_lyt(
 \item{anrind_var}{(\code{string}) the variable for analysis reference range indicator.}
 
 \item{bnrind_var}{(\code{string}) the variable for baseline reference range indicator.}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_param}{(\code{string}) text label of the \code{PARAM} variable.}
 

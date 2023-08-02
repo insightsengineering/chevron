@@ -19,18 +19,18 @@
 #'
 dtht01_main <- function(adam_db,
                         arm_var = "ACTARM",
+                        lbl_overall = NULL,
                         other_category = FALSE,
                         time_since_last_dose = FALSE,
-                        lbl_overall = NULL,
                         ...) {
   assert_all_tablenames(adam_db, "adsl")
   checkmate::assert_string(arm_var)
-  checkmate::assert_flag(other_category)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  checkmate::assert_flag(other_category)
   checkmate::assert_flag(time_since_last_dose, null.ok = TRUE)
-  lbl_overall <- render_safe(lbl_overall)
   other_var <- if (other_category) "DTHCAUS"
   dose_death_var <- if (time_since_last_dose) "LDDTHGR1"
+  lbl_overall <- render_safe(lbl_overall)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list("character", "factor"))
   assert_valid_variable(
     adam_db$adsl,
@@ -42,6 +42,7 @@ dtht01_main <- function(adam_db,
     c("DTHCAT", other_var, dose_death_var),
     types = list("character", "factor"), na_ok = TRUE, min_chars = 1L
   )
+
   if (other_category) {
     death_cause <- lvls(adam_db$adsl$DTHCAT)
     if (length(death_cause) == 0L) {

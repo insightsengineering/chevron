@@ -25,10 +25,12 @@
 #'
 lbt14_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       lbl_overall = NULL,
                        gr_missing = "incl",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   checkmate::assert_string(arm_var)
+  checkmate::assert_string(lbl_overall, null.ok = TRUE)
   checkmate::assert_choice(gr_missing, c("incl", "excl", "gr_0"))
   assert_valid_variable(adam_db$adlb, c("ATOXGR", "BTOXGR"), types = list("factor"), na_ok = TRUE)
   assert_valid_variable(adam_db$adlb, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
@@ -36,8 +38,11 @@ lbt14_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
+  lbl_overall <- render_safe(lbl_overall)
+
   lyt <- lbt14_lyt(
-    arm_var = arm_var
+    arm_var = arm_var,
+    lbl_overall = lbl_overall
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -51,9 +56,11 @@ lbt14_main <- function(adam_db,
 #'
 #' @keywords internal
 #'
-lbt14_lyt <- function(arm_var) {
+lbt14_lyt <- function(arm_var,
+                      lbl_overall) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
       split_fun = drop_split_levels,

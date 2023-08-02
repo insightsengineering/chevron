@@ -8,8 +8,9 @@ lbt04_lyt(
   arm_var,
   var_parcat,
   var_param,
-  lbl_param,
   analysis_abn_var,
+  lbl_overall,
+  lbl_param,
   lbl_abn_var,
   variables
 )
@@ -17,11 +18,13 @@ lbt04_lyt(
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{lbl_abn_var}{(\code{string}) label of the \code{analysis_abn_var} variable.}
 
-\item{variables}{(\code{list}) see \link[tern:abnormal]{tern::count_abnormal}}
+\item{variables}{(\code{list}) see \link[tern:count_abnormal]{tern::count_abnormal}}
 }
 \description{
 \code{lbt04} Layout

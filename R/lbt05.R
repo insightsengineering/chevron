@@ -27,9 +27,10 @@ lbt05_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
+  lbl_overall <- render_safe(lbl_overall)
   lbl_anrind <- var_labels_for(adam_db$adlb, "ABN_DIR")
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
-  lbl_overall <- render_safe(lbl_overall)
+
   map <- expand.grid(
     PARAM = levels(adam_db$adlb$PARAM),
     ABN_DIR = c("Low", "High"),

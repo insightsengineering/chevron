@@ -12,7 +12,13 @@ Baseline Grade (Low or High Direction).}
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-lbt14_main(adam_db, arm_var = "ACTARM", gr_missing = "incl", ...)
+lbt14_main(
+  adam_db,
+  arm_var = "ACTARM",
+  lbl_overall = NULL,
+  gr_missing = "incl",
+  ...
+)
 
 lbt14_pre(adam_db, gr_missing = "incl", direction = "low", ...)
 
@@ -24,6 +30,8 @@ lbt14
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{gr_missing}{(\code{string}) how missing baseline grades should be handled. Defaults to \code{"incl"} to include the
 \code{"Missing"}
