@@ -41,3 +41,21 @@ test_that("fstg02 can handle some NA values in subgroups", {
   res <- expect_silent(run(fstg02, proc_data, dataset = "adtte"))
   checkmate::assert_true(grid::is.grob(res))
 })
+
+test_that("fstg02 can handle customized time units", {
+  proc_data <- dunlin::log_filter(syn_data, PARAMCD == "OS" & ARM %in% c("A: Drug X", "B: Placebo"), "adtte")
+
+  proc_data$adtte[1:10, "AVAL"] <- 28
+  new_avalu <- c(rep("MONTHS", 10), as.character(proc_data$adtte$AVALU[-c(1:10)]))
+  proc_data$adtte <- proc_data$adtte %>%
+    mutate(
+      AVALU = factor(.env$new_avalu),
+    )
+
+  res1 <- expect_silent(run(fstg02, proc_data, dataset = "adtte"))
+  checkmate::assert_true(grid::is.grob(res1))
+
+  proc_data$adtte$AVALU <- "DAY"
+  expect_warning(res2 <- run(fstg02, proc_data, dataset = "adtte"))
+  checkmate::assert_true(grid::is.grob(res2))
+})

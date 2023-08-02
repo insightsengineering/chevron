@@ -21,7 +21,7 @@ lbt04_lyt(
 
 \item{lbl_abn_var}{(\code{string}) label of the \code{analysis_abn_var} variable.}
 
-\item{variables}{(\code{list}) see \link[tern:abnormal]{tern::count_abnormal}}
+\item{variables}{(\code{list}) see \link[tern:count_abnormal]{tern::count_abnormal}}
 }
 \description{
 \code{lbt04} Layout

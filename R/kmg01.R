@@ -24,7 +24,7 @@ kmg01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], "is_event", types = list("logical"), label = df_lbl)
+  assert_valid_variable(adam_db[[dataset]], "IS_EVENT", types = list("logical"), label = df_lbl)
   assert_valid_variable(
     adam_db[[dataset]],
     c("PARAMCD", arm_var),
@@ -34,7 +34,7 @@ kmg01_main <- function(adam_db,
   )
   assert_single_value(adam_db[[dataset]]$PARAMCD, label = paste0(df_lbl, "$PARAMCD"))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var)
+  variables <- list(tte = "AVAL", is_event = "IS_EVENT", arm = arm_var)
 
   control_cox <- execute_with_args(control_coxph, ...)
   control_surv <- execute_with_args(control_surv_timepoint, ...)
@@ -55,7 +55,7 @@ kmg01_main <- function(adam_db,
 #' @export
 kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    mutate(is_event = .data$CNSR == 0)
+    mutate(IS_EVENT = .data$CNSR == 0)
 
   adam_db
 }

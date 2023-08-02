@@ -33,17 +33,16 @@ fstg02_main <- function(adam_db,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
-  checkmate::assert_string(arm_var)
-  checkmate::assert_character(subgroups, null.ok = TRUE)
-  checkmate::assert_character(strata_var, null.ok = TRUE)
-  checkmate::assert_character(stat_var, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_character(subgroups, null.ok = TRUE)
+  assert_character(strata_var, null.ok = TRUE)
+  assert_character(stat_var, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], arm_var, types = list("factor"), n.levels = 2, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD"),
+  assert_valid_variable(adam_db[[dataset]], c("USUBJID", "PARAMCD", "AVALU"),
     types = list(c("character", "factor")),
     label = df_lbl
   )
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], "AVALU", types = list("character"), label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], "IS_EVENT", types = list("logical"), label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], c(subgroups, strata_var),
     types = list(c("factor")), na_ok = TRUE,
@@ -57,7 +56,7 @@ fstg02_main <- function(adam_db,
   variables <- list(
     arm = arm_var,
     tte = "AVAL",
-    IS_EVENT = "IS_EVENT",
+    is_event = "IS_EVENT",
     subgroups = subgroups,
     strata_var = strata_var
   )
@@ -87,7 +86,7 @@ fstg02_pre <- function(adam_db, ...) {
   adam_db$adtte <- adam_db$adtte %>%
     mutate(
       ARM = droplevels(.data$ARM),
-      AVAL = convert_to_month(.data$AVAL, as.character(.data$AVALU)),
+      AVAL = convert_to_month(.data$AVAL, .data$AVALU),
       AVALU = "MONTHS",
       IS_EVENT = .data$CNSR == 0
     )
