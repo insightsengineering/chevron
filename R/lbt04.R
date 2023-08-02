@@ -23,7 +23,7 @@ lbt04_main <- function(adam_db,
                        analysis_abn_var = "ANRIND",
                        baseline_abn_var = "BNRIND",
                        row_split_var = "PARCAT1",
-                       page_var = "PARCAT1",
+                       page_var = tail(row_split_var, 1L),
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   assert_string(arm_var)

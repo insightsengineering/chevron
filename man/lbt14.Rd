@@ -52,11 +52,11 @@ Baseline Grade (Low or High Direction).
 }
 \details{
 \itemize{
-\item This table follows ADaMIG 1.1.
+\item This table follows ADaMIG v1.1.
 \item Only the worst grade recorded for each patient is included in the table.
 \item If no missing baseline lab results, the "Missing" level of \code{BTOXGR} is excluded.
 \item Grading takes value from -4 to 4, negative value means the abnormality direction is low,
-poisitive value means the abnormality direction is high.
+positive value means the abnormality direction is high.
 \item Grades 0, 1, 2, 3, and 4 are counted as \code{"Not Low"} when \code{direction = "low"}. Conversely, when \code{direction =  "high"}, Grades 0, -1, -2, -3, and -4 are counted as `"Not High".
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.

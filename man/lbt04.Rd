@@ -17,7 +17,7 @@ lbt04_main(
   analysis_abn_var = "ANRIND",
   baseline_abn_var = "BNRIND",
   row_split_var = "PARCAT1",
-  page_var = "PARCAT1",
+  page_var = tail(row_split_var, 1L),
   ...
 )
 
