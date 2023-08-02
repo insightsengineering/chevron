@@ -315,12 +315,13 @@ setGeneric("script_funs", function(x, adam_db, args, details = FALSE) standardGe
 setMethod(
   f = "script_funs",
   signature = "chevron_tlg",
-  definition = function(x, adam_db, args, details = FALSE) {
+  definition = function(x, adam_db, args, details) {
     checkmate::assert_flag(details)
     checkmate::assert_string(adam_db)
     checkmate::assert_string(args)
     lifecycle::deprecate_warn("0.2.2", "chevron::script_funs(details = )")
     tlg_name <- deparse(substitute(x))
+    checkmate::assert_string(tlg_name, pattern = "^[a-zA-Z]+\\w+$")
     c(
       "# Edit Preprocessing Function.",
       glue::glue("preprocess({tlg_name}) <- "),
