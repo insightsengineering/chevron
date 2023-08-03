@@ -21,7 +21,7 @@ get_grade_rule <- function(direction = "high", missing = "incl") {
     rule_arg[as.character(1:4)] <- as.character(-1:-4)
   }
   if (missing == "incl") {
-    rule_arg$Missing <- c(NA, "")
+    rule_arg$Missing <- c(NA, "", "<Missing>")
   } else if (missing == "gr_0") {
     rule_arg[[1]] <- c(rule_arg[[1]], NA, "")
   }

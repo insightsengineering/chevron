@@ -33,10 +33,10 @@ dst01_main <- function(adam_db,
                        lbl_overall = "All {Patient_label}",
                        ...) {
   assert_all_tablenames(adam_db, "adsl")
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(study_status_var)
-  checkmate::assert_string(trt_status_var, null.ok = TRUE)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(study_status_var)
+  assert_string(trt_status_var, null.ok = TRUE)
+  assert_string(lbl_overall, null.ok = TRUE)
   lbl_overall <- render_safe(lbl_overall)
   assert_valid_variable(
     adam_db$adsl,
@@ -54,7 +54,7 @@ dst01_main <- function(adam_db,
     empty_ok = TRUE, min_chars = 0L
   )
   status_var_lvls <- lvls(adam_db$adsl[[study_status_var]])
-  checkmate::assert_subset(names(detail_vars), choice = status_var_lvls)
+  assert_subset(names(detail_vars), choices = status_var_lvls)
   assert_valid_variable(
     adam_db$adsl,
     unlist(detail_vars),

@@ -11,7 +11,7 @@
 An object of class \code{chevron_g} of length 1.
 }
 \usage{
-kmg01_main(adam_db, dataset = "adtte", arm_var = "ARM", ...)
+kmg01_main(adam_db, dataset = "adtte", arm_var = "ARM", strat = NULL, ...)
 
 kmg01_pre(adam_db, dataset = "adtte", ...)
 
@@ -25,6 +25,8 @@ kmg01
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{strat}{(\code{character}) the variable name of stratification variables.}
 
 \item{...}{Further arguments passed to \code{g_km} and \code{control_coxph}. For details, see
 the documentation in \code{tern}.

@@ -4,9 +4,8 @@
 #' @import methods
 #' @import rtables
 #' @import tern
+#' @import checkmate
 #' @importFrom formatters with_label
-#' @importFrom rtables drop_split_levels
-#' @importFrom checkmate check_class
 #' @importFrom dunlin rule reformat render_safe
 #' @importFrom forcats fct_relevel
 #' @importFrom ggplot2 theme

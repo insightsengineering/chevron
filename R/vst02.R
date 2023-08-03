@@ -22,9 +22,9 @@ vst02_1_main <- function(adam_db,
                          exclude_base_abn = FALSE,
                          ...) {
   assert_all_tablenames(adam_db, "adsl", "advs")
-  checkmate::assert_string(arm_var)
-  checkmate::assert_flag(exclude_base_abn)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_flag(exclude_base_abn)
+  assert_string(lbl_overall, null.ok = TRUE)
 
   assert_valid_variable(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))

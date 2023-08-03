@@ -30,8 +30,8 @@ ael01_nollt_main <- function(adam_db,
                              ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
-  checkmate::assert_list(default_formatting)
-  checkmate::assert_list(col_formatting, null.ok = TRUE)
+  assert_list(default_formatting)
+  assert_list(col_formatting, null.ok = TRUE)
 
   as_listing(
     adam_db[[dataset]],

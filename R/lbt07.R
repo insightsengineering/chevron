@@ -26,11 +26,11 @@ lbt07_main <- function(adam_db,
                        grad_anl_var = "GRADE_ANL",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(param_var)
-  checkmate::assert_string(grad_dir_var)
-  checkmate::assert_string(grad_anl_var)
+  assert_string(arm_var)
+  assert_string(param_var)
+  assert_string(grad_dir_var)
+  assert_string(grad_anl_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(
     adam_db$adlb, c("ATOXGR", param_var, grad_dir_var, grad_anl_var),
     types = list(c("character", "factor"))
@@ -39,10 +39,9 @@ lbt07_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
-  lbl_overall <- render_safe(lbl_overall)
   lbl_param_var <- var_labels_for(adam_db$adlb, param_var)
   lbl_grad_dir_var <- var_labels_for(adam_db$adlb, grad_dir_var)
-
+  lbl_overall <- render_safe(lbl_overall)
   map <- expand.grid(
     PARAM = levels(adam_db$adlb[[param_var]]),
     GRADE_DIR = c("LOW", "HIGH"),
@@ -58,9 +57,9 @@ lbt07_main <- function(adam_db,
     param_var = param_var,
     grad_dir_var = grad_dir_var,
     grad_anl_var = grad_anl_var,
-    lbl_overall = lbl_overall,
     lbl_param_var = lbl_param_var,
     lbl_grad_dir_var = lbl_grad_dir_var,
+    lbl_overall = lbl_overall,
     map = map
   )
 
@@ -84,9 +83,9 @@ lbt07_lyt <- function(arm_var,
                       param_var,
                       grad_dir_var,
                       grad_anl_var,
-                      lbl_overall,
                       lbl_param_var,
                       lbl_grad_dir_var,
+                      lbl_overall,
                       map) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%

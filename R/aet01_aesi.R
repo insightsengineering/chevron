@@ -37,10 +37,10 @@ aet01_aesi_main <- function(adam_db,
                             lbl_overall = NULL,
                             ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
-  checkmate::assert_string(arm_var)
-  checkmate::assert_character(aesi_vars, null.ok = TRUE)
-  checkmate::assert_list(grade_groups, null.ok = TRUE)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_character(aesi_vars, null.ok = TRUE)
+  assert_list(grade_groups, null.ok = TRUE)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
   assert_valid_variable(adam_db$adae, c(arm_var))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE)

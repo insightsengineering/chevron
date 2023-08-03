@@ -4,12 +4,12 @@
 \alias{lbt14_lyt}
 \title{\code{lbt14} Layout}
 \usage{
-lbt14_lyt(arm_var, lbl_overall)
+lbt14_lyt(arm_var, page_var, lbl_param, lbl_btoxgr)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{lbt14} Layout

@@ -24,10 +24,10 @@ dtht01_main <- function(adam_db,
                         time_since_last_dose = FALSE,
                         ...) {
   assert_all_tablenames(adam_db, "adsl")
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_flag(other_category)
-  checkmate::assert_flag(time_since_last_dose, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_flag(other_category)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_flag(time_since_last_dose, null.ok = TRUE)
   lbl_overall <- render_safe(lbl_overall)
 
   other_var <- if (other_category) "DTHCAUS"

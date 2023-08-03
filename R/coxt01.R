@@ -41,12 +41,12 @@ coxt01_main <- function(adam_db,
                         multivar = FALSE,
                         ...) {
   assert_all_tablenames(adam_db, "adtte")
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(time_var)
-  checkmate::assert_string(event_var)
-  checkmate::assert_character(covariates, null.ok = TRUE)
-  checkmate::assert_character(strata, null.ok = TRUE)
-  checkmate::assert_flag(multivar)
+  assert_string(arm_var)
+  assert_string(time_var)
+  assert_string(event_var)
+  assert_character(covariates, null.ok = TRUE)
+  assert_character(strata, null.ok = TRUE)
+  assert_flag(multivar)
   assert_valid_variable(adam_db$adtte, arm_var, types = list("factor"), n.levels = if (!multivar) 2L)
   assert_valid_variable(adam_db$adtte, c("USUBJID", arm_var, "PARAMCD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adtte, strata, types = list(c("factor", "integer", "character")), na_ok = TRUE)

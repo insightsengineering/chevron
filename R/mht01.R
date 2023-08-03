@@ -22,8 +22,8 @@ mht01_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("admh", "adsl"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$admh, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))

@@ -28,10 +28,10 @@ pdt02_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "addv"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(dvreas_var)
-  checkmate::assert_string(dvterm_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(dvreas_var)
+  assert_string(dvterm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$addv, c(dvreas_var, dvterm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
@@ -155,7 +155,6 @@ pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = 
 #' run(pdt02, syn_data)
 pdt02 <- chevron_t(
   main = pdt02_main,
-  lyt = pdt02_lyt,
   preprocess = pdt02_pre,
   postprocess = pdt02_post
 )

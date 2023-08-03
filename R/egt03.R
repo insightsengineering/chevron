@@ -8,8 +8,8 @@
 #'   used as subtitles.
 #'
 #' @details
-#'  * `ADEG` data are subsetted to contain only "POST-BASELINE MINIMUM" visit
-#'  * the number of patients by baseline assessment and minimum post-baseline assessment.
+#'  * `ADEG` data are subsetted to contain only "POST-BASELINE MINIMUM"/"POST-BASELINE MAXIMUM" visit
+#'  according to the preprocessing.
 #'  * Percentages are based on the total number of patients in a treatment group.
 #'  * Split columns by Analysis Reference Range Indicator, typically `ANRIND`.
 #'  * Does not include a total column by default.
@@ -27,25 +27,27 @@ egt03_main <- function(adam_db,
                        summaryvar = "BNRIND",
                        splitvar = "ANRIND",
                        visitvar = "AVISIT",
+                       page_var = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   checkmate::assert_string(arm_var)
   checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(summaryvar)
+  assert_string(summaryvar)
   assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
-  checkmate::assert_string(splitvar)
-  assert_valid_variable(adam_db$adeg, c("PARAMCD", splitvar), types = list("character", "factor"))
+  assert_string(splitvar)
+  assert_subset(page_var, "PARAMCD")
+  assert_valid_variable(adam_db$adeg, c("PARAMCD", "PARAM", splitvar), types = list("character", "factor"))
   assert_single_value(adam_db$adeg[[visitvar]])
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_single_value(adam_db$adeg$PARAMCD)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
 
   lbl_overall <- render_safe(lbl_overall)
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- var_labels_for(adam_db$adeg, summaryvar)
   lbl_splitvar <- var_labels_for(adam_db$adeg, splitvar)
+  lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
 
   lyt <- egt03_lyt(
     arm_var = arm_var,
@@ -53,7 +55,9 @@ egt03_main <- function(adam_db,
     summaryvar = summaryvar,
     lbl_overall = lbl_overall,
     lbl_armvar = lbl_armvar,
-    lbl_summaryvars = lbl_summaryvars
+    lbl_summaryvars = lbl_summaryvars,
+    page_var = page_var,
+    lbl_param = lbl_param
   )
   adam_db$adeg$SPLIT_LABEL <- factor(rep(lbl_splitvar, nrow(adam_db$adeg)), levels = lbl_splitvar)
   tbl <- build_table(
@@ -78,15 +82,26 @@ egt03_lyt <- function(arm_var,
                       summaryvar,
                       lbl_overall,
                       lbl_armvar,
-                      lbl_summaryvars) {
-  indent <- 1L
-  space <- paste(rep(" ", indent * 2), collapse = "")
+                      lbl_summaryvars,
+                      lbl_param,
+                      page_var) {
+  page_by <- !is.null(page_var)
+  indent <- 2L
+  space <- stringr::str_dup(" ", indent * (1L + !page_by))
   lbl_summaryvars <- paste0(space, lbl_summaryvars)
 
   basic_table(show_colcounts = FALSE) %>%
     split_cols_by("SPLIT_LABEL") %>%
     split_cols_by(splitvar) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
+    split_rows_by(
+      "PARAMCD",
+      labels_var = "PARAM",
+      page_by = page_by,
+      split_fun = drop_split_levels,
+      split_label = lbl_param,
+      label_pos = if (page_by) "hidden" else "topleft"
+    ) %>%
     split_rows_by(arm_var,
       split_fun = drop_split_levels,
       label_pos = "topleft",

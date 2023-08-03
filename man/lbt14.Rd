@@ -15,8 +15,8 @@ An object of class \code{chevron_t} of length 1.
 lbt14_main(
   adam_db,
   arm_var = "ACTARM",
-  lbl_overall = NULL,
   gr_missing = "incl",
+  page_var = "PARAMCD",
   ...
 )
 
@@ -31,12 +31,12 @@ lbt14
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{gr_missing}{(\code{string}) how missing baseline grades should be handled. Defaults to \code{"incl"} to include the
 \code{"Missing"}
 level. Other options are \code{"excl"} to exclude patients with missing baseline grades and \code{"gr_0"} to convert missing
 baseline grades to grade 0.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 
@@ -52,8 +52,11 @@ Baseline Grade (Low or High Direction).
 }
 \details{
 \itemize{
+\item This table follows ADaMIG v1.1.
 \item Only the worst grade recorded for each patient is included in the table.
 \item If no missing baseline lab results, the "Missing" level of \code{BTOXGR} is excluded.
+\item Grading takes value from -4 to 4, negative value means the abnormality direction is low,
+positive value means the abnormality direction is high.
 \item Grades 0, 1, 2, 3, and 4 are counted as \code{"Not Low"} when \code{direction = "low"}. Conversely, when \code{direction =  "high"}, Grades 0, -1, -2, -3, and -4 are counted as `"Not High".
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm, typically \code{ACTARM}.

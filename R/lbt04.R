@@ -23,15 +23,17 @@ lbt04_main <- function(adam_db,
                        lbl_overall = NULL,
                        analysis_abn_var = "ANRIND",
                        baseline_abn_var = "BNRIND",
+                       row_split_var = "PARCAT1",
+                       page_var = tail(row_split_var, 1L),
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(
-    adam_db$adlb, c("PARAM", "PARCAT1"),
+    adam_db$adlb, c("PARAMCD", "PARAM", row_split_var),
     types = list("characater", "factor")
   )
-  assert_valid_variable(adam_db$adlb, c("AVALCAT1", analysis_abn_var), na_ok = TRUE, empty_ok = TRUE, min_chars = 0L)
+  assert_subset(page_var, row_split_var)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_variable(
@@ -45,7 +47,7 @@ lbt04_main <- function(adam_db,
   lbl_overall <- render_safe(lbl_overall)
   lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
-
+  row_split_lbl <- var_labels_for(adam_db$adlb, row_split_var)
   lyt <- lbt04_lyt(
     arm_var = arm_var,
     var_parcat = "PARCAT1",
@@ -54,6 +56,9 @@ lbt04_main <- function(adam_db,
     lbl_overall = lbl_overall,
     lbl_param = lbl_param,
     lbl_abn_var = lbl_abn_var,
+    row_split_var = row_split_var,
+    row_split_lbl = row_split_lbl,
+    page_var = page_var,
     variables = list(id = "USUBJID", baseline = baseline_abn_var)
   )
 
@@ -75,20 +80,29 @@ lbt04_main <- function(adam_db,
 lbt04_lyt <- function(arm_var,
                       var_parcat,
                       var_param,
-                      analysis_abn_var,
+                      row_split_var,
+                      row_split_lbl,
                       lbl_overall,
                       lbl_param,
                       lbl_abn_var,
-                      variables) {
+                      analysis_abn_var,
+                      variables,
+                      page_var) {
+  page_by <- get_page_by(page_var, row_split_var)
+  label_pos <- ifelse(page_by, "hidden", "topleft")
+
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    split_rows_by(
-      var_parcat,
-      split_fun = drop_split_levels
+    split_rows_by_recurive(
+      row_split_var,
+      split_label = row_split_lbl,
+      label_pos = label_pos,
+      page_by = page_by
     ) %>%
     split_rows_by(
-      var_param,
+      "PARAMCD",
+      labels_var = "PARAM",
       split_fun = drop_split_levels,
       label_pos = "topleft",
       split_label = lbl_param,

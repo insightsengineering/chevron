@@ -10,7 +10,9 @@ egt03_lyt(
   summaryvar,
   lbl_overall,
   lbl_armvar,
-  lbl_summaryvars
+  lbl_summaryvars,
+  lbl_param,
+  page_var
 )
 }
 \arguments{
@@ -27,6 +29,8 @@ are used as subtitles.}
 \item{lbl_armvar}{(\code{string}) label of the \code{arm_var} variable.}
 
 \item{lbl_summaryvars}{(\code{string}) label of the \code{summaryvar} variable.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{egt03} Layout
