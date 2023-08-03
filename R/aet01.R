@@ -28,25 +28,27 @@ aet01_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_list(anl_vars, types = "character", names = "unique")
   assert_character(anl_lbls, min.chars = 1L)
-  lbl_overall <- render_safe(lbl_overall)
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("DTHFL", "DCSREAS"), types = list(c("character", "factor")), min_chars = 0L)
   assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, unlist(anl_vars), types = list("logical"), na_ok = TRUE, empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+
+  lbl_overall <- render_safe(lbl_overall)
+  anl_lbls <- render_safe(anl_lbls)
+  if (length(anl_lbls) == 1) {
+    anl_lbls <- rep(anl_lbls, length(anl_vars))
+  }
   lbl_vars <- lapply(
     anl_vars,
     var_labels_for,
     df = adam_db$adae
   )
-  anl_lbls <- render_safe(anl_lbls)
-  if (length(anl_lbls) == 1) {
-    anl_lbls <- rep(anl_lbls, length(anl_vars))
-  }
+
   lyts <- aet01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -77,6 +79,7 @@ aet01_lyt <- function(arm_var,
                       lbl_vars) {
   lyt_base <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
+    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall)
   lyt_ae1 <- lyt_base %>%
     analyze_num_patients(
@@ -153,6 +156,7 @@ aet01_pre <- function(adam_db, ...) {
 #' @inheritParams gen_args
 #'
 #' @export
+#'
 aet01_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)

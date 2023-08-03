@@ -2,6 +2,7 @@
 
 #' @describeIn aet02 Default labels
 #' @export
+#'
 aet02_label <- c(
   unique = "Total number of {patient_label} with at least one adverse event",
   nonunique = "Total number of events"
@@ -25,7 +26,6 @@ aet02_label <- c(
 #' @note
 #'  * `adam_db` object must contain an `adae` table with the columns `"AEBODSYS"` and `"AEDECOD"`.
 #'
-#'
 #' @export
 #'
 aet02_main <- function(adam_db,
@@ -38,9 +38,9 @@ aet02_main <- function(adam_db,
                        ),
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
+  assert_string(arm_var)
   assert_character(row_split_var, null.ok = TRUE)
   assert_string(lbl_overall, null.ok = TRUE)
-  assert_string(arm_var)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
@@ -59,9 +59,11 @@ aet02_main <- function(adam_db,
       }
     )
   }
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
-  lbl_overall <- render_safe(lbl_overall)
+
   lyt <- occurrence_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,

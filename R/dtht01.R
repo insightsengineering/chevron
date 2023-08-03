@@ -16,7 +16,6 @@
 #' `time_since_last_dose` is `TRUE`.
 #'
 #' @export
-#'
 dtht01_main <- function(adam_db,
                         arm_var = "ACTARM",
                         lbl_overall = NULL,
@@ -25,19 +24,20 @@ dtht01_main <- function(adam_db,
                         ...) {
   assert_all_tablenames(adam_db, "adsl")
   assert_string(arm_var)
-  assert_flag(other_category)
   assert_string(lbl_overall, null.ok = TRUE)
+  assert_flag(other_category)
   assert_flag(time_since_last_dose, null.ok = TRUE)
-  lbl_overall <- render_safe(lbl_overall)
-
-  other_var <- if (other_category) "DTHCAUS"
-  dose_death_var <- if (time_since_last_dose) "LDDTHGR1"
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list("character", "factor"))
   assert_valid_variable(
     adam_db$adsl,
     "DTHFL",
     types = list("character", "factor"), na_ok = TRUE, min_chars = 0L
   )
+
+  lbl_overall <- render_safe(lbl_overall)
+  other_var <- if (other_category) "DTHCAUS"
+  dose_death_var <- if (time_since_last_dose) "LDDTHGR1"
+
   assert_valid_variable(
     adam_db$adsl,
     c("DTHCAT", other_var, dose_death_var),
@@ -68,15 +68,17 @@ dtht01_main <- function(adam_db,
     other_var = other_var,
     dose_death_var = dose_death_var
   )
+
   adsl <- adam_db$adsl %>%
     mutate(TOTAL = "Primary Cause of Death")
+
   build_table(lyt, adsl)
 }
 
 #' `dtht01` Layout
 #'
 #' @inheritParams dtht01_main
-#' @param death_falg (`string`) variable name of death flag.
+#' @param death_flag (`string`) variable name of death flag.
 #' @param detah_var (`string`) variable name of death category.
 #' @param other_level (`string`) `"Other"` level in death category.
 #' @param other_var (`string`) variable name of death cause under `"Other"`.
@@ -98,6 +100,7 @@ dtht01_lyt <- function(arm_var,
   }
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_values(
       death_flag,
@@ -142,6 +145,7 @@ dtht01_lyt <- function(arm_var,
         .formats = list(count_fraction = format_count_fraction_fixed_dp)
       )
   }
+
   lyt
 }
 
@@ -157,13 +161,14 @@ dtht01_pre <- function(adam_db, ...) {
     "Progressive Disease" = "PROGRESSIVE DISEASE",
     "Other" = "OTHER"
   )
+
   adam_db$adsl <- adam_db$adsl %>%
     mutate(
       DTHCAT = reformat(.data$DTHCAT, death_format)
     )
+
   adam_db
 }
-
 
 #' @describeIn dtht01 Postprocessing
 #'

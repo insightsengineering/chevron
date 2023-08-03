@@ -14,8 +14,8 @@ An object of class \code{chevron_t} of length 1.
 egt05_qtcat_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c("AVALCAT1", "CHGCAT1"),
   lbl_overall = NULL,
+  summaryvars = c("AVALCAT1", "CHGCAT1"),
   row_split_var = NULL,
   page_var = NULL,
   visitvar = "AVISIT",
@@ -33,10 +33,10 @@ egt05_qtcat
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adeg}
 table of \code{adam_db} is used as name.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
 

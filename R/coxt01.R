@@ -72,8 +72,10 @@ coxt01_main <- function(adam_db,
     control = control,
     ...
   )
+
   col_split <- "Treatment Effect Adjusted for Covariate"
   adam_db$adtte$COL_LABEL <- factor(rep(col_split, nrow(adam_db$adtte)), levels = col_split)
+
   tbl <- build_table(lyt, adam_db$adtte)
 
   tbl

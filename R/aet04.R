@@ -25,18 +25,19 @@ aet04_main <- function(adam_db,
                        grade_groups = NULL,
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_list(grade_groups, types = "character", null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "ATOXGR", na_ok = TRUE, types = list("factor"))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
 
+  lbl_overall <- render_safe(lbl_overall)
   lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
-  lbl_overall <- render_safe(lbl_overall)
-  assert_list(grade_groups, types = "character", null.ok = TRUE)
+
   if (is.null(grade_groups)) {
     grade_groups <- list(
       "Grade 1-2" = c("1", "2"),
@@ -53,7 +54,9 @@ aet04_main <- function(adam_db,
     lbl_aedecod = lbl_aedecod,
     grade_groups = grade_groups
   )
+
   adam_db$adae$TOTAL_VAR <- "- Any adverse events - "
+
   tbl <- build_table(lyt, df = adam_db$adae, alt_counts_df = adam_db$adsl)
 
   tbl
@@ -63,10 +66,10 @@ aet04_main <- function(adam_db,
 #'
 #' @inheritParams aet04_main
 #'
+#' @param total_var (`string`) variable to create summary of all variables.
 #' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
-#' @param total_var (`string`) variable to create summary of all variables.
 #'
 #' @keywords internal
 #'
@@ -78,6 +81,7 @@ aet04_lyt <- function(arm_var,
                       grade_groups) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
+    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       var = total_var,

@@ -4,14 +4,14 @@
 \alias{dmt01_lyt}
 \title{\code{dmt01} Layout}
 \usage{
-dmt01_lyt(arm_var, summaryvars, summaryvars_lbls, lbl_overall)
+dmt01_lyt(arm_var, lbl_overall, summaryvars, summaryvars_lbls)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars_lbls}{(\code{character}) labels corresponding to the analyzed variables.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{summaryvars_lbls}{(\code{character}) labels corresponding to the analyzed variables.}
 }
 \description{
 \code{dmt01} Layout

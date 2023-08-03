@@ -63,6 +63,7 @@ cfbt01_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
   assert_list(precision, types = "integerish", names = "unique")
+
   vapply(precision, assert_int, FUN.VALUE = numeric(1), lower = 0)
   all_stats <- c(
     "n", "sum", "mean", "sd", "se", "mean_sd", "mean_se", "mean_ci", "mean_sei",
@@ -136,6 +137,7 @@ cfbt01_lyt <- function(arm_var,
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by_recurive(
       row_split_var,
@@ -203,6 +205,7 @@ cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
   }
   std_postprocess(tlg)
 }
+
 #' `CFBT01` Change from Baseline By Visit Table.
 #'
 #' The `CFBT01` table provides an

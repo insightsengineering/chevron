@@ -4,10 +4,12 @@
 \alias{dst01_lyt}
 \title{\code{dst01} Layout}
 \usage{
-dst01_lyt(arm_var, study_status_var, detail_vars, trt_status_var, lbl_overall)
+dst01_lyt(arm_var, lbl_overall, study_status_var, detail_vars, trt_status_var)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{study_status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
@@ -16,8 +18,6 @@ period.}
 \item{detail_vars}{Named (\code{list}) of grouped display of \code{study_status_var}.}
 
 \item{trt_status_var}{(\code{string}) variable of treatment status.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
 \code{dst01} Layout

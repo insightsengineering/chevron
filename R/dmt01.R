@@ -21,6 +21,7 @@
 #'
 dmt01_main <- function(adam_db,
                        arm_var = "ARM",
+                       lbl_overall = "All {Patient_label}",
                        summaryvars = c(
                          "AAGE",
                          "AGEGR1",
@@ -28,17 +29,21 @@ dmt01_main <- function(adam_db,
                          "ETHNIC",
                          "RACE"
                        ),
-                       lbl_overall = "All {Patient_label}",
                        ...) {
+  assert_string(arm_var)
+  assert_string(lbl_overall)
+  assert_character(summaryvars, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, summaryvars, na_ok = TRUE)
-  summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+
   lbl_overall <- render_safe(lbl_overall)
+  summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
+
   lyt <- dmt01_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     summaryvars = summaryvars,
-    summaryvars_lbls = summaryvars_lbls,
-    lbl_overall = lbl_overall
+    summaryvars_lbls = summaryvars_lbls
   )
 
   tbl <- build_table(lyt, adam_db$adsl)
@@ -51,13 +56,12 @@ dmt01_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @keywords internal
 #'
 dmt01_lyt <- function(arm_var,
+                      lbl_overall,
                       summaryvars,
-                      summaryvars_lbls,
-                      lbl_overall) {
+                      summaryvars_lbls) {
   basic_table() %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -73,7 +77,6 @@ dmt01_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
 #'
 dmt01_pre <- function(adam_db, ...) {
@@ -86,8 +89,8 @@ dmt01_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
+#'
 dmt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)

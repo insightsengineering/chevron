@@ -24,43 +24,44 @@
 #'
 ext01_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       lbl_overall = NULL,
                        summaryvars = "AVAL",
                        row_split_var = "PARCAT2",
-                       lbl_overall = NULL,
                        page_var = NULL,
                        map = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_character(summaryvars)
   assert_character(row_split_var, null.ok = TRUE)
+  assert_string(page_var, null.ok = TRUE)
   assert_data_frame(map, null.ok = TRUE)
-  assert_valid_variable(adam_db$adex, colnames(map), types = list(c("character", "factor")))
-  if (!is.null(map)) {
-    map <- infer_mapping(map, adam_db$adex)
-  }
+  assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
+  assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adex, summaryvars, empty_ok = TRUE, na_ok = TRUE)
   assert_valid_variable(
     adam_db$adex, c(row_split_var, "PARAMCD", "PARAM"),
     types = list(c("character", "factor")), empty_ok = TRUE
   )
-  assert_string(lbl_overall, null.ok = TRUE)
-  assert_string(page_var, null.ok = TRUE)
+  assert_valid_variable(adam_db$adex, colnames(map), types = list(c("character", "factor")))
+  if (!is.null(map)) {
+    map <- infer_mapping(map, adam_db$adex)
+  }
   assert_subset(page_var, c(row_split_var))
-  assert_valid_var_pair(adam_db$adsl, adam_db$adex, arm_var)
-  assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
 
+  lbl_overall <- render_safe(lbl_overall)
   summaryvars_lbls <- var_labels_for(adam_db$adex, summaryvars)
   row_split_lbl <- var_labels_for(adam_db$adex, row_split_var)
-  lbl_overall <- render_safe(lbl_overall)
+
   lyt <- ext01_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
     row_split_var = row_split_var,
     row_split_lbl = row_split_lbl,
-    lbl_overall = lbl_overall,
     page_var = page_var,
     map = map
   )
@@ -77,15 +78,14 @@ ext01_main <- function(adam_db,
 #' @param summaryvars (`character`) the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls (`character`) the label associated with the analyzed variable.
 #'
-#'
 #' @keywords internal
 #'
 ext01_lyt <- function(arm_var,
+                      lbl_overall,
                       summaryvars,
                       summaryvars_lbls,
                       row_split_var,
                       row_split_lbl,
-                      lbl_overall,
                       page_var,
                       map) {
   page_by <- get_page_by(page_var, c(row_split_var))
@@ -114,6 +114,7 @@ ext01_lyt <- function(arm_var,
 #' @describeIn ext01 Preprocessing
 #'
 #' @inheritParams gen_args
+#'
 #' @export
 #'
 ext01_pre <- function(adam_db,
@@ -124,12 +125,13 @@ ext01_pre <- function(adam_db,
 
   adam_db
 }
+
 #' @describeIn ext01 Postprocessing
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
+#'
 ext01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)

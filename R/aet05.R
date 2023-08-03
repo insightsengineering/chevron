@@ -18,7 +18,6 @@
 #' @note
 #'  * `adam_db` object must contain an `adaette` table with the columns `"PARAMCD"`, `"PARAM"`, `"AVAL"`, and `"CNSR"`.
 #'
-#'
 #' @export
 #'
 aet05_main <- function(adam_db,
@@ -26,8 +25,8 @@ aet05_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adaette"))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adaette, c("USUBJID", arm_var, "PARAMCD", "PARAM"),
     types = list(c("character", "factor"))
@@ -72,6 +71,7 @@ aet05_lyt <- function(arm_var,
                       control) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(param_label, split_fun = drop_split_levels) %>%
     estimate_incidence_rate(

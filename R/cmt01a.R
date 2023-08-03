@@ -2,6 +2,7 @@
 
 #' @describeIn cmt01a Default labels
 #' @export
+#'
 cmt01_label <- c(
   unique = "Total number of {patient_label} with at least one treatment",
   nonunique = "Total number of treatments"
@@ -33,21 +34,17 @@ cmt01_label <- c(
 #'
 cmt01a_main <- function(adam_db,
                         arm_var = "ARM",
+                        lbl_overall = NULL,
                         row_split_var = "ATC2",
                         medname_var = "CMDECOD",
-                        lbl_overall = NULL,
                         summary_labels = setNames(
                           rep(list(cmt01_label), length(row_split_var) + 1L), c("TOTAL", row_split_var)
                         ),
                         ...) {
   assert_all_tablenames(adam_db, "adsl", "adcm")
-  assert_string(arm_var)
+  assert_string
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_character(row_split_var, null.ok = TRUE)
-  assert_valid_variable(adam_db$adcm, c(arm_var, row_split_var, medname_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
-  assert_valid_var_pair(adam_db$adsl, adam_db$adcm, arm_var)
-
   assert_list(summary_labels)
   assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))
   assert_subset(
@@ -62,9 +59,15 @@ cmt01a_main <- function(adam_db,
       }
     )
   }
+  assert_valid_variable(adam_db$adcm, c(arm_var, row_split_var, medname_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
+  assert_valid_var_pair(adam_db$adsl, adam_db$adcm, arm_var)
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_row_split <- var_labels_for(adam_db$adcm, row_split_var)
   lbl_medname_var <- var_labels_for(adam_db$adcm, medname_var)
-  lbl_overall <- render_safe(lbl_overall)
+
   lyt <- occurrence_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,

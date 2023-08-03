@@ -25,19 +25,19 @@
 #'
 dst01_main <- function(adam_db,
                        arm_var = "ARM",
+                       lbl_overall = "All {Patient_label}",
                        study_status_var = "EOSSTT",
                        detail_vars = list(
                          Discontinued = c("DCSREAS")
                        ),
                        trt_status_var = NULL,
-                       lbl_overall = "All {Patient_label}",
                        ...) {
   assert_all_tablenames(adam_db, "adsl")
   assert_string(arm_var)
-  assert_string(study_status_var)
-  assert_string(trt_status_var, null.ok = TRUE)
   assert_string(lbl_overall, null.ok = TRUE)
-  lbl_overall <- render_safe(lbl_overall)
+  assert_string(study_status_var)
+  assert_list(detail_vars, types = "character", names = "unique")
+  assert_string(trt_status_var, null.ok = TRUE)
   assert_valid_variable(
     adam_db$adsl,
     arm_var,
@@ -47,11 +47,6 @@ dst01_main <- function(adam_db,
     adam_db$adsl, study_status_var,
     types = list(c("character", "factor")), na_ok = TRUE,
     empty_ok = FALSE, min_chars = 1L
-  )
-  assert_valid_variable(
-    adam_db$adsl, trt_status_var,
-    types = list(c("character", "factor")), na_ok = TRUE,
-    empty_ok = TRUE, min_chars = 0L
   )
   status_var_lvls <- lvls(adam_db$adsl[[study_status_var]])
   assert_subset(names(detail_vars), choices = status_var_lvls)
@@ -63,7 +58,15 @@ dst01_main <- function(adam_db,
     empty_ok = TRUE,
     min_chars = 0L
   )
+  assert_valid_variable(
+    adam_db$adsl, trt_status_var,
+    types = list(c("character", "factor")), na_ok = TRUE,
+    empty_ok = TRUE, min_chars = 0L
+  )
+
+  lbl_overall <- render_safe(lbl_overall)
   detail_vars <- setNames(detail_vars[status_var_lvls], status_var_lvls)
+
   lyt <- dst01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -81,15 +84,14 @@ dst01_main <- function(adam_db,
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #' @param detail_vars Named (`list`) of grouped display of `study_status_var`.
-
 #'
 #' @keywords internal
 #'
 dst01_lyt <- function(arm_var,
+                      lbl_overall,
                       study_status_var,
                       detail_vars,
-                      trt_status_var,
-                      lbl_overall) {
+                      trt_status_var) {
   lyt <- basic_table() %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%
@@ -109,12 +111,14 @@ dst01_lyt <- function(arm_var,
         nested = FALSE
       )
   }
+
   lyt
 }
 
 #' @describeIn dst01 Preprocessing
 #'
 #' @inheritParams dst01_main
+#'
 #' @export
 #'
 dst01_pre <- function(adam_db,
@@ -158,8 +162,8 @@ dst01_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
+#'
 dst01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- tlg %>%

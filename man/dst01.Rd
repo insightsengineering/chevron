@@ -14,10 +14,10 @@ An object of class \code{chevron_t} of length 1.
 dst01_main(
   adam_db,
   arm_var = "ARM",
+  lbl_overall = "All {Patient_label}",
   study_status_var = "EOSSTT",
   detail_vars = list(Discontinued = c("DCSREAS")),
   trt_status_var = NULL,
-  lbl_overall = "All {Patient_label}",
   ...
 )
 
@@ -32,6 +32,8 @@ dst01
 
 \item{arm_var}{(\code{string}) variable. Usually one of \code{ARM}, \code{ACTARM}, \code{TRT01A}, or \code{TRT01A}.}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{study_status_var}{(\code{string}) variable used to define patient status. Default is \code{EOSSTT}, however can also be a
 variable name with the pattern \code{EOPxxSTT} where \code{xx} must be substituted by 2 digits referring to the analysis
 period.}
@@ -40,8 +42,6 @@ period.}
 of \code{study_status_var}.}
 
 \item{trt_status_var}{(\code{string}) variable of treatment status.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
 

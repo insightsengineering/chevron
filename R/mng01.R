@@ -30,7 +30,9 @@
 #'  `y_name`, `y_unit` and `arm_var`.
 #'
 #' @return a list of `ggplot` objects.
+#'
 #' @export
+#'
 mng01_main <- function(adam_db,
                        dataset = "adlb",
                        x_var = "AVISIT",
@@ -160,6 +162,7 @@ mng01_main <- function(adam_db,
 #' @inheritParams mng01_main
 #'
 #' @export
+#'
 mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y") %>%

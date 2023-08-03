@@ -22,19 +22,22 @@ egt02_1_main <- function(adam_db,
                          exclude_base_abn = FALSE,
                          ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  assert_valid_variable(adam_db$adeg, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
-  assert_valid_variable(adam_db$adeg, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
+  assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
   assert_flag(exclude_base_abn)
+  assert_valid_variable(adam_db$adeg, c("PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db$adeg, c("ANRIND", "BNRIND"), types = list(c("character", "factor")), na_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+
   lbl_overall <- render_safe(lbl_overall)
+
   lyt <- egt02_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     lbl_vs_assessment = "Assessment",
     lbl_vs_abnormality = "Abnormality",
-    lbl_overall = lbl_overall,
     exclude_base_abn = exclude_base_abn
   )
 
@@ -54,9 +57,9 @@ egt02_1_main <- function(adam_db,
 #' @keywords internal
 #'
 egt02_lyt <- function(arm_var = "ACTARM",
+                      lbl_overall,
                       lbl_vs_assessment = "Assessment",
                       lbl_vs_abnormality = "Abnormality",
-                      lbl_overall,
                       exclude_base_abn) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
@@ -71,7 +74,6 @@ egt02_lyt <- function(arm_var = "ACTARM",
     ) %>%
     append_topleft(paste0(" ", lbl_vs_abnormality))
 }
-
 
 #' @describeIn egt02_1 Preprocessing
 #'
@@ -119,6 +121,7 @@ egt02_1 <- chevron_t(
 #' @describeIn egt02_2 Main TLG function
 #'
 #' @inherit egt02_1_main
+#'
 #' @export
 #'
 egt02_2_main <- modify_default_args(egt02_1_main, exclude_base_abn = TRUE)
