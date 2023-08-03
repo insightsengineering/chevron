@@ -4,10 +4,12 @@
 \alias{lbt14_lyt}
 \title{\code{lbt14} Layout}
 \usage{
-lbt14_lyt(arm_var)
+lbt14_lyt(arm_var, page_var, lbl_param, lbl_btoxgr)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{lbt14} Layout

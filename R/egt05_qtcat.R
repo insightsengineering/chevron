@@ -33,14 +33,14 @@ egt05_qtcat_main <- function(adam_db,
                              visitvar = "AVISIT",
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  checkmate::assert_string(visitvar)
+  assert_string(visitvar)
   assert_valid_variable(adam_db$adeg, visitvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor", "character")), na_ok = TRUE)
-  checkmate::assert_character(row_split_var, null.ok = TRUE)
-  checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
-  checkmate::assert_string(page_var, null.ok = TRUE)
-  checkmate::assert_subset(page_var, c(row_split_var, "PARAMCD"))
+  assert_character(row_split_var, null.ok = TRUE)
+  assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
+  assert_string(page_var, null.ok = TRUE)
+  assert_subset(page_var, c(row_split_var, "PARAMCD"))
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
@@ -96,7 +96,7 @@ egt05_qtcat_lyt <- function(arm_var,
                             lbl_param,
                             lbl_cat) {
   page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
-  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
+  label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     add_colcounts() %>%

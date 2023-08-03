@@ -200,8 +200,15 @@ do_call <- function(what, args) {
   do.call(what, new_args, envir = args_env)
 }
 
-#' Helper function to convert to months if needed
+#' Modify character
+#' @keywords internal
+modify_character <- function(x, y) {
+  assert_character(x, names = "unique", null.ok = TRUE)
+  assert_character(y, names = "unique", null.ok = TRUE)
+  c(y, x)[unique(c(names(y), names(x)))]
+}
 
+#' Helper function to convert to months if needed
 #' @param x (`numeric`) time.
 #' @param unit (`character`) or (`factor`) time unit.
 #'
@@ -211,6 +218,7 @@ do_call <- function(what, args) {
 convert_to_month <- function(x, unit) {
   assert_numeric(x)
   assert_multi_class(unit, c("character", "factor"))
+  assert_true(length(x) == length(unit))
 
   diff <- setdiff(unique(toupper(unit)), c("DAYS", "MONTHS", "YEARS"))
   if (length(diff) > 0) {

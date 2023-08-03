@@ -6,20 +6,18 @@
 \usage{
 lbt06_lyt(
   arm_var,
-  param,
   visitvar,
   anrind_var,
   bnrind_var,
   lbl_param,
   lbl_visit,
   lbl_anrind,
-  lbl_bnrind
+  lbl_bnrind,
+  page_var
 )
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{param}{(\code{string}) the variable for parameter code.}
 
 \item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
 
@@ -34,6 +32,10 @@ lbt06_lyt(
 \item{lbl_anrind}{(\code{string}) text label of the \code{ANRIND} variable.}
 
 \item{lbl_bnrind}{(\code{string}) text label of the \code{BNRIND} variable.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
+
+\item{param}{(\code{string}) the variable for parameter code.}
 }
 \description{
 \code{lbt06} Layout

@@ -28,15 +28,15 @@ rmpt01_main <- function(adam_db,
                         overall_col_lbl = NULL,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
-  checkmate::assert_string(summaryvars)
-  checkmate::assert_flag(show_tot)
-  checkmate::assert_string(col_split_var, null.ok = TRUE)
-  checkmate::assert_string(overall_col_lbl, null.ok = TRUE)
+  assert_string(summaryvars)
+  assert_flag(show_tot)
+  assert_string(col_split_var, null.ok = TRUE)
+  assert_string(overall_col_lbl, null.ok = TRUE)
   assert_valid_variable(adam_db$adex, summaryvars, types = list(c("factor", "character")), empty_ok = FALSE)
   assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
   assert_valid_variable(adam_db$adex, row_split_var, types = list(c("factor", "numeric")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adex, col_split_var, types = list(c("factor", "character")))
-  checkmate::assert_string(overall_col_lbl, null.ok = TRUE)
+  assert_string(overall_col_lbl, null.ok = TRUE)
 
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))

@@ -206,10 +206,10 @@ run(cmt01a, syn_data, sort_by_freq = TRUE)
 
 #### **4. Concomitant Medications by Medication Class and Preferred Name (total number of treatments per medication class suppressed)**
 
-The **`cmt01a`** template includes the analysis of 'total number of treatments' by default, use `incl_n_treatment = FALSE` to remove it.
+The **`cmt01a`** template includes the analysis of 'total number of treatments' by default, modify `summary_labels` to change it.
 
 ```{r}
-run(cmt01a, syn_data, incl_n_treatment = FALSE)
+run(cmt01a, syn_data, summary_labels = list(TOTAL = cmt01_label, ATC2 = cmt01_label[1]))
 ```
 
 ### **Concomitant Medications by Preferred Name (`CMT02_PT`)**
