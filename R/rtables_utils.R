@@ -1,26 +1,31 @@
 #' @keywords internal
-split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, ...) {
-  checkmate::assert_string(var)
-  checkmate::assert_string(label)
-  lyt %>%
+split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, split_indent, ...) {
+  assert_string(var)
+  assert_string(label)
+  lyt <- lyt %>%
     split_rows_by(
       var,
       child_labels = "visible",
       nested = TRUE,
       split_fun = rtables::drop_split_levels,
       label_pos = "topleft",
-      split_label = label
-    ) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      .stats = stats,
-      .labels = setNames(summarize_labels, stats),
-      ...
+      split_label = label,
+      indent_mod = split_indent
     )
+  if (length(stats) > 0) {
+    lyt <- lyt %>%
+      summarize_num_patients(
+        var = "USUBJID",
+        .stats = stats,
+        .labels = setNames(summarize_labels, stats),
+        ...
+      )
+  }
+  lyt
 }
 #' @keywords internal
 get_sort_path <- function(x) {
-  checkmate::assert_character(x, null.ok = TRUE)
+  assert_character(x, null.ok = TRUE)
   x2 <- as.character(rbind(x, rep("*", length(x))))
   x2[-length(x2)]
 }
@@ -36,7 +41,7 @@ tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
 }
 #' @keywords internal
 tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
-  checkmate::assert_character(var)
+  assert_character(var)
   if (length(var) == 0) {
     return(tlg)
   }
@@ -51,7 +56,12 @@ tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
 #' @keywords internal
 valid_sort_at_path <- function(tt, path, scorefun, ...) {
   if (valid_row_path(tt, path)) {
-    sort_at_path(tt, path, scorefun, ...)
+    tryCatch(
+      sort_at_path(tt, path, scorefun, ...),
+      error = function(e) {
+        tt
+      }
+    )
   } else {
     tt
   }
@@ -74,8 +84,8 @@ valid_row_path <- function(tlg, row_path) {
 #' @param lbl_vars Named (`list`) of analysis labels.
 #' @keywords internal
 count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
-  checkmate::assert_list(anl_vars, names = "unique", types = "character")
-  checkmate::assert_character(anl_lbls, min.chars = 1L, len = length(anl_vars))
+  assert_list(anl_vars, names = "unique", types = "character")
+  assert_character(anl_lbls, min.chars = 1L, len = length(anl_vars))
   nms <- names(anl_vars)
   for (k in seq_len(length(anl_vars))) {
     lyt <- lyt %>%
@@ -150,7 +160,7 @@ summarize_vars_allow_na <- function(
 #' @param detail_vars (`character`) of variables for detail information.
 #' @keywords internal
 count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ...) {
-  checkmate::assert_string(level)
+  assert_string(level)
   if (is.null(detail_vars)) {
     lyt <- lyt %>%
       count_values(
@@ -218,14 +228,14 @@ obtain_value <- function(obj, index) {
 #' Get page by value
 #' @keywords internal
 get_page_by <- function(var, vars) {
-  checkmate::assert_character(vars, null.ok = TRUE)
-  checkmate::assert_character(var, null.ok = TRUE, max.len = 1L)
+  assert_character(vars, null.ok = TRUE)
+  assert_character(var, null.ok = TRUE, max.len = 1L)
   ret <- rep(FALSE, length(vars))
   if (is.null(var) || length(var) == 0) {
     return(ret)
   }
   index <- match(var, vars)
-  checkmate::assert_int(index, na.ok = TRUE)
+  assert_int(index, na.ok = TRUE)
   if (is.na(index)) {
     return(ret)
   }
@@ -332,13 +342,29 @@ ifneeded_split_col <- function(lyt, var, ...) {
 #' @return original `TableTree` or a null report if no observation are found in the table.
 #'
 report_null <- function(tlg, ...) {
-  checkmate::assert_true(is.null(tlg) || rtables::is_rtable(tlg))
+  assert_true(is.null(tlg) || rtables::is_rtable(tlg))
 
   if (is.null(tlg) || nrow(tlg) == 0L) {
-    null_report
-  } else {
-    tlg
+    return(null_report)
   }
+  if (count_children(tlg) == 0) {
+    return(null_report)
+  }
+  tlg
+}
+
+#' Count Children
+#' @keywords internal
+count_children <- function(x) {
+  assert_true(rtables::is_rtable(x))
+  if (is(x, "ElementaryTable")) {
+    return(length(x@children))
+  }
+  sum(vapply(
+    tree_children(x),
+    count_children,
+    FUN.VALUE = 0
+  ))
 }
 
 #' @export
@@ -408,7 +434,7 @@ afun_skip <- function(
 }
 
 summary_formats <- function(x, pcs, ne = FALSE) {
-  checkmate::assert_int(pcs, lower = 0, na.ok = TRUE)
+  assert_int(pcs, lower = 0, na.ok = TRUE)
   switch(x,
     n = h_format_dec(format = "%s", digits = pcs - pcs, ne = ne),
     min = ,
@@ -445,11 +471,11 @@ split_fun_map <- function(map) {
 }
 
 infer_mapping <- function(map_df, df) {
-  checkmate::assert_data_frame(df)
+  assert_data_frame(df)
   vars <- colnames(map_df)
-  checkmate::assert_names(names(df), must.include = vars)
+  assert_names(names(df), must.include = vars)
   for (x in vars) {
-    if (!checkmate::test_subset(map_df[[x]], lvls(df[[x]]))) {
+    if (!test_subset(map_df[[x]], lvls(df[[x]]))) {
       rlang::abort(
         paste0(
           "Provided map should only contain valid levels in dataset in variable ", x,
@@ -468,4 +494,58 @@ infer_mapping <- function(map_df, df) {
   } else {
     res
   }
+}
+
+
+#' Occurrence Layout
+#'
+#' @inheritParams gen_args
+#' @inheritParams cmt01a_main
+#' @param lbl_medname_var (`string`) label for the variable defining the medication name.
+#' @keywords internal
+#'
+occurrence_lyt <- function(arm_var,
+                           lbl_overall,
+                           row_split_var,
+                           lbl_row_split,
+                           medname_var,
+                           lbl_medname_var,
+                           summary_labels,
+                           count_by) {
+  split_indent <- vapply(c("TOTAL", row_split_var), function(x) {
+    if (length(summary_labels[[x]]) > 0L) -1L else 0L
+  }, FUN.VALUE = 0L)
+  split_indent[1L] <- 0L
+  lyt <- basic_table() %>%
+    split_cols_by(var = arm_var) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall)
+  if (length(summary_labels$TOTAL) > 0) {
+    lyt <- lyt %>%
+      analyze_num_patients(
+        vars = "USUBJID",
+        count_by = count_by,
+        .stats = names(summary_labels$TOTAL),
+        show_labels = "hidden",
+        .labels = render_safe(summary_labels$TOTAL)
+      )
+  }
+  for (k in seq_len(length(row_split_var))) {
+    lyt <- split_and_summ_num_patients(
+      lyt = lyt,
+      count_by = count_by,
+      var = row_split_var[k],
+      label = lbl_row_split[k],
+      split_indent = split_indent[k],
+      stats = names(summary_labels[[row_split_var[k]]]),
+      summarize_labels = render_safe(summary_labels[[row_split_var[k]]])
+    )
+  }
+  lyt %>%
+    count_occurrences(
+      vars = medname_var,
+      drop = length(row_split_var) > 0,
+      .indent_mods = unname(tail(split_indent, 1L))
+    ) %>%
+    append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), lbl_medname_var))
 }

@@ -6,7 +6,11 @@
 #' @source `cmt01a.R`
 #' @export
 #'
-cmt02_pt_main <- modify_default_args(cmt01a_main, row_split_var = NULL)
+cmt02_pt_main <- modify_default_args(
+  cmt01a_main,
+  row_split_var = NULL,
+  summary_labels = quote(list(TOTAL = cmt01_label))
+)
 
 #' @describeIn cmt02_pt Preprocessing
 #'
@@ -36,7 +40,6 @@ cmt02_pt_post <- modify_default_args(cmt01a_post, row_split_var = NULL)
 #' run(cmt02_pt, syn_data)
 cmt02_pt <- chevron_t(
   main = cmt02_pt_main,
-  lyt = cmt02_pt_lyt,
   preprocess = cmt02_pt_pre,
   postprocess = cmt02_pt_post
 )

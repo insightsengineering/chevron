@@ -17,10 +17,10 @@ An object of class \code{chevron_t} of length 1.
 cmt02_pt_main(
   adam_db,
   arm_var = "ARM",
-  incl_n_treatment = TRUE,
   row_split_var = NULL,
   medname_var = "CMDECOD",
   lbl_overall = NULL,
+  summary_labels = list(TOTAL = cmt01_label),
   ...
 )
 
@@ -42,13 +42,13 @@ cmt02_pt
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{incl_n_treatment}{(\code{flag}) include total number of treatments per medication.}
-
 \item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
 \item{medname_var}{(\code{string}) variable name of medical treatment name.}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{summary_labels}{(\code{list}) of summarize labels. See details.}
 
 \item{...}{not used.}
 
@@ -71,6 +71,8 @@ number of subjects and the total number of treatments by medication name sorted 
 \item Does not include a total column by default.
 \item Sort by medication class alphabetically and within medication class by decreasing total number of patients with
 the specific medication.
+\code{summary_labels} is used to control the summary for each level. If "all" is used, then each split will have that
+summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 }
 }
 \section{Functions}{

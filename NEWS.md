@@ -1,5 +1,10 @@
 # chevron 0.2.1.9000
 
+* Allow `EGT03` to include multiple parameters.
+* Allow `KMG01` to include stratified variables.
+* Allow `LBT06` and `LBT14` split by page.
+* Allow `AET02`, `CMT01A` to change the summary statistics with `summary_labels` argument.
+
 # chevron 0.2.1
 
 * Placeholder strings are now replaced during layout creation using `dunlin::render_safe` function.

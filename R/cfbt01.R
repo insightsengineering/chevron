@@ -41,13 +41,13 @@ cfbt01_main <- function(adam_db,
                         skip = list(CHG = "BASELINE"),
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
-  checkmate::assert_string(arm_var)
-  checkmate::assert_character(summaryvars, max.len = 2L, min.len = 1L)
-  checkmate::assert_character(row_split_var, null.ok = TRUE)
-  checkmate::assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
-  checkmate::assert_string(visitvar)
-  checkmate::assert_string(page_var, null.ok = TRUE)
-  checkmate::assert_subset(page_var, c(row_split_var, "PARAMCD"))
+  assert_string(arm_var)
+  assert_character(summaryvars, max.len = 2L, min.len = 1L)
+  assert_character(row_split_var, null.ok = TRUE)
+  assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
+  assert_string(visitvar)
+  assert_string(page_var, null.ok = TRUE)
+  assert_subset(page_var, c(row_split_var, "PARAMCD"))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
   assert_valid_variable(
@@ -60,14 +60,14 @@ cfbt01_main <- function(adam_db,
   )
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
-  checkmate::assert_list(precision, types = "integerish", names = "unique")
-  vapply(precision, checkmate::assert_int, FUN.VALUE = numeric(1), lower = 0)
+  assert_list(precision, types = "integerish", names = "unique")
+  vapply(precision, assert_int, FUN.VALUE = numeric(1), lower = 0)
   all_stats <- c(
     "n", "sum", "mean", "sd", "se", "mean_sd", "mean_se", "mean_ci", "mean_sei",
     "mean_sdi", "mean_pval", "median", "mad", "median_ci", "quantiles", "iqr", "range",
     "cv", "min", "max", "median_range", "geom_mean", "geom_cv"
   )
-  checkmate::assert_subset(.stats, all_stats)
+  assert_subset(.stats, all_stats)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
@@ -126,7 +126,7 @@ cfbt01_lyt <- function(arm_var,
                        skip,
                        ...) {
   page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
-  label_pos <- dplyr::if_else(page_by, "hidden", "topleft")
+  label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
     split_rows_by_recurive(

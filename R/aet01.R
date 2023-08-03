@@ -27,11 +27,11 @@ aet01_main <- function(adam_db,
                        anl_lbls = "Total number of {patient_label} with at least one",
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
-  checkmate::assert_string(arm_var)
-  checkmate::assert_list(anl_vars, types = "character", names = "unique")
-  checkmate::assert_character(anl_lbls, min.chars = 1L)
+  assert_string(arm_var)
+  assert_list(anl_vars, types = "character", names = "unique")
+  assert_character(anl_lbls, min.chars = 1L)
   lbl_overall <- render_safe(lbl_overall)
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("DTHFL", "DCSREAS"), types = list(c("character", "factor")), min_chars = 0L)
   assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))

@@ -46,11 +46,11 @@ ttet01_main <- function(adam_db,
                         timepoint = c(6, 12),
                         method = "both",
                         ...) {
-  checkmate::assert_string(dataset)
+  assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
   anl <- adam_db[[dataset]]
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
-  checkmate::assert_string(ref_group, null.ok = TRUE)
+  assert_string(ref_group, null.ok = TRUE)
   df_label <- sprintf("adam_db$%s", dataset)
   assert_valid_variable(adam_db[[dataset]], "AVALU", types = list("character"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
@@ -59,15 +59,15 @@ ttet01_main <- function(adam_db,
     adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC"),
     types = list(c("character", "factor")), label = df_label
   )
-  checkmate::assert_flag(summarize_event)
-  checkmate::assert_subset(perform_analysis, c("unstrat", "strat"))
-  checkmate::assert_character(
+  assert_flag(summarize_event)
+  assert_subset(perform_analysis, c("unstrat", "strat"))
+  assert_character(
     strata,
     null.ok = !"strat" %in% perform_analysis,
     min.len = as.integer(!"strat" %in% perform_analysis)
   )
 
-  checkmate::assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
+  assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
   ref_group <- ref_group %||% lvls(anl[[arm_var]])[1]
 
   assert_single_value(anl$AVALU, label = sprintf("adam_db$%s$AVALU", dataset))

@@ -30,7 +30,7 @@ dmt01_main <- function(adam_db,
                        ),
                        lbl_overall = "All {Patient_label}",
                        ...) {
-  assert_valid_variable(adam_db$adsl, summaryvars)
+  assert_valid_variable(adam_db$adsl, summaryvars, na_ok = TRUE)
   summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   lbl_overall <- render_safe(lbl_overall)
