@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{smart_prune}
 \alias{smart_prune}
-\title{Prune Table up to an \code{ElementaryTable}}
+\title{Prune table up to an \code{ElementaryTable}}
 \usage{
 smart_prune(tlg)
 }

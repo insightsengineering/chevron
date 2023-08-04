@@ -26,7 +26,7 @@ kmg01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], "is_event", types = list("logical"), label = df_lbl)
+  assert_valid_variable(adam_db[[dataset]], "IS_EVENT", types = list("logical"), label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], strat, types = list(c("character", "factor")), label = df_lbl)
   assert_valid_variable(
     adam_db[[dataset]],
@@ -37,7 +37,7 @@ kmg01_main <- function(adam_db,
   )
   assert_single_value(adam_db[[dataset]]$PARAMCD, label = paste0(df_lbl, "$PARAMCD"))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  variables <- list(tte = "AVAL", is_event = "is_event", arm = arm_var, strat = strat)
+  variables <- list(tte = "AVAL", is_event = "IS_EVENT", arm = arm_var, strat = strat)
   control_cox <- execute_with_args(control_coxph, ...)
   control_surv <- execute_with_args(control_surv_timepoint, ...)
   execute_with_args(
@@ -57,24 +57,14 @@ kmg01_main <- function(adam_db,
 #' @export
 kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    mutate(is_event = .data$CNSR == 0)
+    mutate(IS_EVENT = .data$CNSR == 0)
 
   adam_db
-}
-
-#' @describeIn kmg01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-#' @export
-kmg01_post <- function(tlg, ...) {
-  tlg
 }
 
 # `kmg01` Pipeline ----
 
 #' `KMG01` Kaplan-Meier Plot 1.
-#'
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -96,6 +86,5 @@ kmg01_post <- function(tlg, ...) {
 #' run(kmg01, syn_data3, dataset = "adaette")
 kmg01 <- chevron_g(
   main = kmg01_main,
-  preproces = kmg01_pre,
-  postprocess = kmg01_post
+  preproces = kmg01_pre
 )

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{h_format_dec}
 \alias{h_format_dec}
-\title{Decimal Formatting}
+\title{Decimal formatting}
 \usage{
 h_format_dec(digits, format, ne = FALSE)
 }
@@ -17,7 +17,7 @@ h_format_dec(digits, format, ne = FALSE)
 \code{function} formatting numbers with the defined format.
 }
 \description{
-Decimal Formatting
+Decimal formatting
 }
 \examples{
 fun <- h_format_dec(c(1, 1), "\%s - \%s")

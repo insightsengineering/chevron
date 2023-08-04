@@ -52,11 +52,10 @@ ttet01_main <- function(adam_db,
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
   assert_string(ref_group, null.ok = TRUE)
   df_label <- sprintf("adam_db$%s", dataset)
-  assert_valid_variable(adam_db[[dataset]], "AVALU", types = list("character"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
   assert_valid_variable(
-    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC"),
+    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC", "AVALU"),
     types = list(c("character", "factor")), label = df_label
   )
   assert_flag(summarize_event)
@@ -202,7 +201,7 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
                        ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
-      AVAL = day2month(.data$AVAL),
+      AVAL = convert_to_month(.data$AVAL, .data$AVALU),
       AVALU = "MONTHS",
       IS_EVENT = .data$CNSR == 0,
       IS_NOT_EVENT = .data$CNSR == 1,
