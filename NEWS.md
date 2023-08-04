@@ -6,6 +6,7 @@
 * Allow `AET02`, `CMT01A` to change the summary statistics with `summary_labels` argument.
 * Add `FSTG02` template.
 * Update the argument `"is_event"` in `KMG01` to `"IS_EVENT"`.
+* Update the argument `"is_rsp"` in `FSTG01` to `"IS_RSP"`.
 
 # chevron 0.2.1
 
