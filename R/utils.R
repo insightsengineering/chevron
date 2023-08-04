@@ -216,9 +216,8 @@ modify_character <- function(x, y) {
 #'
 #' @export
 convert_to_month <- function(x, unit) {
-  assert_numeric(x)
   assert_multi_class(unit, c("character", "factor"))
-  assert_true(length(x) == length(unit))
+  assert_numeric(x, len = length(unit))
 
   diff <- setdiff(unique(toupper(unit)), c("DAYS", "MONTHS", "YEARS"))
   if (length(diff) > 0) {
