@@ -15,6 +15,7 @@ rspt01_main(
   adam_db,
   dataset = "adrs",
   arm_var = "ARM",
+  lbl_overall = NULL,
   ref_group = NULL,
   odds_ratio = TRUE,
   perform_analysis = "unstrat",
@@ -36,6 +37,8 @@ rspt01
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{ref_group}{(\code{string}) The name of the reference group, the value should
 be identical to the values in \code{arm_var}, if not specified, it will by default

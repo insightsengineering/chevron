@@ -30,10 +30,10 @@
 #'
 #' @export
 #'
-#'
 rspt01_main <- function(adam_db,
                         dataset = "adrs",
                         arm_var = "ARM",
+                        lbl_overall = NULL,
                         ref_group = NULL,
                         odds_ratio = TRUE,
                         perform_analysis = "unstrat",
@@ -43,6 +43,8 @@ rspt01_main <- function(adam_db,
                         ...) {
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
+  assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_string(ref_group, null.ok = TRUE)
   assert_flag(odds_ratio)
   assert_subset(perform_analysis, c("unstrat", "strat"))
@@ -51,7 +53,6 @@ rspt01_main <- function(adam_db,
     null.ok = !"strat" %in% perform_analysis,
     min.len = as.integer(!"strat" %in% perform_analysis)
   )
-  assert_string(arm_var)
   df_label <- sprintf("adam_db$%s", dataset)
   assert_valid_variable(
     adam_db$adsl, c("USUBJID", arm_var),
@@ -74,13 +75,14 @@ rspt01_main <- function(adam_db,
 
   lyt <- rspt01_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
+    rsp_var = "IS_RSP",
     ref_group = ref_group,
     odds_ratio = odds_ratio,
     perform_analysis = perform_analysis,
     strata = strata,
     conf_level = conf_level,
-    methods = methods,
-    rsp_var = "IS_RSP"
+    methods = methods
   )
 
   tbl <- build_table(lyt, adam_db[[dataset]], alt_counts_df = adam_db$adsl)
@@ -95,15 +97,18 @@ rspt01_main <- function(adam_db,
 #' @keywords internal
 #'
 rspt01_lyt <- function(arm_var,
+                       lbl_overall,
+                       rsp_var,
                        ref_group,
                        odds_ratio,
                        perform_analysis,
                        strata,
                        conf_level,
-                       methods,
-                       rsp_var) {
+                       methods) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var, ref_group = ref_group) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     estimate_proportion(
       vars = rsp_var,
       conf_level = conf_level,
@@ -130,7 +135,7 @@ rspt01_lyt <- function(arm_var,
       method = methods[["prop_conf_method"]] %||% "waldcc"
     )
 
-  return(lyt)
+  lyt
 }
 
 #' @describeIn rspt01 Preprocessing
@@ -150,8 +155,8 @@ rspt01_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
+#'
 rspt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)

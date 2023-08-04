@@ -68,6 +68,7 @@ lbt05_lyt <- function(arm_var,
                       map) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAM",
@@ -109,7 +110,6 @@ lbt05_pre <- function(adam_db, ...) {
     mutate(
       across(all_of(c("AVALCAT1", "ABN_DIR")), ~ reformat(.x, .env$missing_rule))
     )
-
 
   adam_db
 }

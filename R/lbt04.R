@@ -29,6 +29,9 @@ lbt04_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(analysis_abn_var)
+  assert_string(baseline_abn_var)
+  assert_string(row_split_var)
   assert_valid_variable(
     adam_db$adlb, c("PARAMCD", "PARAM", row_split_var),
     types = list("characater", "factor")
@@ -45,21 +48,22 @@ lbt04_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
 
   lbl_overall <- render_safe(lbl_overall)
-  lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+  lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
   row_split_lbl <- var_labels_for(adam_db$adlb, row_split_var)
+
   lyt <- lbt04_lyt(
     arm_var = arm_var,
-    var_parcat = "PARCAT1",
-    var_param = "PARAM",
-    analysis_abn_var = analysis_abn_var,
     lbl_overall = lbl_overall,
     lbl_param = lbl_param,
     lbl_abn_var = lbl_abn_var,
+    var_parcat = "PARCAT1",
+    var_param = "PARAM",
     row_split_var = row_split_var,
     row_split_lbl = row_split_lbl,
-    page_var = page_var,
-    variables = list(id = "USUBJID", baseline = baseline_abn_var)
+    analysis_abn_var = analysis_abn_var,
+    variables = list(id = "USUBJID", baseline = baseline_abn_var),
+    page_var = page_var
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -78,13 +82,13 @@ lbt04_main <- function(adam_db,
 #' @keywords internal
 #'
 lbt04_lyt <- function(arm_var,
+                      lbl_overall,
+                      lbl_param,
+                      lbl_abn_var,
                       var_parcat,
                       var_param,
                       row_split_var,
                       row_split_lbl,
-                      lbl_overall,
-                      lbl_param,
-                      lbl_abn_var,
                       analysis_abn_var,
                       variables,
                       page_var) {

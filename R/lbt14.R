@@ -28,26 +28,31 @@
 #'
 lbt14_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       lbl_overall = NULL,
                        gr_missing = "incl",
                        page_var = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_choice(gr_missing, c("incl", "excl", "gr_0"))
+  assert_subset(page_var, "PARAMCD")
   assert_valid_variable(adam_db$adlb, c("ATOXGR", "BTOXGR"), types = list("factor"), na_ok = TRUE)
   assert_valid_variable(adam_db$adlb, c("PARAMCD", "PARAM"), types = list(c("character", "factor")), na_ok = FALSE)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-  assert_subset(page_var, "PARAMCD")
 
+  lbl_overall <- render_safe(lbl_overall)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
   lbl_btoxgr <- var_labels_for(adam_db$adlb, "BTOXGR")
+
   lyt <- lbt14_lyt(
     arm_var = arm_var,
-    page_var = page_var,
+    lbl_overall = lbl_overall,
     lbl_param = lbl_param,
-    lbl_btoxgr = lbl_btoxgr
+    lbl_btoxgr = lbl_btoxgr,
+    page_var = page_var
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -61,11 +66,17 @@ lbt14_main <- function(adam_db,
 #'
 #' @keywords internal
 #'
-lbt14_lyt <- function(arm_var, page_var, lbl_param, lbl_btoxgr) {
+lbt14_lyt <- function(arm_var,
+                      lbl_overall,
+                      lbl_param,
+                      lbl_btoxgr,
+                      page_var) {
   page_by <- !is.null(page_var)
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",
@@ -97,6 +108,7 @@ lbt14_pre <- function(adam_db,
                       ...) {
   assert_choice(gr_missing, c("incl", "excl", "gr_0"))
   assert_choice(direction, c("low", "high"))
+
   if (direction == "high") {
     adam_db$adlb <- adam_db$adlb %>%
       filter(.data$WGRHIFL == "Y") %>%
@@ -118,6 +130,7 @@ lbt14_pre <- function(adam_db,
     mutate(
       across(all_of(c("BTOXGR", "ATOXGR")), ~ reformat(.x, grade_rule))
     )
+
   adam_db
 }
 

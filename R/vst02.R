@@ -23,27 +23,27 @@ vst02_1_main <- function(adam_db,
                          ...) {
   assert_all_tablenames(adam_db, "adsl", "advs")
   assert_string(arm_var)
-  assert_flag(exclude_base_abn)
   assert_string(lbl_overall, null.ok = TRUE)
-
+  assert_flag(exclude_base_abn)
   assert_valid_variable(adam_db$advs, c(arm_var, "PARAM", "ANRIND", "BNRIND"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$advs, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$advs, arm_var)
 
+  lbl_overall <- render_safe(lbl_overall)
   lbl_vs_assessment <- var_labels_for(adam_db$advs, "PARAM")
   lbl_vs_abnormality <- var_labels_for(adam_db$advs, "ANRIND")
-  lbl_overall <- render_safe(lbl_overall)
 
   lyt <- vst02_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     exclude_base_abn = exclude_base_abn,
     lbl_vs_assessment = lbl_vs_assessment,
-    lbl_vs_abnormality = lbl_vs_abnormality,
-    lbl_overall = lbl_overall
+    lbl_vs_abnormality = lbl_vs_abnormality
   )
 
   tbl <- build_table(lyt, adam_db$advs, alt_counts_df = adam_db$adsl)
+
   tbl
 }
 
@@ -58,10 +58,10 @@ vst02_1_main <- function(adam_db,
 #' @keywords internal
 #'
 vst02_lyt <- function(arm_var,
+                      lbl_overall,
                       exclude_base_abn,
                       lbl_vs_assessment,
-                      lbl_vs_abnormality,
-                      lbl_overall) {
+                      lbl_vs_abnormality) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     add_colcounts() %>%
@@ -87,6 +87,7 @@ vst02_pre <- function(adam_db, ...) {
     HIGH = c("HIGH HIGH", "HIGH"),
     LOW = c("LOW LOW", "LOW")
   )
+
   adam_db$advs <- adam_db$advs %>%
     filter(.data$ONTRTFL == "Y") %>%
     mutate(
@@ -94,6 +95,7 @@ vst02_pre <- function(adam_db, ...) {
       ANRIND = with_label(reformat(.data$ANRIND, high_low_format), "Abnormality"),
       BNRIND = reformat(.data$BNRIND, high_low_format)
     )
+
   adam_db
 }
 
@@ -128,7 +130,9 @@ vst02_1 <- chevron_t(
 # vst02_2 ----
 
 #' @describeIn vst02_2 Main TLG function
+#'
 #' @inherit vst02_1_main
+#'
 #' @export
 #'
 vst02_2_main <- modify_default_args(vst02_1_main, exclude_base_abn = TRUE)

@@ -19,16 +19,20 @@
 #'
 lbt06_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       lbl_overall = NULL,
                        page_var = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_subset(page_var, "PARAMCD")
   assert_valid_variable(adam_db$adlb, c(arm_var, "PARAMCD", "PARAM", "AVISIT"), types = list("characater", "factor"))
   assert_valid_variable(adam_db$adlb, c("ANRIND", "BNRIND"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-  assert_subset(page_var, "PARAMCD")
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
   lbl_visit <- var_labels_for(adam_db$adlb, "AVISIT")
   lbl_anrind <- var_labels_for(adam_db$adlb, "ANRIND")
@@ -36,13 +40,14 @@ lbt06_main <- function(adam_db,
 
   lyt <- lbt06_lyt(
     arm_var = arm_var,
-    visitvar = "AVISIT",
-    anrind_var = "ANRIND",
-    bnrind_var = "BNRIND",
+    lbl_overall = lbl_overall,
     lbl_param = lbl_param,
     lbl_visit = lbl_visit,
     lbl_anrind = lbl_anrind,
     lbl_bnrind = lbl_bnrind,
+    visitvar = "AVISIT",
+    anrind_var = "ANRIND",
+    bnrind_var = "BNRIND",
     page_var = page_var
   )
 
@@ -55,29 +60,32 @@ lbt06_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param param (`string`) the variable for parameter code.
-#' @param anrind_var (`string`) the variable for analysis reference range indicator.
-#' @param bnrind_var (`string`) the variable for baseline reference range indicator.
 #' @param lbl_param (`string`) text label of the `PARAM` variable.
 #' @param lbl_visit (`string`) text label of the `AVISIT` variable.
 #' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
 #' @param lbl_bnrind (`string`) text label of the `BNRIND` variable.
+#' @param param (`string`) the variable for parameter code.
+#' @param anrind_var (`string`) the variable for analysis reference range indicator.
+#' @param bnrind_var (`string`) the variable for baseline reference range indicator.
 #'
 #' @keywords internal
 #'
 lbt06_lyt <- function(arm_var,
-                      visitvar,
-                      anrind_var,
-                      bnrind_var,
+                      lbl_overall,
                       lbl_param,
                       lbl_visit,
                       lbl_anrind,
                       lbl_bnrind,
+                      visitvar,
+                      anrind_var,
+                      bnrind_var,
                       page_var) {
   page_by <- !is.null(page_var)
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",

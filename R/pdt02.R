@@ -23,30 +23,31 @@
 #'
 pdt02_main <- function(adam_db,
                        arm_var = "ARM",
+                       lbl_overall = NULL,
                        dvreas_var = "DVREAS",
                        dvterm_var = "DVTERM",
-                       lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "addv"))
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_string(dvreas_var)
   assert_string(dvterm_var)
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$addv, c(dvreas_var, dvterm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$addv, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$addv, arm_var)
 
+  lbl_overall <- render_safe(lbl_overall)
   lbl_dvreas_var <- var_labels_for(adam_db$addv, dvreas_var)
   lbl_dvterm_var <- var_labels_for(adam_db$addv, dvterm_var)
-  lbl_overall <- render_safe(lbl_overall)
+
   lyt <- pdt02_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    dvreas_var = dvreas_var,
     lbl_dvreas_var = lbl_dvreas_var,
-    dvterm_var = dvterm_var,
-    lbl_dvterm_var = lbl_dvterm_var
+    lbl_dvterm_var = lbl_dvterm_var,
+    dvreas_var = dvreas_var,
+    dvterm_var = dvterm_var
   )
 
   tbl <- build_table(lyt, adam_db$addv, alt_counts_df = adam_db$adsl)
@@ -65,12 +66,13 @@ pdt02_main <- function(adam_db,
 #'
 pdt02_lyt <- function(arm_var,
                       lbl_overall,
-                      dvreas_var,
                       lbl_dvreas_var,
-                      dvterm_var,
-                      lbl_dvterm_var) {
+                      lbl_dvterm_var,
+                      dvreas_var,
+                      dvterm_var) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
+    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     analyze_num_patients(
       vars = "USUBJID",

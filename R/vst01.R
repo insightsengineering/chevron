@@ -4,6 +4,7 @@
 #'
 #' @inherit cfbt01_main
 #' @source `cfbt01.R`
+#'
 #' @export
 #'
 vst01_main <- modify_default_args(cfbt01_main, dataset = "advs")
@@ -11,6 +12,7 @@ vst01_main <- modify_default_args(cfbt01_main, dataset = "advs")
 #' @describeIn vst01 Preprocessing
 #'
 #' @inherit cfbt01_pre
+#'
 #' @export
 #'
 vst01_pre <- modify_default_args(cfbt01_pre, dataset = "advs")

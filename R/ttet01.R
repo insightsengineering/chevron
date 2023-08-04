@@ -23,17 +23,15 @@
 #' @param method (`string`) either `"surv"` (survival estimations),
 #'  `"surv_diff"` (difference in survival with the control) or `"both"`.
 #'
-#'
 #' @details
 #' * No overall value.
 #'
-#'
 #' @export
-#'
 #'
 ttet01_main <- function(adam_db,
                         dataset = "adtte",
                         arm_var = "ARM",
+                        lbl_overall = NULL,
                         ref_group = NULL,
                         summarize_event = TRUE,
                         perform_analysis = "unstrat",
@@ -48,9 +46,18 @@ ttet01_main <- function(adam_db,
                         ...) {
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
+  assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(ref_group, null.ok = TRUE)
+  assert_flag(summarize_event)
+  assert_subset(perform_analysis, c("unstrat", "strat"))
+  assert_character(
+    strata,
+    null.ok = !"strat" %in% perform_analysis,
+    min.len = as.integer(!"strat" %in% perform_analysis)
+  )
   anl <- adam_db[[dataset]]
   assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
-  assert_string(ref_group, null.ok = TRUE)
   df_label <- sprintf("adam_db$%s", dataset)
   assert_valid_variable(adam_db[[dataset]], "AVALU", types = list("character"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
@@ -59,22 +66,16 @@ ttet01_main <- function(adam_db,
     adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC"),
     types = list(c("character", "factor")), label = df_label
   )
-  assert_flag(summarize_event)
-  assert_subset(perform_analysis, c("unstrat", "strat"))
-  assert_character(
-    strata,
-    null.ok = !"strat" %in% perform_analysis,
-    min.len = as.integer(!"strat" %in% perform_analysis)
-  )
-
   assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
   ref_group <- ref_group %||% lvls(anl[[arm_var]])[1]
-
   assert_single_value(anl$AVALU, label = sprintf("adam_db$%s$AVALU", dataset))
+
   timeunit <- unique(anl[["AVALU"]])
   event_lvls <- lvls(anl$EVNT1)
+
   lyt <- ttet01_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     ref_group = ref_group,
     summarize_event = summarize_event,
     perform_analysis = perform_analysis,
@@ -101,7 +102,9 @@ ttet01_main <- function(adam_db,
 #' @param timeunit (`string`) time unit get from `AVALU`, by default is `"Months"`
 #'
 #' @keywords internal
+#'
 ttet01_lyt <- function(arm_var,
+                       lbl_overall,
                        ref_group,
                        summarize_event,
                        perform_analysis,
@@ -119,6 +122,8 @@ ttet01_lyt <- function(arm_var,
     split_cols_by(
       var = arm_var, ref_group = ref_group
     ) %>%
+    add_colcounts() %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
@@ -188,7 +193,7 @@ ttet01_lyt <- function(arm_var,
       .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk"))
     )
 
-  return(lyt)
+  lyt
 }
 
 #' @describeIn ttet01 Preprocessing
@@ -223,8 +228,8 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
+#'
 ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
