@@ -219,7 +219,8 @@ convert_to_month <- function(x, unit) {
   assert_multi_class(unit, c("character", "factor"))
   assert_numeric(x, len = length(unit))
 
-  diff <- setdiff(unique(toupper(unit)), c("DAYS", "MONTHS", "YEARS"))
+  unit <- toupper(unit)
+  diff <- setdiff(unique(unit), c("DAYS", "MONTHS", "YEARS"))
   if (length(diff) > 0) {
     rlang::warn(
       paste0(
@@ -229,9 +230,9 @@ convert_to_month <- function(x, unit) {
   }
 
   case_when(
-    toupper(unit) == "DAYS" ~ x / 30.4375,
-    toupper(unit) == "MONTHS" ~ x,
-    toupper(unit) == "YEARS" ~ x * 12,
+    unit == "DAYS" ~ x / 30.4375,
+    unit == "MONTHS" ~ x,
+    unit == "YEARS" ~ x * 12,
     TRUE ~ x
   )
 }
