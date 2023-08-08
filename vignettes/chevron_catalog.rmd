@@ -614,6 +614,31 @@ run(mht01, syn_data)
 run(mht01, syn_data, lbl_overall = "All Patients")
 ```
 
+### **Major Protocol Deviations (`PDT01`)**
+
+#### **1. Major Protocol Deviations**
+
+1) The **`pdt01`** template produces the standard major protocol deviations output.  
+2) By default, `ADDV.DVDECOD` provides the category and `ADDV.DVTERM` provides the description.  
+3) By default, `addv` has been subset to include records that meet `DVCAT == "MAJOR"`.  
+
+```{r}
+run(pdt01, syn_data)
+```
+
+### **Reasons for Major Protocol Deviations Related to Epidemic/Pandemic (`PDT02`)**
+
+#### **1. Reasons for Major Protocol Deviations Related to Epidemic/Pandemic**
+
+1) The **`pdt02`** template produces the reasons for major protocol deviations related to epidemic/pandemic summary.    
+2) By default, `ADDV.DVREAS` provides the reason and `ADDV.DVTERM` provides the description.  
+3) By default, `addv` has been subset to include records that meet `AEPRELFL == "Y" & DVCAT == "MAJOR"`.  
+
+```{r}
+run(pdt02, syn_data)
+```
+
+
 ### **Duration of Exposure for Risk Management Plan (`RMPT01`)**
 
 #### **1. Duration of Exposure for Risk Management Plan**
@@ -676,6 +701,71 @@ The **`rmpt05`** template produces the standard extent of exposure by race outpu
 
 ```{r}
 run(rmpt05, syn_data)
+```
+
+### **Best Overall Response (`RSPT01`)**
+
+#### **1. Best Overall Response**
+
+1) The **`rspt01``** template produces the standard best overall response output.      
+2) The template syntax is built based on RECIST 1.1. By default, the subjects with response results of `CR` or 'PR` are considered as responders.    
+3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by Investigator or best overall response by BICR.    
+4) By default, the first level or value of `arm_var` (default to ADSL.ARM unless specified) is treated as the reference group. To provide user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.  
+5) Unstratified analysis is provided by default.   
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+
+run(rspt01, proc_data,ref_group= NULL, perform_analysis = "unstrat", strata = NULL)
+```
+
+#### **2. Best Overall Response  (selecting sections to display)**
+
+The section of `Odds Ratio` can be suppressed with the argument `odds_ratio = FALSE`. Note that currently the syntax does not allow excluding the section of difference in overall response rate and its p-value  
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+
+run(rspt01, proc_data,odds_ratio = FALSE)
+```
+
+#### **3. Best Overall Response (modifying analysis details like type of confidence interval, alpha level, test for p-value)**
+
+1) The level of the confidence intervals is defined by the argument `conf_level`.
+2) The methods to construct confidence interval are controlled by the argument `methods`. It is a named list with five sub-arguments. Please type `?rspt01` in the console to see more details of available methods to use.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+
+run(rspt01, proc_data,conf_level = 0.90, methods = list(prop_conf_method = "wald", diff_conf_method = "wald",  diff_pval_method = "fisher"))
+```
+
+#### **4. Best Overall Response (with stratified analysis)**
+
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata = c ("STRATA1","STRATA2"). The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  
+2) If unstratified and stratified analysis are required, users can use `perform_analysis = c("unstrat",strat")`  
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+
+run(rspt01, proc_data, perform_analysis = "strat", strata = c("STRATA1", "STRATA2"))
+```
+
+#### **5. Best Overall Response (modifying the definition of overall response)**
+
+The following example shows how to customize the definition of responder, e.g, consider only complete response as response.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+
+rspt01_pre <- function(adam_db, ...) {
+  adam_db$adrs <- adam_db$adrs %>%
+    mutate(RSP_LAB = tern::d_onco_rsp_label(.data$AVALC)) %>%
+    mutate(IS_RSP = .data$AVALC %in% c("CR"))
+  adam_db
+}
+
+run(rspt01, proc_data)
 ```
 
 ### **Vital Signs (`VST01`)**
