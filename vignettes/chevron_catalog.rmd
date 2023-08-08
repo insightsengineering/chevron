@@ -726,7 +726,7 @@ The section of `Odds Ratio` can be suppressed with the argument `odds_ratio = FA
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
-run(rspt01, proc_data,odds_ratio = FALSE)
+run(rspt01, proc_data, odds_ratio = FALSE)
 ```
 
 #### **3. Best Overall Response (modifying analysis details like type of confidence interval, alpha level, test for p-value)**
@@ -742,7 +742,7 @@ run(rspt01, proc_data,conf_level = 0.90, methods = list(prop_conf_method = "wald
 
 #### **4. Best Overall Response (with stratified analysis)**
 
-1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata = c ("STRATA1","STRATA2"). The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  The stratification variables are expected in `adrs`.
 2) If unstratified and stratified analysis are required, users can use `perform_analysis = c("unstrat",strat")`  
 
 ```{r}
@@ -766,6 +766,85 @@ rspt01_pre <- function(adam_db, ...) {
 }
 
 run(rspt01, proc_data)
+```
+
+### **Time-to-event Summary (`TTET01`)**
+
+#### **1. Time-to-event Summary**
+
+1) The **`ttet01``** template produces the standard time-to-event summary.   
+2) Users are expected to subset the parameter of interest (e.g. `PARAMCD == "PFS"`) in pre-processing.
+3) By default, the first level or value of `arm_var` (default to ADSL.ARM unless specified) is treated as the reference group. To provide user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.  
+4) Unstratified analysis is provided by default. 
+5) Survival estimations and difference in survival compared with reference group are both provided by default.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+run(ttet01, proc_data)
+```
+
+#### **2. Time-to-event Summary (selecting sections to display)**
+
+To suspend the section of earliest contributing events, use `summarize_event = FALSE`.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+run(ttet01, proc_data, summarize_event = FALSE)
+```
+
+To select either survival estimations or difference in survival compared with reference group or both, please specify in the argument `method`.
+- `surv` calls out the analysis of "patients remaining at risk", "event free rate" and corresponding 95% confidence interval of the rates.  
+- 'surv_diff' calls out the analysis of "difference in event free rate", the 95% confidence interval of the difference and its corresponding p-value.  
+- `both` calls out both.  
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+run(ttet01, proc_data, method = "surv")
+```
+
+#### **3. Time-to-event Summary (modifying analysis details like conftype, ties, alpha level)**
+
+Please use HELP page to find out more details of what options are available in terms of 1) the level of the confidence intervals in the argument `conf_level`, 2) handing of ties in `ties`, 3) type of confidence interval in `conf_type`.  
+
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+run(ttet01, proc_data, conf_level = 0.90, conf_type = "log-log", ties = "efron")
+```
+
+#### **4. Time-to-event Summary (with stratified analysis)**
+
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  The stratification variables are expected in `adrs`.
+2) If unstratified and stratified analysis are required, users can use `perform_analysis = c("unstrat",strat")`    
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+run(ttet01, proc_data, perform_analysis = "strat", strata = "STRATA1")
+```
+
+#### **5. Time-to-event Summary (modifying time point for the "survival at xx months” analysis)**
+
+The time point for the "survival at xx months" analysis can be modified by specifying the argument `timepoint`. By default, the survival estimates are summarized at "6 months" and "12 months". 
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(3,6))
+```
+
+#### **6. Time-to-event Summary (modifying the p-value method for testing hazard ratio)**
+
+The default p-value method for testing hazard ratio is "log-rank". Alternative methods can be requested by specifying the argument `pval_method` and options include `wald` or `likelihood`. The syntax currently does not allow requesting more than one p-value.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+run(ttet01, proc_data, pval_method = "wald")
 ```
 
 ### **Vital Signs (`VST01`)**
