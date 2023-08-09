@@ -11,18 +11,9 @@
 #' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
 #'  or unstratified analyses, or both, e.g. `c("unstrat", "strat")`. Only unstratified will be displayed by default
 #' @param strata (`string`) stratification factors, e.g. `strata = c("STRATA1", "STRATA2")`, by default as NULL
-#' @param pval_method (`string`) p-value method for testing hazard ratio = 1.
-#' Default method is `"log-rank"`, can also be set to `"wald"` or `"likelihood"`.
-#' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
-#' @param conf_type (`string`) confidence interval type. Options are `"plain"` (default), `"log"`, `"log-log"`,
-#'  see more in `survival::survfit()`. Note option "none" is no longer supported.
-#' @param quantiles (`numeric`) of length two to specify the quantiles of survival time.
-#' @param ties (`string`) specifying the method for tie handling. Default is `"efron"`,
-#'  can also be set to `"breslow"` or `"exact"`. see more in `survival::coxph()`
-#' @param timepoint (`numeric`) survival time point of interest.
-#' @param method (`string`) either `"surv"` (survival estimations),
-#'  `"surv_diff"` (difference in survival with the control) or `"both"`.
-#' @param ... Further arguments passed to `tern::control_coxreg()`.
+#' @param ... Further arguments passed to `control_surv_time()`, `control_coxph()`, `control_survtp()`, and
+#'  `surv_timepoint()`. For details, see the documentation in `tern`. Commonly used arguments include `pval_method`,
+#'  `conf_level`, `conf_type`, `quantiles`, `ties`, `timepoint`, `method`, etc.
 #'
 #' @details
 #' * No overall value.

@@ -29,7 +29,7 @@ lbt04_lyt(
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
 
-\item{variables}{(\code{list}) see \link[tern:count_abnormal]{tern::count_abnormal}}
+\item{variables}{(\code{list}) see \link[tern:abnormal]{tern::count_abnormal}}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }

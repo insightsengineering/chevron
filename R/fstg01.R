@@ -14,9 +14,9 @@
 #' @param strata_var (`character`) required if stratified analysis is performed.
 #' @param stat_var (`character`) the names of statistics to be reported in `tabulate_rsp_subgroups`.
 #' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups` (a wrapper for
-#' `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
-#' Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
-#' `method`, `label_all`, etc.
+#'  `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
+#'  Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
+#'  `method`, `label_all`, etc.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with `"PARAMCD"`, `"ARM"`,
@@ -24,7 +24,9 @@
 #'  `c("SEX", "AGEGR1", "RACE")` by default.
 #'
 #' @return a `gTree` object.
+#'
 #' @export
+#'
 fstg01_main <- function(adam_db,
                         dataset = "adrs",
                         arm_var = "ARM",
@@ -80,6 +82,7 @@ fstg01_main <- function(adam_db,
 #' @inheritParams fstg01_main
 #'
 #' @export
+#'
 fstg01_pre <- function(adam_db, ...) {
   adam_db$adrs <- adam_db$adrs %>%
     mutate(
