@@ -35,7 +35,7 @@ egt03_main <- function(adam_db,
   assert_string(summaryvar)
   assert_string(splitvar)
   assert_string(visitvar)
-  assert_string(page_var)
+  assert_string(page_var, null.ok = TRUE)
   assert_subset(page_var, "PARAMCD")
   assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAMCD", "PARAM", splitvar), types = list("character", "factor"))
