@@ -166,9 +166,8 @@ run(aet04, syn_data, grade_groups = grade_groups, prune_0 = FALSE)
 
 1) The **`aet05`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering first occurrence only.   
 2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than GDSR standard naming `adsaftte`.
-3) By default, all `adaette` parameters containing 'TTTE' are including in the output.  
-4) User needs to subset the parameter(s) of interest from input safety time-to-event dataset using pre-processing if customization is needed.
-5) In the input safety time-to-event dataset, the censoring variable `CNSR` was set to 0 for the occurrence of event of interest and set to 1 for censoring.
+3) By default, all `adaette` parameter codes containing 'TTE' are including in the output. Users are expected to filter the parameter(s) of interest from input safety time-to-event dataset in pre-processing, if not all are needed.
+4) In the input safety time-to-event dataset, the censoring variable `CNSR` was set to 0 indicating the occurrence of event of interest and set to 1 for censoring.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
@@ -178,7 +177,7 @@ run(aet05, proc_data)
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence (setting type of confidence interval)**
 
-1) The type of the confidence interval for rate can be specified by the argument `conf_type = "exact"`.   
+1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log`, `exact`.  
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
@@ -191,9 +190,8 @@ run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
 
 1) The **`aet05_ALL`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering all occurrences.   
 2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than GDSR standard naming `adsaftte`.  
-3) By default, all `adaette` parameters containing 'TOT' are including in the output.  
-4) Users are expected to subset parameters of interest from input analysis dataset in pre-processing if customization is needed.  
-5) In the input safety time-to-event dataset, the censoring variable `CNSR` was set to 0 for the occurrence of event of interest and set to 1 for censoring.  
+3) By default, all `adaette` parameter codes containing 'TOT' are including in the output. Users are expected to filter parameters of interest from input analysis dataset in pre-processing, if not all are needed.  
+4) In the input safety time-to-event dataset, the censoring variable `CNSR` was set to 0 indicating the occurrence of event of interest and set to 1 for censoring.  
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
@@ -203,7 +201,7 @@ run(aet05_all, proc_data)
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences (setting type of confidence interval)**
 
-1) The type of the confidence interval for rate can be specified by the argument `conf_type = "exact"`.   
+1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log`, `exact`, or `byar`.     
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
@@ -619,11 +617,14 @@ run(mht01, syn_data, lbl_overall = "All Patients")
 #### **1. Major Protocol Deviations**
 
 1) The **`pdt01`** template produces the standard major protocol deviations output.  
-2) By default, `ADDV.DVDECOD` provides the category and `ADDV.DVTERM` provides the description.  
-3) By default, `addv` has been subset to include records that meet `DVCAT == "MAJOR"`.  
+2) Users are expected to filter `addv` to include records that meet `DVCAT == "MAJOR"` in pre-processing.  
 
 ```{r}
-run(pdt01, syn_data)
+proc_data <- syn_data
+proc_data$addv <- proc_data$addv %>%
+  filter(DVCAT == "MAJOR")
+
+run(pdt01, proc_data)
 ```
 
 ### **Reasons for Major Protocol Deviations Related to Epidemic/Pandemic (`PDT02`)**
@@ -637,7 +638,6 @@ run(pdt01, syn_data)
 ```{r}
 run(pdt02, syn_data)
 ```
-
 
 ### **Duration of Exposure for Risk Management Plan (`RMPT01`)**
 
@@ -707,11 +707,10 @@ run(rmpt05, syn_data)
 
 #### **1. Best Overall Response**
 
-1) The **`rspt01``** template produces the standard best overall response output.      
-2) The template syntax is built based on RECIST 1.1. By default, the subjects with response results of `CR` or 'PR` are considered as responders.    
+1) The **`rspt01`** template produces the standard best overall response output.      
+2) The template syntax is built based on RECIST 1.1. By default, the subjects with response results of `CR` or `PR` are considered as responders.    
 3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by Investigator or best overall response by BICR.    
-4) By default, the first level or value of `arm_var` (default to ADSL.ARM unless specified) is treated as the reference group. To provide user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.  
-5) Unstratified analysis is provided by default.   
+4) Unstratified analysis is provided by default.   
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
@@ -719,31 +718,38 @@ proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 run(rspt01, proc_data,ref_group= NULL, perform_analysis = "unstrat", strata = NULL)
 ```
 
-#### **2. Best Overall Response  (selecting sections to display)**
-
-The section of `Odds Ratio` can be suppressed with the argument `odds_ratio = FALSE`. Note that currently the syntax does not allow excluding the section of difference in overall response rate and its p-value  
-
-```{r}
-proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
-
-run(rspt01, proc_data, odds_ratio = FALSE)
+#### **2. Best Overall Response (Ordering of treatment groups)**
+1) By default, the first level or value of `arm_var` (default to ADSL.ARM unless specified) is treated as the reference group without specification.  
+2) To apply user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.   
+3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group.   
+See below for examples: 
+```{r table1, echo=FALSE, results = 'asis'}
+tabl <- "
+| Factorized trt order        | ref_group =  | Displayed trt order | Ref group used in analysis |
+| :--------------------------:| :-----------:|:-------------------:|:--------------------------:|
+| ARM C, ARM B, ARM A         | NULL         | ARM C, ARM B, ARM A | ARM C                      |
+| NULL                        | ARM B        | ARM B, ARM A, ARM C | ARM B                      |
+| ARM C, ARM B, ARM A         | ARM B        | ARM B, ARM C, ARM A | ARM B                      |
+"
+cat(tabl)
 ```
 
-#### **3. Best Overall Response (modifying analysis details like type of confidence interval, alpha level, test for p-value)**
+#### **3. Best Overall Response  (selecting sections to display)**
 
-1) The level of the confidence intervals is defined by the argument `conf_level`.
-2) The methods to construct confidence interval are controlled by the argument `methods`. It is a named list with five sub-arguments. Please type `?rspt01` in the console to see more details of available methods to use.
+1) The section of `Odds Ratio` can be suppressed with the argument `odds_ratio = FALSE`.    
+2) The section of `Difference in response rate` can be suppressed with the argument `perform_analysis = NULL`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
-run(rspt01, proc_data,conf_level = 0.90, methods = list(prop_conf_method = "wald", diff_conf_method = "wald",  diff_pval_method = "fisher"))
+run(rspt01, proc_data, odds_ratio = FALSE, perform_analysis = NULL)
 ```
 
 #### **4. Best Overall Response (with stratified analysis)**
 
-1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  The stratification variables are expected in `adrs`.
-2) If unstratified and stratified analysis are required, users can use `perform_analysis = c("unstrat",strat")`  
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.    
+2) The stratification variables are expected to be available in `adrs`.  
+2) If unstratified and stratified analysis are both required, users can use `perform_analysis = c("unstrat",strat")`  
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
@@ -751,14 +757,90 @@ proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 run(rspt01, proc_data, perform_analysis = "strat", strata = c("STRATA1", "STRATA2"))
 ```
 
-#### **5. Best Overall Response (modifying the definition of overall response)**
+#### **5. Best Overall Response (modifying analysis details like type of confidence interval, alpha level, test for p-value)**
+
+1) The level of the confidence intervals is defined by the argument `conf_level`.
+2) The methods to construct confidence interval and p-value are controlled by the argument `methods`. It is a named list with five optional sub-arguments. For example, `methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "ha", diff_pval_method = "fisher", strat_diff_pval_method = "schouten")`
+
+See table below for what each argument controls and the available mthod options:  
+```{r table_args, echo=FALSE, results = 'asis'}
+tabl <- "
+| Arguments              | Methods controlled                          | Methods Options              |
+| :---------------------:| :------------------------------------------:|:----------------------------:|
+| prop_conf_method       | proportion confidence interval              | waldcc (default), wald, etc. |
+| diff_conf_method       | unstratified difference confidence interval | waldcc (default), wald, etc. |
+| diff_pval_method       | unstratified p-value for odds ratio         | chisq (default), fisher      |
+| strat_diff_conf_method | stratified difference confidence interval   | cmh (default), ha            |
+| strat_diff_pval_method | stratified p-value for odds ratio           | cmh (default), schouten      |
+"
+cat(tabl)
+```
+
+See table below the method options for estimates of proportions and the associated statistical methods 
+```{r table_prop, echo=FALSE, results = 'asis'}
+tabl <- "
+| Method Options  | Statistical Methods                       |
+| :--------------:| :----------------------------------------:|
+| clopper-pearson | Clopper-Pearson                           |
+| wald            | Wald, without correction                  |
+| waldcc          | Wald, with correction                     |
+| wilson          | Wilson, without correction                |
+| strat_wilson    | Stratified Wilson, without correction     |
+| wilsonc         | Wilson, with correction                   |
+| strat_wilsonc   | Stratified Wilson, with correction        |
+| agresti-coull   | Agresti-Coull                             |
+| jeffreys        | Jeffreys                                  |
+"
+cat(tabl)
+```
+
+See table below the method options for estimates of proportion difference and the associated statistical methods 
+```{r table_prop_diff, echo=FALSE, results = 'asis'}
+tabl <- "
+| Method Options  | Statistical Methods                       |
+| :--------------:| :----------------------------------------:|
+| cmh             | CMH, without correction                   |
+| wald            | Wald, with correction                     |
+| waldcc          | Wald, without correction                  |
+| ha              | Anderson-Hauck                            |
+| newcombe        | Newcombe, without correction              |
+| newcombecc      | Newcombe, with correction                 |
+| strat_wilsonc   | Stratified Wilson, with correction        |
+| strat_newcombe  | Stratified Newcombe, without correction   |
+| strat_newcombecc| Stratified Newcombe, with correction      |
+"
+cat(tabl)
+```
+
+See table below the method options for testing proportion difference and the associated statistical methods 
+```{r table_test_prop_diff, echo=FALSE, results = 'asis'}
+tabl <- "
+| Method Options  | Statistical Methods                       |
+| :--------------:| :----------------------------------------:|
+| chisq           | Chi-Squared test                          |
+| fisher          | the Fisher's exact test                   |
+| cmh             | stratified Cochran-Mantel-Haenszel test   |
+| shouten         | Chi-Squared test with Schouten correction |
+"
+cat(tabl)
+```
+
+An example:  
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+
+run(rspt01, proc_data,conf_level = 0.90, methods = list(prop_conf_method = "wald", diff_conf_method = "wald",  diff_pval_method = "fisher"))
+```
+
+#### **6. Best Overall Response (modifying the definition of overall response)**
 
 The following example shows how to customize the definition of responder, e.g, consider only complete response as response.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
-rspt01_pre <- function(adam_db, ...) {
+preprocess(rspt01) <- function(adam_db, ...) {
   adam_db$adrs <- adam_db$adrs %>%
     mutate(RSP_LAB = tern::d_onco_rsp_label(.data$AVALC)) %>%
     mutate(IS_RSP = .data$AVALC %in% c("CR"))
@@ -772,11 +854,11 @@ run(rspt01, proc_data)
 
 #### **1. Time-to-event Summary**
 
-1) The **`ttet01``** template produces the standard time-to-event summary.   
+1) The **`ttet01`** template produces the standard time-to-event summary.   
 2) Users are expected to subset the parameter of interest (e.g. `PARAMCD == "PFS"`) in pre-processing.
-3) By default, the first level or value of `arm_var` (default to ADSL.ARM unless specified) is treated as the reference group. To provide user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.  
+3) Please see the section of `RSPT01` to find out more about the ordering of treatment groups and reference group. 
 4) Unstratified analysis is provided by default. 
-5) Survival estimations and difference in survival compared with reference group are both provided by default.
+5) Survival estimations and difference in survival are both provided by default.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -794,9 +876,9 @@ proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 run(ttet01, proc_data, summarize_event = FALSE)
 ```
 
-To select either survival estimations or difference in survival compared with reference group or both, please specify in the argument `method`.
-- `surv` calls out the analysis of "patients remaining at risk", "event free rate" and corresponding 95% confidence interval of the rates.  
-- 'surv_diff' calls out the analysis of "difference in event free rate", the 95% confidence interval of the difference and its corresponding p-value.  
+To select either survival estimations or difference in survival or both, please specify in the argument `method`.  
+- `surv` calls out the analysis of patients remaining at risk, event free rate and corresponding 95% confidence interval of the rates.  
+- `surv_diff` calls out the analysis of difference in event free rate, the 95% confidence interval of the difference and its corresponding p-value.  
 - `both` calls out both.  
 
 ```{r}
@@ -807,7 +889,9 @@ run(ttet01, proc_data, method = "surv")
 
 #### **3. Time-to-event Summary (modifying analysis details like conftype, ties, alpha level)**
 
-Please use HELP page to find out more details of what options are available in terms of 1) the level of the confidence intervals in the argument `conf_level`, 2) handing of ties in `ties`, 3) type of confidence interval in `conf_type`.  
+1) The level of the confidence intervals is defined by the argument `conf_level`.    
+2) The type of confidence interval is defined in the argument `conf_type`. Options are `"plain"` (default), `"log"`, `"log-log"`.  
+3) Handing of ties is specified in the argument `ties`. Options are `"efron"` (default),`"breslow"` or `"exact"`.
 
 
 ```{r}
@@ -818,8 +902,9 @@ run(ttet01, proc_data, conf_level = 0.90, conf_type = "log-log", ties = "efron")
 
 #### **4. Time-to-event Summary (with stratified analysis)**
 
-1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  The stratification variables are expected in `adrs`.
-2) If unstratified and stratified analysis are required, users can use `perform_analysis = c("unstrat",strat")`    
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  
+2) The stratification variables are expected to be available in `adrs`.  
+3) If unstratified and stratified analysis are both required, users can use `perform_analysis = c("unstrat",strat")`.    
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -829,7 +914,7 @@ run(ttet01, proc_data, perform_analysis = "strat", strata = "STRATA1")
 
 #### **5. Time-to-event Summary (modifying time point for the "survival at xx months” analysis)**
 
-The time point for the "survival at xx months" analysis can be modified by specifying the argument `timepoint`. By default, the survival estimates are summarized at "6 months" and "12 months". 
+The time point for the "survival at xx months" analysis can be modified by specifying the argument `timepoint`. By default, the syntax takes `AVAL` from `adtte` in the unit of days and convert to months. The survival estimates are then summarized in month, and the numeric values provided to `timepoint` should be in the unit of month as well. 
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -837,9 +922,36 @@ proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(3,6))
 ```
 
+The following example shows how to specify the time point in **user-defined unit**.  
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+
+preprocess(ttet01) <- function(adam_db, dataset = "adtte",
+                       ...) {
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
+    mutate(
+      AVALU = "DAYS",
+      IS_EVENT = .data$CNSR == 0,
+      IS_NOT_EVENT = .data$CNSR == 1,
+      EVNT1 = factor(
+        case_when(
+          IS_EVENT == TRUE ~ render_safe("{Patient_label} with event (%)"),
+          IS_EVENT == FALSE ~ render_safe("{Patient_label} without event (%)")
+        ),
+        levels = render_safe(c("{Patient_label} with event (%)", "{Patient_label} without event (%)"))
+      ),
+      EVNTDESC = factor(.data$EVNTDESC)
+    )
+
+  adam_db
+}
+run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(91,183))
+```
+
 #### **6. Time-to-event Summary (modifying the p-value method for testing hazard ratio)**
 
-The default p-value method for testing hazard ratio is "log-rank". Alternative methods can be requested by specifying the argument `pval_method` and options include `wald` or `likelihood`. The syntax currently does not allow requesting more than one p-value.
+The default p-value method for testing hazard ratio is "log-rank". Alternative methods can be requested by specifying the argument `pval_method` and options include, `log-rank` (default),  `wald` or `likelihood`. The syntax currently does not allow requesting more than one p-value.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
