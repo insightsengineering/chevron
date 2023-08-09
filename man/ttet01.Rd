@@ -20,13 +20,6 @@ ttet01_main(
   summarize_event = TRUE,
   perform_analysis = "unstrat",
   strata = NULL,
-  pval_method = "log-rank",
-  conf_level = 0.95,
-  conf_type = "log-log",
-  quantiles = c(0.25, 0.75),
-  ties = "efron",
-  timepoint = c(6, 12),
-  method = "both",
   ...
 )
 
@@ -56,6 +49,12 @@ or unstratified analyses, or both, e.g. \code{c("unstrat", "strat")}. Only unstr
 
 \item{strata}{(\code{string}) stratification factors, e.g. \code{strata = c("STRATA1", "STRATA2")}, by default as NULL}
 
+\item{...}{not used.}
+
+\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{prune_0}{(\code{flag}) remove 0 count rows}
+
 \item{pval_method}{(\code{string}) p-value method for testing hazard ratio = 1.
 Default method is \code{"log-rank"}, can also be set to \code{"wald"} or \code{"likelihood"}.}
 
@@ -73,12 +72,6 @@ can also be set to \code{"breslow"} or \code{"exact"}. see more in \code{surviva
 
 \item{method}{(\code{string}) either \code{"surv"} (survival estimations),
 \code{"surv_diff"} (difference in survival with the control) or \code{"both"}.}
-
-\item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{prune_0}{(\code{flag}) remove 0 count rows}
 }
 \description{
 \code{TTET01} template may be used to summarize any binary outcome or response variable at

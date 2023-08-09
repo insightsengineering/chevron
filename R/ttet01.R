@@ -22,6 +22,7 @@
 #' @param timepoint (`numeric`) survival time point of interest.
 #' @param method (`string`) either `"surv"` (survival estimations),
 #'  `"surv_diff"` (difference in survival with the control) or `"both"`.
+#' @param ... Further arguments passed to `tern::control_coxreg()`.
 #'
 #' @details
 #' * No overall value.
@@ -36,13 +37,6 @@ ttet01_main <- function(adam_db,
                         summarize_event = TRUE,
                         perform_analysis = "unstrat",
                         strata = NULL,
-                        pval_method = "log-rank",
-                        conf_level = 0.95,
-                        conf_type = "log-log",
-                        quantiles = c(0.25, 0.75),
-                        ties = "efron",
-                        timepoint = c(6, 12),
-                        method = "both",
                         ...) {
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
@@ -72,6 +66,10 @@ ttet01_main <- function(adam_db,
   timeunit <- unique(anl[["AVALU"]])
   event_lvls <- lvls(anl$EVNT1)
 
+  control_survt <- execute_with_args(control_surv_time, ...)
+  control_coxph <- execute_with_args(control_coxph, ...)
+  control_survtp <- execute_with_args(control_surv_timepoint, ...)
+
   lyt <- ttet01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -79,15 +77,12 @@ ttet01_main <- function(adam_db,
     summarize_event = summarize_event,
     perform_analysis = perform_analysis,
     strata = strata,
-    pval_method = pval_method,
-    conf_level = conf_level,
-    conf_type = conf_type,
-    quantiles = quantiles,
-    ties = ties,
     timeunit = timeunit,
-    timepoint = timepoint,
-    method = method,
-    event_lvls = event_lvls
+    event_lvls = event_lvls,
+    control_survt = control_survt,
+    control_coxph = control_coxph,
+    control_survtp = control_survtp,
+    ...
   )
 
   tbl <- build_table(lyt, anl)
@@ -108,15 +103,12 @@ ttet01_lyt <- function(arm_var,
                        summarize_event,
                        perform_analysis,
                        strata,
-                       pval_method,
-                       conf_level,
-                       conf_type,
-                       quantiles,
-                       ties,
                        timeunit,
-                       timepoint,
-                       method,
-                       event_lvls) {
+                       event_lvls,
+                       control_survt,
+                       control_coxph,
+                       control_survtp,
+                       ...) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(
       var = arm_var, ref_group = ref_group
@@ -154,11 +146,7 @@ ttet01_lyt <- function(arm_var,
       vars = "AVAL",
       var_labels = paste0("Time to Event (", timeunit, ")"),
       is_event = "IS_EVENT",
-      control = control_surv_time(
-        conf_level = conf_level,
-        conf_type = conf_type,
-        quantiles = quantiles
-      ),
+      control = control_survt,
       table_names = "time_to_event"
     )
 
@@ -169,11 +157,7 @@ ttet01_lyt <- function(arm_var,
         is_event = "IS_EVENT",
         var_labels = if (perform == "strat") "Stratified Analysis" else "Unstratified Analysis",
         strat = if (perform == "strat") strata else NULL,
-        control = control_coxph(
-          pval_method = pval_method,
-          conf_level = conf_level,
-          ties = ties
-        ),
+        control = control_coxph,
         table_names = if (perform == "strat") "coxph_stratified" else "coxph_unstratified"
       )
   }
@@ -182,14 +166,10 @@ ttet01_lyt <- function(arm_var,
     surv_timepoint(
       vars = "AVAL",
       var_labels = timeunit,
-      time_point = timepoint,
       is_event = "IS_EVENT",
-      method = method,
-      control = control_surv_timepoint(
-        conf_level = conf_level,
-        conf_type = conf_type
-      ),
-      .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk"))
+      control = control_survtp,
+      .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk")),
+      ...
     )
 
   lyt
@@ -250,9 +230,13 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' syn_data2 <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 #' run(ttet01, syn_data2)
+#'
 #' run(ttet01, syn_data2,
 #'   summarize_event = FALSE, perform_analysis = c("unstrat", "strat"),
-#'   strata = c("STRATA1", "STRATA2")
+#'   strata = c("STRATA1", "STRATA2"),
+#'   conf_type = "log-log",
+#'   time_point = c(6, 12),
+#'   method = "both"
 #' )
 ttet01 <- chevron_t(
   main = ttet01_main,

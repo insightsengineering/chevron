@@ -5,7 +5,7 @@
 \alias{empty_rule}
 \title{Empty rule}
 \format{
-An object of class \code{empty_rule} (inherits from \code{rule}, \code{character}) of length 0.
+An object of class \code{rule} (inherits from \code{character}) of length 0.
 }
 \usage{
 empty_rule
