@@ -92,7 +92,6 @@ ext01_lyt <- function(arm_var,
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by_recurive(
       row_split_var,
@@ -147,7 +146,9 @@ ext01_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' @examples
 #' run(ext01, syn_data)
+#'
 #' run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE)
+#'
 #' levels(syn_data$adex$AVALCAT1) <- c(levels(syn_data$adex$AVALCAT1), "12 months")
 #' map <- data.frame(
 #'   PARAMCD = "TDURD",

@@ -89,6 +89,7 @@ by \code{AVISIT}. Re-level to customize order
 }
 \examples{
 library(dunlin)
+
 proc_data <- log_filter(
   syn_data,
   PARAMCD \%in\% c("DIABP", "SYSBP"), "advs"

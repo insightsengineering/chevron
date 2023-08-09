@@ -15,7 +15,6 @@ ttet01_main(
   adam_db,
   dataset = "adtte",
   arm_var = "ARM",
-  lbl_overall = NULL,
   ref_group = NULL,
   summarize_event = TRUE,
   perform_analysis = "unstrat",
@@ -35,8 +34,6 @@ ttet01
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{ref_group}{(\code{string}) The name of the reference group, the value should
 be identical to the values in \code{arm_var}, if not specified, it will by default
@@ -79,10 +76,10 @@ a single time point. Typical application for oncology
 library(dplyr)
 library(dunlin)
 
-syn_data2 <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
-run(ttet01, syn_data2)
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+run(ttet01, proc_data)
 
-run(ttet01, syn_data2,
+run(ttet01, proc_data,
   summarize_event = FALSE, perform_analysis = c("unstrat", "strat"),
   strata = c("STRATA1", "STRATA2"),
   conf_type = "log-log",

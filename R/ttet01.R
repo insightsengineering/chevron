@@ -23,7 +23,6 @@
 ttet01_main <- function(adam_db,
                         dataset = "adtte",
                         arm_var = "ARM",
-                        lbl_overall = NULL,
                         ref_group = NULL,
                         summarize_event = TRUE,
                         perform_analysis = "unstrat",
@@ -32,7 +31,6 @@ ttet01_main <- function(adam_db,
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
   assert_string(arm_var)
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_string(ref_group, null.ok = TRUE)
   assert_flag(summarize_event)
   assert_subset(perform_analysis, c("unstrat", "strat"))
@@ -63,7 +61,6 @@ ttet01_main <- function(adam_db,
 
   lyt <- ttet01_lyt(
     arm_var = arm_var,
-    lbl_overall = lbl_overall,
     ref_group = ref_group,
     summarize_event = summarize_event,
     perform_analysis = perform_analysis,
@@ -89,7 +86,6 @@ ttet01_main <- function(adam_db,
 #' @keywords internal
 #'
 ttet01_lyt <- function(arm_var,
-                       lbl_overall,
                        ref_group,
                        summarize_event,
                        perform_analysis,
@@ -104,8 +100,6 @@ ttet01_lyt <- function(arm_var,
     split_cols_by(
       var = arm_var, ref_group = ref_group
     ) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
     summarize_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
@@ -219,10 +213,10 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' syn_data2 <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
-#' run(ttet01, syn_data2)
+#' proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+#' run(ttet01, proc_data)
 #'
-#' run(ttet01, syn_data2,
+#' run(ttet01, proc_data,
 #'   summarize_event = FALSE, perform_analysis = c("unstrat", "strat"),
 #'   strata = c("STRATA1", "STRATA2"),
 #'   conf_type = "log-log",

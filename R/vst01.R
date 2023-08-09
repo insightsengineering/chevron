@@ -28,6 +28,7 @@ vst01_pre <- modify_default_args(cfbt01_pre, dataset = "advs")
 #'
 #' @examples
 #' library(dunlin)
+#'
 #' proc_data <- log_filter(
 #'   syn_data,
 #'   PARAMCD %in% c("DIABP", "SYSBP"), "advs"

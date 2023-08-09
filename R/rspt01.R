@@ -33,7 +33,6 @@
 rspt01_main <- function(adam_db,
                         dataset = "adrs",
                         arm_var = "ARM",
-                        lbl_overall = NULL,
                         ref_group = NULL,
                         odds_ratio = TRUE,
                         perform_analysis = "unstrat",
@@ -44,7 +43,6 @@ rspt01_main <- function(adam_db,
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
   assert_string(arm_var)
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_string(ref_group, null.ok = TRUE)
   assert_flag(odds_ratio)
   assert_subset(perform_analysis, c("unstrat", "strat"))
@@ -75,7 +73,6 @@ rspt01_main <- function(adam_db,
 
   lyt <- rspt01_lyt(
     arm_var = arm_var,
-    lbl_overall = lbl_overall,
     rsp_var = "IS_RSP",
     ref_group = ref_group,
     odds_ratio = odds_ratio,
@@ -97,7 +94,6 @@ rspt01_main <- function(adam_db,
 #' @keywords internal
 #'
 rspt01_lyt <- function(arm_var,
-                       lbl_overall,
                        rsp_var,
                        ref_group,
                        odds_ratio,
@@ -107,8 +103,6 @@ rspt01_lyt <- function(arm_var,
                        methods) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var, ref_group = ref_group) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
     estimate_proportion(
       vars = rsp_var,
       conf_level = conf_level,
@@ -176,9 +170,11 @@ rspt01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
-#' run(rspt01, syn_data2)
-#' run(rspt01, syn_data2,
+#' proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+#'
+#' run(rspt01, proc_data)
+#'
+#' run(rspt01, proc_data,
 #'   odds_ratio = FALSE, perform_analysis = c("unstrat", "strat"),
 #'   strata = c("STRATA1", "STRATA2"), methods = list(diff_pval_method = "fisher")
 #' )

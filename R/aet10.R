@@ -55,7 +55,6 @@ aet10_lyt <- function(arm_var,
                       lbl_aedecod) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_occurrences(
       vars = "AEDECOD",

@@ -6,7 +6,6 @@
 \usage{
 rspt01_lyt(
   arm_var,
-  lbl_overall,
   rsp_var,
   ref_group,
   odds_ratio,
@@ -18,8 +17,6 @@ rspt01_lyt(
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
 \code{rspt01} Layout

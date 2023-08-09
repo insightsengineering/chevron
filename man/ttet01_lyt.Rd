@@ -6,7 +6,6 @@
 \usage{
 ttet01_lyt(
   arm_var,
-  lbl_overall,
   ref_group,
   summarize_event,
   perform_analysis,
@@ -21,8 +20,6 @@ ttet01_lyt(
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{timeunit}{(\code{string}) time unit get from \code{AVALU}, by default is \code{"Months"}}
 

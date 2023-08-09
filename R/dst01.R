@@ -92,9 +92,8 @@ dst01_lyt <- function(arm_var,
                       study_status_var,
                       detail_vars,
                       trt_status_var) {
-  lyt <- basic_table() %>%
+  lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall)
   for (n in names(detail_vars)) {
     lyt <- lyt %>%
@@ -182,7 +181,9 @@ dst01_post <- function(tlg, prune_0 = TRUE, ...) {
 #'
 #' @examples
 #' run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS"))
+#'
 #' run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STDONS"))
+#'
 #' run(
 #'   dst01, syn_data,
 #'   detail_vars = list(

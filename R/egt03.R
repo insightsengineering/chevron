@@ -169,6 +169,7 @@ egt03_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' @examples
 #' library(dunlin)
+#'
 #' proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
 #' run(egt03, proc_data)
 egt03 <- chevron_t(

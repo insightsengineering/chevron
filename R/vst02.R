@@ -64,7 +64,6 @@ vst02_lyt <- function(arm_var,
                       lbl_vs_abnormality) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
     count_abnormal(

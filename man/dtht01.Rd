@@ -70,10 +70,8 @@ A description of the causes of death optionally with the breakdown of the
 }
 }
 \examples{
+run(dtht01, syn_data)
 
-db <- syn_data
-
-run(dtht01, db)
-run(dtht01, db, other_category = TRUE, time_since_last_dose = TRUE)
+run(dtht01, syn_data, other_category = TRUE, time_since_last_dose = TRUE)
 }
 \keyword{datasets}

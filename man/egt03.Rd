@@ -83,6 +83,7 @@ according to the preprocessing.
 }
 \examples{
 library(dunlin)
+
 proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
 run(egt03, proc_data)
 }

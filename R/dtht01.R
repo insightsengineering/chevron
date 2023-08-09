@@ -100,7 +100,6 @@ dtht01_lyt <- function(arm_var,
   }
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     count_values(
       death_flag,
@@ -192,11 +191,9 @@ dtht01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' @export
 #'
 #' @examples
+#' run(dtht01, syn_data)
 #'
-#' db <- syn_data
-#'
-#' run(dtht01, db)
-#' run(dtht01, db, other_category = TRUE, time_since_last_dose = TRUE)
+#' run(dtht01, syn_data, other_category = TRUE, time_since_last_dose = TRUE)
 dtht01 <- chevron_t(
   main = dtht01_main,
   preprocess = dtht01_pre,

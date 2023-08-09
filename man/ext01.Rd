@@ -82,7 +82,9 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \examples{
 run(ext01, syn_data)
+
 run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE)
+
 levels(syn_data$adex$AVALCAT1) <- c(levels(syn_data$adex$AVALCAT1), "12 months")
 map <- data.frame(
   PARAMCD = "TDURD",
