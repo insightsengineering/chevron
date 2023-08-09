@@ -72,6 +72,7 @@ reference:
       - egt05_qtcat
       - ext01
       - fstg01
+      - fstg02
       - kmg01
       - lbt01
       - lbt04
@@ -114,6 +115,7 @@ reference:
       - grob_list
       - h_format_dec
       - lvls
+      - convert_to_month
   - title: Standard Reformatting Rules
     contents:
       - nocoding

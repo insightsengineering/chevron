@@ -174,14 +174,6 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
 }
 
-#' @describeIn mng01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-mng01_post <- function(tlg, ...) {
-  tlg
-}
-
 # `mng01` Pipeline ----
 
 #' `MNG01` Mean Plot Graph.
@@ -201,6 +193,5 @@ mng01_post <- function(tlg, ...) {
 #' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 mng01 <- chevron_g(
   main = mng01_main,
-  preproces = mng01_pre,
-  postprocess = mng01_post
+  preproces = mng01_pre
 )

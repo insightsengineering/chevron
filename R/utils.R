@@ -15,7 +15,7 @@ var_labels_for <- function(df, vars) {
   render_safe(unname(formatters::var_labels(df, fill = TRUE)[vars]))
 }
 
-#' Prune Table up to an `ElementaryTable`
+#' Prune table up to an `ElementaryTable`
 #'
 #' Avoid returning `NULL` when the `table` is empty.
 #'
@@ -34,8 +34,7 @@ smart_prune <- function(tlg) {
   res
 }
 
-
-#' Standard Post processing
+#' Standard post processing
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
@@ -60,7 +59,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 
 # Special formats ----
 
-#' Decimal Formatting
+#' Decimal formatting
 #'
 #' @param digits (`integer`) number of digits.
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
@@ -184,7 +183,7 @@ execute_with_args <- function(fun, ...) {
   do_call(fun, args[intersect(names(args), formalArgs(fun))])
 }
 
-#' Execute a Function Call
+#' Execute a function call
 #' @keywords internal
 do_call <- function(what, args) {
   arg_names <- names(args)
@@ -207,4 +206,33 @@ modify_character <- function(x, y) {
   assert_character(x, names = "unique", null.ok = TRUE)
   assert_character(y, names = "unique", null.ok = TRUE)
   c(y, x)[unique(c(names(y), names(x)))]
+}
+
+#' Helper function to convert to months if needed
+#' @param x (`numeric`) time.
+#' @param unit (`character`) or (`factor`) time unit.
+#'
+#' @return A `numeric` vector with the time in months.
+#'
+#' @export
+convert_to_month <- function(x, unit) {
+  assert_multi_class(unit, c("character", "factor"))
+  assert_numeric(x, len = length(unit))
+
+  unit <- toupper(unit)
+  diff <- setdiff(unique(unit), c("DAYS", "MONTHS", "YEARS"))
+  if (length(diff) > 0) {
+    rlang::warn(
+      paste0(
+        "Time unit ", toString(diff), " not covered. No unit conversion applied."
+      )
+    )
+  }
+
+  case_when(
+    unit == "DAYS" ~ x / 30.4375,
+    unit == "MONTHS" ~ x,
+    unit == "YEARS" ~ x * 12,
+    TRUE ~ x
+  )
 }
