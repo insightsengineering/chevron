@@ -890,7 +890,7 @@ run(ttet01, proc_data, method = "surv")
 #### **3. Time-to-event Summary (modifying analysis details like conftype, ties, alpha level)**
 
 1) The level of the confidence intervals is defined by the argument `conf_level`.    
-2) The type of confidence interval is defined in the argument `conf_type`. Options are `"plain"` (default), `"log"`, `"log-log"`.  
+2) The type of confidence interval is defined in the argument `conf_type`. Options are `"plain"` (default), `"log"` and `"log-log"`.  
 3) Handing of ties is specified in the argument `ties`. Options are `"efron"` (default),`"breslow"` or `"exact"`.
 
 
