@@ -293,7 +293,7 @@ run(dmt01, syn_data, lbl_overall = NULL)
 
 #### **3. Demographics and Baseline Characteristics with an additional study specific continuous variable**
 
-1) Study specific continuous variables can be added to the standard demographics and baseline characteristics summary by editing the argument `summaryvars`. To add or remove analyses, you need to list all variables you would like to include in the argument.  
+1) Study specific continuous variables can be added to the standard demographics and baseline characteristics summary by editing the argument `summaryvars`. To add or remove analyses, you need to pass all variables you would like to include to the argument.  
 2) CHEVRON performs the analysis based on the type of variable as defined in the input data.    
 
 ```{r}
