@@ -618,7 +618,7 @@ run(mht01, syn_data, lbl_overall = "All Patients")
 #### **1. Major Protocol Deviations**
 
 1) The **`pdt01`** template produces the standard major protocol deviations output.  
-2) Users are expected to filter `addv` to include records that meet `DVCAT == "MAJOR"` in pre-processing.  
+2) Users are expected to filter `addv` to only include records where `DVCAT == "MAJOR"` in pre-processing.  
 
 ```{r}
 proc_data <- syn_data
