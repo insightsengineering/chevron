@@ -598,7 +598,7 @@ run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
 #### **1. Medical History**
 
 1) The **`mht01`** template displays medical conditions by MedDRA system organ class and Preferred Name by default.    
-2) The default treatment variable is `ADSL.ARM`.   
+2) The default treatment variable is `"ADSL.ARM"`.   
 3) The user is expected to use filter to subset medical conditions prior to or on entering study.  
 4) By default, the template produces the overall 'total number of conditions' as well as the 'total number of conditions' per body system after the summary of patients.  
 5）This template currently does not support sorting MedDRA system organ class and preferred names by order of frequency.
@@ -711,7 +711,7 @@ run(rmpt05, syn_data)
 
 1) The **`rspt01`** template produces the standard best overall response output.      
 2) The template syntax is built based on `RECIST 1.1`. By default, the subjects with response results of `"CR"` or `"PR"` are considered as responders.    
-3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by Investigator or best overall response by `BICR`.    
+3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by investigator or best overall response by `BICR`.    
 4) Unstratified analysis is provided by default.   
 
 ```{r}
@@ -721,7 +721,8 @@ run(rspt01, proc_data, ref_group = NULL, perform_analysis = "unstrat", strata = 
 ```
 
 #### **2. Best Overall Response (Ordering of treatment groups)** {#1}
-1) By default, the first level or value of `arm_var` (default to `ADSL.ARM` unless specified) is treated as the reference group without specification.  
+
+1) By default, the first level or value of `arm_var` (default to `"ADSL.ARM"` unless specified) is treated as the reference group without specification.  
 2) To apply user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.   
 3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group.
 See below for examples:
@@ -802,7 +803,7 @@ tabl <- "
 cat(tabl)
 ```
 
-See table below the method options for estimates of proportion difference and the associated statistical methods:
+See in the table below the method options for estimates of proportion difference and the associated statistical methods:
 
 ```{r table_prop_diff, results = 'asis'}
 tabl <- "
