@@ -776,7 +776,7 @@ tabl <- "
 cat(tabl)
 ```
 
-See table below the method options for estimates of proportions and the associated statistical methods 
+See in the table below the method options for estimates of proportions and the associated statistical methods 
 ```{r table_prop, echo=FALSE, results = 'asis'}
 tabl <- "
 | Method Options  | Statistical Methods                       |
