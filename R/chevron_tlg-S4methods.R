@@ -310,7 +310,7 @@ setMethod(
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param adam_db (`string`) the name of the dataset.
-#' @param details (`flag`) deprecated. whether to show the code of all function.
+#' @param details (`flag`) deprecated. Whether to show the code of all functions.
 #' @param args (`string`) the name of argument list.
 #'
 #' @name script
