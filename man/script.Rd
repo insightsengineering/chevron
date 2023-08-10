@@ -17,7 +17,7 @@ script_funs(x, adam_db, args, details = FALSE)
 
 \item{args}{(\code{string}) the name of argument list.}
 
-\item{details}{(\code{flag}) deprecated. whether to show the code of all function.}
+\item{details}{(\code{flag}) deprecated. Whether to show the code of all functions.}
 }
 \description{
 Create Script for Parameters Assignment
