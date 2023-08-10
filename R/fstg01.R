@@ -24,7 +24,7 @@
 #'  `"AVALC"`, and the columns specified by `subgroups` which is denoted as
 #'  `c("SEX", "AGEGR1", "RACE")` by default.
 #'  * If the plot is too large to be rendered in the output, please first evaluate if
-#'  the stratifications can be shortened. In the default plot, `RACE` has a extreme long
+#'  the stratification variables can be shortened. In the default plot, `RACE` has a extreme long
 #'  subgroup which lead to the final plot too wide. You can also provide `width_row_names`,
 #'  `width_columns` and `width_forest` manually. See `g_forest` for more details.
 #'
