@@ -94,7 +94,7 @@ For studies with more than one study drug, users need to define the analyses in 
 
 1) The template `aet02` produces the standard adverse event summary by MedDRA system organ class and preferred term.
 2) The template does not include the column of total as default. The 'All Patients' column can be added with the argument `lbl_overall = "All Patients"`.
-3) Missing values in `"AEBODSYS"`, and `"AEDECOD"` are labeled by `No Coding Available`.
+3) Missing values in `"AEBODSYS"`, and `"AEDECOD"` are labeled as `No Coding Available`.
 
 ```{r}
 run(aet02, syn_data)
