@@ -812,7 +812,7 @@ tabl <- "
 cat(tabl)
 ```
 
-See table below the method options for testing proportion difference and the associated statistical methods 
+See in the table below the method options for testing proportion difference and the associated statistical methods 
 ```{r table_test_prop_diff, echo=FALSE, results = 'asis'}
 tabl <- "
 | Method Options  | Statistical Methods                       |
