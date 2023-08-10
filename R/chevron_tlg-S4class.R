@@ -37,14 +37,14 @@
 # Validation ----
 
 methods::setValidity("chevron_tlg", function(object) {
-  coll <- checkmate::makeAssertCollection()
-  checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::assert_function(object@main, args = "...", add = coll)
-  checkmate::assert_function(object@preprocess, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::assert_function(object@preprocess, args = "...", add = coll)
-  checkmate::assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
-  checkmate::assert_function(object@postprocess, args = "...", add = coll)
-  checkmate::reportAssertions(coll)
+  coll <- makeAssertCollection()
+  assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
+  assert_function(object@main, args = "...", add = coll)
+  assert_function(object@preprocess, args = c("adam_db"), ordered = TRUE, add = coll)
+  assert_function(object@preprocess, args = "...", add = coll)
+  assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
+  assert_function(object@postprocess, args = "...", add = coll)
+  reportAssertions(coll)
 })
 
 # Subclasses ----
@@ -64,9 +64,9 @@ methods::setValidity("chevron_tlg", function(object) {
 )
 
 methods::setValidity("chevron_t", function(object) {
-  coll <- checkmate::makeAssertCollection()
-  checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::reportAssertions(coll)
+  coll <- makeAssertCollection()
+  assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
+  reportAssertions(coll)
 })
 
 ## chevron_l ----
@@ -84,9 +84,9 @@ methods::setValidity("chevron_t", function(object) {
 )
 
 methods::setValidity("chevron_l", function(object) {
-  coll <- checkmate::makeAssertCollection()
-  checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::reportAssertions(coll)
+  coll <- makeAssertCollection()
+  assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
+  reportAssertions(coll)
 })
 
 ## chevron_g ----
@@ -104,9 +104,9 @@ methods::setValidity("chevron_l", function(object) {
 )
 
 methods::setValidity("chevron_g", function(object) {
-  coll <- checkmate::makeAssertCollection()
-  checkmate::assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  checkmate::reportAssertions(coll)
+  coll <- makeAssertCollection()
+  assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
+  reportAssertions(coll)
 })
 
 

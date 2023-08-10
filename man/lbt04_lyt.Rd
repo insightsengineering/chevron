@@ -9,9 +9,12 @@ lbt04_lyt(
   var_parcat,
   var_param,
   lbl_param,
+  row_split_var,
+  row_split_lbl,
   analysis_abn_var,
   lbl_abn_var,
-  variables
+  variables,
+  page_var
 )
 }
 \arguments{
@@ -19,9 +22,13 @@ lbt04_lyt(
 
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
 \item{lbl_abn_var}{(\code{string}) label of the \code{analysis_abn_var} variable.}
 
 \item{variables}{(\code{list}) see \link[tern:abnormal]{tern::count_abnormal}}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{lbt04} Layout

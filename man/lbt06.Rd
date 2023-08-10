@@ -11,7 +11,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-lbt06_main(adam_db, arm_var = "ACTARM", ...)
+lbt06_main(adam_db, arm_var = "ACTARM", page_var = "PARAMCD", ...)
 
 lbt06_pre(adam_db, ...)
 
@@ -23,6 +23,8 @@ lbt06
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) the arm variable used for arm splitting.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 

@@ -29,14 +29,14 @@ test_that("run works as expected with partial match argument", {
 
 test_that("args_ls works as expected", {
   res <- expect_silent(args_ls(aet04))
-  checkmate::expect_list(res, len = 3, names = "named")
-  checkmate::expect_names(names(res), identical.to = c("main", "preprocess", "postprocess"))
+  expect_list(res, len = 3, names = "named")
+  expect_names(names(res), identical.to = c("main", "preprocess", "postprocess"))
 })
 
 test_that("args_ls works as expected when simplify is TRUE", {
   res <- expect_silent(args_ls(aet04, simplify = TRUE))
-  checkmate::expect_list(res, len = 7, names = "named")
-  checkmate::expect_names(
+  expect_list(res, len = 7, names = "named")
+  expect_names(
     names(res),
     identical.to = c(
       "adam_db", "arm_var", "lbl_overall", "grade_groups", "...", "tlg", "prune_0"
@@ -51,8 +51,8 @@ test_that("args_ls works as expected with custom chevron_tlg object", {
   }
 
   res <- expect_silent(args_ls(obj, simplify = TRUE))
-  checkmate::expect_list(res, len = 8, names = "named")
-  checkmate::expect_names(
+  expect_list(res, len = 8, names = "named")
+  expect_names(
     names(res),
     identical.to = c(
       "adam_db", "arm_var", "lbl_overall", "grade_groups", "...", "new_arg", "tlg", "prune_0"
@@ -143,12 +143,12 @@ test_that("script_funs works as expected in interactive mode", {
 
 test_that("script_funs works as expected", {
   res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls"))
-  checkmate::expect_character(res)
+  expect_character(res)
 })
 
 test_that("script_funs works as expected with details set to TRUE", {
   res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls", details = TRUE))
-  checkmate::expect_character(res)
+  expect_character(res)
 })
 
 

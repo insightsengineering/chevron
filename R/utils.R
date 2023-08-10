@@ -11,11 +11,11 @@ globalVariables(c(".", ":="))
 #' Any values between brackets {} will be replaced with `dunlin::render_safe`.
 #' @export
 var_labels_for <- function(df, vars) {
-  checkmate::assert_names(colnames(df), must.include = vars, what = "colnames")
+  assert_names(colnames(df), must.include = vars, what = "colnames")
   render_safe(unname(formatters::var_labels(df, fill = TRUE)[vars]))
 }
 
-#' Prune Table up to an `ElementaryTable`
+#' Prune table up to an `ElementaryTable`
 #'
 #' Avoid returning `NULL` when the `table` is empty.
 #'
@@ -34,8 +34,7 @@ smart_prune <- function(tlg) {
   res
 }
 
-
-#' Standard Post processing
+#' Standard post processing
 #'
 #' @param tlg (`TableTree`) object.
 #' @param ind (`integer`) the indentation of the table.
@@ -50,7 +49,7 @@ smart_prune <- function(tlg) {
 #' @keywords internal
 #'
 std_postprocess <- function(tlg, ind = 2L, ...) {
-  checkmate::assert_int(ind, lower = 0L)
+  assert_int(ind, lower = 0L)
 
   res <- report_null(tlg)
   table_inset(res) <- ind
@@ -60,7 +59,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 
 # Special formats ----
 
-#' Decimal Formatting
+#' Decimal formatting
 #'
 #' @param digits (`integer`) number of digits.
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
@@ -75,8 +74,8 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' fun(c(123, 567.89))
 #'
 h_format_dec <- function(digits, format, ne = FALSE) {
-  checkmate::assert_integerish(digits, lower = 0)
-  checkmate::assert_string(format)
+  assert_integerish(digits, lower = 0)
+  assert_string(format)
   if (any(is.na(digits))) {
     function(x, ...) {
       ""
@@ -117,7 +116,7 @@ fuse_sequentially <- function(x, y) {
 #' @export
 grob_list <- function(...) {
   ret <- list(...)
-  checkmate::assert_list(ret, types = c("grob"))
+  assert_list(ret, types = c("grob"))
   structure(
     ret,
     class = c("grob_list", "list")
@@ -129,7 +128,7 @@ grob_list <- function(...) {
 #' @export
 gg_list <- function(...) {
   ret <- list(...)
-  checkmate::assert_list(ret, types = c("ggplot"))
+  assert_list(ret, types = c("ggplot"))
   structure(
     ret,
     class = c("gg_list", "list")
@@ -164,7 +163,7 @@ lvls.factor <- function(x) {
 
 #' @keywords internal
 quote_str <- function(x) {
-  checkmate::assert_string(x)
+  assert_string(x)
   paste0("`", x, "`")
 }
 
@@ -184,7 +183,7 @@ execute_with_args <- function(fun, ...) {
   do_call(fun, args[intersect(names(args), formalArgs(fun))])
 }
 
-#' Execute a Function Call
+#' Execute a function call
 #' @keywords internal
 do_call <- function(what, args) {
   arg_names <- names(args)
@@ -199,4 +198,41 @@ do_call <- function(what, args) {
   new_args <- lapply(arg_names, as.symbol)
   names(new_args) <- names(args)
   do.call(what, new_args, envir = args_env)
+}
+
+#' Modify character
+#' @keywords internal
+modify_character <- function(x, y) {
+  assert_character(x, names = "unique", null.ok = TRUE)
+  assert_character(y, names = "unique", null.ok = TRUE)
+  c(y, x)[unique(c(names(y), names(x)))]
+}
+
+#' Helper function to convert to months if needed
+#' @param x (`numeric`) time.
+#' @param unit (`character`) or (`factor`) time unit.
+#'
+#' @return A `numeric` vector with the time in months.
+#'
+#' @export
+convert_to_month <- function(x, unit) {
+  assert_multi_class(unit, c("character", "factor"))
+  assert_numeric(x, len = length(unit))
+
+  unit <- toupper(unit)
+  diff <- setdiff(unique(unit), c("DAYS", "MONTHS", "YEARS"))
+  if (length(diff) > 0) {
+    rlang::warn(
+      paste0(
+        "Time unit ", toString(diff), " not covered. No unit conversion applied."
+      )
+    )
+  }
+
+  case_when(
+    unit == "DAYS" ~ x / 30.4375,
+    unit == "MONTHS" ~ x,
+    unit == "YEARS" ~ x * 12,
+    TRUE ~ x
+  )
 }

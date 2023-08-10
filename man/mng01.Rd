@@ -4,7 +4,6 @@
 \name{mng01_main}
 \alias{mng01_main}
 \alias{mng01_pre}
-\alias{mng01_post}
 \alias{mng01}
 \title{\code{MNG01} Mean Plot Graph.}
 \format{
@@ -32,8 +31,6 @@ mng01_main(
 )
 
 mng01_pre(adam_db, dataset, x_var = "AVISIT", ...)
-
-mng01_post(tlg, ...)
 
 mng01
 }
@@ -74,8 +71,6 @@ mng01
 \code{arm_var} with color names.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
 a list of \code{ggplot} objects.
@@ -94,8 +89,6 @@ Overview of a summary statistics across time and arm for a selected data set.
 \item \code{mng01_main()}: Main TLG Function
 
 \item \code{mng01_pre()}: Preprocessing
-
-\item \code{mng01_post()}: Postprocessing
 
 }}
 \note{

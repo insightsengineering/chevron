@@ -22,8 +22,8 @@ aet10_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
-  checkmate::assert_string(lbl_overall, null.ok = TRUE)
-  checkmate::assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(arm_var)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
@@ -82,7 +82,7 @@ aet10_pre <- function(adam_db, ...) {
 #' @export
 #'
 aet10_post <- function(tlg, atleast = 0.05, ...) {
-  checkmate::assert_number(atleast, lower = 0, upper = 1)
+  assert_number(atleast, lower = 0, upper = 1)
   tbl_sorted <- tlg %>%
     sort_at_path(
       path = c("AEDECOD"),
@@ -114,7 +114,6 @@ aet10_post <- function(tlg, atleast = 0.05, ...) {
 #' run(aet10, syn_data)
 aet10 <- chevron_t(
   main = aet10_main,
-  lyt = aet10_lyt,
   preprocess = aet10_pre,
   postprocess = aet10_post
 )

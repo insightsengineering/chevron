@@ -12,9 +12,9 @@
 #' check_all_colnames(mtcars, c("x", "y"))
 #' }
 check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_data_frame(df)
-  checkmate::assert_character(x, null.ok = null_ok)
-  checkmate::assert_string(qualifier, null.ok = TRUE)
+  assert_data_frame(df)
+  assert_character(x, null.ok = null_ok)
+  assert_string(qualifier, null.ok = TRUE)
 
   diff <- setdiff(x, colnames(df))
 
@@ -39,9 +39,9 @@ check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
 #' check_all_colnames(mtcars, c("x", "y"))
 #' }
 check_one_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
-  checkmate::assert_data_frame(df)
-  checkmate::assert_character(x, null.ok = null_ok)
-  checkmate::assert_string(qualifier, null.ok = TRUE)
+  assert_data_frame(df)
+  assert_character(x, null.ok = null_ok)
+  assert_string(qualifier, null.ok = TRUE)
 
   common <- intersect(x, colnames(df))
 

@@ -49,22 +49,22 @@ mng01_main <- function(adam_db,
                        line_col = nestcolor::color_palette(),
                        ...) {
   assert_all_tablenames(adam_db, c(dataset, "adsl"))
-  checkmate::assert_character(x_var)
-  checkmate::assert_string(y_var)
-  checkmate::assert_string(y_name)
-  checkmate::assert_string(y_unit, null.ok = TRUE)
-  checkmate::assert_string(arm_var)
-  checkmate::assert_string(center_fun)
-  checkmate::assert_string(interval_fun)
-  checkmate::assert_names(center_fun, subset.of = c("mean", "median"))
-  checkmate::assert_choice(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
-  checkmate::assert_flag(show_table)
-  checkmate::assert_number(jitter, lower = 0, upper = 1)
-  checkmate::assert_flag(show_n)
-  checkmate::assert_flag(show_h_grid)
-  checkmate::assert_flag(show_v_grid)
-  checkmate::assert_choice(legend_pos, c("top", "bottom", "right", "left"))
-  checkmate::assert_character(line_col, null.ok = TRUE)
+  assert_character(x_var)
+  assert_string(y_var)
+  assert_string(y_name)
+  assert_string(y_unit, null.ok = TRUE)
+  assert_string(arm_var)
+  assert_string(center_fun)
+  assert_string(interval_fun)
+  assert_names(center_fun, subset.of = c("mean", "median"))
+  assert_choice(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
+  assert_flag(show_table)
+  assert_number(jitter, lower = 0, upper = 1)
+  assert_flag(show_n)
+  assert_flag(show_h_grid)
+  assert_flag(show_v_grid)
+  assert_choice(legend_pos, c("top", "bottom", "right", "left"))
+  assert_character(line_col, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], x_var)
   assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
   assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", "factor")))
@@ -171,14 +171,6 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
   dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
 }
 
-#' @describeIn mng01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-mng01_post <- function(tlg, ...) {
-  tlg
-}
-
 # `mng01` Pipeline ----
 
 #' `MNG01` Mean Plot Graph.
@@ -198,6 +190,5 @@ mng01_post <- function(tlg, ...) {
 #' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 mng01 <- chevron_g(
   main = mng01_main,
-  preproces = mng01_pre,
-  postprocess = mng01_post
+  preproces = mng01_pre
 )

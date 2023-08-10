@@ -25,7 +25,7 @@ aet05_main <- function(adam_db,
                        arm_var = "ACTARM",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adaette"))
-  checkmate::assert_string(arm_var)
+  assert_string(arm_var)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adaette, c("USUBJID", arm_var, "PARAMCD", "PARAM"),
     types = list(c("character", "factor"))

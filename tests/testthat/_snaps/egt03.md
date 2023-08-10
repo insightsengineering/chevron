@@ -3,6 +3,10 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
+      
+      Parameter: Heart Rate
+      
+        ————————————————————————————————————————————————————————————————————————————————
         Actual Arm Code                            Minimum Post-Baseline Assessment     
           Baseline Reference Range Indicator       LOW         NORMAL     HIGH   Missing
         ————————————————————————————————————————————————————————————————————————————————
@@ -27,6 +31,10 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
+      
+      Parameter: Heart Rate
+      
+        ————————————————————————————————————————————————————————————————————————————————
         Actual Arm Code                            Minimum Post-Baseline Assessment     
           Baseline Reference Range Indicator       LOW         NORMAL     HIGH   Missing
         ————————————————————————————————————————————————————————————————————————————————

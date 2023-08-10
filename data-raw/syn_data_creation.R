@@ -188,6 +188,10 @@ syn_test_data <- function() {
   sd$adtte <- sd$adtte %>% select(-c("RACE"))
   sd$adtte <- sd$adtte %>% left_join(adsl, by = "USUBJID")
 
+  # useful for fstg02
+  sd$adtte$AGEGR1 <- cut(sd$adtte$AGE, c(0, 65, 200), c("<65", ">=65"))
+  attr(sd$adtte$AGEGR1, "label") <- "Age Group"
+
   # useful for fstg01
   sd$adrs$AGEGR1 <- cut(sd$adrs$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adrs$AGEGR1, "label") <- "Age Group"

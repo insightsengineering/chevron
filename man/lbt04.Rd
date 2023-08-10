@@ -16,6 +16,8 @@ lbt04_main(
   arm_var = "ACTARM",
   analysis_abn_var = "ANRIND",
   baseline_abn_var = "BNRIND",
+  row_split_var = "PARCAT1",
+  page_var = tail(row_split_var, 1L),
   ...
 )
 
@@ -33,6 +35,10 @@ lbt04
 \item{analysis_abn_var}{(\code{string}) column describing anomaly magnitude}
 
 \item{baseline_abn_var}{(\code{string}) column describing anomaly at baseline.}
+
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 

@@ -4,18 +4,15 @@
 \name{kmg01_main}
 \alias{kmg01_main}
 \alias{kmg01_pre}
-\alias{kmg01_post}
 \alias{kmg01}
 \title{\code{KMG01} Kaplan-Meier Plot 1.}
 \format{
 An object of class \code{chevron_g} of length 1.
 }
 \usage{
-kmg01_main(adam_db, dataset = "adtte", arm_var = "ARM", ...)
+kmg01_main(adam_db, dataset = "adtte", arm_var = "ARM", strat = NULL, ...)
 
 kmg01_pre(adam_db, dataset = "adtte", ...)
-
-kmg01_post(tlg, ...)
 
 kmg01
 }
@@ -26,12 +23,12 @@ kmg01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{strat}{(\code{character}) the variable name of stratification variables.}
+
 \item{...}{Further arguments passed to \code{g_km} and \code{control_coxph}. For details, see
 the documentation in \code{tern}.
 Commonly used arguments include \code{col}, \code{pval_method}, \code{ties}, \code{conf_level}, \code{conf_type},
 \code{annot_coxph}, \code{annot_stats}, etc.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
 a \code{gTree} object.
@@ -49,8 +46,6 @@ a \code{gTree} object.
 \item \code{kmg01_main()}: Main TLG Function
 
 \item \code{kmg01_pre()}: Preprocessing
-
-\item \code{kmg01_post()}: Postprocessing
 
 }}
 \note{
