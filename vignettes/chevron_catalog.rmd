@@ -191,7 +191,7 @@ run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
 1) The **`aet05_ALL`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering all occurrences.   
 2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.  
 3) By default, all `adaette` parameter codes containing 'TOT' are including in the output. Users are expected to filter parameters of interest from input analysis dataset in pre-processing, if not all are needed.  
-4) In the input safety time-to-event dataset, the censoring variable `CNSR` was set to 0 indicating the occurrence of event of interest and set to 1 for censoring.  
+4) In the input safety time-to-event dataset, in the censoring variable `CNSR` , `0` indicates the occurrence of an event of interest and `1` denotes censoring.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
