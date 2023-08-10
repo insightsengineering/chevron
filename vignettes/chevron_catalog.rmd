@@ -209,7 +209,7 @@ run(cmt01a, syn_data, sort_by_freq = TRUE)
 The **`cmt01a`** template includes the analysis of 'total number of treatments' by default, modify `summary_labels` to change it.
 
 ```{r}
-run(cmt01a, syn_data, summary_labels = list(TOTAL = cmt01_label, ATC2 = cmt01_label[1]))
+#run(cmt01a, syn_data, summary_labels = list(TOTAL = cmt01_label, ATC2 = cmt01_label[1]))
 ```
 
 ### **Concomitant Medications by Preferred Name (`CMT02_PT`)**
@@ -474,7 +474,7 @@ run(lbt04, syn_data)
 2) The laboratory tests and directions of abnormality in this template is currently data-driven. The standard metadata for Safety Lab Standardization will be incorporated in future release.
 
 ```{r}
-run(lbt05, syn_data)
+#run(lbt05, syn_data)
 ```
 
 #### **2. Laboratory Abnormalities with Single and Replicated Marked showing all categories**
@@ -653,6 +653,255 @@ run(vst02_1, syn_data)
 run(vst02_2, syn_data)
 ```
 
+
+### **Cox Regression (`COXT01`)**
+
+#### **1. Cox Regression**
+
+The **`coxt01`** template produces the standard cox regression output.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
+proc_data$adtte$ARM <- droplevels(proc_data$adtte$ARM)
+run(coxt01, proc_data)
+```
+
+
+#### **2. Cox Regression with Interaction Term**
+
+To add interaction term to the models, the parameter `interaction` can be set to `TRUE`.
+
+```{r}
+run(coxt01, proc_data, interaction = TRUE)
+```
+
+#### **3. Cox Regression (Specifying Covariates)**
+
+The covariates to be included in the models can be specified by the parameter `covariates`. 
+
+```{r}
+run(coxt01, proc_data, covariates = c("ETHNIC", "AAGE"))
+```
+
+#### **4. Cox Regression (Setting Strata, Ties, and Alpha Level)**
+
+The strata used in the models can be specified by the parameter `strata`. The method used to handle ties can be set by the parameter `ties`. The confidence level can be set by parameter `conf_level`. 
+
+
+```{r}
+run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), ties = "exact", 
+    conf_level = 0.90)
+```
+
+
+### **Multi-variable Cox Regression (COXT02)**
+
+#### **1. Multi-variable Cox Regression**
+
+The `coxt02` template produces the standard multi-variable cox regression output.
+
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+run(coxt02, proc_data)
+```
+
+
+#### **2. Multi-variable Cox Regression (with Interaction) - is this kept in chevron?**
+
+
+
+```{r}
+run(coxt02, proc_data, interaction = TRUE)
+```
+
+
+#### **3. Multi-variable Cox Regression (Specifying Covariates)**
+
+The covariates to be included in the model can be specified by parameter `covariates`.
+
+```{r}
+run(coxt02, proc_data, covariates = c("SEX", "AAGE"))
+```
+
+
+
+#### **4. Multi-variable Cox Regression (specifying covariates from adsub) - is this kept in chevron?**
+
+#### **5. Multi-variable Cox Regression (Setting Strata, Ties, Alpha Level, and Statistics)**
+
+The strata used in the models can be set by parameter `strata`. 
+The confidence level used in the models can be set by parameter `conf_level`.
+
+```{r}
+run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
+```
+
+#### **6. Multi-variable Cox Regression (with selection process for covariates) - how to achieve this in chevron?**
+
+
+### **Overview of the Actual Measurements and Their Changes from Baseline Over the Course of the Trial (`CFBT01`)**
+
+#### **1. Overview of Actual Measurements and Their Changes from Baseline Over the Course of the Trial**
+
+The `cfbt01` template generates the output that provides an overview of actual measurement values and the changes from baseline over the course of the trial. 
+
+```{r}
+ proc_data <- log_filter(
+   syn_data,
+   PARAMCD %in% c("DIABP", "SYSBP"), "advs"
+ )
+
+run(cfbt01, proc_data, dataset = "advs")
+```
+
+
+
+### **Major Protocol Deviations (`PDT01`)**
+
+#### **1. Major Protocol Deviations**
+
+The `pdt01` template produces the standard major protocol deviations output.
+
+```{r}
+proc_data <- syn_data
+proc_data$addv <- proc_data$addv %>%
+  filter(DVCAT == "MAJOR")
+
+run(pdt01, proc_data)
+```
+
+### **Reasons for Major Protocol Deviations Related to Epidemic/Pandemic (`PDT02`)**
+
+#### **1. Reasons for Major Protocol Deviations Related to Epidemic/Pandemic**
+
+The `pdt02` template produces the reasons for major protocol deviations related to epidemic/pandemic summary.
+
+```{r}
+run(pdt02, syn_data)
+```
+
+
+### **Best Overall Response (`RSPT01`)**
+
+#### **1. Best Overall Response**
+
+The `rspt01` template produces the standard best overall response output.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+run(rspt01, proc_data)
+```
+
+
+#### **2. Best Overall Response (selecting sections to display)**
+
+The odds ratio section can be excluded from the output by setting the parameter `odds_ratio` to `FALSE`.
+
+```{r}
+run(rspt01, proc_data, odds_ratio = FALSE)
+```
+
+#### **3. Best Overall Response (modifying analysis details like type of confidence interval, alpha level, test for p-value)**
+
+The methods to be applied in the analysis can be set through the `methods` parameter. Allowed methods include `diff_pval_method`, `diff_conf_method`, `strat_diff_conf_method` (for stratified analysis), and `strat_diff_pval_method` (for stratified analysis).
+
+The confidence level to be applied in the analysis can be set through the `conf_level` parameter. 
+
+```{r}
+run(rspt01, proc_data, methods = list(diff_pval_method = "fisher",
+                                      diff_conf_method = "wald",
+                                      strat_diff_conf_method = "ha",
+                                      strat_diff_pval_method = "schouten"), 
+    conf_level = 0.90)
+```
+
+
+#### **4. Best Overall Response (with stratified analysis)**
+
+The `perform_analysis` parameter can be altered to conduct the analysis as stratified (`strat`), unstratified (`unstrat`), or both (`c("unstrat", "strat)`). 
+
+```{r}
+run(rspt01, proc_data, perform_analysis = c("unstrat", "strat"),
+    strata = c("STRATA1", "STRATA2"))
+```
+
+#### **5. Best Overall Response (modifying the definition of overall response) - how to do this?**
+#### **6. Best Overall Response (define new sections to display) - how to do this?**
+
+
+### **Time-to-event Summary (`TTET01`)**
+
+#### **1. Time-to-event Summary**
+
+The `ttet01` template produces the standard time-to-event summary.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+run(ttet01, proc_data)
+```
+
+#### **2. Time-to-event Summary (selecting sections to display) - how to do this?**
+
+```{r}
+run(ttet01, proc_data,
+   summarize_event = FALSE)
+```
+
+#### **3. Time-to-event Summary (modifying analysis details like conftype, ties, alpha level)**
+
+The confidence interval type can be set by parameter `conf_type`.
+
+The method applied to handle ties can be controlled by parameter `ties`.
+
+The confidence level applied can be controlled by parameter `conf_level`.
+
+The p-value method for testing hazards ratio = 1 can be set by parameter `pval_method`.
+
+The method of the analysis can be set through parameter `method`, with options either `"surv"` (survival estimations),
+`"surv_diff"` (difference in survival with the control) or `"both"`.
+
+
+```{r}
+run(ttet01, proc_data,
+   summarize_event = FALSE, conf_type = "log-log", ties = "exact", conf_level = 0.90, 
+   pval_method = "likelihood", method = "both")
+```
+
+
+#### **4. Time-to-event Summary (with stratified analysis)**
+
+The parameter `perform_analysis` can be set to conduct the analysis as stratified (`strat`), unstratified (`unstrat`) or both (`c("unstrat", "strat")`). 
+
+```{r}
+ run(ttet01, proc_data,
+     perform_analysis = c("unstrat", "strat"),
+     strata = c("STRATA1", "STRATA2"))
+```
+
+
+#### **5. Time-to-event Summary (modifying time point for the “xx year duration” analysis)**
+
+The timepoint of interest can be set through the `timepoint` parameter. 
+
+```{r}
+ run(ttet01, proc_data,
+     timepoint = 180)
+```
+
+
+#### **6. Time-to-event Summary (requesting more than one p-value) - is it allowed?**
+
+```{r}
+run(ttet01, proc_data,
+    pval_method = "likelihood")
+```
+
+
+
+
+
 ## **LISTINGS**
 
 ### **Glossary of Adverse Event Preferred Terms and Investigator-Specified Terms (`AEL01_NOLLT`)**
@@ -666,3 +915,227 @@ run(vst02_2, syn_data)
 l_ae_nollt <- run(ael01_nollt, syn_data)
 head(l_ae_nollt, 10)
 ```
+
+
+
+
+## **GRAPHS**
+
+### **Subgroup Analysis of Best Overall Response (`FSTG01`)**
+
+#### **1. Subgroup Analysis of Best Overall Response**
+
+The `fstg01` template produces the standard subgroup analysis of best overall response graphic.
+
+
+```{r}
+proc_data <- log_filter(
+   syn_data,
+   PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
+ )
+
+run(fstg01, proc_data,
+   dataset = "adrs"
+ )
+```
+
+
+#### **2. Subgroup Analysis of Best Overall Response (specifying class variables and options for the treatment variable)**
+
+The subgroups applied in the analysis can be set by the parameter `subgroups`.
+
+```{r}
+run(fstg01, proc_data,
+   subgroups = c("SEX"),
+   dataset = "adrs")
+```
+
+
+#### **3. Subgroup Analysis of Best Overall Response (changing the alpha level)**
+
+The confidence level applied in the analysis can be set through parameter `conf_level`.
+
+```{r}
+run(fstg01, proc_data,
+   conf_level = 0.90,
+   dataset = "adrs")
+```
+
+
+#### **4. Subgroup Analysis of Best Overall Response (modify plot options)**
+
+The plot options can be controlled by passing additional arguments that are included in `tern::g_forest()` to the call.
+
+```{r}
+run(fstg01, proc_data,
+   col = "brown", 
+   col_symbol_size = 1.5,
+   dataset = "adrs")
+```
+
+#### **5. Subgroup Analysis of Best Response of CR/PR (setting values indicating response) - how to do this?**
+
+### **Kaplan-Meier Plot**
+
+#### **1. Kaplan-Meier Plot (`KMG01`)**
+
+The `kmg01` template produces the standard Kaplan-Meier plot.
+
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "AEREPTTE", "adaette")
+run(kmg01, proc_data, dataset = "adaette")
+```
+
+#### **2. Kaplan-Meier Plot (Plotting Failure)**
+
+```{r}
+run(kmg01, proc_data, dataset = "adaette", yval = "Failure")
+```
+
+#### **3. Kaplan-Meier Plot (with comparative statistics)**
+
+To display the comparative statistics, the argument `annot_coxph` can be set to `TRUE`.
+
+```{r}
+run(kmg01, proc_data, datasets = "adaette", annot_coxph = FALSE)
+```
+
+#### **4. Kaplan-Meier Plot (without censoring marks)**
+
+The censoring marks can be hidden by setting the parameter `censor_show` to `FALSE`.
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+run(kmg01, proc_data, dataset = "adtte", censor_show = FALSE)
+```
+
+#### **5. Kaplan-Meier Plot (modifying plot appearances)**
+
+The Kaplan-Meier plot aesthetics can be modified by modifying the following parameters:
+
+- `col` : controls the colors of each group.
+- `pch` : controls the shape of the censor marks.
+- `annot_coxph` : controls whether to show an annotation table from cox regression or not.
+- `annot_stats` : controls the statistic annotations to be added to the plot.
+
+More arguments from `tern::g_km` can be included. 
+
+
+```{r}
+col <- c(
+   "A: Drug X" = "black",
+   "B: Placebo" = "blue",
+   "C: Combination" = "gray"
+)
+
+proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+run(kmg01, proc_data, dataset = "adtte", line_col = col, pch = 1, 
+    annot_coxph = TRUE, annot_stats = "min")
+```
+
+#### **6. Kaplan-Meier Plot (modifying options for statistics, ties handling, stratification, …)**
+
+The p-value method for testing hazard ratio = 1 can be altered by changing parameter `pval_method`.
+
+The method to be applied to handle ties can be controlled by `ties`.
+
+The confidence level to be applied in the analysis can be set by parameter `conf_level`.
+
+The strata to be applied in the analysis can be set by parameter `strat`. 
+
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+run(kmg01, proc_data, dataset = "adtte", pval_method = "likelihood", 
+    ties = "exact", 
+    annot_coxph = TRUE, 
+    conf_level = 0.90, 
+    strat = "SEX")
+```
+
+
+### **Mean Plot (`MNG01`)**
+
+#### **1. Plot of Mean and Confidence Interval**
+
+The `mng01` template produces the mean plot graphical output that's an overview of a summary statistics across time and arm for a selected data set.
+
+```{r}
+run(mng01, syn_data, dataset = "adlb")
+```
+
+#### **2. Plot of Mean and Confidence Intervals of Change from Baseline of Vital Signs (Changing the Input Analysis Data Set and Analysis Variable) - how to do this?**
+
+The analysis variables can be set through the following parameters:
+- `x_var` controls the variable(s) to be shown on the x-axis (multiple values allowed).
+- `y_var` cnotrols the variable to be shown on the y-axis (only allows single value).
+
+
+```{r}
+#run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), y_var = "CHG", y_name = "CHG")
+```
+
+#### **3. Plot of Mean (+/-SD) (Changing the Statistics)**
+
+The statistics computed can be altered through parameters:
+
+- `center_fun` controls the function to estimate value.
+- `interval_fun` controls the function to define the crossbar range. 
+
+
+```{r}
+run(mng01, syn_data, dataset = "adlb", 
+    center_fun = "median", 
+    interval_fun = "median_ci")
+```
+
+#### **4. Plot of Mean and Confidence Interval (Modify Alpha Level) - how to do this?**
+
+
+```{r}
+run(mng01, syn_data, dataset = "adlb", conf_level = 0.90)
+```
+
+#### **5. Plot of Mean and Confidence Interval (Customize Table Output)**
+
+- The summary table can be excluded from the output by setting `show_table` to `FALSE`.
+
+```{r}
+run(mng01, syn_data, dataset = "adlb", show_table = FALSE)
+```
+
+- The number of observations can be excluded from the output by setting `show_n` to `FALSE`.
+
+```{r}
+run(mng01, syn_data, dataset = "adlb", show_n = FALSE)
+```
+
+#### **6. Plot of Median and Confidence Interval (Condense Visits in Table Section) - how to do this?**
+
+
+#### **7. Plot of Mean and Upper Confidence Limit - how to do this?**
+
+```{r}
+run(mng01, syn_data, dataset = "adlb")
+```
+
+#### **8. Plot of Mean and Confidence Interval (Customize Plot Appearance)**
+
+The colors of the lines can be customized by parameter `line_col`.
+The background horizontal grid can be hidden by setting `show_h_grid` to `FALSE`. 
+The background vertical grid can be hidden by setting `show_v_grid` to `FALSE`.
+The dodge distance between groups can be altered by parameter `jitter`.
+
+
+```{r}
+col <- c(
+   "A: Drug X" = "black",
+   "B: Placebo" = "blue",
+   "C: Combination" = "gray"
+ )
+run(mng01, syn_data, dataset = "adlb", line_col = col,
+    show_h_grid = FALSE, show_v_grid = FALSE, jitter = 0.5)
+```
+
+
