@@ -634,7 +634,7 @@ run(pdt01, proc_data)
 
 1) The **`pdt02`** template produces the reasons for major protocol deviations related to epidemic/pandemic summary.    
 2) By default, `ADDV.DVREAS` provides the reason and `ADDV.DVTERM` provides the description.  
-3) By default, `addv` has been subset to include records that meet `AEPRELFL == "Y" & DVCAT == "MAJOR"`.  
+3) By default, `addv` has been filtered to include only records that meet the condition `AEPRELFL == "Y" & DVCAT == "MAJOR"`.  
 
 ```{r}
 run(pdt02, syn_data)
