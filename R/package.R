@@ -5,10 +5,11 @@
 #' @import rtables
 #' @import tern
 #' @import checkmate
-#' @importFrom formatters with_label
+#' @importFrom formatters with_label propose_column_widths
 #' @importFrom dunlin rule reformat render_safe
 #' @importFrom forcats fct_relevel
 #' @importFrom ggplot2 theme
+#' @importFrom grid stringWidth unit
 #' @importFrom glue glue
 #' @importFrom magrittr %>%
 #' @importFrom methods is setValidity

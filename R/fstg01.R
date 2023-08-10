@@ -13,6 +13,7 @@
 #' @param subgroups (`character`) the subgroups variable name to list baseline risk factors.
 #' @param strata_var (`character`) required if stratified analysis is performed.
 #' @param stat_var (`character`) the names of statistics to be reported in `tabulate_rsp_subgroups`.
+#' @param max_colwidth (`int`) maximum width of columns.
 #' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups` (a wrapper for
 #' `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
 #' Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
@@ -22,6 +23,10 @@
 #'  * `adam_db` object must contain the table specified by `dataset` with `"PARAMCD"`, `"ARM"`,
 #'  `"AVALC"`, and the columns specified by `subgroups` which is denoted as
 #'  `c("SEX", "AGEGR1", "RACE")` by default.
+#'  * If the plot is too large to be rendered in the output, please first evaluate if
+#'  the stratifications can be shortened. In the default plot, `RACE` has a extreme long
+#'  subgroup which lead to the final plot too wide. You can also provide `width_row_names`,
+#'  `width_columns` and `width_forest` manually. See `g_forest` for more details.
 #'
 #' @return a `gTree` object.
 #' @export
@@ -32,11 +37,13 @@ fstg01_main <- function(adam_db,
                         subgroups = c("SEX", "AGEGR1", "RACE"),
                         strata_var = NULL,
                         stat_var = c("n_tot", "n", "n_rsp", "prop", "or", "ci"),
+                        max_colwidth = 15,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
   assert_string(arm_var)
   assert_string(rsp_var)
+  assert_int(max_colwidth)
   assert_character(subgroups, null.ok = TRUE)
   assert_character(strata_var, null.ok = TRUE)
   assert_character(stat_var, null.ok = TRUE)
@@ -67,11 +74,15 @@ fstg01_main <- function(adam_db,
 
   result <- basic_table() %>%
     tabulate_rsp_subgroups(df, vars = stat_var)
-
+  cw <- pmin(propose_column_widths(result), max_colwidth)
+  final_width <- stringWidth(strrep("x", cw))
   execute_with_args(
     g_forest,
     tbl = result,
-    ...
+    ...,
+    width_row_names = final_width[1],
+    width_columns = final_width[-1],
+    draw = FALSE
   )
 }
 

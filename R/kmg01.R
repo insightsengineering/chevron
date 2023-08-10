@@ -46,7 +46,8 @@ kmg01_main <- function(adam_db,
     variables = variables,
     control_surv = control_surv,
     control_coxph_pw = control_cox,
-    ...
+    ...,
+    draw = FALSE
   )
 }
 

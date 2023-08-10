@@ -17,6 +17,7 @@ fstg02_main(
   subgroups = c("SEX", "AGEGR1", "RACE"),
   strata_var = NULL,
   stat_var = c("n_tot", "n", "median", "hr", "ci"),
+  max_colwidth = 15,
   ...
 )
 
@@ -36,6 +37,8 @@ fstg02
 \item{strata_var}{(\code{character}) required if stratified analysis is performed.}
 
 \item{stat_var}{(\code{character}) the names of statistics to be reported in \code{tabulate_survival_subgroups}.}
+
+\item{max_colwidth}{(\code{int}) maximum width of columns.}
 
 \item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups} (a wrapper for
 \code{h_odds_ratio_subgroups_df} and \code{h_proportion_subgroups_df}). For details, see the documentation in \code{tern}.
@@ -66,6 +69,7 @@ The template produces the subgroup analysis of survival duration graphic.
 \item \code{adam_db} object must contain the table specified by \code{dataset} with \code{"PARAMCD"}, \code{"ARM"},
 \code{"AVAL"}, \code{"AVALU"}, \code{"CNSR"}, and the columns specified by \code{subgroups} which is denoted as
 \code{c("SEX", "AGEGR1", "RACE")} by default.
+\item If the plot is too large to be rendered in the output, please refer to \code{FSTG01}.
 }
 }
 \examples{
