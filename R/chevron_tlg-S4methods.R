@@ -337,7 +337,7 @@ setMethod(
     checkmate::assert_flag(details)
     checkmate::assert_string(adam_db)
     checkmate::assert_string(args)
-    lifecycle::deprecate_warn("0.2.2", "chevron::script_funs(details = )")
+    if (!missing(details)) lifecycle::deprecate_warn("0.2.2", "chevron::script_funs(details = )")
     tlg_name <- deparse(substitute(x))
     checkmate::assert_string(tlg_name, pattern = "^[a-zA-Z]+\\w+$")
     c(
