@@ -902,7 +902,7 @@ run(ttet01, proc_data, conf_level = 0.90, conf_type = "log-log", ties = "efron")
 
 #### **4. Time-to-event Summary (with stratified analysis)**
 
-1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and provide the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and providing the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  
 2) The stratification variables are expected to be available in `adrs`.  
 3) If unstratified and stratified analysis are both required, users can use `perform_analysis = c("unstrat",strat")`.    
 
