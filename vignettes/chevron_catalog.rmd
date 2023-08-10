@@ -165,7 +165,7 @@ run(aet04, syn_data, grade_groups = grade_groups, prune_0 = FALSE)
 #### **1. Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence**
 
 1) The **`aet05`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering first occurrence only.   
-2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than GDSR standard naming `adsaftte`.
+2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.
 3) By default, all `adaette` parameter codes containing the string `"TTE"` are included in the output. Users are expected to filter the parameter(s) of interest from input safety time-to-event dataset in pre-processing if needed.
 4) In the input safety time-to-event dataset, in the censoring variable `CNSR` , `0` indicates the occurrence of an event of interest and `1` denotes censoring.
 
@@ -189,7 +189,7 @@ run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
 #### **1. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences**
 
 1) The **`aet05_ALL`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering all occurrences.   
-2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than GDSR standard naming `adsaftte`.  
+2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.  
 3) By default, all `adaette` parameter codes containing 'TOT' are including in the output. Users are expected to filter parameters of interest from input analysis dataset in pre-processing, if not all are needed.  
 4) In the input safety time-to-event dataset, the censoring variable `CNSR` was set to 0 indicating the occurrence of event of interest and set to 1 for censoring.  
 
@@ -506,6 +506,7 @@ TBA
 ### **Laboratory Abnormalities (`LBT04`)**
 
 #### **1. Laboratory Abnormalities**
+
 1) The **`lbt04`** template produces the standard laboratory abnormalities summary.  
 2) The template subsets to SI results by default.   
 3) The laboratory tests and directions of abnormality in this template is data-driven. Table entries provide the number of patients with a during treatment laboratory value abnormality in the direction specified among patients without this abnormality at baseline.
@@ -666,6 +667,7 @@ run(rmpt03, proc_data)
 ```
 
 Any other study specific age group can be used by editing the parameter `summaryvars`. For all `RMP` tables, if the variable specified per `summaryvars` is unavailable in `ADEX`, it needs to be added to `ADEX` first.
+
 ```{r}
 proc_data <- syn_data
 proc_data$adsl <- proc_data$adsl %>%
@@ -708,22 +710,23 @@ run(rmpt05, syn_data)
 #### **1. Best Overall Response**
 
 1) The **`rspt01`** template produces the standard best overall response output.      
-2) The template syntax is built based on RECIST 1.1. By default, the subjects with response results of `CR` or `PR` are considered as responders.    
-3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by Investigator or best overall response by BICR.    
+2) The template syntax is built based on `RECIST 1.1`. By default, the subjects with response results of `"CR"` or `"PR"` are considered as responders.    
+3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by Investigator or best overall response by `BICR`.    
 4) Unstratified analysis is provided by default.   
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
-run(rspt01, proc_data,ref_group= NULL, perform_analysis = "unstrat", strata = NULL)
+run(rspt01, proc_data, ref_group = NULL, perform_analysis = "unstrat", strata = NULL)
 ```
 
 #### **2. Best Overall Response (Ordering of treatment groups)** {#1}
-1) By default, the first level or value of `arm_var` (default to ADSL.ARM unless specified) is treated as the reference group without specification.  
+1) By default, the first level or value of `arm_var` (default to `ADSL.ARM` unless specified) is treated as the reference group without specification.  
 2) To apply user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.   
-3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group.   
-See below for examples: 
-```{r table1, echo=FALSE, results = 'asis'}
+3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group.
+See below for examples:
+
+```{r table1, results = 'asis'}
 tabl <- "
 | Factorized trt order        | ref_group =  | Displayed trt order | Ref group used in analysis |
 | :--------------------------:| :-----------:|:-------------------:|:--------------------------:|
@@ -731,6 +734,7 @@ tabl <- "
 | NULL                        | ARM B        | ARM B, ARM A, ARM C | ARM B                      |
 | ARM C, ARM B, ARM A         | ARM B        | ARM B, ARM C, ARM A | ARM B                      |
 "
+
 cat(tabl)
 ```
 
@@ -762,8 +766,9 @@ run(rspt01, proc_data, perform_analysis = "strat", strata = c("STRATA1", "STRATA
 1) The level of the confidence intervals is defined by the argument `conf_level`.
 2) The methods to construct confidence interval and p-value are controlled by the argument `methods`. It is a named list with five optional sub-arguments. For example, `methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "ha", diff_pval_method = "fisher", strat_diff_pval_method = "schouten")`
 
-See table below for what each argument controls and the available mthod options:  
-```{r table_args, echo=FALSE, results = 'asis'}
+See table below for what each argument controls and the available method options:
+
+```{r table_args, results = 'asis'}
 tabl <- "
 | Arguments              | Methods controlled                          | Methods Options              |
 | :---------------------:| :------------------------------------------:|:----------------------------:|
@@ -773,11 +778,13 @@ tabl <- "
 | strat_diff_conf_method | stratified difference confidence interval   | cmh (default), ha            |
 | strat_diff_pval_method | stratified p-value for odds ratio           | cmh (default), schouten      |
 "
+
 cat(tabl)
 ```
 
-See in the table below the method options for estimates of proportions and the associated statistical methods 
-```{r table_prop, echo=FALSE, results = 'asis'}
+See in the table below the method options for estimates of proportions and the associated statistical methods:
+
+```{r table_prop, results = 'asis'}
 tabl <- "
 | Method Options  | Statistical Methods                       |
 | :--------------:| :----------------------------------------:|
@@ -791,11 +798,13 @@ tabl <- "
 | agresti-coull   | Agresti-Coull                             |
 | jeffreys        | Jeffreys                                  |
 "
+
 cat(tabl)
 ```
 
-See table below the method options for estimates of proportion difference and the associated statistical methods 
-```{r table_prop_diff, echo=FALSE, results = 'asis'}
+See table below the method options for estimates of proportion difference and the associated statistical methods:
+
+```{r table_prop_diff, results = 'asis'}
 tabl <- "
 | Method Options  | Statistical Methods                       |
 | :--------------:| :----------------------------------------:|
@@ -809,11 +818,13 @@ tabl <- "
 | strat_newcombe  | Stratified Newcombe, without correction   |
 | strat_newcombecc| Stratified Newcombe, with correction      |
 "
+
 cat(tabl)
 ```
 
-See in the table below the method options for testing proportion difference and the associated statistical methods 
-```{r table_test_prop_diff, echo=FALSE, results = 'asis'}
+See in the table below the method options for testing proportion difference and the associated statistical methods:
+
+```{r table_test_prop_diff, results = 'asis'}
 tabl <- "
 | Method Options  | Statistical Methods                       |
 | :--------------:| :----------------------------------------:|
@@ -822,6 +833,7 @@ tabl <- "
 | cmh             | stratified Cochran-Mantel-Haenszel test   |
 | shouten         | Chi-Squared test with Schouten correction |
 "
+
 cat(tabl)
 ```
 
@@ -830,7 +842,14 @@ An example:
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
-run(rspt01, proc_data,conf_level = 0.90, methods = list(prop_conf_method = "wald", diff_conf_method = "wald",  diff_pval_method = "fisher"))
+run(rspt01, proc_data,
+  conf_level = 0.90,
+  methods = list(
+    prop_conf_method = "wald",
+    diff_conf_method = "wald",
+    diff_pval_method = "fisher"
+  )
+)
 ```
 
 #### **6. Best Overall Response (modifying the definition of overall response)**
@@ -887,7 +906,7 @@ proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 run(ttet01, proc_data, method = "surv")
 ```
 
-#### **3. Time-to-event Summary (modifying analysis details like conftype, ties, alpha level)**
+#### **3. Time-to-event Summary (modifying analysis details like confidence interval type, ties, and alpha level)**
 
 1) The level of the confidence intervals is defined by the argument `conf_level`.    
 2) The type of confidence interval is defined in the argument `conf_type`. Options are `"plain"` (default), `"log"` and `"log-log"`.  
@@ -919,7 +938,7 @@ The time point for the "survival at xx months" analysis can be modified by speci
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
-run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(3,6))
+run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(3, 6))
 ```
 
 The following example shows how to specify the time point in **user-defined unit**.  
@@ -928,7 +947,7 @@ The following example shows how to specify the time point in **user-defined unit
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 preprocess(ttet01) <- function(adam_db, dataset = "adtte",
-                       ...) {
+                               ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       AVALU = "DAYS",
@@ -946,7 +965,7 @@ preprocess(ttet01) <- function(adam_db, dataset = "adtte",
 
   adam_db
 }
-run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(91,183))
+run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(91, 183))
 ```
 
 #### **6. Time-to-event Summary (modifying the p-value method for testing hazard ratio)**
