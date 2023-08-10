@@ -201,7 +201,7 @@ run(aet05_all, proc_data)
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences (setting type of confidence interval)**
 
-1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log`, `exact`, or `byar`.     
+1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log`, `exact`, and `byar`.     
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
