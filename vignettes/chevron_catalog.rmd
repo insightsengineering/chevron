@@ -718,7 +718,7 @@ proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 run(rspt01, proc_data,ref_group= NULL, perform_analysis = "unstrat", strata = NULL)
 ```
 
-#### **2. Best Overall Response (Ordering of treatment groups)**
+#### **2. Best Overall Response (Ordering of treatment groups)** {#1}
 1) By default, the first level or value of `arm_var` (default to ADSL.ARM unless specified) is treated as the reference group without specification.  
 2) To apply user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.   
 3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group.   
@@ -856,7 +856,7 @@ run(rspt01, proc_data)
 
 1) The **`ttet01`** template produces the standard time-to-event summary.   
 2) Users are expected to subset the parameter of interest (e.g. `PARAMCD == "PFS"`) in pre-processing.
-3) Please see the section of `RSPT01` to find out more about the ordering of treatment groups and reference group. 
+3) Please see the section of [Best Overall Response (Ordering of treatment groups)](#1) to find out more about the ordering of treatment groups and reference group. 
 4) Unstratified analysis is provided by default. 
 5) Survival estimations and difference in survival are both provided by default.
 
