@@ -727,11 +727,11 @@ run(rspt01, proc_data, ref_group = NULL, perform_analysis = "unstrat", strata = 
 3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group.
 See below for examples:
 
-| Factorized trt order        | ref_group =  | Displayed trt order | Ref group used in analysis |
-| :--------------------------:| :-----------:|:-------------------:|:--------------------------:|
-| ARM C, ARM B, ARM A         | NULL         | ARM C, ARM B, ARM A | ARM C                      |
-| NULL                        | ARM B        | ARM B, ARM A, ARM C | ARM B                      |
-| ARM C, ARM B, ARM A         | ARM B        | ARM B, ARM C, ARM A | ARM B                      |
+| Factorized `trt` order | `ref_group` | Displayed `trt` order | Reference group used in analysis |
+| :---------------------:| :----------:|:---------------------:|:--------------------------------:|
+| ARM C, ARM B, ARM A    | NULL        | ARM C, ARM B, ARM A   | ARM C                            |
+| NULL                   | ARM B       | ARM B, ARM A, ARM C   | ARM B                            |
+| ARM C, ARM B, ARM A    | ARM B       | ARM B, ARM C, ARM A   | ARM B                            |
 
 #### **3. Best Overall Response  (selecting sections to display)**
 
@@ -763,50 +763,50 @@ run(rspt01, proc_data, perform_analysis = "strat", strata = c("STRATA1", "STRATA
 
 See table below for what each argument controls and the available method options:
 
-| Arguments              | Methods controlled                          | Methods Options              |
-| :---------------------:| :------------------------------------------:|:----------------------------:|
-| prop_conf_method       | proportion confidence interval              | waldcc (default), wald, etc. |
-| diff_conf_method       | unstratified difference confidence interval | waldcc (default), wald, etc. |
-| diff_pval_method       | unstratified p-value for odds ratio         | chisq (default), fisher      |
-| strat_diff_conf_method | stratified difference confidence interval   | cmh (default), ha            |
-| strat_diff_pval_method | stratified p-value for odds ratio           | cmh (default), schouten      |
+| Arguments                | Methods Controlled                          | Methods Options                      |
+| :-----------------------:| :------------------------------------------:|:------------------------------------:|
+| `prop_conf_method`       | proportion confidence interval              | `"waldcc"` (default), `"wald"`, etc. |
+| `diff_conf_method`       | unstratified difference confidence interval | `"waldcc"` (default), `"wald"`, etc. |
+| `diff_pval_method`       | unstratified p-value for odds ratio         | `"chisq"` (default), `"fisher"``     |
+| `strat_diff_conf_method` | stratified difference confidence interval   | `"cmh"` (default), `"ha"`            |
+| `strat_diff_pval_method` | stratified p-value for odds ratio           | `"cmh"` (default), `"schouten"`      |
 
 See in the table below the method options for estimates of proportions and the associated statistical methods:
 
-| Method Options  | Statistical Methods                       |
-| :--------------:| :----------------------------------------:|
-| clopper-pearson | Clopper-Pearson                           |
-| wald            | Wald, without correction                  |
-| waldcc          | Wald, with correction                     |
-| wilson          | Wilson, without correction                |
-| strat_wilson    | Stratified Wilson, without correction     |
-| wilsonc         | Wilson, with correction                   |
-| strat_wilsonc   | Stratified Wilson, with correction        |
-| agresti-coull   | Agresti-Coull                             |
-| jeffreys        | Jeffreys                                  |
+| Method Options      | Statistical Methods                   |
+| :------------------:| :------------------------------------:|
+| `"clopper-pearson"` | Clopper-Pearson                       |
+| `"wald"`            | Wald, without correction              |
+| `"waldcc"`          | Wald, with correction                 |
+| `"wilson"`          | Wilson, without correction            |
+| `"strat_wilson"`    | Stratified Wilson, without correction |
+| `"wilsonc"`         | Wilson, with correction               |
+| `"strat_wilsonc"`   | Stratified Wilson, with correction    |
+| `"agresti-coull"`   | Agresti-Coull                         |
+| `"jeffreys"`        | Jeffreys                              |
 
 See in the table below the method options for estimates of proportion difference and the associated statistical methods:
 
-| Method Options  | Statistical Methods                       |
-| :--------------:| :----------------------------------------:|
-| cmh             | CMH, without correction                   |
-| wald            | Wald, with correction                     |
-| waldcc          | Wald, without correction                  |
-| ha              | Anderson-Hauck                            |
-| newcombe        | Newcombe, without correction              |
-| newcombecc      | Newcombe, with correction                 |
-| strat_wilsonc   | Stratified Wilson, with correction        |
-| strat_newcombe  | Stratified Newcombe, without correction   |
-| strat_newcombecc| Stratified Newcombe, with correction      |
+| Method Options       | Statistical Methods                     |
+| :-------------------:| :--------------------------------------:|
+| `"cmh"`              | `CMH`, without correction               |
+| `"wald" `            | Wald, with correction                   |
+| `"waldcc"`           | Wald, without correction                |
+| `"ha"`               | Anderson-Hauck                          |
+| `"newcombe"`         | Newcombe, without correction            |
+| `"newcombecc"`       | Newcombe, with correction               |
+| `"strat_wilsonc"`    | Stratified Wilson, with correction      |
+| `"strat_newcombe"`   | Stratified Newcombe, without correction |
+| `"strat_newcombecc"` | Stratified Newcombe, with correction    |
 
 See in the table below the method options for testing proportion difference and the associated statistical methods:
 
-| Method Options  | Statistical Methods                       |
-| :--------------:| :----------------------------------------:|
-| chisq           | Chi-Squared test                          |
-| fisher          | the Fisher's exact test                   |
-| cmh             | stratified Cochran-Mantel-Haenszel test   |
-| shouten         | Chi-Squared test with Schouten correction |
+| Method Options | Statistical Methods                       |
+| :-------------:| :----------------------------------------:|
+| `"chisq"`      | Chi-Squared test                          |
+| `"fisher"`     | the Fisher's exact test                   |
+| `"cmh"`        | stratified Cochran-Mantel-Haenszel test   |
+| `"shouten"`    | Chi-Squared test with Schouten correction |
 
 An example:  
 
