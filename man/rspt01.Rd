@@ -87,9 +87,11 @@ a single time point. Typical application for oncology
 library(dplyr)
 library(dunlin)
 
-syn_data2 <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
-run(rspt01, syn_data2)
-run(rspt01, syn_data2,
+proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
+
+run(rspt01, proc_data)
+
+run(rspt01, proc_data,
   odds_ratio = FALSE, perform_analysis = c("unstrat", "strat"),
   strata = c("STRATA1", "STRATA2"), methods = list(diff_pval_method = "fisher")
 )

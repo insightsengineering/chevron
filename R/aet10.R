@@ -22,14 +22,16 @@ aet10_main <- function(adam_db,
                        lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", "AEDECOD"), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+
   lbl_overall <- render_safe(lbl_overall)
   lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
+
   lyt <- aet10_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,

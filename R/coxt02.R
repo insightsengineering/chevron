@@ -9,6 +9,7 @@
 #' @export
 #'
 coxt02_main <- modify_default_args(coxt01_main, multivar = TRUE)
+
 #' `COXT02` Multi-Variable Cox Regression Model Table.
 #'
 #' The `COXT02` table follows the same principles as the general Cox model analysis

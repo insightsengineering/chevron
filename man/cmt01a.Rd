@@ -19,9 +19,9 @@ cmt01_label
 cmt01a_main(
   adam_db,
   arm_var = "ARM",
+  lbl_overall = NULL,
   row_split_var = "ATC2",
   medname_var = "CMDECOD",
-  lbl_overall = NULL,
   summary_labels = setNames(rep(list(cmt01_label), length(row_split_var) + 1L),
     c("TOTAL", row_split_var)),
   ...
@@ -45,11 +45,11 @@ cmt01a
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
 \item{medname_var}{(\code{string}) variable name of medical treatment name.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{summary_labels}{(\code{list}) of summarize labels. See details.}
 

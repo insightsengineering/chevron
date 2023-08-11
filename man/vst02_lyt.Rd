@@ -6,14 +6,16 @@
 \usage{
 vst02_lyt(
   arm_var,
+  lbl_overall,
   exclude_base_abn,
   lbl_vs_assessment,
-  lbl_vs_abnormality,
-  lbl_overall
+  lbl_vs_abnormality
 )
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{exclude_base_abn}{(\code{flag}) whether to exclude subjects with baseline abnormality from numerator and
 denominator.}
@@ -21,8 +23,6 @@ denominator.}
 \item{lbl_vs_assessment}{(\code{string}) the label of the assessment variable.}
 
 \item{lbl_vs_abnormality}{(\code{string}) the label of the abnormality variable.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 }
 \description{
 \code{vst02_1} Layout

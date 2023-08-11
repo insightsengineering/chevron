@@ -5,7 +5,7 @@
 \alias{fstg02_main}
 \alias{fstg02_pre}
 \alias{fstg02}
-\title{\code{fstg02} Subgroup Analysis of Survival Duration.}
+\title{\code{FSTG02} Subgroup Analysis of Survival Duration.}
 \format{
 An object of class \code{chevron_g} of length 1.
 }

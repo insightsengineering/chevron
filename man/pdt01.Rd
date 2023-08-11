@@ -14,9 +14,9 @@ An object of class \code{chevron_t} of length 1.
 pdt01_main(
   adam_db,
   arm_var = "ARM",
+  lbl_overall = NULL,
   dvcode_var = "DVDECOD",
   dvterm_var = "DVTERM",
-  lbl_overall = NULL,
   ...
 )
 
@@ -37,11 +37,11 @@ pdt01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{dvcode_var}{(\code{string}) the variable defining the protocol deviation coded term. By default \code{DVDECOD}.}
 
 \item{dvterm_var}{(\code{string}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
 

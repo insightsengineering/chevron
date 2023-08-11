@@ -7,10 +7,10 @@
 pdt02_lyt(
   arm_var,
   lbl_overall,
-  dvreas_var,
   lbl_dvreas_var,
-  dvterm_var,
-  lbl_dvterm_var
+  lbl_dvterm_var,
+  dvreas_var,
+  dvterm_var
 )
 }
 \arguments{
@@ -18,13 +18,13 @@ pdt02_lyt(
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{dvreas_var}{(\code{string}) the variable defining the reason for deviation. By default \code{DVREAS}.}
-
 \item{lbl_dvreas_var}{(\code{string}) label for the variable defining the reason for deviation.}
 
-\item{dvterm_var}{(\code{string}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
-
 \item{lbl_dvterm_var}{(\code{string}) label for the variable defining the protocol deviation term.}
+
+\item{dvreas_var}{(\code{string}) the variable defining the reason for deviation. By default \code{DVREAS}.}
+
+\item{dvterm_var}{(\code{string}) the variable defining the protocol deviation term. By default \code{DVTERM}.}
 }
 \description{
 \code{pdt02} Layout

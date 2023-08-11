@@ -4,6 +4,7 @@
 #'
 #' @inherit cfbt01_main
 #' @source `cfbt01.R`
+#'
 #' @export
 #'
 egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg")
@@ -11,6 +12,7 @@ egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg")
 #' @describeIn egt01 Preprocessing
 #'
 #' @inherit cfbt01_pre
+#'
 #' @export
 #'
 egt01_pre <- modify_default_args(cfbt01_pre, dataset = "adeg")

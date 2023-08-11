@@ -14,6 +14,7 @@ An object of class \code{chevron_t} of length 1.
 lbt04_main(
   adam_db,
   arm_var = "ACTARM",
+  lbl_overall = NULL,
   analysis_abn_var = "ANRIND",
   baseline_abn_var = "BNRIND",
   row_split_var = "PARCAT1",
@@ -31,6 +32,8 @@ lbt04
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{analysis_abn_var}{(\code{string}) column describing anomaly magnitude}
 

@@ -29,9 +29,10 @@ mht01_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$admh, arm_var)
 
+  lbl_overall <- render_safe(lbl_overall)
   lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
   lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
-  lbl_overall <- render_safe(lbl_overall)
+
   lyt <- mht01_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
@@ -59,7 +60,6 @@ mht01_lyt <- function(arm_var,
                       lbl_mhdecod) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     summarize_num_patients(
       var = "USUBJID",

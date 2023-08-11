@@ -6,17 +6,23 @@
 \usage{
 lbt07_lyt(
   arm_var,
+  lbl_overall,
+  lbl_param_var,
+  lbl_grad_dir_var,
   param_var,
   grad_dir_var,
   grad_anl_var,
-  lbl_param_var,
-  lbl_grad_dir_var,
-  lbl_overall,
   map
 )
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{lbl_param_var}{(\code{string}) label of the \code{param_var} variable.}
+
+\item{lbl_grad_dir_var}{(\code{string}) label for the \code{grad_dir_var} variable.}
 
 \item{param_var}{(\code{string}) the name of the column storing the parameters name.}
 
@@ -25,12 +31,6 @@ order to obtain the correct denominators when building the layout as it is used 
 
 \item{grad_anl_var}{(\code{string})  the name of the column storing toxicity grade variable where all negative values from
 \code{ATOXGR} are replaced by their absolute values.}
-
-\item{lbl_param_var}{(\code{string}) label of the \code{param_var} variable.}
-
-\item{lbl_grad_dir_var}{(\code{string}) label for the \code{grad_dir_var} variable.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{map}{(\code{data.frame}) mapping of \code{PARAM}s to directions of abnormality.}
 }

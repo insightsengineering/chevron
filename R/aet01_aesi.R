@@ -32,15 +32,15 @@
 #'
 aet01_aesi_main <- function(adam_db,
                             arm_var = "ACTARM",
+                            lbl_overall = NULL,
                             aesi_vars = NULL,
                             grade_groups = NULL,
-                            lbl_overall = NULL,
                             ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_character(aesi_vars, null.ok = TRUE)
   assert_list(grade_groups, null.ok = TRUE)
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
   assert_valid_variable(adam_db$adae, c(arm_var))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE)
@@ -57,13 +57,15 @@ aet01_aesi_main <- function(adam_db,
   }
   all_aesi_vars <- get_aesi_vars(aesi_vars)
   assert_valid_variable(adam_db$adae, c(all_aesi_vars), empty_ok = TRUE, na_ok = TRUE, types = list("logical"))
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_aesi_vars <- var_labels_for(adam_db$adae, all_aesi_vars)
 
   lyt <- aet01_aesi_lyt(
     arm_var = arm_var,
     aesi_vars = all_aesi_vars,
-    lbl_aesi_vars = lbl_aesi_vars,
     lbl_overall = lbl_overall,
+    lbl_aesi_vars = lbl_aesi_vars,
     grade_groups = grade_groups
   )
 
@@ -206,6 +208,7 @@ aet01_aesi_pre <- function(adam_db,
 #' @inheritParams gen_args
 #'
 #' @export
+#'
 aet01_aesi_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)

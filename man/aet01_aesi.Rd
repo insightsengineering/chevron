@@ -14,9 +14,9 @@ An object of class \code{chevron_t} of length 1.
 aet01_aesi_main(
   adam_db,
   arm_var = "ACTARM",
+  lbl_overall = NULL,
   aesi_vars = NULL,
   grade_groups = NULL,
-  lbl_overall = NULL,
   ...
 )
 
@@ -31,11 +31,11 @@ aet01_aesi
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{aesi_vars}{(\code{character}) the \code{AESI} variables to be included in the summary. Defaults to \code{NA}.}
 
 \item{grade_groups}{(\code{list}) the grade groups to be displayed.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{...}{not used.}
 
