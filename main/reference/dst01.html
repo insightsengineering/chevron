@@ -12,7 +12,7 @@ study completion. For patients who discontinued the study a reason is provided."
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9003</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,23 +32,6 @@ study completion. For patients who discontinued the study a reason is provided."
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -87,10 +70,10 @@ study completion. For patients who discontinued the study a reason is provided.<
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dst01_main</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
 <span>  arm_var <span class="op">=</span> <span class="st">"ARM"</span>,</span>
+<span>  lbl_overall <span class="op">=</span> <span class="st">"All {Patient_label}"</span>,</span>
 <span>  study_status_var <span class="op">=</span> <span class="st">"EOSSTT"</span>,</span>
 <span>  detail_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Discontinued <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DCSREAS"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  trt_status_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  lbl_overall <span class="op">=</span> <span class="st">"All {Patient_label}"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -115,6 +98,10 @@ study completion. For patients who discontinued the study a reason is provided.<
 <dd><p>(<code>string</code>) variable. Usually one of <code>ARM</code>, <code>ACTARM</code>, <code>TRT01A</code>, or <code>TRT01A</code>.</p></dd>
 
 
+<dt>lbl_overall</dt>
+<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
+
+
 <dt>study_status_var</dt>
 <dd><p>(<code>string</code>) variable used to define patient status. Default is <code>EOSSTT</code>, however can also be a
 variable name with the pattern <code>EOPxxSTT</code> where <code>xx</code> must be substituted by 2 digits referring to the analysis
@@ -128,10 +115,6 @@ of <code>study_status_var</code>.</p></dd>
 
 <dt>trt_status_var</dt>
 <dd><p>(<code>string</code>) variable of treatment status.</p></dd>
-
-
-<dt>lbl_overall</dt>
-<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
 
 
 <dt>...</dt>
@@ -179,6 +162,7 @@ of <code>study_status_var</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Ongoing                 24 (17.9%)   28 (20.9%)     21 (15.9%)      73 (18.2%) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Alive: Ongoing         8 (6.0%)     6 (4.5%)       8 (6.1%)       22 (5.5%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Alive: In Follow-up   16 (11.9%)   22 (16.4%)     13 (9.8%)       51 (12.8%) </span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dst01</span>, <span class="va">syn_data</span>, detail_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Discontinued <span class="op">=</span> <span class="st">"DCSREAS"</span>, Ongoing <span class="op">=</span> <span class="st">"STDONS"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     A: Drug X    B: Placebo   C: Combination   All Patients</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                      (N=134)      (N=134)        (N=132)         (N=400)   </span>
@@ -195,6 +179,7 @@ of <code>study_status_var</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  </span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">dst01</span>, <span class="va">syn_data</span>,</span></span>
 <span class="r-in"><span>  detail_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
