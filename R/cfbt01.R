@@ -32,6 +32,7 @@
 cfbt01_main <- function(adam_db,
                         dataset,
                         arm_var = "ACTARM",
+                        lbl_overall = NULL,
                         row_split_var = NULL,
                         summaryvars = c("AVAL", "CHG"),
                         visitvar = "AVISIT",
@@ -42,11 +43,11 @@ cfbt01_main <- function(adam_db,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_character(summaryvars, max.len = 2L, min.len = 1L)
   assert_character(row_split_var, null.ok = TRUE)
   assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   assert_string(visitvar)
-  assert_string(page_var, null.ok = TRUE)
   assert_subset(page_var, c(row_split_var, "PARAMCD"))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)
@@ -70,6 +71,7 @@ cfbt01_main <- function(adam_db,
   )
   assert_subset(.stats, all_stats)
 
+  lbl_overall <- lbl_overall <- render_safe(lbl_overall)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
@@ -78,6 +80,7 @@ cfbt01_main <- function(adam_db,
 
   lyt <- cfbt01_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
     summaryvars = summaryvars,
@@ -116,6 +119,7 @@ cfbt01_main <- function(adam_db,
 #' @keywords internal
 #'
 cfbt01_lyt <- function(arm_var,
+                       lbl_overall,
                        lbl_avisit,
                        lbl_param,
                        summaryvars,
@@ -131,7 +135,7 @@ cfbt01_lyt <- function(arm_var,
   page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(arm_var) %>%
+    split_cols_by(arm_var, split_fun = add_overall_level(lbl_overall)) %>%
     split_rows_by_recurive(
       row_split_var,
       split_label = row_split_lbl,

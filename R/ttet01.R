@@ -31,7 +31,6 @@ ttet01_main <- function(adam_db,
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
   assert_string(arm_var)
-  assert_string(ref_group, null.ok = TRUE)
   assert_flag(summarize_event)
   assert_subset(perform_analysis, c("unstrat", "strat"))
   assert_character(
@@ -56,7 +55,7 @@ ttet01_main <- function(adam_db,
   event_lvls <- lvls(anl$EVNT1)
 
   control_survt <- execute_with_args(control_surv_time, ...)
-  control_coxph <- execute_with_args(control_coxph, ...)
+  control_cox_ph <- execute_with_args(control_coxph, ...)
   control_survtp <- execute_with_args(control_surv_timepoint, ...)
 
   lyt <- ttet01_lyt(
@@ -68,7 +67,7 @@ ttet01_main <- function(adam_db,
     timeunit = timeunit,
     event_lvls = event_lvls,
     control_survt = control_survt,
-    control_coxph = control_coxph,
+    control_cox_ph = control_cox_ph,
     control_survtp = control_survtp,
     ...
   )
@@ -93,7 +92,7 @@ ttet01_lyt <- function(arm_var,
                        timeunit,
                        event_lvls,
                        control_survt,
-                       control_coxph,
+                       control_cox_ph,
                        control_survtp,
                        ...) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
@@ -142,7 +141,7 @@ ttet01_lyt <- function(arm_var,
         is_event = "IS_EVENT",
         var_labels = if (perform == "strat") "Stratified Analysis" else "Unstratified Analysis",
         strat = if (perform == "strat") strata else NULL,
-        control = control_coxph,
+        control = control_cox_ph,
         table_names = if (perform == "strat") "coxph_stratified" else "coxph_unstratified"
       )
   }

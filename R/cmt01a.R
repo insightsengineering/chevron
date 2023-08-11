@@ -42,7 +42,7 @@ cmt01a_main <- function(adam_db,
                         ),
                         ...) {
   assert_all_tablenames(adam_db, "adsl", "adcm")
-  assert_string
+  assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
   assert_character(row_split_var, null.ok = TRUE)
   assert_list(summary_labels)

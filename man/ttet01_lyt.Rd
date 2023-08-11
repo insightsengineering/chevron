@@ -13,7 +13,7 @@ ttet01_lyt(
   timeunit,
   event_lvls,
   control_survt,
-  control_coxph,
+  control_cox_ph,
   control_survtp,
   ...
 )

@@ -15,6 +15,7 @@ cfbt01_main(
   adam_db,
   dataset,
   arm_var = "ACTARM",
+  lbl_overall = NULL,
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
@@ -37,6 +38,8 @@ cfbt01
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
 

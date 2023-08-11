@@ -6,6 +6,7 @@
 \usage{
 cfbt01_lyt(
   arm_var,
+  lbl_overall,
   lbl_avisit,
   lbl_param,
   summaryvars,
@@ -22,6 +23,8 @@ cfbt01_lyt(
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
 
