@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9002</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,23 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -113,19 +96,9 @@ Falquet</h4>
 <p>In addition of the embedded <code><a href="../reference/run.html">run()</a></code> method to create a
 <code>tlg</code>, chevron offers a script-based approach that allows the
 user to quickly edit a chevron workflow without the need for modifying a
-<code>chevron_tlg</code> object. The script is generated as two separate
-components:</p>
-<ul>
-<li><p><code>script_args</code> method generates a script for parameters
-assignment based on the default value of the arguments but can be edit
-either manually after creation or using the <code>dict</code>
-argument.</p></li>
-<li><p><code>script_funs</code> methods expose by default only the
-script corresponding to the pre processing function in the generated
-script. However, the main and post processing functions can also be
-exposed in the script with the <code>details = TRUE</code>
-argument.</p></li>
-</ul>
+<code>chevron_tlg</code> object. The script is generated from
+<code>script_funs</code> method which by default only output the script
+corresponding to the preprocessing function in the generated script.</p>
 </div>
 <div class="section level2">
 <h2 id="using-a-chevron-defined-object">Using a chevron-defined object<a class="anchor" aria-label="anchor" href="#using-a-chevron-defined-object"></a>
@@ -134,21 +107,11 @@ argument.</p></li>
 character with one element per line of the script, that can be easily
 rendered.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">aet01</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Arguments definition ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; adam_db &lt;- stop("missing value")</span></span>
-<span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
-<span><span class="co">#&gt; anl_vars &lt;- list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", </span></span>
-<span><span class="co">#&gt;     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))</span></span>
-<span><span class="co">#&gt; anl_lbls &lt;- "Total number of {patient_label} with at least one"</span></span>
-<span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
-<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
-<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, ...) </span></span>
+<span><span class="co">#&gt; preprocess(aet01) &lt;- </span></span>
+<span><span class="co">#&gt; function (adam_db, ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     adam_db$adae &lt;- adam_db$adae %&gt;% filter(.data$ANL01FL == </span></span>
 <span><span class="co">#&gt;         "Y") %&gt;% mutate(FATAL = with_label(.data$AESDTH == "Y", </span></span>
@@ -173,8 +136,7 @@ rendered.</p>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Create TLG</span></span>
-<span><span class="co">#&gt; syn_data &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list)</span></span>
-<span><span class="co">#&gt; tlg_output &lt;- run(object = aet01, adam_db = syn_data, auto_pre = FALSE, verbose = TRUE, user_args = args_list)</span></span></code></pre></div>
+<span><span class="co">#&gt; tlg_output &lt;- run(object = aet01, adam_db = syn_data, verbose = TRUE, user_args = args_list)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="with-a-modified-chevron-object">With a modified chevron object<a class="anchor" aria-label="anchor" href="#with-a-modified-chevron-object"></a>
@@ -188,291 +150,20 @@ different script.</p>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/reformat.html" class="external-link">reformat</a></span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">new_format</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">aet01_custom</span><span class="op">)</span></span>
 <span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">aet01_custom</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
 <p>Print the generated scripts. Note that a new argument
 <code>new_format</code> has been added and the pre processing function
 has been modified.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Arguments definition ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; adam_db &lt;- stop("missing value")</span></span>
-<span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
-<span><span class="co">#&gt; anl_vars &lt;- list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", </span></span>
-<span><span class="co">#&gt;     "RELSER", "WD", "DSM", "REL", "RELWD", "RELDSM", "SEV"))</span></span>
-<span><span class="co">#&gt; anl_lbls &lt;- "Total number of {patient_label} with at least one"</span></span>
-<span><span class="co">#&gt; new_format &lt;- stop("missing value")</span></span>
-<span><span class="co">#&gt; prune_0 &lt;- FALSE</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
-<span><span class="co">#&gt; pre_fun &lt;- function(adam_db, new_format, ...) {</span></span>
+<span><span class="co">#&gt; preprocess(aet01_custom) &lt;- </span></span>
+<span><span class="co">#&gt; function(adam_db, new_format, ...) {</span></span>
 <span><span class="co">#&gt;   reformat(adam_db, new_format)</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; # Create TLG</span></span>
-<span><span class="co">#&gt; syn_data &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list)</span></span>
-<span><span class="co">#&gt; tlg_output &lt;- run(object = aet01_custom, adam_db = syn_data, auto_pre = FALSE, verbose = TRUE, user_args = args_list)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="with-custom-argument-definition">With custom argument definition<a class="anchor" aria-label="anchor" href="#with-custom-argument-definition"></a>
-</h2>
-<p>To define the value of an argument in the directly in the
-<code>script_args</code> method, pass it to a named list. Existing
-values will be overwritten.</p>
-<p>Note: variables (in this case the <code>dm</code> object
-<code>syn_data</code>), have to be passed as symbol, using for instance
-<code><a href="https://rlang.r-lib.org/reference/sym.html" class="external-link">rlang::sym</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  adam_db <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/sym.html" class="external-link">sym</a></span><span class="op">(</span><span class="st">"syn_data"</span><span class="op">)</span>,</span>
-<span>  some_character <span class="op">=</span> <span class="st">"A"</span>,</span>
-<span>  some_vector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">res_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_args</a></span><span class="op">(</span><span class="va">mng01</span>, dict <span class="op">=</span> <span class="va">dict</span><span class="op">)</span></span>
-<span><span class="va">res_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Arguments definition ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; adam_db &lt;- syn_data</span></span>
-<span><span class="co">#&gt; some_character &lt;- "A"</span></span>
-<span><span class="co">#&gt; some_vector &lt;- c("A", "B")</span></span>
-<span><span class="co">#&gt; dataset &lt;- "adlb"</span></span>
-<span><span class="co">#&gt; x_var &lt;- "AVISIT"</span></span>
-<span><span class="co">#&gt; y_var &lt;- "AVAL"</span></span>
-<span><span class="co">#&gt; y_name &lt;- "PARAM"</span></span>
-<span><span class="co">#&gt; arm_var &lt;- "ACTARM"</span></span>
-<span><span class="co">#&gt; center_fun &lt;- "mean"</span></span>
-<span><span class="co">#&gt; interval_fun &lt;- "mean_ci"</span></span>
-<span><span class="co">#&gt; show_table &lt;- TRUE</span></span>
-<span><span class="co">#&gt; jitter &lt;- 0.3</span></span>
-<span><span class="co">#&gt; show_n &lt;- TRUE</span></span>
-<span><span class="co">#&gt; show_h_grid &lt;- TRUE</span></span>
-<span><span class="co">#&gt; show_v_grid &lt;- FALSE</span></span>
-<span><span class="co">#&gt; legend_pos &lt;- "top"</span></span>
-<span><span class="co">#&gt; line_col &lt;- nestcolor::color_palette()</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # Edit Preprocessing Function.</span></span>
-<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
-<span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y") %&gt;% mutate(AVISIT = reorder(.data$AVISIT, .data$AVISITN), </span></span>
-<span><span class="co">#&gt;         AVISIT = with_label(.data$AVISIT, "Visit"))</span></span>
-<span><span class="co">#&gt;     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
-<span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Create TLG</span></span>
-<span><span class="co">#&gt; syn_data &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list)</span></span>
-<span><span class="co">#&gt; tlg_output &lt;- run(object = mng01, adam_db = syn_data, auto_pre = FALSE, verbose = TRUE, user_args = args_list)</span></span></code></pre></div>
-<p>If saved in a <code>.R</code> file, the generated script can be
-executed. The result stored in <code>tlg_output</code> can be
-printed.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tmp_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"my_script_args"</span>, fileext <span class="op">=</span> <span class="st">"R"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_args</span>, con <span class="op">=</span> <span class="va">tmp_args</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tmp_funs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"my_script_funs"</span>, fileext <span class="op">=</span> <span class="st">"R"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_funs</span>, con <span class="op">=</span> <span class="va">tmp_funs</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">args_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  dataset <span class="op">=</span> <span class="st">"adlb"</span>,</span>
-<span>  arm_var <span class="op">=</span> <span class="st">"ARM"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">syn_data</span>, package <span class="op">=</span> <span class="st">"chevron"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_args</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span>, echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; adam_db &lt;- syn_data</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; some_character &lt;- "A"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; some_vector &lt;- c("A", "B")</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; dataset &lt;- "adlb"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; x_var &lt;- "AVISIT"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; y_var &lt;- "AVAL"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; y_name &lt;- "PARAM"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; arm_var &lt;- "ACTARM"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; center_fun &lt;- "mean"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; interval_fun &lt;- "mean_ci"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; show_table &lt;- TRUE</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; jitter &lt;- 0.3</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; show_n &lt;- TRUE</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; show_h_grid &lt;- TRUE</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; show_v_grid &lt;- FALSE</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; legend_pos &lt;- "top"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &gt; line_col &lt;- nestcolor::color_palette()</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="va">tmp_funs</span>, local <span class="op">=</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_global.html" class="external-link">knit_global</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Using template:  mng01 </span></span>
-<span><span class="co">#&gt; Using data:      syn_data </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Main args:</span></span>
-<span><span class="co">#&gt;   dataset       : "adlb"</span></span>
-<span><span class="co">#&gt;   x_var         : "AVISIT"</span></span>
-<span><span class="co">#&gt;   y_var         : "AVAL"</span></span>
-<span><span class="co">#&gt;   y_name        : "PARAM"</span></span>
-<span><span class="co">#&gt;   y_unit        : NULL</span></span>
-<span><span class="co">#&gt;   arm_var       : "ACTARM"</span></span>
-<span><span class="co">#&gt;   center_fun    : "mean"</span></span>
-<span><span class="co">#&gt;   interval_fun  : "mean_ci"</span></span>
-<span><span class="co">#&gt;   show_table    : TRUE</span></span>
-<span><span class="co">#&gt;   jitter        : 0.3</span></span>
-<span><span class="co">#&gt;   show_n        : TRUE</span></span>
-<span><span class="co">#&gt;   show_h_grid   : TRUE</span></span>
-<span><span class="co">#&gt;   show_v_grid   : FALSE</span></span>
-<span><span class="co">#&gt;   legend_pos    : "top"</span></span>
-<span><span class="co">#&gt;   line_col      : nestcolor::color_palette()</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Post args:</span></span>
-<span><span class="co">#&gt;   No mapped argument.</span></span>
-<span><span class="va">tlg_output</span></span>
-<span><span class="co">#&gt; $`Alanine Aminotransferase Measurement`</span></span></code></pre></div>
-<p><img src="script_generator_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
-<pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $`C-Reactive Protein Measurement`</span></span></code></pre>
-<p><img src="script_generator_files/figure-html/unnamed-chunk-7-2.png" width="672"></p>
-<pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $`Immunoglobulin A Measurement`</span></span></code></pre>
-<p><img src="script_generator_files/figure-html/unnamed-chunk-7-3.png" width="672"></p>
-<pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; attr(,"class")</span></span>
-<span><span class="co">#&gt; [1] "gg_list" "list"</span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="exploring-main-and-post-process-functions">Exploring Main and Post process functions<a class="anchor" aria-label="anchor" href="#exploring-main-and-post-process-functions"></a>
-</h2>
-<p>By specifying <code>details = TRUE</code> the main and post
-processing functions are also exposed.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res_fun</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/script.html">script_funs</a></span><span class="op">(</span><span class="va">mng01</span>, adam_db <span class="op">=</span> <span class="st">"syn_data"</span>, args <span class="op">=</span> <span class="st">"args_list"</span>, details <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">res_fun</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # Edit Functions.</span></span>
-<span><span class="co">#&gt; pre_fun &lt;- function (adam_db, dataset, x_var = "AVISIT", ...) </span></span>
-<span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     adam_db[[dataset]] &lt;- adam_db[[dataset]] %&gt;% filter(.data$ANL01FL == </span></span>
-<span><span class="co">#&gt;         "Y") %&gt;% mutate(AVISIT = reorder(.data$AVISIT, .data$AVISITN), </span></span>
-<span><span class="co">#&gt;         AVISIT = with_label(.data$AVISIT, "Visit"))</span></span>
-<span><span class="co">#&gt;     dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")</span></span>
-<span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; main_fun &lt;- function (adam_db, dataset = "adlb", x_var = "AVISIT", </span></span>
-<span><span class="co">#&gt;     y_var = "AVAL", y_name = "PARAM", y_unit = NULL, arm_var = "ACTARM", </span></span>
-<span><span class="co">#&gt;     center_fun = "mean", interval_fun = "mean_ci", show_table = TRUE, </span></span>
-<span><span class="co">#&gt;     jitter = 0.3, show_n = TRUE, show_h_grid = TRUE, show_v_grid = FALSE, </span></span>
-<span><span class="co">#&gt;     legend_pos = "top", line_col = nestcolor::color_palette(), </span></span>
-<span><span class="co">#&gt;     ...) </span></span>
-<span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     assert_all_tablenames(adam_db, c(dataset, "adsl"))</span></span>
-<span><span class="co">#&gt;     assert_character(x_var)</span></span>
-<span><span class="co">#&gt;     assert_string(y_var)</span></span>
-<span><span class="co">#&gt;     assert_string(y_name)</span></span>
-<span><span class="co">#&gt;     assert_string(y_unit, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt;     assert_string(arm_var)</span></span>
-<span><span class="co">#&gt;     assert_string(center_fun)</span></span>
-<span><span class="co">#&gt;     assert_string(interval_fun)</span></span>
-<span><span class="co">#&gt;     assert_names(center_fun, subset.of = c("mean", "median"))</span></span>
-<span><span class="co">#&gt;     assert_choice(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", </span></span>
-<span><span class="co">#&gt;         "median_ci", "quantiles", "range"))</span></span>
-<span><span class="co">#&gt;     assert_flag(show_table)</span></span>
-<span><span class="co">#&gt;     assert_number(jitter, lower = 0, upper = 1)</span></span>
-<span><span class="co">#&gt;     assert_flag(show_n)</span></span>
-<span><span class="co">#&gt;     assert_flag(show_h_grid)</span></span>
-<span><span class="co">#&gt;     assert_flag(show_v_grid)</span></span>
-<span><span class="co">#&gt;     assert_choice(legend_pos, c("top", "bottom", "right", "left"))</span></span>
-<span><span class="co">#&gt;     assert_character(line_col, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], x_var)</span></span>
-<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))</span></span>
-<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", </span></span>
-<span><span class="co">#&gt;         "factor")))</span></span>
-<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], arm_var, types = list(c("character", </span></span>
-<span><span class="co">#&gt;         "factor")), na_ok = FALSE)</span></span>
-<span><span class="co">#&gt;     assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), </span></span>
-<span><span class="co">#&gt;         types = list(c("character", "factor")))</span></span>
-<span><span class="co">#&gt;     assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", </span></span>
-<span><span class="co">#&gt;         "factor")), empty_ok = TRUE)</span></span>
-<span><span class="co">#&gt;     assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)</span></span>
-<span><span class="co">#&gt;     df &lt;- adam_db[[dataset]]</span></span>
-<span><span class="co">#&gt;     line_col &lt;- unlist(line_col)</span></span>
-<span><span class="co">#&gt;     data_ls &lt;- split(df, df$PARAM, drop = TRUE)</span></span>
-<span><span class="co">#&gt;     x_var &lt;- paste(x_var, collapse = "_")</span></span>
-<span><span class="co">#&gt;     whiskers_fun &lt;- switch(interval_fun, mean_ci = c("mean_ci_lwr", </span></span>
-<span><span class="co">#&gt;         "mean_ci_upr"), mean_sei = c("mean_sei_lwr", "mean_sei_upr"), </span></span>
-<span><span class="co">#&gt;         mean_sdi = c("mean_sdi_lwr", "mean_sdi_upr"), median_ci = c("median_ci_lwr", </span></span>
-<span><span class="co">#&gt;             "median_ci_upr"), quantiles = c("quantiles_0.25", </span></span>
-<span><span class="co">#&gt;             "quantile_0.75"), range = c("min", "max"))</span></span>
-<span><span class="co">#&gt;     y_unit &lt;- if (is.null(y_unit)) </span></span>
-<span><span class="co">#&gt;         NA</span></span>
-<span><span class="co">#&gt;     else y_unit</span></span>
-<span><span class="co">#&gt;     variables &lt;- c(x = x_var, y = y_var, strata = arm_var, paramcd = y_name, </span></span>
-<span><span class="co">#&gt;         y_unit = y_unit)</span></span>
-<span><span class="co">#&gt;     n_func &lt;- if (show_n) </span></span>
-<span><span class="co">#&gt;         "n"</span></span>
-<span><span class="co">#&gt;     else NULL</span></span>
-<span><span class="co">#&gt;     table &lt;- if (show_table) </span></span>
-<span><span class="co">#&gt;         c(n_func, center_fun, interval_fun)</span></span>
-<span><span class="co">#&gt;     else NULL</span></span>
-<span><span class="co">#&gt;     ggtheme &lt;- ggplot2::theme_bw() + ggplot2::theme(legend.position = legend_pos) + </span></span>
-<span><span class="co">#&gt;         ggplot2::theme(axis.title.x = ggplot2::element_blank())</span></span>
-<span><span class="co">#&gt;     ggtheme &lt;- if (!show_v_grid) {</span></span>
-<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     else {</span></span>
-<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     ggtheme &lt;- if (!show_h_grid) {</span></span>
-<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_blank(), </span></span>
-<span><span class="co">#&gt;             panel.grid.major.y = ggplot2::element_blank())</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     else {</span></span>
-<span><span class="co">#&gt;         ggtheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_line(linewidth = 1), </span></span>
-<span><span class="co">#&gt;             panel.grid.major.y = ggplot2::element_line(linewidth = 1))</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     if (!is.null(names(line_col))) {</span></span>
-<span><span class="co">#&gt;         color_lvl &lt;- sort(unique(df[[arm_var]]))</span></span>
-<span><span class="co">#&gt;         col &lt;- line_col[as.character(color_lvl)]</span></span>
-<span><span class="co">#&gt;         if (anyNA(col)) {</span></span>
-<span><span class="co">#&gt;             missing_col &lt;- setdiff(color_lvl, names(col))</span></span>
-<span><span class="co">#&gt;             stop(paste("Missing color matching for", toString(missing_col)))</span></span>
-<span><span class="co">#&gt;         }</span></span>
-<span><span class="co">#&gt;         col &lt;- unname(col)</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     else {</span></span>
-<span><span class="co">#&gt;         col &lt;- line_col</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     ret &lt;- lapply(data_ls, tern::g_lineplot, alt_count = adam_db[["adsl"]], </span></span>
-<span><span class="co">#&gt;         variables = variables, mid = center_fun, interval = interval_fun, </span></span>
-<span><span class="co">#&gt;         whiskers = whiskers_fun, position = ggplot2::position_dodge(width = jitter), </span></span>
-<span><span class="co">#&gt;         title = NULL, table = table, ggtheme = ggtheme, col = col, </span></span>
-<span><span class="co">#&gt;         subtitle_add_unit = !is.na(y_unit))</span></span>
-<span><span class="co">#&gt;     do_call(gg_list, ret)</span></span>
-<span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; post_fun &lt;- function (tlg, ...) </span></span>
-<span><span class="co">#&gt; tlg</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Create TLG</span></span>
-<span><span class="co">#&gt; tlg_output &lt;- rlang::exec(.fn = pre_fun, adam_db = syn_data, !!!args_list) %&gt;% </span></span>
-<span><span class="co">#&gt; rlang::exec(.fn = main_fun, !!!args_list) %&gt;% </span></span>
-<span><span class="co">#&gt; rlang::exec(.fn = post_fun, !!!args_list)</span></span></code></pre></div>
+<span><span class="co">#&gt; tlg_output &lt;- run(object = aet01_custom, adam_db = syn_data, verbose = TRUE, user_args = args_list)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
