@@ -22,6 +22,7 @@ Imports:
     dunlin (>= 0.1.4),
     forcats (>= 1.0.0),
     formatters (>= 0.5.1),
+    grid,
     ggplot2 (>= 3.4.0),
     glue,
     lifecycle,
