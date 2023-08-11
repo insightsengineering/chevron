@@ -1,4 +1,4 @@
-# chevron 0.2.1.9002
+# chevron 0.2.1.9003
 
 * Allow `EGT03` to include multiple parameters.
 * Allow `KMG01` to include stratified variables.
@@ -8,6 +8,9 @@
 * Update the argument `"is_event"` in `KMG01` to `"IS_EVENT"`.
 * Update the argument `"is_rsp"` in `FSTG01` to `"IS_RSP"`.
 * `FSTG01` and `FSTG02` stratification variable labels will be truncated to make the page fit.
+* Update the script for `chevron_tlg` objects. `details` is deprecated.
+* Fix issue if call `run` method with `do.call` with `verbose`.
+
 # chevron 0.2.1
 
 * Placeholder strings are now replaced during layout creation using `dunlin::render_safe` function.

@@ -2,16 +2,10 @@
 % Please edit documentation in R/chevron_tlg-S4methods.R
 \name{script}
 \alias{script}
-\alias{script_args}
-\alias{script_args,chevron_tlg-method}
 \alias{script_funs}
 \alias{script_funs,chevron_tlg-method}
 \title{Create Script for Parameters Assignment}
 \usage{
-script_args(x, dict = NULL)
-
-\S4method{script_args}{chevron_tlg}(x, dict = NULL)
-
 script_funs(x, adam_db, args, details = FALSE)
 
 \S4method{script_funs}{chevron_tlg}(x, adam_db, args, details = FALSE)
@@ -19,14 +13,11 @@ script_funs(x, adam_db, args, details = FALSE)
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
 
-\item{dict}{(\code{list}) with the name and value of custom arguments.}
-
 \item{adam_db}{(\code{string}) the name of the dataset.}
 
 \item{args}{(\code{string}) the name of argument list.}
 
-\item{details}{(\code{flag}) whether to show the code of all function. By default, only the detail of the code of the
-prepossessing step is printed.}
+\item{details}{(\code{flag}) deprecated. Whether to show the code of all functions.}
 }
 \description{
 Create Script for Parameters Assignment
@@ -34,7 +25,5 @@ Create Script for Parameters Assignment
 Create Script for \code{TLG} Generation
 }
 \examples{
-script_args(aet04)
-
 script_funs(aet04, adam_db = "syn_data", args = "args")
 }

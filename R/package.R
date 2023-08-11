@@ -11,6 +11,7 @@
 #' @importFrom ggplot2 theme
 #' @importFrom grid stringWidth unit
 #' @importFrom glue glue
+#' @importFrom lifecycle deprecated
 #' @importFrom magrittr %>%
 #' @importFrom methods is setValidity
 #' @importFrom nestcolor color_palette
