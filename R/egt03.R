@@ -23,7 +23,6 @@
 #'
 egt03_main <- function(adam_db,
                        arm_var = "ACTARMCD",
-                       lbl_overall = NULL,
                        summaryvar = "BNRIND",
                        splitvar = "ANRIND",
                        visitvar = "AVISIT",
@@ -31,10 +30,10 @@ egt03_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   assert_string(arm_var)
-  assert_string(lbl_overall, null.ok = TRUE)
   assert_string(summaryvar)
   assert_string(splitvar)
   assert_string(visitvar)
+  assert_string(page_var, null.ok = TRUE)
   assert_subset(page_var, "PARAMCD")
   assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAMCD", "PARAM", splitvar), types = list("character", "factor"))
@@ -44,7 +43,6 @@ egt03_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_single_value(adam_db$adeg$PARAMCD)
 
-  lbl_overall <- render_safe(lbl_overall)
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- var_labels_for(adam_db$adeg, summaryvar)
   lbl_splitvar <- var_labels_for(adam_db$adeg, splitvar)
@@ -54,7 +52,6 @@ egt03_main <- function(adam_db,
     arm_var = arm_var,
     splitvar = splitvar,
     summaryvar = summaryvar,
-    lbl_overall = lbl_overall,
     lbl_armvar = lbl_armvar,
     lbl_summaryvars = lbl_summaryvars,
     lbl_param = lbl_param,
@@ -83,7 +80,6 @@ egt03_main <- function(adam_db,
 egt03_lyt <- function(arm_var,
                       splitvar,
                       summaryvar,
-                      lbl_overall,
                       lbl_armvar,
                       lbl_summaryvars,
                       lbl_param,
@@ -96,7 +92,6 @@ egt03_lyt <- function(arm_var,
   basic_table(show_colcounts = FALSE) %>%
     split_cols_by("SPLIT_LABEL") %>%
     split_cols_by(splitvar) %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(
       "PARAMCD",
       labels_var = "PARAM",

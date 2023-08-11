@@ -48,6 +48,7 @@ cfbt01_main <- function(adam_db,
   assert_character(row_split_var, null.ok = TRUE)
   assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
   assert_string(visitvar)
+  assert_string(page_var, null.ok = TRUE)
   assert_subset(page_var, c(row_split_var, "PARAMCD"))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], c(summaryvars), types = list("numeric"), empty_ok = TRUE, label = df_lbl)

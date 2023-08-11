@@ -17,8 +17,8 @@ egt05_qtcat_main(
   lbl_overall = NULL,
   summaryvars = c("AVALCAT1", "CHGCAT1"),
   row_split_var = NULL,
-  page_var = NULL,
   visitvar = "AVISIT",
+  page_var = NULL,
   ...
 )
 
@@ -40,9 +40,9 @@ table of \code{adam_db} is used as name.}
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
 
-\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
-
 \item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 

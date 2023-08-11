@@ -43,6 +43,7 @@ rspt01_main <- function(adam_db,
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
   assert_string(arm_var)
+  assert_string(ref_group, null.ok = TRUE)
   assert_flag(odds_ratio)
   assert_subset(perform_analysis, c("unstrat", "strat"))
   assert_character(

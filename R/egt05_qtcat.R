@@ -29,8 +29,8 @@ egt05_qtcat_main <- function(adam_db,
                              lbl_overall = NULL,
                              summaryvars = c("AVALCAT1", "CHGCAT1"),
                              row_split_var = NULL,
-                             page_var = NULL,
                              visitvar = "AVISIT",
+                             page_var = NULL,
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
   assert_string(arm_var)
@@ -38,6 +38,7 @@ egt05_qtcat_main <- function(adam_db,
   assert_character(summaryvars)
   assert_character(row_split_var, null.ok = TRUE)
   assert_string(visitvar)
+  assert_string(page_var, null.ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
