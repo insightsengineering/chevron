@@ -12,7 +12,7 @@
 #' @param subgroups (`character`) the subgroups variable name to list baseline risk factors.
 #' @param strata_var (`character`) required if stratified analysis is performed.
 #' @param stat_var (`character`) the names of statistics to be reported in `tabulate_survival_subgroups`.
-#' @param max_colwidth (`int`) maximum width of columns.
+#' @param max_colwidth (`int`) maximum width of columns. Stratification label longer than this will be truncated.
 #' @param ... Further arguments passed to `g_forest` and `extract_rsp_subgroups` (a wrapper for
 #' `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
 #' Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
@@ -32,7 +32,7 @@ fstg02_main <- function(adam_db,
                         subgroups = c("SEX", "AGEGR1", "RACE"),
                         strata_var = NULL,
                         stat_var = c("n_tot", "n", "median", "hr", "ci"),
-                        max_colwidth = 15,
+                        max_colwidth = 10,
                         ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
@@ -70,10 +70,11 @@ fstg02_main <- function(adam_db,
     data = adam_db[[dataset]],
     ...
   )
-
+  df$survtime$subgroup <- stringr::str_trunc(df$survtime$subgroup, max_colwidth)
+  df$hr$subgroup <- stringr::str_trunc(df$hr$subgroup, max_colwidth)
   result <- basic_table() %>%
     tabulate_survival_subgroups(df, vars = stat_var, time_unit = timeunit)
-  cw <- pmin(propose_column_widths(result), max_colwidth)
+  cw <- pmin(propose_column_widths(result), max_colwidth + 2)
   final_width <- stringWidth(strrep("x", cw))
   execute_with_args(
     g_forest,

@@ -17,7 +17,7 @@ fstg02_main(
   subgroups = c("SEX", "AGEGR1", "RACE"),
   strata_var = NULL,
   stat_var = c("n_tot", "n", "median", "hr", "ci"),
-  max_colwidth = 15,
+  max_colwidth = 10,
   ...
 )
 
@@ -38,7 +38,7 @@ fstg02
 
 \item{stat_var}{(\code{character}) the names of statistics to be reported in \code{tabulate_survival_subgroups}.}
 
-\item{max_colwidth}{(\code{int}) maximum width of columns.}
+\item{max_colwidth}{(\code{int}) maximum width of columns. Stratification label longer than this will be truncated.}
 
 \item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups} (a wrapper for
 \code{h_odds_ratio_subgroups_df} and \code{h_proportion_subgroups_df}). For details, see the documentation in \code{tern}.
