@@ -767,7 +767,7 @@ See table below for what each argument controls and the available method options
 | :-----------------------:| :------------------------------------------:|:------------------------------------:|
 | `prop_conf_method`       | proportion confidence interval              | `"waldcc"` (default), `"wald"`, etc. |
 | `diff_conf_method`       | unstratified difference confidence interval | `"waldcc"` (default), `"wald"`, etc. |
-| `diff_pval_method`       | unstratified p-value for odds ratio         | `"chisq"` (default), `"fisher"``     |
+| `diff_pval_method`       | unstratified p-value for odds ratio         | `"chisq"` (default), `"fisher"`      |
 | `strat_diff_conf_method` | stratified difference confidence interval   | `"cmh"` (default), `"ha"`            |
 | `strat_diff_pval_method` | stratified p-value for odds ratio           | `"cmh"` (default), `"schouten"`      |
 
