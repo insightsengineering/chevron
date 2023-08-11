@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9004</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,23 +30,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -88,6 +71,7 @@
 <span>  subgroups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"RACE"</span><span class="op">)</span>,</span>
 <span>  strata_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stat_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_tot"</span>, <span class="st">"n"</span>, <span class="st">"median"</span>, <span class="st">"hr"</span>, <span class="st">"ci"</span><span class="op">)</span>,</span>
+<span>  max_colwidth <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -126,6 +110,10 @@
 <dd><p>(<code>character</code>) the names of statistics to be reported in <code>tabulate_survival_subgroups</code>.</p></dd>
 
 
+<dt>max_colwidth</dt>
+<dd><p>(<code>int</code>) maximum width of columns. Stratification label longer than this will be truncated.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments passed to <code>g_forest</code> and <code>extract_rsp_subgroups</code> (a wrapper for
 <code>h_odds_ratio_subgroups_df</code> and <code>h_proportion_subgroups_df</code>). For details, see the documentation in <code>tern</code>.
@@ -157,6 +145,7 @@ Commonly used arguments include <code>col_symbol_size</code>, <code>col</code>, 
 <ul><li><p><code>adam_db</code> object must contain the table specified by <code>dataset</code> with <code>"PARAMCD"</code>, <code>"ARM"</code>,
 <code>"AVAL"</code>, <code>"AVALU"</code>, <code>"CNSR"</code>, and the columns specified by <code>subgroups</code> which is denoted as
 <code>c("SEX", "AGEGR1", "RACE")</code> by default.</p></li>
+<li><p>If the plot is too large to be rendered in the output, please refer to <code>FSTG01</code>.</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -172,7 +161,6 @@ Commonly used arguments include <code>col_symbol_size</code>, <code>col</code>, 
 <span class="r-in"><span>  subgroups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"RACE"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  conf_level <span class="op">=</span> <span class="fl">0.90</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="fstg02-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> gTree[GRID.gTree.51] </span>
 </code></pre></div>
     </div>
