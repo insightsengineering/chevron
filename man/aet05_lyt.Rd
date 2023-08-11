@@ -4,10 +4,12 @@
 \alias{aet05_lyt}
 \title{\code{aet05} Layout}
 \usage{
-aet05_lyt(arm_var, param_label, vars, n_events, control)
+aet05_lyt(arm_var, lbl_overall, param_label, vars, n_events, control)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{param_label}{(\code{string}) variable for parameter code.}
 

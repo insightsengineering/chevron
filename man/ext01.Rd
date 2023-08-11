@@ -14,9 +14,9 @@ An object of class \code{chevron_t} of length 1.
 ext01_main(
   adam_db,
   arm_var = "ACTARM",
+  lbl_overall = NULL,
   summaryvars = "AVAL",
   row_split_var = "PARCAT2",
-  lbl_overall = NULL,
   page_var = NULL,
   map = NULL,
   ...
@@ -33,12 +33,12 @@ ext01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adex}
 table of \code{adam_db} is used as label.}
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
@@ -82,7 +82,9 @@ patients in the corresponding analysis population given by \code{N}.
 }
 \examples{
 run(ext01, syn_data)
+
 run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE)
+
 levels(syn_data$adex$AVALCAT1) <- c(levels(syn_data$adex$AVALCAT1), "12 months")
 map <- data.frame(
   PARAMCD = "TDURD",

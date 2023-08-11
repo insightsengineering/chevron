@@ -14,11 +14,11 @@ An object of class \code{chevron_t} of length 1.
 egt05_qtcat_main(
   adam_db,
   arm_var = "ACTARM",
-  summaryvars = c("AVALCAT1", "CHGCAT1"),
   lbl_overall = NULL,
+  summaryvars = c("AVALCAT1", "CHGCAT1"),
   row_split_var = NULL,
-  page_var = NULL,
   visitvar = "AVISIT",
+  page_var = NULL,
   ...
 )
 
@@ -33,16 +33,16 @@ egt05_qtcat
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{summaryvars}{(\code{character}) variables to be analyzed. The label attribute of the corresponding column in \code{adeg}
 table of \code{adam_db} is used as name.}
 
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
 \item{row_split_var}{(\code{character}) additional row split variables.}
 
-\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
-
 \item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{...}{not used.}
 

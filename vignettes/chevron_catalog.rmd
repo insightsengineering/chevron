@@ -904,12 +904,12 @@ run(ttet01, proc_data, perform_analysis = "strat", strata = "STRATA1")
 
 #### **5. Time-to-event Summary (modifying time point for the "survival at xx months” analysis)**
 
-The time point for the "survival at xx months" analysis can be modified by specifying the argument `timepoint`. By default, the syntax takes `AVAL` from `adtte` in the unit of days and convert to months. The survival estimates are then summarized in month, and the numeric values provided to `timepoint` should be in the unit of month as well. 
+The time point for the "survival at xx months" analysis can be modified by specifying the argument `time_point`. By default, the syntax takes `AVAL` from `adtte` in the unit of days and convert to months. The survival estimates are then summarized in month, and the numeric values provided to `time_point` should be in the unit of month as well. 
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
-run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(3, 6))
+run(ttet01, proc_data, perform_analysis = "unstrat", time_point = c(3, 6))
 ```
 
 The following example shows how to specify the time point in **user-defined unit**.  
@@ -937,7 +937,7 @@ preprocess(ttet01) <- function(adam_db, dataset = "adtte",
   adam_db
 }
 
-run(ttet01, proc_data, perform_analysis = "unstrat", timepoint = c(91, 183))
+run(ttet01, proc_data, perform_analysis = "unstrat", time_point = c(91, 183))
 ```
 
 #### **6. Time-to-event Summary (modifying the p-value method for testing hazard ratio)**

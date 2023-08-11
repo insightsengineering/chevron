@@ -6,38 +6,38 @@
 \usage{
 egt05_qtcat_lyt(
   arm_var,
+  lbl_overall,
+  lbl_avisit,
+  lbl_param,
+  lbl_cat,
   summaryvars,
   summaryvars_lbls,
-  lbl_overall,
   row_split_var,
   row_split_lbl,
   visitvar,
-  page_var,
-  lbl_avisit,
-  lbl_param,
-  lbl_cat
+  page_var
 )
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
-
-\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
-
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
-
-\item{row_split_var}{(\code{character}) additional row split variables.}
-
-\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
-
-\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{lbl_avisit}{(\code{string}) label of the \code{visitvar} variable.}
 
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
 \item{lbl_cat}{(\code{string}) label of the Category of \code{summaryvars} variable. Default as \code{Category}.}
+
+\item{summaryvars}{(\code{character}) the variables to be analyzed. \code{AVALCAT1} and \code{CHGCAT1} by default.}
+
+\item{summaryvars_lbls}{(\code{character}) the label of the variables to be analyzed.}
+
+\item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{visitvar}{(\code{string}) typically \code{"AVISIT"} or user-defined visit incorporating \code{"ATPT"}.}
+
+\item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
 \description{
 \code{EGT05_QTCAT} Layout

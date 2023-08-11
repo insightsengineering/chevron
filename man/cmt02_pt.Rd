@@ -17,9 +17,9 @@ An object of class \code{chevron_t} of length 1.
 cmt02_pt_main(
   adam_db,
   arm_var = "ARM",
+  lbl_overall = NULL,
   row_split_var = NULL,
   medname_var = "CMDECOD",
-  lbl_overall = NULL,
   summary_labels = list(TOTAL = cmt01_label),
   ...
 )
@@ -42,11 +42,11 @@ cmt02_pt
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{row_split_var}{(\code{character}) the variable defining the medication category. By default \code{ATC2}.}
 
 \item{medname_var}{(\code{string}) variable name of medical treatment name.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{summary_labels}{(\code{list}) of summarize labels. See details.}
 
