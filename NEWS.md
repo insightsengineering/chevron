@@ -7,7 +7,7 @@
 * Add `FSTG02` template.
 * Update the argument `"is_event"` in `KMG01` to `"IS_EVENT"`.
 * Update the argument `"is_rsp"` in `FSTG01` to `"IS_RSP"`.
-
+* `FSTG01` and `FSTG02` stratification variable labels will be truncated to make the page fit.
 # chevron 0.2.1
 
 * Placeholder strings are now replaced during layout creation using `dunlin::render_safe` function.
