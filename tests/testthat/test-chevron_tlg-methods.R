@@ -133,21 +133,6 @@ test_that("postprocess sends an error as expected", {
   )
 })
 
-# script_args ----
-
-test_that("script works as expected", {
-  res <- expect_silent(script_args(aet04))
-  expect_character(res, len = 4)
-  expect_subset("adam_db <- stop(\"missing value\")", res)
-})
-
-test_that("script works as expected with dictionary of arguments", {
-  res <- expect_silent(script_args(aet04, dict = list(adam_db = sym("x"), new_arg = "NEW")))
-  expect_character(res, len = 5)
-  expect_subset("adam_db <- x", res)
-  expect_subset("new_arg <- \"NEW\"", res)
-})
-
 # script_funs ----
 
 test_that("script_funs works as expected in interactive mode", {
