@@ -748,7 +748,7 @@ run(rspt01, proc_data, odds_ratio = FALSE, perform_analysis = NULL)
 
 1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and providing the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.    
 2) The stratification variables are expected to be available in `adrs`.  
-2) If both unstratified and stratified analysis are required, use `perform_analysis = c("unstrat",strat")`  
+2) If both unstratified and stratified analysis are required, use `perform_analysis = c("unstrat", "strat")`  
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
