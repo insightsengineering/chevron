@@ -255,41 +255,19 @@
           Total number of events                                         55            63              64      
           dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
-# script_funs works as expected in interactive mode
-
-    Code
-      res
-    Output
-       [1] "# Edit Preprocessing Function."                                                                          
-       [2] "pre_fun <- function(adam_db, ...) {"                                                                     
-       [3] "  atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")"                                                   
-       [4] "  adam_db$adae <- adam_db$adae %>%"                                                                      
-       [5] "    filter(.data$ANL01FL == \"Y\") %>%"                                                                  
-       [6] "    mutate("                                                                                             
-       [7] "      AEBODSYS = reformat(.data$AEBODSYS, nocoding),"                                                    
-       [8] "      AEDECOD = reformat(.data$AEDECOD, nocoding),"                                                      
-       [9] "      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)"                                               
-      [10] "    )"                                                                                                   
-      [11] "  adam_db"                                                                                               
-      [12] "}"                                                                                                       
-      [13] ""                                                                                                        
-      [14] "# Create TLG"                                                                                            
-      [15] "data <- rlang::exec(.fn = pre_fun, adam_db = data, !!!args_ls)"                                          
-      [16] "tlg_output <- run(object = aet04, adam_db = data, auto_pre = FALSE, verbose = TRUE, user_args = args_ls)"
-
 # script_funs generates a valid script
 
     Code
       res
     Output
-      [1] "Using template:  aet04 \nUsing data:      syn_data \n\nMain args:\n  arm_var       : \"ACTARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE\n\n"
+      [1] "Using template:  aet04 \nUsing data:      syn_data \n\nPre args:\n  No mapped argument.\n\nMain args:\n  arm_var       : \"ACTARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE\n\n"
 
 ---
 
     Code
       res
     Output
-      [1] ""
+      [1] "Using template:  aet04 \nUsing data:      syn_data \n\nPre args:\n  No mapped argument.\n\nMain args:\n  arm_var       : \"ACTARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE\n\n"
 
 # print_list works
 
