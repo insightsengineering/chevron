@@ -147,7 +147,7 @@ test_that("script_funs works as expected", {
 })
 
 test_that("script_funs works as expected with details set to TRUE", {
-  res <- expect_warning(script_funs(aet04, adam_db = "data", args = "args_ls", details = TRUE))
+  expect_warning(res <- script_funs(aet04, adam_db = "data", args = "args_ls", details = TRUE))
   expect_character(res)
 })
 
@@ -166,7 +166,7 @@ test_that("script_funs generates a valid script", {
   expected <- run(aet04, syn_data, arm_var = "ARM")
   expect_identical(tlg_output, expected)
 
-  res_fun <- expect_warning(script_funs(aet04, adam_db = "syn_data", args = "args_list", details = TRUE))
+  expect_warning(res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = TRUE))
   writeLines(res_fun, tmp)
   res <- capture_output(source(tmp, local = TRUE))
   expect_snapshot(res)
