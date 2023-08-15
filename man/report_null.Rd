@@ -9,7 +9,7 @@
 \format{
 An object of class \code{ElementaryTable} with 1 rows and 1 columns.
 
-An object of class \code{listing_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1 rows and 1 columns.
+An object of class \code{listing_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1 rows and 2 columns.
 }
 \usage{
 report_null(tlg, ...)

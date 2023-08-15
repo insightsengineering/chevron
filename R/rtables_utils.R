@@ -377,9 +377,12 @@ null_report <- rtables::rtable(
 #' @export
 #' @rdname report_null
 null_listing <- rlistings::as_listing(
-  df = data.frame(x = formatters::with_label(
-    "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
-  ))
+  df = data.frame(
+    x = formatters::with_label(
+      "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
+    ),
+    y = formatters::with_label("", "")
+  )
 )
 
 has_overall_col <- function(lbl_overall) {
