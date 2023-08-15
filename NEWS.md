@@ -10,6 +10,7 @@
 * `FSTG01` and `FSTG02` stratification variable labels will be truncated to make the page fit.
 * Update the script for `chevron_tlg` objects. `details` is deprecated.
 * Fix issue if call `run` method with `do.call` with `verbose`.
+* Fix issue that prevented export of null reports for listings.
 
 # chevron 0.2.1
 
