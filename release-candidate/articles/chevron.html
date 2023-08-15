@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,7 @@
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
@@ -127,8 +128,6 @@ objects in separate slots:</p>
 <em>TLG-function</em>.</li>
 <li>A <code>preprocess</code> function.</li>
 <li>A <code>postprocess</code> function</li>
-<li>A <code>adam_datasets</code> character vector of the name of the
-<code>AdAM</code> datasets required to create the output.</li>
 </ul>
 <div class="section level3">
 <h3 id="tlg-functions">
@@ -197,17 +196,6 @@ report if the input has no rows. <em><code>postprocessing</code></em>
 function of a <code>chevron_tlg</code> object must have at least
 <code>tlg</code> as formal arguments.</p>
 </div>
-<div class="section level3">
-<h3 id="adam-datasets">
-<em>ADaM datasets</em><a class="anchor" aria-label="anchor" href="#adam-datasets"></a>
-</h3>
-<p>The <code>adam_datasets</code> stores the name(s) of the data sets in
-the <code>AdAM</code> <code>list</code> of <code>data.frame</code>
-object that will be used in the process. This information is important
-when the <code>chevron_tlg</code> object is interfaced with other
-processes from the <code>chevron</code> ecosystem of packages such as
-<code>citril</code>.</p>
-</div>
 </div>
 <div class="section level2">
 <h2 id="example-aet02">Example <code>AET02</code><a class="anchor" aria-label="anchor" href="#example-aet02"></a>
@@ -229,8 +217,8 @@ objects that have the name <code>aet02</code>.</p>
 <span><span class="co">#&gt;   MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination</span></span>
 <span><span class="co">#&gt;     MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  </span></span>
 <span><span class="co">#&gt;   Overall total number of events                                   609           622            703      </span></span>
+<span><span class="co">#&gt;   Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  </span></span>
 <span><span class="co">#&gt;   cl A.1                                                                                                 </span></span>
 <span><span class="co">#&gt;     Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  </span></span>
 <span><span class="co">#&gt;     Total number of events                                         132           130            160      </span></span>
@@ -269,12 +257,14 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/main.html">main</a></span><span class="op">(</span><span class="va">aet02</span><span class="op">)</span></span>
 <span><span class="co">#&gt; function (adam_db, arm_var = "ACTARM", row_split_var = "AEBODSYS", </span></span>
-<span><span class="co">#&gt;     lbl_overall = NULL, ...) </span></span>
+<span><span class="co">#&gt;     lbl_overall = NULL, summary_labels = list(all = aet02_label, </span></span>
+<span><span class="co">#&gt;         TOTAL = c(nonunique = "Overall total number of events")), </span></span>
+<span><span class="co">#&gt;     ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     assert_all_tablenames(adam_db, "adsl", "adae")</span></span>
-<span><span class="co">#&gt;     checkmate::assert_character(row_split_var, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt;     checkmate::assert_string(lbl_overall, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt;     checkmate::assert_string(arm_var)</span></span>
+<span><span class="co">#&gt;     assert_string(arm_var)</span></span>
+<span><span class="co">#&gt;     assert_character(row_split_var, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_string(lbl_overall, null.ok = TRUE)</span></span>
 <span><span class="co">#&gt;     assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), </span></span>
 <span><span class="co">#&gt;         types = list(c("character", "factor")))</span></span>
 <span><span class="co">#&gt;     assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, </span></span>
@@ -282,15 +272,27 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, </span></span>
 <span><span class="co">#&gt;         types = list(c("character", "factor")))</span></span>
 <span><span class="co">#&gt;     assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)</span></span>
+<span><span class="co">#&gt;     assert_list(summary_labels, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))</span></span>
+<span><span class="co">#&gt;     assert_subset(unique(unlist(lapply(summary_labels, names))), </span></span>
+<span><span class="co">#&gt;         c("unique", "nonunique", "unique_count"))</span></span>
+<span><span class="co">#&gt;     if ("all" %in% names(summary_labels)) {</span></span>
+<span><span class="co">#&gt;         summary_labels &lt;- lapply(c(TOTAL = "TOTAL", setNames(row_split_var, </span></span>
+<span><span class="co">#&gt;             row_split_var)), function(x) {</span></span>
+<span><span class="co">#&gt;             modify_character(summary_labels$all, summary_labels[[x]])</span></span>
+<span><span class="co">#&gt;         })</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     lbl_overall &lt;- render_safe(lbl_overall)</span></span>
 <span><span class="co">#&gt;     lbl_row_split &lt;- var_labels_for(adam_db$adae, row_split_var)</span></span>
 <span><span class="co">#&gt;     lbl_aedecod &lt;- var_labels_for(adam_db$adae, "AEDECOD")</span></span>
-<span><span class="co">#&gt;     lyt &lt;- aet02_lyt(arm_var = arm_var, lbl_overall = lbl_overall, </span></span>
+<span><span class="co">#&gt;     lyt &lt;- occurrence_lyt(arm_var = arm_var, lbl_overall = lbl_overall, </span></span>
 <span><span class="co">#&gt;         row_split_var = row_split_var, lbl_row_split = lbl_row_split, </span></span>
-<span><span class="co">#&gt;         lbl_aedecod = lbl_aedecod)</span></span>
+<span><span class="co">#&gt;         medname_var = "AEDECOD", lbl_medname_var = lbl_aedecod, </span></span>
+<span><span class="co">#&gt;         summary_labels = summary_labels, count_by = NULL)</span></span>
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55924e0af570&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560b78d54fa0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -335,8 +337,7 @@ the provided constructors corresponding to the desired output:</p>
 <span><span class="va">my_template</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/chevron_tlg-class.html">chevron_t</a></span><span class="op">(</span></span>
 <span>  main <span class="op">=</span> <span class="st">"&lt;your main function to build the table&gt;"</span>,</span>
 <span>  preprocess <span class="op">=</span> <span class="st">"&lt;your pre function to process the data&gt;"</span>,</span>
-<span>  postprocess <span class="op">=</span> <span class="st">"&lt;your post function to add custom sorting&gt;"</span>,</span>
-<span>  adam_datasets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"adsl"</span><span class="op">)</span></span>
+<span>  postprocess <span class="op">=</span> <span class="st">"&lt;your post function to add custom sorting&gt;"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">my_template</span>, <span class="va">syn_data</span><span class="op">)</span></span></code></pre></div>
@@ -345,7 +346,7 @@ function, the name of the first argument of the <code>main</code>
 function must be <code>adam_db</code>; the input <code>list</code> of
 <code>data.frame</code> object to pre-process. The name of the first
 argument of the <code>preprocess</code> function must be
-<code>adam_db</code>; the input <code>dm</code> object to create
+<code>adam_db</code>; the input <code>list</code> object to create
 <code>TLG</code> output and finally, the name of the first argument of
 the <code>postprocess</code> function must be <code>tlg</code>, the
 input <code>TableTree</code> object to post-process. Validation criteria

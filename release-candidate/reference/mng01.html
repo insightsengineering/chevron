@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,7 @@
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
@@ -92,7 +93,7 @@
 <span>  center_fun <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>  interval_fun <span class="op">=</span> <span class="st">"mean_ci"</span>,</span>
 <span>  show_table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  jitter <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  jitter <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  show_n <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_h_grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_v_grid <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -102,8 +103,6 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">mng01_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">dataset</span>, x_var <span class="op">=</span> <span class="st">"AVISIT"</span>, <span class="va">...</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">mng01_post</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mng01</span></span></code></pre></div>
     </div>
@@ -156,7 +155,8 @@
 
 
 <dt>jitter</dt>
-<dd><p>(<code>flag</code>) should data point be slightly spread on the x-axis.</p></dd>
+<dd><p>(<code>numeric</code>) the width of spread for data points on the x-axis; a number from 0 (no <code>jitter</code>) to 1 (high
+<code>jitter</code>), with a default of 0.3 (slight <code>jitter</code>).</p></dd>
 
 
 <dt>show_n</dt>
@@ -183,10 +183,6 @@
 <dt>...</dt>
 <dd><p>not used.</p></dd>
 
-
-<dt>tlg</dt>
-<dd><p>(<code>TableTree</code>, <code>Listing</code> or <code>ggplot</code>) object typically produced by a <code>main</code> function.</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -205,7 +201,6 @@
     
 <ul><li><p><code>mng01_main()</code>: Main TLG Function</p></li>
 <li><p><code>mng01_pre()</code>: Preprocessing</p></li>
-<li><p><code>mng01_post()</code>: Postprocessing</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>

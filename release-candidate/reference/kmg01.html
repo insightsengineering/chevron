@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,7 @@
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
@@ -81,11 +82,9 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">kmg01_main</span><span class="op">(</span><span class="va">adam_db</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, arm_var <span class="op">=</span> <span class="st">"ARM"</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">kmg01_main</span><span class="op">(</span><span class="va">adam_db</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, arm_var <span class="op">=</span> <span class="st">"ARM"</span>, strat <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kmg01_pre</span><span class="op">(</span><span class="va">adam_db</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, <span class="va">...</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kmg01_post</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">kmg01</span></span></code></pre></div>
     </div>
@@ -108,15 +107,15 @@
 <dd><p>(<code>string</code>) variable used for column splitting</p></dd>
 
 
+<dt>strat</dt>
+<dd><p>(<code>character</code>) the variable name of stratification variables.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments passed to <code>g_km</code> and <code>control_coxph</code>. For details, see
 the documentation in <code>tern</code>.
 Commonly used arguments include <code>col</code>, <code>pval_method</code>, <code>ties</code>, <code>conf_level</code>, <code>conf_type</code>,
 <code>annot_coxph</code>, <code>annot_stats</code>, etc.</p></dd>
-
-
-<dt>tlg</dt>
-<dd><p>(<code>TableTree</code>, <code>Listing</code> or <code>ggplot</code>) object typically produced by a <code>main</code> function.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -135,7 +134,6 @@ Commonly used arguments include <code>col</code>, <code>pval_method</code>, <cod
     
 <ul><li><p><code>kmg01_main()</code>: Main TLG Function</p></li>
 <li><p><code>kmg01_pre()</code>: Preprocessing</p></li>
-<li><p><code>kmg01_post()</code>: Postprocessing</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -156,12 +154,10 @@ Commonly used arguments include <code>col</code>, <code>pval_method</code>, <cod
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">syn_data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"OS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">syn_data2</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, line_col <span class="op">=</span> <span class="va">col</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="kmg01-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> gTree[GRID.gTree.216] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">syn_data3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AEREPTTE"</span>, <span class="st">"adaette"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">syn_data3</span>, dataset <span class="op">=</span> <span class="st">"adaette"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="kmg01-2.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> gTree[GRID.gTree.329] </span>
 </code></pre></div>
     </div>

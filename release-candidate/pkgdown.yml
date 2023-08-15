@@ -1,12 +1,13 @@
-pandoc: 2.19.2
+pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   adding_new_tlgs_to_chevron: adding_new_tlgs_to_chevron.html
   chevron: chevron.html
+  chevron_catalog: chevron_catalog.html
   script_generator: script_generator.html
-last_built: 2023-05-25T01:46Z
+last_built: 2023-08-15T09:52Z
 urls:
-  reference: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/v0.2.0-rc1/reference
-  article: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/v0.2.0-rc1/articles
+  reference: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference
+  article: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles
 
