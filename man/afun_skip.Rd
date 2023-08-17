@@ -45,7 +45,7 @@ the value for \code{default} will be used.}
 
 \item{.N_row}{(\code{int}) See \code{tern::summarize_variables}.}
 
-\item{...}{additional arguments for \code{tern::create_afun_summary}.}
+\item{...}{additional arguments for \code{tern::a_summary}.}
 
 \item{.label}{(\code{character}) See \code{tern::summarize_variables}.}
 }

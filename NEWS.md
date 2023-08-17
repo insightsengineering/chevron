@@ -1,5 +1,7 @@
 # chevron 0.2.2.9000
 
+* Replace `tern::create_afun_summary` by `tern::a_summary`.
+
 # chevron 0.2.2
 
 * Allow `EGT03` to include multiple parameters.
