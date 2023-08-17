@@ -406,7 +406,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' @param .indent_mods (`integer`) See `tern::summarize_variables`.
 #' @param .N_col (`int`) See `tern::summarize_variables`.
 #' @param .N_row (`int`) See `tern::summarize_variables`.
-#' @param ... additional arguments for `tern::create_afun_summary`.
+#' @param ... additional arguments for `tern::a_summary`.
 #' @inheritParams cfbt01_main
 #' @keywords internal
 afun_skip <- function(
@@ -426,7 +426,8 @@ afun_skip <- function(
   fmts_na <- lapply(.stats, summary_formats, pcs = pcs, ne = TRUE)
   ret <- tern::a_summary(
     .stats = .stats, .formats = fmts, .labels = .labels, .indent_mods = .indent_mods,
-  x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...)
+    x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...
+  )
   for (i in seq_len(length(ret))) {
     attr(ret[[i]], "format_na_str") <- fmts_na[[i]]()
   }
