@@ -1,4 +1,4 @@
-# chevron 0.2.2.9000
+# chevron 0.2.2.9001
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
 
