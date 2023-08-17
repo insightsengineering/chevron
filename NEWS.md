@@ -1,15 +1,19 @@
-# chevron 0.2.1.9005
+# chevron 0.2.2.9000
+
+* Replace `tern::create_afun_summary` by `tern::a_summary`.
+
+# chevron 0.2.2
 
 * Allow `EGT03` to include multiple parameters.
 * Allow `KMG01` to include stratified variables.
-* Allow `LBT06` and `LBT14` split by page.
+* Allow `LBT06` and `LBT14` to be split by pages.
 * Allow `AET02`, `CMT01A` to change the summary statistics with `summary_labels` argument.
 * Add `FSTG02` template.
 * Update the argument `"is_event"` in `KMG01` to `"IS_EVENT"`.
 * Update the argument `"is_rsp"` in `FSTG01` to `"IS_RSP"`.
-* `FSTG01` and `FSTG02` stratification variable labels will be truncated to make the page fit.
-* Update the script for `chevron_tlg` objects. `details` is deprecated.
-* Fix issue if call `run` method with `do.call` with `verbose`.
+* `FSTG01` and `FSTG02` stratification variable labels will be truncated to fit the page.
+* Update the script for `chevron_tlg` objects. The `details` argument is deprecated.
+* Fix issue when `run` method is executed with `do.call` and `verbose` argument.
 
 # chevron 0.2.1
 
