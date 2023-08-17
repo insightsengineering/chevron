@@ -942,12 +942,14 @@ run(ttet01, proc_data, perform_analysis = "unstrat", time_point = c(91, 183))
 
 #### **6. Time-to-event Summary (modifying the p-value method for testing hazard ratio)**
 
-The default p-value method for testing hazard ratio is "log-rank". Alternative methods can be requested by specifying the argument `pval_method` and options include, `log-rank` (default),  `wald` or `likelihood`. The syntax currently does not allow requesting more than one p-value.
+The default p-value method for testing hazard ratio is "log-rank". Alternative methods can be requested by specifying the argument `pval_method` and options include, `log-rank` (default),  `wald` or `likelihood`. The syntax currently does not allow requesting more than one p-value. 
+
+Note that `ttet01` has been modified in the previous example (i.e., `preprocess(ttet01)` has been overridden); to access the default template, try `chevron::ttet01`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
-run(ttet01, proc_data, pval_method = "wald")
+run(chevron::ttet01, proc_data, pval_method = "wald")
 ```
 
 ### **Vital Signs (`VST01`)**
@@ -982,7 +984,7 @@ run(vst02_2, syn_data)
 #### **1. Glossary of Adverse Event Preferred Terms and Investigator-Specified Terms**
 
 1) The **`ael01_nollt`** template produces the standard glossary of adverse event preferred terms and investigator-specified terms.
-2) The example below use `head` function to print only the first 10 lines of the output.
+2) The example below uses `head` function to print only the first 10 lines of the output.
 
 ```{r}
 l_ae_nollt <- run(ael01_nollt, syn_data)
