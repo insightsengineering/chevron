@@ -4,6 +4,7 @@
 #'
 #' @inherit cmt01a_main
 #' @source `cmt01a.R`
+#'
 #' @export
 #'
 cmt02_pt_main <- modify_default_args(

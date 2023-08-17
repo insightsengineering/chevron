@@ -6,11 +6,11 @@
 \usage{
 ext01_lyt(
   arm_var,
+  lbl_overall,
   summaryvars,
   summaryvars_lbls,
   row_split_var,
   row_split_lbl,
-  lbl_overall,
   page_var,
   map
 )
@@ -18,13 +18,13 @@ ext01_lyt(
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{summaryvars}{(\code{character}) the name of the variable to be analyzed. By default \code{"AVAL"}.}
 
 \item{summaryvars_lbls}{(\code{character}) the label associated with the analyzed variable.}
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
-
-\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }

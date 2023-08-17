@@ -26,43 +26,46 @@
 #'
 egt05_qtcat_main <- function(adam_db,
                              arm_var = "ACTARM",
-                             summaryvars = c("AVALCAT1", "CHGCAT1"),
                              lbl_overall = NULL,
+                             summaryvars = c("AVALCAT1", "CHGCAT1"),
                              row_split_var = NULL,
-                             page_var = NULL,
                              visitvar = "AVISIT",
+                             page_var = NULL,
                              ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
-  assert_string(visitvar)
-  assert_valid_variable(adam_db$adeg, visitvar, types = list("character", "factor"))
-  assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
-  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor", "character")), na_ok = TRUE)
+  assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_character(summaryvars)
   assert_character(row_split_var, null.ok = TRUE)
-  assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
+  assert_string(visitvar)
   assert_string(page_var, null.ok = TRUE)
-  assert_subset(page_var, c(row_split_var, "PARAMCD"))
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_valid_variable(adam_db$adeg, c("PARAM", "PARAMCD"), types = list(c("character", "factor")), na_ok = FALSE)
+  assert_valid_variable(adam_db$adeg, visitvar, types = list("character", "factor"))
+  assert_disjunct(row_split_var, c("PARAMCD", "PARAM", visitvar))
+  assert_valid_variable(adam_db$adeg, summaryvars, types = list(c("factor", "character")), na_ok = TRUE)
+  assert_subset(page_var, c(row_split_var, "PARAMCD"))
 
-  summaryvars_lbls <- var_labels_for(adam_db$adeg, summaryvars) # Value at visit / change from baseline
+  lbl_overall <- render_safe(lbl_overall)
   lbl_avisit <- var_labels_for(adam_db$adeg, visitvar)
   lbl_param <- var_labels_for(adam_db$adeg, "PARAM")
-  lbl_overall <- render_safe(lbl_overall)
+  summaryvars_lbls <- var_labels_for(adam_db$adeg, summaryvars) # Value at visit / change from baseline
   row_split_lbl <- var_labels_for(adam_db$adeg, row_split_var)
 
   lyt <- egt05_qtcat_lyt(
     arm_var = arm_var,
-    summaryvars = summaryvars,
-    summaryvars_lbls = summaryvars_lbls,
     lbl_overall = lbl_overall,
-    visitvar = visitvar,
-    row_split_var = row_split_var,
-    row_split_lbl = row_split_lbl,
-    page_var = page_var,
     lbl_avisit = lbl_avisit,
     lbl_param = lbl_param,
-    lbl_cat = "Category"
+    lbl_cat = "Category",
+    summaryvars = summaryvars,
+    summaryvars_lbls = summaryvars_lbls,
+    row_split_var = row_split_var,
+    row_split_lbl = row_split_lbl,
+    visitvar = visitvar,
+    page_var = page_var
   )
 
   build_table(
@@ -76,30 +79,30 @@ egt05_qtcat_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-#' @param summaryvars (`character`) the variables to be analyzed. `AVALCAT1` and `CHGCAT1` by default.
-#' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
-#' @param visitvar (`string`) typically `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #' @param lbl_avisit (`string`) label of the `visitvar` variable.
 #' @param lbl_param (`string`) label of the `PARAM` variable.
 #' @param lbl_cat (`string`) label of the Category of `summaryvars` variable. Default as `Category`.
+#' @param summaryvars (`character`) the variables to be analyzed. `AVALCAT1` and `CHGCAT1` by default.
+#' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
+#' @param visitvar (`string`) typically `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #'
 #' @keywords internal
+#'
 egt05_qtcat_lyt <- function(arm_var,
+                            lbl_overall,
+                            lbl_avisit,
+                            lbl_param,
+                            lbl_cat,
                             summaryvars,
                             summaryvars_lbls,
-                            lbl_overall,
                             row_split_var,
                             row_split_lbl,
                             visitvar,
-                            page_var,
-                            lbl_avisit,
-                            lbl_param,
-                            lbl_cat) {
+                            page_var) {
   page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
-    add_colcounts() %>%
     ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by_recurive(
       row_split_var,
@@ -151,6 +154,7 @@ egt05_qtcat_pre <- function(adam_db, ...) {
 #' @inheritParams gen_args
 #'
 #' @export
+#'
 egt05_qtcat_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
   std_postprocess(tlg)

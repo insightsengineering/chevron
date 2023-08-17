@@ -6,13 +6,13 @@
 \usage{
 rspt01_lyt(
   arm_var,
+  rsp_var,
   ref_group,
   odds_ratio,
   perform_analysis,
   strata,
   conf_level,
-  methods,
-  rsp_var
+  methods
 )
 }
 \arguments{

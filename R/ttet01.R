@@ -11,25 +11,14 @@
 #' @param perform_analysis (`string`) option to display statistical comparisons using stratified analyses,
 #'  or unstratified analyses, or both, e.g. `c("unstrat", "strat")`. Only unstratified will be displayed by default
 #' @param strata (`string`) stratification factors, e.g. `strata = c("STRATA1", "STRATA2")`, by default as NULL
-#' @param pval_method (`string`) p-value method for testing hazard ratio = 1.
-#' Default method is `"log-rank"`, can also be set to `"wald"` or `"likelihood"`.
-#' @param conf_level (`numeric`) the level of confidence interval, default is 0.95.
-#' @param conf_type (`string`) confidence interval type. Options are `"plain"` (default), `"log"`, `"log-log"`,
-#'  see more in `survival::survfit()`. Note option "none" is no longer supported.
-#' @param quantiles (`numeric`) of length two to specify the quantiles of survival time.
-#' @param ties (`string`) specifying the method for tie handling. Default is `"efron"`,
-#'  can also be set to `"breslow"` or `"exact"`. see more in `survival::coxph()`
-#' @param timepoint (`numeric`) survival time point of interest.
-#' @param method (`string`) either `"surv"` (survival estimations),
-#'  `"surv_diff"` (difference in survival with the control) or `"both"`.
-#'
+#' @param ... Further arguments passed to `control_surv_time()`, `control_coxph()`, `control_survtp()`, and
+#'  `surv_timepoint()`. For details, see the documentation in `tern`. Commonly used arguments include `pval_method`,
+#'  `conf_level`, `conf_type`, `quantiles`, `ties`, `timepoint`, `method`, etc.
 #'
 #' @details
 #' * No overall value.
 #'
-#'
 #' @export
-#'
 #'
 ttet01_main <- function(adam_db,
                         dataset = "adtte",
@@ -38,26 +27,11 @@ ttet01_main <- function(adam_db,
                         summarize_event = TRUE,
                         perform_analysis = "unstrat",
                         strata = NULL,
-                        pval_method = "log-rank",
-                        conf_level = 0.95,
-                        conf_type = "log-log",
-                        quantiles = c(0.25, 0.75),
-                        ties = "efron",
-                        timepoint = c(6, 12),
-                        method = "both",
                         ...) {
   assert_string(dataset)
   assert_all_tablenames(adam_db, "adsl", dataset)
-  anl <- adam_db[[dataset]]
-  assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
+  assert_string(arm_var)
   assert_string(ref_group, null.ok = TRUE)
-  df_label <- sprintf("adam_db$%s", dataset)
-  assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
-  assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
-  assert_valid_variable(
-    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC", "AVALU"),
-    types = list(c("character", "factor")), label = df_label
-  )
   assert_flag(summarize_event)
   assert_subset(perform_analysis, c("unstrat", "strat"))
   assert_character(
@@ -65,28 +39,38 @@ ttet01_main <- function(adam_db,
     null.ok = !"strat" %in% perform_analysis,
     min.len = as.integer(!"strat" %in% perform_analysis)
   )
-
+  anl <- adam_db[[dataset]]
+  assert_single_value(anl$PARAMCD, label = sprintf("adam_db$%s$PARAMCD", dataset))
+  df_label <- sprintf("adam_db$%s", dataset)
+  assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
+  assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
+  assert_valid_variable(
+    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC", "AVALU"),
+    types = list(c("character", "factor")), label = df_label
+  )
   assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
   ref_group <- ref_group %||% lvls(anl[[arm_var]])[1]
-
   assert_single_value(anl$AVALU, label = sprintf("adam_db$%s$AVALU", dataset))
+
   timeunit <- unique(anl[["AVALU"]])
   event_lvls <- lvls(anl$EVNT1)
+
+  control_survt <- execute_with_args(control_surv_time, ...)
+  control_cox_ph <- execute_with_args(control_coxph, ...)
+  control_survtp <- execute_with_args(control_surv_timepoint, ...)
+
   lyt <- ttet01_lyt(
     arm_var = arm_var,
     ref_group = ref_group,
     summarize_event = summarize_event,
     perform_analysis = perform_analysis,
     strata = strata,
-    pval_method = pval_method,
-    conf_level = conf_level,
-    conf_type = conf_type,
-    quantiles = quantiles,
-    ties = ties,
     timeunit = timeunit,
-    timepoint = timepoint,
-    method = method,
-    event_lvls = event_lvls
+    event_lvls = event_lvls,
+    control_survt = control_survt,
+    control_cox_ph = control_cox_ph,
+    control_survtp = control_survtp,
+    ...
   )
 
   tbl <- build_table(lyt, anl)
@@ -100,20 +84,18 @@ ttet01_main <- function(adam_db,
 #' @param timeunit (`string`) time unit get from `AVALU`, by default is `"Months"`
 #'
 #' @keywords internal
+#'
 ttet01_lyt <- function(arm_var,
                        ref_group,
                        summarize_event,
                        perform_analysis,
                        strata,
-                       pval_method,
-                       conf_level,
-                       conf_type,
-                       quantiles,
-                       ties,
                        timeunit,
-                       timepoint,
-                       method,
-                       event_lvls) {
+                       event_lvls,
+                       control_survt,
+                       control_cox_ph,
+                       control_survtp,
+                       ...) {
   lyt01 <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(
       var = arm_var, ref_group = ref_group
@@ -149,11 +131,7 @@ ttet01_lyt <- function(arm_var,
       vars = "AVAL",
       var_labels = paste0("Time to Event (", timeunit, ")"),
       is_event = "IS_EVENT",
-      control = control_surv_time(
-        conf_level = conf_level,
-        conf_type = conf_type,
-        quantiles = quantiles
-      ),
+      control = control_survt,
       table_names = "time_to_event"
     )
 
@@ -164,11 +142,7 @@ ttet01_lyt <- function(arm_var,
         is_event = "IS_EVENT",
         var_labels = if (perform == "strat") "Stratified Analysis" else "Unstratified Analysis",
         strat = if (perform == "strat") strata else NULL,
-        control = control_coxph(
-          pval_method = pval_method,
-          conf_level = conf_level,
-          ties = ties
-        ),
+        control = control_cox_ph,
         table_names = if (perform == "strat") "coxph_stratified" else "coxph_unstratified"
       )
   }
@@ -177,17 +151,13 @@ ttet01_lyt <- function(arm_var,
     surv_timepoint(
       vars = "AVAL",
       var_labels = timeunit,
-      time_point = timepoint,
       is_event = "IS_EVENT",
-      method = method,
-      control = control_surv_timepoint(
-        conf_level = conf_level,
-        conf_type = conf_type
-      ),
-      .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk"))
+      control = control_survtp,
+      .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk")),
+      ...
     )
 
-  return(lyt)
+  lyt
 }
 
 #' @describeIn ttet01 Preprocessing
@@ -222,8 +192,8 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
 #'
 #' @inheritParams gen_args
 #'
-#'
 #' @export
+#'
 ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
@@ -243,11 +213,15 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' syn_data2 <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
-#' run(ttet01, syn_data2)
-#' run(ttet01, syn_data2,
+#' proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
+#' run(ttet01, proc_data)
+#'
+#' run(ttet01, proc_data,
 #'   summarize_event = FALSE, perform_analysis = c("unstrat", "strat"),
-#'   strata = c("STRATA1", "STRATA2")
+#'   strata = c("STRATA1", "STRATA2"),
+#'   conf_type = "log-log",
+#'   time_point = c(6, 12),
+#'   method = "both"
 #' )
 ttet01 <- chevron_t(
   main = ttet01_main,

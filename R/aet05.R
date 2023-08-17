@@ -18,14 +18,15 @@
 #' @note
 #'  * `adam_db` object must contain an `adaette` table with the columns `"PARAMCD"`, `"PARAM"`, `"AVAL"`, and `"CNSR"`.
 #'
-#'
 #' @export
 #'
 aet05_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       lbl_overall = NULL,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adaette"))
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adaette, c("USUBJID", arm_var, "PARAMCD", "PARAM"),
     types = list(c("character", "factor"))
@@ -33,10 +34,13 @@ aet05_main <- function(adam_db,
   assert_valid_variable(adam_db$adaette, "AVAL", types = list("numeric"), lower = 0, na_ok = TRUE)
   assert_valid_variable(adam_db$adaette, "n_events", types = list("numeric"), integerish = TRUE, lower = 0L)
   assert_valid_var_pair(adam_db$adsl, adam_db$adaette, arm_var)
+
+  lbl_overall <- render_safe(lbl_overall)
   control <- execute_with_args(control_incidence_rate, ...)
 
   lyt <- aet05_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     param_label = "PARAM",
     vars = "AVAL",
     n_events = "n_events",
@@ -60,12 +64,14 @@ aet05_main <- function(adam_db,
 #' @keywords internal
 #'
 aet05_lyt <- function(arm_var,
+                      lbl_overall,
                       param_label,
                       vars,
                       n_events,
                       control) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by(param_label, split_fun = drop_split_levels) %>%
     estimate_incidence_rate(
       vars = vars,

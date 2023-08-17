@@ -10,21 +10,20 @@ ttet01_lyt(
   summarize_event,
   perform_analysis,
   strata,
-  pval_method,
-  conf_level,
-  conf_type,
-  quantiles,
-  ties,
   timeunit,
-  timepoint,
-  method,
-  event_lvls
+  event_lvls,
+  control_survt,
+  control_cox_ph,
+  control_survtp,
+  ...
 )
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{timeunit}{(\code{string}) time unit get from \code{AVALU}, by default is \code{"Months"}}
+
+\item{...}{not used.}
 }
 \description{
 \code{ttet01} Layout

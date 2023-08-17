@@ -29,15 +29,20 @@ egt03_main <- function(adam_db,
                        page_var = "PARAMCD",
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adeg"))
+  assert_string(arm_var)
   assert_string(summaryvar)
-  assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
   assert_string(splitvar)
+  assert_string(visitvar)
+  assert_string(page_var, null.ok = TRUE)
   assert_subset(page_var, "PARAMCD")
+  assert_valid_variable(adam_db$adeg, summaryvar, types = list("character", "factor"))
   assert_valid_variable(adam_db$adeg, c("PARAMCD", "PARAM", splitvar), types = list("character", "factor"))
   assert_single_value(adam_db$adeg[[visitvar]])
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_single_value(adam_db$adeg$PARAMCD)
+
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- var_labels_for(adam_db$adeg, summaryvar)
   lbl_splitvar <- var_labels_for(adam_db$adeg, splitvar)
@@ -49,18 +54,18 @@ egt03_main <- function(adam_db,
     summaryvar = summaryvar,
     lbl_armvar = lbl_armvar,
     lbl_summaryvars = lbl_summaryvars,
-    page_var = page_var,
-    lbl_param = lbl_param
+    lbl_param = lbl_param,
+    page_var = page_var
   )
   adam_db$adeg$SPLIT_LABEL <- factor(rep(lbl_splitvar, nrow(adam_db$adeg)), levels = lbl_splitvar)
+
   tbl <- build_table(
     lyt,
     df = adam_db$adeg
   )
 
-  return(tbl)
+  tbl
 }
-
 
 #' `egt03` Layout
 #'
@@ -71,6 +76,7 @@ egt03_main <- function(adam_db,
 #' @param lbl_summaryvars (`string`) label of the `summaryvar` variable.
 #'
 #' @keywords internal
+#'
 egt03_lyt <- function(arm_var,
                       splitvar,
                       summaryvar,
@@ -110,6 +116,7 @@ egt03_lyt <- function(arm_var,
 #' @inheritParams egt03_main
 #'
 #' @export
+#'
 egt03_pre <- function(adam_db, ...) {
   adam_db$adeg <- adam_db$adeg %>%
     filter(
@@ -138,6 +145,7 @@ egt03_pre <- function(adam_db, ...) {
 #' @inheritParams gen_args
 #'
 #' @export
+#'
 egt03_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
 
@@ -155,6 +163,7 @@ egt03_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' @examples
 #' library(dunlin)
+#'
 #' proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
 #' run(egt03, proc_data)
 egt03 <- chevron_t(

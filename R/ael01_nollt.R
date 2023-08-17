@@ -69,7 +69,7 @@ ael01_nollt_pre <- function(adam_db,
 #' @inheritParams gen_args
 #'
 ael01_nollt_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_listing
+  if (nrow(tlg) == 0) tlg <- null_report
 
   tlg
 }

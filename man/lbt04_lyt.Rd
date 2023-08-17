@@ -6,13 +6,14 @@
 \usage{
 lbt04_lyt(
   arm_var,
+  lbl_overall,
+  lbl_param,
+  lbl_abn_var,
   var_parcat,
   var_param,
-  lbl_param,
   row_split_var,
   row_split_lbl,
   analysis_abn_var,
-  lbl_abn_var,
   variables,
   page_var
 )
@@ -20,11 +21,13 @@ lbt04_lyt(
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
+\item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
 \item{lbl_param}{(\code{string}) label of the \code{PARAM} variable.}
 
-\item{row_split_var}{(\code{character}) additional row split variables.}
-
 \item{lbl_abn_var}{(\code{string}) label of the \code{analysis_abn_var} variable.}
+
+\item{row_split_var}{(\code{character}) additional row split variables.}
 
 \item{variables}{(\code{list}) see \link[tern:abnormal]{tern::count_abnormal}}
 

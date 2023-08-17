@@ -20,6 +20,7 @@
 #'
 lbt04_main <- function(adam_db,
                        arm_var = "ACTARM",
+                       lbl_overall = NULL,
                        analysis_abn_var = "ANRIND",
                        baseline_abn_var = "BNRIND",
                        row_split_var = "PARCAT1",
@@ -27,6 +28,10 @@ lbt04_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adlb"))
   assert_string(arm_var)
+  assert_string(lbl_overall, null.ok = TRUE)
+  assert_string(analysis_abn_var)
+  assert_string(baseline_abn_var)
+  assert_string(row_split_var)
   assert_valid_variable(
     adam_db$adlb, c("PARAMCD", "PARAM", row_split_var),
     types = list("characater", "factor")
@@ -41,18 +46,24 @@ lbt04_main <- function(adam_db,
     na_ok = TRUE, empty_ok = TRUE, min_chars = 0L
   )
   assert_valid_var_pair(adam_db$adsl, adam_db$adlb, arm_var)
-  lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
+
+  lbl_overall <- render_safe(lbl_overall)
   lbl_param <- var_labels_for(adam_db$adlb, "PARAM")
+  lbl_abn_var <- var_labels_for(adam_db$adlb, analysis_abn_var)
   row_split_lbl <- var_labels_for(adam_db$adlb, row_split_var)
+
   lyt <- lbt04_lyt(
     arm_var = arm_var,
+    lbl_overall = lbl_overall,
     lbl_param = lbl_param,
-    analysis_abn_var = analysis_abn_var,
     lbl_abn_var = lbl_abn_var,
+    var_parcat = "PARCAT1",
+    var_param = "PARAM",
     row_split_var = row_split_var,
     row_split_lbl = row_split_lbl,
-    page_var = page_var,
-    variables = list(id = "USUBJID", baseline = baseline_abn_var)
+    analysis_abn_var = analysis_abn_var,
+    variables = list(id = "USUBJID", baseline = baseline_abn_var),
+    page_var = page_var
   )
 
   tbl <- build_table(lyt, adam_db$adlb, alt_counts_df = adam_db$adsl)
@@ -71,13 +82,14 @@ lbt04_main <- function(adam_db,
 #' @keywords internal
 #'
 lbt04_lyt <- function(arm_var,
+                      lbl_overall,
+                      lbl_param,
+                      lbl_abn_var,
                       var_parcat,
                       var_param,
-                      lbl_param,
                       row_split_var,
                       row_split_lbl,
                       analysis_abn_var,
-                      lbl_abn_var,
                       variables,
                       page_var) {
   page_by <- get_page_by(page_var, row_split_var)
@@ -85,6 +97,7 @@ lbt04_lyt <- function(arm_var,
 
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(arm_var) %>%
+    ifneeded_add_overall_col(lbl_overall) %>%
     split_rows_by_recurive(
       row_split_var,
       split_label = row_split_lbl,

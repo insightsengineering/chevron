@@ -133,21 +133,6 @@ test_that("postprocess sends an error as expected", {
   )
 })
 
-# script_args ----
-
-test_that("script works as expected", {
-  res <- expect_silent(script_args(aet04))
-  expect_character(res, len = 4)
-  expect_subset("adam_db <- stop(\"missing value\")", res)
-})
-
-test_that("script works as expected with dictionary of arguments", {
-  res <- expect_silent(script_args(aet04, dict = list(adam_db = sym("x"), new_arg = "NEW")))
-  expect_character(res, len = 5)
-  expect_subset("adam_db <- x", res)
-  expect_subset("new_arg <- \"NEW\"", res)
-})
-
 # script_funs ----
 
 test_that("script_funs works as expected in interactive mode", {
@@ -161,11 +146,6 @@ test_that("script_funs works as expected", {
   expect_character(res)
 })
 
-test_that("script_funs works as expected with details set to TRUE", {
-  res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls", details = TRUE))
-  expect_character(res)
-})
-
 
 test_that("script_funs generates a valid script", {
   tmp <- tempfile()
@@ -174,17 +154,11 @@ test_that("script_funs generates a valid script", {
     arm_var = "ARM"
   )
 
-  res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = FALSE)
+  res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list")
   writeLines(res_fun, tmp)
   res <- capture_output(source(tmp, local = TRUE))
   expect_snapshot(res)
   expected <- run(aet04, syn_data, arm_var = "ARM")
-  expect_identical(tlg_output, expected)
-
-  res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list", details = TRUE)
-  writeLines(res_fun, tmp)
-  res <- capture_output(source(tmp, local = TRUE))
-  expect_snapshot(res)
   expect_identical(tlg_output, expected)
 })
 
