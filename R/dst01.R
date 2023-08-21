@@ -93,8 +93,8 @@ dst01_lyt <- function(arm_var,
                       detail_vars,
                       trt_status_var) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall)
+    split_cols_by(arm_var, split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE))
+
   for (n in names(detail_vars)) {
     lyt <- lyt %>%
       count_or_summarize(study_status_var, n, detail_vars[[n]])

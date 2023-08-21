@@ -63,8 +63,10 @@ dmt01_lyt <- function(arm_var,
                       summaryvars,
                       summaryvars_lbls) {
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
+    split_cols_by(
+      var = arm_var,
+      split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
+    ) %>%
     summarize_vars(
       vars = summaryvars,
       var_labels = summaryvars_lbls,

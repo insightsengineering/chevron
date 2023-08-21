@@ -71,8 +71,10 @@ pdt01_lyt <- function(arm_var,
                       dvterm_var,
                       lbl_dvterm_var) {
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
+    split_cols_by(
+      var = arm_var,
+      split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
+    ) %>%
     summarize_num_patients(
       var = "USUBJID",
       .stats = c("unique", "nonunique"),
