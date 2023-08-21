@@ -37,6 +37,7 @@ setMethod(
       cl <- match.call()
       print_args(
         cl,
+        user_args,
         args_ls(object, omit = c("...", "adam_db", "tlg")), auto_pre
       )
     }
@@ -54,17 +55,14 @@ setMethod(
 
 #' Print Arguments
 #' @keywords internal
-print_args <- function(run_call, args, auto_pre = TRUE) {
+print_args <- function(run_call, additional_args, args, auto_pre = TRUE) {
   assert_class(run_call, "call")
   assert_list(args)
   assert_flag(auto_pre)
   run_call[[1]] <- NULL
   run_call <- as.list(run_call)
-  run_call_user_args <- run_call$user_args
-  if (!is.null(run_call_user_args)) {
-    run_call_user_args <- as.list(run_call_user_args)
-    run_call_user_args[[1]] <- NULL
-    run_call <- c(run_call[c("object", "adam_db")], run_call_user_args)
+  if (!is.null(additional_args)) {
+    run_call <- c(run_call[c("object", "adam_db")], additional_args)
   } else {
     run_call[c("auto_pre", "verbose")] <- NULL
   }
@@ -128,10 +126,24 @@ print_list <- function(x, indent = 2L) {
       sprintf(
         paste0("%s%-", m_charx + 2, "s: %s\n"),
         stringr::str_dup(" ", indent), k,
-        paste(deparse(x[[k]]), collapse = paste0("\n", stringr::str_dup(" ", m_charx + indent + 2)))
+        deparse_print(x[[k]], m_charx + indent + 2)
       )
     )
   }
+}
+
+#' Deparse print
+#' @keywords internal
+deparse_print <- function(x, indent, max_line = getOption("chevron.arg_max_line", 5L)) {
+  assert_int(indent)
+  assert_int(max_line, lower = 1L)
+  ret <- deparse(x)
+  sep <- paste0("\n", stringr::str_dup(" ", indent))
+  if (length(ret) > max_line) {
+    ret[max_line] <- sprintf("... (print of class <%s> truncated)", toString(class(x)))
+    ret <- ret[seq_len(max_line)]
+  }
+  paste(ret, collapse = sep)
 }
 
 # args_ls ----

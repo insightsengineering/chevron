@@ -4,7 +4,7 @@
 \alias{print_args}
 \title{Print Arguments}
 \usage{
-print_args(run_call, args, auto_pre = TRUE)
+print_args(run_call, additional_args, args, auto_pre = TRUE)
 }
 \description{
 Print Arguments
