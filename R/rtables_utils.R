@@ -139,7 +139,7 @@ s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, 
 }
 #' Summarize variables allow `NA`
 #' @keywords internal
-summarize_vars_allow_na <- function(
+analyze_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
     nested = TRUE, ..., show_labels = "default", table_names = vars,
     section_div = NA_character_, .stats = c("n", "count_fraction"),
@@ -178,7 +178,7 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
         format = format_count_fraction_fixed_dp
       ) %>%
       split_rows_by_recurive(detail_vars[-length(detail_vars)], split_fun = drop_split_levels) %>%
-      summarize_vars(
+      analyze_vars(
         detail_vars[length(detail_vars)],
         .stats = "count_fraction",
         denom = "N_col",

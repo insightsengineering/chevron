@@ -106,7 +106,7 @@ egt03_lyt <- function(arm_var,
       split_label = lbl_armvar
     ) %>%
     add_rowcounts() %>%
-    summarize_vars(summaryvar, denom = "N_row", .stats = "count_fraction") %>%
+    analyze_vars(summaryvar, denom = "N_row", .stats = "count_fraction") %>%
     append_topleft(lbl_summaryvars)
 }
 

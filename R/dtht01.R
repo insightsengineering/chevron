@@ -120,11 +120,11 @@ dtht01_lyt <- function(arm_var,
   if (!is.null(other_var)) {
     lyt <- lyt %>%
       split_rows_by(death_var, split_fun = keep_split_levels(other_level), child_labels = "hidden") %>%
-      summarize_vars(other_var, .stats = "count_fraction", denom = "N_row")
+      analyze_vars(other_var, .stats = "count_fraction", denom = "N_row")
   }
   if (!is.null(dose_death_var)) {
     lyt <- lyt %>%
-      summarize_vars_allow_na(
+      analyze_vars_allow_na(
         vars = dose_death_var,
         var_labels = "Days from last drug administration",
         .formats = list(count_fraction = format_count_fraction_fixed_dp),
@@ -139,7 +139,7 @@ dtht01_lyt <- function(arm_var,
         label_pos = "visible",
         nested = FALSE
       ) %>%
-      summarize_vars_allow_na(
+      analyze_vars_allow_na(
         death_var,
         .formats = list(count_fraction = format_count_fraction_fixed_dp)
       )

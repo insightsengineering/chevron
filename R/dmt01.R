@@ -65,7 +65,7 @@ dmt01_lyt <- function(arm_var,
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by(var = arm_var) %>%
     ifneeded_add_overall_col(lbl_overall) %>%
-    summarize_vars(
+    analyze_vars(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
       .formats = list(count_fraction = format_count_fraction_fixed_dp)
