@@ -2,8 +2,7 @@
 
 test_that("egt03 functions with default argument value return expected result with test data", {
   library(dunlin)
-  proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
-  pre_data <- egt03_pre(proc_data)
+  pre_data <- egt03_pre(syn_data)
   raw_res <- egt03_main(pre_data)
   res <- egt03_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
@@ -14,7 +13,6 @@ test_that("egt03 functions with default argument value return expected result wi
 test_that("egt03 errors on all NA values", {
   proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
-    filter(PARAMCD == "HR") %>%
     mutate(
       BNRIND = NA_character_,
       ANRIND = NA_character_,
@@ -25,7 +23,7 @@ test_that("egt03 errors on all NA values", {
 
 test_that("egt03 can handle some NA values", {
   library(dunlin)
-  proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
+  proc_data <- syn_data
   proc_data$adeg[1:2, c("ANRIND", "BNRIND")] <- NA
 
   res <- expect_silent(run(egt03, proc_data))
