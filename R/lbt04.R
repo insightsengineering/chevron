@@ -147,7 +147,8 @@ lbt04_pre <- function(adam_db, ...) {
           "LOW" = "LOW",
           "LOW LOW" = "LOW LOW",
           "NORMAL" = "NORMAL"
-        )
+        ),
+        .to_NA = NULL
       )
     )
 

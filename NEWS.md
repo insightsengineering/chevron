@@ -1,6 +1,7 @@
-# chevron 0.2.2.9001
+# chevron 0.2.2.9004
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
+* Fix argument printing for `run` method.
 
 # chevron 0.2.2
 
