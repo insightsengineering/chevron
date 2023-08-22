@@ -78,8 +78,9 @@ aet01_lyt <- function(arm_var,
                       anl_lbls,
                       lbl_vars) {
   lyt_base <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
-    lyt_ae1() <- lyt_base %>%
+    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall))
+
+  lyt_ae1 <- lyt_base %>%
     analyze_num_patients(
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),

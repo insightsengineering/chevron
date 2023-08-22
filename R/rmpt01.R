@@ -72,7 +72,7 @@ rmpt01_lyt <- function(summaryvars,
   lyt <- basic_table(show_colcounts = TRUE) %>%
     ifneeded_split_col(
       col_split_var,
-      split_fun = split_cols_by_with_overall(lbl_overall)
+      split_fun = split_cols_by_with_overall(overall_col_lbl)
     ) %>%
     split_cols_by_multivar(
       vars = c("AVAL", "AVAL"),
