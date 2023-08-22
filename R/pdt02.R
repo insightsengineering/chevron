@@ -71,7 +71,7 @@ pdt02_lyt <- function(arm_var,
                       dvreas_var,
                       dvterm_var) {
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
+    split_cols_by_with_overall(arm_var, lbl_overall) %>%
     analyze_num_patients(
       vars = "USUBJID",
       .stats = c("unique", "nonunique"),

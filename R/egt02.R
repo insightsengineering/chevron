@@ -62,7 +62,7 @@ egt02_lyt <- function(arm_var = "ACTARM",
                       lbl_vs_abnormality = "Abnormality",
                       exclude_base_abn) {
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
+    split_cols_by_with_overall(arm_var, lbl_overall) %>%
     split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
     count_abnormal(
       "ANRIND",

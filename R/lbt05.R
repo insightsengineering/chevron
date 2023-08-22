@@ -67,7 +67,7 @@ lbt05_lyt <- function(arm_var,
                       lbl_anrind,
                       map) {
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
+    split_cols_by_with_overall(arm_var, lbl_overall) %>%
     split_rows_by(
       "PARAM",
       label_pos = "topleft",

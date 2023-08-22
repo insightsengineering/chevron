@@ -416,9 +416,14 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
   }
 }
 
-split_cols_by_with_overall <- function(lbl_overall) {
-  if (!is.null(lbl_overall)) {
-    add_overall_level(lbl_overall, first = FALSE)
+split_cols_by_with_overall <- function(lyt, col_var, lbl_overall) {
+  if (is.null(col_var)) {
+    lyt
+  } else {
+    split_cols_by(
+      lyt, col_var,
+      split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
+    )
   }
 }
 

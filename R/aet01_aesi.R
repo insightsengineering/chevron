@@ -88,7 +88,7 @@ aet01_aesi_lyt <- function(arm_var,
                            grade_groups) {
   names(lbl_aesi_vars) <- aesi_vars
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
+    split_cols_by_with_overall(arm_var, lbl_overall) %>%
     count_patients_with_event(
       vars = "USUBJID",
       filters = c("ANL01FL" = "Y"),
