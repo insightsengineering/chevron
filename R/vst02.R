@@ -63,10 +63,7 @@ vst02_lyt <- function(arm_var,
                       lbl_vs_assessment,
                       lbl_vs_abnormality) {
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(
-      var = arm_var,
-      split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
+    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
     split_rows_by("PARAM", split_fun = drop_split_levels, label_pos = "topleft", split_label = lbl_vs_assessment) %>%
     count_abnormal(
       "ANRIND",

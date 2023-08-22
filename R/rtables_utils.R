@@ -21,14 +21,17 @@ split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels
         ...
       )
   }
+
   lyt
 }
+
 #' @keywords internal
 get_sort_path <- function(x) {
   assert_character(x, null.ok = TRUE)
   x2 <- as.character(rbind(x, rep("*", length(x))))
   x2[-length(x2)]
 }
+
 #' @keywords internal
 tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
   purrr::reduce(
@@ -39,6 +42,7 @@ tlg_sort_by_vars <- function(tlg, vars, scorefun = cont_n_allcols, ...) {
     ...
   )
 }
+
 #' @keywords internal
 tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
   assert_character(var)
@@ -53,6 +57,7 @@ tlg_sort_by_var <- function(tlg, var, scorefun = cont_n_allcols, ...) {
       ...
     )
 }
+
 #' @keywords internal
 valid_sort_at_path <- function(tt, path, scorefun, ...) {
   if (valid_row_path(tt, path)) {
@@ -66,6 +71,7 @@ valid_sort_at_path <- function(tt, path, scorefun, ...) {
     tt
   }
 }
+
 #' @keywords internal
 valid_row_path <- function(tlg, row_path) {
   if (nrow(tlg) == 0) {
@@ -78,10 +84,12 @@ valid_row_path <- function(tlg, row_path) {
 }
 
 #' Count patients recursively
+#'
 #' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param anl_vars Named (`list`) of analysis variables.
 #' @param anl_lbls (`character`) of labels.
 #' @param lbl_vars Named (`list`) of analysis labels.
+#'
 #' @keywords internal
 count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
   assert_list(anl_vars, names = "unique", types = "character")
@@ -99,8 +107,10 @@ count_patients_recursive <- function(lyt, anl_vars, anl_lbls, lbl_vars) {
         .indent_mods = 0L
       )
   }
+
   lyt
 }
+
 #' @keywords internal
 score_all_sum <- function(tt) {
   cleaf <- collect_leaves(tt)[[1]]
@@ -109,6 +119,7 @@ score_all_sum <- function(tt) {
   }
   sum(sapply(row_values(cleaf), function(cv) cv[1]))
 }
+
 #' @keywords internal
 summarize_row <- function(lyt, vars, afun, ...) {
   summarize_row_groups(lyt = lyt, var = vars, cfun = afun, ...)
@@ -120,6 +131,7 @@ summarize_row <- function(lyt, vars, afun, ...) {
 #' @param .N_row (`integer`) number of rows in row-split dataset.
 #' @param .N_col (`integer`) number of rows in column-split dataset.
 #' @param ... Not used
+#'
 #' @keywords internal
 s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, .N_col, ...) { # nolint
   denom <- match.arg(denom)
@@ -135,9 +147,12 @@ s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, 
     c(x, ifelse(dn > 0, x / dn, 0))
   })
   y$n_blq <- sum(grepl("BLQ|LTR|<[1-9]", x))
+
   y
 }
+
 #' Summarize variables allow `NA`
+#'
 #' @keywords internal
 summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
@@ -154,10 +169,12 @@ summarize_vars_allow_na <- function(
 }
 
 #' Count or summarize by groups
+#'
 #' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param var (`string`) of analysis variable.
 #' @param level (`string`) level to be displayed.
 #' @param detail_vars (`character`) of variables for detail information.
+#'
 #' @keywords internal
 count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ...) {
   assert_string(level)
@@ -187,13 +204,16 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
         ...
       )
   }
+
   lyt
 }
 
 #' Count or summarize by groups
+#'
 #' @param lyt (`PreDataTableLayouts`) `rtable` layout.
 #' @param row_split_var (`character`) variable to split rows by.
 #' @param ... Further arguments for `split_rows_by`
+#'
 #' @keywords internal
 split_rows_by_recurive <- function(lyt, row_split_var, ...) {
   args <- list(...)
@@ -210,10 +230,12 @@ split_rows_by_recurive <- function(lyt, row_split_var, ...) {
       )
     )
   }
+
   lyt
 }
 
 #' Obtain value from a vector
+#'
 #' @keywords internal
 obtain_value <- function(obj, index) {
   if (is.list(obj)) {
@@ -226,6 +248,7 @@ obtain_value <- function(obj, index) {
 }
 
 #' Get page by value
+#'
 #' @keywords internal
 get_page_by <- function(var, vars) {
   assert_character(vars, null.ok = TRUE)
@@ -297,7 +320,6 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
 #' @keywords internal
 #'
 #' @return `PreDataTableLayouts` object.
-#'
 ifneeded_split_row <- function(lyt, var, lbl_var) {
   if (is.null(var)) {
     lyt
@@ -318,7 +340,6 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
 #' @keywords internal
 #'
 #' @return `rtables` object.
-#'
 ifneeded_split_col <- function(lyt, var, ...) {
   if (is.null(var)) {
     lyt
@@ -332,6 +353,7 @@ ifneeded_split_col <- function(lyt, var, ...) {
 }
 
 #' Create a Null Report
+#'
 #' @rdname report_null
 #' @aliases null_report
 #' @param tlg (`TableTree`) object.
@@ -340,7 +362,6 @@ ifneeded_split_col <- function(lyt, var, ...) {
 #' @export
 #'
 #' @return original `TableTree` or a null report if no observation are found in the table.
-#'
 report_null <- function(tlg, ...) {
   assert_true(is.null(tlg) || rtables::is_rtable(tlg))
 
@@ -354,6 +375,7 @@ report_null <- function(tlg, ...) {
 }
 
 #' Count Children
+#'
 #' @keywords internal
 count_children <- function(x) {
   assert_true(rtables::is_rtable(x))
@@ -394,7 +416,14 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
   }
 }
 
+split_cols_by_with_overall <- function(lbl_overall) {
+  if (!is.null(lbl_overall)) {
+    add_overall_level(lbl_overall, first = FALSE)
+  }
+}
+
 #' Analyze skip baseline
+#'
 #' @param x value to analyze
 #' @param .var variable name.
 #' @param .spl_context split context.
@@ -408,6 +437,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
 #' @param .N_row (`int`) See `tern::summarize_variables`.
 #' @param ... additional arguments for `tern::a_summary`.
 #' @inheritParams cfbt01_main
+#'
 #' @keywords internal
 afun_skip <- function(
     x, .var, .spl_context, paramcdvar, visitvar, skip,
@@ -431,6 +461,7 @@ afun_skip <- function(
   for (i in seq_len(length(ret))) {
     attr(ret[[i]], "format_na_str") <- fmts_na[[i]]()
   }
+
   ret
 }
 
@@ -503,8 +534,8 @@ infer_mapping <- function(map_df, df) {
 #' @inheritParams gen_args
 #' @inheritParams cmt01a_main
 #' @param lbl_medname_var (`string`) label for the variable defining the medication name.
-#' @keywords internal
 #'
+#' @keywords internal
 occurrence_lyt <- function(arm_var,
                            lbl_overall,
                            row_split_var,
@@ -517,10 +548,9 @@ occurrence_lyt <- function(arm_var,
     if (length(summary_labels[[x]]) > 0L) -1L else 0L
   }, FUN.VALUE = 0L)
   split_indent[1L] <- 0L
-  lyt <- basic_table() %>%
-    split_cols_by(var = arm_var) %>%
-    add_colcounts() %>%
-    ifneeded_add_overall_col(lbl_overall)
+  lyt <- basic_table(show_colcounts = TRUE) %>%
+    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall))
+
   if (length(summary_labels$TOTAL) > 0) {
     lyt <- lyt %>%
       analyze_num_patients(
@@ -531,6 +561,7 @@ occurrence_lyt <- function(arm_var,
         .labels = render_safe(summary_labels$TOTAL)
       )
   }
+
   for (k in seq_len(length(row_split_var))) {
     lyt <- split_and_summ_num_patients(
       lyt = lyt,
@@ -542,6 +573,7 @@ occurrence_lyt <- function(arm_var,
       summarize_labels = render_safe(summary_labels[[row_split_var[k]]])
     )
   }
+
   lyt %>%
     count_occurrences(
       vars = medname_var,

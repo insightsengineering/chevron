@@ -96,7 +96,7 @@ lbt04_lyt <- function(arm_var,
   label_pos <- ifelse(page_by, "hidden", "topleft")
 
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(arm_var, split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)) %>%
+    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
     split_rows_by_recurive(
       row_split_var,
       split_label = row_split_lbl,

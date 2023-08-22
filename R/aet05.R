@@ -70,7 +70,7 @@ aet05_lyt <- function(arm_var,
                       n_events,
                       control) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(arm_var, split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)) %>%
+    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
     split_rows_by(param_label, split_fun = drop_split_levels) %>%
     estimate_incidence_rate(
       vars = vars,

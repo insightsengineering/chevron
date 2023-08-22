@@ -65,10 +65,7 @@ aet03_lyt <- function(arm_var,
   all_grade_groups <- list("- Any Intensity -" = intensity_grade)
 
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(
-      var = arm_var,
-      split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
-    ) %>%
+    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
     count_occurrences_by_grade(
       var = "ASEV",
       grade_groups = all_grade_groups,

@@ -93,12 +93,11 @@ dst01_lyt <- function(arm_var,
                       detail_vars,
                       trt_status_var) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(arm_var, split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE))
-
-  for (n in names(detail_vars)) {
-    lyt <- lyt %>%
-      count_or_summarize(study_status_var, n, detail_vars[[n]])
-  }
+    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall)) %>%
+    for (n in names(detail_vars)) {
+      lyt <- lyt %>%
+        count_or_summarize(study_status_var, n, detail_vars[[n]])
+    }
   if (!is.null(trt_status_var)) {
     lyt <- lyt %>%
       summarize_vars(
