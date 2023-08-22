@@ -139,7 +139,7 @@ s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, 
 }
 #' Summarize variables allow `NA`
 #' @keywords internal
-analyze_vars_allow_na <- function(
+summarize_vars_allow_na <- function(
     lyt, vars, var_labels = vars,
     nested = TRUE, ..., show_labels = "default", table_names = vars,
     section_div = NA_character_, .stats = c("n", "count_fraction"),

@@ -123,7 +123,7 @@ egt05_qtcat_lyt <- function(arm_var,
       split_label = lbl_avisit,
       label_pos = "topleft"
     ) %>%
-    analyze_vars_allow_na(
+    summarize_vars_allow_na(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
       inclNAs = FALSE
