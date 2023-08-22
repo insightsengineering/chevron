@@ -554,7 +554,7 @@ occurrence_lyt <- function(arm_var,
   }, FUN.VALUE = 0L)
   split_indent[1L] <- 0L
   lyt <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var, split_fun = split_cols_by_with_overall(lbl_overall))
+    split_cols_by_with_overall(arm_var, lbl_overall)
 
   if (length(summary_labels$TOTAL) > 0) {
     lyt <- lyt %>%
