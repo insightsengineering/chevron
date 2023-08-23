@@ -21,7 +21,6 @@ test_that("egt03 errors on all NA values", {
 })
 
 test_that("egt03 can handle some NA values", {
-  library(dunlin)
   proc_data <- syn_data
   proc_data$adeg[1:2, c("ANRIND", "BNRIND")] <- NA
 
