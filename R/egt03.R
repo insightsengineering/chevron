@@ -152,7 +152,7 @@ egt03_post <- function(tlg, prune_0 = FALSE, ...) {
   std_postprocess(tlg)
 }
 
-#' `EGT03` Shift Table of ECG Interval Data - Baseline versus Minimum or Maximum Post-Baseline
+#' `EGT03` Shift Table of ECG Interval Data - Baseline versus Minimum or Maximum Post-Baseline.
 #'
 #' The `EGT03` Table entries provide the number of patients by baseline assessment and minimum or maximum post-baseline
 #' assessment. Percentages are based on the total number of patients in a treatment group. Baseline is the patient's

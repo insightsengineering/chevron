@@ -158,7 +158,7 @@ rspt01_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `RSPT01` Binary Outcomes Summary
+#' `RSPT01` Binary Outcomes Summary.
 #'
 #' `RSPT01` template may be used to summarize any binary outcome or response variable at
 #' a single time point. Typical application for oncology
