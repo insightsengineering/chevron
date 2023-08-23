@@ -45,7 +45,7 @@ ttet01_main <- function(adam_db,
   assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
   assert_valid_variable(
-    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC", "AVALU"),
+    adam_db[[dataset]], c("USUBJID", strata, arm_var, "EVNT1", "EVNTDESC", "AVALU"),
     types = list(c("character", "factor")), label = df_label
   )
   assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
