@@ -6,7 +6,7 @@
 \alias{rspt01_pre}
 \alias{rspt01_post}
 \alias{rspt01}
-\title{\code{RSPT01} Binary Outcomes Summary}
+\title{\code{RSPT01} Binary Outcomes Summary.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }

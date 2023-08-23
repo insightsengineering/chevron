@@ -6,7 +6,7 @@
 \alias{ttet01_pre}
 \alias{ttet01_post}
 \alias{ttet01}
-\title{\code{TTET01} Binary Outcomes Summary}
+\title{\code{TTET01} Binary Outcomes Summary.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
