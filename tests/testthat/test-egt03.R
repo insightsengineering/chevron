@@ -1,7 +1,6 @@
 # egt03 functions ----
 
 test_that("egt03 functions with default argument value return expected result with test data", {
-  library(dunlin)
   pre_data <- egt03_pre(syn_data)
   raw_res <- egt03_main(pre_data)
   res <- egt03_post(raw_res)
