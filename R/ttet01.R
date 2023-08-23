@@ -201,7 +201,7 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `TTET01` Binary Outcomes Summary
+#' `TTET01` Binary Outcomes Summary.
 #'
 #' `TTET01` template may be used to summarize any binary outcome or response variable at
 #' a single time point. Typical application for oncology

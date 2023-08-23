@@ -6,7 +6,7 @@
 \alias{egt03_pre}
 \alias{egt03_post}
 \alias{egt03}
-\title{\code{EGT03} Shift Table of ECG Interval Data - Baseline versus Minimum or Maximum Post-Baseline}
+\title{\code{EGT03} Shift Table of ECG Interval Data - Baseline versus Minimum or Maximum Post-Baseline.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
