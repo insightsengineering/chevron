@@ -110,7 +110,7 @@ pdt01_pre <- function(adam_db, ...) {
     )
 
   adam_db %>%
-    dunlin::log_filter(DVCAT == "MAJOR", "addv")
+    dunlin::log_filter(.data$DVCAT == "MAJOR", "addv")
 }
 
 #' @describeIn pdt01 Postprocessing
