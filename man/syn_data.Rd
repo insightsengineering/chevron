@@ -5,24 +5,18 @@
 \alias{syn_data}
 \title{Example \code{adam} Synthetic Data}
 \format{
-A named \code{list} of 19 \code{data.frames}:
+A named \code{list} of 13 \code{data.frames}:
 - \code{adsl}
-- \code{adab}
 - \code{adae}
 - \code{adaette}
 - \code{adcm}
 - \code{addv}
 - \code{adeg}
 - \code{adex}
-- \code{adhy}
 - \code{adlb}
 - \code{admh}
-- \code{adpc}
-- \code{adpp}
-- \code{adqs}
 - \code{adrs}
 - \code{adsub}
-- \code{adtr}
 - \code{adtte}
 - \code{advs}
 }
