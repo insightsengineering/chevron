@@ -102,7 +102,7 @@ dst01_lyt <- function(arm_var,
 
   if (!is.null(trt_status_var)) {
     lyt <- lyt %>%
-      summarize_vars(
+      analyze_vars(
         trt_status_var,
         .stats = "count_fraction",
         denom = "N_col",
