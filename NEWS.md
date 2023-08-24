@@ -2,6 +2,9 @@
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
 * Fix argument printing for `run` method.
+* Fix `EGT03` to allow multiple parameters.
+* Update `TTET01` to provide meaningful error message if stratification
+variables do not exist in analysis dataset.
 * `pdt01` preprocessing now filters `addv` to retain only major protocol deviation.
 
 # chevron 0.2.2
