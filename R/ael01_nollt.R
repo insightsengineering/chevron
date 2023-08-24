@@ -33,7 +33,7 @@ ael01_nollt_main <- function(adam_db,
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
   assert_list(default_formatting, types = "fmt_config", names = "unique")
   assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
-  assert_logical(unique_rows)
+  assert_flag(unique_rows)
   as_listing(
     adam_db[[dataset]],
     key_cols = key_cols,
