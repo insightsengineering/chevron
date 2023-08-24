@@ -102,7 +102,7 @@ aet10_post <- function(tlg, atleast = 0.05, ...) {
   std_postprocess(tlg_prune)
 }
 
-#' `AET10` Table 1 (Default) Most Common (xx%) Adverse Events Preferred Terms Table 1
+#' `AET10` Table 1 (Default) Most Common (xx%) Adverse Events Preferred Terms Table 1.
 #'
 #' The `AET10` table Include Adverse Events occurring with user-specified threshold X% in at least
 #'  one of the treatment groups. Standard table summarized by preferred term (PT).

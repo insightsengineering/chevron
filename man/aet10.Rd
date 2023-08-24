@@ -6,7 +6,7 @@
 \alias{aet10_pre}
 \alias{aet10_post}
 \alias{aet10}
-\title{\code{AET10} Table 1 (Default) Most Common (xx\%) Adverse Events Preferred Terms Table 1}
+\title{\code{AET10} Table 1 (Default) Most Common (xx\%) Adverse Events Preferred Terms Table 1.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
