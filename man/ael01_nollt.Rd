@@ -16,9 +16,10 @@ ael01_nollt_main(
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
-  default_formatting = list(all = formatters::fmt_config(align = "left"), numeric =
-    formatters::fmt_config(align = "center")),
+  default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
+    = "center")),
   col_formatting = NULL,
+  unique_rows = TRUE,
   ...
 )
 
