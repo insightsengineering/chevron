@@ -2,6 +2,7 @@
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
 * Fix argument printing for `run` method.
+* Remove six unused tables from the `syn_data` object.
 
 # chevron 0.2.2
 
