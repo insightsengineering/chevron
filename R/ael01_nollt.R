@@ -58,7 +58,8 @@ ael01_nollt_pre <- function(adam_db,
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       across(all_of(c(key_cols, disp_cols)), ~ reformat(.x, nocoding))
-    )
+    ) %>%
+    arrange(pick(all_of(c(key_cols, disp_cols))))
 
   adam_db
 }
