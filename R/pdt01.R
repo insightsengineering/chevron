@@ -109,7 +109,8 @@ pdt01_pre <- function(adam_db, ...) {
       DVTERM = with_label(.data$DVTERM, "Category")
     )
 
-  adam_db
+  adam_db %>%
+    dunlin::log_filter(.data$DVCAT == "MAJOR", "addv")
 }
 
 #' @describeIn pdt01 Postprocessing
@@ -143,13 +144,7 @@ pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var =
 #' @export
 #'
 #' @examples
-#' library(dplyr)
-#'
-#' proc_data <- syn_data
-#' proc_data$addv <- proc_data$addv %>%
-#'   filter(DVCAT == "MAJOR")
-#'
-#' run(pdt01, proc_data)
+#' run(pdt01, syn_data)
 pdt01 <- chevron_t(
   main = pdt01_main,
   preprocess = pdt01_pre,
