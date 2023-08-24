@@ -45,7 +45,7 @@ ttet01_main <- function(adam_db,
   assert_valid_variable(adam_db[[dataset]], c("IS_EVENT", "IS_NOT_EVENT"), types = list("logical"), label = df_label)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_label)
   assert_valid_variable(
-    adam_db[[dataset]], c("USUBJID", arm_var, "EVNT1", "EVNTDESC", "AVALU"),
+    adam_db[[dataset]], c("USUBJID", strata, arm_var, "EVNT1", "EVNTDESC", "AVALU"),
     types = list(c("character", "factor")), label = df_label
   )
   assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
@@ -100,7 +100,7 @@ ttet01_lyt <- function(arm_var,
     split_cols_by(
       var = arm_var, ref_group = ref_group
     ) %>%
-    summarize_vars(
+    analyze_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
       .labels = c(count_fraction = event_lvls[1])
@@ -116,11 +116,11 @@ ttet01_lyt <- function(arm_var,
         child_labels = "hidden",
         indent_mod = 1L,
       ) %>%
-      summarize_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count_fraction")
+      analyze_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count_fraction")
   }
 
   lyt01 <- lyt01 %>%
-    summarize_vars(
+    analyze_vars(
       vars = "IS_NOT_EVENT",
       .stats = "count_fraction",
       .labels = c(count_fraction = event_lvls[2]),

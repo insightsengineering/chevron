@@ -41,7 +41,6 @@ egt03_main <- function(adam_db,
   assert_valid_var_pair(adam_db$adsl, adam_db$adeg, arm_var)
   assert_valid_variable(adam_db$adeg, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_single_value(adam_db$adeg$PARAMCD)
 
   lbl_armvar <- var_labels_for(adam_db$adeg, arm_var)
   lbl_summaryvars <- var_labels_for(adam_db$adeg, summaryvar)
@@ -106,7 +105,11 @@ egt03_lyt <- function(arm_var,
       split_label = lbl_armvar
     ) %>%
     add_rowcounts() %>%
-    summarize_vars(summaryvar, denom = "N_row", .stats = "count_fraction") %>%
+    analyze_vars(
+      summaryvar,
+      denom = "N_row", .stats = "count_fraction",
+      .formats = list(count_fraction = format_count_fraction_fixed_dp)
+    ) %>%
     append_topleft(lbl_summaryvars)
 }
 
