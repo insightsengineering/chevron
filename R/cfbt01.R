@@ -72,7 +72,7 @@ cfbt01_main <- function(adam_db,
   )
   assert_subset(.stats, all_stats)
 
-  lbl_overall <- lbl_overall <- render_safe(lbl_overall)
+  lbl_overall <- render_safe(lbl_overall)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 

@@ -422,7 +422,9 @@ split_cols_by_with_overall <- function(lyt, col_var, lbl_overall) {
   } else {
     split_cols_by(
       lyt, col_var,
-      split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)
+      split_fun = if (!is.null(lbl_overall) && !identical(lbl_overall, "")) {
+        add_overall_level(lbl_overall, first = FALSE)
+      }
     )
   }
 }
