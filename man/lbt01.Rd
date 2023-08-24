@@ -54,7 +54,7 @@ the value for \code{default} will be used.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
-\item{.stats}{(\code{character}) statistics names, see \code{tern::summarize_vars()}.}
+\item{.stats}{(\code{character}) statistics names, see \code{tern::analyze_vars()}.}
 
 \item{skip}{Named (\code{list}) of visit values that need to be inhibited.}
 

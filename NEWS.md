@@ -1,7 +1,8 @@
-# chevron 0.2.2.9004
+# chevron 0.2.2.9007
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
 * Fix argument printing for `run` method.
+* `pdt01` preprocessing now filters `addv` to retain only major protocol deviation.
 
 # chevron 0.2.2
 
