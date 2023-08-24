@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9007</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9008</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -3224,22 +3224,16 @@ first.</p>
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="va">syn_data</span></span>
 <span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/propagate.html" class="external-link">propagate</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="st">"adsl"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"USUBJID"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Updating: adab with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adae with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adaette with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adcm with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: addv with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adeg with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adex with: AGEGR1</span></span>
-<span><span class="co">#&gt; Updating: adhy with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adlb with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: admh with: AGEGR1</span></span>
-<span><span class="co">#&gt; Updating: adpc with: AGEGR1</span></span>
-<span><span class="co">#&gt; Updating: adpp with: AGEGR1</span></span>
-<span><span class="co">#&gt; Updating: adqs with: AGEGR1</span></span>
 <span><span class="co">#&gt; Skipping: adrs</span></span>
 <span><span class="co">#&gt; Updating: adsub with: AGEGR1</span></span>
-<span><span class="co">#&gt; Skipping: adtr</span></span>
 <span><span class="co">#&gt; Skipping: adtte</span></span>
 <span><span class="co">#&gt; Updating: advs with: AGEGR1</span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt03</span>, <span class="va">proc_data</span><span class="op">)</span></span>
@@ -3269,22 +3263,16 @@ the variable specified per <code>summaryvars</code> is unavailable in
 <span>  <span class="op">)</span></span>
 <span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/propagate.html" class="external-link">propagate</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="st">"adsl"</span>, <span class="st">"AGEGR2"</span>, <span class="st">"USUBJID"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Updating: adab with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adae with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adaette with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adcm with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: addv with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adeg with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adex with: AGEGR2</span></span>
-<span><span class="co">#&gt; Updating: adhy with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adlb with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: admh with: AGEGR2</span></span>
-<span><span class="co">#&gt; Updating: adpc with: AGEGR2</span></span>
-<span><span class="co">#&gt; Updating: adpp with: AGEGR2</span></span>
-<span><span class="co">#&gt; Updating: adqs with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adrs with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adsub with: AGEGR2</span></span>
-<span><span class="co">#&gt; Updating: adtr with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adtte with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: advs with: AGEGR2</span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt03</span>, <span class="va">proc_data</span>, summaryvars <span class="op">=</span> <span class="st">"AGEGR2"</span><span class="op">)</span></span>
