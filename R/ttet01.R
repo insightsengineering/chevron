@@ -100,7 +100,7 @@ ttet01_lyt <- function(arm_var,
     split_cols_by(
       var = arm_var, ref_group = ref_group
     ) %>%
-    summarize_vars(
+    analyze_vars(
       vars = "IS_EVENT",
       .stats = "count_fraction",
       .labels = c(count_fraction = event_lvls[1])
@@ -116,11 +116,11 @@ ttet01_lyt <- function(arm_var,
         child_labels = "hidden",
         indent_mod = 1L,
       ) %>%
-      summarize_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count_fraction")
+      analyze_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count_fraction")
   }
 
   lyt01 <- lyt01 %>%
-    summarize_vars(
+    analyze_vars(
       vars = "IS_NOT_EVENT",
       .stats = "count_fraction",
       .labels = c(count_fraction = event_lvls[2]),
@@ -201,7 +201,7 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `TTET01` Binary Outcomes Summary
+#' `TTET01` Binary Outcomes Summary.
 #'
 #' `TTET01` template may be used to summarize any binary outcome or response variable at
 #' a single time point. Typical application for oncology
