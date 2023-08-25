@@ -12,6 +12,8 @@ empty_rule <- rule(.to_NA = "")
 #' @param missing (`string`) method to deal with missing
 #' @export
 get_grade_rule <- function(direction = "high", missing = "incl") {
+  assert_choice(direction, c("high", "low"))
+  assert_choice(missing, c("incl", "gr_0", "excl"))
   rule_arg <- list()
   if (direction == "high") {
     rule_arg[["Not High"]] <- c("0", "-1", "-2", "-3", "-4")

@@ -105,17 +105,14 @@ lbt14_pre <- function(adam_db,
                       gr_missing = "incl",
                       direction = "low",
                       ...) {
-  assert_choice(gr_missing, c("incl", "excl", "gr_0"))
-  assert_choice(direction, c("low", "high"))
-
-  if (direction == "high") {
+  if (identical(direction, "high")) {
     adam_db$adlb <- adam_db$adlb %>%
       filter(.data$WGRHIFL == "Y") %>%
       h_adsl_adlb_merge_using_worst_flag(
         adsl = adam_db$adsl,
         worst_flag = c("WGRHIFL" = "Y")
       )
-  } else {
+  } else if (identical(direction, "low")) {
     adam_db$adlb <- adam_db$adlb %>%
       filter(.data$WGRLOFL == "Y") %>%
       h_adsl_adlb_merge_using_worst_flag(
