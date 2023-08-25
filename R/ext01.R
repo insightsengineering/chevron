@@ -101,7 +101,7 @@ ext01_lyt <- function(arm_var,
       labels_var = "PARAM",
       split_fun = split_fun_map(map)
     ) %>%
-    summarize_vars(
+    analyze_vars(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
       show_labels = "hidden",

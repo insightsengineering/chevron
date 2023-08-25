@@ -195,7 +195,7 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
         format = format_count_fraction_fixed_dp
       ) %>%
       split_rows_by_recurive(detail_vars[-length(detail_vars)], split_fun = drop_split_levels) %>%
-      summarize_vars(
+      analyze_vars(
         detail_vars[length(detail_vars)],
         .stats = "count_fraction",
         denom = "N_col",
