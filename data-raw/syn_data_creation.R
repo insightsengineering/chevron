@@ -3,7 +3,12 @@
 #' @rdname syn_test_data
 syn_test_data <- function() {
   sd <- scda::synthetic_cdisc_data("rcd_2022_06_27")
-
+  sd$adhy <- NULL
+  sd$adpp <- NULL
+  sd$adqs <- NULL
+  sd$adtr <- NULL
+  sd$adpc <- NULL
+  sd$adab <- NULL
   # to avoid bug
   attr(sd, "data_from") <- NULL
 

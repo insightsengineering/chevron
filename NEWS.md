@@ -1,8 +1,13 @@
-# chevron 0.2.2.9007
+# chevron 0.2.2.9010
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
 * Fix argument printing for `run` method.
-* `pdt01` preprocessing now filters `addv` to retain only major protocol deviation.
+* Remove six unused tables from the `syn_data` object.
+* Fix `EGT03` to allow multiple parameters.
+* Update `TTET01` to provide meaningful error message if stratification
+variables do not exist in analysis dataset.
+* `PDT01` preprocessing now filters `addv` to retain only major protocol deviation.
+* `AEL01_NOLLT` now has argument `unique` to keep only the unique rows in listing.
 
 # chevron 0.2.2
 
