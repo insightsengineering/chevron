@@ -80,6 +80,28 @@ test_that("ifneeded_split_row works as expected", {
   expect_null(rtables::vars_in_layout(lyt))
 })
 
+# split_cols_by_with_overall ----
+
+res1 <- rtables::basic_table() %>%
+  split_cols_by_with_overall(col_var = "Species", lbl_overall = "All") %>%
+  build_table(iris)
+expect_snapshot(res1)
+
+res2 <- rtables::basic_table() %>%
+  split_cols_by_with_overall(col_var = "Species", lbl_overall = NULL) %>%
+  build_table(iris)
+expect_snapshot(res2)
+
+res3 <- rtables::basic_table() %>%
+  split_cols_by_with_overall(col_var = "Species", lbl_overall = "") %>%
+  build_table(iris)
+expect_snapshot(res3)
+
+res4 <- rtables::basic_table() %>%
+  split_cols_by_with_overall(col_var = NULL, lbl_overall = "All") %>%
+  build_table(iris)
+expect_snapshot(res4)
+
 # droplevels.character ----
 
 test_that("droplevels.character works as expected", {
@@ -101,7 +123,6 @@ test_that("lvls.factor works as expected", {
   res <- expect_silent(lvls(x))
   expect_identical(res, c("b", "a", "x"))
 })
-
 
 test_that("lvls.default works as expected", {
   x <- 1:10
