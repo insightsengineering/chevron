@@ -904,7 +904,7 @@ run(ttet01, proc_data, perform_analysis = "strat", strata = "STRATA1")
 
 #### **5. Time-to-event Summary (modifying time point for the "survival at xx months” analysis)**
 
-The time point for the "survival at xx months" analysis can be modified by specifying the argument `time_point`. By default, the syntax takes `AVAL` from `adtte` in the unit of days and convert to months. The survival estimates are then summarized in month, and the numeric values provided to `time_point` should be in the unit of month as well. 
+The time point for the "survival at xx months" analysis can be modified by specifying the argument `time_point`. By default, the function takes `AVAL` from `adtte` in days and converts it to months. The survival estimates are then summarized in month, and the numeric values should be provided in months to `time_point`. 
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
