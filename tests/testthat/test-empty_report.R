@@ -1,18 +1,12 @@
 # NULL report ----
 
 test_that("tlg functions return null reports when domain table is empty", {
-  dat_empty <- lapply(syn_data, tern::df_explicit_na) %>%
-    lapply(dplyr::filter, USUBJID == "")
+  dat_empty <- lapply(syn_data, function(x) {mutate(x, USUBJID = reformat(USUBJID, rule()))})
+  dat_empty <- dunlin::log_filter(dat_empty, USUBJID == "", "adsl")
 
   empty_report <- rtables::rtable(
     header = "",
     rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
-  )
-
-  empty_listing <- rlistings::as_listing(
-    df = data.frame(x = with_label(
-      "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
-    ))
   )
 
   res <- run(ael01_nollt, dat_empty)

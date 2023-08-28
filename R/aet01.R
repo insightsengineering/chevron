@@ -31,8 +31,12 @@ aet01_main <- function(adam_db,
   assert_string(lbl_overall, null.ok = TRUE)
   assert_list(anl_vars, types = "character", names = "unique")
   assert_character(anl_lbls, min.chars = 1L)
-  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adsl, c("DTHFL", "DCSREAS"), types = list(c("character", "factor")), min_chars = 0L)
+  assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(
+    adam_db$adsl,
+    c("DTHFL", "DCSREAS"), types = list(c("character", "factor")),
+    min_chars = 0L, empty_ok = TRUE
+  )
   assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adae, unlist(anl_vars), types = list("logical"), na_ok = TRUE, empty_ok = TRUE)
