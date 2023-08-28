@@ -123,8 +123,6 @@ aet01_aesi_lyt <- function(arm_var,
 #'
 aet01_aesi_pre <- function(adam_db,
                            ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adae"))
-
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(

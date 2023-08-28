@@ -80,7 +80,6 @@ egt02_lyt <- function(arm_var = "ACTARM",
 #' @export
 #'
 egt02_pre <- function(adam_db, ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adeg"))
   adam_db$adeg <- adam_db$adeg %>%
     mutate(ANRIND = factor(.data$ANRIND, levels = c("LOW", "NORMAL", "HIGH"))) %>%
     filter(!is.na(.data$ANRIND)) %>%

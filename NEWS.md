@@ -1,4 +1,4 @@
-# chevron 0.2.2.9010
+# chevron 0.2.2.9011
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
 * Fix argument printing for `run` method.
@@ -8,6 +8,7 @@
 variables do not exist in analysis dataset.
 * `PDT01` preprocessing now filters `addv` to retain only major protocol deviation.
 * `AEL01_NOLLT` now has argument `unique` to keep only the unique rows in listing.
+* `AET01_AESI`, `EGT02` and `LBT14` now remove the check in preprocessing function.
 
 # chevron 0.2.2
 
