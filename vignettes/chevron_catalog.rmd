@@ -141,7 +141,7 @@ run(aet04, syn_data)
 
 #### **2. Adverse Events by Highest `NCI CTCAE` Grade (Fill in of Grades)**
 
-If for some preferred terms not all grades occur but all grades should be displayed, this can be achieved by specifying the argument `prune_0 = FALSE`.
+If, for some preferred terms, not all grades occur but all grades should be displayed, this can be achieved by specifying the argument `prune_0 = FALSE`.
 
 ```{r}
 run(aet04, syn_data, prune_0 = FALSE)
