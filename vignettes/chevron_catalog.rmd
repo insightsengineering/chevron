@@ -149,7 +149,7 @@ run(aet04, syn_data, prune_0 = FALSE)
 
 #### **3. Adverse Events by Highest `NCI CTCAE` Grade with modified grouping of grade**
 
-To collapse grade 3-4 with grade 5, this can be achieved by modifying the definition of grade groups in the argument `grade_groups`.
+Collapsing grade 3-4 with grade 5, can be achieved by modifying the definition of grade groups in the argument `grade_groups`.
 
 ```{r}
 grade_groups <- list(
