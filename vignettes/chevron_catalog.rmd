@@ -881,7 +881,7 @@ run(ttet01, proc_data, method = "surv")
 
 1) The level of the confidence intervals is defined by the argument `conf_level`.    
 2) The type of confidence interval is defined in the argument `conf_type`. Options are `"plain"` (default), `"log"` and `"log-log"`.  
-3) Handing of ties is specified in the argument `ties`. Options are `"efron"` (default),`"breslow"` or `"exact"`.
+3) Handling of ties is specified in the argument `ties`. Options are `"efron"` (default),`"breslow"` or `"exact"`.
 
 
 ```{r}
