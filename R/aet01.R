@@ -34,7 +34,8 @@ aet01_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(
     adam_db$adsl,
-    c("DTHFL", "DCSREAS"), types = list(c("character", "factor")),
+    c("DTHFL", "DCSREAS"),
+    types = list(c("character", "factor")),
     min_chars = 0L, empty_ok = TRUE
   )
   assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))
