@@ -86,7 +86,7 @@ run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
 
 #### **3. Safety Summary (Adverse Events of Special Interest) (for studies with multiple drugs)**
 
-For studies with more than one study drug, users need to define the analyses in `adae` and add to the argument `aesi_vars` following the example above. No pre-defined analyses is available at this moment. 
+For studies with more than one study drug, users need to define the analyses in `adae` and add to the argument `aesi_vars` following the example above. No pre-defined analysis is available at this moment. 
 
 ### **Adverse Events (`AET02`)**
 
