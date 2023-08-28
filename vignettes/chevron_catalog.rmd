@@ -34,7 +34,7 @@ run(aet01, syn_data, arm_var = "ARM")
 
 #### **2. Safety Summary with Modified Rows**
 
-Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. An analyses here is an abbreviated name of the analyses of interest, and supported by a variable in `ADAE` derived under the condition of interest. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, and `"SEV"`. When modification is made, analyses must be all listed in the argument `anl_vars`. The example below shows adding customized analyses `"RELCTC35"`.
+Analyses under "Total number of patients with at least one" can be removed, added, or modified by editing the parameter `anl_vars`. An analysis here is an abbreviated name of the analysis of interest, and supported by a variable in `ADAE` derived under the condition of interest. The defined analyses currently include `"FATAL"`, `"SER"`, `"SERWD"`, `"SERDSM"`, `"RELSER"`, `"WD"`, `"DSM"`, `"REL"`, `"RELWD"`, `"RELDSM"`, and `"SEV"`. When modification is made, analyses must all be listed in the argument `anl_vars`. The example below shows adding the customized analysis `"RELCTC35"`.
 
 ```{r}
 proc_data <- syn_data
