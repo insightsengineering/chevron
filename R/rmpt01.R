@@ -112,19 +112,11 @@ rmpt01_pre <- function(adam_db,
                        ...) {
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
-
-  adam_db$adex$AVALCAT1 <- droplevels(adam_db$adex$AVALCAT1)
-
   adam_db$adex <- adam_db$adex %>%
+    mutate(across(all_of(summaryvars), ~ reformat(.x, missing_rule, .drop = FALSE))) %>%
     mutate(
       AVALCAT1 = with_label(.data$AVALCAT1, "Duration of exposure")
     )
-
-  adam_db$adex[[summaryvars]] <- reformat(adam_db$adex[[summaryvars]], missing_rule)
-  if (!"<Missing>" %in% adam_db$adex[[summaryvars]] && summaryvars %in% colnames(adam_db$adex)) {
-    adam_db$adex[[summaryvars]] <- forcats::fct_drop(adam_db$adex[[summaryvars]], only = "<Missing>")
-  }
-
   adam_db
 }
 

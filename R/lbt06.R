@@ -115,15 +115,13 @@ lbt06_lyt <- function(arm_var,
 #' @export
 #'
 lbt06_pre <- function(adam_db, ...) {
-  missing_rule <- rule("<Missing>" = c("", NA, "<Missing>"))
-
   adam_db$adlb <- adam_db$adlb %>%
     filter(
       .data$ONTRTFL == "Y",
       .data$PARCAT2 == "SI"
     ) %>%
     mutate(
-      across(all_of(c("ANRIND", "BNRIND")), ~ reformat(.x, .env$missing_rule)),
+      across(all_of(c("ANRIND", "BNRIND")), ~ reformat(.x, missing_rule)),
       AVISIT = reorder(.data$AVISIT, .data$AVISITN),
       AVISIT = with_label(.data$AVISIT, "Visit"),
       ANRIND = with_label(.data$ANRIND, "Abnormality at Visit"),
