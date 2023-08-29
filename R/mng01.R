@@ -21,7 +21,7 @@
 #'   `jitter`), with a default of 0.3 (slight `jitter`).
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
 #'   `arm_var` with color names.
-#' @param ggtheme (`theme`) a graphical theme as provided by ggplot2 to control styling of the plot.
+#' @param ggtheme (`theme`) a graphical theme to control styling of the plot. See [`tern::g_lineplot()`]
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,

@@ -62,7 +62,7 @@ mng01
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} associating values of
 \code{arm_var} with color names.}
 
-\item{ggtheme}{(\code{theme}) a graphical theme as provided by ggplot2 to control styling of the plot.}
+\item{ggtheme}{(\code{theme}) a graphical theme to control styling of the plot. See \code{\link[tern:g_lineplot]{tern::g_lineplot()}}}
 
 \item{...}{not used.}
 }
