@@ -3,7 +3,7 @@
 nocoding <- rule("No Coding Available" = c("", NA))
 #' Missing rule
 #' @export
-missing_rule <- rule("<Missing>" = c("", NA))
+missing_rule <- rule("<Missing>" = c("", NA), .drop = TRUE)
 #' Empty rule
 #' @export
 empty_rule <- rule(.to_NA = "")
