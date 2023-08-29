@@ -72,7 +72,7 @@ cfbt01_main <- function(adam_db,
   )
   assert_subset(.stats, all_stats)
 
-  lbl_overall <- lbl_overall <- render_safe(lbl_overall)
+  lbl_overall <- render_safe(lbl_overall)
   lbl_avisit <- var_labels_for(adam_db[[dataset]], visitvar)
   lbl_param <- var_labels_for(adam_db[[dataset]], "PARAM")
 
@@ -136,7 +136,7 @@ cfbt01_lyt <- function(arm_var,
   page_by <- get_page_by(page_var, c(row_split_var, "PARAMCD"))
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(arm_var, split_fun = if (!is.null(lbl_overall)) add_overall_level(lbl_overall, first = FALSE)) %>%
+    split_cols_by_with_overall(arm_var, lbl_overall) %>%
     split_rows_by_recurive(
       row_split_var,
       split_label = row_split_lbl,

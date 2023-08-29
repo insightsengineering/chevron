@@ -83,8 +83,8 @@ aet01_lyt <- function(arm_var,
                       anl_lbls,
                       lbl_vars) {
   lyt_base <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(var = arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall)
+    split_cols_by_with_overall(arm_var, lbl_overall)
+
   lyt_ae1 <- lyt_base %>%
     analyze_num_patients(
       vars = "USUBJID",
@@ -96,6 +96,7 @@ aet01_lyt <- function(arm_var,
       .formats = list(unique = format_count_fraction_fixed_dp, nonunique = "xx"),
       show_labels = "hidden"
     )
+
   lyt_adsl <- lyt_base %>%
     count_patients_with_event(
       "USUBJID",
@@ -118,6 +119,7 @@ aet01_lyt <- function(arm_var,
       anl_lbls = anl_lbls,
       lbl_vars = lbl_vars
     )
+
   return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
 }
 

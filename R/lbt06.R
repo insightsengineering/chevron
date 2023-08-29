@@ -83,8 +83,7 @@ lbt06_lyt <- function(arm_var,
   page_by <- !is.null(page_var)
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
-    split_cols_by(arm_var) %>%
-    ifneeded_add_overall_col(lbl_overall) %>%
+    split_cols_by_with_overall(arm_var, lbl_overall) %>%
     split_rows_by(
       var = "PARAMCD",
       labels_var = "PARAM",

@@ -22,5 +22,4 @@ Decimal formatting
 \examples{
 fun <- h_format_dec(c(1, 1), "\%s - \%s")
 fun(c(123, 567.89))
-
 }

@@ -9,6 +9,7 @@ globalVariables(c(".", ":="))
 #' @details
 #' The labels will be returned if the column has `label` attribute, otherwise the column name will be returned.
 #' Any values between brackets {} will be replaced with `dunlin::render_safe`.
+#'
 #' @export
 var_labels_for <- function(df, vars) {
   assert_names(colnames(df), must.include = vars, what = "colnames")
@@ -22,7 +23,6 @@ var_labels_for <- function(df, vars) {
 #' @param tlg (`TableTree`) object.
 #'
 #' @return pruned `TableTree`.
-#'
 smart_prune <- function(tlg) {
   res <- prune_table(tlg)
 
@@ -47,7 +47,6 @@ smart_prune <- function(tlg) {
 #' @return a post-processed `tlg`.
 #'
 #' @keywords internal
-#'
 std_postprocess <- function(tlg, ind = 2L, ...) {
   assert_int(ind, lower = 0L)
 
@@ -72,7 +71,6 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' @examples
 #' fun <- h_format_dec(c(1, 1), "%s - %s")
 #' fun(c(123, 567.89))
-#'
 h_format_dec <- function(digits, format, ne = FALSE) {
   assert_integerish(digits, lower = 0)
   assert_string(format)
@@ -99,7 +97,6 @@ h_format_dec <- function(digits, format, ne = FALSE) {
 #' @param y (`list`) to fuse. Elements with names already existing in `x` are discarded.
 #'
 #' @keywords internal
-#'
 fuse_sequentially <- function(x, y) {
   if (missing(y)) {
     return(x)
@@ -112,7 +109,9 @@ fuse_sequentially <- function(x, y) {
 }
 
 #' List of `grob` object
+#'
 #' @param ... (`grob`) objects
+#'
 #' @export
 grob_list <- function(...) {
   ret <- list(...)
@@ -124,7 +123,9 @@ grob_list <- function(...) {
 }
 
 #' List of `gg` object
+#'
 #' @param ... (`ggplot`) objects
+#'
 #' @export
 gg_list <- function(...) {
   ret <- list(...)
@@ -141,9 +142,11 @@ droplevels.character <- function(x, ...) {
 }
 
 #' Obtain levels from vector
+#'
 #' @param x (`character`) or (`factor`) object to obtain levels.
 #' @details
 #' For factors, the levels will be returned. For characters, the sorted unique values will be returned.
+#'
 #' @export
 lvls <- function(x) {
   UseMethod("lvls")
@@ -175,8 +178,10 @@ modify_default_args <- function(fun, ...) {
 }
 
 #' Execute function with given arguments
+#'
 #' @details If the function has `...`, this function will not pass other arguments to `...`.
 #' Only named arguments are passed.
+#'
 #' @keywords internal
 execute_with_args <- function(fun, ...) {
   args <- list(...)
@@ -184,6 +189,7 @@ execute_with_args <- function(fun, ...) {
 }
 
 #' Execute a function call
+#'
 #' @keywords internal
 do_call <- function(what, args) {
   arg_names <- names(args)
@@ -201,6 +207,7 @@ do_call <- function(what, args) {
 }
 
 #' Modify character
+#'
 #' @keywords internal
 modify_character <- function(x, y) {
   assert_character(x, names = "unique", null.ok = TRUE)
@@ -209,6 +216,7 @@ modify_character <- function(x, y) {
 }
 
 #' Helper function to convert to months if needed
+#'
 #' @param x (`numeric`) time.
 #' @param unit (`character`) or (`factor`) time unit.
 #'
