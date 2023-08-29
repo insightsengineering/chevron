@@ -112,6 +112,7 @@ reference:
       - smart_prune
       - var_labels_for
       - gg_list
+      - gg_theme_chevron
       - grob_list
       - h_format_dec
       - lvls

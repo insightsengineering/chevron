@@ -244,3 +244,52 @@ convert_to_month <- function(x, unit) {
     TRUE ~ x
   )
 }
+
+#' Theme for Chevron Plot
+#'
+#' @param grid_y (`flag`) should horizontal grid be displayed.
+#' @param grid_x (`flag`) should vertical grid be displayed.
+#' @param legend_position (`string`) the position of the legend.
+#' @param text_axis_x_rot (`flag`) should the text of the x axis be rotated.
+#'
+#' @return a `theme` object.
+#'
+#' @export
+#'
+gg_theme_chevron <- function(grid_y = TRUE,
+                             grid_x = FALSE,
+                             legend_position = "top",
+                             text_axis_x_rot = TRUE) {
+  assert_flag(grid_y)
+  assert_flag(grid_x)
+  assert_choice(legend.position, c("top", "bottom", "right", "left"))
+  assert_flag(text_axis_x_rot)
+
+  ggtheme <- ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = legend.position) +
+    ggplot2::theme(axis.title.x = ggplot2::element_blank())
+
+  ggtheme <- if (!grid_x) {
+    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
+  } else {
+    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))
+  }
+
+  ggtheme <- if (!grid_y) {
+    ggtheme + ggplot2::theme(
+      panel.grid.minor.y = ggplot2::element_blank(),
+      panel.grid.major.y = ggplot2::element_blank()
+    )
+  } else {
+    ggtheme + ggplot2::theme(
+      panel.grid.minor.y = ggplot2::element_line(linewidth = 1),
+      panel.grid.major.y = ggplot2::element_line(linewidth = 1)
+    )
+  }
+
+  if (text_axis_x_rot) {
+    ggtheme <- ggtheme + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+  }
+
+  ggtheme
+}

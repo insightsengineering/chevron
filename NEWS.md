@@ -9,6 +9,7 @@ variables do not exist in analysis dataset.
 * `PDT01` preprocessing now filters `addv` to retain only major protocol deviation.
 * `AEL01_NOLLT` now has argument `unique` to keep only the unique rows in listing.
 * `AET01_AESI`, `EGT02` and `LBT14` now remove the check in preprocessing function.
+* `MNG01` now use a `ggtheme` argument to set graphic parameters.
 
 # chevron 0.2.2
 
