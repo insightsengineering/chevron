@@ -262,17 +262,23 @@ gg_theme_chevron <- function(grid_y = TRUE,
                              text_axis_x_rot = TRUE) {
   assert_flag(grid_y)
   assert_flag(grid_x)
-  assert_choice(legend.position, c("top", "bottom", "right", "left"))
+  assert_choice(legend_position, c("top", "bottom", "right", "left"))
   assert_flag(text_axis_x_rot)
 
   ggtheme <- ggplot2::theme_bw() +
-    ggplot2::theme(legend.position = legend.position) +
+    ggplot2::theme(legend.position = legend_position) +
     ggplot2::theme(axis.title.x = ggplot2::element_blank())
 
   ggtheme <- if (!grid_x) {
-    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
+    ggtheme + ggplot2::theme(
+      panel.grid.major.x = ggplot2::element_blank(),
+      panel.grid.minor.x = ggplot2::element_blank()
+    )
   } else {
-    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))
+    ggtheme + ggplot2::theme(
+      panel.grid.major.x = ggplot2::element_line(linewidth = 1),
+      panel.grid.minor.x = ggplot2::element_blank()
+    )
   }
 
   ggtheme <- if (!grid_y) {
@@ -282,7 +288,7 @@ gg_theme_chevron <- function(grid_y = TRUE,
     )
   } else {
     ggtheme + ggplot2::theme(
-      panel.grid.minor.y = ggplot2::element_line(linewidth = 1),
+      panel.grid.minor.y = ggplot2::element_blank(),
       panel.grid.major.y = ggplot2::element_line(linewidth = 1)
     )
   }

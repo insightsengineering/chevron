@@ -226,3 +226,18 @@ test_that("convert_to_month work as expected", {
 test_that("convert_to_month warning messages as expected", {
   expect_warning(convert_to_month(1, "xxx"))
 })
+
+# gg_theme_chevron ----
+
+test_that("gg_theme_chevron works as expected", {
+  p <- ggplot2::ggplot(mtcars, ggplot2::aes(x = mpg, y = hp)) +
+    ggplot2::geom_point()
+
+  res <- expect_silent(gg_theme_chevron())
+  expect_class(res, "theme")
+  plot <- capture_output(p + res)
+  expect_snapshot(plot)
+
+  res <- expect_silent(gg_theme_chevron(TRUE, FALSE, "bottom", FALSE))
+  expect_class(res, "theme")
+})
