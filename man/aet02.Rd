@@ -7,7 +7,7 @@
 \alias{aet02_pre}
 \alias{aet02_post}
 \alias{aet02}
-\title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1}
+\title{\code{AET02} Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1.}
 \format{
 An object of class \code{character} of length 2.
 

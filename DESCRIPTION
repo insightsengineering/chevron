@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.2.9000
-Date: 2023-08-17
+Version: 0.2.2.9011
+Date: 2023-08-25
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
@@ -34,7 +34,7 @@ Imports:
     rlistings (>= 0.2.3),
     rtables (>= 0.6.2),
     stringr,
-    tern (>= 0.8.5),
+    tern (>= 0.8.5.9013),
     tibble,
     utils
 Suggests:

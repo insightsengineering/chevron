@@ -81,12 +81,6 @@ as \code{"DVSEQ"}.
 }
 }
 \examples{
-library(dplyr)
-
-proc_data <- syn_data
-proc_data$addv <- proc_data$addv \%>\%
-  filter(DVCAT == "MAJOR")
-
-run(pdt01, proc_data)
+run(pdt01, syn_data)
 }
 \keyword{datasets}

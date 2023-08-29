@@ -19,6 +19,13 @@ test_that("run works as expected with argument printed", {
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
+test_that("run works as expected with argument printed if the user argument is complicated", {
+  user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
+  res <- capture_output(tbl <- run(aet02, syn_data, user_args = user_args, verbose = TRUE))
+  expect_snapshot(cat(res))
+  expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
 test_that("run works as expected with partial match argument", {
   res <- capture_output(tbl <- run(aet02, syn_data, prune = TRUE, verbose = TRUE, arm = "ARM"))
   expect_snapshot(cat(res))

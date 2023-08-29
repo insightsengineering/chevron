@@ -114,7 +114,7 @@ aet02_post <- function(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) {
   std_postprocess(tlg)
 }
 
-#' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1
+#' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1.
 #'
 #' The `AET02` table provides an overview of the number of subjects experiencing adverse events and the number of advert
 #' events categorized by Body System and Dictionary-Derived Term.

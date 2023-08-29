@@ -120,7 +120,7 @@ dtht01_lyt <- function(arm_var,
   if (!is.null(other_var)) {
     lyt <- lyt %>%
       split_rows_by(death_var, split_fun = keep_split_levels(other_level), child_labels = "hidden") %>%
-      summarize_vars(other_var, .stats = "count_fraction", denom = "N_row")
+      analyze_vars(other_var, .stats = "count_fraction", denom = "N_row")
   }
   if (!is.null(dose_death_var)) {
     lyt <- lyt %>%

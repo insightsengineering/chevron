@@ -5,7 +5,7 @@
 #' @import rtables
 #' @import tern
 #' @import checkmate
-#' @importFrom formatters with_label propose_column_widths
+#' @importFrom formatters with_label propose_column_widths fmt_config
 #' @importFrom dunlin rule reformat render_safe
 #' @importFrom forcats fct_relevel
 #' @importFrom ggplot2 theme
