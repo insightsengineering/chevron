@@ -59,9 +59,7 @@ test_that("mng01 works with combination of x variables", {
     mng01,
     proc_data,
     dataset = "adlb",
-    x_var = c("AVISIT", "AVISITN"),
-    grid_y = TRUE,
-    grid_x = TRUE
+    x_var = c("AVISIT", "AVISITN")
   )
   expect_list(res, len = 3, types = "ggplot")
 })

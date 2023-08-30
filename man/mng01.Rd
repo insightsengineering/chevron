@@ -24,6 +24,7 @@ mng01_main(
   show_n = TRUE,
   jitter = 0.3,
   line_col = nestcolor::color_palette(),
+  ggtheme = gg_theme_chevron(),
   ...
 )
 
@@ -61,7 +62,9 @@ mng01
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} associating values of
 \code{arm_var} with color names.}
 
-\item{...}{passed to \code{\link[=gg_theme_chevron]{gg_theme_chevron()}} and \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
+\item{ggtheme}{(\code{theme}) passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
+
+\item{...}{passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
 }
 \value{
 a list of \code{ggplot} objects.
@@ -95,10 +98,7 @@ col <- c(
   "C: Combination" = "gray"
 )
 
-run(mng01, syn_data,
-  dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, grid_y = FALSE, grid_x =
-    FALSE, text_axis_x_rot = 90
-)
+run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 }
 \seealso{
 \code{\link[=gg_theme_chevron]{gg_theme_chevron()}}, \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.

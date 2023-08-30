@@ -237,7 +237,7 @@ test_that("gg_theme_chevron works as expected", {
   expect_class(res, "theme")
   expect_silent(p + res)
 
-  res <- expect_silent(gg_theme_chevron(TRUE, FALSE, "bottom", FALSE))
+  res <- expect_silent(gg_theme_chevron(TRUE, FALSE, "bottom", 22))
   expect_class(res, "theme")
   expect_silent(p + res)
 })

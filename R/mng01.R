@@ -21,7 +21,8 @@
 #'   `jitter`), with a default of 0.3 (slight `jitter`).
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
 #'   `arm_var` with color names.
-#' @param ... passed to [gg_theme_chevron()] and [tern::g_lineplot()].
+#' @param ggtheme (`theme`) passed to [tern::g_lineplot()].
+#' @param ... passed to [tern::g_lineplot()].
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
@@ -46,6 +47,7 @@ mng01_main <- function(adam_db,
                        show_n = TRUE,
                        jitter = 0.3,
                        line_col = nestcolor::color_palette(),
+                       ggtheme = gg_theme_chevron(),
                        ...) {
   assert_all_tablenames(adam_db, c(dataset, "adsl"))
   assert_character(x_var)
@@ -60,6 +62,7 @@ mng01_main <- function(adam_db,
   assert_flag(show_table)
   assert_number(jitter, lower = 0, upper = 1)
   assert_flag(show_n)
+  assert_class(ggtheme, "theme")
   assert_character(line_col, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], x_var)
   assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
@@ -110,8 +113,6 @@ mng01_main <- function(adam_db,
   } else {
     col <- line_col
   }
-
-  ggtheme <- execute_with_args(gg_theme_chevron, ...)
 
   ret <- lapply(
     data_ls,
@@ -165,10 +166,7 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01, syn_data,
-#'   dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, grid_y = FALSE, grid_x =
-#'     FALSE, text_axis_x_rot = 90
-#' )
+#' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 mng01 <- chevron_g(
   main = mng01_main,
   preproces = mng01_pre
