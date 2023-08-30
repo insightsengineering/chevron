@@ -250,7 +250,7 @@ convert_to_month <- function(x, unit) {
 #' @param grid_y (`flag`) should horizontal grid be displayed.
 #' @param grid_x (`flag`) should vertical grid be displayed.
 #' @param legend_position (`string`) the position of the legend.
-#' @param text_axis_x_rot (`flag`) should the text of the x axis be rotated.
+#' @param text_axis_x_rot (`numeric`) the x axis text rotation angle.
 #'
 #' @return a `theme` object.
 #'
@@ -259,11 +259,14 @@ convert_to_month <- function(x, unit) {
 gg_theme_chevron <- function(grid_y = TRUE,
                              grid_x = FALSE,
                              legend_position = "top",
-                             text_axis_x_rot = TRUE) {
+                             text_axis_x_rot = 45,
+                             text_axis_x_hjust = 1,
+                             text_axis_x_vjust = 1,
+                             ...) {
   assert_flag(grid_y)
   assert_flag(grid_x)
   assert_choice(legend_position, c("top", "bottom", "right", "left"))
-  assert_flag(text_axis_x_rot)
+  assert_numeric(text_axis_x_rot, len = 1)
 
   ggtheme <- ggplot2::theme_bw() +
     ggplot2::theme(legend.position = legend_position) +
@@ -293,9 +296,13 @@ gg_theme_chevron <- function(grid_y = TRUE,
     )
   }
 
-  if (text_axis_x_rot) {
-    ggtheme <- ggtheme + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
-  }
+  ggtheme <- ggtheme + ggplot2::theme(
+    axis.text.x = ggplot2::element_text(
+      angle = text_axis_x_rot,
+      hjust = if (text_axis_x_rot == 0) 0.5 else if (text_axis_x_rot < 75) 0.9 else 1, #1 + ((text_axis_x_rot %% 180) / 90))
+      vjust = if (text_axis_x_rot == 90) 0.5 else if (text_axis_x_rot > 45) 0.9 else 1
+      )
+  )
 
   ggtheme
 }

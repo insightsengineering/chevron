@@ -8,7 +8,8 @@ gg_theme_chevron(
   grid_y = TRUE,
   grid_x = FALSE,
   legend_position = "top",
-  text_axis_x_rot = TRUE
+  text_axis_x_rot = 45,
+  ...
 )
 }
 \arguments{
@@ -18,7 +19,7 @@ gg_theme_chevron(
 
 \item{legend_position}{(\code{string}) the position of the legend.}
 
-\item{text_axis_x_rot}{(\code{flag}) should the text of the x axis be rotated.}
+\item{text_axis_x_rot}{(\code{numeric}) the x axis text rotation angle.}
 }
 \value{
 a \code{theme} object.

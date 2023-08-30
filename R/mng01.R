@@ -21,13 +21,13 @@
 #'   `jitter`), with a default of 0.3 (slight `jitter`).
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
 #'   `arm_var` with color names.
-#' @param ggtheme (`theme`) a graphical theme to control styling of the plot. See [`tern::g_lineplot()`]
+#' @param ... passed to [gg_theme_chevron()] and [tern::g_lineplot()].
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
 #'  `y_name`, `y_unit` and `arm_var`.
 #'
-#' @seealso [gg_theme_chevron()]
+#' @seealso [gg_theme_chevron()], [tern::g_lineplot()].
 #'
 #' @return a list of `ggplot` objects.
 #'
@@ -46,7 +46,6 @@ mng01_main <- function(adam_db,
                        show_n = TRUE,
                        jitter = 0.3,
                        line_col = nestcolor::color_palette(),
-                       ggtheme = gg_theme_chevron(),
                        ...) {
   assert_all_tablenames(adam_db, c(dataset, "adsl"))
   assert_character(x_var)
@@ -112,6 +111,8 @@ mng01_main <- function(adam_db,
     col <- line_col
   }
 
+  ggtheme <- execute_with_args(gg_theme_chevron, ...)
+
   ret <- lapply(
     data_ls,
     tern::g_lineplot,
@@ -125,7 +126,8 @@ mng01_main <- function(adam_db,
     table = table,
     ggtheme = ggtheme,
     col = col,
-    subtitle_add_unit = !is.na(y_unit)
+    subtitle_add_unit = !is.na(y_unit),
+    ...
   )
   do_call(gg_list, ret)
 }
@@ -163,7 +165,8 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
+#' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, grid_y = FALSE, grid_x =
+#' FALSE, text_axis_x_rot = 90)
 mng01 <- chevron_g(
   main = mng01_main,
   preproces = mng01_pre
