@@ -60,10 +60,8 @@ test_that("mng01 works with combination of x variables", {
     proc_data,
     dataset = "adlb",
     x_var = c("AVISIT", "AVISITN"),
-    ggtheme = gg_theme_chevron(
-      grid_y = TRUE,
-      grid_x = TRUE
-    )
+    grid_y = TRUE,
+    grid_x = TRUE
   )
   expect_list(res, len = 3, types = "ggplot")
 })

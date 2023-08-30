@@ -165,8 +165,10 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, grid_y = FALSE, grid_x =
-#' FALSE, text_axis_x_rot = 90)
+#' run(mng01, syn_data,
+#'   dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, grid_y = FALSE, grid_x =
+#'     FALSE, text_axis_x_rot = 90
+#' )
 mng01 <- chevron_g(
   main = mng01_main,
   preproces = mng01_pre

@@ -260,13 +260,11 @@ gg_theme_chevron <- function(grid_y = TRUE,
                              grid_x = FALSE,
                              legend_position = "top",
                              text_axis_x_rot = 45,
-                             text_axis_x_hjust = 1,
-                             text_axis_x_vjust = 1,
                              ...) {
   assert_flag(grid_y)
   assert_flag(grid_x)
   assert_choice(legend_position, c("top", "bottom", "right", "left"))
-  assert_numeric(text_axis_x_rot, len = 1)
+  assert_numeric(text_axis_x_rot, len = 1, lower = -90, upper = 90)
 
   ggtheme <- ggplot2::theme_bw() +
     ggplot2::theme(legend.position = legend_position) +
@@ -299,10 +297,42 @@ gg_theme_chevron <- function(grid_y = TRUE,
   ggtheme <- ggtheme + ggplot2::theme(
     axis.text.x = ggplot2::element_text(
       angle = text_axis_x_rot,
-      hjust = if (text_axis_x_rot == 0) 0.5 else if (text_axis_x_rot < 75) 0.9 else 1, #1 + ((text_axis_x_rot %% 180) / 90))
-      vjust = if (text_axis_x_rot == 90) 0.5 else if (text_axis_x_rot > 45) 0.9 else 1
-      )
+      hjust = get_x_hjust(text_axis_x_rot),
+      vjust = get_x_vjust(text_axis_x_rot)
+    )
   )
 
   ggtheme
+}
+
+#' Get a harmonious value of horizontal justification for x axis
+#'
+#' @param x (`numeric`) angle between -90 and 90 degree.
+#' @keywords internal
+get_x_hjust <- function(x) {
+  assert_numeric(x, upper = 90, lower = -90, len = 1)
+
+  if (x == 0) {
+    0.5
+  } else if (x > 0) {
+    1
+  } else {
+    0
+  }
+}
+
+#' Get a harmonious value of vertical justification for x axis
+#'
+#' @param x (`numeric`) angle between -90 and 90 degree.
+#' @keywords internal
+get_x_vjust <- function(x) {
+  assert_numeric(x, upper = 90, lower = -90, len = 1)
+
+  if (x == 0) {
+    0
+  } else if (abs(x) == 90) {
+    0.5
+  } else {
+    1
+  }
 }

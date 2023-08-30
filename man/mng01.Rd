@@ -95,8 +95,10 @@ col <- c(
   "C: Combination" = "gray"
 )
 
-run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, grid_y = FALSE, grid_x =
-FALSE)
+run(mng01, syn_data,
+  dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, grid_y = FALSE, grid_x =
+    FALSE, text_axis_x_rot = 90
+)
 }
 \seealso{
 \code{\link[=gg_theme_chevron]{gg_theme_chevron()}}, \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.
