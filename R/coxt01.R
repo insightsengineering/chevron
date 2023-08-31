@@ -110,9 +110,10 @@ coxt01_lyt <- function(variables,
 #'
 #' @export
 #'
-coxt01_pre <- function(adam_db, ...) {
+coxt01_pre <- function(adam_db, arm_var = "ARM", ...) {
   adam_db$adtte <- adam_db$adtte %>%
-    mutate(EVENT = 1 - .data$CNSR)
+    mutate(EVENT = 1 - .data$CNSR) %>%
+    mutate(!!arm_var := droplevels(!!sym(arm_var)))
 
   adam_db
 }
@@ -146,7 +147,6 @@ coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
 #' proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
-#' proc_data$adtte$ARM <- droplevels(proc_data$adtte$ARM)
 #' run(coxt01, proc_data)
 #'
 #' run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
