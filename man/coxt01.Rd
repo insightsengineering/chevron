@@ -23,7 +23,7 @@ coxt01_main(
   ...
 )
 
-coxt01_pre(adam_db, ...)
+coxt01_pre(adam_db, arm_var = "ARM", ...)
 
 coxt01_post(tlg, prune_0 = FALSE, ...)
 
@@ -94,7 +94,6 @@ library(dunlin)
 
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
 proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
-proc_data$adtte$ARM <- droplevels(proc_data$adtte$ARM)
 run(coxt01, proc_data)
 
 run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)

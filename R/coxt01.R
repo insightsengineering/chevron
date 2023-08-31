@@ -106,7 +106,7 @@ coxt01_lyt <- function(variables,
 
 #' @describeIn coxt01 Preprocessing
 #'
-#' @inheritParams gen_args
+#' @inheritParams coxt01_main
 #'
 #' @export
 #'
