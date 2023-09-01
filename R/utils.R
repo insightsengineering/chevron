@@ -259,8 +259,7 @@ convert_to_month <- function(x, unit) {
 gg_theme_chevron <- function(grid_y = TRUE,
                              grid_x = FALSE,
                              legend_position = "top",
-                             text_axis_x_rot = 45,
-                             ...) {
+                             text_axis_x_rot = 45) {
   assert_flag(grid_y)
   assert_flag(grid_x)
   assert_choice(legend_position, c("top", "bottom", "right", "left"))

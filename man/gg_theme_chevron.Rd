@@ -8,8 +8,7 @@ gg_theme_chevron(
   grid_y = TRUE,
   grid_x = FALSE,
   legend_position = "top",
-  text_axis_x_rot = 45,
-  ...
+  text_axis_x_rot = 45
 )
 }
 \arguments{
