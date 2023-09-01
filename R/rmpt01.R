@@ -113,7 +113,7 @@ rmpt01_pre <- function(adam_db,
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
   adam_db$adex <- adam_db$adex %>%
-    mutate(across(all_of(summaryvars), ~ reformat(.x, missing_rule, .drop = FALSE))) %>%
+    mutate(across(all_of(summaryvars), ~ reformat(.x, missing_rule, .drop = TRUE))) %>%
     mutate(
       AVALCAT1 = with_label(.data$AVALCAT1, "Duration of exposure")
     )

@@ -277,7 +277,7 @@ gg_theme_chevron <- function(grid_y = TRUE,
     )
   } else {
     ggtheme + ggplot2::theme(
-      panel.grid.major.x = ggplot2::element_line(linewidth = rel(0.5)),
+      panel.grid.major.x = ggplot2::element_line(linewidth = ggplot2::rel(0.5)),
       panel.grid.minor.x = ggplot2::element_blank()
     )
   }
@@ -290,7 +290,7 @@ gg_theme_chevron <- function(grid_y = TRUE,
   } else {
     ggtheme + ggplot2::theme(
       panel.grid.minor.y = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_line(linewidth = rel(0.5))
+      panel.grid.major.y = ggplot2::element_line(linewidth = ggplot2::rel(0.5))
     )
   }
 
