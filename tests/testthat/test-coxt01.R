@@ -1,8 +1,6 @@
 test_that("coxt01 can handle some NA values", {
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
   proc_data <- dunlin::log_filter(proc_data, ARM != "C: Combination", "adsl")
-  proc_data$adsl$ARM <- droplevels(proc_data$adsl$ARM)
-  proc_data$adtte$ARM <- droplevels(proc_data$adtte$ARM)
   proc_data$adtte[1:4, c("SEX", "RACE", "CNSR", "AVAL", "AAGE")] <- NA
   res1 <- expect_silent(run(coxt01, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
