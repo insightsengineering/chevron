@@ -12,8 +12,6 @@
         AMERICAN INDIAN OR ALASKA NATIVE             25 (6.2%)        3348    
         MULTIPLE                                      1 (0.2%)         219    
         NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER     1 (0.2%)         49     
-        OTHER                                         0 (0.0%)          0     
-        UNKNOWN                                       0 (0.0%)          0     
         Total patients number/person time           400 (100.0%)      49700   
 
 # rmpt05 can handle NA values
@@ -30,8 +28,6 @@
         AMERICAN INDIAN OR ALASKA NATIVE            0 (0.0%)        0     
         MULTIPLE                                    0 (0.0%)        0     
         NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER   0 (0.0%)        0     
-        OTHER                                       0 (0.0%)        0     
-        UNKNOWN                                     0 (0.0%)        0     
         Total patients number/person time           0 (0.0%)        0     
 
 ---
@@ -48,8 +44,6 @@
         AMERICAN INDIAN OR ALASKA NATIVE            0 (0.0%)        0     
         MULTIPLE                                    0 (0.0%)        0     
         NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER   0 (0.0%)        0     
-        OTHER                                       0 (0.0%)        0     
-        UNKNOWN                                     0 (0.0%)        0     
         Total patients number/person time           0 (0.0%)        0     
 
 # rmpt05 can handle some NA values
@@ -66,8 +60,6 @@
         AMERICAN INDIAN OR ALASKA NATIVE             25 (6.2%)        3348    
         MULTIPLE                                      1 (0.2%)         219    
         NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER     1 (0.2%)         49     
-        OTHER                                         0 (0.0%)          0     
-        UNKNOWN                                       0 (0.0%)          0     
         Total patients number/person time           400 (100.0%)      49700   
 
 ---

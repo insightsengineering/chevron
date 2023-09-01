@@ -34,8 +34,8 @@ rmpt01_main <- function(adam_db,
   assert_string(row_split_var, null.ok = TRUE)
   assert_string(col_split_var, null.ok = TRUE)
   assert_string(overall_col_lbl, null.ok = TRUE)
-  assert_valid_variable(adam_db$adex, summaryvars, types = list(c("factor", "character")), empty_ok = FALSE)
-  assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"))
+  assert_valid_variable(adam_db$adex, summaryvars, types = list(c("factor", "character")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$adex, "AVAL", types = list("numeric"), empty_ok = TRUE)
   assert_valid_variable(adam_db$adex, row_split_var, types = list(c("factor", "numeric")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adex, col_split_var, types = list(c("factor", "character")))
   assert_valid_variable(adam_db$adex, "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
@@ -113,7 +113,7 @@ rmpt01_pre <- function(adam_db,
   adam_db$adex <- adam_db$adex %>%
     filter(.data$PARAMCD == "TDURD")
   adam_db$adex <- adam_db$adex %>%
-    mutate(across(all_of(summaryvars), ~ reformat(.x, missing_rule, .drop = FALSE))) %>%
+    mutate(across(all_of(summaryvars), ~ reformat(.x, missing_rule))) %>%
     mutate(
       AVALCAT1 = with_label(.data$AVALCAT1, "Duration of exposure")
     )
