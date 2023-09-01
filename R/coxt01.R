@@ -113,7 +113,7 @@ coxt01_lyt <- function(variables,
 coxt01_pre <- function(adam_db, arm_var = "ARM", ...) {
   adam_db$adtte <- adam_db$adtte %>%
     mutate(EVENT = 1 - .data$CNSR) %>%
-    mutate(!!arm_var := droplevels(!!sym(arm_var)))
+    mutate(!!arm_var := forcats::fct_drop(!!sym(arm_var)))
 
   adam_db
 }

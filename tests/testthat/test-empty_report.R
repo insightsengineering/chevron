@@ -76,6 +76,9 @@ test_that("tlg functions return null reports when domain table is empty", {
   res <- run(pdt01, dat_empty)
   expect_identical(res, empty_report)
 
+  res <- run(rmpt01, dat_empty, prune_0 = TRUE)
+  expect_identical(res, empty_report)
+
   res <- run(vst01, dat_empty, page_var = NULL)
   expect_identical(res, empty_report)
 
