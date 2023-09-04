@@ -19,15 +19,16 @@
 #' @param show_n (`flag`) should the number of observation be displayed int the table.
 #' @param jitter (`numeric`) the width of spread for data points on the x-axis; a number from 0 (no `jitter`) to 1 (high
 #'   `jitter`), with a default of 0.3 (slight `jitter`).
-#' @param show_h_grid (`flag`) should horizontal grid be displayed.
-#' @param show_v_grid (`flag`) should vertical grid be displayed.
-#' @param legend_pos (`string`) the position of the legend.
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
 #'   `arm_var` with color names.
+#' @param ggtheme (`theme`) passed to [tern::g_lineplot()].
+#' @param ... passed to [tern::g_lineplot()].
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
 #'  `y_name`, `y_unit` and `arm_var`.
+#'
+#' @seealso [gg_theme_chevron()], [tern::g_lineplot()].
 #'
 #' @return a list of `ggplot` objects.
 #'
@@ -43,12 +44,10 @@ mng01_main <- function(adam_db,
                        center_fun = "mean",
                        interval_fun = "mean_ci",
                        show_table = TRUE,
-                       jitter = 0.3,
                        show_n = TRUE,
-                       show_h_grid = TRUE,
-                       show_v_grid = FALSE,
-                       legend_pos = "top",
+                       jitter = 0.3,
                        line_col = nestcolor::color_palette(),
+                       ggtheme = gg_theme_chevron(),
                        ...) {
   assert_all_tablenames(adam_db, c(dataset, "adsl"))
   assert_character(x_var)
@@ -63,9 +62,7 @@ mng01_main <- function(adam_db,
   assert_flag(show_table)
   assert_number(jitter, lower = 0, upper = 1)
   assert_flag(show_n)
-  assert_flag(show_h_grid)
-  assert_flag(show_v_grid)
-  assert_choice(legend_pos, c("top", "bottom", "right", "left"))
+  assert_class(ggtheme, "theme")
   assert_character(line_col, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], x_var)
   assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
@@ -103,28 +100,6 @@ mng01_main <- function(adam_db,
 
   table <- if (show_table) c(n_func, center_fun, interval_fun) else NULL
 
-  ggtheme <- ggplot2::theme_bw() +
-    ggplot2::theme(legend.position = legend_pos) +
-    ggplot2::theme(axis.title.x = ggplot2::element_blank())
-
-  ggtheme <- if (!show_v_grid) {
-    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
-  } else {
-    ggtheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(linewidth = 1))
-  }
-
-  ggtheme <- if (!show_h_grid) {
-    ggtheme + ggplot2::theme(
-      panel.grid.minor.y = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_blank()
-    )
-  } else {
-    ggtheme + ggplot2::theme(
-      panel.grid.minor.y = ggplot2::element_line(linewidth = 1),
-      panel.grid.major.y = ggplot2::element_line(linewidth = 1)
-    )
-  }
-
   if (!is.null(names(line_col))) {
     color_lvl <- sort(unique(df[[arm_var]]))
     col <- line_col[as.character(color_lvl)]
@@ -152,7 +127,8 @@ mng01_main <- function(adam_db,
     table = table,
     ggtheme = ggtheme,
     col = col,
-    subtitle_add_unit = !is.na(y_unit)
+    subtitle_add_unit = !is.na(y_unit),
+    ...
   )
   do_call(gg_list, ret)
 }
