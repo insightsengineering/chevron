@@ -244,7 +244,16 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/get_subset.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/get_x_hjust.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/get_x_vjust.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/gg_list.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/gg_theme_chevron.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/grob_list.html</loc>
