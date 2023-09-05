@@ -29,7 +29,7 @@ rmpt06_main <- function(adam_db,
   assert_numeric(conf_level, lower = 0, upper = 1)
   assert_list(grade_groups, null.ok = TRUE)
 
-  assert_valid_variable(adam_db$adsl, "AEFL", type = list("logical"))
+  assert_valid_variable(adam_db$adsl, "AEFL", types = list("logical"))
   assert_valid_variable(adam_db$adae, "ATOXGR", na_ok = TRUE, types = list("factor"))
   assert_valid_variable(adam_db$adae, "AESERFL", types = list("logical"))
   assert_valid_variable(adam_db$adae, "AEOUT", na_ok = TRUE, types = list("factor"))
