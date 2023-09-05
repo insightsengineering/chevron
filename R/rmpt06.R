@@ -9,7 +9,7 @@
 #' @param show_diff (`flag`) whether to show the difference of patient with at least one adverse event  between groups.
 #' @param ref_group (`string`) the reference group for the difference.
 #' @param method_diff (`string`) the method used to construct the confidence interval for the difference between groups.
-#' @param conf_level (`proportion`) the confidence level of the interval for the difference between groups.
+#' @param conf_level_diff (`proportion`) the confidence level of the interval for the difference between groups.
 #' @param grade_groups (`list`) the grade groups to be displayed.
 #'
 #' @export

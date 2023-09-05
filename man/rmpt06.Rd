@@ -41,13 +41,15 @@ rmpt06
 \item{method}{(\code{string}) the method used to construct the confidence interval.
 See \code{\link[tern:estimate_proportions]{tern::estimate_proportions}}.}
 
-\item{conf_level}{(\code{proportion}) the confidence level of the interval for the difference between groups.}
+\item{conf_level}{(\code{proportion}) the confidence level of the interval. See \code{\link[tern:estimate_proportions]{tern::estimate_proportions}}.}
 
 \item{show_diff}{(\code{flag}) whether to show the difference of patient with at least one adverse event  between groups.}
 
 \item{ref_group}{(\code{string}) the reference group for the difference.}
 
 \item{method_diff}{(\code{string}) the method used to construct the confidence interval for the difference between groups.}
+
+\item{conf_level_diff}{(\code{proportion}) the confidence level of the interval for the difference between groups.}
 
 \item{grade_groups}{(\code{list}) the grade groups to be displayed.}
 
