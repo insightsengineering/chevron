@@ -23,7 +23,7 @@ library(chevron)
 ## **GENERAL**
 
 ### **General Concepts**
-`chevron` is a collection of functions to creates tables, listings, and graphs following Roche standards for clinical trials reporting. After loading the R packages and the trial data, the output is to be created by the main function `run(...)` . Two arguments `tlg=` and `adam_db=` are always expected in the function. `tlg=` specifies which Roche Standard Template ID to use. `adam_db=` specifies the input dataset. Other mandatory and optional arguments within the `run` function vary depending on which template ID is called. 
+`chevron` is a collection of functions to creates tables, listings, and graphs following Roche standards for clinical trials reporting. After loading the R packages and the trial data, the output is to be created by the main function `run(...)` . Two arguments `object = ` and `adam_db = ` are always expected in the function. `object = ` specifies which Roche Standard Template ID to use. `adam_db = ` specifies the input dataset. Other mandatory and optional arguments within the `run` function vary depending on which template ID is called. 
 
 #### **1. Input dataset and dataset names**
 The input dataset expected by the argument `adam_db=` in the `run(...)` function is a collection of ADaM datasets as a list object. Each ADaM dataset is expected to be an object of data frame. If the ADaM datasets are read in individually, user will need to combine them into a list object and provide the name of the list to `adam_db=`. Also, each element in the list are expected to have corresponding ADaM dataset names. Conventional ADaM dataset names, including `adsl`,`adex`, `adae`, `adlb`,`advs`,`adeg`,`adcm`,`admh`,`adrs`, and `adtte`, can be picked up by `chevron` with one exception. If you have a safety time-to-event dataset named as `adsaftte` following Roche standard ADaM convention, you will need to re-name it to `adaette` to be picked up by `chevron`.
@@ -31,7 +31,7 @@ The input dataset expected by the argument `adam_db=` in the `run(...)` function
 ```{r eval=FALSE}
 std_data <- list(adsl, adae)
 names(std_data) <- c("adsl", "adae")
-run(tlg = aet01_nollt, adam_db = std_data)
+run(object = aet01_nollt, adam_db = std_data)
 ```
 #### **2. Expected variables in input analysis dataset**
 By default, `chevron` does not pull any subject-level information from either `adsl` or `adsub` and merge into the analysis dataset in the underlying preprocessing steps. The analysis dataset fed into `adam_db=` is expected to have all variables required for analysis available. 
@@ -44,13 +44,13 @@ In the output generation, we often need to specify a particular sorting order of
 ### **General Control Arguments**
 
 #### **1. `lbl_overall`: Column of Total**
-The general argument `lbl_overall` controls whether the column of total will be produced or not. `lbl_overall = NULL` suppresses the total, `lbl_all = "All Patients"` produces the total.
+The generic argument `lbl_overall` controls whether the column of total will be produced or not. `lbl_overall = NULL` suppresses the total, `lbl_all = "All Patients"` produces the total.
 
 #### **2. `display_columncounts`: N=xxx**
-The general argument `display_columncounts` controls whether the count of unique number of subjects (N=xxx) will be displayed in the column header or not. `display_columncounts = FASLSE` suppresses the display of N=xxx.
+The generic argument `display_columncounts` controls whether the count of unique number of subjects (N=xxx) will be displayed in the column header or not. `display_columncounts = FASLSE` suppresses the display of N=xxx.
 
-#### **3. `auto_pre`: **
-
+#### **3. `auto_pre`: customized pre-processing**
+The generic argument `auto_pre` controls whether the default pre-processing step will be performed or not at the execution of `run` function. When modification of the default pre-processing is needed, please include the preprocess function and set `auto_pre = FALSE` to implement the customized `preprocess` function and avoid conflicts potential conflicts.
 
 ## **TABLES**
 
