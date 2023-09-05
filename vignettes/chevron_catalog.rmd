@@ -49,9 +49,6 @@ The generic argument `lbl_overall` controls whether the column of total will be 
 #### **2. `display_columncounts`: N=xxx**
 The generic argument `display_columncounts` controls whether the count of unique number of subjects (N=xxx) will be displayed in the column header or not. `display_columncounts = FASLSE` suppresses the display of N=xxx.
 
-#### **3. `auto_pre`: customized pre-processing**
-The generic argument `auto_pre` controls whether the default pre-processing step will be performed or not at the execution of `run` function. When modification of the default pre-processing is needed, please include the preprocess function and set `auto_pre = FALSE` to implement the customized `preprocess` function and avoid conflicts potential conflicts.
-
 ## **TABLES**
 
 ### **Safety Summary (`AET01`)**
