@@ -15,7 +15,8 @@ rmpt06_main(
   adam_db,
   arm_var = "ACTARM",
   lbl_overall = NULL,
-  aesi_vars = NULL,
+  method = "clopper-pearson",
+  conf_level = 0.95,
   grade_groups = NULL,
   ...
 )
@@ -32,6 +33,13 @@ rmpt06
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{method}{(\code{character}) the method used to construct the confidence interval.
+See \code{\link[tern:estimate_proportions]{tern::estimate_proportions}}.}
+
+\item{conf_level}{(\code{proportion}) the confidence level of the interval. See \code{\link[tern:estimate_proportions]{tern::estimate_proportions}}.}
+
+\item{grade_groups}{(\code{list}) the grade groups to be displayed.}
 
 \item{...}{not used.}
 
