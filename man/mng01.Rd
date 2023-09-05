@@ -21,12 +21,10 @@ mng01_main(
   center_fun = "mean",
   interval_fun = "mean_ci",
   show_table = TRUE,
-  jitter = 0.3,
   show_n = TRUE,
-  show_h_grid = TRUE,
-  show_v_grid = FALSE,
-  legend_pos = "top",
+  jitter = 0.3,
   line_col = nestcolor::color_palette(),
+  ggtheme = gg_theme_chevron(),
   ...
 )
 
@@ -56,21 +54,17 @@ mng01
 
 \item{show_table}{(\code{flag}) should the summary statistic table be displayed.}
 
-\item{jitter}{(\code{numeric}) the width of spread for data points on the x-axis; a number from 0 (no \code{jitter}) to 1 (high
-\code{jitter}), with a default of 0.3 (slight \code{jitter}).}
-
 \item{show_n}{(\code{flag}) should the number of observation be displayed int the table.}
 
-\item{show_h_grid}{(\code{flag}) should horizontal grid be displayed.}
-
-\item{show_v_grid}{(\code{flag}) should vertical grid be displayed.}
-
-\item{legend_pos}{(\code{string}) the position of the legend.}
+\item{jitter}{(\code{numeric}) the width of spread for data points on the x-axis; a number from 0 (no \code{jitter}) to 1 (high
+\code{jitter}), with a default of 0.3 (slight \code{jitter}).}
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} associating values of
 \code{arm_var} with color names.}
 
-\item{...}{not used.}
+\item{ggtheme}{(\code{theme}) passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
+
+\item{...}{passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
 }
 \value{
 a list of \code{ggplot} objects.
@@ -105,5 +99,8 @@ col <- c(
 )
 
 run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
+}
+\seealso{
+\code{\link[=gg_theme_chevron]{gg_theme_chevron()}}, \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.
 }
 \keyword{datasets}

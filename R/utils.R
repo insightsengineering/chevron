@@ -244,3 +244,94 @@ convert_to_month <- function(x, unit) {
     TRUE ~ x
   )
 }
+
+#' Theme for Chevron Plot
+#'
+#' @param grid_y (`flag`) should horizontal grid be displayed.
+#' @param grid_x (`flag`) should vertical grid be displayed.
+#' @param legend_position (`string`) the position of the legend.
+#' @param text_axis_x_rot (`numeric`) the x axis text rotation angle.
+#'
+#' @return a `theme` object.
+#'
+#' @export
+#'
+gg_theme_chevron <- function(grid_y = TRUE,
+                             grid_x = FALSE,
+                             legend_position = "top",
+                             text_axis_x_rot = 45) {
+  assert_flag(grid_y)
+  assert_flag(grid_x)
+  assert_choice(legend_position, c("top", "bottom", "right", "left"))
+  assert_numeric(text_axis_x_rot, len = 1, lower = -90, upper = 90)
+
+  ggtheme <- ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = legend_position) +
+    ggplot2::theme(axis.title.x = ggplot2::element_blank())
+
+  ggtheme <- if (!grid_x) {
+    ggtheme + ggplot2::theme(
+      panel.grid.major.x = ggplot2::element_blank(),
+      panel.grid.minor.x = ggplot2::element_blank()
+    )
+  } else {
+    ggtheme + ggplot2::theme(
+      panel.grid.major.x = ggplot2::element_line(linewidth = ggplot2::rel(0.5)),
+      panel.grid.minor.x = ggplot2::element_blank()
+    )
+  }
+
+  ggtheme <- if (!grid_y) {
+    ggtheme + ggplot2::theme(
+      panel.grid.minor.y = ggplot2::element_blank(),
+      panel.grid.major.y = ggplot2::element_blank()
+    )
+  } else {
+    ggtheme + ggplot2::theme(
+      panel.grid.minor.y = ggplot2::element_blank(),
+      panel.grid.major.y = ggplot2::element_line(linewidth = ggplot2::rel(0.5))
+    )
+  }
+
+  ggtheme <- ggtheme + ggplot2::theme(
+    axis.text.x = ggplot2::element_text(
+      angle = text_axis_x_rot,
+      hjust = get_x_hjust(text_axis_x_rot),
+      vjust = get_x_vjust(text_axis_x_rot)
+    )
+  )
+
+  ggtheme
+}
+
+#' Get a harmonious value of horizontal justification for x axis
+#'
+#' @param x (`numeric`) angle between -90 and 90 degree.
+#' @keywords internal
+get_x_hjust <- function(x) {
+  assert_numeric(x, upper = 90, lower = -90, len = 1)
+
+  if (x == 0) {
+    0.5
+  } else if (x > 0) {
+    1
+  } else {
+    0
+  }
+}
+
+#' Get a harmonious value of vertical justification for x axis
+#'
+#' @param x (`numeric`) angle between -90 and 90 degree.
+#' @keywords internal
+get_x_vjust <- function(x) {
+  assert_numeric(x, upper = 90, lower = -90, len = 1)
+
+  if (x == 0) {
+    0
+  } else if (abs(x) == 90) {
+    0.5
+  } else {
+    1
+  }
+}
