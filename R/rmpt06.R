@@ -141,7 +141,7 @@ rmpt06_lyt <- function(arm_var,
             " with correction)"
           )
         ),
-      table_names = "est_diff"
+        table_names = "est_diff"
       )
   }
 

@@ -16,7 +16,6 @@ test_that("rmpt06 works as expected with show_diff = TRUE", {
   expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
-
 test_that("rmpt06 can handle all NA values", {
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
