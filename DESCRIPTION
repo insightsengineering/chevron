@@ -108,6 +108,7 @@ Collate:
     'rmpt03.R'
     'rmpt04.R'
     'rmpt05.R'
+    'rmpt06.R'
     'rspt01.R'
     'rtables_utils.R'
     'standard_rules.R'
