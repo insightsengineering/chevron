@@ -17,6 +17,10 @@ rmpt06_main(
   lbl_overall = NULL,
   method = "clopper-pearson",
   conf_level = 0.95,
+  show_diff = FALSE,
+  ref_group = NULL,
+  method_diff = "wald",
+  conf_level_diff = 0.95,
   grade_groups = NULL,
   ...
 )
@@ -34,10 +38,16 @@ rmpt06
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{method}{(\code{character}) the method used to construct the confidence interval.
+\item{method}{(\code{string}) the method used to construct the confidence interval.
 See \code{\link[tern:estimate_proportions]{tern::estimate_proportions}}.}
 
-\item{conf_level}{(\code{proportion}) the confidence level of the interval. See \code{\link[tern:estimate_proportions]{tern::estimate_proportions}}.}
+\item{conf_level}{(\code{proportion}) the confidence level of the interval for the difference between groups.}
+
+\item{show_diff}{(\code{flag}) whether to show the difference of patient with at least one adverse event  between groups.}
+
+\item{ref_group}{(\code{string}) the reference group for the difference.}
+
+\item{method_diff}{(\code{string}) the method used to construct the confidence interval for the difference between groups.}
 
 \item{grade_groups}{(\code{list}) the grade groups to be displayed.}
 

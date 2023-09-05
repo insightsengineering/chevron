@@ -8,6 +8,14 @@ test_that("rmpt06 works as expected", {
   expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
+test_that("rmpt06 works as expected with show_diff = TRUE", {
+  res <- rmpt06_pre(syn_data) %>%
+    rmpt06_main(show_diff = TRUE) %>%
+    rmpt01_post()
+
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
+})
+
 
 test_that("rmpt06 can handle all NA values", {
   proc_data <- syn_data

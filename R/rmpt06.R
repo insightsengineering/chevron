@@ -3,9 +3,13 @@
 #' @describeIn rmpt06 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param method (`character`) the method used to construct the confidence interval.
+#' @param method (`string`) the method used to construct the confidence interval.
 #' See [`tern::estimate_proportions`].
 #' @param conf_level (`proportion`) the confidence level of the interval. See [`tern::estimate_proportions`].
+#' @param show_diff (`flag`) whether to show the difference of patient with at least one adverse event  between groups.
+#' @param ref_group (`string`) the reference group for the difference.
+#' @param method_diff (`string`) the method used to construct the confidence interval for the difference between groups.
+#' @param conf_level (`proportion`) the confidence level of the interval for the difference between groups.
 #' @param grade_groups (`list`) the grade groups to be displayed.
 #'
 #' @export
@@ -14,6 +18,10 @@ rmpt06_main <- function(adam_db,
                         lbl_overall = NULL,
                         method = "clopper-pearson",
                         conf_level = 0.95,
+                        show_diff = FALSE,
+                        ref_group = NULL,
+                        method_diff = "wald",
+                        conf_level_diff = 0.95,
                         grade_groups = NULL,
                         ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
@@ -27,8 +35,16 @@ rmpt06_main <- function(adam_db,
     )
   )
   assert_numeric(conf_level, lower = 0, upper = 1)
+  assert_flag(show_diff)
+  assert_choice(
+    method_diff,
+    c(
+      "waldcc", "wald", "cmh", "ha", "newcombe", "newcombecc", "strat_newcombe",
+      "strat_newcombecc"
+    )
+  )
+  assert_numeric(conf_level_diff, lower = 0, upper = 1)
   assert_list(grade_groups, null.ok = TRUE)
-
   assert_valid_variable(adam_db$adsl, "AEFL", types = list("logical"))
   assert_valid_variable(adam_db$adae, "ATOXGR", na_ok = TRUE, types = list("factor"))
   assert_valid_variable(adam_db$adae, "AESERFL", types = list("logical"))
@@ -50,17 +66,24 @@ rmpt06_main <- function(adam_db,
     )
   }
 
+  ref_group <- ref_group %||% levels(adam_db$adsl[[arm_var]])[1]
 
   lyt <- rmpt06_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     method = method,
+    ref_group = ref_group,
     conf_level = conf_level,
+    show_diff = show_diff,
+    method_diff = method_diff,
+    conf_level_diff = conf_level_diff,
     grade_groups = grade_groups
   )
 
   tbl_adsl <- build_table(lyt$adsl, adam_db$adsl)
   tbl_adae <- build_table(lyt$adae, adam_db$adae, alt_counts_df = adam_db$adsl)
+
+  col_info(tbl_adae) <- col_info(tbl_adsl)
 
   rbind(
     tbl_adsl,
@@ -78,9 +101,13 @@ rmpt06_lyt <- function(arm_var,
                        lbl_overall,
                        method,
                        conf_level,
+                       show_diff,
+                       ref_group,
+                       method_diff,
+                       conf_level_diff,
                        grade_groups) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
-    split_cols_by_with_overall(arm_var, lbl_overall)
+    split_cols_by_with_overall(arm_var, lbl_overall, ref_group = ref_group)
 
   lyt_adsl <- lyt %>%
     estimate_proportion(
@@ -95,8 +122,28 @@ rmpt06_lyt <- function(arm_var,
           stringr::str_to_title(method),
           ")"
         )
-      )
+      ),
+      table_names = "est_prop"
     )
+
+  if (show_diff) {
+    lyt_adsl <- lyt_adsl %>%
+      estimate_proportion_diff(
+        vars = "AEFL",
+        method = method_diff,
+        conf_level = conf_level_diff,
+        .labels = c(
+          diff = render_safe("Difference in % of {patient_label} with at least one AE"),
+          diff_ci = paste0(
+            100 * conf_level_diff,
+            "% CI of difference (",
+            stringr::str_to_title(method_diff),
+            " with correction)"
+          )
+        ),
+      table_names = "est_diff"
+      )
+  }
 
   lyt_adae <- lyt %>%
     analyze_num_patients(

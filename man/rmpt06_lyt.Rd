@@ -4,7 +4,17 @@
 \alias{rmpt06_lyt}
 \title{\code{rmpt06} Layout}
 \usage{
-rmpt06_lyt(arm_var, lbl_overall, method, conf_level, grade_groups)
+rmpt06_lyt(
+  arm_var,
+  lbl_overall,
+  method,
+  conf_level,
+  show_diff,
+  ref_group,
+  method_diff,
+  conf_level_diff,
+  grade_groups
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
