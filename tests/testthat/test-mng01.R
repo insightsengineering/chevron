@@ -85,5 +85,4 @@ test_that("mng01 works with numeric jitter", {
   )
   expect_list(res, len = 3, types = "ggplot")
   vdiffr::expect_doppelganger("run mng01 with jitter", res[[1]])
-
 })
