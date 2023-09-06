@@ -197,15 +197,15 @@ rmpt06_pre <- function(adam_db, ...) {
     "Unknown outcome" = "UNKNOWN"
   )
 
-  adam_db$adsl <- adam_db$adsl %>%
-    mutate(AEFL = .data$USUBJID %in% .env$adam_db$adae$USUBJID)
-
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       AEOUT = reformat(.data$AEOUT, aeout_rule),
       AESERFL = if_else(.data$AESER == "Y", TRUE, FALSE)
     )
+
+  adam_db$adsl <- adam_db$adsl %>%
+    mutate(AEFL = .data$USUBJID %in% .env$adam_db$adae$USUBJID)
 
   adam_db
 }
