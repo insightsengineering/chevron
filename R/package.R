@@ -22,4 +22,5 @@
 #' @importFrom stringr str_dup
 #' @importFrom tibble tribble
 #' @importFrom utils modifyList
+#' @importFrom vdiffr expect_doppelganger
 "_PACKAGE"
