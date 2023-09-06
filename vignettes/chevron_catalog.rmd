@@ -1093,10 +1093,11 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_at_risk = FALSE)
 ### **Mean Plot (`MNG01`)**
 
 #### **1. Plot of Mean and Confidence Interval (with Table Section)**
-1) The **`mng01`** template produces the standard mean plot.       
-2) Note that the template `mng01` is quite general. The users are expected to specify the analysis dataset and the visit variable in the `run` function, and select the parameters prior to the `run` function.  
-3) The table of summary statistics is included by default.  
+1) The **`mng01`** template produces the standard mean plot.         
+2) Note that the template `mng01` is quite general. The users are expected to specify the analysis dataset and the visit variable in the `run` function, and select the parameters prior to the `run` function.    
+3) The table of summary statistics is included by default.    
 4) The variable Analysis Value `AVAL` is used for plotting by default.  
+5) If the input dataset contains results of the same analytes in multiple units,(e.g. SI/CV units in ADLB), please make sure that the parameters in appropriate units are selected in advance.  
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
@@ -1111,7 +1112,7 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), y_var = "
 ```
 
 #### **3. Plot of Mean (+/-SD) (Changing the Statistics)**
-To change the statistics, use the argument `interval_fun`. Options are `mean_ci`, `mean_sei`, `mean_sdi`, `median_ci`, `quantiles`,`range`.
+To change the statistics, use the argument `interval_fun`. Options are `mean_ci`, `mean_sei`, `mean_sdi`, `median_ci`, `quantiles`,`range`.  
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
@@ -1119,6 +1120,8 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), interval_
 ```
 
 #### **4. Plot of Mean and Confidence Interval (Modify Alpha Level)**
+To change the alpha level of the confidence interval, use the argument `control = control_analyze_vars(conf_level = <0.xx>)`. Note that this is only in effect when `interval_fun` is set to `mean_ci`.   
+
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), interval_fun = "mean_ci", draw = TRUE,control = control_analyze_vars(conf_level = 0.80))
@@ -1128,6 +1131,7 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), interval_
 Unavailable yet.
 
 #### **6. Plot of Mean and Confidence Interval (without Table Section)**
+
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), show_table = FALSE, draw = TRUE)
