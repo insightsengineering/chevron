@@ -36,7 +36,8 @@ Imports:
     stringr,
     tern (>= 0.8.5.9013),
     tibble,
-    utils
+    utils,
+    vdiffr
 Suggests:
     knitr,
     rmarkdown,
