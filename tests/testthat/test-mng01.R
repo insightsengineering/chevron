@@ -4,6 +4,7 @@ test_that("mng01 works as expected with default argument values", {
   pre_data <- mng01_pre(syn_data, dataset = "adlb")
   res <- mng01_main(pre_data, dataset = "adlb")
   expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("mng01 with default value", res[[1]])
 })
 
 test_that("mng01 works as expected with custom argument values", {
@@ -14,8 +15,14 @@ test_that("mng01 works as expected with custom argument values", {
   )
 
   pre_data <- mng01_pre(syn_data, dataset = "adlb")
-  res <- mng01_main(pre_data, dataset = "adlb", show_v_grid = FALSE, show_h_grid = FALSE, line_col = col)
+  res <- mng01_main(
+    pre_data,
+    dataset = "adlb",
+    ggtheme = ggplot2::theme(axis.text.x = ggplot2::element_text(colour = "red", angle = 30, hjust = 1)),
+    line_col = col
+  )
   expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("mng01 with custom theme", res[[1]], )
 
   bad_col <- c(
     "B: Placebo" = "black",
@@ -42,15 +49,18 @@ test_that("mng01 works as expected with custom color set", {
   proc_data <- syn_data
   res <- run(mng01, proc_data, dataset = "adlb", line_col = col)
   expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("run mng01 with custom color set", res[[1]])
 
   res <- run(mng01, proc_data, dataset = "adlb", line_col = unname(col))
   expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("run mng01 with custom unnamed color set", res[[1]])
 })
 
-test_that("mng01 works if show_v_grid/show_h_grid is TRUE", {
+test_that("mng01 works with table = NULL", {
   proc_data <- syn_data
-  res <- run(mng01, proc_data, dataset = "adlb", show_v_grid = TRUE, show_h_grid = TRUE)
+  res <- run(mng01, proc_data, dataset = "adlb", table = NULL)
   expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("run mng01 without table", res[[1]])
 })
 
 test_that("mng01 works with combination of x variables", {
@@ -62,6 +72,7 @@ test_that("mng01 works with combination of x variables", {
     x_var = c("AVISIT", "AVISITN")
   )
   expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("run mng01 with combination of x variables", res[[1]])
 })
 
 test_that("mng01 works with numeric jitter", {
@@ -70,7 +81,9 @@ test_that("mng01 works with numeric jitter", {
     mng01,
     proc_data,
     dataset = "adlb",
-    jitter = 0.2
+    jitter = 0.7
   )
   expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("run mng01 with jitter", res[[1]])
+
 })
