@@ -1,4 +1,4 @@
-# chevron 0.2.2.9017
+# chevron 0.2.2.9018
 
 * Replace `tern::create_afun_summary` by `tern::a_summary`.
 * Fix argument printing for `run` method.
@@ -10,8 +10,9 @@ variables do not exist in analysis dataset.
 * `AEL01_NOLLT` now has argument `unique` to keep only the unique rows in listing.
 * `AET01_AESI`, `EGT02` and `LBT14` now remove the check in preprocessing function.
 * `COXT01` will drop levels on `arm_var` in preprocessing function now.
-* `MNG01` uses a `ggtheme` argument to set graphic parameters instead of the now defunct `show_h_grid`, `show_v_grid` 
-and `legend_pos` arguments.
+* `MNG01` uses a `ggtheme` argument to set graphic parameters instead of the now defunct `show_h_grid`, `show_v_grid`
+and `legend_pos` arguments. The `table` arguments now controls the behavior of the table. The arguments `show_n` and
+`show_table` are now defunct.
 * Add `RMPT06` template.
 
 # chevron 0.2.2

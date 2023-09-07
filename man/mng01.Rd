@@ -20,11 +20,10 @@ mng01_main(
   arm_var = "ACTARM",
   center_fun = "mean",
   interval_fun = "mean_ci",
-  show_table = TRUE,
-  show_n = TRUE,
   jitter = 0.3,
   line_col = nestcolor::color_palette(),
   ggtheme = gg_theme_chevron(),
+  table = c("n", center_fun, interval_fun),
   ...
 )
 
@@ -52,10 +51,6 @@ mng01
 
 \item{interval_fun}{(\code{string}) the function defining the crossbar range.}
 
-\item{show_table}{(\code{flag}) should the summary statistic table be displayed.}
-
-\item{show_n}{(\code{flag}) should the number of observation be displayed int the table.}
-
 \item{jitter}{(\code{numeric}) the width of spread for data points on the x-axis; a number from 0 (no \code{jitter}) to 1 (high
 \code{jitter}), with a default of 0.3 (slight \code{jitter}).}
 
@@ -63,6 +58,8 @@ mng01
 \code{arm_var} with color names.}
 
 \item{ggtheme}{(\code{theme}) passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
+
+\item{table}{(\code{character}) names of the statistics to be displayed in the table. If \code{NULL}, no table is displayed.}
 
 \item{...}{passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
 }
