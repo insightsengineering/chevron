@@ -35,7 +35,7 @@
         Number of patients with at least one adverse event                122 (91.0%)    123 (91.8%)     120 (90.9%)  
         95% CI for % of patients with at least one AE (Clopper-Pearson)   (84.9, 95.3)   (85.8, 95.8)    (84.7, 95.2) 
         Difference in % of patients with at least one AE                                     0.7             -0.1     
-          95% CI of difference (Wald with correction)                                    (-6.0, 7.5)     (-7.0, 6.8)  
+          95% CI of difference (Wald)                                                    (-6.0, 7.5)     (-7.0, 6.8)  
         Total number of AEs                                                   609            622             703      
         Total number of patients with at least one AE by worst grade                                                  
           Grade 1                                                           7 (5.2%)       9 (6.7%)        4 (3.0%)   

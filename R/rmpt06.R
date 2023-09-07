@@ -47,7 +47,7 @@ rmpt06_main <- function(adam_db,
   assert_list(grade_groups, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, "AEFL", types = list("logical"))
   assert_valid_variable(adam_db$adae, "ATOXGR", na_ok = TRUE, types = list("factor"))
-  assert_valid_variable(adam_db$adae, "AESERFL", types = list("logical"))
+  assert_valid_variable(adam_db$adae, "AESER", types = list("character", "factor"))
   assert_valid_variable(adam_db$adae, "AEOUT", na_ok = TRUE, types = list("factor"))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var))
   assert_valid_variable(adam_db$adae, c(arm_var), types = list(c("character", "factor")))
@@ -66,7 +66,7 @@ rmpt06_main <- function(adam_db,
     )
   }
 
-  ref_group <- ref_group %||% levels(adam_db$adsl[[arm_var]])[1]
+  ref_group <- ref_group %||% lvls(adam_db$adsl[[arm_var]])[1]
 
   lyt <- rmpt06_lyt(
     arm_var = arm_var,
@@ -138,7 +138,7 @@ rmpt06_lyt <- function(arm_var,
             100 * conf_level_diff,
             "% CI of difference (",
             stringr::str_to_title(method_diff),
-            " with correction)"
+            ")"
           )
         ),
         table_names = "est_diff"
@@ -161,11 +161,13 @@ rmpt06_lyt <- function(arm_var,
       show_labels = "visible",
       grade_groups = grade_groups
     ) %>%
-    count_patients_with_flags(
+    count_patients_with_event(
       "USUBJID",
-      flag_variables = "AESERFL",
-      flag_labels = render_safe("Number of {patient_label} with at least one serious AE"),
-      denom = "N_col"
+      filters = c("AESER" = "Y"),
+      .labels = c(count_fraction = render_safe("Number of {patient_label} with at least one serious AE")),
+      denom = "N_col",
+      .formats = c(count_fraction = format_count_fraction_fixed_dp),
+      table_names = "aeser"
     ) %>%
     count_occurrences(
       "AEOUT",
@@ -199,10 +201,7 @@ rmpt06_pre <- function(adam_db, ...) {
 
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
-    mutate(
-      AEOUT = reformat(.data$AEOUT, aeout_rule),
-      AESERFL = if_else(.data$AESER == "Y", TRUE, FALSE)
-    )
+    mutate(AEOUT = reformat(.data$AEOUT, aeout_rule))
 
   adam_db$adsl <- adam_db$adsl %>%
     mutate(AEFL = .data$USUBJID %in% .env$adam_db$adae$USUBJID)
