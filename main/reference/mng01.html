@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9016</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9017</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,24 +30,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -92,11 +74,10 @@
 <span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
 <span>  center_fun <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>  interval_fun <span class="op">=</span> <span class="st">"mean_ci"</span>,</span>
-<span>  show_table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  show_n <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  jitter <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  line_col <span class="op">=</span> <span class="fu">nestcolor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nestcolor/man/color_palette.html" class="external-link">color_palette</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  ggtheme <span class="op">=</span> <span class="fu"><a href="gg_theme_chevron.html">gg_theme_chevron</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  table <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="va">center_fun</span>, <span class="va">interval_fun</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -148,14 +129,6 @@
 <dd><p>(<code>string</code>) the function defining the crossbar range.</p></dd>
 
 
-<dt>show_table</dt>
-<dd><p>(<code>flag</code>) should the summary statistic table be displayed.</p></dd>
-
-
-<dt>show_n</dt>
-<dd><p>(<code>flag</code>) should the number of observation be displayed int the table.</p></dd>
-
-
 <dt>jitter</dt>
 <dd><p>(<code>numeric</code>) the width of spread for data points on the x-axis; a number from 0 (no <code>jitter</code>) to 1 (high
 <code>jitter</code>), with a default of 0.3 (slight <code>jitter</code>).</p></dd>
@@ -168,6 +141,10 @@
 
 <dt>ggtheme</dt>
 <dd><p>(<code>theme</code>) passed to <code><a href="https://rdrr.io/pkg/tern/man/g_lineplot.html" class="external-link">tern::g_lineplot()</a></code>.</p></dd>
+
+
+<dt>table</dt>
+<dd><p>(<code>character</code>) names of the statistics to be displayed in the table. If <code>NULL</code>, no table is displayed.</p></dd>
 
 
 <dt>...</dt>
