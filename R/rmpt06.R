@@ -29,19 +29,13 @@ rmpt06_main <- function(adam_db,
   assert_string(lbl_overall, null.ok = TRUE)
   assert_choice(
     method,
-    c(
-      "waldcc", "wald", "clopper-pearson", "wilson", "wilsonc",
-      "strat_wilson", "strat_wilsonc", "agresti-coull", "jeffreys"
-    )
+    c("waldcc", "wald", "clopper-pearson", "wilson", "wilsonc", "agresti-coull", "jeffreys")
   )
   assert_numeric(conf_level, lower = 0, upper = 1)
   assert_flag(show_diff)
   assert_choice(
     method_diff,
-    c(
-      "waldcc", "wald", "cmh", "ha", "newcombe", "newcombecc", "strat_newcombe",
-      "strat_newcombecc"
-    )
+    c("waldcc", "wald", "cmh", "ha", "newcombe", "newcombecc")
   )
   assert_numeric(conf_level_diff, lower = 0, upper = 1)
   assert_list(grade_groups, null.ok = TRUE)
@@ -118,9 +112,7 @@ rmpt06_lyt <- function(arm_var,
         n_prop = render_safe("Number of {patient_label} with at least one adverse event"),
         prop_ci = paste0(
           100 * conf_level,
-          render_safe("% CI for % of {patient_label} with at least one AE ("),
-          stringr::str_to_title(method),
-          ")"
+          render_safe("% CI for % of {patient_label} with at least one AE")
         )
       ),
       table_names = "est_prop"
@@ -136,9 +128,7 @@ rmpt06_lyt <- function(arm_var,
           diff = render_safe("Difference in % of {patient_label} with at least one AE"),
           diff_ci = paste0(
             100 * conf_level_diff,
-            "% CI of difference (",
-            stringr::str_to_title(method_diff),
-            ")"
+            "% CI of difference"
           )
         ),
         table_names = "est_diff"
