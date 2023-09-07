@@ -36,13 +36,13 @@ Imports:
     stringr,
     tern (>= 0.8.5.9013),
     tibble,
-    utils,
-    vdiffr
+    utils
 Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    tidyr
+    tidyr,
+    vdiffr
 VignetteBuilder:
     knitr
 Remotes:
