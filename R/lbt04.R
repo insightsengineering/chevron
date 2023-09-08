@@ -97,7 +97,7 @@ lbt04_lyt <- function(arm_var,
 
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by_with_overall(arm_var, lbl_overall) %>%
-    split_rows_by_recurive(
+    split_rows_by_recursive(
       row_split_var,
       split_label = row_split_lbl,
       label_pos = label_pos,
