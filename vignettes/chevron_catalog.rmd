@@ -29,8 +29,7 @@ library(chevron)
 The input dataset expected by the argument `adam_db=` in the `run(...)` function is a collection of ADaM datasets as a list object. Each ADaM dataset is expected to be an object of data frame. If the ADaM datasets are read in individually, user will need to combine them into a list object and provide the name of the list to `adam_db=`. Also, each element in the list are expected to have corresponding ADaM dataset names. Conventional ADaM dataset names, including `adsl`,`adex`, `adae`, `adlb`,`advs`,`adeg`,`adcm`,`admh`,`adrs`, and `adtte`, can be picked up by `chevron` with one exception. If you have a safety time-to-event dataset named as `adsaftte` following Roche standard ADaM convention, you will need to re-name it to `adaette` to be picked up by `chevron`.
 
 ```{r eval=FALSE}
-std_data <- list(adsl, adae)
-names(std_data) <- c("adsl", "adae")
+std_data <- list(adsl = adsl, adae = adae)
 run(object = aet01_nollt, adam_db = std_data)
 ```
 #### **2. Expected variables in input analysis dataset**
