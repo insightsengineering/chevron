@@ -437,11 +437,11 @@ split_cols_by_with_overall <- function(lyt, col_var, lbl_overall) {
 #' @param paramcdvar (`string`) name of parameter code.
 #' @param visitvar (`string`) name of the visit variable.
 #' @param skip Named (`character`) indicating the pairs to skip in analyze.
-#' @param .stats (`character`) See `tern::summarize_variables`.
-#' @param .label (`character`) See `tern::summarize_variables`.
-#' @param .indent_mods (`integer`) See `tern::summarize_variables`.
-#' @param .N_col (`int`) See `tern::summarize_variables`.
-#' @param .N_row (`int`) See `tern::summarize_variables`.
+#' @param .stats (`character`) See `tern::analyze_variables`.
+#' @param .label (`character`) See `tern::analyze_variables`.
+#' @param .indent_mods (`integer`) See `tern::analyze_variables`.
+#' @param .N_col (`int`) See `tern::analyze_variables`.
+#' @param .N_row (`int`) See `tern::analyze_variables`.
 #' @param ... additional arguments for `tern::a_summary`.
 #' @inheritParams cfbt01_main
 #'
@@ -498,6 +498,53 @@ summary_formats <- function(x, pcs, ne = FALSE) {
     quantiles = h_format_dec(format = "(%s - %s)", digits = rep(pcs + 1, 2), ne = ne),
     range = h_format_dec(format = "%s - %s", digits = rep(pcs, 2), ne = ne),
     median_range = h_format_dec(format = "%s (%s - %s)", digits = c(pcs, pcs + 1, pcs + 1), ne = ne)
+  )
+}
+
+#' Analyze with defined precision
+#'
+#' @param x value to analyze
+#' @param .var variable name.
+#' @param .spl_context split context.
+#' @param precision (named `list` of `integer`) where names of columns found in `.df_row` and the values indicate the
+#'   number of digits in statistics for numeric value. If `default` is set, and parameter precision not specified, the
+#'   value for `default` will be used. If neither are provided, auto determination is used. See [`tern::format_auto`].
+#' @param .stats (`character`) See `tern::analyze_variables`.
+#' @param .labels (`character`) See `tern::analyze_variables`.
+#' @param .indent_mods (`integer`) See `tern::analyze_variables`.
+#' @param .N_col (`int`) See `tern::analyze_variables`.
+#' @param .N_row (`int`) See `tern::analyze_variables`.
+#' @param ... additional arguments for `tern::a_summary`.
+#'
+#' @keywords internal
+afun_p <- function(x,
+                   .N_col,
+                   .spl_context,
+                   precision,
+                   .N_row,
+                   .var = NULL,
+                   .df_row = NULL,
+                   .stats = NULL,
+                   .labels = NULL,
+                   .indent_mods = NULL,
+                   ...) {
+  # Define precision
+  pcs <- precision[[.var]] %||% precision[["default"]]
+  fmts <- if (is.null(pcs) && length(x) > 0) {
+    lapply(.stats, function(.s) format_auto(dt_var = as.numeric(x), x_stat = .s))
+  } else {
+    # Define an arbitrary precision if unavailable and unable to compute it.
+    pcs <- pcs %||% 2
+    lapply(.stats, summary_formats, pcs = pcs, FALSE)
+  }
+  names(fmts) <- .stats
+
+  if ("n" %in% .stats) fmts$n <- "xx"
+  if ("count_fraction" %in% .stats) fmts$count_fraction <- format_count_fraction_fixed_dp
+
+  tern::a_summary(
+    .stats = .stats, .formats = fmts, .labels = .labels, .indent_mods = .indent_mods,
+    x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...
   )
 }
 

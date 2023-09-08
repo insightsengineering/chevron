@@ -4,7 +4,14 @@
 \alias{dmt01_lyt}
 \title{\code{dmt01} Layout}
 \usage{
-dmt01_lyt(arm_var, lbl_overall, summaryvars, summaryvars_lbls)
+dmt01_lyt(
+  arm_var,
+  lbl_overall,
+  summaryvars,
+  summaryvars_lbls,
+  .stats,
+  precision
+)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}

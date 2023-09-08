@@ -5,6 +5,11 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables summarized in demographic table. The label attribute of the corresponding
 #'   column in `adsl` table of `adam_db` is used as label.
+#' @param .stats (`character`) See `tern::analyze_variables`.
+#' @param precision (named `list` of `integer`) where names are `strings` found in `summaryvars` and the values indicate
+#'   the number of digits in statistics for numeric variables. If `default` is set, and parameter precision not
+#'   specified, the value for `default` will be used. If neither are provided, auto determination is used. See
+#'   [`tern::format_auto`].
 #'
 #' @details
 #'  * Information from `ADSUB` are generally included into `ADSL` before analysis.
@@ -29,12 +34,16 @@ dmt01_main <- function(adam_db,
                          "ETHNIC",
                          "RACE"
                        ),
+                       .stats = c("n", "mean_sd", "median", "range", "count_fraction"),
+                       precision = list(),
                        ...) {
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
   assert_character(summaryvars, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, summaryvars, na_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
+  assert_character(.stats)
+  assert_list(precision, types = "integerish", names = "unique")
 
   lbl_overall <- render_safe(lbl_overall)
   summaryvars_lbls <- var_labels_for(adam_db$adsl, summaryvars)
@@ -43,7 +52,9 @@ dmt01_main <- function(adam_db,
     arm_var = arm_var,
     lbl_overall = lbl_overall,
     summaryvars = summaryvars,
-    summaryvars_lbls = summaryvars_lbls
+    summaryvars_lbls = summaryvars_lbls,
+    .stats = .stats,
+    precision = precision
   )
 
   tbl <- build_table(lyt, adam_db$adsl)
@@ -61,13 +72,19 @@ dmt01_main <- function(adam_db,
 dmt01_lyt <- function(arm_var,
                       lbl_overall,
                       summaryvars,
-                      summaryvars_lbls) {
+                      summaryvars_lbls,
+                      .stats,
+                      precision) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by_with_overall(arm_var, lbl_overall) %>%
-    analyze_vars(
+    analyze(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
-      .formats = list(count_fraction = format_count_fraction_fixed_dp)
+      afun = afun_p,
+      extra_args = list(
+        precision = precision,
+        .stats = .stats
+      )
     )
 }
 
