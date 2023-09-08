@@ -519,10 +519,10 @@ summary_formats <- function(x, pcs, ne = FALSE) {
 #'
 #' @keywords internal
 afun_p <- function(x,
-                   .N_col,
+                   .N_col, # nolint
                    .spl_context,
                    precision,
-                   .N_row,
+                   .N_row, # nolint
                    .var = NULL,
                    .df_row = NULL,
                    .stats = NULL,
