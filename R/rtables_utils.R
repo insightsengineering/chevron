@@ -194,7 +194,7 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
       summarize_row_groups(
         format = format_count_fraction_fixed_dp
       ) %>%
-      split_rows_by_recurive(detail_vars[-length(detail_vars)], split_fun = drop_split_levels) %>%
+      split_rows_by_recursive(detail_vars[-length(detail_vars)], split_fun = drop_split_levels) %>%
       analyze_vars(
         detail_vars[length(detail_vars)],
         .stats = "count_fraction",
@@ -215,7 +215,7 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
 #' @param ... Further arguments for `split_rows_by`
 #'
 #' @keywords internal
-split_rows_by_recurive <- function(lyt, row_split_var, ...) {
+split_rows_by_recursive <- function(lyt, row_split_var, ...) {
   args <- list(...)
   for (i in seq_len(length(row_split_var))) {
     args_i <- lapply(args, obtain_value, index = i)
@@ -416,7 +416,7 @@ ifneeded_add_overall_col <- function(lyt, lbl_overall) {
   }
 }
 
-split_cols_by_with_overall <- function(lyt, col_var, lbl_overall) {
+split_cols_by_with_overall <- function(lyt, col_var, lbl_overall, ref_group = NULL) {
   if (is.null(col_var)) {
     lyt
   } else {
@@ -424,7 +424,8 @@ split_cols_by_with_overall <- function(lyt, col_var, lbl_overall) {
       lyt, col_var,
       split_fun = if (!is.null(lbl_overall) && !identical(lbl_overall, "")) {
         add_overall_level(lbl_overall, first = FALSE)
-      }
+      },
+      ref_group = ref_group
     )
   }
 }
