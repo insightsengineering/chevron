@@ -391,6 +391,12 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/rmpt05.html</loc>
   </url>
   <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/rmpt06.html</loc>
+  </url>
+  <url>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/rmpt06_lyt.html</loc>
+  </url>
+  <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/rspt01.html</loc>
   </url>
   <url>
@@ -409,7 +415,7 @@
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/smart_prune.html</loc>
   </url>
   <url>
-    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/split_rows_by_recurive.html</loc>
+    <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/split_rows_by_recursive.html</loc>
   </url>
   <url>
     <loc>https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference/std_postprocess.html</loc>
