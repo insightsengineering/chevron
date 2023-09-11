@@ -49,7 +49,7 @@ grid::grid.newpage()
 grid::grid.draw(res)
 
 # method 2
-res <- run(kmg01, proc_data, dataset = "adtte",draw = TRUE)
+res <- run(kmg01, proc_data, dataset = "adtte", draw = TRUE)
 ```
 
 ### **General Control Arguments**
@@ -1079,7 +1079,7 @@ To add the statistics annotation, use the function `annot_stats`. Options are `m
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_stats = "median")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_stats = c("min","median"))
+run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_stats = c("min", "median"))
 ```
 
 #### **6. Kaplan-Meier Plot (without the table of patient at risk)**
@@ -1100,14 +1100,14 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_at_risk = FALSE)
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), draw = TRUE)
 ```
 
 #### **2. Plot of Mean and Confidence Interval of Change from Baseline of Vital Signs**
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), y_var = "CHG", draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), y_var = "CHG", draw = TRUE)
 ```
 
 #### **3. Plot of Mean (+/-SD) (Changing the Statistics)**
@@ -1115,7 +1115,7 @@ To change the statistics, use the argument `interval_fun`. Options are `mean_ci`
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), interval_fun = "mean_sdi", draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), interval_fun = "mean_sdi", draw = TRUE)
 ```
 
 #### **4. Plot of Mean and Confidence Interval (Modify Alpha Level)**
@@ -1123,7 +1123,10 @@ To change the alpha level of the confidence interval, use the argument `control 
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), interval_fun = "mean_ci", draw = TRUE,control = control_analyze_vars(conf_level = 0.80))
+run(
+  mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"),
+  interval_fun = "mean_ci", draw = TRUE, control = control_analyze_vars(conf_level = 0.80)
+)
 ```
 
 #### **5. Plot of Mean and Confidence Interval （With Number of Patients Only)**
@@ -1133,5 +1136,5 @@ Unavailable yet.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT","AVISITN"), show_table = FALSE, draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), show_table = FALSE, draw = TRUE)
 ```
