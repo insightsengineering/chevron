@@ -44,18 +44,21 @@ dsl01_pre <- function(adam_db,
                       dataset = "adsl",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    filter(AEWITHFL == "Y") %>%
+    filter(.data$AEWITHFL == "Y") %>%
     mutate(
-      ID = with_label(paste(SITEID, SUBJID, sep = "/"), "Center/Patient ID"),
-      ASR = with_label(paste(AGE, SEX, RACE, sep = "/"), "Age/Sex/Race"),
+      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRT01A = with_label(.data$TRT01A, "Treatment"),
       SSADM = with_label(
-        toupper(format(as.Date(TRTSDTM), format = "%d%b%Y")),
+        toupper(format(as.Date(.data$TRTSDTM), format = "%d%b%Y")),
         "Date of First\nStudy Drug\nAdministration"
       ),
-      STDWD = with_label(as.numeric(ceiling(difftime(TRTEDTM, TRTSDTM, units = "days"))), "Study Day\nof Withdrawal"),
+      STDWD = with_label(
+        as.numeric(ceiling(difftime(.data$TRTEDTM, .data$TRTSDTM, units = "days"))),
+        "Study Day\nof Withdrawal"
+      ),
       DISCONT = with_label(
-        ifelse(!is.na(DCSREAS) & toupper(EOSSTT) == "DISCONTINUED", "Yes", "No"),
+        ifelse(!is.na(.data$DCSREAS) & toupper(.data$EOSSTT) == "DISCONTINUED", "Yes", "No"),
         "Discontinued\nEarly from Study?"
       )
     ) %>%
