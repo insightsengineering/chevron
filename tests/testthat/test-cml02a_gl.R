@@ -7,7 +7,7 @@ test_that("cml02a_gl works with admh dataset", {
 
 # cml02a_gl functions ----
 
-test_that("cml02a_gl works with admh dataset", {
+test_that("cml02a_gl functions work as expected", {
   expect_message(
     res <- cml02a_gl_pre(syn_data) %>%
       cml02a_gl_main() %>%

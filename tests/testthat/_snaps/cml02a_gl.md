@@ -24,7 +24,7 @@
                           medname C_2/2            C_2/2                 
       ATCCLAS2 C p3       medname C_2/2            C_2/2                 
 
----
+# cml02a_gl functions work as expected
 
     Code
       cat(export_as_txt(res, lpp = 100))
