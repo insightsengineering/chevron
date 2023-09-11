@@ -46,7 +46,7 @@ ael02_pre <- function(adam_db,
                       dataset = "adae",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    filter(ANL01FL == "Y") %>%
+    filter(.data$ANL01FL == "Y") %>%
     mutate(
       across(
         all_of(c("TRT01A", "AEDECOD", "AESEV", "AEOUT", "AEACN")),
@@ -54,15 +54,18 @@ ael02_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      CPID = with_label(paste(SITEID, SUBJID, sep = "/"), "Center/Patient ID"),
-      ASR = with_label(paste(AGE, SEX, RACE, sep = "/"), "Age/Sex/Race"),
+      CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       Date_First = with_label(
-        toupper(format(as.Date(TRTSDTM), "%d%b%Y")),
+        toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
-      Duration = with_label(AENDY - ASTDY + 1, "AE\nDuration\nin Days"),
-      Serious = with_label(ifelse(AESER == "Y", "Yes", ifelse(AESER == "N", "No", "")), "Serious"),
-      Related = with_label(ifelse(AEREL == "Y", "Yes", ifelse(AEREL == "N", "No", "")), "Caused by\nStudy\nDrug"),
+      Duration = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
+      Serious = with_label(ifelse(.data$AESER == "Y", "Yes", ifelse(.data$AESER == "N", "No", "")), "Serious"),
+      Related = with_label(
+        ifelse(.data$AEREL == "Y", "Yes", ifelse(.data$AEREL == "N", "No", "")),
+        "Caused by\nStudy\nDrug"
+      ),
       Outcome = with_label(case_when(
         AEOUT == "FATAL" ~ 1,
         AEOUT == "NOT RECOVERED/NOT RESOLVED" ~ 2,
@@ -71,7 +74,10 @@ ael02_pre <- function(adam_db,
         AEOUT == "RECOVERING/RESOLVING" ~ 5,
         AEOUT == "UNKNOWN" ~ 6
       ), "Outcome\n(1)"),
-      Treated = with_label(ifelse(AECONTRT == "Y", "Yes", ifelse(AECONTRT == "N", "No", "")), "Treatment\nfor AE"),
+      Treated = with_label(
+        ifelse(.data$AECONTRT == "Y", "Yes", ifelse(.data$AECONTRT == "N", "No", "")),
+        "Treatment\nfor AE"
+      ),
       Action = with_label(case_when(
         AEACN == "DOSE INCREASED" ~ 1,
         AEACN == "DOSE NOT CHANGED" ~ 2,
