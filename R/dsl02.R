@@ -45,29 +45,29 @@ dsl02_pre <- function(adam_db,
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$AEWITHFL == "Y") %>%
-   mutate(
-    ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
-    ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
-    DISCONT = ifelse(!is.na(.data$DCSREAS) & .data$EOSSTT != "COMPLETED", "Yes", "No"),
-    SSADTM = with_label(as.POSIXct(
-      strftime(.data$TRTSDTM, format = "%Y-%m-%d %H:%M:%S"),
-      format = "%Y-%m-%d",
-      tz = "UTC"
-    ), "Date of First\nStudy Drug\nAdministration"),
-    SSAEDY = with_label(
-      as.numeric(ceiling(difftime(.data$EOSDT, .data$SSADTM, units = "days"))),
-      "Day of Study\nDiscontinuation\nRelative to First\nStudy Drug\nAdministration"
-    ),
-    RANDEDY = with_label(
-      as.numeric(ceiling(difftime(.data$EOSDT, .data$RANDDT, units = "days"))),
-      "Day of Study\nDiscontinuation\nRelative to\nRandomization"
-    ),
-    TRT01A = with_label(.data$TRT01A, "Treatment"),
-    EOSDY = with_label(.data$EOSDY, "Day of Last\nStudy Drug\nAdministration"),
-    DCSREAS = with_label(.data$DCSREAS, "Reason for\nDiscontinuation")
-  ) %>%
-  filter(.data$DISCONT == "Yes") %>%
-  select(all_of(c("ID", "ASR", "TRT01A", "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS")))
+    mutate(
+      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
+      DISCONT = ifelse(!is.na(.data$DCSREAS) & .data$EOSSTT != "COMPLETED", "Yes", "No"),
+      SSADTM = with_label(as.POSIXct(
+        strftime(.data$TRTSDTM, format = "%Y-%m-%d %H:%M:%S"),
+        format = "%Y-%m-%d",
+        tz = "UTC"
+      ), "Date of First\nStudy Drug\nAdministration"),
+      SSAEDY = with_label(
+        as.numeric(ceiling(difftime(.data$EOSDT, .data$SSADTM, units = "days"))),
+        "Day of Study\nDiscontinuation\nRelative to First\nStudy Drug\nAdministration"
+      ),
+      RANDEDY = with_label(
+        as.numeric(ceiling(difftime(.data$EOSDT, .data$RANDDT, units = "days"))),
+        "Day of Study\nDiscontinuation\nRelative to\nRandomization"
+      ),
+      TRT01A = with_label(.data$TRT01A, "Treatment"),
+      EOSDY = with_label(.data$EOSDY, "Day of Last\nStudy Drug\nAdministration"),
+      DCSREAS = with_label(.data$DCSREAS, "Reason for\nDiscontinuation")
+    ) %>%
+    filter(.data$DISCONT == "Yes") %>%
+    select(all_of(c("ID", "ASR", "TRT01A", "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS")))
 
   adam_db
 }
