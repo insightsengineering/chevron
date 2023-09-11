@@ -15,13 +15,12 @@
 #'   `y_name` is displayed as subtitle.
 #' @param center_fun (`string`) the function to compute the estimate value.
 #' @param interval_fun (`string`) the function defining the crossbar range.
-#' @param show_table (`flag`) should the summary statistic table be displayed.
-#' @param show_n (`flag`) should the number of observation be displayed int the table.
 #' @param jitter (`numeric`) the width of spread for data points on the x-axis; a number from 0 (no `jitter`) to 1 (high
 #'   `jitter`), with a default of 0.3 (slight `jitter`).
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
 #'   `arm_var` with color names.
 #' @param ggtheme (`theme`) passed to [tern::g_lineplot()].
+#' @param table (`character`) names of the statistics to be displayed in the table. If `NULL`, no table is displayed.
 #' @param ... passed to [tern::g_lineplot()].
 #'
 #' @note
@@ -43,12 +42,14 @@ mng01_main <- function(adam_db,
                        arm_var = "ACTARM",
                        center_fun = "mean",
                        interval_fun = "mean_ci",
-                       show_table = TRUE,
-                       show_n = TRUE,
                        jitter = 0.3,
                        line_col = nestcolor::color_palette(),
                        ggtheme = gg_theme_chevron(),
+                       table = c("n", center_fun, interval_fun),
                        ...) {
+  center_fun_choice <- c("mean", "median")
+  interval_fun_choice <- c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range")
+
   assert_all_tablenames(adam_db, c(dataset, "adsl"))
   assert_character(x_var)
   assert_string(y_var)
@@ -57,11 +58,9 @@ mng01_main <- function(adam_db,
   assert_string(arm_var)
   assert_string(center_fun)
   assert_string(interval_fun)
-  assert_names(center_fun, subset.of = c("mean", "median"))
-  assert_choice(interval_fun, c("mean_ci", "mean_sei", "mean_sdi", "median_ci", "quantiles", "range"))
-  assert_flag(show_table)
+  assert_names(center_fun, subset.of = center_fun_choice)
+  assert_choice(interval_fun, interval_fun_choice)
   assert_number(jitter, lower = 0, upper = 1)
-  assert_flag(show_n)
   assert_class(ggtheme, "theme")
   assert_character(line_col, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], x_var)
@@ -71,6 +70,7 @@ mng01_main <- function(adam_db,
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
+  assert_subset(table, c("n", center_fun_choice, interval_fun_choice))
 
   df <- adam_db[[dataset]]
   line_col <- unlist(line_col)
@@ -95,10 +95,6 @@ mng01_main <- function(adam_db,
     paramcd = y_name,
     y_unit = y_unit
   )
-
-  n_func <- if (show_n) "n" else NULL
-
-  table <- if (show_table) c(n_func, center_fun, interval_fun) else NULL
 
   if (!is.null(names(line_col))) {
     color_lvl <- sort(unique(df[[arm_var]]))

@@ -103,7 +103,7 @@ egt05_qtcat_lyt <- function(arm_var,
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by_with_overall(arm_var, lbl_overall) %>%
-    split_rows_by_recurive(
+    split_rows_by_recursive(
       row_split_var,
       split_label = row_split_lbl,
       label_pos = head(label_pos, -1L), page_by = head(page_by, -1L)
