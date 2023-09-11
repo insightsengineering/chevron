@@ -26,7 +26,7 @@ library(chevron)
 `chevron` is a collection of functions to creates tables, listings, and graphs following Roche standards for clinical trials reporting. After loading the R packages and the trial data, the output is to be created by the main function `run(...)` . Two arguments `object = ` and `adam_db = ` are always expected in the function. `object = ` specifies which Roche Standard Template ID to use. `adam_db = ` specifies the input dataset. Other mandatory and optional arguments within the `run` function vary depending on which template ID is called. 
 
 #### **1. Input dataset and dataset names**
-The input dataset expected by the argument `adam_db=` in the `run(...)` function is a collection of ADaM datasets as a list object. Each ADaM dataset is expected to be an object of data frame. If the ADaM datasets are read in individually, user will need to combine them into a list object and provide the name of the list to `adam_db=`. Also, each element in the list are expected to have corresponding ADaM dataset names. Conventional ADaM dataset names, including `adsl`,`adex`, `adae`, `adlb`,`advs`,`adeg`,`adcm`,`admh`,`adrs`, and `adtte`, can be picked up by `chevron` with one exception. If you have a safety time-to-event dataset named as `adsaftte` following Roche standard ADaM convention, you will need to re-name it to `adaette` to be picked up by `chevron`.
+The input dataset expected by the argument `adam_db=` in the `run(...)` function is a collection of `ADaM` datasets as a list object. Each `ADaM` dataset is expected to be an object of data frame. If the `ADaM` datasets are read in individually, user will need to combine them into a list object and provide the name of the list to `adam_db=`. Also, each element in the list are expected to have corresponding `ADaM` dataset names. Conventional `ADaM` dataset names, including `adsl`,`adex`, `adae`, `adlb`,`advs`,`adeg`,`adcm`,`admh`,`adrs`, and `adtte`, can be picked up by `chevron` with one exception. If you have a safety time-to-event dataset named as `adsaftte` following Roche standard `ADaM` convention, you will need to re-name it to `adaette` to be picked up by `chevron`.
 
 ```{r eval=FALSE}
 std_data <- list(adsl = adsl, adae = adae)
@@ -36,10 +36,10 @@ run(object = aet01_nollt, adam_db = std_data)
 By default, `chevron` does not pull any subject-level information from either `adsl` or `adsub` and merge into the analysis dataset in the underlying preprocessing steps. The analysis dataset fed into `adam_db=` is expected to have all variables required for analysis available. 
 
 #### **3. Character vs Factor**
-In the output generation, we often need to specify a particular sorting order of a variable at the time of display. In the SAS world, this is achieved by paired variables like TRT01P and TRT01PN where TRT01P provides the value and TRT01PN provides the sorting order. In `chevron`, a character variable needs to be factorized with pre-specified levels to display in order. 
+In the output generation, we often need to specify a particular sorting order of a variable at the time of display. In the SAS world, this is achieved by paired variables like `TRT01P` and `TRT01PN` where `TRT01P` provides the value and `TRT01PN` provides the sorting order. In `chevron`, a character variable needs to be factorized with pre-specified levels to display in order. 
 
 #### **4. Testing the codes for plot generation**
-The `run` function when calling a Graphics Template ID returns a gTree object which will be used in the downstream workflow for output generation, no interim actual plot will be automatically created for viewing purpose. However, in need of viewing the plot for testing purpose, the function `grid.draw` from the package `grid` can be utilized to render the plot temporarily into the `Plots` tab in the right-bottom panel in Rstudio.  See example below,
+The `run` function when calling a Graphics Template ID returns a `gTree` object which will be used in the downstream workflow for output generation, no interim actual plot will be automatically created for viewing purpose. However, in need of viewing the plot for testing purpose, the function `grid.draw` from the package `grid` can be utilized to render the plot.  See example below,
 
 ```{r eval=FALSE}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
@@ -1059,7 +1059,7 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_coxph = TRUE)
 ```
 
 #### **3. Kaplan-Meier Plot (without censoring marks)**
-To suppress the censoring marks, set the arugment `cencor_show` to FALSE.   
+To suppress the censoring marks, set the argument `cencor_show` to FALSE.   
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
@@ -1096,7 +1096,7 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_at_risk = FALSE)
 2) Note that the template `mng01` is quite general. The users are expected to specify the analysis dataset and the visit variable in the `run` function, and select the parameters prior to the `run` function.    
 3) The table of summary statistics is included by default.    
 4) The variable Analysis Value `AVAL` is used for plotting by default.  
-5) If the input dataset contains results of the same analytes in multiple units,(e.g. SI/CV units in ADLB), please make sure that the parameters in appropriate units are selected in advance.  
+5) If the input dataset contains results of the same analyses in multiple units,(e.g. SI/CV units in `ADLB`), please make sure that the parameters in appropriate units are selected in advance.  
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
