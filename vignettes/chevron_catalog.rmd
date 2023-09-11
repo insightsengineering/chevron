@@ -1126,7 +1126,7 @@ proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(
   mng01, proc_data,
   dataset = "advs", x_var = c("AVISIT", "AVISITN"),
-  interval_fun = "mean_ci", draw = TRUE, control = control_analyze_vars(conf_level = 0.80)
+  interval_fun = "mean_ci", draw = TRUE, control = tern::control_analyze_vars(conf_level = 0.80)
 )
 ```
 
