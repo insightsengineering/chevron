@@ -44,7 +44,6 @@ ael02_main <- function(adam_db,
 #'
 ael02_pre <- function(adam_db,
                       dataset = "adae",
-                      study_withdrawal = NULL,
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(ANL01FL == "Y") %>%

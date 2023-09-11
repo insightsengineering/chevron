@@ -23,7 +23,7 @@ ael02_main(
   ...
 )
 
-ael02_pre(adam_db, dataset = "adae", study_withdrawal = NULL, ...)
+ael02_pre(adam_db, dataset = "adae", ...)
 
 ael02_post(tlg, ...)
 
