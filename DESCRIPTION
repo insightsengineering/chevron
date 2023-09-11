@@ -82,6 +82,8 @@ Collate:
     'coxt02.R'
     'data.R'
     'dmt01.R'
+    'dsl01.R'
+    'dsl02.R'
     'dst01.R'
     'dtht01.R'
     'egt01.R'
