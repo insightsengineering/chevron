@@ -14,6 +14,7 @@ An object of class \code{chevron_l} of length 1.
 dml01_main(
   adam_db,
   dataset = "adsl",
+  key_cols = "ARM",
   disp_cols = names(adam_db[[dataset]]),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
@@ -25,7 +26,8 @@ dml01_main(
 dml01_pre(
   adam_db,
   dataset = "adsl",
-  summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
+  summaryvars = c("AGEGR1", "ETHNIC"),
+  by = "ARM",
   ...
 )
 
@@ -37,6 +39,9 @@ dml01
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{character}) the name of a table in the \code{adam_db} object.}
+
+\item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
+Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
