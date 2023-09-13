@@ -14,7 +14,7 @@ variables do not exist in analysis dataset.
 and `legend_pos` arguments. The `table` arguments now controls the behavior of the table. The arguments `show_n` and
 `show_table` are now defunct.
 * Add `RMPT06` template.
-* Add `CML02A_GL` listing template.  
+* Add `CML02A_GL`, `DSL01`, `DSL02`, `DML01` listing templates.  
 
 # chevron 0.2.2
 
