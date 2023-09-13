@@ -49,13 +49,11 @@ dsl02_pre <- function(adam_db,
       ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       DISCONT = ifelse(!is.na(.data$DCSREAS) & .data$EOSSTT != "COMPLETED", "Yes", "No"),
-      SSADTM = with_label(as.POSIXct(
-        strftime(.data$TRTSDTM, format = "%Y-%m-%d %H:%M:%S"),
-        format = "%Y-%m-%d",
-        tz = "UTC"
-      ), "Date of First\nStudy Drug\nAdministration"),
+      SSADTM = with_label(
+        toupper(strftime(.data$TRTSDTM, format = "%d%b%Y")), "Date of First\nStudy Drug\nAdministration"
+      ),
       SSAEDY = with_label(
-        as.numeric(ceiling(difftime(.data$EOSDT, .data$SSADTM, units = "days"))),
+        as.numeric(ceiling(difftime(.data$EOSDT, .data$TRTSDTM, units = "days"))),
         "Day of Study\nDiscontinuation\nRelative to First\nStudy Drug\nAdministration"
       ),
       RANDEDY = with_label(

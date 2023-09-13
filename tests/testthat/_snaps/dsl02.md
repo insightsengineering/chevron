@@ -9,11 +9,11 @@
                                                                               Study Drug       Study Drug  
       Center/Patient ID            Age/Sex/Race              Treatment      Administration   Administration
       —————————————————————————————————————————————————————————————————————————————————————————————————————
-      CHN-1/id-62         36/F/WHITE                       A: Drug X        2020-11-22            455      
-      CHN-11/id-91        44/M/BLACK OR AFRICAN AMERICAN   C: Combination   2020-05-29            625      
-      CHN-9/id-11         28/F/ASIAN                       B: Placebo       2021-01-27            388      
-      USA-11/id-100       40/F/ASIAN                       C: Combination   2020-03-10            705      
-      USA-11/id-136       38/F/ASIAN                       C: Combination   2019-10-02            865      
+      CHN-1/id-62         36/F/WHITE                       A: Drug X        22NOV2020             455      
+      CHN-11/id-91        44/M/BLACK OR AFRICAN AMERICAN   C: Combination   29MAY2020             625      
+      CHN-9/id-11         28/F/ASIAN                       B: Placebo       27JAN2021             388      
+      USA-11/id-100       40/F/ASIAN                       C: Combination   10MAR2020             705      
+      USA-11/id-136       38/F/ASIAN                       C: Combination   02OCT2019             865      
       \s\n                      Day of Study                                        
                            Discontinuation     Day of Study                     
                           Relative to First   Discontinuation                   
@@ -37,11 +37,11 @@
                                                                               Study Drug       Study Drug  
       Center/Patient ID            Age/Sex/Race              Treatment      Administration   Administration
       —————————————————————————————————————————————————————————————————————————————————————————————————————
-      CHN-1/id-62         36/F/WHITE                       A: Drug X        2020-11-22            455      
-      CHN-11/id-91        44/M/BLACK OR AFRICAN AMERICAN   C: Combination   2020-05-29            625      
-      CHN-9/id-11         28/F/ASIAN                       B: Placebo       2021-01-27            388      
-      USA-11/id-100       40/F/ASIAN                       C: Combination   2020-03-10            705      
-      USA-11/id-136       38/F/ASIAN                       C: Combination   2019-10-02            865      
+      CHN-1/id-62         36/F/WHITE                       A: Drug X        22NOV2020             455      
+      CHN-11/id-91        44/M/BLACK OR AFRICAN AMERICAN   C: Combination   29MAY2020             625      
+      CHN-9/id-11         28/F/ASIAN                       B: Placebo       27JAN2021             388      
+      USA-11/id-100       40/F/ASIAN                       C: Combination   10MAR2020             705      
+      USA-11/id-136       38/F/ASIAN                       C: Combination   02OCT2019             865      
       \s\n                      Day of Study                                        
                            Discontinuation     Day of Study                     
                           Relative to First   Discontinuation                   
