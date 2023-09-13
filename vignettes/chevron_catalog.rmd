@@ -272,6 +272,80 @@ run(cmt01a, syn_data, summary_labels = list(TOTAL = cmt01_label, ATC2 = cmt01_la
 run(cmt02_pt, syn_data)
 ```
 
+### **Cox Regression (`COXT01`)**
+
+#### **1. Cox Regression**
+
+1) The **`coxt01`** template produces the standard cox regression output.
+2) Users are expected to pre-process the input analysis data by selecting a time-to-event parameter to be analyzed. If there are more than two treatment groups present in the input analysis data, users are also expected to select only two treatment groups. The example below is based on the time-to-event parameter "Duration of Confirmed Response by Investigator" and treatment groups "Arm A" and "Arm B".
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
+run(coxt01, proc_data)
+```
+
+#### **2. Cox Regression (with interaction term)**
+
+To add the interaction term to the model, `interaction = TRUE` needs to be specified.
+
+```{r}
+run(coxt01, proc_data, interaction = TRUE)
+```
+
+
+#### **3. Cox Regression (specifying covariates)**
+
+1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model. 
+2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"ETHNIC"`, `"RACE"`, and `"AAGE"` are used as covariates.
+
+```{r}
+run(coxt01, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
+```
+
+#### **4. Cox Regression (setting strata, ties, and alpha level)**
+
+1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied. 
+2) Users can specify one or more stratification variables via the `strata` argument.
+3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument. 
+4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument.
+
+```{r}
+run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
+```
+
+### **Multi-variable Cox Regression (`COXT02`)**
+
+#### **1. Multi-variable Cox Regression**
+
+1) The **`coxt02`** template produces the standard multi-variable cox regression output.
+2) Users are expected to pre-process the input analysis data by selecting a time-to-event parameter to be analyzed. The example below is based on the time-to-event parameter "Duration of Confirmed Response by Investigator".
+
+```{r}
+proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+run(coxt02, proc_data)
+```
+
+#### **2. Multi-variable Cox Regression (specifying covariates)**
+
+1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model. 
+2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"ETHNIC"`, `"RACE"`, and `"AAGE"` are used as covariates.
+
+```{r}
+run(coxt02, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
+```
+
+#### **3. Multi-variable Cox Regression (setting strata, ties, and alpha level)**
+
+1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied. 
+2) Users can specify one or more stratification variables via the `strata` argument.
+3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument. 
+4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument.
+
+```{r}
+run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90, ties = "efron")
+```
+
 ### **Demographics and Baseline Characteristics (`DMT01`)**
   
 #### **1. Demographics and Baseline Characteristics with All Patients**
