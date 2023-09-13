@@ -107,6 +107,7 @@ Collate:
     'mht01.R'
     'mng01.R'
     'package.R'
+    'pdl01.R'
     'pdt01.R'
     'pdt02.R'
     'reexports.R'
