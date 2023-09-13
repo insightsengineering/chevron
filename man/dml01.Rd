@@ -27,7 +27,7 @@ dml01_pre(
   adam_db,
   dataset = "adsl",
   summaryvars = c("AGEGR1", "ETHNIC"),
-  by = "ARM",
+  key_cols = "ARM",
   ...
 )
 

@@ -50,14 +50,14 @@ dml01_pre <- function(adam_db,
                         "AGEGR1",
                         "ETHNIC"
                       ),
-                      by = "ARM",
+                      key_cols = "ARM",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race")
     ) %>%
-    select(all_of(c("ID", "ASR", summaryvars, by)))
+    select(all_of(c("ID", "ASR", summaryvars, key_cols)))
 
   adam_db
 }
