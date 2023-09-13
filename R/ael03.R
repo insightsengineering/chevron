@@ -62,7 +62,6 @@ ael03_pre <- function(adam_db,
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
       Duration = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
-      # Serious = with_label(ifelse(.data$AESER == "Y", "Yes", ifelse(.data$AESER == "N", "No", "")), "Serious"),
       Related = with_label(
         ifelse(.data$AEREL == "Y", "Yes", ifelse(.data$AEREL == "N", "No", "")),
         "Caused by\nStudy\nDrug"
