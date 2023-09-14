@@ -62,7 +62,7 @@ pdl01
 }}
 \examples{
 proc_data <- syn_data
-proc_data$addv$DVSTDTC <- proc_data$ASTDT
+proc_data$addv$DVSTDTC <- proc_data$addv$ASTDT
 res <- run(pdl01, proc_data)
 }
 \keyword{datasets}
