@@ -287,7 +287,7 @@ run(coxt01, proc_data)
 
 #### **2. Cox Regression (with interaction term)**
 
-To add the interaction term to the model, `interaction = TRUE` needs to be specified.
+To add the interaction term to the model, `interaction = TRUE`, which is passed to `tern::control_coxreg()`, needs to be specified.
 
 ```{r}
 run(coxt01, proc_data, interaction = TRUE)
@@ -307,8 +307,8 @@ run(coxt01, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
 
 1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied. 
 2) Users can specify one or more stratification variables via the `strata` argument.
-3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument. 
-4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument.
+3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument, which is passed to `tern::control_coxreg()`.
+4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument, which is passed to `tern::control_coxreg()`.
 
 ```{r}
 run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
@@ -339,8 +339,8 @@ run(coxt02, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
 
 1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied. 
 2) Users can specify one or more stratification variables via the `strata` argument.
-3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument. 
-4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument.
+3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument, which is passed to `tern::control_coxreg()`.
+4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument, which is passed to `tern::control_coxreg()`.
 
 ```{r}
 run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90, ties = "efron")
