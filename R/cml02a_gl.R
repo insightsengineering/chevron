@@ -9,8 +9,8 @@
 #'
 #' @details
 #'  * Removes duplicate rows.
-#'  * By default, uses dataset `adae`, sorting by key columns `AEBODSYS` and `AEDECOD`.
-#'  * If using with a dataset other than `adae`, be sure to specify the desired labels for variables in
+#'  * By default, uses dataset `adcm`, sorting by key columns `ATC2`, `CMDECOD` and `CMTRT`.
+#'  * If using with a dataset other than `adcm`, be sure to specify the desired labels for variables in
 #'    `key_cols` and `disp_cols`, and pre-process missing data.
 #'
 #' @note
@@ -57,7 +57,7 @@ cml02a_gl_pre <- function(adam_db,
                           ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
-      ATC2 = with_label(.data$ATC2, "ATC Class Level 2"),
+      ATC2 = with_label(reformat(.data$ATC2, nocoding), "ATC Class Level 2"),
       CMDECOD = with_label(.data$CMDECOD, "WHODrug Preferred Name"),
       CMTRT = with_label(.data$CMTRT, "Investigator-Specified\nTreatment Term")
     ) %>%

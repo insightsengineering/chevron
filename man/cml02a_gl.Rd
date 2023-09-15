@@ -62,8 +62,8 @@ Terms.
 \details{
 \itemize{
 \item Removes duplicate rows.
-\item By default, uses dataset \code{adae}, sorting by key columns \code{AEBODSYS} and \code{AEDECOD}.
-\item If using with a dataset other than \code{adae}, be sure to specify the desired labels for variables in
+\item By default, uses dataset \code{adcm}, sorting by key columns \code{ATC2}, \code{CMDECOD} and \code{CMTRT}.
+\item If using with a dataset other than \code{adcm}, be sure to specify the desired labels for variables in
 \code{key_cols} and \code{disp_cols}, and pre-process missing data.
 }
 }

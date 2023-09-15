@@ -1,7 +1,14 @@
 # cml02a_gl ----
 
-test_that("cml02a_gl works with admh dataset", {
+test_that("cml02a_gl works with adcm dataset", {
   expect_message(res <- run(cml02a_gl, syn_data))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("cml02a_gl works with missing data", {
+  proc_data <- syn_data
+  proc_data$adcm$ATC2 <- NA_character_
+  expect_message(res <- run(cml02a_gl, proc_data))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
