@@ -56,8 +56,9 @@ cml02a_gl_pre <- function(adam_db,
                           key_cols = c("ATC2", "CMDECOD", "CMTRT"),
                           ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
+    mutate(across(all_of(key_cols), ~ reformat(.x, nocoding))) %>%
     mutate(
-      ATC2 = with_label(reformat(.data$ATC2, nocoding), "ATC Class Level 2"),
+      ATC2 = with_label(.data$ATC2, "ATC Class Level 2"),
       CMDECOD = with_label(.data$CMDECOD, "WHODrug Preferred Name"),
       CMTRT = with_label(.data$CMTRT, "Investigator-Specified\nTreatment Term")
     ) %>%
