@@ -15,7 +15,8 @@ ael02_main(
   adam_db,
   dataset = "adae",
   key_cols = c("CPID", "ASR", "TRT01A"),
-  disp_cols = names(adam_db[[dataset]]),
+  disp_cols = c("AEDECOD", "DATE_FIRST", "ASTDY", "DURATION", "AESER", "AESEV",
+    "RELATED", "OUTCOME", "TREATED", "ACTION"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,

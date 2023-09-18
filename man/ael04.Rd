@@ -14,8 +14,8 @@ An object of class \code{chevron_l} of length 1.
 ael04_main(
   adam_db,
   dataset = "adsl",
-  key_cols = c("CPID"),
-  disp_cols = names(adam_db[[dataset]]),
+  key_cols = "CPID",
+  disp_cols = c("ASR", "TRT01A", "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,

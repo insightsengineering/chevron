@@ -125,6 +125,7 @@ reference:
     contents:
       - nocoding
       - missing_rule
+      - Yes_No_rule
       - empty_rule
       - get_grade_rule
 

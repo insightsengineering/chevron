@@ -11,8 +11,9 @@
 #'
 ael04_main <- function(adam_db,
                        dataset = "adsl",
-                       key_cols = c("CPID"),
-                       disp_cols = names(adam_db[[dataset]]),
+                       arm_var = "ACTARM",
+                       key_cols = "CPID",
+                       disp_cols = c("ASR", arm_var, "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -21,7 +22,7 @@ ael04_main <- function(adam_db,
                        unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
-  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
+  assert_valid_variable(adam_db[[dataset]], c(arm_var, key_cols, disp_cols), label = paste0("adam_db$", dataset))
   assert_list(default_formatting, types = "fmt_config", names = "unique")
   assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
   assert_flag(unique_rows)
@@ -44,30 +45,31 @@ ael04_main <- function(adam_db,
 #'
 ael04_pre <- function(adam_db,
                       dataset = "adsl",
+                      arm_var = "ACTARM",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(!is.na(.data$DTHADY)) %>%
     mutate(
       across(
-        all_of(c("TRT01A", "DTHCAUS", "ADTHAUT")),
+        all_of(c(arm_var, "DTHCAUS", "ADTHAUT")),
         ~ reformat(.x, missing_rule)
       )
     ) %>%
     mutate(
       CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
-      Date_First = with_label(
+      DATE_FIRST = with_label(
         toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
-      TRT01A = with_label(.data$TRT01A, "Treatment"),
+      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       EOSDY = with_label(.data$EOSDY, "Day of Last\nStudy Drug\nAdministration"),
       DTHADY = with_label(.data$DTHADY, "Day of\nDeath"),
       DTHCAUS = with_label(.data$DTHCAUS, "Cause of Death"),
       ADTHAUT = with_label(.data$ADTHAUT, "Autopsy\nPerformed?")
     ) %>%
     select(all_of(c(
-      "CPID", "ASR", "TRT01A", "Date_First", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"
+      "CPID", "ASR", arm_var, "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"
     )))
 
   adam_db

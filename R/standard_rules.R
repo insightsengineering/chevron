@@ -1,12 +1,19 @@
 #' No Coding Available rule
 #' @export
 nocoding <- rule("No Coding Available" = c("", NA))
+
 #' Missing rule
 #' @export
 missing_rule <- rule("<Missing>" = c("", NA), .drop = TRUE)
+
 #' Empty rule
 #' @export
 empty_rule <- rule(.to_NA = "")
+
+#' Yes/No rule in title case
+#' @export
+Yes_No_rule <- rule("Yes" = c("Y", "y", "yes"), "No" = c("N", "n", "no"))
+
 #' Get grade rule
 #' @param direction (`string`) of abnormality direction.
 #' @param missing (`string`) method to deal with missing

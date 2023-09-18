@@ -11,8 +11,12 @@
 #'
 ael03_main <- function(adam_db,
                        dataset = "adae",
-                       key_cols = c("CPID", "ASR", "TRT01A"),
-                       disp_cols = names(adam_db[[dataset]]),
+                       arm_var = "ACTARM",
+                       key_cols = c("CPID", "ASR", arm_var),
+                       disp_cols = c(
+                         "AEDECOD", "DATE_FIRST", "ASTDY", "ADURN","AESEV",
+                         "AEREL", "OUTCOME", "AECONTRT", "ACTION", "SERREAS"
+                       ),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -21,7 +25,7 @@ ael03_main <- function(adam_db,
                        unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
-  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
+  assert_valid_variable(adam_db[[dataset]], c(arm_var, key_cols, disp_cols), label = paste0("adam_db$", dataset))
   assert_list(default_formatting, types = "fmt_config", names = "unique")
   assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
   assert_flag(unique_rows)
@@ -44,29 +48,30 @@ ael03_main <- function(adam_db,
 #'
 ael03_pre <- function(adam_db,
                       dataset = "adae",
+                      arm_var = "ACTARM",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y") %>%
     filter(.data$AESER == "Y") %>%
     mutate(
       across(
-        all_of(c("TRT01A", "AEDECOD", "AESEV", "AEOUT", "AEACN")),
+        all_of(c(arm_var, "AEDECOD", "AESEV", "AEOUT", "AEACN")),
         ~ reformat(.x, missing_rule)
       )
     ) %>%
     mutate(
       CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
-      Date_First = with_label(
+      DATE_FIRST = with_label(
         toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
-      Duration = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
-      Related = with_label(
-        ifelse(.data$AEREL == "Y", "Yes", ifelse(.data$AEREL == "N", "No", "")),
+      ADURN = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
+      AEREL = with_label(
+        reformat(.data$AEREL, Yes_No_rule),
         "Caused by\nStudy\nDrug"
       ),
-      Outcome = with_label(case_when(
+      OUTCOME = with_label(case_when(
         AEOUT == "FATAL" ~ 1,
         AEOUT == "NOT RECOVERED/NOT RESOLVED" ~ 2,
         AEOUT == "RECOVERED/RESOLVED" ~ 3,
@@ -74,11 +79,11 @@ ael03_pre <- function(adam_db,
         AEOUT == "RECOVERING/RESOLVING" ~ 5,
         AEOUT == "UNKNOWN" ~ 6
       ), "Outcome\n(1)"),
-      Treated = with_label(
-        ifelse(.data$AECONTRT == "Y", "Yes", ifelse(.data$AECONTRT == "N", "No", "")),
+      AECONTRT = with_label(
+        reformat(.data$AECONTRT, Yes_No_rule),
         "Treatment\nfor AE"
       ),
-      Action = with_label(case_when(
+      ACTION = with_label(case_when(
         AEACN == "DOSE INCREASED" ~ 1,
         AEACN == "DOSE NOT CHANGED" ~ 2,
         AEACN == "DOSE REDUCED" | AEACN == "DOSE RATE REDUCED" ~ 3,
@@ -96,14 +101,14 @@ ael03_pre <- function(adam_db,
         AESMIE == "Y" ~ "6",
         TRUE ~ " "
       ), "Reason\nClassified\nas Serious\n(3)"),
-      TRT01A = with_label(.data$TRT01A, "Treatment"),
+      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       AEDECOD = with_label(reformat(as.factor(.data$AEDECOD), nocoding), "Adverse\nEvent MedDRA\nPreferred Term"),
       ASTDY = with_label(.data$ASTDY, "Study\nDay of\nOnset"),
       AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity")
     ) %>%
     select(all_of(c(
-      "CPID", "ASR", "TRT01A", "AEDECOD", "Date_First", "ASTDY", "Duration",
-      "AESEV", "Related", "Outcome", "Treated", "Action", "SERREAS"
+      "CPID", "ASR", arm_var, "AEDECOD", "DATE_FIRST", "ASTDY", "ADURN",
+      "AESEV", "AEREL", "OUTCOME", "AECONTRT", "ACTION", "SERREAS"
     )))
 
   adam_db
