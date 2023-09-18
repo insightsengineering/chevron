@@ -531,7 +531,6 @@ afun_p <- function(x,
                    .labels = NULL,
                    .indent_mods = NULL,
                    ...) {
-
   .stats <- .stats[[.var]] %||% .stats[["default"]]
 
   # Define precision
