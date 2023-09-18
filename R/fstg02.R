@@ -37,7 +37,6 @@ fstg02_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
   assert_string(arm_var)
-  assert_int(max_colwidth)
   assert_character(subgroups, null.ok = TRUE)
   assert_character(strata_var, null.ok = TRUE)
   assert_character(stat_var, null.ok = TRUE)
