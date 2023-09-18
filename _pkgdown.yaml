@@ -61,11 +61,16 @@ reference:
       - aet05_all
       - aet10
       - cfbt01
+      - cml02a_gl
       - cmt01a
       - cmt02_pt
       - coxt01
       - coxt02
+      - dml01
+      - dml02
       - dmt01
+      - dsl01
+      - dsl02
       - dst01
       - dtht01
       - egt01
@@ -86,6 +91,7 @@ reference:
       - lbt15
       - mht01
       - mng01
+      - pdl01
       - pdt01
       - pdt02
       - rmpt01

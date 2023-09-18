@@ -15,6 +15,7 @@ and `legend_pos` arguments. The `table` arguments now controls the behavior of t
 `show_table` are now defunct.
 * Add `RMPT06` template.
 * Add `AEL02`, `AEL03` and `AEL04` listing templates.
+* Add `CML02A_GL`, `DSL01`, `DSL02`, `DML01`, `DML02` and `PDL01` listing templates.  
 
 # chevron 0.2.2
 
