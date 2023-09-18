@@ -276,13 +276,16 @@ run(cmt02_pt, syn_data)
 
 #### **1. Cox Regression**
 
-1) The **`coxt01`** template produces the standard cox regression output.
-2) Users are expected to pre-process the input analysis data by selecting a time-to-event parameter to be analyzed. If there are more than two treatment groups present in the input analysis data, users are also expected to select only two treatment groups. The example below is based on the time-to-event parameter "Duration of Confirmed Response by Investigator" and treatment groups "Arm A" and "Arm B".
+1) The **`coxt01`** template produces the standard Cox regression output.
+2) Users are expected to pre-process the input analysis data by selecting a time-to-event parameter to be analyzed. The example below is based on the time-to-event parameter "Duration of Confirmed Response by Investigator".
+3) The time variable in the model is specified through the `time_var` argument. By default, `time_var` is set to `"AVAL"`, which comes from `ADTTE.AVAL`.
+4) The event variable in the model is specified through the `event_var` argument. By default, `event_var` is set to `"EVENT"`, which is derived based on the censoring indicator `ADTTE.CNSR` in the pre-processing function `coxt01_pre`. 
+5) If there are more than two treatment groups present in the input analysis data, users are also expected to select only two treatment groups. The example below is based on treatment groups "Arm A" and "Arm B".
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
 proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
-run(coxt01, proc_data)
+run(coxt01, proc_data, time_var = "AVAL", event_var = "EVENT")
 ```
 
 #### **2. Cox Regression (with interaction term)**
@@ -320,10 +323,12 @@ run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_l
 
 1) The **`coxt02`** template produces the standard multi-variable cox regression output.
 2) Users are expected to pre-process the input analysis data by selecting a time-to-event parameter to be analyzed. The example below is based on the time-to-event parameter "Duration of Confirmed Response by Investigator".
+3) The time variable in the model is specified through the `time_var` argument. By default, `time_var` is set to `"AVAL"`, which comes from `ADTTE.AVAL`.
+4) The event variable in the model is specified through the `event_var` argument. By default, `event_var` is set to `"EVENT"`, which is derived based on the censoring indicator `ADTTE.CNSR` in the pre-processing function `coxt01_pre`. 
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
-run(coxt02, proc_data)
+run(coxt02, proc_data, time_var = "AVAL", event_var = "EVENT")
 ```
 
 #### **2. Multi-variable Cox Regression (specifying covariates)**
