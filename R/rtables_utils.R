@@ -510,7 +510,9 @@ summary_formats <- function(x, pcs, ne = FALSE) {
 #' @param precision (named `list` of `integer`) where names of columns found in `.df_row` and the values indicate the
 #'   number of digits in statistics for numeric value. If `default` is set, and parameter precision not specified, the
 #'   value for `default` will be used. If neither are provided, auto determination is used. See [`tern::format_auto`].
-#' @param .stats (`character`) See `tern::analyze_variables`.
+#' @param .stats (named `list` of character)  where names of columns found in `.df_row` and the values indicate the
+#'   statistical analysis to perform. If `default` is set, and parameter precision not specified, the
+#'   value for `default` will be used.
 #' @param .labels (`character`) See `tern::analyze_variables`.
 #' @param .indent_mods (`integer`) See `tern::analyze_variables`.
 #' @param .N_col (`int`) See `tern::analyze_variables`.
@@ -529,6 +531,9 @@ afun_p <- function(x,
                    .labels = NULL,
                    .indent_mods = NULL,
                    ...) {
+
+  .stats <- .stats[[.var]] %||% .stats[["default"]]
+
   # Define precision
   pcs <- precision[[.var]] %||% precision[["default"]]
   fmts <- if (is.null(pcs) && length(x) > 0) {

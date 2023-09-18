@@ -5,7 +5,9 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables summarized in demographic table. The label attribute of the corresponding
 #'   column in `adsl` table of `adam_db` is used as label.
-#' @param .stats (`character`) See `tern::analyze_variables`.
+#' @param .stats (named `list` of character)  where names of columns found in `.df_row` and the values indicate the
+#'   statistical analysis to perform. If `default` is set, and parameter precision not specified, the
+#'   value for `default` will be used.
 #' @param precision (named `list` of `integer`) where names are `strings` found in `summaryvars` and the values indicate
 #'   the number of digits in statistics for numeric variables. If `default` is set, and parameter precision not
 #'   specified, the value for `default` will be used. If neither are provided, auto determination is used. See
@@ -34,7 +36,7 @@ dmt01_main <- function(adam_db,
                          "ETHNIC",
                          "RACE"
                        ),
-                       .stats = c("n", "mean_sd", "median", "range", "count_fraction"),
+                       .stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
                        precision = list(),
                        ...) {
   assert_string(arm_var)
@@ -42,7 +44,7 @@ dmt01_main <- function(adam_db,
   assert_character(summaryvars, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, summaryvars, na_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_character(.stats)
+  assert_list(.stats, types = "character")
   assert_list(precision, types = "integerish", names = "unique")
 
   lbl_overall <- render_safe(lbl_overall)

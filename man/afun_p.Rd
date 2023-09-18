@@ -33,7 +33,9 @@ value for \code{default} will be used. If neither are provided, auto determinati
 
 \item{.var}{variable name.}
 
-\item{.stats}{(\code{character}) See \code{tern::analyze_variables}.}
+\item{.stats}{(named \code{list} of character)  where names of columns found in \code{.df_row} and the values indicate the
+statistical analysis to perform. If \code{default} is set, and parameter precision not specified, the
+value for \code{default} will be used.}
 
 \item{.labels}{(\code{character}) See \code{tern::analyze_variables}.}
 
