@@ -163,6 +163,14 @@ lvls.character <- function(x) {
 lvls.factor <- function(x) {
   levels(x)
 }
+#' @export
+lvls.POSIXct <- function(x) {
+  levels(as.factor(x))
+}
+#' @export
+lvls.Date <- function(x) {
+  levels(as.factor(x))
+}
 
 #' @keywords internal
 quote_str <- function(x) {
@@ -335,3 +343,28 @@ get_x_vjust <- function(x) {
     1
   }
 }
+
+
+#' Format Date and Keep Chronomoligal Order in Levels
+#'
+#' @param x (`character`, `factor` or `POSIXct`) to convert.
+#' @param format (`string`) see `strptime`.
+#' @param to_upper (`flag`) whether to convert the final result to upper case.
+#'
+#' @keywords internal
+sort_strp_time <- function(x, format = "%d%b%Y", to_upper = TRUE) {
+
+  lvl <- lvls(x)
+
+  # Remove duplicate formed by reformatting.
+  formatted_lvl <- unique(strftime(lvl, format = format))
+  formatted_date <- strftime(x, format = format)
+
+  if (to_upper) {
+    formatted_lvl <- toupper(formatted_lvl)
+    formatted_date <- toupper(formatted_date)
+  }
+
+  factor(formatted_date, levels = formatted_lvl)
+}
+

@@ -27,6 +27,7 @@ dsl02_main <- function(adam_db,
 
   as_listing(
     adam_db[[dataset]],
+    key_cols = key_cols,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
     col_formatting = col_formatting,
@@ -50,7 +51,8 @@ dsl02_pre <- function(adam_db,
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       DISCONT = ifelse(!is.na(.data$DCSREAS) & .data$EOSSTT != "COMPLETED", "Yes", "No"),
       SSADTM = with_label(
-        toupper(strftime(.data$TRTSDTM, format = "%d%b%Y")), "Date of First\nStudy Drug\nAdministration"
+        sort_strp_time(.data$TRTSDTM, format = "%d%b%Y"),
+        "Date of First\nStudy Drug\nAdministration"
       ),
       SSAEDY = with_label(
         as.numeric(ceiling(difftime(.data$EOSDT, .data$TRTSDTM, units = "days"))),

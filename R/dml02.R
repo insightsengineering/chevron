@@ -12,6 +12,7 @@
 dml02_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ARM",
+                       key_cols = "RANDDT",
                        disp_cols = names(adam_db[[dataset]]),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
@@ -28,6 +29,7 @@ dml02_main <- function(adam_db,
 
   as_listing(
     adam_db[[dataset]],
+    key_cols = key_cols,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
     col_formatting = col_formatting,
@@ -50,11 +52,11 @@ dml02_pre <- function(adam_db,
       ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
       !!arm_var := with_label(.data[[arm_var]], "Randomized Treatment"),
       RANDDT = with_label(
-        toupper(strftime(.data$RANDDT, format = "%d%b%Y")),
+        sort_strp_time(.data$RANDDT, format = "%d%b%Y"),
         "Date of\nRandomization"
       ),
       TRTSDT = with_label(
-        toupper(strftime(.data$TRTSDTM, format = "%d%b%Y")),
+        sort_strp_time(.data$TRTSDTM, format = "%d%b%Y"),
         "Date of\nFirst Study Drug\nAdministration"
       )
     ) %>%
