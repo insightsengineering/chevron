@@ -47,7 +47,7 @@ dml02_pre <- function(adam_db,
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
-      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
       !!arm_var := with_label(.data[[arm_var]], "Randomized Treatment"),
       RANDDT = with_label(
         toupper(strftime(.data$RANDDT, format = "%d%b%Y")),

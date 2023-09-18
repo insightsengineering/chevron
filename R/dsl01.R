@@ -46,7 +46,7 @@ dsl01_pre <- function(adam_db,
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$AEWITHFL == "Y") %>%
     mutate(
-      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRT01A = with_label(.data$TRT01A, "Treatment"),
       SSADM = with_label(
