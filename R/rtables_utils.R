@@ -10,7 +10,8 @@ split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels
       split_fun = rtables::drop_split_levels,
       label_pos = "topleft",
       split_label = label,
-      indent_mod = split_indent
+      indent_mod = split_indent,
+      section_div = getOption("chevron.section_div", NA_character_)
     )
   if (length(stats) > 0) {
     lyt <- lyt %>%

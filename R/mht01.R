@@ -1,5 +1,12 @@
 # mht01 ----
 
+#' @describeIn cmt01a Default labels
+#' @export
+mht01_label <- c(
+  unique = "Total number of {patient_label} with at least one condition",
+  nonunique = "Total number of conditions"
+)
+
 #' @describeIn mht01 Main TLG function
 #'
 #' @inheritParams gen_args
@@ -19,25 +26,47 @@
 #'
 mht01_main <- function(adam_db,
                        arm_var = "ARM",
+                       row_split_var = "MHBODSYS",
                        lbl_overall = NULL,
+                       summary_labels = list(
+                        all = mht01_label
+                       ),
                        ...) {
   assert_all_tablenames(adam_db, c("admh", "adsl"))
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(adam_db$admh, c(row_split_var, "MHDECOD"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$admh, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$admh, arm_var)
+  assert_list(summary_labels, null.ok = TRUE)
+  assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))
+  assert_subset(
+    unique(unlist(lapply(summary_labels, names))),
+    c("unique", "nonunique", "unique_count")
+  )
+  if ("all" %in% names(summary_labels)) {
+    summary_labels <- lapply(
+      c(TOTAL = "TOTAL", setNames(row_split_var, row_split_var)),
+      function(x) {
+        modify_character(summary_labels$all, summary_labels[[x]])
+      }
+    )
+  }
 
   lbl_overall <- render_safe(lbl_overall)
-  lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
+  lbl_row_split <- var_labels_for(adam_db$admh, row_split_var)
   lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- mht01_lyt(
+  lyt <- occurrence_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    lbl_mhbodsys = lbl_mhbodsys,
-    lbl_mhdecod = lbl_mhdecod
+    row_split_var = row_split_var,
+    lbl_row_split = lbl_row_split,
+    medname_var = "MHDECOD",
+    lbl_medname_var = lbl_mhdecod,
+    summary_labels = summary_labels,
+    count_by = "MHSEQ"
   )
 
   tbl <- build_table(lyt, adam_db$admh, alt_counts_df = adam_db$adsl)
@@ -109,7 +138,8 @@ mht01_pre <- function(adam_db, ...) {
     ) %>%
     mutate(
       MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class"),
-      MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term")
+      MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term"),
+      MHSEQ = as.factor(MHSEQ)
     )
 
   adam_db
