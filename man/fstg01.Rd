@@ -70,7 +70,7 @@ The template produces the subgroup analysis of best overall response graphic.
 \code{"AVALC"}, and the columns specified by \code{subgroups} which is denoted as
 \code{c("SEX", "AGEGR1", "RACE")} by default.
 \item If the plot is too large to be rendered in the output, please provide \code{gp}, \code{width_row_names},
-\code{width_columns} and \code{width_forest} manually to make it fit. See \code{g_forest} for more details.
+\code{width_columns} and \code{width_forest} manually to make it fit. See \code{tern::g_forest} for more details.
 }
 }
 \examples{
