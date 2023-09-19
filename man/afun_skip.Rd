@@ -33,21 +33,21 @@ afun_skip(
 
 \item{skip}{Named (\code{character}) indicating the pairs to skip in analyze.}
 
-\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the the values
+\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the values
 indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
 the value for \code{default} will be used.}
 
-\item{.stats}{(\code{character}) See \code{tern::summarize_variables}.}
+\item{.stats}{(\code{character}) See \code{tern::analyze_variables}.}
 
-\item{.indent_mods}{(\code{integer}) See \code{tern::summarize_variables}.}
+\item{.indent_mods}{(\code{integer}) See \code{tern::analyze_variables}.}
 
-\item{.N_col}{(\code{int}) See \code{tern::summarize_variables}.}
+\item{.N_col}{(\code{int}) See \code{tern::analyze_variables}.}
 
-\item{.N_row}{(\code{int}) See \code{tern::summarize_variables}.}
+\item{.N_row}{(\code{int}) See \code{tern::analyze_variables}.}
 
 \item{...}{additional arguments for \code{tern::a_summary}.}
 
-\item{.label}{(\code{character}) See \code{tern::summarize_variables}.}
+\item{.label}{(\code{character}) See \code{tern::analyze_variables}.}
 }
 \description{
 Analyze skip baseline
