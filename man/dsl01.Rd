@@ -14,6 +14,7 @@ An object of class \code{chevron_l} of length 1.
 dsl01_main(
   adam_db,
   dataset = "adsl",
+  arm_var = "ACTARM",
   disp_cols = names(adam_db[[dataset]]),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
@@ -32,6 +33,8 @@ dsl01
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{character}) the name of a table in the \code{adam_db} object.}
+
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 

@@ -12,8 +12,7 @@
 dml02_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ARM",
-                       key_cols = "RANDDT",
-                       disp_cols = names(adam_db[[dataset]]),
+                       disp_cols = c("ID", arm_var, "RANDDT", "TRTSDT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -29,7 +28,6 @@ dml02_main <- function(adam_db,
 
   as_listing(
     adam_db[[dataset]],
-    key_cols = key_cols,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
     col_formatting = col_formatting,
@@ -69,11 +67,7 @@ dml02_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-dml02_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+dml02_post <- report_null
 
 #' `DML02` Listing 1 (Default) Randomization.
 #'

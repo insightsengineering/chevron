@@ -14,8 +14,9 @@ An object of class \code{chevron_l} of length 1.
 dml01_main(
   adam_db,
   dataset = "adsl",
-  key_cols = "ARM",
-  disp_cols = names(adam_db[[dataset]]),
+  arm_var = "ARM",
+  summaryvars = c("AGEGR1", "ETHNIC"),
+  disp_cols = c("ID", "ASR", summaryvars, arm_var),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,
@@ -26,8 +27,8 @@ dml01_main(
 dml01_pre(
   adam_db,
   dataset = "adsl",
+  arm_var = "ARM",
   summaryvars = c("AGEGR1", "ETHNIC"),
-  key_cols = "ARM",
   ...
 )
 
@@ -40,8 +41,10 @@ dml01
 
 \item{dataset}{(\code{character}) the name of a table in the \code{adam_db} object.}
 
-\item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
-Key columns allow you to group repeat occurrences.}
+\item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{summaryvars}{(\code{character}) variables summarized in demographic table. The label attribute of the corresponding
+column in \code{adsl} table of \code{adam_db} is used as label.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
@@ -52,9 +55,6 @@ Key columns allow you to group repeat occurrences.}
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{summaryvars}{(\code{character}) variables summarized in demographic table. The label attribute of the corresponding
-column in \code{adsl} table of \code{adam_db} is used as label.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }

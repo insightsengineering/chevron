@@ -14,8 +14,9 @@ An object of class \code{chevron_l} of length 1.
 ael04_main(
   adam_db,
   dataset = "adsl",
+  arm_var = "ACTARM",
   key_cols = "CPID",
-  disp_cols = c("ASR", "TRT01A", "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
+  disp_cols = c("ASR", arm_var, "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,
@@ -23,7 +24,7 @@ ael04_main(
   ...
 )
 
-ael04_pre(adam_db, dataset = "adsl", ...)
+ael04_pre(adam_db, dataset = "adsl", arm_var = "ACTARM", ...)
 
 ael04_post(tlg, ...)
 
@@ -33,6 +34,8 @@ ael04
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
 Key columns allow you to group repeat occurrences.}

@@ -21,7 +21,7 @@
 cml02a_gl_main <- function(adam_db,
                            dataset = "adcm",
                            key_cols = c("ATC2", "CMDECOD", "CMTRT"),
-                           disp_cols = names(adam_db[[dataset]]),
+                           disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
                            default_formatting = list(
                              all = fmt_config(align = "left"),
                              numeric = fmt_config(align = "center")
@@ -30,7 +30,7 @@ cml02a_gl_main <- function(adam_db,
                            unique_rows = TRUE,
                            ...) {
   assert_all_tablenames(adam_db, dataset)
-  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
+  assert_valid_variable(adam_db[[dataset]], c(key_cols), label = paste0("adam_db$", dataset))
   assert_list(default_formatting, types = "fmt_config", names = "unique")
   assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
   assert_flag(unique_rows)
@@ -71,11 +71,7 @@ cml02a_gl_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-cml02a_gl_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+cml02a_gl_post <- report_null
 
 #' `CML02A_GL` Listing 1 (Default) Concomitant Medication Class Level 2, Preferred Name, and Investigator-Specified
 #' Terms.

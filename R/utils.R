@@ -353,7 +353,6 @@ get_x_vjust <- function(x) {
 #'
 #' @keywords internal
 sort_strp_time <- function(x, format = "%d%b%Y", to_upper = TRUE) {
-
   lvl <- lvls(x)
 
   # Remove duplicate formed by reformatting.
@@ -367,4 +366,3 @@ sort_strp_time <- function(x, format = "%d%b%Y", to_upper = TRUE) {
 
   factor(formatted_date, levels = formatted_lvl)
 }
-

@@ -14,9 +14,10 @@ An object of class \code{chevron_l} of length 1.
 ael02_main(
   adam_db,
   dataset = "adae",
-  key_cols = c("CPID", "ASR", "TRT01A"),
-  disp_cols = c("AEDECOD", "DATE_FIRST", "ASTDY", "DURATION", "AESER", "AESEV",
-    "RELATED", "OUTCOME", "TREATED", "ACTION"),
+  arm_var = "ACTARM",
+  key_cols = c("CPID", "ASR", arm_var),
+  disp_cols = c("AEDECOD", "DATE_FIRST", "ASTDY", "ADURN", "AESER", "AESEV", "RELATED",
+    "OUTCOME", "TREATED", "ACTION"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,
@@ -24,7 +25,7 @@ ael02_main(
   ...
 )
 
-ael02_pre(adam_db, dataset = "adae", ...)
+ael02_pre(adam_db, dataset = "adae", arm_var = "ACTARM", ...)
 
 ael02_post(tlg, ...)
 
@@ -34,6 +35,8 @@ ael02
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
 Key columns allow you to group repeat occurrences.}

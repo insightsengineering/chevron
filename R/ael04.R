@@ -59,7 +59,7 @@ ael04_pre <- function(adam_db,
       CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       DATE_FIRST = with_label(
-        toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
+        sort_strp_time(.data$TRTSDTM, "%d%b%Y"),
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
@@ -79,11 +79,7 @@ ael04_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-ael04_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+ael04_post <- report_null
 
 #' `AEL04` Listing 1 (Default) Listing of Patient Deaths.
 #'

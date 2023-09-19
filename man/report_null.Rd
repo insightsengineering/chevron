@@ -4,6 +4,9 @@
 \name{report_null}
 \alias{report_null}
 \alias{null_report}
+\alias{report_null.TableTree}
+\alias{report_null.listing_df}
+\alias{report_null.NULL}
 \alias{null_listing}
 \title{Create a Null Report}
 \format{
@@ -13,6 +16,12 @@ An object of class \code{listing_df} (inherits from \code{tbl_df}, \code{tbl}, \
 }
 \usage{
 report_null(tlg, ...)
+
+\method{report_null}{TableTree}(tlg, ...)
+
+\method{report_null}{listing_df}(tlg, ...)
+
+\method{report_null}{`NULL`}(tlg, ...)
 
 null_report
 
@@ -25,6 +34,10 @@ null_listing
 }
 \value{
 original \code{TableTree} or a null report if no observation are found in the table.
+
+original \code{listing_df} or a null report if no observation are found in the table.
+
+a null report.
 }
 \description{
 Create a Null Report

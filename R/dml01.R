@@ -11,8 +11,12 @@
 #'
 dml01_main <- function(adam_db,
                        dataset = "adsl",
-                       key_cols = "ARM",
-                       disp_cols = names(adam_db[[dataset]]),
+                       arm_var = "ARM",
+                       summaryvars = c(
+                         "AGEGR1",
+                         "ETHNIC"
+                       ),
+                       disp_cols = c("ID", "ASR", summaryvars, arm_var),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -28,7 +32,7 @@ dml01_main <- function(adam_db,
 
   as_listing(
     adam_db[[dataset]],
-    key_cols = key_cols,
+    key_cols = arm_var,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
     col_formatting = col_formatting,
@@ -46,11 +50,11 @@ dml01_main <- function(adam_db,
 #'
 dml01_pre <- function(adam_db,
                       dataset = "adsl",
+                      arm_var = "ARM",
                       summaryvars = c(
                         "AGEGR1",
                         "ETHNIC"
                       ),
-                      key_cols = "ARM",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
@@ -66,11 +70,7 @@ dml01_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-dml01_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+dml01_post <- report_null
 
 #' `DML01` Listing 1 (Default) Demographics and Baseline Characteristics.
 #'

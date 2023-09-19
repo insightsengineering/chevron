@@ -16,7 +16,7 @@ cml02a_gl_main(
   adam_db,
   dataset = "adcm",
   key_cols = c("ATC2", "CMDECOD", "CMTRT"),
-  disp_cols = names(adam_db[[dataset]]),
+  disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,

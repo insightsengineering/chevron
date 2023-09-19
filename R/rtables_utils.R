@@ -361,8 +361,14 @@ ifneeded_split_col <- function(lyt, var, ...) {
 #'
 #' @export
 #'
-#' @return original `TableTree` or a null report if no observation are found in the table.
 report_null <- function(tlg, ...) {
+  UseMethod("report_null")
+}
+
+#' @rdname report_null
+#' @export
+#' @return original `TableTree` or a null report if no observation are found in the table.
+report_null.TableTree <- function(tlg, ...) {
   assert_true(is.null(tlg) || rtables::is_rtable(tlg))
 
   if (is.null(tlg) || nrow(tlg) == 0L) {
@@ -373,6 +379,27 @@ report_null <- function(tlg, ...) {
   }
   tlg
 }
+
+#' @rdname report_null
+#' @export
+#' @return original `listing_df` or a null report if no observation are found in the table.
+report_null.listing_df <- function(tlg, ...) {
+  assert_true(is(tlg, "listing_df"))
+
+  if (nrow(tlg) == 0L) {
+    return(null_report)
+  }
+
+  tlg
+}
+
+#' @rdname report_null
+#' @export
+#' @return a null report.
+report_null.NULL <- function(tlg, ...) {
+    return(null_report)
+}
+
 
 #' Count Children
 #'

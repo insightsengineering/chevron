@@ -14,7 +14,7 @@ ael03_main <- function(adam_db,
                        arm_var = "ACTARM",
                        key_cols = c("CPID", "ASR", arm_var),
                        disp_cols = c(
-                         "AEDECOD", "DATE_FIRST", "ASTDY", "ADURN","AESEV",
+                         "AEDECOD", "DATE_FIRST", "ASTDY", "ADURN", "AESEV",
                          "AEREL", "OUTCOME", "AECONTRT", "ACTION", "SERREAS"
                        ),
                        default_formatting = list(
@@ -118,11 +118,7 @@ ael03_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-ael03_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+ael03_post <- report_null
 
 #' `AEL03` Listing 1 (Default) Listing of Serious Adverse Events.
 #'

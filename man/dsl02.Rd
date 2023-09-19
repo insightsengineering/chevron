@@ -14,7 +14,8 @@ An object of class \code{chevron_l} of length 1.
 dsl02_main(
   adam_db,
   dataset = "adsl",
-  disp_cols = names(adam_db[[dataset]]),
+  arm_var = "ACTARM",
+  disp_cols = c("ID", "ASR", arm_var, "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,
@@ -22,7 +23,7 @@ dsl02_main(
   ...
 )
 
-dsl02_pre(adam_db, dataset = "adsl", ...)
+dsl02_pre(adam_db, dataset = "adsl", arm_var = "ACTARM", ...)
 
 dsl02_post(tlg, ...)
 
@@ -32,6 +33,8 @@ dsl02
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
 
 \item{dataset}{(\code{character}) the name of a table in the \code{adam_db} object.}
+
+\item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 

@@ -92,7 +92,7 @@ ael02_pre <- function(adam_db,
         AEACN == "NOT APPLICABLE" | AEACN == "NOT EVALUABLE" ~ 6,
         AEACN == "UNKNOWN" ~ 7
       ), "Action\nTaken\n(2)"),
-      !!arm_var = with_label(.data[[arm_var]], "Treatment"),
+      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       AEDECOD = with_label(reformat(.data$AEDECOD, nocoding), "Adverse\nEvent MedDRA\nPreferred Term"),
       ASTDY = with_label(.data$ASTDY, "Study\nDay of\nOnset"),
       AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity")
@@ -109,11 +109,7 @@ ael02_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-ael02_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+ael02_post <- report_null
 
 #' `AEL02` Listing 1 (Default) Listing of Adverse Events.
 #'

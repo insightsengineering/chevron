@@ -15,7 +15,7 @@ dml02_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ARM",
-  disp_cols = names(adam_db[[dataset]]),
+  disp_cols = c("ID", arm_var, "RANDDT", "TRTSDT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,

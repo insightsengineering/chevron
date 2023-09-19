@@ -11,7 +11,8 @@
 #'
 dsl02_main <- function(adam_db,
                        dataset = "adsl",
-                       disp_cols = names(adam_db[[dataset]]),
+                       arm_var = "ACTARM",
+                       disp_cols = c("ID", "ASR", arm_var, "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -43,6 +44,7 @@ dsl02_main <- function(adam_db,
 #'
 dsl02_pre <- function(adam_db,
                       dataset = "adsl",
+                      arm_var = "ACTARM",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$AEWITHFL == "Y") %>%
@@ -62,12 +64,12 @@ dsl02_pre <- function(adam_db,
         as.numeric(ceiling(difftime(.data$EOSDT, .data$RANDDT, units = "days"))),
         "Day of Study\nDiscontinuation\nRelative to\nRandomization"
       ),
-      TRT01A = with_label(.data$TRT01A, "Treatment"),
+      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       EOSDY = with_label(.data$EOSDY, "Day of Last\nStudy Drug\nAdministration"),
       DCSREAS = with_label(.data$DCSREAS, "Reason for\nDiscontinuation")
     ) %>%
     filter(.data$DISCONT == "Yes") %>%
-    select(all_of(c("ID", "ASR", "TRT01A", "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS")))
+    select(all_of(c("ID", "ASR", arm_var, "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS")))
 
   adam_db
 }
@@ -76,11 +78,7 @@ dsl02_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-dsl02_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+dsl02_post <- report_null
 
 #' `dsl02` Listing 1 (Default) Patients Who Discontinued Early from Study.
 #'
