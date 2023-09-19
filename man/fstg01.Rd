@@ -18,7 +18,6 @@ fstg01_main(
   subgroups = c("SEX", "AGEGR1", "RACE"),
   strata_var = NULL,
   stat_var = c("n_tot", "n", "n_rsp", "prop", "or", "ci"),
-  max_colwidth = 12,
   ...
 )
 
@@ -40,8 +39,6 @@ fstg01
 \item{strata_var}{(\code{character}) required if stratified analysis is performed.}
 
 \item{stat_var}{(\code{character}) the names of statistics to be reported in \code{tabulate_rsp_subgroups}.}
-
-\item{max_colwidth}{(\code{int}) maximum width of columns. Stratification label longer than this will be truncated.}
 
 \item{...}{Further arguments passed to \code{g_forest} and \code{extract_rsp_subgroups} (a wrapper for
 \code{h_odds_ratio_subgroups_df} and \code{h_proportion_subgroups_df}). For details, see the documentation in \code{tern}.
@@ -72,8 +69,8 @@ The template produces the subgroup analysis of best overall response graphic.
 \item \code{adam_db} object must contain the table specified by \code{dataset} with \code{"PARAMCD"}, \code{"ARM"},
 \code{"AVALC"}, and the columns specified by \code{subgroups} which is denoted as
 \code{c("SEX", "AGEGR1", "RACE")} by default.
-\item If the plot is too large to be rendered in the output, please provide \code{width_row_names},
-\code{width_columns} and \code{width_forest} manually to make it fit. See \code{g_forest} for more details.
+\item If the plot is too large to be rendered in the output, please provide \code{gp}, \code{width_row_names},
+\code{width_columns} and \code{width_forest} manually to make it fit. See \code{tern::g_forest} for more details.
 }
 }
 \examples{

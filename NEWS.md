@@ -1,6 +1,5 @@
-# chevron 0.2.2.9019
+# chevron 0.2.2.9020
 
-* Replace `tern::create_afun_summary` by `tern::a_summary`.
 * Fix argument printing for `run` method.
 * Remove six unused tables from the `syn_data` object.
 * Fix `EGT03` to allow multiple parameters.
@@ -15,6 +14,7 @@ and `legend_pos` arguments. The `table` arguments now controls the behavior of t
 `show_table` are now defunct.
 * Add `RMPT06` template.
 * The `stats` and `precision` arguments now control the statistical analysis and numbers of digits presented in `DMT01`.
+* `FSTG01` and `FSTG02` template removes the `max_colwidth` argument. Default font size of the plot is set to 7.
 
 # chevron 0.2.2
 
