@@ -23,7 +23,7 @@
 #'  `"AVALC"`, and the columns specified by `subgroups` which is denoted as
 #'  `c("SEX", "AGEGR1", "RACE")` by default.
 #'  * If the plot is too large to be rendered in the output, please provide `gp`, `width_row_names`,
-#'  `width_columns` and `width_forest` manually to make it fit. See `g_forest` for more details.
+#'  `width_columns` and `width_forest` manually to make it fit. See `tern::g_forest` for more details.
 #'
 #' @return a `gTree` object.
 #'
