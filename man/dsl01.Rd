@@ -15,7 +15,7 @@ dsl01_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ACTARM",
-  disp_cols = names(adam_db[[dataset]]),
+  disp_cols = c("ID", "ASR", arm_var, "SSADM", "STDWD", "DISCONT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,

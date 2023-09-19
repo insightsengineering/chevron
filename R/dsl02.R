@@ -53,7 +53,7 @@ dsl02_pre <- function(adam_db,
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       DISCONT = ifelse(!is.na(.data$DCSREAS) & .data$EOSSTT != "COMPLETED", "Yes", "No"),
       SSADTM = with_label(
-        sort_strp_time(.data$TRTSDTM, format = "%d%b%Y"),
+        sort_str_time(.data$TRTSDTM, format = "%d%b%Y"),
         "Date of First\nStudy Drug\nAdministration"
       ),
       SSAEDY = with_label(

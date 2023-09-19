@@ -127,6 +127,7 @@ reference:
       - h_format_dec
       - lvls
       - convert_to_month
+      - sort_str_time
   - title: Standard Reformatting Rules
     contents:
       - nocoding

@@ -241,3 +241,36 @@ test_that("gg_theme_chevron works as expected", {
   expect_class(res, "theme")
   expect_silent(p + res)
 })
+
+# sort_str_time ----
+
+test_that("sort_str_time works as expected", {
+  expected <- factor(c("01JAN2019", "01JAN2020", "05MAR1999"), levels = c("05MAR1999", "01JAN2019", "01JAN2020"))
+
+  res <- expect_silent(sort_str_time(c("2019-01-01", "2020-01-01", "1999-03-05")))
+  expect_identical(res, expected)
+
+  res <- expect_silent(sort_str_time(as.Date(c("2019-01-01", "2020-01-01", "1999-03-05"))))
+  expect_identical(res, expected)
+
+  res <- expect_silent(sort_str_time(as.Date(c("2019-01-01", "2020-01-01", "1999-03-05"))))
+  expect_identical(res, expected)
+
+  res <- expect_silent(sort_str_time(as.POSIXct(c("2019-01-01", "2020-01-01", "1999-03-05"))))
+  expect_identical(res, expected)
+
+  # Factor keep original order
+  res <- expect_silent(
+    sort_str_time(
+      factor(c("2019-01-01", "2020-01-01", "1999-03-05"), levels = c("2019-01-01", "2020-01-01", "1999-03-05"))
+    )
+  )
+
+  expect_identical(
+    res,
+    factor(
+      c("01JAN2019", "01JAN2020", "05MAR1999"),
+      levels = c("01JAN2019", "01JAN2020", "05MAR1999")
+    )
+  )
+})

@@ -14,7 +14,7 @@ ael02_main <- function(adam_db,
                        arm_var = "ACTARM",
                        key_cols = c("CPID", "ASR", arm_var),
                        disp_cols = c(
-                         "AEDECOD", "DATE_FIRST", "ASTDY", "ADURN", "AESER",
+                         "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER",
                          "AESEV", "RELATED", "OUTCOME", "TREATED", "ACTION"
                        ),
                        default_formatting = list(
@@ -61,7 +61,7 @@ ael02_pre <- function(adam_db,
     mutate(
       CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
-      DATE_FIRST = with_label(
+      TRTSDTM = with_label(
         toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
@@ -98,7 +98,7 @@ ael02_pre <- function(adam_db,
       AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity")
     ) %>%
     select(all_of(c(
-      "CPID", "ASR", arm_var, "AEDECOD", "DATE_FIRST", "ASTDY", "ADURN",
+      "CPID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
       "AESER", "AESEV", "RELATED", "OUTCOME", "TREATED", "ACTION"
     )))
 

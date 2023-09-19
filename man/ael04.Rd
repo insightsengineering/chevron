@@ -16,7 +16,7 @@ ael04_main(
   dataset = "adsl",
   arm_var = "ACTARM",
   key_cols = "CPID",
-  disp_cols = c("ASR", arm_var, "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
+  disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,

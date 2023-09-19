@@ -12,7 +12,7 @@
 dsl01_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ACTARM",
-                       disp_cols = names(adam_db[[dataset]]),
+                       disp_cols = c("ID", "ASR", arm_var, "SSADM", "STDWD", "DISCONT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -51,7 +51,7 @@ dsl01_pre <- function(adam_db,
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       SSADM = with_label(
-        sort_strp_time(.data$TRTSDTM),
+        sort_str_time(.data$TRTSDTM),
         "Date of First\nStudy Drug\nAdministration"
       ),
       STDWD = with_label(

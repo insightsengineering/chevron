@@ -13,7 +13,7 @@ ael04_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ACTARM",
                        key_cols = "CPID",
-                       disp_cols = c("ASR", arm_var, "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
+                       disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -58,8 +58,8 @@ ael04_pre <- function(adam_db,
     mutate(
       CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
-      DATE_FIRST = with_label(
-        sort_strp_time(.data$TRTSDTM, "%d%b%Y"),
+      TRTSDTM = with_label(
+        sort_str_time(.data$TRTSDTM, "%d%b%Y"),
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
@@ -69,7 +69,7 @@ ael04_pre <- function(adam_db,
       ADTHAUT = with_label(.data$ADTHAUT, "Autopsy\nPerformed?")
     ) %>%
     select(all_of(c(
-      "CPID", "ASR", arm_var, "DATE_FIRST", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"
+      "CPID", "ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"
     )))
 
   adam_db

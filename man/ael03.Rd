@@ -16,7 +16,7 @@ ael03_main(
   dataset = "adae",
   arm_var = "ACTARM",
   key_cols = c("CPID", "ASR", arm_var),
-  disp_cols = c("AEDECOD", "DATE_FIRST", "ASTDY", "ADURN", "AESEV", "AEREL", "OUTCOME",
+  disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESEV", "AEREL", "OUTCOME",
     "AECONTRT", "ACTION", "SERREAS"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),

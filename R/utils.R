@@ -345,14 +345,19 @@ get_x_vjust <- function(x) {
 }
 
 
-#' Format Date and Keep Chronomoligal Order in Levels
+#' Format Date and Keep Chronological Order in Levels
 #'
-#' @param x (`character`, `factor` or `POSIXct`) to convert.
+#' @param x (`character`, `factor`, `Date` or `POSIXct`) to convert.
 #' @param format (`string`) see `strptime`.
 #' @param to_upper (`flag`) whether to convert the final result to upper case.
 #'
-#' @keywords internal
-sort_strp_time <- function(x, format = "%d%b%Y", to_upper = TRUE) {
+#' @export
+#' @examples
+#' sort_str_time("2020-01-01")
+#' sort_str_time(as.Date("2020-07-01"))
+sort_str_time <- function(x, format = "%d%b%Y", to_upper = TRUE) {
+  assert_multi_class(x, c("character", "factor", "Date", "POSIXct"))
+
   lvl <- lvls(x)
 
   # Remove duplicate formed by reformatting.
@@ -365,4 +370,54 @@ sort_strp_time <- function(x, format = "%d%b%Y", to_upper = TRUE) {
   }
 
   factor(formatted_date, levels = formatted_lvl)
+}
+
+# report_null ----
+
+#' Create a Null Report
+#'
+#' @rdname report_null
+#' @aliases null_report
+#' @param tlg (`TableTree`) object.
+#' @param ... not used. Important to be used directly as post processing function.
+#'
+#' @export
+#'
+report_null <- function(tlg, ...) {
+  UseMethod("report_null")
+}
+
+#' @rdname report_null
+#' @export
+#' @return original `TableTree` or a null report if no observation are found in the table.
+report_null.TableTree <- function(tlg, ...) {
+  assert_true(is.null(tlg) || rtables::is_rtable(tlg))
+
+  if (is.null(tlg) || nrow(tlg) == 0L) {
+    return(null_report)
+  }
+  if (count_children(tlg) == 0) {
+    return(null_report)
+  }
+  tlg
+}
+
+#' @rdname report_null
+#' @export
+#' @return original `listing_df` or a null report if no observation are found in the table.
+report_null.listing_df <- function(tlg, ...) {
+  assert_true(is(tlg, "listing_df"))
+
+  if (nrow(tlg) == 0L) {
+    return(null_report)
+  }
+
+  tlg
+}
+
+#' @rdname report_null
+#' @export
+#' @return a null report.
+report_null.NULL <- function(tlg, ...) {
+  return(null_report)
 }

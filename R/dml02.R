@@ -50,11 +50,11 @@ dml02_pre <- function(adam_db,
       ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
       !!arm_var := with_label(.data[[arm_var]], "Randomized Treatment"),
       RANDDT = with_label(
-        sort_strp_time(.data$RANDDT, format = "%d%b%Y"),
+        sort_str_time(.data$RANDDT, format = "%d%b%Y"),
         "Date of\nRandomization"
       ),
       TRTSDT = with_label(
-        sort_strp_time(.data$TRTSDTM, format = "%d%b%Y"),
+        sort_str_time(.data$TRTSDTM, format = "%d%b%Y"),
         "Date of\nFirst Study Drug\nAdministration"
       )
     ) %>%
