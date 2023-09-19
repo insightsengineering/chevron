@@ -5,7 +5,7 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables summarized in demographic table. The label attribute of the corresponding
 #'   column in `adsl` table of `adam_db` is used as label.
-#' @param .stats (named `list` of character)  where names of columns found in `.df_row` and the values indicate the
+#' @param stats (named `list` of character)  where names of columns found in `.df_row` and the values indicate the
 #'   statistical analysis to perform. If `default` is set, and parameter precision not specified, the
 #'   value for `default` will be used.
 #' @param precision (named `list` of `integer`) where names are `strings` found in `summaryvars` and the values indicate
@@ -36,7 +36,7 @@ dmt01_main <- function(adam_db,
                          "ETHNIC",
                          "RACE"
                        ),
-                       .stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
+                       stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
                        precision = list(),
                        ...) {
   assert_string(arm_var)
@@ -44,7 +44,7 @@ dmt01_main <- function(adam_db,
   assert_character(summaryvars, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, summaryvars, na_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_list(.stats, types = "character")
+  assert_list(stats, types = "character")
   assert_list(precision, types = "integerish", names = "unique")
 
   lbl_overall <- render_safe(lbl_overall)
@@ -55,7 +55,7 @@ dmt01_main <- function(adam_db,
     lbl_overall = lbl_overall,
     summaryvars = summaryvars,
     summaryvars_lbls = summaryvars_lbls,
-    .stats = .stats,
+    stats = stats,
     precision = precision
   )
 
@@ -75,7 +75,7 @@ dmt01_lyt <- function(arm_var,
                       lbl_overall,
                       summaryvars,
                       summaryvars_lbls,
-                      .stats,
+                      stats,
                       precision) {
   basic_table(show_colcounts = TRUE) %>%
     split_cols_by_with_overall(arm_var, lbl_overall) %>%
@@ -85,7 +85,7 @@ dmt01_lyt <- function(arm_var,
       afun = afun_p,
       extra_args = list(
         precision = precision,
-        .stats = .stats
+        .stats = stats
       )
     )
 }

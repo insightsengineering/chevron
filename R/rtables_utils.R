@@ -531,7 +531,7 @@ afun_p <- function(x,
                    .labels = NULL,
                    .indent_mods = NULL,
                    ...) {
-  .stats <- .stats[[.var]] %||% .stats[["default"]]
+  .stats <- .stats[[.var]] %||% .stats[["default"]] %||% c("n", "mean_sd", "median", "range", "count_fraction")
 
   # Define precision
   pcs <- precision[[.var]] %||% precision[["default"]]

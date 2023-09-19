@@ -16,7 +16,7 @@ dmt01_main(
   arm_var = "ARM",
   lbl_overall = "All {Patient_label}",
   summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
-  .stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
+  stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
   precision = list(),
   ...
 )
@@ -37,7 +37,7 @@ dmt01
 \item{summaryvars}{(\code{character}) variables summarized in demographic table. The label attribute of the corresponding
 column in \code{adsl} table of \code{adam_db} is used as label.}
 
-\item{.stats}{(named \code{list} of character)  where names of columns found in \code{.df_row} and the values indicate the
+\item{stats}{(named \code{list} of character)  where names of columns found in \code{.df_row} and the values indicate the
 statistical analysis to perform. If \code{default} is set, and parameter precision not specified, the
 value for \code{default} will be used.}
 

@@ -36,3 +36,29 @@ test_that("dmt01 works as expected with auto precision settings and defined prec
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
+
+test_that("dmt01 works as expected with cutomized stats value", {
+  res <- expect_silent(
+    run(
+      dmt01,
+      syn_data,
+      summaryvars = c("RACE", "AAGE", "BBMISI"),
+      stats = list(AAGE = "mean"),
+      precision = list(BBMISI = 2, default = 5)
+    )
+  )
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("dmt01 works as expected with empty list as stats value", {
+  res <- expect_silent(
+    run(
+      dmt01,
+      syn_data,
+      summaryvars = c("RACE", "AAGE", "BBMISI"),
+      stats = list(),
+      precision = list(BBMISI = 2, default = 5)
+    )
+  )
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})

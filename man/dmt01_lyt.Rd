@@ -9,7 +9,7 @@ dmt01_lyt(
   lbl_overall,
   summaryvars,
   summaryvars_lbls,
-  .stats,
+  stats,
   precision
 )
 }

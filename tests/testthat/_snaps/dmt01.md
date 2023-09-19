@@ -199,3 +199,85 @@
           Median                                   30.000000               29.250000      
           Min - Max                          -44.20000 - 87.50000    -44.20000 - 117.90000
 
+# dmt01 works as expected with cutomized stats value
+
+    Code
+      cat(export_as_txt(res, lpp = 100))
+    Output
+                                                A: Drug X        B: Placebo      C: Combination 
+                                                 (N=134)           (N=134)           (N=132)    
+        ————————————————————————————————————————————————————————————————————————————————————————
+        RACE                                                                                    
+          n                                        134               134               132      
+          AMERICAN INDIAN OR ALASKA NATIVE      8 (6.0%)          11 (8.2%)         6 (4.5%)    
+          ASIAN                                68 (50.7%)        68 (50.7%)        73 (55.3%)   
+          BLACK OR AFRICAN AMERICAN            31 (23.1%)        28 (20.9%)        32 (24.2%)   
+          WHITE                                27 (20.1%)        27 (20.1%)        21 (15.9%)   
+        Age (yr)                                                                                
+          Mean                                  33.768657         35.432836         35.431818   
+        Baseline BMI                                                                            
+          n                                        134               134               132      
+          Mean (SD)                          29.956 (18.303)   32.390 (23.227)   30.067 (18.442)
+          Median                                 27.100            31.100            30.000     
+          Min - Max                           -6.90 - 75.90    -26.60 - 117.90   -44.20 - 87.50 
+      \s\n                                        All Patients  
+                                                 (N=400)    
+        ————————————————————————————————————————————————————
+        RACE                                                
+          n                                        400      
+          AMERICAN INDIAN OR ALASKA NATIVE      25 (6.2%)   
+          ASIAN                                209 (52.2%)  
+          BLACK OR AFRICAN AMERICAN            91 (22.8%)   
+          WHITE                                75 (18.8%)   
+        Age (yr)                                            
+          Mean                                  34.875000   
+        Baseline BMI                                        
+          n                                        400      
+          Mean (SD)                          30.808 (20.110)
+          Median                                 29.250     
+          Min - Max                          -44.20 - 117.90
+
+# dmt01 works as expected with empty list as stats value
+
+    Code
+      cat(export_as_txt(res, lpp = 100))
+    Output
+                                                  A: Drug X              B: Placebo           C: Combination   
+                                                   (N=134)                (N=134)                (N=132)       
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        RACE                                                                                                   
+          n                                          134                    134                    132         
+          AMERICAN INDIAN OR ALASKA NATIVE         8 (6.0%)              11 (8.2%)               6 (4.5%)      
+          ASIAN                                   68 (50.7%)             68 (50.7%)             73 (55.3%)     
+          BLACK OR AFRICAN AMERICAN               31 (23.1%)             28 (20.9%)             32 (24.2%)     
+          WHITE                                   27 (20.1%)             27 (20.1%)             21 (15.9%)     
+        Age (yr)                                                                                               
+          n                                          134                    134                    132         
+          Mean (SD)                          33.768657 (6.553326)   35.432836 (7.895414)   35.431818 (7.722470)
+          Median                                  33.000000              35.000000              35.000000      
+          Min - Max                          21.00000 - 50.00000    21.00000 - 62.00000    20.00000 - 69.00000 
+        Baseline BMI                                                                                           
+          n                                          134                    134                    132         
+          Mean (SD)                            29.956 (18.303)        32.390 (23.227)        30.067 (18.442)   
+          Median                                    27.100                 31.100                 30.000       
+          Min - Max                             -6.90 - 75.90         -26.60 - 117.90         -44.20 - 87.50   
+      \s\n                                           All Patients    
+                                                   (N=400)       
+        —————————————————————————————————————————————————————————
+        RACE                                                     
+          n                                          400         
+          AMERICAN INDIAN OR ALASKA NATIVE        25 (6.2%)      
+          ASIAN                                  209 (52.2%)     
+          BLACK OR AFRICAN AMERICAN               91 (22.8%)     
+          WHITE                                   75 (18.8%)     
+        Age (yr)                                                 
+          n                                          400         
+          Mean (SD)                          34.875000 (7.435900)
+          Median                                  34.000000      
+          Min - Max                          20.00000 - 69.00000 
+        Baseline BMI                                             
+          n                                          400         
+          Mean (SD)                            30.808 (20.110)   
+          Median                                    29.250       
+          Min - Max                            -44.20 - 117.90   
+
