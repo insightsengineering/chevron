@@ -11,7 +11,7 @@ test_that("ael04 can handle all missing values", {
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
-      TRT01A = NA_character_,
+      ACTARM = NA_character_,
       DTHCAUS = NA_character_
     )
 

@@ -12,7 +12,7 @@
       BRA-1/id-265        25/M/WHITE                              C: Combination   07OCT2019     
       BRA-1/id-93         34/F/ASIAN                              A: Drug X        20JUN2020     
       BRA-11/id-217       43/M/ASIAN                              A: Drug X        28SEP2019     
-      BRA-11/id-9         40/M/ASIAN                              C: Combination   25MAR2019     
+      BRA-11/id-9         40/M/ASIAN                              C: Combination   26MAR2019     
       BRA-14/id-120       33/F/ASIAN                              C: Combination   19SEP2020     
       BRA-15/id-36        38/F/ASIAN                              A: Drug X        08JAN2020     
       CAN-1/id-341        43/F/ASIAN                              B: Placebo       23MAY2019     
@@ -29,7 +29,7 @@
       CHN-10/id-380       42/F/WHITE                              B: Placebo       09MAY2020     
       CHN-11/id-184       38/F/ASIAN                              C: Combination   04MAY2019     
       CHN-11/id-192       35/F/ASIAN                              C: Combination   26DEC2019     
-      CHN-11/id-317       38/F/AMERICAN INDIAN OR ALASKA NATIVE   B: Placebo       20MAY2020     
+      CHN-11/id-317       38/F/AMERICAN INDIAN OR ALASKA NATIVE   B: Placebo       21MAY2020     
       CHN-11/id-318       42/F/ASIAN                              B: Placebo       28AUG2019     
       CHN-11/id-386       36/M/ASIAN                              B: Placebo       18JAN2020     
       CHN-11/id-91        44/M/BLACK OR AFRICAN AMERICAN          C: Combination   29MAY2020     
@@ -44,7 +44,7 @@
       CHN-17/id-182       37/M/BLACK OR AFRICAN AMERICAN          A: Drug X        18SEP2019     
       CHN-17/id-92        29/M/ASIAN                              A: Drug X        01MAR2020     
       CHN-18/id-51        40/M/ASIAN                              C: Combination   25SEP2019     
-      CHN-2/id-22         29/M/ASIAN                              A: Drug X        15JAN2021     
+      CHN-2/id-22         29/M/ASIAN                              A: Drug X        16JAN2021     
       CHN-2/id-223        29/F/ASIAN                              A: Drug X        18NOV2020     
       CHN-2/id-272        41/F/ASIAN                              A: Drug X        11JAN2020     
       CHN-2/id-274        40/F/ASIAN                              A: Drug X        14OCT2019     
@@ -58,12 +58,12 @@
       GBR-1/id-319        36/F/ASIAN                              A: Drug X        02OCT2020     
       GBR-17/id-211       62/M/ASIAN                              B: Placebo       23DEC2020     
       JPN-17/id-250       28/F/ASIAN                              C: Combination   17FEB2020     
-      JPN-17/id-393       26/M/ASIAN                              C: Combination   08JUN2020     
+      JPN-17/id-393       26/M/ASIAN                              C: Combination   09JUN2020     
       NGA-1/id-325        28/F/WHITE                              B: Placebo       08SEP2019     
       NGA-1/id-46         28/M/ASIAN                              A: Drug X        01APR2020     
       NGA-11/id-35        32/M/ASIAN                              C: Combination   26AUG2019     
       NGA-12/id-264       24/M/AMERICAN INDIAN OR ALASKA NATIVE   B: Placebo       09APR2020     
-      NGA-4/id-215        40/F/AMERICAN INDIAN OR ALASKA NATIVE   C: Combination   18MAY2020     
+      NGA-4/id-215        40/F/AMERICAN INDIAN OR ALASKA NATIVE   C: Combination   19MAY2020     
       PAK-1/id-178        46/M/ASIAN                              C: Combination   06JUN2019     
       PAK-1/id-95         28/F/ASIAN                              C: Combination   01MAY2019     
       PAK-4/id-15         30/M/ASIAN                              C: Combination   27DEC2019     
@@ -168,7 +168,7 @@
       BRA-1/id-265        25/M/WHITE                              <Missing>   07OCT2019     
       BRA-1/id-93         34/F/ASIAN                              <Missing>   20JUN2020     
       BRA-11/id-217       43/M/ASIAN                              <Missing>   28SEP2019     
-      BRA-11/id-9         40/M/ASIAN                              <Missing>   25MAR2019     
+      BRA-11/id-9         40/M/ASIAN                              <Missing>   26MAR2019     
       BRA-14/id-120       33/F/ASIAN                              <Missing>   19SEP2020     
       BRA-15/id-36        38/F/ASIAN                              <Missing>   08JAN2020     
       CAN-1/id-341        43/F/ASIAN                              <Missing>   23MAY2019     
@@ -185,7 +185,7 @@
       CHN-10/id-380       42/F/WHITE                              <Missing>   09MAY2020     
       CHN-11/id-184       38/F/ASIAN                              <Missing>   04MAY2019     
       CHN-11/id-192       35/F/ASIAN                              <Missing>   26DEC2019     
-      CHN-11/id-317       38/F/AMERICAN INDIAN OR ALASKA NATIVE   <Missing>   20MAY2020     
+      CHN-11/id-317       38/F/AMERICAN INDIAN OR ALASKA NATIVE   <Missing>   21MAY2020     
       CHN-11/id-318       42/F/ASIAN                              <Missing>   28AUG2019     
       CHN-11/id-386       36/M/ASIAN                              <Missing>   18JAN2020     
       CHN-11/id-91        44/M/BLACK OR AFRICAN AMERICAN          <Missing>   29MAY2020     
@@ -200,7 +200,7 @@
       CHN-17/id-182       37/M/BLACK OR AFRICAN AMERICAN          <Missing>   18SEP2019     
       CHN-17/id-92        29/M/ASIAN                              <Missing>   01MAR2020     
       CHN-18/id-51        40/M/ASIAN                              <Missing>   25SEP2019     
-      CHN-2/id-22         29/M/ASIAN                              <Missing>   15JAN2021     
+      CHN-2/id-22         29/M/ASIAN                              <Missing>   16JAN2021     
       CHN-2/id-223        29/F/ASIAN                              <Missing>   18NOV2020     
       CHN-2/id-272        41/F/ASIAN                              <Missing>   11JAN2020     
       CHN-2/id-274        40/F/ASIAN                              <Missing>   14OCT2019     
@@ -214,12 +214,12 @@
       GBR-1/id-319        36/F/ASIAN                              <Missing>   02OCT2020     
       GBR-17/id-211       62/M/ASIAN                              <Missing>   23DEC2020     
       JPN-17/id-250       28/F/ASIAN                              <Missing>   17FEB2020     
-      JPN-17/id-393       26/M/ASIAN                              <Missing>   08JUN2020     
+      JPN-17/id-393       26/M/ASIAN                              <Missing>   09JUN2020     
       NGA-1/id-325        28/F/WHITE                              <Missing>   08SEP2019     
       NGA-1/id-46         28/M/ASIAN                              <Missing>   01APR2020     
       NGA-11/id-35        32/M/ASIAN                              <Missing>   26AUG2019     
       NGA-12/id-264       24/M/AMERICAN INDIAN OR ALASKA NATIVE   <Missing>   09APR2020     
-      NGA-4/id-215        40/F/AMERICAN INDIAN OR ALASKA NATIVE   <Missing>   18MAY2020     
+      NGA-4/id-215        40/F/AMERICAN INDIAN OR ALASKA NATIVE   <Missing>   19MAY2020     
       PAK-1/id-178        46/M/ASIAN                              <Missing>   06JUN2019     
       PAK-1/id-95         28/F/ASIAN                              <Missing>   01MAY2019     
       PAK-4/id-15         30/M/ASIAN                              <Missing>   27DEC2019     
@@ -324,7 +324,7 @@
       BRA-1/id-265        25/M/WHITE                              C: Combination   07OCT2019     
       BRA-1/id-93         34/F/ASIAN                              A: Drug X        20JUN2020     
       BRA-11/id-217       43/M/ASIAN                              A: Drug X        28SEP2019     
-      BRA-11/id-9         40/M/ASIAN                              C: Combination   25MAR2019     
+      BRA-11/id-9         40/M/ASIAN                              C: Combination   26MAR2019     
       BRA-14/id-120       33/F/ASIAN                              C: Combination   19SEP2020     
       BRA-15/id-36        38/F/ASIAN                              A: Drug X        08JAN2020     
       CAN-1/id-341        43/F/ASIAN                              B: Placebo       23MAY2019     
@@ -341,7 +341,7 @@
       CHN-10/id-380       42/F/WHITE                              B: Placebo       09MAY2020     
       CHN-11/id-184       38/F/ASIAN                              C: Combination   04MAY2019     
       CHN-11/id-192       35/F/ASIAN                              C: Combination   26DEC2019     
-      CHN-11/id-317       38/F/AMERICAN INDIAN OR ALASKA NATIVE   B: Placebo       20MAY2020     
+      CHN-11/id-317       38/F/AMERICAN INDIAN OR ALASKA NATIVE   B: Placebo       21MAY2020     
       CHN-11/id-318       42/F/ASIAN                              B: Placebo       28AUG2019     
       CHN-11/id-386       36/M/ASIAN                              B: Placebo       18JAN2020     
       CHN-11/id-91        44/M/BLACK OR AFRICAN AMERICAN          C: Combination   29MAY2020     
@@ -356,7 +356,7 @@
       CHN-17/id-182       37/M/BLACK OR AFRICAN AMERICAN          A: Drug X        18SEP2019     
       CHN-17/id-92        29/M/ASIAN                              A: Drug X        01MAR2020     
       CHN-18/id-51        40/M/ASIAN                              C: Combination   25SEP2019     
-      CHN-2/id-22         29/M/ASIAN                              A: Drug X        15JAN2021     
+      CHN-2/id-22         29/M/ASIAN                              A: Drug X        16JAN2021     
       CHN-2/id-223        29/F/ASIAN                              A: Drug X        18NOV2020     
       CHN-2/id-272        41/F/ASIAN                              A: Drug X        11JAN2020     
       CHN-2/id-274        40/F/ASIAN                              A: Drug X        14OCT2019     
@@ -370,12 +370,12 @@
       GBR-1/id-319        36/F/ASIAN                              A: Drug X        02OCT2020     
       GBR-17/id-211       62/M/ASIAN                              B: Placebo       23DEC2020     
       JPN-17/id-250       28/F/ASIAN                              C: Combination   17FEB2020     
-      JPN-17/id-393       26/M/ASIAN                              C: Combination   08JUN2020     
+      JPN-17/id-393       26/M/ASIAN                              C: Combination   09JUN2020     
       NGA-1/id-325        28/F/WHITE                              B: Placebo       08SEP2019     
       NGA-1/id-46         28/M/ASIAN                              A: Drug X        01APR2020     
       NGA-11/id-35        32/M/ASIAN                              C: Combination   26AUG2019     
       NGA-12/id-264       24/M/AMERICAN INDIAN OR ALASKA NATIVE   B: Placebo       09APR2020     
-      NGA-4/id-215        40/F/AMERICAN INDIAN OR ALASKA NATIVE   C: Combination   18MAY2020     
+      NGA-4/id-215        40/F/AMERICAN INDIAN OR ALASKA NATIVE   C: Combination   19MAY2020     
       PAK-1/id-178        46/M/ASIAN                              C: Combination   06JUN2019     
       PAK-1/id-95         28/F/ASIAN                              C: Combination   01MAY2019     
       PAK-4/id-15         30/M/ASIAN                              C: Combination   27DEC2019     

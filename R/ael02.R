@@ -54,12 +54,12 @@ ael02_pre <- function(adam_db,
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       across(
-        all_of(c("TRT01A", "AEDECOD", "AESEV", "AEOUT", "AEACN")),
+        all_of(c(arm_var, "AEDECOD", "AESEV", "AEOUT", "AEACN")),
         ~ reformat(.x, missing_rule)
       )
     ) %>%
     mutate(
-      CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRTSDTM = with_label(
         toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),

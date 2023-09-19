@@ -12,7 +12,7 @@ test_that("ael03 can handle all missing values", {
   proc_data$adae <- proc_data$adae %>%
     mutate(
       AEDECOD = NA_character_,
-      TRT01A = NA_character_,
+      ACTARM = NA_character_,
       AESEV = NA_character_
     )
 

@@ -43,6 +43,7 @@ dsl01_main <- function(adam_db,
 #'
 dsl01_pre <- function(adam_db,
                       dataset = "adsl",
+                      arm_var = "ACTARM",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$AEWITHFL == "Y") %>%

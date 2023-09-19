@@ -28,7 +28,6 @@ dsl02_main <- function(adam_db,
 
   as_listing(
     adam_db[[dataset]],
-    key_cols = key_cols,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
     col_formatting = col_formatting,

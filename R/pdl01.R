@@ -67,11 +67,7 @@ pdl01_pre <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #'
-pdl01_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
-
-  tlg
-}
+pdl01_post <- report_null
 
 #' `PDL01` Listing 1 (Default) Major Protocol Deviations.
 #'

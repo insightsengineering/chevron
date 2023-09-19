@@ -6,6 +6,7 @@
 \alias{null_report}
 \alias{report_null.TableTree}
 \alias{report_null.listing_df}
+\alias{report_null.ElementaryTable}
 \alias{report_null.NULL}
 \alias{null_listing}
 \title{Create a Null Report}
@@ -20,6 +21,8 @@ report_null(tlg, ...)
 \method{report_null}{TableTree}(tlg, ...)
 
 \method{report_null}{listing_df}(tlg, ...)
+
+\method{report_null}{ElementaryTable}(tlg, ...)
 
 \method{report_null}{`NULL`}(tlg, ...)
 
@@ -36,6 +39,8 @@ null_listing
 original \code{TableTree} or a null report if no observation are found in the table.
 
 original \code{listing_df} or a null report if no observation are found in the table.
+
+a null report.
 
 a null report.
 }

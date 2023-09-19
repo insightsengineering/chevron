@@ -23,7 +23,7 @@ dsl01_main(
   ...
 )
 
-dsl01_pre(adam_db, dataset = "adsl", ...)
+dsl01_pre(adam_db, dataset = "adsl", arm_var = "ACTARM", ...)
 
 dsl01_post(tlg, ...)
 

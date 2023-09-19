@@ -61,7 +61,7 @@ dml01_pre <- function(adam_db,
       ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race")
     ) %>%
-    select(all_of(c("ID", "ASR", summaryvars, key_cols)))
+    select(all_of(c("ID", "ASR", summaryvars, arm_var)))
 
   adam_db
 }
