@@ -6,7 +6,7 @@
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in
 #'   table of `adam_db` is used as label.
 #' @param visitvar (`string`) typically one of `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
-#' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the the values
+#' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the values
 #'   indicate the number of digits in statistics. If `default` is set, and parameter precision not specified,
 #'   the value for `default` will be used.
 #' @param .stats (`character`) statistics names, see `tern::analyze_vars()`.
