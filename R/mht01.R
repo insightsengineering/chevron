@@ -1,6 +1,6 @@
 # mht01 ----
 
-#' @describeIn cmt01a Default labels
+#' @describeIn mht01 Default labels
 #' @export
 mht01_label <- c(
   unique = "Total number of {patient_label} with at least one condition",
