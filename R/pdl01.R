@@ -15,7 +15,10 @@ pdl01_main <- function(adam_db,
                        disp_cols = names(adam_db[[dataset]]),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
+                         numeric = fmt_config(align = "center"),
+                         Date = fmt_config(format = format_date(), align = "left"),
+                         POSIXct = fmt_config(format = format_date(), align = "left"),
+                         POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -54,7 +57,7 @@ pdl01_pre <- function(adam_db,
       DVDECOD = with_label(.data$DVDECOD, "Category"),
       DVTERM = with_label(.data$DVTERM, "Description"),
       DVSTDTC = with_label(
-        sort_str_time(.data$DVSTDTC),
+        .data$DVSTDTC,
         "Date"
       ),
     ) %>%

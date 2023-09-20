@@ -16,7 +16,9 @@ dml02_main(
   arm_var = "ARM",
   disp_cols = c("ID", arm_var, "RANDDT", "TRTSDT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center")),
+    = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
+    fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
+    format_date(), align = "left")),
   col_formatting = NULL,
   unique_rows = TRUE,
   ...

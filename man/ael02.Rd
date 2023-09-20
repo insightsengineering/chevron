@@ -15,10 +15,12 @@ ael02_main(
   dataset = "adae",
   arm_var = "ACTARM",
   key_cols = c("ID", "ASR", arm_var),
-  disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER", "AESEV", "RELATED",
-    "AEOUT", "TREATED", "ACTION"),
+  disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER", "AESEV", "AEREL",
+    "AEOUT", "AECONTRT", "ACTION"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center"), date = fmt_config(align = "right")),
+    = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
+    fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
+    format_date(), align = "left")),
   col_formatting = NULL,
   unique_rows = TRUE,
   ...

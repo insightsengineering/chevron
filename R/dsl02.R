@@ -12,10 +12,13 @@
 dsl02_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ACTARM",
-                       disp_cols = c("ID", "ASR", arm_var, "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS"),
+                       disp_cols = c("ID", "ASR", arm_var, "TRTSDTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
+                         numeric = fmt_config(align = "center"),
+                         Date = fmt_config(format = format_date(), align = "left"),
+                         POSIXct = fmt_config(format = format_date(), align = "left"),
+                         POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -51,8 +54,8 @@ dsl02_pre <- function(adam_db,
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       DISCONT = ifelse(!is.na(.data$DCSREAS) & .data$EOSSTT != "COMPLETED", "Yes", "No"),
-      SSADTM = with_label(
-        sort_str_time(.data$TRTSDTM, format = "%d%b%Y"),
+      TRTSDTM = with_label(
+        .data$TRTSDTM,
         "Date of First\nStudy Drug\nAdministration"
       ),
       SSAEDY = with_label(
@@ -68,7 +71,7 @@ dsl02_pre <- function(adam_db,
       DCSREAS = with_label(.data$DCSREAS, "Reason for\nDiscontinuation")
     ) %>%
     filter(.data$DISCONT == "Yes") %>%
-    select(all_of(c("ID", "ASR", arm_var, "SSADTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS")))
+    select(all_of(c("ID", "ASR", arm_var, "TRTSDTM", "EOSDY", "SSAEDY", "RANDEDY", "DCSREAS")))
 
   adam_db
 }

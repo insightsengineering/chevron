@@ -8,56 +8,56 @@
                                                                               Event MedDRA         Drug     
       Center/Patients ID            Age/Sex/Race              Treatment      Preferred Term   Administration
       ——————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-1/134            47/M/WHITE                       A: Drug X        dcd B.2.1.2.1    2020-11-04    
-                                                                             dcd D.1.1.4.2    2020-11-04    
-                                                                             dcd A.1.1.1.2    2020-11-04    
-                                                                             dcd A.1.1.1.2    2020-11-04    
-      BRA-1/141            35/F/WHITE                       C: Combination   dcd B.2.1.2.1    2020-07-25    
-                                                                             dcd D.2.1.5.3    2020-07-25    
-                                                                             dcd A.1.1.1.1    2020-07-25    
-                                                                             dcd A.1.1.1.2    2020-07-25    
-                                                                             dcd A.1.1.1.1    2020-07-25    
-                                                                             dcd D.1.1.1.1    2020-07-25    
-      BRA-1/236            32/M/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd B.1.1.1.1    2021-01-15    
-                                                                             dcd B.1.1.1.1    2021-01-15    
-                                                                             dcd B.1.1.1.1    2021-01-15    
-      BRA-1/265            25/M/WHITE                       C: Combination   dcd C.2.1.2.1    2019-10-07    
-                                                                             dcd D.1.1.4.2    2019-10-07    
-                                                                             dcd D.1.1.1.1    2019-10-07    
-                                                                             dcd C.1.1.1.3    2019-10-07    
-      BRA-1/42             36/M/BLACK OR AFRICAN AMERICAN   A: Drug X        dcd C.2.1.2.1    2020-01-01    
-                                                                             dcd D.1.1.1.1    2020-01-01    
-                                                                             dcd C.2.1.2.1    2020-01-01    
-                                                                             dcd A.1.1.1.2    2020-01-01    
-                                                                             dcd B.2.2.3.1    2020-01-01    
-                                                                             dcd A.1.1.1.2    2020-01-01    
-                                                                             dcd B.1.1.1.1    2020-01-01    
-                                                                             dcd A.1.1.1.2    2020-01-01    
-                                                                             dcd C.1.1.1.3    2020-01-01    
-                                                                             dcd B.1.1.1.1    2020-01-01    
-      BRA-1/65             25/F/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd C.2.1.2.1    2019-07-15    
-                                                                             dcd D.2.1.5.3    2019-07-15    
-                                                                             dcd B.1.1.1.1    2019-07-15    
-                                                                             dcd C.1.1.1.3    2019-07-15    
-      BRA-1/93             34/F/ASIAN                       A: Drug X        dcd D.1.1.4.2    2020-06-20    
-                                                                             dcd D.2.1.5.3    2020-06-20    
-                                                                             dcd A.1.1.1.1    2020-06-20    
-                                                                             dcd D.2.1.5.3    2020-06-20    
-                                                                             dcd C.1.1.1.3    2020-06-20    
-                                                                             dcd D.1.1.1.1    2020-06-20    
-                                                                             dcd B.1.1.1.1    2020-06-20    
-                                                                             dcd D.2.1.5.3    2020-06-20    
-                                                                             dcd B.2.2.3.1    2020-06-20    
-      BRA-11/237           64/F/ASIAN                       C: Combination   dcd D.2.1.5.3    2020-03-10    
-                                                                             dcd C.1.1.1.3    2020-03-10    
-                                                                             dcd B.2.1.2.1    2020-03-10    
-      BRA-11/321           33/F/ASIAN                       C: Combination   dcd A.1.1.1.1    2020-10-06    
-                                                                             dcd A.1.1.1.1    2020-10-06    
-                                                                             dcd C.2.1.2.1    2020-10-06    
-                                                                             dcd D.2.1.5.3    2020-10-06    
-                                                                             dcd A.1.1.1.2    2020-10-06    
-                                                                             dcd D.2.1.5.3    2020-10-06    
-                                                                             dcd A.1.1.1.1    2020-10-06    
+      BRA-1/134            47/M/WHITE                       A: Drug X        dcd B.2.1.2.1    04NOV2020     
+                                                                             dcd D.1.1.4.2    04NOV2020     
+                                                                             dcd A.1.1.1.2    04NOV2020     
+                                                                             dcd A.1.1.1.2    04NOV2020     
+      BRA-1/141            35/F/WHITE                       C: Combination   dcd B.2.1.2.1    25JUL2020     
+                                                                             dcd D.2.1.5.3    25JUL2020     
+                                                                             dcd A.1.1.1.1    25JUL2020     
+                                                                             dcd A.1.1.1.2    25JUL2020     
+                                                                             dcd A.1.1.1.1    25JUL2020     
+                                                                             dcd D.1.1.1.1    25JUL2020     
+      BRA-1/236            32/M/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd B.1.1.1.1    15JAN2021     
+                                                                             dcd B.1.1.1.1    15JAN2021     
+                                                                             dcd B.1.1.1.1    15JAN2021     
+      BRA-1/265            25/M/WHITE                       C: Combination   dcd C.2.1.2.1    07OCT2019     
+                                                                             dcd D.1.1.4.2    07OCT2019     
+                                                                             dcd D.1.1.1.1    07OCT2019     
+                                                                             dcd C.1.1.1.3    07OCT2019     
+      BRA-1/42             36/M/BLACK OR AFRICAN AMERICAN   A: Drug X        dcd C.2.1.2.1    01JAN2020     
+                                                                             dcd D.1.1.1.1    01JAN2020     
+                                                                             dcd C.2.1.2.1    01JAN2020     
+                                                                             dcd A.1.1.1.2    01JAN2020     
+                                                                             dcd B.2.2.3.1    01JAN2020     
+                                                                             dcd A.1.1.1.2    01JAN2020     
+                                                                             dcd B.1.1.1.1    01JAN2020     
+                                                                             dcd A.1.1.1.2    01JAN2020     
+                                                                             dcd C.1.1.1.3    01JAN2020     
+                                                                             dcd B.1.1.1.1    01JAN2020     
+      BRA-1/65             25/F/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd C.2.1.2.1    15JUL2019     
+                                                                             dcd D.2.1.5.3    15JUL2019     
+                                                                             dcd B.1.1.1.1    15JUL2019     
+                                                                             dcd C.1.1.1.3    15JUL2019     
+      BRA-1/93             34/F/ASIAN                       A: Drug X        dcd D.1.1.4.2    20JUN2020     
+                                                                             dcd D.2.1.5.3    20JUN2020     
+                                                                             dcd A.1.1.1.1    20JUN2020     
+                                                                             dcd D.2.1.5.3    20JUN2020     
+                                                                             dcd C.1.1.1.3    20JUN2020     
+                                                                             dcd D.1.1.1.1    20JUN2020     
+                                                                             dcd B.1.1.1.1    20JUN2020     
+                                                                             dcd D.2.1.5.3    20JUN2020     
+                                                                             dcd B.2.2.3.1    20JUN2020     
+      BRA-11/237           64/F/ASIAN                       C: Combination   dcd D.2.1.5.3    10MAR2020     
+                                                                             dcd C.1.1.1.3    10MAR2020     
+                                                                             dcd B.2.1.2.1    10MAR2020     
+      BRA-11/321           33/F/ASIAN                       C: Combination   dcd A.1.1.1.1    06OCT2020     
+                                                                             dcd A.1.1.1.1    06OCT2020     
+                                                                             dcd C.2.1.2.1    06OCT2020     
+                                                                             dcd D.2.1.5.3    06OCT2020     
+                                                                             dcd A.1.1.1.2    06OCT2020     
+                                                                             dcd D.2.1.5.3    06OCT2020     
+                                                                             dcd A.1.1.1.1    06OCT2020     
       \s\n                                                                                                  
                                                                              Study       AE             
                                                                              Day of   Duration          
@@ -234,56 +234,56 @@
                                                                          Event MedDRA         Drug     
       Center/Patients ID            Age/Sex/Race            Treatment   Preferred Term   Administration
       —————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-1/134            47/M/WHITE                       <Missing>   <Missing>        2020-11-04    
-                                                                        <Missing>        2020-11-04    
-                                                                        <Missing>        2020-11-04    
-                                                                        <Missing>        2020-11-04    
-      BRA-1/141            35/F/WHITE                       <Missing>   <Missing>        2020-07-25    
-                                                                        <Missing>        2020-07-25    
-                                                                        <Missing>        2020-07-25    
-                                                                        <Missing>        2020-07-25    
-                                                                        <Missing>        2020-07-25    
-                                                                        <Missing>        2020-07-25    
-      BRA-1/236            32/M/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>        2021-01-15    
-                                                                        <Missing>        2021-01-15    
-                                                                        <Missing>        2021-01-15    
-      BRA-1/265            25/M/WHITE                       <Missing>   <Missing>        2019-10-07    
-                                                                        <Missing>        2019-10-07    
-                                                                        <Missing>        2019-10-07    
-                                                                        <Missing>        2019-10-07    
-      BRA-1/42             36/M/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-                                                                        <Missing>        2020-01-01    
-      BRA-1/65             25/F/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>        2019-07-15    
-                                                                        <Missing>        2019-07-15    
-                                                                        <Missing>        2019-07-15    
-                                                                        <Missing>        2019-07-15    
-      BRA-1/93             34/F/ASIAN                       <Missing>   <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-                                                                        <Missing>        2020-06-20    
-      BRA-11/237           64/F/ASIAN                       <Missing>   <Missing>        2020-03-10    
-                                                                        <Missing>        2020-03-10    
-                                                                        <Missing>        2020-03-10    
-      BRA-11/321           33/F/ASIAN                       <Missing>   <Missing>        2020-10-06    
-                                                                        <Missing>        2020-10-06    
-                                                                        <Missing>        2020-10-06    
-                                                                        <Missing>        2020-10-06    
-                                                                        <Missing>        2020-10-06    
-                                                                        <Missing>        2020-10-06    
-                                                                        <Missing>        2020-10-06    
+      BRA-1/134            47/M/WHITE                       <Missing>   <Missing>        04NOV2020     
+                                                                        <Missing>        04NOV2020     
+                                                                        <Missing>        04NOV2020     
+                                                                        <Missing>        04NOV2020     
+      BRA-1/141            35/F/WHITE                       <Missing>   <Missing>        25JUL2020     
+                                                                        <Missing>        25JUL2020     
+                                                                        <Missing>        25JUL2020     
+                                                                        <Missing>        25JUL2020     
+                                                                        <Missing>        25JUL2020     
+                                                                        <Missing>        25JUL2020     
+      BRA-1/236            32/M/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>        15JAN2021     
+                                                                        <Missing>        15JAN2021     
+                                                                        <Missing>        15JAN2021     
+      BRA-1/265            25/M/WHITE                       <Missing>   <Missing>        07OCT2019     
+                                                                        <Missing>        07OCT2019     
+                                                                        <Missing>        07OCT2019     
+                                                                        <Missing>        07OCT2019     
+      BRA-1/42             36/M/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+                                                                        <Missing>        01JAN2020     
+      BRA-1/65             25/F/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>        15JUL2019     
+                                                                        <Missing>        15JUL2019     
+                                                                        <Missing>        15JUL2019     
+                                                                        <Missing>        15JUL2019     
+      BRA-1/93             34/F/ASIAN                       <Missing>   <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+                                                                        <Missing>        20JUN2020     
+      BRA-11/237           64/F/ASIAN                       <Missing>   <Missing>        10MAR2020     
+                                                                        <Missing>        10MAR2020     
+                                                                        <Missing>        10MAR2020     
+      BRA-11/321           33/F/ASIAN                       <Missing>   <Missing>        06OCT2020     
+                                                                        <Missing>        06OCT2020     
+                                                                        <Missing>        06OCT2020     
+                                                                        <Missing>        06OCT2020     
+                                                                        <Missing>        06OCT2020     
+                                                                        <Missing>        06OCT2020     
+                                                                        <Missing>        06OCT2020     
       \s\n                                                                                             
                                                                         Study       AE             
                                                                         Day of   Duration          
@@ -460,56 +460,56 @@
                                                                               Event MedDRA         Drug     
       Center/Patients ID            Age/Sex/Race              Treatment      Preferred Term   Administration
       ——————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-1/134            47/M/WHITE                       A: Drug X        dcd B.2.1.2.1    2020-11-04    
-                                                                             dcd D.1.1.4.2    2020-11-04    
-                                                                             dcd A.1.1.1.2    2020-11-04    
-                                                                             dcd A.1.1.1.2    2020-11-04    
-      BRA-1/141            35/F/WHITE                       C: Combination   dcd B.2.1.2.1    2020-07-25    
-                                                                             dcd D.2.1.5.3    2020-07-25    
-                                                                             dcd A.1.1.1.1    2020-07-25    
-                                                                             dcd A.1.1.1.2    2020-07-25    
-                                                                             dcd A.1.1.1.1    2020-07-25    
-                                                                             dcd D.1.1.1.1    2020-07-25    
-      BRA-1/236            32/M/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd B.1.1.1.1    2021-01-15    
-                                                                             dcd B.1.1.1.1    2021-01-15    
-                                                                             dcd B.1.1.1.1    2021-01-15    
-      BRA-1/265            25/M/WHITE                       C: Combination   dcd C.2.1.2.1    2019-10-07    
-                                                                             dcd D.1.1.4.2    2019-10-07    
-                                                                             dcd D.1.1.1.1    2019-10-07    
-                                                                             dcd C.1.1.1.3    2019-10-07    
-      BRA-1/42             36/M/BLACK OR AFRICAN AMERICAN   A: Drug X        dcd C.2.1.2.1    2020-01-01    
-                                                                             dcd D.1.1.1.1    2020-01-01    
-                                                                             dcd C.2.1.2.1    2020-01-01    
-                                                                             dcd A.1.1.1.2    2020-01-01    
-                                                                             dcd B.2.2.3.1    2020-01-01    
-                                                                             dcd A.1.1.1.2    2020-01-01    
-                                                                             dcd B.1.1.1.1    2020-01-01    
-                                                                             dcd A.1.1.1.2    2020-01-01    
-                                                                             dcd C.1.1.1.3    2020-01-01    
-                                                                             dcd B.1.1.1.1    2020-01-01    
-      BRA-1/65             25/F/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd C.2.1.2.1    2019-07-15    
-                                                                             dcd D.2.1.5.3    2019-07-15    
-                                                                             dcd B.1.1.1.1    2019-07-15    
-                                                                             dcd C.1.1.1.3    2019-07-15    
-      BRA-1/93             34/F/ASIAN                       A: Drug X        dcd D.1.1.4.2    2020-06-20    
-                                                                             dcd D.2.1.5.3    2020-06-20    
-                                                                             dcd A.1.1.1.1    2020-06-20    
-                                                                             dcd D.2.1.5.3    2020-06-20    
-                                                                             dcd C.1.1.1.3    2020-06-20    
-                                                                             dcd D.1.1.1.1    2020-06-20    
-                                                                             dcd B.1.1.1.1    2020-06-20    
-                                                                             dcd D.2.1.5.3    2020-06-20    
-                                                                             dcd B.2.2.3.1    2020-06-20    
-      BRA-11/237           64/F/ASIAN                       C: Combination   dcd D.2.1.5.3    2020-03-10    
-                                                                             dcd C.1.1.1.3    2020-03-10    
-                                                                             dcd B.2.1.2.1    2020-03-10    
-      BRA-11/321           33/F/ASIAN                       C: Combination   dcd A.1.1.1.1    2020-10-06    
-                                                                             dcd A.1.1.1.1    2020-10-06    
-                                                                             dcd C.2.1.2.1    2020-10-06    
-                                                                             dcd D.2.1.5.3    2020-10-06    
-                                                                             dcd A.1.1.1.2    2020-10-06    
-                                                                             dcd D.2.1.5.3    2020-10-06    
-                                                                             dcd A.1.1.1.1    2020-10-06    
+      BRA-1/134            47/M/WHITE                       A: Drug X        dcd B.2.1.2.1    04NOV2020     
+                                                                             dcd D.1.1.4.2    04NOV2020     
+                                                                             dcd A.1.1.1.2    04NOV2020     
+                                                                             dcd A.1.1.1.2    04NOV2020     
+      BRA-1/141            35/F/WHITE                       C: Combination   dcd B.2.1.2.1    25JUL2020     
+                                                                             dcd D.2.1.5.3    25JUL2020     
+                                                                             dcd A.1.1.1.1    25JUL2020     
+                                                                             dcd A.1.1.1.2    25JUL2020     
+                                                                             dcd A.1.1.1.1    25JUL2020     
+                                                                             dcd D.1.1.1.1    25JUL2020     
+      BRA-1/236            32/M/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd B.1.1.1.1    15JAN2021     
+                                                                             dcd B.1.1.1.1    15JAN2021     
+                                                                             dcd B.1.1.1.1    15JAN2021     
+      BRA-1/265            25/M/WHITE                       C: Combination   dcd C.2.1.2.1    07OCT2019     
+                                                                             dcd D.1.1.4.2    07OCT2019     
+                                                                             dcd D.1.1.1.1    07OCT2019     
+                                                                             dcd C.1.1.1.3    07OCT2019     
+      BRA-1/42             36/M/BLACK OR AFRICAN AMERICAN   A: Drug X        dcd C.2.1.2.1    01JAN2020     
+                                                                             dcd D.1.1.1.1    01JAN2020     
+                                                                             dcd C.2.1.2.1    01JAN2020     
+                                                                             dcd A.1.1.1.2    01JAN2020     
+                                                                             dcd B.2.2.3.1    01JAN2020     
+                                                                             dcd A.1.1.1.2    01JAN2020     
+                                                                             dcd B.1.1.1.1    01JAN2020     
+                                                                             dcd A.1.1.1.2    01JAN2020     
+                                                                             dcd C.1.1.1.3    01JAN2020     
+                                                                             dcd B.1.1.1.1    01JAN2020     
+      BRA-1/65             25/F/BLACK OR AFRICAN AMERICAN   B: Placebo       dcd C.2.1.2.1    15JUL2019     
+                                                                             dcd D.2.1.5.3    15JUL2019     
+                                                                             dcd B.1.1.1.1    15JUL2019     
+                                                                             dcd C.1.1.1.3    15JUL2019     
+      BRA-1/93             34/F/ASIAN                       A: Drug X        dcd D.1.1.4.2    20JUN2020     
+                                                                             dcd D.2.1.5.3    20JUN2020     
+                                                                             dcd A.1.1.1.1    20JUN2020     
+                                                                             dcd D.2.1.5.3    20JUN2020     
+                                                                             dcd C.1.1.1.3    20JUN2020     
+                                                                             dcd D.1.1.1.1    20JUN2020     
+                                                                             dcd B.1.1.1.1    20JUN2020     
+                                                                             dcd D.2.1.5.3    20JUN2020     
+                                                                             dcd B.2.2.3.1    20JUN2020     
+      BRA-11/237           64/F/ASIAN                       C: Combination   dcd D.2.1.5.3    10MAR2020     
+                                                                             dcd C.1.1.1.3    10MAR2020     
+                                                                             dcd B.2.1.2.1    10MAR2020     
+      BRA-11/321           33/F/ASIAN                       C: Combination   dcd A.1.1.1.1    06OCT2020     
+                                                                             dcd A.1.1.1.1    06OCT2020     
+                                                                             dcd C.2.1.2.1    06OCT2020     
+                                                                             dcd D.2.1.5.3    06OCT2020     
+                                                                             dcd A.1.1.1.2    06OCT2020     
+                                                                             dcd D.2.1.5.3    06OCT2020     
+                                                                             dcd A.1.1.1.1    06OCT2020     
       \s\n                                                                                                  
                                                                              Study       AE             
                                                                              Day of   Duration          

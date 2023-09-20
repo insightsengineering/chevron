@@ -344,32 +344,18 @@ get_x_vjust <- function(x) {
   }
 }
 
-
-#' Format Date and Keep Chronological Order in Levels
+#' Formatting of date
 #'
-#' @param x (`character`, `factor`, `Date` or `POSIXct`) to convert.
-#' @param format (`string`) see `strptime`.
-#' @param to_upper (`flag`) whether to convert the final result to upper case.
+#' @param date_format (`string`) the output format.
+#'
+#' @return a `function` converting a date into `string`.
 #'
 #' @export
-#' @examples
-#' sort_str_time("2020-01-01")
-#' sort_str_time(as.Date("2020-07-01"))
-sort_str_time <- function(x, format = "%d%b%Y", to_upper = TRUE) {
-  assert_multi_class(x, c("character", "factor", "Date", "POSIXct"))
-
-  lvl <- lvls(x)
-
-  # Remove duplicate formed by reformatting.
-  formatted_lvl <- unique(strftime(lvl, format = format))
-  formatted_date <- strftime(x, format = format)
-
-  if (to_upper) {
-    formatted_lvl <- toupper(formatted_lvl)
-    formatted_date <- toupper(formatted_date)
+#'
+format_date <- function(date_format = "%d%b%Y") {
+  function(x, ...) {
+    toupper(strftime(x, format = date_format))
   }
-
-  factor(formatted_date, levels = formatted_lvl)
 }
 
 # report_null ----

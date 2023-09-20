@@ -105,7 +105,7 @@
           n                                      134           134            132             400     
           Mean (SD)                          33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
           Median                                33.0          35.0            35.0            34.0    
-          Min - Max                          21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
+          Min - Max                            21 - 50       21 - 62        20 - 69         20 - 69   
         Age Group                                                                                     
           n                                      134           134            132             400     
           <65                                134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
@@ -373,28 +373,6 @@
           Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
           Total number of events                                         55            63              64      
           dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
-
-# script_funs works as expected in interactive mode
-
-    Code
-      res
-    Output
-       [1] "# Edit Preprocessing Function."                                                        
-       [2] "preprocess(aet04) <- "                                                                 
-       [3] "function(adam_db, ...) {"                                                              
-       [4] "  atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")"                                 
-       [5] "  adam_db$adae <- adam_db$adae %>%"                                                    
-       [6] "    filter(.data$ANL01FL == \"Y\") %>%"                                                
-       [7] "    mutate("                                                                           
-       [8] "      AEBODSYS = reformat(.data$AEBODSYS, nocoding),"                                  
-       [9] "      AEDECOD = reformat(.data$AEDECOD, nocoding),"                                    
-      [10] "      ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)"                             
-      [11] "    )"                                                                                 
-      [12] "  adam_db"                                                                             
-      [13] "}"                                                                                     
-      [14] ""                                                                                      
-      [15] "# Create TLG"                                                                          
-      [16] "tlg_output <- run(object = aet04, adam_db = data, verbose = TRUE, user_args = args_ls)"
 
 # script_funs generates a valid script
 

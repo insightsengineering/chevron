@@ -14,9 +14,11 @@ dsl01_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ACTARM",
-  disp_cols = c("ID", "ASR", arm_var, "SSADM", "TRTDURD", "DISCONT"),
+  disp_cols = c("ID", "ASR", arm_var, "TRTSDTM", "TRTDURD", "DISCONT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center")),
+    = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
+    fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
+    format_date(), align = "left")),
   col_formatting = NULL,
   unique_rows = TRUE,
   ...

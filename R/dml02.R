@@ -15,7 +15,10 @@ dml02_main <- function(adam_db,
                        disp_cols = c("ID", arm_var, "RANDDT", "TRTSDT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
+                         numeric = fmt_config(align = "center"),
+                         Date = fmt_config(format = format_date(), align = "left"),
+                         POSIXct = fmt_config(format = format_date(), align = "left"),
+                         POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -50,11 +53,11 @@ dml02_pre <- function(adam_db,
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       !!arm_var := with_label(.data[[arm_var]], "Randomized Treatment"),
       RANDDT = with_label(
-        sort_str_time(.data$RANDDT, format = "%d%b%Y"),
+        .data$RANDDT,
         "Date of\nRandomization"
       ),
       TRTSDT = with_label(
-        sort_str_time(.data$TRTSDTM, format = "%d%b%Y"),
+        .data$TRTSDTM,
         "Date of\nFirst Study Drug\nAdministration"
       )
     ) %>%

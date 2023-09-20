@@ -14,8 +14,7 @@ test_that("pdl01 functions work as expected", {
   proc_data$addv$DVSTDTC <- proc_data$addv$ASTDT
   expect_message(
     res <- pdl01_pre(proc_data) %>%
-      pdl01_main() %>%
-      pdl01_post()
+      pdl01_main()
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

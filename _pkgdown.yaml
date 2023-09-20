@@ -127,7 +127,6 @@ reference:
       - h_format_dec
       - lvls
       - convert_to_month
-      - sort_str_time
       - create_id_listings
   - title: Standard Reformatting Rules
     contents:

@@ -12,10 +12,13 @@
 dsl01_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ACTARM",
-                       disp_cols = c("ID", "ASR", arm_var, "SSADM", "TRTDURD", "DISCONT"),
+                       disp_cols = c("ID", "ASR", arm_var, "TRTSDTM", "TRTDURD", "DISCONT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
+                         numeric = fmt_config(align = "center"),
+                         Date = fmt_config(format = format_date(), align = "left"),
+                         POSIXct = fmt_config(format = format_date(), align = "left"),
+                         POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -51,8 +54,8 @@ dsl01_pre <- function(adam_db,
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
-      SSADM = with_label(
-        sort_str_time(.data$TRTSDTM),
+      TRTSDTM = with_label(
+        .data$TRTSDTM,
         "Date of First\nStudy Drug\nAdministration"
       ),
       TRTDURD = with_label(
@@ -64,7 +67,7 @@ dsl01_pre <- function(adam_db,
         "Discontinued\nEarly from Study?"
       )
     ) %>%
-    select(all_of(c("ID", "ASR", arm_var, "SSADM", "TRTDURD", "DISCONT")))
+    select(all_of(c("ID", "ASR", arm_var, "TRTSDTM", "TRTDURD", "DISCONT")))
 
   adam_db
 }

@@ -16,7 +16,10 @@ ael04_main <- function(adam_db,
                        disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
+                         numeric = fmt_config(align = "center"),
+                         Date = fmt_config(format = format_date(), align = "left"),
+                         POSIXct = fmt_config(format = format_date(), align = "left"),
+                         POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -59,7 +62,7 @@ ael04_pre <- function(adam_db,
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRTSDTM = with_label(
-        sort_str_time(.data$TRTSDTM, "%d%b%Y"),
+        .data$TRTSDTM,
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),

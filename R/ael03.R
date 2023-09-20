@@ -15,11 +15,14 @@ ael03_main <- function(adam_db,
                        key_cols = c("ID", "ASR", arm_var),
                        disp_cols = c(
                          "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESEV",
-                         "AEREL", "OUTCOME", "AECONTRT", "ACTION", "SERREAS"
+                         "AEREL", "AEOUT", "AECONTRT", "ACTION", "SERREAS"
                        ),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
+                         numeric = fmt_config(align = "center"),
+                         Date = fmt_config(format = format_date(), align = "left"),
+                         POSIXct = fmt_config(format = format_date(), align = "left"),
+                         POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -63,7 +66,7 @@ ael03_pre <- function(adam_db,
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRTSDTM = with_label(
-        toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
+        .data$TRTSDTM,
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
       ADURN = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
@@ -71,7 +74,7 @@ ael03_pre <- function(adam_db,
         reformat(.data$AEREL, yes_no_rule),
         "Caused by\nStudy\nDrug"
       ),
-      OUTCOME = with_label(case_when(
+      AEOUT = with_label(case_when(
         AEOUT == "FATAL" ~ 1,
         AEOUT == "NOT RECOVERED/NOT RESOLVED" ~ 2,
         AEOUT == "RECOVERED/RESOLVED" ~ 3,
@@ -102,13 +105,13 @@ ael03_pre <- function(adam_db,
         TRUE ~ " "
       ), "Reason\nClassified\nas Serious\n(3)"),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
-      AEDECOD = with_label(reformat(as.factor(.data$AEDECOD), nocoding), "Adverse\nEvent MedDRA\nPreferred Term"),
+      AEDECOD = with_label(reformat(.data$AEDECOD, nocoding), "Adverse\nEvent MedDRA\nPreferred Term"),
       ASTDY = with_label(.data$ASTDY, "Study\nDay of\nOnset"),
       AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity")
     ) %>%
     select(all_of(c(
       "ID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
-      "AESEV", "AEREL", "OUTCOME", "AECONTRT", "ACTION", "SERREAS"
+      "AESEV", "AEREL", "AEOUT", "AECONTRT", "ACTION", "SERREAS"
     )))
 
   adam_db

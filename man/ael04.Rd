@@ -17,7 +17,9 @@ ael04_main(
   key_cols = "ID",
   disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center")),
+    = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
+    fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
+    format_date(), align = "left")),
   col_formatting = NULL,
   unique_rows = TRUE,
   ...

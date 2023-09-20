@@ -15,12 +15,14 @@ ael02_main <- function(adam_db,
                        key_cols = c("ID", "ASR", arm_var),
                        disp_cols = c(
                          "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER",
-                         "AESEV", "RELATED", "AEOUT", "TREATED", "ACTION"
+                         "AESEV", "AEREL", "AEOUT", "AECONTRT", "ACTION"
                        ),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center"),
-                         date = fmt_config(align = "right")
+                         Date = fmt_config(format = format_date(), align = "left"),
+                         POSIXct = fmt_config(format = format_date(), align = "left"),
+                         POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -63,12 +65,12 @@ ael02_pre <- function(adam_db,
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRTSDTM = with_label(
-        as.Date(.data$TRTSDTM), # toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
+        .data$TRTSDTM,
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
       ADURN = with_label(.data$ADURN, "AE\nDuration\nin Days"),
       AESER = with_label(reformat(.data$AESER, yes_no_rule), "Serious"),
-      RELATED = with_label(reformat(.data$AEREL, yes_no_rule), "Caused by\nStudy\nDrug"),
+      AEREL = with_label(reformat(.data$AEREL, yes_no_rule), "Caused by\nStudy\nDrug"),
       AEOUT = with_label(case_when(
         AEOUT == "FATAL" ~ 1,
         AEOUT == "NOT RECOVERED/NOT RESOLVED" ~ 2,
@@ -77,8 +79,8 @@ ael02_pre <- function(adam_db,
         AEOUT == "RECOVERING/RESOLVING" ~ 5,
         AEOUT == "UNKNOWN" ~ 6
       ), "Outcome\n(1)"),
-      TREATED = with_label(
-        ifelse(.data$AECONTRT == "Y", "Yes", ifelse(.data$AECONTRT == "N", "No", "")),
+      AECONTRT = with_label(
+        reformat(.data$AECONTRT, yes_no_rule),
         "Treatment\nfor AE"
       ),
       ACTION = with_label(case_when(
@@ -97,7 +99,7 @@ ael02_pre <- function(adam_db,
     ) %>%
     select(all_of(c(
       "ID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
-      "AESER", "AESEV", "RELATED", "AEOUT", "TREATED", "ACTION"
+      "AESER", "AESEV", "AEREL", "AEOUT", "AECONTRT", "ACTION"
     )))
 
   adam_db

@@ -16,7 +16,9 @@ pdl01_main(
   arm_var = "ARM",
   disp_cols = names(adam_db[[dataset]]),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center")),
+    = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
+    fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
+    format_date(), align = "left")),
   col_formatting = NULL,
   unique_rows = TRUE,
   ...
