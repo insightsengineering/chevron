@@ -20,7 +20,6 @@ ael04_main(
     = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
     fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
     format_date(), align = "left")),
-  col_formatting = NULL,
   unique_rows = TRUE,
   ...
 )
@@ -43,11 +42,11 @@ Key columns allow you to group repeat occurrences.}
 
 \item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 
-\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
+
+\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }
 \description{
 \code{AEL04} Listing 1 (Default) Listing of Patient Deaths.

@@ -20,21 +20,21 @@ dsl01_main <- function(adam_db,
                          POSIXct = fmt_config(format = format_date(), align = "left"),
                          POSIXt = fmt_config(format = format_date(), align = "left")
                        ),
-                       col_formatting = NULL,
                        unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols), label = paste0("adam_db$", dataset))
   assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
   assert_flag(unique_rows)
 
-  as_listing(
+  execute_with_args(
+    as_listing,
     adam_db[[dataset]],
+    key_cols = arm_var,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
-    col_formatting = col_formatting,
-    unique_rows = unique_rows
+    unique_rows = unique_rows,
+    ...
   )
 }
 

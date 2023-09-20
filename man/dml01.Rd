@@ -14,11 +14,9 @@ dml01_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ARM",
-  summaryvars = c("AGEGR1", "ETHNIC"),
-  disp_cols = c("ID", "ASR", summaryvars, arm_var),
+  disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
-  col_formatting = NULL,
   unique_rows = TRUE,
   ...
 )
@@ -27,7 +25,7 @@ dml01_pre(
   adam_db,
   dataset = "adsl",
   arm_var = "ARM",
-  summaryvars = c("AGEGR1", "ETHNIC"),
+  disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
   ...
 )
 
@@ -40,18 +38,15 @@ dml01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{summaryvars}{(\code{character}) variables summarized in demographic table. The label attribute of the corresponding
-column in \code{adsl} table of \code{adam_db} is used as label.}
-
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 
-\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
+
+\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }
 \description{
 \code{DML01} Listing 1 (Default) Demographics and Baseline Characteristics.

@@ -26,22 +26,21 @@ cml02a_gl_main <- function(adam_db,
                              all = fmt_config(align = "left"),
                              numeric = fmt_config(align = "center")
                            ),
-                           col_formatting = NULL,
                            unique_rows = TRUE,
                            ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols), label = paste0("adam_db$", dataset))
   assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
   assert_flag(unique_rows)
 
-  as_listing(
+  execute_with_args(
+    as_listing,
     adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
-    col_formatting = col_formatting,
-    unique_rows = unique_rows
+    unique_rows = unique_rows,
+    ...
   )
 }
 

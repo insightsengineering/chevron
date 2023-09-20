@@ -12,56 +12,45 @@
 dml01_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ARM",
-                       summaryvars = c(
-                         "AGEGR1",
-                         "ETHNIC"
-                       ),
-                       disp_cols = c("ID", "ASR", summaryvars, arm_var),
+                       disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
                        ),
-                       col_formatting = NULL,
                        unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols), label = paste0("adam_db$", dataset))
   assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
   assert_flag(unique_rows)
 
-  as_listing(
+  execute_with_args(
+    as_listing,
     adam_db[[dataset]],
-    key_cols = arm_var,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
-    col_formatting = col_formatting,
-    unique_rows = unique_rows
+    unique_rows = unique_rows,
+    ...
   )
 }
 
 #' @describeIn dml01 Preprocessing
 #'
 #' @inheritParams dml01_main
-#' @param summaryvars (`character`) variables summarized in demographic table. The label attribute of the corresponding
-#'   column in `adsl` table of `adam_db` is used as label.
 #'
 #' @export
 #'
 dml01_pre <- function(adam_db,
                       dataset = "adsl",
                       arm_var = "ARM",
-                      summaryvars = c(
-                        "AGEGR1",
-                        "ETHNIC"
-                      ),
+                      disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race")
     ) %>%
-    select(all_of(c("ID", "ASR", summaryvars, arm_var)))
+    select(all_of(disp_cols))
 
   adam_db
 }

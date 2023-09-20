@@ -18,7 +18,6 @@ cml02a_gl_main(
   disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
-  col_formatting = NULL,
   unique_rows = TRUE,
   ...
 )
@@ -44,11 +43,11 @@ Key columns allow you to group repeat occurrences.}
 
 \item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 
-\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
+
+\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }
 \description{
 \code{CML02A_GL} Listing 1 (Default) Concomitant Medication Class Level 2, Preferred Name, and Investigator-Specified
