@@ -4,7 +4,6 @@
 \name{cml02a_gl_main}
 \alias{cml02a_gl_main}
 \alias{cml02a_gl_pre}
-\alias{cml02a_gl_post}
 \alias{cml02a_gl}
 \title{\code{CML02A_GL} Listing 1 (Default) Concomitant Medication Class Level 2, Preferred Name, and Investigator-Specified
 Terms.}
@@ -31,8 +30,6 @@ cml02a_gl_pre(
   ...
 )
 
-cml02a_gl_post(tlg, ...)
-
 cml02a_gl
 }
 \arguments{
@@ -52,8 +49,6 @@ Key columns allow you to group repeat occurrences.}
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{CML02A_GL} Listing 1 (Default) Concomitant Medication Class Level 2, Preferred Name, and Investigator-Specified
@@ -72,8 +67,6 @@ Terms.
 \item \code{cml02a_gl_main()}: Main TLG function
 
 \item \code{cml02a_gl_pre()}: Preprocessing
-
-\item \code{cml02a_gl_post()}: Postprocessing
 
 }}
 \note{

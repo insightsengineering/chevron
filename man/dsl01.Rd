@@ -4,7 +4,6 @@
 \name{dsl01_main}
 \alias{dsl01_main}
 \alias{dsl01_pre}
-\alias{dsl01_post}
 \alias{dsl01}
 \title{\code{DSL01} Listing 1 (Default) Patients with Study Drug Withdrawn Due to Adverse Events.}
 \format{
@@ -15,7 +14,7 @@ dsl01_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ACTARM",
-  disp_cols = c("ID", "ASR", arm_var, "SSADM", "STDWD", "DISCONT"),
+  disp_cols = c("ID", "ASR", arm_var, "SSADM", "TRTDURD", "DISCONT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
   col_formatting = NULL,
@@ -24,8 +23,6 @@ dsl01_main(
 )
 
 dsl01_pre(adam_db, dataset = "adsl", arm_var = "ACTARM", ...)
-
-dsl01_post(tlg, ...)
 
 dsl01
 }
@@ -45,8 +42,6 @@ dsl01
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{DSL01} Listing 1 (Default) Patients with Study Drug Withdrawn Due to Adverse Events.
@@ -56,8 +51,6 @@ dsl01
 \item \code{dsl01_main()}: Main TLG function
 
 \item \code{dsl01_pre()}: Preprocessing
-
-\item \code{dsl01_post()}: Postprocessing
 
 }}
 \examples{

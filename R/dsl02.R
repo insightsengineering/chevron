@@ -48,7 +48,7 @@ dsl02_pre <- function(adam_db,
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$AEWITHFL == "Y") %>%
     mutate(
-      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       DISCONT = ifelse(!is.na(.data$DCSREAS) & .data$EOSSTT != "COMPLETED", "Yes", "No"),
       SSADTM = with_label(
@@ -73,12 +73,6 @@ dsl02_pre <- function(adam_db,
   adam_db
 }
 
-#' @describeIn dsl02 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-dsl02_post <- report_null
-
 #' `dsl02` Listing 1 (Default) Patients Who Discontinued Early from Study.
 #'
 #' @include chevron_tlg-S4class.R
@@ -88,6 +82,5 @@ dsl02_post <- report_null
 #' res <- run(dsl02, syn_data)
 dsl02 <- chevron_l(
   main = dsl02_main,
-  preprocess = dsl02_pre,
-  postprocess = dsl02_post
+  preprocess = dsl02_pre
 )

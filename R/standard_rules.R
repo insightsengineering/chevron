@@ -12,7 +12,7 @@ empty_rule <- rule(.to_NA = "")
 
 #' Yes/No rule in title case
 #' @export
-Yes_No_rule <- rule("Yes" = c("Y", "y", "yes"), "No" = c("N", "n", "no")) # nolint
+yes_no_rule <- rule("Yes" = c("Y", "y", "yes"), "No" = c("N", "n", "no")) # nolint
 
 #' Get grade rule
 #' @param direction (`string`) of abnormality direction.

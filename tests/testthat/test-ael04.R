@@ -24,7 +24,7 @@ test_that("ael04 can handle all missing values", {
 test_that("ael04 functions work as expected", {
   expect_message(res <-
     ael04_pre(syn_data) %>%
-    ael04_main() %>%
-    ael04_post())
+    ael04_main()
+  )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

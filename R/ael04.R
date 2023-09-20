@@ -12,7 +12,7 @@
 ael04_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ACTARM",
-                       key_cols = "CPID",
+                       key_cols = "ID",
                        disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
@@ -56,7 +56,7 @@ ael04_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRTSDTM = with_label(
         sort_str_time(.data$TRTSDTM, "%d%b%Y"),
@@ -69,17 +69,11 @@ ael04_pre <- function(adam_db,
       ADTHAUT = with_label(.data$ADTHAUT, "Autopsy\nPerformed?")
     ) %>%
     select(all_of(c(
-      "CPID", "ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"
+      "ID", "ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"
     )))
 
   adam_db
 }
-
-#' @describeIn ael04 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-ael04_post <- report_null
 
 #' `AEL04` Listing 1 (Default) Listing of Patient Deaths.
 #'
@@ -90,6 +84,5 @@ ael04_post <- report_null
 #' res <- run(ael04, syn_data)
 ael04 <- chevron_l(
   main = ael04_main,
-  preprocess = ael04_pre,
-  postprocess = ael04_post
+  preprocess = ael04_pre
 )

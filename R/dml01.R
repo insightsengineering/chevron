@@ -58,19 +58,13 @@ dml01_pre <- function(adam_db,
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
-      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race")
     ) %>%
     select(all_of(c("ID", "ASR", summaryvars, arm_var)))
 
   adam_db
 }
-
-#' @describeIn dml01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-dml01_post <- report_null
 
 #' `DML01` Listing 1 (Default) Demographics and Baseline Characteristics.
 #'
@@ -81,6 +75,5 @@ dml01_post <- report_null
 #' res <- run(dml01, syn_data)
 dml01 <- chevron_l(
   main = dml01_main,
-  preprocess = dml01_pre,
-  postprocess = dml01_post
+  preprocess = dml01_pre
 )

@@ -12,7 +12,7 @@
 ael03_main <- function(adam_db,
                        dataset = "adae",
                        arm_var = "ACTARM",
-                       key_cols = c("CPID", "ASR", arm_var),
+                       key_cols = c("ID", "ASR", arm_var),
                        disp_cols = c(
                          "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESEV",
                          "AEREL", "OUTCOME", "AECONTRT", "ACTION", "SERREAS"
@@ -60,7 +60,7 @@ ael03_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRTSDTM = with_label(
         toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
@@ -68,7 +68,7 @@ ael03_pre <- function(adam_db,
       ),
       ADURN = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
       AEREL = with_label(
-        reformat(.data$AEREL, Yes_No_rule),
+        reformat(.data$AEREL, yes_no_rule),
         "Caused by\nStudy\nDrug"
       ),
       OUTCOME = with_label(case_when(
@@ -80,7 +80,7 @@ ael03_pre <- function(adam_db,
         AEOUT == "UNKNOWN" ~ 6
       ), "Outcome\n(1)"),
       AECONTRT = with_label(
-        reformat(.data$AECONTRT, Yes_No_rule),
+        reformat(.data$AECONTRT, yes_no_rule),
         "Treatment\nfor AE"
       ),
       ACTION = with_label(case_when(
@@ -107,18 +107,12 @@ ael03_pre <- function(adam_db,
       AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity")
     ) %>%
     select(all_of(c(
-      "CPID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
+      "ID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
       "AESEV", "AEREL", "OUTCOME", "AECONTRT", "ACTION", "SERREAS"
     )))
 
   adam_db
 }
-
-#' @describeIn ael03 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-ael03_post <- report_null
 
 #' `AEL03` Listing 1 (Default) Listing of Serious Adverse Events.
 #'
@@ -129,6 +123,5 @@ ael03_post <- report_null
 #' res <- run(ael03, syn_data)
 ael03 <- chevron_l(
   main = ael03_main,
-  preprocess = ael03_pre,
-  postprocess = ael03_post
+  preprocess = ael03_pre
 )

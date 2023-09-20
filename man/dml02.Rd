@@ -4,7 +4,6 @@
 \name{dml02_main}
 \alias{dml02_main}
 \alias{dml02_pre}
-\alias{dml02_post}
 \alias{dml02}
 \title{\code{DML02} Listing 1 (Default) Randomization.}
 \format{
@@ -25,8 +24,6 @@ dml02_main(
 
 dml02_pre(adam_db, dataset = "adsl", arm_var = "ARM", ...)
 
-dml02_post(tlg, ...)
-
 dml02
 }
 \arguments{
@@ -45,8 +42,6 @@ dml02
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{DML02} Listing 1 (Default) Randomization.
@@ -56,8 +51,6 @@ dml02
 \item \code{dml02_main()}: Main TLG function
 
 \item \code{dml02_pre()}: Preprocessing
-
-\item \code{dml02_post()}: Postprocessing
 
 }}
 \examples{

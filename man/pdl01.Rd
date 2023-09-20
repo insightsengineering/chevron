@@ -4,7 +4,6 @@
 \name{pdl01_main}
 \alias{pdl01_main}
 \alias{pdl01_pre}
-\alias{pdl01_post}
 \alias{pdl01}
 \title{\code{PDL01} Listing 1 (Default) Major Protocol Deviations.}
 \format{
@@ -25,8 +24,6 @@ pdl01_main(
 
 pdl01_pre(adam_db, dataset = "addv", arm_var = "ARM", ...)
 
-pdl01_post(tlg, ...)
-
 pdl01
 }
 \arguments{
@@ -45,8 +42,6 @@ pdl01
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{PDL01} Listing 1 (Default) Major Protocol Deviations.
@@ -56,8 +51,6 @@ pdl01
 \item \code{pdl01_main()}: Main TLG function
 
 \item \code{pdl01_pre()}: Preprocessing
-
-\item \code{pdl01_post()}: Postprocessing
 
 }}
 \examples{

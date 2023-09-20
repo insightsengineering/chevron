@@ -12,14 +12,15 @@
 ael02_main <- function(adam_db,
                        dataset = "adae",
                        arm_var = "ACTARM",
-                       key_cols = c("CPID", "ASR", arm_var),
+                       key_cols = c("ID", "ASR", arm_var),
                        disp_cols = c(
                          "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER",
-                         "AESEV", "RELATED", "OUTCOME", "TREATED", "ACTION"
+                         "AESEV", "RELATED", "AEOUT", "TREATED", "ACTION"
                        ),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
+                         numeric = fmt_config(align = "center"),
+                         date = fmt_config(align = "right")
                        ),
                        col_formatting = NULL,
                        unique_rows = TRUE,
@@ -59,19 +60,16 @@ ael02_pre <- function(adam_db,
       )
     ) %>%
     mutate(
-      CPID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       TRTSDTM = with_label(
-        toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
+        as.Date(.data$TRTSDTM), # toupper(format(as.Date(.data$TRTSDTM), "%d%b%Y")),
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
-      ADURN = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
-      AESER = with_label(reformat(.data$AESER, Yes_No_rule), "Serious"),
-      RELATED = with_label(
-        ifelse(.data$AEREL == "Y", "Yes", ifelse(.data$AEREL == "N", "No", "")),
-        "Caused by\nStudy\nDrug"
-      ),
-      OUTCOME = with_label(case_when(
+      ADURN = with_label(.data$ADURN, "AE\nDuration\nin Days"),
+      AESER = with_label(reformat(.data$AESER, yes_no_rule), "Serious"),
+      RELATED = with_label(reformat(.data$AEREL, yes_no_rule), "Caused by\nStudy\nDrug"),
+      AEOUT = with_label(case_when(
         AEOUT == "FATAL" ~ 1,
         AEOUT == "NOT RECOVERED/NOT RESOLVED" ~ 2,
         AEOUT == "RECOVERED/RESOLVED" ~ 3,
@@ -98,18 +96,12 @@ ael02_pre <- function(adam_db,
       AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity")
     ) %>%
     select(all_of(c(
-      "CPID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
-      "AESER", "AESEV", "RELATED", "OUTCOME", "TREATED", "ACTION"
+      "ID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
+      "AESER", "AESEV", "RELATED", "AEOUT", "TREATED", "ACTION"
     )))
 
   adam_db
 }
-
-#' @describeIn ael02 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-ael02_post <- report_null
 
 #' `AEL02` Listing 1 (Default) Listing of Adverse Events.
 #'
@@ -120,6 +112,5 @@ ael02_post <- report_null
 #' res <- run(ael02, syn_data)
 ael02 <- chevron_l(
   main = ael02_main,
-  preprocess = ael02_pre,
-  postprocess = ael02_post
+  preprocess = ael02_pre
 )

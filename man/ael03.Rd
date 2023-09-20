@@ -4,7 +4,6 @@
 \name{ael03_main}
 \alias{ael03_main}
 \alias{ael03_pre}
-\alias{ael03_post}
 \alias{ael03}
 \title{\code{AEL03} Listing 1 (Default) Listing of Serious Adverse Events.}
 \format{
@@ -15,7 +14,7 @@ ael03_main(
   adam_db,
   dataset = "adae",
   arm_var = "ACTARM",
-  key_cols = c("CPID", "ASR", arm_var),
+  key_cols = c("ID", "ASR", arm_var),
   disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESEV", "AEREL", "OUTCOME",
     "AECONTRT", "ACTION", "SERREAS"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
@@ -26,8 +25,6 @@ ael03_main(
 )
 
 ael03_pre(adam_db, dataset = "adae", arm_var = "ACTARM", ...)
-
-ael03_post(tlg, ...)
 
 ael03
 }
@@ -50,8 +47,6 @@ Key columns allow you to group repeat occurrences.}
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{AEL03} Listing 1 (Default) Listing of Serious Adverse Events.
@@ -61,8 +56,6 @@ Key columns allow you to group repeat occurrences.}
 \item \code{ael03_main()}: Main TLG function
 
 \item \code{ael03_pre()}: Preprocessing
-
-\item \code{ael03_post()}: Postprocessing
 
 }}
 \examples{

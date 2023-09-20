@@ -4,7 +4,6 @@
 \name{ael04_main}
 \alias{ael04_main}
 \alias{ael04_pre}
-\alias{ael04_post}
 \alias{ael04}
 \title{\code{AEL04} Listing 1 (Default) Listing of Patient Deaths.}
 \format{
@@ -15,7 +14,7 @@ ael04_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ACTARM",
-  key_cols = "CPID",
+  key_cols = "ID",
   disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
     = "center")),
@@ -25,8 +24,6 @@ ael04_main(
 )
 
 ael04_pre(adam_db, dataset = "adsl", arm_var = "ACTARM", ...)
-
-ael04_post(tlg, ...)
 
 ael04
 }
@@ -49,8 +46,6 @@ Key columns allow you to group repeat occurrences.}
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{AEL04} Listing 1 (Default) Listing of Patient Deaths.
@@ -60,8 +55,6 @@ Key columns allow you to group repeat occurrences.}
 \item \code{ael04_main()}: Main TLG function
 
 \item \code{ael04_pre()}: Preprocessing
-
-\item \code{ael04_post()}: Postprocessing
 
 }}
 \examples{

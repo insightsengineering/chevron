@@ -4,7 +4,6 @@
 \name{ael02_main}
 \alias{ael02_main}
 \alias{ael02_pre}
-\alias{ael02_post}
 \alias{ael02}
 \title{\code{AEL02} Listing 1 (Default) Listing of Adverse Events.}
 \format{
@@ -15,19 +14,17 @@ ael02_main(
   adam_db,
   dataset = "adae",
   arm_var = "ACTARM",
-  key_cols = c("CPID", "ASR", arm_var),
+  key_cols = c("ID", "ASR", arm_var),
   disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER", "AESEV", "RELATED",
-    "OUTCOME", "TREATED", "ACTION"),
+    "AEOUT", "TREATED", "ACTION"),
   default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center")),
+    = "center"), date = fmt_config(align = "right")),
   col_formatting = NULL,
   unique_rows = TRUE,
   ...
 )
 
 ael02_pre(adam_db, dataset = "adae", arm_var = "ACTARM", ...)
-
-ael02_post(tlg, ...)
 
 ael02
 }
@@ -50,8 +47,6 @@ Key columns allow you to group repeat occurrences.}
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{AEL02} Listing 1 (Default) Listing of Adverse Events.
@@ -61,8 +56,6 @@ Key columns allow you to group repeat occurrences.}
 \item \code{ael02_main()}: Main TLG function
 
 \item \code{ael02_pre()}: Preprocessing
-
-\item \code{ael02_post()}: Postprocessing
 
 }}
 \examples{

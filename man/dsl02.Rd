@@ -4,7 +4,6 @@
 \name{dsl02_main}
 \alias{dsl02_main}
 \alias{dsl02_pre}
-\alias{dsl02_post}
 \alias{dsl02}
 \title{\code{dsl02} Listing 1 (Default) Patients Who Discontinued Early from Study.}
 \format{
@@ -25,8 +24,6 @@ dsl02_main(
 
 dsl02_pre(adam_db, dataset = "adsl", arm_var = "ACTARM", ...)
 
-dsl02_post(tlg, ...)
-
 dsl02
 }
 \arguments{
@@ -45,8 +42,6 @@ dsl02
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{dsl02} Listing 1 (Default) Patients Who Discontinued Early from Study.
@@ -56,8 +51,6 @@ dsl02
 \item \code{dsl02_main()}: Main TLG function
 
 \item \code{dsl02_pre()}: Preprocessing
-
-\item \code{dsl02_post()}: Postprocessing
 
 }}
 \examples{

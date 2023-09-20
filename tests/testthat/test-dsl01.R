@@ -10,8 +10,7 @@ test_that("dsl01 works with adsl dataset", {
 test_that("dsl01 functions work as expected", {
   expect_message(
     res <- dsl01_pre(syn_data) %>%
-      dsl01_main() %>%
-      dsl01_post()
+      dsl01_main()
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

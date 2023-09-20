@@ -155,7 +155,7 @@ chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), a
 #'
 chevron_l <- function(main = function(adam_db, ...) data.frame(),
                       preprocess = function(adam_db, ...) adam_db,
-                      postprocess = function(tlg, ...) tlg,
+                      postprocess = report_null,
                       ...) {
   res <- .chevron_l(
     main = main,

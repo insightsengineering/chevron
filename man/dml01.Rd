@@ -4,7 +4,6 @@
 \name{dml01_main}
 \alias{dml01_main}
 \alias{dml01_pre}
-\alias{dml01_post}
 \alias{dml01}
 \title{\code{DML01} Listing 1 (Default) Demographics and Baseline Characteristics.}
 \format{
@@ -32,8 +31,6 @@ dml01_pre(
   ...
 )
 
-dml01_post(tlg, ...)
-
 dml01
 }
 \arguments{
@@ -55,8 +52,6 @@ column in \code{adsl} table of \code{adam_db} is used as label.}
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \description{
 \code{DML01} Listing 1 (Default) Demographics and Baseline Characteristics.
@@ -66,8 +61,6 @@ column in \code{adsl} table of \code{adam_db} is used as label.}
 \item \code{dml01_main()}: Main TLG function
 
 \item \code{dml01_pre()}: Preprocessing
-
-\item \code{dml01_post()}: Postprocessing
 
 }}
 \examples{

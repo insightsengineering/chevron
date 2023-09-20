@@ -17,8 +17,7 @@ test_that("cml02a_gl works with missing data", {
 test_that("cml02a_gl functions work as expected", {
   expect_message(
     res <- cml02a_gl_pre(syn_data) %>%
-      cml02a_gl_main() %>%
-      cml02a_gl_post()
+      cml02a_gl_main()
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

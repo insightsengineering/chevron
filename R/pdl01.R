@@ -49,12 +49,12 @@ pdl01_pre <- function(adam_db,
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$DVCAT == "MAJOR") %>%
     mutate(
-      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), "Center/Patient ID"),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       DVDECOD = with_label(.data$DVDECOD, "Category"),
       DVTERM = with_label(.data$DVTERM, "Description"),
       DVSTDTC = with_label(
-        toupper(strftime(.data$DVSTDTC, format = "%d%b%Y")),
+        sort_str_time(.data$DVSTDTC),
         "Date"
       ),
     ) %>%
@@ -62,12 +62,6 @@ pdl01_pre <- function(adam_db,
 
   adam_db
 }
-
-#' @describeIn pdl01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-pdl01_post <- report_null
 
 #' `PDL01` Listing 1 (Default) Major Protocol Deviations.
 #'
@@ -80,6 +74,5 @@ pdl01_post <- report_null
 #' res <- run(pdl01, proc_data)
 pdl01 <- chevron_l(
   main = pdl01_main,
-  preprocess = pdl01_pre,
-  postprocess = pdl01_post
+  preprocess = pdl01_pre
 )

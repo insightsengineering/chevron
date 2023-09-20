@@ -28,7 +28,7 @@ chevron_t(
 chevron_l(
   main = function(adam_db, ...) data.frame(),
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) tlg,
+  postprocess = report_null,
   ...
 )
 

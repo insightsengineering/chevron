@@ -47,7 +47,7 @@ dml02_pre <- function(adam_db,
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
-      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       !!arm_var := with_label(.data[[arm_var]], "Randomized Treatment"),
       RANDDT = with_label(
         sort_str_time(.data$RANDDT, format = "%d%b%Y"),
@@ -63,12 +63,6 @@ dml02_pre <- function(adam_db,
   adam_db
 }
 
-#' @describeIn dml02 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-dml02_post <- report_null
-
 #' `DML02` Listing 1 (Default) Randomization.
 #'
 #' @include chevron_tlg-S4class.R
@@ -78,6 +72,5 @@ dml02_post <- report_null
 #' res <- run(dml02, syn_data)
 dml02 <- chevron_l(
   main = dml02_main,
-  preprocess = dml02_pre,
-  postprocess = dml02_post
+  preprocess = dml02_pre
 )

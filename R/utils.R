@@ -428,3 +428,26 @@ report_null.ElementaryTable <- function(tlg, ...) {
 report_null.NULL <- function(tlg, ...) {
   return(null_report)
 }
+
+# listing_id ----
+
+#' Concatenate Site and Subject ID
+#'
+#' @param site (`string`)
+#' @param subject (`string`)
+#' @param sep (`string`)
+#'
+#' @note the `{Patient_label}` whisker placeholder will be used in the label.
+#'
+#' @export
+#' @examples
+#' create_id_listings("BRA-1", "xxx-1234")
+create_id_listings <- function(site, subject, sep = "/") {
+  assert_character(site)
+  assert_character(subject)
+  assert_string(sep)
+
+  subject_id <- stringr::str_split_i(subject, pattern = "-", i = -1)
+
+  with_label(paste(site, subject_id, sep = "/"), render_safe("Center/{Patient_label} ID"))
+}

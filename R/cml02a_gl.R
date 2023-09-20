@@ -67,12 +67,6 @@ cml02a_gl_pre <- function(adam_db,
   adam_db
 }
 
-#' @describeIn cml02a_gl Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-cml02a_gl_post <- report_null
-
 #' `CML02A_GL` Listing 1 (Default) Concomitant Medication Class Level 2, Preferred Name, and Investigator-Specified
 #' Terms.
 #'
@@ -83,6 +77,5 @@ cml02a_gl_post <- report_null
 #' run(cml02a_gl, syn_data)
 cml02a_gl <- chevron_l(
   main = cml02a_gl_main,
-  preprocess = cml02a_gl_pre,
-  postprocess = cml02a_gl_post
+  preprocess = cml02a_gl_pre
 )

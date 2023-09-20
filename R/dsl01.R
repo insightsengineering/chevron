@@ -12,7 +12,7 @@
 dsl01_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ACTARM",
-                       disp_cols = c("ID", "ASR", arm_var, "SSADM", "STDWD", "DISCONT"),
+                       disp_cols = c("ID", "ASR", arm_var, "SSADM", "TRTDURD", "DISCONT"),
                        default_formatting = list(
                          all = fmt_config(align = "left"),
                          numeric = fmt_config(align = "center")
@@ -48,14 +48,14 @@ dsl01_pre <- function(adam_db,
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$AEWITHFL == "Y") %>%
     mutate(
-      ID = with_label(paste(.data$SITEID, .data$SUBJID, sep = "/"), render_safe("Center/{Patient_label} ID")),
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       SSADM = with_label(
         sort_str_time(.data$TRTSDTM),
         "Date of First\nStudy Drug\nAdministration"
       ),
-      STDWD = with_label(
+      TRTDURD = with_label(
         as.numeric(ceiling(difftime(.data$TRTEDTM, .data$TRTSDTM, units = "days"))),
         "Study Day\nof Withdrawal"
       ),
@@ -64,16 +64,10 @@ dsl01_pre <- function(adam_db,
         "Discontinued\nEarly from Study?"
       )
     ) %>%
-    select(all_of(c("ID", "ASR", arm_var, "SSADM", "STDWD", "DISCONT")))
+    select(all_of(c("ID", "ASR", arm_var, "SSADM", "TRTDURD", "DISCONT")))
 
   adam_db
 }
-
-#' @describeIn dsl01 Postprocessing
-#'
-#' @inheritParams gen_args
-#'
-dsl01_post <- report_null
 
 #' `DSL01` Listing 1 (Default) Patients with Study Drug Withdrawn Due to Adverse Events.
 #'
@@ -84,6 +78,5 @@ dsl01_post <- report_null
 #' res <- run(dsl01, syn_data)
 dsl01 <- chevron_l(
   main = dsl01_main,
-  preprocess = dsl01_pre,
-  postprocess = dsl01_post
+  preprocess = dsl01_pre
 )
