@@ -201,6 +201,8 @@ syn_test_data <- function() {
   sd$adrs$AGEGR1 <- cut(sd$adrs$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adrs$AGEGR1, "label") <- "Age Group"
 
+  sd$adae$ADURN = sd$adaeAENDY - sd$adaeASTDY + 1
+
   sd
 }
 
