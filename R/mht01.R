@@ -29,7 +29,7 @@ mht01_main <- function(adam_db,
                        row_split_var = "MHBODSYS",
                        lbl_overall = NULL,
                        summary_labels = list(
-                        all = mht01_label
+                         all = mht01_label
                        ),
                        ...) {
   assert_all_tablenames(adam_db, c("admh", "adsl"))
@@ -144,7 +144,7 @@ mht01_pre <- function(adam_db, ...) {
     mutate(
       MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class"),
       MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term"),
-      MHSEQ = as.factor(MHSEQ)
+      MHSEQ = as.factor(.data$MHSEQ)
     )
 
   adam_db
