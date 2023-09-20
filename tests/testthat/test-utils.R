@@ -241,3 +241,16 @@ test_that("gg_theme_chevron works as expected", {
   expect_class(res, "theme")
   expect_silent(p + res)
 })
+
+# modify_character ----
+
+test_that("modify_character works", {
+  expect_identical(
+    modify_character(c(a = "a", b = "b"), c(b = "B")),
+    c(a = "a", b = "B")
+  )
+  expect_identical(
+    modify_character(c(a = "a", b = "b"), c(b = "B", a = "A")),
+    c(a = "A", b = "B")
+  )
+})
