@@ -35,7 +35,12 @@ mht01_main <- function(adam_db,
   assert_all_tablenames(adam_db, c("admh", "adsl"))
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$admh, c(row_split_var, "MHDECOD"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(
+    adam_db$admh,
+    c(row_split_var, "MHDECOD"),
+    types = list(c("character", "factor")),
+    empty_ok = TRUE
+  )
   assert_valid_variable(adam_db$admh, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$admh, arm_var)
