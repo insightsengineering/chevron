@@ -212,7 +212,7 @@ do_call <- function(what, args) {
 modify_character <- function(x, y) {
   assert_character(x, names = "unique", null.ok = TRUE)
   assert_character(y, names = "unique", null.ok = TRUE)
-  c(y, x)[unique(c(names(y), names(x)))]
+  c(y, x)[unique(c(names(x), names(y)))]
 }
 
 #' Helper function to convert to months if needed
