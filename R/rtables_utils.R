@@ -1,5 +1,5 @@
 #' @keywords internal
-split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, split_indent, ...) {
+split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels, split_indent, section_div, ...) {
   assert_string(var)
   assert_string(label)
   lyt <- lyt %>%
@@ -11,7 +11,7 @@ split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels
       label_pos = "topleft",
       split_label = label,
       indent_mod = split_indent,
-      section_div = get_section_div()
+      section_div = section_div
     )
   if (length(stats) > 0) {
     lyt <- lyt %>%
@@ -621,7 +621,7 @@ occurrence_lyt <- function(arm_var,
         .labels = render_safe(summary_labels$TOTAL)
       )
   }
-
+  section_divs <- get_section_div()
   for (k in seq_len(length(row_split_var))) {
     lyt <- split_and_summ_num_patients(
       lyt = lyt,
@@ -630,7 +630,8 @@ occurrence_lyt <- function(arm_var,
       label = lbl_row_split[k],
       split_indent = split_indent[k],
       stats = names(summary_labels[[row_split_var[k]]]),
-      summarize_labels = render_safe(summary_labels[[row_split_var[k]]])
+      summarize_labels = render_safe(summary_labels[[row_split_var[k]]]),
+      section_div = section_divs[k]
     )
   }
 

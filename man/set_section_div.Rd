@@ -7,8 +7,13 @@
 set_section_div(x)
 }
 \arguments{
-\item{x}{(\code{string}) value of the section divider.}
+\item{x}{(\code{integerish}) value of at which the section divider should be added.}
 }
 \description{
 Set Section Dividers
+}
+\details{
+Section dividers are empty lines between sections in rtables.
+E.g. if 1 is used then for the first row split an empty line is added.
+Currently it only works for \code{aet02}, \code{cmt01a} and \code{mht01} template.
 }

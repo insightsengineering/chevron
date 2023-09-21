@@ -271,17 +271,20 @@ test_that("expand_list works", {
 # set_section_div ----
 
 test_that("set_section_div works", {
-  expect_error(set_section_div(123))
-  expect_silent(set_section_div("123"))
+  expect_silent(set_section_div(1))
+  expect_error(set_section_div(NA_real_))
+  expect_error(set_section_div("a"))
   expect_identical(
     getOption("chevron.section_div"),
-    "123"
+    1
   )
 })
 
 # get_section_div ----
 
 test_that("get_section_div works", {
-  options("chevron.section_div" = NULL)
-  expect_identical(get_section_div(), NA_character_)
+  set_section_div(1)
+  expect_identical(get_section_div(), "")
+  set_section_div(c(1, 3))
+  expect_identical(get_section_div(), c("", NA_character_, ""))
 })

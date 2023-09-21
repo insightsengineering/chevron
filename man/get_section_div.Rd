@@ -7,7 +7,7 @@
 get_section_div()
 }
 \value{
-(\code{string}) value of the section divider.
+(\code{character}) value with section dividers at corresponding section.
 }
 \description{
 Get Section dividers

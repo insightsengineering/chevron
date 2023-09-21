@@ -354,22 +354,28 @@ get_x_vjust <- function(x) {
 
 #' Get Section dividers
 #' @export
-#' @return (`string`) value of the section divider.
+#' @return (`character`) value with section dividers at corresponding section.
 get_section_div <- function() {
-  x <- getOption("chevron.section_div", NA_character_)
-  if (!test_string(x, na.ok = TRUE)) {
-    x <- NA_character_
+  x <- getOption("chevron.section_div", integer(0))
+  if (!test_integerish(x)) {
+    ret <- NA_character_
+  } else {
+    ret <- rep(NA_character_, max(x, 0))
+    ret[x] <- ""
   }
-  x
+  ret
 }
 
 #' Set Section Dividers
 #' @export
-#' @param x (`string`) value of the section divider.
+#' @param x (`integerish`) value of at which the section divider should be added.
+#' @details Section dividers are empty lines between sections in rtables.
+#' E.g. if 1 is used then for the first row split an empty line is added.
+#' Currently it only works for `aet02`, `cmt01a` and `mht01` template.
 #' @return NULL
 #' @export
 set_section_div <- function(x) {
-  assert_string(x, na.ok = TRUE)
+  assert_integerish(x, min.len = 0L, any.missing = FALSE, lower = 1L)
   options("chevron.section_div" = x)
   invisible()
 }
