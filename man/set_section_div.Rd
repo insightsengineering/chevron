@@ -7,7 +7,7 @@
 set_section_div(x)
 }
 \arguments{
-\item{x}{(\code{string}) value of the section divier.}
+\item{x}{(\code{string}) value of the section divider.}
 }
 \description{
 Set Section Dividers

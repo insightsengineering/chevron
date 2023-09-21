@@ -365,7 +365,7 @@ get_section_div <- function() {
 
 #' Set Section Dividers
 #' @export
-#' @param x (`string`) value of the section divier.
+#' @param x (`string`) value of the section divider.
 #' @return NULL
 #' @export
 set_section_div <- function(x) {
