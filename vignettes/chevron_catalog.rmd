@@ -23,23 +23,39 @@ library(chevron)
 ## **GENERAL**
 
 ### **General Concepts**
-`chevron` is a collection of functions to creates tables, listings, and graphs following Roche standards for clinical trials reporting. After loading the R packages and the trial data, the output is to be created by the main function `run(...)` . Two arguments `object = ` and `adam_db = ` are always expected in the function. `object = ` specifies which Roche Standard Template ID to use. `adam_db = ` specifies the input dataset. Other mandatory and optional arguments within the `run` function vary depending on which template ID is called. 
+
+`chevron` is a collection of functions to creates tables, listings, and graphs following Roche standards for clinical trials reporting. After loading the R packages and the trial data, the output is to be created by the main function `run(...)` . Two arguments `object=` and `adam_db=` are always expected in the function. `object=` specifies which Roche Standard Template ID to use. `adam_db=` specifies the input dataset. Other mandatory and optional arguments within the `run` function vary depending on which template ID is called. To access which arguments are required and what functions are used in each template, simply try `?template` (e.g. `?aet01`) to see more detailed descriptions and instructions.
 
 #### **1. Input dataset and dataset names**
+
 The input dataset expected by the argument `adam_db=` in the `run(...)` function is a collection of `ADaM` datasets as a list object. Each `ADaM` dataset is expected to be an object of data frame. If the `ADaM` datasets are read in individually, user will need to combine them into a list object and provide the name of the list to `adam_db=`. Also, each element in the list are expected to have corresponding `ADaM` dataset names. Conventional `ADaM` dataset names, including `adsl`,`adex`, `adae`, `adlb`,`advs`,`adeg`,`adcm`,`admh`,`adrs`, and `adtte`, can be picked up by `chevron` with one exception. If you have a safety time-to-event dataset named as `adsaftte` following Roche standard `ADaM` convention, you will need to re-name it to `adaette` to be picked up by `chevron`.
 
 ```{r eval=FALSE}
 std_data <- list(adsl = adsl, adae = adae)
 run(object = aet01_nollt, adam_db = std_data)
 ```
+
 #### **2. Expected variables in input analysis dataset**
-By default, `chevron` does not pull any subject-level information from either `adsl` or `adsub` and merge into the analysis dataset in the underlying preprocessing steps. The analysis dataset fed into `adam_db=` is expected to have all variables required for analysis available. 
+
+By default, `chevron` does not pull any subject-level information from either `adsl` or `adsub` and merge into the analysis dataset in the underlying preprocessing steps. The analysis dataset fed into `adam_db=` is expected to have all variables required for analysis available.
 
 #### **3. Character vs Factor**
-In the output generation, we often need to specify a particular sorting order of a variable at the time of display. In the SAS world, this is achieved by paired variables like `TRT01P` and `TRT01PN` where `TRT01P` provides the value and `TRT01PN` provides the sorting order. In `chevron`, a character variable needs to be factorized with pre-specified levels to display in order. 
+
+In the output generation, we often need to specify a particular sorting order of a variable at the time of display. In `chevron`, a character variable needs to be factorized with pre-specified levels to display in order. When encountering cases like the following one where `"ARM A"` has an Asian group only while `"ARM B"` has both Asian and White groups, it is not able to produce outputs like the demographic table unless `"RACE"` is factorized to provide access to the same level attribute of the variable `"RACE"` after the arm split.
+
+```{r}
+proc_data <- syn_data
+proc_data$adsl <- proc_data$adsl %>% mutate(RACE = factor(case_when(
+  ARMCD == "ARM A" ~ "ASIAN",
+  ARMCD == "ARM B" & !.data$RACE %in% c("WHITE", "ASIAN") ~ "ASIAN",
+  TRUE ~ RACE
+)))
+run(dmt01, proc_data)
+```
 
 #### **4. Testing the codes for plot generation**
-The `run` function when calling a Graphics Template ID returns a `gTree` object which will be used in the downstream workflow for output generation, no interim actual plot will be automatically created for viewing purpose. However, in need of viewing the plot for testing purpose, the function `grid.draw` from the package `grid` can be utilized to render the plot.  See example below,
+
+The `run` function when calling a Graphics Template ID returns a `gTree` object which will be used in the downstream workflow for output generation, no interim actual plot will be automatically created for viewing purpose. However, in need of viewing the plot for testing purpose, the function `grid.draw` from the package `grid` can be utilized to render the plot. See example below,
 
 ```{r eval=FALSE}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
@@ -55,10 +71,18 @@ res <- run(kmg01, proc_data, dataset = "adtte", draw = TRUE)
 ### **General Control Arguments**
 
 #### **1. `lbl_overall`: Column of Total**
-The generic argument `lbl_overall` controls whether the column of total will be produced or not. `lbl_overall = NULL` suppresses the total, `lbl_all = "All Patients"` produces the total.
+
+The generic argument `lbl_overall` controls whether the column of total will be produced or not. `lbl_overall = NULL` suppresses the total, `lbl_overall = "All Patients"` produces the total.
 
 #### **2. `display_columncounts`: N=xxx**
-The generic argument `display_columncounts` controls whether the count of unique number of subjects (N=xxx) will be displayed in the column header or not. `display_columncounts = FASLSE` suppresses the display of N=xxx.
+
+Column counts are displayed by default. The generic argument `display_columncounts` controls whether the count of unique number of subjects (N=xxx) will be displayed in the column header or not. `display_columncounts = FASLSE` suppresses the display of N=xxx.
+
+```{r}
+tbl <- run(dmt01, syn_data) # table with column counts
+tbl@col_info@display_columncounts <- FALSE
+tbl # no column counts now
+```
 
 ## **TABLES**
 
@@ -126,7 +150,7 @@ run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
 
 #### **3. Safety Summary (Adverse Events of Special Interest) (for studies with multiple drugs)**
 
-For studies with more than one study drug, users need to define the analyses in `adae` and add to the argument `aesi_vars` following the example above. No pre-defined analysis is available at this moment. 
+For studies with more than one study drug, users need to define the analyses in `adae` and add to the argument `aesi_vars` following the example above. No pre-defined analysis is available at this moment.
 
 ### **Adverse Events (`AET02`)**
 
@@ -160,7 +184,7 @@ run(aet02, syn_data, row_split_var = NULL)
 
 #### **1. Adverse Events by Greatest Intensity**
 
-This **`aet03`** template  produces the standard adverse event by greatest intensity summary
+This **`aet03`** template produces the standard adverse event by greatest intensity summary
 
 ```{r}
 run(aet03, syn_data)
@@ -170,9 +194,9 @@ run(aet03, syn_data)
 
 #### **1. Adverse Events by Highest `NCI CTCAE` Grade**
 
-1) The **`aet04`** template produces the standard adverse event by highest `NCI CTCAE` grade summary.  
-2) By default, this template includes the grouped grades of 'Grade 1-2' and 'Grade 3-4'.   
-3) By default this template removes the rows with 0 count.   
+1) The **`aet04`** template produces the standard adverse event by highest `NCI CTCAE` grade summary.
+2) By default, this template includes the grouped grades of 'Grade 1-2' and 'Grade 3-4'.
+3) By default this template removes the rows with 0 count.
 4) If a treatment group does not have any adverse event, the treatment group is automatically displayed providing that it is defined in `ADSL`.
 
 ```{r}
@@ -204,7 +228,7 @@ run(aet04, syn_data, grade_groups = grade_groups, prune_0 = FALSE)
 
 #### **1. Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence**
 
-1) The **`aet05`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering first occurrence only.   
+1) The **`aet05`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering first occurrence only.
 2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.
 3) By default, all `adaette` parameter codes containing the string `"TTE"` are included in the output. Users are expected to filter the parameter(s) of interest from input safety time-to-event dataset in pre-processing if needed.
 4) In the input safety time-to-event dataset, in the censoring variable `CNSR` , `0` indicates the occurrence of an event of interest and `1` denotes censoring.
@@ -217,7 +241,7 @@ run(aet05, proc_data)
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence (setting type of confidence interval)**
 
-1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log` and `exact`.  
+1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log` and `exact`.
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
@@ -228,9 +252,9 @@ run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
 
 #### **1. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences**
 
-1) The **`aet05_all`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering all occurrences.   
-2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.  
-3) By default, all `adaette` parameter codes containing the string `"TOT"` and the parameter code `"AEREPTTE"` are required. `"TOT"` parameters store the number of occurrences of adverse event of interests. Parameter code `"AEREPTTE"` stores the time to end of adverse event reporting period in years that contribute to the summary of "total patient-years at risk" in the output. Users are expected to filter parameters of interest from input analysis dataset in pre-processing, if needed.  
+1) The **`aet05_all`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering all occurrences.
+2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.
+3) By default, all `adaette` parameter codes containing the string `"TOT"` and the parameter code `"AEREPTTE"` are required. `"TOT"` parameters store the number of occurrences of adverse event of interests. Parameter code `"AEREPTTE"` stores the time to end of adverse event reporting period in years that contribute to the summary of "total patient-years at risk" in the output. Users are expected to filter parameters of interest from input analysis dataset in pre-processing, if needed.
 4) In the input safety time-to-event dataset, in the censoring variable `CNSR` , `0` indicates the occurrence of an event of interest and `1` denotes censoring.
 
 ```{r}
@@ -241,7 +265,7 @@ run(aet05_all, proc_data)
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences (setting type of confidence interval)**
 
-1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log`, `exact`, and `byar`.     
+1) The type of the confidence interval for rate can be specified by the argument `conf_type`. Options include `normal` (default), `normal_log`, `exact`, and `byar`.
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
@@ -260,7 +284,7 @@ run(aet10, syn_data)
 
 #### **2. Most Common (>=8%) Adverse Events (setting threshold)**
 
-To modify the threshold for displaying preferred terms, this can be achieved by providing the threshold to the argument `atleast`.  
+To modify the threshold for displaying preferred terms, this can be achieved by providing the threshold to the argument `atleast`.
 
 ```{r}
 run(aet10, syn_data, atleast = 0.08)
@@ -270,9 +294,9 @@ run(aet10, syn_data, atleast = 0.08)
 
 #### **1. Concomitant Medications by Medication Class and Preferred Name**
 
-1) The **`cmt01a`** template displays concomitant medications by `ATC Level 2` and Preferred Name by default.  
-2) The template does not include the column of total by default.  
-3) The template sort medication class and preferred name by alphabetical order by default.  
+1) The **`cmt01a`** template displays concomitant medications by `ATC Level 2` and Preferred Name by default.
+2) The template does not include the column of total by default.
+3) The template sort medication class and preferred name by alphabetical order by default.
 
 ```{r}
 run(cmt01a, syn_data)
@@ -304,9 +328,9 @@ run(cmt01a, syn_data, summary_labels = list(TOTAL = cmt01_label, ATC2 = cmt01_la
 
 #### **1. Concomitant Medications by Preferred Name**
 
-1) The **`cmt02_pt`** template displays concomitant medications by Preferred Name by default.  
-2) The template does not include the column of total by default.  
-3) The template sorts preferred name by alphabetical order by default. Set the argument `sort_by_freq = TRUE` to sort preferred names by frequency.  
+1) The **`cmt02_pt`** template displays concomitant medications by Preferred Name by default.
+2) The template does not include the column of total by default.
+3) The template sorts preferred name by alphabetical order by default. Set the argument `sort_by_freq = TRUE` to sort preferred names by frequency.
 
 ```{r}
 run(cmt02_pt, syn_data)
@@ -319,8 +343,8 @@ run(cmt02_pt, syn_data)
 1) The **`coxt01`** template produces the standard Cox regression output.
 2) Users are expected to pre-process the input analysis data by selecting a time-to-event parameter to be analyzed. The example below is based on the time-to-event parameter "Duration of Confirmed Response by Investigator".
 3) The time variable in the model is specified through the `time_var` argument. By default, `time_var` is set to `"AVAL"`, which comes from `ADTTE.AVAL`.
-4) The event variable in the model is specified through the `event_var` argument. By default, `event_var` is set to `"EVENT"`, which is derived based on the censoring indicator `ADTTE.CNSR` in the pre-processing function `coxt01_pre`. 
-5) If there are more than two treatment groups present in the input analysis data, users are also expected to select only two treatment groups. The example below is based on treatment groups "Arm A" and "Arm B".
+4) The event variable in the model is specified through the `event_var` argument. By default, `event_var` is set to `"EVENT"`, which is derived based on the censoring indicator `ADTTE.CNSR` in the pre-processing function `coxt01_pre`.
+5) If there are more than two treatment groups present in the input analysis data, users are also expected to select only two treatment groups. The example below is based on treatment groups `"Arm A"` and `"Arm B"`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
@@ -336,10 +360,9 @@ To add the interaction term to the model, `interaction = TRUE`, which is passed 
 run(coxt01, proc_data, interaction = TRUE)
 ```
 
-
 #### **3. Cox Regression (specifying covariates)**
 
-1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model. 
+1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model.
 2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"ETHNIC"`, `"RACE"`, and `"AAGE"` are used as covariates.
 
 ```{r}
@@ -348,7 +371,7 @@ run(coxt01, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
 
 #### **4. Cox Regression (setting strata, ties, and alpha level)**
 
-1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied. 
+1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied.
 2) Users can specify one or more stratification variables via the `strata` argument.
 3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument, which is passed to `tern::control_coxreg()`.
 4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument, which is passed to `tern::control_coxreg()`.
@@ -364,7 +387,7 @@ run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_l
 1) The **`coxt02`** template produces the standard multi-variable cox regression output.
 2) Users are expected to pre-process the input analysis data by selecting a time-to-event parameter to be analyzed. The example below is based on the time-to-event parameter "Duration of Confirmed Response by Investigator".
 3) The time variable in the model is specified through the `time_var` argument. By default, `time_var` is set to `"AVAL"`, which comes from `ADTTE.AVAL`.
-4) The event variable in the model is specified through the `event_var` argument. By default, `event_var` is set to `"EVENT"`, which is derived based on the censoring indicator `ADTTE.CNSR` in the pre-processing function `coxt01_pre`. 
+4) The event variable in the model is specified through the `event_var` argument. By default, `event_var` is set to `"EVENT"`, which is derived based on the censoring indicator `ADTTE.CNSR` in the pre-processing function `coxt01_pre`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
@@ -373,7 +396,7 @@ run(coxt02, proc_data, time_var = "AVAL", event_var = "EVENT")
 
 #### **2. Multi-variable Cox Regression (specifying covariates)**
 
-1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model. 
+1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model.
 2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"ETHNIC"`, `"RACE"`, and `"AAGE"` are used as covariates.
 
 ```{r}
@@ -382,7 +405,7 @@ run(coxt02, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
 
 #### **3. Multi-variable Cox Regression (setting strata, ties, and alpha level)**
 
-1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied. 
+1) By default, `strata = NULL` (no stratification), `ties = "exact"` (equivalent to `DISCRETE` in SAS), and `conf_level = 0.95` are applied.
 2) Users can specify one or more stratification variables via the `strata` argument.
 3) Other tie handling methods, i.e., `"efron"` or `"breslow"`, can be specified in the `tie` argument, which is passed to `tern::control_coxreg()`.
 4) Users can also customize the alpha level for the confidence intervals through the `conf_level` argument, which is passed to `tern::control_coxreg()`.
@@ -392,11 +415,11 @@ run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_l
 ```
 
 ### **Demographics and Baseline Characteristics (`DMT01`)**
-  
+
 #### **1. Demographics and Baseline Characteristics with All Patients**
 
-1) The **`dmt01`** template produces the standard demographics and baseline characteristics summary.  
-2) This template includes the column of total by default.  
+1) The **`dmt01`** template produces the standard demographics and baseline characteristics summary.
+2) This template includes the column of total by default.
 
 ```{r}
 run(dmt01, syn_data)
@@ -404,7 +427,7 @@ run(dmt01, syn_data)
 
 #### **2. Demographics and Baseline Characteristics without All Patients**
 
-To remove the column of total, set the argument `lbl_overall` to `NULL`. 
+To remove the column of total, set the argument `lbl_overall` to `NULL`.
 
 ```{r}
 run(dmt01, syn_data, lbl_overall = NULL)
@@ -412,8 +435,8 @@ run(dmt01, syn_data, lbl_overall = NULL)
 
 #### **3. Demographics and Baseline Characteristics with an additional study specific continuous variable**
 
-1) Study specific continuous variables can be added to the standard demographics and baseline characteristics summary by editing the argument `summaryvars`. To add or remove analyses, you need to pass all variables you would like to include to the argument.  
-2) CHEVRON performs the analysis based on the type of variable as defined in the input data.    
+1) Study specific continuous variables can be added to the standard demographics and baseline characteristics summary by editing the argument `summaryvars`. To add or remove analyses, you need to pass all variables you would like to include to the argument.
+2) CHEVRON performs the analysis based on the type of variable as defined in the input data.
 
 ```{r}
 run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMISI"), lbl_overall = NULL)
@@ -421,7 +444,7 @@ run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "
 
 #### **4. Demographics and Baseline Characteristics with an additional study specific categorical variable**
 
-1) Study specific categorical variables can be added to the standard demographics and baseline characteristics summary by editing the argument `summaryvars`.   
+1) Study specific categorical variables can be added to the standard demographics and baseline characteristics summary by editing the argument `summaryvars`.
 2) To display the values within a categorical variable in pre-specified order, the categorical variable need to be factorized with pre-specified order provided as levels.
 
 ```{r}
@@ -475,8 +498,8 @@ run(dmt01, proc_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", 
 
 #### **1. Patient Disposition**
 
-1) The **`dst01`** template produces the standard patient disposition summary.  
-2) The template includes the column of total by default. Use `lbl_overall = NULL` to suppress the default.   
+1) The **`dst01`** template produces the standard patient disposition summary.
+2) The template includes the column of total by default. Use `lbl_overall = NULL` to suppress the default.
 
 ```{r}
 run(dst01, syn_data, lbl_overall = NULL)
@@ -484,8 +507,8 @@ run(dst01, syn_data, lbl_overall = NULL)
 
 #### **2. Patient Disposition (with grouping of reasons)**
 
-1) The syntax below produces the standard patient disposition summary with grouping of the discontinuation reasons.  
-2) The variable [`ADSL.DCSREASGP`] that groups the discontinuation reasons needs to be derived manually and provided in the input `adsl` dataset. 
+1) The syntax below produces the standard patient disposition summary with grouping of the discontinuation reasons.
+2) The variable [`ADSL.DCSREASGP`] that groups the discontinuation reasons needs to be derived manually and provided in the input `adsl` dataset.
 
 ```{r}
 run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")), lbl_overall = NULL)
@@ -611,8 +634,8 @@ run(ext01, syn_data)
 
 #### **1. Laboratory Test Results and Change from Baseline by Visit**
 
-1) The **`lbt01`** template produces the standard laboratory test results and change from baseline by visit.  
-2) To select the SI/CV/LS results and the panel (chemistry/hematology/urinalysis/coagulation etc.) to display, user defines individual filters and apply to input datasets prior to running CHEVRON.  
+1) The **`lbt01`** template produces the standard laboratory test results and change from baseline by visit.
+2) To select the SI/CV/LS results and the panel (chemistry/hematology/urinalysis/coagulation etc.) to display, user defines individual filters and apply to input datasets prior to running CHEVRON.
 
 ```{r}
 t_lb_chg <- run(lbt01, syn_data)
@@ -620,14 +643,15 @@ head(t_lb_chg, 20)
 ```
 
 #### **2. Laboratory Test Results and Change from Baseline by Visit (customized precision)**
+
 TBA
 
 ### **Laboratory Abnormalities (`LBT04`)**
 
 #### **1. Laboratory Abnormalities**
 
-1) The **`lbt04`** template produces the standard laboratory abnormalities summary.  
-2) The template subsets to SI results by default.   
+1) The **`lbt04`** template produces the standard laboratory abnormalities summary.
+2) The template subsets to SI results by default.
 3) The laboratory tests and directions of abnormality in this template is data-driven. Table entries provide the number of patients with a during treatment laboratory value abnormality in the direction specified among patients without this abnormality at baseline.
 
 ```{r}
@@ -638,7 +662,7 @@ run(lbt04, syn_data)
 
 #### **1. Laboratory Abnormalities with Single and Replicated Marked**
 
-1) The **`lbt05`** template produces the standard laboratory abnormalities summary for marked abnormalities.  
+1) The **`lbt05`** template produces the standard laboratory abnormalities summary for marked abnormalities.
 2) The laboratory tests and directions of abnormality in this template is currently data-driven. The standard metadata for Safety Lab Standardization will be incorporated in future release.
 
 ```{r}
@@ -663,7 +687,7 @@ run(lbt06, syn_data)
 
 #### **1. Laboratory Test Results with Highest `NCI CTCAE` Grade Post-Baseline**
 
-1) The **`lbt07`** template produces the standard laboratory test results with highest `NCI CTCAE` grade post-baseline summary.  
+1) The **`lbt07`** template produces the standard laboratory test results with highest `NCI CTCAE` grade post-baseline summary.
 2) The laboratory tests and grades in this template is currently data-driven. The standard metadata for possible lab tests and corresponding `NCI CTCAE` grade will be incorporated in future release.
 
 ```{r}
@@ -716,11 +740,11 @@ run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
 
 #### **1. Medical History**
 
-1) The **`mht01`** template displays medical conditions by MedDRA system organ class and Preferred Name by default.    
-2) The default treatment variable is `"ADSL.ARM"`.   
-3) The user is expected to use filter to subset medical conditions prior to or on entering study.  
-4) By default, the template produces the overall 'total number of conditions' as well as the 'total number of conditions' per body system after the summary of patients.  
-5）This template currently does not support sorting MedDRA system organ class and preferred names by order of frequency.
+1) The **`mht01`** template displays medical conditions by MedDRA system organ class and Preferred Name by default.
+2) The default treatment variable is `"ADSL.ARM"`.
+3) The user is expected to use filter to subset medical conditions prior to or on entering study.
+4) By default, the template produces the overall 'total number of conditions' as well as the 'total number of conditions' per body system after the summary of patients.
+    5）This template currently does not support sorting MedDRA system organ class and preferred names by order of frequency.
 
 ```{r}
 run(mht01, syn_data)
@@ -736,8 +760,8 @@ run(mht01, syn_data, lbl_overall = "All Patients")
 
 #### **1. Major Protocol Deviations**
 
-1) The **`pdt01`** template produces the standard major protocol deviations output.  
-2) Users are expected to filter `addv` to only include records where `DVCAT == "MAJOR"` in pre-processing.  
+1) The **`pdt01`** template produces the standard major protocol deviations output.
+2) Users are expected to filter `addv` to only include records where `DVCAT == "MAJOR"` in pre-processing.
 
 ```{r}
 proc_data <- syn_data
@@ -751,9 +775,9 @@ run(pdt01, proc_data)
 
 #### **1. Reasons for Major Protocol Deviations Related to Epidemic/Pandemic**
 
-1) The **`pdt02`** template produces the reasons for major protocol deviations related to epidemic/pandemic summary.    
-2) By default, `ADDV.DVREAS` provides the reason and `ADDV.DVTERM` provides the description.  
-3) By default, `addv` has been filtered to include only records that meet the condition `AEPRELFL == "Y" & DVCAT == "MAJOR"`.  
+1) The **`pdt02`** template produces the reasons for major protocol deviations related to epidemic/pandemic summary.
+2) By default, `ADDV.DVREAS` provides the reason and `ADDV.DVTERM` provides the description.
+3) By default, `addv` has been filtered to include only records that meet the condition `AEPRELFL == "Y" & DVCAT == "MAJOR"`.
 
 ```{r}
 run(pdt02, syn_data)
@@ -828,10 +852,10 @@ run(rmpt05, syn_data)
 
 #### **1. Best Overall Response**
 
-1) The **`rspt01`** template produces the standard best overall response output.      
-2) The template syntax is built based on `RECIST 1.1`. By default, the subjects with response results of `"CR"` or `"PR"` are considered as responders.    
-3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by investigator or best overall response by `BICR`.    
-4) Unstratified analysis is provided by default.   
+1) The **`rspt01`** template produces the standard best overall response output.
+2) The template syntax is built based on `RECIST 1.1`. By default, the subjects with response results of `"CR"` or `"PR"` are considered as responders.
+3) Users are expected to pre-process the input analysis data and select the parameter to be analyzed, i.e., best overall response by investigator or best overall response by `BICR`.
+4) Unstratified analysis is provided by default.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
@@ -841,10 +865,9 @@ run(rspt01, proc_data, ref_group = NULL, perform_analysis = "unstrat", strata = 
 
 #### **2. Best Overall Response (Ordering of treatment groups)** {#1}
 
-1) By default, the first level or value of `arm_var` (default to `"ADSL.ARM"` unless specified) is treated as the reference group without specification.  
-2) To apply user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.   
-3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group.
-See below for examples:
+1) By default, the first level or value of `arm_var` (default to `"ADSL.ARM"` unless specified) is treated as the reference group without specification.
+2) To apply user-defined reference group, please provide the value from the treatment variable to the argument `ref_group`, e.g., `ref_group = "PLACEBO"`.
+3) Since `rtables` displays the reference group at the very left column, the order of displayed treatment groups may not be exactly the same as the order factorized, depending on which group is selected as the reference group. See below for examples:
 
 | Factorized `trt` order | `ref_group` | Displayed `trt` order | Reference group used in analysis |
 | :---------------------:| :----------:|:---------------------:|:--------------------------------:|
@@ -852,9 +875,9 @@ See below for examples:
 | NULL                   | ARM B       | ARM B, ARM A, ARM C   | ARM B                            |
 | ARM C, ARM B, ARM A    | ARM B       | ARM B, ARM C, ARM A   | ARM B                            |
 
-#### **3. Best Overall Response  (selecting sections to display)**
+#### **3. Best Overall Response (selecting sections to display)**
 
-1) The section of `Odds Ratio` can be suppressed with the argument `odds_ratio = FALSE`.    
+1) The section of `Odds Ratio` can be suppressed with the argument `odds_ratio = FALSE`.
 2) The section of `Difference in response rate` can be suppressed with the argument `perform_analysis = NULL`.
 
 ```{r}
@@ -865,9 +888,9 @@ run(rspt01, proc_data, odds_ratio = FALSE, perform_analysis = NULL)
 
 #### **4. Best Overall Response (with stratified analysis)**
 
-1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and providing the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.    
-2) The stratification variables are expected to be available in `adrs`.  
-2) If both unstratified and stratified analysis are required, use `perform_analysis = c("unstrat", "strat")`  
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and providing the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.
+2) The stratification variables are expected to be available in `adrs`.
+3) If both unstratified and stratified analysis are required, use `perform_analysis = c("unstrat", "strat")`
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
@@ -927,7 +950,7 @@ See in the table below the method options for testing proportion difference and 
 | `"cmh"`        | stratified Cochran-Mantel-Haenszel test   |
 | `"shouten"`    | Chi-Squared test with Schouten correction |
 
-An example:  
+An example:
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
@@ -963,10 +986,10 @@ run(rspt01, proc_data)
 
 #### **1. Time-to-event Summary**
 
-1) The **`ttet01`** template produces the standard time-to-event summary.   
+1) The **`ttet01`** template produces the standard time-to-event summary.
 2) Users are expected to subset the parameter of interest (e.g. `PARAMCD == "PFS"`) in pre-processing.
-3) Please see the section of [Best Overall Response (Ordering of treatment groups)](#1) to find out more about the ordering of treatment groups and reference group. 
-4) Unstratified analysis is provided by default. 
+3) Please see the section of [Best Overall Response (Ordering of treatment groups)](#1) to find out more about the ordering of treatment groups and reference group.
+4) Unstratified analysis is provided by default.
 5) Survival estimations and difference in survival are both provided by default.
 
 ```{r}
@@ -985,10 +1008,10 @@ proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 run(ttet01, proc_data, summarize_event = FALSE)
 ```
 
-To select either survival estimations or difference in survival or both, please specify in the argument `method`.  
-- `surv` calls out the analysis of patients remaining at risk, event free rate and corresponding 95% confidence interval of the rates.  
-- `surv_diff` calls out the analysis of difference in event free rate, the 95% confidence interval of the difference and its corresponding p-value.  
-- `both` calls out both.  
+To select either survival estimations or difference in survival or both, please specify in the argument `method`.
+- `surv` calls out the analysis of patients remaining at risk, event free rate and corresponding 95% confidence interval of the rates.
+- `surv_diff` calls out the analysis of difference in event free rate, the 95% confidence interval of the difference and its corresponding p-value.
+- `both` calls out both.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -998,10 +1021,9 @@ run(ttet01, proc_data, method = "surv")
 
 #### **3. Time-to-event Summary (modifying analysis details like confidence interval type, ties, and alpha level)**
 
-1) The level of the confidence intervals is defined by the argument `conf_level`.    
-2) The type of confidence interval is defined in the argument `conf_type`. Options are `"plain"` (default), `"log"` and `"log-log"`.  
+1) The level of the confidence intervals is defined by the argument `conf_level`.
+2) The type of confidence interval is defined in the argument `conf_type`. Options are `"plain"` (default), `"log"` and `"log-log"`.
 3) Handling of ties is specified in the argument `ties`. Options are `"efron"` (default),`"breslow"` or `"exact"`.
-
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -1011,9 +1033,9 @@ run(ttet01, proc_data, conf_level = 0.90, conf_type = "log-log", ties = "efron")
 
 #### **4. Time-to-event Summary (with stratified analysis)**
 
-1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and providing the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.  
-2) The stratification variables are expected to be available in `adrs`.  
-3) If unstratified and stratified analysis are both required, users can use `perform_analysis = c("unstrat", "strat")`.    
+1) A stratified analysis can be added by specifying the argument `perform_analysis = "strat"` and providing the stratification variable to the argument `strata` . The argument `strata` is expected if `perform_analysis` is set to include stratified analysis.
+2) The stratification variables are expected to be available in `adrs`.
+3) If unstratified and stratified analysis are both required, users can use `perform_analysis = c("unstrat", "strat")`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -1021,9 +1043,9 @@ proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 run(ttet01, proc_data, perform_analysis = "strat", strata = "STRATA1")
 ```
 
-#### **5. Time-to-event Summary (modifying time point for the "survival at xx months” analysis)**
+#### **5. Time-to-event Summary (modifying time point for the "survival at xx months" analysis)**
 
-The time point for the "survival at xx months" analysis can be modified by specifying the argument `time_point`. By default, the function takes `AVAL` from `adtte` in days and converts it to months. The survival estimates are then summarized in month, and the numeric values should be provided in months to `time_point`. 
+The time point for the "survival at xx months" analysis can be modified by specifying the argument `time_point`. By default, the function takes `AVAL` from `adtte` in days and converts it to months. The survival estimates are then summarized in month, and the numeric values should be provided in months to `time_point`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -1031,7 +1053,7 @@ proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 run(ttet01, proc_data, perform_analysis = "unstrat", time_point = c(3, 6))
 ```
 
-The following example shows how to specify the time point in **user-defined unit**.  
+The following example shows how to specify the time point in **user-defined unit**.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
@@ -1061,7 +1083,7 @@ run(ttet01, proc_data, perform_analysis = "unstrat", time_point = c(91, 183))
 
 #### **6. Time-to-event Summary (modifying the p-value method for testing hazard ratio)**
 
-The default p-value method for testing hazard ratio is "log-rank". Alternative methods can be requested by specifying the argument `pval_method` and options include, `log-rank` (default),  `wald` or `likelihood`. The syntax currently does not allow requesting more than one p-value. 
+The default p-value method for testing hazard ratio is "log-rank". Alternative methods can be requested by specifying the argument `pval_method` and options include, `log-rank` (default), `wald` or `likelihood`. The syntax currently does not allow requesting more than one p-value.
 
 Note that `ttet01` has been modified in the previous example (i.e., `preprocess(ttet01)` has been overridden); to access the default template, try `chevron::ttet01`.
 
@@ -1116,13 +1138,13 @@ head(l_ae_nollt, 10)
 
 #### **1. Kaplan-Meier Plot (without comparative statistics)**
 
-1) The **`kmg01`** template produces the standard Kaplan-Meier Plot.     
-2) Users are expected to select a particular parameter for analysis.    
-3) Users are expected to select the treatment groups to compare, otherwise, all treatment groups available in the input datasets will be plotted.    
-4) The comparative statistics are not included by default.   
-5) The estimation of median survival time per treatment group by default.  
-6) By default, the `run` function will not render the plot. For viewing and testing purpose, the users can include the argument `draw = TRUE` to view the plot in the `Plots` tab.   
-7) More arguments in the `g_km` and `control_coxph` functions can be passed through, please use the Help to find out more information.  
+1) The **`kmg01`** template produces the standard Kaplan-Meier Plot.
+2) Users are expected to select a particular parameter for analysis.
+3) Users are expected to select the treatment groups to compare, otherwise, all treatment groups available in the input datasets will be plotted.
+4) The comparative statistics are not included by default.
+5) The estimation of median survival time per treatment group by default.
+6) By default, the `run` function will not render the plot. For viewing and testing purpose, the users can include the argument `draw = TRUE` to view the plot in the `Plots` tab.
+7) More arguments in the `g_km` and `control_coxph` functions can be passed through, please use the Help to find out more information.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
@@ -1130,7 +1152,8 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE)
 ```
 
 #### **2. Kaplan-Meier Plot (with comparative statistics)**
-To enable the comparative statistics (hazard ratio and p-value), the argument `annot_coxph` needs to be set to TRUE. The compare group is determined by the levels in the factorized variable of treatment group and the first level is used as reference group in the statistics.  
+
+To enable the comparative statistics (hazard ratio and p-value), the argument `annot_coxph` needs to be set to TRUE. The compare group is determined by the levels in the factorized variable of treatment group and the first level is used as reference group in the statistics.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
@@ -1138,7 +1161,8 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_coxph = TRUE)
 ```
 
 #### **3. Kaplan-Meier Plot (without censoring marks)**
-To suppress the censoring marks, set the argument `cencor_show` to FALSE.   
+
+To suppress the censoring marks, set the argument `cencor_show` to FALSE.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
@@ -1153,7 +1177,8 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_surv_method = FALSE)
 ```
 
 #### **5. Kaplan-Meier Plot (with statistical annotation of either median or min of survival time)**
-To add the statistics annotation, use the function `annot_stats`. Options are `min` or `median`.  
+
+To add the statistics annotation, use the function `annot_stats`. Options are `min` or `median`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
@@ -1171,11 +1196,12 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_at_risk = FALSE)
 ### **Mean Plot (`MNG01`)**
 
 #### **1. Plot of Mean and Confidence Interval (with Table Section)**
-1) The **`mng01`** template produces the standard mean plot.         
-2) Note that the template `mng01` is quite general. The users are expected to specify the analysis dataset and the visit variable in the `run` function, and select the parameters prior to the `run` function.    
-3) The table of summary statistics is included by default.    
-4) The variable Analysis Value `AVAL` is used for plotting by default.  
-5) If the input dataset contains results of the same analyses in multiple units,(e.g. SI/CV units in `ADLB`), please make sure that the parameters in appropriate units are selected in advance.  
+
+1) The **`mng01`** template produces the standard mean plot.
+2) Note that the template `mng01` is quite general. The users are expected to specify the analysis dataset and the visit variable in the `run` function, and select the parameters prior to the `run` function.
+3) The table of summary statistics is included by default.
+4) The variable Analysis Value `AVAL` is used for plotting by default.
+5) If the input dataset contains results of the same analyses in multiple units,(e.g. SI/CV units in `ADLB`), please make sure that the parameters in appropriate units are selected in advance.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
@@ -1190,7 +1216,8 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), y_var = 
 ```
 
 #### **3. Plot of Mean (+/-SD) (Changing the Statistics)**
-To change the statistics, use the argument `interval_fun`. Options are `mean_ci`, `mean_sei`, `mean_sdi`, `median_ci`, `quantiles`,`range`.  
+
+To change the statistics, use the argument `interval_fun`. Options are `mean_ci`, `mean_sei`, `mean_sdi`, `median_ci`, `quantiles`,`range`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
@@ -1198,7 +1225,8 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), interval
 ```
 
 #### **4. Plot of Mean and Confidence Interval (Modify Alpha Level)**
-To change the alpha level of the confidence interval, use the argument `control = control_analyze_vars(conf_level = <0.xx>)`. Note that this is only in effect when `interval_fun` is set to `mean_ci`.   
+
+To change the alpha level of the confidence interval, use the argument `control = control_analyze_vars(conf_level = <0.xx>)`. Note that this is only in effect when `interval_fun` is set to `mean_ci`.
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
@@ -1210,6 +1238,7 @@ run(
 ```
 
 #### **5. Plot of Mean and Confidence Interval （With Number of Patients Only)**
+
 Unavailable yet.
 
 #### **6. Plot of Mean and Confidence Interval (without Table Section)**
@@ -1217,4 +1246,16 @@ Unavailable yet.
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), show_table = FALSE, draw = TRUE)
+```
+
+A new argument has been added to control the theme (e.g. setting the angle of the axis); see an example below:
+
+```{r}
+ggtheme <- ggplot2::theme(
+  panel.grid = ggplot2::element_line(colour = "black", linetype = 3),
+  panel.background = ggplot2::element_rect(fill = "white"),
+  legend.position = "top",
+  axis.text.x = ggplot2::element_text(angle = 22, hjust = 1, vjust = 1)
+)
+run(mng01, syn_data, dataset = "adlb", ggtheme = ggtheme)
 ```
