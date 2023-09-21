@@ -50,14 +50,7 @@ mht01_main <- function(adam_db,
     unique(unlist(lapply(summary_labels, names))),
     c("unique", "nonunique", "unique_count")
   )
-  if ("all" %in% names(summary_labels)) {
-    summary_labels <- lapply(
-      c(TOTAL = "TOTAL", setNames(row_split_var, row_split_var)),
-      function(x) {
-        modify_character(summary_labels$all, summary_labels[[x]])
-      }
-    )
-  }
+  summary_labels <- expand_list(summary_labels, c("TOTAL", row_split_var))
 
   lbl_overall <- render_safe(lbl_overall)
   lbl_row_split <- var_labels_for(adam_db$admh, row_split_var)
@@ -77,54 +70,6 @@ mht01_main <- function(adam_db,
   tbl <- build_table(lyt, adam_db$admh, alt_counts_df = adam_db$adsl)
 
   tbl
-}
-
-#' `mht01` Layout
-#'
-#' @inheritParams gen_args
-#' @inheritParams mht01_main
-#' @param lbl_mhbodsys (`string`) label associated with `"MHBODSYS"`.
-#' @param lbl_mhdecod (`string`) label associated with `"MHDECOD"`.
-#'
-#' @keywords internal
-#'
-mht01_lyt <- function(arm_var,
-                      lbl_overall,
-                      lbl_mhbodsys,
-                      lbl_mhdecod) {
-  basic_table(show_colcounts = TRUE) %>%
-    split_cols_by_with_overall(arm_var, lbl_overall) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = render_safe("Total number of {patient_label} with at least one condition"),
-        nonunique = render_safe("Total number of conditions")
-      )
-    ) %>%
-    split_rows_by(
-      "MHBODSYS",
-      child_labels = "visible",
-      labels_var = "MHBODSYS",
-      nested = FALSE,
-      indent_mod = -1L,
-      split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_mhbodsys
-    ) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = render_safe("Total number of {patient_label} with at least one condition"),
-        nonunique = "Total number of conditions"
-      )
-    ) %>%
-    count_occurrences(
-      vars = "MHDECOD",
-      .indent_mods = -1L
-    ) %>%
-    append_topleft(paste0("  ", lbl_mhdecod))
 }
 
 #' @describeIn mht01 Preprocessing
