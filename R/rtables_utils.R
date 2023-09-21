@@ -11,7 +11,7 @@ split_and_summ_num_patients <- function(lyt, var, label, stats, summarize_labels
       label_pos = "topleft",
       split_label = label,
       indent_mod = split_indent,
-      section_div = getOption("chevron.section_div", NA_character_)
+      section_div = get_section_div()
     )
   if (length(stats) > 0) {
     lyt <- lyt %>%

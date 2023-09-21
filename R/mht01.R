@@ -10,6 +10,7 @@ mht01_label <- c(
 #' @describeIn mht01 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param summary_labels (`list`) of summarize labels. See details.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -18,6 +19,8 @@ mht01_label <- c(
 #'  * Does not include a total column by default.
 #'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
 #'  patients with the specific condition.
+#'  `summary_labels` is used to control the summary for each level. If "all" is used, then each split will have that
+#'  summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 #'
 #' @note
 #'   * `adam_db` object must contain an `admh` table with columns `"MHBODSYS"` and `"MHDECOD"`.

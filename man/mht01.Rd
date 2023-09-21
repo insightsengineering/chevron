@@ -40,6 +40,8 @@ mht01
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{summary_labels}{(\code{list}) of summarize labels. See details.}
+
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
@@ -58,6 +60,8 @@ history by SOC and Preferred Term.
 \item Does not include a total column by default.
 \item Order by body system alphabetically and within body system and medical condition by decreasing total number of
 patients with the specific condition.
+\code{summary_labels} is used to control the summary for each level. If "all" is used, then each split will have that
+summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 }
 }
 \section{Functions}{

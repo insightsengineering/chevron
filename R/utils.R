@@ -351,3 +351,25 @@ get_x_vjust <- function(x) {
     1
   }
 }
+
+#' Get Section dividers
+#' @export
+#' @return (`string`) value of the section divider.
+get_section_div <- function() {
+  x <- getOption("chevron.section_div", NA_character_)
+  if (!test_string(x, na.ok = TRUE)) {
+    x <- NA_character_
+  }
+  x
+}
+
+#' Set Section Dividers
+#' @export
+#' @param x (`string`) value of the section divier.
+#' @return NULL
+#' @export
+set_section_div <- function(x) {
+  assert_string(x, na.ok = TRUE)
+  options("chevron.section_div" = x)
+  invisible()
+}
