@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.969584109248914" branch-rate="0" lines-covered="3124" lines-valid="3222" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-09-21 02:21:34.193608">
+<coverage line-rate="0.969621822690639" branch-rate="0" lines-covered="3128" lines-valid="3226" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-09-21 04:50:15.759862">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
   <packages>
-    <package name="chevron" line-rate="0.969584109248914" branch-rate="0" complexity="0">
+    <package name="chevron" line-rate="0.969621822690639" branch-rate="0" complexity="0">
       <classes>
         <class name="ael01_nollt.R" filename="R/ael01_nollt.R" line-rate="0.952380952380952" branch-rate="0" complexity="0">
           <methods>
@@ -6001,7 +6001,7 @@
             <line number="158" hits="0" branch="false"/>
           </lines>
         </class>
-        <class name="rtables_utils.R" filename="R/rtables_utils.R" line-rate="0.928792569659443" branch-rate="0" complexity="0">
+        <class name="rtables_utils.R" filename="R/rtables_utils.R" line-rate="0.929230769230769" branch-rate="0" complexity="0">
           <methods>
             <method name="split_and_summ_num_patients" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -6406,7 +6406,7 @@
                 <line number="587" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="occurrence_lyt" signature="" line-rate="0.96875" branch-rate="0" complexity="0">
+            <method name="occurrence_lyt" signature="" line-rate="0.970588235294118" branch-rate="0" complexity="0">
               <lines>
                 <line number="607" hits="21" branch="false"/>
                 <line number="608" hits="0" branch="false"/>
@@ -6423,6 +6423,7 @@
                 <line number="620" hits="21" branch="false"/>
                 <line number="621" hits="21" branch="false"/>
                 <line number="622" hits="21" branch="false"/>
+                <line number="624" hits="21" branch="false"/>
                 <line number="625" hits="21" branch="false"/>
                 <line number="626" hits="17" branch="false"/>
                 <line number="627" hits="17" branch="false"/>
@@ -6433,13 +6434,14 @@
                 <line number="632" hits="17" branch="false"/>
                 <line number="633" hits="17" branch="false"/>
                 <line number="634" hits="17" branch="false"/>
-                <line number="637" hits="21" branch="false"/>
+                <line number="635" hits="17" branch="false"/>
                 <line number="638" hits="21" branch="false"/>
                 <line number="639" hits="21" branch="false"/>
                 <line number="640" hits="21" branch="false"/>
                 <line number="641" hits="21" branch="false"/>
                 <line number="642" hits="21" branch="false"/>
                 <line number="643" hits="21" branch="false"/>
+                <line number="644" hits="21" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -6750,6 +6752,7 @@
             <line number="620" hits="21" branch="false"/>
             <line number="621" hits="21" branch="false"/>
             <line number="622" hits="21" branch="false"/>
+            <line number="624" hits="21" branch="false"/>
             <line number="625" hits="21" branch="false"/>
             <line number="626" hits="17" branch="false"/>
             <line number="627" hits="17" branch="false"/>
@@ -6760,13 +6763,14 @@
             <line number="632" hits="17" branch="false"/>
             <line number="633" hits="17" branch="false"/>
             <line number="634" hits="17" branch="false"/>
-            <line number="637" hits="21" branch="false"/>
+            <line number="635" hits="17" branch="false"/>
             <line number="638" hits="21" branch="false"/>
             <line number="639" hits="21" branch="false"/>
             <line number="640" hits="21" branch="false"/>
             <line number="641" hits="21" branch="false"/>
             <line number="642" hits="21" branch="false"/>
             <line number="643" hits="21" branch="false"/>
+            <line number="644" hits="21" branch="false"/>
           </lines>
         </class>
         <class name="standard_rules.R" filename="R/standard_rules.R" line-rate="1" branch-rate="0" complexity="0">
@@ -7061,7 +7065,7 @@
             <line number="201" hits="0" branch="false"/>
           </lines>
         </class>
-        <class name="utils.R" filename="R/utils.R" line-rate="0.86" branch-rate="0" complexity="0">
+        <class name="utils.R" filename="R/utils.R" line-rate="0.861842105263158" branch-rate="0" complexity="0">
           <methods>
             <method name="var_labels_for" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -7294,19 +7298,21 @@
                 <line number="351" hits="5" branch="false"/>
               </lines>
             </method>
-            <method name="get_section_div" signature="" line-rate="0.75" branch-rate="0" complexity="0">
+            <method name="get_section_div" signature="" line-rate="0.833333333333333" branch-rate="0" complexity="0">
               <lines>
-                <line number="359" hits="17" branch="false"/>
-                <line number="360" hits="17" branch="false"/>
+                <line number="359" hits="21" branch="false"/>
+                <line number="360" hits="21" branch="false"/>
                 <line number="361" hits="0" branch="false"/>
-                <line number="363" hits="17" branch="false"/>
+                <line number="363" hits="21" branch="false"/>
+                <line number="364" hits="21" branch="false"/>
+                <line number="366" hits="21" branch="false"/>
               </lines>
             </method>
             <method name="set_section_div" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
-                <line number="372" hits="0" branch="false"/>
-                <line number="373" hits="0" branch="false"/>
-                <line number="374" hits="0" branch="false"/>
+                <line number="378" hits="0" branch="false"/>
+                <line number="379" hits="0" branch="false"/>
+                <line number="380" hits="0" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -7454,13 +7460,15 @@
             <line number="348" hits="5" branch="false"/>
             <line number="349" hits="0" branch="false"/>
             <line number="351" hits="5" branch="false"/>
-            <line number="359" hits="17" branch="false"/>
-            <line number="360" hits="17" branch="false"/>
+            <line number="359" hits="21" branch="false"/>
+            <line number="360" hits="21" branch="false"/>
             <line number="361" hits="0" branch="false"/>
-            <line number="363" hits="17" branch="false"/>
-            <line number="372" hits="0" branch="false"/>
-            <line number="373" hits="0" branch="false"/>
-            <line number="374" hits="0" branch="false"/>
+            <line number="363" hits="21" branch="false"/>
+            <line number="364" hits="21" branch="false"/>
+            <line number="366" hits="21" branch="false"/>
+            <line number="378" hits="0" branch="false"/>
+            <line number="379" hits="0" branch="false"/>
+            <line number="380" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="vst02.R" filename="R/vst02.R" line-rate="0.977777777777778" branch-rate="0" complexity="0">
