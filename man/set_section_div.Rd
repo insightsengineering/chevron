@@ -13,7 +13,7 @@ set_section_div(x)
 Set Section Dividers
 }
 \details{
-Section dividers are empty lines between sections in rtables.
+Section dividers are empty lines between sections in tables.
 E.g. if 1 is used then for the first row split an empty line is added.
 Currently it only works for \code{aet02}, \code{cmt01a} and \code{mht01} template.
 }

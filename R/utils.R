@@ -369,7 +369,7 @@ get_section_div <- function() {
 #' Set Section Dividers
 #' @export
 #' @param x (`integerish`) value of at which the section divider should be added.
-#' @details Section dividers are empty lines between sections in rtables.
+#' @details Section dividers are empty lines between sections in tables.
 #' E.g. if 1 is used then for the first row split an empty line is added.
 #' Currently it only works for `aet02`, `cmt01a` and `mht01` template.
 #' @return NULL
