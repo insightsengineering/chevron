@@ -105,7 +105,7 @@
           n                                      134           134            132             400     
           Mean (SD)                          33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
           Median                                33.0          35.0            35.0            34.0    
-          Min - Max                          21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
+          Min - Max                            21 - 50       21 - 62        20 - 69         20 - 69   
         Age Group                                                                                     
           n                                      134           134            132             400     
           <65                                134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
@@ -157,8 +157,8 @@
         MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Overall total number of events                                   609           622            703      
         Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                   609           622            703      
         cl A.1                                                                                                 
           Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
           Total number of events                                         132           130            160      
@@ -228,8 +228,8 @@
         High Level Term                                               A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Overall total number of events                                   609           622            703      
         Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                   609           622            703      
         hlt A.1.1.1                                                                                            
           Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
           Total number of events                                         132           130            160      
@@ -270,8 +270,8 @@
       \s\n  High Level Term                                              All Patients
           MedDRA Preferred Term                                        (N=400)   
         —————————————————————————————————————————————————————————————————————————
-        Overall total number of events                                   1934    
         Total number of patients with at least one adverse event     365 (91.2%) 
+        Overall total number of events                                   1934    
         hlt A.1.1.1                                                              
           Total number of patients with at least one adverse event   242 (60.5%) 
           Total number of events                                         422     
@@ -340,8 +340,8 @@
         MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
           MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Overall total number of events                                   609           622            703      
         Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                   609           622            703      
         cl A.1                                                                                                 
           Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
           Total number of events                                         132           130            160      

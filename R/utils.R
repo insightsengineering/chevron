@@ -212,7 +212,23 @@ do_call <- function(what, args) {
 modify_character <- function(x, y) {
   assert_character(x, names = "unique", null.ok = TRUE)
   assert_character(y, names = "unique", null.ok = TRUE)
-  c(y, x)[unique(c(names(y), names(x)))]
+  c(y, x)[unique(c(names(x), names(y)))]
+}
+
+#' Expand list to each split
+#' @keywords internal
+expand_list <- function(lst, split) {
+  assert_list(lst, names = "unique")
+  assert_character(split)
+  if ("all" %in% names(lst)) {
+    lst <- lapply(
+      setNames(split, split),
+      function(x) {
+        modify_character(lst$all, lst[[x]])
+      }
+    )
+  }
+  lst
 }
 
 #' Helper function to convert to months if needed
