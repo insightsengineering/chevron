@@ -51,14 +51,7 @@ aet02_main <- function(adam_db,
     unique(unlist(lapply(summary_labels, names))),
     c("unique", "nonunique", "unique_count")
   )
-  if ("all" %in% names(summary_labels)) {
-    summary_labels <- lapply(
-      c(TOTAL = "TOTAL", setNames(row_split_var, row_split_var)),
-      function(x) {
-        modify_character(summary_labels$all, summary_labels[[x]])
-      }
-    )
-  }
+  summary_labels <- expand_list(summary_labels, c("TOTAL", row_split_var))
 
   lbl_overall <- render_safe(lbl_overall)
   lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)

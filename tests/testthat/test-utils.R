@@ -254,3 +254,16 @@ test_that("modify_character works", {
     c(a = "A", b = "B")
   )
 })
+
+# expand_list ----
+
+test_that("expand_list works", {
+  expect_identical(
+    expand_list(list(a = c(x = "1")), "b"),
+    list(a = c(x = "1"))
+  )
+  expect_identical(
+    expand_list(list(all = c(x = "1")), "b"),
+    list(b = c(x = "1"))
+  )
+})

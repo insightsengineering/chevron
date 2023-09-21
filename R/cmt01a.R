@@ -51,14 +51,7 @@ cmt01a_main <- function(adam_db,
     unique(unlist(lapply(summary_labels, names))),
     c("unique", "nonunique", "unique_count")
   )
-  if ("all" %in% names(summary_labels)) {
-    summary_labels <- lapply(
-      c(TOTAL = "TOTAL", setNames(row_split_var, row_split_var)),
-      function(x) {
-        modify_character(summary_labels$all, summary_labels[[x]])
-      }
-    )
-  }
+  summary_labels <- expand_list(summary_labels, c("TOTAL", row_split_var))
   assert_valid_variable(adam_db$adcm, c(arm_var, row_split_var, medname_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db$adcm, c("USUBJID", "CMSEQ"), empty_ok = TRUE, types = list(c("character", "factor")))
