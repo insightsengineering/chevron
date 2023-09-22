@@ -287,9 +287,8 @@ test_that("get_section_div works", {
     list(chevron.section_div = 1),
     expect_identical(get_section_div(), "")
   )
- withr::with_options(
+  withr::with_options(
     list(chevron.section_div = c(1, 3)),
     expect_identical(get_section_div(), c("", NA_character_, ""))
   )
 })
-
