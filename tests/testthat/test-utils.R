@@ -292,3 +292,4 @@ test_that("get_section_div works", {
     expect_identical(get_section_div(), c("", NA_character_, ""))
   )
 })
+
