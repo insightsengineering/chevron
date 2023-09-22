@@ -283,8 +283,12 @@ test_that("set_section_div works", {
 # get_section_div ----
 
 test_that("get_section_div works", {
-  set_section_div(1)
-  expect_identical(get_section_div(), "")
-  set_section_div(c(1, 3))
-  expect_identical(get_section_div(), c("", NA_character_, ""))
+  with_options(
+    list(chevron.section_div = 1),
+    expect_identical(get_section_div(), "")
+  )
+  with_options(
+    list(chevron.section_div = c(1, 3)),
+    expect_identical(get_section_div(), c("", NA_character_, ""))
+  )
 })
