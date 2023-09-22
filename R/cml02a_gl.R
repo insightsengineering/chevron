@@ -22,25 +22,18 @@ cml02a_gl_main <- function(adam_db,
                            dataset = "adcm",
                            key_cols = c("ATC2", "CMDECOD", "CMTRT"),
                            disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
-                           default_formatting = list(
-                             all = fmt_config(align = "left"),
-                             numeric = fmt_config(align = "center")
-                           ),
-                           unique_rows = TRUE,
                            ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols), label = paste0("adam_db$", dataset))
-  assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_flag(unique_rows)
 
   execute_with_args(
     as_listing,
-    adam_db[[dataset]],
+    df = adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,
-    default_formatting = default_formatting,
-    unique_rows = unique_rows,
-    ...
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
   )
 }
 
@@ -60,8 +53,7 @@ cml02a_gl_pre <- function(adam_db,
       ATC2 = with_label(.data$ATC2, "ATC Class Level 2"),
       CMDECOD = with_label(.data$CMDECOD, "WHODrug Preferred Name"),
       CMTRT = with_label(.data$CMTRT, "Investigator-Specified\nTreatment Term")
-    ) %>%
-    select(all_of(key_cols))
+    )
 
   adam_db
 }

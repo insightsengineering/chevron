@@ -14,12 +14,7 @@ pdl01_main(
   adam_db,
   dataset = "addv",
   arm_var = "ARM",
-  disp_cols = names(adam_db[[dataset]]),
-  default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
-    fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
-    format_date(), align = "left")),
-  unique_rows = TRUE,
+  disp_cols = c("ID", arm_var, "DVDECOD", "DVTERM", "DVSTDTC"),
   ...
 )
 
@@ -36,11 +31,9 @@ pdl01
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
-\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
-
 \item{...}{not used.}
+
+\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 
 \item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }

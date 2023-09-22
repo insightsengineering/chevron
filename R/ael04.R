@@ -14,28 +14,18 @@ ael04_main <- function(adam_db,
                        arm_var = "ACTARM",
                        key_cols = "ID",
                        disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
-                       default_formatting = list(
-                         all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center"),
-                         Date = fmt_config(format = format_date(), align = "left"),
-                         POSIXct = fmt_config(format = format_date(), align = "left"),
-                         POSIXt = fmt_config(format = format_date(), align = "left")
-                       ),
-                       unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(arm_var, key_cols, disp_cols), label = paste0("adam_db$", dataset))
-  assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_flag(unique_rows)
 
   execute_with_args(
     as_listing,
-    adam_db[[dataset]],
+    df = adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,
-    default_formatting = default_formatting,
-    unique_rows = unique_rows,
-    ...
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE,
   )
 }
 

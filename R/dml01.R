@@ -13,24 +13,17 @@ dml01_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ARM",
                        disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
-                       default_formatting = list(
-                         all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center")
-                       ),
-                       unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols), label = paste0("adam_db$", dataset))
-  assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_flag(unique_rows)
 
   execute_with_args(
     as_listing,
-    adam_db[[dataset]],
+    df = adam_db[[dataset]],
     disp_cols = disp_cols,
-    default_formatting = default_formatting,
-    unique_rows = unique_rows,
-    ...
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
   )
 }
 
@@ -42,15 +35,12 @@ dml01_main <- function(adam_db,
 #'
 dml01_pre <- function(adam_db,
                       dataset = "adsl",
-                      arm_var = "ARM",
-                      disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race")
-    ) %>%
-    select(all_of(disp_cols))
+    )
 
   adam_db
 }

@@ -253,6 +253,8 @@ convert_to_month <- function(x, unit) {
   )
 }
 
+# themes and formats ----
+
 #' Theme for Chevron Plot
 #'
 #' @param grid_y (`flag`) should horizontal grid be displayed.
@@ -342,6 +344,20 @@ get_x_vjust <- function(x) {
   } else {
     1
   }
+}
+
+#' Format for Chevron Listings
+#'
+#' @return a `list` of `fmt_config`.
+#'
+listing_format_chevron <- function() {
+  list(
+    all = fmt_config(align = "left"),
+    numeric = fmt_config(align = "center"),
+    Date = fmt_config(format = format_date(), align = "left"),
+    POSIXct = fmt_config(format = format_date(), align = "left"),
+    POSIXt = fmt_config(format = format_date(), align = "left")
+  )
 }
 
 #' Formatting of date

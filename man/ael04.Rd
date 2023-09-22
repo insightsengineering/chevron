@@ -16,11 +16,6 @@ ael04_main(
   arm_var = "ACTARM",
   key_cols = "ID",
   disp_cols = c("ASR", arm_var, "TRTSDTM", "EOSDY", "DTHADY", "DTHCAUS", "ADTHAUT"),
-  default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center"), Date = fmt_config(format = format_date(), align = "left"), POSIXct =
-    fmt_config(format = format_date(), align = "left"), POSIXt = fmt_config(format =
-    format_date(), align = "left")),
-  unique_rows = TRUE,
   ...
 )
 
@@ -40,11 +35,9 @@ Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
-\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
-
 \item{...}{not used.}
+
+\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 
 \item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }

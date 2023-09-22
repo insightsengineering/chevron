@@ -12,30 +12,19 @@
 pdl01_main <- function(adam_db,
                        dataset = "addv",
                        arm_var = "ARM",
-                       disp_cols = names(adam_db[[dataset]]),
-                       default_formatting = list(
-                         all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center"),
-                         Date = fmt_config(format = format_date(), align = "left"),
-                         POSIXct = fmt_config(format = format_date(), align = "left"),
-                         POSIXt = fmt_config(format = format_date(), align = "left")
-                       ),
-                       unique_rows = TRUE,
+                       disp_cols = c("ID", arm_var, "DVDECOD", "DVTERM", "DVSTDTC"),
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols, arm_var), label = paste0("adam_db$", dataset))
-  assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
-  assert_flag(unique_rows)
 
   execute_with_args(
     as_listing,
     adam_db[[dataset]],
     key_cols = arm_var,
     disp_cols = disp_cols,
-    default_formatting = default_formatting,
-    unique_rows = unique_rows,
-    ...
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
   )
 }
 
@@ -59,9 +48,8 @@ pdl01_pre <- function(adam_db,
       DVSTDTC = with_label(
         .data$DVSTDTC,
         "Date"
-      ),
-    ) %>%
-    select(all_of(c("ID", arm_var, "DVDECOD", "DVTERM", "DVSTDTC")))
+      )
+    )
 
   adam_db
 }

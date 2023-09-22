@@ -13,14 +13,6 @@ dsl01_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ACTARM",
                        disp_cols = c("ID", "ASR", arm_var, "TRTSDTM", "TRTDURD", "DISCONT"),
-                       default_formatting = list(
-                         all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center"),
-                         Date = fmt_config(format = format_date(), align = "left"),
-                         POSIXct = fmt_config(format = format_date(), align = "left"),
-                         POSIXt = fmt_config(format = format_date(), align = "left")
-                       ),
-                       unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols), label = paste0("adam_db$", dataset))
@@ -32,9 +24,9 @@ dsl01_main <- function(adam_db,
     adam_db[[dataset]],
     key_cols = arm_var,
     disp_cols = disp_cols,
-    default_formatting = default_formatting,
-    unique_rows = unique_rows,
-    ...
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
   )
 }
 

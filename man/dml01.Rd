@@ -15,19 +15,10 @@ dml01_main(
   dataset = "adsl",
   arm_var = "ARM",
   disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
-  default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center")),
-  unique_rows = TRUE,
   ...
 )
 
-dml01_pre(
-  adam_db,
-  dataset = "adsl",
-  arm_var = "ARM",
-  disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
-  ...
-)
+dml01_pre(adam_db, dataset = "adsl", ...)
 
 dml01
 }
@@ -40,11 +31,9 @@ dml01
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
-\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
-
 \item{...}{not used.}
+
+\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 
 \item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }

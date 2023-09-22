@@ -15,30 +15,20 @@ ael03_main <- function(adam_db,
                        key_cols = c("ID", "ASR", arm_var),
                        disp_cols = c(
                          "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESEV",
-                         "AEREL", "AEOUT", "AECONTRT", "ACTION", "SERREAS"
+                         "AEREL", "AEOUT", "AECONTRT", "AEACN", "SERREAS"
                        ),
-                       default_formatting = list(
-                         all = fmt_config(align = "left"),
-                         numeric = fmt_config(align = "center"),
-                         Date = fmt_config(format = format_date(), align = "left"),
-                         POSIXct = fmt_config(format = format_date(), align = "left"),
-                         POSIXt = fmt_config(format = format_date(), align = "left")
-                       ),
-                       unique_rows = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(arm_var, key_cols, disp_cols), label = paste0("adam_db$", dataset))
-  assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_flag(unique_rows)
 
   execute_with_args(
     as_listing,
-    adam_db[[dataset]],
+    df = adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,
-    default_formatting = default_formatting,
-    unique_rows = unique_rows,
-    ...
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
   )
 }
 
@@ -62,17 +52,17 @@ ael03_pre <- function(adam_db,
       )
     ) %>%
     mutate(
+      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
+      AEDECOD = with_label(reformat(.data$AEDECOD, nocoding), "Adverse\nEvent MedDRA\nPreferred Term"),
       ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
-      TRTSDTM = with_label(
-        .data$TRTSDTM,
-        "Date of\nFirst Study\nDrug\nAdministration"
-      ),
+      # Datetime of First Exposure to Treatment
+      TRTSDTM = with_label(.data$TRTSDTM, "Date of\nFirst Study\nDrug\nAdministration"),
+      ASTDY = with_label(.data$ASTDY, "Study\nDay of\nOnset"),
       ADURN = with_label(.data$AENDY - .data$ASTDY + 1, "AE\nDuration\nin Days"),
-      AEREL = with_label(
-        reformat(.data$AEREL, yes_no_rule),
-        "Caused by\nStudy\nDrug"
-      ),
+      AESER = with_label(.data$AESER, "Serious"),
+      ASEV = with_label(.data$ASEV, "Most\nExtreme\nIntensity"),
+      AREL = with_label(reformat(.data$AREL, yes_no_rule), "Caused by\nStudy\nDrug"), # Analysis Causality
       AEOUT = with_label(case_when(
         AEOUT == "FATAL" ~ 1,
         AEOUT == "NOT RECOVERED/NOT RESOLVED" ~ 2,
@@ -81,11 +71,8 @@ ael03_pre <- function(adam_db,
         AEOUT == "RECOVERING/RESOLVING" ~ 5,
         AEOUT == "UNKNOWN" ~ 6
       ), "Outcome\n(1)"),
-      AECONTRT = with_label(
-        reformat(.data$AECONTRT, yes_no_rule),
-        "Treatment\nfor AE"
-      ),
-      ACTION = with_label(case_when(
+      AECONTRT = with_label(reformat(.data$AECONTRT, yes_no_rule), "Treatment\nfor AE"),
+      AEACN = with_label(case_when(
         AEACN == "DOSE INCREASED" ~ 1,
         AEACN == "DOSE NOT CHANGED" ~ 2,
         AEACN == "DOSE REDUCED" | AEACN == "DOSE RATE REDUCED" ~ 3,
@@ -94,24 +81,19 @@ ael03_pre <- function(adam_db,
         AEACN == "NOT APPLICABLE" | AEACN == "NOT EVALUABLE" ~ 6,
         AEACN == "UNKNOWN" ~ 7
       ), "Action\nTaken\n(2)"),
-      SERREAS = with_label(case_when(
-        AESDTH == "Y" ~ "1",
-        AESLIFE == "Y" ~ "2",
-        AESHOSP == "Y" ~ "3",
-        AESDISAB == "Y" ~ "4",
-        AESCONG == "Y" ~ "5",
-        AESMIE == "Y" ~ "6",
-        TRUE ~ " "
-      ), "Reason\nClassified\nas Serious\n(3)"),
-      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
-      AEDECOD = with_label(reformat(.data$AEDECOD, nocoding), "Adverse\nEvent MedDRA\nPreferred Term"),
-      ASTDY = with_label(.data$ASTDY, "Study\nDay of\nOnset"),
-      AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity")
-    ) %>%
-    select(all_of(c(
-      "ID", "ASR", arm_var, "AEDECOD", "TRTSDTM", "ASTDY", "ADURN",
-      "AESEV", "AEREL", "AEOUT", "AECONTRT", "ACTION", "SERREAS"
-    )))
+
+      # Is derivation necessary ?
+      # SERREAS = with_label(case_when(
+      #   AESDTH == "Y" ~ "1",
+      #   AESLIFE == "Y" ~ "2",
+      #   AESHOSP == "Y" ~ "3",
+      #   AESDISAB == "Y" ~ "4",
+      #   AESCONG == "Y" ~ "5",
+      #   AESMIE == "Y" ~ "6",
+      #   TRUE ~ " "
+      # ), "Reason\nClassified\nas Serious\n(3)"),
+      # Do we need the arm variable ?
+    )
 
   adam_db
 }
