@@ -4,8 +4,6 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`character`) the name of a table in the `adam_db` object.
-#' @param default_formatting (`list`) the default format of the listing columns. See [`rlistings::as_listing`].
-#' @param col_formatting (`list`) the format of specific listing columns. See [`rlistings::as_listing`].
 #'
 #' @details
 #'  * Removes duplicate rows.

@@ -32,10 +32,6 @@ pdl01
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{...}{not used.}
-
-\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }
 \description{
 \code{PDL01} Listing 1 (Default) Major Protocol Deviations.

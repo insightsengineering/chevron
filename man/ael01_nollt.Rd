@@ -44,10 +44,6 @@ Key columns allow you to group repeat occurrences.}
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
-
-\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }
 \description{
 \code{AEL01_NOLLT} Listing 1 (Default) Glossary of Preferred Terms and Investigator-Specified Terms.
