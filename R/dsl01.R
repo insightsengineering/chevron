@@ -58,8 +58,7 @@ dsl01_pre <- function(adam_db,
         ifelse(!is.na(.data$DCSREAS) & toupper(.data$EOSSTT) == "DISCONTINUED", "Yes", "No"),
         "Discontinued\nEarly from Study?"
       )
-    ) %>%
-    select(all_of(c("ID", "ASR", arm_var, "TRTSDTM", "TRTDURD", "DISCONT")))
+    )
 
   adam_db
 }

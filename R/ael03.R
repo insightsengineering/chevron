@@ -81,18 +81,16 @@ ael03_pre <- function(adam_db,
         AEACN == "NOT APPLICABLE" | AEACN == "NOT EVALUABLE" ~ 6,
         AEACN == "UNKNOWN" ~ 7
       ), "Action\nTaken\n(2)"),
-
-      # Is derivation necessary ?
-      # SERREAS = with_label(case_when(
-      #   AESDTH == "Y" ~ "1",
-      #   AESLIFE == "Y" ~ "2",
-      #   AESHOSP == "Y" ~ "3",
-      #   AESDISAB == "Y" ~ "4",
-      #   AESCONG == "Y" ~ "5",
-      #   AESMIE == "Y" ~ "6",
-      #   TRUE ~ " "
-      # ), "Reason\nClassified\nas Serious\n(3)"),
-      # Do we need the arm variable ?
+      # New derived column
+      SERREAS = with_label(case_when(
+        AESDTH == "Y" ~ "1",
+        AESLIFE == "Y" ~ "2",
+        AESHOSP == "Y" ~ "3",
+        AESDISAB == "Y" ~ "4",
+        AESCONG == "Y" ~ "5",
+        AESMIE == "Y" ~ "6",
+        TRUE ~ " "
+      ), "Reason\nClassified\nas Serious\n(3)"),
     )
 
   adam_db

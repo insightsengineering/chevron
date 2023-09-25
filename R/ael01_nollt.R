@@ -22,25 +22,18 @@ ael01_nollt_main <- function(adam_db,
                              dataset = "adae",
                              key_cols = c("AEBODSYS", "AEDECOD"),
                              disp_cols = "AETERM",
-                             default_formatting = list(
-                               all = fmt_config(align = "left"),
-                               numeric = fmt_config(align = "center")
-                             ),
-                             col_formatting = NULL,
-                             unique_rows = TRUE,
                              ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
-  assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
-  assert_flag(unique_rows)
-  as_listing(
-    adam_db[[dataset]],
+
+  execute_with_args(
+  as_listing,
+    df = adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,
-    default_formatting = default_formatting,
-    col_formatting = col_formatting,
-    unique_rows = unique_rows
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
   )
 }
 
@@ -58,8 +51,7 @@ ael01_nollt_pre <- function(adam_db,
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       across(all_of(c(key_cols, disp_cols)), ~ reformat(.x, nocoding))
-    ) %>%
-    arrange(pick(all_of(c(key_cols, disp_cols))))
+    )
 
   adam_db
 }
