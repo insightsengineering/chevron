@@ -220,7 +220,23 @@ do_call <- function(what, args) {
 modify_character <- function(x, y) {
   assert_character(x, names = "unique", null.ok = TRUE)
   assert_character(y, names = "unique", null.ok = TRUE)
-  c(y, x)[unique(c(names(y), names(x)))]
+  c(y, x)[unique(c(names(x), names(y)))]
+}
+
+#' Expand list to each split
+#' @keywords internal
+expand_list <- function(lst, split) {
+  assert_list(lst, names = "unique")
+  assert_character(split)
+  if ("all" %in% names(lst)) {
+    lst <- lapply(
+      setNames(split, split),
+      function(x) {
+        modify_character(lst$all, lst[[x]])
+      }
+    )
+  }
+  lst
 }
 
 #' Helper function to convert to months if needed
@@ -344,6 +360,34 @@ get_x_vjust <- function(x) {
   } else {
     1
   }
+}
+
+#' Get Section dividers
+#' @export
+#' @return (`character`) value with section dividers at corresponding section.
+get_section_div <- function() {
+  x <- getOption("chevron.section_div", integer(0))
+  if (!test_integerish(x)) {
+    ret <- NA_character_
+  } else {
+    ret <- rep(NA_character_, max(x, 0))
+    ret[x] <- ""
+  }
+  ret
+}
+
+#' Set Section Dividers
+#' @export
+#' @param x (`integerish`) value of at which the section divider should be added.
+#' @details Section dividers are empty lines between sections in tables.
+#' E.g. if 1 is used then for the first row split an empty line is added.
+#' Currently it only works for `aet02`, `cmt01a` and `mht01` template.
+#' @return NULL
+#' @export
+set_section_div <- function(x) {
+  assert_integerish(x, min.len = 0L, any.missing = FALSE, lower = 1L)
+  options("chevron.section_div" = x)
+  invisible()
 }
 
 #' Format for Chevron Listings

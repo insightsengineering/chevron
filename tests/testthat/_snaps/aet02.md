@@ -6,8 +6,8 @@
         MedDRA Preferred Term                                       A: Drug X    B: Placebo    C: Combination
                                                                      (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
-        Overall total number of events                                 609           622            703      
         Total number of patients with at least one adverse event   122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                 609           622            703      
         dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
         dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
         dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
@@ -28,8 +28,8 @@
           MedDRA Preferred Term                                         A: Drug X    B: Placebo 
             MedDRA Preferred Term                                        (N=134)       (N=134)  
         ————————————————————————————————————————————————————————————————————————————————————————
-        Overall total number of events                                     609           622    
         Total number of patients with at least one adverse event       122 (91.0%)   123 (91.8%)
+        Overall total number of events                                     609           622    
         cl A.1                                                                                  
           Total number of patients with at least one adverse event     78 (58.2%)    75 (56.0%) 
           Total number of events                                           132           130    
@@ -95,8 +95,8 @@
           MedDRA Preferred Term                                        C: Combination
             MedDRA Preferred Term                                         (N=132)    
         —————————————————————————————————————————————————————————————————————————————
-        Overall total number of events                                      703      
         Total number of patients with at least one adverse event        120 (90.9%)  
+        Overall total number of events                                      703      
         cl A.1                                                                       
           Total number of patients with at least one adverse event       89 (67.4%)  
           Total number of events                                            160      

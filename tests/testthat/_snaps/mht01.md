@@ -1,4 +1,4 @@
-# mht01_1 functions with default argument value return expected result with test data
+# mht01 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
