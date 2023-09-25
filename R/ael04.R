@@ -25,7 +25,7 @@ ael04_main <- function(adam_db,
     disp_cols = disp_cols,
     ...,
     default_formatting = listing_format_chevron(),
-    unique_rows = TRUE,
+    unique_rows = TRUE
   )
 }
 

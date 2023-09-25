@@ -16,12 +16,10 @@ dsl01_main <- function(adam_db,
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols), label = paste0("adam_db$", dataset))
-  assert_list(default_formatting, types = "fmt_config", names = "unique")
-  assert_flag(unique_rows)
 
   execute_with_args(
     as_listing,
-    adam_db[[dataset]],
+    df = adam_db[[dataset]],
     key_cols = arm_var,
     disp_cols = disp_cols,
     ...,

@@ -14,7 +14,8 @@ dsl02_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ACTARM",
-  disp_cols = c("ID", "ASR", arm_var, "TRTSDTM", "EOSDY", "SSAEDY", "EOSRDY", "DCSREAS"),
+  key_cols = arm_var,
+  disp_cols = c("ID", "ASR", "TRTSDTM", "EOSDY", "TRTDURD", "EOSRDY", "DCSREAS"),
   ...
 )
 
@@ -28,6 +29,9 @@ dsl02
 \item{dataset}{(\code{character}) the name of a table in the \code{adam_db} object.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
+
+\item{key_cols}{(\code{character}) names of columns that should be treated as key columns when rendering the listing.
+Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 

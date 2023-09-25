@@ -16,10 +16,6 @@ ael01_nollt_main(
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
-  default_formatting = list(all = fmt_config(align = "left"), numeric = fmt_config(align
-    = "center")),
-  col_formatting = NULL,
-  unique_rows = TRUE,
   ...
 )
 
@@ -45,15 +41,13 @@ Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
-\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
-
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
+
+\item{default_formatting}{(\code{list}) the default format of the listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
+
+\item{col_formatting}{(\code{list}) the format of specific listing columns. See \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }
 \description{
 \code{AEL01_NOLLT} Listing 1 (Default) Glossary of Preferred Terms and Investigator-Specified Terms.

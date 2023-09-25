@@ -19,10 +19,11 @@ pdl01_main <- function(adam_db,
 
   execute_with_args(
     as_listing,
-    adam_db[[dataset]],
+    df = adam_db[[dataset]],
     key_cols = arm_var,
     disp_cols = disp_cols,
     ...,
+    col_formatting = list(DVSTDTC = fmt_config(format = format_date(), align = "left")),
     default_formatting = listing_format_chevron(),
     unique_rows = TRUE
   )
@@ -45,10 +46,7 @@ pdl01_pre <- function(adam_db,
       !!arm_var := with_label(.data[[arm_var]], "Treatment"),
       DVDECOD = with_label(.data$DVDECOD, "Category"),
       DVTERM = with_label(.data$DVTERM, "Description"),
-      DVSTDTC = with_label(
-        .data$DVSTDTC,
-        "Date"
-      )
+      DVSTDTC = with_label(.data$DVSTDTC, "Date")
     )
 
   adam_db
@@ -61,7 +59,7 @@ pdl01_pre <- function(adam_db,
 #'
 #' @examples
 #' proc_data <- syn_data
-#' proc_data$addv$DVSTDTC <- proc_data$addv$ASTDT
+#' proc_data$addv$DVSTDTC <- as.character(proc_data$addv$ASTDT)
 #' res <- run(pdl01, proc_data)
 pdl01 <- chevron_l(
   main = pdl01_main,

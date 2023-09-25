@@ -19,7 +19,7 @@ dml02_main <- function(adam_db,
 
   execute_with_args(
     as_listing,
-    adam_db[[dataset]],
+    df = adam_db[[dataset]],
     key_cols = arm_var,
     disp_cols = disp_cols,
     ...,

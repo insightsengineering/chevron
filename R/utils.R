@@ -414,7 +414,7 @@ listing_format_chevron <- function() {
 #'
 format_date <- function(date_format = "%d%b%Y") {
   function(x, ...) {
-    toupper(strftime(x, format = date_format))
+    toupper(strftime(as.Date(x, tz = ""), format = date_format))
   }
 }
 

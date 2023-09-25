@@ -27,7 +27,7 @@ ael01_nollt_main <- function(adam_db,
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
 
   execute_with_args(
-  as_listing,
+    as_listing,
     df = adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,

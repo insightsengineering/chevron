@@ -15,7 +15,7 @@ ael02_main <- function(adam_db,
                        key_cols = c("ID", "ASR", arm_var),
                        disp_cols = c(
                          "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER",
-                         "AESEV", "AEREL", "AEOUT", "AECONTRT", "AEACN"
+                         "ASEV", "AREL", "AEOUT", "AECONTRT", "AEACN"
                        ),
                        ...) {
   assert_all_tablenames(adam_db, dataset)
@@ -46,7 +46,7 @@ ael02_pre <- function(adam_db,
     filter(.data$ANL01FL == "Y") %>%
     mutate(
       across(
-        all_of(c(arm_var, "AEDECOD", "AESEV", "AEOUT", "AEACN")),
+        all_of(c(arm_var, "AEDECOD", "ASEV", "AEOUT", "AEACN")),
         ~ reformat(.x, missing_rule)
       )
     ) %>%
@@ -62,7 +62,7 @@ ael02_pre <- function(adam_db,
       ASTDY = with_label(.data$ASTDY, "Study\nDay of\nOnset"),
       ADURN = with_label(.data$ADURN, "AE\nDuration\nin Days"),
       AESER = with_label(reformat(.data$AESER, yes_no_rule), "Serious"),
-      AESEV = with_label(.data$AESEV, "Most\nExtreme\nIntensity"),
+      ASEV = with_label(.data$ASEV, "Most\nExtreme\nIntensity"),
       AREL = with_label(reformat(.data$AREL, yes_no_rule), "Caused by\nStudy\nDrug"),
       AEOUT = with_label(case_when(
         AEOUT == "FATAL" ~ 1,
@@ -72,10 +72,7 @@ ael02_pre <- function(adam_db,
         AEOUT == "RECOVERING/RESOLVING" ~ 5,
         AEOUT == "UNKNOWN" ~ 6
       ), "Outcome\n(1)"),
-      AECONTRT = with_label(
-        reformat(.data$AECONTRT, yes_no_rule),
-        "Treatment\nfor AE"
-      ),
+      AECONTRT = with_label(reformat(.data$AECONTRT, yes_no_rule), "Treatment\nfor AE"),
       AEACN = with_label(case_when(
         AEACN == "DOSE INCREASED" ~ 1,
         AEACN == "DOSE NOT CHANGED" ~ 2,

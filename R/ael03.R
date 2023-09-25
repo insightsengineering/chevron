@@ -14,8 +14,8 @@ ael03_main <- function(adam_db,
                        arm_var = "ACTARM",
                        key_cols = c("ID", "ASR", arm_var),
                        disp_cols = c(
-                         "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESEV",
-                         "AEREL", "AEOUT", "AECONTRT", "AEACN", "SERREAS"
+                         "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "ASEV",
+                         "AREL", "AEOUT", "AECONTRT", "AEACN", "SERREAS"
                        ),
                        ...) {
   assert_all_tablenames(adam_db, dataset)
@@ -47,7 +47,7 @@ ael03_pre <- function(adam_db,
     filter(.data$AESER == "Y") %>%
     mutate(
       across(
-        all_of(c(arm_var, "AEDECOD", "AESEV", "AEOUT", "AEACN")),
+        all_of(c(arm_var, "AEDECOD", "ASEV", "AEOUT", "AEACN")),
         ~ reformat(.x, missing_rule)
       )
     ) %>%

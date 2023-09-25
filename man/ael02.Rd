@@ -15,8 +15,8 @@ ael02_main(
   dataset = "adae",
   arm_var = "ACTARM",
   key_cols = c("ID", "ASR", arm_var),
-  disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER", "AESEV", "AEREL",
-    "AEOUT", "AECONTRT", "AEACN"),
+  disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER", "ASEV", "AREL", "AEOUT",
+    "AECONTRT", "AEACN"),
   ...
 )
 

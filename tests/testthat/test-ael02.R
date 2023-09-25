@@ -14,7 +14,7 @@ test_that("ael02 can handle all missing values", {
     mutate(
       AEDECOD = NA_character_,
       ACTARM = NA_character_,
-      AESEV = NA_character_
+      ASEV = NA_character_
     )
 
   res <- expect_silent(run(ael02, proc_data))
