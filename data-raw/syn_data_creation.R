@@ -201,7 +201,10 @@ syn_test_data <- function() {
   sd$adrs$AGEGR1 <- cut(sd$adrs$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adrs$AGEGR1, "label") <- "Age Group"
 
-  sd$adae$ADURN <- sd$adaeAENDY - sd$adaeASTDY + 1
+  sd$adae$ADURN <- sd$adae$AENDY - sd$adae$ASTDY + 1
+
+  # dsl01
+  sd$adsl$TRTDURD <- as.numeric(ceiling(difftime(sd$adsl$TRTEDTM, sd$adsl$TRTSDTM, units = "days")))
 
   sd
 }

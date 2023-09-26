@@ -163,14 +163,6 @@ lvls.character <- function(x) {
 lvls.factor <- function(x) {
   levels(x)
 }
-#' @export
-lvls.POSIXct <- function(x) {
-  levels(as.factor(x))
-}
-#' @export
-lvls.Date <- function(x) {
-  levels(as.factor(x))
-}
 
 #' @keywords internal
 quote_str <- function(x) {
@@ -495,5 +487,5 @@ create_id_listings <- function(site, subject, sep = "/") {
 
   subject_id <- stringr::str_split_i(subject, pattern = "-", i = -1)
 
-  with_label(paste(site, subject_id, sep = "/"), render_safe("Center/{Patient_label} ID"))
+  with_label(paste(site, subject_id, sep = sep), render_safe("Center/{Patient_label} ID"))
 }

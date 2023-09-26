@@ -46,12 +46,9 @@ dsl01_pre <- function(adam_db,
         .data$TRTSDTM,
         "Date of First\nStudy Drug\nAdministration"
       ),
-      TRTDURD = with_label(
-        as.numeric(ceiling(difftime(.data$TRTEDTM, .data$TRTSDTM, units = "days"))),
-        "Study Day\nof Withdrawal"
-      ),
+      TRTDURD = with_label(.data$TRTDURD, "Study Day\nof Withdrawal"),
       DISCONT = with_label(
-        ifelse(!is.na(.data$DCSREAS) & toupper(.data$EOSSTT) == "DISCONTINUED", "Yes", "No"),
+        ifelse(toupper(.data$EOSSTT) == "DISCONTINUED", "Yes", "No"),
         "Discontinued\nEarly from Study?"
       )
     )

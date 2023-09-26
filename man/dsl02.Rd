@@ -15,7 +15,7 @@ dsl02_main(
   dataset = "adsl",
   arm_var = "ACTARM",
   key_cols = arm_var,
-  disp_cols = c("ID", "ASR", "TRTSDTM", "EOSDY", "TRTDURD", "EOSRDY", "DCSREAS"),
+  disp_cols = c("ID", "ASR", "TRTSDTM", "TRTDURD", "EOSDY", "EOSRDY", "DCSREAS"),
   ...
 )
 

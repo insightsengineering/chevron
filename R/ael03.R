@@ -61,24 +61,9 @@ ael03_pre <- function(adam_db,
       AESER = with_label(.data$AESER, "Serious"),
       ASEV = with_label(.data$ASEV, "Most\nExtreme\nIntensity"),
       AREL = with_label(reformat(.data$AREL, yes_no_rule), "Caused by\nStudy\nDrug"), # Analysis Causality
-      AEOUT = with_label(case_when(
-        AEOUT == "FATAL" ~ 1,
-        AEOUT == "NOT RECOVERED/NOT RESOLVED" ~ 2,
-        AEOUT == "RECOVERED/RESOLVED" ~ 3,
-        AEOUT == "RECOVERED/RESOLVED WITH SEQUELAE" ~ 4,
-        AEOUT == "RECOVERING/RESOLVING" ~ 5,
-        AEOUT == "UNKNOWN" ~ 6
-      ), "Outcome\n(1)"),
+      AEOUT = with_label(as.numeric(reformat(.data$AEOUT, outcome_rule)), "Outcome\n(1)"),
       AECONTRT = with_label(reformat(.data$AECONTRT, yes_no_rule), "Treatment\nfor AE"),
-      AEACN = with_label(case_when(
-        AEACN == "DOSE INCREASED" ~ 1,
-        AEACN == "DOSE NOT CHANGED" ~ 2,
-        AEACN == "DOSE REDUCED" | AEACN == "DOSE RATE REDUCED" ~ 3,
-        AEACN == "DRUG INTERRUPTED" ~ 4,
-        AEACN == "DRUG WITHDRAWN" ~ 5,
-        AEACN == "NOT APPLICABLE" | AEACN == "NOT EVALUABLE" ~ 6,
-        AEACN == "UNKNOWN" ~ 7
-      ), "Action\nTaken\n(2)"),
+      AEACN = with_label(as.numeric(reformat(.data$AEACN, dose_change_rule)), "Action\nTaken\n(2)"),
       # New derived column
       SERREAS = with_label(case_when(
         AESDTH == "Y" ~ "1",

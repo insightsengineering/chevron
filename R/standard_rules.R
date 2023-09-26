@@ -14,6 +14,29 @@ empty_rule <- rule(.to_NA = "")
 #' @export
 yes_no_rule <- rule("Yes" = c("Y", "y", "yes"), "No" = c("N", "n", "no")) # nolint
 
+#' Outcome Rule
+#' @export
+outcome_rule <- rule(
+  "1" = "FATAL",
+  "2" = "NOT RECOVERED/NOT RESOLVED",
+  "3" = "RECOVERED/RESOLVED",
+  "4" = "RECOVERED/RESOLVED WITH SEQUELAE",
+  "5" = "RECOVERING/RESOLVING",
+  "6" = "UNKNOWN"
+)
+
+#' Dose Change Rule
+#' @export
+dose_change_rule <- rule(
+  "1" = "DOSE INCREASED",
+  "2" =  "DOSE NOT CHANGED",
+  "3" = c("DOSE REDUCED", "DOSE RATE REDUCED"),
+  "4" =  "DRUG INTERRUPTED",
+  "5" = "DRUG WITHDRAWN",
+  "6" = c("NOT APPLICABLE", "NOT EVALUABLE"),
+  "7" = "UNKNOWN"
+)
+
 #' Get grade rule
 #' @param direction (`string`) of abnormality direction.
 #' @param missing (`string`) method to deal with missing
