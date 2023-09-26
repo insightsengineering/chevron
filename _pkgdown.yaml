@@ -140,6 +140,7 @@ reference:
       - empty_rule
       - get_grade_rule
       - outcome_rule
+      - dose_change_rule
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
       - gen_args
