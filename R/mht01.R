@@ -1,8 +1,16 @@
 # mht01 ----
 
+#' @describeIn mht01 Default labels
+#' @export
+mht01_label <- c(
+  unique = "Total number of {patient_label} with at least one condition",
+  nonunique = "Total number of conditions"
+)
+
 #' @describeIn mht01 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param summary_labels (`list`) of summarize labels. See details.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -11,6 +19,8 @@
 #'  * Does not include a total column by default.
 #'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
 #'  patients with the specific condition.
+#'  `summary_labels` is used to control the summary for each level. If "all" is used, then each split will have that
+#'  summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
 #'
 #' @note
 #'   * `adam_db` object must contain an `admh` table with columns `"MHBODSYS"` and `"MHDECOD"`.
@@ -19,78 +29,50 @@
 #'
 mht01_main <- function(adam_db,
                        arm_var = "ARM",
+                       row_split_var = "MHBODSYS",
                        lbl_overall = NULL,
+                       summary_labels = list(
+                         all = mht01_label
+                       ),
                        ...) {
   assert_all_tablenames(adam_db, c("admh", "adsl"))
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
-  assert_valid_variable(adam_db$admh, c("MHBODSYS", "MHDECOD"), types = list(c("character", "factor")), empty_ok = TRUE)
+  assert_valid_variable(
+    adam_db$admh,
+    c(row_split_var, "MHDECOD"),
+    types = list(c("character", "factor")),
+    empty_ok = TRUE
+  )
   assert_valid_variable(adam_db$admh, "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, "USUBJID", types = list(c("character", "factor")))
   assert_valid_var_pair(adam_db$adsl, adam_db$admh, arm_var)
+  assert_list(summary_labels, null.ok = TRUE)
+  assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))
+  assert_subset(
+    unique(unlist(lapply(summary_labels, names))),
+    c("unique", "nonunique", "unique_count")
+  )
+  summary_labels <- expand_list(summary_labels, c("TOTAL", row_split_var))
 
   lbl_overall <- render_safe(lbl_overall)
-  lbl_mhbodsys <- var_labels_for(adam_db$admh, "MHBODSYS")
+  lbl_row_split <- var_labels_for(adam_db$admh, row_split_var)
   lbl_mhdecod <- var_labels_for(adam_db$admh, "MHDECOD")
 
-  lyt <- mht01_lyt(
+  lyt <- occurrence_lyt(
     arm_var = arm_var,
     lbl_overall = lbl_overall,
-    lbl_mhbodsys = lbl_mhbodsys,
-    lbl_mhdecod = lbl_mhdecod
+    row_split_var = row_split_var,
+    lbl_row_split = lbl_row_split,
+    medname_var = "MHDECOD",
+    lbl_medname_var = lbl_mhdecod,
+    summary_labels = summary_labels,
+    count_by = "MHSEQ"
   )
 
   tbl <- build_table(lyt, adam_db$admh, alt_counts_df = adam_db$adsl)
 
   tbl
-}
-
-#' `mht01` Layout
-#'
-#' @inheritParams gen_args
-#' @inheritParams mht01_main
-#' @param lbl_mhbodsys (`string`) label associated with `"MHBODSYS"`.
-#' @param lbl_mhdecod (`string`) label associated with `"MHDECOD"`.
-#'
-#' @keywords internal
-#'
-mht01_lyt <- function(arm_var,
-                      lbl_overall,
-                      lbl_mhbodsys,
-                      lbl_mhdecod) {
-  basic_table(show_colcounts = TRUE) %>%
-    split_cols_by_with_overall(arm_var, lbl_overall) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = render_safe("Total number of {patient_label} with at least one condition"),
-        nonunique = render_safe("Total number of conditions")
-      )
-    ) %>%
-    split_rows_by(
-      "MHBODSYS",
-      child_labels = "visible",
-      labels_var = "MHBODSYS",
-      nested = FALSE,
-      indent_mod = -1L,
-      split_fun = drop_split_levels,
-      label_pos = "topleft",
-      split_label = lbl_mhbodsys
-    ) %>%
-    summarize_num_patients(
-      var = "USUBJID",
-      .stats = c("unique", "nonunique"),
-      .labels = c(
-        unique = render_safe("Total number of {patient_label} with at least one condition"),
-        nonunique = "Total number of conditions"
-      )
-    ) %>%
-    count_occurrences(
-      vars = "MHDECOD",
-      .indent_mods = -1L
-    ) %>%
-    append_topleft(paste0("  ", lbl_mhdecod))
 }
 
 #' @describeIn mht01 Preprocessing
@@ -109,7 +91,8 @@ mht01_pre <- function(adam_db, ...) {
     ) %>%
     mutate(
       MHBODSYS = with_label(.data$MHBODSYS, "MedDRA System Organ Class"),
-      MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term")
+      MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term"),
+      MHSEQ = as.factor(.data$MHSEQ)
     )
 
   adam_db

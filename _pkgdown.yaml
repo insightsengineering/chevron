@@ -118,6 +118,8 @@ reference:
       - h_format_dec
       - lvls
       - convert_to_month
+      - get_section_div
+      - set_section_div
   - title: Standard Reformatting Rules
     contents:
       - nocoding

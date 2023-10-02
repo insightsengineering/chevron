@@ -1,4 +1,4 @@
-# chevron 0.2.2.9021
+# chevron 0.2.2.9023
 
 * Fix argument printing for `run` method.
 * Remove six unused tables from the `syn_data` object.
@@ -15,6 +15,9 @@ and `legend_pos` arguments. The `table` arguments now controls the behavior of t
 * Add `RMPT06` template.
 * The `stats` and `precision` arguments now control the statistical analysis and numbers of digits presented in `DMT01`.
 * `FSTG01` and `FSTG02` template removes the `max_colwidth` argument. Default font size of the plot is set to 7.
+* Introduce `set_section_div` function to add empty line separator between specified row splits.
+* `AET02` template the default order of "Total number of events" and "Total number of patients with at least one adverse event"
+switched.
 
 # chevron 0.2.2
 
