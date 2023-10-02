@@ -1262,7 +1262,7 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = 
 
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), show_table = FALSE, draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = NULL, draw = TRUE)
 ```
 
 A new argument has been added to control the theme (e.g. setting the angle of the axis); see an example below:
