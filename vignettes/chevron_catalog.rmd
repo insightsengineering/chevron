@@ -90,7 +90,7 @@ The generic argument `lbl_overall` controls whether the column of total will be 
 
 #### **2. Column counts: N=xxx**
 
-Column counts are displayed by default. There is no generic argument `display_columncounts` that controls whether the count of unique number of subjects (N=xxx) will be displayed in the column header or not. Users are allowed to customize the display of N=xxx by forcing `display_columncounts = FALSE` to wipe column counts away during the postprocessing (with precautions and it is not recommended).
+Column counts are displayed by default. There is no generic argument controlling whether the count of unique number of subjects (N=xxx) will be displayed in the column header or not. Users are allowed to customize the display of N=xxx by forcing `display_columncounts = FALSE` to wipe column counts away during the postprocessing (with precautions and it is not recommended).
 
 ```{r}
 tbl <- run(dmt01, syn_data) # table with column counts
