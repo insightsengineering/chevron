@@ -1,4 +1,4 @@
-# chevron 0.2.2.9024
+# chevron 0.2.3
 
 * Fix argument printing for `run` method.
 * Remove six unused tables from the `syn_data` object.
