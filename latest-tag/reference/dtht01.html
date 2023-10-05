@@ -12,7 +12,7 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,7 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -88,9 +89,9 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dtht01_main</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
 <span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
+<span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  other_category <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  time_since_last_dose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -115,16 +116,16 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 <dd><p>(<code>string</code>) variable used for column splitting</p></dd>
 
 
+<dt>lbl_overall</dt>
+<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
+
+
 <dt>other_category</dt>
 <dd><p>(<code>flag</code>) should the breakdown of the <code>OTHER</code> category be displayed.</p></dd>
 
 
 <dt>time_since_last_dose</dt>
 <dd><p>(<code>flag</code>) should the time to event information be displayed.</p></dd>
-
-
-<dt>lbl_overall</dt>
-<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
 
 
 <dt>...</dt>
@@ -162,10 +163,7 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">syn_data</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01</span>, <span class="va">db</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            A: Drug X    B: Placebo   C: Combination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             (N=134)      (N=134)        (N=132)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————</span>
@@ -175,7 +173,8 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Adverse Event          9 (36.0%)    7 (30.4%)      10 (45.5%)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Progressive Disease    8 (32.0%)    6 (26.1%)      6 (27.3%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Other                  8 (32.0%)    10 (43.5%)     6 (27.3%)   </span>
-<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01</span>, <span class="va">db</span>, other_category <span class="op">=</span> <span class="cn">TRUE</span>, time_since_last_dose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01</span>, <span class="va">syn_data</span>, other_category <span class="op">=</span> <span class="cn">TRUE</span>, time_since_last_dose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                               A: Drug X    B: Placebo   C: Combination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                (N=134)      (N=134)        (N=132)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ————————————————————————————————————————————————————————————————————————————————————————————————————</span>

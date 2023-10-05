@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,7 @@
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -75,6 +76,44 @@
       
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.3" id="chevron-023">chevron 0.2.3<a class="anchor" aria-label="anchor" href="#chevron-023"></a></h2>
+<ul><li>Fix argument printing for <code>run</code> method.</li>
+<li>Remove six unused tables from the <code>syn_data</code> object.</li>
+<li>Fix <code>EGT03</code> to allow multiple parameters.</li>
+<li>Update <code>TTET01</code> to provide meaningful error message if stratification variables do not exist in analysis dataset.</li>
+<li>
+<code>PDT01</code> preprocessing now filters <code>addv</code> to retain only major protocol deviation.</li>
+<li>
+<code>AEL01_NOLLT</code> now has argument <code>unique</code> to keep only the unique rows in listing.</li>
+<li>
+<code>AET01_AESI</code>, <code>EGT02</code> and <code>LBT14</code> now remove the check in preprocessing function.</li>
+<li>
+<code>COXT01</code> will drop levels on <code>arm_var</code> in preprocessing function now.</li>
+<li>
+<code>MNG01</code> uses a <code>ggtheme</code> argument to set graphic parameters instead of the now defunct <code>show_h_grid</code>, <code>show_v_grid</code> and <code>legend_pos</code> arguments. The <code>table</code> arguments now controls the behavior of the table. The arguments <code>show_n</code> and <code>show_table</code> are now defunct.</li>
+<li>Add <code>RMPT06</code> template.</li>
+<li>The <code>stats</code> and <code>precision</code> arguments now control the statistical analysis and numbers of digits presented in <code>DMT01</code>.</li>
+<li>
+<code>FSTG01</code> and <code>FSTG02</code> template removes the <code>max_colwidth</code> argument. Default font size of the plot is set to 7.</li>
+<li>Introduce <code>set_section_div</code> function to add empty line separator between specified row splits.</li>
+<li>
+<code>AET02</code> template the default order of “Total number of events” and “Total number of patients with at least one adverse event” switched.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.2" id="chevron-022">chevron 0.2.2<a class="anchor" aria-label="anchor" href="#chevron-022"></a></h2>
+<ul><li>Allow <code>EGT03</code> to include multiple parameters.</li>
+<li>Allow <code>KMG01</code> to include stratified variables.</li>
+<li>Allow <code>LBT06</code> and <code>LBT14</code> to be split by pages.</li>
+<li>Allow <code>AET02</code>, <code>CMT01A</code> to change the summary statistics with <code>summary_labels</code> argument.</li>
+<li>Add <code>FSTG02</code> template.</li>
+<li>Update the argument <code>"is_event"</code> in <code>KMG01</code> to <code>"IS_EVENT"</code>.</li>
+<li>Update the argument <code>"is_rsp"</code> in <code>FSTG01</code> to <code>"IS_RSP"</code>.</li>
+<li>
+<code>FSTG01</code> and <code>FSTG02</code> stratification variable labels will be truncated to fit the page.</li>
+<li>Update the script for <code>chevron_tlg</code> objects. The <code>details</code> argument is deprecated.</li>
+<li>Fix issue when <code>run</code> method is executed with <code>do.call</code> and <code>verbose</code> argument.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="chevron-021">chevron 0.2.1<a class="anchor" aria-label="anchor" href="#chevron-021"></a></h2>
 <ul><li>Placeholder strings are now replaced during layout creation using <code><a href="https://rdrr.io/pkg/dunlin/man/render_safe.html" class="external-link">dunlin::render_safe</a></code> function.</li>

@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,7 @@
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -257,12 +258,14 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/main.html">main</a></span><span class="op">(</span><span class="va">aet02</span><span class="op">)</span></span>
 <span><span class="co">#&gt; function (adam_db, arm_var = "ACTARM", row_split_var = "AEBODSYS", </span></span>
-<span><span class="co">#&gt;     lbl_overall = NULL, ...) </span></span>
+<span><span class="co">#&gt;     lbl_overall = NULL, summary_labels = list(all = aet02_label, </span></span>
+<span><span class="co">#&gt;         TOTAL = c(nonunique = "Overall total number of events")), </span></span>
+<span><span class="co">#&gt;     ...) </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     assert_all_tablenames(adam_db, "adsl", "adae")</span></span>
-<span><span class="co">#&gt;     checkmate::assert_character(row_split_var, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt;     checkmate::assert_string(lbl_overall, null.ok = TRUE)</span></span>
-<span><span class="co">#&gt;     checkmate::assert_string(arm_var)</span></span>
+<span><span class="co">#&gt;     assert_string(arm_var)</span></span>
+<span><span class="co">#&gt;     assert_character(row_split_var, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_string(lbl_overall, null.ok = TRUE)</span></span>
 <span><span class="co">#&gt;     assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), </span></span>
 <span><span class="co">#&gt;         types = list(c("character", "factor")))</span></span>
 <span><span class="co">#&gt;     assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, </span></span>
@@ -270,16 +273,23 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="co">#&gt;     assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, </span></span>
 <span><span class="co">#&gt;         types = list(c("character", "factor")))</span></span>
 <span><span class="co">#&gt;     assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)</span></span>
+<span><span class="co">#&gt;     assert_list(summary_labels, null.ok = TRUE)</span></span>
+<span><span class="co">#&gt;     assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))</span></span>
+<span><span class="co">#&gt;     assert_subset(unique(unlist(lapply(summary_labels, names))), </span></span>
+<span><span class="co">#&gt;         c("unique", "nonunique", "unique_count"))</span></span>
+<span><span class="co">#&gt;     summary_labels &lt;- expand_list(summary_labels, c("TOTAL", </span></span>
+<span><span class="co">#&gt;         row_split_var))</span></span>
+<span><span class="co">#&gt;     lbl_overall &lt;- render_safe(lbl_overall)</span></span>
 <span><span class="co">#&gt;     lbl_row_split &lt;- var_labels_for(adam_db$adae, row_split_var)</span></span>
 <span><span class="co">#&gt;     lbl_aedecod &lt;- var_labels_for(adam_db$adae, "AEDECOD")</span></span>
-<span><span class="co">#&gt;     lbl_overall &lt;- render_safe(lbl_overall)</span></span>
-<span><span class="co">#&gt;     lyt &lt;- aet02_lyt(arm_var = arm_var, lbl_overall = lbl_overall, </span></span>
+<span><span class="co">#&gt;     lyt &lt;- occurrence_lyt(arm_var = arm_var, lbl_overall = lbl_overall, </span></span>
 <span><span class="co">#&gt;         row_split_var = row_split_var, lbl_row_split = lbl_row_split, </span></span>
-<span><span class="co">#&gt;         lbl_aedecod = lbl_aedecod)</span></span>
+<span><span class="co">#&gt;         medname_var = "AEDECOD", lbl_medname_var = lbl_aedecod, </span></span>
+<span><span class="co">#&gt;         summary_labels = summary_labels, count_by = NULL)</span></span>
 <span><span class="co">#&gt;     tbl &lt;- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)</span></span>
 <span><span class="co">#&gt;     tbl</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efacd4d9e8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55949cdfdd40&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:chevron&gt;</span></span></code></pre></div>
 <p>These are standard functions that can be used on their own.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -290,7 +300,7 @@ the corresponding method: <code>main</code>, <code>lyt</code>,
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">foo</span><span class="op">(</span><span class="va">syn_data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">res</span>, max.level <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="co">#&gt; List of 19</span></span></code></pre></div>
+<span><span class="co">#&gt; List of 13</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="chevron_tlg-object-customization">

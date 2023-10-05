@@ -12,7 +12,7 @@ overview of laboratory abnormalities not present at baseline."><!-- mathjax --><
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,7 @@ overview of laboratory abnormalities not present at baseline."><!-- mathjax --><
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -88,8 +89,11 @@ overview of laboratory abnormalities not present at baseline.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lbt04_main</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
 <span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
+<span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  analysis_abn_var <span class="op">=</span> <span class="st">"ANRIND"</span>,</span>
 <span>  baseline_abn_var <span class="op">=</span> <span class="st">"BNRIND"</span>,</span>
+<span>  row_split_var <span class="op">=</span> <span class="st">"PARCAT1"</span>,</span>
+<span>  page_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">row_split_var</span>, <span class="fl">1L</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -114,12 +118,24 @@ overview of laboratory abnormalities not present at baseline.</p>
 <dd><p>(<code>string</code>) variable used for column splitting</p></dd>
 
 
+<dt>lbl_overall</dt>
+<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
+
+
 <dt>analysis_abn_var</dt>
 <dd><p>(<code>string</code>) column describing anomaly magnitude</p></dd>
 
 
 <dt>baseline_abn_var</dt>
 <dd><p>(<code>string</code>) column describing anomaly at baseline.</p></dd>
+
+
+<dt>row_split_var</dt>
+<dd><p>(<code>character</code>) additional row split variables.</p></dd>
+
+
+<dt>page_var</dt>
+<dd><p>(<code>string</code>) variable name prior to which the row split is by page.</p></dd>
 
 
 <dt>...</dt>

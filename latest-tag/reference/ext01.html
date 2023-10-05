@@ -12,7 +12,7 @@ patients in terms of Total dose administered or missed, and treatment duration."
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,7 @@ patients in terms of Total dose administered or missed, and treatment duration."
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -88,9 +89,9 @@ patients in terms of Total dose administered or missed, and treatment duration.<
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ext01_main</span><span class="op">(</span></span>
 <span>  <span class="va">adam_db</span>,</span>
 <span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
+<span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  summaryvars <span class="op">=</span> <span class="st">"AVAL"</span>,</span>
 <span>  row_split_var <span class="op">=</span> <span class="st">"PARCAT2"</span>,</span>
-<span>  lbl_overall <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  page_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  map <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -117,6 +118,10 @@ patients in terms of Total dose administered or missed, and treatment duration.<
 <dd><p>(<code>string</code>) variable used for column splitting</p></dd>
 
 
+<dt>lbl_overall</dt>
+<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
+
+
 <dt>summaryvars</dt>
 <dd><p>(<code>character</code>) variables to be analyzed. The label attribute of the corresponding column in <code>adex</code>
 table of <code>adam_db</code> is used as label.</p></dd>
@@ -124,10 +129,6 @@ table of <code>adam_db</code> is used as label.</p></dd>
 
 <dt>row_split_var</dt>
 <dd><p>(<code>character</code>) additional row split variables.</p></dd>
-
-
-<dt>lbl_overall</dt>
-<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
 
 
 <dt>page_var</dt>
@@ -203,6 +204,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)               6630.5 (1334.0)   6297.3 (1291.1)   6505.3 (1080.7)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                      6720.0            6240.0            6480.0     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max               4320.0 - 8880.0   4080.0 - 9120.0   4320.0 - 8640.0</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">ext01</span>, <span class="va">syn_data</span>, summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVAL"</span>, <span class="st">"AVALCAT1"</span><span class="op">)</span>, prune_0 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   PARCAT2                        A: Drug X        B: Placebo      C: Combination </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                   (N=134)           (N=134)           (N=132)    </span>
@@ -285,6 +287,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span>       7000-9000                 23 (39.0%)        17 (25.4%)        16 (28.1%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &gt;9000                          0             1 (1.5%)              0       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       7                              0                 0                 0       </span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">syn_data</span><span class="op">$</span><span class="va">adex</span><span class="op">$</span><span class="va">AVALCAT1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">syn_data</span><span class="op">$</span><span class="va">adex</span><span class="op">$</span><span class="va">AVALCAT1</span><span class="op">)</span>, <span class="st">"12 months"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  PARAMCD <span class="op">=</span> <span class="st">"TDURD"</span>,</span></span>

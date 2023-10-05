@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,7 @@
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -92,19 +93,14 @@
 <span>  arm_var <span class="op">=</span> <span class="st">"ACTARM"</span>,</span>
 <span>  center_fun <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>  interval_fun <span class="op">=</span> <span class="st">"mean_ci"</span>,</span>
-<span>  show_table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  jitter <span class="op">=</span> <span class="fl">0.3</span>,</span>
-<span>  show_n <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  show_h_grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  show_v_grid <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  legend_pos <span class="op">=</span> <span class="st">"top"</span>,</span>
 <span>  line_col <span class="op">=</span> <span class="fu">nestcolor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nestcolor/man/color_palette.html" class="external-link">color_palette</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  ggtheme <span class="op">=</span> <span class="fu"><a href="gg_theme_chevron.html">gg_theme_chevron</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  table <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="va">center_fun</span>, <span class="va">interval_fun</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">mng01_pre</span><span class="op">(</span><span class="va">adam_db</span>, <span class="va">dataset</span>, x_var <span class="op">=</span> <span class="st">"AVISIT"</span>, <span class="va">...</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">mng01_post</span><span class="op">(</span><span class="va">tlg</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mng01</span></span></code></pre></div>
     </div>
@@ -152,29 +148,9 @@
 <dd><p>(<code>string</code>) the function defining the crossbar range.</p></dd>
 
 
-<dt>show_table</dt>
-<dd><p>(<code>flag</code>) should the summary statistic table be displayed.</p></dd>
-
-
 <dt>jitter</dt>
 <dd><p>(<code>numeric</code>) the width of spread for data points on the x-axis; a number from 0 (no <code>jitter</code>) to 1 (high
 <code>jitter</code>), with a default of 0.3 (slight <code>jitter</code>).</p></dd>
-
-
-<dt>show_n</dt>
-<dd><p>(<code>flag</code>) should the number of observation be displayed int the table.</p></dd>
-
-
-<dt>show_h_grid</dt>
-<dd><p>(<code>flag</code>) should horizontal grid be displayed.</p></dd>
-
-
-<dt>show_v_grid</dt>
-<dd><p>(<code>flag</code>) should vertical grid be displayed.</p></dd>
-
-
-<dt>legend_pos</dt>
-<dd><p>(<code>string</code>) the position of the legend.</p></dd>
 
 
 <dt>line_col</dt>
@@ -182,12 +158,16 @@
 <code>arm_var</code> with color names.</p></dd>
 
 
+<dt>ggtheme</dt>
+<dd><p>(<code>theme</code>) passed to <code><a href="https://rdrr.io/pkg/tern/man/g_lineplot.html" class="external-link">tern::g_lineplot()</a></code>.</p></dd>
+
+
+<dt>table</dt>
+<dd><p>(<code>character</code>) names of the statistics to be displayed in the table. If <code>NULL</code>, no table is displayed.</p></dd>
+
+
 <dt>...</dt>
-<dd><p>not used.</p></dd>
-
-
-<dt>tlg</dt>
-<dd><p>(<code>TableTree</code>, <code>Listing</code> or <code>ggplot</code>) object typically produced by a <code>main</code> function.</p></dd>
+<dd><p>passed to <code><a href="https://rdrr.io/pkg/tern/man/g_lineplot.html" class="external-link">tern::g_lineplot()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -207,7 +187,6 @@
     
 <ul><li><p><code>mng01_main()</code>: Main TLG Function</p></li>
 <li><p><code>mng01_pre()</code>: Preprocessing</p></li>
-<li><p><code>mng01_post()</code>: Postprocessing</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -215,6 +194,10 @@
 <ul><li><p><code>adam_db</code> object must contain the table specified by <code>dataset</code> with the columns specified by <code>x_var</code>, <code>y_var</code>,
 <code>y_name</code>, <code>y_unit</code> and <code>arm_var</code>.</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="gg_theme_chevron.html">gg_theme_chevron()</a></code>, <code><a href="https://rdrr.io/pkg/tern/man/g_lineplot.html" class="external-link">tern::g_lineplot()</a></code>.</p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

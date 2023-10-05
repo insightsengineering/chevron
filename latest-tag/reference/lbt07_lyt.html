@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,7 @@
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -84,12 +85,12 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lbt07_lyt</span><span class="op">(</span></span>
 <span>  <span class="va">arm_var</span>,</span>
+<span>  <span class="va">lbl_overall</span>,</span>
+<span>  <span class="va">lbl_param_var</span>,</span>
+<span>  <span class="va">lbl_grad_dir_var</span>,</span>
 <span>  <span class="va">param_var</span>,</span>
 <span>  <span class="va">grad_dir_var</span>,</span>
 <span>  <span class="va">grad_anl_var</span>,</span>
-<span>  <span class="va">lbl_param_var</span>,</span>
-<span>  <span class="va">lbl_grad_dir_var</span>,</span>
-<span>  <span class="va">lbl_overall</span>,</span>
 <span>  <span class="va">map</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -98,6 +99,18 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>arm_var</dt>
 <dd><p>(<code>string</code>) variable used for column splitting</p></dd>
+
+
+<dt>lbl_overall</dt>
+<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
+
+
+<dt>lbl_param_var</dt>
+<dd><p>(<code>string</code>) label of the <code>param_var</code> variable.</p></dd>
+
+
+<dt>lbl_grad_dir_var</dt>
+<dd><p>(<code>string</code>) label for the <code>grad_dir_var</code> variable.</p></dd>
 
 
 <dt>param_var</dt>
@@ -112,18 +125,6 @@ order to obtain the correct denominators when building the layout as it is used 
 <dt>grad_anl_var</dt>
 <dd><p>(<code>string</code>)  the name of the column storing toxicity grade variable where all negative values from
 <code>ATOXGR</code> are replaced by their absolute values.</p></dd>
-
-
-<dt>lbl_param_var</dt>
-<dd><p>(<code>string</code>) label of the <code>param_var</code> variable.</p></dd>
-
-
-<dt>lbl_grad_dir_var</dt>
-<dd><p>(<code>string</code>) label for the <code>grad_dir_var</code> variable.</p></dd>
-
-
-<dt>lbl_overall</dt>
-<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
 
 
 <dt>map</dt>

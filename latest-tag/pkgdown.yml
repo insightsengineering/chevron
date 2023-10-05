@@ -6,8 +6,8 @@ articles:
   chevron: chevron.html
   chevron_catalog: chevron_catalog.html
   script_generator: script_generator.html
-last_built: 2023-07-25T04:43Z
+last_built: 2023-10-05T15:12Z
 urls:
-  reference: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/v0.2.1/reference
-  article: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/v0.2.1/articles
+  reference: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/reference
+  article: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron/articles
 

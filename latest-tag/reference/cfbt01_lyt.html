@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,7 @@
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
@@ -84,13 +85,14 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cfbt01_lyt</span><span class="op">(</span></span>
 <span>  <span class="va">arm_var</span>,</span>
+<span>  <span class="va">lbl_overall</span>,</span>
+<span>  <span class="va">lbl_avisit</span>,</span>
+<span>  <span class="va">lbl_param</span>,</span>
 <span>  <span class="va">summaryvars</span>,</span>
 <span>  <span class="va">summaryvars_lbls</span>,</span>
 <span>  <span class="va">row_split_var</span>,</span>
 <span>  <span class="va">row_split_lbl</span>,</span>
 <span>  <span class="va">visitvar</span>,</span>
-<span>  <span class="va">lbl_avisit</span>,</span>
-<span>  <span class="va">lbl_param</span>,</span>
 <span>  <span class="va">precision</span>,</span>
 <span>  <span class="va">page_var</span>,</span>
 <span>  <span class="va">.stats</span>,</span>
@@ -103,6 +105,18 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>arm_var</dt>
 <dd><p>(<code>string</code>) variable used for column splitting</p></dd>
+
+
+<dt>lbl_overall</dt>
+<dd><p>(<code>string</code>) label used for overall column, if set to <code>NULL</code> the overall column is omitted</p></dd>
+
+
+<dt>lbl_avisit</dt>
+<dd><p>(<code>string</code>) label of the <code>visitvar</code> variable.</p></dd>
+
+
+<dt>lbl_param</dt>
+<dd><p>(<code>string</code>) label of the <code>PARAM</code> variable.</p></dd>
 
 
 <dt>summaryvars</dt>
@@ -125,16 +139,8 @@
 <dd><p>(<code>string</code>) typically one of <code>"AVISIT"</code> or user-defined visit incorporating <code>"ATPT"</code>.</p></dd>
 
 
-<dt>lbl_avisit</dt>
-<dd><p>(<code>string</code>) label of the <code>visitvar</code> variable.</p></dd>
-
-
-<dt>lbl_param</dt>
-<dd><p>(<code>string</code>) label of the <code>PARAM</code> variable.</p></dd>
-
-
 <dt>precision</dt>
-<dd><p>(named <code>list</code> of <code>integer</code>) where names are values found in the <code>PARAMCD</code> column and the the values
+<dd><p>(named <code>list</code> of <code>integer</code>) where names are values found in the <code>PARAMCD</code> column and the values
 indicate the number of digits in statistics. If <code>default</code> is set, and parameter precision not specified,
 the value for <code>default</code> will be used.</p></dd>
 
@@ -144,7 +150,7 @@ the value for <code>default</code> will be used.</p></dd>
 
 
 <dt>.stats</dt>
-<dd><p>(<code>character</code>) statistics names, see <code><a href="https://rdrr.io/pkg/tern/man/analyze_variables.html" class="external-link">tern::summarize_vars()</a></code>.</p></dd>
+<dd><p>(<code>character</code>) statistics names, see <code><a href="https://rdrr.io/pkg/tern/man/analyze_variables.html" class="external-link">tern::analyze_vars()</a></code>.</p></dd>
 
 
 <dt>skip</dt>
