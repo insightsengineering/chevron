@@ -10,7 +10,8 @@
 dml02_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ARM",
-                       disp_cols = c("ID", arm_var, "RANDDT", "TRTSDT"),
+                       key_cols = "ID",
+                       disp_cols = c(arm_var, "RANDDT", "TRTSDT"),
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols, arm_var), label = paste0("adam_db$", dataset))
@@ -18,7 +19,7 @@ dml02_main <- function(adam_db,
   execute_with_args(
     as_listing,
     df = adam_db[[dataset]],
-    key_cols = arm_var,
+    key_cols = key_cols,
     disp_cols = disp_cols,
     ...,
     default_formatting = listing_format_chevron(),
@@ -49,6 +50,14 @@ dml02_pre <- function(adam_db,
         "Date of\nFirst Study Drug\nAdministration"
       )
     )
+
+  # Sorting by randomization date.
+  date_order <- order(as.factor(adam_db[[dataset]]$RANDDT))
+  id_order <- adam_db[[dataset]]$ID[date_order]
+  adam_db[[dataset]]$ID <- with_label(
+    factor(adam_db[[dataset]]$ID, levels = unique(id_order)),
+    render_safe("Center/{Patient_label} ID")
+  )
 
   adam_db
 }
