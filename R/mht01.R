@@ -3,7 +3,7 @@
 #' @describeIn mht01 Default labels
 #' @export
 mht01_label <- c(
-  unique = "Total number of {patient_label} with at least one condition",
+  unique = "Total number of {patients_label} with at least one condition",
   nonunique = "Total number of conditions"
 )
 

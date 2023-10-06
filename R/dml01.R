@@ -10,7 +10,7 @@
 dml01_main <- function(adam_db,
                        dataset = "adsl",
                        arm_var = "ARM",
-                       disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
+                       disp_cols = c("ID", "ASR", "ETHNIC"),
                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(disp_cols), label = paste0("adam_db$", dataset))
@@ -18,6 +18,7 @@ dml01_main <- function(adam_db,
   execute_with_args(
     as_listing,
     df = adam_db[[dataset]],
+    key_cols = arm_var,
     disp_cols = disp_cols,
     ...,
     default_formatting = listing_format_chevron(),
@@ -32,12 +33,14 @@ dml01_main <- function(adam_db,
 #' @export
 #'
 dml01_pre <- function(adam_db,
+                      arm_var = "ARM",
                       dataset = "adsl",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     mutate(
       ID = create_id_listings(.data$SITEID, .data$SUBJID),
-      ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race")
+      ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
+      !!arm_var := with_label(.data[[arm_var]], "Treatment")
     )
 
   adam_db

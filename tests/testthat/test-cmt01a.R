@@ -11,9 +11,9 @@ test_that("cmt01a functions with custom argument value return expected result wi
   pre_data <- cmt01a_pre(syn_data)
   raw_res <- cmt01a_main(pre_data, summary_labels = list(
     TOTAL = c(
-      unique = "Total number of {patient_label} with at least one treatment",
+      unique = "Total number of {patients_label} with at least one treatment",
       nonunique = "Total number of treatments"
-    ), ATC2 = c(unique = "Total number of {patient_label} with at least one treatment")
+    ), ATC2 = c(unique = "Total number of {patients_label} with at least one treatment")
   ))
   res <- cmt01a_post(raw_res, sort_by_freq = TRUE)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))

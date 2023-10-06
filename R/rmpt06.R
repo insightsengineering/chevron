@@ -109,10 +109,10 @@ rmpt06_lyt <- function(arm_var,
       method = method,
       conf_level,
       .labels = c(
-        n_prop = render_safe("Number of {patient_label} with at least one adverse event"),
+        n_prop = render_safe("Number of {patients_label} with at least one adverse event"),
         prop_ci = paste0(
           100 * conf_level,
-          render_safe("% CI for % of {patient_label} with at least one AE")
+          render_safe("% CI for % of {patients_label} with at least one AE")
         )
       ),
       table_names = "est_prop"
@@ -125,7 +125,7 @@ rmpt06_lyt <- function(arm_var,
         method = method_diff,
         conf_level = conf_level_diff,
         .labels = c(
-          diff = render_safe("Difference in % of {patient_label} with at least one AE"),
+          diff = render_safe("Difference in % of {patients_label} with at least one AE"),
           diff_ci = paste0(
             100 * conf_level_diff,
             "% CI of difference"
@@ -147,14 +147,14 @@ rmpt06_lyt <- function(arm_var,
     ) %>%
     count_occurrences_by_grade(
       var = "ATOXGR",
-      var_labels = render_safe("Total number of {patient_label} with at least one AE by worst grade"),
+      var_labels = render_safe("Total number of {patients_label} with at least one AE by worst grade"),
       show_labels = "visible",
       grade_groups = grade_groups
     ) %>%
     count_patients_with_event(
       "USUBJID",
       filters = c("AESER" = "Y"),
-      .labels = c(count_fraction = render_safe("Number of {patient_label} with at least one serious AE")),
+      .labels = c(count_fraction = render_safe("Number of {patients_label} with at least one serious AE")),
       denom = "N_col",
       .formats = c(count_fraction = format_count_fraction_fixed_dp),
       table_names = "aeser"
@@ -162,7 +162,7 @@ rmpt06_lyt <- function(arm_var,
     count_occurrences(
       "AEOUT",
       denom = "n",
-      var_labels = render_safe("Number of {patient_label} with at least one AE by outcome"),
+      var_labels = render_safe("Number of {patients_label} with at least one AE by outcome"),
       show_labels = "visible",
       drop = FALSE
     )

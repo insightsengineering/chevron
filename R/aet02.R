@@ -4,7 +4,7 @@
 #' @export
 #'
 aet02_label <- c(
-  unique = "Total number of {patient_label} with at least one adverse event",
+  unique = "Total number of {patients_label} with at least one adverse event",
   nonunique = "Total number of events"
 )
 

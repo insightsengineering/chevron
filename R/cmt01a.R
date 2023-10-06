@@ -4,7 +4,7 @@
 #' @export
 #'
 cmt01_label <- c(
-  unique = "Total number of {patient_label} with at least one treatment",
+  unique = "Total number of {patients_label} with at least one treatment",
   nonunique = "Total number of treatments"
 )
 

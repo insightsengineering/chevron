@@ -3,106 +3,106 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        Treatment      Center/Patients ID        Category     
-      ————————————————————————————————————————————————————————
-      A: Drug X        BRA-11/50            PROCEDURAL        
-                       CHN-1/275            MEDICATION        
-                       CHN-1/275            EXCLUSION CRITERIA
-                       CHN-1/316            MEDICATION        
-                       CHN-1/316            INCLUSION CRITERIA
-                       CHN-1/47             PROCEDURAL        
-                       CHN-1/47             INCLUSION CRITERIA
-                       CHN-1/47             MEDICATION        
-                       CHN-11/132           EXCLUSION CRITERIA
-                       CHN-11/132           EXCLUSION CRITERIA
-                       CHN-11/167           INCLUSION CRITERIA
-                       CHN-11/167           EXCLUSION CRITERIA
-                       CHN-12/266           EXCLUSION CRITERIA
-                       CHN-12/396           EXCLUSION CRITERIA
-                       CHN-14/161           EXCLUSION CRITERIA
-                       CHN-2/284            EXCLUSION CRITERIA
-                       CHN-2/284            MEDICATION        
-                       CHN-2/284            MEDICATION        
-                       CHN-2/395            INCLUSION CRITERIA
-                       CHN-4/114            MEDICATION        
-                       CHN-4/114            INCLUSION CRITERIA
-                       CHN-5/273            PROCEDURAL        
-                       CHN-5/273            EXCLUSION CRITERIA
-                       JPN-1/225            INCLUSION CRITERIA
-                       NGA-17/230           EXCLUSION CRITERIA
-                       NGA-17/230           INCLUSION CRITERIA
-                       NGA-17/230           EXCLUSION CRITERIA
-                       NGA-2/353            INCLUSION CRITERIA
-                       NGA-2/353            EXCLUSION CRITERIA
-                       PAK-1/148            INCLUSION CRITERIA
-                       PAK-11/268           INCLUSION CRITERIA
-                       PAK-11/68            PROCEDURAL        
-                       PAK-11/68            PROCEDURAL        
-                       USA-11/224           MEDICATION        
-                       USA-11/238           EXCLUSION CRITERIA
-                       USA-11/238           MEDICATION        
-                       USA-11/238           INCLUSION CRITERIA
-                       USA-9/130            PROCEDURAL        
-                       USA-9/130            INCLUSION CRITERIA
-                       USA-9/130            INCLUSION CRITERIA
-      B: Placebo       BRA-2/101            PROCEDURAL        
-                       BRA-2/101            INCLUSION CRITERIA
-                       BRA-2/101            INCLUSION CRITERIA
-                       BRA-3/8              EXCLUSION CRITERIA
-                       CHN-1/12             MEDICATION        
-                       CHN-1/12             INCLUSION CRITERIA
-                       CHN-1/12             PROCEDURAL        
-                       CHN-1/227            EXCLUSION CRITERIA
-                       CHN-1/86             MEDICATION        
-                       CHN-1/86             EXCLUSION CRITERIA
-                       CHN-1/97             PROCEDURAL        
-                       CHN-11/220           MEDICATION        
-                       CHN-11/220           EXCLUSION CRITERIA
-                       CHN-11/246           PROCEDURAL        
-                       CHN-11/246           EXCLUSION CRITERIA
-                       CHN-11/247           PROCEDURAL        
-                       CHN-11/291           PROCEDURAL        
-                       CHN-12/285           PROCEDURAL        
-                       CHN-12/285           EXCLUSION CRITERIA
-                       CHN-13/249           INCLUSION CRITERIA
-                       CHN-17/48            PROCEDURAL        
-                       CHN-4/310            MEDICATION        
-                       CHN-4/310            INCLUSION CRITERIA
-                       CHN-5/338            PROCEDURAL        
-                       CHN-5/338            MEDICATION        
-                       CHN-6/89             PROCEDURAL        
-                       CHN-6/89             PROCEDURAL        
-                       CHN-6/89             INCLUSION CRITERIA
-                       CHN-7/40             EXCLUSION CRITERIA
-                       CHN-9/147            PROCEDURAL        
-                       CHN-9/147            PROCEDURAL        
-                       CHN-9/147            EXCLUSION CRITERIA
-                       GBR-6/111            EXCLUSION CRITERIA
-                       NGA-1/172            INCLUSION CRITERIA
-                       NGA-1/172            EXCLUSION CRITERIA
-                       PAK-4/164            PROCEDURAL        
-                       PAK-4/164            PROCEDURAL        
-                       PAK-4/164            PROCEDURAL        
-                       RUS-16/4             EXCLUSION CRITERIA
-                       RUS-5/29             MEDICATION        
-                       RUS-5/29             EXCLUSION CRITERIA
-                       RUS-5/29             INCLUSION CRITERIA
-      C: Combination   CHN-1/208            MEDICATION        
-                       CHN-1/208            PROCEDURAL        
-                       CHN-11/192           PROCEDURAL        
-                       CHN-11/257           INCLUSION CRITERIA
-                       CHN-11/257           PROCEDURAL        
-                       CHN-11/257           MEDICATION        
-                       CHN-14/143           PROCEDURAL        
-                       JPN-12/219           MEDICATION        
-                       NGA-1/43             PROCEDURAL        
-                       NGA-6/363            PROCEDURAL        
-                       NGA-6/363            PROCEDURAL        
-                       NGA-6/363            PROCEDURAL        
-                       PAK-1/125            EXCLUSION CRITERIA
-                       PAK-1/125            INCLUSION CRITERIA
-                       RUS-11/76            PROCEDURAL        
-                       RUS-11/76            EXCLUSION CRITERIA
+        Treatment      Center/Patient ID        Category     
+      ———————————————————————————————————————————————————————
+      A: Drug X        BRA-11/50           PROCEDURAL        
+                       CHN-1/275           MEDICATION        
+                       CHN-1/275           EXCLUSION CRITERIA
+                       CHN-1/316           MEDICATION        
+                       CHN-1/316           INCLUSION CRITERIA
+                       CHN-1/47            PROCEDURAL        
+                       CHN-1/47            INCLUSION CRITERIA
+                       CHN-1/47            MEDICATION        
+                       CHN-11/132          EXCLUSION CRITERIA
+                       CHN-11/132          EXCLUSION CRITERIA
+                       CHN-11/167          INCLUSION CRITERIA
+                       CHN-11/167          EXCLUSION CRITERIA
+                       CHN-12/266          EXCLUSION CRITERIA
+                       CHN-12/396          EXCLUSION CRITERIA
+                       CHN-14/161          EXCLUSION CRITERIA
+                       CHN-2/284           EXCLUSION CRITERIA
+                       CHN-2/284           MEDICATION        
+                       CHN-2/284           MEDICATION        
+                       CHN-2/395           INCLUSION CRITERIA
+                       CHN-4/114           MEDICATION        
+                       CHN-4/114           INCLUSION CRITERIA
+                       CHN-5/273           PROCEDURAL        
+                       CHN-5/273           EXCLUSION CRITERIA
+                       JPN-1/225           INCLUSION CRITERIA
+                       NGA-17/230          EXCLUSION CRITERIA
+                       NGA-17/230          INCLUSION CRITERIA
+                       NGA-17/230          EXCLUSION CRITERIA
+                       NGA-2/353           INCLUSION CRITERIA
+                       NGA-2/353           EXCLUSION CRITERIA
+                       PAK-1/148           INCLUSION CRITERIA
+                       PAK-11/268          INCLUSION CRITERIA
+                       PAK-11/68           PROCEDURAL        
+                       PAK-11/68           PROCEDURAL        
+                       USA-11/224          MEDICATION        
+                       USA-11/238          EXCLUSION CRITERIA
+                       USA-11/238          MEDICATION        
+                       USA-11/238          INCLUSION CRITERIA
+                       USA-9/130           PROCEDURAL        
+                       USA-9/130           INCLUSION CRITERIA
+                       USA-9/130           INCLUSION CRITERIA
+      B: Placebo       BRA-2/101           PROCEDURAL        
+                       BRA-2/101           INCLUSION CRITERIA
+                       BRA-2/101           INCLUSION CRITERIA
+                       BRA-3/8             EXCLUSION CRITERIA
+                       CHN-1/12            MEDICATION        
+                       CHN-1/12            INCLUSION CRITERIA
+                       CHN-1/12            PROCEDURAL        
+                       CHN-1/227           EXCLUSION CRITERIA
+                       CHN-1/86            MEDICATION        
+                       CHN-1/86            EXCLUSION CRITERIA
+                       CHN-1/97            PROCEDURAL        
+                       CHN-11/220          MEDICATION        
+                       CHN-11/220          EXCLUSION CRITERIA
+                       CHN-11/246          PROCEDURAL        
+                       CHN-11/246          EXCLUSION CRITERIA
+                       CHN-11/247          PROCEDURAL        
+                       CHN-11/291          PROCEDURAL        
+                       CHN-12/285          PROCEDURAL        
+                       CHN-12/285          EXCLUSION CRITERIA
+                       CHN-13/249          INCLUSION CRITERIA
+                       CHN-17/48           PROCEDURAL        
+                       CHN-4/310           MEDICATION        
+                       CHN-4/310           INCLUSION CRITERIA
+                       CHN-5/338           PROCEDURAL        
+                       CHN-5/338           MEDICATION        
+                       CHN-6/89            PROCEDURAL        
+                       CHN-6/89            PROCEDURAL        
+                       CHN-6/89            INCLUSION CRITERIA
+                       CHN-7/40            EXCLUSION CRITERIA
+                       CHN-9/147           PROCEDURAL        
+                       CHN-9/147           PROCEDURAL        
+                       CHN-9/147           EXCLUSION CRITERIA
+                       GBR-6/111           EXCLUSION CRITERIA
+                       NGA-1/172           INCLUSION CRITERIA
+                       NGA-1/172           EXCLUSION CRITERIA
+                       PAK-4/164           PROCEDURAL        
+                       PAK-4/164           PROCEDURAL        
+                       PAK-4/164           PROCEDURAL        
+                       RUS-16/4            EXCLUSION CRITERIA
+                       RUS-5/29            MEDICATION        
+                       RUS-5/29            EXCLUSION CRITERIA
+                       RUS-5/29            INCLUSION CRITERIA
+      C: Combination   CHN-1/208           MEDICATION        
+                       CHN-1/208           PROCEDURAL        
+                       CHN-11/192          PROCEDURAL        
+                       CHN-11/257          INCLUSION CRITERIA
+                       CHN-11/257          PROCEDURAL        
+                       CHN-11/257          MEDICATION        
+                       CHN-14/143          PROCEDURAL        
+                       JPN-12/219          MEDICATION        
+                       NGA-1/43            PROCEDURAL        
+                       NGA-6/363           PROCEDURAL        
+                       NGA-6/363           PROCEDURAL        
+                       NGA-6/363           PROCEDURAL        
+                       PAK-1/125           EXCLUSION CRITERIA
+                       PAK-1/125           INCLUSION CRITERIA
+                       RUS-11/76           PROCEDURAL        
+                       RUS-11/76           EXCLUSION CRITERIA
       \s\n  Treatment                           Description                          Date   
       ——————————————————————————————————————————————————————————————————————————————————
       A: Drug X        Failure to sign updated ICF within two visits           16JUL2019
@@ -203,13 +203,13 @@
                        Inclusion-related test not done/out of window           01JUL2022
                        Omission of complete lab panel required by protocol     11JUL2022
                        Other exclusion criteria                                26JUL2022
-      \s\n  Treatment      Center/Patients ID        Category     
-      ————————————————————————————————————————————————————————
-                       USA-1/137            MEDICATION        
-                       USA-1/295            EXCLUSION CRITERIA
-                       USA-11/100           MEDICATION        
-                       USA-11/100           EXCLUSION CRITERIA
-                       USA-2/110            PROCEDURAL        
+      \s\n  Treatment      Center/Patient ID        Category     
+      ———————————————————————————————————————————————————————
+                       USA-1/137           MEDICATION        
+                       USA-1/295           EXCLUSION CRITERIA
+                       USA-11/100          MEDICATION        
+                       USA-11/100          EXCLUSION CRITERIA
+                       USA-2/110           PROCEDURAL        
       \s\n  Treatment                           Description                          Date   
       ——————————————————————————————————————————————————————————————————————————————————
                        Significant deviation from planned dose                 26NOV2020
@@ -223,106 +223,106 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        Treatment      Center/Patients ID        Category     
-      ————————————————————————————————————————————————————————
-      A: Drug X        BRA-11/50            PROCEDURAL        
-                       CHN-1/275            MEDICATION        
-                       CHN-1/275            EXCLUSION CRITERIA
-                       CHN-1/316            MEDICATION        
-                       CHN-1/316            INCLUSION CRITERIA
-                       CHN-1/47             PROCEDURAL        
-                       CHN-1/47             INCLUSION CRITERIA
-                       CHN-1/47             MEDICATION        
-                       CHN-11/132           EXCLUSION CRITERIA
-                       CHN-11/132           EXCLUSION CRITERIA
-                       CHN-11/167           INCLUSION CRITERIA
-                       CHN-11/167           EXCLUSION CRITERIA
-                       CHN-12/266           EXCLUSION CRITERIA
-                       CHN-12/396           EXCLUSION CRITERIA
-                       CHN-14/161           EXCLUSION CRITERIA
-                       CHN-2/284            EXCLUSION CRITERIA
-                       CHN-2/284            MEDICATION        
-                       CHN-2/284            MEDICATION        
-                       CHN-2/395            INCLUSION CRITERIA
-                       CHN-4/114            MEDICATION        
-                       CHN-4/114            INCLUSION CRITERIA
-                       CHN-5/273            PROCEDURAL        
-                       CHN-5/273            EXCLUSION CRITERIA
-                       JPN-1/225            INCLUSION CRITERIA
-                       NGA-17/230           EXCLUSION CRITERIA
-                       NGA-17/230           INCLUSION CRITERIA
-                       NGA-17/230           EXCLUSION CRITERIA
-                       NGA-2/353            INCLUSION CRITERIA
-                       NGA-2/353            EXCLUSION CRITERIA
-                       PAK-1/148            INCLUSION CRITERIA
-                       PAK-11/268           INCLUSION CRITERIA
-                       PAK-11/68            PROCEDURAL        
-                       PAK-11/68            PROCEDURAL        
-                       USA-11/224           MEDICATION        
-                       USA-11/238           EXCLUSION CRITERIA
-                       USA-11/238           MEDICATION        
-                       USA-11/238           INCLUSION CRITERIA
-                       USA-9/130            PROCEDURAL        
-                       USA-9/130            INCLUSION CRITERIA
-                       USA-9/130            INCLUSION CRITERIA
-      B: Placebo       BRA-2/101            PROCEDURAL        
-                       BRA-2/101            INCLUSION CRITERIA
-                       BRA-2/101            INCLUSION CRITERIA
-                       BRA-3/8              EXCLUSION CRITERIA
-                       CHN-1/12             MEDICATION        
-                       CHN-1/12             INCLUSION CRITERIA
-                       CHN-1/12             PROCEDURAL        
-                       CHN-1/227            EXCLUSION CRITERIA
-                       CHN-1/86             MEDICATION        
-                       CHN-1/86             EXCLUSION CRITERIA
-                       CHN-1/97             PROCEDURAL        
-                       CHN-11/220           MEDICATION        
-                       CHN-11/220           EXCLUSION CRITERIA
-                       CHN-11/246           PROCEDURAL        
-                       CHN-11/246           EXCLUSION CRITERIA
-                       CHN-11/247           PROCEDURAL        
-                       CHN-11/291           PROCEDURAL        
-                       CHN-12/285           PROCEDURAL        
-                       CHN-12/285           EXCLUSION CRITERIA
-                       CHN-13/249           INCLUSION CRITERIA
-                       CHN-17/48            PROCEDURAL        
-                       CHN-4/310            MEDICATION        
-                       CHN-4/310            INCLUSION CRITERIA
-                       CHN-5/338            PROCEDURAL        
-                       CHN-5/338            MEDICATION        
-                       CHN-6/89             PROCEDURAL        
-                       CHN-6/89             PROCEDURAL        
-                       CHN-6/89             INCLUSION CRITERIA
-                       CHN-7/40             EXCLUSION CRITERIA
-                       CHN-9/147            PROCEDURAL        
-                       CHN-9/147            PROCEDURAL        
-                       CHN-9/147            EXCLUSION CRITERIA
-                       GBR-6/111            EXCLUSION CRITERIA
-                       NGA-1/172            INCLUSION CRITERIA
-                       NGA-1/172            EXCLUSION CRITERIA
-                       PAK-4/164            PROCEDURAL        
-                       PAK-4/164            PROCEDURAL        
-                       PAK-4/164            PROCEDURAL        
-                       RUS-16/4             EXCLUSION CRITERIA
-                       RUS-5/29             MEDICATION        
-                       RUS-5/29             EXCLUSION CRITERIA
-                       RUS-5/29             INCLUSION CRITERIA
-      C: Combination   CHN-1/208            MEDICATION        
-                       CHN-1/208            PROCEDURAL        
-                       CHN-11/192           PROCEDURAL        
-                       CHN-11/257           INCLUSION CRITERIA
-                       CHN-11/257           PROCEDURAL        
-                       CHN-11/257           MEDICATION        
-                       CHN-14/143           PROCEDURAL        
-                       JPN-12/219           MEDICATION        
-                       NGA-1/43             PROCEDURAL        
-                       NGA-6/363            PROCEDURAL        
-                       NGA-6/363            PROCEDURAL        
-                       NGA-6/363            PROCEDURAL        
-                       PAK-1/125            EXCLUSION CRITERIA
-                       PAK-1/125            INCLUSION CRITERIA
-                       RUS-11/76            PROCEDURAL        
-                       RUS-11/76            EXCLUSION CRITERIA
+        Treatment      Center/Patient ID        Category     
+      ———————————————————————————————————————————————————————
+      A: Drug X        BRA-11/50           PROCEDURAL        
+                       CHN-1/275           MEDICATION        
+                       CHN-1/275           EXCLUSION CRITERIA
+                       CHN-1/316           MEDICATION        
+                       CHN-1/316           INCLUSION CRITERIA
+                       CHN-1/47            PROCEDURAL        
+                       CHN-1/47            INCLUSION CRITERIA
+                       CHN-1/47            MEDICATION        
+                       CHN-11/132          EXCLUSION CRITERIA
+                       CHN-11/132          EXCLUSION CRITERIA
+                       CHN-11/167          INCLUSION CRITERIA
+                       CHN-11/167          EXCLUSION CRITERIA
+                       CHN-12/266          EXCLUSION CRITERIA
+                       CHN-12/396          EXCLUSION CRITERIA
+                       CHN-14/161          EXCLUSION CRITERIA
+                       CHN-2/284           EXCLUSION CRITERIA
+                       CHN-2/284           MEDICATION        
+                       CHN-2/284           MEDICATION        
+                       CHN-2/395           INCLUSION CRITERIA
+                       CHN-4/114           MEDICATION        
+                       CHN-4/114           INCLUSION CRITERIA
+                       CHN-5/273           PROCEDURAL        
+                       CHN-5/273           EXCLUSION CRITERIA
+                       JPN-1/225           INCLUSION CRITERIA
+                       NGA-17/230          EXCLUSION CRITERIA
+                       NGA-17/230          INCLUSION CRITERIA
+                       NGA-17/230          EXCLUSION CRITERIA
+                       NGA-2/353           INCLUSION CRITERIA
+                       NGA-2/353           EXCLUSION CRITERIA
+                       PAK-1/148           INCLUSION CRITERIA
+                       PAK-11/268          INCLUSION CRITERIA
+                       PAK-11/68           PROCEDURAL        
+                       PAK-11/68           PROCEDURAL        
+                       USA-11/224          MEDICATION        
+                       USA-11/238          EXCLUSION CRITERIA
+                       USA-11/238          MEDICATION        
+                       USA-11/238          INCLUSION CRITERIA
+                       USA-9/130           PROCEDURAL        
+                       USA-9/130           INCLUSION CRITERIA
+                       USA-9/130           INCLUSION CRITERIA
+      B: Placebo       BRA-2/101           PROCEDURAL        
+                       BRA-2/101           INCLUSION CRITERIA
+                       BRA-2/101           INCLUSION CRITERIA
+                       BRA-3/8             EXCLUSION CRITERIA
+                       CHN-1/12            MEDICATION        
+                       CHN-1/12            INCLUSION CRITERIA
+                       CHN-1/12            PROCEDURAL        
+                       CHN-1/227           EXCLUSION CRITERIA
+                       CHN-1/86            MEDICATION        
+                       CHN-1/86            EXCLUSION CRITERIA
+                       CHN-1/97            PROCEDURAL        
+                       CHN-11/220          MEDICATION        
+                       CHN-11/220          EXCLUSION CRITERIA
+                       CHN-11/246          PROCEDURAL        
+                       CHN-11/246          EXCLUSION CRITERIA
+                       CHN-11/247          PROCEDURAL        
+                       CHN-11/291          PROCEDURAL        
+                       CHN-12/285          PROCEDURAL        
+                       CHN-12/285          EXCLUSION CRITERIA
+                       CHN-13/249          INCLUSION CRITERIA
+                       CHN-17/48           PROCEDURAL        
+                       CHN-4/310           MEDICATION        
+                       CHN-4/310           INCLUSION CRITERIA
+                       CHN-5/338           PROCEDURAL        
+                       CHN-5/338           MEDICATION        
+                       CHN-6/89            PROCEDURAL        
+                       CHN-6/89            PROCEDURAL        
+                       CHN-6/89            INCLUSION CRITERIA
+                       CHN-7/40            EXCLUSION CRITERIA
+                       CHN-9/147           PROCEDURAL        
+                       CHN-9/147           PROCEDURAL        
+                       CHN-9/147           EXCLUSION CRITERIA
+                       GBR-6/111           EXCLUSION CRITERIA
+                       NGA-1/172           INCLUSION CRITERIA
+                       NGA-1/172           EXCLUSION CRITERIA
+                       PAK-4/164           PROCEDURAL        
+                       PAK-4/164           PROCEDURAL        
+                       PAK-4/164           PROCEDURAL        
+                       RUS-16/4            EXCLUSION CRITERIA
+                       RUS-5/29            MEDICATION        
+                       RUS-5/29            EXCLUSION CRITERIA
+                       RUS-5/29            INCLUSION CRITERIA
+      C: Combination   CHN-1/208           MEDICATION        
+                       CHN-1/208           PROCEDURAL        
+                       CHN-11/192          PROCEDURAL        
+                       CHN-11/257          INCLUSION CRITERIA
+                       CHN-11/257          PROCEDURAL        
+                       CHN-11/257          MEDICATION        
+                       CHN-14/143          PROCEDURAL        
+                       JPN-12/219          MEDICATION        
+                       NGA-1/43            PROCEDURAL        
+                       NGA-6/363           PROCEDURAL        
+                       NGA-6/363           PROCEDURAL        
+                       NGA-6/363           PROCEDURAL        
+                       PAK-1/125           EXCLUSION CRITERIA
+                       PAK-1/125           INCLUSION CRITERIA
+                       RUS-11/76           PROCEDURAL        
+                       RUS-11/76           EXCLUSION CRITERIA
       \s\n  Treatment                           Description                          Date   
       ——————————————————————————————————————————————————————————————————————————————————
       A: Drug X        Failure to sign updated ICF within two visits           16JUL2019
@@ -423,13 +423,13 @@
                        Inclusion-related test not done/out of window           01JUL2022
                        Omission of complete lab panel required by protocol     11JUL2022
                        Other exclusion criteria                                26JUL2022
-      \s\n  Treatment      Center/Patients ID        Category     
-      ————————————————————————————————————————————————————————
-                       USA-1/137            MEDICATION        
-                       USA-1/295            EXCLUSION CRITERIA
-                       USA-11/100           MEDICATION        
-                       USA-11/100           EXCLUSION CRITERIA
-                       USA-2/110            PROCEDURAL        
+      \s\n  Treatment      Center/Patient ID        Category     
+      ———————————————————————————————————————————————————————
+                       USA-1/137           MEDICATION        
+                       USA-1/295           EXCLUSION CRITERIA
+                       USA-11/100          MEDICATION        
+                       USA-11/100          EXCLUSION CRITERIA
+                       USA-2/110           PROCEDURAL        
       \s\n  Treatment                           Description                          Date   
       ——————————————————————————————————————————————————————————————————————————————————
                        Significant deviation from planned dose                 26NOV2020

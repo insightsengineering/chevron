@@ -25,7 +25,7 @@
 #'
 dst01_main <- function(adam_db,
                        arm_var = "ARM",
-                       lbl_overall = "All {Patient_label}",
+                       lbl_overall = "All {Patients_label}",
                        study_status_var = "EOSSTT",
                        detail_vars = list(
                          Discontinued = c("DCSREAS")
