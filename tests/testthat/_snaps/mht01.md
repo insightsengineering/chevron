@@ -13,17 +13,20 @@
           Total number of conditions                                 132           130            160      
           trm A_1/2                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
           trm A_2/2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        
         cl B                                                                                               
           Total number of patients with at least one condition   96 (71.6%)    89 (66.4%)      97 (73.5%)  
           Total number of conditions                                 185           198            205      
           trm B_3/3                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
           trm B_2/3                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
           trm B_1/3                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        
         cl C                                                                                               
           Total number of patients with at least one condition   67 (50.0%)    75 (56.0%)      79 (59.8%)  
           Total number of conditions                                 103           116            129      
           trm C_2/2                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
           trm C_1/2                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        
         cl D                                                                                               
           Total number of patients with at least one condition   96 (71.6%)    90 (67.2%)      98 (74.2%)  
           Total number of conditions                                 189           178            209      
@@ -46,17 +49,20 @@
           Total number of conditions                                 132           130            160      
           trm A_1/2                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
           trm A_2/2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        
         cl B                                                                                               
           Total number of patients with at least one condition   96 (71.6%)    89 (66.4%)      97 (73.5%)  
           Total number of conditions                                 185           198            205      
           trm B_3/3                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
           trm B_2/3                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
           trm B_1/3                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        
         cl C                                                                                               
           Total number of patients with at least one condition   67 (50.0%)    75 (56.0%)      79 (59.8%)  
           Total number of conditions                                 103           116            129      
           trm C_2/2                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
           trm C_1/2                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        
         cl D                                                                                               
           Total number of patients with at least one condition   96 (71.6%)    90 (67.2%)      98 (74.2%)  
           Total number of conditions                                 189           178            209      
@@ -79,17 +85,20 @@
           Total number of conditions                                 132           130            160      
           trm A_1/2                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
           trm A_2/2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        
         cl B                                                                                               
           Total number of patients with at least one condition   96 (71.6%)    89 (66.4%)      97 (73.5%)  
           Total number of conditions                                 185           198            205      
           trm B_3/3                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
           trm B_2/3                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
           trm B_1/3                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        
         cl C                                                                                               
           Total number of patients with at least one condition   67 (50.0%)    75 (56.0%)      79 (59.8%)  
           Total number of conditions                                 103           116            129      
           trm C_2/2                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
           trm C_1/2                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        
         cl D                                                                                               
           Total number of patients with at least one condition   96 (71.6%)    90 (67.2%)      98 (74.2%)  
           Total number of conditions                                 189           178            209      
