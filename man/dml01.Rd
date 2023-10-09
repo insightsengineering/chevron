@@ -14,11 +14,11 @@ dml01_main(
   adam_db,
   dataset = "adsl",
   arm_var = "ARM",
-  disp_cols = c("ID", "ASR", "AGEGR1", "ETHNIC", arm_var),
+  disp_cols = c("ID", "ASR", "ETHNIC"),
   ...
 )
 
-dml01_pre(adam_db, dataset = "adsl", ...)
+dml01_pre(adam_db, arm_var = "ARM", dataset = "adsl", ...)
 
 dml01
 }

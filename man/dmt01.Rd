@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 dmt01_main(
   adam_db,
   arm_var = "ARM",
-  lbl_overall = "All {Patient_label}",
+  lbl_overall = "All {Patients_label}",
   summaryvars = c("AAGE", "AGEGR1", "SEX", "ETHNIC", "RACE"),
   stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
   precision = list(),
