@@ -107,7 +107,7 @@ rmpt06_lyt <- function(arm_var,
     estimate_proportion(
       vars = "AEFL",
       method = method,
-      conf_level,
+      conf_level = conf_level,
       .labels = c(
         n_prop = render_safe("Number of {patient_label} with at least one adverse event"),
         prop_ci = paste0(
