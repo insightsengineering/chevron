@@ -1,8 +1,8 @@
 # ael01_nollt ----
 
 test_that("ael01_nollt works with admh dataset", {
-  res <- expect_silent(
-    run(ael01_nollt, syn_data, dataset = "admh", key_cols = c("MHBODSYS", "MHDECOD"), disp_cols = "MHTERM")
+  expect_message(
+    res <- run(ael01_nollt, syn_data, dataset = "admh", key_cols = c("MHBODSYS", "MHDECOD"), disp_cols = "MHTERM")
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
@@ -11,8 +11,8 @@ test_that("ael01_nollt works with admh dataset", {
 test_that("ael01_nollt works with non-default label", {
   proc_data <- syn_data
   attr(proc_data$adae$AETERM, "label") <- "Investigator-Specified\n Adverse Event Term"
-  res <- expect_silent(
-    run(
+  expect_message(
+    res <- run(
       ael01_nollt,
       syn_data
     )
@@ -29,7 +29,7 @@ test_that("ael01_nollt can handle all missing values", {
       AETERM = with_label("", formatters::var_labels(syn_data$adae)[["AETERM"]])
     )
 
-  res <- expect_silent(run(ael01_nollt, proc_data))
+  expect_silent(res <- run(ael01_nollt, proc_data))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
@@ -44,6 +44,6 @@ test_that("ael01_nollt can handle some missing values", {
       AEDECOD = with_label(.env$new_aedecod, formatters::var_labels(syn_data$adae)[["AEDECOD"]])
     )
 
-  res <- expect_silent(run(ael01_nollt, proc_data))
+  expect_message(res <- run(ael01_nollt, proc_data))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

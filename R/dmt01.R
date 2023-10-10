@@ -28,7 +28,7 @@
 #'
 dmt01_main <- function(adam_db,
                        arm_var = "ARM",
-                       lbl_overall = "All {Patient_label}",
+                       lbl_overall = "All {Patients_label}",
                        summaryvars = c(
                          "AAGE",
                          "AGEGR1",

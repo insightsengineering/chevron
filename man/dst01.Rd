@@ -14,7 +14,7 @@ An object of class \code{chevron_t} of length 1.
 dst01_main(
   adam_db,
   arm_var = "ARM",
-  lbl_overall = "All {Patient_label}",
+  lbl_overall = "All {Patients_label}",
   study_status_var = "EOSSTT",
   detail_vars = list(Discontinued = c("DCSREAS")),
   trt_status_var = NULL,

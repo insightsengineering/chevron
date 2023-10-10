@@ -292,3 +292,10 @@ test_that("get_section_div works", {
     expect_identical(get_section_div(), c("", NA_character_, ""))
   )
 })
+
+
+# create_id_listings ----
+
+test_that("create_id_listings works as expected", {
+  create_id_listings(c("CHN-999", "BRA-111"), c("ABC-12345", "BC-DEF-6789"))
+})

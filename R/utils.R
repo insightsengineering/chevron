@@ -261,6 +261,8 @@ convert_to_month <- function(x, unit) {
   )
 }
 
+# themes and formats ----
+
 #' Theme for Chevron Plot
 #'
 #' @param grid_y (`flag`) should horizontal grid be displayed.
@@ -378,4 +380,112 @@ set_section_div <- function(x) {
   assert_integerish(x, min.len = 0L, any.missing = FALSE, lower = 1L)
   options("chevron.section_div" = x)
   invisible()
+}
+
+#' Format for Chevron Listings
+#'
+#' @return a `list` of `fmt_config`.
+#'
+listing_format_chevron <- function() {
+  list(
+    all = fmt_config(align = "left"),
+    numeric = fmt_config(align = "center"),
+    Date = fmt_config(format = format_date(), align = "left"),
+    POSIXct = fmt_config(format = format_date(), align = "left"),
+    POSIXt = fmt_config(format = format_date(), align = "left")
+  )
+}
+
+#' Formatting of date
+#'
+#' @param date_format (`string`) the output format.
+#'
+#' @return a `function` converting a date into `string`.
+#'
+#' @export
+#'
+format_date <- function(date_format = "%d%b%Y") {
+  function(x, ...) {
+    toupper(strftime(as.Date(x, tz = ""), format = date_format))
+  }
+}
+
+# report_null ----
+
+#' Create a Null Report
+#'
+#' @rdname report_null
+#' @aliases null_report
+#' @param tlg (`TableTree`) object.
+#' @param ... not used. Important to be used directly as post processing function.
+#'
+#' @export
+#'
+report_null <- function(tlg, ...) {
+  UseMethod("report_null")
+}
+
+#' @rdname report_null
+#' @export
+#' @return original `TableTree` or a null report if no observation are found in the table.
+report_null.TableTree <- function(tlg, ...) {
+  if (nrow(tlg) == 0L) {
+    return(null_report)
+  }
+  if (count_children(tlg) == 0) {
+    return(null_report)
+  }
+  tlg
+}
+
+#' @rdname report_null
+#' @export
+#' @return original `listing_df` or a null report if no observation are found in the table.
+report_null.listing_df <- function(tlg, ...) {
+  if (nrow(tlg) == 0L) {
+    return(null_report)
+  }
+
+  tlg
+}
+
+#' @rdname report_null
+#' @export
+#' @return a null report.
+report_null.ElementaryTable <- function(tlg, ...) {
+  if (nrow(tlg) == 0L) {
+    return(null_report)
+  }
+
+  tlg
+}
+
+#' @rdname report_null
+#' @export
+#' @return a null report.
+report_null.NULL <- function(tlg, ...) {
+  return(null_report)
+}
+
+# listing_id ----
+
+#' Concatenate Site and Subject ID
+#'
+#' @param site (`string`)
+#' @param subject (`string`)
+#' @param sep (`string`)
+#'
+#' @note the `{Patient_label}` whisker placeholder will be used in the label.
+#'
+#' @export
+#' @examples
+#' create_id_listings("BRA-1", "xxx-1234")
+create_id_listings <- function(site, subject, sep = "/") {
+  assert_character(site)
+  assert_character(subject)
+  assert_string(sep)
+
+  subject_id <- stringr::str_split_i(subject, pattern = "-", i = -1)
+
+  with_label(paste(site, subject_id, sep = sep), render_safe("Center/{Patient_label} ID"))
 }

@@ -1,0 +1,69 @@
+# dsl01 ----
+
+#' @describeIn dsl01 Main TLG function
+#'
+#' @inheritParams gen_args
+#' @param dataset (`character`) the name of a table in the `adam_db` object.
+#'
+#' @export
+#'
+dsl01_main <- function(adam_db,
+                       dataset = "adsl",
+                       arm_var = "ACTARM",
+                       disp_cols = c("ID", "ASR", arm_var, "TRTSDTM", "TRTDURD", "DISCONT"),
+                       ...) {
+  assert_all_tablenames(adam_db, dataset)
+  assert_valid_variable(adam_db[[dataset]], c(disp_cols), label = paste0("adam_db$", dataset))
+
+  execute_with_args(
+    as_listing,
+    df = adam_db[[dataset]],
+    key_cols = arm_var,
+    disp_cols = disp_cols,
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
+  )
+}
+
+#' @describeIn dsl01 Preprocessing
+#'
+#' @inheritParams dsl01_main
+#'
+#' @export
+#'
+dsl01_pre <- function(adam_db,
+                      dataset = "adsl",
+                      arm_var = "ACTARM",
+                      ...) {
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
+    filter(.data$AEWITHFL == "Y") %>%
+    mutate(
+      ID = create_id_listings(.data$SITEID, .data$SUBJID),
+      ASR = with_label(paste(.data$AGE, .data$SEX, .data$RACE, sep = "/"), "Age/Sex/Race"),
+      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
+      TRTSDTM = with_label(
+        .data$TRTSDTM,
+        "Date of First\nStudy Drug\nAdministration"
+      ),
+      TRTDURD = with_label(.data$TRTDURD, "Study Day\nof Withdrawal"),
+      DISCONT = with_label(
+        ifelse(toupper(.data$EOSSTT) == "DISCONTINUED", "Yes", "No"),
+        "Discontinued\nEarly from Study?"
+      )
+    )
+
+  adam_db
+}
+
+#' `DSL01` Listing 1 (Default) Patients with Study Drug Withdrawn Due to Adverse Events.
+#'
+#' @include chevron_tlg-S4class.R
+#' @export
+#'
+#' @examples
+#' res <- run(dsl01, syn_data)
+dsl01 <- chevron_l(
+  main = dsl01_main,
+  preprocess = dsl01_pre
+)

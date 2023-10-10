@@ -15,6 +15,7 @@ variables do not exist in analysis dataset.
 and `legend_pos` arguments. The `table` arguments now controls the behavior of the table. The arguments `show_n` and
 `show_table` are now defunct.
 * Add `RMPT06` template.
+* Add `AEL02`, `AEL03` and `AEL04`, `CML02A_GL`, `DSL01`, `DSL02`, `DML01`, `DML02` and `PDL01` listing templates.  
 * The `stats` and `precision` arguments now control the statistical analysis and numbers of digits presented in `DMT01`.
 * `FSTG01` and `FSTG02` template removes the `max_colwidth` argument. Default font size of the plot is set to 7.
 * Introduce `set_section_div` function to add empty line separator between specified row splits.
