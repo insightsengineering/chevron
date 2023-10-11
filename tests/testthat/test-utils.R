@@ -278,6 +278,7 @@ test_that("set_section_div works", {
     getOption("chevron.section_div"),
     1
   )
+  set_section_div(integer(0))
 })
 
 # get_section_div ----

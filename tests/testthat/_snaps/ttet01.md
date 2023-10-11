@@ -25,19 +25,19 @@
         Hazard Ratio                                       0.90            1.36     
         95% CI                                         (0.67, 1.21)    (1.01, 1.82) 
       180 MONTHS                                                                    
-        Patients remaining at risk           NA             NA              NA      
-        Event Free Rate (%)                  NA             NA              NA      
-        95% CI                               NA             NA              NA      
-        Difference in Event Free Rate                       NA              NA      
-          95% CI                                            NA              NA      
-          p-value (Z-test)                                  NA              NA      
+        Patients remaining at risk           NE             NE              NE      
+        Event Free Rate (%)                  NE             NE              NE      
+        95% CI                               NE             NE              NE      
+        Difference in Event Free Rate                       NE              NE      
+          95% CI                                            NE              NE      
+          p-value (Z-test)                                  NE              NE      
       360 MONTHS                                                                    
-        Patients remaining at risk           NA             NA              NA      
-        Event Free Rate (%)                  NA             NA              NA      
-        95% CI                               NA             NA              NA      
-        Difference in Event Free Rate                       NA              NA      
-          95% CI                                            NA              NA      
-          p-value (Z-test)                                  NA              NA      
+        Patients remaining at risk           NE             NE              NE      
+        Event Free Rate (%)                  NE             NE              NE      
+        95% CI                               NE             NE              NE      
+        Difference in Event Free Rate                       NE              NE      
+          95% CI                                            NE              NE      
+          p-value (Z-test)                                  NE              NE      
 
 # ttet01 works as expected for stratified and unstratified analysis
 
