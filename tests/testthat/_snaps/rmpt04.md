@@ -4,7 +4,7 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                               Patients     Person time
-        ETHNIC                                (N=400)        (N=400)  
+        Ethnicity                             (N=400)        (N=400)  
         ——————————————————————————————————————————————————————————————
         NOT REPORTED                         27 (6.8%)        3315    
         HISPANIC OR LATINO                   48 (12.0%)       4636    
@@ -18,7 +18,7 @@
       cat(export_as_txt(res1, lpp = 100))
     Output
                                             Patients   Person time
-        ETHNIC                              (N=400)      (N=400)  
+        Ethnicity                           (N=400)      (N=400)  
         ——————————————————————————————————————————————————————————
         NOT REPORTED                        0 (0.0%)        0     
         HISPANIC OR LATINO                  0 (0.0%)        0     
@@ -32,7 +32,7 @@
       cat(export_as_txt(res2, lpp = 100))
     Output
                                             Patients   Person time
-        ETHNIC                              (N=400)      (N=400)  
+        Ethnicity                           (N=400)      (N=400)  
         ——————————————————————————————————————————————————————————
         NOT REPORTED                        0 (0.0%)        0     
         HISPANIC OR LATINO                  0 (0.0%)        0     
@@ -46,7 +46,7 @@
       cat(export_as_txt(res1, lpp = 100))
     Output
                                              Patients     Person time
-        ETHNIC                                (N=400)       (N=400)  
+        Ethnicity                             (N=400)       (N=400)  
         —————————————————————————————————————————————————————————————
         NOT REPORTED                         27 (6.8%)       3315    
         HISPANIC OR LATINO                   0 (0.0%)          0     
@@ -62,9 +62,9 @@
                                               Patients     Person time
         ETHNIC                                (N=400)        (N=400)  
         ——————————————————————————————————————————————————————————————
-        NOT REPORTED                         27 (6.8%)        3315    
         HISPANIC OR LATINO                   47 (11.8%)       4387    
         NOT HISPANIC OR LATINO              307 (76.8%)       39161   
+        NOT REPORTED                         27 (6.8%)        3315    
         UNKNOWN                              17 (4.2%)        2520    
         <Missing>                             2 (0.5%)         317    
         Total patients number/person time   400 (100.0%)      49700   
