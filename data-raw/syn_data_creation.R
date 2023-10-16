@@ -52,7 +52,7 @@ syn_test_data <- function() {
         TRUE ~ ">=6 months"
       ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
     ) %>%
-    bind_rows(sd$adex)
+    dplyr::bind_rows(sd$adex)
 
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
@@ -133,6 +133,9 @@ syn_test_data <- function() {
     ))
 
   # useful for dmt01
+  sd$adsl$ETHNIC <- factor(trimws(sd$adsl$ETHNIC), levels = trimws(levels(sd$adsl$ETHNIC)))
+  attr(sd$adsl$ETHNIC, "label") <- "Ethnicity"
+
   adsub <- sd$adsub
   adsub_wide_ls <- dunlin::poly_pivot_wider(
     adsub,
@@ -200,6 +203,10 @@ syn_test_data <- function() {
   # useful for fstg01
   sd$adrs$AGEGR1 <- cut(sd$adrs$AGE, c(0, 65, 200), c("<65", ">=65"))
   attr(sd$adrs$AGEGR1, "label") <- "Age Group"
+
+  # useful for rmpt04
+  sd$adex$ETHNIC <- factor(trimws(sd$adex$ETHNIC), levels = trimws(levels(sd$adex$ETHNIC)))
+  attr(sd$adex$ETHNIC, "label") <- "Ethnicity"
 
   sd
 }

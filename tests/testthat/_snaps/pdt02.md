@@ -4,7 +4,7 @@
       cat(export_as_txt(res, lpp = 100, colwidths = c(40, 10, 10, 10)))
     Output
         Primary Reason                                                       C: Combina
-        Description                                A: Drug X    B: Placebo      tion   
+          Description                              A: Drug X    B: Placebo      tion   
                                                     (N=134)      (N=134)      (N=132)  
         ———————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least      9 (6.7%)     2 (1.5%)     5 (3.8%) 
@@ -27,7 +27,7 @@
       cat(export_as_txt(res, lpp = 100, colwidths = c(40, 10, 10, 10)))
     Output
         Primary Reason                                                       C: Combina
-        Description                                A: Drug X    B: Placebo      tion   
+          Description                              A: Drug X    B: Placebo      tion   
                                                     (N=134)      (N=134)      (N=132)  
         ———————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least      9 (6.7%)     2 (1.5%)     5 (3.8%) 
@@ -44,7 +44,7 @@
       cat(export_as_txt(res, lpp = 100, colwidths = c(40, 10, 10, 10)))
     Output
         Primary Reason                                                       C: Combina
-        Description                                A: Drug X    B: Placebo      tion   
+          Description                              A: Drug X    B: Placebo      tion   
                                                     (N=134)      (N=134)      (N=132)  
         ———————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least      9 (6.7%)     2 (1.5%)     5 (3.8%) 
