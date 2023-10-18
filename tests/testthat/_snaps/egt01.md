@@ -7,10 +7,10 @@
       Parameter: Heart Rate
       
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                   A: Drug X                                B: Placebo               
+                                         A: Drug X                                B: Placebo               
                                                   Change from                               Change from    
                             Value at Visit          Baseline          Value at Visit          Baseline     
-                               (N=134)              (N=134)              (N=134)              (N=134)      
+        Analysis Visit         (N=134)              (N=134)              (N=134)              (N=134)      
         ———————————————————————————————————————————————————————————————————————————————————————————————————
         BASELINE                                                                                           
           n                      134                                       134                             
@@ -46,10 +46,10 @@
       Parameter: Heart Rate
       
         —————————————————————————————————————————————————————————
-        Analysis Visit                C: Combination             
+                                      C: Combination             
                                                   Change from    
                             Value at Visit          Baseline     
-                               (N=132)              (N=132)      
+        Analysis Visit         (N=132)              (N=132)      
         —————————————————————————————————————————————————————————
         BASELINE                                                 
           n                      132                             
@@ -85,10 +85,10 @@
       Parameter: QT Duration
       
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                   A: Drug X                                B: Placebo               
+                                         A: Drug X                                B: Placebo               
                                                   Change from                               Change from    
                             Value at Visit          Baseline          Value at Visit          Baseline     
-                               (N=134)              (N=134)              (N=134)              (N=134)      
+        Analysis Visit         (N=134)              (N=134)              (N=134)              (N=134)      
         ———————————————————————————————————————————————————————————————————————————————————————————————————
         BASELINE                                                                                           
           n                      134                                       134                             
@@ -124,10 +124,10 @@
       Parameter: QT Duration
       
         —————————————————————————————————————————————————————————
-        Analysis Visit                C: Combination             
+                                      C: Combination             
                                                   Change from    
                             Value at Visit          Baseline     
-                               (N=132)              (N=132)      
+        Analysis Visit         (N=132)              (N=132)      
         —————————————————————————————————————————————————————————
         BASELINE                                                 
           n                      132                             
@@ -163,10 +163,10 @@
       Parameter: RR Duration
       
         ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                   A: Drug X                                B: Placebo               
+                                         A: Drug X                                B: Placebo               
                                                   Change from                               Change from    
                             Value at Visit          Baseline          Value at Visit          Baseline     
-                               (N=134)              (N=134)              (N=134)              (N=134)      
+        Analysis Visit         (N=134)              (N=134)              (N=134)              (N=134)      
         ———————————————————————————————————————————————————————————————————————————————————————————————————
         BASELINE                                                                                           
           n                      134                                       134                             
@@ -202,10 +202,10 @@
       Parameter: RR Duration
       
         —————————————————————————————————————————————————————————
-        Analysis Visit                C: Combination             
+                                      C: Combination             
                                                   Change from    
                             Value at Visit          Baseline     
-                               (N=132)              (N=132)      
+        Analysis Visit         (N=132)              (N=132)      
         —————————————————————————————————————————————————————————
         BASELINE                                                 
           n                      132                             
@@ -247,10 +247,10 @@
       Parameter: Heart Rate
       
         ———————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit              A: Drug X                          B: Placebo              
+                                    A: Drug X                          B: Placebo              
                                            Change from                           Change from   
                           Value at Visit     Baseline      Value at Visit         Baseline     
-                             (N=134)         (N=134)           (N=134)             (N=134)     
+        Analysis Visit       (N=134)         (N=134)           (N=134)             (N=134)     
         ———————————————————————————————————————————————————————————————————————————————————————
         BASELINE                                                                               
           n                     0                                134                           
@@ -286,10 +286,10 @@
       Parameter: Heart Rate
       
         ———————————————————————————————————————————————————————
-        Analysis Visit               C: Combination            
+                                     C: Combination            
                                                  Change from   
                            Value at Visit         Baseline     
-                               (N=132)             (N=132)     
+        Analysis Visit         (N=132)             (N=132)     
         ———————————————————————————————————————————————————————
         BASELINE                                               
           n                      132                           
@@ -325,10 +325,10 @@
       Parameter: QT Duration
       
         ———————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit              A: Drug X                          B: Placebo              
+                                    A: Drug X                          B: Placebo              
                                            Change from                           Change from   
                           Value at Visit     Baseline      Value at Visit         Baseline     
-                             (N=134)         (N=134)           (N=134)             (N=134)     
+        Analysis Visit       (N=134)         (N=134)           (N=134)             (N=134)     
         ———————————————————————————————————————————————————————————————————————————————————————
         BASELINE                                                                               
           n                     0                                134                           
@@ -364,10 +364,10 @@
       Parameter: QT Duration
       
         ———————————————————————————————————————————————————————
-        Analysis Visit               C: Combination            
+                                     C: Combination            
                                                  Change from   
                            Value at Visit         Baseline     
-                               (N=132)             (N=132)     
+        Analysis Visit         (N=132)             (N=132)     
         ———————————————————————————————————————————————————————
         BASELINE                                               
           n                      132                           
@@ -403,10 +403,10 @@
       Parameter: RR Duration
       
         ———————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit              A: Drug X                          B: Placebo              
+                                    A: Drug X                          B: Placebo              
                                            Change from                           Change from   
                           Value at Visit     Baseline      Value at Visit         Baseline     
-                             (N=134)         (N=134)           (N=134)             (N=134)     
+        Analysis Visit       (N=134)         (N=134)           (N=134)             (N=134)     
         ———————————————————————————————————————————————————————————————————————————————————————
         BASELINE                                                                               
           n                     0                                134                           
@@ -442,10 +442,10 @@
       Parameter: RR Duration
       
         ———————————————————————————————————————————————————————
-        Analysis Visit               C: Combination            
+                                     C: Combination            
                                                  Change from   
                            Value at Visit         Baseline     
-                               (N=132)             (N=132)     
+        Analysis Visit         (N=132)             (N=132)     
         ———————————————————————————————————————————————————————
         BASELINE                                               
           n                      132                           
