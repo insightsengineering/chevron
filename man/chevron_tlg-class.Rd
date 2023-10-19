@@ -42,12 +42,7 @@ chevron_g(
   ...
 )
 
-chevron_simple(
-  main = simple_analysis,
-  preprocess = function(adam_db, ...) adam_db,
-  postprocess = function(tlg, ...) tlg,
-  ...
-)
+chevron_simple(main = dummy_main, ...)
 }
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument. Typically one of the \verb{_main} function
@@ -106,5 +101,4 @@ chevron_g_obj <- chevron_g(
 )
 
 chevron_simple_obj <- chevron_simple()
-
 }

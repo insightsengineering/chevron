@@ -225,7 +225,6 @@ dummy_main <- function(adam_db, ...) {
 #'
 #' @examples
 #' chevron_simple_obj <- chevron_simple()
-#'
 chevron_simple <- function(main = dummy_main,
                       ...) {
   res <- .chevron_simple(
