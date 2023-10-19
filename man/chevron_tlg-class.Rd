@@ -13,6 +13,9 @@
 \alias{chevron_g-class}
 \alias{.chevron_g}
 \alias{chevron_graph}
+\alias{chevron_simple-class}
+\alias{.chevron_simple}
+\alias{chevron_simple}
 \alias{chevron_t}
 \alias{chevron_l}
 \alias{chevron_g}
@@ -38,6 +41,13 @@ chevron_g(
   postprocess = function(tlg, ...) tlg,
   ...
 )
+
+chevron_simple(
+  main = simple_analysis,
+  preprocess = function(adam_db, ...) adam_db,
+  postprocess = function(tlg, ...) tlg,
+  ...
+)
 }
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument. Typically one of the \verb{_main} function
@@ -56,6 +66,8 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 \code{chevron_l}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle listing creation
 
 \code{chevron_g}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation
+
+\code{chevron_simple}, a subclass of \linkS4class{chevron_tlg}.
 }
 \section{Slots}{
 
@@ -92,5 +104,7 @@ chevron_g_obj <- chevron_g()
 chevron_g_obj <- chevron_g(
   postprocess = function(tlg, title, ...) tlg + ggplot2::labs(main = title)
 )
+
+chevron_simple_obj <- chevron_simple()
 
 }

@@ -4,11 +4,14 @@
 \alias{script}
 \alias{script_funs}
 \alias{script_funs,chevron_tlg-method}
+\alias{script_funs,chevron_simple-method}
 \title{Create Script for Parameters Assignment}
 \usage{
 script_funs(x, adam_db, args, details = FALSE)
 
 \S4method{script_funs}{chevron_tlg}(x, adam_db, args, details = FALSE)
+
+\S4method{script_funs}{chevron_simple}(x, adam_db, args, details = FALSE)
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}

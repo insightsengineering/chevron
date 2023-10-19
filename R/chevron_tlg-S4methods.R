@@ -365,3 +365,23 @@ setMethod(
     )
   }
 )
+
+#' @rdname script
+#' @export
+#'
+setMethod(
+  f = "script_funs",
+  signature = "chevron_simple",
+  definition = function(x, adam_db, args, details) {
+    checkmate::assert_string(adam_db)
+    c(
+      "# Create TLG",
+      if (!identical(adam_db, "adam_db")) {
+        glue::glue("adam_db <- {adam_db}")
+      },
+      "",
+      "tlg_output <- ",
+      deparse(body(main(x))[[2]])
+    )
+  }
+)

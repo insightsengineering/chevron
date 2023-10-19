@@ -109,6 +109,19 @@ methods::setValidity("chevron_g", function(object) {
   reportAssertions(coll)
 })
 
+## chevron_none ----
+
+#' `chevron_simple`
+#'
+#' `chevron_simple`, a subclass of [chevron::chevron_tlg-class].
+#'
+#' @aliases chevron_simple
+#' @rdname chevron_tlg-class
+#' @exportClass chevron_simple
+.chevron_simple <- setClass(
+  "chevron_simple",
+  contains = "chevron_tlg"
+)
 
 # Sub Constructor ----
 
@@ -191,5 +204,34 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
     postprocess = postprocess
   )
 
+  res
+}
+
+#' @keywords internal
+dummy_main <- function(adam_db, ...) {
+  basic_table() %>%
+    analyze("Species") %>%
+    build_table(iris)
+}
+
+#' `chevron_simple` constructor
+#'
+#' @rdname chevron_tlg-class
+#' @param ... not used
+#'
+#' @inheritParams gen_args
+#'
+#' @export
+#'
+#' @examples
+#' chevron_simple_obj <- chevron_simple()
+#'
+chevron_simple <- function(main = dummy_main,
+                      ...) {
+  res <- .chevron_simple(
+    main = main,
+    preprocess = function(adam_db, ...) adam_db,
+    postprocess = function(tlg, ...) tlg
+  )
   res
 }

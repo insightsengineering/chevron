@@ -102,6 +102,7 @@ Collate:
     'lbt15.R'
     'mht01.R'
     'mng01.R'
+    'non_template.R'
     'package.R'
     'pdt01.R'
     'pdt02.R'
