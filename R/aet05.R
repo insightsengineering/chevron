@@ -3,6 +3,7 @@
 #' @describeIn aet05 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param arm_var (`string`) the arm variable used for arm splitting.
 #' @param ... Further arguments passed to `tern::control_incidence_rate()`.
 #'
@@ -16,24 +17,31 @@
 #'  * Keep zero count rows by default.
 #'
 #' @note
-#'  * `adam_db` object must contain an `adaette` table with the columns `"PARAMCD"`, `"PARAM"`, `"AVAL"`, and `"CNSR"`.
+#'  * `adam_db` object must contain table named as `dataset` with the columns `"PARAMCD"`, `"PARAM"`,
+#'  `"AVAL"`, and `"CNSR"`.
 #'
 #' @export
 #'
 aet05_main <- function(adam_db,
+                       dataset = "adsaftte",
                        arm_var = "ACTARM",
                        lbl_overall = NULL,
                        ...) {
-  assert_all_tablenames(adam_db, c("adsl", "adaette"))
+  assert_string(dataset)
+  assert_all_tablenames(adam_db, "adsl", dataset)
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
+  df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
-  assert_valid_variable(adam_db$adaette, c("USUBJID", arm_var, "PARAMCD", "PARAM"),
-    types = list(c("character", "factor"))
+  assert_valid_variable(adam_db[[dataset]], c("USUBJID", arm_var, "PARAMCD", "PARAM"),
+    types = list(c("character", "factor")), label = df_lbl
   )
-  assert_valid_variable(adam_db$adaette, "AVAL", types = list("numeric"), lower = 0, na_ok = TRUE)
-  assert_valid_variable(adam_db$adaette, "n_events", types = list("numeric"), integerish = TRUE, lower = 0L)
-  assert_valid_var_pair(adam_db$adsl, adam_db$adaette, arm_var)
+  assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, na_ok = TRUE, label = df_lbl)
+  assert_valid_variable(adam_db[[dataset]], "n_events",
+    types = list("numeric"), integerish = TRUE, lower = 0L,
+    label = df_lbl
+  )
+  assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
 
   lbl_overall <- render_safe(lbl_overall)
   control <- execute_with_args(control_incidence_rate, ...)
@@ -47,7 +55,7 @@ aet05_main <- function(adam_db,
     control = control
   )
 
-  tbl <- build_table(lyt, adam_db$adaette, alt_counts_df = adam_db$adsl)
+  tbl <- build_table(lyt, adam_db[[dataset]], alt_counts_df = adam_db$adsl)
 
   tbl
 }
@@ -85,9 +93,9 @@ aet05_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet05_pre <- function(adam_db, ...) {
-  adam_db$adaette <- adam_db$adaette %>%
-    filter(grepl("AETTE", .data$PARAMCD)) %>%
+aet05_pre <- function(adam_db, dataset, ...) {
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
+    filter(grepl("AETTE", .data$PARAMCD) | (.data$PARAMCD %in% c("CQTTE", "SMQTTE"))) %>%
     mutate(
       n_events = as.integer(.data$CNSR == 0)
     )
@@ -122,12 +130,11 @@ aet05_post <- function(tlg, prune_0 = FALSE, ...) {
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
 #'
-#' run(aet05, proc_data)
+#' run(aet05, proc_data, dataset = "adaette")
 #'
-#' run(aet05, proc_data, conf_level = 0.90, conf_type = "exact")
+#' run(aet05, proc_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
 aet05 <- chevron_t(
   main = aet05_main,
   preprocess = aet05_pre,
-  postprocess = aet05_post,
-  adam_datasets = c("adsl", "adaette")
+  postprocess = aet05_post
 )

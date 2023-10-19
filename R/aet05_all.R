@@ -6,12 +6,12 @@
 #'
 #' @export
 #'
-aet05_all_pre <- function(adam_db, ...) {
-  anl_tte <- adam_db$adaette %>%
+aet05_all_pre <- function(adam_db, dataset, ...) {
+  anl_tte <- adam_db[[dataset]] %>%
     filter(.data$PARAMCD == "AEREPTTE") %>%
     select(all_of(c("USUBJID", "AVAL")))
 
-  adam_db$adaette <- adam_db$adaette %>%
+  adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(grepl("TOT", .data$PARAMCD)) %>%
     mutate(
       n_events = as.integer(.data$AVAL)
@@ -36,12 +36,11 @@ aet05_all_pre <- function(adam_db, ...) {
 #'
 #' proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
 #'
-#' run(aet05_all, proc_data)
+#' run(aet05_all, proc_data, dataset = "adaette")
 #'
-#' run(aet05_all, proc_data, conf_level = 0.90, conf_type = "exact")
+#' run(aet05_all, proc_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
 aet05_all <- chevron_t(
   main = aet05_main,
   preprocess = aet05_all_pre,
-  postprocess = aet05_post,
-  adam_datasets = c("adsl", "adaette")
+  postprocess = aet05_post
 )

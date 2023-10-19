@@ -250,7 +250,7 @@ run(aet04, syn_data, grade_groups = grade_groups, prune_0 = FALSE)
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
 
-run(aet05, proc_data)
+run(aet05, proc_data, dataset = "adaette")
 ```
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence (setting type of confidence interval)**
@@ -259,7 +259,7 @@ run(aet05, proc_data)
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
-run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
+run(aet05, syn_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
 ```
 
 ### **Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences (`AET05_ALL`)**
@@ -274,7 +274,7 @@ run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
 
-run(aet05_all, proc_data)
+run(aet05_all, proc_data, dataset = "adaette")
 ```
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences (setting type of confidence interval)**
@@ -283,7 +283,7 @@ run(aet05_all, proc_data)
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
-run(aet05_all, syn_data, conf_level = 0.90, conf_type = "exact")
+run(aet05_all, syn_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
 ```
 
 ### **Most Common (>=5%) Adverse Events (`AET10`)**

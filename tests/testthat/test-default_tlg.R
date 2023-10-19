@@ -41,15 +41,15 @@ test_that("aet04 functions with default argument value return expected result wi
 })
 
 test_that("aet05 functions with default argument value return expected result with test data", {
-  pre_data <- aet05_pre(syn_data)
-  raw_res <- aet05_main(pre_data)
+  pre_data <- aet05_pre(syn_data, dataset = "adaette")
+  raw_res <- aet05_main(pre_data, dataset = "adaette")
   res <- aet05_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("aet05_all functions with default argument value return expected result with test data", {
-  pre_data <- aet05_all_pre(syn_data)
-  raw_res <- aet05_main(pre_data)
+  pre_data <- aet05_all_pre(syn_data, dataset = "adaette")
+  raw_res <- aet05_main(pre_data, dataset = "adaette")
   res <- aet05_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
