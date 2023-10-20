@@ -95,7 +95,7 @@ aet05_lyt <- function(arm_var,
 #'
 aet05_pre <- function(adam_db, dataset = "adsaftte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    filter(grepl("AETTE", .data$PARAMCD) | (.data$PARAMCD %in% c("CQTTE", "SMQTTE"))) %>%
+    filter(grepl("(AE|CQ|SMQ)TTE", .data$PARAMCD)) %>%
     mutate(
       n_events = as.integer(.data$CNSR == 0)
     )
