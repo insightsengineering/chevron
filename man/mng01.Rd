@@ -18,7 +18,6 @@ mng01_main(
   y_name = "PARAM",
   y_unit = NULL,
   arm_var = "ACTARM",
-  cohort_id = "USUBJID",
   center_fun = "mean",
   interval_fun = "mean_ci",
   jitter = 0.3,
@@ -47,8 +46,6 @@ mng01
 \code{y_name} is displayed as subtitle.}
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
-
-\item{cohort_id}{(\code{string}) name of the variable that identifies group belonging.}
 
 \item{center_fun}{(\code{string}) the function to compute the estimate value.}
 

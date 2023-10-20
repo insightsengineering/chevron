@@ -13,7 +13,6 @@
 #' @param y_name (`string`) the variable name for `y`. Used for plot's subtitle.
 #' @param y_unit (`string`) the name of the variable with the units of `y`. Used for plot's subtitle. if `NULL`, only
 #'   `y_name` is displayed as subtitle.
-#' @param subject_var (`string`) name of the variable that identifies unique subjects.
 #' @param center_fun (`string`) the function to compute the estimate value.
 #' @param interval_fun (`string`) the function defining the crossbar range.
 #' @param jitter (`numeric`) the width of spread for data points on the x-axis; a number from 0 (no `jitter`) to 1 (high
@@ -41,7 +40,6 @@ mng01_main <- function(adam_db,
                        y_name = "PARAM",
                        y_unit = NULL,
                        arm_var = "ACTARM",
-                       subject_var = "USUBJID",
                        center_fun = "mean",
                        interval_fun = "mean_ci",
                        jitter = 0.3,
@@ -69,7 +67,6 @@ mng01_main <- function(adam_db,
   assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
   assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", "factor")))
   assert_valid_variable(adam_db[[dataset]], arm_var, types = list(c("character", "factor")), na_ok = FALSE)
-  assert_valid_variable(adam_db$adsl, subject_var, types = list(c("character", "factor")), empty_ok = TRUE, na_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_var_pair(adam_db$adsl, adam_db[[dataset]], arm_var)
@@ -97,7 +94,7 @@ mng01_main <- function(adam_db,
     strata = arm_var,
     paramcd = y_name,
     y_unit = y_unit,
-    cohort_id = subject_var
+    cohort_id = "USUBJID"
   )
 
   if (!is.null(names(line_col))) {
