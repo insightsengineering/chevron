@@ -165,5 +165,5 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 mng01 <- chevron_g(
   main = mng01_main,
-  preproces = mng01_pre
+  preprocess = mng01_pre
 )

@@ -120,5 +120,5 @@ fstg02_pre <- function(adam_db, ...) {
 #' )
 fstg02 <- chevron_g(
   main = fstg02_main,
-  preproces = fstg02_pre
+  preprocess = fstg02_pre
 )
