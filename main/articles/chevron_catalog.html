@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3.9003</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,25 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -614,8 +595,8 @@ class, high-level term and preferred term.</p>
 <p>The syntax below displays adverse events by preferred term only.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet02</span>, <span class="va">syn_data</span>, row_split_var <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   MedDRA Preferred Term                                       A: Drug X    B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                                                (N=134)       (N=134)        (N=132)    </span></span>
+<span><span class="co">#&gt;                                                               A: Drug X    B: Placebo    C: Combination</span></span>
+<span><span class="co">#&gt;   MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt;   —————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Total number of patients with at least one adverse event   122 (91.0%)   123 (91.8%)    120 (90.9%)  </span></span>
 <span><span class="co">#&gt;   Overall total number of events                                 609           622            703      </span></span>
@@ -1646,8 +1627,8 @@ names by frequency.</li>
 </ol>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">cmt02_pt</span>, <span class="va">syn_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Other Treatment                                         A: Drug X    B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                                            (N=134)       (N=134)        (N=132)    </span></span>
+<span><span class="co">#&gt;                                                           A: Drug X    B: Placebo    C: Combination</span></span>
+<span><span class="co">#&gt;   Other Treatment                                          (N=134)       (N=134)        (N=132)    </span></span>
 <span><span class="co">#&gt;   —————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  </span></span>
 <span><span class="co">#&gt;   Total number of treatments                                 609           622            703      </span></span>
@@ -1694,8 +1675,8 @@ groups. The example below is based on treatment groups
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"CRSD"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="va">ARMCD</span> <span class="op">!=</span> <span class="st">"ARM C"</span>, <span class="st">"adsl"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">coxt01</span>, <span class="va">proc_data</span>, time_var <span class="op">=</span> <span class="st">"AVAL"</span>, event_var <span class="op">=</span> <span class="st">"EVENT"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     </span></span>
-<span><span class="co">#&gt;                                              n     Hazard Ratio       95% CI       p-value </span></span>
+<span><span class="co">#&gt;                                                Treatment Effect Adjusted for Covariate     </span></span>
+<span><span class="co">#&gt;   Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value </span></span>
 <span><span class="co">#&gt;   —————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Treatment:                                                                               </span></span>
 <span><span class="co">#&gt;     B: Placebo vs control (A: Drug X)       268        1.43        (1.06, 1.94)     0.0204 </span></span>
@@ -1713,8 +1694,8 @@ groups. The example below is based on treatment groups
 <code><a href="https://rdrr.io/pkg/tern/man/control_coxreg.html" class="external-link">tern::control_coxreg()</a></code>, needs to be specified.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">coxt01</span>, <span class="va">proc_data</span>, interaction <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Effect/Covariate Included in the Model                Treatment Effect Adjusted for Covariate             </span></span>
-<span><span class="co">#&gt;                                             n    Hazard Ratio      95% CI      p-value   Interaction p-value</span></span>
+<span><span class="co">#&gt;                                                         Treatment Effect Adjusted for Covariate             </span></span>
+<span><span class="co">#&gt;   Effect/Covariate Included in the Model    n    Hazard Ratio      95% CI      p-value   Interaction p-value</span></span>
 <span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Treatment:                                                                                                </span></span>
 <span><span class="co">#&gt;     B: Placebo vs control (A: Drug X)      268       1.43       (1.06, 1.94)   0.0204                       </span></span>
@@ -1744,8 +1725,8 @@ used as covariates.</li>
 </ol>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">coxt01</span>, <span class="va">proc_data</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ETHNIC"</span>, <span class="st">"RACE"</span>, <span class="st">"AAGE"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     </span></span>
-<span><span class="co">#&gt;                                              n     Hazard Ratio       95% CI       p-value </span></span>
+<span><span class="co">#&gt;                                                Treatment Effect Adjusted for Covariate     </span></span>
+<span><span class="co">#&gt;   Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value </span></span>
 <span><span class="co">#&gt;   —————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Treatment:                                                                               </span></span>
 <span><span class="co">#&gt;     B: Placebo vs control (A: Drug X)       268        1.43        (1.06, 1.94)     0.0204 </span></span>
@@ -1774,8 +1755,8 @@ to <code><a href="https://rdrr.io/pkg/tern/man/control_coxreg.html" class="exter
 </ol>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">coxt01</span>, <span class="va">proc_data</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"AAGE"</span><span class="op">)</span>, strata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RACE"</span><span class="op">)</span>, conf_level <span class="op">=</span> <span class="fl">0.90</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     </span></span>
-<span><span class="co">#&gt;                                              n     Hazard Ratio       90% CI       p-value </span></span>
+<span><span class="co">#&gt;                                                Treatment Effect Adjusted for Covariate     </span></span>
+<span><span class="co">#&gt;   Effect/Covariate Included in the Model     n     Hazard Ratio       90% CI       p-value </span></span>
 <span><span class="co">#&gt;   —————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Treatment:                                                                               </span></span>
 <span><span class="co">#&gt;     B: Placebo vs control (A: Drug X)       268        1.42        (1.09, 1.84)     0.0274 </span></span>
@@ -2378,10 +2359,10 @@ Visit</strong><a class="anchor" aria-label="anchor" href="#ecg-results-and-chang
 standard ECG results and change from baseline by visit summary.</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">egt01</span>, <span class="va">syn_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Analysis Visit                   A: Drug X                                B: Placebo                              C: Combination             </span></span>
+<span><span class="co">#&gt;                                    A: Drug X                                B: Placebo                              C: Combination             </span></span>
 <span><span class="co">#&gt;                                             Change from                               Change from                               Change from    </span></span>
 <span><span class="co">#&gt;                       Value at Visit          Baseline          Value at Visit          Baseline          Value at Visit          Baseline     </span></span>
-<span><span class="co">#&gt;                          (N=134)              (N=134)              (N=134)              (N=134)              (N=132)              (N=132)      </span></span>
+<span><span class="co">#&gt;   Analysis Visit         (N=134)              (N=134)              (N=134)              (N=134)              (N=132)              (N=132)      </span></span>
 <span><span class="co">#&gt;   —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Heart Rate                                                                                                                                   </span></span>
 <span><span class="co">#&gt;     BASELINE                                                                                                                                   </span></span>
@@ -2737,8 +2718,8 @@ number of doses administered and total dose administered by default</li>
 </ol>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ext01</span>, <span class="va">syn_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   PARCAT2                        A: Drug X        B: Placebo      C: Combination </span></span>
-<span><span class="co">#&gt;                                   (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;                                  A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;   PARCAT2                         (N=134)           (N=134)           (N=132)    </span></span>
 <span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   Drug A                                                                         </span></span>
 <span><span class="co">#&gt;     Overall duration (days)                                                      </span></span>
@@ -3906,8 +3887,8 @@ first.</p>
 <span><span class="co">#&gt; Updating: advs with: AGEGR1</span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt03</span>, <span class="va">proc_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                                                   F                            M                       All Genders        </span></span>
-<span><span class="co">#&gt;   Age Group                             Patients     Person time     Patients     Person time     Patients     Person time</span></span>
-<span><span class="co">#&gt;                                         (N=231)        (N=231)       (N=169)        (N=169)       (N=400)        (N=400)  </span></span>
+<span><span class="co">#&gt;                                         Patients     Person time     Patients     Person time     Patients     Person time</span></span>
+<span><span class="co">#&gt;   Age Group                             (N=231)        (N=231)       (N=169)        (N=169)       (N=400)        (N=400)  </span></span>
 <span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   &lt;65                                 231 (100.0%)      27364      168 (99.4%)       22124      399 (99.8%)       49488   </span></span>
 <span><span class="co">#&gt;   &gt;=65                                  0 (0.0%)          0          1 (0.6%)         212         1 (0.2%)         212    </span></span>
@@ -3945,8 +3926,8 @@ the variable specified per <code>summaryvars</code> is unavailable in
 <span><span class="co">#&gt; Updating: advs with: AGEGR2</span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">rmpt03</span>, <span class="va">proc_data</span>, summaryvars <span class="op">=</span> <span class="st">"AGEGR2"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                                                   F                            M                       All Genders        </span></span>
-<span><span class="co">#&gt;   Age Group 2                           Patients     Person time     Patients     Person time     Patients     Person time</span></span>
-<span><span class="co">#&gt;                                         (N=231)        (N=231)       (N=169)        (N=169)       (N=400)        (N=400)  </span></span>
+<span><span class="co">#&gt;                                         Patients     Person time     Patients     Person time     Patients     Person time</span></span>
+<span><span class="co">#&gt;   Age Group 2                           (N=231)        (N=231)       (N=169)        (N=169)       (N=400)        (N=400)  </span></span>
 <span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
 <span><span class="co">#&gt;   18 - 65                             231 (100.0%)      27364      168 (99.4%)       22124      399 (99.8%)       49488   </span></span>
 <span><span class="co">#&gt;   &gt;65                                   0 (0.0%)          0          1 (0.6%)         212         1 (0.2%)         212    </span></span>
