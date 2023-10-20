@@ -349,6 +349,7 @@ setMethod(
     checkmate::assert_string(adam_db)
     checkmate::assert_string(args)
     checkmate::assert_string(name)
+    browser()
     c(
       "# Edit Preprocessing Function.",
       glue::glue("preprocess({name}) <- "),
@@ -356,7 +357,7 @@ setMethod(
       "",
       "# Create TLG",
       glue::glue(
-        "tlg_output <- run(object = {tlg_name}, adam_db = {adam_db}",
+        "tlg_output <- run(object = {name}, adam_db = {adam_db}",
         ", verbose = TRUE, user_args = {args})"
       )
     )
