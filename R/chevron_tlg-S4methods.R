@@ -346,7 +346,6 @@ setMethod(
   f = "script_funs",
   signature = "chevron_tlg",
   definition = function(x, adam_db, args, name) {
-    checkmate::assert_flag(details)
     checkmate::assert_string(adam_db)
     checkmate::assert_string(args)
     checkmate::assert_string(name)
