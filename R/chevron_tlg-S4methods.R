@@ -349,7 +349,6 @@ setMethod(
     checkmate::assert_string(adam_db)
     checkmate::assert_string(args)
     checkmate::assert_string(name)
-    browser()
     c(
       "# Edit Preprocessing Function.",
       glue::glue("preprocess({name}) <- "),
