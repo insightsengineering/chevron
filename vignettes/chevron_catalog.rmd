@@ -28,7 +28,7 @@ library(chevron)
 
 #### **1. Input dataset and dataset names**
 
-The input dataset expected by the argument `adam_db=` in the `run(...)` function is a collection of `ADaM` datasets as a list object. Each `ADaM` dataset is expected to be an object of data frame. If the `ADaM` datasets are read in individually, user will need to combine them into a list object and provide the name of the list to `adam_db=`. Also, each element in the list are expected to have corresponding `ADaM` dataset names. Conventional `ADaM` dataset names, including `adsl`,`adex`, `adae`, `adlb`,`advs`,`adeg`,`adcm`,`admh`,`adrs`, and `adtte`, can be picked up by `chevron` with one exception. If you have a safety time-to-event dataset named as `adsaftte` following Roche standard `ADaM` convention, you will need to re-name it to `adaette` to be picked up by `chevron`.
+The input dataset expected by the argument `adam_db=` in the `run(...)` function is a collection of `ADaM` datasets as a list object. Each `ADaM` dataset is expected to be an object of data frame. If the `ADaM` datasets are read in individually, user will need to combine them into a list object and provide the name of the list to `adam_db=`. Also, each element in the list are expected to have corresponding `ADaM` dataset names. Conventional `ADaM` dataset names, including `adsl`,`adex`, `adae`, `adlb`,`advs`,`adeg`,`adcm`,`admh`,`adrs`, and `adtte`, can be picked up by `chevron` with one exception.
 
 ```{r eval=FALSE}
 std_data <- list(adsl = adsl, adae = adae)
@@ -243,14 +243,13 @@ run(aet04, syn_data, grade_groups = grade_groups, prune_0 = FALSE)
 #### **1. Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence**
 
 1) The **`aet05`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering first occurrence only.
-2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.
-3) By default, all `adaette` parameter codes containing the string `"TTE"` are included in the output. Users are expected to filter the parameter(s) of interest from input safety time-to-event dataset in pre-processing if needed.
-4) In the input safety time-to-event dataset, in the censoring variable `CNSR` , `0` indicates the occurrence of an event of interest and `1` denotes censoring.
+2) By default, all `adsaftte` parameter codes containing the string `"TTE"` are included in the output. Users are expected to filter the parameter(s) of interest from input safety time-to-event dataset in pre-processing if needed.
+3) In the input safety time-to-event dataset, in the censoring variable `CNSR`, `0` indicates the occurrence of an event of interest and `1` denotes censoring.
 
 ```{r}
-proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
+proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adsaftte")
 
-run(aet05, proc_data, dataset = "adaette")
+run(aet05, proc_data)
 ```
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence (setting type of confidence interval)**
@@ -259,7 +258,7 @@ run(aet05, proc_data, dataset = "adaette")
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
-run(aet05, syn_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
+run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
 ```
 
 ### **Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences (`AET05_ALL`)**
@@ -267,14 +266,13 @@ run(aet05, syn_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact"
 #### **1. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences**
 
 1) The **`aet05_all`** template produces the standard adverse event rate adjusted for patient-years at risk summary considering all occurrences.
-2) Currently, the expected name for safety time-to-event dataset is `adaette` rather than `adsaftte` from other data standards.
-3) By default, all `adaette` parameter codes containing the string `"TOT"` and the parameter code `"AEREPTTE"` are required. `"TOT"` parameters store the number of occurrences of adverse event of interests. Parameter code `"AEREPTTE"` stores the time to end of adverse event reporting period in years that contribute to the summary of "total patient-years at risk" in the output. Users are expected to filter parameters of interest from input analysis dataset in pre-processing, if needed.
-4) In the input safety time-to-event dataset, in the censoring variable `CNSR` , `0` indicates the occurrence of an event of interest and `1` denotes censoring.
+2) By default, all `adsaftte` parameter codes containing the string `"TOT"` and the parameter code `"AEREPTTE"` are required. `"TOT"` parameters store the number of occurrences of adverse event of interests. Parameter code `"AEREPTTE"` stores the time to end of adverse event reporting period in years that contribute to the summary of "total patient-years at risk" in the output. Users are expected to filter parameters of interest from input analysis dataset in pre-processing, if needed.
+3) In the input safety time-to-event dataset, in the censoring variable `CNSR`, `0` indicates the occurrence of an event of interest and `1` denotes censoring.
 
 ```{r}
-proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
+proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adsaftte")
 
-run(aet05_all, proc_data, dataset = "adaette")
+run(aet05_all, proc_data)
 ```
 
 #### **2. Adverse Event Rate Adjusted for Patient-Years at Risk - All Occurrences (setting type of confidence interval)**
@@ -283,7 +281,7 @@ run(aet05_all, proc_data, dataset = "adaette")
 2) The confidence interval can be adjusted by the argument `conf_level`.
 
 ```{r}
-run(aet05_all, syn_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
+run(aet05_all, syn_data, conf_level = 0.90, conf_type = "exact")
 ```
 
 ### **Most Common (>=5%) Adverse Events (`AET10`)**

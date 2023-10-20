@@ -19,7 +19,7 @@ aet05_main(
   ...
 )
 
-aet05_pre(adam_db, dataset, ...)
+aet05_pre(adam_db, dataset = "adsaftte", ...)
 
 aet05_post(tlg, prune_0 = FALSE, ...)
 
@@ -74,10 +74,10 @@ considering first occurrence.
 library(dplyr)
 library(dunlin)
 
-proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
+proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adsaftte")
 
-run(aet05, proc_data, dataset = "adaette")
+run(aet05, proc_data)
 
-run(aet05, proc_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
+run(aet05, proc_data, conf_level = 0.90, conf_type = "exact")
 }
 \keyword{datasets}

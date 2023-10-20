@@ -93,7 +93,7 @@ aet05_lyt <- function(arm_var,
 #'
 #' @export
 #'
-aet05_pre <- function(adam_db, dataset, ...) {
+aet05_pre <- function(adam_db, dataset = "adsaftte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(grepl("AETTE", .data$PARAMCD) | (.data$PARAMCD %in% c("CQTTE", "SMQTTE"))) %>%
     mutate(
@@ -128,11 +128,11 @@ aet05_post <- function(tlg, prune_0 = FALSE, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
+#' proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adsaftte")
 #'
-#' run(aet05, proc_data, dataset = "adaette")
+#' run(aet05, proc_data)
 #'
-#' run(aet05, proc_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
+#' run(aet05, proc_data, conf_level = 0.90, conf_type = "exact")
 aet05 <- chevron_t(
   main = aet05_main,
   preprocess = aet05_pre,

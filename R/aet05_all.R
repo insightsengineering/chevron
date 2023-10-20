@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-aet05_all_pre <- function(adam_db, dataset, ...) {
+aet05_all_pre <- function(adam_db, dataset = "adsaftte", ...) {
   anl_tte <- adam_db[[dataset]] %>%
     filter(.data$PARAMCD == "AEREPTTE") %>%
     select(all_of(c("USUBJID", "AVAL")))
@@ -34,11 +34,11 @@ aet05_all_pre <- function(adam_db, dataset, ...) {
 #' library(dplyr)
 #' library(dunlin)
 #'
-#' proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
+#' proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adsaftte")
 #'
-#' run(aet05_all, proc_data, dataset = "adaette")
+#' run(aet05_all, proc_data)
 #'
-#' run(aet05_all, proc_data, dataset = "adaette", conf_level = 0.90, conf_type = "exact")
+#' run(aet05_all, proc_data, conf_level = 0.90, conf_type = "exact")
 aet05_all <- chevron_t(
   main = aet05_main,
   preprocess = aet05_all_pre,

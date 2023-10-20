@@ -80,12 +80,9 @@ kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' syn_data2 <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-#' run(kmg01, syn_data2, dataset = "adtte", line_col = col)
-#'
-#' syn_data3 <- log_filter(syn_data, PARAMCD == "AEREPTTE", "adaette")
-#' run(kmg01, syn_data3, dataset = "adaette")
+#' syn_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+#' run(kmg01, syn_data, dataset = "adtte", line_col = col)
 kmg01 <- chevron_g(
   main = kmg01_main,
-  preproces = kmg01_pre
+  preprocess = kmg01_pre
 )
