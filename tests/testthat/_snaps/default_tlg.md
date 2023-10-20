@@ -413,8 +413,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        Other Treatment                                         A: Drug X    B: Placebo    C: Combination
-                                                                 (N=134)       (N=134)        (N=132)    
+                                                                A: Drug X    B: Placebo    C: Combination
+        Other Treatment                                          (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Total number of treatments                                 609           622            703      
@@ -433,8 +433,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     
-                                                   n     Hazard Ratio       95% CI       p-value 
+                                                     Treatment Effect Adjusted for Covariate     
+        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
           B: Placebo vs control (A: Drug X)       268        1.43        (1.06, 1.94)     0.0204 

@@ -3,8 +3,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Overall duration (days)                                                      
@@ -34,8 +34,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Total dose administered                                                      
@@ -65,8 +65,8 @@
     Code
       cat(export_as_txt(res1, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Overall duration (days)                                                      
@@ -96,8 +96,8 @@
     Code
       cat(export_as_txt(res2, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Overall duration (days)                                                      
@@ -127,8 +127,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Total dose administered                                                      
@@ -158,8 +158,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Overall duration (days)                                                      
@@ -209,8 +209,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Overall duration (days)                                                      
@@ -260,8 +260,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        PARCAT2                        A: Drug X        B: Placebo      C: Combination 
-                                        (N=134)           (N=134)           (N=132)    
+                                       A: Drug X        B: Placebo      C: Combination 
+        PARCAT2                         (N=134)           (N=134)           (N=132)    
         ———————————————————————————————————————————————————————————————————————————————
         Drug A                                                                         
           Overall duration (days)                                                      

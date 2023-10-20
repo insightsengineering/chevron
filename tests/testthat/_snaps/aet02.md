@@ -3,8 +3,8 @@
     Code
       cat(export_as_txt(res1, lpp = 100))
     Output
-        MedDRA Preferred Term                                       A: Drug X    B: Placebo    C: Combination
-                                                                     (N=134)       (N=134)        (N=132)    
+                                                                    A: Drug X    B: Placebo    C: Combination
+        MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event   122 (91.0%)   123 (91.8%)    120 (90.9%)  
         Overall total number of events                                 609           622            703      

@@ -3,8 +3,8 @@
     Code
       cat(export_as_txt(res1, lpp = 100))
     Output
-        Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     
-                                                   n     Hazard Ratio       95% CI       p-value 
+                                                     Treatment Effect Adjusted for Covariate     
+        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
           B: Placebo vs control (A: Drug X)       264        1.38        (1.02, 1.88)     0.0381 
@@ -18,8 +18,8 @@
     Code
       cat(export_as_txt(res2, lpp = 100))
     Output
-        Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     
-                                                   n     Hazard Ratio       90% CI       p-value 
+                                                     Treatment Effect Adjusted for Covariate     
+        Effect/Covariate Included in the Model     n     Hazard Ratio       90% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
           B: Placebo vs control (A: Drug X)       264        1.38        (1.07, 1.79)     0.0381 
@@ -33,8 +33,8 @@
     Code
       cat(export_as_txt(res3, lpp = 100))
     Output
-        Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     
-                                                   n     Hazard Ratio       95% CI       p-value 
+                                                     Treatment Effect Adjusted for Covariate     
+        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
           B: Placebo vs control (A: Drug X)       264        1.38        (1.02, 1.88)     0.0381 
@@ -47,8 +47,8 @@
     Code
       cat(export_as_txt(res4, lpp = 100))
     Output
-        Effect/Covariate Included in the Model       Treatment Effect Adjusted for Covariate     
-                                                   n     Hazard Ratio       95% CI       p-value 
+                                                     Treatment Effect Adjusted for Covariate     
+        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
           B: Placebo vs control (A: Drug X)       264        1.37        (1.01, 1.87)     0.0459 
