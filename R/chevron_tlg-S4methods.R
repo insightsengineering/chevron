@@ -322,7 +322,7 @@ setMethod(
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param adam_db (`string`) the name of the dataset.
-#' @param details (`flag`) deprecated. Whether to show the code of all functions.
+#' @param name (`string`) name of the template.
 #' @param args (`string`) the name of argument list.
 #'
 #' @name script
@@ -335,7 +335,7 @@ NULL
 #'
 #' @rdname script
 #' @export
-setGeneric("script_funs", function(x, adam_db, args, details = FALSE) standardGeneric("script_funs"))
+setGeneric("script_funs", function(x, adam_db, args, name = deparse(substitute(x))) standardGeneric("script_funs"))
 
 #' @rdname script
 #' @export
@@ -345,16 +345,14 @@ setGeneric("script_funs", function(x, adam_db, args, details = FALSE) standardGe
 setMethod(
   f = "script_funs",
   signature = "chevron_tlg",
-  definition = function(x, adam_db, args, details) {
+  definition = function(x, adam_db, args, name) {
     checkmate::assert_flag(details)
     checkmate::assert_string(adam_db)
     checkmate::assert_string(args)
-    if (!missing(details)) lifecycle::deprecate_warn("0.2.2", "chevron::script_funs(details = )")
-    tlg_name <- deparse(substitute(x))
-    checkmate::assert_string(tlg_name, pattern = "^[a-zA-Z]+\\w+$")
+    checkmate::assert_string(name)
     c(
       "# Edit Preprocessing Function.",
-      glue::glue("preprocess({tlg_name}) <- "),
+      glue::glue("preprocess({name}) <- "),
       deparse(preprocess(x), control = c("useSource")),
       "",
       "# Create TLG",
@@ -372,7 +370,7 @@ setMethod(
 setMethod(
   f = "script_funs",
   signature = "chevron_simple",
-  definition = function(x, adam_db, args, details) {
+  definition = function(x, adam_db, args, name) {
     checkmate::assert_string(adam_db)
     c(
       "# Create TLG",

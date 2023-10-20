@@ -2,6 +2,7 @@
 
 * `TTET01` now use "NE" to represent NA values.
 * Add a `chevron_simple` class only contain main function.
+* Remove `details` argument in `script_funs`, add `name` argument.
 
 # chevron 0.2.3
 
