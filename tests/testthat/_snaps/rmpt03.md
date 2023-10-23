@@ -4,15 +4,15 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                         F                            M             
-        Age Group                             Patients     Person time     Patients     Person time
-                                              (N=231)        (N=231)       (N=169)        (N=169)  
+                                              Patients     Person time     Patients     Person time
+        Age Group                             (N=231)        (N=231)       (N=169)        (N=169)  
         ———————————————————————————————————————————————————————————————————————————————————————————
         <65                                 231 (100.0%)      27364      168 (99.4%)       22124   
         >=65                                  0 (0.0%)          0          1 (0.6%)         212    
         Total patients number/person time   231 (100.0%)      27364      169 (100.0%)      22336   
       \s\n                                             All Genders        
-        Age Group                             Patients     Person time
-                                              (N=400)        (N=400)  
+                                              Patients     Person time
+        Age Group                             (N=400)        (N=400)  
         ——————————————————————————————————————————————————————————————
         <65                                 399 (99.8%)       49488   
         >=65                                  1 (0.2%)         212    
@@ -23,17 +23,17 @@
     Code
       cat(export_as_txt(res1, lpp = 100))
     Output
-        Age Group                                                                               All   
+                                                                                                All   
                                                       F                        M              Genders 
                                             Patients   Person time   Patients   Person time   Patients
-                                            (N=231)      (N=231)     (N=169)      (N=169)     (N=400) 
+        Age Group                           (N=231)      (N=231)     (N=169)      (N=169)     (N=400) 
         ——————————————————————————————————————————————————————————————————————————————————————————————
         <65                                 0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         >=65                                0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Total patients number/person time   0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
       \s\n                                      All Genders
-        Age Group                           Person time
-                                              (N=400)  
+                                            Person time
+        Age Group                             (N=400)  
         ———————————————————————————————————————————————
         <65                                      0     
         >=65                                     0     
@@ -44,10 +44,10 @@
     Code
       cat(export_as_txt(res2, lpp = 100))
     Output
-        Age Group                                                                               All   
+                                                                                                All   
                                                       F                        M              Genders 
                                             Patients   Person time   Patients   Person time   Patients
-                                            (N=231)      (N=231)     (N=169)      (N=169)     (N=400) 
+        Age Group                           (N=231)      (N=231)     (N=169)      (N=169)     (N=400) 
         ——————————————————————————————————————————————————————————————————————————————————————————————
         <65                                 0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         >=65                                0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
@@ -61,8 +61,8 @@
         >=65                                0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Total patients number/person time   0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
       \s\n                                      All Genders
-        Age Group                           Person time
-                                              (N=400)  
+                                            Person time
+        Age Group                             (N=400)  
         ———————————————————————————————————————————————
         <65                                      0     
         >=65                                     0     
@@ -82,15 +82,15 @@
       cat(export_as_txt(res1, lpp = 100))
     Output
                                                         F                          M               All Genders
-        Age Group                            Patients     Person time    Patients    Person time    Patients  
-                                              (N=231)       (N=231)      (N=169)       (N=169)       (N=400)  
+                                             Patients     Person time    Patients    Person time    Patients  
+        Age Group                             (N=231)       (N=231)      (N=169)       (N=169)       (N=400)  
         ——————————————————————————————————————————————————————————————————————————————————————————————————————
         <65                                 124 (53.7%)      15000      80 (47.3%)      10560      204 (51.0%)
         >=65                                 0 (0.0%)          0         0 (0.0%)         0         0 (0.0%)  
         Total patients number/person time   124 (53.7%)      15000      80 (47.3%)      10560      204 (51.0%)
       \s\n                                      All Genders
-        Age Group                           Person time
-                                              (N=400)  
+                                            Person time
+        Age Group                             (N=400)  
         ———————————————————————————————————————————————
         <65                                    25560   
         >=65                                     0     
@@ -102,8 +102,8 @@
       cat(export_as_txt(res2, lpp = 100))
     Output
                                                         F                          M               All Genders
-        Age Group                            Patients     Person time    Patients    Person time    Patients  
-                                              (N=231)       (N=231)      (N=169)       (N=169)       (N=400)  
+                                             Patients     Person time    Patients    Person time    Patients  
+        Age Group                             (N=231)       (N=231)      (N=169)       (N=169)       (N=400)  
         ——————————————————————————————————————————————————————————————————————————————————————————————————————
         <65                                 124 (53.7%)      15000      80 (47.3%)      10560      204 (51.0%)
         >=65                                 0 (0.0%)          0         0 (0.0%)         0         0 (0.0%)  
@@ -117,8 +117,8 @@
         >=65                                 0 (0.0%)          0         0 (0.0%)         0         0 (0.0%)  
         Total patients number/person time   51 (22.1%)       5395       42 (24.9%)      5572       93 (23.2%) 
       \s\n                                      All Genders
-        Age Group                           Person time
-                                              (N=400)  
+                                            Person time
+        Age Group                             (N=400)  
         ———————————————————————————————————————————————
         <65                                    25560   
         >=65                                     0     

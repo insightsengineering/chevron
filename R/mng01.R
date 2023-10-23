@@ -88,12 +88,13 @@ mng01_main <- function(adam_db,
   )
 
   y_unit <- if (is.null(y_unit)) NA else y_unit
-  variables <- c(
+  variables <- tern::control_lineplot_vars(
     x = x_var,
     y = y_var,
     strata = arm_var,
     paramcd = y_name,
-    y_unit = y_unit
+    y_unit = y_unit,
+    cohort_id = "USUBJID"
   )
 
   if (!is.null(names(line_col))) {
@@ -165,5 +166,5 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
 mng01 <- chevron_g(
   main = mng01_main,
-  preproces = mng01_pre
+  preprocess = mng01_pre
 )
