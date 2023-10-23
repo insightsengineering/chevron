@@ -7,10 +7,10 @@
       Parameter: Diastolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -51,10 +51,10 @@
       Parameter: Diastolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
@@ -95,10 +95,10 @@
       Parameter: Pulse Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -139,10 +139,10 @@
       Parameter: Pulse Rate
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
@@ -183,10 +183,10 @@
       Parameter: Respiratory Rate
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -227,10 +227,10 @@
       Parameter: Respiratory Rate
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
@@ -271,10 +271,10 @@
       Parameter: Systolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -315,10 +315,10 @@
       Parameter: Systolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
@@ -359,10 +359,10 @@
       Parameter: Temperature
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -403,10 +403,10 @@
       Parameter: Temperature
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
@@ -447,10 +447,10 @@
       Parameter: Weight
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -491,10 +491,10 @@
       Parameter: Weight
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
@@ -541,10 +541,10 @@
       Parameter: Diastolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -585,10 +585,10 @@
       Parameter: Diastolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
@@ -629,10 +629,10 @@
       Parameter: Systolic Blood Pressure
       
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Analysis Visit                        A: Drug X                          B: Placebo           
+                                              A: Drug X                          B: Placebo           
                                                       Change from                        Change from  
                                    Value at Visit      Baseline       Value at Visit      Baseline    
-                                      (N=134)           (N=134)          (N=134)           (N=134)    
+        Analysis Visit                (N=134)           (N=134)          (N=134)           (N=134)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
         SCREENING                                                                                     
           n                             134                0               134                0       
@@ -673,10 +673,10 @@
       Parameter: Systolic Blood Pressure
       
         ———————————————————————————————————————————————————————————
-        Analysis Visit                      C: Combination         
+                                            C: Combination         
                                                       Change from  
                                    Value at Visit      Baseline    
-                                      (N=132)           (N=132)    
+        Analysis Visit                (N=132)           (N=132)    
         ———————————————————————————————————————————————————————————
         SCREENING                                                  
           n                             132                0       
