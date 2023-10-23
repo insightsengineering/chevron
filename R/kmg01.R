@@ -87,5 +87,5 @@ kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
 #' run(kmg01, syn_data3, dataset = "adaette")
 kmg01 <- chevron_g(
   main = kmg01_main,
-  preproces = kmg01_pre
+  preprocess = kmg01_pre
 )

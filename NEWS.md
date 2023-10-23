@@ -1,6 +1,6 @@
-# chevron 0.2.3.9004
+# chevron 0.2.4
 
-* `TTET01` now use "NE" to represent NA values.
+* `TTET01` now uses "NE" to represent NA values.
 
 # chevron 0.2.3
 
