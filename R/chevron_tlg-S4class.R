@@ -210,8 +210,7 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
 #' @keywords internal
 dummy_main <- function(adam_db, ...) {
   basic_table() %>%
-    analyze("SEX") %>%
-    build_table(syn_data$adsl)
+    build_table(data.frame())
 }
 
 #' `chevron_simple` constructor
