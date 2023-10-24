@@ -210,8 +210,8 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
 #' @keywords internal
 dummy_main <- function(adam_db, ...) {
   basic_table() %>%
-    analyze("Species") %>%
-    build_table(iris)
+    analyze("SEX") %>%
+    build_table(syn_data$adsl)
 }
 
 #' `chevron_simple` constructor
@@ -225,8 +225,7 @@ dummy_main <- function(adam_db, ...) {
 #'
 #' @examples
 #' chevron_simple_obj <- chevron_simple()
-chevron_simple <- function(main = dummy_main,
-                      ...) {
+chevron_simple <- function(main = dummy_main, ...) {
   res <- .chevron_simple(
     main = main,
     preprocess = function(adam_db, ...) adam_db,
