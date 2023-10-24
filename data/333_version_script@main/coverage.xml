@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.964285714285714" branch-rate="0" lines-covered="3132" lines-valid="3248" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-10-24 00:02:44.021352">
+<coverage line-rate="0.964285714285714" branch-rate="0" lines-covered="3132" lines-valid="3248" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-10-24 00:40:00.756361">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
@@ -1890,12 +1890,12 @@
             </method>
             <method name="chevron_simple" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
+                <line number="229" hits="0" branch="false"/>
                 <line number="230" hits="0" branch="false"/>
                 <line number="231" hits="0" branch="false"/>
                 <line number="232" hits="0" branch="false"/>
                 <line number="233" hits="0" branch="false"/>
                 <line number="234" hits="0" branch="false"/>
-                <line number="235" hits="0" branch="false"/>
                 <line number="373" hits="0" branch="false"/>
                 <line number="374" hits="0" branch="false"/>
                 <line number="375" hits="0" branch="false"/>
@@ -1931,12 +1931,12 @@
             <line number="212" hits="0" branch="false"/>
             <line number="213" hits="0" branch="false"/>
             <line number="214" hits="0" branch="false"/>
+            <line number="229" hits="0" branch="false"/>
             <line number="230" hits="0" branch="false"/>
             <line number="231" hits="0" branch="false"/>
             <line number="232" hits="0" branch="false"/>
             <line number="233" hits="0" branch="false"/>
             <line number="234" hits="0" branch="false"/>
-            <line number="235" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="chevron_tlg-S4methods.R" filename="R/chevron_tlg-S4methods.R" line-rate="0.909090909090909" branch-rate="0" complexity="0">
@@ -2132,12 +2132,12 @@
             </method>
             <method name="chevron_simple" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
+                <line number="229" hits="0" branch="false"/>
                 <line number="230" hits="0" branch="false"/>
                 <line number="231" hits="0" branch="false"/>
                 <line number="232" hits="0" branch="false"/>
                 <line number="233" hits="0" branch="false"/>
                 <line number="234" hits="0" branch="false"/>
-                <line number="235" hits="0" branch="false"/>
                 <line number="373" hits="0" branch="false"/>
                 <line number="374" hits="0" branch="false"/>
                 <line number="375" hits="0" branch="false"/>
