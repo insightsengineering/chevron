@@ -1,5 +1,7 @@
 # chevron 0.2.4.9000
 
+* `MNG01` plot can now be displayed without error bars.
+
 # chevron 0.2.4
 
 * `TTET01` now uses "NE" to represent NA values.
