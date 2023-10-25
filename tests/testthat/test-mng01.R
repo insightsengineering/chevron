@@ -75,6 +75,20 @@ test_that("mng01 works with combination of x variables", {
   vdiffr::expect_doppelganger("run mng01 with combination of x variables", res[[1]])
 })
 
+test_that("mng01 works with numeric x variable", {
+  proc_data <- syn_data
+  proc_data$adlb$AVISITN[1:20] <- 10
+  proc_data$adlb$AVISITN[21:40] <- -3
+  res <- run(
+    mng01,
+    proc_data,
+    dataset = "adlb",
+    x_var = c("AVISITN")
+  )
+  expect_list(res, len = 3, types = "ggplot")
+  vdiffr::expect_doppelganger("run mng01 with numeric x variables", res[[1]])
+})
+
 test_that("mng01 works with numeric jitter", {
   proc_data <- syn_data
   res <- run(
