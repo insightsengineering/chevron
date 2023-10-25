@@ -57,9 +57,9 @@ mng01_main <- function(adam_db,
   assert_string(y_unit, null.ok = TRUE)
   assert_string(arm_var)
   assert_string(center_fun)
-  assert_string(interval_fun)
+  assert_string(interval_fun, null.ok = TRUE)
   assert_names(center_fun, subset.of = center_fun_choice)
-  assert_choice(interval_fun, interval_fun_choice)
+  assert_choice(interval_fun, interval_fun_choice, null.ok = TRUE)
   assert_number(jitter, lower = 0, upper = 1)
   assert_class(ggtheme, "theme")
   assert_character(line_col, null.ok = TRUE)
@@ -78,14 +78,19 @@ mng01_main <- function(adam_db,
   data_ls <- split(df, df$PARAM, drop = TRUE)
   x_var <- paste(x_var, collapse = "_")
 
-  whiskers_fun <- switch(interval_fun,
-    "mean_ci" = c("mean_ci_lwr", "mean_ci_upr"),
-    "mean_sei" = c("mean_sei_lwr", "mean_sei_upr"),
-    "mean_sdi" = c("mean_sdi_lwr", "mean_sdi_upr"),
-    "median_ci" = c("median_ci_lwr", "median_ci_upr"),
-    "quantiles" = c("quantiles_0.25", "quantile_0.75"),
-    "range" = c("min", "max")
-  )
+  whiskers_fun <- if(is.null(interval_fun)) {
+    NULL
+  } else {
+    switch(interval_fun,
+           "mean_ci" = c("mean_ci_lwr", "mean_ci_upr"),
+           "mean_sei" = c("mean_sei_lwr", "mean_sei_upr"),
+           "mean_sdi" = c("mean_sdi_lwr", "mean_sdi_upr"),
+           "median_ci" = c("median_ci_lwr", "median_ci_upr"),
+           "quantiles" = c("quantiles_0.25", "quantile_0.75"),
+           "range" = c("min", "max")
+    )
+  }
+
 
   y_unit <- if (is.null(y_unit)) NA else y_unit
   variables <- tern::control_lineplot_vars(
