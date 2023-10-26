@@ -8,7 +8,7 @@
 A named \code{list} of 13 \code{data.frames}:
 - \code{adsl}
 - \code{adae}
-- \code{adaette}
+- \code{adsaftte}
 - \code{adcm}
 - \code{addv}
 - \code{adeg}
