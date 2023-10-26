@@ -62,7 +62,7 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \code{chevron_g}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation
 
-\code{chevron_simple}, a subclass of \linkS4class{chevron_tlg}.
+\code{chevron_simple}, a subclass of \linkS4class{chevron_tlg}, where main function is a simple call
 }
 \section{Slots}{
 

@@ -63,12 +63,6 @@ methods::setValidity("chevron_tlg", function(object) {
   contains = "chevron_tlg"
 )
 
-methods::setValidity("chevron_t", function(object) {
-  coll <- makeAssertCollection()
-  assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  reportAssertions(coll)
-})
-
 ## chevron_l ----
 
 #' `chevron_l`
@@ -82,12 +76,6 @@ methods::setValidity("chevron_t", function(object) {
   "chevron_l",
   contains = "chevron_tlg"
 )
-
-methods::setValidity("chevron_l", function(object) {
-  coll <- makeAssertCollection()
-  assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  reportAssertions(coll)
-})
 
 ## chevron_g ----
 
@@ -103,17 +91,11 @@ methods::setValidity("chevron_l", function(object) {
   contains = "chevron_tlg"
 )
 
-methods::setValidity("chevron_g", function(object) {
-  coll <- makeAssertCollection()
-  assert_function(object@main, args = c("adam_db"), ordered = TRUE, add = coll)
-  reportAssertions(coll)
-})
-
-## chevron_none ----
+## chevron_simple ----
 
 #' `chevron_simple`
 #'
-#' `chevron_simple`, a subclass of [chevron::chevron_tlg-class].
+#' `chevron_simple`, a subclass of [chevron::chevron_tlg-class], where main function is a simple call
 #'
 #' @aliases chevron_simple
 #' @rdname chevron_tlg-class
@@ -122,6 +104,21 @@ methods::setValidity("chevron_g", function(object) {
   "chevron_simple",
   contains = "chevron_tlg"
 )
+
+
+# Validity of class `chevron_simple`
+methods::setValidity("chevron_simple", function(object) {
+  main_body <- body(object@main)
+  if (is.symbol(main_body)) {
+    return(invisible(TRUE))
+  }
+  res <- rapply(to_list(main_body), function(x) {
+    identical(x, as.name("return"))
+  })
+  has_return <- if (any(res)) "Must be a simple expression without `return`" else TRUE
+  makeAssertion(object@main, has_return, var.name = "object@main", collection = NULL)
+  invisible(TRUE)
+})
 
 # Sub Constructor ----
 
@@ -207,12 +204,6 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
   res
 }
 
-#' @keywords internal
-dummy_main <- function(adam_db, ...) {
-  basic_table() %>%
-    build_table(data.frame())
-}
-
 #' `chevron_simple` constructor
 #'
 #' @rdname chevron_tlg-class
@@ -226,9 +217,9 @@ dummy_main <- function(adam_db, ...) {
 #' chevron_simple_obj <- chevron_simple()
 chevron_simple <- function(main = dummy_main, ...) {
   res <- .chevron_simple(
-    main = main,
-    preprocess = function(adam_db, ...) adam_db,
-    postprocess = function(tlg, ...) tlg
+    main = \(adam_db, ...) basic_table() %>% build_table(data.frame()),
+    preprocess = \(adam_db, ...) adam_db,
+    postprocess = \(tlg, ...) tlg
   )
   res
 }

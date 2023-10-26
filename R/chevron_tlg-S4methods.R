@@ -371,6 +371,7 @@ setMethod(
   signature = "chevron_simple",
   definition = function(x, adam_db, args, name) {
     checkmate::assert_string(adam_db)
+    main_body <- body(main(x))
     c(
       "# Create TLG",
       if (!identical(adam_db, "adam_db")) {
@@ -378,7 +379,7 @@ setMethod(
       },
       "",
       "tlg_output <- ",
-      deparse(body(main(x))[[2]])
+      deparse(main_body)
     )
   }
 )

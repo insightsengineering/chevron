@@ -160,3 +160,15 @@ test_that("chevron_g constructor returns an error when expected", {
     fixed = TRUE
   )
 })
+
+
+# chevron_simple ----
+
+test_that("chevron_simple works correctly", {
+  expect_silent(chevron_simple(\(adam_db, ...) abc))
+  expect_silent(chevron_simple(\(adam_db, ...) {abc}))
+})
+
+test_that("chevron_simple errors if contains return", {
+  expect_error(chevron_simple(\(adam_db, ...) return(abc)))
+})
