@@ -49,7 +49,7 @@ mng01
 
 \item{center_fun}{(\code{string}) the function to compute the estimate value.}
 
-\item{interval_fun}{(\code{string}) the function defining the crossbar range.}
+\item{interval_fun}{(\code{string}) the function defining the crossbar range. If \code{NULL}, no crossbar is displayed.}
 
 \item{jitter}{(\code{numeric}) the width of spread for data points on the x-axis; a number from 0 (no \code{jitter}) to 1 (high
 \code{jitter}), with a default of 0.3 (slight \code{jitter}).}
