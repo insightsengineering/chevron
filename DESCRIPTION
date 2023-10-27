@@ -84,6 +84,7 @@ Collate:
     'dmt01.R'
     'dst01.R'
     'dtht01.R'
+    'dummy_template.R'
     'egt01.R'
     'egt02.R'
     'egt03.R'

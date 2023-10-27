@@ -95,6 +95,7 @@ reference:
       - vst01
       - vst02_1
       - vst02_2
+      - dummy_template
   - title: Data
     contents:
       - syn_data

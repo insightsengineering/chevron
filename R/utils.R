@@ -379,3 +379,12 @@ set_section_div <- function(x) {
   options("chevron.section_div" = x)
   invisible()
 }
+
+#' @keywords internal
+to_list <- function(x) {
+  if (length(x) == 1L) {
+    return(x)
+  }
+  x <- as.list(x)
+  lapply(x, to_list)
+}
