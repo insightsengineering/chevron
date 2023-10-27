@@ -1,4 +1,4 @@
-# chevron 0.2.4.9001
+# chevron 0.2.4.9002
 
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.
 
