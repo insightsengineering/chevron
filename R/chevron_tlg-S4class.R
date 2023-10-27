@@ -215,7 +215,7 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
 #'
 #' @examples
 #' chevron_simple_obj <- chevron_simple()
-chevron_simple <- function(main = dummy_main, ...) {
+chevron_simple <- function() {
   res <- .chevron_simple(
     main = \(adam_db, ...) basic_table() %>% build_table(data.frame()),
     preprocess = \(adam_db, ...) adam_db,

@@ -170,7 +170,7 @@ test_that("script_funs generates a valid script", {
 })
 
 test_that("script_funs works for simple template", {
-  res <- expect_silent(script_funs(chevron_simple(\(adam_db, ...) abc), adam_db = "syn_data"))
+  res <- expect_silent(script_funs(chevron_simple(), adam_db = "syn_data"))
   expect_character(res)
 })
 

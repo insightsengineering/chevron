@@ -42,7 +42,7 @@ chevron_g(
   ...
 )
 
-chevron_simple(main = dummy_main, ...)
+chevron_simple()
 }
 \arguments{
 \item{main}{(\code{function}) returning a \code{tlg}, with \code{adam_db} as first argument. Typically one of the \verb{_main} function

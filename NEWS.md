@@ -1,7 +1,6 @@
 # chevron 0.2.4.9001
 
 * `MNG01` plot can now be displayed without error bars.
-
 * Add a `chevron_simple` class only contain main function.
 * Remove `details` argument in `script_funs`, add `name` argument.
 
