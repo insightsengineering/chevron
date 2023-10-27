@@ -149,7 +149,11 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
       AVISIT = with_label(.data$AVISIT, "Visit")
     )
 
-  dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
+  if (length(x_var) == 1 && is.numeric(adam_db[[dataset]][[x_var]])) {
+    adam_db
+  } else {
+    dunlin::ls_unite(adam_db, dataset, cols = x_var, sep = "_")
+  }
 }
 
 # `mng01` Pipeline ----
