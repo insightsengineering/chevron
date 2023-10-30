@@ -117,7 +117,7 @@ ttet01_lyt <- function(arm_var,
         child_labels = "hidden",
         indent_mod = 1L,
       ) %>%
-      analyze_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count_fraction", na_str = "NE")
+      analyze_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count", na_str = "NE")
   }
 
   lyt01 <- lyt01 %>%

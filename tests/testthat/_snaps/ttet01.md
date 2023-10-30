@@ -9,8 +9,8 @@
       Patients with event (%)            86 (64.2%)     90 (67.2%)      92 (69.7%)  
         Earliest contributing event                                                 
           Adverse Event                      0              0               0       
-          Death                          38 (44.2%)     48 (53.3%)      41 (44.6%)  
-          Disease Progression            48 (55.8%)     42 (46.7%)      51 (55.4%)  
+          Death                              38             48              41      
+          Disease Progression                48             42              51      
           Last Date Known To Be Alive        0              0               0       
           Last Tumor Assessment              0              0               0       
       Patients without event (%)         48 (35.8%)     44 (32.8%)      40 (30.3%)  
@@ -84,8 +84,8 @@
         ———————————————————————————————————————————————————————————————————————————————————
         Patients with event (%)             86 (64.2%)       90 (67.2%)        92 (69.7%)  
           Earliest contributing event                                                      
-            Death                           38 (44.2%)       48 (53.3%)        41 (44.6%)  
-            Disease Progression             48 (55.8%)       42 (46.7%)        51 (55.4%)  
+            Death                               38               48                41      
+            Disease Progression                 48               42                51      
         Patients without event (%)          48 (35.8%)       44 (32.8%)        40 (30.3%)  
         Time to Event (MONTHS)                                                             
           Median                               16.9             19.7              12.3     
@@ -161,8 +161,8 @@
         ———————————————————————————————————————————————————————————————————————————————————
         Patients with event (%)             86 (64.2%)       90 (67.2%)        92 (69.7%)  
           Earliest contributing event                                                      
-            Death                           38 (44.2%)       48 (53.3%)        41 (44.6%)  
-            Disease Progression             48 (55.8%)       42 (46.7%)        51 (55.4%)  
+            Death                               38               48                41      
+            Disease Progression                 48               42                51      
         Patients without event (%)          48 (35.8%)       44 (32.8%)        40 (30.3%)  
         Time to Event (MONTHS)                                                             
           Median                               16.9             19.7              12.3     
@@ -234,8 +234,8 @@
         ———————————————————————————————————————————————————————————————————————————————————
         Patients with event (%)             90 (67.2%)       86 (64.2%)        92 (69.7%)  
           Earliest contributing event                                                      
-            Death                           48 (53.3%)       38 (44.2%)        41 (44.6%)  
-            Disease Progression             42 (46.7%)       48 (55.8%)        51 (55.4%)  
+            Death                               48               38                41      
+            Disease Progression                 42               48                51      
         Patients without event (%)          44 (32.8%)       48 (35.8%)        40 (30.3%)  
         Time to Event (MONTHS)                                                             
           Median                               19.7             16.9              12.3     
