@@ -62,7 +62,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #'
 #' @param digits (`integer`) number of digits.
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
-#' @param ne (`flag`) indicator whether to use "NE" to replace the actual value.
+#' @param ne (`string`) to replace the actual value.
 #'
 #' @return `function` formatting numbers with the defined format.
 #'
@@ -71,17 +71,18 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' @examples
 #' fun <- h_format_dec(c(1, 1), "%s - %s")
 #' fun(c(123, 567.89))
-h_format_dec <- function(digits, format, ne = FALSE) {
+h_format_dec <- function(digits, format, ne = NULL) {
   assert_integerish(digits, lower = 0)
   assert_string(format)
+  assert_string(ne, null.ok = TRUE)
   if (any(is.na(digits))) {
     function(x, ...) {
       ""
     }
   } else {
-    if (ne) {
+    if (!is.null(ne)) {
       ret <- function(x, ...) {
-        do_call(sprintf, c(list(fmt = format), rep("NE", length(digits))))
+        do_call(sprintf, c(list(fmt = format), rep(ne, length(digits))))
       }
       return(ret)
     }

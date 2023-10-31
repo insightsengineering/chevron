@@ -104,7 +104,7 @@ ttet01_lyt <- function(arm_var,
       vars = "IS_EVENT",
       .stats = "count_fraction",
       .labels = c(count_fraction = event_lvls[1]),
-      na_str = "NE"
+      na_str = getOption("na_str", "NE")
     )
 
   if (summarize_event) {
@@ -117,7 +117,12 @@ ttet01_lyt <- function(arm_var,
         child_labels = "hidden",
         indent_mod = 1L,
       ) %>%
-      analyze_vars("EVNTDESC", split_fun = drop_split_levels, .stats = "count", na_str = "NE")
+      analyze_vars(
+        "EVNTDESC",
+        split_fun = drop_split_levels,
+        .stats = "count",
+        na_str = getOption("na_str", "NE")
+      )
   }
 
   lyt01 <- lyt01 %>%
@@ -127,7 +132,7 @@ ttet01_lyt <- function(arm_var,
       .labels = c(count_fraction = event_lvls[2]),
       nested = FALSE,
       show_labels = "hidden",
-      na_str = "NE"
+      na_str = getOption("na_str", "NE")
     ) %>%
     surv_time(
       vars = "AVAL",
@@ -135,7 +140,7 @@ ttet01_lyt <- function(arm_var,
       is_event = "IS_EVENT",
       control = control_survt,
       table_names = "time_to_event",
-      na_str = "NE"
+      na_str = getOption("na_str", "NE")
     )
 
   for (perform in perform_analysis) {
@@ -147,7 +152,7 @@ ttet01_lyt <- function(arm_var,
         strat = if (perform == "strat") strata else NULL,
         control = control_cox_ph,
         table_names = if (perform == "strat") "coxph_stratified" else "coxph_unstratified",
-        na_str = "NE"
+        na_str = getOption("na_str", "NE")
       )
   }
 
@@ -158,7 +163,7 @@ ttet01_lyt <- function(arm_var,
       is_event = "IS_EVENT",
       control = control_survtp,
       .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk")),
-      na_str = "NE",
+      na_str = getOption("na_str", "NE"),
       ...
     )
 

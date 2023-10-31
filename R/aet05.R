@@ -75,7 +75,8 @@ aet05_lyt <- function(arm_var,
     estimate_incidence_rate(
       vars = vars,
       n_events = n_events,
-      control = control
+      control = control,
+      na_str = getOption("na_str", "NE")
     )
 }
 

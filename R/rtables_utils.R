@@ -460,9 +460,9 @@ afun_skip <- function(
     precision[[param_val]] %||% precision[["default"]] %||% 2
   }
 
-  fmts <- lapply(.stats, summary_formats, pcs = pcs, FALSE)
+  fmts <- lapply(.stats, summary_formats, pcs = pcs, ne = NULL)
   names(fmts) <- .stats
-  fmts_na <- lapply(.stats, summary_formats, pcs = pcs, ne = TRUE)
+  fmts_na <- lapply(.stats, summary_formats, pcs = pcs, ne = getOption("na_str", "NE"))
   ret <- tern::a_summary(
     .stats = .stats, .formats = fmts, .labels = .labels, .indent_mods = .indent_mods,
     x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...
@@ -474,7 +474,7 @@ afun_skip <- function(
   ret
 }
 
-summary_formats <- function(x, pcs, ne = FALSE) {
+summary_formats <- function(x, pcs, ne = NULL) {
   assert_int(pcs, lower = 0, na.ok = TRUE)
   switch(x,
     n = h_format_dec(format = "%s", digits = pcs - pcs, ne = ne),
@@ -541,7 +541,7 @@ afun_p <- function(x,
   } else {
     # Define an arbitrary precision if unavailable and unable to compute it.
     pcs <- pcs %||% 2
-    lapply(.stats, summary_formats, pcs = pcs, FALSE)
+    lapply(.stats, summary_formats, pcs = pcs, ne = NULL)
   }
   names(fmts) <- .stats
 
