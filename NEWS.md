@@ -1,4 +1,4 @@
-# chevron 0.2.4.9004
+# chevron 0.2.4.9005
 
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.
 * Add a `chevron_simple` class only contain main function.
