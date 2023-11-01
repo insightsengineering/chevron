@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.967911138537488" branch-rate="0" lines-covered="3137" lines-valid="3241" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-10-26 08:16:02.657333">
+<coverage line-rate="0.967911138537488" branch-rate="0" lines-covered="3137" lines-valid="3241" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-11-01 08:20:21.028723">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
@@ -6084,13 +6084,13 @@
             <method name="valid_sort_at_path" signature="" line-rate="0.875" branch-rate="0" complexity="0">
               <lines>
                 <line number="64" hits="46" branch="false"/>
-                <line number="65" hits="39" branch="false"/>
-                <line number="66" hits="39" branch="false"/>
-                <line number="67" hits="39" branch="false"/>
+                <line number="65" hits="25" branch="false"/>
+                <line number="66" hits="25" branch="false"/>
+                <line number="67" hits="25" branch="false"/>
                 <line number="68" hits="0" branch="false"/>
-                <line number="69" hits="39" branch="false"/>
-                <line number="70" hits="39" branch="false"/>
-                <line number="72" hits="7" branch="false"/>
+                <line number="69" hits="25" branch="false"/>
+                <line number="70" hits="25" branch="false"/>
+                <line number="72" hits="21" branch="false"/>
               </lines>
             </method>
             <method name="valid_row_path" signature="" line-rate="1" branch-rate="0" complexity="0">
@@ -6509,13 +6509,13 @@
             <line number="58" hits="38" branch="false"/>
             <line number="59" hits="38" branch="false"/>
             <line number="64" hits="46" branch="false"/>
-            <line number="65" hits="39" branch="false"/>
-            <line number="66" hits="39" branch="false"/>
-            <line number="67" hits="39" branch="false"/>
+            <line number="65" hits="25" branch="false"/>
+            <line number="66" hits="25" branch="false"/>
+            <line number="67" hits="25" branch="false"/>
             <line number="68" hits="0" branch="false"/>
-            <line number="69" hits="39" branch="false"/>
-            <line number="70" hits="39" branch="false"/>
-            <line number="72" hits="7" branch="false"/>
+            <line number="69" hits="25" branch="false"/>
+            <line number="70" hits="25" branch="false"/>
+            <line number="72" hits="21" branch="false"/>
             <line number="78" hits="46" branch="false"/>
             <line number="79" hits="2" branch="false"/>
             <line number="81" hits="44" branch="false"/>
