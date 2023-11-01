@@ -50,7 +50,7 @@ considering first occurrence.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Split rows by parameter code.
 \item \code{AVAL} is patient-years at risk.
-\item \code{n_events} is the number of adverse events observed.
+\item \code{N_EVENTS} is the number of adverse events observed.
 \item The table allows confidence level to be adjusted, default is 95\%.
 \item Keep zero count rows by default.
 }

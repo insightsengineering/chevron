@@ -14,9 +14,9 @@ aet05_all_pre <- function(adam_db, dataset = "adsaftte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(grepl("TOT", .data$PARAMCD)) %>%
     mutate(
-      n_events = as.integer(.data$AVAL)
+      N_EVENTS = as.integer(.data$AVAL),
+      AVAL = NULL
     ) %>%
-    select(-c("AVAL")) %>%
     left_join(anl_tte, by = c("USUBJID"))
 
   adam_db

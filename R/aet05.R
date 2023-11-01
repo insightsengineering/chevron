@@ -12,7 +12,7 @@
 #'  * Split columns by arm, typically `ACTARM`.
 #'  * Split rows by parameter code.
 #'  * `AVAL` is patient-years at risk.
-#'  * `n_events` is the number of adverse events observed.
+#'  * `N_EVENTS` is the number of adverse events observed.
 #'  * The table allows confidence level to be adjusted, default is 95%.
 #'  * Keep zero count rows by default.
 #'
@@ -37,7 +37,7 @@ aet05_main <- function(adam_db,
     types = list(c("character", "factor")), label = df_lbl
   )
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, na_ok = TRUE, label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], "n_events",
+  assert_valid_variable(adam_db[[dataset]], "N_EVENTS",
     types = list("numeric"), integerish = TRUE, lower = 0L,
     label = df_lbl
   )
@@ -51,7 +51,7 @@ aet05_main <- function(adam_db,
     lbl_overall = lbl_overall,
     param_label = "PARAM",
     vars = "AVAL",
-    n_events = "n_events",
+    N_EVENTS = "N_EVENTS",
     control = control
   )
 
@@ -65,7 +65,7 @@ aet05_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param param_label (`string`) variable for parameter code.
 #' @param vars (`string`) variable for the primary analysis variable to be iterated over.
-#' @param n_events (`string`) variable to count the number of events observed.
+#' @param N_EVENTS (`string`) variable to count the number of events observed.
 #' @param control (`list`) parameters for estimation details, specified by using the helper function
 #' control_incidence_rate().
 #'
@@ -75,14 +75,14 @@ aet05_lyt <- function(arm_var,
                       lbl_overall,
                       param_label,
                       vars,
-                      n_events,
+                      N_EVENTS,
                       control) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by_with_overall(arm_var, lbl_overall) %>%
     split_rows_by(param_label, split_fun = drop_split_levels) %>%
     estimate_incidence_rate(
       vars = vars,
-      n_events = n_events,
+      n_events = N_EVENTS,
       control = control
     )
 }
@@ -97,7 +97,7 @@ aet05_pre <- function(adam_db, dataset = "adsaftte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(grepl("(AE|CQ|SMQ)TTE", .data$PARAMCD)) %>%
     mutate(
-      n_events = as.integer(.data$CNSR == 0)
+      N_EVENTS = as.integer(.data$CNSR == 0)
     )
 
   adam_db

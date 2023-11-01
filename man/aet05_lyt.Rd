@@ -4,7 +4,7 @@
 \alias{aet05_lyt}
 \title{\code{aet05} Layout}
 \usage{
-aet05_lyt(arm_var, lbl_overall, param_label, vars, n_events, control)
+aet05_lyt(arm_var, lbl_overall, param_label, vars, N_EVENTS, control)
 }
 \arguments{
 \item{arm_var}{(\code{string}) variable used for column splitting}
@@ -15,7 +15,7 @@ aet05_lyt(arm_var, lbl_overall, param_label, vars, n_events, control)
 
 \item{vars}{(\code{string}) variable for the primary analysis variable to be iterated over.}
 
-\item{n_events}{(\code{string}) variable to count the number of events observed.}
+\item{N_EVENTS}{(\code{string}) variable to count the number of events observed.}
 
 \item{control}{(\code{list}) parameters for estimation details, specified by using the helper function
 control_incidence_rate().}
