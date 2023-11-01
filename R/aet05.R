@@ -51,7 +51,7 @@ aet05_main <- function(adam_db,
     lbl_overall = lbl_overall,
     param_label = "PARAM",
     vars = "AVAL",
-    N_EVENTS = "N_EVENTS",
+    n_events = "N_EVENTS",
     control = control
   )
 
@@ -65,7 +65,7 @@ aet05_main <- function(adam_db,
 #' @inheritParams gen_args
 #' @param param_label (`string`) variable for parameter code.
 #' @param vars (`string`) variable for the primary analysis variable to be iterated over.
-#' @param N_EVENTS (`string`) variable to count the number of events observed.
+#' @param n_events (`string`) variable to count the number of events observed.
 #' @param control (`list`) parameters for estimation details, specified by using the helper function
 #' control_incidence_rate().
 #'
@@ -75,14 +75,14 @@ aet05_lyt <- function(arm_var,
                       lbl_overall,
                       param_label,
                       vars,
-                      N_EVENTS,
+                      n_events,
                       control) {
   lyt <- basic_table(show_colcounts = TRUE) %>%
     split_cols_by_with_overall(arm_var, lbl_overall) %>%
     split_rows_by(param_label, split_fun = drop_split_levels) %>%
     estimate_incidence_rate(
       vars = vars,
-      n_events = N_EVENTS,
+      n_events = n_events,
       control = control
     )
 }
