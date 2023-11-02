@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.4.9001
-Date: 2023-10-25
+Version: 0.2.4.9006
+Date: 2023-11-01
 Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
     person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
@@ -84,6 +84,7 @@ Collate:
     'dmt01.R'
     'dst01.R'
     'dtht01.R'
+    'dummy_template.R'
     'egt01.R'
     'egt02.R'
     'egt03.R'
