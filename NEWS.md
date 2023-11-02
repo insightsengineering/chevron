@@ -1,6 +1,9 @@
 # chevron 0.2.4.9001
 
 * `MNG01` plot can now be displayed without error bars.
+* `AET05` preprocessing now filters on `"TTE"` rather than `"AETTE"`.
+* Change the dataset `ADAETTE` in `syn_data` object to `ADSAFTTE`.
+* Update the argument `"n_events"` in `AET05` and `AET05_ALL` to `"N_EVENTS"`.
 
 # chevron 0.2.4
 
