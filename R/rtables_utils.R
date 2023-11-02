@@ -78,7 +78,7 @@ valid_row_path <- function(tlg, row_path) {
   if (nrow(tlg) == 0) {
     return(TRUE)
   }
-  rpaths <- row_paths(tlg)
+  rpaths <- lapply(row_paths(tlg), unname)
   non_star <- which(row_path != "*") + 1
   rpaths_choice <- unique(lapply(rpaths, `[`, non_star))
   any(vapply(rpaths_choice, identical, FUN.VALUE = TRUE, y = row_path[non_star - 1]))

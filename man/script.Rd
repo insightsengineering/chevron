@@ -4,11 +4,14 @@
 \alias{script}
 \alias{script_funs}
 \alias{script_funs,chevron_tlg-method}
+\alias{script_funs,chevron_simple-method}
 \title{Create Script for Parameters Assignment}
 \usage{
-script_funs(x, adam_db, args, details = FALSE)
+script_funs(x, adam_db, args, name = deparse(substitute(x)))
 
-\S4method{script_funs}{chevron_tlg}(x, adam_db, args, details = FALSE)
+\S4method{script_funs}{chevron_tlg}(x, adam_db, args, name = deparse(substitute(x)))
+
+\S4method{script_funs}{chevron_simple}(x, adam_db, args, name = deparse(substitute(x)))
 }
 \arguments{
 \item{x}{(\code{chevron_tlg}) input.}
@@ -17,7 +20,7 @@ script_funs(x, adam_db, args, details = FALSE)
 
 \item{args}{(\code{string}) the name of argument list.}
 
-\item{details}{(\code{flag}) deprecated. Whether to show the code of all functions.}
+\item{name}{(\code{string}) name of the template.}
 }
 \description{
 Create Script for Parameters Assignment
