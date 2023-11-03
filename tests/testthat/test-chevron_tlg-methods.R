@@ -37,8 +37,8 @@ test_that("run uses the argument passed through the ellipsis in priority", {
       arm_var = "ARM",
       user_args = user_args,
       verbose = TRUE
-      )
     )
+  )
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
