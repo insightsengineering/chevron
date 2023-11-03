@@ -3,6 +3,7 @@
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.
 * Add a `chevron_simple` class only contain main function.
 * Remove `details` argument in `script_funs`, add `name` argument.
+* In the `run` method, the argument passed through `...` are combined with the one passed through `user_arg`. `...` arguments have priority.
 
 # chevron 0.2.4
 

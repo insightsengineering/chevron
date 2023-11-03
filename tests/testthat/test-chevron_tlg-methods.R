@@ -26,6 +26,23 @@ test_that("run works as expected with argument printed if the user argument is c
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
+test_that("run uses the argument passed through the ellipsis in priority", {
+  user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
+  res <- capture_output(
+    tbl <- run(
+      aet02,
+      syn_data,
+      prune_0 = FALSE,
+      another_not_used = "X",
+      arm_var = "ARM",
+      user_args = user_args,
+      verbose = TRUE
+      )
+    )
+  expect_snapshot(cat(res))
+  expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
 test_that("run works as expected with partial match argument", {
   res <- capture_output(tbl <- run(aet02, syn_data, prune = TRUE, verbose = TRUE, arm = "ARM"))
   expect_snapshot(cat(res))

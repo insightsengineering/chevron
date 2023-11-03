@@ -33,6 +33,9 @@ setMethod(
     assert_flag(auto_pre)
     assert_flag(verbose)
     assert_list(user_args, names = "unique")
+
+    user_args <- modifyList(user_args, list(...))
+
     if (verbose) {
       cl <- match.call()
       print_args(
