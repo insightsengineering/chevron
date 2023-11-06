@@ -96,10 +96,10 @@ mng01_main <- function(adam_db,
   variables <- tern::control_lineplot_vars(
     x = x_var,
     y = y_var,
-    strata = arm_var,
+    group_var = arm_var,
     paramcd = y_name,
     y_unit = y_unit,
-    cohort_id = "USUBJID"
+    subject_var = "USUBJID"
   )
 
   if (!is.null(names(line_col))) {
