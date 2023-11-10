@@ -3,6 +3,9 @@
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.
 * Add a `chevron_simple` class only contain main function.
 * Remove `details` argument in `script_funs`, add `name` argument.
+* `AET05` preprocessing now filters on `"(AE|CQ|SMQ)TTE"` rather than `"AETTE"`.
+* Rename the dataset `ADAETTE` in `syn_data` object to `ADSAFTTE`.
+* Use uppercase variable names in `AET05` and `AET05_ALL`.
 
 # chevron 0.2.4
 

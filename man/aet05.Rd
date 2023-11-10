@@ -11,9 +11,15 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-aet05_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
+aet05_main(
+  adam_db,
+  dataset = "adsaftte",
+  arm_var = "ACTARM",
+  lbl_overall = NULL,
+  ...
+)
 
-aet05_pre(adam_db, ...)
+aet05_pre(adam_db, dataset = "adsaftte", ...)
 
 aet05_post(tlg, prune_0 = FALSE, ...)
 
@@ -21,6 +27,8 @@ aet05
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
+
+\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{arm_var}{(\code{string}) the arm variable used for arm splitting.}
 
@@ -42,7 +50,7 @@ considering first occurrence.
 \item Split columns by arm, typically \code{ACTARM}.
 \item Split rows by parameter code.
 \item \code{AVAL} is patient-years at risk.
-\item \code{n_events} is the number of adverse events observed.
+\item \code{N_EVENTS} is the number of adverse events observed.
 \item The table allows confidence level to be adjusted, default is 95\%.
 \item Keep zero count rows by default.
 }
@@ -58,14 +66,15 @@ considering first occurrence.
 }}
 \note{
 \itemize{
-\item \code{adam_db} object must contain an \code{adaette} table with the columns \code{"PARAMCD"}, \code{"PARAM"}, \code{"AVAL"}, and \code{"CNSR"}.
+\item \code{adam_db} object must contain table named as \code{dataset} with the columns \code{"PARAMCD"}, \code{"PARAM"},
+\code{"AVAL"}, and \code{"CNSR"}.
 }
 }
 \examples{
 library(dplyr)
 library(dunlin)
 
-proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adaette")
+proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adsaftte")
 
 run(aet05, proc_data)
 

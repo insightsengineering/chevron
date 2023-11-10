@@ -5,7 +5,7 @@
 #' @format A named `list` of 13 `data.frames`:
 #'     - `adsl`
 #'     - `adae`
-#'     - `adaette`
+#'     - `adsaftte`
 #'     - `adcm`
 #'     - `addv`
 #'     - `adeg`

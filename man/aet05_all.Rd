@@ -9,12 +9,14 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-aet05_all_pre(adam_db, ...)
+aet05_all_pre(adam_db, dataset = "adsaftte", ...)
 
 aet05_all
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
+
+\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
 
 \item{...}{not used.}
 }
@@ -31,7 +33,7 @@ considering all occurrences.
 library(dplyr)
 library(dunlin)
 
-proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adaette")
+proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adsaftte")
 
 run(aet05_all, proc_data)
 
