@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9007</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,26 +48,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -144,10 +124,7 @@ dataset names. Conventional <code>ADaM</code> dataset names, including
 <code>adsl</code>,<code>adex</code>, <code>adae</code>,
 <code>adlb</code>,<code>advs</code>,<code>adeg</code>,<code>adcm</code>,<code>admh</code>,<code>adrs</code>,
 and <code>adtte</code>, can be picked up by <code>chevron</code> with
-one exception. If you have a safety time-to-event dataset named as
-<code>adsaftte</code> following Roche standard <code>ADaM</code>
-convention, you will need to re-name it to <code>adaette</code> to be
-picked up by <code>chevron</code>.</p>
+one exception.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">std_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">adsl</span>, adae <span class="op">=</span> <span class="va">adae</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">aet01_nollt</span>, adam_db <span class="op">=</span> <span class="va">std_data</span><span class="op">)</span></span></code></pre></div>
@@ -1209,19 +1186,16 @@ First Occurrence</strong><a class="anchor" aria-label="anchor" href="#adverse-ev
 <li>The <strong><code>aet05</code></strong> template produces the
 standard adverse event rate adjusted for patient-years at risk summary
 considering first occurrence only.</li>
-<li>Currently, the expected name for safety time-to-event dataset is
-<code>adaette</code> rather than <code>adsaftte</code> from other data
-standards.</li>
-<li>By default, all <code>adaette</code> parameter codes containing the
+<li>By default, all <code>adsaftte</code> parameter codes containing the
 string <code>"TTE"</code> are included in the output. Users are expected
 to filter the parameter(s) of interest from input safety time-to-event
 dataset in pre-processing if needed.</li>
 <li>In the input safety time-to-event dataset, in the censoring variable
-<code>CNSR</code> , <code>0</code> indicates the occurrence of an event
+<code>CNSR</code>, <code>0</code> indicates the occurrence of an event
 of interest and <code>1</code> denotes censoring.</li>
 </ol>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AETTE1"</span>, <span class="st">"adaette"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AETTE1"</span>, <span class="st">"adsaftte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet05</span>, <span class="va">proc_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                                                     A: Drug X        B: Placebo      C: Combination</span></span>
@@ -1281,10 +1255,7 @@ All Occurrences</strong><a class="anchor" aria-label="anchor" href="#adverse-eve
 <li>The <strong><code>aet05_all</code></strong> template produces the
 standard adverse event rate adjusted for patient-years at risk summary
 considering all occurrences.</li>
-<li>Currently, the expected name for safety time-to-event dataset is
-<code>adaette</code> rather than <code>adsaftte</code> from other data
-standards.</li>
-<li>By default, all <code>adaette</code> parameter codes containing the
+<li>By default, all <code>adsaftte</code> parameter codes containing the
 string <code>"TOT"</code> and the parameter code <code>"AEREPTTE"</code>
 are required. <code>"TOT"</code> parameters store the number of
 occurrences of adverse event of interests. Parameter code
@@ -1294,11 +1265,11 @@ patient-years at risk” in the output. Users are expected to filter
 parameters of interest from input analysis dataset in pre-processing, if
 needed.</li>
 <li>In the input safety time-to-event dataset, in the censoring variable
-<code>CNSR</code> , <code>0</code> indicates the occurrence of an event
+<code>CNSR</code>, <code>0</code> indicates the occurrence of an event
 of interest and <code>1</code> denotes censoring.</li>
 </ol>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AETOT1"</span> <span class="op">|</span> <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AEREPTTE"</span>, <span class="st">"adaette"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AETOT1"</span> <span class="op">|</span> <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AEREPTTE"</span>, <span class="st">"adsaftte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">aet05_all</span>, <span class="va">proc_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                                                   A: Drug X         B: Placebo       C: Combination </span></span>
@@ -3894,7 +3865,7 @@ first.</p>
 <span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/propagate.html" class="external-link">propagate</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="st">"adsl"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"USUBJID"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Updating: adae with: AGEGR1</span></span>
-<span><span class="co">#&gt; Updating: adaette with: AGEGR1</span></span>
+<span><span class="co">#&gt; Updating: adsaftte with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adcm with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: addv with: AGEGR1</span></span>
 <span><span class="co">#&gt; Updating: adeg with: AGEGR1</span></span>
@@ -3933,7 +3904,7 @@ the variable specified per <code>summaryvars</code> is unavailable in
 <span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/propagate.html" class="external-link">propagate</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="st">"adsl"</span>, <span class="st">"AGEGR2"</span>, <span class="st">"USUBJID"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Updating: adae with: AGEGR2</span></span>
-<span><span class="co">#&gt; Updating: adaette with: AGEGR2</span></span>
+<span><span class="co">#&gt; Updating: adsaftte with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adcm with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: addv with: AGEGR2</span></span>
 <span><span class="co">#&gt; Updating: adeg with: AGEGR2</span></span>
@@ -4444,24 +4415,29 @@ default.</li>
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                    A: Drug X      B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                     (N=134)        (N=134)         (N=132)    </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)          86 (64.2%)     90 (67.2%)      92 (69.7%)  </span></span>
-<span><span class="co">#&gt;     Earliest contributing event                                               </span></span>
-<span><span class="co">#&gt;       Death                            38             48              41      </span></span>
-<span><span class="co">#&gt;       Disease Progression              48             42              51      </span></span>
-<span><span class="co">#&gt;   Patients without event (%)       48 (35.8%)     44 (32.8%)      40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (MONTHS)                                                      </span></span>
-<span><span class="co">#&gt;     Median                            16.9           19.7            12.3     </span></span>
-<span><span class="co">#&gt;       95% CI                      (12.8, 19.0)   (13.3, 25.2)    (8.4, 14.9)  </span></span>
-<span><span class="co">#&gt;     25% and 75%-ile                7.7, 30.0      7.2, 34.1       4.5, 25.3   </span></span>
-<span><span class="co">#&gt;     Range (censored)              0.3 to 65.9    0.4 to 83.0     1.0 to 81.8  </span></span>
-<span><span class="co">#&gt;     Range (event)                 0.5 to 85.8    0.1 to 58.7     0.2 to 77.8  </span></span>
-<span><span class="co">#&gt;   Unstratified Analysis                                                       </span></span>
-<span><span class="co">#&gt;     p-value (log-rank)                              0.4808          0.0429    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                     0.90            1.36     </span></span>
-<span><span class="co">#&gt;     95% CI                                       (0.67, 1.21)    (1.01, 1.82)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                      A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;                                       (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)        90 (67.2%)        92 (69.7%)   </span></span>
+<span><span class="co">#&gt;     Earliest contributing event                                                      </span></span>
+<span><span class="co">#&gt;       Death                             38                48                41       </span></span>
+<span><span class="co">#&gt;       Disease Progression               48                42                51       </span></span>
+<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)        44 (32.8%)        40 (30.3%)   </span></span>
+<span><span class="co">#&gt;   Time to Event (MONTHS)                                                             </span></span>
+<span><span class="co">#&gt;     Median                             16.9              19.7              12.3      </span></span>
+<span><span class="co">#&gt;       95% CI                       (12.8, 19.0)      (13.3, 25.2)       (8.4, 14.9)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile                  7.7, 30.0         7.2, 34.1         4.5, 25.3   </span></span>
+<span><span class="co">#&gt;     Range                         0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}</span></span>
+<span><span class="co">#&gt;   Unstratified Analysis                                                              </span></span>
+<span><span class="co">#&gt;     p-value (log-rank)                                  0.4808            0.0429     </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                         0.90              1.36      </span></span>
+<span><span class="co">#&gt;     95% CI                                           (0.67, 1.21)      (1.01, 1.82)  </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="time-to-event-summary-selecting-sections-to-display">
@@ -4474,21 +4450,26 @@ display)</strong><a class="anchor" aria-label="anchor" href="#time-to-event-summ
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span>, summarize_event <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                 A: Drug X      B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                  (N=134)        (N=134)         (N=132)    </span></span>
-<span><span class="co">#&gt;   —————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)       86 (64.2%)     90 (67.2%)      92 (69.7%)  </span></span>
-<span><span class="co">#&gt;   Patients without event (%)    48 (35.8%)     44 (32.8%)      40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (MONTHS)                                                   </span></span>
-<span><span class="co">#&gt;     Median                         16.9           19.7            12.3     </span></span>
-<span><span class="co">#&gt;       95% CI                   (12.8, 19.0)   (13.3, 25.2)    (8.4, 14.9)  </span></span>
-<span><span class="co">#&gt;     25% and 75%-ile             7.7, 30.0      7.2, 34.1       4.5, 25.3   </span></span>
-<span><span class="co">#&gt;     Range (censored)           0.3 to 65.9    0.4 to 83.0     1.0 to 81.8  </span></span>
-<span><span class="co">#&gt;     Range (event)              0.5 to 85.8    0.1 to 58.7     0.2 to 77.8  </span></span>
-<span><span class="co">#&gt;   Unstratified Analysis                                                    </span></span>
-<span><span class="co">#&gt;     p-value (log-rank)                           0.4808          0.0429    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                  0.90            1.36     </span></span>
-<span><span class="co">#&gt;     95% CI                                    (0.67, 1.21)    (1.01, 1.82)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                   A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;                                    (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)        86 (64.2%)        90 (67.2%)        92 (69.7%)   </span></span>
+<span><span class="co">#&gt;   Patients without event (%)     48 (35.8%)        44 (32.8%)        40 (30.3%)   </span></span>
+<span><span class="co">#&gt;   Time to Event (MONTHS)                                                          </span></span>
+<span><span class="co">#&gt;     Median                          16.9              19.7              12.3      </span></span>
+<span><span class="co">#&gt;       95% CI                    (12.8, 19.0)      (13.3, 25.2)       (8.4, 14.9)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile               7.7, 30.0         7.2, 34.1         4.5, 25.3   </span></span>
+<span><span class="co">#&gt;     Range                      0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}</span></span>
+<span><span class="co">#&gt;   Unstratified Analysis                                                           </span></span>
+<span><span class="co">#&gt;     p-value (log-rank)                               0.4808            0.0429     </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                      0.90              1.36      </span></span>
+<span><span class="co">#&gt;     95% CI                                        (0.67, 1.21)      (1.01, 1.82)  </span></span>
+<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 <p>To select either survival estimations or difference in survival or
 both, please specify in the argument <code>method</code>. -
 <code>surv</code> calls out the analysis of patients remaining at risk,
@@ -4500,24 +4481,29 @@ corresponding p-value. - <code>both</code> calls out both.</p>
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span>, method <span class="op">=</span> <span class="st">"surv"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                    A: Drug X      B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                     (N=134)        (N=134)         (N=132)    </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)          86 (64.2%)     90 (67.2%)      92 (69.7%)  </span></span>
-<span><span class="co">#&gt;     Earliest contributing event                                               </span></span>
-<span><span class="co">#&gt;       Death                            38             48              41      </span></span>
-<span><span class="co">#&gt;       Disease Progression              48             42              51      </span></span>
-<span><span class="co">#&gt;   Patients without event (%)       48 (35.8%)     44 (32.8%)      40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (MONTHS)                                                      </span></span>
-<span><span class="co">#&gt;     Median                            16.9           19.7            12.3     </span></span>
-<span><span class="co">#&gt;       95% CI                      (12.8, 19.0)   (13.3, 25.2)    (8.4, 14.9)  </span></span>
-<span><span class="co">#&gt;     25% and 75%-ile                7.7, 30.0      7.2, 34.1       4.5, 25.3   </span></span>
-<span><span class="co">#&gt;     Range (censored)              0.3 to 65.9    0.4 to 83.0     1.0 to 81.8  </span></span>
-<span><span class="co">#&gt;     Range (event)                 0.5 to 85.8    0.1 to 58.7     0.2 to 77.8  </span></span>
-<span><span class="co">#&gt;   Unstratified Analysis                                                       </span></span>
-<span><span class="co">#&gt;     p-value (log-rank)                              0.4808          0.0429    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                     0.90            1.36     </span></span>
-<span><span class="co">#&gt;     95% CI                                       (0.67, 1.21)    (1.01, 1.82)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                      A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;                                       (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)        90 (67.2%)        92 (69.7%)   </span></span>
+<span><span class="co">#&gt;     Earliest contributing event                                                      </span></span>
+<span><span class="co">#&gt;       Death                             38                48                41       </span></span>
+<span><span class="co">#&gt;       Disease Progression               48                42                51       </span></span>
+<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)        44 (32.8%)        40 (30.3%)   </span></span>
+<span><span class="co">#&gt;   Time to Event (MONTHS)                                                             </span></span>
+<span><span class="co">#&gt;     Median                             16.9              19.7              12.3      </span></span>
+<span><span class="co">#&gt;       95% CI                       (12.8, 19.0)      (13.3, 25.2)       (8.4, 14.9)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile                  7.7, 30.0         7.2, 34.1         4.5, 25.3   </span></span>
+<span><span class="co">#&gt;     Range                         0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}</span></span>
+<span><span class="co">#&gt;   Unstratified Analysis                                                              </span></span>
+<span><span class="co">#&gt;     p-value (log-rank)                                  0.4808            0.0429     </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                         0.90              1.36      </span></span>
+<span><span class="co">#&gt;     95% CI                                           (0.67, 1.21)      (1.01, 1.82)  </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="time-to-event-summary-modifying-analysis-details-like-confidence-interval-type-ties-and-alpha-level">
@@ -4538,24 +4524,29 @@ Options are <code>"efron"</code> (default),<code>"breslow"</code> or
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span>, conf_level <span class="op">=</span> <span class="fl">0.90</span>, conf_type <span class="op">=</span> <span class="st">"log-log"</span>, ties <span class="op">=</span> <span class="st">"efron"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                    A: Drug X      B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                     (N=134)        (N=134)         (N=132)    </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)          86 (64.2%)     90 (67.2%)      92 (69.7%)  </span></span>
-<span><span class="co">#&gt;     Earliest contributing event                                               </span></span>
-<span><span class="co">#&gt;       Death                            38             48              41      </span></span>
-<span><span class="co">#&gt;       Disease Progression              48             42              51      </span></span>
-<span><span class="co">#&gt;   Patients without event (%)       48 (35.8%)     44 (32.8%)      40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (MONTHS)                                                      </span></span>
-<span><span class="co">#&gt;     Median                            16.9           19.7            12.3     </span></span>
-<span><span class="co">#&gt;       90% CI                      (13.0, 18.1)   (14.5, 25.0)    (8.7, 14.2)  </span></span>
-<span><span class="co">#&gt;     25% and 75%-ile                7.7, 30.0      7.2, 34.1       4.5, 25.3   </span></span>
-<span><span class="co">#&gt;     Range (censored)              0.3 to 65.9    0.4 to 83.0     1.0 to 81.8  </span></span>
-<span><span class="co">#&gt;     Range (event)                 0.5 to 85.8    0.1 to 58.7     0.2 to 77.8  </span></span>
-<span><span class="co">#&gt;   Unstratified Analysis                                                       </span></span>
-<span><span class="co">#&gt;     p-value (log-rank)                              0.4808          0.0429    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                     0.90            1.36     </span></span>
-<span><span class="co">#&gt;     90% CI                                       (0.70, 1.15)    (1.06, 1.74)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                      A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;                                       (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)        90 (67.2%)        92 (69.7%)   </span></span>
+<span><span class="co">#&gt;     Earliest contributing event                                                      </span></span>
+<span><span class="co">#&gt;       Death                             38                48                41       </span></span>
+<span><span class="co">#&gt;       Disease Progression               48                42                51       </span></span>
+<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)        44 (32.8%)        40 (30.3%)   </span></span>
+<span><span class="co">#&gt;   Time to Event (MONTHS)                                                             </span></span>
+<span><span class="co">#&gt;     Median                             16.9              19.7              12.3      </span></span>
+<span><span class="co">#&gt;       90% CI                       (13.0, 18.1)      (14.5, 25.0)       (8.7, 14.2)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile                  7.7, 30.0         7.2, 34.1         4.5, 25.3   </span></span>
+<span><span class="co">#&gt;     Range                         0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}</span></span>
+<span><span class="co">#&gt;   Unstratified Analysis                                                              </span></span>
+<span><span class="co">#&gt;     p-value (log-rank)                                  0.4808            0.0429     </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                         0.90              1.36      </span></span>
+<span><span class="co">#&gt;     90% CI                                           (0.70, 1.15)      (1.06, 1.74)  </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="time-to-event-summary-with-stratified-analysis">
@@ -4577,24 +4568,29 @@ use <code>perform_analysis = c("unstrat", "strat")</code>.</li>
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span>, perform_analysis <span class="op">=</span> <span class="st">"strat"</span>, strata <span class="op">=</span> <span class="st">"STRATA1"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                    A: Drug X      B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                     (N=134)        (N=134)         (N=132)    </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)          86 (64.2%)     90 (67.2%)      92 (69.7%)  </span></span>
-<span><span class="co">#&gt;     Earliest contributing event                                               </span></span>
-<span><span class="co">#&gt;       Death                            38             48              41      </span></span>
-<span><span class="co">#&gt;       Disease Progression              48             42              51      </span></span>
-<span><span class="co">#&gt;   Patients without event (%)       48 (35.8%)     44 (32.8%)      40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (MONTHS)                                                      </span></span>
-<span><span class="co">#&gt;     Median                            16.9           19.7            12.3     </span></span>
-<span><span class="co">#&gt;       95% CI                      (12.8, 19.0)   (13.3, 25.2)    (8.4, 14.9)  </span></span>
-<span><span class="co">#&gt;     25% and 75%-ile                7.7, 30.0      7.2, 34.1       4.5, 25.3   </span></span>
-<span><span class="co">#&gt;     Range (censored)              0.3 to 65.9    0.4 to 83.0     1.0 to 81.8  </span></span>
-<span><span class="co">#&gt;     Range (event)                 0.5 to 85.8    0.1 to 58.7     0.2 to 77.8  </span></span>
-<span><span class="co">#&gt;   Stratified Analysis                                                         </span></span>
-<span><span class="co">#&gt;     p-value (log-rank)                              0.7030          0.0228    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                     0.94            1.42     </span></span>
-<span><span class="co">#&gt;     95% CI                                       (0.70, 1.27)    (1.05, 1.91)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                      A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;                                       (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)        90 (67.2%)        92 (69.7%)   </span></span>
+<span><span class="co">#&gt;     Earliest contributing event                                                      </span></span>
+<span><span class="co">#&gt;       Death                             38                48                41       </span></span>
+<span><span class="co">#&gt;       Disease Progression               48                42                51       </span></span>
+<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)        44 (32.8%)        40 (30.3%)   </span></span>
+<span><span class="co">#&gt;   Time to Event (MONTHS)                                                             </span></span>
+<span><span class="co">#&gt;     Median                             16.9              19.7              12.3      </span></span>
+<span><span class="co">#&gt;       95% CI                       (12.8, 19.0)      (13.3, 25.2)       (8.4, 14.9)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile                  7.7, 30.0         7.2, 34.1         4.5, 25.3   </span></span>
+<span><span class="co">#&gt;     Range                         0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}</span></span>
+<span><span class="co">#&gt;   Stratified Analysis                                                                </span></span>
+<span><span class="co">#&gt;     p-value (log-rank)                                  0.7030            0.0228     </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                         0.94              1.42      </span></span>
+<span><span class="co">#&gt;     95% CI                                           (0.70, 1.27)      (1.05, 1.91)  </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="time-to-event-summary-modifying-time-point-for-the-survival-at-xx-months-analysis">
@@ -4611,32 +4607,37 @@ month, and the numeric values should be provided in months to
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span>, perform_analysis <span class="op">=</span> <span class="st">"unstrat"</span>, time_point <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                     A: Drug X        B: Placebo     C: Combination</span></span>
-<span><span class="co">#&gt;                                      (N=134)          (N=134)          (N=132)    </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)       90 (67.2%)       92 (69.7%)  </span></span>
-<span><span class="co">#&gt;     Earliest contributing event                                                   </span></span>
-<span><span class="co">#&gt;       Death                             38               48               41      </span></span>
-<span><span class="co">#&gt;       Disease Progression               48               42               51      </span></span>
-<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)       44 (32.8%)       40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (MONTHS)                                                          </span></span>
-<span><span class="co">#&gt;     Median                             16.9             19.7             12.3     </span></span>
-<span><span class="co">#&gt;       95% CI                       (12.8, 19.0)     (13.3, 25.2)     (8.4, 14.9)  </span></span>
-<span><span class="co">#&gt;     25% and 75%-ile                 7.7, 30.0        7.2, 34.1        4.5, 25.3   </span></span>
-<span><span class="co">#&gt;     Range (censored)               0.3 to 65.9      0.4 to 83.0      1.0 to 81.8  </span></span>
-<span><span class="co">#&gt;     Range (event)                  0.5 to 85.8      0.1 to 58.7      0.2 to 77.8  </span></span>
-<span><span class="co">#&gt;   Unstratified Analysis                                                           </span></span>
-<span><span class="co">#&gt;     p-value (log-rank)                                 0.4808           0.0429    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                        0.90             1.36     </span></span>
-<span><span class="co">#&gt;     95% CI                                          (0.67, 1.21)     (1.01, 1.82) </span></span>
-<span><span class="co">#&gt;   3 MONTHS                                                                        </span></span>
-<span><span class="co">#&gt;     Patients remaining at risk         109              109              100      </span></span>
-<span><span class="co">#&gt;     Event Free Rate (%)               86.75            86.79            82.01     </span></span>
-<span><span class="co">#&gt;     95% CI                        (80.88, 92.62)   (80.93, 92.64)   (75.35, 88.68)</span></span>
-<span><span class="co">#&gt;   6 MONTHS                                                                        </span></span>
-<span><span class="co">#&gt;     Patients remaining at risk          87               92               77      </span></span>
-<span><span class="co">#&gt;     Event Free Rate (%)               77.27            77.85            67.70     </span></span>
-<span><span class="co">#&gt;     95% CI                        (69.83, 84.71)   (70.59, 85.10)   (59.42, 75.99)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                      A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;                                       (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)        90 (67.2%)        92 (69.7%)   </span></span>
+<span><span class="co">#&gt;     Earliest contributing event                                                      </span></span>
+<span><span class="co">#&gt;       Death                             38                48                41       </span></span>
+<span><span class="co">#&gt;       Disease Progression               48                42                51       </span></span>
+<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)        44 (32.8%)        40 (30.3%)   </span></span>
+<span><span class="co">#&gt;   Time to Event (MONTHS)                                                             </span></span>
+<span><span class="co">#&gt;     Median                             16.9              19.7              12.3      </span></span>
+<span><span class="co">#&gt;       95% CI                       (12.8, 19.0)      (13.3, 25.2)       (8.4, 14.9)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile                  7.7, 30.0         7.2, 34.1         4.5, 25.3   </span></span>
+<span><span class="co">#&gt;     Range                         0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}</span></span>
+<span><span class="co">#&gt;   Unstratified Analysis                                                              </span></span>
+<span><span class="co">#&gt;     p-value (log-rank)                                  0.4808            0.0429     </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                         0.90              1.36      </span></span>
+<span><span class="co">#&gt;     95% CI                                           (0.67, 1.21)      (1.01, 1.82)  </span></span>
+<span><span class="co">#&gt;   3 MONTHS                                                                           </span></span>
+<span><span class="co">#&gt;     Patients remaining at risk          109               109               100      </span></span>
+<span><span class="co">#&gt;     Event Free Rate (%)                86.75             86.79             82.01     </span></span>
+<span><span class="co">#&gt;     95% CI                        (80.88, 92.62)    (80.93, 92.64)    (75.35, 88.68) </span></span>
+<span><span class="co">#&gt;   6 MONTHS                                                                           </span></span>
+<span><span class="co">#&gt;     Patients remaining at risk          87                92                77       </span></span>
+<span><span class="co">#&gt;     Event Free Rate (%)                77.27             77.85             67.70     </span></span>
+<span><span class="co">#&gt;     95% CI                        (69.83, 84.71)    (70.59, 85.10)    (59.42, 75.99) </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 <p>The following example shows how to specify the time point in
 <strong>user-defined unit</strong>.</p>
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
@@ -4663,32 +4664,37 @@ month, and the numeric values should be provided in months to
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span>, perform_analysis <span class="op">=</span> <span class="st">"unstrat"</span>, time_point <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">91</span>, <span class="fl">183</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                     A: Drug X        B: Placebo     C: Combination</span></span>
-<span><span class="co">#&gt;                                      (N=134)          (N=134)          (N=132)    </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)       90 (67.2%)       92 (69.7%)  </span></span>
-<span><span class="co">#&gt;     Earliest contributing event                                                   </span></span>
-<span><span class="co">#&gt;       Death                             38               48               41      </span></span>
-<span><span class="co">#&gt;       Disease Progression               48               42               51      </span></span>
-<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)       44 (32.8%)       40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (DAYS)                                                            </span></span>
-<span><span class="co">#&gt;     Median                            513.4            600.4            372.9     </span></span>
-<span><span class="co">#&gt;       95% CI                      (388.3, 576.8)   (404.1, 765.8)   (256.4, 453.2)</span></span>
-<span><span class="co">#&gt;     25% and 75%-ile                233.4, 914.1    218.6, 1037.2     136.5, 769.6 </span></span>
-<span><span class="co">#&gt;     Range (censored)              10.3 to 2005.6   11.0 to 2527.0   30.4 to 2489.0</span></span>
-<span><span class="co">#&gt;     Range (event)                 13.7 to 2610.5   3.1 to 1785.3    6.5 to 2367.0 </span></span>
-<span><span class="co">#&gt;   Unstratified Analysis                                                           </span></span>
-<span><span class="co">#&gt;     p-value (log-rank)                                 0.4808           0.0429    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                        0.90             1.36     </span></span>
-<span><span class="co">#&gt;     95% CI                                          (0.67, 1.21)     (1.01, 1.82) </span></span>
-<span><span class="co">#&gt;   91 DAYS                                                                         </span></span>
-<span><span class="co">#&gt;     Patients remaining at risk         109              109              100      </span></span>
-<span><span class="co">#&gt;     Event Free Rate (%)               86.75            86.79            82.01     </span></span>
-<span><span class="co">#&gt;     95% CI                        (80.88, 92.62)   (80.93, 92.64)   (75.35, 88.68)</span></span>
-<span><span class="co">#&gt;   183 DAYS                                                                        </span></span>
-<span><span class="co">#&gt;     Patients remaining at risk          87               92               77      </span></span>
-<span><span class="co">#&gt;     Event Free Rate (%)               77.27            77.85            67.70     </span></span>
-<span><span class="co">#&gt;     95% CI                        (69.83, 84.71)   (70.59, 85.10)   (59.42, 75.99)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                       A: Drug X           B: Placebo        C: Combination  </span></span>
+<span><span class="co">#&gt;                                        (N=134)              (N=134)             (N=132)     </span></span>
+<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)             86 (64.2%)          90 (67.2%)          92 (69.7%)    </span></span>
+<span><span class="co">#&gt;     Earliest contributing event                                                             </span></span>
+<span><span class="co">#&gt;       Death                               38                  48                  41        </span></span>
+<span><span class="co">#&gt;       Disease Progression                 48                  42                  51        </span></span>
+<span><span class="co">#&gt;   Patients without event (%)          48 (35.8%)          44 (32.8%)          40 (30.3%)    </span></span>
+<span><span class="co">#&gt;   Time to Event (DAYS)                                                                      </span></span>
+<span><span class="co">#&gt;     Median                              513.4                600.4               372.9      </span></span>
+<span><span class="co">#&gt;       95% CI                        (388.3, 576.8)      (404.1, 765.8)      (256.4, 453.2)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile                  233.4, 914.1        218.6, 1037.2       136.5, 769.6   </span></span>
+<span><span class="co">#&gt;     Range                         10.3 to 2610.5 {1}   3.1 to 2527.0 {2}   6.5 to 2489.0 {3}</span></span>
+<span><span class="co">#&gt;   Unstratified Analysis                                                                     </span></span>
+<span><span class="co">#&gt;     p-value (log-rank)                                      0.4808              0.0429      </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                             0.90                1.36       </span></span>
+<span><span class="co">#&gt;     95% CI                                               (0.67, 1.21)        (1.01, 1.82)   </span></span>
+<span><span class="co">#&gt;   91 DAYS                                                                                   </span></span>
+<span><span class="co">#&gt;     Patients remaining at risk           109                  109                 100       </span></span>
+<span><span class="co">#&gt;     Event Free Rate (%)                 86.75                86.79               82.01      </span></span>
+<span><span class="co">#&gt;     95% CI                          (80.88, 92.62)      (80.93, 92.64)      (75.35, 88.68)  </span></span>
+<span><span class="co">#&gt;   183 DAYS                                                                                  </span></span>
+<span><span class="co">#&gt;     Patients remaining at risk            87                  92                  77        </span></span>
+<span><span class="co">#&gt;     Event Free Rate (%)                 77.27                77.85               67.70      </span></span>
+<span><span class="co">#&gt;     95% CI                          (69.83, 84.71)      (70.59, 85.10)      (59.42, 75.99)  </span></span>
+<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="time-to-event-summary-modifying-the-p-value-method-for-testing-hazard-ratio">
@@ -4707,24 +4713,29 @@ access the default template, try <code><a href="../reference/ttet01.html">chevro
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="fu">chevron</span><span class="fu">::</span><span class="va"><a href="../reference/ttet01.html">ttet01</a></span>, <span class="va">proc_data</span>, pval_method <span class="op">=</span> <span class="st">"wald"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                    A: Drug X      B: Placebo    C: Combination</span></span>
-<span><span class="co">#&gt;                                     (N=134)        (N=134)         (N=132)    </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Patients with event (%)          86 (64.2%)     90 (67.2%)      92 (69.7%)  </span></span>
-<span><span class="co">#&gt;     Earliest contributing event                                               </span></span>
-<span><span class="co">#&gt;       Death                            38             48              41      </span></span>
-<span><span class="co">#&gt;       Disease Progression              48             42              51      </span></span>
-<span><span class="co">#&gt;   Patients without event (%)       48 (35.8%)     44 (32.8%)      40 (30.3%)  </span></span>
-<span><span class="co">#&gt;   Time to Event (MONTHS)                                                      </span></span>
-<span><span class="co">#&gt;     Median                            16.9           19.7            12.3     </span></span>
-<span><span class="co">#&gt;       95% CI                      (12.8, 19.0)   (13.3, 25.2)    (8.4, 14.9)  </span></span>
-<span><span class="co">#&gt;     25% and 75%-ile                7.7, 30.0      7.2, 34.1       4.5, 25.3   </span></span>
-<span><span class="co">#&gt;     Range (censored)              0.3 to 65.9    0.4 to 83.0     1.0 to 81.8  </span></span>
-<span><span class="co">#&gt;     Range (event)                 0.5 to 85.8    0.1 to 58.7     0.2 to 77.8  </span></span>
-<span><span class="co">#&gt;   Unstratified Analysis                                                       </span></span>
-<span><span class="co">#&gt;     p-value (wald)                                  0.4810          0.0437    </span></span>
-<span><span class="co">#&gt;     Hazard Ratio                                     0.90            1.36     </span></span>
-<span><span class="co">#&gt;     95% CI                                       (0.67, 1.21)    (1.01, 1.82)</span></span></code></pre></div>
+<span><span class="co">#&gt;                                      A: Drug X        B: Placebo      C: Combination </span></span>
+<span><span class="co">#&gt;                                       (N=134)           (N=134)           (N=132)    </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Patients with event (%)           86 (64.2%)        90 (67.2%)        92 (69.7%)   </span></span>
+<span><span class="co">#&gt;     Earliest contributing event                                                      </span></span>
+<span><span class="co">#&gt;       Death                             38                48                41       </span></span>
+<span><span class="co">#&gt;       Disease Progression               48                42                51       </span></span>
+<span><span class="co">#&gt;   Patients without event (%)        48 (35.8%)        44 (32.8%)        40 (30.3%)   </span></span>
+<span><span class="co">#&gt;   Time to Event (MONTHS)                                                             </span></span>
+<span><span class="co">#&gt;     Median                             16.9              19.7              12.3      </span></span>
+<span><span class="co">#&gt;       95% CI                       (12.8, 19.0)      (13.3, 25.2)       (8.4, 14.9)  </span></span>
+<span><span class="co">#&gt;     25% and 75%-ile                  7.7, 30.0         7.2, 34.1         4.5, 25.3   </span></span>
+<span><span class="co">#&gt;     Range                         0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}</span></span>
+<span><span class="co">#&gt;   Unstratified Analysis                                                              </span></span>
+<span><span class="co">#&gt;     p-value (wald)                                      0.4810            0.0437     </span></span>
+<span><span class="co">#&gt;     Hazard Ratio                                         0.90              1.36      </span></span>
+<span><span class="co">#&gt;     95% CI                                           (0.67, 1.21)      (1.01, 1.82)  </span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   {1} - Censored observation: range minimum</span></span>
+<span><span class="co">#&gt;   {2} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   {3} - Censored observation: range maximum</span></span>
+<span><span class="co">#&gt;   ———————————————————————————————————————————————————————————————————————————————————</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
