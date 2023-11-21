@@ -6,7 +6,7 @@
 #' @import tern
 #' @import checkmate
 #' @importFrom formatters with_label propose_column_widths fmt_config
-#' @importFrom dunlin rule reformat render_safe
+#' @importFrom dunlin rule reformat render_safe assert_one_tablenames assert_all_tablenames
 #' @importFrom forcats fct_relevel
 #' @importFrom ggplot2 theme
 #' @importFrom grid stringWidth unit
