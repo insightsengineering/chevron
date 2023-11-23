@@ -104,7 +104,6 @@ reference:
       - mla_dir
   - title: Utility Functions
     contents:
-      - assert_all_tablenames
       - assert_single_value
       - assert_valid_type
       - assert_valid_var
