@@ -151,16 +151,26 @@ ttet01_lyt <- function(arm_var,
       )
   }
 
-  lyt <- lyt01 %>%
-    surv_timepoint(
-      vars = "AVAL",
-      var_labels = timeunit,
-      is_event = "IS_EVENT",
-      control = control_survtp,
-      .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk")),
-      na_str = "NE",
-      ...
+  arg <- list(...)
+  extra_arg <- arg[setdiff(names(arg), c(names(formals(surv_timepoint)), names(formals(control_surv_timepoint))))]
+
+  lyt <- do.call(
+    surv_timepoint,
+    c(
+      list(
+        lyt = lyt01,
+        vars = "AVAL",
+        time_point = arg$time_point,
+        var_labels = timeunit,
+        is_event = "IS_EVENT",
+        control = control_survtp,
+        method = arg$method,
+        .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk")),
+        na_str = "NE"
+      ),
+      extra_arg
     )
+  )
 
   lyt
 }

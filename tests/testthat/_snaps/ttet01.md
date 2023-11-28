@@ -18,7 +18,7 @@
         Median                               16.9              19.7              12.3      
           95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  
         25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   
-        Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}
+        Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}
       Unstratified Analysis                                                                
         p-value (log-rank)                                    0.4808            0.0429     
         Hazard Ratio                                           0.90              1.36      
@@ -41,7 +41,6 @@
       
       {1} - Censored observation: range minimum
       {2} - Censored observation: range maximum
-      {3} - Censored observation: range maximum
       —————————————————————————————————————————————————————————————————————————————————————
       
 
@@ -59,7 +58,7 @@
           Median                               16.9              19.7              12.3      
             95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  
           25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   
-          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}
+          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}
         Unstratified Analysis                                                                
           p-value (log-rank)                                    0.4808            0.0429     
           Hazard Ratio                                           0.90              1.36      
@@ -82,7 +81,6 @@
       
         {1} - Censored observation: range minimum
         {2} - Censored observation: range maximum
-        {3} - Censored observation: range maximum
         —————————————————————————————————————————————————————————————————————————————————————
       
 
@@ -103,7 +101,7 @@
           Median                               16.9              19.7              12.3      
             95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  
           25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   
-          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}
+          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}
         Stratified Analysis                                                                  
           p-value (log-rank)                                    0.8068            0.0252     
           Hazard Ratio                                           0.96              1.42      
@@ -130,7 +128,6 @@
       
         {1} - Censored observation: range minimum
         {2} - Censored observation: range maximum
-        {3} - Censored observation: range maximum
         —————————————————————————————————————————————————————————————————————————————————————
       
 
@@ -148,7 +145,7 @@
           Median                               16.9              19.7              12.3      
             95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  
           25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   
-          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}
+          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}
         Stratified Analysis                                                                  
           p-value (log-rank)                                    0.8068            0.0252     
           Hazard Ratio                                           0.96              1.42      
@@ -171,7 +168,6 @@
       
         {1} - Censored observation: range minimum
         {2} - Censored observation: range maximum
-        {3} - Censored observation: range maximum
         —————————————————————————————————————————————————————————————————————————————————————
       
 
@@ -192,7 +188,7 @@
           Median                               16.9              19.7              12.3      
             95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  
           25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   
-          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}
+          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}
         Stratified Analysis                                                                  
           p-value (log-rank)                                    0.8068            0.0252     
           Hazard Ratio                                           0.96              1.42      
@@ -215,7 +211,6 @@
       
         {1} - Censored observation: range minimum
         {2} - Censored observation: range maximum
-        {3} - Censored observation: range maximum
         —————————————————————————————————————————————————————————————————————————————————————
       
 
@@ -233,7 +228,7 @@
           Median                               16.9              19.7              12.3      
             95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  
           25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   
-          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}
+          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}
         Unstratified Analysis                                                                
           p-value (log-rank)                  0.4808                              0.0123     
           Hazard Ratio                         1.11                                1.45      
@@ -256,7 +251,6 @@
       
         {1} - Censored observation: range minimum
         {2} - Censored observation: range maximum
-        {3} - Censored observation: range maximum
         —————————————————————————————————————————————————————————————————————————————————————
       
 
@@ -277,7 +271,7 @@
           Median                               16.9              19.7              12.3      
             95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  
           25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   
-          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {3}
+          Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}
         Stratified Analysis                                                                  
           p-value (log-rank)                  0.8068                              0.0239     
           Hazard Ratio                         1.04                                1.42      
@@ -304,7 +298,6 @@
       
         {1} - Censored observation: range minimum
         {2} - Censored observation: range maximum
-        {3} - Censored observation: range maximum
         —————————————————————————————————————————————————————————————————————————————————————
       
 
