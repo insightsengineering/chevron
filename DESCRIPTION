@@ -4,9 +4,12 @@ Title: Standard TLGs for Clinical Trials Reporting
 Version: 0.2.4.9010
 Date: 2023-11-29
 Authors@R: c(
-    person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = c("aut", "cre")),
-    person("Liming", "Li", , "liming.li@roche.com", role = "aut"),
+    person("Liming", "Li", , "liming.li@roche.com", role = c("aut", "cre")),
+    person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
     person("Xiaoli", "Duan", , "xiaoli.duan@roche.com", role = "aut"),
+    person("Adrian", "Waddell", , "waddell.adrian@gene.com", role = "ctb"),
+    person("Chenkai", "Lv", , "chenkai.lv@roche.com", role = "ctb"),
+    person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "ctb"),
     person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb"),
     person("Tian", "Fang", , "tian.fang@roche.com", role = "ctb"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))

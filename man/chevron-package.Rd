@@ -9,16 +9,19 @@
 Standard Table, Listings, and Graphs (TLG) library used in clinical trials.
 }
 \author{
-\strong{Maintainer}: Benoit Falquet \email{benoit.falquet@roche.com}
+\strong{Maintainer}: Liming Li \email{liming.li@roche.com}
 
 Authors:
 \itemize{
-  \item Liming Li \email{liming.li@roche.com}
+  \item Benoit Falquet \email{benoit.falquet@roche.com}
   \item Xiaoli Duan \email{xiaoli.duan@roche.com}
 }
 
 Other contributors:
 \itemize{
+  \item Adrian Waddell \email{waddell.adrian@gene.com} [contributor]
+  \item Chenkai Lv \email{chenkai.lv@roche.com} [contributor]
+  \item Pawel Rucki \email{pawel.rucki@roche.com} [contributor]
   \item Tim Barnett \email{timothy.barnett@roche.com} [contributor]
   \item Tian Fang \email{tian.fang@roche.com} [contributor]
   \item F. Hoffmann-La Roche AG [copyright holder, funder]
