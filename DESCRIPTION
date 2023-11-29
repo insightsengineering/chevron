@@ -8,7 +8,7 @@ Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
     person("Xiaoli", "Duan", , "xiaoli.duan@roche.com", role = "aut"),
     person("Adrian", "Waddell", , "waddell.adrian@gene.com", role = "ctb"),
-    person("Chenkai", "Lv", , "chenkai.lv@roche.com@roche.com", role = "ctb"),
+    person("Chenkai", "Lv", , "chenkai.lv@roche.com", role = "ctb"),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "ctb"),
     person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb"),
     person("Tian", "Fang", , "tian.fang@roche.com", role = "ctb"),
