@@ -48,7 +48,7 @@ or unstratified analyses, or both, e.g. \code{c("unstrat", "strat")}. Only unstr
 
 \item{...}{Further arguments passed to \code{control_surv_time()}, \code{control_coxph()}, \code{control_survtp()}, and
 \code{surv_timepoint()}. For details, see the documentation in \code{tern}. Commonly used arguments include \code{pval_method},
-\code{conf_level}, \code{conf_type}, \code{quantiles}, \code{ties}, \code{timepoint}, \code{method}, etc.}
+\code{conf_level}, \code{conf_type}, \code{quantiles}, \code{ties}, \code{time_point}, \code{method}, etc.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
