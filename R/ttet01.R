@@ -13,7 +13,7 @@
 #' @param strata (`string`) stratification factors, e.g. `strata = c("STRATA1", "STRATA2")`, by default as NULL
 #' @param ... Further arguments passed to `control_surv_time()`, `control_coxph()`, `control_survtp()`, and
 #'  `surv_timepoint()`. For details, see the documentation in `tern`. Commonly used arguments include `pval_method`,
-#'  `conf_level`, `conf_type`, `quantiles`, `ties`, `timepoint`, `method`, etc.
+#'  `conf_level`, `conf_type`, `quantiles`, `ties`, `time_point`, `method`, etc.
 #'
 #' @details
 #' * No overall value.
@@ -151,25 +151,18 @@ ttet01_lyt <- function(arm_var,
       )
   }
 
-  arg <- list(...)
-  extra_arg <- arg[setdiff(names(arg), c(names(formals(surv_timepoint)), names(formals(control_surv_timepoint))))]
-
-  lyt <- do.call(
+  lyt <- execute_with_args(
     surv_timepoint,
-    c(
-      list(
-        lyt = lyt01,
-        vars = "AVAL",
-        time_point = arg$time_point,
-        var_labels = timeunit,
-        is_event = "IS_EVENT",
-        control = control_survtp,
-        method = arg$method,
-        .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk")),
-        na_str = "NE"
-      ),
-      extra_arg
-    )
+    lyt = lyt01,
+    is_event = "IS_EVENT",
+    vars = "AVAL",
+    var_labels = timeunit,
+    control = control_survtp,
+    ...,
+    method = "both",
+    time_point = c(6, 12),
+    .labels = c("pt_at_risk" = render_safe("{Patient_label} remaining at risk")),
+    na_str = "NE"
   )
 
   lyt
