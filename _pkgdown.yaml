@@ -6,9 +6,12 @@ template:
 
 navbar:
   structure:
-    left: [intro, reference, articles, tutorials, news, reports]
+    left: [intro, reference, articles, catalog, tutorials, news, reports]
     right: [search, github]
   components:
+    catalog:
+      text: Catalog
+      href: articles/chevron_catalog.html
     reports:
       text: Reports
       menu:
