@@ -49,6 +49,25 @@ test_that("run works as expected with partial match argument", {
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
+test_that("run displays the symbols when available", {
+  user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
+  arm_param = "ARM"
+  res <- capture_output(
+    tbl <- run(
+      aet02,
+      syn_data,
+      prune_0 = FALSE,
+      not_used = iris,
+      another_not_used = "X",
+      arm_var = arm_param,
+      user_args = user_args,
+      verbose = TRUE
+    )
+  )
+  expect_snapshot(cat(res))
+  expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
 # args_ls ----
 
 test_that("args_ls works as expected", {

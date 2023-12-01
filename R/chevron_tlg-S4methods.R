@@ -39,9 +39,10 @@ setMethod(
     if (verbose) {
       cl <- match.call()
       print_args(
-        cl,
-        user_args,
-        args_ls(object, omit = c("...", "adam_db", "tlg")), auto_pre
+        run_call = cl,
+        additional_args = user_args,
+        args = args_ls(object, omit = c("...", "adam_db", "tlg")),
+        auto_pre = auto_pre
       )
     }
     proc_data <- if (auto_pre) {
@@ -62,10 +63,15 @@ print_args <- function(run_call, additional_args, args, auto_pre = TRUE) {
   assert_class(run_call, "call")
   assert_list(args)
   assert_flag(auto_pre)
+
   run_call[[1]] <- NULL
   run_call <- as.list(run_call)
+
+  is_name <- Filter(is.name, run_call)
+  is_name["user_args"] <- NULL
+
   if (!is.null(additional_args)) {
-    run_call <- c(run_call[c("object", "adam_db")], additional_args)
+    run_call <- c(is_name, additional_args[setdiff(names(additional_args), names(is_name))])
   } else {
     run_call[c("auto_pre", "verbose")] <- NULL
   }

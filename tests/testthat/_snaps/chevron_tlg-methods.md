@@ -494,6 +494,122 @@
           Total number of events                                         55            63              64      
           dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
 
+# run displays the symbols when available
+
+    Code
+      cat(res)
+    Output
+      Using template:  aet02 
+      Using data:      syn_data 
+      
+      Pre args:
+        row_split_var  : "AEHLT"
+      
+      Main args:
+        arm_var         : arm_param
+        row_split_var   : "AEHLT"
+        lbl_overall     : "All Patients"
+        summary_labels  : list(all = aet02_label, TOTAL = c(nonunique = "Overall total number of events"))
+      
+      Post args:
+        row_split_var  : "AEHLT"
+        prune_0        : FALSE
+      
+      Additional args:
+        not_used          : iris
+        another_not_used  : "X"
+      
+
+---
+
+    Code
+      cat(export_as_txt(tbl, lpp = 100))
+    Output
+        High Level Term                                               A: Drug X    B: Placebo    C: Combination
+          MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        Overall total number of events                                   609           622            703      
+        hlt A.1.1.1                                                                                            
+          Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
+          Total number of events                                         132           130            160      
+          dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
+          dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
+        hlt D.2.1.5                                                                                            
+          Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  
+          Total number of events                                         62            72              74      
+          dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
+        hlt B.2.2.3                                                                                            
+          Total number of patients with at least one adverse event   48 (35.8%)    54 (40.3%)      51 (38.6%)  
+          Total number of events                                         64            76              77      
+          dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
+        hlt B.2.1.2                                                                                            
+          Total number of patients with at least one adverse event   49 (36.6%)    44 (32.8%)      52 (39.4%)  
+          Total number of events                                         65            62              66      
+          dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
+        hlt D.1.1.1                                                                                            
+          Total number of patients with at least one adverse event   50 (37.3%)    42 (31.3%)      51 (38.6%)  
+          Total number of events                                         61            51              71      
+          dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
+        hlt D.1.1.4                                                                                            
+          Total number of patients with at least one adverse event   48 (35.8%)    42 (31.3%)      50 (37.9%)  
+          Total number of events                                         66            55              64      
+          dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        hlt B.1.1.1                                                                                            
+          Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  
+          Total number of events                                         56            60              62      
+          dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
+        hlt C.2.1.2                                                                                            
+          Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  
+          Total number of events                                         48            53              65      
+          dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
+        hlt C.1.1.1                                                                                            
+          Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
+          Total number of events                                         55            63              64      
+          dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+      \s\n  High Level Term                                              All Patients
+          MedDRA Preferred Term                                        (N=400)   
+        —————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event     365 (91.2%) 
+        Overall total number of events                                   1934    
+        hlt A.1.1.1                                                              
+          Total number of patients with at least one adverse event   242 (60.5%) 
+          Total number of events                                         422     
+          dcd A.1.1.1.1                                              158 (39.5%) 
+          dcd A.1.1.1.2                                              146 (36.5%) 
+        hlt D.2.1.5                                                              
+          Total number of patients with at least one adverse event   162 (40.5%) 
+          Total number of events                                         208     
+          dcd D.2.1.5.3                                              162 (40.5%) 
+        hlt B.2.2.3                                                              
+          Total number of patients with at least one adverse event   153 (38.2%) 
+          Total number of events                                         217     
+          dcd B.2.2.3.1                                              153 (38.2%) 
+        hlt B.2.1.2                                                              
+          Total number of patients with at least one adverse event   145 (36.2%) 
+          Total number of events                                         193     
+          dcd B.2.1.2.1                                              145 (36.2%) 
+        hlt D.1.1.1                                                              
+          Total number of patients with at least one adverse event   143 (35.8%) 
+          Total number of events                                         183     
+          dcd D.1.1.1.1                                              143 (35.8%) 
+        hlt D.1.1.4                                                              
+          Total number of patients with at least one adverse event   140 (35.0%) 
+          Total number of events                                         185     
+          dcd D.1.1.4.2                                              140 (35.0%) 
+        hlt B.1.1.1                                                              
+          Total number of patients with at least one adverse event   139 (34.8%) 
+          Total number of events                                         178     
+          dcd B.1.1.1.1                                              139 (34.8%) 
+        hlt C.2.1.2                                                              
+          Total number of patients with at least one adverse event   138 (34.5%) 
+          Total number of events                                         166     
+          dcd C.2.1.2.1                                              138 (34.5%) 
+        hlt C.1.1.1                                                              
+          Total number of patients with at least one adverse event   132 (33.0%) 
+          Total number of events                                         182     
+          dcd C.1.1.1.3                                              132 (33.0%) 
+
 # script_funs works as expected in interactive mode
 
     Code
