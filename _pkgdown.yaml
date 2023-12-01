@@ -1,5 +1,5 @@
 ---
-url: https://go.roche.com/nest-docs/releases/latest/api-reference/chevron
+url: https://insightsengineering.github.io/chevron
 
 template:
   package: nesttemplate
@@ -27,7 +27,6 @@ articles:
   - title: All vignettes
     contents:
       - chevron
-      - adding_new_tlgs_to_chevron
       - script_generator
       - chevron_catalog
 

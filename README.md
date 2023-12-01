@@ -19,7 +19,7 @@
 [![Open Issues](https://img.shields.io/github/issues-raw/insightsengineering/chevron?color=red\&label=open%20issues)](https://github.com/insightsengineering/chevron/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 <!-- end badges -->
 
-`chevron` is a collection of high-level functions to create standard outputs for clinical trials reporting without much parameterisation. These outputs includes:
+`chevron` is a collection of high-level functions to create standard outputs for clinical trials reporting with limited parameterisation. These outputs includes:
 
 <!-- markdownlint-disable MD007 MD030 -->
 

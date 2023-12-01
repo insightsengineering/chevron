@@ -1,6 +1,5 @@
 ---
 title: "Introduction to Chevron"
-author: Adrian Waddell
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to Chevron}
