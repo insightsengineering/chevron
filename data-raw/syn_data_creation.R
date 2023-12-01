@@ -208,6 +208,9 @@ syn_test_data <- function() {
   sd$adex$ETHNIC <- factor(trimws(sd$adex$ETHNIC), levels = trimws(levels(sd$adex$ETHNIC)))
   attr(sd$adex$ETHNIC, "label") <- "Ethnicity"
 
+  # useful for aet05 and aet05_all
+  names(sd)[names(sd) == "adaette"] <- "adsaftte"
+
   sd
 }
 
