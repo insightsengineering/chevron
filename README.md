@@ -19,7 +19,7 @@
 [![Open Issues](https://img.shields.io/github/issues-raw/insightsengineering/chevron?color=red\&label=open%20issues)](https://github.com/insightsengineering/chevron/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 <!-- end badges -->
 
-`chevron` is a collection of high-level functions to create standard outputs for clinical trials reporting without much parametrisation. These outputs includes:
+`chevron` is a collection of high-level functions to create standard outputs for clinical trials reporting without much parameterisation. These outputs includes:
 
 <!-- markdownlint-disable MD007 MD030 -->
 
@@ -47,7 +47,7 @@
      - time to event table, e.g.
           - [Time-to-event Summary (`TTET01`)](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html#time-to-event-summary-ttet01)
      - vital signs, e.g.
-          - [Vital Signs (VST01)](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html#vital-signs-vst01)
+          - [Vital Signs (`VST01`)](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html#vital-signs-vst01)
           - [Vital Signs Abnormalities (Regardless of Abnormality at Baseline) (`VST02_1`)](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html#vital-signs-abnormalities-regardless-of-abnormality-at-baseline-vst02_1)
           - [Vital Signs Abnormalities (Among Subject Without Abnormality at Baseline) (`VST02_2`)](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html#vital-signs-abnormalities-among-subject-without-abnormality-at-baseline-vst02_2)
 - [Listings](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html#listings)
@@ -57,9 +57,9 @@
 
 <!-- markdownlint-enable MD007 MD030 -->
 
-Please visit [the catalog](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html) to see full list of available outputs.
+Please visit [the catalog](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html) to see full list of available outputs. If you want a new output, please [create an issue](https://github.com/insightsengineering/chevron/issues/new?template=new_table.yml).
 
-If you need more flexibility prease refer to [`tern`](https://insightsengineering.github.io/tern/) with its [TLG Catalog](https://insightsengineering.github.io/tlg-catalog/).
+If you need more flexibility please refer to [`tern`](https://insightsengineering.github.io/tern/) with its [TLG Catalog](https://insightsengineering.github.io/tlg-catalog/).
 
 ## Installation
 
