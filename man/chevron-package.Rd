@@ -8,6 +8,15 @@
 \description{
 Standard Table, Listings, and Graphs (TLG) library used in clinical trials.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://insightsengineering.github.io/chevron/}
+  \item \url{https://github.com/insightsengineering/chevron/}
+  \item Report bugs at \url{https://github.com/insightsengineering/chevron/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Liming Li \email{liming.li@roche.com}
 

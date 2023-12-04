@@ -1,6 +1,5 @@
 ---
 title: "Script_Generator"
-author: Benoit Falquet
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Script_Generator}
