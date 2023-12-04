@@ -3,6 +3,7 @@ Agresti
 CTC
 Clopper
 Coull
+Forkers
 Haenszel
 Hauck
 Hoffmann
@@ -22,7 +23,6 @@ postprocessing
 pre
 preprocess
 repo
-reproducibility
 responder
 responders
 unstratified

@@ -130,7 +130,7 @@ The package maintainer also reserves the right to adjust the criteria to recogni
 If you have further questions regarding the contribution guidelines, please contact the package/repository maintainer.
 
 <!-- urls -->
-[docs]: https://insightsengineering.github.io/chevron/index.html
-[articles]: https://insightsengineering.github.io/chevron/main/articles/index.html
-[license]: https://insightsengineering.github.io/chevron/main/LICENSE-text.html
+[docs]: https://insightsengineering.github.io/chevron/latest-tag/index.html
+[articles]: https://insightsengineering.github.io/chevron/latest-tag/articles/index.html
+[license]: https://insightsengineering.github.io/chevron/latest-tag/LICENSE-text.html
 [insights]: https://github.com/insightsengineering/chevron/pulse
