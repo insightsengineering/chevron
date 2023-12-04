@@ -51,7 +51,7 @@ test_that("run works as expected with partial match argument", {
 
 test_that("run displays the symbols when available", {
   user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
-  arm_param = "ARM"
+  arm_param <- "ARM"
   res <- capture_output(
     tbl <- run(
       aet02,

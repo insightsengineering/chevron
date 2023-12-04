@@ -34,7 +34,7 @@ setMethod(
     assert_flag(verbose)
     assert_list(user_args, names = "unique")
 
-    user_args <- modifyList(user_args, list(...))
+    user_args <- modifyList(user_args, list(...), keep.null = TRUE)
 
     if (verbose) {
       cl <- match.call()
