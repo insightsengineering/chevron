@@ -6,6 +6,7 @@
 * `AET05` preprocessing now filters on `"(AE|CQ|SMQ)TTE"` rather than `"AETTE"`.
 * Rename the dataset `ADAETTE` in `syn_data` object to `ADSAFTTE`.
 * Use uppercase variable names in `AET05` and `AET05_ALL`.
+* The string replacing `NA` values in the tables is now controlled by the `tern_default_na_str` option set during package load.
 
 # chevron 0.2.4
 
