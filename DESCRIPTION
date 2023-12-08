@@ -25,7 +25,7 @@ Depends:
 Imports:
     checkmate (>= 2.0),
     dplyr,
-    dunlin (>= 0.1.6),
+    dunlin (>= 0.1.6.9002),
     forcats (>= 1.0.0),
     formatters (>= 0.5.4),
     ggplot2 (>= 3.4.0),
