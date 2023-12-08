@@ -86,7 +86,8 @@ dmt01_lyt <- function(arm_var,
       extra_args = list(
         precision = precision,
         .stats = stats
-      )
+      ),
+      show_labels = "visible"
     )
 }
 
