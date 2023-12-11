@@ -62,3 +62,14 @@ test_that("dmt01 works as expected with empty list as stats value", {
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
+
+test_that("dmt01 works as expected with only one summaryvars", {
+  res <- expect_silent(
+    run(
+      dmt01,
+      syn_data,
+      summaryvars = c("RACE")
+    )
+  )
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})

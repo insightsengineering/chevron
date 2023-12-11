@@ -281,3 +281,18 @@
           Median                                    29.250       
           Min - Max                            -44.20 - 117.90   
 
+# dmt01 works as expected with only one summaryvars
+
+    Code
+      cat(export_as_txt(res, lpp = 100))
+    Output
+                                             A: Drug X    B: Placebo   C: Combination   All Patients
+                                              (N=134)      (N=134)        (N=132)         (N=400)   
+        ————————————————————————————————————————————————————————————————————————————————————————————
+        RACE                                                                                        
+          n                                     134          134            132             400     
+          AMERICAN INDIAN OR ALASKA NATIVE    8 (6.0%)    11 (8.2%)       6 (4.5%)       25 (6.2%)  
+          ASIAN                              68 (50.7%)   68 (50.7%)     73 (55.3%)     209 (52.2%) 
+          BLACK OR AFRICAN AMERICAN          31 (23.1%)   28 (20.9%)     32 (24.2%)      91 (22.8%) 
+          WHITE                              27 (20.1%)   27 (20.1%)     21 (15.9%)      75 (18.8%) 
+
