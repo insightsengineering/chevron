@@ -4,14 +4,14 @@
 \alias{h_format_dec}
 \title{Decimal formatting}
 \usage{
-h_format_dec(digits, format, ne = FALSE)
+h_format_dec(digits, format, ne = NULL)
 }
 \arguments{
 \item{digits}{(\code{integer}) number of digits.}
 
 \item{format}{(\code{string}) describing how the numbers should be formatted following the \code{sprintf} syntax.}
 
-\item{ne}{(\code{flag}) indicator whether to use "NE" to replace the actual value.}
+\item{ne}{(\code{string}) that should replace actual value. If \code{NULL}, no replacement is performed.}
 }
 \value{
 \code{function} formatting numbers with the defined format.

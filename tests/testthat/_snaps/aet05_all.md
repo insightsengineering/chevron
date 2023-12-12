@@ -9,18 +9,18 @@
         Number of occurrences of a grade 3-5 adverse event                                          
           Total patient-years at risk                           0.0         0.0            0.0      
           Number of adverse events observed                      0           0              0       
-          AE rate per 100 patient-years                         NA           NA             NA      
-          95% CI                                                NA           NA             NA      
+          AE rate per 100 patient-years                         NE           NE             NE      
+          95% CI                                                NE           NE             NE      
         Number of occurrences of any adverse event                                                  
           Total patient-years at risk                           0.0         0.0            0.0      
           Number of adverse events observed                      0           0              0       
-          AE rate per 100 patient-years                         NA           NA             NA      
-          95% CI                                                NA           NA             NA      
+          AE rate per 100 patient-years                         NE           NE             NE      
+          95% CI                                                NE           NE             NE      
         Number of occurrences of any serious adverse event                                          
           Total patient-years at risk                           0.0         0.0            0.0      
           Number of adverse events observed                      0           0              0       
-          AE rate per 100 patient-years                         NA           NA             NA      
-          95% CI                                                NA           NA             NA      
+          AE rate per 100 patient-years                         NE           NE             NE      
+          95% CI                                                NE           NE             NE      
 
 # aet05_all can handle some NA values
 
