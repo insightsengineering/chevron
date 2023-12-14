@@ -39,6 +39,9 @@ egt05_qtcat_lyt(
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{EGT05_QTCAT} Layout
 }

@@ -23,6 +23,9 @@ assert_valid_var_pair(
 
 \item{lab2}{(\code{string}) label hint for \code{df2}.}
 }
+\value{
+invisible \code{NULL} or an error message if the criteria are not fulfilled.
+}
 \description{
 Check variables are of same levels
 }

@@ -31,7 +31,11 @@ Commonly used arguments include \code{col}, \code{pval_method}, \code{ties}, \co
 \code{annot_coxph}, \code{annot_stats}, etc.}
 }
 \value{
+the main function returns a \code{gTree} object.
+
 a \code{gTree} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
 }
 \description{
 \code{KMG01} Kaplan-Meier Plot 1.

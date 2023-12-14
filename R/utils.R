@@ -5,6 +5,7 @@ globalVariables(c(".", ":="))
 #'
 #' @param df (`data.frame`) containing columns with label attribute.
 #' @param vars (`character`) variable names in `df`.
+#' @param a `character` with replaced placeholders and a `label` attribute.
 #'
 #' @details
 #' The labels will be returned if the column has `label` attribute, otherwise the column name will be returned.
@@ -21,8 +22,7 @@ var_labels_for <- function(df, vars) {
 #' Avoid returning `NULL` when the `table` is empty.
 #'
 #' @param tlg (`TableTree`) object.
-#'
-#' @return pruned `TableTree`.
+#' @returns pruned `TableTree`.
 smart_prune <- function(tlg) {
   res <- prune_table(tlg)
 
@@ -44,7 +44,7 @@ smart_prune <- function(tlg) {
 #' * `NULL` report creation if necessary
 #' * indentation
 #'
-#' @return a post-processed `tlg`.
+#' @returns a post-processed `tlg`.
 #'
 #' @keywords internal
 std_postprocess <- function(tlg, ind = 2L, ...) {
@@ -64,7 +64,7 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' @param format (`string`) describing how the numbers should be formatted following the `sprintf` syntax.
 #' @param ne (`string`) that should replace actual value. If `NULL`, no replacement is performed.
 #'
-#' @return `function` formatting numbers with the defined format.
+#' @returns `function` formatting numbers with the defined format.
 #'
 #' @export
 #'
@@ -111,8 +111,8 @@ fuse_sequentially <- function(x, y) {
 
 #' List of `grob` object
 #'
-#' @param ... (`grob`) objects
-#'
+#' @param ... (`grob`) objects.
+#' @returns a `grob_list` object.
 #' @export
 grob_list <- function(...) {
   ret <- list(...)
@@ -125,8 +125,8 @@ grob_list <- function(...) {
 
 #' List of `gg` object
 #'
-#' @param ... (`ggplot`) objects
-#'
+#' @param ... (`ggplot`) objects.
+#' @returns a `gg_list` object.
 #' @export
 gg_list <- function(...) {
   ret <- list(...)
@@ -145,6 +145,7 @@ droplevels.character <- function(x, ...) {
 #' Obtain levels from vector
 #'
 #' @param x (`character`) or (`factor`) object to obtain levels.
+#' @returns `character` with unique values.
 #' @details
 #' For factors, the levels will be returned. For characters, the sorted unique values will be returned.
 #'
@@ -237,7 +238,7 @@ expand_list <- function(lst, split) {
 #' @param x (`numeric`) time.
 #' @param unit (`character`) or (`factor`) time unit.
 #'
-#' @return A `numeric` vector with the time in months.
+#' @returns A `numeric` vector with the time in months.
 #'
 #' @export
 convert_to_month <- function(x, unit) {
@@ -269,7 +270,7 @@ convert_to_month <- function(x, unit) {
 #' @param legend_position (`string`) the position of the legend.
 #' @param text_axis_x_rot (`numeric`) the x axis text rotation angle.
 #'
-#' @return a `theme` object.
+#' @returns a `theme` object.
 #'
 #' @export
 #'
@@ -355,7 +356,7 @@ get_x_vjust <- function(x) {
 
 #' Get Section dividers
 #' @export
-#' @return (`character`) value with section dividers at corresponding section.
+#' @returns (`character`) value with section dividers at corresponding section.
 get_section_div <- function() {
   x <- getOption("chevron.section_div", integer(0))
   if (!test_integerish(x)) {
@@ -373,7 +374,7 @@ get_section_div <- function() {
 #' @details Section dividers are empty lines between sections in tables.
 #' E.g. if 1 is used then for the first row split an empty line is added.
 #' Currently it only works for `aet02`, `cmt01a` and `mht01` template.
-#' @return NULL
+#' @returns invisible `NULL`. Set the `chevron.section_div` option.
 #' @export
 set_section_div <- function(x) {
   assert_integerish(x, min.len = 0L, any.missing = FALSE, lower = 1L)

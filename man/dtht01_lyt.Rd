@@ -29,6 +29,9 @@ dtht01_lyt(
 
 \item{detah_var}{(\code{string}) variable name of death category.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{dtht01} Layout
 }

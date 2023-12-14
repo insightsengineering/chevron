@@ -24,6 +24,9 @@ assert_valid_variable(
 \item{...}{further arguments for \code{assert_valid_var}. Please note that different methods have different arguments
 so if provided make sure the variables to check is of the same class.}
 }
+\value{
+invisible \code{TRUE} or an error message if the criteria are not fulfilled.
+}
 \description{
 Check variables in a data frame are valid character or factor.
 }

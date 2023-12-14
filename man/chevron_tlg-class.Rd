@@ -55,6 +55,15 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{...}{not used}
 }
+\value{
+a \code{chevron_t} class object.
+
+a \code{chevron_l} class object.
+
+a \code{chevron_g} class object.
+
+a \code{chevron_simple} class object.
+}
 \description{
 \code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle table creation
 

@@ -320,7 +320,7 @@ proportion_lyt <- function(lyt, arm_var, methods, strata, conf_level, odds_ratio
 #'
 #' @keywords internal
 #'
-#' @return `PreDataTableLayouts` object.
+#' @returns `PreDataTableLayouts` object.
 ifneeded_split_row <- function(lyt, var, lbl_var) {
   if (is.null(var)) {
     lyt
@@ -340,7 +340,7 @@ ifneeded_split_row <- function(lyt, var, lbl_var) {
 #'
 #' @keywords internal
 #'
-#' @return `rtables` object.
+#' @returns `rtables` object.
 ifneeded_split_col <- function(lyt, var, ...) {
   if (is.null(var)) {
     lyt
@@ -362,7 +362,7 @@ ifneeded_split_col <- function(lyt, var, ...) {
 #'
 #' @export
 #'
-#' @return original `TableTree` or a null report if no observation are found in the table.
+#' @returns original `TableTree` or a null report if no observation are found in the table.
 report_null <- function(tlg, ...) {
   assert_true(is.null(tlg) || rtables::is_rtable(tlg))
 

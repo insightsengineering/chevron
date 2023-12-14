@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param time_since_last_dose (`flag`) should the time to event information be displayed.
 #' @param other_category (`flag`) should the breakdown of the `OTHER` category be displayed.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subjects and fraction of `N`, or absolute numbers when specified.
@@ -83,6 +84,7 @@ dtht01_main <- function(adam_db,
 #' @param other_level (`string`) `"Other"` level in death category.
 #' @param other_var (`string`) variable name of death cause under `"Other"`.
 #' @param dose_death_var (`string`) variable name of the days from last dose.
+#' @returns a `PreDataTableLayouts` object.
 #'
 #' @keywords internal
 #'
@@ -150,7 +152,7 @@ dtht01_lyt <- function(arm_var,
 #' @describeIn dtht01 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 dtht01_pre <- function(adam_db, ...) {
@@ -171,7 +173,7 @@ dtht01_pre <- function(adam_db, ...) {
 #' @describeIn dtht01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 dtht01_post <- function(tlg, prune_0 = TRUE, ...) {

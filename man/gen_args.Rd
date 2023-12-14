@@ -77,6 +77,9 @@ Key columns allow you to group repeat occurrences.}
 
 \item{...}{not used.}
 }
+\value{
+invisible \code{NULL}. This function is for documentation purpose only.
+}
 \description{
 General Argument Name Convention
 }

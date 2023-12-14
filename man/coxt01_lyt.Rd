@@ -15,6 +15,9 @@ coxt01_lyt(variables, col_split, lbl_vars, control, multivar, ...)
 
 \item{...}{Further arguments passed to \code{tern::control_coxreg()}.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{COXT01} Layout
 }

@@ -40,6 +40,13 @@ lbt06
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 The \code{LBT06} table produces the standard laboratory abnormalities by visit and
 baseline status summary.

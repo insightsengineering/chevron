@@ -20,6 +20,9 @@ dmt01_lyt(
 
 \item{summaryvars_lbls}{(\code{character}) labels corresponding to the analyzed variables.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{dmt01} Layout
 }

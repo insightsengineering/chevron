@@ -29,6 +29,9 @@ are used as subtitles.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{egt03} Layout
 }

@@ -3,6 +3,7 @@
 #' @describeIn aet03 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Default Adverse Events by Greatest Intensity table.
@@ -54,7 +55,7 @@ aet03_main <- function(adam_db,
 #' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #' @param intensity_grade (`character`) describing the intensity levels present in the dataset.
-#'
+#' @returns a `PreDataTableLayouts` obje
 #' @keywords internal
 #'
 aet03_lyt <- function(arm_var,
@@ -107,7 +108,7 @@ aet03_lyt <- function(arm_var,
 #' @describeIn aet03 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 aet03_pre <- function(adam_db, ...) {
@@ -127,7 +128,7 @@ aet03_pre <- function(adam_db, ...) {
 #' @describeIn aet03 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 aet03_post <- function(tlg, prune_0 = TRUE, ...) {

@@ -11,6 +11,7 @@
 #' @param method_diff (`string`) the method used to construct the confidence interval for the difference between groups.
 #' @param conf_level_diff (`proportion`) the confidence level of the interval for the difference between groups.
 #' @param grade_groups (`list`) the grade groups to be displayed.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @export
 rmpt06_main <- function(adam_db,
@@ -177,7 +178,7 @@ rmpt06_lyt <- function(arm_var,
 #' @describeIn rmpt06 Preprocessing
 #'
 #' @inheritParams rmpt06_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 rmpt06_pre <- function(adam_db, ...) {
   aeout_rule <- rule(
@@ -202,7 +203,7 @@ rmpt06_pre <- function(adam_db, ...) {
 #' @describeIn rmpt06 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 rmpt06_post <- function(tlg, prune_0 = FALSE, ...) {

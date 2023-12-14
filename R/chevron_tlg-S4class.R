@@ -128,6 +128,7 @@ methods::setValidity("chevron_simple", function(object) {
 #'
 #' @inheritParams gen_args
 #' @param ... not used
+#' @returns a `chevron_t` class object.
 #'
 #' @export
 #'
@@ -157,7 +158,7 @@ chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), a
 #'
 #' @inheritParams gen_args
 #' @param ... not used
-#'
+#' @returns a `chevron_l` class object.
 #' @export
 #'
 #' @examples
@@ -179,9 +180,10 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 #' `chevron_g` constructor
 #'
 #' @rdname chevron_tlg-class
-#' @param ... not used
 #'
 #' @inheritParams gen_args
+#' @param ... not used
+#' @returns a `chevron_g` class object.
 #'
 #' @export
 #'
@@ -207,9 +209,10 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
 #' `chevron_simple` constructor
 #'
 #' @rdname chevron_tlg-class
-#' @param ... not used
 #'
 #' @inheritParams gen_args
+#' @param ... not used
+#' @returns a `chevron_simple` class object.
 #'
 #' @export
 #'

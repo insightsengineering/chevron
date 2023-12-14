@@ -64,7 +64,11 @@ mng01
 \item{...}{passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
 }
 \value{
+the main function returns a \code{gg_list} object.
+
 a list of \code{ggplot} objects.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
 }
 \description{
 Overview of a summary statistics across time and arm for a selected data set.

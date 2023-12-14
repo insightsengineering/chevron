@@ -11,6 +11,9 @@ assert_single_value(x, label = deparse(substitute(x)))
 
 \item{label}{(\code{string}) label of input.}
 }
+\value{
+invisible \code{NULL} or an error message if the criteria are not fulfilled.
+}
 \description{
 Check variable only has one unique value.
 }
