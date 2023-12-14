@@ -81,11 +81,12 @@ a \code{chevron_simple} class object.
 \item{\code{preprocess}}{(\code{function}) returning a pre-processed \code{list} of \code{data.frames} amenable to \code{tlg} creation. Typically
 one of the \verb{*_pre} function from \code{chevron}.}
 
-\item{\code{postprocess}}{(\code{function}) returning a post-processed \code{tlg}.}
+\item{\code{postprocess}}{(\code{function}) returning a post-processed \code{tlg}. Typically one of the \verb{*_post} function from
+\code{chevron}.}
 }}
 
 \note{
-To ensure the correct execution of the workflow additional validation criteria are:
+To ensure the correct execution of the workflow, additional validation criteria are:
 \itemize{
 \item the first argument of the \code{main} function must be \code{adam_db}, the input \code{list} of \code{data.frames} to pre-process. The
 \code{...} argument is mandatory.
