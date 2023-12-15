@@ -5,7 +5,7 @@ globalVariables(c(".", ":="))
 #'
 #' @param df (`data.frame`) containing columns with label attribute.
 #' @param vars (`character`) variable names in `df`.
-#' @param a `character` with replaced placeholders and a `label` attribute.
+#' @returns a `character` with replaced placeholders and a `label` attribute.
 #'
 #' @details
 #' The labels will be returned if the column has `label` attribute, otherwise the column name will be returned.

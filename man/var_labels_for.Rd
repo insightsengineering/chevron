@@ -10,8 +10,9 @@ var_labels_for(df, vars)
 \item{df}{(\code{data.frame}) containing columns with label attribute.}
 
 \item{vars}{(\code{character}) variable names in \code{df}.}
-
-\item{a}{\code{character} with replaced placeholders and a \code{label} attribute.}
+}
+\value{
+a \code{character} with replaced placeholders and a \code{label} attribute.
 }
 \description{
 Retrieve labels for certain variables
