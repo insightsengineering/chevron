@@ -55,7 +55,7 @@ aet03_main <- function(adam_db,
 #' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #' @param intensity_grade (`character`) describing the intensity levels present in the dataset.
-#' @returns a `PreDataTableLayouts` obje
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 aet03_lyt <- function(arm_var,
