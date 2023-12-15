@@ -73,8 +73,8 @@ fstg01_main <- function(adam_db,
   execute_with_args(
     g_forest,
     tbl = result,
-    font_size = 7,
-    ...
+    ...,
+    font_size = 7
   )
 }
 

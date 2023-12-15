@@ -40,7 +40,7 @@ Imports:
     rlistings (>= 0.2.7),
     rtables (>= 0.6.6),
     stringr,
-    tern (>= 0.9.3),
+    tern (>= 0.9.3.9002),
     tibble,
     utils
 Suggests:
