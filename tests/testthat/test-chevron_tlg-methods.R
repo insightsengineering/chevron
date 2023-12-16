@@ -33,7 +33,7 @@ test_that("run uses the argument passed through the ellipsis in priority", {
       aet02,
       syn_data,
       prune_0 = FALSE,
-      another_not_used = "X",
+      another_not_used = iris,
       arm_var = "ARM",
       user_args = user_args,
       verbose = TRUE
