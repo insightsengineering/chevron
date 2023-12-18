@@ -1,7 +1,7 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.4.9019
+Version: 0.2.4.9020
 Date: 2023-12-18
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = c("aut", "cre")),
@@ -59,29 +59,14 @@ Remotes:
     insightsengineering/rlistings@*release,
     insightsengineering/rtables@*release,
     insightsengineering/tern@*release
-Config/Needs/verdepcheck:
-    mllg/checkmate,
-    tidyverse/dplyr,
-    insightsengineering/dunlin,
-    tidyverse/forcats,
-    insightsengineering/formatters,
-    tidyverse/ggplot2,
-    tidyverse/glue,
-    r-lib/lifecycle,
-    tidyverse/magrittr,
-    insightsengineering/nestcolor,
-    tidyverse/purrr,
-    r-lib/rlang,
-    insightsengineering/rlistings,
-    insightsengineering/rtables,
-    tidyverse/stringr,
-    insightsengineering/tern,
-    tidyverse/tibble,
-    yihui/knitr,
-    rstudio/rmarkdown,
-    r-lib/testthat,
-    tidyverse/tidyr,
-    r-lib/vdiffr,
+Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
+    insightsengineering/dunlin, tidyverse/forcats,
+    insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
+    r-lib/lifecycle, tidyverse/magrittr, insightsengineering/nestcolor,
+    tidyverse/purrr, r-lib/rlang, insightsengineering/rlistings,
+    insightsengineering/rtables, tidyverse/stringr,
+    insightsengineering/tern, tidyverse/tibble, yihui/knitr,
+    rstudio/rmarkdown, r-lib/testthat, tidyverse/tidyr, r-lib/vdiffr,
     r-lib/withr
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
