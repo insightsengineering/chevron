@@ -67,6 +67,7 @@ Config/Needs/verdepcheck:
     insightsengineering/formatters,
     tidyverse/ggplot2,
     tidyverse/glue,
+    r-lib/lifecycle,
     tidyverse/magrittr,
     insightsengineering/nestcolor,
     tidyverse/purrr,
