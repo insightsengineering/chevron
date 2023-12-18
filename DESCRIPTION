@@ -48,8 +48,8 @@ Suggests:
     rmarkdown (>= 2.19),
     testthat (>= 3.0.4),
     tidyr (>= 0.8.3),
-    vdiffr,
-    withr
+    vdiffr (>= 1.0.0),
+    withr (>= 2.1.0)
 VignetteBuilder:
     knitr
 Remotes:
