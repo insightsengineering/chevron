@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.4.9013
-Date: 2023-12-04
+Version: 0.2.4.9018
+Date: 2023-12-12
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = c("aut", "cre")),
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
@@ -25,7 +25,7 @@ Depends:
 Imports:
     checkmate (>= 2.0),
     dplyr,
-    dunlin (>= 0.1.6),
+    dunlin (>= 0.1.6.9002),
     forcats (>= 1.0.0),
     formatters (>= 0.5.4),
     ggplot2 (>= 3.4.0),
@@ -124,3 +124,4 @@ Collate:
     'ttet01.R'
     'vst01.R'
     'vst02.R'
+    'zzz.R'
