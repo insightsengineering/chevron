@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.9685960591133" branch-rate="0" lines-covered="3146" lines-valid="3248" branches-covered="0" branches-valid="0" complexity="0" version="3.6.4" timestamp="2023-12-18 10:57:42.798286">
+<coverage line-rate="0.9685960591133" branch-rate="0" lines-covered="3146" lines-valid="3248" branches-covered="0" branches-valid="0" complexity="0" version="3.6.4" timestamp="2023-12-18 12:24:52.784181">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
@@ -4308,6 +4308,7 @@
             </method>
             <method name="lbt06_lyt" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
+                <line number="83" hits="2" branch="false"/>
                 <line number="84" hits="2" branch="false"/>
                 <line number="85" hits="2" branch="false"/>
                 <line number="86" hits="2" branch="false"/>
@@ -4333,11 +4334,11 @@
                 <line number="106" hits="2" branch="false"/>
                 <line number="107" hits="2" branch="false"/>
                 <line number="108" hits="2" branch="false"/>
-                <line number="109" hits="2" branch="false"/>
               </lines>
             </method>
             <method name="lbt06_pre" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
+                <line number="118" hits="3" branch="false"/>
                 <line number="119" hits="3" branch="false"/>
                 <line number="120" hits="3" branch="false"/>
                 <line number="121" hits="3" branch="false"/>
@@ -4349,15 +4350,14 @@
                 <line number="127" hits="3" branch="false"/>
                 <line number="128" hits="3" branch="false"/>
                 <line number="129" hits="3" branch="false"/>
-                <line number="130" hits="3" branch="false"/>
-                <line number="132" hits="2" branch="false"/>
+                <line number="131" hits="2" branch="false"/>
               </lines>
             </method>
             <method name="lbt06_post" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
+                <line number="141" hits="0" branch="false"/>
                 <line number="142" hits="0" branch="false"/>
-                <line number="143" hits="0" branch="false"/>
-                <line number="145" hits="0" branch="false"/>
+                <line number="144" hits="0" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -4390,6 +4390,7 @@
             <line number="53" hits="2" branch="false"/>
             <line number="55" hits="2" branch="false"/>
             <line number="57" hits="2" branch="false"/>
+            <line number="83" hits="2" branch="false"/>
             <line number="84" hits="2" branch="false"/>
             <line number="85" hits="2" branch="false"/>
             <line number="86" hits="2" branch="false"/>
@@ -4415,7 +4416,7 @@
             <line number="106" hits="2" branch="false"/>
             <line number="107" hits="2" branch="false"/>
             <line number="108" hits="2" branch="false"/>
-            <line number="109" hits="2" branch="false"/>
+            <line number="118" hits="3" branch="false"/>
             <line number="119" hits="3" branch="false"/>
             <line number="120" hits="3" branch="false"/>
             <line number="121" hits="3" branch="false"/>
@@ -4427,11 +4428,10 @@
             <line number="127" hits="3" branch="false"/>
             <line number="128" hits="3" branch="false"/>
             <line number="129" hits="3" branch="false"/>
-            <line number="130" hits="3" branch="false"/>
-            <line number="132" hits="2" branch="false"/>
+            <line number="131" hits="2" branch="false"/>
+            <line number="141" hits="0" branch="false"/>
             <line number="142" hits="0" branch="false"/>
-            <line number="143" hits="0" branch="false"/>
-            <line number="145" hits="0" branch="false"/>
+            <line number="144" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="lbt07.R" filename="R/lbt07.R" line-rate="1" branch-rate="0" complexity="0">
