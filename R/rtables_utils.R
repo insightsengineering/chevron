@@ -440,7 +440,7 @@ split_cols_by_with_overall <- function(lyt, col_var, lbl_overall, ref_group = NU
 #' @param visitvar (`string`) name of the visit variable.
 #' @param skip Named (`character`) indicating the pairs to skip in analyze.
 #' @param .stats (`character`) See `tern::analyze_variables`.
-#' @param .label (`character`) See `tern::analyze_variables`.
+#' @param .labels (`character`) See `tern::analyze_variables`.
 #' @param .indent_mods (`integer`) See `tern::analyze_variables`.
 #' @param .N_col (`int`) See `tern::analyze_variables`.
 #' @param .N_row (`int`) See `tern::analyze_variables`.

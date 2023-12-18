@@ -65,7 +65,6 @@ lbt06_main <- function(adam_db,
 #' @param lbl_visit (`string`) text label of the `AVISIT` variable.
 #' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
 #' @param lbl_bnrind (`string`) text label of the `BNRIND` variable.
-#' @param param (`string`) the variable for parameter code.
 #' @param anrind_var (`string`) the variable for analysis reference range indicator.
 #' @param bnrind_var (`string`) the variable for baseline reference range indicator.
 #'
