@@ -31,16 +31,22 @@ setMethod(
   f = "run",
   signature = "chevron_tlg",
   definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) {
-    assert_list(adam_db, types = "list")
+    assert_list(adam_db, types = "data.frame", names = "unique")
     assert_flag(auto_pre)
     assert_flag(verbose)
     assert_list(user_args, names = "unique")
+    args <- list(...)
+    assert_list(args, names = "unique", .var.name = "...")
+    additional_names <- setdiff(names(user_args), names(args))
+    user_args <- modifyList(user_args, args, keep.null = TRUE)
+
     if (verbose) {
       cl <- match.call()
       print_args(
-        cl,
-        user_args,
-        args_ls(object, omit = c("...", "adam_db", "tlg")), auto_pre
+        run_call = cl,
+        additional_args = user_args[additional_names],
+        args = args_ls(object, omit = c("...", "adam_db", "tlg")),
+        auto_pre = auto_pre
       )
     }
     proc_data <- if (auto_pre) {
@@ -61,12 +67,13 @@ print_args <- function(run_call, additional_args, args, auto_pre = TRUE) {
   assert_class(run_call, "call")
   assert_list(args)
   assert_flag(auto_pre)
+
   run_call[[1]] <- NULL
   run_call <- as.list(run_call)
+
+  run_call[c("auto_pre", "verbose", "user_args")] <- NULL
   if (!is.null(additional_args)) {
-    run_call <- c(run_call[c("object", "adam_db")], additional_args)
-  } else {
-    run_call[c("auto_pre", "verbose")] <- NULL
+    run_call <- c(run_call, additional_args)
   }
   nms_args <- unique(unlist(lapply(args, names)))
   nms_call <- names(run_call)
