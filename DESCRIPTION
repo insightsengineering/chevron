@@ -23,35 +23,51 @@ BugReports: https://github.com/insightsengineering/chevron/issues
 Depends:
     R (>= 4.0.0)
 Imports:
-    checkmate (>= 2.0),
-    dplyr,
+    checkmate (>= 2.1.0),
+    dplyr (>= 1.1.0),
     dunlin (>= 0.1.7),
     forcats (>= 1.0.0),
     formatters (>= 0.5.5),
     ggplot2 (>= 3.4.0),
-    glue,
+    glue (>= 1.0.0),
     grid,
-    lifecycle,
-    magrittr,
+    lifecycle (>= 0.2.0),
+    magrittr (>= 1.5),
     methods,
     nestcolor (>= 0.1.1),
-    purrr,
-    rlang,
+    purrr (>= 0.3.0),
+    rlang (>= 1.0.0),
     rlistings (>= 0.2.6),
     rtables (>= 0.6.5),
-    stringr,
+    stringr (>= 1.4.1),
     tern (>= 0.9.3),
-    tibble,
+    tibble (>= 2.0.0),
     utils
 Suggests:
-    knitr,
-    rmarkdown,
-    testthat (>= 3.0.0),
-    tidyr,
-    vdiffr,
-    withr
+    knitr (>= 1.42),
+    rmarkdown (>= 2.19),
+    testthat (>= 3.0.4),
+    tidyr (>= 0.8.3),
+    vdiffr (>= 1.0.0),
+    withr (>= 2.1.0)
 VignetteBuilder:
     knitr
+Remotes:
+    insightsengineering/dunlin@*release,
+    insightsengineering/formatters@*release,
+    insightsengineering/nestcolor@*release,
+    insightsengineering/rlistings@*release,
+    insightsengineering/rtables@*release,
+    insightsengineering/tern@*release
+Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
+    insightsengineering/dunlin, tidyverse/forcats,
+    insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
+    r-lib/lifecycle, tidyverse/magrittr, insightsengineering/nestcolor,
+    tidyverse/purrr, r-lib/rlang, insightsengineering/rlistings,
+    insightsengineering/rtables, tidyverse/stringr,
+    insightsengineering/tern, tidyverse/tibble, yihui/knitr,
+    rstudio/rmarkdown, r-lib/testthat, tidyverse/tidyr, r-lib/vdiffr,
+    r-lib/withr
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
