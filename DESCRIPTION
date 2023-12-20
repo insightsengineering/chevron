@@ -38,7 +38,7 @@ Imports:
     purrr (>= 0.3.0),
     rlang (>= 1.0.0),
     rlistings (>= 0.2.6),
-    rtables (>= 0.6.5),
+    rtables (>= 0.6.6),
     stringr (>= 1.4.1),
     tern (>= 0.9.3),
     tibble (>= 2.0.0),
