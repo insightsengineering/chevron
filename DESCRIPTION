@@ -52,13 +52,6 @@ Suggests:
     withr (>= 2.1.0)
 VignetteBuilder:
     knitr
-Remotes:
-    insightsengineering/dunlin@*release,
-    insightsengineering/formatters@*release,
-    insightsengineering/nestcolor@*release,
-    insightsengineering/rlistings@*release,
-    insightsengineering/rtables@*release,
-    insightsengineering/tern@*release
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
