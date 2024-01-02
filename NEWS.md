@@ -1,12 +1,14 @@
-# chevron 0.2.4.9018
+# chevron 0.2.4.9021
 
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.
 * Add a `chevron_simple` class only contain main function.
 * Remove `details` argument in `script_funs`, add `name` argument.
+* In the `run` method, the argument passed through `...` are combined with the one passed through `user_arg`. `...` arguments have priority.
 * `AET05` preprocessing now filters on `"(AE|CQ|SMQ)TTE"` rather than `"AETTE"`.
 * Rename the dataset `ADAETTE` in `syn_data` object to `ADSAFTTE`.
 * Use uppercase variable names in `AET05` and `AET05_ALL`.
 * The string replacing `NA` values in the tables is now controlled by the `tern_default_na_str` option set during package load.
+* Specified minimal version of package dependencies.
 
 # chevron 0.2.4
 
@@ -67,7 +69,7 @@ switched.
 
 # chevron 0.2.0
 
-* Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument. 
+* Remove the usage of `dm` class of object. The chevron functions now expect list of `data.frame` as `adam_db` argument.
 * Remove variants in template names.
 * Remove deprecated `getter` functions `get_main`, `get_preprocess` and `get_postprocess`.
 * Simplify `pre` function and add more data checks in `main` function.
