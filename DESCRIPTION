@@ -14,11 +14,11 @@ Authors@R: c(
     person("Tian", "Fang", , "tian.fang@roche.com", role = "ctb"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
-Description: Provide standard table, listings, and graphs (TLG) library used in
+Description: Provide standard tables, listings, and graphs (TLG) libraries used in
     clinical trials. This package implements a structure to reformat the data with
     'dunlin', create reporting tables using 'rtables' and 'tern' with standardized
     input arguments to enable quick generation of standard outputs.
-    In addition, it also provides comprehensive data checks, script generation functionality.
+    In addition, it also provides comprehensive data checks and script generation functionality.
 License: Apache License 2.0
 URL: https://insightsengineering.github.io/chevron/,
     https://github.com/insightsengineering/chevron/
