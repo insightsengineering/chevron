@@ -6,7 +6,7 @@
 \alias{chevron-package}
 \title{\code{chevron} package}
 \description{
-Provide standard table, listings, and graphs (TLG) library used in clinical trials. This package implements a structure to reformat the data with 'dunlin', create reporting tables using 'rtables' and 'tern' with standardized input arguments to enable quick generation of standard outputs. In addition, it also provides comprehensive data checks, script generation functionality.
+Provide standard tables, listings, and graphs (TLG) libraries used in clinical trials. This package implements a structure to reformat the data with 'dunlin', create reporting tables using 'rtables' and 'tern' with standardized input arguments to enable quick generation of standard outputs. In addition, it also provides comprehensive data checks and script generation functionality.
 }
 \seealso{
 Useful links:
