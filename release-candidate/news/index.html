@@ -40,6 +40,7 @@
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
@@ -90,7 +91,7 @@
 <li>In the <code>run</code> method, the argument passed through <code>...</code> are combined with the one passed through <code>user_arg</code>. <code>...</code> arguments have priority.</li>
 <li>
 <code>AET05</code> preprocessing now filters on <code>"(AE|CQ|SMQ)TTE"</code> rather than <code>"AETTE"</code>.</li>
-<li>Rename the dataset <code>ADAETTE</code> in <code>syn_data</code> object to <code>ADSAFTTE</code>.</li>
+<li>Rename the dataset <code>ADAETTE</code> in <code>syn_data</code> object to <code>ADSAFTTE</code>. Trim the dataset to remove unused variables.</li>
 <li>Use uppercase variable names in <code>AET05</code> and <code>AET05_ALL</code>.</li>
 <li>The string replacing <code>NA</code> values in the tables is now controlled by the <code>tern_default_na_str</code> option set during package load.</li>
 <li>Specified minimal version of package dependencies.</li>
