@@ -8,9 +8,9 @@
 #' @keywords internal
 #'
 #' @examples
-#' \dontrun{
+#' check_all_colnames(mtcars, c("mpg", "cyl"))
+#' check_all_colnames(mtcars, c("mpg", "x"))
 #' check_all_colnames(mtcars, c("x", "y"))
-#' }
 check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
   assert_data_frame(df)
   assert_character(x, null.ok = null_ok)
@@ -35,9 +35,9 @@ check_all_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
 #' @keywords internal
 #'
 #' @examples
-#' \dontrun{
-#' check_all_colnames(mtcars, c("x", "y"))
-#' }
+#' check_one_colnames(mtcars, c("mpg"))
+#' check_one_colnames(mtcars, c("mpg", "x"))
+#' check_one_colnames(mtcars, c("x", "y"))
 check_one_colnames <- function(df, x, null_ok = TRUE, qualifier = NULL) {
   assert_data_frame(df)
   assert_character(x, null.ok = null_ok)

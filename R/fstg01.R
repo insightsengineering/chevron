@@ -60,7 +60,7 @@ fstg01_main <- function(adam_db,
     arm = arm_var,
     rsp = rsp_var,
     subgroups = subgroups,
-    strata_var = strata_var
+    strat = strata_var
   )
 
   df <- execute_with_args(extract_rsp_subgroups,

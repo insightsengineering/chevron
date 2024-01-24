@@ -19,8 +19,8 @@ check_one_colnames(df, x, null_ok = TRUE, qualifier = NULL)
 Check that at least one name is among column names
 }
 \examples{
-\dontrun{
-check_all_colnames(mtcars, c("x", "y"))
-}
+check_one_colnames(mtcars, c("mpg"))
+check_one_colnames(mtcars, c("mpg", "x"))
+check_one_colnames(mtcars, c("x", "y"))
 }
 \keyword{internal}

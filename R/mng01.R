@@ -119,7 +119,7 @@ mng01_main <- function(adam_db,
   ret <- lapply(
     data_ls,
     tern::g_lineplot,
-    alt_count = adam_db[["adsl"]],
+    alt_counts_df = adam_db[["adsl"]],
     variables = variables,
     mid = center_fun,
     interval = interval_fun,
