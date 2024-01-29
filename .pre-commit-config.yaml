@@ -15,24 +15,26 @@ repos:
       - id: roxygenize
         name: Regenerate package documentation
         additional_dependencies:
-          - purrr
-          - vctrs
           - checkmate
           - dplyr
-          - insightsengineering/dunlin
+          - dunlin
           - forcats
           - formatters
           - ggplot2
+          - glue
+          - grid
+          - lifecycle
           - magrittr
           - methods
-          - insightsengineering/nestcolor
+          - nestcolor
+          - purrr
           - rlang
-          - insightsengineering/rlistings
+          - rlistings
           - rtables
-          - insightsengineering/scda
-          - insightsengineering/scda.2022
-          - insightsengineering/tern
+          - stringr
+          - tern
           - tibble
+          - utils
       - id: spell-check
         name: Check spelling with `spelling`
         exclude: >
