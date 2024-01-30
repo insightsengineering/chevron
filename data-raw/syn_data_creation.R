@@ -240,6 +240,9 @@ syn_test_data <- function() {
       ret
     }
   )
+
+  sd$adrs$AVALC <- rep(c("CR", "PR", "SD"), length.out = nrow(sd$adrs))
+
   sd
 }
 
