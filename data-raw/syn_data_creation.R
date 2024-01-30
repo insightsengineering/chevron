@@ -229,6 +229,17 @@ syn_test_data <- function() {
   # useful for aet05 and aet05_all
   names(sd)[names(sd) == "adaette"] <- "adsaftte"
 
+  # subset patients to only keep 10 pts per arm.
+  kept_subj <- vapply(split(sd$adsl$USUBJID, sd$adsl$TRT01P), function(x) x[seq_len(15)], FUN.VALUE = rep("", 15L))
+  kept_subj <- as.vector(kept_subj)
+  sd <- lapply(
+    sd,
+    function(x) {
+      ret <- x[x$USUBJID %in% kept_subj, ]
+      ret$USUBJID <- droplevels(ret$USUBJID)
+      ret
+    }
+  )
   sd
 }
 

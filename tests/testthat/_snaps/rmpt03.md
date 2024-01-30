@@ -3,20 +3,18 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                        F                            M             
-                                              Patients     Person time     Patients     Person time
-        Age Group                             (N=231)        (N=231)       (N=169)        (N=169)  
-        ———————————————————————————————————————————————————————————————————————————————————————————
-        <65                                 231 (100.0%)      27364      168 (99.4%)       22124   
-        >=65                                  0 (0.0%)          0          1 (0.6%)         212    
-        Total patients number/person time   231 (100.0%)      27364      169 (100.0%)      22336   
-      \s\n                                             All Genders        
-                                              Patients     Person time
-        Age Group                             (N=400)        (N=400)  
-        ——————————————————————————————————————————————————————————————
-        <65                                 399 (99.8%)       49488   
-        >=65                                  1 (0.2%)         212    
-        Total patients number/person time   400 (100.0%)      49700   
+                                                        F                           M               All Genders
+                                             Patients     Person time    Patients     Person time    Patients  
+        Age Group                             (N=30)        (N=30)        (N=15)        (N=15)        (N=45)   
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        <65                                 30 (100.0%)      4088       15 (100.0%)      1825       45 (100.0%)
+        Total patients number/person time   30 (100.0%)      4088       15 (100.0%)      1825       45 (100.0%)
+      \s\n                                      All Genders
+                                            Person time
+        Age Group                             (N=45)   
+        ———————————————————————————————————————————————
+        <65                                    5913    
+        Total patients number/person time      5913    
 
 # rmpt03 can handle NA values
 
@@ -26,17 +24,15 @@
                                                                                                 All   
                                                       F                        M              Genders 
                                             Patients   Person time   Patients   Person time   Patients
-        Age Group                           (N=231)      (N=231)     (N=169)      (N=169)     (N=400) 
+        Age Group                            (N=30)      (N=30)       (N=15)      (N=15)       (N=45) 
         ——————————————————————————————————————————————————————————————————————————————————————————————
         <65                                 0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
-        >=65                                0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Total patients number/person time   0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
       \s\n                                      All Genders
                                             Person time
-        Age Group                             (N=400)  
+        Age Group                             (N=45)   
         ———————————————————————————————————————————————
         <65                                      0     
-        >=65                                     0     
         Total patients number/person time        0     
 
 ---
@@ -47,33 +43,27 @@
                                                                                                 All   
                                                       F                        M              Genders 
                                             Patients   Person time   Patients   Person time   Patients
-        Age Group                           (N=231)      (N=231)     (N=169)      (N=169)     (N=400) 
+        Age Group                            (N=30)      (N=30)       (N=15)      (N=15)       (N=45) 
         ——————————————————————————————————————————————————————————————————————————————————————————————
         <65                                 0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
-        >=65                                0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Total patients number/person time   0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Drug A                                                                                        
         <65                                 0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
-        >=65                                0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Total patients number/person time   0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Drug B                                                                                        
         <65                                 0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
-        >=65                                0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
         Total patients number/person time   0 (0.0%)        0        0 (0.0%)        0        0 (0.0%)
       \s\n                                      All Genders
                                             Person time
-        Age Group                             (N=400)  
+        Age Group                             (N=45)   
         ———————————————————————————————————————————————
         <65                                      0     
-        >=65                                     0     
         Total patients number/person time        0     
         Drug A                                         
         <65                                      0     
-        >=65                                     0     
         Total patients number/person time        0     
         Drug B                                         
         <65                                      0     
-        >=65                                     0     
         Total patients number/person time        0     
 
 # rmpt03 can handle some NA values
@@ -81,54 +71,48 @@
     Code
       cat(export_as_txt(res1, lpp = 100))
     Output
-                                                        F                          M               All Genders
-                                             Patients     Person time    Patients    Person time    Patients  
-        Age Group                             (N=231)       (N=231)      (N=169)       (N=169)       (N=400)  
-        ——————————————————————————————————————————————————————————————————————————————————————————————————————
-        <65                                 124 (53.7%)      15000      80 (47.3%)      10560      204 (51.0%)
-        >=65                                 0 (0.0%)          0         0 (0.0%)         0         0 (0.0%)  
-        Total patients number/person time   124 (53.7%)      15000      80 (47.3%)      10560      204 (51.0%)
+                                                                                                    All    
+                                                       F                          M               Genders  
+                                             Patients    Person time   Patients    Person time    Patients 
+        Age Group                             (N=30)       (N=30)       (N=15)       (N=15)        (N=45)  
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        <65                                 18 (60.0%)      2034       7 (46.7%)       919       25 (55.6%)
+        Total patients number/person time   18 (60.0%)      2034       7 (46.7%)       919       25 (55.6%)
       \s\n                                      All Genders
                                             Person time
-        Age Group                             (N=400)  
+        Age Group                             (N=45)   
         ———————————————————————————————————————————————
-        <65                                    25560   
-        >=65                                     0     
-        Total patients number/person time      25560   
+        <65                                    2953    
+        Total patients number/person time      2953    
 
 ---
 
     Code
       cat(export_as_txt(res2, lpp = 100))
     Output
-                                                        F                          M               All Genders
-                                             Patients     Person time    Patients    Person time    Patients  
-        Age Group                             (N=231)       (N=231)      (N=169)       (N=169)       (N=400)  
-        ——————————————————————————————————————————————————————————————————————————————————————————————————————
-        <65                                 124 (53.7%)      15000      80 (47.3%)      10560      204 (51.0%)
-        >=65                                 0 (0.0%)          0         0 (0.0%)         0         0 (0.0%)  
-        Total patients number/person time   124 (53.7%)      15000      80 (47.3%)      10560      204 (51.0%)
-        Drug A                                                                                                
-        <65                                 73 (31.6%)       9605       38 (22.5%)      4988       111 (27.8%)
-        >=65                                 0 (0.0%)          0         0 (0.0%)         0         0 (0.0%)  
-        Total patients number/person time   73 (31.6%)       9605       38 (22.5%)      4988       111 (27.8%)
-        Drug B                                                                                                
-        <65                                 51 (22.1%)       5395       42 (24.9%)      5572       93 (23.2%) 
-        >=65                                 0 (0.0%)          0         0 (0.0%)         0         0 (0.0%)  
-        Total patients number/person time   51 (22.1%)       5395       42 (24.9%)      5572       93 (23.2%) 
+                                                                                                    All    
+                                                       F                          M               Genders  
+                                             Patients    Person time   Patients    Person time    Patients 
+        Age Group                             (N=30)       (N=30)       (N=15)       (N=15)        (N=45)  
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        <65                                 18 (60.0%)      2034       7 (46.7%)       919       25 (55.6%)
+        Total patients number/person time   18 (60.0%)      2034       7 (46.7%)       919       25 (55.6%)
+        Drug A                                                                                             
+        <65                                 11 (36.7%)      1329       4 (26.7%)       592       15 (33.3%)
+        Total patients number/person time   11 (36.7%)      1329       4 (26.7%)       592       15 (33.3%)
+        Drug B                                                                                             
+        <65                                 7 (23.3%)        705       3 (20.0%)       327       10 (22.2%)
+        Total patients number/person time   7 (23.3%)        705       3 (20.0%)       327       10 (22.2%)
       \s\n                                      All Genders
                                             Person time
-        Age Group                             (N=400)  
+        Age Group                             (N=45)   
         ———————————————————————————————————————————————
-        <65                                    25560   
-        >=65                                     0     
-        Total patients number/person time      25560   
+        <65                                    2953    
+        Total patients number/person time      2953    
         Drug A                                         
-        <65                                    14593   
-        >=65                                     0     
-        Total patients number/person time      14593   
+        <65                                    1921    
+        Total patients number/person time      1921    
         Drug B                                         
-        <65                                    10967   
-        >=65                                     0     
-        Total patients number/person time      10967   
+        <65                                    1032    
+        Total patients number/person time      1032    
 
