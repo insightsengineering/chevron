@@ -172,7 +172,7 @@
           Difference in Response rate (%)              6.7                            
             95% CI (Wald, with correction)        (-12.6, 26.0)                       
           p-value (Fisher's Exact Test)               1.0000                          
-        Odds Ratio (95% CI)                  61038244.88 (0.00 - Inf)                 
+        Odds Ratio (95% CI)                  61038245.08 (0.00 - Inf)                 
         Complete Response (CR)                     15 (100.0%)            11 (73.3%)  
           95% CI (Wald, with correction)         (96.67, 100.00)        (47.62, 99.05)
         Partial Response (PR)                        0 (0.0%)             3 (20.0%)   
@@ -188,7 +188,7 @@
           Difference in Response rate (%)              6.7           
             95% CI (Wald, with correction)        (-12.6, 26.0)      
           p-value (Fisher's Exact Test)               1.0000         
-        Odds Ratio (95% CI)                  61038244.88 (0.00 - Inf)
+        Odds Ratio (95% CI)                  61038245.08 (0.00 - Inf)
         Complete Response (CR)                      14 (93.3%)       
           95% CI (Wald, with correction)         (77.38, 100.00)     
         Partial Response (PR)                        1 (6.7%)        
@@ -210,12 +210,12 @@
           Difference in Response rate (%)                    6.7                            
             95% CI (Wald, with correction)              (-12.6, 26.0)                       
           p-value (Fisher's Exact Test)                     1.0000                          
-        Odds Ratio (95% CI)                        61038244.88 (0.00 - Inf)                 
+        Odds Ratio (95% CI)                        61038245.08 (0.00 - Inf)                 
         Stratified Analysis                                                                 
           Difference in Response rate (%)                    7.1                            
             95% CI (CMH, without correction)             (-6.0, 20.1)                       
           p-value (Cochran-Mantel-Haenszel Test)            0.2918                          
-        Odds Ratio (95% CI)                        61038244.88 (0.00 - Inf)                 
+        Odds Ratio (95% CI)                        61038245.08 (0.00 - Inf)                 
         Complete Response (CR)                           15 (100.0%)            11 (73.3%)  
           95% CI (Wald, with correction)               (96.67, 100.00)        (47.62, 99.05)
         Partial Response (PR)                              0 (0.0%)             3 (20.0%)   
@@ -231,12 +231,12 @@
           Difference in Response rate (%)                    6.7           
             95% CI (Wald, with correction)              (-12.6, 26.0)      
           p-value (Fisher's Exact Test)                     1.0000         
-        Odds Ratio (95% CI)                        61038244.88 (0.00 - Inf)
+        Odds Ratio (95% CI)                        61038245.08 (0.00 - Inf)
         Stratified Analysis                                                
           Difference in Response rate (%)                    4.6           
             95% CI (CMH, without correction)             (-3.9, 13.2)      
           p-value (Cochran-Mantel-Haenszel Test)            0.5050         
-        Odds Ratio (95% CI)                        61038244.88 (0.00 - Inf)
+        Odds Ratio (95% CI)                        61038245.08 (0.00 - Inf)
         Complete Response (CR)                            14 (93.3%)       
           95% CI (Wald, with correction)               (77.38, 100.00)     
         Partial Response (PR)                              1 (6.7%)        
