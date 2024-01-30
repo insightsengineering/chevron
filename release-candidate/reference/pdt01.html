@@ -44,6 +44,7 @@ medication name sorted by frequencies."><!-- mathjax --><script src="https://cdn
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
@@ -196,37 +197,21 @@ as <code>"DVSEQ"</code>.</p></li>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">pdt01</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Category                                                              A: Drug X    B: Placebo   C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Description                                                          (N=134)      (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ——————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one major protocol deviation   22 (16.4%)   23 (17.2%)     13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of major protocol deviations                                 40           42             21      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   EXCLUSION CRITERIA                                                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Active or untreated or other excluded cns metastases                 5 (3.7%)     3 (2.2%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Pregnancy criteria                                                   2 (1.5%)     4 (3.0%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     History of other malignancies within the last 5 years                3 (2.2%)     2 (1.5%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Uncontrolled concurrent condition                                    3 (2.2%)     1 (0.7%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Other exclusion criteria                                                0            0           3 (2.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Received prior prohibited therapy or medication                         0         2 (1.5%)       1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   INCLUSION CRITERIA                                                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     No signed ICF at study entry                                         6 (4.5%)     4 (3.0%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Ineligible cancer type or current cancer stage                       6 (4.5%)     1 (0.7%)       1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Inclusion lab values outside allowed limits                             0         3 (2.2%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Does not meet prior therapy requirements                             1 (0.7%)        0              0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Inclusion-related test not done/out of window                           0            0           1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   MEDICATION                                                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Significant deviation from planned dose                              3 (2.2%)     1 (0.7%)       2 (1.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Received incorrect study medication                                  1 (0.7%)     2 (1.5%)       1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Discontinued study drug for unspecified reason                       1 (0.7%)     1 (0.7%)       1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Dose missed or significantly out of window                           2 (1.5%)        0           1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Received prohibited concomitant medication                              0         2 (1.5%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   PROCEDURAL                                                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Eligibility-related test not done/out of window                      1 (0.7%)     6 (4.5%)       1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Omission of screening tumor assessment                                  0         4 (3.0%)       3 (2.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Missed assessment affecting safety/study outcomes                    1 (0.7%)     2 (1.5%)       2 (1.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Failure to sign updated ICF within two visits                        2 (1.5%)     1 (0.7%)       1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Missed 2 or more efficacy assessments                                2 (1.5%)        0           1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Omission of complete lab panel required by protocol                     0         1 (0.7%)       1 (0.8%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Category                                                              A: Drug X   B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Description                                                          (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one major protocol deviation   3 (20.0%)   3 (20.0%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of major protocol deviations                                 3           4              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   EXCLUSION CRITERIA                                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Active or untreated or other excluded cns metastases                    0        1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Pregnancy criteria                                                      0        1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   INCLUSION CRITERIA                                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Ineligible cancer type or current cancer stage                      2 (13.3%)       0              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   MEDICATION                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Received prohibited concomitant medication                              0        1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PROCEDURAL                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Eligibility-related test not done/out of window                         0        1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Failure to sign updated ICF within two visits                       1 (6.7%)        0              0       </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

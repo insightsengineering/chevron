@@ -42,6 +42,7 @@ number of subjects and the total number of treatments by medication name sorted 
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
@@ -205,20 +206,20 @@ as well as <code>"CMSEQ"</code>.</p></li>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">cmt02_pt</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                           A: Drug X    B: Placebo    C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Other Treatment                                          (N=134)       (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of treatments                                 609           622            703      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname A_1/3                                          54 (40.3%)    49 (36.6%)      69 (52.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname A_2/3                                          53 (39.6%)    50 (37.3%)      56 (42.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                          A: Drug X    B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Other Treatment                                          (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one treatment   13 (86.7%)   14 (93.3%)     15 (100%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of treatments                                 58           59             99      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_3/4                                          8 (53.3%)    6 (40.0%)      8 (53.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname A_2/3                                          5 (33.3%)    6 (40.0%)      7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname B_4/4                                          4 (26.7%)    5 (33.3%)      8 (53.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname A_1/3                                          4 (26.7%)    3 (20.0%)      8 (53.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

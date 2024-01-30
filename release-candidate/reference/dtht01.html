@@ -42,6 +42,7 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
@@ -183,46 +184,43 @@ OTHER category and/or post-study reporting of death."><!-- mathjax --><script sr
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                            A: Drug X    B: Placebo   C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                             (N=134)      (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of deaths   25 (18.7%)   23 (17.2%)     22 (16.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Primary Cause of Death                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     n                          25           23             22      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Adverse Event          9 (36.0%)    7 (30.4%)      10 (45.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Progressive Disease    8 (32.0%)    6 (26.1%)      6 (27.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Other                  8 (32.0%)    10 (43.5%)     6 (27.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            A: Drug X   B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of deaths   2 (13.3%)   4 (26.7%)      3 (20.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Primary Cause of Death                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     n                          2           4              3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Adverse Event          1 (50.0%)   2 (50.0%)      1 (33.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Progressive Disease    1 (50.0%)       0          2 (66.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Other                      0       2 (50.0%)          0       </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">dtht01</span>, <span class="va">syn_data</span>, other_category <span class="op">=</span> <span class="cn">TRUE</span>, time_since_last_dose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               A: Drug X    B: Placebo   C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                (N=134)      (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ————————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of deaths                                      25 (18.7%)   23 (17.2%)     22 (16.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Primary Cause of Death                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     n                                                             25           23             22      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Adverse Event                                             9 (36.0%)    7 (30.4%)      10 (45.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Progressive Disease                                       8 (32.0%)    6 (26.1%)      6 (27.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Other                                                     8 (32.0%)    10 (43.5%)     6 (27.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LOST TO FOLLOW UP                                        2 (8.3%)     2 (8.3%)       2 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       MISSING                                                  2 (8.3%)    3 (12.5%)       2 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Post-study reporting of death                            1 (4.2%)     2 (8.3%)       1 (4.2%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       SUICIDE                                                  2 (8.3%)     2 (8.3%)       1 (4.2%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       UNKNOWN                                                  1 (4.2%)     1 (4.2%)          0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Days from last drug administration                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     n                                                             25           23             22      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;=30                                                      14 (56.0%)   11 (47.8%)     14 (63.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &gt;30                                                       11 (44.0%)   12 (52.2%)     8 (36.4%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Primary cause by days from last study drug administration                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;=30                                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                                                           14           11             14      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Adverse Event                                           4 (28.6%)    2 (18.2%)      6 (42.9%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Progressive Disease                                     6 (42.9%)    3 (27.3%)      4 (28.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Other                                                   4 (28.6%)    6 (54.5%)      4 (28.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &gt;30                                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                                                           11           12             8       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Adverse Event                                           5 (45.5%)    5 (41.7%)      4 (50.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Progressive Disease                                     2 (18.2%)    3 (25.0%)      2 (25.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Other                                                   4 (36.4%)    4 (33.3%)      2 (25.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               A: Drug X   B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of deaths                                      2 (13.3%)   4 (26.7%)      3 (20.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Primary Cause of Death                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     n                                                             2           4              3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Adverse Event                                             1 (50.0%)   2 (50.0%)      1 (33.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Progressive Disease                                       1 (50.0%)       0          2 (66.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Other                                                         0       2 (50.0%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       LOST TO FOLLOW UP                                           0        1 (50%)           0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       SUICIDE                                                     0        1 (50%)           0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Days from last drug administration                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     n                                                             2           4              3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;=30                                                      2 (100%)    1 (25.0%)      2 (66.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &gt;30                                                           0       3 (75.0%)      1 (33.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Primary cause by days from last study drug administration                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;=30                                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                                                           2           1              2       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Adverse Event                                           1 (50.0%)       0          1 (50.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Progressive Disease                                     1 (50.0%)       0          1 (50.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Other                                                       0        1 (100%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &gt;30                                                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                                                           0           3              1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Adverse Event                                               0       2 (66.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Progressive Disease                                         0           0           1 (100%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Other                                                       0       1 (33.3%)          0       </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

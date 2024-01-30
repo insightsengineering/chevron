@@ -42,6 +42,7 @@ considering all occurrences."><!-- mathjax --><script src="https://cdnjs.cloudfl
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
@@ -136,24 +137,24 @@ considering all occurrences.</p>
 <span class="r-in"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AETOT1"</span> <span class="op">|</span> <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"AEREPTTE"</span>, <span class="st">"adsaftte"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">aet05_all</span>, <span class="va">proc_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                   A: Drug X         B: Placebo       C: Combination </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    (N=134)           (N=134)            (N=132)     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ——————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Number of occurrences of any adverse event                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total patient-years at risk                     337.9             331.8              341.6      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Number of adverse events observed                343               380                397       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     AE rate per 100 patient-years                  101.51             114.52             116.22     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                     (90.77, 112.26)   (103.00, 126.03)   (104.79, 127.66)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                  A: Drug X        B: Placebo      C: Combination </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    (N=15)           (N=15)            (N=15)     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Number of occurrences of any adverse event                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total patient-years at risk                     44.4             44.2              44.4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Number of adverse events observed                29               49                56       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     AE rate per 100 patient-years                  65.32            110.78            126.16     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                     (41.55, 89.09)   (79.76, 141.79)   (93.12, 159.20)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">aet05_all</span>, <span class="va">proc_data</span>, conf_level <span class="op">=</span> <span class="fl">0.90</span>, conf_type <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                   A: Drug X         B: Placebo       C: Combination </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    (N=134)           (N=134)            (N=132)     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ——————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Number of occurrences of any adverse event                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total patient-years at risk                     337.9             331.8              341.6      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Number of adverse events observed                343               380                397       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     AE rate per 100 patient-years                  101.51             114.52             116.22     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     90% CI                                     (92.67, 111.00)   (105.03, 124.66)   (106.80, 126.29)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                  A: Drug X        B: Placebo      C: Combination </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                    (N=15)           (N=15)            (N=15)     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Number of occurrences of any adverse event                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total patient-years at risk                     44.4             44.2              44.4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Number of adverse events observed                29               49                56       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     AE rate per 100 patient-years                  65.32            110.78            126.16     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     90% CI                                     (46.73, 89.06)   (86.09, 140.55)   (99.77, 157.61)</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

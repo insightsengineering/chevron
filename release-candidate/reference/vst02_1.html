@@ -40,6 +40,7 @@
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
@@ -175,27 +176,27 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">vst02_1</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Assessment                   A: Drug X        B: Placebo     C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Abnormality                  (N=134)          (N=134)          (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Diastolic Blood Pressure                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      69/134 (51.5%)   73/134 (54.5%)   67/132 (50.8%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     76/134 (56.7%)    67/134 (50%)    65/132 (49.2%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Pulse Rate                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                       75/134 (56%)     67/134 (50%)    69/132 (52.3%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                      67/134 (50%)    74/134 (55.2%)   53/132 (40.2%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Respiratory Rate                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      70/134 (52.2%)   72/134 (53.7%)   64/132 (48.5%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                      75/134 (56%)    65/134 (48.5%)   71/132 (53.8%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Systolic Blood Pressure                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                       71/134 (53%)    69/134 (51.5%)    70/132 (53%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     78/134 (58.2%)   62/134 (46.3%)   64/132 (48.5%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Temperature                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      66/134 (49.3%)   68/134 (50.7%)   81/132 (61.4%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                      67/134 (50%)    66/134 (49.3%)   69/132 (52.3%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Weight                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      73/134 (54.5%)    71/134 (53%)    76/132 (57.6%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     69/134 (51.5%)   74/134 (55.2%)   74/132 (56.1%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Assessment                  A: Drug X      B: Placebo     C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Abnormality                  (N=15)         (N=15)           (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Diastolic Blood Pressure                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                       6/15 (40%)    10/15 (66.7%)     9/15 (60%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                      6/15 (40%)    8/15 (53.3%)     12/15 (80%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Pulse Rate                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      8/15 (53.3%)   5/15 (33.3%)     7/15 (46.7%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     7/15 (46.7%)   8/15 (53.3%)     7/15 (46.7%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Respiratory Rate                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      7/15 (46.7%)   7/15 (46.7%)     5/15 (33.3%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     7/15 (46.7%)   4/15 (26.7%)     8/15 (53.3%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Systolic Blood Pressure                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      7/15 (46.7%)   10/15 (66.7%)    4/15 (26.7%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     8/15 (53.3%)   8/15 (53.3%)      6/15 (40%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Temperature                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                       6/15 (40%)    8/15 (53.3%)      9/15 (60%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                      9/15 (60%)     9/15 (60%)       9/15 (60%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Weight                                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      12/15 (80%)    7/15 (46.7%)      9/15 (60%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     7/15 (46.7%)   10/15 (66.7%)     9/15 (60%)  </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

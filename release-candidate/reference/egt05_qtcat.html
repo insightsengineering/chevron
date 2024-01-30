@@ -42,6 +42,7 @@ throughout the study."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
@@ -201,78 +202,76 @@ For <code>summaryvars</code>, please make sure <code>AVALCAT1</code> and <code>C
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">egt05_qtcat</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameter                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Analysis Visit            A: Drug X    B: Placebo    C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Category                 (N=134)       (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   QT Duration                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     BASELINE                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           115 (85.8%)   117 (87.3%)    104 (78.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    6 (4.5%)      10 (7.5%)       9 (6.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    4 (3.0%)      3 (2.2%)        6 (4.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             9 (6.7%)      4 (3.0%)       13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           113 (84.3%)   106 (79.1%)    106 (80.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    10 (7.5%)     10 (7.5%)      11 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    4 (3.0%)      4 (3.0%)        3 (2.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             7 (5.2%)     14 (10.4%)      12 (9.1%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            76 (56.7%)    75 (56.0%)      75 (56.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec      7 (5.2%)      13 (9.7%)      11 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             51 (38.1%)    46 (34.3%)      46 (34.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           111 (82.8%)   114 (85.1%)    112 (84.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    10 (7.5%)     9 (6.7%)        9 (6.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    7 (5.2%)      2 (1.5%)        5 (3.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             6 (4.5%)      9 (6.7%)        6 (4.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            71 (53.0%)    87 (64.9%)      89 (67.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec      11 (8.2%)     9 (6.7%)        9 (6.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             52 (38.8%)    38 (28.4%)      34 (25.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           106 (79.1%)   112 (83.6%)    118 (89.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    13 (9.7%)     7 (5.2%)        3 (2.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    4 (3.0%)      5 (3.7%)        2 (1.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             11 (8.2%)     10 (7.5%)       9 (6.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            63 (47.0%)    80 (59.7%)      81 (61.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec     14 (10.4%)     8 (6.0%)       11 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             57 (42.5%)    46 (34.3%)      40 (30.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           117 (87.3%)   103 (76.9%)    114 (86.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    7 (5.2%)     14 (10.4%)       6 (4.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    4 (3.0%)      7 (5.2%)        3 (2.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             6 (4.5%)      10 (7.5%)       9 (6.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            79 (59.0%)    80 (59.7%)      79 (59.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec      11 (8.2%)     7 (5.2%)       10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             44 (32.8%)    47 (35.1%)      43 (32.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           107 (79.9%)   117 (87.3%)    112 (84.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec   16 (11.9%)     5 (3.7%)       13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    5 (3.7%)      9 (6.7%)        3 (2.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             6 (4.5%)      3 (2.2%)        4 (3.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        134           134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            72 (53.7%)    82 (61.2%)      73 (55.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec      10 (7.5%)     11 (8.2%)      11 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             52 (38.8%)    41 (30.6%)      48 (36.4%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameter                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Analysis Visit           A: Drug X    B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Category                 (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   QT Duration                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     BASELINE                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           13 (86.7%)   15 (100%)      13 (86.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    1 (6.7%)        0              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec       0            0           1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             1 (6.7%)        0           1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 1 DAY 8                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           12 (80.0%)   9 (60.0%)      13 (86.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    1 (6.7%)     1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    1 (6.7%)    3 (20.0%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             1 (6.7%)    2 (13.3%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            7 (46.7%)    6 (40.0%)      9 (60.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec     2 (13.3%)     1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             6 (40.0%)    8 (53.3%)      5 (33.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 2 DAY 15                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           11 (73.3%)   14 (93.3%)     12 (80.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec   2 (13.3%)        0          2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec    1 (6.7%)        0           1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             1 (6.7%)     1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            9 (60.0%)    12 (80.0%)     7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec     2 (13.3%)        0          3 (20.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             4 (26.7%)    3 (20.0%)      5 (33.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 3 DAY 22                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           12 (80.0%)   12 (80.0%)     12 (80.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec   3 (20.0%)     1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec                0        2 (13.3%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            9 (60.0%)    11 (73.3%)     9 (60.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec      1 (6.7%)     1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             5 (33.3%)    3 (20.0%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 4 DAY 29                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           14 (93.3%)   12 (80.0%)     13 (86.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec    1 (6.7%)     1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;480 to &lt;=500 msec       0            0           1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec                0        2 (13.3%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            6 (40.0%)    9 (60.0%)      9 (60.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec     2 (13.3%)     1 (6.7%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             7 (46.7%)    5 (33.3%)      4 (26.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     WEEK 5 DAY 36                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Value at Visit                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=450 msec           12 (80.0%)   15 (100%)      15 (100%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;450 to &lt;=480 msec   2 (13.3%)        0              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;500 msec             1 (6.7%)        0              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Change from Baseline                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         n                        15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;=30 msec            9 (60.0%)    11 (73.3%)     9 (60.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;30 to &lt;=60 msec         0        3 (20.0%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &gt;60 msec             6 (40.0%)     1 (6.7%)      4 (26.7%)   </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

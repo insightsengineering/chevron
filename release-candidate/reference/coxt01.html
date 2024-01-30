@@ -48,6 +48,7 @@ to describe the effect size in survival analysis.'><!-- mathjax --><script src="
           id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
@@ -220,24 +221,24 @@ with <code>"SEX"</code>, <code>"RACE"</code> and <code>"AAGE"</code> as default 
 <span class="r-in"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">proc_data</span>, <span class="va">ARMCD</span> <span class="op">!=</span> <span class="st">"ARM C"</span>, <span class="st">"adsl"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">coxt01</span>, <span class="va">proc_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                Treatment Effect Adjusted for Covariate     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Effect/Covariate Included in the Model    n      Hazard Ratio       95% CI       p-value </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Treatment:                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     B: Placebo vs control (A: Drug X)       268        1.43        (1.06, 1.94)     0.0204 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     B: Placebo vs control (A: Drug X)       30         2.55        (0.97, 6.75)     0.0588 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Covariate:                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Sex                                     268        1.43        (1.06, 1.94)     0.0208 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     RACE                                    268        1.44        (1.06, 1.96)     0.0208 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Age (yr)                                268        1.46        (1.07, 1.98)     0.0154 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Sex                                     30         2.94        (0.99, 8.71)     0.0511 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     RACE                                    30         2.63        (0.89, 7.72)     0.0792 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Age (yr)                                30         2.54        (0.86, 7.44)     0.0902 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">coxt01</span>, <span class="va">proc_data</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"AAGE"</span><span class="op">)</span>, strata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RACE"</span><span class="op">)</span>, conf_level <span class="op">=</span> <span class="fl">0.90</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                Treatment Effect Adjusted for Covariate     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Effect/Covariate Included in the Model     n     Hazard Ratio       90% CI       p-value </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Effect/Covariate Included in the Model    n      Hazard Ratio       90% CI       p-value </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Treatment:                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     B: Placebo vs control (A: Drug X)       268        1.42        (1.09, 1.84)     0.0274 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     B: Placebo vs control (A: Drug X)       30         2.48        (0.93, 6.65)     0.1292 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Covariate:                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Sex                                     268        1.42        (1.09, 1.84)     0.0273 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Age (yr)                                268        1.44        (1.11, 1.87)     0.0211 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Sex                                     30         2.95        (0.95, 9.14)     0.1167 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Age (yr)                                30         2.40        (0.87, 6.58)     0.1539 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
