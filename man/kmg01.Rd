@@ -67,7 +67,7 @@ col <- c(
   "C: Combination" = "gray"
 )
 
-syn_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, syn_data, dataset = "adtte", line_col = col)
+pre_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+run(kmg01, pre_data, dataset = "adtte", line_col = col)
 }
 \keyword{datasets}
