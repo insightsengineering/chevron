@@ -1,0 +1,12 @@
+pandoc: 3.1.1
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  chevron: chevron.html
+  chevron_catalog: chevron_catalog.html
+  script_generator: script_generator.html
+last_built: 2024-01-31T10:32Z
+urls:
+  reference: https://insightsengineering.github.io/chevron/reference
+  article: https://insightsengineering.github.io/chevron/articles
+
