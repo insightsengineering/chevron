@@ -13,6 +13,9 @@ aet10_lyt(arm_var, lbl_overall, lbl_aedecod)
 
 \item{lbl_aedecod}{(\code{character}) text label for \code{AEDECOD}.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{aet10} Layout
 }

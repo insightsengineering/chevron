@@ -22,6 +22,7 @@
 #' @param ggtheme (`theme`) passed to [tern::g_lineplot()].
 #' @param table (`character`) names of the statistics to be displayed in the table. If `NULL`, no table is displayed.
 #' @param ... passed to [tern::g_lineplot()].
+#' @returns the main function returns a `gg_list` object.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
@@ -29,7 +30,7 @@
 #'
 #' @seealso [gg_theme_chevron()], [tern::g_lineplot()].
 #'
-#' @return a list of `ggplot` objects.
+#' @returns a list of `ggplot` objects.
 #'
 #' @export
 #'
@@ -138,7 +139,7 @@ mng01_main <- function(adam_db,
 #' @describeIn mng01 Preprocessing
 #'
 #' @inheritParams mng01_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {

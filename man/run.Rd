@@ -36,6 +36,10 @@ run(
 
 \item{user_args}{(\code{list}) arguments from \code{...}.}
 }
+\value{
+an \code{rtables} (for \code{chevron_t}), \code{rlistings} (for \code{chevron_l}), \code{grob} (for \code{chevron_g}) or \code{ElementaryTable}
+(null report) depending on the class of \code{chevron_tlg} object passed as \code{object} argument.
+}
 \description{
 Run the pipeline
 }

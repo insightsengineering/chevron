@@ -8,6 +8,7 @@
 #' level. Other options are `"excl"` to exclude patients with missing baseline grades and `"gr_0"` to convert missing
 #' baseline grades to grade 0.
 #' @param direction (`string`) one of `"high"` or `"low"` indicating which shift direction should be detailed.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * This table follows ADaMIG v1.1.
@@ -97,7 +98,7 @@ lbt14_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @inheritParams lbt14_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 lbt14_pre <- function(adam_db,
@@ -132,7 +133,7 @@ lbt14_pre <- function(adam_db,
 #' @describeIn lbt14 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 lbt14_post <- function(tlg, prune_0 = TRUE, ...) {

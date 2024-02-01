@@ -4,7 +4,7 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                              A: Drug X   B: Placebo   C: Combination
-                                                              (N=134)     (N=134)        (N=132)    
+                                                              (N=15)       (N=15)         (N=15)    
         ————————————————————————————————————————————————————————————————————————————————————————————
         Number of occurrences of a grade 3-5 adverse event                                          
           Total patient-years at risk                           0.0         0.0            0.0      
@@ -27,82 +27,82 @@
     Code
       cat(export_as_txt(res1, lpp = 100))
     Output
-                                                                A: Drug X          B: Placebo   
-                                                                 (N=134)            (N=134)     
-        ————————————————————————————————————————————————————————————————————————————————————————
-        Number of occurrences of a grade 3-5 adverse event                                      
-          Total patient-years at risk                             335.9              331.8      
-          Number of adverse events observed                        528                465       
-          AE rate per 100 patient-years                           157.17             140.13     
-          95% CI                                             (143.76, 170.57)   (127.39, 152.87)
-        Number of occurrences of any adverse event                                              
-          Total patient-years at risk                             335.9              331.8      
-          Number of adverse events observed                        334                380       
-          AE rate per 100 patient-years                           99.42              114.52     
-          95% CI                                             (88.76, 110.08)    (103.00, 126.03)
-        Number of occurrences of any serious adverse event                                      
-          Total patient-years at risk                             335.9              331.8      
-          Number of adverse events observed                        354                331       
-          AE rate per 100 patient-years                           105.37             99.75      
-          95% CI                                             (94.40, 116.35)    (89.00, 110.49) 
+                                                                A: Drug X        B: Placebo   
+                                                                 (N=15)            (N=15)     
+        ——————————————————————————————————————————————————————————————————————————————————————
+        Number of occurrences of a grade 3-5 adverse event                                    
+          Total patient-years at risk                             41.4              44.2      
+          Number of adverse events observed                        56                54       
+          AE rate per 100 patient-years                          135.28            122.08     
+          95% CI                                             (99.85, 170.71)   (89.52, 154.64)
+        Number of occurrences of any adverse event                                            
+          Total patient-years at risk                             41.4              44.2      
+          Number of adverse events observed                        29                49       
+          AE rate per 100 patient-years                           70.05            110.78     
+          95% CI                                             (44.56, 95.55)    (79.76, 141.79)
+        Number of occurrences of any serious adverse event                                    
+          Total patient-years at risk                             41.4              44.2      
+          Number of adverse events observed                         9                36       
+          AE rate per 100 patient-years                           21.74             81.39     
+          95% CI                                              (7.54, 35.94)    (54.80, 107.97)
       \s\n                                                        C: Combination 
-                                                                 (N=132)     
+                                                                  (N=15)     
         —————————————————————————————————————————————————————————————————————
         Number of occurrences of a grade 3-5 adverse event                   
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        652       
-          AE rate per 100 patient-years                           190.87     
-          95% CI                                             (176.22, 205.53)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         95       
+          AE rate per 100 patient-years                           214.02     
+          95% CI                                             (170.98, 257.05)
         Number of occurrences of any adverse event                           
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        397       
-          AE rate per 100 patient-years                           116.22     
-          95% CI                                             (104.79, 127.66)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         56       
+          AE rate per 100 patient-years                           126.16     
+          95% CI                                             (93.12, 159.20) 
         Number of occurrences of any serious adverse event                   
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        446       
-          AE rate per 100 patient-years                           130.57     
-          95% CI                                             (118.45, 142.69)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         60       
+          AE rate per 100 patient-years                           135.17     
+          95% CI                                             (100.97, 169.37)
 
 ---
 
     Code
       cat(export_as_txt(res2, lpp = 100))
     Output
-                                                                A: Drug X          B: Placebo   
-                                                                 (N=134)            (N=134)     
-        ————————————————————————————————————————————————————————————————————————————————————————
-        Number of occurrences of a grade 3-5 adverse event                                      
-          Total patient-years at risk                             335.9              331.8      
-          Number of adverse events observed                        528                465       
-          AE rate per 100 patient-years                           157.17             140.13     
-          90% CI                                             (146.23, 168.74)   (129.76, 151.14)
-        Number of occurrences of any adverse event                                              
-          Total patient-years at risk                             335.9              331.8      
-          Number of adverse events observed                        334                380       
-          AE rate per 100 patient-years                           99.42              114.52     
-          90% CI                                             (90.79, 108.69)    (105.17, 124.50)
-        Number of occurrences of any serious adverse event                                      
-          Total patient-years at risk                             335.9              331.8      
-          Number of adverse events observed                        354                331       
-          AE rate per 100 patient-years                           105.37             99.75      
-          90% CI                                             (96.48, 114.91)    (91.05, 109.09) 
+                                                                A: Drug X         B: Placebo   
+                                                                  (N=15)            (N=15)     
+        ———————————————————————————————————————————————————————————————————————————————————————
+        Number of occurrences of a grade 3-5 adverse event                                     
+          Total patient-years at risk                              41.4              44.2      
+          Number of adverse events observed                         56                54       
+          AE rate per 100 patient-years                           135.28            122.08     
+          90% CI                                             (108.05, 167.66)   (97.10, 151.89)
+        Number of occurrences of any adverse event                                             
+          Total patient-years at risk                              41.4              44.2      
+          Number of adverse events observed                         29                49       
+          AE rate per 100 patient-years                           70.05             110.78     
+          90% CI                                              (51.14, 94.12)    (87.09, 139.29)
+        Number of occurrences of any serious adverse event                                     
+          Total patient-years at risk                              41.4              44.2      
+          Number of adverse events observed                         9                 36       
+          AE rate per 100 patient-years                           21.74              81.39     
+          90% CI                                              (12.21, 36.40)    (61.41, 106.19)
       \s\n                                                        C: Combination 
-                                                                 (N=132)     
+                                                                  (N=15)     
         —————————————————————————————————————————————————————————————————————
         Number of occurrences of a grade 3-5 adverse event                   
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        652       
-          AE rate per 100 patient-years                           190.87     
-          90% CI                                             (178.89, 203.49)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         95       
+          AE rate per 100 patient-years                           214.02     
+          90% CI                                             (180.26, 252.59)
         Number of occurrences of any adverse event                           
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        397       
-          AE rate per 100 patient-years                           116.22     
-          90% CI                                             (106.94, 126.13)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         56       
+          AE rate per 100 patient-years                           126.16     
+          90% CI                                             (100.77, 156.36)
         Number of occurrences of any serious adverse event                   
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        446       
-          AE rate per 100 patient-years                           130.57     
-          90% CI                                             (120.71, 141.05)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         60       
+          AE rate per 100 patient-years                           135.17     
+          90% CI                                             (108.81, 166.34)
 

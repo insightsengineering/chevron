@@ -6,6 +6,7 @@
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adex`
 #'   table of `adam_db` is used as label.
 #' @param map (`data.frame`) of mapping for split rows.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Default Exposure table
@@ -77,6 +78,7 @@ ext01_main <- function(adam_db,
 #'
 #' @param summaryvars (`character`) the name of the variable to be analyzed. By default `"AVAL"`.
 #' @param summaryvars_lbls (`character`) the label associated with the analyzed variable.
+#' @returns a `PreDataTableLayouts` object.
 #'
 #' @keywords internal
 #'
@@ -112,6 +114,7 @@ ext01_lyt <- function(arm_var,
 #' @describeIn ext01 Preprocessing
 #'
 #' @inheritParams gen_args
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'
@@ -127,7 +130,7 @@ ext01_pre <- function(adam_db,
 #' @describeIn ext01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 ext01_post <- function(tlg, prune_0 = TRUE, ...) {

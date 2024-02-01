@@ -14,6 +14,7 @@ cmt01_label <- c(
 #' @param row_split_var (`character`) the variable defining the medication category. By default `ATC2`.
 #' @param medname_var (`string`) variable name of medical treatment name.
 #' @param summary_labels (`list`) of summarize labels. See details.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Data should be filtered for concomitant medication. `(ATIREL == "CONCOMITANT")`.
@@ -80,7 +81,7 @@ cmt01a_main <- function(adam_db,
 #' @describeIn cmt01a Preprocessing
 #'
 #' @inheritParams cmt01a_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 cmt01a_pre <- function(adam_db, ...) {
@@ -99,7 +100,7 @@ cmt01a_pre <- function(adam_db, ...) {
 #' @inheritParams cmt01a_main
 #' @inheritParams gen_args
 #' @param sort_by_freq (`flag`) whether to sort medication class by frequency.
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 cmt01a_post <- function(

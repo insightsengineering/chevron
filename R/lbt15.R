@@ -3,7 +3,7 @@
 #' @describeIn lbt15 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 lbt15_pre <- function(adam_db, ...) {

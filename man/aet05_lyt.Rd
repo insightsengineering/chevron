@@ -20,6 +20,9 @@ aet05_lyt(arm_var, lbl_overall, param_label, vars, n_events, control)
 \item{control}{(\code{list}) parameters for estimation details, specified by using the helper function
 control_incidence_rate().}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{aet05} Layout
 }

@@ -21,289 +21,271 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                                      A: Drug X    B: Placebo    C: Combination
-                                                                       (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one AE                122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of AEs                                              609           622            703      
-        Total number of deaths                                       25 (18.7%)    23 (17.2%)      22 (16.7%)  
-        Total number of patients withdrawn from study due to an AE    3 (2.2%)      6 (4.5%)        5 (3.8%)   
-        Total number of patients with at least one                                                             
-          AE with fatal outcome                                      76 (56.7%)    70 (52.2%)      75 (56.8%)  
-          Serious AE                                                 104 (77.6%)   101 (75.4%)     99 (75.0%)  
-          Serious AE leading to withdrawal from treatment             9 (6.7%)      6 (4.5%)       11 (8.3%)   
-          Serious AE leading to dose modification/interruption       22 (16.4%)    26 (19.4%)      29 (22.0%)  
-          Related Serious AE                                         76 (56.7%)    70 (52.2%)      75 (56.8%)  
-          AE leading to withdrawal from treatment                    27 (20.1%)    26 (19.4%)      30 (22.7%)  
-          AE leading to dose modification/interruption               66 (49.3%)    76 (56.7%)      74 (56.1%)  
-          Related AE                                                 105 (78.4%)   108 (80.6%)    109 (82.6%)  
-          Related AE leading to withdrawal from treatment             6 (4.5%)      12 (9.0%)       8 (6.1%)   
-          Related AE leading to dose modification/interruption       29 (21.6%)    38 (28.4%)      38 (28.8%)  
-          Severe AE (at greatest intensity)                          91 (67.9%)    90 (67.2%)      93 (70.5%)  
+                                                                     A: Drug X    B: Placebo   C: Combination
+                                                                       (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one AE                13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of AEs                                              58           59             99      
+        Total number of deaths                                       2 (13.3%)    4 (26.7%)      3 (20.0%)   
+        Total number of patients withdrawn from study due to an AE       0            0           1 (6.7%)   
+        Total number of patients with at least one                                                           
+          AE with fatal outcome                                      8 (53.3%)    8 (53.3%)      10 (66.7%)  
+          Serious AE                                                 12 (80.0%)   12 (80.0%)     11 (73.3%)  
+          Serious AE leading to withdrawal from treatment                0            0          2 (13.3%)   
+          Serious AE leading to dose modification/interruption       4 (26.7%)    3 (20.0%)      4 (26.7%)   
+          Related Serious AE                                         8 (53.3%)    8 (53.3%)      10 (66.7%)  
+          AE leading to withdrawal from treatment                    2 (13.3%)    3 (20.0%)      3 (20.0%)   
+          AE leading to dose modification/interruption               6 (40.0%)    9 (60.0%)      11 (73.3%)  
+          Related AE                                                 11 (73.3%)   10 (66.7%)     13 (86.7%)  
+          Related AE leading to withdrawal from treatment                0        3 (20.0%)          0       
+          Related AE leading to dose modification/interruption        1 (6.7%)    4 (26.7%)      9 (60.0%)   
+          Severe AE (at greatest intensity)                          11 (73.3%)   10 (66.7%)     12 (80.0%)  
 
 # aet01_aesi function with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                                                         A: Drug X 
-                                                                                          (N=134)  
-        ———————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one AE                                   122 (91.0%)
-        Total number of AEs                                                                 609    
-        Total number of patients with at least one AE by worst grade                               
-          Grade 1                                                                        7 (5.2%)  
-          Grade 2                                                                        6 (4.5%)  
-          Grade 3                                                                       18 (13.4%) 
-          Grade 4                                                                       15 (11.2%) 
-          Grade 5 (fatal outcome)                                                       76 (56.7%) 
-        Total number of patients with study drug withdrawn due to AE                    27 (20.1%) 
-        Total number of patients with dose modified/interrupted due to AE               66 (49.3%) 
-        Total number of patients with treatment received for AE                         98 (73.1%) 
-        Total number of patients with all non-fatal AEs resolved                        84 (62.7%) 
-        Total number of patients with at least one unresolved or ongoing non-fatal AE   102 (76.1%)
-        Total number of patients with at least one serious AE                           104 (77.6%)
-        Total number of patients with at least one related AE                           105 (78.4%)
-      \s\n                                                                                  B: Placebo 
-                                                                                          (N=134)  
-        ———————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one AE                                   123 (91.8%)
-        Total number of AEs                                                                 622    
-        Total number of patients with at least one AE by worst grade                               
-          Grade 1                                                                        9 (6.7%)  
-          Grade 2                                                                        10 (7.5%) 
-          Grade 3                                                                       14 (10.4%) 
-          Grade 4                                                                       20 (14.9%) 
-          Grade 5 (fatal outcome)                                                       70 (52.2%) 
-        Total number of patients with study drug withdrawn due to AE                    26 (19.4%) 
-        Total number of patients with dose modified/interrupted due to AE               76 (56.7%) 
-        Total number of patients with treatment received for AE                         102 (76.1%)
-        Total number of patients with all non-fatal AEs resolved                        92 (68.7%) 
-        Total number of patients with at least one unresolved or ongoing non-fatal AE   110 (82.1%)
-        Total number of patients with at least one serious AE                           101 (75.4%)
-        Total number of patients with at least one related AE                           108 (80.6%)
+                                                                                        A: Drug X    B: Placebo
+                                                                                          (N=15)       (N=15)  
+        ———————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one AE                                   13 (86.7%)   14 (93.3%)
+        Total number of AEs                                                                 58           59    
+        Total number of patients with at least one AE by worst grade                                           
+          Grade 1                                                                           0         1 (6.7%) 
+          Grade 2                                                                        1 (6.7%)     1 (6.7%) 
+          Grade 3                                                                        1 (6.7%)    2 (13.3%) 
+          Grade 4                                                                       3 (20.0%)    2 (13.3%) 
+          Grade 5 (fatal outcome)                                                       8 (53.3%)    8 (53.3%) 
+        Total number of patients with study drug withdrawn due to AE                    2 (13.3%)    3 (20.0%) 
+        Total number of patients with dose modified/interrupted due to AE               6 (40.0%)    9 (60.0%) 
+        Total number of patients with treatment received for AE                         10 (66.7%)   10 (66.7%)
+        Total number of patients with all non-fatal AEs resolved                        9 (60.0%)    10 (66.7%)
+        Total number of patients with at least one unresolved or ongoing non-fatal AE   10 (66.7%)   9 (60.0%) 
+        Total number of patients with at least one serious AE                           12 (80.0%)   12 (80.0%)
+        Total number of patients with at least one related AE                           11 (73.3%)   10 (66.7%)
       \s\n                                                                                  C: Combination
-                                                                                           (N=132)    
+                                                                                            (N=15)    
         ——————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one AE                                    120 (90.9%)  
-        Total number of AEs                                                                  703      
+        Total number of patients with at least one AE                                     15 (100%)   
+        Total number of AEs                                                                   99      
         Total number of patients with at least one AE by worst grade                                  
-          Grade 1                                                                          4 (3.0%)   
-          Grade 2                                                                          7 (5.3%)   
-          Grade 3                                                                         16 (12.1%)  
-          Grade 4                                                                         18 (13.6%)  
-          Grade 5 (fatal outcome)                                                         75 (56.8%)  
-        Total number of patients with study drug withdrawn due to AE                      30 (22.7%)  
-        Total number of patients with dose modified/interrupted due to AE                 74 (56.1%)  
-        Total number of patients with treatment received for AE                          103 (78.0%)  
-        Total number of patients with all non-fatal AEs resolved                          97 (73.5%)  
-        Total number of patients with at least one unresolved or ongoing non-fatal AE    107 (81.1%)  
-        Total number of patients with at least one serious AE                             99 (75.0%)  
-        Total number of patients with at least one related AE                            109 (82.6%)  
+          Grade 1                                                                          1 (6.7%)   
+          Grade 2                                                                          1 (6.7%)   
+          Grade 3                                                                          1 (6.7%)   
+          Grade 4                                                                         2 (13.3%)   
+          Grade 5 (fatal outcome)                                                         10 (66.7%)  
+        Total number of patients with study drug withdrawn due to AE                      3 (20.0%)   
+        Total number of patients with dose modified/interrupted due to AE                 11 (73.3%)  
+        Total number of patients with treatment received for AE                           14 (93.3%)  
+        Total number of patients with all non-fatal AEs resolved                          12 (80.0%)  
+        Total number of patients with at least one unresolved or ongoing non-fatal AE     14 (93.3%)  
+        Total number of patients with at least one serious AE                             11 (73.3%)  
+        Total number of patients with at least one related AE                             13 (86.7%)  
 
 # aet02 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one adverse event     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Overall total number of events                                   609           622            703      
-        cl A.1                                                                                                 
-          Total number of patients with at least one adverse event   78 (58.2%)    75 (56.0%)      89 (67.4%)  
-          Total number of events                                         132           130            160      
-          dcd A.1.1.1.1                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
-          dcd A.1.1.1.2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
-        cl B.2                                                                                                 
-          Total number of patients with at least one adverse event   79 (59.0%)    74 (55.2%)      85 (64.4%)  
-          Total number of events                                         129           138            143      
-          dcd B.2.2.3.1                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
-          dcd B.2.1.2.1                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
-        cl D.1                                                                                                 
-          Total number of patients with at least one adverse event   79 (59.0%)    67 (50.0%)      80 (60.6%)  
-          Total number of events                                         127           106            135      
-          dcd D.1.1.1.1                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.4.2                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
-        cl D.2                                                                                                 
-          Total number of patients with at least one adverse event   47 (35.1%)    58 (43.3%)      57 (43.2%)  
-          Total number of events                                         62            72              74      
-          dcd D.2.1.5.3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
-        cl B.1                                                                                                 
-          Total number of patients with at least one adverse event   47 (35.1%)    49 (36.6%)      43 (32.6%)  
-          Total number of events                                         56            60              62      
-          dcd B.1.1.1.1                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
-        cl C.2                                                                                                 
-          Total number of patients with at least one adverse event   35 (26.1%)    48 (35.8%)      55 (41.7%)  
-          Total number of events                                         48            53              65      
-          dcd C.2.1.2.1                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
-        cl C.1                                                                                                 
-          Total number of patients with at least one adverse event   43 (32.1%)    46 (34.3%)      43 (32.6%)  
-          Total number of events                                         55            63              64      
-          dcd C.1.1.1.3                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one adverse event     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Overall total number of events                                   58           59             99      
+        cl B.2                                                                                               
+          Total number of patients with at least one adverse event   11 (73.3%)   8 (53.3%)      10 (66.7%)  
+          Total number of events                                         18           15             20      
+          dcd B.2.2.3.1                                              8 (53.3%)    6 (40.0%)      7 (46.7%)   
+          dcd B.2.1.2.1                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
+        cl D.1                                                                                               
+          Total number of patients with at least one adverse event   9 (60.0%)    5 (33.3%)      11 (73.3%)  
+          Total number of events                                         13           9              19      
+          dcd D.1.1.1.1                                              4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          dcd D.1.1.4.2                                              6 (40.0%)    2 (13.3%)      7 (46.7%)   
+        cl A.1                                                                                               
+          Total number of patients with at least one adverse event   7 (46.7%)    6 (40.0%)      10 (66.7%)  
+          Total number of events                                         8            11             16      
+          dcd A.1.1.1.2                                              5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          dcd A.1.1.1.1                                              3 (20.0%)     1 (6.7%)      6 (40.0%)   
+        cl B.1                                                                                               
+          Total number of patients with at least one adverse event   5 (33.3%)    6 (40.0%)      8 (53.3%)   
+          Total number of events                                         6            6              12      
+          dcd B.1.1.1.1                                              5 (33.3%)    6 (40.0%)      8 (53.3%)   
+        cl C.2                                                                                               
+          Total number of patients with at least one adverse event   6 (40.0%)    4 (26.7%)      8 (53.3%)   
+          Total number of events                                         6            4              12      
+          dcd C.2.1.2.1                                              6 (40.0%)    4 (26.7%)      8 (53.3%)   
+        cl D.2                                                                                               
+          Total number of patients with at least one adverse event   2 (13.3%)    5 (33.3%)      7 (46.7%)   
+          Total number of events                                         3            5              10      
+          dcd D.2.1.5.3                                              2 (13.3%)    5 (33.3%)      7 (46.7%)   
+        cl C.1                                                                                               
+          Total number of patients with at least one adverse event   4 (26.7%)    4 (26.7%)      5 (33.3%)   
+          Total number of events                                         4            9              10      
+          dcd C.1.1.1.3                                              4 (26.7%)    4 (26.7%)      5 (33.3%)   
 
 # aet03 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        MedDRA System Organ Class    A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term       (N=134)       (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————
-        - Any Intensity -           122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        MILD                         7 (5.2%)      9 (6.7%)        4 (3.0%)   
-        MODERATE                    24 (17.9%)    24 (17.9%)      23 (17.4%)  
-        SEVERE                      91 (67.9%)    90 (67.2%)      93 (70.5%)  
-        cl A.1                                                                
-          - Any Intensity -         78 (58.2%)    75 (56.0%)      89 (67.4%)  
-          MILD                      30 (22.4%)    27 (20.1%)      39 (29.5%)  
-          MODERATE                  48 (35.8%)    48 (35.8%)      50 (37.9%)  
-          dcd A.1.1.1.1                                                       
-            - Any Intensity -       50 (37.3%)    45 (33.6%)      63 (47.7%)  
-            MILD                    50 (37.3%)    45 (33.6%)      63 (47.7%)  
-          dcd A.1.1.1.2                                                       
-            - Any Intensity -       48 (35.8%)    48 (35.8%)      50 (37.9%)  
-            MODERATE                48 (35.8%)    48 (35.8%)      50 (37.9%)  
-        cl B.2                                                                
-          - Any Intensity -         79 (59.0%)    74 (55.2%)      85 (64.4%)  
-          MILD                      30 (22.4%)    30 (22.4%)      33 (25.0%)  
-          MODERATE                  49 (36.6%)    44 (32.8%)      52 (39.4%)  
-          dcd B.2.2.3.1                                                       
-            - Any Intensity -       48 (35.8%)    54 (40.3%)      51 (38.6%)  
-            MILD                    48 (35.8%)    54 (40.3%)      51 (38.6%)  
-          dcd B.2.1.2.1                                                       
-            - Any Intensity -       49 (36.6%)    44 (32.8%)      52 (39.4%)  
-            MODERATE                49 (36.6%)    44 (32.8%)      52 (39.4%)  
-        cl D.1                                                                
-          - Any Intensity -         79 (59.0%)    67 (50.0%)      80 (60.6%)  
-          MODERATE                  29 (21.6%)    25 (18.7%)      29 (22.0%)  
-          SEVERE                    50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.1.1                                                       
-            - Any Intensity -       50 (37.3%)    42 (31.3%)      51 (38.6%)  
-            SEVERE                  50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.4.2                                                       
-            - Any Intensity -       48 (35.8%)    42 (31.3%)      50 (37.9%)  
-            MODERATE                48 (35.8%)    42 (31.3%)      50 (37.9%)  
-        cl D.2                                                                
-          - Any Intensity -         47 (35.1%)    58 (43.3%)      57 (43.2%)  
-          MILD                      47 (35.1%)    58 (43.3%)      57 (43.2%)  
-          dcd D.2.1.5.3                                                       
-            - Any Intensity -       47 (35.1%)    58 (43.3%)      57 (43.2%)  
-            MILD                    47 (35.1%)    58 (43.3%)      57 (43.2%)  
-        cl B.1                                                                
-          - Any Intensity -         47 (35.1%)    49 (36.6%)      43 (32.6%)  
-          SEVERE                    47 (35.1%)    49 (36.6%)      43 (32.6%)  
-          dcd B.1.1.1.1                                                       
-            - Any Intensity -       47 (35.1%)    49 (36.6%)      43 (32.6%)  
-            SEVERE                  47 (35.1%)    49 (36.6%)      43 (32.6%)  
-        cl C.2                                                                
-          - Any Intensity -         35 (26.1%)    48 (35.8%)      55 (41.7%)  
-          MODERATE                  35 (26.1%)    48 (35.8%)      55 (41.7%)  
-          dcd C.2.1.2.1                                                       
-            - Any Intensity -       35 (26.1%)    48 (35.8%)      55 (41.7%)  
-            MODERATE                35 (26.1%)    48 (35.8%)      55 (41.7%)  
-        cl C.1                                                                
-          - Any Intensity -         43 (32.1%)    46 (34.3%)      43 (32.6%)  
-          SEVERE                    43 (32.1%)    46 (34.3%)      43 (32.6%)  
-          dcd C.1.1.1.3                                                       
-            - Any Intensity -       43 (32.1%)    46 (34.3%)      43 (32.6%)  
-            SEVERE                  43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        MedDRA System Organ Class   A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term       (N=15)       (N=15)         (N=15)    
+        ————————————————————————————————————————————————————————————————————
+        - Any Intensity -           13 (86.7%)   14 (93.3%)     15 (100%)   
+        MILD                            0         1 (6.7%)       1 (6.7%)   
+        MODERATE                    2 (13.3%)    3 (20.0%)      2 (13.3%)   
+        SEVERE                      11 (73.3%)   10 (66.7%)     12 (80.0%)  
+        cl B.2                                                              
+          - Any Intensity -         11 (73.3%)   8 (53.3%)      10 (66.7%)  
+          MILD                      6 (40.0%)    2 (13.3%)      5 (33.3%)   
+          MODERATE                  5 (33.3%)    6 (40.0%)      5 (33.3%)   
+          dcd B.2.2.3.1                                                     
+            - Any Intensity -       8 (53.3%)    6 (40.0%)      7 (46.7%)   
+            MILD                    8 (53.3%)    6 (40.0%)      7 (46.7%)   
+          dcd B.2.1.2.1                                                     
+            - Any Intensity -       5 (33.3%)    6 (40.0%)      5 (33.3%)   
+            MODERATE                5 (33.3%)    6 (40.0%)      5 (33.3%)   
+        cl D.1                                                              
+          - Any Intensity -         9 (60.0%)    5 (33.3%)      11 (73.3%)  
+          MODERATE                  5 (33.3%)     1 (6.7%)      4 (26.7%)   
+          SEVERE                    4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          dcd D.1.1.1.1                                                     
+            - Any Intensity -       4 (26.7%)    4 (26.7%)      7 (46.7%)   
+            SEVERE                  4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          dcd D.1.1.4.2                                                     
+            - Any Intensity -       6 (40.0%)    2 (13.3%)      7 (46.7%)   
+            MODERATE                6 (40.0%)    2 (13.3%)      7 (46.7%)   
+        cl A.1                                                              
+          - Any Intensity -         7 (46.7%)    6 (40.0%)      10 (66.7%)  
+          MILD                      2 (13.3%)        0          4 (26.7%)   
+          MODERATE                  5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          dcd A.1.1.1.2                                                     
+            - Any Intensity -       5 (33.3%)    6 (40.0%)      6 (40.0%)   
+            MODERATE                5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          dcd A.1.1.1.1                                                     
+            - Any Intensity -       3 (20.0%)     1 (6.7%)      6 (40.0%)   
+            MILD                    3 (20.0%)     1 (6.7%)      6 (40.0%)   
+        cl B.1                                                              
+          - Any Intensity -         5 (33.3%)    6 (40.0%)      8 (53.3%)   
+          SEVERE                    5 (33.3%)    6 (40.0%)      8 (53.3%)   
+          dcd B.1.1.1.1                                                     
+            - Any Intensity -       5 (33.3%)    6 (40.0%)      8 (53.3%)   
+            SEVERE                  5 (33.3%)    6 (40.0%)      8 (53.3%)   
+        cl C.2                                                              
+          - Any Intensity -         6 (40.0%)    4 (26.7%)      8 (53.3%)   
+          MODERATE                  6 (40.0%)    4 (26.7%)      8 (53.3%)   
+          dcd C.2.1.2.1                                                     
+            - Any Intensity -       6 (40.0%)    4 (26.7%)      8 (53.3%)   
+            MODERATE                6 (40.0%)    4 (26.7%)      8 (53.3%)   
+        cl D.2                                                              
+          - Any Intensity -         2 (13.3%)    5 (33.3%)      7 (46.7%)   
+          MILD                      2 (13.3%)    5 (33.3%)      7 (46.7%)   
+          dcd D.2.1.5.3                                                     
+            - Any Intensity -       2 (13.3%)    5 (33.3%)      7 (46.7%)   
+            MILD                    2 (13.3%)    5 (33.3%)      7 (46.7%)   
+        cl C.1                                                              
+          - Any Intensity -         4 (26.7%)    4 (26.7%)      5 (33.3%)   
+          SEVERE                    4 (26.7%)    4 (26.7%)      5 (33.3%)   
+          dcd C.1.1.1.3                                                     
+            - Any Intensity -       4 (26.7%)    4 (26.7%)      5 (33.3%)   
+            SEVERE                  4 (26.7%)    4 (26.7%)      5 (33.3%)   
 
 # aet04 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        MedDRA System Organ Class                                                             
-          MedDRA Preferred Term                      A: Drug X    B: Placebo    C: Combination
-                                    Grade             (N=134)       (N=134)        (N=132)    
-        ——————————————————————————————————————————————————————————————————————————————————————
-        - Any adverse events -                                                                
-                                    - Any Grade -   122 (91.0%)   123 (91.8%)    120 (90.9%)  
-                                    Grade 1-2        13 (9.7%)    19 (14.2%)      11 (8.3%)   
-                                    1                7 (5.2%)      9 (6.7%)        4 (3.0%)   
-                                    2                6 (4.5%)      10 (7.5%)       7 (5.3%)   
-                                    Grade 3-4       33 (24.6%)    34 (25.4%)      34 (25.8%)  
-                                    3               18 (13.4%)    14 (10.4%)      16 (12.1%)  
-                                    4               15 (11.2%)    20 (14.9%)      18 (13.6%)  
-                                    Grade 5         76 (56.7%)    70 (52.2%)      75 (56.8%)  
-        cl A.1                                                                                
-          - Overall -                                                                         
-                                    - Any Grade -   78 (58.2%)    75 (56.0%)      89 (67.4%)  
-                                    Grade 1-2       78 (58.2%)    75 (56.0%)      89 (67.4%)  
-                                    1               30 (22.4%)    27 (20.1%)      39 (29.5%)  
-                                    2               48 (35.8%)    48 (35.8%)      50 (37.9%)  
-          dcd A.1.1.1.1                                                                       
-                                    - Any Grade -   50 (37.3%)    45 (33.6%)      63 (47.7%)  
-                                    Grade 1-2       50 (37.3%)    45 (33.6%)      63 (47.7%)  
-                                    1               50 (37.3%)    45 (33.6%)      63 (47.7%)  
-          dcd A.1.1.1.2                                                                       
-                                    - Any Grade -   48 (35.8%)    48 (35.8%)      50 (37.9%)  
-                                    Grade 1-2       48 (35.8%)    48 (35.8%)      50 (37.9%)  
-                                    2               48 (35.8%)    48 (35.8%)      50 (37.9%)  
-        cl B.2                                                                                
-          - Overall -                                                                         
-                                    - Any Grade -   79 (59.0%)    74 (55.2%)      85 (64.4%)  
-                                    Grade 1-2       30 (22.4%)    30 (22.4%)      33 (25.0%)  
-                                    1               30 (22.4%)    30 (22.4%)      33 (25.0%)  
-                                    Grade 3-4       49 (36.6%)    44 (32.8%)      52 (39.4%)  
-                                    3               49 (36.6%)    44 (32.8%)      52 (39.4%)  
-          dcd B.2.2.3.1                                                                       
-                                    - Any Grade -   48 (35.8%)    54 (40.3%)      51 (38.6%)  
-                                    Grade 1-2       48 (35.8%)    54 (40.3%)      51 (38.6%)  
-                                    1               48 (35.8%)    54 (40.3%)      51 (38.6%)  
-          dcd B.2.1.2.1                                                                       
-                                    - Any Grade -   49 (36.6%)    44 (32.8%)      52 (39.4%)  
-                                    Grade 3-4       49 (36.6%)    44 (32.8%)      52 (39.4%)  
-                                    3               49 (36.6%)    44 (32.8%)      52 (39.4%)  
-        cl D.1                                                                                
-          - Overall -                                                                         
-                                    - Any Grade -   79 (59.0%)    67 (50.0%)      80 (60.6%)  
-                                    Grade 3-4       29 (21.6%)    25 (18.7%)      29 (22.0%)  
-                                    3               29 (21.6%)    25 (18.7%)      29 (22.0%)  
-                                    Grade 5         50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.1.1                                                                       
-                                    - Any Grade -   50 (37.3%)    42 (31.3%)      51 (38.6%)  
-                                    Grade 5         50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          dcd D.1.1.4.2                                                                       
-                                    - Any Grade -   48 (35.8%)    42 (31.3%)      50 (37.9%)  
-                                    Grade 3-4       48 (35.8%)    42 (31.3%)      50 (37.9%)  
-                                    3               48 (35.8%)    42 (31.3%)      50 (37.9%)  
-        cl D.2                                                                                
-          - Overall -                                                                         
-                                    - Any Grade -   47 (35.1%)    58 (43.3%)      57 (43.2%)  
-                                    Grade 1-2       47 (35.1%)    58 (43.3%)      57 (43.2%)  
-                                    1               47 (35.1%)    58 (43.3%)      57 (43.2%)  
-          dcd D.2.1.5.3                                                                       
-                                    - Any Grade -   47 (35.1%)    58 (43.3%)      57 (43.2%)  
-                                    Grade 1-2       47 (35.1%)    58 (43.3%)      57 (43.2%)  
-                                    1               47 (35.1%)    58 (43.3%)      57 (43.2%)  
-        cl B.1                                                                                
-          - Overall -                                                                         
-                                    - Any Grade -   47 (35.1%)    49 (36.6%)      43 (32.6%)  
-                                    Grade 5         47 (35.1%)    49 (36.6%)      43 (32.6%)  
-          dcd B.1.1.1.1                                                                       
-                                    - Any Grade -   47 (35.1%)    49 (36.6%)      43 (32.6%)  
-                                    Grade 5         47 (35.1%)    49 (36.6%)      43 (32.6%)  
-        cl C.2                                                                                
-          - Overall -                                                                         
-                                    - Any Grade -   35 (26.1%)    48 (35.8%)      55 (41.7%)  
-                                    Grade 1-2       35 (26.1%)    48 (35.8%)      55 (41.7%)  
-                                    2               35 (26.1%)    48 (35.8%)      55 (41.7%)  
-          dcd C.2.1.2.1                                                                       
-                                    - Any Grade -   35 (26.1%)    48 (35.8%)      55 (41.7%)  
-                                    Grade 1-2       35 (26.1%)    48 (35.8%)      55 (41.7%)  
-                                    2               35 (26.1%)    48 (35.8%)      55 (41.7%)  
-        cl C.1                                                                                
-          - Overall -                                                                         
-                                    - Any Grade -   43 (32.1%)    46 (34.3%)      43 (32.6%)  
-                                    Grade 3-4       43 (32.1%)    46 (34.3%)      43 (32.6%)  
-                                    4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
-          dcd C.1.1.1.3                                                                       
-                                    - Any Grade -   43 (32.1%)    46 (34.3%)      43 (32.6%)  
-                                    Grade 3-4       43 (32.1%)    46 (34.3%)      43 (32.6%)  
-                                    4               43 (32.1%)    46 (34.3%)      43 (32.6%)  
+        MedDRA System Organ Class                                                           
+          MedDRA Preferred Term                     A: Drug X    B: Placebo   C: Combination
+                                    Grade             (N=15)       (N=15)         (N=15)    
+        ————————————————————————————————————————————————————————————————————————————————————
+        - Any adverse events -                                                              
+                                    - Any Grade -   13 (86.7%)   14 (93.3%)     15 (100%)   
+                                    Grade 1-2        1 (6.7%)    2 (13.3%)      2 (13.3%)   
+                                    1                   0         1 (6.7%)       1 (6.7%)   
+                                    2                1 (6.7%)     1 (6.7%)       1 (6.7%)   
+                                    Grade 3-4       4 (26.7%)    4 (26.7%)      3 (20.0%)   
+                                    3                1 (6.7%)    2 (13.3%)       1 (6.7%)   
+                                    4               3 (20.0%)    2 (13.3%)      2 (13.3%)   
+                                    Grade 5         8 (53.3%)    8 (53.3%)      10 (66.7%)  
+        cl B.2                                                                              
+          - Overall -                                                                       
+                                    - Any Grade -   11 (73.3%)   8 (53.3%)      10 (66.7%)  
+                                    Grade 1-2       6 (40.0%)    2 (13.3%)      5 (33.3%)   
+                                    1               6 (40.0%)    2 (13.3%)      5 (33.3%)   
+                                    Grade 3-4       5 (33.3%)    6 (40.0%)      5 (33.3%)   
+                                    3               5 (33.3%)    6 (40.0%)      5 (33.3%)   
+          dcd B.2.2.3.1                                                                     
+                                    - Any Grade -   8 (53.3%)    6 (40.0%)      7 (46.7%)   
+                                    Grade 1-2       8 (53.3%)    6 (40.0%)      7 (46.7%)   
+                                    1               8 (53.3%)    6 (40.0%)      7 (46.7%)   
+          dcd B.2.1.2.1                                                                     
+                                    - Any Grade -   5 (33.3%)    6 (40.0%)      5 (33.3%)   
+                                    Grade 3-4       5 (33.3%)    6 (40.0%)      5 (33.3%)   
+                                    3               5 (33.3%)    6 (40.0%)      5 (33.3%)   
+        cl D.1                                                                              
+          - Overall -                                                                       
+                                    - Any Grade -   9 (60.0%)    5 (33.3%)      11 (73.3%)  
+                                    Grade 3-4       5 (33.3%)     1 (6.7%)      4 (26.7%)   
+                                    3               5 (33.3%)     1 (6.7%)      4 (26.7%)   
+                                    Grade 5         4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          dcd D.1.1.1.1                                                                     
+                                    - Any Grade -   4 (26.7%)    4 (26.7%)      7 (46.7%)   
+                                    Grade 5         4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          dcd D.1.1.4.2                                                                     
+                                    - Any Grade -   6 (40.0%)    2 (13.3%)      7 (46.7%)   
+                                    Grade 3-4       6 (40.0%)    2 (13.3%)      7 (46.7%)   
+                                    3               6 (40.0%)    2 (13.3%)      7 (46.7%)   
+        cl A.1                                                                              
+          - Overall -                                                                       
+                                    - Any Grade -   7 (46.7%)    6 (40.0%)      10 (66.7%)  
+                                    Grade 1-2       7 (46.7%)    6 (40.0%)      10 (66.7%)  
+                                    1               2 (13.3%)        0          4 (26.7%)   
+                                    2               5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          dcd A.1.1.1.2                                                                     
+                                    - Any Grade -   5 (33.3%)    6 (40.0%)      6 (40.0%)   
+                                    Grade 1-2       5 (33.3%)    6 (40.0%)      6 (40.0%)   
+                                    2               5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          dcd A.1.1.1.1                                                                     
+                                    - Any Grade -   3 (20.0%)     1 (6.7%)      6 (40.0%)   
+                                    Grade 1-2       3 (20.0%)     1 (6.7%)      6 (40.0%)   
+                                    1               3 (20.0%)     1 (6.7%)      6 (40.0%)   
+        cl B.1                                                                              
+          - Overall -                                                                       
+                                    - Any Grade -   5 (33.3%)    6 (40.0%)      8 (53.3%)   
+                                    Grade 5         5 (33.3%)    6 (40.0%)      8 (53.3%)   
+          dcd B.1.1.1.1                                                                     
+                                    - Any Grade -   5 (33.3%)    6 (40.0%)      8 (53.3%)   
+                                    Grade 5         5 (33.3%)    6 (40.0%)      8 (53.3%)   
+        cl C.2                                                                              
+          - Overall -                                                                       
+                                    - Any Grade -   6 (40.0%)    4 (26.7%)      8 (53.3%)   
+                                    Grade 1-2       6 (40.0%)    4 (26.7%)      8 (53.3%)   
+                                    2               6 (40.0%)    4 (26.7%)      8 (53.3%)   
+          dcd C.2.1.2.1                                                                     
+                                    - Any Grade -   6 (40.0%)    4 (26.7%)      8 (53.3%)   
+                                    Grade 1-2       6 (40.0%)    4 (26.7%)      8 (53.3%)   
+                                    2               6 (40.0%)    4 (26.7%)      8 (53.3%)   
+        cl D.2                                                                              
+          - Overall -                                                                       
+                                    - Any Grade -   2 (13.3%)    5 (33.3%)      7 (46.7%)   
+                                    Grade 1-2       2 (13.3%)    5 (33.3%)      7 (46.7%)   
+                                    1               2 (13.3%)    5 (33.3%)      7 (46.7%)   
+          dcd D.2.1.5.3                                                                     
+                                    - Any Grade -   2 (13.3%)    5 (33.3%)      7 (46.7%)   
+                                    Grade 1-2       2 (13.3%)    5 (33.3%)      7 (46.7%)   
+                                    1               2 (13.3%)    5 (33.3%)      7 (46.7%)   
+        cl C.1                                                                              
+          - Overall -                                                                       
+                                    - Any Grade -   4 (26.7%)    4 (26.7%)      5 (33.3%)   
+                                    Grade 3-4       4 (26.7%)    4 (26.7%)      5 (33.3%)   
+                                    4               4 (26.7%)    4 (26.7%)      5 (33.3%)   
+          dcd C.1.1.1.3                                                                     
+                                    - Any Grade -   4 (26.7%)    4 (26.7%)      5 (33.3%)   
+                                    Grade 3-4       4 (26.7%)    4 (26.7%)      5 (33.3%)   
+                                    4               4 (26.7%)    4 (26.7%)      5 (33.3%)   
 
 # aet05 functions with default argument value return expected result with test data
 
@@ -311,122 +293,122 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                                    A: Drug X         B: Placebo   
-                                                                    (N=134)           (N=134)     
+                                                                    (N=15)             (N=15)     
         ——————————————————————————————————————————————————————————————————————————————————————————
         Time to first occurrence of a grade 3-5 adverse event                                     
-          Total patient-years at risk                                89.3               59.2      
-          Number of adverse events observed                           106               123       
-          AE rate per 100 patient-years                             118.75             207.62     
-          95% CI                                                (96.14, 141.35)   (170.93, 244.31)
+          Total patient-years at risk                                10.3               6.3       
+          Number of adverse events observed                           12                 14       
+          AE rate per 100 patient-years                             116.36             223.84     
+          95% CI                                                (50.53, 182.20)   (106.59, 341.09)
         Time to first occurrence of any adverse event                                             
-          Total patient-years at risk                                162.4             103.8      
-          Number of adverse events observed                           78                104       
-          AE rate per 100 patient-years                              48.03             100.15     
-          95% CI                                                (37.37, 58.69)    (80.90, 119.40) 
+          Total patient-years at risk                                31.0               9.0       
+          Number of adverse events observed                            5                 13       
+          AE rate per 100 patient-years                              16.13             143.84     
+          95% CI                                                 (1.99, 30.27)    (65.65, 222.03) 
         Time to first occurrence of any serious adverse event                                     
-          Total patient-years at risk                                135.8              80.1      
-          Number of adverse events observed                           89                123       
-          AE rate per 100 patient-years                              65.56             153.62     
-          95% CI                                                (51.94, 79.18)    (126.48, 180.77)
+          Total patient-years at risk                                32.9               7.6       
+          Number of adverse events observed                            4                 14       
+          AE rate per 100 patient-years                              12.15             183.83     
+          95% CI                                                 (0.24, 24.05)    (87.53, 280.12) 
       \s\n                                                          C: Combination 
-                                                                    (N=132)    
+                                                                    (N=15)     
         ———————————————————————————————————————————————————————————————————————
         Time to first occurrence of a grade 3-5 adverse event                  
-          Total patient-years at risk                                91.8      
-          Number of adverse events observed                           103      
-          AE rate per 100 patient-years                             112.21     
-          95% CI                                                (90.54, 133.87)
+          Total patient-years at risk                                 8.3      
+          Number of adverse events observed                           13       
+          AE rate per 100 patient-years                             156.98     
+          95% CI                                                (71.65, 242.32)
         Time to first occurrence of any adverse event                          
-          Total patient-years at risk                                172.6     
-          Number of adverse events observed                           67       
-          AE rate per 100 patient-years                              38.82     
-          95% CI                                                (29.53, 48.12) 
+          Total patient-years at risk                                22.0      
+          Number of adverse events observed                            8       
+          AE rate per 100 patient-years                              36.30     
+          95% CI                                                (11.15, 61.46) 
         Time to first occurrence of any serious adverse event                  
-          Total patient-years at risk                                127.8     
-          Number of adverse events observed                           88       
-          AE rate per 100 patient-years                              68.84     
-          95% CI                                                (54.46, 83.23) 
+          Total patient-years at risk                                 9.4      
+          Number of adverse events observed                           13       
+          AE rate per 100 patient-years                             137.79     
+          95% CI                                                (62.89, 212.68)
 
 # aet05_all functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                                A: Drug X          B: Placebo   
-                                                                 (N=134)            (N=134)     
-        ————————————————————————————————————————————————————————————————————————————————————————
-        Number of occurrences of a grade 3-5 adverse event                                      
-          Total patient-years at risk                             337.9              331.8      
-          Number of adverse events observed                        534                465       
-          AE rate per 100 patient-years                           158.04             140.13     
-          95% CI                                             (144.64, 171.44)   (127.39, 152.87)
-        Number of occurrences of any adverse event                                              
-          Total patient-years at risk                             337.9              331.8      
-          Number of adverse events observed                        343                380       
-          AE rate per 100 patient-years                           101.51             114.52     
-          95% CI                                             (90.77, 112.26)    (103.00, 126.03)
-        Number of occurrences of any serious adverse event                                      
-          Total patient-years at risk                             337.9              331.8      
-          Number of adverse events observed                        355                331       
-          AE rate per 100 patient-years                           105.06             99.75      
-          95% CI                                             (94.13, 115.99)    (89.00, 110.49) 
+                                                                A: Drug X         B: Placebo   
+                                                                  (N=15)            (N=15)     
+        ———————————————————————————————————————————————————————————————————————————————————————
+        Number of occurrences of a grade 3-5 adverse event                                     
+          Total patient-years at risk                              44.4              44.2      
+          Number of adverse events observed                         65                54       
+          AE rate per 100 patient-years                           146.41            122.08     
+          95% CI                                             (110.81, 182.00)   (89.52, 154.64)
+        Number of occurrences of any adverse event                                             
+          Total patient-years at risk                              44.4              44.2      
+          Number of adverse events observed                         29                49       
+          AE rate per 100 patient-years                           65.32             110.78     
+          95% CI                                              (41.55, 89.09)    (79.76, 141.79)
+        Number of occurrences of any serious adverse event                                     
+          Total patient-years at risk                              44.4              44.2      
+          Number of adverse events observed                         9                 36       
+          AE rate per 100 patient-years                           20.27              81.39     
+          95% CI                                              (7.03, 33.52)     (54.80, 107.97)
       \s\n                                                        C: Combination 
-                                                                 (N=132)     
+                                                                  (N=15)     
         —————————————————————————————————————————————————————————————————————
         Number of occurrences of a grade 3-5 adverse event                   
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        652       
-          AE rate per 100 patient-years                           190.87     
-          95% CI                                             (176.22, 205.53)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         95       
+          AE rate per 100 patient-years                           214.02     
+          95% CI                                             (170.98, 257.05)
         Number of occurrences of any adverse event                           
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        397       
-          AE rate per 100 patient-years                           116.22     
-          95% CI                                             (104.79, 127.66)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         56       
+          AE rate per 100 patient-years                           126.16     
+          95% CI                                             (93.12, 159.20) 
         Number of occurrences of any serious adverse event                   
-          Total patient-years at risk                             341.6      
-          Number of adverse events observed                        446       
-          AE rate per 100 patient-years                           130.57     
-          95% CI                                             (118.45, 142.69)
+          Total patient-years at risk                              44.4      
+          Number of adverse events observed                         60       
+          AE rate per 100 patient-years                           135.17     
+          95% CI                                             (100.97, 169.37)
 
 # aet10 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                A: Drug X    B: Placebo   C: Combination
-        MedDRA Preferred Term    (N=134)      (N=134)        (N=132)    
-        ————————————————————————————————————————————————————————————————
-        dcd D.2.1.5.3           47 (35.1%)   58 (43.3%)     57 (43.2%)  
-        dcd A.1.1.1.1           50 (37.3%)   45 (33.6%)     63 (47.7%)  
-        dcd B.2.2.3.1           48 (35.8%)   54 (40.3%)     51 (38.6%)  
-        dcd A.1.1.1.2           48 (35.8%)   48 (35.8%)     50 (37.9%)  
-        dcd B.2.1.2.1           49 (36.6%)   44 (32.8%)     52 (39.4%)  
-        dcd D.1.1.1.1           50 (37.3%)   42 (31.3%)     51 (38.6%)  
-        dcd D.1.1.4.2           48 (35.8%)   42 (31.3%)     50 (37.9%)  
-        dcd B.1.1.1.1           47 (35.1%)   49 (36.6%)     43 (32.6%)  
-        dcd C.2.1.2.1           35 (26.1%)   48 (35.8%)     55 (41.7%)  
-        dcd C.1.1.1.3           43 (32.1%)   46 (34.3%)     43 (32.6%)  
+                                A: Drug X   B: Placebo   C: Combination
+        MedDRA Preferred Term    (N=15)       (N=15)         (N=15)    
+        ———————————————————————————————————————————————————————————————
+        dcd B.2.2.3.1           8 (53.3%)   6 (40.0%)      7 (46.7%)   
+        dcd B.1.1.1.1           5 (33.3%)   6 (40.0%)      8 (53.3%)   
+        dcd C.2.1.2.1           6 (40.0%)   4 (26.7%)      8 (53.3%)   
+        dcd A.1.1.1.2           5 (33.3%)   6 (40.0%)      6 (40.0%)   
+        dcd B.2.1.2.1           5 (33.3%)   6 (40.0%)      5 (33.3%)   
+        dcd D.1.1.1.1           4 (26.7%)   4 (26.7%)      7 (46.7%)   
+        dcd D.1.1.4.2           6 (40.0%)   2 (13.3%)      7 (46.7%)   
+        dcd D.2.1.5.3           2 (13.3%)   5 (33.3%)      7 (46.7%)   
+        dcd C.1.1.1.3           4 (26.7%)   4 (26.7%)      5 (33.3%)   
+        dcd A.1.1.1.1           3 (20.0%)    1 (6.7%)      6 (40.0%)   
 
 # cmt02_pt functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                                A: Drug X    B: Placebo    C: Combination
-        Other Treatment                                          (N=134)       (N=134)        (N=132)    
-        —————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of treatments                                 609           622            703      
-        medname A_1/3                                          54 (40.3%)    49 (36.6%)      69 (52.3%)  
-        medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-        medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-        medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-        medname A_2/3                                          53 (39.6%)    50 (37.3%)      56 (42.4%)  
-        medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  
-        medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
-        medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
-        medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
+                                                               A: Drug X    B: Placebo   C: Combination
+        Other Treatment                                          (N=15)       (N=15)         (N=15)    
+        ———————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one treatment   13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of treatments                                 58           59             99      
+        medname B_3/4                                          8 (53.3%)    6 (40.0%)      8 (53.3%)   
+        medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+        medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   
+        medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+        medname A_2/3                                          5 (33.3%)    6 (40.0%)      7 (46.7%)   
+        medname B_4/4                                          4 (26.7%)    5 (33.3%)      8 (53.3%)   
+        medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+        medname A_1/3                                          4 (26.7%)    3 (20.0%)      8 (53.3%)   
+        medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   
 
 # coxt01 functions with default argument value return expected result with test data
 
@@ -434,14 +416,14 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                      Treatment Effect Adjusted for Covariate     
-        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
+        Effect/Covariate Included in the Model    n      Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       268        1.43        (1.06, 1.94)     0.0204 
+          B: Placebo vs control (A: Drug X)       30         2.55        (0.97, 6.75)     0.0588 
         Covariate:                                                                               
-          Sex                                     268        1.43        (1.06, 1.94)     0.0208 
-          RACE                                    268        1.44        (1.06, 1.96)     0.0208 
-          Age (yr)                                268        1.46        (1.07, 1.98)     0.0154 
+          Sex                                     30         2.94        (0.99, 8.71)     0.0511 
+          RACE                                    30         2.63        (0.89, 7.72)     0.0792 
+          Age (yr)                                30         2.54        (0.86, 7.44)     0.0902 
 
 # coxt02 functions with default argument value return expected result with test data
 
@@ -451,52 +433,50 @@
         Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
         —————————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                                   
-          Description of Planned Arm (reference = A: Drug X)                                  <0.0001
-            B: Placebo                                              1.45       (1.07, 1.98)   0.0176 
-            C: Combination                                          2.49       (1.84, 3.37)   <0.0001
+          Description of Planned Arm (reference = A: Drug X)                                  0.1107 
+            B: Placebo                                              3.16       (1.05, 9.53)   0.0414 
+            C: Combination                                          2.23       (0.81, 6.17)   0.1215 
         Covariate:                                                                                   
           Sex (reference = F)                                                                        
-            M                                                       0.99       (0.78, 1.27)   0.9564 
-          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9134 
-            ASIAN                                                   0.85       (0.49, 1.46)   0.5568 
-            BLACK OR AFRICAN AMERICAN                               0.85       (0.48, 1.50)   0.5673 
-            WHITE                                                   0.91       (0.51, 1.63)   0.7579 
+            M                                                       0.63       (0.23, 1.73)   0.3665 
+          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9055 
+            ASIAN                                                   0.86       (0.18, 4.10)   0.8534 
+            BLACK OR AFRICAN AMERICAN                               1.35       (0.21, 8.44)   0.7511 
+            WHITE                                                   1.06       (0.18, 6.36)   0.9463 
           Age (yr)                                                                                   
-            All                                                     0.99       (0.97, 1.01)   0.2501 
+            All                                                     1.03       (0.95, 1.13)   0.4598 
 
 # dmt01 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                              A: Drug X    B: Placebo    C: Combination   All Patients
-                                               (N=134)       (N=134)        (N=132)         (N=400)   
-        ——————————————————————————————————————————————————————————————————————————————————————————————
-        Age (yr)                                                                                      
-          n                                      134           134            132             400     
-          Mean (SD)                          33.8 (6.6)    35.4 (7.9)      35.4 (7.7)      34.9 (7.4) 
-          Median                                33.0          35.0            35.0            34.0    
-          Min - Max                            21 - 50       21 - 62        20 - 69         20 - 69   
-        Age Group                                                                                     
-          n                                      134           134            132             400     
-          <65                                134 (100%)    134 (100%)     131 (99.2%)     399 (99.8%) 
-          >=65                                    0             0           1 (0.8%)        1 (0.2%)  
-        Sex                                                                                           
-          n                                      134           134            132             400     
-          Male                               55 (41.0%)    52 (38.8%)      62 (47.0%)     169 (42.2%) 
-          Female                             79 (59.0%)    82 (61.2%)      70 (53.0%)     231 (57.8%) 
-        Ethnicity                                                                                     
-          n                                      134           134            132             400     
-          NOT REPORTED                        6 (4.5%)      10 (7.5%)      11 (8.3%)       27 (6.8%)  
-          HISPANIC OR LATINO                 15 (11.2%)    18 (13.4%)      15 (11.4%)      48 (12.0%) 
-          NOT HISPANIC OR LATINO             104 (77.6%)   103 (76.9%)    101 (76.5%)     308 (77.0%) 
-          UNKNOWN                             9 (6.7%)      3 (2.2%)        5 (3.8%)       17 (4.2%)  
-        RACE                                                                                          
-          n                                      134           134            132             400     
-          AMERICAN INDIAN OR ALASKA NATIVE    8 (6.0%)      11 (8.2%)       6 (4.5%)       25 (6.2%)  
-          ASIAN                              68 (50.7%)    68 (50.7%)      73 (55.3%)     209 (52.2%) 
-          BLACK OR AFRICAN AMERICAN          31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
-          WHITE                              27 (20.1%)    27 (20.1%)      21 (15.9%)      75 (18.8%) 
+                                             A: Drug X    B: Placebo   C: Combination   All Patients
+                                               (N=15)       (N=15)         (N=15)          (N=45)   
+        ————————————————————————————————————————————————————————————————————————————————————————————
+        Age (yr)                                                                                    
+          n                                      15           15             15              45     
+          Mean (SD)                          31.3 (5.3)   35.1 (9.0)     36.6 (6.4)      34.3 (7.3) 
+          Median                                31.0         35.0           35.0            34.0    
+          Min - Max                           24 - 40      24 - 57        24 - 49         24 - 57   
+        Age Group                                                                                   
+          n                                      15           15             15              45     
+          <65                                15 (100%)    15 (100%)      15 (100%)       45 (100%)  
+        Sex                                                                                         
+          n                                      15           15             15              45     
+          Male                               3 (20.0%)    7 (46.7%)      5 (33.3%)       15 (33.3%) 
+          Female                             12 (80.0%)   8 (53.3%)      10 (66.7%)      30 (66.7%) 
+        Ethnicity                                                                                   
+          n                                      15           15             15              45     
+          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
+          HISPANIC OR LATINO                 2 (13.3%)        0              0            2 (4.4%)  
+          NOT HISPANIC OR LATINO             13 (86.7%)   15 (100%)      13 (86.7%)      41 (91.1%) 
+        RACE                                                                                        
+          n                                      15           15             15              45     
+          AMERICAN INDIAN OR ALASKA NATIVE       0        2 (13.3%)       1 (6.7%)        3 (6.7%)  
+          ASIAN                              8 (53.3%)    10 (66.7%)     8 (53.3%)       26 (57.8%) 
+          BLACK OR AFRICAN AMERICAN          4 (26.7%)     1 (6.7%)      4 (26.7%)       9 (20.0%)  
+          WHITE                              3 (20.0%)    2 (13.3%)      2 (13.3%)       7 (15.6%)  
 
 # dst01 functions with default argument value return expected result with test data
 
@@ -504,31 +484,29 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                           A: Drug X    B: Placebo   C: Combination   All Patients
-                                           (N=134)      (N=134)        (N=132)         (N=400)   
+                                            (N=15)       (N=15)         (N=15)          (N=45)   
         —————————————————————————————————————————————————————————————————————————————————————————
-        Completed                         68 (50.7%)   66 (49.3%)     73 (55.3%)     207 (51.7%) 
-        Ongoing                           24 (17.9%)   28 (20.9%)     21 (15.9%)      73 (18.2%) 
-        Discontinued                      42 (31.3%)   40 (29.9%)     38 (28.8%)     120 (30.0%) 
-          ADVERSE EVENT                    3 (2.2%)     6 (4.5%)       5 (3.8%)       14 (3.5%)  
-          DEATH                           25 (18.7%)   23 (17.2%)     22 (16.7%)      70 (17.5%) 
-          LACK OF EFFICACY                 2 (1.5%)     2 (1.5%)       3 (2.3%)        7 (1.8%)  
-          PHYSICIAN DECISION               2 (1.5%)     3 (2.2%)       2 (1.5%)        7 (1.8%)  
-          PROTOCOL VIOLATION               5 (3.7%)     3 (2.2%)       4 (3.0%)       12 (3.0%)  
-          WITHDRAWAL BY PARENT/GUARDIAN    4 (3.0%)     2 (1.5%)       1 (0.8%)        7 (1.8%)  
-          WITHDRAWAL BY SUBJECT            1 (0.7%)     1 (0.7%)       1 (0.8%)        3 (0.8%)  
+        Completed                         10 (66.7%)   10 (66.7%)     10 (66.7%)      30 (66.7%) 
+        Discontinued                      5 (33.3%)    5 (33.3%)      5 (33.3%)       15 (33.3%) 
+          ADVERSE EVENT                       0            0           1 (6.7%)        1 (2.2%)  
+          DEATH                           2 (13.3%)    4 (26.7%)      3 (20.0%)       9 (20.0%)  
+          LACK OF EFFICACY                2 (13.3%)        0              0            2 (4.4%)  
+          PHYSICIAN DECISION                  0            0           1 (6.7%)        1 (2.2%)  
+          PROTOCOL VIOLATION                  0         1 (6.7%)          0            1 (2.2%)  
+          WITHDRAWAL BY PARENT/GUARDIAN    1 (6.7%)        0              0            1 (2.2%)  
 
 # dtht01 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                 A: Drug X    B: Placebo   C: Combination
-                                  (N=134)      (N=134)        (N=132)    
-        —————————————————————————————————————————————————————————————————
-        Total number of deaths   25 (18.7%)   23 (17.2%)     22 (16.7%)  
-        Primary Cause of Death                                           
-          n                          25           23             22      
-          Adverse Event          9 (36.0%)    7 (30.4%)      10 (45.5%)  
-          Progressive Disease    8 (32.0%)    6 (26.1%)      6 (27.3%)   
-          Other                  8 (32.0%)    10 (43.5%)     6 (27.3%)   
+                                 A: Drug X   B: Placebo   C: Combination
+                                  (N=15)       (N=15)         (N=15)    
+        ————————————————————————————————————————————————————————————————
+        Total number of deaths   2 (13.3%)   4 (26.7%)      3 (20.0%)   
+        Primary Cause of Death                                          
+          n                          2           4              3       
+          Adverse Event          1 (50.0%)   2 (50.0%)      1 (33.3%)   
+          Progressive Disease    1 (50.0%)       0          2 (66.7%)   
+          Other                      0       2 (50.0%)          0       
 

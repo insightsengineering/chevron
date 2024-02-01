@@ -40,6 +40,13 @@ aet04
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 The \code{AET04} table provides an
 overview of adverse event with the highest \code{NCI} \code{CTCAE} grade per individual.

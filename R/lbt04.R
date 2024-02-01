@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param analysis_abn_var (`string`) column describing anomaly magnitude
 #' @param baseline_abn_var (`string`) column describing anomaly at baseline.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Only count LOW or HIGH values.
@@ -124,7 +125,7 @@ lbt04_lyt <- function(arm_var,
 #' @describeIn lbt04 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 lbt04_pre <- function(adam_db, ...) {
@@ -158,7 +159,7 @@ lbt04_pre <- function(adam_db, ...) {
 #' @describeIn lbt04 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 lbt04_post <- function(tlg, ...) {

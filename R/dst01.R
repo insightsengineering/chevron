@@ -10,6 +10,7 @@
 #' @param detail_vars Named (`list`) of grouped display of `study_status_var`. The names must be subset of unique levels
 #' of `study_status_var`.
 #' @param trt_status_var (`string`) variable of treatment status.
+#' @returns the main function returns an `rtables` object.
 #' @details
 #'  * Default patient disposition table summarizing the reasons for patients withdrawal.
 #'  * Numbers represent absolute numbers of patients and fraction of `N`.
@@ -84,7 +85,7 @@ dst01_main <- function(adam_db,
 #'   variable name with the pattern `EOPxxSTT` where `xx` must be substituted by 2 digits referring to the analysis
 #'   period.
 #' @param detail_vars Named (`list`) of grouped display of `study_status_var`.
-#'
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 dst01_lyt <- function(arm_var,
@@ -118,7 +119,7 @@ dst01_lyt <- function(arm_var,
 #' @describeIn dst01 Preprocessing
 #'
 #' @inheritParams dst01_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 dst01_pre <- function(adam_db,
@@ -161,7 +162,7 @@ dst01_pre <- function(adam_db,
 #' @describeIn dst01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 dst01_post <- function(tlg, prune_0 = TRUE, ...) {

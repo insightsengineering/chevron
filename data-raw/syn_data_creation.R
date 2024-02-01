@@ -52,8 +52,12 @@ syn_test_data <- function() {
         TRUE ~ ">=6 months"
       ), levels = c("< 1 month", "1 to <3 months", "3 to <6 months", ">=6 months"))
     ) %>%
-    dplyr::bind_rows(sd$adex)
-
+    dplyr::bind_rows(sd$adex) %>%
+    select(
+      USUBJID, ARM, ARMCD, ACTARM, ACTARMCD, PARAMCD, AVALU,
+      AVISIT, PARAM, AVISITN, TRT01P, TRT01A, TRT02P, TRT02A,
+      AVALCAT1, PARCAT1, ETHNIC, AVAL, STUDYID, PARCAT2, SEX, RACE
+    )
   # Add AVALCAT1 CHGCAT1 for adeg
   sd$adeg <- sd$adeg %>%
     mutate(
@@ -78,6 +82,11 @@ syn_test_data <- function() {
         factor(CHGCAT1, levels = c("<=30 msec", ">30 to <=60 msec", ">60 msec")),
         "Change from Baseline"
       )
+    ) %>%
+    select(
+      USUBJID, ARM, ARMCD, ACTARM, ACTARMCD, PARAMCD, ANRIND, BNRIND, AVALU,
+      AVISIT, PARAM, AVISITN, CHG, BASE, ANL01FL, TRT01P, TRT01A, TRT02P, TRT02A,
+      AVALCAT1, CHGCAT1, AVAL, ONTRTFL, STUDYID
     )
 
   # useful for lbt04, lbt05
@@ -130,7 +139,12 @@ syn_test_data <- function() {
     mutate(ONTRTFL = case_when(
       .data$AVISIT %in% c("BASELINE", "SCREENING") ~ "",
       TRUE ~ "Y"
-    ))
+    )) %>%
+    select(
+      USUBJID, ARM, ARMCD, ACTARM, ACTARMCD, PARAMCD, ANRIND, BNRIND, AVALU, ONTRTFL,
+      AVISIT, PARAM, AVISITN, CHG, BASE, ANL01FL, TRT01P, TRT01A, TRT02P, TRT02A,
+      PARCAT1, PARCAT2, AVALCAT1, AVAL, STUDYID, LBCAT, ATOXGR, WGRHIFL, WGRLOFL, BTOXGR
+    )
 
   # useful for dmt01
   sd$adsl$ETHNIC <- factor(trimws(sd$adsl$ETHNIC), levels = trimws(levels(sd$adsl$ETHNIC)))
@@ -187,7 +201,11 @@ syn_test_data <- function() {
     mutate(MHDECOD = with_label(.data$MHDECOD, "MedDRA Preferred Term"))
 
   sd$advs <- sd$advs %>%
-    mutate(ANL01FL = "Y")
+    mutate(ANL01FL = "Y") %>%
+    select(
+      USUBJID, ARM, ARMCD, ACTARM, ACTARMCD, PARAMCD, ANRIND, BNRIND, AVALU, AVAL, STUDYID,
+      AVISIT, PARAM, AVISITN, CHG, BASE, ANL01FL, TRT01P, TRT01A, TRT02P, TRT02A, ONTRTFL, ABLFL
+    )
 
   sd$adcm <- sd$adcm %>%
     mutate(ANL01FL = "Y")
@@ -210,6 +228,20 @@ syn_test_data <- function() {
 
   # useful for aet05 and aet05_all
   names(sd)[names(sd) == "adaette"] <- "adsaftte"
+
+  # subset patients to only keep 10 pts per arm.
+  kept_subj <- vapply(split(sd$adsl$USUBJID, sd$adsl$TRT01P), function(x) x[seq_len(15)], FUN.VALUE = rep("", 15L))
+  kept_subj <- as.vector(kept_subj)
+  sd <- lapply(
+    sd,
+    function(x) {
+      ret <- x[x$USUBJID %in% kept_subj, ]
+      ret$USUBJID <- droplevels(ret$USUBJID)
+      ret
+    }
+  )
+
+  sd$adrs$AVALC <- rep(c("CR", "PR", "SD"), length.out = nrow(sd$adrs))
 
   sd
 }

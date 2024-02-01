@@ -3,8 +3,8 @@
 #' @describeIn cmt02_pt Main TLG function
 #'
 #' @inherit cmt01a_main
-#' @source `cmt01a.R`
-#'
+#' @include cmt01a.R
+#' @returns the main function returns an `rtables` object.
 #' @export
 #'
 cmt02_pt_main <- modify_default_args(
@@ -16,7 +16,7 @@ cmt02_pt_main <- modify_default_args(
 #' @describeIn cmt02_pt Preprocessing
 #'
 #' @inherit cmt01a_pre
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 cmt02_pt_pre <- cmt01a_pre
@@ -24,7 +24,7 @@ cmt02_pt_pre <- cmt01a_pre
 #' @describeIn cmt02_pt Postprocessing
 #'
 #' @inherit cmt01a_post
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 cmt02_pt_post <- modify_default_args(cmt01a_post, row_split_var = NULL)

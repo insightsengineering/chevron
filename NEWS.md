@@ -1,11 +1,11 @@
-# chevron 0.2.4.9021
+# chevron 0.2.5
 
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.
 * Add a `chevron_simple` class only contain main function.
 * Remove `details` argument in `script_funs`, add `name` argument.
 * In the `run` method, the argument passed through `...` are combined with the one passed through `user_arg`. `...` arguments have priority.
 * `AET05` preprocessing now filters on `"(AE|CQ|SMQ)TTE"` rather than `"AETTE"`.
-* Rename the dataset `ADAETTE` in `syn_data` object to `ADSAFTTE`.
+* Rename the dataset `ADAETTE` in `syn_data` object to `ADSAFTTE`. Trim the dataset to remove unused variables.
 * Use uppercase variable names in `AET05` and `AET05_ALL`.
 * The string replacing `NA` values in the tables is now controlled by the `tern_default_na_str` option set during package load.
 * Specified minimal version of package dependencies.

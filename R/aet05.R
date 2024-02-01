@@ -6,6 +6,7 @@
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
 #' @param arm_var (`string`) the arm variable used for arm splitting.
 #' @param ... Further arguments passed to `tern::control_incidence_rate()`.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Total patient-years at risk is the sum over all patients of the time intervals (in years).
@@ -68,6 +69,7 @@ aet05_main <- function(adam_db,
 #' @param n_events (`string`) variable to count the number of events observed.
 #' @param control (`list`) parameters for estimation details, specified by using the helper function
 #' control_incidence_rate().
+#' @returns a `PreDataTableLayouts` object.
 #'
 #' @keywords internal
 #'
@@ -90,7 +92,7 @@ aet05_lyt <- function(arm_var,
 #' @describeIn aet05 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 aet05_pre <- function(adam_db, dataset = "adsaftte", ...) {
@@ -106,7 +108,7 @@ aet05_pre <- function(adam_db, dataset = "adsaftte", ...) {
 #' @describeIn aet05 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 aet05_post <- function(tlg, prune_0 = FALSE, ...) {

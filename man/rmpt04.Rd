@@ -40,6 +40,11 @@ table of \code{adam_db} is used as label.}
 
 \item{...}{not used.}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+}
 \description{
 The \code{RMPT04} table provides an overview of duration of exposure extent.
 }

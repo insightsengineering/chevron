@@ -5,7 +5,7 @@
 \alias{script_funs}
 \alias{script_funs,chevron_tlg-method}
 \alias{script_funs,chevron_simple-method}
-\title{Create Script for Parameters Assignment}
+\title{Create Script for \code{TLG} Generation}
 \usage{
 script_funs(x, adam_db, args, name = deparse(substitute(x)))
 
@@ -22,9 +22,10 @@ script_funs(x, adam_db, args, name = deparse(substitute(x)))
 
 \item{name}{(\code{string}) name of the template.}
 }
+\value{
+\code{character} that can be integrated into an executable script.
+}
 \description{
-Create Script for Parameters Assignment
-
 Create Script for \code{TLG} Generation
 }
 \examples{

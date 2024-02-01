@@ -30,6 +30,13 @@ egt02_2
 
 \item{...}{not used.}
 }
+\value{
+the main function returns an \code{rtables} object
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 ECG Parameters outside Normal Limits Among Patients without Abnormality at Baseline Table.
 }

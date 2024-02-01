@@ -7,7 +7,10 @@
 grob_list(...)
 }
 \arguments{
-\item{...}{(\code{grob}) objects}
+\item{...}{(\code{grob}) objects.}
+}
+\value{
+a \code{grob_list} object.
 }
 \description{
 List of \code{grob} object

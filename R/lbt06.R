@@ -4,6 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param arm_var (`string`) the arm variable used for arm splitting.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Only count `"LOW"` or `"HIGH"` values for `ANRIND` and `BNRIND`.
@@ -64,7 +65,6 @@ lbt06_main <- function(adam_db,
 #' @param lbl_visit (`string`) text label of the `AVISIT` variable.
 #' @param lbl_anrind (`string`) text label of the `ANRIND` variable.
 #' @param lbl_bnrind (`string`) text label of the `BNRIND` variable.
-#' @param param (`string`) the variable for parameter code.
 #' @param anrind_var (`string`) the variable for analysis reference range indicator.
 #' @param bnrind_var (`string`) the variable for baseline reference range indicator.
 #'
@@ -111,7 +111,7 @@ lbt06_lyt <- function(arm_var,
 #' @describeIn lbt06 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 lbt06_pre <- function(adam_db, ...) {
@@ -134,7 +134,7 @@ lbt06_pre <- function(adam_db, ...) {
 #' @describeIn lbt06 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 lbt06_post <- function(tlg, prune_0 = FALSE, ...) {

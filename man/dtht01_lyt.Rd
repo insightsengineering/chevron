@@ -21,13 +21,16 @@ dtht01_lyt(
 
 \item{death_flag}{(\code{string}) variable name of death flag.}
 
+\item{death_var}{(\code{string}) variable name of death category.}
+
 \item{other_level}{(\code{string}) \code{"Other"} level in death category.}
 
 \item{other_var}{(\code{string}) variable name of death cause under \code{"Other"}.}
 
 \item{dose_death_var}{(\code{string}) variable name of the days from last dose.}
-
-\item{detah_var}{(\code{string}) variable name of death category.}
+}
+\value{
+a \code{PreDataTableLayouts} object.
 }
 \description{
 \code{dtht01} Layout
