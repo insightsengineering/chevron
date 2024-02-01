@@ -55,6 +55,23 @@ Suggests:
     withr (>= 2.1.0)
 VignetteBuilder:
     knitr
+Remotes:
+    insightsengineering/dunlin@*release,
+    insightsengineering/formatters@*release,
+    insightsengineering/nestcolor@*release,
+    insightsengineering/rlistings@*release,
+    insightsengineering/rtables@*release,
+    insightsengineering/tern@*release
+Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
+    insightsengineering/dunlin, tidyverse/forcats,
+    insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
+    r-lib/lifecycle, tidyverse/magrittr, insightsengineering/nestcolor,
+    tidyverse/purrr, r-lib/rlang, insightsengineering/rlistings,
+    insightsengineering/rtables, tidyverse/stringr,
+    insightsengineering/tern, tidyverse/tibble, yihui/knitr,
+    rstudio/rmarkdown, r-lib/testthat, tidyverse/tidyr, r-lib/vdiffr,
+    r-lib/withr
+Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
