@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.5
-Date: 2024-01-31
+Version: 0.2.5.9000
+Date: 2024-02-01
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = c("aut", "cre")),
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
@@ -14,11 +14,12 @@ Authors@R: c(
     person("Tian", "Fang", , "tian.fang@roche.com", role = "ctb"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
-Description: Provide standard tables, listings, and graphs (TLGs) libraries used in
-    clinical trials. This package implements a structure to reformat the data with
-    'dunlin', create reporting tables using 'rtables' and 'tern' with standardized
-    input arguments to enable quick generation of standard outputs.
-    In addition, it also provides comprehensive data checks and script generation functionality.
+Description: Provide standard tables, listings, and graphs (TLGs)
+    libraries used in clinical trials. This package implements a structure
+    to reformat the data with 'dunlin', create reporting tables using
+    'rtables' and 'tern' with standardized input arguments to enable quick
+    generation of standard outputs.  In addition, it also provides
+    comprehensive data checks and script generation functionality.
 License: Apache License 2.0
 URL: https://insightsengineering.github.io/chevron/,
     https://github.com/insightsengineering/chevron/
