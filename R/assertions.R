@@ -3,6 +3,7 @@
 #' Check variable only has one unique value.
 #' @param x value vector.
 #' @param label (`string`) label of input.
+#' @returns invisible `NULL` or an error message if the criteria are not fulfilled.
 #' @export
 assert_single_value <- function(x, label = deparse(substitute(x))) {
   unique_param_val <- unique(x)
@@ -26,6 +27,7 @@ assert_single_value <- function(x, label = deparse(substitute(x))) {
 #' @param na_ok (`flag`) whether NA value is allowed
 #' @param empty_ok (`flag`) whether length 0 value is allowed.
 #' @param ... Further arguments to methods.
+#' @returns invisible `NULL` or an error message if the criteria are not fulfilled.
 #' @export
 assert_valid_var <- function(x, label, na_ok, empty_ok, ...) {
   UseMethod("assert_valid_var")
@@ -108,7 +110,7 @@ assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = 
 #' @param types Named (`list`) of type of the input.
 #' @param ... further arguments for `assert_valid_var`. Please note that different methods have different arguments
 #' so if provided make sure the variables to check is of the same class.
-#'
+#' @returns invisible `TRUE` or an error message if the criteria are not fulfilled.
 #' @export
 assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), types = NULL, ...) {
   assert_names(colnames(df), must.include = vars, what = "colnames")
@@ -137,6 +139,7 @@ assert_valid_variable <- function(df, vars, label = deparse(substitute(df)), typ
 #' @param x Object to check the type.
 #' @param types (`character`) possible types to check.
 #' @param label (`string`) label.
+#' @returns invisible `NULL` or an error message if the criteria are not fulfilled.
 assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
   if (!any(vapply(types, is, object = x, FUN.VALUE = TRUE))) {
     abort(
@@ -157,6 +160,7 @@ assert_valid_type <- function(x, types, label = deparse(substitute(x))) {
 #' @param var (`string`) variable to check.
 #' @param lab1 (`string`) label hint for `df1`.
 #' @param lab2 (`string`) label hint for `df2`.
+#' @returns invisible `NULL` or an error message if the criteria are not fulfilled.
 assert_valid_var_pair <- function(df1, df2, var, lab1 = deparse(substitute(df1)), lab2 = deparse(substitute(df2))) {
   assert_data_frame(df1)
   assert_data_frame(df2)

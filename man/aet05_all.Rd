@@ -20,6 +20,9 @@ aet05_all
 
 \item{...}{not used.}
 }
+\value{
+the preprocessing function returns a \code{list} of \code{data.frame}.
+}
 \description{
 The \code{AET05_ALL} table produces the standard adverse event rate adjusted for patient-years at risk summary
 considering all occurrences.

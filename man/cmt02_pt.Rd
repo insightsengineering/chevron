@@ -10,9 +10,6 @@
 \format{
 An object of class \code{chevron_t} of length 1.
 }
-\source{
-\code{cmt01a.R}
-}
 \usage{
 cmt02_pt_main(
   adam_db,
@@ -57,6 +54,13 @@ cmt02_pt
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 
 \item{sort_by_freq}{(\code{flag}) whether to sort medication class by frequency.}
+}
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
 }
 \description{
 A concomitant medication table with the

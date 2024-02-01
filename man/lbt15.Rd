@@ -21,6 +21,9 @@ lbt15
 
 \item{...}{not used.}
 }
+\value{
+the preprocessing function returns a \code{list} of \code{data.frame}.
+}
 \description{
 \code{LBT15} Laboratory Test Shifts to \code{NCI-CTCAE} Grade 3-4 Post-Baseline Table.
 }

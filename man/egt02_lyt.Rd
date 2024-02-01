@@ -24,6 +24,9 @@ egt02_lyt(
 \item{exclude_base_abn}{(\code{flag}) whether to exclude subjects with baseline abnormality from numerator and
 denominator.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{egt02} Layout
 }

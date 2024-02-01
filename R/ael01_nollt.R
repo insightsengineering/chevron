@@ -6,6 +6,7 @@
 #' @param dataset (`character`) the name of a table in the `adam_db` object.
 #' @param default_formatting (`list`) the default format of the listing columns. See [`rlistings::as_listing`].
 #' @param col_formatting (`list`) the format of specific listing columns. See [`rlistings::as_listing`].
+#' @returns the main function returns an `rlistings` object.
 #'
 #' @details
 #'  * Removes duplicate rows.
@@ -47,6 +48,7 @@ ael01_nollt_main <- function(adam_db,
 #' @describeIn ael01_nollt Preprocessing
 #'
 #' @inheritParams ael01_nollt_main
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'
@@ -67,6 +69,7 @@ ael01_nollt_pre <- function(adam_db,
 #' @describeIn ael01_nollt Postprocessing
 #'
 #' @inheritParams gen_args
+#' @returns the postprocessing function returns an `rlistings` object or an `ElementaryTable` (null report).
 #'
 ael01_nollt_post <- function(tlg, ...) {
   if (nrow(tlg) == 0) tlg <- null_report

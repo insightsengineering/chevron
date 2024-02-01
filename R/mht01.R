@@ -11,6 +11,7 @@ mht01_label <- c(
 #'
 #' @inheritParams gen_args
 #' @param summary_labels (`list`) of summarize labels. See details.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -78,7 +79,7 @@ mht01_main <- function(adam_db,
 #' @describeIn mht01 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 mht01_pre <- function(adam_db, ...) {
@@ -101,7 +102,7 @@ mht01_pre <- function(adam_db, ...) {
 #' @describeIn mht01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 mht01_post <- function(tlg, prune_0 = TRUE, ...) {

@@ -9,6 +9,9 @@ set_section_div(x)
 \arguments{
 \item{x}{(\code{integerish}) value of at which the section divider should be added.}
 }
+\value{
+invisible \code{NULL}. Set the \code{chevron.section_div} option.
+}
 \description{
 Set Section Dividers
 }

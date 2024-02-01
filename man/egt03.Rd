@@ -48,6 +48,13 @@ used as subtitles.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 The \code{EGT03} Table entries provide the number of patients by baseline assessment and minimum or maximum post-baseline
 assessment. Percentages are based on the total number of patients in a treatment group. Baseline is the patient's

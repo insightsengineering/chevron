@@ -12,6 +12,8 @@
 #' @param verbose (`flag`) whether to print argument information.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
 #' @param user_args (`list`) arguments from `...`.
+#' @returns an `rtables` (for `chevron_t`), `rlistings` (for `chevron_l`), `grob` (for `chevron_g`) or `ElementaryTable`
+#'   (null report) depending on the class of `chevron_tlg` object passed as `object` argument.
 #'
 #' @name run
 #' @export
@@ -161,9 +163,13 @@ deparse_print <- function(x, indent, max_line = getOption("chevron.arg_max_line"
 #' @param simplify (`flag`) whether to simplify the output, coalescing the values of the parameters. The order of
 #'   priority for the value of the parameters is: `main`, `preprocess` and `postprocess`.
 #' @param omit (`character`) the names of the argument to omit from the output.
+#' @returns a `list` of the formal arguments with their default for the functions stored in the `chevron_tlg` object
+#'   passed a `x` argument.
 #'
 #' @rdname args_ls
 #' @export
+#' @examples
+#' args_ls(aet01, simplify = TRUE)
 setGeneric("args_ls", function(x, simplify = FALSE, omit = NULL) standardGeneric("args_ls"))
 
 #' @rdname args_ls
@@ -200,6 +206,7 @@ setMethod(
 #' retrieve or set `main` function.
 #'
 #' @param x (`chevron_tlg`) input.
+#' @returns the `function` stored in the `main` slot of the `x` argument.
 #'
 #' @aliases main
 #' @export
@@ -263,6 +270,7 @@ setMethod(
 #' @param x (`chevron_tlg`) input.
 #' @param value  (`function`) returning a pre-processed `list` of `data.frames` amenable to `tlg` creation. Typically
 #'   one of the `_pre` function of `chevron`.
+#' @returns the `function` stored in the `preprocess` slot of the `x` argument.
 #'
 #' @rdname preprocess
 #' @export
@@ -287,6 +295,7 @@ setMethod(
 #' retrieve or set `postprocess` function.
 #'
 #' @param x (`chevron_tlg`) input.
+#' @returns the `function` stored in the `postprocess` slot of the `x` argument.
 #'
 #' @aliases postprocess
 #' @export
@@ -325,21 +334,18 @@ setMethod(
 
 # script ----
 
-#' Create Script for Parameters Assignment
+#' Create Script for `TLG` Generation
 #'
 #' @param x (`chevron_tlg`) input.
 #' @param adam_db (`string`) the name of the dataset.
 #' @param name (`string`) name of the template.
 #' @param args (`string`) the name of argument list.
+#' @returns `character` that can be integrated into an executable script.
 #'
 #' @name script
 #' @rdname script
 NULL
 
-## script_funs ----
-
-#' Create Script for `TLG` Generation
-#'
 #' @rdname script
 #' @export
 setGeneric("script_funs", function(x, adam_db, args, name = deparse(substitute(x))) standardGeneric("script_funs"))

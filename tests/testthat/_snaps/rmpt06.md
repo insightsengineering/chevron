@@ -4,53 +4,53 @@
       cat(export_as_txt(res, lpp = 100, cpp = 200))
     Output
                                                                         A: Drug X      B: Placebo    C: Combination
-                                                                         (N=134)        (N=134)         (N=132)    
+                                                                          (N=15)         (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Number of patients with at least one adverse event             122 (91.0%)    123 (91.8%)     120 (90.9%)  
-        95% CI for % of patients with at least one AE                  (84.9, 95.3)   (85.8, 95.8)    (84.7, 95.2) 
-        Total number of AEs                                                609            622             703      
+        Number of patients with at least one adverse event              13 (86.7%)     14 (93.3%)     15 (100.0%)  
+        95% CI for % of patients with at least one AE                  (59.5, 98.3)   (68.1, 99.8)   (78.2, 100.0) 
+        Total number of AEs                                                 58             59              99      
         Total number of patients with at least one AE by worst grade                                               
-          Grade 1                                                        7 (5.2%)       9 (6.7%)        4 (3.0%)   
-          Grade 2                                                        6 (4.5%)      10 (7.5%)        7 (5.3%)   
-          Grade 3                                                       18 (13.4%)     14 (10.4%)      16 (12.1%)  
-          Grade 4                                                       15 (11.2%)     20 (14.9%)      18 (13.6%)  
-          Grade 5 (fatal outcome)                                       76 (56.7%)     70 (52.2%)      75 (56.8%)  
-        Number of patients with at least one serious AE                104 (77.6%)    101 (75.4%)      99 (75.0%)  
+          Grade 1                                                           0           1 (6.7%)        1 (6.7%)   
+          Grade 2                                                        1 (6.7%)       1 (6.7%)        1 (6.7%)   
+          Grade 3                                                        1 (6.7%)      2 (13.3%)        1 (6.7%)   
+          Grade 4                                                       3 (20.0%)      2 (13.3%)       2 (13.3%)   
+          Grade 5 (fatal outcome)                                       8 (53.3%)      8 (53.3%)       10 (66.7%)  
+        Number of patients with at least one serious AE                 12 (80.0%)     12 (80.0%)      11 (73.3%)  
         Number of patients with at least one AE by outcome                                                         
-          Fatal outcome                                                 76 (62.3%)     70 (56.9%)      75 (62.5%)  
-          Unresolved                                                    66 (54.1%)     64 (52.0%)      70 (58.3%)  
-          Recovered/Resolved                                            73 (59.8%)     83 (67.5%)      88 (73.3%)  
-          Resolved with sequelae                                        44 (36.1%)     40 (32.5%)      43 (35.8%)  
-          Recovering/Resolving                                          81 (66.4%)     84 (68.3%)      88 (73.3%)  
-          Unknown outcome                                               38 (31.1%)     49 (39.8%)      44 (36.7%)  
+          Fatal outcome                                                 8 (61.5%)      8 (57.1%)       10 (66.7%)  
+          Unresolved                                                    4 (30.8%)      6 (42.9%)       9 (60.0%)   
+          Recovered/Resolved                                            9 (69.2%)      8 (57.1%)       11 (73.3%)  
+          Resolved with sequelae                                        5 (38.5%)      4 (28.6%)       7 (46.7%)   
+          Recovering/Resolving                                          9 (69.2%)      6 (42.9%)       13 (86.7%)  
+          Unknown outcome                                               2 (15.4%)      4 (28.6%)       7 (46.7%)   
 
 # rmpt06 works as expected with show_diff = TRUE
 
     Code
       cat(export_as_txt(res, lpp = 100, cpp = 200))
     Output
-                                                                        A: Drug X      B: Placebo    C: Combination
-                                                                         (N=134)        (N=134)         (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Number of patients with at least one adverse event             122 (91.0%)    123 (91.8%)     120 (90.9%)  
-        95% CI for % of patients with at least one AE                  (84.9, 95.3)   (85.8, 95.8)    (84.7, 95.2) 
-        Difference in % of patients with at least one AE                                  0.7             -0.1     
-          95% CI of difference                                                        (-6.0, 7.5)     (-7.0, 6.8)  
-        Total number of AEs                                                609            622             703      
-        Total number of patients with at least one AE by worst grade                                               
-          Grade 1                                                        7 (5.2%)       9 (6.7%)        4 (3.0%)   
-          Grade 2                                                        6 (4.5%)      10 (7.5%)        7 (5.3%)   
-          Grade 3                                                       18 (13.4%)     14 (10.4%)      16 (12.1%)  
-          Grade 4                                                       15 (11.2%)     20 (14.9%)      18 (13.6%)  
-          Grade 5 (fatal outcome)                                       76 (56.7%)     70 (52.2%)      75 (56.8%)  
-        Number of patients with at least one serious AE                104 (77.6%)    101 (75.4%)      99 (75.0%)  
-        Number of patients with at least one AE by outcome                                                         
-          Fatal outcome                                                 76 (62.3%)     70 (56.9%)      75 (62.5%)  
-          Unresolved                                                    66 (54.1%)     64 (52.0%)      70 (58.3%)  
-          Recovered/Resolved                                            73 (59.8%)     83 (67.5%)      88 (73.3%)  
-          Resolved with sequelae                                        44 (36.1%)     40 (32.5%)      43 (35.8%)  
-          Recovering/Resolving                                          81 (66.4%)     84 (68.3%)      88 (73.3%)  
-          Unknown outcome                                               38 (31.1%)     49 (39.8%)      44 (36.7%)  
+                                                                        A: Drug X      B: Placebo     C: Combination
+                                                                          (N=15)         (N=15)           (N=15)    
+        ————————————————————————————————————————————————————————————————————————————————————————————————————————————
+        Number of patients with at least one adverse event              13 (86.7%)     14 (93.3%)      15 (100.0%)  
+        95% CI for % of patients with at least one AE                  (59.5, 98.3)   (68.1, 99.8)    (78.2, 100.0) 
+        Difference in % of patients with at least one AE                                   6.7             13.3     
+          95% CI of difference                                                        (-14.7, 28.0)    (-3.9, 30.5) 
+        Total number of AEs                                                 58             59               99      
+        Total number of patients with at least one AE by worst grade                                                
+          Grade 1                                                           0           1 (6.7%)         1 (6.7%)   
+          Grade 2                                                        1 (6.7%)       1 (6.7%)         1 (6.7%)   
+          Grade 3                                                        1 (6.7%)       2 (13.3%)        1 (6.7%)   
+          Grade 4                                                       3 (20.0%)       2 (13.3%)       2 (13.3%)   
+          Grade 5 (fatal outcome)                                       8 (53.3%)       8 (53.3%)       10 (66.7%)  
+        Number of patients with at least one serious AE                 12 (80.0%)     12 (80.0%)       11 (73.3%)  
+        Number of patients with at least one AE by outcome                                                          
+          Fatal outcome                                                 8 (61.5%)       8 (57.1%)       10 (66.7%)  
+          Unresolved                                                    4 (30.8%)       6 (42.9%)       9 (60.0%)   
+          Recovered/Resolved                                            9 (69.2%)       8 (57.1%)       11 (73.3%)  
+          Resolved with sequelae                                        5 (38.5%)       4 (28.6%)       7 (46.7%)   
+          Recovering/Resolving                                          9 (69.2%)       6 (42.9%)       13 (86.7%)  
+          Unknown outcome                                               2 (15.4%)       4 (28.6%)       7 (46.7%)   
 
 # rmpt06 can handle all NA values
 
@@ -58,11 +58,11 @@
       cat(export_as_txt(res, lpp = 100, cpp = 200))
     Output
                                                                         A: Drug X      B: Placebo    C: Combination
-                                                                         (N=134)        (N=134)         (N=132)    
+                                                                          (N=15)         (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Number of patients with at least one adverse event             122 (91.0%)    123 (91.8%)     120 (90.9%)  
-        95% CI for % of patients with at least one AE                  (84.9, 95.3)   (85.8, 95.8)    (84.7, 95.2) 
-        Total number of AEs                                                609            622             703      
+        Number of patients with at least one adverse event              13 (86.7%)     14 (93.3%)     15 (100.0%)  
+        95% CI for % of patients with at least one AE                  (59.5, 98.3)   (68.1, 99.8)   (78.2, 100.0) 
+        Total number of AEs                                                 58             59              99      
         Total number of patients with at least one AE by worst grade                                               
           Grade 1                                                           0              0               0       
           Grade 2                                                           0              0               0       
@@ -84,9 +84,9 @@
       cat(export_as_txt(res, lpp = 100, cpp = 200))
     Output
                                                               A: Drug X      B: Placebo    C: Combination
-                                                               (N=134)        (N=134)         (N=132)    
+                                                                (N=15)         (N=15)          (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————
-        Number of patients with at least one adverse event   122 (91.0%)    123 (91.8%)     120 (90.9%)  
-        95% CI for % of patients with at least one AE        (84.9, 95.3)   (85.8, 95.8)    (84.7, 95.2) 
-        Total number of AEs                                      609            622             703      
+        Number of patients with at least one adverse event    13 (86.7%)     14 (93.3%)     15 (100.0%)  
+        95% CI for % of patients with at least one AE        (59.5, 98.3)   (68.1, 99.8)   (78.2, 100.0) 
+        Total number of AEs                                       58             59              99      
 

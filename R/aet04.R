@@ -4,6 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of patients and fraction of `N`, or absolute number of event when specified.
@@ -70,7 +71,7 @@ aet04_main <- function(adam_db,
 #' @param lbl_aebodsys (`string`) text label for `AEBODSYS`.
 #' @param lbl_aedecod (`string`) text label for `AEDECOD`.
 #' @param grade_groups (`list`) putting in correspondence toxicity grades and labels.
-#'
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 aet04_lyt <- function(arm_var,
@@ -130,7 +131,7 @@ aet04_lyt <- function(arm_var,
 #' @describeIn aet04 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 aet04_pre <- function(adam_db, ...) {
@@ -148,7 +149,7 @@ aet04_pre <- function(adam_db, ...) {
 #' @describeIn aet04 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 aet04_post <- function(tlg, prune_0 = TRUE, ...) {

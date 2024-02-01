@@ -10,6 +10,7 @@ empty_rule <- rule(.to_NA = "")
 #' Get grade rule
 #' @param direction (`string`) of abnormality direction.
 #' @param missing (`string`) method to deal with missing
+#' @returns a `rule` object.
 #' @export
 get_grade_rule <- function(direction = "high", missing = "incl") {
   assert_choice(direction, c("high", "low"))

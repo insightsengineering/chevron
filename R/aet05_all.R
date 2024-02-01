@@ -3,7 +3,7 @@
 #' @describeIn aet05_all Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 aet05_all_pre <- function(adam_db, dataset = "adsaftte", ...) {

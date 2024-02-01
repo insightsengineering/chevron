@@ -13,6 +13,9 @@ assert_valid_type(x, types, label = deparse(substitute(x)))
 
 \item{label}{(\code{string}) label.}
 }
+\value{
+invisible \code{NULL} or an error message if the criteria are not fulfilled.
+}
 \description{
 Check variable is of correct type
 }

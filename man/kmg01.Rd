@@ -31,7 +31,11 @@ Commonly used arguments include \code{col}, \code{pval_method}, \code{ties}, \co
 \code{annot_coxph}, \code{annot_stats}, etc.}
 }
 \value{
+the main function returns a \code{gTree} object.
+
 a \code{gTree} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
 }
 \description{
 \code{KMG01} Kaplan-Meier Plot 1.
@@ -63,7 +67,7 @@ col <- c(
   "C: Combination" = "gray"
 )
 
-syn_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, syn_data, dataset = "adtte", line_col = col)
+pre_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+run(kmg01, pre_data, dataset = "adtte", line_col = col)
 }
 \keyword{datasets}

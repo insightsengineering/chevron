@@ -47,6 +47,13 @@ lbt04
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 The \code{LBT04} table provides an
 overview of laboratory abnormalities not present at baseline.

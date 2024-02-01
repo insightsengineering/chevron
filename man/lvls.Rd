@@ -9,6 +9,9 @@ lvls(x)
 \arguments{
 \item{x}{(\code{character}) or (\code{factor}) object to obtain levels.}
 }
+\value{
+\code{character} with unique values.
+}
 \description{
 Obtain levels from vector
 }

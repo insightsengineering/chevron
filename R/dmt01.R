@@ -12,6 +12,7 @@
 #'   the number of digits in statistics for numeric variables. If `default` is set, and parameter precision not
 #'   specified, the value for `default` will be used. If neither are provided, auto determination is used. See
 #'   [`tern::format_auto`].
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Information from `ADSUB` are generally included into `ADSL` before analysis.
@@ -68,7 +69,7 @@ dmt01_main <- function(adam_db,
 #' @param summaryvars_lbls (`character`) labels corresponding to the analyzed variables.
 #'
 #' @inheritParams gen_args
-#'
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 dmt01_lyt <- function(arm_var,
@@ -94,7 +95,7 @@ dmt01_lyt <- function(arm_var,
 #' @describeIn dmt01 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 dmt01_pre <- function(adam_db, ...) {
@@ -106,7 +107,7 @@ dmt01_pre <- function(adam_db, ...) {
 #' @describeIn dmt01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 dmt01_post <- function(tlg, prune_0 = TRUE, ...) {

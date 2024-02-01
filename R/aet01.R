@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param anl_vars Named (`list`) of (`character`) variables the safety variables to be summarized.
 #' @param anl_lbls (`character`) of analysis labels.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -75,6 +76,7 @@ aet01_main <- function(adam_db,
 #' @param anl_vars Named (`list`) of analysis variables.
 #' @param anl_lbls (`character`) of labels.
 #' @param lbl_vars Named (`list`) of analysis labels.
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 aet01_lyt <- function(arm_var,
@@ -126,6 +128,7 @@ aet01_lyt <- function(arm_var,
 #' @describeIn aet01 Preprocessing
 #'
 #' @inheritParams aet01_main
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'
@@ -160,6 +163,7 @@ aet01_pre <- function(adam_db, ...) {
 #' @describeIn aet01 Postprocessing
 #'
 #' @inheritParams gen_args
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #'
 #' @export
 #'

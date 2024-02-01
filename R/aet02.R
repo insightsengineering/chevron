@@ -12,6 +12,7 @@ aet02_label <- c(
 #'
 #' @inheritParams gen_args
 #' @param summary_labels (`list`) of summarize labels. See details.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Numbers represent absolute numbers of subject and fraction of `N`, or absolute number of event when specified.
@@ -76,7 +77,7 @@ aet02_main <- function(adam_db,
 #' @describeIn aet02 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 aet02_pre <- function(adam_db, row_split_var = "AEBODSYS", ...) {
@@ -91,7 +92,7 @@ aet02_pre <- function(adam_db, row_split_var = "AEBODSYS", ...) {
 #' @describeIn aet02 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 aet02_post <- function(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) {

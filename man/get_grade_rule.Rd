@@ -11,6 +11,9 @@ get_grade_rule(direction = "high", missing = "incl")
 
 \item{missing}{(\code{string}) method to deal with missing}
 }
+\value{
+a \code{rule} object.
+}
 \description{
 Get grade rule
 }

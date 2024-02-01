@@ -20,6 +20,9 @@ postprocess(x) <- value
 
 \item{value}{(\code{function}) returning a post-processed \code{tlg}.}
 }
+\value{
+the \code{function} stored in the \code{postprocess} slot of the \code{x} argument.
+}
 \description{
 retrieve or set \code{postprocess} function.
 }
