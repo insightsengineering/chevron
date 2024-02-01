@@ -12,7 +12,7 @@ overview of laboratory abnormalities not present at baseline."><!-- mathjax --><
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,32 +35,6 @@ overview of laboratory abnormalities not present at baseline."><!-- mathjax --><
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc6">v0.2.5-rc6</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc5">v0.2.5-rc5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -157,6 +131,18 @@ overview of laboratory abnormalities not present at baseline.</p>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>the main function returns an <code>rtables</code> object.</p>
+
+
+<p>the preprocessing function returns a <code>list</code> of <code>data.frame</code>.</p>
+
+
+<p>the postprocessing function returns an <code>rtables</code> object or an <code>ElementaryTable</code> (null report).</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     
 <ul><li><p>Only count LOW or HIGH values.</p></li>
@@ -181,39 +167,39 @@ and column specified by <code>arm_var</code>.</p></li>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">lbt04</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Laboratory Test                           A: Drug X      B: Placebo    C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Direction of Abnormality               (N=134)        (N=134)         (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   CHEMISTRY                                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Alanine Aminotransferase Measurement                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  7/45 (15.6%)   6/51 (11.8%)    4/61 (6.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 4/45 (8.9%)    6/45 (13.3%)    4/62 (6.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     C-Reactive Protein Measurement                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  6/55 (10.9%)   5/61 (8.2%)     6/51 (11.8%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 6/53 (11.3%)   7/55 (12.7%)    2/48 (4.2%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Immunoglobulin A Measurement                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  4/43 (9.3%)    9/51 (17.6%)    8/52 (15.4%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 7/42 (16.7%)   7/49 (14.3%)    5/52 (9.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   COAGULATION                                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Alanine Aminotransferase Measurement                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  4/54 (7.4%)    5/53 (9.4%)     4/48 (8.3%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 9/53 (17.0%)   7/50 (14.0%)    6/48 (12.5%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     C-Reactive Protein Measurement                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  7/56 (12.5%)   5/48 (10.4%)    5/50 (10.0%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 8/52 (15.4%)   3/46 (6.5%)     5/46 (10.9%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Immunoglobulin A Measurement                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  8/50 (16.0%)   8/57 (14.0%)    2/54 (3.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 6/48 (12.5%)   8/65 (12.3%)    2/52 (3.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   HEMATOLOGY                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Alanine Aminotransferase Measurement                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  3/48 (6.2%)    4/46 (8.7%)     6/59 (10.2%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 5/47 (10.6%)   7/45 (15.6%)    8/55 (14.5%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     C-Reactive Protein Measurement                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  6/49 (12.2%)   6/45 (13.3%)   11/57 (19.3%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 3/44 (6.8%)    3/46 (6.5%)     6/53 (11.3%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Immunoglobulin A Measurement                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  5/56 (8.9%)    8/53 (15.1%)    9/50 (18.0%) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 7/57 (12.3%)   4/56 (7.1%)    10/52 (19.2%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Laboratory Test                           A: Drug X    B: Placebo    C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Direction of Abnormality               (N=15)        (N=15)          (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CHEMISTRY                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Alanine Aminotransferase Measurement                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  1/7 (14.3%)   1/3 (33.3%)        0/8      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 2/7 (28.6%)       0/2        1/9 (11.1%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     C-Reactive Protein Measurement                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                      0/8           0/2        2/7 (28.6%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                     0/8           0/3            0/7      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Immunoglobulin A Measurement                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  2/5 (40.0%)   1/8 (12.5%)    1/6 (16.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 2/5 (40.0%)   1/9 (11.1%)        0/6      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   COAGULATION                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Alanine Aminotransferase Measurement                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                      0/5       1/5 (20.0%)        0/5      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                     0/6       1/6 (16.7%)    1/5 (20.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     C-Reactive Protein Measurement                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  1/6 (16.7%)       0/5        1/4 (25.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 1/5 (20.0%)   1/6 (16.7%)        0/3      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Immunoglobulin A Measurement                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                      0/7           0/9            0/7      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                 1/7 (14.3%)      0/10            0/6      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   HEMATOLOGY                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Alanine Aminotransferase Measurement                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  1/5 (20.0%)   1/5 (20.0%)        0/4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                     0/5           0/4            0/4      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     C-Reactive Protein Measurement                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                  1/4 (25.0%)       0/2        3/9 (33.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                     0/4           0/5            0/9      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Immunoglobulin A Measurement                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Low                                      0/2           0/3        2/8 (25.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       High                                     0/4       1/4 (25.0%)        0/7      </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -12,7 +12,7 @@ a single time point. Typical application for oncology"><!-- mathjax --><script s
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,32 +35,6 @@ a single time point. Typical application for oncology"><!-- mathjax --><script s
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc6">v0.2.5-rc6</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc5">v0.2.5-rc5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -181,6 +155,18 @@ see more details in <code>tern</code></p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>the main function returns an <code>rtables</code> object.</p>
+
+
+<p>the preprocessing function returns a <code>list</code> of <code>data.frame</code>.</p>
+
+
+<p>the postprocessing function returns an <code>rtables</code> object or an <code>ElementaryTable</code> (null report).</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     
 <ul><li><p>No overall value.</p></li>
@@ -202,47 +188,50 @@ see more details in <code>tern</code></p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">rspt01</span>, <span class="va">proc_data</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Chi-squared approximation may be incorrect</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Chi-squared approximation may be incorrect</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                          A: Drug X          B: Placebo         C: Combination   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                           (N=134)            (N=134)               (N=132)      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ——————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Responders                            133 (99.3%)        127 (94.8%)           131 (99.2%)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   95% CI (Wald, with correction)       (97.4, 100.0)       (90.6, 98.9)         (97.4, 100.0)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Unstratified Analysis                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Response rate (%)                            -4.5                 -0.0        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI (Wald, with correction)                       (-9.3, 0.3)           (-2.8, 2.8)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (Chi-Squared Test)                                0.0313               0.9915       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Odds Ratio (95% CI)                                   0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Complete Response (CR)                119 (88.8%)         97 (72.4%)           120 (90.9%)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)     (83.09, 94.52)     (64.45, 80.33)       (85.63, 96.19)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Partial Response (PR)                  14 (10.4%)         30 (22.4%)            11 (8.3%)     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)     (4.90, 16.00)      (14.96, 29.82)        (3.24, 13.43)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Stable Disease (SD)                     1 (0.7%)           7 (5.2%)             1 (0.8%)      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)      (0.00, 2.58)       (1.08, 9.36)         (0.00, 2.62)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                          A: Drug X          B: Placebo         C: Combination  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                            (N=15)             (N=15)               (N=15)      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Responders                             10 (66.7%)         9 (60.0%)            11 (73.3%)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   95% CI (Wald, with correction)        (39.5, 93.9)       (31.9, 88.1)         (47.6, 99.0)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Unstratified Analysis                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Response rate (%)                            -6.7                 6.7        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI (Wald, with correction)                      (-47.7, 34.4)        (-32.7, 46.0)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (Chi-Squared Test)                                0.7048               0.6903      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Odds Ratio (95% CI)                                   0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Complete Response (CR)                 4 (26.7%)          4 (26.7%)            7 (46.7%)     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)     (0.95, 52.38)      (0.95, 52.38)        (18.09, 75.25)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Partial Response (PR)                  6 (40.0%)          5 (33.3%)            4 (26.7%)     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)     (11.87, 68.13)     (6.14, 60.52)        (0.95, 52.38)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Stable Disease (SD)                    5 (33.3%)          6 (40.0%)            4 (26.7%)     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)     (6.14, 60.52)      (11.87, 68.13)       (0.95, 52.38)   </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">rspt01</span>, <span class="va">proc_data</span>,</span></span>
 <span class="r-in"><span>  odds_ratio <span class="op">=</span> <span class="cn">FALSE</span>, perform_analysis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"unstrat"</span>, <span class="st">"strat"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  strata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STRATA1"</span>, <span class="st">"STRATA2"</span><span class="op">)</span>, methods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>diff_pval_method <span class="op">=</span> <span class="st">"fisher"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Less than 5 observations in some strata.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Less than 5 observations in some strata.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>&lt;5 data points in some strata. CMH test may be incorrect.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>&lt;5 data points in some strata. CMH test may be incorrect.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                A: Drug X        B: Placebo     C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                 (N=134)          (N=134)          (N=132)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                  (N=15)           (N=15)           (N=15)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Responders                                  133 (99.3%)      127 (94.8%)      131 (99.2%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   95% CI (Wald, with correction)             (97.4, 100.0)     (90.6, 98.9)    (97.4, 100.0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Responders                                   10 (66.7%)       9 (60.0%)        11 (73.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   95% CI (Wald, with correction)              (39.5, 93.9)     (31.9, 88.1)     (47.6, 99.0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Unstratified Analysis                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Response rate (%)                                -4.5             -0.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI (Wald, with correction)                           (-9.3, 0.3)      (-2.8, 2.8)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (Fisher's Exact Test)                                 0.0662           1.0000    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Response rate (%)                                -6.7             6.7      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI (Wald, with correction)                          (-47.7, 34.4)    (-32.7, 46.0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (Fisher's Exact Test)                                 1.0000           1.0000    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Stratified Analysis                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Response rate (%)                                -4.4             0.1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI (CMH, without correction)                         (-8.5, -0.3)     (-2.2, 2.3)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (Cochran-Mantel-Haenszel Test)                        0.0344           0.9560    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Complete Response (CR)                      119 (88.8%)       97 (72.4%)      120 (90.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)           (83.09, 94.52)   (64.45, 80.33)   (85.63, 96.19)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Partial Response (PR)                        14 (10.4%)       30 (22.4%)       11 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)           (4.90, 16.00)    (14.96, 29.82)   (3.24, 13.43) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Stable Disease (SD)                           1 (0.7%)         7 (5.2%)         1 (0.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)            (0.00, 2.58)     (1.08, 9.36)     (0.00, 2.62) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Response rate (%)                               -11.0             22.5     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI (CMH, without correction)                        (-42.7, 20.7)     (-3.5, 48.5) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (Cochran-Mantel-Haenszel Test)                        0.5731           0.3088    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Complete Response (CR)                       4 (26.7%)        4 (26.7%)        7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)           (0.95, 52.38)    (0.95, 52.38)    (18.09, 75.25)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Partial Response (PR)                        6 (40.0%)        5 (33.3%)        4 (26.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)           (11.87, 68.13)   (6.14, 60.52)    (0.95, 52.38) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Stable Disease (SD)                          5 (33.3%)        6 (40.0%)        4 (26.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI (Wald, with correction)           (6.14, 60.52)    (11.87, 68.13)   (0.95, 52.38) </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -12,7 +12,7 @@ overview of the analysis values and its change from baseline of each respective 
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,32 +35,6 @@ overview of the analysis values and its change from baseline of each respective 
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc6">v0.2.5-rc6</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc5">v0.2.5-rc5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -158,6 +132,18 @@ order to obtain the correct denominators when building the layout as it is used 
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>the main function returns an <code>rtables</code> object.</p>
+
+
+<p>the preprocessing function returns a <code>list</code> of <code>data.frame</code>.</p>
+
+
+<p>the postprocessing function returns an <code>rtables</code> object or an <code>ElementaryTable</code> (null report).</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     
 <ul><li><p>Split columns by arm, typically <code>ACTARM</code>.</p></li>
@@ -179,49 +165,49 @@ order to obtain the correct denominators when building the layout as it is used 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">lbt07</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameter                                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Direction of Abnormality                 A: Drug X    B: Placebo   C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Highest NCI CTCAE Grade         (N=134)      (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Alanine Aminotransferase Measurement (n)      134          134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              14 (10.4%)   15 (11.2%)     10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              13 (9.7%)    18 (13.4%)     11 (8.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              20 (14.9%)   12 (9.0%)      10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                               7 (5.2%)     8 (6.0%)      10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            54 (40.3%)   53 (39.6%)     41 (31.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              18 (13.4%)   16 (11.9%)     18 (13.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              15 (11.2%)   13 (9.7%)      18 (13.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              10 (7.5%)    16 (11.9%)     13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              12 (9.0%)    11 (8.2%)      13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            55 (41.0%)   56 (41.8%)     62 (47.0%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   C-Reactive Protein Measurement (n)            134          134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              16 (11.9%)   19 (14.2%)     15 (11.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              21 (15.7%)   13 (9.7%)      16 (12.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              12 (9.0%)     9 (6.7%)      18 (13.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              11 (8.2%)     7 (5.2%)       5 (3.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            60 (44.8%)   48 (35.8%)     54 (40.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              17 (12.7%)   15 (11.2%)      9 (6.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              15 (11.2%)   16 (11.9%)     13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              16 (11.9%)   12 (9.0%)      14 (10.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              12 (9.0%)    12 (9.0%)      10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            60 (44.8%)   55 (41.0%)     46 (34.8%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Immunoglobulin A Measurement (n)              134          134            132      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              17 (12.7%)   23 (17.2%)     17 (12.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              12 (9.0%)    15 (11.2%)     14 (10.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              15 (11.2%)   11 (8.2%)      14 (10.6%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              10 (7.5%)    16 (11.9%)     10 (7.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            54 (40.3%)   65 (48.5%)     55 (41.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              25 (18.7%)   14 (10.4%)     13 (9.8%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              14 (10.4%)   20 (14.9%)     16 (12.1%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              12 (9.0%)    13 (9.7%)      17 (12.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              11 (8.2%)    13 (9.7%)       4 (3.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            62 (46.3%)   60 (44.8%)     50 (37.9%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Parameter                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Direction of Abnormality                 A: Drug X   B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Highest NCI CTCAE Grade         (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ——————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Alanine Aminotransferase Measurement (n)      15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              3 (20.0%)   2 (13.3%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                                  0        1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              5 (33.3%)   3 (20.0%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              1 (6.7%)    2 (13.3%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            9 (60.0%)   8 (53.3%)      5 (33.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              3 (20.0%)   2 (13.3%)      3 (20.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              2 (13.3%)       0          4 (26.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              1 (6.7%)     1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                                  0        1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            6 (40.0%)   4 (26.7%)      8 (53.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C-Reactive Protein Measurement (n)            15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              2 (13.3%)    1 (6.7%)      3 (20.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                                  0       2 (13.3%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              2 (13.3%)       0          4 (26.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              1 (6.7%)        0           1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            5 (33.3%)   3 (20.0%)      10 (66.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              1 (6.7%)        0              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              3 (20.0%)       0              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              1 (6.7%)        0           1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              1 (6.7%)     1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            6 (40.0%)    1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Immunoglobulin A Measurement (n)              15           15             15      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     LOW                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              2 (13.3%)    1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              1 (6.7%)     1 (6.7%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              2 (13.3%)    1 (6.7%)      4 (26.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                              1 (6.7%)    2 (13.3%)      2 (13.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            6 (40.0%)   5 (33.3%)      8 (53.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     HIGH                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1                              4 (26.7%)   2 (13.3%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               2                              1 (6.7%)     1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               3                              1 (6.7%)     1 (6.7%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               4                                  0        1 (6.7%)       1 (6.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Any                            6 (40.0%)   5 (33.3%)      2 (13.3%)   </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,32 +33,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc6">v0.2.5-rc6</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc5">v0.2.5-rc5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -131,6 +105,18 @@
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>the main function returns an <code>rtables</code> object.</p>
+
+
+<p>the preprocessing function returns a <code>list</code> of <code>data.frame</code>.</p>
+
+
+<p>the postprocessing function returns an <code>rtables</code> object or an <code>ElementaryTable</code> (null report).</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     
 <ul><li><p>Only count LOW or HIGH values.</p></li>
@@ -152,27 +138,27 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">vst02_2</span>, <span class="va">syn_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Assessment                   A: Drug X        B: Placebo     C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Abnormality                  (N=134)          (N=134)          (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Diastolic Blood Pressure                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      55/120 (45.8%)   60/121 (49.6%)   53/118 (44.9%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     55/113 (48.7%)   56/123 (45.5%)   52/119 (43.7%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Pulse Rate                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      66/125 (52.8%)   54/121 (44.6%)   55/118 (46.6%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     52/119 (43.7%)   59/119 (49.6%)   38/117 (32.5%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Respiratory Rate                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                       59/123 (48%)    56/118 (47.5%)   50/118 (42.4%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     65/124 (52.4%)   58/127 (45.7%)   57/118 (48.3%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Systolic Blood Pressure                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      53/116 (45.7%)   55/120 (45.8%)   58/120 (48.3%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     65/121 (53.7%)   53/125 (42.4%)   56/124 (45.2%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Temperature                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      51/119 (42.9%)   53/119 (44.5%)   64/115 (55.7%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     61/128 (47.7%)   53/121 (43.8%)   59/122 (48.4%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Weight                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      59/120 (49.2%)   54/117 (46.2%)   63/119 (52.9%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     58/123 (47.2%)   61/121 (50.4%)   55/113 (48.7%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Assessment                  A: Drug X      B: Placebo    C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Abnormality                  (N=15)         (N=15)          (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Diastolic Blood Pressure                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      4/13 (30.8%)    5/10 (50%)     7/13 (53.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     5/14 (35.7%)    7/14 (50%)      9/12 (75%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Pulse Rate                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      5/12 (41.7%)   3/13 (23.1%)    6/14 (42.9%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     7/15 (46.7%)   5/12 (41.7%)    6/14 (42.9%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Respiratory Rate                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      5/13 (38.5%)   6/14 (42.9%)    5/15 (33.3%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     6/14 (42.9%)   4/15 (26.7%)    8/15 (53.3%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Systolic Blood Pressure                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      5/13 (38.5%)   9/14 (64.3%)    4/15 (26.7%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                      7/14 (50%)    8/15 (53.3%)    4/13 (30.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Temperature                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                      4/13 (30.8%)   6/13 (46.2%)     9/15 (60%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                      9/15 (60%)    8/14 (57.1%)    7/13 (53.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Weight                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Low                       9/12 (75%)     2/10 (20%)     7/13 (53.8%) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     High                     4/12 (33.3%)   9/14 (64.3%)    7/13 (53.8%) </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -12,7 +12,7 @@ table with the number of subjects and the total number of treatments by medicati
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,32 +35,6 @@ table with the number of subjects and the total number of treatments by medicati
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc6">v0.2.5-rc6</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc5">v0.2.5-rc5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -171,6 +145,18 @@ table with the number of subjects and the total number of treatments by medicati
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>the main function returns an <code>rtables</code> object.</p>
+
+
+<p>the preprocessing function returns a <code>list</code> of <code>data.frame</code>.</p>
+
+
+<p>the postprocessing function returns an <code>rtables</code> object or an <code>ElementaryTable</code> (null report).</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     
 <ul><li><p>Data should be filtered for concomitant medication. <code>(ATIREL == "CONCOMITANT")</code>.</p></li>
@@ -207,47 +193,47 @@ as well as <code>"CMSEQ"</code>.</p></li>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ATIREL</span> <span class="op">==</span> <span class="st">"CONCOMITANT"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">cmt01a</span>, <span class="va">proc_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Other Treatment                                          (N=134)       (N=134)        (N=132)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one treatment     117 (87.3%)   116 (86.6%)    116 (87.9%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of treatments                                   415           414            460      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 A                                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   75 (56.0%)    79 (59.0%)      81 (61.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 134           137            143      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname A_2/3                                          53 (39.6%)    50 (37.3%)      56 (42.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 A p2                                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   45 (33.6%)    54 (40.3%)      48 (36.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 58            66              64      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 B                                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   83 (61.9%)    74 (55.2%)      88 (66.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 141           137            162      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 B p2                                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   52 (38.8%)    57 (42.5%)      59 (44.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 75            82              83      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 B p3                                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   52 (38.8%)    57 (42.5%)      59 (44.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 75            82              83      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 C                                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 140           140            155      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 C p2                                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 140           140            155      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 C p3                                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   52 (38.8%)    58 (43.3%)      60 (45.5%)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 69            73              80      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Other Treatment                                          (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of patients with at least one treatment     13 (86.7%)   14 (93.3%)     14 (93.3%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total number of treatments                                   40           40             61      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 A                                                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   7 (46.7%)    10 (66.7%)     10 (66.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 11           17             19      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname A_2/3                                          5 (33.3%)    6 (40.0%)      7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 A p2                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   5 (33.3%)    8 (53.3%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 6            8              8       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 B                                                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   10 (66.7%)   8 (53.3%)      10 (66.7%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 16           15             23      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_4/4                                          4 (26.7%)    5 (33.3%)      8 (53.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 B p2                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   7 (46.7%)    6 (40.0%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 12           8              10      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 B p3                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   7 (46.7%)    6 (40.0%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 12           8              10      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 C                                                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   9 (60.0%)    7 (46.7%)      12 (80.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 13           8              19      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 C p2                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   9 (60.0%)    7 (46.7%)      12 (80.0%)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 13           8              19      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATCCLAS2 C p3                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of patients with at least one treatment   4 (26.7%)    5 (33.3%)      7 (46.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total number of treatments                                 5            5              12      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

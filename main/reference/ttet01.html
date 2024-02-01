@@ -12,7 +12,7 @@ a single time point. Typical application for oncology"><!-- mathjax --><script s
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4.9019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,32 +35,6 @@ a single time point. Typical application for oncology"><!-- mathjax --><script s
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc6">v0.2.5-rc6</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc5">v0.2.5-rc5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -166,6 +140,18 @@ or unstratified analyses, or both, e.g. <code>c("unstrat", "strat")</code>. Only
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>the main function returns an <code>rtables</code> object.</p>
+
+
+<p>the preprocessing function returns a <code>list</code> of <code>data.frame</code>.</p>
+
+
+<p>the postprocessing function returns an <code>rtables</code> object or an <code>ElementaryTable</code> (null report).</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     
 <ul><li><p>No overall value.</p></li>
@@ -186,40 +172,40 @@ or unstratified analyses, or both, e.g. <code>c("unstrat", "strat")</code>. Only
 <span class="r-in"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dunlin/man/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"PFS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">ttet01</span>, <span class="va">proc_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                        A: Drug X        B: Placebo      C: Combination </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                         (N=134)           (N=134)           (N=132)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                         (N=15)            (N=15)            (N=15)     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients with event (%)             86 (64.2%)        90 (67.2%)        92 (69.7%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients with event (%)             10 (66.7%)        11 (73.3%)        11 (73.3%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Earliest contributing event                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Death                               38                48                41       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Disease Progression                 48                42                51       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients without event (%)          48 (35.8%)        44 (32.8%)        40 (30.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Death                                5                 6                 4       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Disease Progression                  5                 5                 7       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients without event (%)           5 (33.3%)         4 (26.7%)         4 (26.7%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Time to Event (MONTHS)                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Median                               16.9              19.7              12.3      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                         (12.8, 19.0)      (13.3, 25.2)       (8.4, 14.9)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Median                               17.2              18.1              12.6      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                         (11.9, 24.4)       (6.5, 34.1)       (7.1, 15.6)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     25% and 75%-ile                   11.9, 24.4         6.5, 34.1         7.1, 15.5   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Range                           1.2 to 46.9 {1}   1.0 to 50.5 {2}     1.9 to 28.9  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Unstratified Analysis                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (log-rank)                                    0.4808            0.0429     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Hazard Ratio                                           0.90              1.36      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                             (0.67, 1.21)      (1.01, 1.82)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (log-rank)                                    0.8668            0.1419     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Hazard Ratio                                           0.93              1.95      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                             (0.39, 2.22)      (0.79, 4.80)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   6 MONTHS                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk            87                92                77       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  77.27             77.85             67.70     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (69.83, 84.71)    (70.59, 85.10)    (59.42, 75.99) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                          0.57              -9.57     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-9.82, 10.97)    (-20.70, 1.57) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.9137            0.0921     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk            10                11                10       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  78.32             78.57             80.00     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (56.47, 100.00)   (57.08, 100.00)   (59.76, 100.00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                          0.25              1.68      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-30.40, 30.90)   (-28.11, 31.47)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.9873            0.9121     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   12 MONTHS                                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk            65                68                51       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  62.83             62.69             50.16     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (54.04, 71.63)    (53.97, 71.42)    (41.00, 59.32) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                          -0.14            -12.68     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-12.53, 12.25)   (-25.38, 0.03) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.9822            0.0505     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk             8                 6                 7       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  69.62             55.10             62.22     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (44.40, 94.84)    (27.89, 82.31)    (35.39, 89.06) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                         -14.52             -7.40     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-51.62, 22.58)   (-44.22, 29.43)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.4431            0.6938     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   {1} - Censored observation: range minimum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   {2} - Censored observation: range maximum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   {1} - Censored observation: range maximum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   {2} - Censored observations: range minimum &amp; maximum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -231,41 +217,41 @@ or unstratified analyses, or both, e.g. <code>c("unstrat", "strat")</code>. Only
 <span class="r-in"><span>  method <span class="op">=</span> <span class="st">"both"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                        A: Drug X        B: Placebo      C: Combination </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                         (N=134)           (N=134)           (N=132)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                         (N=15)            (N=15)            (N=15)     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients with event (%)             86 (64.2%)        90 (67.2%)        92 (69.7%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients without event (%)          48 (35.8%)        44 (32.8%)        40 (30.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients with event (%)             10 (66.7%)        11 (73.3%)        11 (73.3%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Patients without event (%)           5 (33.3%)         4 (26.7%)         4 (26.7%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Time to Event (MONTHS)                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Median                               16.9              19.7              12.3      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                         (12.8, 19.0)      (13.2, 25.2)       (8.4, 14.9)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     25% and 75%-ile                    7.7, 30.0         7.2, 34.1         4.5, 25.3   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Range                           0.3 to 85.8 {1}   0.1 to 83.0 {2}   0.2 to 81.8 {2}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Median                               17.2              18.1              12.6      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                          (4.3, 24.4)       (4.7, 34.1)       (2.0, 15.6)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     25% and 75%-ile                   11.9, 24.4         6.5, 34.1         7.1, 15.5   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Range                           1.2 to 46.9 {1}   1.0 to 50.5 {2}     1.9 to 28.9  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Unstratified Analysis                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (log-rank)                                    0.4808            0.0429     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Hazard Ratio                                           0.90              1.36      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                             (0.67, 1.21)      (1.01, 1.82)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (log-rank)                                    0.8668            0.1419     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Hazard Ratio                                           0.93              1.95      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                             (0.39, 2.22)      (0.79, 4.80)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Stratified Analysis                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (log-rank)                                    0.8068            0.0252     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Hazard Ratio                                           0.96              1.42      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                             (0.71, 1.31)      (1.04, 1.92)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     p-value (log-rank)                                    0.7771            0.1499     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Hazard Ratio                                           0.87              2.42      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                                             (0.33, 2.29)      (0.71, 8.30)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   6 MONTHS                                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk            87                92                77       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  77.27             77.85             67.70     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (68.76, 83.74)    (69.53, 84.15)    (58.64, 75.20) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                          0.57              -9.57     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-9.82, 10.97)    (-20.70, 1.57) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.9137            0.0921     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk            10                11                10       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  78.32             78.57             80.00     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (46.51, 92.50)    (47.25, 92.54)    (49.98, 93.07) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                          0.25              1.68      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-30.40, 30.90)   (-28.11, 31.47)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.9873            0.9121     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   12 MONTHS                                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk            65                68                51       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  62.83             62.69             50.16     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (53.36, 70.91)    (53.31, 70.71)    (40.69, 58.89) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                          -0.14            -12.68     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-12.53, 12.25)   (-25.38, 0.03) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.9822            0.0505     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Patients remaining at risk             8                 6                 7       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Event Free Rate (%)                  69.62             55.10             62.22     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     95% CI                          (37.36, 87.53)    (25.54, 77.09)    (30.81, 82.60) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Difference in Event Free Rate                         -14.52             -7.40     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       95% CI                                          (-51.62, 22.58)   (-44.22, 29.43)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       p-value (Z-test)                                    0.4431            0.6938     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   {1} - Censored observation: range minimum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   {2} - Censored observation: range maximum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   {1} - Censored observation: range maximum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   {2} - Censored observations: range minimum &amp; maximum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   —————————————————————————————————————————————————————————————————————————————————————</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
