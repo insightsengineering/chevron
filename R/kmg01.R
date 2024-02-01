@@ -12,11 +12,12 @@
 #' the documentation in `tern`.
 #' Commonly used arguments include `col`, `pval_method`, `ties`, `conf_level`, `conf_type`,
 #' `annot_coxph`, `annot_stats`, etc.
+#' @returns the main function returns a `gTree` object.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by  `arm_var`.
 #'
-#' @return a `gTree` object.
+#' @returns a `gTree` object.
 #' @export
 kmg01_main <- function(adam_db,
                        dataset = "adtte",
@@ -54,7 +55,7 @@ kmg01_main <- function(adam_db,
 #' @describeIn kmg01 Preprocessing
 #'
 #' @inheritParams kmg01_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
@@ -80,8 +81,8 @@ kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' syn_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-#' run(kmg01, syn_data, dataset = "adtte", line_col = col)
+#' pre_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
+#' run(kmg01, pre_data, dataset = "adtte", line_col = col)
 kmg01 <- chevron_g(
   main = kmg01_main,
   preprocess = kmg01_pre

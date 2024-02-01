@@ -8,6 +8,7 @@
 #'   order to obtain the correct denominators when building the layout as it is used to define row splitting.
 #' @param grad_anl_var (`string`)  the name of the column storing toxicity grade variable where all negative values from
 #'   `ATOXGR` are replaced by their absolute values.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Split columns by arm, typically `ACTARM`.
@@ -118,7 +119,7 @@ lbt07_lyt <- function(arm_var,
 #' @describeIn lbt07 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 lbt07_pre <- function(adam_db, ...) {
@@ -158,7 +159,7 @@ lbt07_pre <- function(adam_db, ...) {
 #' @describeIn lbt07 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 lbt07_post <- function(tlg, prune_0 = TRUE, ...) {

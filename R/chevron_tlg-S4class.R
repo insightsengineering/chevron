@@ -4,17 +4,17 @@
 
 #' `chevron_tlg` class
 #'
-#' The `chevron_tlg` class associates a `preprocess` function, a main `tlg` function and `AdAM` tables names and
-#' optionally a `postprocess` function.
+#' The `chevron_tlg` S4 class associates a `preprocess` function, a main `tlg` function and a `postprocess` function.
 #'
 #' @slot main (`function`) returning a `tlg`. Typically one of the `*_main` function from `chevron`.
 #' @slot preprocess (`function`) returning a pre-processed `list` of `data.frames` amenable to `tlg` creation. Typically
 #'   one of the `*_pre` function from `chevron`.
-#' @slot postprocess (`function`) returning a post-processed `tlg`.
+#' @slot postprocess (`function`) returning a post-processed `tlg`. Typically one of the `*_post` function from
+#'   `chevron`.
 #'
 #' @format NULL
 #'
-#' @note To ensure the correct execution of the workflow additional validation criteria are:
+#' @note To ensure the correct execution of the workflow, additional validation criteria are:
 #' * the first argument of the `main` function must be `adam_db`, the input `list` of `data.frames` to pre-process. The
 #' `...` argument is mandatory.
 #' * the first argument of the `preprocess` function must be `adam_db`, the input `list` of `data.frames` to create
@@ -128,6 +128,7 @@ methods::setValidity("chevron_simple", function(object) {
 #'
 #' @inheritParams gen_args
 #' @param ... not used
+#' @returns a `chevron_t` class object.
 #'
 #' @export
 #'
@@ -157,7 +158,7 @@ chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), a
 #'
 #' @inheritParams gen_args
 #' @param ... not used
-#'
+#' @returns a `chevron_l` class object.
 #' @export
 #'
 #' @examples
@@ -179,9 +180,10 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 #' `chevron_g` constructor
 #'
 #' @rdname chevron_tlg-class
-#' @param ... not used
 #'
 #' @inheritParams gen_args
+#' @param ... not used
+#' @returns a `chevron_g` class object.
 #'
 #' @export
 #'
@@ -207,9 +209,10 @@ chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
 #' `chevron_simple` constructor
 #'
 #' @rdname chevron_tlg-class
-#' @param ... not used
 #'
 #' @inheritParams gen_args
+#' @param ... not used
+#' @returns a `chevron_simple` class object.
 #'
 #' @export
 #'

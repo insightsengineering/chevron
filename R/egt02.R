@@ -4,6 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param exclude_base_abn (`flag`) whether baseline abnormality should be excluded.
+#' @returns the main function returns an `rtables` object
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -53,6 +54,7 @@ egt02_1_main <- function(adam_db,
 #' @param lbl_vs_abnormality (`string`) the label of the abnormality variable.
 #' @param exclude_base_abn (`flag`) whether to exclude subjects with baseline abnormality from numerator and
 #'   denominator.
+#' @returns a `PreDataTableLayouts` object.
 #'
 #' @keywords internal
 #'
@@ -76,7 +78,7 @@ egt02_lyt <- function(arm_var = "ACTARM",
 #' @describeIn egt02_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 egt02_pre <- function(adam_db, ...) {
@@ -91,7 +93,7 @@ egt02_pre <- function(adam_db, ...) {
 #' @describeIn egt02_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 egt02_post <- function(tlg, ...) {

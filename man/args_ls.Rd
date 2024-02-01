@@ -17,6 +17,13 @@ priority for the value of the parameters is: \code{main}, \code{preprocess} and 
 
 \item{omit}{(\code{character}) the names of the argument to omit from the output.}
 }
+\value{
+a \code{list} of the formal arguments with their default for the functions stored in the \code{chevron_tlg} object
+passed a \code{x} argument.
+}
 \description{
 Get Arguments List
+}
+\examples{
+args_ls(aet01, simplify = TRUE)
 }

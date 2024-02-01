@@ -59,6 +59,13 @@ See \code{\link[tern:estimate_proportions]{tern::estimate_proportions}}.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 \code{RMPT06} Table 1 (Default) Seriousness, Outcomes, Severity, Frequency with 95\% CI for Risk Management Plan.
 }

@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adeg`
 #'   table of `adam_db` is used as name.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * The `Value at Visit` column, displays the categories of the specific `"PARAMCD"` value for patients.
@@ -85,6 +86,7 @@ egt05_qtcat_main <- function(adam_db,
 #' @param summaryvars (`character`) the variables to be analyzed. `AVALCAT1` and `CHGCAT1` by default.
 #' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
 #' @param visitvar (`string`) typically `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
+#' @returns a `PreDataTableLayouts` object.
 #'
 #' @keywords internal
 #'
@@ -133,6 +135,7 @@ egt05_qtcat_lyt <- function(arm_var,
 #' @describeIn egt05_qtcat Preprocessing
 #'
 #' @inheritParams gen_args
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'
@@ -151,6 +154,7 @@ egt05_qtcat_pre <- function(adam_db, ...) {
 #' @describeIn egt05_qtcat Postprocessing
 #'
 #' @inheritParams gen_args
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #'
 #' @export
 #'

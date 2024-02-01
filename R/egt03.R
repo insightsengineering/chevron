@@ -6,6 +6,7 @@
 #'   are used as subtitles.
 #' @param splitvar (`character`) variables to be analyzed, typically `"ANRIND"`. Labels of the corresponding columns are
 #'   used as subtitles.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * `ADEG` data are subsetted to contain only "POST-BASELINE MINIMUM"/"POST-BASELINE MAXIMUM" visit
@@ -73,6 +74,7 @@ egt03_main <- function(adam_db,
 #'
 #' @param lbl_armvar (`string`) label of the `arm_var` variable.
 #' @param lbl_summaryvars (`string`) label of the `summaryvar` variable.
+#' @returns a `PreDataTableLayouts` object.
 #'
 #' @keywords internal
 #'
@@ -117,6 +119,7 @@ egt03_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @inheritParams egt03_main
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'
@@ -146,6 +149,7 @@ egt03_pre <- function(adam_db, ...) {
 #' @describeIn egt03 Postprocessing
 #'
 #' @inheritParams gen_args
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #'
 #' @export
 #'

@@ -37,8 +37,6 @@ lbt06_lyt(
 \item{bnrind_var}{(\code{string}) the variable for baseline reference range indicator.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
-
-\item{param}{(\code{string}) the variable for parameter code.}
 }
 \description{
 \code{lbt06} Layout

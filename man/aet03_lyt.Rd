@@ -17,6 +17,9 @@ aet03_lyt(arm_var, lbl_overall, lbl_aebodsys, lbl_aedecod, intensity_grade)
 
 \item{intensity_grade}{(\code{character}) describing the intensity levels present in the dataset.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{aet03} Layout
 }

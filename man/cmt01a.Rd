@@ -61,6 +61,13 @@ cmt01a
 
 \item{sort_by_freq}{(\code{flag}) whether to sort medication class by frequency.}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 A concomitant medication
 table with the number of subjects and the total number of treatments by medication class.

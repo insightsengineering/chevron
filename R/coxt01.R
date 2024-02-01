@@ -11,6 +11,7 @@
 #' @param lbl_vars (`string`) text label for the a Cox regression model variables.
 #' @param multivar (`flag`) indicator of whether multivariate cox regression is conducted.
 #' @param ... Further arguments passed to `tern::control_coxreg()`.
+#' @returns the main function returns an `rtables` object
 #'
 #' @details
 #'  * The reference arm will always the first level of `arm_var`. Please change the level if you want to
@@ -85,7 +86,7 @@ coxt01_main <- function(adam_db,
 #'
 #' @inheritParams coxt01_main
 #' @param variables (`list`) list of variables in a Cox proportional hazards regression model.
-#'
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 coxt01_lyt <- function(variables,
@@ -107,7 +108,7 @@ coxt01_lyt <- function(variables,
 #' @describeIn coxt01 Preprocessing
 #'
 #' @inheritParams coxt01_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 coxt01_pre <- function(adam_db, arm_var = "ARM", ...) {
@@ -121,7 +122,7 @@ coxt01_pre <- function(adam_db, arm_var = "ARM", ...) {
 #' @describeIn coxt01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 coxt01_post <- function(tlg, prune_0 = FALSE, ...) {

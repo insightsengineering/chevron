@@ -3,165 +3,165 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
-          Other Treatment                                          (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of treatments                                   609           622            703      
-        ATCCLAS2 A                                                                                         
-          Total number of patients with at least one treatment   97 (72.4%)    98 (73.1%)     102 (77.3%)  
-          Total number of treatments                                 205           207            242      
-          medname A_1/3                                          54 (40.3%)    49 (36.6%)      69 (52.3%)  
-          medname A_2/3                                          53 (39.6%)    50 (37.3%)      56 (42.4%)  
-          medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
-        ATCCLAS2 A p2                                                                                      
-          Total number of patients with at least one treatment   45 (33.6%)    54 (40.3%)      48 (36.4%)  
-          Total number of treatments                                 58            66              64      
-          medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
-        ATCCLAS2 B                                                                                         
-          Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
-          Total number of treatments                                 264           275            306      
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-          medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
-          medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
-        ATCCLAS2 B p2                                                                                      
-          Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
-          Total number of treatments                                 139           155            159      
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-        ATCCLAS2 B p3                                                                                      
-          Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
-          Total number of treatments                                 139           155            159      
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-        ATCCLAS2 C                                                                                         
-          Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
-          Total number of treatments                                 140           140            155      
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  
-        ATCCLAS2 C p2                                                                                      
-          Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
-          Total number of treatments                                 140           140            155      
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  
-        ATCCLAS2 C p3                                                                                      
-          Total number of patients with at least one treatment   52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          Total number of treatments                                 69            73              80      
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
+        ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination
+          Other Treatment                                          (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one treatment     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of treatments                                   58           59             99      
+        ATCCLAS2 A                                                                                       
+          Total number of patients with at least one treatment   10 (66.7%)   11 (73.3%)     12 (80.0%)  
+          Total number of treatments                                 15           21             28      
+          medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   
+          medname A_2/3                                          5 (33.3%)    6 (40.0%)      7 (46.7%)   
+          medname A_1/3                                          4 (26.7%)    3 (20.0%)      8 (53.3%)   
+        ATCCLAS2 A p2                                                                                    
+          Total number of patients with at least one treatment   5 (33.3%)    8 (53.3%)      6 (40.0%)   
+          Total number of treatments                                 6            8              8       
+          medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   
+        ATCCLAS2 B                                                                                       
+          Total number of patients with at least one treatment   12 (80.0%)   10 (66.7%)     14 (93.3%)  
+          Total number of treatments                                 30           30             52      
+          medname B_3/4                                          8 (53.3%)    6 (40.0%)      8 (53.3%)   
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+          medname B_4/4                                          4 (26.7%)    5 (33.3%)      8 (53.3%)   
+        ATCCLAS2 B p2                                                                                    
+          Total number of patients with at least one treatment   10 (66.7%)   8 (53.3%)      12 (80.0%)  
+          Total number of treatments                                 18           17             25      
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+        ATCCLAS2 B p3                                                                                    
+          Total number of patients with at least one treatment   10 (66.7%)   8 (53.3%)      12 (80.0%)  
+          Total number of treatments                                 18           17             25      
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+        ATCCLAS2 C                                                                                       
+          Total number of patients with at least one treatment   9 (60.0%)    7 (46.7%)      12 (80.0%)  
+          Total number of treatments                                 13           8              19      
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   
+        ATCCLAS2 C p2                                                                                    
+          Total number of patients with at least one treatment   9 (60.0%)    7 (46.7%)      12 (80.0%)  
+          Total number of treatments                                 13           8              19      
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   
+        ATCCLAS2 C p3                                                                                    
+          Total number of patients with at least one treatment   4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          Total number of treatments                                 5            5              12      
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
 
 # cmt01a functions with custom argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
-          Other Treatment                                          (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of treatments                                   609           622            703      
-        ATCCLAS2 B                                                                                         
-          Total number of patients with at least one treatment   102 (76.1%)   101 (75.4%)    108 (81.8%)  
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-          medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
-          medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
-        ATCCLAS2 A                                                                                         
-          Total number of patients with at least one treatment   97 (72.4%)    98 (73.1%)     102 (77.3%)  
-          medname A_1/3                                          54 (40.3%)    49 (36.6%)      69 (52.3%)  
-          medname A_2/3                                          53 (39.6%)    50 (37.3%)      56 (42.4%)  
-          medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
-        ATCCLAS2 C                                                                                         
-          Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  
-        ATCCLAS2 C p2                                                                                      
-          Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  
-        ATCCLAS2 B p2                                                                                      
-          Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-        ATCCLAS2 B p3                                                                                      
-          Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-        ATCCLAS2 C p3                                                                                      
-          Total number of patients with at least one treatment   52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-        ATCCLAS2 A p2                                                                                      
-          Total number of patients with at least one treatment   45 (33.6%)    54 (40.3%)      48 (36.4%)  
-          medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
+        ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination
+          Other Treatment                                          (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one treatment     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of treatments                                   58           59             99      
+        ATCCLAS2 B                                                                                       
+          Total number of patients with at least one treatment   12 (80.0%)   10 (66.7%)     14 (93.3%)  
+          medname B_3/4                                          8 (53.3%)    6 (40.0%)      8 (53.3%)   
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+          medname B_4/4                                          4 (26.7%)    5 (33.3%)      8 (53.3%)   
+        ATCCLAS2 A                                                                                       
+          Total number of patients with at least one treatment   10 (66.7%)   11 (73.3%)     12 (80.0%)  
+          medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   
+          medname A_2/3                                          5 (33.3%)    6 (40.0%)      7 (46.7%)   
+          medname A_1/3                                          4 (26.7%)    3 (20.0%)      8 (53.3%)   
+        ATCCLAS2 B p2                                                                                    
+          Total number of patients with at least one treatment   10 (66.7%)   8 (53.3%)      12 (80.0%)  
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+        ATCCLAS2 B p3                                                                                    
+          Total number of patients with at least one treatment   10 (66.7%)   8 (53.3%)      12 (80.0%)  
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+        ATCCLAS2 C                                                                                       
+          Total number of patients with at least one treatment   9 (60.0%)    7 (46.7%)      12 (80.0%)  
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   
+        ATCCLAS2 C p2                                                                                    
+          Total number of patients with at least one treatment   9 (60.0%)    7 (46.7%)      12 (80.0%)  
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   
+        ATCCLAS2 A p2                                                                                    
+          Total number of patients with at least one treatment   5 (33.3%)    8 (53.3%)      6 (40.0%)   
+          medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   
+        ATCCLAS2 C p3                                                                                    
+          Total number of patients with at least one treatment   4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
 
 # cmt01a can handle all NA values
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
-          Other Treatment                                          (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of treatments                                   609           622            703      
-        No Coding Available                                                                                
-          Total number of patients with at least one treatment   122 (91.0%)   123 (91.8%)    120 (90.9%)  
-          Total number of treatments                                 609           622            703      
-          No Coding Available                                    122 (91.0%)   123 (91.8%)    120 (90.9%)  
+        ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination
+          Other Treatment                                          (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one treatment     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of treatments                                   58           59             99      
+        No Coding Available                                                                              
+          Total number of patients with at least one treatment   13 (86.7%)   14 (93.3%)     15 (100%)   
+          Total number of treatments                                 58           59             99      
+          No Coding Available                                    13 (86.7%)   14 (93.3%)     15 (100%)   
 
 # cmt01a can handle some NA values
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        ATC Level 2 Text                                          A: Drug X    B: Placebo    C: Combination
-          Other Treatment                                          (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one treatment     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of treatments                                   609           622            703      
-        ATCCLAS2 A                                                                                         
-          Total number of patients with at least one treatment   97 (72.4%)    98 (73.1%)     102 (77.3%)  
-          Total number of treatments                                 205           207            242      
-          medname A_1/3                                          54 (40.3%)    49 (36.6%)      69 (52.3%)  
-          medname A_2/3                                          53 (39.6%)    50 (37.3%)      56 (42.4%)  
-          medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
-        ATCCLAS2 A p2                                                                                      
-          Total number of patients with at least one treatment   45 (33.6%)    54 (40.3%)      48 (36.4%)  
-          Total number of treatments                                 58            66              64      
-          medname A_3/3                                          45 (33.6%)    54 (40.3%)      48 (36.4%)  
-        ATCCLAS2 B                                                                                         
-          Total number of patients with at least one treatment   101 (75.4%)   101 (75.4%)    108 (81.8%)  
-          Total number of treatments                                 263           275            306      
-          medname B_1/4                                          51 (38.1%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-          medname B_4/4                                          50 (37.3%)    45 (33.6%)      55 (41.7%)  
-          medname B_3/4                                          47 (35.1%)    47 (35.1%)      52 (39.4%)  
-        ATCCLAS2 B p2                                                                                      
-          Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
-          Total number of treatments                                 139           155            159      
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-        ATCCLAS2 B p3                                                                                      
-          Total number of patients with at least one treatment   78 (58.2%)    82 (61.2%)      89 (67.4%)  
-          Total number of treatments                                 139           155            159      
-          medname B_1/4                                          52 (38.8%)    57 (42.5%)      59 (44.7%)  
-          medname B_2/4                                          52 (38.8%)    55 (41.0%)      56 (42.4%)  
-        ATCCLAS2 C                                                                                         
-          Total number of patients with at least one treatment   81 (60.4%)    84 (62.7%)      89 (67.4%)  
-          Total number of treatments                                 139           140            155      
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname C_1/2                                          50 (37.3%)    50 (37.3%)      56 (42.4%)  
-        ATCCLAS2 C p2                                                                                      
-          Total number of patients with at least one treatment   82 (61.2%)    84 (62.7%)      89 (67.4%)  
-          Total number of treatments                                 140           140            155      
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          medname C_1/2                                          51 (38.1%)    50 (37.3%)      56 (42.4%)  
-        ATCCLAS2 C p3                                                                                      
-          Total number of patients with at least one treatment   52 (38.8%)    58 (43.3%)      60 (45.5%)  
-          Total number of treatments                                 69            73              80      
-          medname C_2/2                                          52 (38.8%)    58 (43.3%)      60 (45.5%)  
-        No Coding Available                                                                                
-          Total number of patients with at least one treatment    1 (0.7%)          0              0       
-          Total number of treatments                                  2             0              0       
-          No Coding Available                                     1 (0.7%)          0              0       
+        ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination
+          Other Treatment                                          (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one treatment     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of treatments                                   58           59             99      
+        ATCCLAS2 A                                                                                       
+          Total number of patients with at least one treatment   10 (66.7%)   11 (73.3%)     12 (80.0%)  
+          Total number of treatments                                 15           21             28      
+          medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   
+          medname A_2/3                                          5 (33.3%)    6 (40.0%)      7 (46.7%)   
+          medname A_1/3                                          4 (26.7%)    3 (20.0%)      8 (53.3%)   
+        ATCCLAS2 A p2                                                                                    
+          Total number of patients with at least one treatment   5 (33.3%)    8 (53.3%)      6 (40.0%)   
+          Total number of treatments                                 6            8              8       
+          medname A_3/3                                          5 (33.3%)    8 (53.3%)      6 (40.0%)   
+        ATCCLAS2 B                                                                                       
+          Total number of patients with at least one treatment   11 (73.3%)   10 (66.7%)     14 (93.3%)  
+          Total number of treatments                                 29           30             52      
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_3/4                                          7 (46.7%)    6 (40.0%)      8 (53.3%)   
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+          medname B_4/4                                          4 (26.7%)    5 (33.3%)      8 (53.3%)   
+        ATCCLAS2 B p2                                                                                    
+          Total number of patients with at least one treatment   10 (66.7%)   8 (53.3%)      12 (80.0%)  
+          Total number of treatments                                 18           17             25      
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+        ATCCLAS2 B p3                                                                                    
+          Total number of patients with at least one treatment   10 (66.7%)   8 (53.3%)      12 (80.0%)  
+          Total number of treatments                                 18           17             25      
+          medname B_2/4                                          6 (40.0%)    5 (33.3%)      10 (66.7%)  
+          medname B_1/4                                          7 (46.7%)    6 (40.0%)      6 (40.0%)   
+        ATCCLAS2 C                                                                                       
+          Total number of patients with at least one treatment   8 (53.3%)    7 (46.7%)      12 (80.0%)  
+          Total number of treatments                                 12           8              19      
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          medname C_1/2                                          5 (33.3%)    2 (13.3%)      6 (40.0%)   
+        ATCCLAS2 C p2                                                                                    
+          Total number of patients with at least one treatment   9 (60.0%)    7 (46.7%)      12 (80.0%)  
+          Total number of treatments                                 13           8              19      
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          medname C_1/2                                          6 (40.0%)    2 (13.3%)      6 (40.0%)   
+        ATCCLAS2 C p3                                                                                    
+          Total number of patients with at least one treatment   4 (26.7%)    5 (33.3%)      7 (46.7%)   
+          Total number of treatments                                 5            5              12      
+          medname C_2/2                                          4 (26.7%)    5 (33.3%)      7 (46.7%)   
+        No Coding Available                                                                              
+          Total number of patients with at least one treatment    1 (6.7%)        0              0       
+          Total number of treatments                                 2            0              0       
+          No Coding Available                                     1 (6.7%)        0              0       
 

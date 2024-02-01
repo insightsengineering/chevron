@@ -20,6 +20,9 @@ main(x) <- value
 
 \item{value}{(\code{function}) returning a \code{tlg}. Typically one of the \verb{_main} function of \code{chevron}.}
 }
+\value{
+the \code{function} stored in the \code{main} slot of the \code{x} argument.
+}
 \description{
 retrieve or set \code{main} function.
 }

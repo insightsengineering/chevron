@@ -39,6 +39,8 @@ the value for \code{default} will be used.}
 
 \item{.stats}{(\code{character}) See \code{tern::analyze_variables}.}
 
+\item{.labels}{(\code{character}) See \code{tern::analyze_variables}.}
+
 \item{.indent_mods}{(\code{integer}) See \code{tern::analyze_variables}.}
 
 \item{.N_col}{(\code{int}) See \code{tern::analyze_variables}.}
@@ -46,8 +48,6 @@ the value for \code{default} will be used.}
 \item{.N_row}{(\code{int}) See \code{tern::analyze_variables}.}
 
 \item{...}{additional arguments for \code{tern::a_summary}.}
-
-\item{.label}{(\code{character}) See \code{tern::analyze_variables}.}
 }
 \description{
 Analyze skip baseline

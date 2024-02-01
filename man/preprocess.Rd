@@ -21,6 +21,9 @@ preprocess(x) <- value
 \item{value}{(\code{function}) returning a pre-processed \code{list} of \code{data.frames} amenable to \code{tlg} creation. Typically
 one of the \verb{_pre} function of \code{chevron}.}
 }
+\value{
+the \code{function} stored in the \code{preprocess} slot of the \code{x} argument.
+}
 \description{
 retrieve or set \code{preprocess} function.
 }

@@ -26,6 +26,9 @@ aet04_lyt(
 
 \item{grade_groups}{(\code{list}) putting in correspondence toxicity grades and labels.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{aet04} Layout
 }

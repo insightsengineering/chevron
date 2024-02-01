@@ -52,6 +52,9 @@ the value for \code{default} will be used.}
 
 \item{...}{not used.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{cfbt01} Layout
 }

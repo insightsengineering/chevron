@@ -16,6 +16,7 @@
 #'  `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
 #'  Commonly used arguments include `gp`, `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
 #'  `method`, `label_all`, etc.
+#' @returns the main function returns a `gTree` object.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with `"PARAMCD"`, `"ARM"`,
@@ -23,7 +24,7 @@
 #'  `c("SEX", "AGEGR1", "RACE")` by default.
 #'  * If the plot is too large to be rendered in the output, please refer to `FSTG01`.
 #'
-#' @return a `gTree` object.
+#' @returns a `gTree` object.
 #'
 #' @export
 #'
@@ -82,6 +83,7 @@ fstg02_main <- function(adam_db,
 #' @describeIn fstg02 Preprocessing
 #'
 #' @inheritParams fstg02_main
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'
