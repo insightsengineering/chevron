@@ -3,7 +3,6 @@ Agresti
 CTC
 Clopper
 Coull
-dunlin
 Forkers
 Haenszel
 Hauck
@@ -15,11 +14,11 @@ MedDRA
 Newcombe
 Postprocessing
 Pre
-rtables
 Schouten
 TLG
 TLGs
 Unstratified
+dunlin
 funder
 postprocessing
 pre
@@ -27,4 +26,5 @@ preprocess
 repo
 responder
 responders
+rtables
 unstratified
