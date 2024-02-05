@@ -75,8 +75,7 @@ fstg01_main <- function(adam_db,
     g_forest,
     tbl = result,
     ...,
-    gp = grid::gpar(fontsize = 7),
-    draw = FALSE
+    font_size = 7
   )
 }
 
